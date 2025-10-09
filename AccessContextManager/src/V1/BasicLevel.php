@@ -30,7 +30,7 @@ class BasicLevel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.BasicLevel.ConditionCombiningFunction combining_function = 2;</code>
      */
-    private $combining_function = 0;
+    protected $combining_function = 0;
 
     /**
      * Constructor.

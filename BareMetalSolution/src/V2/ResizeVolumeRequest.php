@@ -20,13 +20,13 @@ class ResizeVolumeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string volume = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $volume = '';
+    protected $volume = '';
     /**
      * New Volume size, in GiB.
      *
      * Generated from protobuf field <code>int64 size_gib = 2;</code>
      */
-    private $size_gib = 0;
+    protected $size_gib = 0;
 
     /**
      * @param string $volume  Required. Volume to resize. Please see

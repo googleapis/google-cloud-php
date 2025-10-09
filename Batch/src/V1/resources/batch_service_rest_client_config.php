@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.batch.v1.BatchService' => [
+            'CancelJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/jobs/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateJob' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/jobs',

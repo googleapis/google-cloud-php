@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,10 @@ use Google\Cloud\ConfidentialComputing\V1\CreateChallengeRequest;
 use Google\Cloud\ConfidentialComputing\V1\TpmAttestation;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationRequest;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationResponse;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeRequest;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeResponse;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialSpaceRequest;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialSpaceResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -55,7 +59,9 @@ class ConfidentialComputingClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ConfidentialComputingClient */
@@ -87,16 +93,17 @@ class ConfidentialComputingClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $challenge = new Challenge();
-        $request = (new CreateChallengeRequest())
-            ->setParent($formattedParent)
-            ->setChallenge($challenge);
+        $request = (new CreateChallengeRequest())->setParent($formattedParent)->setChallenge($challenge);
         $response = $gapicClient->createChallenge($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.confidentialcomputing.v1.ConfidentialComputing/CreateChallenge', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.confidentialcomputing.v1.ConfidentialComputing/CreateChallenge',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getChallenge();
@@ -115,19 +122,20 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $challenge = new Challenge();
-        $request = (new CreateChallengeRequest())
-            ->setParent($formattedParent)
-            ->setChallenge($challenge);
+        $request = (new CreateChallengeRequest())->setParent($formattedParent)->setChallenge($challenge);
         try {
             $gapicClient->createChallenge($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -166,7 +174,10 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.confidentialcomputing.v1.ConfidentialComputing/VerifyAttestation', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.confidentialcomputing.v1.ConfidentialComputing/VerifyAttestation',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getChallenge();
         $this->assertProtobufEquals($formattedChallenge, $actualValue);
         $actualValue = $actualRequestObject->getTpmAttestation();
@@ -185,12 +196,15 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
@@ -200,6 +214,142 @@ class ConfidentialComputingClientTest extends GeneratedTest
             ->setTpmAttestation($tpmAttestation);
         try {
             $gapicClient->verifyAttestation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifyConfidentialGkeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $attestationToken = 'attestationToken-1778335798';
+        $expectedResponse = new VerifyConfidentialGkeResponse();
+        $expectedResponse->setAttestationToken($attestationToken);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
+        $request = (new VerifyConfidentialGkeRequest())->setChallenge($formattedChallenge);
+        $response = $gapicClient->verifyConfidentialGke($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.confidentialcomputing.v1.ConfidentialComputing/VerifyConfidentialGke',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getChallenge();
+        $this->assertProtobufEquals($formattedChallenge, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifyConfidentialGkeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
+        $request = (new VerifyConfidentialGkeRequest())->setChallenge($formattedChallenge);
+        try {
+            $gapicClient->verifyConfidentialGke($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifyConfidentialSpaceTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $attestationToken = 'attestationToken-1778335798';
+        $expectedResponse = new VerifyConfidentialSpaceResponse();
+        $expectedResponse->setAttestationToken($attestationToken);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
+        $request = (new VerifyConfidentialSpaceRequest())->setChallenge($formattedChallenge);
+        $response = $gapicClient->verifyConfidentialSpace($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.confidentialcomputing.v1.ConfidentialComputing/VerifyConfidentialSpace',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getChallenge();
+        $this->assertProtobufEquals($formattedChallenge, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifyConfidentialSpaceExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
+        $request = (new VerifyConfidentialSpaceRequest())->setChallenge($formattedChallenge);
+        try {
+            $gapicClient->verifyConfidentialSpace($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -250,12 +400,15 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -282,9 +435,7 @@ class ConfidentialComputingClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -314,12 +465,15 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -355,16 +509,17 @@ class ConfidentialComputingClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $challenge = new Challenge();
-        $request = (new CreateChallengeRequest())
-            ->setParent($formattedParent)
-            ->setChallenge($challenge);
+        $request = (new CreateChallengeRequest())->setParent($formattedParent)->setChallenge($challenge);
         $response = $gapicClient->createChallengeAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.confidentialcomputing.v1.ConfidentialComputing/CreateChallenge', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.confidentialcomputing.v1.ConfidentialComputing/CreateChallenge',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getChallenge();

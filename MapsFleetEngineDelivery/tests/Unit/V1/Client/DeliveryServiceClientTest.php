@@ -31,6 +31,8 @@ use Google\Maps\FleetEngine\Delivery\V1\BatchCreateTasksResponse;
 use Google\Maps\FleetEngine\Delivery\V1\Client\DeliveryServiceClient;
 use Google\Maps\FleetEngine\Delivery\V1\CreateDeliveryVehicleRequest;
 use Google\Maps\FleetEngine\Delivery\V1\CreateTaskRequest;
+use Google\Maps\FleetEngine\Delivery\V1\DeleteDeliveryVehicleRequest;
+use Google\Maps\FleetEngine\Delivery\V1\DeleteTaskRequest;
 use Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle;
 use Google\Maps\FleetEngine\Delivery\V1\GetDeliveryVehicleRequest;
 use Google\Maps\FleetEngine\Delivery\V1\GetTaskRequest;
@@ -47,6 +49,7 @@ use Google\Maps\FleetEngine\Delivery\V1\UpdateDeliveryVehicleRequest;
 use Google\Maps\FleetEngine\Delivery\V1\UpdateTaskRequest;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -312,6 +315,130 @@ class DeliveryServiceClientTest extends GeneratedTest
             ->setTask($task);
         try {
             $gapicClient->createTask($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteDeliveryVehicleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->deliveryVehicleName('[PROVIDER]', '[VEHICLE]');
+        $request = (new DeleteDeliveryVehicleRequest())->setName($formattedName);
+        $gapicClient->deleteDeliveryVehicle($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/maps.fleetengine.delivery.v1.DeliveryService/DeleteDeliveryVehicle', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteDeliveryVehicleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->deliveryVehicleName('[PROVIDER]', '[VEHICLE]');
+        $request = (new DeleteDeliveryVehicleRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteDeliveryVehicle($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteTaskTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->taskName('[PROVIDER]', '[TASK]');
+        $request = (new DeleteTaskRequest())->setName($formattedName);
+        $gapicClient->deleteTask($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/maps.fleetengine.delivery.v1.DeliveryService/DeleteTask', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteTaskExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->taskName('[PROVIDER]', '[TASK]');
+        $request = (new DeleteTaskRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteTask($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

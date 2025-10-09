@@ -227,6 +227,30 @@ return [
                     ],
                 ],
             ],
+            'FetchClusterUpgradeInfo' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Container\V1\ClusterUpgradeInfo',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchNodePoolUpgradeInfo' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Container\V1\NodePoolUpgradeInfo',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCluster' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Container\V1\Cluster',
@@ -998,6 +1022,8 @@ return [
                 ],
             ],
             'templateMap' => [
+                'caPool' => 'projects/{project}/locations/{location}/caPools/{ca_pool}',
+                'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'topic' => 'projects/{project}/topics/{topic}',
             ],
         ],

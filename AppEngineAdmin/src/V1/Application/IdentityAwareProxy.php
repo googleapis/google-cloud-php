@@ -23,13 +23,13 @@ class IdentityAwareProxy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * OAuth2 client ID to use for the authentication flow.
      *
      * Generated from protobuf field <code>string oauth2_client_id = 2;</code>
      */
-    private $oauth2_client_id = '';
+    protected $oauth2_client_id = '';
     /**
      * OAuth2 client secret to use for the authentication flow.
      * For security reasons, this value cannot be retrieved via the API.
@@ -39,14 +39,14 @@ class IdentityAwareProxy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string oauth2_client_secret = 3;</code>
      */
-    private $oauth2_client_secret = '';
+    protected $oauth2_client_secret = '';
     /**
      * Hex-encoded SHA-256 hash of the client secret.
      * &#64;OutputOnly
      *
      * Generated from protobuf field <code>string oauth2_client_secret_sha256 = 4;</code>
      */
-    private $oauth2_client_secret_sha256 = '';
+    protected $oauth2_client_secret_sha256 = '';
 
     /**
      * Constructor.

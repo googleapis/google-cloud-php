@@ -21,14 +21,14 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageFormat.Format format = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $format = 0;
+    protected $format = 0;
     /**
      * Optional. The compression type associated with the stored data.
      * If unspecified, the data is uncompressed.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageFormat.CompressionFormat compression_format = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $compression_format = 0;
+    protected $compression_format = 0;
     /**
      * Required. The mime type descriptor for the data. Must match the pattern
      * {type}/{subtype}. Supported values:
@@ -49,7 +49,7 @@ class StorageFormat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     protected $options;
 
     /**

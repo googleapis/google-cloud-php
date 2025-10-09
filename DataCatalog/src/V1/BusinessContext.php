@@ -20,13 +20,13 @@ class BusinessContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryOverview entry_overview = 1;</code>
      */
-    private $entry_overview = null;
+    protected $entry_overview = null;
     /**
      * Contact people for the entry.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Contacts contacts = 2;</code>
      */
-    private $contacts = null;
+    protected $contacts = null;
 
     /**
      * Constructor.

@@ -163,6 +163,30 @@ return [
                     ],
                 ],
             ],
+            'ExecuteSql' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{instance=projects/*/locations/*/clusters/*/instances/*}:executeSql',
+                'body' => '*',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
+            'ExportCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:export',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'FailoverInstance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/instances/*}:failover',
@@ -242,6 +266,18 @@ return [
                     ],
                 ],
             ],
+            'ImportCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:import',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'InjectFault' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/instances/*}:injectFault',
@@ -268,6 +304,17 @@ return [
             'ListClusters' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clusters',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatabases' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}/databases',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -345,6 +392,18 @@ return [
                     ],
                 ],
             ],
+            'SwitchoverCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:switchover',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateBackup' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{backup.name=projects/*/locations/*/backups/*}',
@@ -392,6 +451,18 @@ return [
                     'user.name' => [
                         'getters' => [
                             'getUser',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpgradeCluster' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:upgrade',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],

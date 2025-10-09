@@ -21,6 +21,20 @@ class QueryRephraserSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable = 1;</code>
      */
     protected $disable = false;
+    /**
+     * Max rephrase steps.
+     * The max number is 5 steps.
+     * If not set or set to < 1, it will be set to 1 by default.
+     *
+     * Generated from protobuf field <code>int32 max_rephrase_steps = 2;</code>
+     */
+    protected $max_rephrase_steps = 0;
+    /**
+     * Optional. Query Rephraser Model specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.QueryUnderstandingSpec.QueryRephraserSpec.ModelSpec model_spec = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $model_spec = null;
 
     /**
      * Constructor.
@@ -30,6 +44,12 @@ class QueryRephraserSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $disable
      *           Disable query rephraser.
+     *     @type int $max_rephrase_steps
+     *           Max rephrase steps.
+     *           The max number is 5 steps.
+     *           If not set or set to < 1, it will be set to 1 by default.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\QueryUnderstandingSpec\QueryRephraserSpec\ModelSpec $model_spec
+     *           Optional. Query Rephraser Model specification.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +79,72 @@ class QueryRephraserSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable = $var;
+
+        return $this;
+    }
+
+    /**
+     * Max rephrase steps.
+     * The max number is 5 steps.
+     * If not set or set to < 1, it will be set to 1 by default.
+     *
+     * Generated from protobuf field <code>int32 max_rephrase_steps = 2;</code>
+     * @return int
+     */
+    public function getMaxRephraseSteps()
+    {
+        return $this->max_rephrase_steps;
+    }
+
+    /**
+     * Max rephrase steps.
+     * The max number is 5 steps.
+     * If not set or set to < 1, it will be set to 1 by default.
+     *
+     * Generated from protobuf field <code>int32 max_rephrase_steps = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxRephraseSteps($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_rephrase_steps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Query Rephraser Model specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.QueryUnderstandingSpec.QueryRephraserSpec.ModelSpec model_spec = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\QueryUnderstandingSpec\QueryRephraserSpec\ModelSpec|null
+     */
+    public function getModelSpec()
+    {
+        return $this->model_spec;
+    }
+
+    public function hasModelSpec()
+    {
+        return isset($this->model_spec);
+    }
+
+    public function clearModelSpec()
+    {
+        unset($this->model_spec);
+    }
+
+    /**
+     * Optional. Query Rephraser Model specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.QueryUnderstandingSpec.QueryRephraserSpec.ModelSpec model_spec = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\QueryUnderstandingSpec\QueryRephraserSpec\ModelSpec $var
+     * @return $this
+     */
+    public function setModelSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\QueryUnderstandingSpec\QueryRephraserSpec\ModelSpec::class);
+        $this->model_spec = $var;
 
         return $this;
     }

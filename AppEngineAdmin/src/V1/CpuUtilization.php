@@ -20,14 +20,14 @@ class CpuUtilization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration aggregation_window_length = 1;</code>
      */
-    private $aggregation_window_length = null;
+    protected $aggregation_window_length = null;
     /**
      * Target CPU utilization ratio to maintain when scaling. Must be between 0
      * and 1.
      *
      * Generated from protobuf field <code>double target_utilization = 2;</code>
      */
-    private $target_utilization = 0.0;
+    protected $target_utilization = 0.0;
 
     /**
      * Constructor.

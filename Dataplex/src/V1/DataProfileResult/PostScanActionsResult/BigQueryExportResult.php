@@ -20,13 +20,13 @@ class BigQueryExportResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.PostScanActionsResult.BigQueryExportResult.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Additional information about the BigQuery exporting.
      *
      * Generated from protobuf field <code>string message = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $message = '';
+    protected $message = '';
 
     /**
      * Constructor.

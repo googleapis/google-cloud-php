@@ -36,7 +36,7 @@ use Google\Cloud\Dialogflow\Cx\V3\Flow;
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
  * @param string $formattedParent The agent to create a flow for.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                {@see FlowsClient::agentName()} for help formatting this field.
  * @param string $flowDisplayName The human-readable name of the flow.
  */

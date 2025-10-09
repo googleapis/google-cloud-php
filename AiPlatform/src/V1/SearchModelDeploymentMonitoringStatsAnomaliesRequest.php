@@ -23,14 +23,14 @@ class SearchModelDeploymentMonitoringStatsAnomaliesRequest extends \Google\Proto
      *
      * Generated from protobuf field <code>string model_deployment_monitoring_job = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $model_deployment_monitoring_job = '';
+    protected $model_deployment_monitoring_job = '';
     /**
      * Required. The DeployedModel ID of the
      * [ModelDeploymentMonitoringObjectiveConfig.deployed_model_id].
      *
      * Generated from protobuf field <code>string deployed_model_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployed_model_id = '';
+    protected $deployed_model_id = '';
     /**
      * The feature display name. If specified, only return the stats belonging to
      * this feature. Format:
@@ -39,7 +39,7 @@ class SearchModelDeploymentMonitoringStatsAnomaliesRequest extends \Google\Proto
      *
      * Generated from protobuf field <code>string feature_display_name = 3;</code>
      */
-    private $feature_display_name = '';
+    protected $feature_display_name = '';
     /**
      * Required. Objectives of the stats to retrieve.
      *
@@ -51,7 +51,7 @@ class SearchModelDeploymentMonitoringStatsAnomaliesRequest extends \Google\Proto
      *
      * Generated from protobuf field <code>int32 page_size = 5;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token received from a previous
      * [JobService.SearchModelDeploymentMonitoringStatsAnomalies][google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies]
@@ -59,21 +59,21 @@ class SearchModelDeploymentMonitoringStatsAnomaliesRequest extends \Google\Proto
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The earliest timestamp of stats being generated.
      * If not set, indicates fetching stats till the earliest possible one.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The latest timestamp of stats being generated.
      * If not set, indicates feching stats till the latest possible one.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * @param string $modelDeploymentMonitoringJob Required. ModelDeploymentMonitoring Job resource name.

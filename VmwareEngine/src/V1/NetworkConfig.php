@@ -21,7 +21,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string management_cidr = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $management_cidr = '';
+    protected $management_cidr = '';
     /**
      * Optional. The relative resource name of the VMware Engine network attached
      * to the private cloud. Specify the name in the following form:
@@ -30,14 +30,14 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vmware_engine_network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $vmware_engine_network = '';
+    protected $vmware_engine_network = '';
     /**
      * Output only. The canonical name of the VMware Engine network in the form:
      * `projects/{project_number}/locations/{location}/vmwareEngineNetworks/{vmware_engine_network_id}`
      *
      * Generated from protobuf field <code>string vmware_engine_network_canonical = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $vmware_engine_network_canonical = '';
+    protected $vmware_engine_network_canonical = '';
     /**
      * Output only. The IP address layout version of the management IP address
      * range. Possible versions include:
@@ -50,7 +50,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 management_ip_address_layout_version = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $management_ip_address_layout_version = 0;
+    protected $management_ip_address_layout_version = 0;
     /**
      * Output only. DNS Server IP of the Private Cloud.
      * All DNS queries can be forwarded to this address for name resolution of
@@ -59,7 +59,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dns_server_ip = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $dns_server_ip = '';
+    protected $dns_server_ip = '';
 
     /**
      * Constructor.

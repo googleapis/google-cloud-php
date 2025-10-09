@@ -34,11 +34,39 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\ConfidentialComputing\V1\Client\ConfidentialComputingClient;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\Location;
+
+// Create a client.
+$confidentialComputingClient = new ConfidentialComputingClient();
+
+// Prepare the request message.
+$request = new GetLocationRequest();
+
+// Call the API and handle any network failures.
+try {
+    /** @var Location $response */
+    $response = $confidentialComputingClient->getLocation($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-confidentialcomputing/tree/main/samples) for a canonical list of samples.
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

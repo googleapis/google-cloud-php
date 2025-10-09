@@ -26,31 +26,31 @@ class Automation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Unique identifier of the `Automation`.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Optional. Description of the `Automation`. Max length is 255 characters.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Time at which the automation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time at which the automation was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. User annotations. These attributes can only be set and used by
      * the user, and not by Cloud Deploy. Annotations must meet the following
@@ -93,26 +93,26 @@ class Automation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. When Suspended, automation is deactivated from execution.
      *
      * Generated from protobuf field <code>bool suspended = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $suspended = false;
+    protected $suspended = false;
     /**
      * Required. Email address of the user-managed IAM service account that
      * creates Cloud Deploy release and rollout resources.
      *
      * Generated from protobuf field <code>string service_account = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Required. Selected resources to which the automation will be applied.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.AutomationResourceSelector selector = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $selector = null;
+    protected $selector = null;
     /**
      * Required. List of Automation rules associated with the Automation resource.
      * Must have at least one rule and limited to 250 rules per Delivery Pipeline.

@@ -27,47 +27,47 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Description of the patch deployment. Length of the description is
      * limited to 1024 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. VM instances to patch.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchInstanceFilter instance_filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_filter = null;
+    protected $instance_filter = null;
     /**
      * Optional. Patch configuration that is applied.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchConfig patch_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $patch_config = null;
+    protected $patch_config = null;
     /**
      * Optional. Duration of the patch. After the duration ends, the patch times
      * out.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * Output only. Time the patch deployment was created. Timestamp is in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time the patch deployment was last updated. Timestamp is in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The last time a patch job was started by this deployment.
      * Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text
@@ -75,19 +75,19 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_execute_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_execute_time = null;
+    protected $last_execute_time = null;
     /**
      * Optional. Rollout strategy of the patch job.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rollout = null;
+    protected $rollout = null;
     /**
      * Output only. Current state of the patch deployment.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchDeployment.State state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     protected $schedule;
 
     /**

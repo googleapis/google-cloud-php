@@ -18,43 +18,43 @@ class UpdateReservationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional string paths = 106438894;</code>
      */
-    private $paths = null;
+    protected $paths = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
-    private $request_id = null;
+    protected $request_id = null;
     /**
      * Name of the reservation to update.
      *
      * Generated from protobuf field <code>string reservation = 47530956 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $reservation = '';
+    protected $reservation = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Reservation reservation_resource = 285030177 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $reservation_resource = null;
+    protected $reservation_resource = null;
     /**
      * Update_mask indicates fields to be updated as part of this request.
      *
      * Generated from protobuf field <code>optional string update_mask = 500079778;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Name of the zone for this request.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string                               $project             Project ID for this request.

@@ -20,19 +20,19 @@ class NodeTaint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * Required. Value for the taint.
      *
      * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Required. The taint effect.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.NodeTaint.Effect effect = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $effect = 0;
+    protected $effect = 0;
 
     /**
      * Constructor.

@@ -20,19 +20,19 @@ class RecordLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordKey record_key = 1;</code>
      */
-    private $record_key = null;
+    protected $record_key = null;
     /**
      * Field id of the field containing the finding.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field_id = 2;</code>
      */
-    private $field_id = null;
+    protected $field_id = null;
     /**
      * Location within a `ContentItem.Table`.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TableLocation table_location = 3;</code>
      */
-    private $table_location = null;
+    protected $table_location = null;
 
     /**
      * Constructor.

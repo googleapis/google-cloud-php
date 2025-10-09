@@ -21,19 +21,19 @@ class EntityRelation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subject_id = 1;</code>
      */
-    private $subject_id = '';
+    protected $subject_id = '';
     /**
      * Object entity id.
      *
      * Generated from protobuf field <code>string object_id = 2;</code>
      */
-    private $object_id = '';
+    protected $object_id = '';
     /**
      * Relationship description.
      *
      * Generated from protobuf field <code>string relation = 3;</code>
      */
-    private $relation = '';
+    protected $relation = '';
 
     /**
      * Constructor.

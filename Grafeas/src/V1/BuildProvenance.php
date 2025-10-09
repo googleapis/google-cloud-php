@@ -21,13 +21,13 @@ class BuildProvenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * ID of the project.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Commands requested by the build.
      *
@@ -45,19 +45,19 @@ class BuildProvenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Time at which execution of the build was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Time at which execution of the build was finished.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 7;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * E-mail address of the user who initiated this build. Note that this was the
      * user's e-mail address at the time the build was initiated; this address may
@@ -65,25 +65,25 @@ class BuildProvenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creator = 8;</code>
      */
-    private $creator = '';
+    protected $creator = '';
     /**
      * URI where any logs for this provenance were written.
      *
      * Generated from protobuf field <code>string logs_uri = 9;</code>
      */
-    private $logs_uri = '';
+    protected $logs_uri = '';
     /**
      * Details of the Source input to the build.
      *
      * Generated from protobuf field <code>.grafeas.v1.Source source_provenance = 10;</code>
      */
-    private $source_provenance = null;
+    protected $source_provenance = null;
     /**
      * Trigger identifier if the build was triggered automatically; empty if not.
      *
      * Generated from protobuf field <code>string trigger_id = 11;</code>
      */
-    private $trigger_id = '';
+    protected $trigger_id = '';
     /**
      * Special options applied to this build. This is a catch-all field where
      * build providers can enter any desired additional details.
@@ -96,7 +96,7 @@ class BuildProvenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string builder_version = 13;</code>
      */
-    private $builder_version = '';
+    protected $builder_version = '';
 
     /**
      * Constructor.

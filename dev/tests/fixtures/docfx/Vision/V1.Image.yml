@@ -42,7 +42,7 @@ items:
           description: 'Image content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64. Currently, this field only works for BatchAnnotateImages requests. It does not work for AsyncBatchAnnotateImages requests.'
         -
           id: '↳ source'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageSource">Google\Cloud\Vision\V1\ImageSource</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageSource">ImageSource</xref>'
           description: 'Google Cloud Storage image location, or publicly-accessible image URL. If both `content` and `source` are provided for an image, `content` takes precedence and is used to perform the image annotation request.'
   -
     uid: '\Google\Cloud\Vision\V1\Image::getContent()'
@@ -102,7 +102,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageSource">Google\Cloud\Vision\V1\ImageSource</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageSource">ImageSource</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\Image::hasSource()'
     name: hasSource
@@ -135,7 +135,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageSource">Google\Cloud\Vision\V1\ImageSource</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageSource">ImageSource</xref>'
           description: ''
       returns:
         -

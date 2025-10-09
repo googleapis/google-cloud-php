@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for
  * [DatasetService.GetDatasetVersion][google.cloud.aiplatform.v1.DatasetService.GetDatasetVersion].
+ * Next ID: 4
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetDatasetVersionRequest</code>
  */
@@ -23,13 +24,13 @@ class GetDatasetVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Mask specifying which fields to read.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 2;</code>
      */
-    private $read_mask = null;
+    protected $read_mask = null;
 
     /**
      * @param string $name Required. The resource name of the Dataset version to delete.

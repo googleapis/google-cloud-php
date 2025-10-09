@@ -21,7 +21,7 @@ class TrainProcessorVersionResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string processor_version = 1;</code>
      */
-    private $processor_version = '';
+    protected $processor_version = '';
 
     /**
      * Constructor.

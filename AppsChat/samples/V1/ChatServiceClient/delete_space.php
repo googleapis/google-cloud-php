@@ -33,9 +33,28 @@ use Google\Apps\Chat\V1\DeleteSpaceRequest;
  * memberships in the space—are also deleted. For an example, see
  * [Delete a
  * space](https://developers.google.com/workspace/chat/delete-spaces).
- * Requires [user
+ *
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+ *
+ * - [App
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with [administrator
+ * approval](https://support.google.com/a?p=chat-app-auth) and the
+ * authorization scope:
+ * - `https://www.googleapis.com/auth/chat.app.delete` (only in
+ * spaces the app created)
+ *
+ * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
- * from a user who has permission to delete the space.
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.delete`
+ * - `https://www.googleapis.com/auth/chat.import` (import mode spaces
+ * only)
+ * - User authentication grants administrator privileges when an
+ * administrator account authenticates, `use_admin_access` is `true`, and
+ * the following authorization scope is used:
+ * - `https://www.googleapis.com/auth/chat.admin.delete`
  *
  * @param string $formattedName Resource name of the space to delete.
  *

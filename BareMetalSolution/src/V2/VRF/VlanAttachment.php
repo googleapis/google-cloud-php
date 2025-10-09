@@ -20,45 +20,45 @@ class VlanAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 peer_vlan_id = 1;</code>
      */
-    private $peer_vlan_id = 0;
+    protected $peer_vlan_id = 0;
     /**
      * The peer IP of the attachment.
      *
      * Generated from protobuf field <code>string peer_ip = 2;</code>
      */
-    private $peer_ip = '';
+    protected $peer_ip = '';
     /**
      * The router IP of the attachment.
      *
      * Generated from protobuf field <code>string router_ip = 3;</code>
      */
-    private $router_ip = '';
+    protected $router_ip = '';
     /**
      * Input only. Pairing key.
      *
      * Generated from protobuf field <code>string pairing_key = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $pairing_key = '';
+    protected $pairing_key = '';
     /**
      * The QOS policy applied to this VLAN attachment.
      * This value should be preferred to using qos at vrf level.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VRF.QosPolicy qos_policy = 5;</code>
      */
-    private $qos_policy = null;
+    protected $qos_policy = null;
     /**
      * Immutable. The identifier of the attachment within vrf.
      *
      * Generated from protobuf field <code>string id = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Optional. The name of the vlan attachment within vrf. This is of the form
      * projects/{project_number}/regions/{region}/interconnectAttachments/{interconnect_attachment}
      *
      * Generated from protobuf field <code>string interconnect_attachment = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $interconnect_attachment = '';
+    protected $interconnect_attachment = '';
 
     /**
      * Constructor.
@@ -287,6 +287,4 @@ class VlanAttachment extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VlanAttachment::class, \Google\Cloud\BareMetalSolution\V2\VRF_VlanAttachment::class);
 

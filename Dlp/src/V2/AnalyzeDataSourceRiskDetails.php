@@ -20,19 +20,19 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric requested_privacy_metric = 1;</code>
      */
-    private $requested_privacy_metric = null;
+    protected $requested_privacy_metric = null;
     /**
      * Input dataset to compute metrics over.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable requested_source_table = 2;</code>
      */
-    private $requested_source_table = null;
+    protected $requested_source_table = null;
     /**
      * The configuration used for this job.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.RequestedRiskAnalysisOptions requested_options = 10;</code>
      */
-    private $requested_options = null;
+    protected $requested_options = null;
     protected $result;
 
     /**

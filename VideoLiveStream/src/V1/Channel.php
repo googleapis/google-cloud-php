@@ -25,19 +25,19 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The update time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * User-defined key/value metadata.
      *
@@ -61,14 +61,14 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string active_input = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $active_input = '';
+    protected $active_input = '';
     /**
      * Required. Information about the output (that is, the Cloud Storage bucket
      * to store the generated live stream).
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Channel.Output output = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output = null;
+    protected $output = null;
     /**
      * List of elementary streams.
      *
@@ -88,6 +88,18 @@ class Channel extends \Google\Protobuf\Internal\Message
      */
     private $manifests;
     /**
+     * Optional. List of multiplexing settings of streams for distributions.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.DistributionStream distribution_streams = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $distribution_streams;
+    /**
+     * Optional. List of distributions.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Distribution distributions = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $distributions;
+    /**
      * List of output sprite sheets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.SpriteSheet sprite_sheets = 13;</code>
@@ -98,7 +110,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Channel.StreamingState streaming_state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $streaming_state = 0;
+    protected $streaming_state = 0;
     /**
      * Output only. A description of the reason for the streaming error. This
      * property is always present when
@@ -108,25 +120,25 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status streaming_error = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $streaming_error = null;
+    protected $streaming_error = null;
     /**
      * Configuration of platform logs for this channel.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.LogConfig log_config = 19;</code>
      */
-    private $log_config = null;
+    protected $log_config = null;
     /**
      * Configuration of timecode for this channel.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.TimecodeConfig timecode_config = 21;</code>
      */
-    private $timecode_config = null;
+    protected $timecode_config = null;
     /**
-     * Encryption configurations for this channel. Each configuration has an ID
-     * which is referred to by each MuxStream to indicate which configuration is
-     * used for that output.
+     * Optional. Encryption configurations for this channel. Each configuration
+     * has an ID which is referred to by each MuxStream to indicate which
+     * configuration is used for that output.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Encryption encryptions = 24;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Encryption encryptions = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $encryptions;
     /**
@@ -135,7 +147,26 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.InputConfig input_config = 25;</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
+    /**
+     * Optional. Configuration for retention of output files for this channel.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.RetentionConfig retention_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $retention_config = null;
+    /**
+     * Optional. List of static overlay images. Those images display over the
+     * output content for the whole duration of the live stream.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.StaticOverlay static_overlays = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $static_overlays;
+    /**
+     * Optional. Advanced configurations for auto-generated text streams.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.AutoTranscriptionConfig auto_transcription_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $auto_transcription_config = null;
 
     /**
      * Constructor.
@@ -171,6 +202,10 @@ class Channel extends \Google\Protobuf\Internal\Message
      *           List of multiplexing settings for output streams.
      *     @type array<\Google\Cloud\Video\LiveStream\V1\Manifest>|\Google\Protobuf\Internal\RepeatedField $manifests
      *           List of output manifests.
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\DistributionStream>|\Google\Protobuf\Internal\RepeatedField $distribution_streams
+     *           Optional. List of multiplexing settings of streams for distributions.
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\Distribution>|\Google\Protobuf\Internal\RepeatedField $distributions
+     *           Optional. List of distributions.
      *     @type array<\Google\Cloud\Video\LiveStream\V1\SpriteSheet>|\Google\Protobuf\Internal\RepeatedField $sprite_sheets
      *           List of output sprite sheets.
      *     @type int $streaming_state
@@ -186,12 +221,19 @@ class Channel extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Video\LiveStream\V1\TimecodeConfig $timecode_config
      *           Configuration of timecode for this channel.
      *     @type array<\Google\Cloud\Video\LiveStream\V1\Encryption>|\Google\Protobuf\Internal\RepeatedField $encryptions
-     *           Encryption configurations for this channel. Each configuration has an ID
-     *           which is referred to by each MuxStream to indicate which configuration is
-     *           used for that output.
+     *           Optional. Encryption configurations for this channel. Each configuration
+     *           has an ID which is referred to by each MuxStream to indicate which
+     *           configuration is used for that output.
      *     @type \Google\Cloud\Video\LiveStream\V1\InputConfig $input_config
      *           The configuration for input sources defined in
      *           [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments].
+     *     @type \Google\Cloud\Video\LiveStream\V1\RetentionConfig $retention_config
+     *           Optional. Configuration for retention of output files for this channel.
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\StaticOverlay>|\Google\Protobuf\Internal\RepeatedField $static_overlays
+     *           Optional. List of static overlay images. Those images display over the
+     *           output content for the whole duration of the live stream.
+     *     @type \Google\Cloud\Video\LiveStream\V1\AutoTranscriptionConfig $auto_transcription_config
+     *           Optional. Advanced configurations for auto-generated text streams.
      * }
      */
     public function __construct($data = NULL) {
@@ -506,6 +548,58 @@ class Channel extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. List of multiplexing settings of streams for distributions.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.DistributionStream distribution_streams = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDistributionStreams()
+    {
+        return $this->distribution_streams;
+    }
+
+    /**
+     * Optional. List of multiplexing settings of streams for distributions.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.DistributionStream distribution_streams = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Video\LiveStream\V1\DistributionStream>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDistributionStreams($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Video\LiveStream\V1\DistributionStream::class);
+        $this->distribution_streams = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of distributions.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Distribution distributions = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDistributions()
+    {
+        return $this->distributions;
+    }
+
+    /**
+     * Optional. List of distributions.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Distribution distributions = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Video\LiveStream\V1\Distribution>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDistributions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Video\LiveStream\V1\Distribution::class);
+        $this->distributions = $arr;
+
+        return $this;
+    }
+
+    /**
      * List of output sprite sheets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.SpriteSheet sprite_sheets = 13;</code>
@@ -674,11 +768,11 @@ class Channel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Encryption configurations for this channel. Each configuration has an ID
-     * which is referred to by each MuxStream to indicate which configuration is
-     * used for that output.
+     * Optional. Encryption configurations for this channel. Each configuration
+     * has an ID which is referred to by each MuxStream to indicate which
+     * configuration is used for that output.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Encryption encryptions = 24;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Encryption encryptions = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEncryptions()
@@ -687,11 +781,11 @@ class Channel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Encryption configurations for this channel. Each configuration has an ID
-     * which is referred to by each MuxStream to indicate which configuration is
-     * used for that output.
+     * Optional. Encryption configurations for this channel. Each configuration
+     * has an ID which is referred to by each MuxStream to indicate which
+     * configuration is used for that output.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Encryption encryptions = 24;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Encryption encryptions = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Video\LiveStream\V1\Encryption>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -737,6 +831,106 @@ class Channel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\InputConfig::class);
         $this->input_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for retention of output files for this channel.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.RetentionConfig retention_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\RetentionConfig|null
+     */
+    public function getRetentionConfig()
+    {
+        return $this->retention_config;
+    }
+
+    public function hasRetentionConfig()
+    {
+        return isset($this->retention_config);
+    }
+
+    public function clearRetentionConfig()
+    {
+        unset($this->retention_config);
+    }
+
+    /**
+     * Optional. Configuration for retention of output files for this channel.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.RetentionConfig retention_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\RetentionConfig $var
+     * @return $this
+     */
+    public function setRetentionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\RetentionConfig::class);
+        $this->retention_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of static overlay images. Those images display over the
+     * output content for the whole duration of the live stream.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.StaticOverlay static_overlays = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getStaticOverlays()
+    {
+        return $this->static_overlays;
+    }
+
+    /**
+     * Optional. List of static overlay images. Those images display over the
+     * output content for the whole duration of the live stream.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.StaticOverlay static_overlays = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Video\LiveStream\V1\StaticOverlay>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setStaticOverlays($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Video\LiveStream\V1\StaticOverlay::class);
+        $this->static_overlays = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Advanced configurations for auto-generated text streams.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.AutoTranscriptionConfig auto_transcription_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\AutoTranscriptionConfig|null
+     */
+    public function getAutoTranscriptionConfig()
+    {
+        return $this->auto_transcription_config;
+    }
+
+    public function hasAutoTranscriptionConfig()
+    {
+        return isset($this->auto_transcription_config);
+    }
+
+    public function clearAutoTranscriptionConfig()
+    {
+        unset($this->auto_transcription_config);
+    }
+
+    /**
+     * Optional. Advanced configurations for auto-generated text streams.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.AutoTranscriptionConfig auto_transcription_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\AutoTranscriptionConfig $var
+     * @return $this
+     */
+    public function setAutoTranscriptionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\AutoTranscriptionConfig::class);
+        $this->auto_transcription_config = $var;
 
         return $this;
     }

@@ -57,7 +57,7 @@ class ImportDataConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string import_schema_uri = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $import_schema_uri = '';
+    protected $import_schema_uri = '';
     protected $source;
 
     /**

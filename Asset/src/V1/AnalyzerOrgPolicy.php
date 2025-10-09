@@ -28,7 +28,7 @@ class AnalyzerOrgPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attached_resource = 1;</code>
      */
-    private $attached_resource = '';
+    protected $attached_resource = '';
     /**
      * The [full resource name]
      * (https://cloud.google.com/asset-inventory/docs/resource-name-format) of
@@ -40,7 +40,7 @@ class AnalyzerOrgPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string applied_resource = 5;</code>
      */
-    private $applied_resource = '';
+    protected $applied_resource = '';
     /**
      * List of rules for this organization policy.
      *
@@ -55,7 +55,7 @@ class AnalyzerOrgPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool inherit_from_parent = 3;</code>
      */
-    private $inherit_from_parent = false;
+    protected $inherit_from_parent = false;
     /**
      * Ignores policies set above this resource and restores the default behavior
      * of the constraint at this resource.
@@ -65,7 +65,7 @@ class AnalyzerOrgPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reset = 4;</code>
      */
-    private $reset = false;
+    protected $reset = false;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class Content extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. System generated globally unique ID for the content. This ID
      * will be different if the content is deleted and re-created with the same
@@ -29,7 +29,7 @@ class Content extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Required. The path for the Content file, represented as directory
      * structure. Unique within a lake. Limited to alphanumerics, hyphens,
@@ -37,19 +37,19 @@ class Content extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Output only. Content creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the content was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. User defined labels for the content.
      *
@@ -61,7 +61,7 @@ class Content extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     protected $data;
     protected $content;
 

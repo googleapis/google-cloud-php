@@ -30,7 +30,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_tag = 2;</code>
      */
-    private $instance_tag = '';
+    protected $instance_tag = '';
     /**
      * Google Compute Engine network where the virtual machines are created.
      * Specify the short name, not the resource path.
@@ -38,7 +38,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Google Cloud Platform sub-network where the virtual machines are created.
      * Specify the short name, not the resource path.
@@ -58,14 +58,14 @@ class Network extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork_name = 4;</code>
      */
-    private $subnetwork_name = '';
+    protected $subnetwork_name = '';
     /**
      * Enable session affinity.
      * Only applicable in the App Engine flexible environment.
      *
      * Generated from protobuf field <code>bool session_affinity = 5;</code>
      */
-    private $session_affinity = false;
+    protected $session_affinity = false;
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Trigger trigger = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $trigger = null;
+    protected $trigger = null;
     protected $incremental;
 
     /**

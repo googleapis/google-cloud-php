@@ -20,7 +20,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerAllInstancesConfig all_instances_config = 112596737;</code>
      */
-    private $all_instances_config = null;
+    protected $all_instances_config = null;
     /**
      * The autohealing policy for this managed instance group. You can specify only one value.
      *
@@ -28,86 +28,92 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $auto_healing_policies;
     /**
-     * The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
+     * The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. &#64;pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *
      * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
      */
-    private $base_instance_name = null;
+    protected $base_instance_name = null;
     /**
      * [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerActionsSummary current_actions = 164045879;</code>
      */
-    private $current_actions = null;
+    protected $current_actions = null;
     /**
      * An optional description of this resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Policy specifying the intended distribution of managed instances across zones in a regional managed instance group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DistributionPolicy distribution_policy = 534558541;</code>
      */
-    private $distribution_policy = null;
+    protected $distribution_policy = null;
     /**
      * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
+    /**
+     * Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
+     */
+    protected $instance_flexibility_policy = null;
     /**
      * [Output Only] The URL of the Instance Group resource.
      *
      * Generated from protobuf field <code>optional string instance_group = 81095253;</code>
      */
-    private $instance_group = null;
+    protected $instance_group = null;
     /**
      * The repair policy for this managed instance group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy instance_lifecycle_policy = 447961617;</code>
      */
-    private $instance_lifecycle_policy = null;
+    protected $instance_lifecycle_policy = null;
     /**
      * The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
      *
      * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
      */
-    private $instance_template = null;
+    protected $instance_template = null;
     /**
      * [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Pagination behavior of the listManagedInstances API method for this managed instance group.
      * Check the ListManagedInstancesResults enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string list_managed_instances_results = 296047156;</code>
      */
-    private $list_managed_instances_results = null;
+    protected $list_managed_instances_results = null;
     /**
      * The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
-     * Named ports configured for the Instance Groups complementary to this Instance Group Manager.
+     * [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      */
@@ -117,25 +123,49 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
+    /**
+     * Resource policies for this managed instance group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerResourcePolicies resource_policies = 22220385;</code>
+     */
+    protected $resource_policies = null;
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     */
+    protected $satisfies_pzi = null;
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     */
+    protected $satisfies_pzs = null;
     /**
      * [Output Only] The URL for this managed instance group. The server defines this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
+    /**
+     * Standby policy for stopped and suspended instances.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStandbyPolicy standby_policy = 499352324;</code>
+     */
+    protected $standby_policy = null;
     /**
      * Stateful configuration for this Instanced Group Manager
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.StatefulPolicy stateful_policy = 47538565;</code>
      */
-    private $stateful_policy = null;
+    protected $stateful_policy = null;
     /**
      * [Output Only] The status of this managed instance group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatus status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
      *
@@ -147,13 +177,25 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 target_size = 62880239;</code>
      */
-    private $target_size = null;
+    protected $target_size = null;
+    /**
+     * The target number of stopped instances for this managed instance group. This number changes when you: - Stop instance using the stopInstances method or start instances using the startInstances method. - Manually change the targetStoppedSize using the update method. 
+     *
+     * Generated from protobuf field <code>optional int32 target_stopped_size = 2419489;</code>
+     */
+    protected $target_stopped_size = null;
+    /**
+     * The target number of suspended instances for this managed instance group. This number changes when you: - Suspend instance using the suspendInstances method or resume instances using the resumeInstances method. - Manually change the targetSuspendedSize using the update method. 
+     *
+     * Generated from protobuf field <code>optional int32 target_suspended_size = 308085843;</code>
+     */
+    protected $target_suspended_size = null;
     /**
      * The update policy for this managed instance group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy update_policy = 175809896;</code>
      */
-    private $update_policy = null;
+    protected $update_policy = null;
     /**
      * Specifies the instance templates used by this managed instance group to create instances. Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
      *
@@ -165,7 +207,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.
@@ -178,7 +220,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy>|\Google\Protobuf\Internal\RepeatedField $auto_healing_policies
      *           The autohealing policy for this managed instance group. You can specify only one value.
      *     @type string $base_instance_name
-     *           The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
+     *           The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. &#64;pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *     @type string $creation_timestamp
      *           [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerActionsSummary $current_actions
@@ -191,6 +233,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
      *     @type int|string $id
      *           [Output Only] A unique identifier for this resource type. The server generates this identifier.
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceFlexibilityPolicy $instance_flexibility_policy
+     *           Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
      *     @type string $instance_group
      *           [Output Only] The URL of the Instance Group resource.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicy $instance_lifecycle_policy
@@ -205,11 +249,19 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
      *     @type array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $named_ports
-     *           Named ports configured for the Instance Groups complementary to this Instance Group Manager.
+     *           [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
      *     @type string $region
      *           [Output Only] The URL of the region where the managed instance group resides (for regional resources).
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerResourcePolicies $resource_policies
+     *           Resource policies for this managed instance group.
+     *     @type bool $satisfies_pzi
+     *           [Output Only] Reserved for future use.
+     *     @type bool $satisfies_pzs
+     *           [Output Only] Reserved for future use.
      *     @type string $self_link
      *           [Output Only] The URL for this managed instance group. The server defines this URL.
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStandbyPolicy $standby_policy
+     *           Standby policy for stopped and suspended instances.
      *     @type \Google\Cloud\Compute\V1\StatefulPolicy $stateful_policy
      *           Stateful configuration for this Instanced Group Manager
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatus $status
@@ -218,6 +270,10 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
      *     @type int $target_size
      *           The target number of running instances for this managed instance group. You can reduce this number by using the instanceGroupManager deleteInstances or abandonInstances methods. Resizing the group also changes this number.
+     *     @type int $target_stopped_size
+     *           The target number of stopped instances for this managed instance group. This number changes when you: - Stop instance using the stopInstances method or start instances using the startInstances method. - Manually change the targetStoppedSize using the update method. 
+     *     @type int $target_suspended_size
+     *           The target number of suspended instances for this managed instance group. This number changes when you: - Suspend instance using the suspendInstances method or resume instances using the resumeInstances method. - Manually change the targetSuspendedSize using the update method. 
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerUpdatePolicy $update_policy
      *           The update policy for this managed instance group.
      *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManagerVersion>|\Google\Protobuf\Internal\RepeatedField $versions
@@ -294,7 +350,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
+     * The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. &#64;pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *
      * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
      * @return string
@@ -315,7 +371,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
+     * The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. &#64;pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *
      * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
      * @param string $var
@@ -546,6 +602,42 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceFlexibilityPolicy|null
+     */
+    public function getInstanceFlexibilityPolicy()
+    {
+        return $this->instance_flexibility_policy;
+    }
+
+    public function hasInstanceFlexibilityPolicy()
+    {
+        return isset($this->instance_flexibility_policy);
+    }
+
+    public function clearInstanceFlexibilityPolicy()
+    {
+        unset($this->instance_flexibility_policy);
+    }
+
+    /**
+     * Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceFlexibilityPolicy $var
+     * @return $this
+     */
+    public function setInstanceFlexibilityPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceFlexibilityPolicy::class);
+        $this->instance_flexibility_policy = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] The URL of the Instance Group resource.
      *
      * Generated from protobuf field <code>optional string instance_group = 81095253;</code>
@@ -764,7 +856,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Named ports configured for the Instance Groups complementary to this Instance Group Manager.
+     * [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -775,7 +867,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Named ports configured for the Instance Groups complementary to this Instance Group Manager.
+     * [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @param array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $var
@@ -826,6 +918,114 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Resource policies for this managed instance group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerResourcePolicies resource_policies = 22220385;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerResourcePolicies|null
+     */
+    public function getResourcePolicies()
+    {
+        return $this->resource_policies;
+    }
+
+    public function hasResourcePolicies()
+    {
+        return isset($this->resource_policies);
+    }
+
+    public function clearResourcePolicies()
+    {
+        unset($this->resource_policies);
+    }
+
+    /**
+     * Resource policies for this managed instance group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerResourcePolicies resource_policies = 22220385;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerResourcePolicies $var
+     * @return $this
+     */
+    public function setResourcePolicies($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagerResourcePolicies::class);
+        $this->resource_policies = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] The URL for this managed instance group. The server defines this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -857,6 +1057,42 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * Standby policy for stopped and suspended instances.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStandbyPolicy standby_policy = 499352324;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStandbyPolicy|null
+     */
+    public function getStandbyPolicy()
+    {
+        return $this->standby_policy;
+    }
+
+    public function hasStandbyPolicy()
+    {
+        return isset($this->standby_policy);
+    }
+
+    public function clearStandbyPolicy()
+    {
+        unset($this->standby_policy);
+    }
+
+    /**
+     * Standby policy for stopped and suspended instances.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStandbyPolicy standby_policy = 499352324;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStandbyPolicy $var
+     * @return $this
+     */
+    public function setStandbyPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagerStandbyPolicy::class);
+        $this->standby_policy = $var;
 
         return $this;
     }
@@ -991,6 +1227,78 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->target_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * The target number of stopped instances for this managed instance group. This number changes when you: - Stop instance using the stopInstances method or start instances using the startInstances method. - Manually change the targetStoppedSize using the update method. 
+     *
+     * Generated from protobuf field <code>optional int32 target_stopped_size = 2419489;</code>
+     * @return int
+     */
+    public function getTargetStoppedSize()
+    {
+        return isset($this->target_stopped_size) ? $this->target_stopped_size : 0;
+    }
+
+    public function hasTargetStoppedSize()
+    {
+        return isset($this->target_stopped_size);
+    }
+
+    public function clearTargetStoppedSize()
+    {
+        unset($this->target_stopped_size);
+    }
+
+    /**
+     * The target number of stopped instances for this managed instance group. This number changes when you: - Stop instance using the stopInstances method or start instances using the startInstances method. - Manually change the targetStoppedSize using the update method. 
+     *
+     * Generated from protobuf field <code>optional int32 target_stopped_size = 2419489;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTargetStoppedSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->target_stopped_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * The target number of suspended instances for this managed instance group. This number changes when you: - Suspend instance using the suspendInstances method or resume instances using the resumeInstances method. - Manually change the targetSuspendedSize using the update method. 
+     *
+     * Generated from protobuf field <code>optional int32 target_suspended_size = 308085843;</code>
+     * @return int
+     */
+    public function getTargetSuspendedSize()
+    {
+        return isset($this->target_suspended_size) ? $this->target_suspended_size : 0;
+    }
+
+    public function hasTargetSuspendedSize()
+    {
+        return isset($this->target_suspended_size);
+    }
+
+    public function clearTargetSuspendedSize()
+    {
+        unset($this->target_suspended_size);
+    }
+
+    /**
+     * The target number of suspended instances for this managed instance group. This number changes when you: - Suspend instance using the suspendInstances method or resume instances using the resumeInstances method. - Manually change the targetSuspendedSize using the update method. 
+     *
+     * Generated from protobuf field <code>optional int32 target_suspended_size = 308085843;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTargetSuspendedSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->target_suspended_size = $var;
 
         return $this;
     }

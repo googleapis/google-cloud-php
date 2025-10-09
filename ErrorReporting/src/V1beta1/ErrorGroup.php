@@ -17,14 +17,30 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
 {
     /**
      * The group resource name.
-     * Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
+     * Written as `projects/{projectID}/groups/{group_id}` or
+     * `projects/{projectID}/locations/{location}/groups/{group_id}`
+     * Examples: `projects/my-project-123/groups/my-group`,
+     * `projects/my-project-123/locations/us-central1/groups/my-group`
+     * In the group resource name, the `group_id` is a unique identifier for a
+     * particular error group. The identifier is derived from key parts of the
+     * error-log content and is treated as Service Data. For information about
+     * how Service Data is handled, see [Google Cloud Privacy
+     * Notice](https://cloud.google.com/terms/cloud-privacy-notice).
+     * For a list of supported locations, see [Supported
+     * Regions](https://cloud.google.com/logging/docs/region-support). `global` is
+     * the default when unspecified.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * Group IDs are unique for a given project. If the same kind of error
-     * occurs in different service contexts, it will receive the same group ID.
+     * An opaque identifier of the group. This field is assigned by the Error
+     * Reporting system and always populated.
+     * In the group resource name, the `group_id` is a unique identifier for a
+     * particular error group. The identifier is derived from key parts of the
+     * error-log content and is treated as Service Data. For information about
+     * how Service Data is handled, see [Google Cloud Privacy
+     * Notice](https://cloud.google.com/terms/cloud-privacy-notice).
      *
      * Generated from protobuf field <code>string group_id = 2;</code>
      */
@@ -51,10 +67,26 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The group resource name.
-     *           Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
+     *           Written as `projects/{projectID}/groups/{group_id}` or
+     *           `projects/{projectID}/locations/{location}/groups/{group_id}`
+     *           Examples: `projects/my-project-123/groups/my-group`,
+     *           `projects/my-project-123/locations/us-central1/groups/my-group`
+     *           In the group resource name, the `group_id` is a unique identifier for a
+     *           particular error group. The identifier is derived from key parts of the
+     *           error-log content and is treated as Service Data. For information about
+     *           how Service Data is handled, see [Google Cloud Privacy
+     *           Notice](https://cloud.google.com/terms/cloud-privacy-notice).
+     *           For a list of supported locations, see [Supported
+     *           Regions](https://cloud.google.com/logging/docs/region-support). `global` is
+     *           the default when unspecified.
      *     @type string $group_id
-     *           Group IDs are unique for a given project. If the same kind of error
-     *           occurs in different service contexts, it will receive the same group ID.
+     *           An opaque identifier of the group. This field is assigned by the Error
+     *           Reporting system and always populated.
+     *           In the group resource name, the `group_id` is a unique identifier for a
+     *           particular error group. The identifier is derived from key parts of the
+     *           error-log content and is treated as Service Data. For information about
+     *           how Service Data is handled, see [Google Cloud Privacy
+     *           Notice](https://cloud.google.com/terms/cloud-privacy-notice).
      *     @type array<\Google\Cloud\ErrorReporting\V1beta1\TrackingIssue>|\Google\Protobuf\Internal\RepeatedField $tracking_issues
      *           Associated tracking issues.
      *     @type int $resolution_status
@@ -69,7 +101,18 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * The group resource name.
-     * Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
+     * Written as `projects/{projectID}/groups/{group_id}` or
+     * `projects/{projectID}/locations/{location}/groups/{group_id}`
+     * Examples: `projects/my-project-123/groups/my-group`,
+     * `projects/my-project-123/locations/us-central1/groups/my-group`
+     * In the group resource name, the `group_id` is a unique identifier for a
+     * particular error group. The identifier is derived from key parts of the
+     * error-log content and is treated as Service Data. For information about
+     * how Service Data is handled, see [Google Cloud Privacy
+     * Notice](https://cloud.google.com/terms/cloud-privacy-notice).
+     * For a list of supported locations, see [Supported
+     * Regions](https://cloud.google.com/logging/docs/region-support). `global` is
+     * the default when unspecified.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -81,7 +124,18 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * The group resource name.
-     * Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
+     * Written as `projects/{projectID}/groups/{group_id}` or
+     * `projects/{projectID}/locations/{location}/groups/{group_id}`
+     * Examples: `projects/my-project-123/groups/my-group`,
+     * `projects/my-project-123/locations/us-central1/groups/my-group`
+     * In the group resource name, the `group_id` is a unique identifier for a
+     * particular error group. The identifier is derived from key parts of the
+     * error-log content and is treated as Service Data. For information about
+     * how Service Data is handled, see [Google Cloud Privacy
+     * Notice](https://cloud.google.com/terms/cloud-privacy-notice).
+     * For a list of supported locations, see [Supported
+     * Regions](https://cloud.google.com/logging/docs/region-support). `global` is
+     * the default when unspecified.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -96,8 +150,13 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Group IDs are unique for a given project. If the same kind of error
-     * occurs in different service contexts, it will receive the same group ID.
+     * An opaque identifier of the group. This field is assigned by the Error
+     * Reporting system and always populated.
+     * In the group resource name, the `group_id` is a unique identifier for a
+     * particular error group. The identifier is derived from key parts of the
+     * error-log content and is treated as Service Data. For information about
+     * how Service Data is handled, see [Google Cloud Privacy
+     * Notice](https://cloud.google.com/terms/cloud-privacy-notice).
      *
      * Generated from protobuf field <code>string group_id = 2;</code>
      * @return string
@@ -108,8 +167,13 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Group IDs are unique for a given project. If the same kind of error
-     * occurs in different service contexts, it will receive the same group ID.
+     * An opaque identifier of the group. This field is assigned by the Error
+     * Reporting system and always populated.
+     * In the group resource name, the `group_id` is a unique identifier for a
+     * particular error group. The identifier is derived from key parts of the
+     * error-log content and is treated as Service Data. For information about
+     * how Service Data is handled, see [Google Cloud Privacy
+     * Notice](https://cloud.google.com/terms/cloud-privacy-notice).
      *
      * Generated from protobuf field <code>string group_id = 2;</code>
      * @param string $var

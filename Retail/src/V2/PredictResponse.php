@@ -30,7 +30,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attribution_token = 2;</code>
      */
-    private $attribution_token = '';
+    protected $attribution_token = '';
     /**
      * IDs of products in the request that were missing from the inventory.
      *
@@ -42,7 +42,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class CleanupPolicyCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.devtools.artifactregistry.v1.CleanupPolicyCondition.TagState tag_state = 2;</code>
      */
-    private $tag_state = null;
+    protected $tag_state = null;
     /**
      * Match versions by tag prefix. Applied on any prefix match.
      *
@@ -46,13 +46,13 @@ class CleanupPolicyCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.protobuf.Duration older_than = 6;</code>
      */
-    private $older_than = null;
+    protected $older_than = null;
     /**
      * Match versions newer than a duration.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Duration newer_than = 7;</code>
      */
-    private $newer_than = null;
+    protected $newer_than = null;
 
     /**
      * Constructor.

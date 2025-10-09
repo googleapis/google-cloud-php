@@ -21,13 +21,13 @@ class RenameVolumeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The new `id` of the volume.
      *
      * Generated from protobuf field <code>string new_volume_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $new_volume_id = '';
+    protected $new_volume_id = '';
 
     /**
      * @param string $name        Required. The `name` field is used to identify the volume.

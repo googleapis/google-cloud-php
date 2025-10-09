@@ -21,13 +21,13 @@ class CreateAgentPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. The agent pool to create.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.AgentPool agent_pool = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $agent_pool = null;
+    protected $agent_pool = null;
     /**
      * Required. The ID of the agent pool to create.
      * The `agent_pool_id` must meet the following requirements:
@@ -42,7 +42,7 @@ class CreateAgentPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string agent_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $agent_pool_id = '';
+    protected $agent_pool_id = '';
 
     /**
      * @param string                                     $projectId   Required. The ID of the Google Cloud project that owns the

@@ -95,6 +95,29 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.CorsPolicy cors_policy = 11;</code>
      */
     protected $cors_policy = null;
+    /**
+     * Optional. Specifies cookie-based stateful session affinity.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.StatefulSessionAffinityPolicy stateful_session_affinity = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $stateful_session_affinity = null;
+    /**
+     * Optional. Static HTTP Response object to be returned regardless of the
+     * request.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.HttpDirectResponse direct_response = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $direct_response = null;
+    /**
+     * Optional. Specifies the idle timeout for the selected route. The idle
+     * timeout is defined as the period in which there are no bytes sent or
+     * received on either the upstream or downstream connection. If not set, the
+     * default idle timeout is 1 hour. If set to 0s, the timeout will be
+     * disabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_timeout = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $idle_timeout = null;
 
     /**
      * Constructor.
@@ -142,6 +165,17 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      *           suffixed with -shadow.
      *     @type \Google\Cloud\NetworkServices\V1\HttpRoute\CorsPolicy $cors_policy
      *           The specification for allowing client side cross-origin requests.
+     *     @type \Google\Cloud\NetworkServices\V1\HttpRoute\StatefulSessionAffinityPolicy $stateful_session_affinity
+     *           Optional. Specifies cookie-based stateful session affinity.
+     *     @type \Google\Cloud\NetworkServices\V1\HttpRoute\HttpDirectResponse $direct_response
+     *           Optional. Static HTTP Response object to be returned regardless of the
+     *           request.
+     *     @type \Google\Protobuf\Duration $idle_timeout
+     *           Optional. Specifies the idle timeout for the selected route. The idle
+     *           timeout is defined as the period in which there are no bytes sent or
+     *           received on either the upstream or downstream connection. If not set, the
+     *           default idle timeout is 1 hour. If set to 0s, the timeout will be
+     *           disabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -535,6 +569,124 @@ class RouteAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkServices\V1\HttpRoute\CorsPolicy::class);
         $this->cors_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies cookie-based stateful session affinity.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.StatefulSessionAffinityPolicy stateful_session_affinity = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetworkServices\V1\HttpRoute\StatefulSessionAffinityPolicy|null
+     */
+    public function getStatefulSessionAffinity()
+    {
+        return $this->stateful_session_affinity;
+    }
+
+    public function hasStatefulSessionAffinity()
+    {
+        return isset($this->stateful_session_affinity);
+    }
+
+    public function clearStatefulSessionAffinity()
+    {
+        unset($this->stateful_session_affinity);
+    }
+
+    /**
+     * Optional. Specifies cookie-based stateful session affinity.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.StatefulSessionAffinityPolicy stateful_session_affinity = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetworkServices\V1\HttpRoute\StatefulSessionAffinityPolicy $var
+     * @return $this
+     */
+    public function setStatefulSessionAffinity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkServices\V1\HttpRoute\StatefulSessionAffinityPolicy::class);
+        $this->stateful_session_affinity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Static HTTP Response object to be returned regardless of the
+     * request.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.HttpDirectResponse direct_response = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetworkServices\V1\HttpRoute\HttpDirectResponse|null
+     */
+    public function getDirectResponse()
+    {
+        return $this->direct_response;
+    }
+
+    public function hasDirectResponse()
+    {
+        return isset($this->direct_response);
+    }
+
+    public function clearDirectResponse()
+    {
+        unset($this->direct_response);
+    }
+
+    /**
+     * Optional. Static HTTP Response object to be returned regardless of the
+     * request.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.HttpDirectResponse direct_response = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetworkServices\V1\HttpRoute\HttpDirectResponse $var
+     * @return $this
+     */
+    public function setDirectResponse($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkServices\V1\HttpRoute\HttpDirectResponse::class);
+        $this->direct_response = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the idle timeout for the selected route. The idle
+     * timeout is defined as the period in which there are no bytes sent or
+     * received on either the upstream or downstream connection. If not set, the
+     * default idle timeout is 1 hour. If set to 0s, the timeout will be
+     * disabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_timeout = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getIdleTimeout()
+    {
+        return $this->idle_timeout;
+    }
+
+    public function hasIdleTimeout()
+    {
+        return isset($this->idle_timeout);
+    }
+
+    public function clearIdleTimeout()
+    {
+        unset($this->idle_timeout);
+    }
+
+    /**
+     * Optional. Specifies the idle timeout for the selected route. The idle
+     * timeout is defined as the period in which there are no bytes sent or
+     * received on either the upstream or downstream connection. If not set, the
+     * default idle timeout is 1 hour. If set to 0s, the timeout will be
+     * disabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_timeout = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setIdleTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->idle_timeout = $var;
 
         return $this;
     }

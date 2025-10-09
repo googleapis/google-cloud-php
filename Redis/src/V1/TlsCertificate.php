@@ -20,13 +20,13 @@ class TlsCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string serial_number = 1;</code>
      */
-    private $serial_number = '';
+    protected $serial_number = '';
     /**
      * PEM representation.
      *
      * Generated from protobuf field <code>string cert = 2;</code>
      */
-    private $cert = '';
+    protected $cert = '';
     /**
      * Output only. The time when the certificate was created in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -34,7 +34,7 @@ class TlsCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the certificate expires in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -42,13 +42,13 @@ class TlsCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Sha1 Fingerprint of the certificate.
      *
      * Generated from protobuf field <code>string sha1_fingerprint = 5;</code>
      */
-    private $sha1_fingerprint = '';
+    protected $sha1_fingerprint = '';
 
     /**
      * Constructor.

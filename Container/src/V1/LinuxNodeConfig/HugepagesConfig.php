@@ -20,13 +20,13 @@ class HugepagesConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 hugepage_size2m = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $hugepage_size2m = null;
+    protected $hugepage_size2m = null;
     /**
      * Optional. Amount of 1G hugepages
      *
      * Generated from protobuf field <code>optional int32 hugepage_size1g = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $hugepage_size1g = null;
+    protected $hugepage_size1g = null;
 
     /**
      * Constructor.
@@ -119,6 +119,4 @@ class HugepagesConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HugepagesConfig::class, \Google\Cloud\Container\V1\LinuxNodeConfig_HugepagesConfig::class);
 

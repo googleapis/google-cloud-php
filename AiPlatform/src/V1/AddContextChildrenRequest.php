@@ -23,7 +23,7 @@ class AddContextChildrenRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string context = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $context = '';
+    protected $context = '';
     /**
      * The resource names of the child Contexts.
      *

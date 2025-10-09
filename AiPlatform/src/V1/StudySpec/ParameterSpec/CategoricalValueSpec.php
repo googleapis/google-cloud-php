@@ -30,7 +30,7 @@ class CategoricalValueSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string default_value = 3;</code>
      */
-    private $default_value = null;
+    protected $default_value = null;
 
     /**
      * Constructor.

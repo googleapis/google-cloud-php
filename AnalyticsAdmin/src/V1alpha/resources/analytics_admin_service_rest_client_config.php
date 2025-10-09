@@ -212,6 +212,18 @@ return [
                     ],
                 ],
             ],
+            'CreateBigQueryLink' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/bigQueryLinks',
+                'body' => 'bigquery_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateCalculatedMetric' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/calculatedMetrics',
@@ -238,11 +250,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'CreateConnectedSiteTag' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/properties:createConnectedSiteTag',
-                'body' => '*',
             ],
             'CreateConversionEvent' => [
                 'method' => 'post',
@@ -328,6 +335,18 @@ return [
                     ],
                 ],
             ],
+            'CreateEventEditRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules',
+                'body' => 'event_edit_rule',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateExpandedDataSet' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/expandedDataSets',
@@ -364,6 +383,18 @@ return [
                     ],
                 ],
             ],
+            'CreateKeyEvent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/keyEvents',
+                'body' => 'key_event',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateMeasurementProtocolSecret' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets',
@@ -380,6 +411,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/properties',
                 'body' => 'property',
+            ],
+            'CreateReportingDataAnnotation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/reportingDataAnnotations',
+                'body' => 'reporting_data_annotation',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'CreateRollupProperty' => [
                 'method' => 'post',
@@ -421,11 +464,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'CreateSubproperty' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/properties:createSubproperty',
-                'body' => '*',
             ],
             'CreateSubpropertyEventFilter' => [
                 'method' => 'post',
@@ -478,6 +516,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteBigQueryLink' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/bigQueryLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteCalculatedMetric' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/calculatedMetrics/*}',
@@ -499,11 +548,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'DeleteConnectedSiteTag' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/properties:deleteConnectedSiteTag',
-                'body' => '*',
             ],
             'DeleteConversionEvent' => [
                 'method' => 'delete',
@@ -560,6 +604,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteEventEditRule' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/eventEditRules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteExpandedDataSet' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/expandedDataSets/*}',
@@ -593,6 +648,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteKeyEvent' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/keyEvents/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteMeasurementProtocolSecret' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
@@ -607,6 +673,17 @@ return [
             'DeleteProperty' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteReportingDataAnnotation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/reportingDataAnnotations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -658,15 +735,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'FetchAutomatedGa4ConfigurationOptOut' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut',
-                'body' => '*',
-            ],
-            'FetchConnectedGa4Property' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/properties:fetchConnectedGa4Property',
             ],
             'GetAccessBinding' => [
                 'method' => 'get',
@@ -883,6 +951,17 @@ return [
                     ],
                 ],
             ],
+            'GetEventEditRule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/eventEditRules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetExpandedDataSet' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/expandedDataSets/*}',
@@ -916,6 +995,17 @@ return [
                     ],
                 ],
             ],
+            'GetKeyEvent' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/keyEvents/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetMeasurementProtocolSecret' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
@@ -930,6 +1020,28 @@ return [
             'GetProperty' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetReportingDataAnnotation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/reportingDataAnnotations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetReportingIdentitySettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/reportingIdentitySettings}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -974,6 +1086,17 @@ return [
             'GetSubpropertyEventFilter' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/subpropertyEventFilters/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSubpropertySyncConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/subpropertySyncConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -1062,11 +1185,6 @@ return [
                     ],
                 ],
             ],
-            'ListConnectedSiteTags' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/properties:listConnectedSiteTags',
-                'body' => '*',
-            ],
             'ListConversionEvents' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/conversionEvents',
@@ -1144,6 +1262,17 @@ return [
                     ],
                 ],
             ],
+            'ListEventEditRules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListExpandedDataSets' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/expandedDataSets',
@@ -1177,6 +1306,17 @@ return [
                     ],
                 ],
             ],
+            'ListKeyEvents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/keyEvents',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMeasurementProtocolSecrets' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets',
@@ -1193,6 +1333,17 @@ return [
                 'uriTemplate' => '/v1alpha/properties',
                 'queryParams' => [
                     'filter',
+                ],
+            ],
+            'ListReportingDataAnnotations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/reportingDataAnnotations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
                 ],
             ],
             'ListRollupPropertySourceLinks' => [
@@ -1239,10 +1390,38 @@ return [
                     ],
                 ],
             ],
+            'ListSubpropertySyncConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/subpropertySyncConfigs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ProvisionAccountTicket' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/accounts:provisionAccountTicket',
                 'body' => '*',
+            ],
+            'ProvisionSubproperty' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/properties:provisionSubproperty',
+                'body' => '*',
+            ],
+            'ReorderEventEditRules' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules:reorder',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'RunAccessReport' => [
                 'method' => 'post',
@@ -1275,10 +1454,17 @@ return [
                     ],
                 ],
             ],
-            'SetAutomatedGa4ConfigurationOptOut' => [
+            'SubmitUserDeletion' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1alpha/properties:setAutomatedGa4ConfigurationOptOut',
+                'uriTemplate' => '/v1alpha/{name=properties/*}:submitUserDeletion',
                 'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'UpdateAccessBinding' => [
                 'method' => 'patch',
@@ -1340,6 +1526,22 @@ return [
                     'audience.name' => [
                         'getters' => [
                             'getAudience',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateBigQueryLink' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{bigquery_link.name=properties/*/bigQueryLinks/*}',
+                'body' => 'bigquery_link',
+                'placeholders' => [
+                    'bigquery_link.name' => [
+                        'getters' => [
+                            'getBigqueryLink',
                             'getName',
                         ],
                     ],
@@ -1524,6 +1726,22 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateEventEditRule' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{event_edit_rule.name=properties/*/dataStreams/*/eventEditRules/*}',
+                'body' => 'event_edit_rule',
+                'placeholders' => [
+                    'event_edit_rule.name' => [
+                        'getters' => [
+                            'getEventEditRule',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpdateExpandedDataSet' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1alpha/{expanded_data_set.name=properties/*/expandedDataSets/*}',
@@ -1572,6 +1790,22 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateKeyEvent' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{key_event.name=properties/*/keyEvents/*}',
+                'body' => 'key_event',
+                'placeholders' => [
+                    'key_event.name' => [
+                        'getters' => [
+                            'getKeyEvent',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpdateMeasurementProtocolSecret' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1alpha/{measurement_protocol_secret.name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
@@ -1602,6 +1836,19 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateReportingDataAnnotation' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{reporting_data_annotation.name=properties/*/reportingDataAnnotations/*}',
+                'body' => 'reporting_data_annotation',
+                'placeholders' => [
+                    'reporting_data_annotation.name' => [
+                        'getters' => [
+                            'getReportingDataAnnotation',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateSKAdNetworkConversionValueSchema' => [
@@ -1650,6 +1897,19 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateSubpropertySyncConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{subproperty_sync_config.name=properties/*/subpropertySyncConfigs/*}',
+                'body' => 'subproperty_sync_config',
+                'placeholders' => [
+                    'subproperty_sync_config.name' => [
+                        'getters' => [
+                            'getSubpropertySyncConfig',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
         ],

@@ -20,7 +20,7 @@ class InstancesCloneRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.CloneContext clone_context = 1;</code>
      */
-    private $clone_context = null;
+    protected $clone_context = null;
 
     /**
      * Constructor.

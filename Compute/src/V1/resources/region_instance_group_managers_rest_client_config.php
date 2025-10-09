@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -361,6 +361,28 @@ return [
                     'size',
                 ],
             ],
+            'ResumeInstances' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instance_group_manager}/resumeInstances',
+                'body' => 'region_instance_group_managers_resume_instances_request_resource',
+                'placeholders' => [
+                    'instance_group_manager' => [
+                        'getters' => [
+                            'getInstanceGroupManager',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'SetInstanceTemplate' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instance_group_manager}/setInstanceTemplate',
@@ -387,6 +409,72 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instance_group_manager}/setTargetPools',
                 'body' => 'region_instance_group_managers_set_target_pools_request_resource',
+                'placeholders' => [
+                    'instance_group_manager' => [
+                        'getters' => [
+                            'getInstanceGroupManager',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'StartInstances' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instance_group_manager}/startInstances',
+                'body' => 'region_instance_group_managers_start_instances_request_resource',
+                'placeholders' => [
+                    'instance_group_manager' => [
+                        'getters' => [
+                            'getInstanceGroupManager',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'StopInstances' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instance_group_manager}/stopInstances',
+                'body' => 'region_instance_group_managers_stop_instances_request_resource',
+                'placeholders' => [
+                    'instance_group_manager' => [
+                        'getters' => [
+                            'getInstanceGroupManager',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'SuspendInstances' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instance_group_manager}/suspendInstances',
+                'body' => 'region_instance_group_managers_suspend_instances_request_resource',
                 'placeholders' => [
                     'instance_group_manager' => [
                         'getters' => [

@@ -20,13 +20,13 @@ class LabelSegment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 1;</code>
      */
-    private $segment = null;
+    protected $segment = null;
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
 
     /**
      * Constructor.

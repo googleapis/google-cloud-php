@@ -20,13 +20,13 @@ class OracleObjectIdentifier extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schema = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $schema = '';
+    protected $schema = '';
     /**
      * Required. The table name.
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table = '';
+    protected $table = '';
 
     /**
      * Constructor.

@@ -39,7 +39,7 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Optional. The project in which jobs are run. By default, the project
      * containing the Lake is used. If a project is provided, the
@@ -48,20 +48,20 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Optional. The maximum duration after which the job execution is expired.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_job_execution_lifetime = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_job_execution_lifetime = null;
+    protected $max_job_execution_lifetime = null;
     /**
      * Optional. The Cloud KMS key to use for encryption, of the form:
      * `projects/{project_number}/locations/{location_id}/keyRings/{key-ring-name}/cryptoKeys/{key-name}`.
      *
      * Generated from protobuf field <code>string kms_key = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $kms_key = '';
+    protected $kms_key = '';
 
     /**
      * Constructor.

@@ -60,6 +60,12 @@ class PeerNetworkType
      * Generated from protobuf enum <code>DELL_POWERSCALE = 6;</code>
      */
     const DELL_POWERSCALE = 6;
+    /**
+     * Peering connection used for connecting to Google Cloud NetApp Volumes.
+     *
+     * Generated from protobuf enum <code>GOOGLE_CLOUD_NETAPP_VOLUMES = 7;</code>
+     */
+    const GOOGLE_CLOUD_NETAPP_VOLUMES = 7;
 
     private static $valueToName = [
         self::PEER_NETWORK_TYPE_UNSPECIFIED => 'PEER_NETWORK_TYPE_UNSPECIFIED',
@@ -69,6 +75,7 @@ class PeerNetworkType
         self::NETAPP_CLOUD_VOLUMES => 'NETAPP_CLOUD_VOLUMES',
         self::THIRD_PARTY_SERVICE => 'THIRD_PARTY_SERVICE',
         self::DELL_POWERSCALE => 'DELL_POWERSCALE',
+        self::GOOGLE_CLOUD_NETAPP_VOLUMES => 'GOOGLE_CLOUD_NETAPP_VOLUMES',
     ];
 
     public static function name($value)

@@ -21,20 +21,20 @@ class CreateDeploymentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The id to use for this deployment.  The full name of the created
      * resource will be `projects/<project_number>/deployments/<deployment_id>`.
      *
      * Generated from protobuf field <code>string deployment_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployment_id = '';
+    protected $deployment_id = '';
     /**
      * Required. The deployment to create (deployment.name cannot be set).
      *
      * Generated from protobuf field <code>.google.cloud.gsuiteaddons.v1.Deployment deployment = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployment = null;
+    protected $deployment = null;
 
     /**
      * @param string                                   $parent       Required. Name of the project in which to create the deployment.

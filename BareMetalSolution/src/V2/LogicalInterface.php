@@ -30,7 +30,7 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The index of the logical interface mapping to the index of the hardware
      * bond or nic on the chosen network template. This field is deprecated.
@@ -125,7 +125,9 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
      */
     public function getInterfaceIndex()
     {
-        @trigger_error('interface_index is deprecated.', E_USER_DEPRECATED);
+        if ($this->interface_index !== 0) {
+            @trigger_error('interface_index is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->interface_index;
     }
 

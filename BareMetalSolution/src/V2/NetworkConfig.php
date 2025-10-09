@@ -20,26 +20,26 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A transient unique identifier to identify a volume within an
      * ProvisioningConfig request.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The type of this network, either Client or Private.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.NetworkConfig.Type type = 3;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Interconnect bandwidth. Set only when type is CLIENT.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.NetworkConfig.Bandwidth bandwidth = 4;</code>
      */
-    private $bandwidth = 0;
+    protected $bandwidth = 0;
     /**
      * List of VLAN attachments. As of now there are always 2 attachments, but it
      * is going to change in  the future (multi vlan).
@@ -52,39 +52,39 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cidr = 6;</code>
      */
-    private $cidr = '';
+    protected $cidr = '';
     /**
      * Service CIDR, if any.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.NetworkConfig.ServiceCidr service_cidr = 7;</code>
      */
-    private $service_cidr = 0;
+    protected $service_cidr = 0;
     /**
      * User note field, it can be used by customers to add additional information
      * for the BMS Ops team .
      *
      * Generated from protobuf field <code>string user_note = 8;</code>
      */
-    private $user_note = '';
+    protected $user_note = '';
     /**
      * The GCP service of the network. Available gcp_service are in
      * https://cloud.google.com/bare-metal/docs/bms-planning.
      *
      * Generated from protobuf field <code>string gcp_service = 9;</code>
      */
-    private $gcp_service = '';
+    protected $gcp_service = '';
     /**
      * Whether the VLAN attachment pair is located in the same project.
      *
      * Generated from protobuf field <code>bool vlan_same_project = 10;</code>
      */
-    private $vlan_same_project = false;
+    protected $vlan_same_project = false;
     /**
      * The JumboFramesEnabled option for customer to set.
      *
      * Generated from protobuf field <code>bool jumbo_frames_enabled = 11;</code>
      */
-    private $jumbo_frames_enabled = false;
+    protected $jumbo_frames_enabled = false;
 
     /**
      * Constructor.

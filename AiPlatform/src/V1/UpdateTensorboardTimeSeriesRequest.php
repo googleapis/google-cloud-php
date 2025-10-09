@@ -26,7 +26,7 @@ class UpdateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The TensorboardTimeSeries' `name` field is used to identify the
      * TensorboardTimeSeries to be updated.
@@ -35,7 +35,7 @@ class UpdateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardTimeSeries tensorboard_time_series = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tensorboard_time_series = null;
+    protected $tensorboard_time_series = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries $tensorboardTimeSeries Required. The TensorboardTimeSeries' `name` field is used to identify the

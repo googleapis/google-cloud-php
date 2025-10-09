@@ -20,31 +20,31 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional float temperature = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $temperature = null;
+    protected $temperature = null;
     /**
      * Optional. If specified, nucleus sampling will be used.
      *
      * Generated from protobuf field <code>optional float top_p = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $top_p = null;
+    protected $top_p = null;
     /**
      * Optional. If specified, top-k sampling will be used.
      *
      * Generated from protobuf field <code>optional float top_k = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $top_k = null;
+    protected $top_k = null;
     /**
      * Optional. Number of candidates to generate.
      *
      * Generated from protobuf field <code>optional int32 candidate_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $candidate_count = null;
+    protected $candidate_count = null;
     /**
      * Optional. The maximum number of output tokens to generate per message.
      *
      * Generated from protobuf field <code>optional int32 max_output_tokens = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_output_tokens = null;
+    protected $max_output_tokens = null;
     /**
      * Optional. Stop sequences.
      *
@@ -52,17 +52,35 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      */
     private $stop_sequences;
     /**
+     * Optional. If true, export the logprobs results in response.
+     *
+     * Generated from protobuf field <code>optional bool response_logprobs = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $response_logprobs = null;
+    /**
+     * Optional. Logit probabilities.
+     *
+     * Generated from protobuf field <code>optional int32 logprobs = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $logprobs = null;
+    /**
      * Optional. Positive penalties.
      *
      * Generated from protobuf field <code>optional float presence_penalty = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $presence_penalty = null;
+    protected $presence_penalty = null;
     /**
      * Optional. Frequency penalties.
      *
      * Generated from protobuf field <code>optional float frequency_penalty = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $frequency_penalty = null;
+    protected $frequency_penalty = null;
+    /**
+     * Optional. Seed.
+     *
+     * Generated from protobuf field <code>optional int32 seed = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $seed = null;
     /**
      * Optional. Output response mimetype of the generated candidate text.
      * Supported mimetype:
@@ -74,7 +92,7 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string response_mime_type = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $response_mime_type = '';
+    protected $response_mime_type = '';
     /**
      * Optional. The `Schema` object allows the definition of input and output
      * data types. These types can be objects, but also primitives and arrays.
@@ -86,7 +104,57 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Schema response_schema = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $response_schema = null;
+    protected $response_schema = null;
+    /**
+     * Optional. Output schema of the generated response. This is an alternative
+     * to `response_schema` that accepts [JSON Schema](https://json-schema.org/).
+     * If set, `response_schema` must be omitted, but `response_mime_type` is
+     * required.
+     * While the full JSON Schema may be sent, not all features are supported.
+     * Specifically, only the following properties are supported:
+     * - `$id`
+     * - `$defs`
+     * - `$ref`
+     * - `$anchor`
+     * - `type`
+     * - `format`
+     * - `title`
+     * - `description`
+     * - `enum` (for strings and numbers)
+     * - `items`
+     * - `prefixItems`
+     * - `minItems`
+     * - `maxItems`
+     * - `minimum`
+     * - `maximum`
+     * - `anyOf`
+     * - `oneOf` (interpreted the same as `anyOf`)
+     * - `properties`
+     * - `additionalProperties`
+     * - `required`
+     * The non-standard `propertyOrdering` property may also be set.
+     * Cyclic references are unrolled to a limited degree and, as such, may only
+     * be used within non-required properties. (Nullable properties are not
+     * sufficient.) If `$ref` is set on a sub-schema, no other properties, except
+     * for than those starting as a `$`, may be set.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Value response_json_schema = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $response_json_schema = null;
+    /**
+     * Optional. Routing configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig routing_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $routing_config = null;
+    /**
+     * Optional. Config for thinking features.
+     * An error will be returned if this field is set for models that don't
+     * support thinking.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig thinking_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $thinking_config = null;
 
     /**
      * Constructor.
@@ -106,10 +174,16 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The maximum number of output tokens to generate per message.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $stop_sequences
      *           Optional. Stop sequences.
+     *     @type bool $response_logprobs
+     *           Optional. If true, export the logprobs results in response.
+     *     @type int $logprobs
+     *           Optional. Logit probabilities.
      *     @type float $presence_penalty
      *           Optional. Positive penalties.
      *     @type float $frequency_penalty
      *           Optional. Frequency penalties.
+     *     @type int $seed
+     *           Optional. Seed.
      *     @type string $response_mime_type
      *           Optional. Output response mimetype of the generated candidate text.
      *           Supported mimetype:
@@ -126,6 +200,44 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           If set, a compatible response_mime_type must also be set.
      *           Compatible mimetypes:
      *           `application/json`: Schema for JSON response.
+     *     @type \Google\Protobuf\Value $response_json_schema
+     *           Optional. Output schema of the generated response. This is an alternative
+     *           to `response_schema` that accepts [JSON Schema](https://json-schema.org/).
+     *           If set, `response_schema` must be omitted, but `response_mime_type` is
+     *           required.
+     *           While the full JSON Schema may be sent, not all features are supported.
+     *           Specifically, only the following properties are supported:
+     *           - `$id`
+     *           - `$defs`
+     *           - `$ref`
+     *           - `$anchor`
+     *           - `type`
+     *           - `format`
+     *           - `title`
+     *           - `description`
+     *           - `enum` (for strings and numbers)
+     *           - `items`
+     *           - `prefixItems`
+     *           - `minItems`
+     *           - `maxItems`
+     *           - `minimum`
+     *           - `maximum`
+     *           - `anyOf`
+     *           - `oneOf` (interpreted the same as `anyOf`)
+     *           - `properties`
+     *           - `additionalProperties`
+     *           - `required`
+     *           The non-standard `propertyOrdering` property may also be set.
+     *           Cyclic references are unrolled to a limited degree and, as such, may only
+     *           be used within non-required properties. (Nullable properties are not
+     *           sufficient.) If `$ref` is set on a sub-schema, no other properties, except
+     *           for than those starting as a `$`, may be set.
+     *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig $routing_config
+     *           Optional. Routing configuration.
+     *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig $thinking_config
+     *           Optional. Config for thinking features.
+     *           An error will be returned if this field is set for models that don't
+     *           support thinking.
      * }
      */
     public function __construct($data = NULL) {
@@ -340,6 +452,78 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. If true, export the logprobs results in response.
+     *
+     * Generated from protobuf field <code>optional bool response_logprobs = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getResponseLogprobs()
+    {
+        return isset($this->response_logprobs) ? $this->response_logprobs : false;
+    }
+
+    public function hasResponseLogprobs()
+    {
+        return isset($this->response_logprobs);
+    }
+
+    public function clearResponseLogprobs()
+    {
+        unset($this->response_logprobs);
+    }
+
+    /**
+     * Optional. If true, export the logprobs results in response.
+     *
+     * Generated from protobuf field <code>optional bool response_logprobs = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setResponseLogprobs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->response_logprobs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Logit probabilities.
+     *
+     * Generated from protobuf field <code>optional int32 logprobs = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getLogprobs()
+    {
+        return isset($this->logprobs) ? $this->logprobs : 0;
+    }
+
+    public function hasLogprobs()
+    {
+        return isset($this->logprobs);
+    }
+
+    public function clearLogprobs()
+    {
+        unset($this->logprobs);
+    }
+
+    /**
+     * Optional. Logit probabilities.
+     *
+     * Generated from protobuf field <code>optional int32 logprobs = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLogprobs($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->logprobs = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Positive penalties.
      *
      * Generated from protobuf field <code>optional float presence_penalty = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -407,6 +591,42 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->frequency_penalty = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Seed.
+     *
+     * Generated from protobuf field <code>optional int32 seed = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSeed()
+    {
+        return isset($this->seed) ? $this->seed : 0;
+    }
+
+    public function hasSeed()
+    {
+        return isset($this->seed);
+    }
+
+    public function clearSeed()
+    {
+        unset($this->seed);
+    }
+
+    /**
+     * Optional. Seed.
+     *
+     * Generated from protobuf field <code>optional int32 seed = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSeed($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->seed = $var;
 
         return $this;
     }
@@ -493,6 +713,178 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Schema::class);
         $this->response_schema = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output schema of the generated response. This is an alternative
+     * to `response_schema` that accepts [JSON Schema](https://json-schema.org/).
+     * If set, `response_schema` must be omitted, but `response_mime_type` is
+     * required.
+     * While the full JSON Schema may be sent, not all features are supported.
+     * Specifically, only the following properties are supported:
+     * - `$id`
+     * - `$defs`
+     * - `$ref`
+     * - `$anchor`
+     * - `type`
+     * - `format`
+     * - `title`
+     * - `description`
+     * - `enum` (for strings and numbers)
+     * - `items`
+     * - `prefixItems`
+     * - `minItems`
+     * - `maxItems`
+     * - `minimum`
+     * - `maximum`
+     * - `anyOf`
+     * - `oneOf` (interpreted the same as `anyOf`)
+     * - `properties`
+     * - `additionalProperties`
+     * - `required`
+     * The non-standard `propertyOrdering` property may also be set.
+     * Cyclic references are unrolled to a limited degree and, as such, may only
+     * be used within non-required properties. (Nullable properties are not
+     * sufficient.) If `$ref` is set on a sub-schema, no other properties, except
+     * for than those starting as a `$`, may be set.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Value response_json_schema = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getResponseJsonSchema()
+    {
+        return $this->response_json_schema;
+    }
+
+    public function hasResponseJsonSchema()
+    {
+        return isset($this->response_json_schema);
+    }
+
+    public function clearResponseJsonSchema()
+    {
+        unset($this->response_json_schema);
+    }
+
+    /**
+     * Optional. Output schema of the generated response. This is an alternative
+     * to `response_schema` that accepts [JSON Schema](https://json-schema.org/).
+     * If set, `response_schema` must be omitted, but `response_mime_type` is
+     * required.
+     * While the full JSON Schema may be sent, not all features are supported.
+     * Specifically, only the following properties are supported:
+     * - `$id`
+     * - `$defs`
+     * - `$ref`
+     * - `$anchor`
+     * - `type`
+     * - `format`
+     * - `title`
+     * - `description`
+     * - `enum` (for strings and numbers)
+     * - `items`
+     * - `prefixItems`
+     * - `minItems`
+     * - `maxItems`
+     * - `minimum`
+     * - `maximum`
+     * - `anyOf`
+     * - `oneOf` (interpreted the same as `anyOf`)
+     * - `properties`
+     * - `additionalProperties`
+     * - `required`
+     * The non-standard `propertyOrdering` property may also be set.
+     * Cyclic references are unrolled to a limited degree and, as such, may only
+     * be used within non-required properties. (Nullable properties are not
+     * sufficient.) If `$ref` is set on a sub-schema, no other properties, except
+     * for than those starting as a `$`, may be set.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Value response_json_schema = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setResponseJsonSchema($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->response_json_schema = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Routing configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig routing_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig|null
+     */
+    public function getRoutingConfig()
+    {
+        return $this->routing_config;
+    }
+
+    public function hasRoutingConfig()
+    {
+        return isset($this->routing_config);
+    }
+
+    public function clearRoutingConfig()
+    {
+        unset($this->routing_config);
+    }
+
+    /**
+     * Optional. Routing configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig routing_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig $var
+     * @return $this
+     */
+    public function setRoutingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig::class);
+        $this->routing_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Config for thinking features.
+     * An error will be returned if this field is set for models that don't
+     * support thinking.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig thinking_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig|null
+     */
+    public function getThinkingConfig()
+    {
+        return $this->thinking_config;
+    }
+
+    public function hasThinkingConfig()
+    {
+        return isset($this->thinking_config);
+    }
+
+    public function clearThinkingConfig()
+    {
+        unset($this->thinking_config);
+    }
+
+    /**
+     * Optional. Config for thinking features.
+     * An error will be returned if this field is set for models that don't
+     * support thinking.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig thinking_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig $var
+     * @return $this
+     */
+    public function setThinkingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig::class);
+        $this->thinking_config = $var;
 
         return $this;
     }

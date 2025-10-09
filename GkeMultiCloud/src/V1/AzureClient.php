@@ -32,25 +32,25 @@ class AzureClient extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The Azure Active Directory Tenant ID.
      *
      * Generated from protobuf field <code>string tenant_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tenant_id = '';
+    protected $tenant_id = '';
     /**
      * Required. The Azure Active Directory Application ID.
      *
      * Generated from protobuf field <code>string application_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $application_id = '';
+    protected $application_id = '';
     /**
      * Output only. If set, there are currently pending changes to the client.
      *
      * Generated from protobuf field <code>bool reconciling = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Optional. Annotations on the resource.
      * This field has the same restrictions as Kubernetes annotations.
@@ -69,25 +69,25 @@ class AzureClient extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pem_certificate = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pem_certificate = '';
+    protected $pem_certificate = '';
     /**
      * Output only. A globally unique identifier for the client.
      *
      * Generated from protobuf field <code>string uid = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The time at which this resource was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which this client was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

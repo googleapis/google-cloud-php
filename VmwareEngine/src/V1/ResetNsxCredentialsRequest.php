@@ -26,7 +26,7 @@ class ResetNsxCredentialsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string private_cloud = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $private_cloud = '';
+    protected $private_cloud = '';
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -43,7 +43,7 @@ class ResetNsxCredentialsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string $privateCloud Required. The resource name of the private cloud

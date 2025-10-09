@@ -22,7 +22,7 @@ class UpdateDataPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datapolicies.v1.DataPolicy data_policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_policy = null;
+    protected $data_policy = null;
     /**
      * The update mask applies to the resource. For the `FieldMask` definition,
      * see
@@ -32,7 +32,7 @@ class UpdateDataPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy $dataPolicy Required. Update the data policy's metadata.

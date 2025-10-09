@@ -23,7 +23,7 @@ class RemoveDatapointsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string index = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $index = '';
+    protected $index = '';
     /**
      * A list of datapoint ids to be deleted.
      *

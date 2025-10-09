@@ -27,7 +27,7 @@ class WebServerConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
 
     /**
      * Constructor.

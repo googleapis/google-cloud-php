@@ -17,7 +17,7 @@ class GetAttachmentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Resource name of the attachment, in the form
-     * `spaces/&#42;&#47;messages/&#42;&#47;attachments/&#42;`.
+     * `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class GetAttachmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Resource name of the attachment, in the form
-     *                     `spaces/&#42;/messages/&#42;/attachments/*`. Please see
+     *                     `spaces/{space}/messages/{message}/attachments/{attachment}`. Please see
      *                     {@see ChatServiceClient::attachmentName()} for help formatting this field.
      *
      * @return \Google\Apps\Chat\V1\GetAttachmentRequest
@@ -46,7 +46,7 @@ class GetAttachmentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Resource name of the attachment, in the form
-     *           `spaces/&#42;&#47;messages/&#42;&#47;attachments/&#42;`.
+     *           `spaces/{space}/messages/{message}/attachments/{attachment}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetAttachmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the attachment, in the form
-     * `spaces/&#42;&#47;messages/&#42;&#47;attachments/&#42;`.
+     * `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetAttachmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the attachment, in the form
-     * `spaces/&#42;&#47;messages/&#42;&#47;attachments/&#42;`.
+     * `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -20,7 +20,7 @@ class BackupRunsListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * A list of backup runs in reverse chronological order of the enqueued time.
      *
@@ -33,7 +33,7 @@ class BackupRunsListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
 
     /**
      * Constructor.

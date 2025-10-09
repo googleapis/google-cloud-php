@@ -26,6 +26,7 @@ class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string cluster_ids = 1;</code>
      */
     private $cluster_ids;
+    protected $affinity;
 
     /**
      * Constructor.
@@ -36,6 +37,9 @@ class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cluster_ids
      *           The set of clusters to route to. The order is ignored; clusters will be
      *           tried in order of distance. If left empty, all clusters are eligible.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny\RowAffinity $row_affinity
+     *           Row affinity sticky routing based on the row key of the request.
+     *           Requests that span multiple rows are routed non-deterministically.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +73,47 @@ class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
         $this->cluster_ids = $arr;
 
         return $this;
+    }
+
+    /**
+     * Row affinity sticky routing based on the row key of the request.
+     * Requests that span multiple rows are routed non-deterministically.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny.RowAffinity row_affinity = 3;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny\RowAffinity|null
+     */
+    public function getRowAffinity()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasRowAffinity()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Row affinity sticky routing based on the row key of the request.
+     * Requests that span multiple rows are routed non-deterministically.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny.RowAffinity row_affinity = 3;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny\RowAffinity $var
+     * @return $this
+     */
+    public function setRowAffinity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny\RowAffinity::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAffinity()
+    {
+        return $this->whichOneof("affinity");
     }
 
 }

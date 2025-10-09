@@ -21,7 +21,7 @@ class ScoreThresholdTrigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float score_threshold = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $score_threshold = 0.0;
+    protected $score_threshold = 0.0;
 
     /**
      * Constructor.

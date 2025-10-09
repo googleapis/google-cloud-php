@@ -20,14 +20,14 @@ class SpokeStateReasonCount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.Spoke.StateReason.Code state_reason_code = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_reason_code = 0;
+    protected $state_reason_code = 0;
     /**
      * Output only. The total number of spokes that are inactive for a
      * particular reason and associated with a given hub.
      *
      * Generated from protobuf field <code>int64 count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $count = 0;
+    protected $count = 0;
 
     /**
      * Constructor.

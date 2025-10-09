@@ -20,7 +20,7 @@ class WriteFeatureValuesPayload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entity_id = '';
+    protected $entity_id = '';
     /**
      * Required. Feature values to be written, mapping from Feature ID to value.
      * Up to 100,000 `feature_values` entries may be written across all payloads.

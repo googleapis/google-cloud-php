@@ -20,13 +20,13 @@ class DiskEncryptionStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_version_name = 1;</code>
      */
-    private $kms_key_version_name = '';
+    protected $kms_key_version_name = '';
     /**
      * This is always `sql#diskEncryptionStatus`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.

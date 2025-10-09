@@ -20,13 +20,13 @@ class Category extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string category_id = 1;</code>
      */
-    private $category_id = '';
+    protected $category_id = '';
     /**
      * The localized name of the category.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.

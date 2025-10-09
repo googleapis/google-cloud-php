@@ -55,6 +55,4 @@ class AggregationInterval
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AggregationInterval::class, \Google\Cloud\Billing\V1\AggregationInfo_AggregationInterval::class);
 

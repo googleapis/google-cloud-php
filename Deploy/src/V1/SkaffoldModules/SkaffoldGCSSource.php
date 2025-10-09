@@ -22,13 +22,13 @@ class SkaffoldGCSSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source = '';
+    protected $source = '';
     /**
      * Optional. Relative path from the source to the Skaffold file.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $path = '';
+    protected $path = '';
 
     /**
      * Constructor.

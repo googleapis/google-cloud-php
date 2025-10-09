@@ -23,7 +23,7 @@ class NoiseSigmaForFeature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * This represents the standard deviation of the Gaussian kernel that will
      * be used to add noise to the feature prior to computing gradients. Similar
@@ -32,7 +32,7 @@ class NoiseSigmaForFeature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float sigma = 2;</code>
      */
-    private $sigma = 0.0;
+    protected $sigma = 0.0;
 
     /**
      * Constructor.

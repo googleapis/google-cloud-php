@@ -29,25 +29,25 @@ class NetworkPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Creation time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Last update time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Network service that allows VMware workloads to access the internet.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.NetworkPolicy.NetworkService internet_access = 6;</code>
      */
-    private $internet_access = null;
+    protected $internet_access = null;
     /**
      * Network service that allows External IP addresses to be assigned to VMware
      * workloads. This service can only be enabled when `internet_access` is also
@@ -55,7 +55,7 @@ class NetworkPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.NetworkPolicy.NetworkService external_ip = 7;</code>
      */
-    private $external_ip = null;
+    protected $external_ip = null;
     /**
      * Required. IP address range in CIDR notation used to create internet access
      * and external IP access. An RFC 1918 CIDR block, with a "/26" prefix, is
@@ -64,13 +64,13 @@ class NetworkPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string edge_services_cidr = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $edge_services_cidr = '';
+    protected $edge_services_cidr = '';
     /**
      * Output only. System-generated unique identifier for the resource.
      *
      * Generated from protobuf field <code>string uid = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Optional. The relative resource name of the VMware Engine network.
      * Specify the name in the following form:
@@ -79,20 +79,20 @@ class NetworkPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vmware_engine_network = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $vmware_engine_network = '';
+    protected $vmware_engine_network = '';
     /**
      * Optional. User-provided description for this network policy.
      *
      * Generated from protobuf field <code>string description = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The canonical name of the VMware Engine network in the form:
      * `projects/{project_number}/locations/{location}/vmwareEngineNetworks/{vmware_engine_network_id}`
      *
      * Generated from protobuf field <code>string vmware_engine_network_canonical = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $vmware_engine_network_canonical = '';
+    protected $vmware_engine_network_canonical = '';
 
     /**
      * Constructor.

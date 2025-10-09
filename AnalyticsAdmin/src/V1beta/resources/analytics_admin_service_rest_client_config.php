@@ -131,6 +131,18 @@ return [
                     ],
                 ],
             ],
+            'CreateKeyEvent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=properties/*}/keyEvents',
+                'body' => 'key_event',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateMeasurementProtocolSecret' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets',
@@ -195,6 +207,17 @@ return [
             'DeleteGoogleAdsLink' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta/{name=properties/*/googleAdsLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteKeyEvent' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=properties/*/keyEvents/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -302,6 +325,17 @@ return [
                     ],
                 ],
             ],
+            'GetKeyEvent' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=properties/*/keyEvents/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetMeasurementProtocolSecret' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
@@ -390,6 +424,17 @@ return [
             'ListGoogleAdsLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{parent=properties/*}/googleAdsLinks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListKeyEvents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=properties/*}/keyEvents',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -556,6 +601,22 @@ return [
                     'google_ads_link.name' => [
                         'getters' => [
                             'getGoogleAdsLink',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateKeyEvent' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta/{key_event.name=properties/*/keyEvents/*}',
+                'body' => 'key_event',
+                'placeholders' => [
+                    'key_event.name' => [
+                        'getters' => [
+                            'getKeyEvent',
                             'getName',
                         ],
                     ],

@@ -20,7 +20,7 @@ class SqlInstancesRescheduleMaintenanceRequestBody extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesRescheduleMaintenanceRequestBody.Reschedule reschedule = 3;</code>
      */
-    private $reschedule = null;
+    protected $reschedule = null;
 
     /**
      * Constructor.

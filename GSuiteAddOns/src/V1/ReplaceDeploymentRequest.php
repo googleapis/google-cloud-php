@@ -20,7 +20,7 @@ class ReplaceDeploymentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gsuiteaddons.v1.Deployment deployment = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployment = null;
+    protected $deployment = null;
 
     /**
      * @param \Google\Cloud\GSuiteAddOns\V1\Deployment $deployment Required. The deployment to create or replace.

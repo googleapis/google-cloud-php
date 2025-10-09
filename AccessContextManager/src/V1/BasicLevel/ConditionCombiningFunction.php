@@ -57,6 +57,4 @@ class ConditionCombiningFunction
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConditionCombiningFunction::class, \Google\Identity\AccessContextManager\V1\BasicLevel_ConditionCombiningFunction::class);
 

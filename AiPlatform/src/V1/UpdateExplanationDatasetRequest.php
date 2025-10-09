@@ -22,13 +22,13 @@ class UpdateExplanationDatasetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * The example config containing the location of the dataset.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Examples examples = 2;</code>
      */
-    private $examples = null;
+    protected $examples = null;
 
     /**
      * @param string $model Required. The resource name of the Model to update.

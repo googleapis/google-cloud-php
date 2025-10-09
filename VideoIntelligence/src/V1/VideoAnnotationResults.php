@@ -21,13 +21,13 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      */
-    private $input_uri = '';
+    protected $input_uri = '';
     /**
      * Video segment on which the annotation is run.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 10;</code>
      */
-    private $segment = null;
+    protected $segment = null;
     /**
      * Topical label annotations on video level or user-specified segment level.
      * There is exactly one element for each unique label.
@@ -94,7 +94,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.ExplicitContentAnnotation explicit_annotation = 7;</code>
      */
-    private $explicit_annotation = null;
+    protected $explicit_annotation = null;
     /**
      * Speech transcription.
      *
@@ -133,7 +133,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 9;</code>
      */
-    private $error = null;
+    protected $error = null;
 
     /**
      * Constructor.
@@ -425,7 +425,9 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     public function getFaceAnnotations()
     {
-        @trigger_error('face_annotations is deprecated.', E_USER_DEPRECATED);
+        if ($this->face_annotations->count() !== 0) {
+            @trigger_error('face_annotations is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->face_annotations;
     }
 
@@ -439,8 +441,10 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     public function setFaceAnnotations($var)
     {
-        @trigger_error('face_annotations is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\FaceAnnotation::class);
+        if (count($arr) !== 0) {
+            @trigger_error('face_annotations is deprecated.', E_USER_DEPRECATED);
+        }
         $this->face_annotations = $arr;
 
         return $this;

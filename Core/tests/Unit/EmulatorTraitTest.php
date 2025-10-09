@@ -50,6 +50,23 @@ class EmulatorTraitTest extends TestCase
         $this->assertNull($res['transportConfig']['grpc']['stubOpts']['credentials']);
     }
 
+
+    /**
+     * @dataProvider hostnames
+     */
+    public function testEmulatorGapicConfigWithNoGrpc($hostname, $expected = null)
+    {
+        if (\extension_loaded('grpc')) {
+            $this->markTestSkipped("Cannot run test with grpc extension loaded");
+        }
+
+        $expected = $expected ?: $hostname;
+
+        $res = $this->impl->call('emulatorGapicConfig', [$hostname]);
+        $this->assertEquals($expected, $res['apiEndpoint']);
+        $this->assertArrayNotHasKey('transportConfig', $res);
+    }
+
     public function hostnames()
     {
         return [

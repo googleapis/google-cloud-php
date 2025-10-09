@@ -21,7 +21,7 @@ class TreeAHConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 leaf_node_embedding_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $leaf_node_embedding_count = null;
+    protected $leaf_node_embedding_count = null;
 
     /**
      * Constructor.

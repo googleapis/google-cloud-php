@@ -21,7 +21,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Time at which the session becomes invalid. After this time,
      * subsequent requests to read this Session will return errors. The
@@ -30,34 +30,34 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Immutable. Data format of the output data. DATA_FORMAT_UNSPECIFIED not
      * supported.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.DataFormat data_format = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $data_format = 0;
+    protected $data_format = 0;
     /**
      * Immutable. Table that this ReadSession is reading from, in the form
      * `projects/{project_id}/datasets/{dataset_id}/tables/{table_id}`
      *
      * Generated from protobuf field <code>string table = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * Optional. Any modifiers which are applied when reading from the specified
      * table.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadSession.TableModifiers table_modifiers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $table_modifiers = null;
+    protected $table_modifiers = null;
     /**
      * Optional. Read options for this session (e.g. column selection, filters).
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadSession.TableReadOptions read_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $read_options = null;
+    protected $read_options = null;
     /**
      * Output only. A list of streams created with the session.
      * At least one stream is created with the session. In the future, larger
@@ -75,7 +75,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 estimated_total_bytes_scanned = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $estimated_total_bytes_scanned = 0;
+    protected $estimated_total_bytes_scanned = 0;
     /**
      * Output only. A pre-projected estimate of the total physical size of files
      * (in bytes) that this session will scan when all streams are consumed. This
@@ -85,7 +85,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 estimated_total_physical_file_size = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $estimated_total_physical_file_size = 0;
+    protected $estimated_total_physical_file_size = 0;
     /**
      * Output only. An estimate on the number of rows present in this session's
      * streams. This estimate is based on metadata from the table which might be
@@ -93,7 +93,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 estimated_row_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $estimated_row_count = 0;
+    protected $estimated_row_count = 0;
     /**
      * Optional. ID set by client to annotate a session identity.  This does not
      * need to be strictly unique, but instead the same ID should be used to group
@@ -103,7 +103,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string trace_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $trace_id = '';
+    protected $trace_id = '';
     protected $schema;
 
     /**

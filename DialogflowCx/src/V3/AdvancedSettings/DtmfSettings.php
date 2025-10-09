@@ -38,6 +38,18 @@ class DtmfSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string finish_digit = 3;</code>
      */
     protected $finish_digit = '';
+    /**
+     * Interdigit timeout setting for matching dtmf input to regex.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration interdigit_timeout_duration = 6;</code>
+     */
+    protected $interdigit_timeout_duration = null;
+    /**
+     * Endpoint timeout setting for matching dtmf input to regex.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration endpointing_timeout_duration = 7;</code>
+     */
+    protected $endpointing_timeout_duration = null;
 
     /**
      * Constructor.
@@ -56,6 +68,10 @@ class DtmfSettings extends \Google\Protobuf\Internal\Message
      *           Max length of DTMF digits.
      *     @type string $finish_digit
      *           The digit that terminates a DTMF digit sequence.
+     *     @type \Google\Protobuf\Duration $interdigit_timeout_duration
+     *           Interdigit timeout setting for matching dtmf input to regex.
+     *     @type \Google\Protobuf\Duration $endpointing_timeout_duration
+     *           Endpoint timeout setting for matching dtmf input to regex.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +163,78 @@ class DtmfSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->finish_digit = $var;
+
+        return $this;
+    }
+
+    /**
+     * Interdigit timeout setting for matching dtmf input to regex.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration interdigit_timeout_duration = 6;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getInterdigitTimeoutDuration()
+    {
+        return $this->interdigit_timeout_duration;
+    }
+
+    public function hasInterdigitTimeoutDuration()
+    {
+        return isset($this->interdigit_timeout_duration);
+    }
+
+    public function clearInterdigitTimeoutDuration()
+    {
+        unset($this->interdigit_timeout_duration);
+    }
+
+    /**
+     * Interdigit timeout setting for matching dtmf input to regex.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration interdigit_timeout_duration = 6;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setInterdigitTimeoutDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->interdigit_timeout_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Endpoint timeout setting for matching dtmf input to regex.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration endpointing_timeout_duration = 7;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getEndpointingTimeoutDuration()
+    {
+        return $this->endpointing_timeout_duration;
+    }
+
+    public function hasEndpointingTimeoutDuration()
+    {
+        return isset($this->endpointing_timeout_duration);
+    }
+
+    public function clearEndpointingTimeoutDuration()
+    {
+        unset($this->endpointing_timeout_duration);
+    }
+
+    /**
+     * Endpoint timeout setting for matching dtmf input to regex.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration endpointing_timeout_duration = 7;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setEndpointingTimeoutDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->endpointing_timeout_duration = $var;
 
         return $this;
     }

@@ -28,6 +28,8 @@ class ParsingConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig\ParsingConfig\OcrParsingConfig $ocr_parsing_config
      *           Configurations applied to OCR parser. Currently it only applies to
      *           PDFs.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig\ParsingConfig\LayoutParsingConfig $layout_parsing_config
+     *           Configurations applied to layout parser.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,6 +97,37 @@ class ParsingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig\ParsingConfig\OcrParsingConfig::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Configurations applied to layout parser.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DocumentProcessingConfig.ParsingConfig.LayoutParsingConfig layout_parsing_config = 3;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig\ParsingConfig\LayoutParsingConfig|null
+     */
+    public function getLayoutParsingConfig()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasLayoutParsingConfig()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Configurations applied to layout parser.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DocumentProcessingConfig.ParsingConfig.LayoutParsingConfig layout_parsing_config = 3;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig\ParsingConfig\LayoutParsingConfig $var
+     * @return $this
+     */
+    public function setLayoutParsingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig\ParsingConfig\LayoutParsingConfig::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,8 @@ use Google\Cloud\Dialogflow\V2\SuggestArticlesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesResponse;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersRequest;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersResponse;
+use Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistRequest;
+use Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistResponse;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse;
 use Google\Cloud\Dialogflow\V2\UpdateParticipantRequest;
@@ -68,7 +70,9 @@ class ParticipantsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ParticipantsClient */
@@ -95,8 +99,7 @@ class ParticipantsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParticipant = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new AnalyzeContentRequest())
-            ->setParticipant($formattedParticipant);
+        $request = (new AnalyzeContentRequest())->setParticipant($formattedParticipant);
         $response = $gapicClient->analyzeContent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -120,17 +123,19 @@ class ParticipantsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParticipant = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new AnalyzeContentRequest())
-            ->setParticipant($formattedParticipant);
+        $request = (new AnalyzeContentRequest())->setParticipant($formattedParticipant);
         try {
             $gapicClient->analyzeContent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -164,9 +169,7 @@ class ParticipantsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
         $participant = new Participant();
-        $request = (new CreateParticipantRequest())
-            ->setParent($formattedParent)
-            ->setParticipant($participant);
+        $request = (new CreateParticipantRequest())->setParent($formattedParent)->setParticipant($participant);
         $response = $gapicClient->createParticipant($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -192,19 +195,20 @@ class ParticipantsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
         $participant = new Participant();
-        $request = (new CreateParticipantRequest())
-            ->setParent($formattedParent)
-            ->setParticipant($participant);
+        $request = (new CreateParticipantRequest())->setParent($formattedParent)->setParticipant($participant);
         try {
             $gapicClient->createParticipant($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -237,8 +241,7 @@ class ParticipantsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new GetParticipantRequest())
-            ->setName($formattedName);
+        $request = (new GetParticipantRequest())->setName($formattedName);
         $response = $gapicClient->getParticipant($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -262,17 +265,19 @@ class ParticipantsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new GetParticipantRequest())
-            ->setName($formattedName);
+        $request = (new GetParticipantRequest())->setName($formattedName);
         try {
             $gapicClient->getParticipant($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -297,17 +302,14 @@ class ParticipantsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $participantsElement = new Participant();
-        $participants = [
-            $participantsElement,
-        ];
+        $participants = [$participantsElement];
         $expectedResponse = new ListParticipantsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setParticipants($participants);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new ListParticipantsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListParticipantsRequest())->setParent($formattedParent);
         $response = $gapicClient->listParticipants($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -334,17 +336,19 @@ class ParticipantsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new ListParticipantsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListParticipantsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listParticipants($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -368,16 +372,22 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $replyText = 'replyText-549180062';
+        $speechModel = 'speechModel-893274740';
         $expectedResponse = new StreamingAnalyzeContentResponse();
         $expectedResponse->setReplyText($replyText);
+        $expectedResponse->setSpeechModel($speechModel);
         $transport->addResponse($expectedResponse);
         $replyText2 = 'replyText2518940821';
+        $speechModel2 = 'speechModel2556437055';
         $expectedResponse2 = new StreamingAnalyzeContentResponse();
         $expectedResponse2->setReplyText($replyText2);
+        $expectedResponse2->setSpeechModel($speechModel2);
         $transport->addResponse($expectedResponse2);
         $replyText3 = 'replyText3518940822';
+        $speechModel3 = 'speechModel3556437056';
         $expectedResponse3 = new StreamingAnalyzeContentResponse();
         $expectedResponse3->setReplyText($replyText3);
+        $expectedResponse3->setSpeechModel($speechModel3);
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedParticipant = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
@@ -394,10 +404,7 @@ class ParticipantsClientTest extends GeneratedTest
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
+        $bidi->writeAll([$request2, $request3]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -435,12 +442,15 @@ class ParticipantsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->streamingAnalyzeContent();
@@ -475,8 +485,7 @@ class ParticipantsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new SuggestArticlesRequest())
-            ->setParent($formattedParent);
+        $request = (new SuggestArticlesRequest())->setParent($formattedParent);
         $response = $gapicClient->suggestArticles($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -500,17 +509,19 @@ class ParticipantsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new SuggestArticlesRequest())
-            ->setParent($formattedParent);
+        $request = (new SuggestArticlesRequest())->setParent($formattedParent);
         try {
             $gapicClient->suggestArticles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -541,8 +552,7 @@ class ParticipantsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new SuggestFaqAnswersRequest())
-            ->setParent($formattedParent);
+        $request = (new SuggestFaqAnswersRequest())->setParent($formattedParent);
         $response = $gapicClient->suggestFaqAnswers($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -566,19 +576,88 @@ class ParticipantsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new SuggestFaqAnswersRequest())
-            ->setParent($formattedParent);
+        $request = (new SuggestFaqAnswersRequest())->setParent($formattedParent);
         try {
             $gapicClient->suggestFaqAnswers($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function suggestKnowledgeAssistTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $latestMessage2 = 'latestMessage2-440913086';
+        $contextSize2 = 397491196;
+        $expectedResponse = new SuggestKnowledgeAssistResponse();
+        $expectedResponse->setLatestMessage($latestMessage2);
+        $expectedResponse->setContextSize($contextSize2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $request = (new SuggestKnowledgeAssistRequest())->setParent($formattedParent);
+        $response = $gapicClient->suggestKnowledgeAssist($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.v2.Participants/SuggestKnowledgeAssist', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function suggestKnowledgeAssistExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $request = (new SuggestKnowledgeAssistRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->suggestKnowledgeAssist($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -607,8 +686,7 @@ class ParticipantsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new SuggestSmartRepliesRequest())
-            ->setParent($formattedParent);
+        $request = (new SuggestSmartRepliesRequest())->setParent($formattedParent);
         $response = $gapicClient->suggestSmartReplies($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -632,17 +710,19 @@ class ParticipantsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new SuggestSmartRepliesRequest())
-            ->setParent($formattedParent);
+        $request = (new SuggestSmartRepliesRequest())->setParent($formattedParent);
         try {
             $gapicClient->suggestSmartReplies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -676,9 +756,7 @@ class ParticipantsClientTest extends GeneratedTest
         // Mock request
         $participant = new Participant();
         $updateMask = new FieldMask();
-        $request = (new UpdateParticipantRequest())
-            ->setParticipant($participant)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateParticipantRequest())->setParticipant($participant)->setUpdateMask($updateMask);
         $response = $gapicClient->updateParticipant($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -704,19 +782,20 @@ class ParticipantsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $participant = new Participant();
         $updateMask = new FieldMask();
-        $request = (new UpdateParticipantRequest())
-            ->setParticipant($participant)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateParticipantRequest())->setParticipant($participant)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateParticipant($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -769,12 +848,15 @@ class ParticipantsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -801,9 +883,7 @@ class ParticipantsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -833,12 +913,15 @@ class ParticipantsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -869,8 +952,7 @@ class ParticipantsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParticipant = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new AnalyzeContentRequest())
-            ->setParticipant($formattedParticipant);
+        $request = (new AnalyzeContentRequest())->setParticipant($formattedParticipant);
         $response = $gapicClient->analyzeContentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

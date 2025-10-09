@@ -21,7 +21,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Target is the service name used to group related deployments:
      * * Service name for App Engine Flex / Standard.
@@ -32,7 +32,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target = 2;</code>
      */
-    private $target = '';
+    protected $target = '';
     /**
      * Labels identify the deployment within the user universe and same target.
      * Validation regex for label names: `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.

@@ -17,10 +17,15 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\DeadlineExceededException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
+use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
 
 /**
  * @group spanner
@@ -33,9 +38,12 @@ class ReadTest extends SpannerTestCase
     private static $indexes = [];
     private static $dataset;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$readTableName = uniqid(self::TESTING_PREFIX);
         self::$rangeTableName = uniqid(self::TESTING_PREFIX);
@@ -213,6 +221,57 @@ class ReadTest extends SpannerTestCase
         $rows = iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
         $this->assertNotContains(self::$dataset[10], $rows);
+    }
+
+    public function testOrderByReturnsRowsOrderedById()
+    {
+        $db = self::$database;
+
+        $this->insertUnorderedBatch();
+
+        $res = $db->read(self::$rangeTableName, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
+            'orderBy' => OrderBy::ORDER_BY_PRIMARY_KEY
+        ]);
+        $rows = iterator_to_array($res->rows());
+
+        // Assert that the returned rows are sorted by the 'id' property.
+        for ($i = 0; $i < count($rows) - 1; $i++) {
+            $this->assertLessThanOrEqual(
+                $rows[$i + 1]['id'],
+                $rows[$i]['id'],
+                'The array is not sorted by id in ascending order.'
+            );
+        }
+    }
+
+    public function testLockHintReadWriteTransaction()
+    {
+        $db = self::$database;
+        $limit = 10;
+
+        $res = $db->read(self::$rangeTableName, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
+            'begin' => true,
+            'transactionType' => SessionPoolInterface::CONTEXT_READWRITE,
+            'lockHint' => LockHint::LOCK_HINT_EXCLUSIVE,
+            'limit' => $limit,
+        ]);
+
+        $rows = iterator_to_array($res->rows());
+        $this->assertNotEmpty($rows);
+        $this->assertEquals($limit, count($rows));
+    }
+
+    public function testLockHintOnReadOnlyThrowsAnError()
+    {
+        $this->skipEmulatorTests();
+        $db = self::$database;
+        $this->expectException(BadRequestException::class);
+
+        $res = $db->read(self::$rangeTableName, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
+            'lockHint' => LockHint::LOCK_HINT_EXCLUSIVE
+        ]);
+
+        iterator_to_array($res->rows());
     }
 
     /**
@@ -512,5 +571,24 @@ class ReadTest extends SpannerTestCase
         }
 
         return current($res)['name'];
+    }
+
+    private function insertUnorderedBatch()
+    {
+        // Because we are generating IDs at random there is a non zero chance
+        // that we create an ID that already exists on the DB.
+        // If that happens, we recursively call this function to generate another set.
+        try {
+            $unorderedDataset = self::generateDataset(10, false);
+            self::$database->insertBatch(self::$rangeTableName, $unorderedDataset);
+        } catch (ConflictException $e) {
+            $json = json_decode($e->getMessage(), true);
+
+            if ($json['status'] == 'ALREADY_EXISTS') {
+                $this->insertUnorderedBatch();
+            } else {
+                throw $e;
+            }
+        }
     }
 }

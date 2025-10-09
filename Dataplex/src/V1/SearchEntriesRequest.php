@@ -15,47 +15,68 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The project to which the request should be attributed in the
-     * following form: `projects/{project}/locations/{location}`.
+     * following form: `projects/{project}/locations/global`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The query against which entries in scope should be matched.
+     * The query syntax is defined in [Search syntax for Dataplex Universal
+     * Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
-     * Optional. Pagination.
+     * Optional. Number of results in the search page. If <=0, then defaults
+     * to 10. Max limit for page_size is 1000. Throws an invalid argument for
+     * page_size > 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
+     * Optional. Page token received from a previous `SearchEntries` call. Provide
+     * this to retrieve the subsequent page.
+     *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
-     * Optional. Ordering of the results. Supported options to be added later.
+     * Optional. Specifies the ordering of results.
+     * Supported values are:
+     * * `relevance`
+     * * `last_modified_timestamp`
+     * * `last_modified_timestamp asc`
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
-     * Optional. The scope under which the search should be operating. Should
-     * either be organizations/<org_id> or projects/<project_ref>. If left
-     * unspecified, it will default to the organization where the project provided
-     * in `name` is located.
+     * Optional. The scope under which the search should be operating. It must
+     * either be `organizations/<org_id>` or `projects/<project_ref>`. If it is
+     * unspecified, it defaults to the organization where the project provided in
+     * `name` is located.
      *
      * Generated from protobuf field <code>string scope = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scope = '';
+    protected $scope = '';
+    /**
+     * Optional. Specifies whether the search should understand the meaning and
+     * intent behind the query, rather than just matching keywords.
+     *
+     * Generated from protobuf field <code>bool semantic_search = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $semantic_search = false;
 
     /**
      * @param string $name  Required. The project to which the request should be attributed in the
-     *                      following form: `projects/{project}/locations/{location}`.
+     *                      following form: `projects/{project}/locations/global`. Please see
+     *                      {@see CatalogServiceClient::locationName()} for help formatting this field.
      * @param string $query Required. The query against which entries in scope should be matched.
+     *                      The query syntax is defined in [Search syntax for Dataplex Universal
+     *                      Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *
      * @return \Google\Cloud\Dataplex\V1\SearchEntriesRequest
      *
@@ -76,19 +97,32 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The project to which the request should be attributed in the
-     *           following form: `projects/{project}/locations/{location}`.
+     *           following form: `projects/{project}/locations/global`.
      *     @type string $query
      *           Required. The query against which entries in scope should be matched.
+     *           The query syntax is defined in [Search syntax for Dataplex Universal
+     *           Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *     @type int $page_size
-     *           Optional. Pagination.
+     *           Optional. Number of results in the search page. If <=0, then defaults
+     *           to 10. Max limit for page_size is 1000. Throws an invalid argument for
+     *           page_size > 1000.
      *     @type string $page_token
+     *           Optional. Page token received from a previous `SearchEntries` call. Provide
+     *           this to retrieve the subsequent page.
      *     @type string $order_by
-     *           Optional. Ordering of the results. Supported options to be added later.
+     *           Optional. Specifies the ordering of results.
+     *           Supported values are:
+     *           * `relevance`
+     *           * `last_modified_timestamp`
+     *           * `last_modified_timestamp asc`
      *     @type string $scope
-     *           Optional. The scope under which the search should be operating. Should
-     *           either be organizations/<org_id> or projects/<project_ref>. If left
-     *           unspecified, it will default to the organization where the project provided
-     *           in `name` is located.
+     *           Optional. The scope under which the search should be operating. It must
+     *           either be `organizations/<org_id>` or `projects/<project_ref>`. If it is
+     *           unspecified, it defaults to the organization where the project provided in
+     *           `name` is located.
+     *     @type bool $semantic_search
+     *           Optional. Specifies whether the search should understand the meaning and
+     *           intent behind the query, rather than just matching keywords.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,9 +132,9 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project to which the request should be attributed in the
-     * following form: `projects/{project}/locations/{location}`.
+     * following form: `projects/{project}/locations/global`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -110,9 +144,9 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project to which the request should be attributed in the
-     * following form: `projects/{project}/locations/{location}`.
+     * following form: `projects/{project}/locations/global`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -126,6 +160,8 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The query against which entries in scope should be matched.
+     * The query syntax is defined in [Search syntax for Dataplex Universal
+     * Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -137,6 +173,8 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The query against which entries in scope should be matched.
+     * The query syntax is defined in [Search syntax for Dataplex Universal
+     * Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -151,7 +189,9 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Pagination.
+     * Optional. Number of results in the search page. If <=0, then defaults
+     * to 10. Max limit for page_size is 1000. Throws an invalid argument for
+     * page_size > 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -162,7 +202,9 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Pagination.
+     * Optional. Number of results in the search page. If <=0, then defaults
+     * to 10. Max limit for page_size is 1000. Throws an invalid argument for
+     * page_size > 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -177,6 +219,9 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Page token received from a previous `SearchEntries` call. Provide
+     * this to retrieve the subsequent page.
+     *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
@@ -186,6 +231,9 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Page token received from a previous `SearchEntries` call. Provide
+     * this to retrieve the subsequent page.
+     *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
@@ -199,7 +247,11 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Ordering of the results. Supported options to be added later.
+     * Optional. Specifies the ordering of results.
+     * Supported values are:
+     * * `relevance`
+     * * `last_modified_timestamp`
+     * * `last_modified_timestamp asc`
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -210,7 +262,11 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Ordering of the results. Supported options to be added later.
+     * Optional. Specifies the ordering of results.
+     * Supported values are:
+     * * `relevance`
+     * * `last_modified_timestamp`
+     * * `last_modified_timestamp asc`
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -225,10 +281,10 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The scope under which the search should be operating. Should
-     * either be organizations/<org_id> or projects/<project_ref>. If left
-     * unspecified, it will default to the organization where the project provided
-     * in `name` is located.
+     * Optional. The scope under which the search should be operating. It must
+     * either be `organizations/<org_id>` or `projects/<project_ref>`. If it is
+     * unspecified, it defaults to the organization where the project provided in
+     * `name` is located.
      *
      * Generated from protobuf field <code>string scope = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -239,10 +295,10 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The scope under which the search should be operating. Should
-     * either be organizations/<org_id> or projects/<project_ref>. If left
-     * unspecified, it will default to the organization where the project provided
-     * in `name` is located.
+     * Optional. The scope under which the search should be operating. It must
+     * either be `organizations/<org_id>` or `projects/<project_ref>`. If it is
+     * unspecified, it defaults to the organization where the project provided in
+     * `name` is located.
      *
      * Generated from protobuf field <code>string scope = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -252,6 +308,34 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->scope = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether the search should understand the meaning and
+     * intent behind the query, rather than just matching keywords.
+     *
+     * Generated from protobuf field <code>bool semantic_search = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSemanticSearch()
+    {
+        return $this->semantic_search;
+    }
+
+    /**
+     * Optional. Specifies whether the search should understand the meaning and
+     * intent behind the query, rather than just matching keywords.
+     *
+     * Generated from protobuf field <code>bool semantic_search = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSemanticSearch($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->semantic_search = $var;
 
         return $this;
     }

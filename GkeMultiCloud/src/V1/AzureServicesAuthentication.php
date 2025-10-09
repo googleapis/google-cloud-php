@@ -20,13 +20,13 @@ class AzureServicesAuthentication extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tenant_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tenant_id = '';
+    protected $tenant_id = '';
     /**
      * Required. The Azure Active Directory Application ID.
      *
      * Generated from protobuf field <code>string application_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $application_id = '';
+    protected $application_id = '';
 
     /**
      * Constructor.

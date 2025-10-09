@@ -22,7 +22,7 @@ class UpdateNfsShareRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.NfsShare nfs_share = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $nfs_share = null;
+    protected $nfs_share = null;
     /**
      * The list of fields to update.
      * The only currently supported fields are:
@@ -31,7 +31,7 @@ class UpdateNfsShareRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\BareMetalSolution\V2\NfsShare $nfsShare   Required. The NFS share to update.

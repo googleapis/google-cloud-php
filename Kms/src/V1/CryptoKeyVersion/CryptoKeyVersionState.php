@@ -46,7 +46,7 @@ class CryptoKeyVersionState
      */
     const DISABLED = 2;
     /**
-     * This version is destroyed, and the key material is no longer stored.
+     * The key material of this version is destroyed and no longer stored.
      * This version may only become
      * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
      * again if this version is
@@ -149,6 +149,4 @@ class CryptoKeyVersionState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CryptoKeyVersionState::class, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionState::class);
 

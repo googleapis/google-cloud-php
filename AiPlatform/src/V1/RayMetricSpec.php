@@ -20,7 +20,7 @@ class RayMetricSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disabled = false;
+    protected $disabled = false;
 
     /**
      * Constructor.

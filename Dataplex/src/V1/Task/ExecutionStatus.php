@@ -20,13 +20,13 @@ class ExecutionStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. latest job execution
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Job latest_job = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $latest_job = null;
+    protected $latest_job = null;
 
     /**
      * Constructor.

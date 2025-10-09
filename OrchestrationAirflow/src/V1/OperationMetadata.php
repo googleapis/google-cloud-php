@@ -20,39 +20,39 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.OperationMetadata.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The type of operation being performed.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.OperationMetadata.Type operation_type = 2;</code>
      */
-    private $operation_type = 0;
+    protected $operation_type = 0;
     /**
      * Output only. The resource being operated on, as a [relative resource name](
      * /apis/design/resource_names#relative_resource_name).
      *
      * Generated from protobuf field <code>string resource = 3;</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * Output only. The UUID of the resource being operated on.
      *
      * Generated from protobuf field <code>string resource_uuid = 4;</code>
      */
-    private $resource_uuid = '';
+    protected $resource_uuid = '';
     /**
      * Output only. The time the operation was submitted to the server.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the operation terminated, regardless of its
      * success. This field is unset if the operation is still ongoing.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

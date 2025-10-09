@@ -21,19 +21,19 @@ class CreateCertificateMapEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A user-provided name of the certificate map entry.
      *
      * Generated from protobuf field <code>string certificate_map_entry_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate_map_entry_id = '';
+    protected $certificate_map_entry_id = '';
     /**
      * Required. A definition of the certificate map entry to create.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.CertificateMapEntry certificate_map_entry = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate_map_entry = null;
+    protected $certificate_map_entry = null;
 
     /**
      * @param string                                                  $parent                Required. The parent resource of the certificate map entry. Must be in the

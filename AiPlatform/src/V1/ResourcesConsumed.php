@@ -22,7 +22,7 @@ class ResourcesConsumed extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double replica_hours = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $replica_hours = 0.0;
+    protected $replica_hours = 0.0;
 
     /**
      * Constructor.

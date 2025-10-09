@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
 /**
+ * Deprecated: Use `UpdateKeyEvent` instead.
  * Updates a conversion event with the specified attributes.
  *
  * This sample has been automatically generated and should be regarded as a code

@@ -20,13 +20,13 @@ class UpdateSlateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Slate slate = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $slate = null;
+    protected $slate = null;
     /**
      * Required. The update mask which specifies fields which should be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Video\Stitcher\V1\Slate $slate      Required. The resource with updated fields.

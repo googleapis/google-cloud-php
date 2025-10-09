@@ -20,7 +20,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset_id = 1;</code>
      */
-    private $dataset_id = '';
+    protected $dataset_id = '';
 
     /**
      * Constructor.
@@ -65,6 +65,4 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BigQueryDestination::class, \Google\Cloud\Container\V1\ResourceUsageExportConfig_BigQueryDestination::class);
 

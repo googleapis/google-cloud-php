@@ -59,6 +59,4 @@ class ActionType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ActionType::class, \Google\Cloud\Asset\V1\AnalyzerOrgPolicyConstraint_CustomConstraint_ActionType::class);
 

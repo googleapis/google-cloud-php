@@ -41,7 +41,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ product_set'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref>'
           description: 'Required. The ProductSet resource which replaces the one on the server.'
         -
           id: '↳ update_mask'
@@ -59,7 +59,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\UpdateProductSetRequest::hasProductSet()'
     name: hasProductSet
@@ -89,7 +89,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref>'
           description: ''
       returns:
         -
@@ -163,7 +163,7 @@ items:
       parameters:
         -
           id: productSet
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref>'
           description: 'Required. The ProductSet resource which replaces the one on the server.'
         -
           id: updateMask
@@ -175,4 +175,4 @@ items:
             Valid mask path is `display_name`.
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\UpdateProductSetRequest">Google\Cloud\Vision\V1\UpdateProductSetRequest</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\UpdateProductSetRequest">UpdateProductSetRequest</xref>'

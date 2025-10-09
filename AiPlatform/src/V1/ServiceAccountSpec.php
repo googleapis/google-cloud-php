@@ -23,7 +23,7 @@ class ServiceAccountSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_custom_service_account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $enable_custom_service_account = false;
+    protected $enable_custom_service_account = false;
     /**
      * Optional. Required when all below conditions are met
      *  * `enable_custom_service_account` is true;
@@ -37,7 +37,7 @@ class ServiceAccountSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
 
     /**
      * Constructor.

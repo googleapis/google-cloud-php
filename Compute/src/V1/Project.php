@@ -21,40 +21,40 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string cloud_armor_tier = 4427052;</code>
      */
-    private $cloud_armor_tier = null;
+    protected $cloud_armor_tier = null;
     /**
      * Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
      */
-    private $common_instance_metadata = null;
+    protected $common_instance_metadata = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
      * Check the DefaultNetworkTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string default_network_tier = 471753361;</code>
      */
-    private $default_network_tier = null;
+    protected $default_network_tier = null;
     /**
      * [Output Only] Default service account used by VMs running in this project.
      *
      * Generated from protobuf field <code>optional string default_service_account = 298712229;</code>
      */
-    private $default_service_account = null;
+    protected $default_service_account = null;
     /**
      * An optional textual description of the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
-     * Restricted features enabled for use on this project.
+     * An optional list of restricted features enabled for use on this project.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
      */
@@ -64,19 +64,19 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#project for projects.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * The project ID. For example: my-example-project. Use the project ID to make requests to Compute Engine.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] Quotas assigned to this project.
      *
@@ -88,27 +88,27 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
-     * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     * An optional naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      */
-    private $usage_export_location = null;
+    protected $usage_export_location = null;
     /**
      * [Output Only] Default internal DNS setting used by VMs running in this project.
      * Check the VmDnsSetting enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string vm_dns_setting = 58856370;</code>
      */
-    private $vm_dns_setting = null;
+    protected $vm_dns_setting = null;
     /**
      * [Output Only] The role this project has in a shared VPC configuration. Currently, only projects with the host role, which is specified by the value HOST, are differentiated.
      * Check the XpnProjectStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string xpn_project_status = 228419265;</code>
      */
-    private $xpn_project_status = null;
+    protected $xpn_project_status = null;
 
     /**
      * Constructor.
@@ -131,7 +131,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional textual description of the resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enabled_features
-     *           Restricted features enabled for use on this project.
+     *           An optional list of restricted features enabled for use on this project.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *     @type string $kind
@@ -143,7 +143,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\UsageExportLocation $usage_export_location
-     *           The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     *           An optional naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *     @type string $vm_dns_setting
      *           [Output Only] Default internal DNS setting used by VMs running in this project.
      *           Check the VmDnsSetting enum for the list of possible values.
@@ -378,7 +378,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Restricted features enabled for use on this project.
+     * An optional list of restricted features enabled for use on this project.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -389,7 +389,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Restricted features enabled for use on this project.
+     * An optional list of restricted features enabled for use on this project.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -574,7 +574,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     * An optional naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      * @return \Google\Cloud\Compute\V1\UsageExportLocation|null
@@ -595,7 +595,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     * An optional naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      * @param \Google\Cloud\Compute\V1\UsageExportLocation $var

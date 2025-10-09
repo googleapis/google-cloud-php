@@ -27,7 +27,7 @@ class AttestationNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.AttestationNote.Hint hint = 1;</code>
      */
-    private $hint = null;
+    protected $hint = null;
 
     /**
      * Constructor.

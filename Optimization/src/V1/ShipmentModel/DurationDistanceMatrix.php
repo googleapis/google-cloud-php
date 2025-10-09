@@ -35,7 +35,7 @@ class DurationDistanceMatrix extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vehicle_start_tag = 2;</code>
      */
-    private $vehicle_start_tag = '';
+    protected $vehicle_start_tag = '';
 
     /**
      * Constructor.

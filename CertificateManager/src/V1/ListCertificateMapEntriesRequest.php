@@ -22,7 +22,7 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Maximum number of certificate map entries to return. The service may return
      * fewer than this value.
@@ -31,7 +31,7 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The value returned by the last `ListCertificateMapEntriesResponse`.
      * Indicates that this is a continuation of a prior
@@ -40,13 +40,13 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Filter expression to restrict the returned Certificate Map Entries.
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * A list of Certificate Map Entry field names used to specify
      * the order of the returned results. The default sorting order is ascending.
@@ -54,7 +54,7 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. The project, location and certificate map from which the

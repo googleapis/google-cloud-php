@@ -20,7 +20,7 @@ class ContainerImageRuntime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image = '';
+    protected $image = '';
     /**
      * Optional. A list of Java JARS to add to the classpath.
      * Valid input includes Cloud Storage URIs to Jar binaries.

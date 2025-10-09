@@ -21,13 +21,13 @@ class FailoverContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 settings_version = 1;</code>
      */
-    private $settings_version = 0;
+    protected $settings_version = 0;
     /**
      * This is always `sql#failoverContext`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.

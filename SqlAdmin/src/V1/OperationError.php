@@ -20,19 +20,19 @@ class OperationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Identifies the specific error that occurred.
      *
      * Generated from protobuf field <code>string code = 2;</code>
      */
-    private $code = '';
+    protected $code = '';
     /**
      * Additional information about the error encountered.
      *
      * Generated from protobuf field <code>string message = 3;</code>
      */
-    private $message = '';
+    protected $message = '';
 
     /**
      * Constructor.

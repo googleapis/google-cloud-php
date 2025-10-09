@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeatureOnlineStoreAdminService.DeleteFeatureViews][].
+ * Request message for
+ * [FeatureOnlineStoreAdminService.DeleteFeatureView][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.DeleteFeatureView].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteFeatureViewRequest</code>
  */
@@ -22,7 +23,7 @@ class DeleteFeatureViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. The name of the FeatureView to be deleted.

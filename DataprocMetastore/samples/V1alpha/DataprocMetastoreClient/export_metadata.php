@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1alpha_generated_DataprocMetastore_ExportMetadata_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Metastore\V1alpha\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1alpha\Client\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1alpha\ExportMetadataRequest;
 use Google\Cloud\Metastore\V1alpha\MetadataExport;
 use Google\Rpc\Status;
 
@@ -43,10 +44,14 @@ function export_metadata_sample(string $formattedService): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
+    // Prepare the request message.
+    $request = (new ExportMetadataRequest())
+        ->setService($formattedService);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->exportMetadata($formattedService);
+        $response = $dataprocMetastoreClient->exportMetadata($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -35,9 +35,10 @@ use Google\Rpc\Status;
 /**
  * Creates a batch of Features in a given EntityType.
  *
- * @param string $formattedParent         The resource name of the EntityType to create the batch of
- *                                        Features under. Format:
+ * @param string $formattedParent         The resource name of the EntityType/FeatureGroup to create the
+ *                                        batch of Features under. Format:
  *                                        `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+ *                                        `projects/{project}/locations/{location}/featureGroups/{feature_group}`
  *                                        Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
  * @param string $formattedRequestsParent The resource name of the EntityType or FeatureGroup to create a
  *                                        Feature. Format for entity_type as parent:

@@ -22,7 +22,7 @@ class DSSEAttestationOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.Envelope envelope = 1;</code>
      */
-    private $envelope = null;
+    protected $envelope = null;
     protected $decoded_payload;
 
     /**

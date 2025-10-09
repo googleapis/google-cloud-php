@@ -23,13 +23,13 @@ class GetChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The level of granularity the ChannelPartnerLink will display.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLinkView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * Constructor.

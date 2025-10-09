@@ -66,6 +66,4 @@ class AssetType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AssetType::class, \Google\Cloud\BareMetalSolution\V2\ProvisioningQuota_AssetType::class);
 

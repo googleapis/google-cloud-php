@@ -20,28 +20,28 @@ class Artifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * User provided display name of the Artifact.
      * May be up to 128 Unicode characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The uniform resource identifier of the artifact file.
      * May be empty if there is no actual artifact file.
      *
      * Generated from protobuf field <code>string uri = 6;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * An eTag used to perform consistent read-modify-write updates. If not set, a
      * blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 9;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The labels with user-defined metadata to organize your Artifacts.
      * Label keys and values can be no longer than 64 characters
@@ -58,13 +58,13 @@ class Artifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this Artifact was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The state of this Artifact. This is a property of the Artifact, and does
      * not imply or capture any ongoing process. This property is managed by
@@ -73,7 +73,7 @@ class Artifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Artifact.State state = 13;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The title of the schema describing the metadata.
      * Schema title and version is expected to be registered in earlier Create
@@ -82,7 +82,7 @@ class Artifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schema_title = 14;</code>
      */
-    private $schema_title = '';
+    protected $schema_title = '';
     /**
      * The version of the schema in schema_name to use.
      * Schema title and version is expected to be registered in earlier Create
@@ -91,7 +91,7 @@ class Artifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schema_version = 15;</code>
      */
-    private $schema_version = '';
+    protected $schema_version = '';
     /**
      * Properties of the Artifact.
      * Top level metadata keys' heading and trailing spaces will be trimmed.
@@ -99,13 +99,13 @@ class Artifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 16;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Description of the Artifact
      *
      * Generated from protobuf field <code>string description = 17;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

@@ -47,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.42.0';
+    const VERSION = '1.48.4';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -97,16 +97,71 @@ class StorageClient
      *           fetcher instance.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     *     @type array $keyFile The contents of the service account credentials
-     *           .json file retrieved from the Google Developer's Console.
-     *           Ex: `json_decode(file_get_contents($path), true)`.
-     *     @type string $keyFilePath The full path to your service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
+     *     @type array $keyFile [DEPRECATED]
+     *           @deprecated This option is being deprecated because of a potential security risk.
+     *           This option does not validate the credential configuration. The security
+     *           risk occurs when a credential configuration is accepted from a source
+     *           that is not under your control and used without validation on your side.
+     *           If you know that you will be loading credential configurations of a
+     *           specific type, it is recommended to create the credentials directly and
+     *           configure them using the `credentialsFetcher` option instead.
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
+     *           $creds = new StorageClient(['credentialsFetcher' => $creds]);
+     *           ```
+     *           This will ensure that an unexpected credential type with potential for
+     *           malicious intent is not loaded unintentionally. You might still have to do
+     *           validation for certain credential types.
+     *           If you are loading your credential configuration from an untrusted source and have
+     *           not mitigated the risks (e.g. by validating the configuration yourself), make
+     *           these changes as soon as possible to prevent security risks to your environment.
+     *           Regardless of the method used, it is always your responsibility to validate
+     *           configurations received from external sources.
+     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
+    *     @type string $keyFilePath [DEPRECATED]
+     *           @deprecated This option is being deprecated because of a potential security risk.
+     *           This option does not validate the credential configuration. The security
+     *           risk occurs when a credential configuration is accepted from a source
+     *           that is not under your control and used without validation on your side.
+     *           If you know that you will be loading credential configurations of a
+     *           specific type, it is recommended to create the credentials directly and
+     *           configure them using the `credentialsFetcher` option instead.
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
+     *           $creds = new StorageClient(['credentialsFetcher' => $creds]);
+     *           ```
+     *           This will ensure that an unexpected credential type with potential for
+     *           malicious intent is not loaded unintentionally. You might still have to do
+     *           validation for certain credential types.
+     *           If you are loading your credential configuration from an untrusted source and have
+     *           not mitigated the risks (e.g. by validating the configuration yourself), make
+     *           these changes as soon as possible to prevent security risks to your environment.
+     *           Regardless of the method used, it is always your responsibility to validate
+     *           configurations received from external sources.
+     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
      *     @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
+     *     @type string $retryStrategy Retry strategy to signify that we never
+     *           want to retry an operation even if the error is retryable.
+     *           **Defaults to** `StorageClient::RETRY_IDEMPOTENT`.
+     *     @type callable $restDelayFunction Executes a delay, defaults to
+     *           utilizing `usleep`. Function signature should match:
+     *           `function (int $delay) : void`.
+     *     @type callable $restCalcDelayFunction Sets the conditions for
+     *           determining how long to wait between attempts to retry. Function
+     *           signature should match: `function (int $attempt) : int`.
+     *     @type callable $restRetryFunction Sets the conditions for whether or
+     *           not a request should attempt to retry. Function signature should
+     *           match: `function (\Exception $ex) : bool`.
+     *     @type callable $restRetryListener Runs after the restRetryFunction.
+     *           This might be used to simply consume the exception and
+     *           $arguments b/w retries. This returns the new $arguments thus
+     *           allowing modification on demand for $arguments. For ex:
+     *           changing the headers in b/w retries.
      *     @type array $scopes Scopes to be used for the request.
      *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
@@ -148,9 +203,19 @@ class StorageClient
      *        will be used. If a string, that string will be used as the
      *        userProject argument, and that project will be billed for the
      *        request. **Defaults to** `false`.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type bool $softDeleted  If set to true, only soft-deleted bucket versions
+     *           are listed as distinct results in order of bucket name and generation
+     *           number. The default value is false.
+     *     @type string $generation If present, selects a specific soft-deleted version
+     *           of this bucket instead of the live version. This parameter is required if
+     *           softDeleted is set to true.
+     * }
      * @return Bucket
      */
-    public function bucket($name, $userProject = false)
+    public function bucket($name, $userProject = false, array $options = [])
     {
         if (!$userProject) {
             $userProject = null;
@@ -158,7 +223,7 @@ class StorageClient
             $userProject = $this->projectId;
         }
 
-        return new Bucket($this->connection, $name, [
+        return new Bucket($this->connection, $name, $options + [
             'requesterProjectId' => $userProject
         ]);
     }
@@ -200,6 +265,9 @@ class StorageClient
      *           return the specified fields.
      *     @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request.
+     *     @type bool $softDeleted  If set to true, only soft-deleted bucket versions
+     *           are listed as distinct results in order of bucket name and generation
+     *           number. The default value is false.
      *     @type bool $bucketUserProject If true, each returned instance will
      *           have `$userProject` set to the value of `$options.userProject`.
      *           If false, `$options.userProject` will be used ONLY for the
@@ -235,6 +303,38 @@ class StorageClient
                 $options + ['project' => $this->projectId],
                 ['resultLimit' => $resultLimit]
             )
+        );
+    }
+
+    /**
+     * Restores a soft-deleted bucket.
+     *
+     * Example:
+     * ```
+     * $bucket = $storage->bucket->restore('my-bucket');
+     * ```
+     *
+     * @param string $name The name of the bucket to restore.
+     * @param string $generation The specific version of the bucket to be restored.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $projection Determines which properties to return. May
+     *           be either `"full"` or `"noAcl"`. **Defaults to** `"noAcl"`,
+     *           unless the bucket resource specifies acl or defaultObjectAcl
+     *           properties, when it defaults to `"full"`.
+     * }
+     * @return Bucket
+     */
+    public function restore(string $name, string $generation, array $options = [])
+    {
+        $res = $this->connection->restoreBucket([
+            'bucket' => $name,
+            'generation' => $generation,
+        ] + $options);
+        return new Bucket(
+            $this->connection,
+            $name
         );
     }
 

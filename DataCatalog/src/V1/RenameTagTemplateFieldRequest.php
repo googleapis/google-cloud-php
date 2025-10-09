@@ -21,14 +21,14 @@ class RenameTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The new ID of this tag template field. For example,
      * `my_new_field`.
      *
      * Generated from protobuf field <code>string new_tag_template_field_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $new_tag_template_field_id = '';
+    protected $new_tag_template_field_id = '';
 
     /**
      * @param string $name                  Required. The name of the tag template field. Please see

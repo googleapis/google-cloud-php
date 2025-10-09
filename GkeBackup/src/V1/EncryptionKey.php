@@ -22,7 +22,7 @@ class EncryptionKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $gcp_kms_encryption_key = '';
+    protected $gcp_kms_encryption_key = '';
 
     /**
      * Constructor.

@@ -22,13 +22,13 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_gcs_source = 1;</code>
      */
-    private $input_gcs_source = '';
+    protected $input_gcs_source = '';
     /**
      * The status processing the document.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * The Cloud Storage output destination (in the request as
      * [DocumentOutputConfig.GcsOutputConfig.gcs_uri][google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.gcs_uri])
@@ -36,13 +36,13 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_gcs_destination = 3;</code>
      */
-    private $output_gcs_destination = '';
+    protected $output_gcs_destination = '';
     /**
      * The status of human review on the processed document.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.HumanReviewStatus human_review_status = 5;</code>
      */
-    private $human_review_status = null;
+    protected $human_review_status = null;
 
     /**
      * Constructor.

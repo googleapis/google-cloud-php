@@ -31,6 +31,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/userEvents:collect',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/userEvents:collect',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -48,6 +52,30 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/userEvents:import',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/userEvents:import',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PurgeUserEvents' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/dataStores/*}/userEvents:purge',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/userEvents:purge',
                         'body' => '*',
                     ],
                 ],
@@ -93,6 +121,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/operations/*}:cancel',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/engines/*/operations/*}:cancel',
                         'body' => '*',
                     ],
                     [
@@ -163,6 +196,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/identityMappingStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
                     ],
                     [
@@ -229,6 +266,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/dataStores/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/identityMappingStores/*}/operations',
                     ],
                     [
                         'method' => 'get',

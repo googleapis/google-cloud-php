@@ -30,7 +30,7 @@ use Google\Cloud\NetworkConnectivity\V1\ListRoutesRequest;
 use Google\Cloud\NetworkConnectivity\V1\Route;
 
 /**
- * Lists routes in a given project.
+ * Lists routes in a given route table.
  *
  * @param string $formattedParent The parent resource's name. Please see
  *                                {@see HubServiceClient::routeTableName()} for help formatting this field.

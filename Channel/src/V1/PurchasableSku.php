@@ -21,7 +21,7 @@ class PurchasableSku extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Sku sku = 1;</code>
      */
-    private $sku = null;
+    protected $sku = null;
 
     /**
      * Constructor.

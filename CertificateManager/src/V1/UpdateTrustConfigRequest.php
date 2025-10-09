@@ -20,7 +20,7 @@ class UpdateTrustConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.TrustConfig trust_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trust_config = null;
+    protected $trust_config = null;
     /**
      * Required. The update mask applies to the resource. For the `FieldMask`
      * definition, see
@@ -28,7 +28,7 @@ class UpdateTrustConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\CertificateManager\V1\TrustConfig $trustConfig Required. A definition of the TrustConfig to update.

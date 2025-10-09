@@ -21,25 +21,34 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.Dialect source_dialect = 3;</code>
      */
-    private $source_dialect = null;
+    protected $source_dialect = null;
     /**
      * The target dialect for the engine to translate the input to.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.Dialect target_dialect = 4;</code>
      */
-    private $target_dialect = null;
+    protected $target_dialect = null;
     /**
      * The default source environment values for the translation.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.SourceEnv source_env = 6;</code>
      */
-    private $source_env = null;
+    protected $source_env = null;
     /**
      * The indicator to show translation request initiator.
      *
      * Generated from protobuf field <code>string request_source = 8;</code>
      */
-    private $request_source = '';
+    protected $request_source = '';
+    /**
+     * The types of output to generate, e.g. sql, metadata etc. If not specified,
+     * a default set of targets will be generated. Some additional target types
+     * may be slower to generate. See the documentation for the set of available
+     * target types.
+     *
+     * Generated from protobuf field <code>repeated string target_types = 9;</code>
+     */
+    private $target_types;
     protected $source_location;
     protected $target_location;
     protected $output_name_mapping;
@@ -64,6 +73,11 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
      *           The default source environment values for the translation.
      *     @type string $request_source
      *           The indicator to show translation request initiator.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_types
+     *           The types of output to generate, e.g. sql, metadata etc. If not specified,
+     *           a default set of targets will be generated. Some additional target types
+     *           may be slower to generate. See the documentation for the set of available
+     *           target types.
      * }
      */
     public function __construct($data = NULL) {
@@ -294,6 +308,38 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * The types of output to generate, e.g. sql, metadata etc. If not specified,
+     * a default set of targets will be generated. Some additional target types
+     * may be slower to generate. See the documentation for the set of available
+     * target types.
+     *
+     * Generated from protobuf field <code>repeated string target_types = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTargetTypes()
+    {
+        return $this->target_types;
+    }
+
+    /**
+     * The types of output to generate, e.g. sql, metadata etc. If not specified,
+     * a default set of targets will be generated. Some additional target types
+     * may be slower to generate. See the documentation for the set of available
+     * target types.
+     *
+     * Generated from protobuf field <code>repeated string target_types = 9;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTargetTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->target_types = $arr;
 
         return $this;
     }

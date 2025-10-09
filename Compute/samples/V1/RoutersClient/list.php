@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Routers_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RoutersClient;
+use Google\Cloud\Compute\V1\Client\RoutersClient;
+use Google\Cloud\Compute\V1\ListRoutersRequest;
 
 /**
  * Retrieves a list of Router resources available to the specified project.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $routersClient = new RoutersClient();
 
+    // Prepare the request message.
+    $request = (new ListRoutersRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $routersClient->list($project, $region);
+        $response = $routersClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

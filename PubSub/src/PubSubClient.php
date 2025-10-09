@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
-use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
@@ -35,12 +36,10 @@ use Google\Cloud\PubSub\V1\ListSchemasRequest;
 use Google\Cloud\PubSub\V1\ListSnapshotsRequest;
 use Google\Cloud\PubSub\V1\ListSubscriptionsRequest;
 use Google\Cloud\PubSub\V1\ListTopicsRequest;
-use InvalidArgumentException;
 use Google\Cloud\PubSub\V1\Schema as SchemaProto;
 use Google\Cloud\PubSub\V1\Schema\Type;
 use Google\Cloud\PubSub\V1\ValidateMessageRequest;
 use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
-use Google\ApiCore\ClientOptionsTrait;
 
 /**
  * Google Cloud Pub/Sub allows you to send and receive
@@ -99,7 +98,7 @@ class PubSubClient
     use ApiHelperTrait;
     use ClientOptionsTrait;
 
-    const VERSION = '2.2.1';
+    const VERSION = '2.15.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -108,6 +107,9 @@ class PubSubClient
         SubscriberClient::class,
         SchemaServiceClient::class
     ];
+
+    // The name of the service. Used in debug logging.
+    private const SERVICE_NAME = 'google.pubsub.v2.Pubsub';
 
     /**
      * @var RequestHandler
@@ -138,36 +140,50 @@ class PubSubClient
      * @param array $config [optional] {
      *     Configuration Options.
      *
+     *     @type string $projectId The project ID from the Google Developer's
+     *           Console.
      *     @type string $apiEndpoint The hostname with optional port to use in
      *           place of the default service endpoint. Example:
      *           `foobar.com` or `foobar.com:1234`.
-     *     @type string $projectId The project ID from the Google Developer's
-     *           Console.
-     *     @type CacheItemPoolInterface $authCache A cache for storing access
-     *           tokens. **Defaults to** a simple in memory implementation.
-     *     @type array $authCacheOptions Cache configuration options.
-     *     @type callable $authHttpHandler A handler used to deliver Psr7
-     *           requests specifically for authentication.
-     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
-     *           fetcher instance.
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *           Only valid for requests sent over REST.
-     *     @type array $keyFile The contents of the service account credentials
-     *           .json file retrieved from the Google Developer's Console.
-     *           Ex: `json_decode(file_get_contents($path), true)`.
-     *     @type string $keyFilePath The full path to your service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
-     *     @type float $requestTimeout Seconds to wait before timing out the
-     *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     *     @type int $retries Number of retries for a failed request.
-     *           **Defaults to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
-     *     @type string $quotaProject Specifies a user project to bill for
-     *           access charges associated with the request.
-     *     @type string $transport The transport type used for requests. May be
-     *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
-     *           is detected on the system.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\PubSub\PubSubClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new PubSubClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the
+     *           client. For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()} .
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string
+     *           `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already
+     *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
+     *           that when this object is provided, any settings in $transportConfig, and any
+     *           $apiEndpoint setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...],
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
      * }
      * @throws \InvalidArgumentException
      */
@@ -183,7 +199,7 @@ class PubSubClient
             'transportConfig' => [
                 'grpc' => [
                     // increase default limit to 4MB to prevent metadata exhausted errors
-                    'stubOpts' => ['grpc.max_metadata_size' => 4 * 1024 * 1024,]
+                    'stubOpts' => ['grpc.max_metadata_size' => 4 * 1024 * 1024, ]
                 ]
             ]
         ];
@@ -262,7 +278,7 @@ class PubSubClient
      * Lazily instantiate a topic with a topic name.
      *
      * No API requests are made by this method. If you want to create a new
-     * topic, use {@see Topic::createTopic()}.
+     * topic, use {@see Topic::create()}.
      *
      * Example:
      * ```

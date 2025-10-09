@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ namespace Google\Cloud\Video\LiveStream\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -40,33 +40,51 @@ use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\Video\LiveStream\V1\Asset;
 use Google\Cloud\Video\LiveStream\V1\Channel;
+use Google\Cloud\Video\LiveStream\V1\ChannelOperationResponse;
+use Google\Cloud\Video\LiveStream\V1\Clip;
 use Google\Cloud\Video\LiveStream\V1\CreateAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateChannelRequest;
+use Google\Cloud\Video\LiveStream\V1\CreateClipRequest;
+use Google\Cloud\Video\LiveStream\V1\CreateDvrSessionRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateEventRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateInputRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteChannelRequest;
+use Google\Cloud\Video\LiveStream\V1\DeleteClipRequest;
+use Google\Cloud\Video\LiveStream\V1\DeleteDvrSessionRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteEventRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteInputRequest;
+use Google\Cloud\Video\LiveStream\V1\DvrSession;
 use Google\Cloud\Video\LiveStream\V1\Event;
 use Google\Cloud\Video\LiveStream\V1\GetAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\GetChannelRequest;
+use Google\Cloud\Video\LiveStream\V1\GetClipRequest;
+use Google\Cloud\Video\LiveStream\V1\GetDvrSessionRequest;
 use Google\Cloud\Video\LiveStream\V1\GetEventRequest;
 use Google\Cloud\Video\LiveStream\V1\GetInputRequest;
 use Google\Cloud\Video\LiveStream\V1\GetPoolRequest;
 use Google\Cloud\Video\LiveStream\V1\Input;
 use Google\Cloud\Video\LiveStream\V1\ListAssetsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListChannelsRequest;
+use Google\Cloud\Video\LiveStream\V1\ListClipsRequest;
+use Google\Cloud\Video\LiveStream\V1\ListDvrSessionsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListEventsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListInputsRequest;
 use Google\Cloud\Video\LiveStream\V1\Pool;
+use Google\Cloud\Video\LiveStream\V1\PreviewInputRequest;
+use Google\Cloud\Video\LiveStream\V1\PreviewInputResponse;
 use Google\Cloud\Video\LiveStream\V1\StartChannelRequest;
+use Google\Cloud\Video\LiveStream\V1\StartDistributionRequest;
 use Google\Cloud\Video\LiveStream\V1\StopChannelRequest;
+use Google\Cloud\Video\LiveStream\V1\StopDistributionRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdateChannelRequest;
+use Google\Cloud\Video\LiveStream\V1\UpdateDvrSessionRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdateInputRequest;
 use Google\Cloud\Video\LiveStream\V1\UpdatePoolRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Using Live Stream API, you can generate live streams in the various
@@ -83,30 +101,42 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAssetAsync(CreateAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createChannelAsync(CreateChannelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEventAsync(CreateEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createInputAsync(CreateInputRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAssetAsync(DeleteAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteChannelAsync(DeleteChannelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEventAsync(DeleteEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInputAsync(DeleteInputRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAssetAsync(GetAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getChannelAsync(GetChannelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEventAsync(GetEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInputAsync(GetInputRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPoolAsync(GetPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAssetsAsync(ListAssetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listChannelsAsync(ListChannelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEventsAsync(ListEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInputsAsync(ListInputsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startChannelAsync(StartChannelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopChannelAsync(StopChannelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateChannelAsync(UpdateChannelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInputAsync(UpdateInputRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePoolAsync(UpdatePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAssetAsync(CreateAssetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createChannelAsync(CreateChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createClipAsync(CreateClipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDvrSessionAsync(CreateDvrSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Event> createEventAsync(CreateEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInputAsync(CreateInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAssetAsync(DeleteAssetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteChannelAsync(DeleteChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteClipAsync(DeleteClipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDvrSessionAsync(DeleteDvrSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteEventAsync(DeleteEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteInputAsync(DeleteInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Asset> getAssetAsync(GetAssetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Channel> getChannelAsync(GetChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Clip> getClipAsync(GetClipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DvrSession> getDvrSessionAsync(GetDvrSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Event> getEventAsync(GetEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Input> getInputAsync(GetInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Pool> getPoolAsync(GetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAssetsAsync(ListAssetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listChannelsAsync(ListChannelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listClipsAsync(ListClipsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDvrSessionsAsync(ListDvrSessionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEventsAsync(ListEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInputsAsync(ListInputsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PreviewInputResponse> previewInputAsync(PreviewInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startChannelAsync(StartChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startDistributionAsync(StartDistributionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopChannelAsync(StopChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopDistributionAsync(StopDistributionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateChannelAsync(UpdateChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDvrSessionAsync(UpdateDvrSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateInputAsync(UpdateInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updatePoolAsync(UpdatePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class LivestreamServiceClient
 {
@@ -181,10 +211,29 @@ final class LivestreamServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -222,6 +271,48 @@ final class LivestreamServiceClient
             'project' => $project,
             'location' => $location,
             'channel' => $channel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a clip
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $channel
+     * @param string $clip
+     *
+     * @return string The formatted clip resource.
+     */
+    public static function clipName(string $project, string $location, string $channel, string $clip): string
+    {
+        return self::getPathTemplate('clip')->render([
+            'project' => $project,
+            'location' => $location,
+            'channel' => $channel,
+            'clip' => $clip,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a dvr_session
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $channel
+     * @param string $dvrSession
+     *
+     * @return string The formatted dvr_session resource.
+     */
+    public static function dvrSessionName(string $project, string $location, string $channel, string $dvrSession): string
+    {
+        return self::getPathTemplate('dvrSession')->render([
+            'project' => $project,
+            'location' => $location,
+            'channel' => $channel,
+            'dvr_session' => $dvrSession,
         ]);
     }
 
@@ -343,6 +434,8 @@ final class LivestreamServiceClient
      * Template: Pattern
      * - asset: projects/{project}/locations/{location}/assets/{asset}
      * - channel: projects/{project}/locations/{location}/channels/{channel}
+     * - clip: projects/{project}/locations/{location}/channels/{channel}/clips/{clip}
+     * - dvrSession: projects/{project}/locations/{location}/channels/{channel}/dvrSessions/{dvr_session}
      * - event: projects/{project}/locations/{location}/channels/{channel}/events/{event}
      * - input: projects/{project}/locations/{location}/inputs/{input}
      * - location: projects/{project}/locations/{location}
@@ -356,14 +449,14 @@ final class LivestreamServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -371,20 +464,29 @@ final class LivestreamServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'livestream.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Video\LiveStream\V1\LivestreamServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new LivestreamServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -418,11 +520,16 @@ final class LivestreamServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -458,7 +565,7 @@ final class LivestreamServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Asset>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -485,13 +592,65 @@ final class LivestreamServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Channel>
      *
      * @throws ApiException Thrown if the API call fails.
      */
     public function createChannel(CreateChannelRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateChannel', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a clip with the provided clip ID in the specified channel.
+     *
+     * The async variant is {@see LivestreamServiceClient::createClipAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/create_clip.php
+     *
+     * @param CreateClipRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Clip>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createClip(CreateClipRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateClip', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a DVR session with the provided unique ID in the specified channel.
+     *
+     * The async variant is {@see LivestreamServiceClient::createDvrSessionAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/create_dvr_session.php
+     *
+     * @param CreateDvrSessionRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DvrSession>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createDvrSession(CreateDvrSessionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateDvrSession', $request, $callOptions)->wait();
     }
 
     /**
@@ -537,7 +696,7 @@ final class LivestreamServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Input>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -563,7 +722,7 @@ final class LivestreamServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -589,13 +748,66 @@ final class LivestreamServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
     public function deleteChannel(DeleteChannelRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteChannel', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes the specified clip job resource. This method only deletes the clip
+     * job and does not delete the VOD clip stored in Cloud Storage.
+     *
+     * The async variant is {@see LivestreamServiceClient::deleteClipAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/delete_clip.php
+     *
+     * @param DeleteClipRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteClip(DeleteClipRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteClip', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes the specified DVR session.
+     *
+     * The async variant is {@see LivestreamServiceClient::deleteDvrSessionAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/delete_dvr_session.php
+     *
+     * @param DeleteDvrSessionRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDvrSession(DeleteDvrSessionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteDvrSession', $request, $callOptions)->wait();
     }
 
     /**
@@ -639,7 +851,7 @@ final class LivestreamServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -698,6 +910,58 @@ final class LivestreamServiceClient
     public function getChannel(GetChannelRequest $request, array $callOptions = []): Channel
     {
         return $this->startApiCall('GetChannel', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the specified clip.
+     *
+     * The async variant is {@see LivestreamServiceClient::getClipAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/get_clip.php
+     *
+     * @param GetClipRequest $request     A request to house fields associated with the call.
+     * @param array          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Clip
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getClip(GetClipRequest $request, array $callOptions = []): Clip
+    {
+        return $this->startApiCall('GetClip', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the specified DVR session.
+     *
+     * The async variant is {@see LivestreamServiceClient::getDvrSessionAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/get_dvr_session.php
+     *
+     * @param GetDvrSessionRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DvrSession
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDvrSession(GetDvrSessionRequest $request, array $callOptions = []): DvrSession
+    {
+        return $this->startApiCall('GetDvrSession', $request, $callOptions)->wait();
     }
 
     /**
@@ -831,6 +1095,58 @@ final class LivestreamServiceClient
     }
 
     /**
+     * Returns a list of all clips in the specified channel.
+     *
+     * The async variant is {@see LivestreamServiceClient::listClipsAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/list_clips.php
+     *
+     * @param ListClipsRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listClips(ListClipsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListClips', $request, $callOptions);
+    }
+
+    /**
+     * Returns a list of all DVR sessions in the specified channel.
+     *
+     * The async variant is {@see LivestreamServiceClient::listDvrSessionsAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/list_dvr_sessions.php
+     *
+     * @param ListDvrSessionsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDvrSessions(ListDvrSessionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListDvrSessions', $request, $callOptions);
+    }
+
+    /**
      * Returns a list of all events in the specified channel.
      *
      * The async variant is {@see LivestreamServiceClient::listEventsAsync()} .
@@ -883,6 +1199,32 @@ final class LivestreamServiceClient
     }
 
     /**
+     * Preview the streaming content of the specified input.
+     *
+     * The async variant is {@see LivestreamServiceClient::previewInputAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/preview_input.php
+     *
+     * @param PreviewInputRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PreviewInputResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function previewInput(PreviewInputRequest $request, array $callOptions = []): PreviewInputResponse
+    {
+        return $this->startApiCall('PreviewInput', $request, $callOptions)->wait();
+    }
+
+    /**
      * Starts the specified channel. Part of the video pipeline will be created
      * only when the StartChannel request is received by the server.
      *
@@ -900,13 +1242,40 @@ final class LivestreamServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ChannelOperationResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
     public function startChannel(StartChannelRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('StartChannel', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Starts distribution which delivers outputs to the destination indicated by
+     * the Distribution configuration.
+     *
+     * The async variant is {@see LivestreamServiceClient::startDistributionAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/start_distribution.php
+     *
+     * @param StartDistributionRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<ChannelOperationResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function startDistribution(StartDistributionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StartDistribution', $request, $callOptions)->wait();
     }
 
     /**
@@ -927,13 +1296,39 @@ final class LivestreamServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ChannelOperationResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
     public function stopChannel(StopChannelRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('StopChannel', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Stops the specified distribution.
+     *
+     * The async variant is {@see LivestreamServiceClient::stopDistributionAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/stop_distribution.php
+     *
+     * @param StopDistributionRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<ChannelOperationResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function stopDistribution(StopDistributionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StopDistribution', $request, $callOptions)->wait();
     }
 
     /**
@@ -953,13 +1348,39 @@ final class LivestreamServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Channel>
      *
      * @throws ApiException Thrown if the API call fails.
      */
     public function updateChannel(UpdateChannelRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateChannel', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the specified DVR session.
+     *
+     * The async variant is {@see LivestreamServiceClient::updateDvrSessionAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/update_dvr_session.php
+     *
+     * @param UpdateDvrSessionRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DvrSession>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateDvrSession(UpdateDvrSessionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateDvrSession', $request, $callOptions)->wait();
     }
 
     /**
@@ -979,7 +1400,7 @@ final class LivestreamServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Input>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1005,7 +1426,7 @@ final class LivestreamServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Pool>
      *
      * @throws ApiException Thrown if the API call fails.
      */

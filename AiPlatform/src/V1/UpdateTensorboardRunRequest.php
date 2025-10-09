@@ -26,7 +26,7 @@ class UpdateTensorboardRunRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The TensorboardRun's `name` field is used to identify the
      * TensorboardRun to be updated. Format:
@@ -34,7 +34,7 @@ class UpdateTensorboardRunRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardRun tensorboard_run = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tensorboard_run = null;
+    protected $tensorboard_run = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\TensorboardRun $tensorboardRun Required. The TensorboardRun's `name` field is used to identify the

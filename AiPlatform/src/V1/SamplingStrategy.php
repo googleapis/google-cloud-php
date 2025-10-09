@@ -21,7 +21,7 @@ class SamplingStrategy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SamplingStrategy.RandomSampleConfig random_sample_config = 1;</code>
      */
-    private $random_sample_config = null;
+    protected $random_sample_config = null;
 
     /**
      * Constructor.

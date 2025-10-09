@@ -31,7 +31,7 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string identity = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $identity = '';
+    protected $identity = '';
 
     /**
      * Constructor.
@@ -103,6 +103,4 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IdentitySelector::class, \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery_IdentitySelector::class);
 

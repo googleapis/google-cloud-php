@@ -23,13 +23,13 @@ class TargetsTypeCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool status = 1;</code>
      */
-    private $status = false;
+    protected $status = false;
     /**
      * Human readable error message.
      *
      * Generated from protobuf field <code>string error_details = 2;</code>
      */
-    private $error_details = '';
+    protected $error_details = '';
 
     /**
      * Constructor.

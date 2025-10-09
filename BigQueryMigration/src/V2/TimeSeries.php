@@ -21,13 +21,13 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metric = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metric = '';
+    protected $metric = '';
     /**
      * Required. The value type of the time series.
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor.ValueType value_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value_type = 0;
+    protected $value_type = 0;
     /**
      * Optional. The metric kind of the time series.
      * If present, it must be the same as the metric kind of the associated
@@ -37,7 +37,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $metric_kind = 0;
+    protected $metric_kind = 0;
     /**
      * Required. The data points of this time series. When listing time series,
      * points are returned in reverse time order.

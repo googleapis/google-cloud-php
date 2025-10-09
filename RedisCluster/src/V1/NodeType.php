@@ -14,6 +14,8 @@ use UnexpectedValueException;
 class NodeType
 {
     /**
+     * Node type unspecified
+     *
      * Generated from protobuf enum <code>NODE_TYPE_UNSPECIFIED = 0;</code>
      */
     const NODE_TYPE_UNSPECIFIED = 0;

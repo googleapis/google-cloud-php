@@ -26,7 +26,7 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string private_cloud = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $private_cloud = '';
+    protected $private_cloud = '';
     /**
      * Optional. The username of the user to be queried for credentials.
      * The default value of this field is CloudOwner&#64;gve.local.
@@ -41,7 +41,7 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string username = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $username = '';
+    protected $username = '';
 
     /**
      * @param string $privateCloud Required. The resource name of the private cloud

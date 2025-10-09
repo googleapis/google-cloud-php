@@ -29,12 +29,17 @@ use Google\Cloud\Dataplex\V1\GenerateDataQualityRulesRequest;
 use Google\Cloud\Dataplex\V1\GenerateDataQualityRulesResponse;
 
 /**
- * Generates recommended DataQualityRule from a data profiling DataScan.
+ * Generates recommended data quality rules based on the results of a data
+ * profiling scan.
  *
- * @param string $name The name should be either
- *                     * the name of a datascan with at least one successful completed data
- *                     profiling job, or
- *                     * the name of a successful completed data profiling datascan job.
+ * Use the recommendations to build rules for a data quality scan.
+ *
+ * @param string $name The name must be one of the following:
+ *
+ *                     * The name of a data scan with at least one successful, completed data
+ *                     profiling job
+ *                     * The name of a successful, completed data profiling job (a data scan job
+ *                     where the job type is data profiling)
  */
 function generate_data_quality_rules_sample(string $name): void
 {

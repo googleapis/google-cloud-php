@@ -72,6 +72,11 @@
                             "methods": [
                                 "insertCssProductInput"
                             ]
+                        },
+                        "UpdateCssProductInput": {
+                            "methods": [
+                                "updateCssProductInput"
+                            ]
                         }
                     }
                 }
@@ -90,6 +95,20 @@
                         "ListCssProducts": {
                             "methods": [
                                 "listCssProducts"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "QuotaService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "QuotaServiceGapicClient",
+                    "rpcs": {
+                        "ListQuotaGroups": {
+                            "methods": [
+                                "listQuotaGroups"
                             ]
                         }
                     }

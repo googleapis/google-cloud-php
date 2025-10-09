@@ -47,7 +47,7 @@ class EgressPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressFrom egress_from = 1;</code>
      */
-    private $egress_from = null;
+    protected $egress_from = null;
     /**
      * Defines the conditions on the [ApiOperation]
      * [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation]
@@ -57,7 +57,7 @@ class EgressPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressTo egress_to = 2;</code>
      */
-    private $egress_to = null;
+    protected $egress_to = null;
 
     /**
      * Constructor.
@@ -168,6 +168,4 @@ class EgressPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EgressPolicy::class, \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig_EgressPolicy::class);
 

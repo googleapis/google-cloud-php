@@ -13,14 +13,16 @@ use Google\Protobuf\Internal\GPBUtil;
  * Some group kinds are not reasonable choices for a restore, and will cause
  * an error if selected here. Any scope selection that would restore
  * "all valid" resources automatically excludes these group kinds.
+ * - Node
+ * - ComponentStatus
  * - gkebackup.gke.io/BackupJob
  * - gkebackup.gke.io/RestoreJob
  * - metrics.k8s.io/NodeMetrics
  * - migration.k8s.io/StorageState
  * - migration.k8s.io/StorageVersionMigration
- * - Node
  * - snapshot.storage.k8s.io/VolumeSnapshotContent
  * - storage.k8s.io/CSINode
+ * - storage.k8s.io/VolumeAttachment
  * Some group kinds are driven by restore configuration elsewhere,
  * and will cause an error if selected here.
  * - Namespace
@@ -53,7 +55,7 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool all_group_kinds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $all_group_kinds = false;
+    protected $all_group_kinds = false;
     /**
      * Optional. If True, no cluster-scoped resources will be restored.
      * This has the same restore scope as if the message is not defined.
@@ -61,7 +63,7 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool no_group_kinds = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $no_group_kinds = false;
+    protected $no_group_kinds = false;
 
     /**
      * Constructor.

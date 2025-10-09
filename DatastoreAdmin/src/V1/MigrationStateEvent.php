@@ -22,7 +22,7 @@ class MigrationStateEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.MigrationState state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

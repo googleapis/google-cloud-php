@@ -20,19 +20,19 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenericOperationMetadata generic_metadata = 1;</code>
      */
-    private $generic_metadata = null;
+    protected $generic_metadata = null;
     /**
      * Number of entities that have been imported by the operation.
      *
      * Generated from protobuf field <code>int64 imported_entity_count = 2;</code>
      */
-    private $imported_entity_count = 0;
+    protected $imported_entity_count = 0;
     /**
      * Number of Feature values that have been imported by the operation.
      *
      * Generated from protobuf field <code>int64 imported_feature_value_count = 3;</code>
      */
-    private $imported_feature_value_count = 0;
+    protected $imported_feature_value_count = 0;
     /**
      * The source URI from where Feature values are imported.
      *
@@ -48,14 +48,14 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>int64 invalid_row_count = 6;</code>
      */
-    private $invalid_row_count = 0;
+    protected $invalid_row_count = 0;
     /**
      * The number rows that weren't ingested due to having timestamps outside the
      * retention boundary.
      *
      * Generated from protobuf field <code>int64 timestamp_outside_retention_rows_count = 7;</code>
      */
-    private $timestamp_outside_retention_rows_count = 0;
+    protected $timestamp_outside_retention_rows_count = 0;
     /**
      * List of ImportFeatureValues operations running under a single EntityType
      * that are blocking this operation.

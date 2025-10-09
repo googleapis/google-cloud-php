@@ -21,7 +21,7 @@ class Presets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Presets.Query query = 1;</code>
      */
-    private $query = null;
+    protected $query = null;
     /**
      * The modality of the uploaded model, which automatically configures the
      * distance measurement and feature normalization for the underlying example
@@ -30,7 +30,7 @@ class Presets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Presets.Modality modality = 2;</code>
      */
-    private $modality = 0;
+    protected $modality = 0;
 
     /**
      * Constructor.

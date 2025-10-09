@@ -29,7 +29,7 @@ class Audio extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double lufs = 1;</code>
      */
-    private $lufs = 0.0;
+    protected $lufs = 0.0;
 
     /**
      * Constructor.

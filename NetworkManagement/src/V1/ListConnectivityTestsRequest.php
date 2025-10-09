@@ -19,21 +19,21 @@ class ListConnectivityTestsRequest extends \Google\Protobuf\Internal\Message
      * Required. The parent resource of the Connectivity Tests:
      *     `projects/{project_id}/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Number of `ConnectivityTests` to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Page token from an earlier query, as returned in `next_page_token`.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Lists the `ConnectivityTests` that match the filter expression. A filter
      * expression filters the resources listed in the response. The expression
@@ -54,17 +54,18 @@ class ListConnectivityTestsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Field to use to sort the list.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. The parent resource of the Connectivity Tests:
      *                       `projects/{project_id}/locations/global`
+     *                       Please see {@see ReachabilityServiceClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetworkManagement\V1\ListConnectivityTestsRequest
      *
@@ -119,7 +120,7 @@ class ListConnectivityTestsRequest extends \Google\Protobuf\Internal\Message
      * Required. The parent resource of the Connectivity Tests:
      *     `projects/{project_id}/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -131,7 +132,7 @@ class ListConnectivityTestsRequest extends \Google\Protobuf\Internal\Message
      * Required. The parent resource of the Connectivity Tests:
      *     `projects/{project_id}/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

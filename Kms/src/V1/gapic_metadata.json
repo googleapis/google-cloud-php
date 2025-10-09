@@ -207,6 +207,11 @@
                                 "createKeyRing"
                             ]
                         },
+                        "Decapsulate": {
+                            "methods": [
+                                "decapsulate"
+                            ]
+                        },
                         "Decrypt": {
                             "methods": [
                                 "decrypt"

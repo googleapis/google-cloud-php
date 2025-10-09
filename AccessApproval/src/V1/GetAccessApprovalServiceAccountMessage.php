@@ -20,7 +20,7 @@ class GetAccessApprovalServiceAccountMessage extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Name of the AccessApprovalServiceAccount to retrieve.

@@ -31,7 +31,8 @@ use Google\ApiCore\ApiException;
  * Deletes a FirebaseLink on a property
  *
  * @param string $formattedName Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
- *                              Example: properties/1234/firebaseLinks/5678
+ *
+ *                              Example: `properties/1234/firebaseLinks/5678`
  *                              Please see {@see AnalyticsAdminServiceClient::firebaseLinkName()} for help formatting this field.
  */
 function delete_firebase_link_sample(string $formattedName): void

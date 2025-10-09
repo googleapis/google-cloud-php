@@ -23,25 +23,25 @@ class MoveTableToDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * Required. The name of the table to be moved.
      *
      * Generated from protobuf field <code>string table_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table_name = '';
+    protected $table_name = '';
     /**
      * Required. The name of the database where the table resides.
      *
      * Generated from protobuf field <code>string db_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $db_name = '';
+    protected $db_name = '';
     /**
      * Required. The name of the database where the table should be moved.
      *
      * Generated from protobuf field <code>string destination_db_name = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination_db_name = '';
+    protected $destination_db_name = '';
 
     /**
      * Constructor.

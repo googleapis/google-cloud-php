@@ -29,6 +29,14 @@ class ListServiceBindingsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     protected $next_page_token = '';
+    /**
+     * Unreachable resources. Populated when the request attempts to list all
+     * resources across all supported locations, while some locations are
+     * temporarily unavailable.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     */
+    private $unreachable;
 
     /**
      * Constructor.
@@ -42,6 +50,10 @@ class ListServiceBindingsResponse extends \Google\Protobuf\Internal\Message
      *           If there might be more results than those appearing in this response, then
      *           `next_page_token` is included. To get the next set of results, call this
      *           method again using the value of `next_page_token` as `page_token`.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *           Unreachable resources. Populated when the request attempts to list all
+     *           resources across all supported locations, while some locations are
+     *           temporarily unavailable.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +113,36 @@ class ListServiceBindingsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unreachable resources. Populated when the request attempts to list all
+     * resources across all supported locations, while some locations are
+     * temporarily unavailable.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUnreachable()
+    {
+        return $this->unreachable;
+    }
+
+    /**
+     * Unreachable resources. Populated when the request attempts to list all
+     * resources across all supported locations, while some locations are
+     * temporarily unavailable.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUnreachable($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->unreachable = $arr;
 
         return $this;
     }

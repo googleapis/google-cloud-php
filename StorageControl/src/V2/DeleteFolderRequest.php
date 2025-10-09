@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for DeleteFolder. This operation is only applicable to a
  * hierarchical namespace enabled bucket.
- * Hierarchical namespace buckets are in allowlist preview.
  *
  * Generated from protobuf message <code>google.storage.control.v2.DeleteFolderRequest</code>
  */

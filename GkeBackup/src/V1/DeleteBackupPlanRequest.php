@@ -21,7 +21,7 @@ class DeleteBackupPlanRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. If provided, this value must match the current value of the
      * target BackupPlan's [etag][google.cloud.gkebackup.v1.BackupPlan.etag] field
@@ -29,7 +29,7 @@ class DeleteBackupPlanRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. Fully qualified BackupPlan name.

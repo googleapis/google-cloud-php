@@ -27,13 +27,13 @@ class FeatureValueDomain extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float min_value = 1;</code>
      */
-    private $min_value = 0.0;
+    protected $min_value = 0.0;
     /**
      * The maximum permissible value for this feature.
      *
      * Generated from protobuf field <code>float max_value = 2;</code>
      */
-    private $max_value = 0.0;
+    protected $max_value = 0.0;
     /**
      * If this input feature has been normalized to a mean value of 0,
      * the original_mean specifies the mean value of the domain prior to
@@ -41,7 +41,7 @@ class FeatureValueDomain extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float original_mean = 3;</code>
      */
-    private $original_mean = 0.0;
+    protected $original_mean = 0.0;
     /**
      * If this input feature has been normalized to a standard deviation of
      * 1.0, the original_stddev specifies the standard deviation of the domain
@@ -49,7 +49,7 @@ class FeatureValueDomain extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float original_stddev = 4;</code>
      */
-    private $original_stddev = 0.0;
+    protected $original_stddev = 0.0;
 
     /**
      * Constructor.

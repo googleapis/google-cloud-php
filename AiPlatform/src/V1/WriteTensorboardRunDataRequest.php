@@ -23,7 +23,7 @@ class WriteTensorboardRunDataRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tensorboard_run = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $tensorboard_run = '';
+    protected $tensorboard_run = '';
     /**
      * Required. The TensorboardTimeSeries data to write.
      * Values with in a time series are indexed by their step value.

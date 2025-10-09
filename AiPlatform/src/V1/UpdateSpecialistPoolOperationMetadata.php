@@ -23,13 +23,13 @@ class UpdateSpecialistPoolOperationMetadata extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string specialist_pool = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $specialist_pool = '';
+    protected $specialist_pool = '';
     /**
      * The operation generic information.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenericOperationMetadata generic_metadata = 2;</code>
      */
-    private $generic_metadata = null;
+    protected $generic_metadata = null;
 
     /**
      * Constructor.

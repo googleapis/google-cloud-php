@@ -73,6 +73,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\BareMetalSolution\V2\NfsShare_State::class);
 

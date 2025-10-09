@@ -20,20 +20,20 @@ class SynonymEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_entity = 1;</code>
      */
-    private $source_entity = '';
+    protected $source_entity = '';
     /**
      * The type of the entity for which the synonym is being created
      * (usually a table or a sequence).
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEntityType source_type = 2;</code>
      */
-    private $source_type = 0;
+    protected $source_type = 0;
     /**
      * Custom engine specific features.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 3;</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
 
     /**
      * Constructor.

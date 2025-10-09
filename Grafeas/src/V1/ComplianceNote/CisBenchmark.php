@@ -18,11 +18,11 @@ class CisBenchmark extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>int32 profile_level = 1;</code>
      */
-    private $profile_level = 0;
+    protected $profile_level = 0;
     /**
      * Generated from protobuf field <code>.grafeas.v1.Severity severity = 2;</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
 
     /**
      * Constructor.

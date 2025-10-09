@@ -52,6 +52,4 @@ class Partner
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Partner::class, \Google\Cloud\AssuredWorkloads\V1\Workload_Partner::class);
 

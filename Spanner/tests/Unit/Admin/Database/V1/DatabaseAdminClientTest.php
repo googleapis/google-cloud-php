@@ -29,12 +29,16 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
+use Google\Cloud\Spanner\Admin\Database\V1\BackupSchedule;
 use Google\Cloud\Spanner\Admin\Database\V1\Database;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseRole;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\InternalUpdateGraphOperationResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupSchedulesResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseRolesResponse;
@@ -77,6 +81,68 @@ class DatabaseAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function addSplitPointsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new AddSplitPointsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $splitPoints = [];
+        $response = $gapicClient->addSplitPoints($formattedDatabase, $splitPoints);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/AddSplitPoints', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $actualValue = $actualRequestObject->getSplitPoints();
+        $this->assertProtobufEquals($splitPoints, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function addSplitPointsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $splitPoints = [];
+        try {
+            $gapicClient->addSplitPoints($formattedDatabase, $splitPoints);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function copyBackupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -100,10 +166,16 @@ class DatabaseAdminClientTest extends GeneratedTest
         $database = 'database1789464955';
         $name = 'name3373707';
         $sizeBytes = 1796325715;
+        $freeableSizeBytes = 1302251206;
+        $exclusiveSizeBytes = 1085921554;
+        $incrementalBackupChainId = 'incrementalBackupChainId-792099119';
         $expectedResponse = new Backup();
         $expectedResponse->setDatabase($database);
         $expectedResponse->setName($name);
         $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setFreeableSizeBytes($freeableSizeBytes);
+        $expectedResponse->setExclusiveSizeBytes($exclusiveSizeBytes);
+        $expectedResponse->setIncrementalBackupChainId($incrementalBackupChainId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -235,10 +307,16 @@ class DatabaseAdminClientTest extends GeneratedTest
         $database = 'database1789464955';
         $name = 'name3373707';
         $sizeBytes = 1796325715;
+        $freeableSizeBytes = 1302251206;
+        $exclusiveSizeBytes = 1085921554;
+        $incrementalBackupChainId = 'incrementalBackupChainId-792099119';
         $expectedResponse = new Backup();
         $expectedResponse->setDatabase($database);
         $expectedResponse->setName($name);
         $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setFreeableSizeBytes($freeableSizeBytes);
+        $expectedResponse->setExclusiveSizeBytes($exclusiveSizeBytes);
+        $expectedResponse->setIncrementalBackupChainId($incrementalBackupChainId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -340,6 +418,74 @@ class DatabaseAdminClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createBackupScheduleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $expectedResponse = new BackupSchedule();
+        $expectedResponse->setName($name);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $backupScheduleId = 'backupScheduleId326010054';
+        $backupSchedule = new BackupSchedule();
+        $response = $gapicClient->createBackupSchedule($formattedParent, $backupScheduleId, $backupSchedule);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/CreateBackupSchedule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getBackupScheduleId();
+        $this->assertProtobufEquals($backupScheduleId, $actualValue);
+        $actualValue = $actualRequestObject->getBackupSchedule();
+        $this->assertProtobufEquals($backupSchedule, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createBackupScheduleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $backupScheduleId = 'backupScheduleId326010054';
+        $backupSchedule = new BackupSchedule();
+        try {
+            $gapicClient->createBackupSchedule($formattedParent, $backupScheduleId, $backupSchedule);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -531,6 +677,63 @@ class DatabaseAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteBackupScheduleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->backupScheduleName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SCHEDULE]');
+        $gapicClient->deleteBackupSchedule($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/DeleteBackupSchedule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteBackupScheduleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->backupScheduleName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SCHEDULE]');
+        try {
+            $gapicClient->deleteBackupSchedule($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function dropDatabaseTest()
     {
         $transport = $this->createTransport();
@@ -599,10 +802,16 @@ class DatabaseAdminClientTest extends GeneratedTest
         $database = 'database1789464955';
         $name2 = 'name2-1052831874';
         $sizeBytes = 1796325715;
+        $freeableSizeBytes = 1302251206;
+        $exclusiveSizeBytes = 1085921554;
+        $incrementalBackupChainId = 'incrementalBackupChainId-792099119';
         $expectedResponse = new Backup();
         $expectedResponse->setDatabase($database);
         $expectedResponse->setName($name2);
         $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setFreeableSizeBytes($freeableSizeBytes);
+        $expectedResponse->setExclusiveSizeBytes($exclusiveSizeBytes);
+        $expectedResponse->setIncrementalBackupChainId($incrementalBackupChainId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
@@ -640,6 +849,66 @@ class DatabaseAdminClientTest extends GeneratedTest
         $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
         try {
             $gapicClient->getBackup($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getBackupScheduleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new BackupSchedule();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->backupScheduleName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SCHEDULE]');
+        $response = $gapicClient->getBackupSchedule($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/GetBackupSchedule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getBackupScheduleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->backupScheduleName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SCHEDULE]');
+        try {
+            $gapicClient->getBackupSchedule($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -842,6 +1111,72 @@ class DatabaseAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function internalUpdateGraphOperationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new InternalUpdateGraphOperationResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $operationId = 'operationId-274116877';
+        $vmIdentityToken = 'vmIdentityToken-1589919296';
+        $response = $gapicClient->internalUpdateGraphOperation($formattedDatabase, $operationId, $vmIdentityToken);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/InternalUpdateGraphOperation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $actualValue = $actualRequestObject->getOperationId();
+        $this->assertProtobufEquals($operationId, $actualValue);
+        $actualValue = $actualRequestObject->getVmIdentityToken();
+        $this->assertProtobufEquals($vmIdentityToken, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function internalUpdateGraphOperationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $operationId = 'operationId-274116877';
+        $vmIdentityToken = 'vmIdentityToken-1589919296';
+        try {
+            $gapicClient->internalUpdateGraphOperation($formattedDatabase, $operationId, $vmIdentityToken);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listBackupOperationsTest()
     {
         $transport = $this->createTransport();
@@ -898,6 +1233,74 @@ class DatabaseAdminClientTest extends GeneratedTest
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
         try {
             $gapicClient->listBackupOperations($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listBackupSchedulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $backupSchedulesElement = new BackupSchedule();
+        $backupSchedules = [
+            $backupSchedulesElement,
+        ];
+        $expectedResponse = new ListBackupSchedulesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBackupSchedules($backupSchedules);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $response = $gapicClient->listBackupSchedules($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBackupSchedules()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/ListBackupSchedules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listBackupSchedulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        try {
+            $gapicClient->listBackupSchedules($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1452,10 +1855,16 @@ class DatabaseAdminClientTest extends GeneratedTest
         $database = 'database1789464955';
         $name = 'name3373707';
         $sizeBytes = 1796325715;
+        $freeableSizeBytes = 1302251206;
+        $exclusiveSizeBytes = 1085921554;
+        $incrementalBackupChainId = 'incrementalBackupChainId-792099119';
         $expectedResponse = new Backup();
         $expectedResponse->setDatabase($database);
         $expectedResponse->setName($name);
         $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setFreeableSizeBytes($freeableSizeBytes);
+        $expectedResponse->setExclusiveSizeBytes($exclusiveSizeBytes);
+        $expectedResponse->setIncrementalBackupChainId($incrementalBackupChainId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $backup = new Backup();
@@ -1497,6 +1906,70 @@ class DatabaseAdminClientTest extends GeneratedTest
         $updateMask = new FieldMask();
         try {
             $gapicClient->updateBackup($backup, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBackupScheduleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $expectedResponse = new BackupSchedule();
+        $expectedResponse->setName($name);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $backupSchedule = new BackupSchedule();
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateBackupSchedule($backupSchedule, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/UpdateBackupSchedule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBackupSchedule();
+        $this->assertProtobufEquals($backupSchedule, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBackupScheduleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $backupSchedule = new BackupSchedule();
+        $updateMask = new FieldMask();
+        try {
+            $gapicClient->updateBackupSchedule($backupSchedule, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

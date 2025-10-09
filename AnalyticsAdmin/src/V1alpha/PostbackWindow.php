@@ -35,7 +35,7 @@ class PostbackWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool postback_window_settings_enabled = 2;</code>
      */
-    private $postback_window_settings_enabled = false;
+    protected $postback_window_settings_enabled = false;
 
     /**
      * Constructor.

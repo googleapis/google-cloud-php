@@ -23,7 +23,7 @@ class DeleteMetadataStoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Deprecated: Field is no longer supported.
      *
@@ -106,7 +106,9 @@ class DeleteMetadataStoreRequest extends \Google\Protobuf\Internal\Message
      */
     public function getForce()
     {
-        @trigger_error('force is deprecated.', E_USER_DEPRECATED);
+        if ($this->force !== false) {
+            @trigger_error('force is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->force;
     }
 

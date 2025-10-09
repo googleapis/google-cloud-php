@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START assuredworkloads_v1beta1_generated_AssuredWorkloadsService_RestrictAllowedResources_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\Client\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest;
 use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest\RestrictionType;
 use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesResponse;
 
@@ -48,10 +49,15 @@ function restrict_allowed_resources_sample(string $name, int $restrictionType): 
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
 
+    // Prepare the request message.
+    $request = (new RestrictAllowedResourcesRequest())
+        ->setName($name)
+        ->setRestrictionType($restrictionType);
+
     // Call the API and handle any network failures.
     try {
         /** @var RestrictAllowedResourcesResponse $response */
-        $response = $assuredWorkloadsServiceClient->restrictAllowedResources($name, $restrictionType);
+        $response = $assuredWorkloadsServiceClient->restrictAllowedResources($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

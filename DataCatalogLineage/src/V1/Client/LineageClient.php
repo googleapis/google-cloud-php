@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ namespace Google\Cloud\DataCatalog\Lineage\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -56,8 +56,10 @@ use Google\Cloud\DataCatalog\Lineage\V1\Run;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateProcessRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateRunRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Lineage is used to track data flows between assets over time. You can
@@ -73,23 +75,23 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchSearchLinkProcessesAsync(BatchSearchLinkProcessesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createLineageEventAsync(CreateLineageEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createProcessAsync(CreateProcessRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRunAsync(CreateRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteLineageEventAsync(DeleteLineageEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteProcessAsync(DeleteProcessRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRunAsync(DeleteRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLineageEventAsync(GetLineageEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProcessAsync(GetProcessRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRunAsync(GetRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLineageEventsAsync(ListLineageEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProcessesAsync(ListProcessesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRunsAsync(ListRunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface processOpenLineageRunEventAsync(ProcessOpenLineageRunEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchLinksAsync(SearchLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProcessAsync(UpdateProcessRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRunAsync(UpdateRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> batchSearchLinkProcessesAsync(BatchSearchLinkProcessesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LineageEvent> createLineageEventAsync(CreateLineageEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Process> createProcessAsync(CreateProcessRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Run> createRunAsync(CreateRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteLineageEventAsync(DeleteLineageEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteProcessAsync(DeleteProcessRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRunAsync(DeleteRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LineageEvent> getLineageEventAsync(GetLineageEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Process> getProcessAsync(GetProcessRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Run> getRunAsync(GetRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLineageEventsAsync(ListLineageEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProcessesAsync(ListProcessesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRunsAsync(ListRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProcessOpenLineageRunEventResponse> processOpenLineageRunEventAsync(ProcessOpenLineageRunEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchLinksAsync(SearchLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Process> updateProcessAsync(UpdateProcessRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Run> updateRunAsync(UpdateRunRequest $request, array $optionalArgs = [])
  */
 final class LineageClient
 {
@@ -116,9 +118,7 @@ final class LineageClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -164,10 +164,29 @@ final class LineageClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -182,8 +201,13 @@ final class LineageClient
      *
      * @return string The formatted lineage_event resource.
      */
-    public static function lineageEventName(string $project, string $location, string $process, string $run, string $lineageEvent): string
-    {
+    public static function lineageEventName(
+        string $project,
+        string $location,
+        string $process,
+        string $run,
+        string $lineageEvent
+    ): string {
         return self::getPathTemplate('lineageEvent')->render([
             'project' => $project,
             'location' => $location,
@@ -265,14 +289,14 @@ final class LineageClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -280,20 +304,29 @@ final class LineageClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'datalineage.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\DataCatalog\Lineage\V1\LineageClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new LineageClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -327,11 +360,16 @@ final class LineageClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -383,8 +421,10 @@ final class LineageClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchSearchLinkProcesses(BatchSearchLinkProcessesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function batchSearchLinkProcesses(
+        BatchSearchLinkProcessesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('BatchSearchLinkProcesses', $request, $callOptions);
     }
 
@@ -507,7 +547,7 @@ final class LineageClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -533,7 +573,7 @@ final class LineageClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -725,8 +765,10 @@ final class LineageClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function processOpenLineageRunEvent(ProcessOpenLineageRunEventRequest $request, array $callOptions = []): ProcessOpenLineageRunEventResponse
-    {
+    public function processOpenLineageRunEvent(
+        ProcessOpenLineageRunEventRequest $request,
+        array $callOptions = []
+    ): ProcessOpenLineageRunEventResponse {
         return $this->startApiCall('ProcessOpenLineageRunEvent', $request, $callOptions)->wait();
     }
 

@@ -26,8 +26,33 @@ class AnalyzeWorkloadMoveRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target = '';
+    protected $target = '';
     protected $projectOrWorkloadResource;
+
+    /**
+     * @param string $project The source type is a project. Specify the project's relative resource
+     *                        name, formatted as either a project number or a project ID:
+     *                        "projects/{PROJECT_NUMBER}" or "projects/{PROJECT_ID}"
+     *                        For example:
+     *                        "projects/951040570662" when specifying a project number, or
+     *                        "projects/my-project-123" when specifying a project ID.
+     * @param string $target  Required. The resource ID of the folder-based destination workload. This workload is
+     *                        where the source project will hypothetically be moved to. Specify the
+     *                        workload's relative resource name, formatted as:
+     *                        "organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}"
+     *                        For example:
+     *                        "organizations/123/locations/us-east1/workloads/assured-workload-2"
+     *
+     * @return \Google\Cloud\AssuredWorkloads\V1beta1\AnalyzeWorkloadMoveRequest
+     *
+     * @experimental
+     */
+    public static function build(string $project, string $target): self
+    {
+        return (new self())
+            ->setProject($project)
+            ->setTarget($target);
+    }
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The product data snippet in the search response. Only
      * [Product.name][google.cloud.retail.v2.Product.name] is guaranteed to be
@@ -38,7 +38,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product product = 2;</code>
      */
-    private $product = null;
+    protected $product = null;
     /**
      * The count of matched
      * [variant][google.cloud.retail.v2.Product.Type.VARIANT]
@@ -46,7 +46,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 matching_variant_count = 3;</code>
      */
-    private $matching_variant_count = 0;
+    protected $matching_variant_count = 0;
     /**
      * If a [variant][google.cloud.retail.v2.Product.Type.VARIANT]
      * [Product][google.cloud.retail.v2.Product] matches the search query, this
@@ -110,6 +110,12 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string personal_labels = 7;</code>
      */
     private $personal_labels;
+    /**
+     * Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.DoubleList> model_scores = 8;</code>
+     */
+    private $model_scores;
 
     /**
      * Constructor.
@@ -188,6 +194,8 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *           [SearchRequest.PersonalizationSpec.Mode.AUTO][google.cloud.retail.v2.SearchRequest.PersonalizationSpec.Mode.AUTO].
      *           Possible values:
      *           * `purchased`: Indicates that this product has been purchased before.
+     *     @type array|\Google\Protobuf\Internal\MapField $model_scores
+     *           Google provided available scores.
      * }
      */
     public function __construct($data = NULL) {
@@ -475,6 +483,32 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->personal_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.DoubleList> model_scores = 8;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getModelScores()
+    {
+        return $this->model_scores;
+    }
+
+    /**
+     * Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.DoubleList> model_scores = 8;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setModelScores($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\DoubleList::class);
+        $this->model_scores = $arr;
 
         return $this;
     }

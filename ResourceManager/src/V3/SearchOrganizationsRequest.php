@@ -22,14 +22,14 @@ class SearchOrganizationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A pagination token returned from a previous call to
      * `SearchOrganizations` that indicates from where listing should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. An optional query string used to filter the Organizations to
      * return in the response. Query rules are case-insensitive.
@@ -49,7 +49,7 @@ class SearchOrganizationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $query = '';
+    protected $query = '';
 
     /**
      * @param string $query Optional. An optional query string used to filter the Organizations to

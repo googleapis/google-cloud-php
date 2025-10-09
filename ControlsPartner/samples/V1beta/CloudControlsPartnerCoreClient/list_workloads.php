@@ -34,7 +34,7 @@ use Google\Cloud\CloudControlsPartner\V1beta\Workload;
  *
  * @param string $formattedParent Parent resource
  *                                Format:
- *                                organizations/{organization}/locations/{location}/customers/{customer}
+ *                                `organizations/{organization}/locations/{location}/customers/{customer}`
  *                                Please see {@see CloudControlsPartnerCoreClient::customerName()} for help formatting this field.
  */
 function list_workloads_sample(string $formattedParent): void

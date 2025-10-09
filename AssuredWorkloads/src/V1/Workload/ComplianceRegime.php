@@ -131,6 +131,4 @@ class ComplianceRegime
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ComplianceRegime::class, \Google\Cloud\AssuredWorkloads\V1\Workload_ComplianceRegime::class);
 

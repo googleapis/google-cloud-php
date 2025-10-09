@@ -21,13 +21,13 @@ class Accelerator extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * The number of accelerators of this type.
      *
      * Generated from protobuf field <code>int64 count = 2;</code>
      */
-    private $count = 0;
+    protected $count = 0;
     /**
      * Deprecated: please use instances[0].install_gpu_drivers instead.
      *
@@ -45,7 +45,7 @@ class Accelerator extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string driver_version = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $driver_version = '';
+    protected $driver_version = '';
 
     /**
      * Constructor.
@@ -137,7 +137,9 @@ class Accelerator extends \Google\Protobuf\Internal\Message
      */
     public function getInstallGpuDrivers()
     {
-        @trigger_error('install_gpu_drivers is deprecated.', E_USER_DEPRECATED);
+        if ($this->install_gpu_drivers !== false) {
+            @trigger_error('install_gpu_drivers is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->install_gpu_drivers;
     }
 

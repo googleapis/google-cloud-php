@@ -21,14 +21,14 @@ class DemoteContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Required. The name of the instance which acts as the on-premises primary
      * instance in the replication setup.
      *
      * Generated from protobuf field <code>string source_representative_instance_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source_representative_instance_name = '';
+    protected $source_representative_instance_name = '';
 
     /**
      * Constructor.

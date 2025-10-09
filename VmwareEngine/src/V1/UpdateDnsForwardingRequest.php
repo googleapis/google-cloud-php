@@ -21,7 +21,7 @@ class UpdateDnsForwardingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.DnsForwarding dns_forwarding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dns_forwarding = null;
+    protected $dns_forwarding = null;
     /**
      * Required. Field mask is used to specify the fields to be overwritten in the
      * `DnsForwarding` resource by the update.
@@ -31,7 +31,7 @@ class UpdateDnsForwardingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -48,7 +48,7 @@ class UpdateDnsForwardingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param \Google\Cloud\VmwareEngine\V1\DnsForwarding $dnsForwarding Required. DnsForwarding config details.

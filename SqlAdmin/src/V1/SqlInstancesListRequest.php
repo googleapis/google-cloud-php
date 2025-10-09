@@ -27,7 +27,7 @@ class SqlInstancesListRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 1;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The maximum number of instances to return. The service may return fewer
      * than this value.
@@ -36,20 +36,20 @@ class SqlInstancesListRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>uint32 max_results = 2;</code>
      */
-    private $max_results = 0;
+    protected $max_results = 0;
     /**
      * A previously-returned page token representing part of the larger set of
      * results to view.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Project ID of the project for which to list Cloud SQL instances.
      *
      * Generated from protobuf field <code>string project = 4;</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class JsonOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string encoding = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encoding = '';
+    protected $encoding = '';
 
     /**
      * Constructor.

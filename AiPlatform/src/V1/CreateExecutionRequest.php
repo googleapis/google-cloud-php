@@ -24,13 +24,13 @@ class CreateExecutionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Execution to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Execution execution = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $execution = null;
+    protected $execution = null;
     /**
      * The {execution} portion of the resource name with the format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
@@ -43,7 +43,7 @@ class CreateExecutionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string execution_id = 3;</code>
      */
-    private $execution_id = '';
+    protected $execution_id = '';
 
     /**
      * @param string                                $parent      Required. The resource name of the MetadataStore where the Execution should

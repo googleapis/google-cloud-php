@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START assuredworkloads_v1beta1_generated_AssuredWorkloadsService_ListWorkloads_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\Client\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\ListWorkloadsRequest;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
 
 /**
@@ -40,10 +41,14 @@ function list_workloads_sample(string $formattedParent): void
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListWorkloadsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $assuredWorkloadsServiceClient->listWorkloads($formattedParent);
+        $response = $assuredWorkloadsServiceClient->listWorkloads($request);
 
         /** @var Workload $element */
         foreach ($response as $element) {

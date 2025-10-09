@@ -27,7 +27,7 @@ class CleanupPolicyMostRecentVersions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 keep_count = 2;</code>
      */
-    private $keep_count = null;
+    protected $keep_count = null;
 
     /**
      * Constructor.

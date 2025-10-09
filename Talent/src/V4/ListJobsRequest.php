@@ -22,7 +22,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The filter string specifies the jobs to be enumerated.
      * Supported operator: =, AND
@@ -44,13 +44,13 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The starting point of a query result.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The maximum number of jobs to be returned per page of results.
      * If [job_view][google.cloud.talent.v4.ListJobsRequest.job_view] is set to
@@ -61,7 +61,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The desired job attributes returned for jobs in the
      * search response. Defaults to
@@ -70,7 +70,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.JobView job_view = 5;</code>
      */
-    private $job_view = 0;
+    protected $job_view = 0;
 
     /**
      * @param string $parent Required. The resource name of the tenant under which the job is created.

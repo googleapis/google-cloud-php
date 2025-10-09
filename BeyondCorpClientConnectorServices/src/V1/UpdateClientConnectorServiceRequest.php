@@ -25,13 +25,13 @@ class UpdateClientConnectorServiceRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The resource being updated.
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService client_connector_service = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $client_connector_service = null;
+    protected $client_connector_service = null;
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server will know to
@@ -47,20 +47,20 @@ class UpdateClientConnectorServiceRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set, validates request by executing a dry-run which would not
      * alter the resource in any way.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Optional. If set as true, will create the resource if it is not found.
      *
      * Generated from protobuf field <code>bool allow_missing = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
 
     /**
      * @param \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService $clientConnectorService Required. The resource being updated.

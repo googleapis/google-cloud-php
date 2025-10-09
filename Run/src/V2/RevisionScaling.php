@@ -16,17 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class RevisionScaling extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Minimum number of serving instances that this resource should have.
+     * Optional. Minimum number of serving instances that this resource should
+     * have.
      *
-     * Generated from protobuf field <code>int32 min_instance_count = 1;</code>
+     * Generated from protobuf field <code>int32 min_instance_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_instance_count = 0;
+    protected $min_instance_count = 0;
     /**
-     * Maximum number of serving instances that this resource should have.
+     * Optional. Maximum number of serving instances that this resource should
+     * have. When unspecified, the field is set to the server default value of
+     * 100. For more information see
+     * https://cloud.google.com/run/docs/configuring/max-instances
      *
-     * Generated from protobuf field <code>int32 max_instance_count = 2;</code>
+     * Generated from protobuf field <code>int32 max_instance_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_instance_count = 0;
+    protected $max_instance_count = 0;
 
     /**
      * Constructor.
@@ -35,9 +39,13 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $min_instance_count
-     *           Minimum number of serving instances that this resource should have.
+     *           Optional. Minimum number of serving instances that this resource should
+     *           have.
      *     @type int $max_instance_count
-     *           Maximum number of serving instances that this resource should have.
+     *           Optional. Maximum number of serving instances that this resource should
+     *           have. When unspecified, the field is set to the server default value of
+     *           100. For more information see
+     *           https://cloud.google.com/run/docs/configuring/max-instances
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +54,10 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Minimum number of serving instances that this resource should have.
+     * Optional. Minimum number of serving instances that this resource should
+     * have.
      *
-     * Generated from protobuf field <code>int32 min_instance_count = 1;</code>
+     * Generated from protobuf field <code>int32 min_instance_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMinInstanceCount()
@@ -57,9 +66,10 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Minimum number of serving instances that this resource should have.
+     * Optional. Minimum number of serving instances that this resource should
+     * have.
      *
-     * Generated from protobuf field <code>int32 min_instance_count = 1;</code>
+     * Generated from protobuf field <code>int32 min_instance_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -72,9 +82,12 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of serving instances that this resource should have.
+     * Optional. Maximum number of serving instances that this resource should
+     * have. When unspecified, the field is set to the server default value of
+     * 100. For more information see
+     * https://cloud.google.com/run/docs/configuring/max-instances
      *
-     * Generated from protobuf field <code>int32 max_instance_count = 2;</code>
+     * Generated from protobuf field <code>int32 max_instance_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMaxInstanceCount()
@@ -83,9 +96,12 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of serving instances that this resource should have.
+     * Optional. Maximum number of serving instances that this resource should
+     * have. When unspecified, the field is set to the server default value of
+     * 100. For more information see
+     * https://cloud.google.com/run/docs/configuring/max-instances
      *
-     * Generated from protobuf field <code>int32 max_instance_count = 2;</code>
+     * Generated from protobuf field <code>int32 max_instance_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

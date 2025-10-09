@@ -32,8 +32,8 @@ use Google\Cloud\Dialogflow\Cx\V3\GetEntityTypeRequest;
  * Retrieves the specified entity type.
  *
  * @param string $formattedName The name of the entity type.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/entityTypes/<Entity Type ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`. Please see
  *                              {@see EntityTypesClient::entityTypeName()} for help formatting this field.
  */
 function get_entity_type_sample(string $formattedName): void

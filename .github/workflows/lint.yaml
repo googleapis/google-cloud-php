@@ -8,11 +8,11 @@ on:
 permissions:
   contents: read
 jobs:
-  style:
+  style_phpcs:
     runs-on: ubuntu-latest
     name: PHP Style Check
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
@@ -21,11 +21,38 @@ jobs:
       run: composer global require "squizlabs/php_codesniffer:3.*"
     - name: Run PHPCS Code Style Checker
       run: ~/.composer/vendor/bin/phpcs --standard=phpcs-ruleset.xml -p
+
+  style_csfixer:
+    name: PHP CS Fixer
+    uses: GoogleCloudPlatform/php-tools/.github/workflows/code-standards.yml@main
+    with:
+      config: GoogleCloudPlatform/php-tools/.php-cs-fixer.default.php@main
+      exclude-patterns: |
+        [
+          "#.*/src/V[0-9]+#",
+          "#.*/src/.*/V[0-9]+#",
+          "#.*/(tests|samples|metadata)#",
+          "vendor",
+          "dev",
+          "docs",
+          "AccessContextManager/src/Type",
+          "Asset/external",
+          "BigQueryDataExchange/src/Common",
+          "CommonProtos",
+          "Core/src/Testing",
+          "GSuiteAddOns/external",
+          "OsLogin/src/Common",
+          "LongRunning/src/ApiCore/LongRunning",
+          "LongRunning/src/LongRunning",
+          "Translate/src/Connection",
+          "Translate/src/TranslateClient.php"
+        ]
+
   staticanalysis:
     runs-on: ubuntu-latest
     name: PHPStan Static Analysis
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Install PHP
       uses: shivammathur/setup-php@v2
       with:

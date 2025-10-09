@@ -19,12 +19,12 @@ class ApiTarget extends \Google\Protobuf\Internal\Message
     /**
      * The service for this restriction. It should be the canonical
      * service name, for example: `translate.googleapis.com`.
-     * You can use [`gcloud services list`](https://cloud.google.com/sdk/gcloud/reference/services/list)
+     * You can use [`gcloud services list`](/sdk/gcloud/reference/services/list)
      * to get a list of services that are enabled in the project.
      *
      * Generated from protobuf field <code>string service = 1;</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * Optional. List of one or more methods that can be called.
      * If empty, all methods for the service are allowed. A wildcard
@@ -48,7 +48,7 @@ class ApiTarget extends \Google\Protobuf\Internal\Message
      *     @type string $service
      *           The service for this restriction. It should be the canonical
      *           service name, for example: `translate.googleapis.com`.
-     *           You can use [`gcloud services list`](https://cloud.google.com/sdk/gcloud/reference/services/list)
+     *           You can use [`gcloud services list`](/sdk/gcloud/reference/services/list)
      *           to get a list of services that are enabled in the project.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $methods
      *           Optional. List of one or more methods that can be called.
@@ -69,7 +69,7 @@ class ApiTarget extends \Google\Protobuf\Internal\Message
     /**
      * The service for this restriction. It should be the canonical
      * service name, for example: `translate.googleapis.com`.
-     * You can use [`gcloud services list`](https://cloud.google.com/sdk/gcloud/reference/services/list)
+     * You can use [`gcloud services list`](/sdk/gcloud/reference/services/list)
      * to get a list of services that are enabled in the project.
      *
      * Generated from protobuf field <code>string service = 1;</code>
@@ -83,7 +83,7 @@ class ApiTarget extends \Google\Protobuf\Internal\Message
     /**
      * The service for this restriction. It should be the canonical
      * service name, for example: `translate.googleapis.com`.
-     * You can use [`gcloud services list`](https://cloud.google.com/sdk/gcloud/reference/services/list)
+     * You can use [`gcloud services list`](/sdk/gcloud/reference/services/list)
      * to get a list of services that are enabled in the project.
      *
      * Generated from protobuf field <code>string service = 1;</code>

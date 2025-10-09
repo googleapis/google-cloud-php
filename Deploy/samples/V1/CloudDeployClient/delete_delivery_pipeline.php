@@ -32,7 +32,7 @@ use Google\Rpc\Status;
 /**
  * Deletes a single DeliveryPipeline.
  *
- * @param string $formattedName The name of the `DeliveryPipeline` to delete. Format should be
+ * @param string $formattedName The name of the `DeliveryPipeline` to delete. The format is
  *                              `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
  *                              {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
  */

@@ -22,37 +22,37 @@ class AptArtifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The Apt package name of the artifact.
      *
      * Generated from protobuf field <code>string package_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $package_name = '';
+    protected $package_name = '';
     /**
      * Output only. An artifact is a binary or source package.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.AptArtifact.PackageType package_type = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $package_type = 0;
+    protected $package_type = 0;
     /**
      * Output only. Operating system architecture of the artifact.
      *
      * Generated from protobuf field <code>string architecture = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $architecture = '';
+    protected $architecture = '';
     /**
      * Output only. Repository component of the artifact.
      *
      * Generated from protobuf field <code>string component = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $component = '';
+    protected $component = '';
     /**
      * Output only. Contents of the artifact's control metadata file.
      *
      * Generated from protobuf field <code>bytes control_file = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $control_file = '';
+    protected $control_file = '';
 
     /**
      * Constructor.

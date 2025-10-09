@@ -23,13 +23,13 @@ class UserCredential extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_token_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $user_token_secret_version = '';
+    protected $user_token_secret_version = '';
     /**
      * Output only. The username associated to this token.
      *
      * Generated from protobuf field <code>string username = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $username = '';
+    protected $username = '';
 
     /**
      * Constructor.

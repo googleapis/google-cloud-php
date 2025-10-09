@@ -40,7 +40,7 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_output_directory = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $gcs_output_directory = '';
+    protected $gcs_output_directory = '';
     /**
      * The runtime parameters of the PipelineJob. The parameters will be
      * passed into
@@ -63,7 +63,7 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineFailurePolicy failure_policy = 4;</code>
      */
-    private $failure_policy = 0;
+    protected $failure_policy = 0;
     /**
      * The runtime artifacts of the PipelineJob. The key will be the input
      * artifact name and the value would be one of the InputArtifact.
@@ -136,7 +136,9 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getParameters()
     {
-        @trigger_error('parameters is deprecated.', E_USER_DEPRECATED);
+        if ($this->parameters->count() !== 0) {
+            @trigger_error('parameters is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->parameters;
     }
 
@@ -157,8 +159,10 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      */
     public function setParameters($var)
     {
-        @trigger_error('parameters is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Value::class);
+        if (count($arr) !== 0) {
+            @trigger_error('parameters is deprecated.', E_USER_DEPRECATED);
+        }
         $this->parameters = $arr;
 
         return $this;

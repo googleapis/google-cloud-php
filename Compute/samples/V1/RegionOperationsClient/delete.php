@@ -24,13 +24,14 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionOperations_Delete_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
+use Google\Cloud\Compute\V1\DeleteRegionOperationRequest;
 use Google\Cloud\Compute\V1\DeleteRegionOperationResponse;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 
 /**
  * Deletes the specified region-specific Operations resource.
  *
- * @param string $operation Name of the Operations resource to delete.
+ * @param string $operation Name of the Operations resource to delete, or its unique numeric identifier.
  * @param string $project   Project ID for this request.
  * @param string $region    Name of the region for this request.
  */
@@ -39,10 +40,16 @@ function delete_sample(string $operation, string $project, string $region): void
     // Create a client.
     $regionOperationsClient = new RegionOperationsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRegionOperationRequest())
+        ->setOperation($operation)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var DeleteRegionOperationResponse $response */
-        $response = $regionOperationsClient->delete($operation, $project, $region);
+        $response = $regionOperationsClient->delete($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

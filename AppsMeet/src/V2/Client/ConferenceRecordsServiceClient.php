@@ -27,6 +27,7 @@ namespace Google\Apps\Meet\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -52,6 +53,7 @@ use Google\Apps\Meet\V2\Transcript;
 use Google\Apps\Meet\V2\TranscriptEntry;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: REST API for services dealing with conference records.
@@ -64,18 +66,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getConferenceRecordAsync(GetConferenceRecordRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getParticipantAsync(GetParticipantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getParticipantSessionAsync(GetParticipantSessionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecordingAsync(GetRecordingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTranscriptAsync(GetTranscriptRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTranscriptEntryAsync(GetTranscriptEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConferenceRecordsAsync(ListConferenceRecordsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listParticipantSessionsAsync(ListParticipantSessionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listParticipantsAsync(ListParticipantsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRecordingsAsync(ListRecordingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTranscriptEntriesAsync(ListTranscriptEntriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTranscriptsAsync(ListTranscriptsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConferenceRecord> getConferenceRecordAsync(GetConferenceRecordRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Participant> getParticipantAsync(GetParticipantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ParticipantSession> getParticipantSessionAsync(GetParticipantSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recording> getRecordingAsync(GetRecordingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Transcript> getTranscriptAsync(GetTranscriptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TranscriptEntry> getTranscriptEntryAsync(GetTranscriptEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConferenceRecordsAsync(ListConferenceRecordsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listParticipantSessionsAsync(ListParticipantSessionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listParticipantsAsync(ListParticipantsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRecordingsAsync(ListRecordingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTranscriptEntriesAsync(ListTranscriptEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTranscriptsAsync(ListTranscriptsRequest $request, array $optionalArgs = [])
  */
 final class ConferenceRecordsServiceClient
 {
@@ -120,8 +122,7 @@ final class ConferenceRecordsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/conference_records_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/conference_records_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -169,11 +170,8 @@ final class ConferenceRecordsServiceClient
      *
      * @return string The formatted participant_session resource.
      */
-    public static function participantSessionName(
-        string $conferenceRecord,
-        string $participant,
-        string $participantSession
-    ): string {
+    public static function participantSessionName(string $conferenceRecord, string $participant, string $participantSession): string
+    {
         return self::getPathTemplate('participantSession')->render([
             'conference_record' => $conferenceRecord,
             'participant' => $participant,
@@ -251,14 +249,14 @@ final class ConferenceRecordsServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -266,20 +264,29 @@ final class ConferenceRecordsServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'meet.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Apps\Meet\V2\ConferenceRecordsServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new ConferenceRecordsServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -313,11 +320,16 @@ final class ConferenceRecordsServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -410,10 +422,8 @@ final class ConferenceRecordsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getParticipantSession(
-        GetParticipantSessionRequest $request,
-        array $callOptions = []
-    ): ParticipantSession {
+    public function getParticipantSession(GetParticipantSessionRequest $request, array $callOptions = []): ParticipantSession
+    {
         return $this->startApiCall('GetParticipantSession', $request, $callOptions)->wait();
     }
 
@@ -525,10 +535,8 @@ final class ConferenceRecordsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConferenceRecords(
-        ListConferenceRecordsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listConferenceRecords(ListConferenceRecordsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListConferenceRecords', $request, $callOptions);
     }
 
@@ -558,10 +566,8 @@ final class ConferenceRecordsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listParticipantSessions(
-        ListParticipantSessionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listParticipantSessions(ListParticipantSessionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListParticipantSessions', $request, $callOptions);
     }
 
@@ -651,10 +657,8 @@ final class ConferenceRecordsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listTranscriptEntries(
-        ListTranscriptEntriesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listTranscriptEntries(ListTranscriptEntriesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListTranscriptEntries', $request, $callOptions);
     }
 

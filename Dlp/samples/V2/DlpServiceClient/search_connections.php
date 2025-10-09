@@ -32,9 +32,10 @@ use Google\Cloud\Dlp\V2\SearchConnectionsRequest;
 /**
  * Searches for Connections in a parent.
  *
- * @param string $formattedParent Parent name, typically an organization, without location.
- *                                For example: `organizations/12345678`. Please see
- *                                {@see DlpServiceClient::locationName()} for help formatting this field.
+ * @param string $formattedParent Resource name of the organization or project with a wildcard
+ *                                location, for example, `organizations/433245324/locations/-` or
+ *                                `projects/project-id/locations/-`. Please see
+ *                                {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
  */
 function search_connections_sample(string $formattedParent): void
 {
@@ -70,7 +71,7 @@ function search_connections_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = DlpServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedParent = DlpServiceClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
 
     search_connections_sample($formattedParent);
 }

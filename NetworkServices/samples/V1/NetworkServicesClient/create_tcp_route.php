@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_CreateTcpRoute_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\CreateTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\TcpRoute;
 use Google\Cloud\NetworkServices\V1\TcpRoute\RouteAction;
 use Google\Cloud\NetworkServices\V1\TcpRoute\RouteRule;
@@ -38,30 +39,28 @@ use Google\Rpc\Status;
  *                                format `projects/&#42;/locations/global`. Please see
  *                                {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $tcpRouteId      Short name of the TcpRoute resource to be created.
- * @param string $tcpRouteName    Name of the TcpRoute resource. It matches pattern
- *                                `projects/&#42;/locations/global/tcpRoutes/tcp_route_name>`.
  */
-function create_tcp_route_sample(
-    string $formattedParent,
-    string $tcpRouteId,
-    string $tcpRouteName
-): void {
+function create_tcp_route_sample(string $formattedParent, string $tcpRouteId): void
+{
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tcpRouteRulesAction = new RouteAction();
     $routeRule = (new RouteRule())
         ->setAction($tcpRouteRulesAction);
     $tcpRouteRules = [$routeRule,];
     $tcpRoute = (new TcpRoute())
-        ->setName($tcpRouteName)
         ->setRules($tcpRouteRules);
+    $request = (new CreateTcpRouteRequest())
+        ->setParent($formattedParent)
+        ->setTcpRouteId($tcpRouteId)
+        ->setTcpRoute($tcpRoute);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->createTcpRoute($formattedParent, $tcpRouteId, $tcpRoute);
+        $response = $networkServicesClient->createTcpRoute($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -91,8 +90,7 @@ function callSample(): void
 {
     $formattedParent = NetworkServicesClient::locationName('[PROJECT]', '[LOCATION]');
     $tcpRouteId = '[TCP_ROUTE_ID]';
-    $tcpRouteName = '[NAME]';
 
-    create_tcp_route_sample($formattedParent, $tcpRouteId, $tcpRouteName);
+    create_tcp_route_sample($formattedParent, $tcpRouteId);
 }
 // [END networkservices_v1_generated_NetworkServices_CreateTcpRoute_sync]

@@ -194,9 +194,47 @@ return [
                     ],
                 ],
             ],
+            'ExportCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1\ExportClusterResponse',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'FailoverInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AlloyDb\V1\Instance',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1\ImportClusterResponse',
                     'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -289,6 +327,25 @@ return [
                     ],
                 ],
             ],
+            'SwitchoverCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1\Cluster',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateBackup' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AlloyDb\V1\Backup',
@@ -349,6 +406,25 @@ return [
                     ],
                 ],
             ],
+            'UpgradeCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1\UpgradeClusterResponse',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateUser' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AlloyDb\V1\User',
@@ -369,6 +445,18 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteSql' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AlloyDb\V1\ExecuteSqlResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
                         ],
                     ],
                 ],
@@ -476,6 +564,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\AlloyDb\V1\ListClustersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatabases' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDatabases',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\AlloyDb\V1\ListDatabasesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -595,10 +703,12 @@ return [
             'templateMap' => [
                 'backup' => 'projects/{project}/locations/{location}/backups/{backup}',
                 'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'instance' => 'projects/{project}/locations/{location}/clusters/{cluster}/instances/{instance}',
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'serviceAttachment' => 'projects/{project}/regions/{region}/serviceAttachments/{service_attachment}',
                 'user' => 'projects/{project}/locations/{location}/clusters/{cluster}/users/{user}',
             ],
         ],

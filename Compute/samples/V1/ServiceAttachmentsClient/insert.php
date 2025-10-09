@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ServiceAttachments_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\ServiceAttachmentsClient;
+use Google\Cloud\Compute\V1\InsertServiceAttachmentRequest;
 use Google\Cloud\Compute\V1\ServiceAttachment;
-use Google\Cloud\Compute\V1\ServiceAttachmentsClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $serviceAttachmentsClient = new ServiceAttachmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $serviceAttachmentResource = new ServiceAttachment();
+    $request = (new InsertServiceAttachmentRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setServiceAttachmentResource($serviceAttachmentResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $serviceAttachmentsClient->insert($project, $region, $serviceAttachmentResource);
+        $response = $serviceAttachmentsClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

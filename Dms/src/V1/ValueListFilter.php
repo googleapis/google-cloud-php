@@ -21,7 +21,7 @@ class ValueListFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.ValuePresentInList value_present_list = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value_present_list = 0;
+    protected $value_present_list = 0;
     /**
      * Required. The list to be used to filter by
      *
@@ -34,7 +34,7 @@ class ValueListFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool ignore_case = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ignore_case = false;
+    protected $ignore_case = false;
 
     /**
      * Constructor.

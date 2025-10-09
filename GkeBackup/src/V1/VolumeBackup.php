@@ -23,48 +23,48 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server generated global unique identifier of
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The timestamp when this VolumeBackup resource was
      * created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The timestamp when this VolumeBackup resource was last
      * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. A reference to the source Kubernetes PVC from which this
      * VolumeBackup was created.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.NamespacedName source_pvc = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $source_pvc = null;
+    protected $source_pvc = null;
     /**
      * Output only. A storage system-specific opaque handle to the underlying
      * volume backup.
      *
      * Generated from protobuf field <code>string volume_backup_handle = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $volume_backup_handle = '';
+    protected $volume_backup_handle = '';
     /**
      * Output only. The format used for the volume backup.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.VolumeBackup.VolumeBackupFormat format = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $format = 0;
+    protected $format = 0;
     /**
      * Output only. The aggregate size of the underlying artifacts associated with
      * this VolumeBackup in the backup storage. This may change over time when
@@ -74,34 +74,36 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 storage_bytes = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $storage_bytes = 0;
+    protected $storage_bytes = 0;
     /**
      * Output only. The minimum size of the disk to which this VolumeBackup can be
      * restored.
      *
      * Generated from protobuf field <code>int64 disk_size_bytes = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $disk_size_bytes = 0;
+    protected $disk_size_bytes = 0;
     /**
      * Output only. The timestamp when the associated underlying volume backup
      * operation completed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp complete_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $complete_time = null;
+    protected $complete_time = null;
     /**
      * Output only. The current state of this VolumeBackup.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.VolumeBackup.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. A human readable message explaining why the VolumeBackup is in
-     * its current state.
+     * its current state. This field is only meant for human consumption and
+     * should not be used programmatically as this field is not guaranteed to be
+     * consistent.
      *
      * Generated from protobuf field <code>string state_message = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_message = '';
+    protected $state_message = '';
     /**
      * Output only. `etag` is used for optimistic concurrency control as a way to
      * help prevent simultaneous updates of a volume backup from overwriting each
@@ -111,7 +113,19 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -155,13 +169,19 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      *           Output only. The current state of this VolumeBackup.
      *     @type string $state_message
      *           Output only. A human readable message explaining why the VolumeBackup is in
-     *           its current state.
+     *           its current state. This field is only meant for human consumption and
+     *           should not be used programmatically as this field is not guaranteed to be
+     *           consistent.
      *     @type string $etag
      *           Output only. `etag` is used for optimistic concurrency control as a way to
      *           help prevent simultaneous updates of a volume backup from overwriting each
      *           other. It is strongly suggested that systems make use of the `etag` in the
      *           read-modify-write cycle to perform volume backup updates in order to avoid
      *           race conditions.
+     *     @type bool $satisfies_pzs
+     *           Output only. [Output Only] Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. [Output Only] Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -521,7 +541,9 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A human readable message explaining why the VolumeBackup is in
-     * its current state.
+     * its current state. This field is only meant for human consumption and
+     * should not be used programmatically as this field is not guaranteed to be
+     * consistent.
      *
      * Generated from protobuf field <code>string state_message = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -533,7 +555,9 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A human readable message explaining why the VolumeBackup is in
-     * its current state.
+     * its current state. This field is only meant for human consumption and
+     * should not be used programmatically as this field is not guaranteed to be
+     * consistent.
      *
      * Generated from protobuf field <code>string state_message = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -577,6 +601,58 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

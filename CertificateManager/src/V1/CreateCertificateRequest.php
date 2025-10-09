@@ -21,19 +21,19 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A user-provided name of the certificate.
      *
      * Generated from protobuf field <code>string certificate_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate_id = '';
+    protected $certificate_id = '';
     /**
      * Required. A definition of the certificate to create.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate certificate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate = null;
+    protected $certificate = null;
 
     /**
      * @param string                                          $parent        Required. The parent resource of the certificate. Must be in the format

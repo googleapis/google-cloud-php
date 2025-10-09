@@ -33,8 +33,8 @@ use Google\Rpc\Status;
 /**
  * Creates a new Release in a given project and location.
  *
- * @param string $formattedParent The parent collection in which the `Release` should be created.
- *                                Format should be
+ * @param string $formattedParent The parent collection in which the `Release` is created.
+ *                                The format is
  *                                `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
  *                                {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
  * @param string $releaseId       ID of the `Release`.

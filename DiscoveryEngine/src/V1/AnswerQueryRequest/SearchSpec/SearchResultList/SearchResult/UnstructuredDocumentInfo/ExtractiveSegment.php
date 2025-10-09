@@ -11,6 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Extractive segment.
  * [Guide](https://cloud.google.com/generative-ai-app-builder/docs/snippets#extractive-segments)
+ * Answer generation will only use it if document_contexts is empty.
+ * This is supposed to be shorter snippets.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo.ExtractiveSegment</code>
  */

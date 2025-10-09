@@ -25,21 +25,21 @@ class MigrateMlEngineModelVersionConfig extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Required. Full resource name of ml engine model version.
      * Format: `projects/{project}/models/{model}/versions/{version}`.
      *
      * Generated from protobuf field <code>string model_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $model_version = '';
+    protected $model_version = '';
     /**
      * Required. Display name of the model in Vertex AI.
      * System will pick a display name if unspecified.
      *
      * Generated from protobuf field <code>string model_display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $model_display_name = '';
+    protected $model_display_name = '';
 
     /**
      * Constructor.

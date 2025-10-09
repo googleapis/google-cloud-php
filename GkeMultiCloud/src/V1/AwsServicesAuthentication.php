@@ -21,14 +21,14 @@ class AwsServicesAuthentication extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string role_arn = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $role_arn = '';
+    protected $role_arn = '';
     /**
      * Optional. An identifier for the assumed role session.
      * When unspecified, it defaults to `multicloud-service-agent`.
      *
      * Generated from protobuf field <code>string role_session_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $role_session_name = '';
+    protected $role_session_name = '';
 
     /**
      * Constructor.

@@ -80,6 +80,4 @@ class InstanceSize
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InstanceSize::class, \Google\Cloud\Metastore\V1\ScalingConfig_InstanceSize::class);
 

@@ -20,7 +20,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NotificationConfig.PubSub pubsub = 1;</code>
      */
-    private $pubsub = null;
+    protected $pubsub = null;
 
     /**
      * Constructor.

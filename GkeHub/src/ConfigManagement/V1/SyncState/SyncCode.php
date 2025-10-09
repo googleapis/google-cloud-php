@@ -7,45 +7,44 @@ namespace Google\Cloud\GkeHub\ConfigManagement\V1\SyncState;
 use UnexpectedValueException;
 
 /**
- * An enum representing an ACM's status syncing configs to a cluster
+ * An enum representing Config Sync's status of syncing configs to a cluster.
  *
  * Protobuf type <code>google.cloud.gkehub.configmanagement.v1.SyncState.SyncCode</code>
  */
 class SyncCode
 {
     /**
-     * ACM cannot determine a sync code
+     * Config Sync cannot determine a sync code
      *
      * Generated from protobuf enum <code>SYNC_CODE_UNSPECIFIED = 0;</code>
      */
     const SYNC_CODE_UNSPECIFIED = 0;
     /**
-     * ACM successfully synced the git Repo with the cluster
+     * Config Sync successfully synced the git Repo with the cluster
      *
      * Generated from protobuf enum <code>SYNCED = 1;</code>
      */
     const SYNCED = 1;
     /**
-     * ACM is in the progress of syncing a new change
+     * Config Sync is in the progress of syncing a new change
      *
      * Generated from protobuf enum <code>PENDING = 2;</code>
      */
     const PENDING = 2;
     /**
-     * Indicates an error configuring ACM, and user action is required
+     * Indicates an error configuring Config Sync, and user action is required
      *
      * Generated from protobuf enum <code>ERROR = 3;</code>
      */
     const ERROR = 3;
     /**
-     * ACM has been installed (operator manifest deployed),
-     * but not configured.
+     * Config Sync has been installed but not configured
      *
      * Generated from protobuf enum <code>NOT_CONFIGURED = 4;</code>
      */
     const NOT_CONFIGURED = 4;
     /**
-     * ACM has not been installed (no operator pod found)
+     * Config Sync has not been installed
      *
      * Generated from protobuf enum <code>NOT_INSTALLED = 5;</code>
      */

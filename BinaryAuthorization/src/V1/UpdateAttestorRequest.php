@@ -22,7 +22,7 @@ class UpdateAttestorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.Attestor attestor = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $attestor = null;
+    protected $attestor = null;
 
     /**
      * @param \Google\Cloud\BinaryAuthorization\V1\Attestor $attestor Required. The updated [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service will

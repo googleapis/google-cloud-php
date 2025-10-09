@@ -23,13 +23,13 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string notebook = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $notebook = '';
+    protected $notebook = '';
     /**
      * Optional. Infrastructure specification for the execution.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.InfrastructureSpec infrastructure_spec = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $infrastructure_spec = null;
+    protected $infrastructure_spec = null;
     /**
      * Optional. Cloud Storage URIs of files to be placed in the working
      * directory of each executor.

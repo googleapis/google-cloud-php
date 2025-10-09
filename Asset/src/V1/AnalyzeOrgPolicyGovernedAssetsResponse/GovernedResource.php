@@ -23,7 +23,7 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string full_resource_name = 1;</code>
      */
-    private $full_resource_name = '';
+    protected $full_resource_name = '';
     /**
      * The [full resource name]
      * (https://cloud.google.com/asset-inventory/docs/resource-name-format) of
@@ -32,7 +32,7 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The project that this resource belongs to, in the format of
      * projects/{PROJECT_NUMBER}. This field is available when the resource
@@ -40,7 +40,7 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 5;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The folder(s) that this resource belongs to, in the format of
      * folders/{FOLDER_NUMBER}. This field is available when the resource
@@ -56,7 +56,7 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string organization = 7;</code>
      */
-    private $organization = '';
+    protected $organization = '';
     /**
      * The asset type of the
      * [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource.full_resource_name][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource.full_resource_name]
@@ -68,7 +68,7 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset_type = 8;</code>
      */
-    private $asset_type = '';
+    protected $asset_type = '';
     /**
      * The effective tags on this resource.
      *
@@ -338,6 +338,4 @@ class GovernedResource extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GovernedResource::class, \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse_GovernedResource::class);
 

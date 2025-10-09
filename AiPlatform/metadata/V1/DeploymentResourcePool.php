@@ -21,15 +21,17 @@ class DeploymentResourcePool
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-©
-9google/cloud/aiplatform/v1/deployment_resource_pool.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.proto2google/cloud/aiplatform/v1/machine_resources.protogoogle/protobuf/timestamp.proto"É
+á
+9google/cloud/aiplatform/v1/deployment_resource_pool.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.proto2google/cloud/aiplatform/v1/machine_resources.protogoogle/protobuf/timestamp.proto"
 DeploymentResourcePool
 name (	BàAP
 dedicated_resources (2..google.cloud.aiplatform.v1.DedicatedResourcesBàAC
 encryption_spec (2*.google.cloud.aiplatform.v1.EncryptionSpec
 service_account (	!
 disable_container_logging (4
-create_time (2.google.protobuf.TimestampBàA:’êAŽ
+create_time (2.google.protobuf.TimestampBàA
+satisfies_pzs (BàA
+satisfies_pzi	 (BàA:’êAŽ
 0aiplatform.googleapis.com/DeploymentResourcePoolZprojects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}BÙ
 com.google.cloud.aiplatform.v1BDeploymentResourcePoolProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);

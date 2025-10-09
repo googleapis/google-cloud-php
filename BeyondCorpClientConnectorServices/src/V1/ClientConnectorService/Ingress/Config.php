@@ -21,7 +21,7 @@ class Config extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService.Ingress.Config.TransportProtocol transport_protocol = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $transport_protocol = 0;
+    protected $transport_protocol = 0;
     /**
      * Required. The settings used to configure basic ClientGateways.
      *

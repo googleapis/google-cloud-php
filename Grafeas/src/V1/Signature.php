@@ -44,7 +44,7 @@ class Signature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes signature = 1;</code>
      */
-    private $signature = '';
+    protected $signature = '';
     /**
      * The identifier for the public key that verifies this signature.
      *   * The `public_key_id` is required.
@@ -63,7 +63,7 @@ class Signature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string public_key_id = 2;</code>
      */
-    private $public_key_id = '';
+    protected $public_key_id = '';
 
     /**
      * Constructor.

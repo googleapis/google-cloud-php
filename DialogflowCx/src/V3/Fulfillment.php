@@ -35,8 +35,8 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
     private $messages;
     /**
      * The webhook to call.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/webhooks/<Webhook ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
      *
      * Generated from protobuf field <code>string webhook = 2 [(.google.api.resource_reference) = {</code>
      */
@@ -96,6 +96,12 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_generative_fallback = 12;</code>
      */
     protected $enable_generative_fallback = false;
+    /**
+     * A list of Generators to be called during this fulfillment.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.GeneratorSettings generators = 13;</code>
+     */
+    private $generators;
 
     /**
      * Constructor.
@@ -107,8 +113,8 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      *           The list of rich message responses to present to the user.
      *     @type string $webhook
      *           The webhook to call.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/webhooks/<Webhook ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
      *     @type bool $return_partial_responses
      *           Whether Dialogflow should return currently queued fulfillment response
      *           messages in streaming APIs. If a webhook is specified, it happens before
@@ -140,6 +146,8 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      *           [responses][google.cloud.dialogflow.cx.v3.Fulfillment.messages] in the
      *           fulfillment will be respected. This flag is only useful for fulfillments
      *           associated with no-match event handlers.
+     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\GeneratorSettings>|\Google\Protobuf\Internal\RepeatedField $generators
+     *           A list of Generators to be called during this fulfillment.
      * }
      */
     public function __construct($data = NULL) {
@@ -175,8 +183,8 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
 
     /**
      * The webhook to call.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/webhooks/<Webhook ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
      *
      * Generated from protobuf field <code>string webhook = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -188,8 +196,8 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
 
     /**
      * The webhook to call.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/webhooks/<Webhook ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
      *
      * Generated from protobuf field <code>string webhook = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -403,6 +411,32 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_generative_fallback = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of Generators to be called during this fulfillment.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.GeneratorSettings generators = 13;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGenerators()
+    {
+        return $this->generators;
+    }
+
+    /**
+     * A list of Generators to be called during this fulfillment.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.GeneratorSettings generators = 13;</code>
+     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\GeneratorSettings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGenerators($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\GeneratorSettings::class);
+        $this->generators = $arr;
 
         return $this;
     }

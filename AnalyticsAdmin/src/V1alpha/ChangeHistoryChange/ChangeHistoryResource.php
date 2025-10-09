@@ -75,8 +75,16 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of an Audience resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\EventCreateRule $event_create_rule
      *           A snapshot of an EventCreateRule resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\KeyEvent $key_event
+     *           A snapshot of a KeyEvent resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\CalculatedMetric $calculated_metric
      *           A snapshot of a CalculatedMetric resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\ReportingDataAnnotation $reporting_data_annotation
+     *           A snapshot of a ReportingDataAnnotation resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig $subproperty_sync_config
+     *           A snapshot of a SubpropertySyncConfig resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\ReportingIdentitySettings $reporting_identity_settings
+     *           A snapshot of a ReportingIdentitySettings resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -835,6 +843,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A snapshot of a KeyEvent resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.KeyEvent key_event = 30;</code>
+     * @return \Google\Analytics\Admin\V1alpha\KeyEvent|null
+     */
+    public function getKeyEvent()
+    {
+        return $this->readOneof(30);
+    }
+
+    public function hasKeyEvent()
+    {
+        return $this->hasOneof(30);
+    }
+
+    /**
+     * A snapshot of a KeyEvent resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.KeyEvent key_event = 30;</code>
+     * @param \Google\Analytics\Admin\V1alpha\KeyEvent $var
+     * @return $this
+     */
+    public function setKeyEvent($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\KeyEvent::class);
+        $this->writeOneof(30, $var);
+
+        return $this;
+    }
+
+    /**
      * A snapshot of a CalculatedMetric resource in change history.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CalculatedMetric calculated_metric = 31;</code>
@@ -866,6 +905,99 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A snapshot of a ReportingDataAnnotation resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ReportingDataAnnotation reporting_data_annotation = 32;</code>
+     * @return \Google\Analytics\Admin\V1alpha\ReportingDataAnnotation|null
+     */
+    public function getReportingDataAnnotation()
+    {
+        return $this->readOneof(32);
+    }
+
+    public function hasReportingDataAnnotation()
+    {
+        return $this->hasOneof(32);
+    }
+
+    /**
+     * A snapshot of a ReportingDataAnnotation resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ReportingDataAnnotation reporting_data_annotation = 32;</code>
+     * @param \Google\Analytics\Admin\V1alpha\ReportingDataAnnotation $var
+     * @return $this
+     */
+    public function setReportingDataAnnotation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ReportingDataAnnotation::class);
+        $this->writeOneof(32, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a SubpropertySyncConfig resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertySyncConfig subproperty_sync_config = 33;</code>
+     * @return \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig|null
+     */
+    public function getSubpropertySyncConfig()
+    {
+        return $this->readOneof(33);
+    }
+
+    public function hasSubpropertySyncConfig()
+    {
+        return $this->hasOneof(33);
+    }
+
+    /**
+     * A snapshot of a SubpropertySyncConfig resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertySyncConfig subproperty_sync_config = 33;</code>
+     * @param \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig $var
+     * @return $this
+     */
+    public function setSubpropertySyncConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig::class);
+        $this->writeOneof(33, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a ReportingIdentitySettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ReportingIdentitySettings reporting_identity_settings = 34;</code>
+     * @return \Google\Analytics\Admin\V1alpha\ReportingIdentitySettings|null
+     */
+    public function getReportingIdentitySettings()
+    {
+        return $this->readOneof(34);
+    }
+
+    public function hasReportingIdentitySettings()
+    {
+        return $this->hasOneof(34);
+    }
+
+    /**
+     * A snapshot of a ReportingIdentitySettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ReportingIdentitySettings reporting_identity_settings = 34;</code>
+     * @param \Google\Analytics\Admin\V1alpha\ReportingIdentitySettings $var
+     * @return $this
+     */
+    public function setReportingIdentitySettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ReportingIdentitySettings::class);
+        $this->writeOneof(34, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getResource()
@@ -875,6 +1007,4 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ChangeHistoryResource::class, \Google\Analytics\Admin\V1alpha\ChangeHistoryChange_ChangeHistoryResource::class);
 

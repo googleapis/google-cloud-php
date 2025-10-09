@@ -21,7 +21,7 @@ class PostScanActions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileSpec.PostScanActions.BigQueryExport bigquery_export = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $bigquery_export = null;
+    protected $bigquery_export = null;
 
     /**
      * Constructor.

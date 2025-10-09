@@ -26,44 +26,44 @@ class PrivateCloud extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Creation time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Last update time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Time when the resource was scheduled for deletion.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. Time when the resource will be irreversibly deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Output only. State of the resource. New values may be added to this enum
      * when appropriate.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateCloud.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Required. Network configuration of the private cloud.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.NetworkConfig network_config = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network_config = null;
+    protected $network_config = null;
     /**
      * Required. Input only. The management cluster for this private cloud.
      * This field is required during creation of the private cloud to provide
@@ -73,43 +73,43 @@ class PrivateCloud extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateCloud.ManagementCluster management_cluster = 10 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $management_cluster = null;
+    protected $management_cluster = null;
     /**
      * User-provided description for this private cloud.
      *
      * Generated from protobuf field <code>string description = 11;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. HCX appliance.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.Hcx hcx = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $hcx = null;
+    protected $hcx = null;
     /**
      * Output only. NSX appliance.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.Nsx nsx = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $nsx = null;
+    protected $nsx = null;
     /**
      * Output only. Vcenter appliance.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.Vcenter vcenter = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vcenter = null;
+    protected $vcenter = null;
     /**
      * Output only. System-generated unique identifier for the resource.
      *
      * Generated from protobuf field <code>string uid = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Optional. Type of the private cloud. Defaults to STANDARD.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateCloud.Type type = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

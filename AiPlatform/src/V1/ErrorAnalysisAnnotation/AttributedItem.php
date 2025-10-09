@@ -22,13 +22,13 @@ class AttributedItem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_resource_name = 1;</code>
      */
-    private $annotation_resource_name = '';
+    protected $annotation_resource_name = '';
     /**
      * The distance of this item to the annotation.
      *
      * Generated from protobuf field <code>double distance = 2;</code>
      */
-    private $distance = 0.0;
+    protected $distance = 0.0;
 
     /**
      * Constructor.

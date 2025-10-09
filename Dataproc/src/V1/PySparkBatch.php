@@ -24,7 +24,7 @@ class PySparkBatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string main_python_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $main_python_file_uri = '';
+    protected $main_python_file_uri = '';
     /**
      * Optional. The arguments to pass to the driver. Do not include arguments
      * that can be set as batch properties, such as `--conf`, since a collision

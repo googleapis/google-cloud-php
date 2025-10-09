@@ -30,7 +30,7 @@ class SecurityMarks extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Mutable user specified security marks belonging to the parent resource.
      * Constraints are as follows:
@@ -63,7 +63,7 @@ class SecurityMarks extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string canonical_name = 3;</code>
      */
-    private $canonical_name = '';
+    protected $canonical_name = '';
 
     /**
      * Constructor.

@@ -37,12 +37,19 @@ class DeploymentState
      * Generated from protobuf enum <code>ERROR = 3;</code>
      */
     const ERROR = 3;
+    /**
+     * Deployment is installing or terminating
+     *
+     * Generated from protobuf enum <code>PENDING = 4;</code>
+     */
+    const PENDING = 4;
 
     private static $valueToName = [
         self::DEPLOYMENT_STATE_UNSPECIFIED => 'DEPLOYMENT_STATE_UNSPECIFIED',
         self::NOT_INSTALLED => 'NOT_INSTALLED',
         self::INSTALLED => 'INSTALLED',
         self::ERROR => 'ERROR',
+        self::PENDING => 'PENDING',
     ];
 
     public static function name($value)

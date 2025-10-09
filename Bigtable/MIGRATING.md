@@ -14,6 +14,25 @@ Update your `google/cloud-bigtable` dependency to `^2.0`:
 
 ## Changes
 
+### Filter Option change
+
+The `rowFilter` option for `Table::readRows` is now called `filter`:
+
+```php
+use Google\Cloud\Bigtable\BigtableClient;
+use Google\Cloud\Bigtable\V2\RowFilter;
+
+// Only retrieve the most recent version of the cell.
+$rowFilter = (new RowFilter())->setCellsPerColumnLimitFilter(1);
+
+$bigtable = new BigtableClient(['projectId' => $projectId]);
+$table = $bigtable->table($instanceId, $tableId);
+
+$row = $table->readRow($key, [
+    'filter' => $rowFilter
+]);
+```
+
 ### Retry Options changes
 
 The `retries` parameter in the following RPC calls is changed to `retrySettings.maxRetries`:

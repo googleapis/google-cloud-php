@@ -20,7 +20,7 @@ class MaxPodsConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 max_pods_per_node = 1;</code>
      */
-    private $max_pods_per_node = 0;
+    protected $max_pods_per_node = 0;
 
     /**
      * Constructor.

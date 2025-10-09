@@ -23,14 +23,14 @@ class ResourceRuntimeSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ServiceAccountSpec service_account_spec = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_account_spec = null;
+    protected $service_account_spec = null;
     /**
      * Optional. Ray cluster configuration.
      * Required when creating a dedicated RayCluster on the PersistentResource.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RaySpec ray_spec = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ray_spec = null;
+    protected $ray_spec = null;
 
     /**
      * Constructor.

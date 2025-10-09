@@ -41,10 +41,16 @@ use Google\Cloud\ErrorReporting\V1beta1\ServiceContext;
  * `POST
  * https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events:report?key=123ABC456`
  *
- * **Note:** [Error Reporting](/error-reporting) is a global service built
- * on Cloud Logging and doesn't analyze logs stored
- * in regional log buckets or logs routed to other Google Cloud projects.
+ * **Note:** [Error Reporting] (https://cloud.google.com/error-reporting)
+ * is a service built on Cloud Logging and can analyze log entries when all of
+ * the following are true:
  *
+ * * Customer-managed encryption keys (CMEK) are disabled on the log bucket.
+ * * The log bucket satisfies one of the following:
+ * * The log bucket is stored in the same project where the logs
+ * originated.
+ * * The logs were routed to a project, and then that project stored those
+ * logs in a log bucket that it owns.
  *
  * @param string $formattedProjectName The resource name of the Google Cloud Platform project. Written
  *                                     as `projects/{projectId}`, where `{projectId}` is the
@@ -72,9 +78,9 @@ use Google\Cloud\ErrorReporting\V1beta1\ServiceContext;
  *                                     [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace).
  *                                     * **C#**: Must be the return value of
  *                                     [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx).
- *                                     * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)`
- *                                     and contain the result of
- *                                     [`(string)$exception`](http://php.net/manual/en/exception.tostring.php).
+ *                                     * **PHP**: Must be prefixed with `"PHP (Notice|Parse error|Fatal
+ *                                     error|Warning): "` and contain the result of
+ *                                     [`(string)$exception`](https://php.net/manual/en/exception.tostring.php).
  *                                     * **Go**: Must be the return value of
  *                                     [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
  */

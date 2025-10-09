@@ -30,7 +30,7 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization.EvaluationMode evaluation_mode = 2;</code>
      */
-    private $evaluation_mode = 0;
+    protected $evaluation_mode = 0;
 
     /**
      * Constructor.
@@ -63,7 +63,9 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
      */
     public function getEnabled()
     {
-        @trigger_error('enabled is deprecated.', E_USER_DEPRECATED);
+        if ($this->enabled !== false) {
+            @trigger_error('enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enabled;
     }
 

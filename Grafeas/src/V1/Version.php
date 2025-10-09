@@ -20,20 +20,20 @@ class Version extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 epoch = 1;</code>
      */
-    private $epoch = 0;
+    protected $epoch = 0;
     /**
      * Required only when version kind is NORMAL. The main part of the version
      * name.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The iteration of the package build from the above version.
      *
      * Generated from protobuf field <code>string revision = 3;</code>
      */
-    private $revision = '';
+    protected $revision = '';
     /**
      * Whether this version is specifying part of an inclusive range. Grafeas
      * does not have the capability to specify version ranges; instead we have
@@ -44,21 +44,21 @@ class Version extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool inclusive = 6;</code>
      */
-    private $inclusive = false;
+    protected $inclusive = false;
     /**
      * Required. Distinguishes between sentinel MIN/MAX versions and normal
      * versions.
      *
      * Generated from protobuf field <code>.grafeas.v1.Version.VersionKind kind = 4;</code>
      */
-    private $kind = 0;
+    protected $kind = 0;
     /**
      * Human readable version string. This string is of the form
      * <epoch>:<name>-<revision> and is only set when kind is NORMAL.
      *
      * Generated from protobuf field <code>string full_name = 5;</code>
      */
-    private $full_name = '';
+    protected $full_name = '';
 
     /**
      * Constructor.

@@ -26,11 +26,17 @@ class StackType
      */
     const IPV4_IPV6 = 22197249;
     /**
-     * The network interface will be assigned IPv4 address.
+     * The network interface will only be assigned IPv4 addresses.
      *
      * Generated from protobuf enum <code>IPV4_ONLY = 22373798;</code>
      */
     const IPV4_ONLY = 22373798;
+    /**
+     * The network interface will only be assigned IPv6 addresses.
+     *
+     * Generated from protobuf enum <code>IPV6_ONLY = 79632100;</code>
+     */
+    const IPV6_ONLY = 79632100;
     /**
      * Generated from protobuf enum <code>UNSPECIFIED_STACK_TYPE = 298084569;</code>
      */
@@ -40,6 +46,7 @@ class StackType
         self::UNDEFINED_STACK_TYPE => 'UNDEFINED_STACK_TYPE',
         self::IPV4_IPV6 => 'IPV4_IPV6',
         self::IPV4_ONLY => 'IPV4_ONLY',
+        self::IPV6_ONLY => 'IPV6_ONLY',
         self::UNSPECIFIED_STACK_TYPE => 'UNSPECIFIED_STACK_TYPE',
     ];
 

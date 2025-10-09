@@ -21,13 +21,13 @@ class GetAuthorizedCertificateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Controls the set of fields returned in the `GET` response.
      *
      * Generated from protobuf field <code>.google.appengine.v1.AuthorizedCertificateView view = 2;</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * Constructor.

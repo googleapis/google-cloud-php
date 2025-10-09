@@ -37,7 +37,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
-    private $total_size = 0;
+    protected $total_size = 0;
     /**
      * Contains the spell corrected query, if found. If the spell correction type
      * is AUTOMATIC, then the search results are based on corrected_query.
@@ -45,7 +45,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string corrected_query = 4;</code>
      */
-    private $corrected_query = '';
+    protected $corrected_query = '';
     /**
      * A unique search token. This should be included in the
      * [UserEvent][google.cloud.retail.v2.UserEvent] logs resulting from this
@@ -53,7 +53,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attribution_token = 5;</code>
      */
-    private $attribution_token = '';
+    protected $attribution_token = '';
     /**
      * A token that can be sent as
      * [SearchRequest.page_token][google.cloud.retail.v2.SearchRequest.page_token]
@@ -62,13 +62,13 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 6;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * Query expansion information for the returned results.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.QueryExpansionInfo query_expansion_info = 7;</code>
      */
-    private $query_expansion_info = null;
+    protected $query_expansion_info = null;
     /**
      * The URI of a customer-defined redirect page. If redirect action is
      * triggered, no search is performed, and only
@@ -78,7 +78,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string redirect_uri = 10;</code>
      */
-    private $redirect_uri = '';
+    protected $redirect_uri = '';
     /**
      * The fully qualified resource name of applied
      * [controls](https://cloud.google.com/retail/docs/serving-control-rules).
@@ -86,6 +86,16 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string applied_controls = 12;</code>
      */
     private $applied_controls;
+    /**
+     * Metadata for pin controls which were applicable to the request.
+     * This contains two map fields, one for all matched pins and one for pins
+     * which were matched but not applied.
+     * The two maps are keyed by pin position, and the values are the product ids
+     * which were matched to that pin.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.PinControlMetadata pin_control_metadata = 22;</code>
+     */
+    protected $pin_control_metadata = null;
     /**
      * The invalid
      * [SearchRequest.BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
@@ -95,12 +105,26 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      */
     private $invalid_condition_boost_specs;
     /**
-     * Metadata related to A/B testing [Experiment][] associated with this
+     * Metadata related to A/B testing experiment associated with this
      * response. Only exists when an experiment is triggered.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ExperimentInfo experiment_info = 17;</code>
      */
     private $experiment_info;
+    /**
+     * This field specifies all related information that is needed on client
+     * side for UI rendering of conversational retail search.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.ConversationalSearchResult conversational_search_result = 18;</code>
+     */
+    protected $conversational_search_result = null;
+    /**
+     * This field specifies all related information for tile navigation that will
+     * be used in client side.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.TileNavigationResult tile_navigation_result = 19;</code>
+     */
+    protected $tile_navigation_result = null;
 
     /**
      * Constructor.
@@ -142,13 +166,25 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applied_controls
      *           The fully qualified resource name of applied
      *           [controls](https://cloud.google.com/retail/docs/serving-control-rules).
+     *     @type \Google\Cloud\Retail\V2\PinControlMetadata $pin_control_metadata
+     *           Metadata for pin controls which were applicable to the request.
+     *           This contains two map fields, one for all matched pins and one for pins
+     *           which were matched but not applied.
+     *           The two maps are keyed by pin position, and the values are the product ids
+     *           which were matched to that pin.
      *     @type array<\Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $invalid_condition_boost_specs
      *           The invalid
      *           [SearchRequest.BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
      *           that are not applied during serving.
      *     @type array<\Google\Cloud\Retail\V2\ExperimentInfo>|\Google\Protobuf\Internal\RepeatedField $experiment_info
-     *           Metadata related to A/B testing [Experiment][] associated with this
+     *           Metadata related to A/B testing experiment associated with this
      *           response. Only exists when an experiment is triggered.
+     *     @type \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult $conversational_search_result
+     *           This field specifies all related information that is needed on client
+     *           side for UI rendering of conversational retail search.
+     *     @type \Google\Cloud\Retail\V2\SearchResponse\TileNavigationResult $tile_navigation_result
+     *           This field specifies all related information for tile navigation that will
+     *           be used in client side.
      * }
      */
     public function __construct($data = NULL) {
@@ -433,6 +469,50 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Metadata for pin controls which were applicable to the request.
+     * This contains two map fields, one for all matched pins and one for pins
+     * which were matched but not applied.
+     * The two maps are keyed by pin position, and the values are the product ids
+     * which were matched to that pin.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.PinControlMetadata pin_control_metadata = 22;</code>
+     * @return \Google\Cloud\Retail\V2\PinControlMetadata|null
+     */
+    public function getPinControlMetadata()
+    {
+        return $this->pin_control_metadata;
+    }
+
+    public function hasPinControlMetadata()
+    {
+        return isset($this->pin_control_metadata);
+    }
+
+    public function clearPinControlMetadata()
+    {
+        unset($this->pin_control_metadata);
+    }
+
+    /**
+     * Metadata for pin controls which were applicable to the request.
+     * This contains two map fields, one for all matched pins and one for pins
+     * which were matched but not applied.
+     * The two maps are keyed by pin position, and the values are the product ids
+     * which were matched to that pin.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.PinControlMetadata pin_control_metadata = 22;</code>
+     * @param \Google\Cloud\Retail\V2\PinControlMetadata $var
+     * @return $this
+     */
+    public function setPinControlMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\PinControlMetadata::class);
+        $this->pin_control_metadata = $var;
+
+        return $this;
+    }
+
+    /**
      * The invalid
      * [SearchRequest.BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
      * that are not applied during serving.
@@ -463,7 +543,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Metadata related to A/B testing [Experiment][] associated with this
+     * Metadata related to A/B testing experiment associated with this
      * response. Only exists when an experiment is triggered.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ExperimentInfo experiment_info = 17;</code>
@@ -475,7 +555,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Metadata related to A/B testing [Experiment][] associated with this
+     * Metadata related to A/B testing experiment associated with this
      * response. Only exists when an experiment is triggered.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ExperimentInfo experiment_info = 17;</code>
@@ -486,6 +566,82 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\ExperimentInfo::class);
         $this->experiment_info = $arr;
+
+        return $this;
+    }
+
+    /**
+     * This field specifies all related information that is needed on client
+     * side for UI rendering of conversational retail search.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.ConversationalSearchResult conversational_search_result = 18;</code>
+     * @return \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult|null
+     */
+    public function getConversationalSearchResult()
+    {
+        return $this->conversational_search_result;
+    }
+
+    public function hasConversationalSearchResult()
+    {
+        return isset($this->conversational_search_result);
+    }
+
+    public function clearConversationalSearchResult()
+    {
+        unset($this->conversational_search_result);
+    }
+
+    /**
+     * This field specifies all related information that is needed on client
+     * side for UI rendering of conversational retail search.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.ConversationalSearchResult conversational_search_result = 18;</code>
+     * @param \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult $var
+     * @return $this
+     */
+    public function setConversationalSearchResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult::class);
+        $this->conversational_search_result = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field specifies all related information for tile navigation that will
+     * be used in client side.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.TileNavigationResult tile_navigation_result = 19;</code>
+     * @return \Google\Cloud\Retail\V2\SearchResponse\TileNavigationResult|null
+     */
+    public function getTileNavigationResult()
+    {
+        return $this->tile_navigation_result;
+    }
+
+    public function hasTileNavigationResult()
+    {
+        return isset($this->tile_navigation_result);
+    }
+
+    public function clearTileNavigationResult()
+    {
+        unset($this->tile_navigation_result);
+    }
+
+    /**
+     * This field specifies all related information for tile navigation that will
+     * be used in client side.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.TileNavigationResult tile_navigation_result = 19;</code>
+     * @param \Google\Cloud\Retail\V2\SearchResponse\TileNavigationResult $var
+     * @return $this
+     */
+    public function setTileNavigationResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\SearchResponse\TileNavigationResult::class);
+        $this->tile_navigation_result = $var;
 
         return $this;
     }

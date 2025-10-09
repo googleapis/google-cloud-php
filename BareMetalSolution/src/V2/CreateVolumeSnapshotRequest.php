@@ -20,13 +20,13 @@ class CreateVolumeSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The snapshot to create.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VolumeSnapshot volume_snapshot = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $volume_snapshot = null;
+    protected $volume_snapshot = null;
 
     /**
      * @param string                                            $parent         Required. The volume to snapshot. Please see

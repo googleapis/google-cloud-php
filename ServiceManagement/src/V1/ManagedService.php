@@ -23,13 +23,13 @@ class ManagedService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_name = 2;</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * ID of the project that produces and owns this service.
      *
      * Generated from protobuf field <code>string producer_project_id = 3;</code>
      */
-    private $producer_project_id = '';
+    protected $producer_project_id = '';
 
     /**
      * Constructor.

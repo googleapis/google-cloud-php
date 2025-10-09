@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ namespace Google\Cloud\AIPlatform\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -36,22 +36,27 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\BatchCreateFeaturesRequest;
+use Google\Cloud\AIPlatform\V1\BatchCreateFeaturesResponse;
 use Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest;
+use Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\CreateEntityTypeRequest;
 use Google\Cloud\AIPlatform\V1\CreateFeatureRequest;
 use Google\Cloud\AIPlatform\V1\CreateFeaturestoreRequest;
 use Google\Cloud\AIPlatform\V1\DeleteEntityTypeRequest;
 use Google\Cloud\AIPlatform\V1\DeleteFeatureRequest;
 use Google\Cloud\AIPlatform\V1\DeleteFeatureValuesRequest;
+use Google\Cloud\AIPlatform\V1\DeleteFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\DeleteFeaturestoreRequest;
 use Google\Cloud\AIPlatform\V1\EntityType;
 use Google\Cloud\AIPlatform\V1\ExportFeatureValuesRequest;
+use Google\Cloud\AIPlatform\V1\ExportFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\Feature;
 use Google\Cloud\AIPlatform\V1\Featurestore;
 use Google\Cloud\AIPlatform\V1\GetEntityTypeRequest;
 use Google\Cloud\AIPlatform\V1\GetFeatureRequest;
 use Google\Cloud\AIPlatform\V1\GetFeaturestoreRequest;
 use Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest;
+use Google\Cloud\AIPlatform\V1\ImportFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\ListEntityTypesRequest;
 use Google\Cloud\AIPlatform\V1\ListFeaturesRequest;
 use Google\Cloud\AIPlatform\V1\ListFeaturestoresRequest;
@@ -67,8 +72,10 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The service that handles CRUD and List for resources for Featurestore.
@@ -81,32 +88,32 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateFeaturesAsync(BatchCreateFeaturesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchReadFeatureValuesAsync(BatchReadFeatureValuesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEntityTypeAsync(CreateEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFeatureAsync(CreateFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFeaturestoreAsync(CreateFeaturestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEntityTypeAsync(DeleteEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFeatureAsync(DeleteFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFeatureValuesAsync(DeleteFeatureValuesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFeaturestoreAsync(DeleteFeaturestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportFeatureValuesAsync(ExportFeatureValuesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEntityTypeAsync(GetEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFeatureAsync(GetFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFeaturestoreAsync(GetFeaturestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importFeatureValuesAsync(ImportFeatureValuesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntityTypesAsync(ListEntityTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFeaturesAsync(ListFeaturesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFeaturestoresAsync(ListFeaturestoresRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchFeaturesAsync(SearchFeaturesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEntityTypeAsync(UpdateEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFeatureAsync(UpdateFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFeaturestoreAsync(UpdateFeaturestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchCreateFeaturesAsync(BatchCreateFeaturesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchReadFeatureValuesAsync(BatchReadFeatureValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEntityTypeAsync(CreateEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFeatureAsync(CreateFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFeaturestoreAsync(CreateFeaturestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteEntityTypeAsync(DeleteEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFeatureAsync(DeleteFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFeatureValuesAsync(DeleteFeatureValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFeaturestoreAsync(DeleteFeaturestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportFeatureValuesAsync(ExportFeatureValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntityType> getEntityTypeAsync(GetEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Feature> getFeatureAsync(GetFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Featurestore> getFeaturestoreAsync(GetFeaturestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importFeatureValuesAsync(ImportFeatureValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntityTypesAsync(ListEntityTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFeaturesAsync(ListFeaturesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFeaturestoresAsync(ListFeaturestoresRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchFeaturesAsync(SearchFeaturesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntityType> updateEntityTypeAsync(UpdateEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Feature> updateFeatureAsync(UpdateFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateFeaturestoreAsync(UpdateFeaturestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class FeaturestoreServiceClient
 {
@@ -133,9 +140,7 @@ final class FeaturestoreServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -181,10 +186,29 @@ final class FeaturestoreServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -198,8 +222,12 @@ final class FeaturestoreServiceClient
      *
      * @return string The formatted entity_type resource.
      */
-    public static function entityTypeName(string $project, string $location, string $featurestore, string $entityType): string
-    {
+    public static function entityTypeName(
+        string $project,
+        string $location,
+        string $featurestore,
+        string $entityType
+    ): string {
         return self::getPathTemplate('entityType')->render([
             'project' => $project,
             'location' => $location,
@@ -220,8 +248,13 @@ final class FeaturestoreServiceClient
      *
      * @return string The formatted feature resource.
      */
-    public static function featureName(string $project, string $location, string $featurestore, string $entityType, string $feature): string
-    {
+    public static function featureName(
+        string $project,
+        string $location,
+        string $featurestore,
+        string $entityType,
+        string $feature
+    ): string {
         return self::getPathTemplate('feature')->render([
             'project' => $project,
             'location' => $location,
@@ -297,8 +330,12 @@ final class FeaturestoreServiceClient
      *
      * @return string The formatted project_location_feature_group_feature resource.
      */
-    public static function projectLocationFeatureGroupFeatureName(string $project, string $location, string $featureGroup, string $feature): string
-    {
+    public static function projectLocationFeatureGroupFeatureName(
+        string $project,
+        string $location,
+        string $featureGroup,
+        string $feature
+    ): string {
         return self::getPathTemplate('projectLocationFeatureGroupFeature')->render([
             'project' => $project,
             'location' => $location,
@@ -319,8 +356,13 @@ final class FeaturestoreServiceClient
      *
      * @return string The formatted project_location_featurestore_entity_type_feature resource.
      */
-    public static function projectLocationFeaturestoreEntityTypeFeatureName(string $project, string $location, string $featurestore, string $entityType, string $feature): string
-    {
+    public static function projectLocationFeaturestoreEntityTypeFeatureName(
+        string $project,
+        string $location,
+        string $featurestore,
+        string $entityType,
+        string $feature
+    ): string {
         return self::getPathTemplate('projectLocationFeaturestoreEntityTypeFeature')->render([
             'project' => $project,
             'location' => $location,
@@ -348,14 +390,14 @@ final class FeaturestoreServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -363,20 +405,29 @@ final class FeaturestoreServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'aiplatform.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new FeaturestoreServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -410,11 +461,16 @@ final class FeaturestoreServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -450,7 +506,7 @@ final class FeaturestoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BatchCreateFeaturesResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -482,12 +538,14 @@ final class FeaturestoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BatchReadFeatureValuesResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchReadFeatureValues(BatchReadFeatureValuesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchReadFeatureValues(
+        BatchReadFeatureValuesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchReadFeatureValues', $request, $callOptions)->wait();
     }
 
@@ -508,7 +566,7 @@ final class FeaturestoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EntityType>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -534,7 +592,7 @@ final class FeaturestoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Feature>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -561,7 +619,7 @@ final class FeaturestoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Featurestore>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -588,7 +646,7 @@ final class FeaturestoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -614,7 +672,7 @@ final class FeaturestoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -650,7 +708,7 @@ final class FeaturestoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DeleteFeatureValuesResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -678,7 +736,7 @@ final class FeaturestoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -705,7 +763,7 @@ final class FeaturestoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExportFeatureValuesResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -829,7 +887,7 @@ final class FeaturestoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ImportFeatureValuesResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1013,7 +1071,7 @@ final class FeaturestoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Featurestore>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1159,8 +1217,10 @@ final class FeaturestoreServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

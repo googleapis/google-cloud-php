@@ -21,7 +21,7 @@ class DataplexConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled_pipelines_lineage = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enabled_pipelines_lineage = false;
+    protected $enabled_pipelines_lineage = false;
 
     /**
      * Constructor.

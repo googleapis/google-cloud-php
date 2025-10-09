@@ -30,7 +30,7 @@ use Google\Cloud\Run\V2\Job;
 use Google\Cloud\Run\V2\ListJobsRequest;
 
 /**
- * Lists Jobs.
+ * Lists Jobs. Results are sorted by creation time, descending.
  *
  * @param string $formattedParent The location and project to list resources on.
  *                                Format: projects/{project}/locations/{location}, where {project} can be

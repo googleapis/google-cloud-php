@@ -23,13 +23,13 @@ class SecurityBulletinEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_type_affected = 1;</code>
      */
-    private $resource_type_affected = '';
+    protected $resource_type_affected = '';
     /**
      * The ID of the bulletin corresponding to the vulnerability.
      *
      * Generated from protobuf field <code>string bulletin_id = 2;</code>
      */
-    private $bulletin_id = '';
+    protected $bulletin_id = '';
     /**
      * The CVEs associated with this bulletin.
      *
@@ -41,20 +41,20 @@ class SecurityBulletinEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string severity = 4;</code>
      */
-    private $severity = '';
+    protected $severity = '';
     /**
      * The URI link to the bulletin on the website for more information.
      *
      * Generated from protobuf field <code>string bulletin_uri = 5;</code>
      */
-    private $bulletin_uri = '';
+    protected $bulletin_uri = '';
     /**
      * A brief description of the bulletin. See the bulletin pointed to by the
      * bulletin_uri field for an expanded description.
      *
      * Generated from protobuf field <code>string brief_description = 6;</code>
      */
-    private $brief_description = '';
+    protected $brief_description = '';
     /**
      * The GKE minor versions affected by this vulnerability.
      *
@@ -76,14 +76,20 @@ class SecurityBulletinEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string suggested_upgrade_target = 9;</code>
      */
-    private $suggested_upgrade_target = '';
+    protected $suggested_upgrade_target = '';
     /**
      * If this field is specified, it means there are manual steps that the user
      * must take to make their clusters safe.
      *
      * Generated from protobuf field <code>bool manual_steps_required = 10;</code>
      */
-    private $manual_steps_required = false;
+    protected $manual_steps_required = false;
+    /**
+     * The GKE versions where this vulnerability is mitigated.
+     *
+     * Generated from protobuf field <code>repeated string mitigated_versions = 11;</code>
+     */
+    private $mitigated_versions;
 
     /**
      * Constructor.
@@ -119,6 +125,8 @@ class SecurityBulletinEvent extends \Google\Protobuf\Internal\Message
      *     @type bool $manual_steps_required
      *           If this field is specified, it means there are manual steps that the user
      *           must take to make their clusters safe.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mitigated_versions
+     *           The GKE versions where this vulnerability is mitigated.
      * }
      */
     public function __construct($data = NULL) {
@@ -398,6 +406,32 @@ class SecurityBulletinEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->manual_steps_required = $var;
+
+        return $this;
+    }
+
+    /**
+     * The GKE versions where this vulnerability is mitigated.
+     *
+     * Generated from protobuf field <code>repeated string mitigated_versions = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMitigatedVersions()
+    {
+        return $this->mitigated_versions;
+    }
+
+    /**
+     * The GKE versions where this vulnerability is mitigated.
+     *
+     * Generated from protobuf field <code>repeated string mitigated_versions = 11;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMitigatedVersions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->mitigated_versions = $arr;
 
         return $this;
     }

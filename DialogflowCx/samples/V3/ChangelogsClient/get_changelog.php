@@ -32,8 +32,8 @@ use Google\Cloud\Dialogflow\Cx\V3\GetChangelogRequest;
  * Retrieves the specified Changelog.
  *
  * @param string $formattedName The name of the changelog to get.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/changelogs/<Changelog ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/changelogs/<ChangelogID>`. Please see
  *                              {@see ChangelogsClient::changelogName()} for help formatting this field.
  */
 function get_changelog_sample(string $formattedName): void

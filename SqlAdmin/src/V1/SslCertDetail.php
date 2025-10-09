@@ -20,14 +20,14 @@ class SslCertDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SslCert cert_info = 1;</code>
      */
-    private $cert_info = null;
+    protected $cert_info = null;
     /**
      * The private key for the client cert, in pem format.  Keep private in order
      * to protect your security.
      *
      * Generated from protobuf field <code>string cert_private_key = 2;</code>
      */
-    private $cert_private_key = '';
+    protected $cert_private_key = '';
 
     /**
      * Constructor.

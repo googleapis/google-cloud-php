@@ -29,11 +29,40 @@ Please see our [Authentication guide](https://github.com/googleapis/google-cloud
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\ArtifactRegistry\V1\Attachment;
+use Google\Cloud\ArtifactRegistry\V1\Client\ArtifactRegistryClient;
+use Google\Cloud\ArtifactRegistry\V1\GetAttachmentRequest;
+
+// Create a client.
+$artifactRegistryClient = new ArtifactRegistryClient();
+
+// Prepare the request message.
+$request = (new GetAttachmentRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Attachment $response */
+    $response = $artifactRegistryClient->getAttachment($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
+
 ### Version
 
-This component is considered beta. As such, it should be expected to be mostly
-stable and we're working towards a release candidate. We will address issues
-and requests with a higher priority.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

@@ -23,7 +23,7 @@ class SelectEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EntityIdSelector entity_id_selector = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entity_id_selector = null;
+    protected $entity_id_selector = null;
 
     /**
      * Constructor.

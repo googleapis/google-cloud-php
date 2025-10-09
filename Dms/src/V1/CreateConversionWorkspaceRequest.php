@@ -21,19 +21,19 @@ class CreateConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the conversion workspace to create.
      *
      * Generated from protobuf field <code>string conversion_workspace_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $conversion_workspace_id = '';
+    protected $conversion_workspace_id = '';
     /**
      * Required. Represents a conversion workspace object.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.ConversionWorkspace conversion_workspace = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $conversion_workspace = null;
+    protected $conversion_workspace = null;
     /**
      * A unique ID used to identify the request. If the server receives two
      * requests with the same ID, then the second request is ignored.
@@ -43,7 +43,7 @@ class CreateConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                        $parent                Required. The parent which owns this collection of conversion workspaces. Please see

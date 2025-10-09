@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionSslPolicies_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RegionSslPoliciesClient;
+use Google\Cloud\Compute\V1\Client\RegionSslPoliciesClient;
+use Google\Cloud\Compute\V1\ListRegionSslPoliciesRequest;
 
 /**
  * Lists all the SSL policies that have been configured for the specified project and region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $regionSslPoliciesClient = new RegionSslPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new ListRegionSslPoliciesRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionSslPoliciesClient->list($project, $region);
+        $response = $regionSslPoliciesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

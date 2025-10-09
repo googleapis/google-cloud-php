@@ -20,13 +20,13 @@ class ManagementSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.ManagementSettings.RenewalMethod renewal_method = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $renewal_method = 0;
+    protected $renewal_method = 0;
     /**
      * Controls whether the domain can be transferred to another registrar.
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.TransferLockState transfer_lock_state = 4;</code>
      */
-    private $transfer_lock_state = 0;
+    protected $transfer_lock_state = 0;
 
     /**
      * Constructor.

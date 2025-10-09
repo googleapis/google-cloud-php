@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Google Cloud Storage as a destination.
+ * Cloud Storage as the destination of a data transfer.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.DestinationGcsBucket</code>
  */
 class DestinationGcsBucket extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. URI to a Cloud Storage object in format:
-     * 'gs://<bucket_name>/<path_inside_bucket>'.
+     * Required. URI to a Cloud Storage bucket in the format:
+     * `gs://<bucket_name>/<path_inside_bucket>`. The path inside the bucket is
+     * optional.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -30,8 +31,9 @@ class DestinationGcsBucket extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           Required. URI to a Cloud Storage object in format:
-     *           'gs://<bucket_name>/<path_inside_bucket>'.
+     *           Required. URI to a Cloud Storage bucket in the format:
+     *           `gs://<bucket_name>/<path_inside_bucket>`. The path inside the bucket is
+     *           optional.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +42,9 @@ class DestinationGcsBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. URI to a Cloud Storage object in format:
-     * 'gs://<bucket_name>/<path_inside_bucket>'.
+     * Required. URI to a Cloud Storage bucket in the format:
+     * `gs://<bucket_name>/<path_inside_bucket>`. The path inside the bucket is
+     * optional.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -52,8 +55,9 @@ class DestinationGcsBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. URI to a Cloud Storage object in format:
-     * 'gs://<bucket_name>/<path_inside_bucket>'.
+     * Required. URI to a Cloud Storage bucket in the format:
+     * `gs://<bucket_name>/<path_inside_bucket>`. The path inside the bucket is
+     * optional.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

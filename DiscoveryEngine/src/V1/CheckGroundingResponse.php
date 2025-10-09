@@ -33,6 +33,13 @@ class CheckGroundingResponse extends \Google\Protobuf\Internal\Message
      */
     private $cited_chunks;
     /**
+     * List of facts cited across all claims in the answer candidate.
+     * These are derived from the facts supplied in the request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.CheckGroundingResponse.CheckGroundingFactChunk cited_facts = 6;</code>
+     */
+    private $cited_facts;
+    /**
      * Claim texts and citation info across all claims in the answer candidate.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim claims = 4;</code>
@@ -50,6 +57,9 @@ class CheckGroundingResponse extends \Google\Protobuf\Internal\Message
      *           Higher the score, higher is the fraction of claims that are supported by
      *           the provided facts. This is always set when a response is returned.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\FactChunk>|\Google\Protobuf\Internal\RepeatedField $cited_chunks
+     *           List of facts cited across all claims in the answer candidate.
+     *           These are derived from the facts supplied in the request.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1\CheckGroundingResponse\CheckGroundingFactChunk>|\Google\Protobuf\Internal\RepeatedField $cited_facts
      *           List of facts cited across all claims in the answer candidate.
      *           These are derived from the facts supplied in the request.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\CheckGroundingResponse\Claim>|\Google\Protobuf\Internal\RepeatedField $claims
@@ -125,6 +135,34 @@ class CheckGroundingResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\FactChunk::class);
         $this->cited_chunks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * List of facts cited across all claims in the answer candidate.
+     * These are derived from the facts supplied in the request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.CheckGroundingResponse.CheckGroundingFactChunk cited_facts = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCitedFacts()
+    {
+        return $this->cited_facts;
+    }
+
+    /**
+     * List of facts cited across all claims in the answer candidate.
+     * These are derived from the facts supplied in the request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.CheckGroundingResponse.CheckGroundingFactChunk cited_facts = 6;</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1\CheckGroundingResponse\CheckGroundingFactChunk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCitedFacts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\CheckGroundingResponse\CheckGroundingFactChunk::class);
+        $this->cited_facts = $arr;
 
         return $this;
     }

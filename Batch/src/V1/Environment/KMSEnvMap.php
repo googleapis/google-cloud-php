@@ -18,13 +18,13 @@ class KMSEnvMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_name = 1;</code>
      */
-    private $key_name = '';
+    protected $key_name = '';
     /**
      * The value of the cipherText response from the `encrypt` method.
      *
      * Generated from protobuf field <code>string cipher_text = 2;</code>
      */
-    private $cipher_text = '';
+    protected $cipher_text = '';
 
     /**
      * Constructor.

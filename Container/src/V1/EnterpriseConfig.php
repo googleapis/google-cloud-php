@@ -16,12 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class EnterpriseConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. [Output only] cluster_tier specifies the premium tier of the
-     * cluster.
+     * Output only. cluster_tier indicates the effective tier of the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig.ClusterTier cluster_tier = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cluster_tier = 0;
+    protected $cluster_tier = 0;
+    /**
+     * desired_tier specifies the desired tier of the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig.ClusterTier desired_tier = 2;</code>
+     */
+    protected $desired_tier = 0;
 
     /**
      * Constructor.
@@ -30,8 +35,9 @@ class EnterpriseConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $cluster_tier
-     *           Output only. [Output only] cluster_tier specifies the premium tier of the
-     *           cluster.
+     *           Output only. cluster_tier indicates the effective tier of the cluster.
+     *     @type int $desired_tier
+     *           desired_tier specifies the desired tier of the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +46,7 @@ class EnterpriseConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] cluster_tier specifies the premium tier of the
-     * cluster.
+     * Output only. cluster_tier indicates the effective tier of the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig.ClusterTier cluster_tier = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -52,8 +57,7 @@ class EnterpriseConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] cluster_tier specifies the premium tier of the
-     * cluster.
+     * Output only. cluster_tier indicates the effective tier of the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig.ClusterTier cluster_tier = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -63,6 +67,32 @@ class EnterpriseConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\EnterpriseConfig\ClusterTier::class);
         $this->cluster_tier = $var;
+
+        return $this;
+    }
+
+    /**
+     * desired_tier specifies the desired tier of the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig.ClusterTier desired_tier = 2;</code>
+     * @return int
+     */
+    public function getDesiredTier()
+    {
+        return $this->desired_tier;
+    }
+
+    /**
+     * desired_tier specifies the desired tier of the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig.ClusterTier desired_tier = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDesiredTier($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\EnterpriseConfig\ClusterTier::class);
+        $this->desired_tier = $var;
 
         return $this;
     }

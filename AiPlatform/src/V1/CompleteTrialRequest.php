@@ -23,7 +23,7 @@ class CompleteTrialRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. If provided, it will be used as the completed Trial's
      * final_measurement; Otherwise, the service will auto-select a
@@ -31,21 +31,21 @@ class CompleteTrialRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Measurement final_measurement = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $final_measurement = null;
+    protected $final_measurement = null;
     /**
      * Optional. True if the Trial cannot be run with the given Parameter, and
      * final_measurement will be ignored.
      *
      * Generated from protobuf field <code>bool trial_infeasible = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $trial_infeasible = false;
+    protected $trial_infeasible = false;
     /**
      * Optional. A human readable reason why the trial was infeasible. This should
      * only be provided if `trial_infeasible` is true.
      *
      * Generated from protobuf field <code>string infeasible_reason = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $infeasible_reason = '';
+    protected $infeasible_reason = '';
 
     /**
      * Constructor.

@@ -24,14 +24,14 @@ class CreateFeedRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. This is the client-assigned asset feed identifier and it needs to
      * be unique under a specific parent project/folder/organization.
      *
      * Generated from protobuf field <code>string feed_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feed_id = '';
+    protected $feed_id = '';
     /**
      * Required. The feed details. The field `name` must be empty and it will be
      * generated in the format of: projects/project_number/feeds/feed_id
@@ -40,7 +40,7 @@ class CreateFeedRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Feed feed = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feed = null;
+    protected $feed = null;
 
     /**
      * @param string $parent Required. The name of the project/folder/organization where this feed

@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Parameters to provide to the template being launched.
+ * Parameters to provide to the template being launched. Note that the
+ * [metadata in the pipeline code]
+ * (https://cloud.google.com/dataflow/docs/guides/templates/creating-templates#metadata)
+ * determines which runtime parameters are valid.
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.LaunchTemplateParameters</code>
  */
@@ -17,10 +20,12 @@ class LaunchTemplateParameters extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The job name to use for the created job.
+     * The name must match the regular expression
+     * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string job_name = 1;</code>
      */
-    private $job_name = '';
+    protected $job_name = '';
     /**
      * The runtime parameters to pass to the job.
      *
@@ -32,14 +37,14 @@ class LaunchTemplateParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.RuntimeEnvironment environment = 3;</code>
      */
-    private $environment = null;
+    protected $environment = null;
     /**
      * If set, replace the existing pipeline with the name specified by jobName
      * with this pipeline, preserving state.
      *
      * Generated from protobuf field <code>bool update = 4;</code>
      */
-    private $update = false;
+    protected $update = false;
     /**
      * Only applicable when updating a pipeline. Map of transform name prefixes of
      * the job to be replaced to the corresponding name prefixes of the new job.
@@ -56,6 +61,8 @@ class LaunchTemplateParameters extends \Google\Protobuf\Internal\Message
      *
      *     @type string $job_name
      *           Required. The job name to use for the created job.
+     *           The name must match the regular expression
+     *           `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *     @type array|\Google\Protobuf\Internal\MapField $parameters
      *           The runtime parameters to pass to the job.
      *     @type \Google\Cloud\Dataflow\V1beta3\RuntimeEnvironment $environment
@@ -75,6 +82,8 @@ class LaunchTemplateParameters extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The job name to use for the created job.
+     * The name must match the regular expression
+     * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string job_name = 1;</code>
      * @return string
@@ -86,6 +95,8 @@ class LaunchTemplateParameters extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The job name to use for the created job.
+     * The name must match the regular expression
+     * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string job_name = 1;</code>
      * @param string $var

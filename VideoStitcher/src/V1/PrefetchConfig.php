@@ -20,7 +20,7 @@ class PrefetchConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * The duration in seconds of the part of the break to be prefetched.
      * This field is only relevant if prefetch is enabled.
@@ -31,7 +31,7 @@ class PrefetchConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration initial_ad_request_duration = 2;</code>
      */
-    private $initial_ad_request_duration = null;
+    protected $initial_ad_request_duration = null;
 
     /**
      * Constructor.

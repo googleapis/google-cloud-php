@@ -31,11 +31,18 @@ class State
      * Generated from protobuf enum <code>CREATING = 2;</code>
      */
     const CREATING = 2;
+    /**
+     * The appliance is being activated.
+     *
+     * Generated from protobuf enum <code>ACTIVATING = 3;</code>
+     */
+    const ACTIVATING = 3;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::ACTIVE => 'ACTIVE',
         self::CREATING => 'CREATING',
+        self::ACTIVATING => 'ACTIVATING',
     ];
 
     public static function name($value)

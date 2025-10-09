@@ -22,26 +22,26 @@ class Constraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The human readable name of the constraint.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Detailed description of what this `Constraint` controls as well as how
      * and where it is enforced.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The evaluation behavior of this constraint in the absence of 'Policy'.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint.ConstraintDefault constraint_default = 4;</code>
      */
-    private $constraint_default = 0;
+    protected $constraint_default = 0;
     protected $constraint_type;
 
     /**
@@ -254,6 +254,4 @@ class Constraint extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Constraint::class, \Google\Cloud\Asset\V1\AnalyzerOrgPolicyConstraint_Constraint::class);
 

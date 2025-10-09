@@ -21,7 +21,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The resource for which approval is being requested. The format of the
      * resource name is defined at
@@ -33,38 +33,38 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string requested_resource_name = 2;</code>
      */
-    private $requested_resource_name = '';
+    protected $requested_resource_name = '';
     /**
      * Properties related to the resource represented by requested_resource_name.
      *
      * Generated from protobuf field <code>.google.cloud.accessapproval.v1.ResourceProperties requested_resource_properties = 9;</code>
      */
-    private $requested_resource_properties = null;
+    protected $requested_resource_properties = null;
     /**
      * The justification for which approval is being requested.
      *
      * Generated from protobuf field <code>.google.cloud.accessapproval.v1.AccessReason requested_reason = 3;</code>
      */
-    private $requested_reason = null;
+    protected $requested_reason = null;
     /**
      * The locations for which approval is being requested.
      *
      * Generated from protobuf field <code>.google.cloud.accessapproval.v1.AccessLocations requested_locations = 4;</code>
      */
-    private $requested_locations = null;
+    protected $requested_locations = null;
     /**
      * The time at which approval was requested.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp request_time = 5;</code>
      */
-    private $request_time = null;
+    protected $request_time = null;
     /**
      * The requested expiration for the approval. If the request is approved,
      * access will be granted from the time of approval until the expiration time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp requested_expiration = 6;</code>
      */
-    private $requested_expiration = null;
+    protected $requested_expiration = null;
     protected $decision;
 
     /**

@@ -20,13 +20,13 @@ class SqlInstancesPromoteReplicaRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * ID of the project that contains the read replica.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Set to true to invoke a replica failover to the designated DR
      * replica. As part of replica failover, the promote operation attempts
@@ -38,7 +38,7 @@ class SqlInstancesPromoteReplicaRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>bool failover = 3;</code>
      */
-    private $failover = false;
+    protected $failover = false;
 
     /**
      * Constructor.

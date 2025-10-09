@@ -20,7 +20,7 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * List of user resources in the instance.
      *
@@ -115,7 +115,9 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
      */
     public function getNextPageToken()
     {
-        @trigger_error('next_page_token is deprecated.', E_USER_DEPRECATED);
+        if ($this->next_page_token !== '') {
+            @trigger_error('next_page_token is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->next_page_token;
     }
 

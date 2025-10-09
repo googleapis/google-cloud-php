@@ -26,13 +26,13 @@ class CreateLoggingServerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The initial description of a new logging server.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.LoggingServer logging_server = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $logging_server = null;
+    protected $logging_server = null;
     /**
      * Required. The user-provided identifier of the `LoggingServer` to be
      * created. This identifier must be unique among `LoggingServer` resources
@@ -47,7 +47,7 @@ class CreateLoggingServerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string logging_server_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $logging_server_id = '';
+    protected $logging_server_id = '';
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -64,7 +64,7 @@ class CreateLoggingServerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                      $parent          Required. The resource name of the private cloud

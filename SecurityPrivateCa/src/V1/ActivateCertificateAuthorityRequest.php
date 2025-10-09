@@ -23,21 +23,21 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The signed CA certificate issued from
      * [FetchCertificateAuthorityCsrResponse.pem_csr][google.cloud.security.privateca.v1.FetchCertificateAuthorityCsrResponse.pem_csr].
      *
      * Generated from protobuf field <code>string pem_ca_certificate = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $pem_ca_certificate = '';
+    protected $pem_ca_certificate = '';
     /**
      * Required. Must include information about the issuer of
      * 'pem_ca_certificate', and any further issuers until the self-signed CA.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubordinateConfig subordinate_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subordinate_config = null;
+    protected $subordinate_config = null;
     /**
      * Optional. An ID to identify requests. Specify a unique request ID so that
      * if you must retry your request, the server will know to ignore the request
@@ -51,9 +51,9 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string $name Required. The resource name for this
@@ -215,7 +215,7 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getRequestId()
@@ -236,7 +236,7 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

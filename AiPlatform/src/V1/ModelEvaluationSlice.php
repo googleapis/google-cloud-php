@@ -21,13 +21,13 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The slice of the test data that is used to evaluate the Model.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice slice = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $slice = null;
+    protected $slice = null;
     /**
      * Output only. Points to a YAML file stored on Google Cloud Storage
      * describing the
@@ -37,7 +37,7 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metrics_schema_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metrics_schema_uri = '';
+    protected $metrics_schema_uri = '';
     /**
      * Output only. Sliced evaluation metrics of the Model. The schema of the
      * metrics is stored in
@@ -45,13 +45,13 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value metrics = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metrics = null;
+    protected $metrics = null;
     /**
      * Output only. Timestamp when this ModelEvaluationSlice was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Aggregated explanation metrics for the Model's prediction
      * output over the data this ModelEvaluation uses. This field is populated
@@ -60,7 +60,7 @@ class ModelEvaluationSlice extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelExplanation model_explanation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $model_explanation = null;
+    protected $model_explanation = null;
 
     /**
      * Constructor.

@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.securitycenter.v1.SecurityCenter' => [
+            'BatchCreateResourceValueConfigs' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*}/resourceValueConfigs:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BulkMuteFindings' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*}/findings:bulkMute',
@@ -80,6 +92,30 @@ return [
                     'big_query_export_id',
                 ],
             ],
+            'CreateEventThreatDetectionCustomModule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*/eventThreatDetectionSettings}/customModules',
+                'body' => 'event_threat_detection_custom_module',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*/eventThreatDetectionSettings}/customModules',
+                        'body' => 'event_threat_detection_custom_module',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/eventThreatDetectionSettings}/customModules',
+                        'body' => 'event_threat_detection_custom_module',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateFinding' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings',
@@ -102,6 +138,14 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/muteConfigs',
+                        'body' => 'mute_config',
+                        'queryParams' => [
+                            'mute_config_id',
+                        ],
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{parent=folders/*}/muteConfigs',
                         'body' => 'mute_config',
                         'queryParams' => [
@@ -110,7 +154,23 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*/locations/*}/muteConfigs',
+                        'body' => 'mute_config',
+                        'queryParams' => [
+                            'mute_config_id',
+                        ],
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{parent=projects/*}/muteConfigs',
+                        'body' => 'mute_config',
+                        'queryParams' => [
+                            'mute_config_id',
+                        ],
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/muteConfigs',
                         'body' => 'mute_config',
                         'queryParams' => [
                             'mute_config_id',
@@ -218,6 +278,27 @@ return [
                     ],
                 ],
             ],
+            'DeleteEventThreatDetectionCustomModule' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=organizations/*/eventThreatDetectionSettings/customModules/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=folders/*/eventThreatDetectionSettings/customModules/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/eventThreatDetectionSettings/customModules/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteMuteConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=organizations/*/muteConfigs/*}',
@@ -229,6 +310,18 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/muteConfigs/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/muteConfigs/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=folders/*/locations/*/muteConfigs/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/muteConfigs/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -252,6 +345,17 @@ return [
                         'uriTemplate' => '/v1/{name=projects/*/notificationConfigs/*}',
                     ],
                 ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteResourceValueConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=organizations/*/resourceValueConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -302,6 +406,27 @@ return [
                     ],
                 ],
             ],
+            'GetEffectiveEventThreatDetectionCustomModule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/eventThreatDetectionSettings/effectiveCustomModules/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/eventThreatDetectionSettings/effectiveCustomModules/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/eventThreatDetectionSettings/effectiveCustomModules/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetEffectiveSecurityHealthAnalyticsCustomModule' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/securityHealthAnalyticsSettings/effectiveCustomModules/*}',
@@ -313,6 +438,27 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/securityHealthAnalyticsSettings/effectiveCustomModules/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEventThreatDetectionCustomModule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/eventThreatDetectionSettings/customModules/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/eventThreatDetectionSettings/customModules/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/eventThreatDetectionSettings/customModules/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -346,6 +492,18 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/muteConfigs/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/muteConfigs/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/locations/*/muteConfigs/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/muteConfigs/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -388,6 +546,17 @@ return [
                     ],
                 ],
             ],
+            'GetResourceValueConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/resourceValueConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSecurityHealthAnalyticsCustomModule' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/securityHealthAnalyticsSettings/customModules/*}',
@@ -409,9 +578,31 @@ return [
                     ],
                 ],
             ],
+            'GetSimulation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/simulations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSource' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/sources/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetValuedResource' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/simulations/*/valuedResources/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -489,6 +680,27 @@ return [
                     ],
                 ],
             ],
+            'ListAttackPaths' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*/simulations/*}/attackPaths',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=organizations/*/simulations/*/valuedResources/*}/attackPaths',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=organizations/*/simulations/*/attackExposureResults/*}/attackPaths',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListBigQueryExports' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*}/bigQueryExports',
@@ -500,6 +712,27 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*}/bigQueryExports',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDescendantEventThreatDetectionCustomModules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*/eventThreatDetectionSettings}/customModules:listDescendant',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*/eventThreatDetectionSettings}/customModules:listDescendant',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/eventThreatDetectionSettings}/customModules:listDescendant',
                     ],
                 ],
                 'placeholders' => [
@@ -531,6 +764,27 @@ return [
                     ],
                 ],
             ],
+            'ListEffectiveEventThreatDetectionCustomModules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*/eventThreatDetectionSettings}/effectiveCustomModules',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*/eventThreatDetectionSettings}/effectiveCustomModules',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/eventThreatDetectionSettings}/effectiveCustomModules',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListEffectiveSecurityHealthAnalyticsCustomModules' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/effectiveCustomModules',
@@ -542,6 +796,27 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*/securityHealthAnalyticsSettings}/effectiveCustomModules',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListEventThreatDetectionCustomModules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*/eventThreatDetectionSettings}/customModules',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*/eventThreatDetectionSettings}/customModules',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/eventThreatDetectionSettings}/customModules',
                     ],
                 ],
                 'placeholders' => [
@@ -585,6 +860,18 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*}/muteConfigs',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=organizations/*/locations/*/muteConfigs}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*/locations/*/muteConfigs}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/muteConfigs}',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -607,6 +894,17 @@ return [
                         'uriTemplate' => '/v1/{parent=projects/*}/notificationConfigs',
                     ],
                 ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListResourceValueConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*}/resourceValueConfigs',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -647,6 +945,23 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*}/sources',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListValuedResources' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*/simulations/*}/valuedResources',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=organizations/*/simulations/*/attackExposureResults/*}/valuedResources',
                     ],
                 ],
                 'placeholders' => [
@@ -790,6 +1105,31 @@ return [
                     ],
                 ],
             ],
+            'UpdateEventThreatDetectionCustomModule' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{event_threat_detection_custom_module.name=organizations/*/eventThreatDetectionSettings/customModules/*}',
+                'body' => 'event_threat_detection_custom_module',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{event_threat_detection_custom_module.name=folders/*/eventThreatDetectionSettings/customModules/*}',
+                        'body' => 'event_threat_detection_custom_module',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{event_threat_detection_custom_module.name=projects/*/eventThreatDetectionSettings/customModules/*}',
+                        'body' => 'event_threat_detection_custom_module',
+                    ],
+                ],
+                'placeholders' => [
+                    'event_threat_detection_custom_module.name' => [
+                        'getters' => [
+                            'getEventThreatDetectionCustomModule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateExternalSystem' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{external_system.name=organizations/*/sources/*/findings/*/externalSystems/*}',
@@ -855,6 +1195,21 @@ return [
                         'uriTemplate' => '/v1/{mute_config.name=projects/*/muteConfigs/*}',
                         'body' => 'mute_config',
                     ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{mute_config.name=organizations/*/locations/*/muteConfigs/*}',
+                        'body' => 'mute_config',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{mute_config.name=folders/*/locations/*/muteConfigs/*}',
+                        'body' => 'mute_config',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{mute_config.name=projects/*/locations/*/muteConfigs/*}',
+                        'body' => 'mute_config',
+                    ],
                 ],
                 'placeholders' => [
                     'mute_config.name' => [
@@ -898,6 +1253,19 @@ return [
                     'organization_settings.name' => [
                         'getters' => [
                             'getOrganizationSettings',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateResourceValueConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{resource_value_config.name=organizations/*/resourceValueConfigs/*}',
+                'body' => 'resource_value_config',
+                'placeholders' => [
+                    'resource_value_config.name' => [
+                        'getters' => [
+                            'getResourceValueConfig',
                             'getName',
                         ],
                     ],
@@ -977,6 +1345,30 @@ return [
                         'getters' => [
                             'getSource',
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ValidateEventThreatDetectionCustomModule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*/eventThreatDetectionSettings}:validateCustomModule',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*/eventThreatDetectionSettings}:validateCustomModule',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/eventThreatDetectionSettings}:validateCustomModule',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

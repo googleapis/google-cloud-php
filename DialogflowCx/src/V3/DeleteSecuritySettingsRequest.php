@@ -18,8 +18,8 @@ class DeleteSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the
      * [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] to
-     * delete. Format: `projects/<Project ID>/locations/<Location
-     * ID>/securitySettings/<Security Settings ID>`.
+     * delete. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -28,8 +28,8 @@ class DeleteSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the
      *                     [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] to
-     *                     delete. Format: `projects/<Project ID>/locations/<Location
-     *                     ID>/securitySettings/<Security Settings ID>`. Please see
+     *                     delete. Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`. Please see
      *                     {@see SecuritySettingsServiceClient::securitySettingsName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\DeleteSecuritySettingsRequest
@@ -51,8 +51,8 @@ class DeleteSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the
      *           [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] to
-     *           delete. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/securitySettings/<Security Settings ID>`.
+     *           delete. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,8 +63,8 @@ class DeleteSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the
      * [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] to
-     * delete. Format: `projects/<Project ID>/locations/<Location
-     * ID>/securitySettings/<Security Settings ID>`.
+     * delete. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,8 +77,8 @@ class DeleteSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the
      * [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] to
-     * delete. Format: `projects/<Project ID>/locations/<Location
-     * ID>/securitySettings/<Security Settings ID>`.
+     * delete. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

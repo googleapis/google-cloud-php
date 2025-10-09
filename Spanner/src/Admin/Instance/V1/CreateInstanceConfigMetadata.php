@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The target instance config end state.
+     * The target instance configuration end state.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig instance_config = 1;</code>
      */
@@ -44,7 +44,7 @@ class CreateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instance_config
-     *           The target instance config end state.
+     *           The target instance configuration end state.
      *     @type \Google\Cloud\Spanner\Admin\Instance\V1\OperationProgress $progress
      *           The progress of the
      *           [CreateInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstanceConfig]
@@ -59,7 +59,7 @@ class CreateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target instance config end state.
+     * The target instance configuration end state.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig instance_config = 1;</code>
      * @return \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig|null
@@ -80,7 +80,7 @@ class CreateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target instance config end state.
+     * The target instance configuration end state.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig instance_config = 1;</code>
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $var

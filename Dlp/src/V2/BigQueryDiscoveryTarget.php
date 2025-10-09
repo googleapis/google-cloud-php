@@ -21,14 +21,14 @@ class BigQueryDiscoveryTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryBigQueryFilter filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = null;
+    protected $filter = null;
     /**
      * In addition to matching the filter, these conditions must be true
      * before a profile is generated.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryBigQueryConditions conditions = 2;</code>
      */
-    private $conditions = null;
+    protected $conditions = null;
     protected $frequency;
 
     /**

@@ -21,31 +21,31 @@ class PollAirflowCommandRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string environment = 1;</code>
      */
-    private $environment = '';
+    protected $environment = '';
     /**
      * The unique ID of the command execution.
      *
      * Generated from protobuf field <code>string execution_id = 2;</code>
      */
-    private $execution_id = '';
+    protected $execution_id = '';
     /**
      * The name of the pod where the command is executed.
      *
      * Generated from protobuf field <code>string pod = 3;</code>
      */
-    private $pod = '';
+    protected $pod = '';
     /**
      * The namespace of the pod where the command is executed.
      *
      * Generated from protobuf field <code>string pod_namespace = 4;</code>
      */
-    private $pod_namespace = '';
+    protected $pod_namespace = '';
     /**
      * Line number from which new logs should be fetched.
      *
      * Generated from protobuf field <code>int32 next_line_number = 5;</code>
      */
-    private $next_line_number = 0;
+    protected $next_line_number = 0;
 
     /**
      * Constructor.

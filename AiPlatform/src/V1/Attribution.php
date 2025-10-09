@@ -28,7 +28,7 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double baseline_output_value = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $baseline_output_value = 0.0;
+    protected $baseline_output_value = 0.0;
     /**
      * Output only. Model predicted output on the corresponding [explanation
      * instance][ExplainRequest.instances]. The field name of the output is
@@ -40,7 +40,7 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double instance_output_value = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $instance_output_value = 0.0;
+    protected $instance_output_value = 0.0;
     /**
      * Output only. Attributions of each explained feature. Features are extracted
      * from the [prediction
@@ -71,7 +71,7 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value feature_attributions = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $feature_attributions = null;
+    protected $feature_attributions = null;
     /**
      * Output only. The index that locates the explained prediction output.
      * If the prediction output is a scalar value, output_index is not populated.
@@ -94,7 +94,7 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_display_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $output_display_name = '';
+    protected $output_display_name = '';
     /**
      * Output only. Error of
      * [feature_attributions][google.cloud.aiplatform.v1.Attribution.feature_attributions]
@@ -115,19 +115,19 @@ class Attribution extends \Google\Protobuf\Internal\Message
      * increasing
      * [step_count][google.cloud.aiplatform.v1.XraiAttribution.step_count] might
      * reduce the error.
-     * See [this introduction](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)
+     * See [this introduction](/vertex-ai/docs/explainable-ai/overview)
      * for more information.
      *
      * Generated from protobuf field <code>double approximation_error = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $approximation_error = 0.0;
+    protected $approximation_error = 0.0;
     /**
      * Output only. Name of the explain output. Specified as the key in
      * [ExplanationMetadata.outputs][google.cloud.aiplatform.v1.ExplanationMetadata.outputs].
      *
      * Generated from protobuf field <code>string output_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $output_name = '';
+    protected $output_name = '';
 
     /**
      * Constructor.
@@ -215,7 +215,7 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *           increasing
      *           [step_count][google.cloud.aiplatform.v1.XraiAttribution.step_count] might
      *           reduce the error.
-     *           See [this introduction](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)
+     *           See [this introduction](/vertex-ai/docs/explainable-ai/overview)
      *           for more information.
      *     @type string $output_name
      *           Output only. Name of the explain output. Specified as the key in
@@ -487,7 +487,7 @@ class Attribution extends \Google\Protobuf\Internal\Message
      * increasing
      * [step_count][google.cloud.aiplatform.v1.XraiAttribution.step_count] might
      * reduce the error.
-     * See [this introduction](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)
+     * See [this introduction](/vertex-ai/docs/explainable-ai/overview)
      * for more information.
      *
      * Generated from protobuf field <code>double approximation_error = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -518,7 +518,7 @@ class Attribution extends \Google\Protobuf\Internal\Message
      * increasing
      * [step_count][google.cloud.aiplatform.v1.XraiAttribution.step_count] might
      * reduce the error.
-     * See [this introduction](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)
+     * See [this introduction](/vertex-ai/docs/explainable-ai/overview)
      * for more information.
      *
      * Generated from protobuf field <code>double approximation_error = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

@@ -30,14 +30,15 @@ use Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule;
 use Google\Cloud\SecurityCenterManagement\V1\ListDescendantEventThreatDetectionCustomModulesRequest;
 
 /**
- * Lists all resident Event Threat Detection custom modules under the
- * given Resource Manager parent and its descendants.
+ * Lists all resident Event Threat Detection custom modules for the given
+ * organization, folder, or project and its descendants.
  *
- * @param string $formattedParent Name of parent to list custom modules. Its format is
- *                                `organizations/{organization}/locations/{location}`,
- *                                `folders/{folder}/locations/{location}`,
- *                                or
- *                                `projects/{project}/locations/{location}`
+ * @param string $formattedParent Name of parent to list custom modules, in one of the following
+ *                                formats:
+ *
+ *                                * `organizations/{organization}/locations/{location}`
+ *                                * `folders/{folder}/locations/{location}`
+ *                                * `projects/{project}/locations/{location}`
  *                                Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
  */
 function list_descendant_event_threat_detection_custom_modules_sample(

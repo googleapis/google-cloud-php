@@ -17,15 +17,15 @@ class RefreshSubscriptionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Resource name of the Subscription to refresh.
-     * e.g. `projects/subscriberproject/locations/US/subscriptions/123`
+     * e.g. `projects/subscriberproject/locations/us/subscriptions/123`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. Resource name of the Subscription to refresh.
-     *                     e.g. `projects/subscriberproject/locations/US/subscriptions/123`
+     *                     e.g. `projects/subscriberproject/locations/us/subscriptions/123`
      *                     Please see {@see AnalyticsHubServiceClient::subscriptionName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionRequest
@@ -46,7 +46,7 @@ class RefreshSubscriptionRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Resource name of the Subscription to refresh.
-     *           e.g. `projects/subscriberproject/locations/US/subscriptions/123`
+     *           e.g. `projects/subscriberproject/locations/us/subscriptions/123`
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class RefreshSubscriptionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the Subscription to refresh.
-     * e.g. `projects/subscriberproject/locations/US/subscriptions/123`
+     * e.g. `projects/subscriberproject/locations/us/subscriptions/123`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class RefreshSubscriptionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the Subscription to refresh.
-     * e.g. `projects/subscriberproject/locations/US/subscriptions/123`
+     * e.g. `projects/subscriberproject/locations/us/subscriptions/123`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

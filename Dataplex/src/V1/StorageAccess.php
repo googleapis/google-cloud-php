@@ -21,7 +21,7 @@ class StorageAccess extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageAccess.AccessMode read = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $read = 0;
+    protected $read = 0;
 
     /**
      * Constructor.

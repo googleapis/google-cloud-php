@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1alpha_generated_DataprocMetastore_MoveTableToDatabase_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Metastore\V1alpha\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1alpha\Client\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1alpha\MoveTableToDatabaseRequest;
 use Google\Cloud\Metastore\V1alpha\MoveTableToDatabaseResponse;
 use Google\Rpc\Status;
 
@@ -50,15 +51,17 @@ function move_table_to_database_sample(
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
+    // Prepare the request message.
+    $request = (new MoveTableToDatabaseRequest())
+        ->setService($formattedService)
+        ->setTableName($tableName)
+        ->setDbName($dbName)
+        ->setDestinationDbName($destinationDbName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->moveTableToDatabase(
-            $formattedService,
-            $tableName,
-            $dbName,
-            $destinationDbName
-        );
+        $response = $dataprocMetastoreClient->moveTableToDatabase($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -33,7 +33,7 @@ use Google\Cloud\Billing\V1\Sku;
  * Lists all publicly available SKUs for a given cloud service.
  *
  * @param string $formattedParent The name of the service.
- *                                Example: "services/DA34-426B-A397"
+ *                                Example: "services/6F81-5844-456A"
  *                                Please see {@see CloudCatalogClient::serviceName()} for help formatting this field.
  */
 function list_skus_sample(string $formattedParent): void

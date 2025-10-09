@@ -20,19 +20,19 @@ class RowError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 index = 1;</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * Structured error reason for a row error.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.RowError.RowErrorCode code = 2;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * Description of the issue encountered when processing the row.
      *
      * Generated from protobuf field <code>string message = 3;</code>
      */
-    private $message = '';
+    protected $message = '';
 
     /**
      * Constructor.

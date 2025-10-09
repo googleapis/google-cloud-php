@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_PacketMirrorings_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\PacketMirroringsClient;
+use Google\Cloud\Compute\V1\Client\PacketMirroringsClient;
+use Google\Cloud\Compute\V1\ListPacketMirroringsRequest;
 
 /**
  * Retrieves a list of PacketMirroring resources available to the specified project and region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $packetMirroringsClient = new PacketMirroringsClient();
 
+    // Prepare the request message.
+    $request = (new ListPacketMirroringsRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $packetMirroringsClient->list($project, $region);
+        $response = $packetMirroringsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

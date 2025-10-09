@@ -20,25 +20,25 @@ class AdStitchDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ad_break_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ad_break_id = '';
+    protected $ad_break_id = '';
     /**
      * Required. The ad ID of the processed ad.
      *
      * Generated from protobuf field <code>string ad_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ad_id = '';
+    protected $ad_id = '';
     /**
      * Required. The time offset of the processed ad.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ad_time_offset = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ad_time_offset = null;
+    protected $ad_time_offset = null;
     /**
      * Optional. Indicates the reason why the ad has been skipped.
      *
      * Generated from protobuf field <code>string skip_reason = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $skip_reason = '';
+    protected $skip_reason = '';
     /**
      * Optional. The metadata of the chosen media file for the ad.
      *

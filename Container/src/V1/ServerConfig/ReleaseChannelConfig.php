@@ -20,19 +20,25 @@ class ReleaseChannelConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel.Channel channel = 1;</code>
      */
-    private $channel = 0;
+    protected $channel = 0;
     /**
      * The default version for newly created clusters on the channel.
      *
      * Generated from protobuf field <code>string default_version = 2;</code>
      */
-    private $default_version = '';
+    protected $default_version = '';
     /**
      * List of valid versions for the channel.
      *
      * Generated from protobuf field <code>repeated string valid_versions = 4;</code>
      */
     private $valid_versions;
+    /**
+     * The auto upgrade target version for clusters on the channel.
+     *
+     * Generated from protobuf field <code>string upgrade_target_version = 5;</code>
+     */
+    protected $upgrade_target_version = '';
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class ReleaseChannelConfig extends \Google\Protobuf\Internal\Message
      *           The default version for newly created clusters on the channel.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $valid_versions
      *           List of valid versions for the channel.
+     *     @type string $upgrade_target_version
+     *           The auto upgrade target version for clusters on the channel.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,8 +139,32 @@ class ReleaseChannelConfig extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * The auto upgrade target version for clusters on the channel.
+     *
+     * Generated from protobuf field <code>string upgrade_target_version = 5;</code>
+     * @return string
+     */
+    public function getUpgradeTargetVersion()
+    {
+        return $this->upgrade_target_version;
+    }
+
+    /**
+     * The auto upgrade target version for clusters on the channel.
+     *
+     * Generated from protobuf field <code>string upgrade_target_version = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUpgradeTargetVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->upgrade_target_version = $var;
+
+        return $this;
+    }
+
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReleaseChannelConfig::class, \Google\Cloud\Container\V1\ServerConfig_ReleaseChannelConfig::class);
 

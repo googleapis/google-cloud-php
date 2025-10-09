@@ -21,7 +21,7 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user-defined name of the SavedQuery.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -29,31 +29,31 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Some additional information about the SavedQuery.
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 12;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Output only. Timestamp when this SavedQuery was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when SavedQuery was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Filters on the Annotations in the dataset.
      *
      * Generated from protobuf field <code>string annotation_filter = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $annotation_filter = '';
+    protected $annotation_filter = '';
     /**
      * Required. Problem type of the SavedQuery.
      * Allowed values:
@@ -70,27 +70,27 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string problem_type = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $problem_type = '';
+    protected $problem_type = '';
     /**
      * Output only. Number of AnnotationSpecs in the context of the SavedQuery.
      *
      * Generated from protobuf field <code>int32 annotation_spec_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $annotation_spec_count = 0;
+    protected $annotation_spec_count = 0;
     /**
      * Used to perform a consistent read-modify-write update. If not set, a blind
      * "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 8;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. If the Annotations belonging to the SavedQuery can be used for
      * AutoML training.
      *
      * Generated from protobuf field <code>bool support_automl_training = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $support_automl_training = false;
+    protected $support_automl_training = false;
 
     /**
      * Constructor.

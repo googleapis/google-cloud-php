@@ -19,7 +19,7 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. User-defined labels for the task. If the map is left empty, the
      * task will run with existing labels from task definition. If the map

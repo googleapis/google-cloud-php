@@ -20,13 +20,13 @@ class AliasContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.AliasContext.Kind kind = 1;</code>
      */
-    private $kind = 0;
+    protected $kind = 0;
     /**
      * The alias name.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.

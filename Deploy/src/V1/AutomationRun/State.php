@@ -49,6 +49,12 @@ class State
      * Generated from protobuf enum <code>PENDING = 5;</code>
      */
     const PENDING = 5;
+    /**
+     * The `AutomationRun` was aborted.
+     *
+     * Generated from protobuf enum <code>ABORTED = 6;</code>
+     */
+    const ABORTED = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -57,6 +63,7 @@ class State
         self::FAILED => 'FAILED',
         self::IN_PROGRESS => 'IN_PROGRESS',
         self::PENDING => 'PENDING',
+        self::ABORTED => 'ABORTED',
     ];
 
     public static function name($value)

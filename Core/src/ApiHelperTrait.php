@@ -19,8 +19,8 @@ namespace Google\Cloud\Core;
 
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Options\CallOptions;
+use Google\Protobuf\Internal\Message;
 use Google\Protobuf\NullValue;
-use Google\Cloud\Core\Duration;
 
 /**
  * @internal
@@ -30,6 +30,8 @@ trait ApiHelperTrait
 {
     use ArrayTrait;
     use TimeTrait;
+
+    private OptionsValidator $optionsValidator;
 
     /**
      * Format a struct for the API.
@@ -176,7 +178,7 @@ trait ApiHelperTrait
      */
     private function formatTimestampForApi($value)
     {
-        list ($dt, $nanos) = $this->parseTimeString($value);
+        list($dt, $nanos) = $this->parseTimeString($value);
 
         return [
             'seconds' => (int) $dt->format('U'),
@@ -239,11 +241,14 @@ trait ApiHelperTrait
      *
      * @return array The modified array
      */
-    private function convertDataToProtos(array $input, array $map) : array
+    private function convertDataToProtos(array $input, array $map): array
     {
+        if (!isset($this->serializer)) {
+            throw new \LogicException('Serializer must be set to use this function');
+        }
         foreach ($map as $key => $className) {
             if (isset($input[$key])) {
-                $input[$key] = $this->serializer->decodeMessage(new $className, $input[$key]);
+                $input[$key] = $this->serializer->decodeMessage(new $className(), $input[$key]);
             }
         }
 
@@ -256,13 +261,27 @@ trait ApiHelperTrait
      * We strictly treat the parameters allowed by `CallOptions` in GAX as the optional params
      * and everything else that is passed is passed to the Proto message constructor.
      */
-    private function splitOptionalArgs(array $input, array $extraAllowedKeys = []) : array
+    private function splitOptionalArgs(array $input, array $extraAllowedKeys = []): array
     {
         $callOptionFields = array_keys((new CallOptions([]))->toArray());
         $keys = array_merge($callOptionFields, $extraAllowedKeys);
 
-        $optionalArgs = $this->pluckArray($keys, $input);
+        $callOptions = $this->pluckArray($keys, $input);
 
-        return [$input, $optionalArgs];
+        return [$input, $callOptions];
+    }
+
+    /**
+     * Helper method used to validate optons based on the supplied $optionTypes
+     * $optionTypes can be an array of string keys, a protobuf Message classname, or a
+     * the CallOptions classname. Parameters are split and returned in the order
+     * that the options types are provided.
+     */
+    private function validateOptions(array $options, array|Message|string ...$optionTypes): array
+    {
+        if (!isset($this->optionsValidator)) {
+            $this->optionsValidator = new OptionsValidator();
+        }
+        return $this->optionsValidator->validateOptions($options, ...$optionTypes);
     }
 }

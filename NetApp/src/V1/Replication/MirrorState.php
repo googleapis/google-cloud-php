@@ -40,11 +40,35 @@ class MirrorState
      */
     const STOPPED = 3;
     /**
-     * Replication is in progress.
+     * Incremental replication is in progress.
      *
      * Generated from protobuf enum <code>TRANSFERRING = 4;</code>
      */
     const TRANSFERRING = 4;
+    /**
+     * Baseline replication is in progress.
+     *
+     * Generated from protobuf enum <code>BASELINE_TRANSFERRING = 5;</code>
+     */
+    const BASELINE_TRANSFERRING = 5;
+    /**
+     * Replication is aborted.
+     *
+     * Generated from protobuf enum <code>ABORTED = 6;</code>
+     */
+    const ABORTED = 6;
+    /**
+     * Replication is being managed from Onprem ONTAP.
+     *
+     * Generated from protobuf enum <code>EXTERNALLY_MANAGED = 7;</code>
+     */
+    const EXTERNALLY_MANAGED = 7;
+    /**
+     * Peering is yet to be established.
+     *
+     * Generated from protobuf enum <code>PENDING_PEERING = 8;</code>
+     */
+    const PENDING_PEERING = 8;
 
     private static $valueToName = [
         self::MIRROR_STATE_UNSPECIFIED => 'MIRROR_STATE_UNSPECIFIED',
@@ -52,6 +76,10 @@ class MirrorState
         self::MIRRORED => 'MIRRORED',
         self::STOPPED => 'STOPPED',
         self::TRANSFERRING => 'TRANSFERRING',
+        self::BASELINE_TRANSFERRING => 'BASELINE_TRANSFERRING',
+        self::ABORTED => 'ABORTED',
+        self::EXTERNALLY_MANAGED => 'EXTERNALLY_MANAGED',
+        self::PENDING_PEERING => 'PENDING_PEERING',
     ];
 
     public static function name($value)

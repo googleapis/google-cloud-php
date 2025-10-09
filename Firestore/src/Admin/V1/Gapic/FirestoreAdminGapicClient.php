@@ -38,14 +38,21 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Firestore\Admin\V1\Backup;
 use Google\Cloud\Firestore\Admin\V1\BackupSchedule;
 use Google\Cloud\Firestore\Admin\V1\BulkDeleteDocumentsRequest;
+use Google\Cloud\Firestore\Admin\V1\CloneDatabaseMetadata;
+use Google\Cloud\Firestore\Admin\V1\CloneDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
+use Google\Cloud\Firestore\Admin\V1\CreateUserCredsRequest;
 use Google\Cloud\Firestore\Admin\V1\Database;
+use Google\Cloud\Firestore\Admin\V1\Database\EncryptionConfig;
 use Google\Cloud\Firestore\Admin\V1\DeleteBackupRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest;
+use Google\Cloud\Firestore\Admin\V1\DeleteUserCredsRequest;
+use Google\Cloud\Firestore\Admin\V1\DisableUserCredsRequest;
+use Google\Cloud\Firestore\Admin\V1\EnableUserCredsRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsResponse;
 use Google\Cloud\Firestore\Admin\V1\Field;
@@ -55,6 +62,7 @@ use Google\Cloud\Firestore\Admin\V1\GetBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\GetDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\GetFieldRequest;
 use Google\Cloud\Firestore\Admin\V1\GetIndexRequest;
+use Google\Cloud\Firestore\Admin\V1\GetUserCredsRequest;
 use Google\Cloud\Firestore\Admin\V1\ImportDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\Index;
 use Google\Cloud\Firestore\Admin\V1\IndexOperationMetadata;
@@ -68,11 +76,16 @@ use Google\Cloud\Firestore\Admin\V1\ListFieldsRequest;
 use Google\Cloud\Firestore\Admin\V1\ListFieldsResponse;
 use Google\Cloud\Firestore\Admin\V1\ListIndexesRequest;
 use Google\Cloud\Firestore\Admin\V1\ListIndexesResponse;
+use Google\Cloud\Firestore\Admin\V1\ListUserCredsRequest;
+use Google\Cloud\Firestore\Admin\V1\ListUserCredsResponse;
+use Google\Cloud\Firestore\Admin\V1\PitrSnapshot;
+use Google\Cloud\Firestore\Admin\V1\ResetUserPasswordRequest;
 use Google\Cloud\Firestore\Admin\V1\RestoreDatabaseMetadata;
 use Google\Cloud\Firestore\Admin\V1\RestoreDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\UpdateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\UpdateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\UpdateFieldRequest;
+use Google\Cloud\Firestore\Admin\V1\UserCreds;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -196,7 +209,11 @@ class FirestoreAdminGapicClient
 
     private static $locationNameTemplate;
 
+    private static $operationNameTemplate;
+
     private static $projectNameTemplate;
+
+    private static $userCredsNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -284,6 +301,15 @@ class FirestoreAdminGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getOperationNameTemplate()
+    {
+        if (self::$operationNameTemplate == null) {
+            self::$operationNameTemplate = new PathTemplate('projects/{project}/databases/{database}/operations/{operation}');
+        }
+
+        return self::$operationNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (self::$projectNameTemplate == null) {
@@ -291,6 +317,15 @@ class FirestoreAdminGapicClient
         }
 
         return self::$projectNameTemplate;
+    }
+
+    private static function getUserCredsNameTemplate()
+    {
+        if (self::$userCredsNameTemplate == null) {
+            self::$userCredsNameTemplate = new PathTemplate('projects/{project}/databases/{database}/userCreds/{user_creds}');
+        }
+
+        return self::$userCredsNameTemplate;
     }
 
     private static function getPathTemplateMap()
@@ -304,7 +339,9 @@ class FirestoreAdminGapicClient
                 'field' => self::getFieldNameTemplate(),
                 'index' => self::getIndexNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'operation' => self::getOperationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'userCreds' => self::getUserCredsNameTemplate(),
             ];
         }
 
@@ -445,6 +482,25 @@ class FirestoreAdminGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a operation
+     * resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $operation
+     *
+     * @return string The formatted operation resource.
+     */
+    public static function operationName($project, $database, $operation)
+    {
+        return self::getOperationNameTemplate()->render([
+            'project' => $project,
+            'database' => $database,
+            'operation' => $operation,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -460,6 +516,25 @@ class FirestoreAdminGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a user_creds
+     * resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $userCreds
+     *
+     * @return string The formatted user_creds resource.
+     */
+    public static function userCredsName($project, $database, $userCreds)
+    {
+        return self::getUserCredsNameTemplate()->render([
+            'project' => $project,
+            'database' => $database,
+            'user_creds' => $userCreds,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -470,7 +545,9 @@ class FirestoreAdminGapicClient
      * - field: projects/{project}/databases/{database}/collectionGroups/{collection}/fields/{field}
      * - index: projects/{project}/databases/{database}/collectionGroups/{collection}/indexes/{index}
      * - location: projects/{project}/locations/{location}
+     * - operation: projects/{project}/databases/{database}/operations/{operation}
      * - project: projects/{project}
+     * - userCreds: projects/{project}/databases/{database}/userCreds/{user_creds}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -694,6 +771,125 @@ class FirestoreAdminGapicClient
     }
 
     /**
+     * Creates a new database by cloning an existing one.
+     *
+     * The new database must be in the same cloud region or multi-region location
+     * as the existing database. This behaves similar to
+     * [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.FirestoreAdmin.CreateDatabase]
+     * except instead of creating a new empty database, a new database is created
+     * with the database type, index configuration, and documents from an existing
+     * database.
+     *
+     * The [long-running operation][google.longrunning.Operation] can be used to
+     * track the progress of the clone, with the Operation's
+     * [metadata][google.longrunning.Operation.metadata] field type being the
+     * [CloneDatabaseMetadata][google.firestore.admin.v1.CloneDatabaseMetadata].
+     * The [response][google.longrunning.Operation.response] type is the
+     * [Database][google.firestore.admin.v1.Database] if the clone was
+     * successful. The new database is not readable or writeable until the LRO has
+     * completed.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedParent = $firestoreAdminClient->projectName('[PROJECT]');
+     *     $databaseId = 'database_id';
+     *     $pitrSnapshot = new PitrSnapshot();
+     *     $operationResponse = $firestoreAdminClient->cloneDatabase($formattedParent, $databaseId, $pitrSnapshot);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $firestoreAdminClient->cloneDatabase($formattedParent, $databaseId, $pitrSnapshot);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'cloneDatabase');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string       $parent       Required. The project to clone the database in. Format is
+     *                                   `projects/{project_id}`.
+     * @param string       $databaseId   Required. The ID to use for the database, which will become the final
+     *                                   component of the database's resource name. This database ID must not be
+     *                                   associated with an existing database.
+     *
+     *                                   This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+     *                                   with first character a letter and the last a letter or a number. Must not
+     *                                   be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
+     *
+     *                                   "(default)" database ID is also valid.
+     * @param PitrSnapshot $pitrSnapshot Required. Specification of the PITR data to clone from. The source database
+     *                                   must exist.
+     *
+     *                                   The cloned database will be created in the same location as the source
+     *                                   database.
+     * @param array        $optionalArgs {
+     *     Optional.
+     *
+     *     @type EncryptionConfig $encryptionConfig
+     *           Optional. Encryption configuration for the cloned database.
+     *
+     *           If this field is not specified, the cloned database will use
+     *           the same encryption configuration as the source database, namely
+     *           [use_source_encryption][google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption].
+     *     @type array $tags
+     *           Optional. Immutable. Tags to be bound to the cloned database.
+     *
+     *           The tags should be provided in the format of
+     *           `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function cloneDatabase($parent, $databaseId, $pitrSnapshot, array $optionalArgs = [])
+    {
+        $request = new CloneDatabaseRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setDatabaseId($databaseId);
+        $request->setPitrSnapshot($pitrSnapshot);
+        $requestParamHeaders['project_id'] = $pitrSnapshot->getDatabase();
+        $requestParamHeaders['database_id'] = $pitrSnapshot->getDatabase();
+        if (isset($optionalArgs['encryptionConfig'])) {
+            $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
+        }
+
+        if (isset($optionalArgs['tags'])) {
+            $request->setTags($optionalArgs['tags']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CloneDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Creates a backup schedule on a database.
      * At most two backup schedules can be configured on a database, one daily
      * backup schedule and one weekly backup schedule.
@@ -790,7 +986,7 @@ class FirestoreAdminGapicClient
      *                               with first character a letter and the last a letter or a number. Must not
      *                               be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
      *
-     *                               "(default)" database id is also valid.
+     *                               "(default)" database ID is also valid.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -887,6 +1083,57 @@ class FirestoreAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateIndex', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Create a user creds.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedParent = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
+     *     $userCreds = new UserCreds();
+     *     $userCredsId = 'user_creds_id';
+     *     $response = $firestoreAdminClient->createUserCreds($formattedParent, $userCreds, $userCredsId);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string    $parent       Required. A parent name of the form
+     *                                `projects/{project_id}/databases/{database_id}`
+     * @param UserCreds $userCreds    Required. The user creds to create.
+     * @param string    $userCredsId  Required. The ID to use for the user creds, which will become the final
+     *                                component of the user creds's resource name.
+     *
+     *                                This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+     *                                with first character a letter and the last a letter or a number. Must not
+     *                                be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\UserCreds
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createUserCreds($parent, $userCreds, $userCredsId, array $optionalArgs = [])
+    {
+        $request = new CreateUserCredsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setUserCreds($userCreds);
+        $request->setUserCredsId($userCredsId);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateUserCreds', UserCreds::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1080,6 +1327,124 @@ class FirestoreAdminGapicClient
     }
 
     /**
+     * Deletes a user creds.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedName = $firestoreAdminClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+     *     $firestoreAdminClient->deleteUserCreds($formattedName);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A name of the form
+     *                             `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteUserCreds($name, array $optionalArgs = [])
+    {
+        $request = new DeleteUserCredsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteUserCreds', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Disables a user creds. No-op if the user creds are already disabled.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedName = $firestoreAdminClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+     *     $response = $firestoreAdminClient->disableUserCreds($formattedName);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A name of the form
+     *                             `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\UserCreds
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function disableUserCreds($name, array $optionalArgs = [])
+    {
+        $request = new DisableUserCredsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DisableUserCreds', UserCreds::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Enables a user creds. No-op if the user creds are already enabled.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedName = $firestoreAdminClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+     *     $response = $firestoreAdminClient->enableUserCreds($formattedName);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A name of the form
+     *                             `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\UserCreds
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function enableUserCreds($name, array $optionalArgs = [])
+    {
+        $request = new EnableUserCredsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('EnableUserCreds', UserCreds::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Exports a copy of all or a subset of documents from Google Cloud Firestore
      * to another storage system, such as Google Cloud Storage. Recent updates to
      * documents may not be reflected in the export. The export occurs in the
@@ -1134,8 +1499,8 @@ class FirestoreAdminGapicClient
      *     Optional.
      *
      *     @type string[] $collectionIds
-     *           Which collection ids to export. Unspecified means all collections. Each
-     *           collection id in this list must be unique.
+     *           Which collection IDs to export. Unspecified means all collections. Each
+     *           collection ID in this list must be unique.
      *     @type string $outputUriPrefix
      *           The output URI. Currently only supports Google Cloud Storage URIs of the
      *           form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name
@@ -1401,6 +1766,47 @@ class FirestoreAdminGapicClient
     }
 
     /**
+     * Gets a user creds resource. Note that the returned resource does not
+     * contain the secret value itself.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedName = $firestoreAdminClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+     *     $response = $firestoreAdminClient->getUserCreds($formattedName);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A name of the form
+     *                             `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\UserCreds
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getUserCreds($name, array $optionalArgs = [])
+    {
+        $request = new GetUserCredsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetUserCreds', UserCreds::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Imports documents into Google Cloud Firestore. Existing documents with the
      * same name are overwritten. The import occurs in the background and its
      * progress can be monitored and managed via the Operation resource that is
@@ -1447,8 +1853,8 @@ class FirestoreAdminGapicClient
      *     Optional.
      *
      *     @type string[] $collectionIds
-     *           Which collection ids to import. Unspecified means all collections included
-     *           in the import. Each collection id in this list must be unique.
+     *           Which collection IDs to import. Unspecified means all collections included
+     *           in the import. Each collection ID in this list must be unique.
      *     @type string $inputUriPrefix
      *           Location of the exported files.
      *           This must match the output_uri_prefix of an ExportDocumentsResponse from
@@ -1559,6 +1965,19 @@ class FirestoreAdminGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $filter
+     *           An expression that filters the list of returned backups.
+     *
+     *           A filter expression consists of a field name, a comparison operator, and a
+     *           value for filtering.
+     *           The value must be a string, a number, or a boolean. The comparison operator
+     *           must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
+     *           Colon `:` is the contains operator. Filter rules are not case sensitive.
+     *
+     *           The following fields in the [Backup][google.firestore.admin.v1.Backup] are
+     *           eligible for filtering:
+     *
+     *           * `database_uid` (supports `=` only)
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1575,6 +1994,10 @@ class FirestoreAdminGapicClient
         $requestParamHeaders = [];
         $request->setParent($parent);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ListBackups', ListBackupsResponse::class, $optionalArgs, $request)->wait();
@@ -1791,6 +2214,87 @@ class FirestoreAdminGapicClient
     }
 
     /**
+     * List all user creds in the database. Note that the returned resource
+     * does not contain the secret value itself.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedParent = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
+     *     $response = $firestoreAdminClient->listUserCreds($formattedParent);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. A parent database name of the form
+     *                             `projects/{project_id}/databases/{database_id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\ListUserCredsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listUserCreds($parent, array $optionalArgs = [])
+    {
+        $request = new ListUserCredsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ListUserCreds', ListUserCredsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Resets the password of a user creds.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedName = $firestoreAdminClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+     *     $response = $firestoreAdminClient->resetUserPassword($formattedName);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A name of the form
+     *                             `projects/{project_id}/databases/{database_id}/userCreds/{user_creds_id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\UserCreds
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function resetUserPassword($name, array $optionalArgs = [])
+    {
+        $request = new ResetUserPasswordRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ResetUserPassword', UserCreds::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a new database by restoring from an existing backup.
      *
      * The new database must be in the same cloud region or multi-region location
@@ -1850,21 +2354,35 @@ class FirestoreAdminGapicClient
      * @param string $parent       Required. The project to restore the database in. Format is
      *                             `projects/{project_id}`.
      * @param string $databaseId   Required. The ID to use for the database, which will become the final
-     *                             component of the database's resource name. This database id must not be
+     *                             component of the database's resource name. This database ID must not be
      *                             associated with an existing database.
      *
      *                             This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
      *                             with first character a letter and the last a letter or a number. Must not
      *                             be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
      *
-     *                             "(default)" database id is also valid.
+     *                             "(default)" database ID is also valid.
      * @param string $backup       Required. Backup to restore from. Must be from the same project as the
      *                             parent.
+     *
+     *                             The restored database will be created in the same location as the source
+     *                             backup.
      *
      *                             Format is: `projects/{project_id}/locations/{location}/backups/{backup}`
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type EncryptionConfig $encryptionConfig
+     *           Optional. Encryption configuration for the restored database.
+     *
+     *           If this field is not specified, the restored database will use
+     *           the same encryption configuration as the backup, namely
+     *           [use_source_encryption][google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption].
+     *     @type array $tags
+     *           Optional. Immutable. Tags to be bound to the restored database.
+     *
+     *           The tags should be provided in the format of
+     *           `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1883,6 +2401,14 @@ class FirestoreAdminGapicClient
         $request->setDatabaseId($databaseId);
         $request->setBackup($backup);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['encryptionConfig'])) {
+            $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
+        }
+
+        if (isset($optionalArgs['tags'])) {
+            $request->setTags($optionalArgs['tags']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('RestoreDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();

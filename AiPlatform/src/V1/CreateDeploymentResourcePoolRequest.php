@@ -21,13 +21,13 @@ class CreateDeploymentResourcePoolRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The DeploymentResourcePool to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeploymentResourcePool deployment_resource_pool = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployment_resource_pool = null;
+    protected $deployment_resource_pool = null;
     /**
      * Required. The ID to use for the DeploymentResourcePool, which
      * will become the final component of the DeploymentResourcePool's resource
@@ -37,7 +37,7 @@ class CreateDeploymentResourcePoolRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string deployment_resource_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployment_resource_pool_id = '';
+    protected $deployment_resource_pool_id = '';
 
     /**
      * @param string                                             $parent                   Required. The parent location resource where this DeploymentResourcePool

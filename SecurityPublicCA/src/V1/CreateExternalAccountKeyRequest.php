@@ -24,7 +24,7 @@ class CreateExternalAccountKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The external account key to create. This field only exists to
      * future-proof the API. At present, all fields in ExternalAccountKey are
@@ -33,7 +33,7 @@ class CreateExternalAccountKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.publicca.v1.ExternalAccountKey external_account_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $external_account_key = null;
+    protected $external_account_key = null;
 
     /**
      * @param string                                                $parent             Required. The parent resource where this external_account_key will be

@@ -20,13 +20,13 @@ class NFS extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string server = 1;</code>
      */
-    private $server = '';
+    protected $server = '';
     /**
      * Remote source path exported from the NFS, e.g., "/share".
      *
      * Generated from protobuf field <code>string remote_path = 2;</code>
      */
-    private $remote_path = '';
+    protected $remote_path = '';
 
     /**
      * Constructor.

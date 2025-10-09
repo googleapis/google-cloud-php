@@ -41,34 +41,33 @@ php.owlbot_main(
     ]
 )
 
-for version in ['v1', 'v1beta']:
-    executions_library = Path(f"../{php.STAGING_DIR}/Workflows/Executions/{version}").resolve()
+executions_library = Path(f"../{php.STAGING_DIR}/Workflows/Executions/v1").resolve()
 
-    # copy all src including partial veneer classes
-    s.move(
-        executions_library / 'src',
-        'src/Executions',
-        merge=preserve_copyright_year,
-    )
-    # copy proto files to src also
-    s.move(
-        executions_library / 'proto/src/Google/Cloud/Workflows',
-        'src/',
-        merge=preserve_copyright_year,
-        excludes=[
-            executions_library / "**/*_*.php"
-        ]
-    )
-    s.move(
-        executions_library / 'tests/Unit',
-        'tests/Unit/Executions',
-        merge=preserve_copyright_year,
-    )
-    # copy GPBMetadata file to metadata
-    s.move(executions_library / 'proto/src/GPBMetadata/Google/Cloud/Workflows',
-        'metadata/',
-        merge=preserve_copyright_year,
-    )
+# copy all src including partial veneer classes
+s.move(
+    executions_library / 'src',
+    'src/Executions',
+    merge=preserve_copyright_year,
+)
+# copy proto files to src also
+s.move(
+    executions_library / 'proto/src/Google/Cloud/Workflows',
+    'src/',
+    merge=preserve_copyright_year,
+    excludes=[
+        executions_library / "**/*_*.php"
+    ]
+)
+s.move(
+    executions_library / 'tests/Unit',
+    'tests/Unit/Executions',
+    merge=preserve_copyright_year,
+)
+# copy GPBMetadata file to metadata
+s.move(executions_library / 'proto/src/GPBMetadata/Google/Cloud/Workflows',
+    'metadata/',
+    merge=preserve_copyright_year,
+)
 
 # remove class_alias code
 s.replace(

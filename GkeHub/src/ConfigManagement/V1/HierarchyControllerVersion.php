@@ -20,13 +20,13 @@ class HierarchyControllerVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string hnc = 1;</code>
      */
-    private $hnc = '';
+    protected $hnc = '';
     /**
      * Version for Hierarchy Controller extension
      *
      * Generated from protobuf field <code>string extension = 2;</code>
      */
-    private $extension = '';
+    protected $extension = '';
 
     /**
      * Constructor.

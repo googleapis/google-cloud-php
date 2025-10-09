@@ -13,6 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A job consists of multiple steps, each of which performs some
  * specific operation as part of the overall job.  Data is typically
  * passed from one step to another as part of the job.
+ * **Note:** The properties of this object are not stable and might change.
  * Here's an example of a sequence of steps which together implement a
  * Map-Reduce job:
  *   * Read a collection of data from some source, parsing the
@@ -36,14 +37,14 @@ class Step extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The name that identifies the step. This must be unique for each
      * step with respect to all other steps in the Cloud Dataflow job.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Named properties associated with the step. Each kind of
      * predefined step has its own required set of properties.
@@ -51,7 +52,7 @@ class Step extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct properties = 3;</code>
      */
-    private $properties = null;
+    protected $properties = null;
 
     /**
      * Constructor.

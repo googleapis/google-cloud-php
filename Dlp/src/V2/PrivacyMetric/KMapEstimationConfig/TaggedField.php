@@ -20,7 +20,7 @@ class TaggedField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $field = null;
+    protected $field = null;
     protected $tag;
 
     /**
@@ -40,7 +40,7 @@ class TaggedField extends \Google\Protobuf\Internal\Message
      *     @type string $custom_tag
      *           A column can be tagged with a custom tag. In this case, the user must
      *           indicate an auxiliary table that contains statistical information on
-     *           the possible values of this column (below).
+     *           the possible values of this column.
      *     @type \Google\Protobuf\GPBEmpty $inferred
      *           If no semantic tag is indicated, we infer the statistical model from
      *           the distribution of values in the input data
@@ -129,7 +129,7 @@ class TaggedField extends \Google\Protobuf\Internal\Message
     /**
      * A column can be tagged with a custom tag. In this case, the user must
      * indicate an auxiliary table that contains statistical information on
-     * the possible values of this column (below).
+     * the possible values of this column.
      *
      * Generated from protobuf field <code>string custom_tag = 3;</code>
      * @return string
@@ -147,7 +147,7 @@ class TaggedField extends \Google\Protobuf\Internal\Message
     /**
      * A column can be tagged with a custom tag. In this case, the user must
      * indicate an auxiliary table that contains statistical information on
-     * the possible values of this column (below).
+     * the possible values of this column.
      *
      * Generated from protobuf field <code>string custom_tag = 3;</code>
      * @param string $var
@@ -204,6 +204,4 @@ class TaggedField extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TaggedField::class, \Google\Cloud\Dlp\V2\PrivacyMetric_KMapEstimationConfig_TaggedField::class);
 

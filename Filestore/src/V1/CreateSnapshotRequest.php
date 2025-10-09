@@ -21,7 +21,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID to use for the snapshot.
      * The ID must be unique within the specified instance.
@@ -30,13 +30,13 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string snapshot_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $snapshot_id = '';
+    protected $snapshot_id = '';
     /**
      * Required. A snapshot resource.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Snapshot snapshot = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $snapshot = null;
+    protected $snapshot = null;
 
     /**
      * @param string                              $parent     Required. The Filestore Instance to create the snapshots of, in the format

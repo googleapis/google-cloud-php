@@ -34,7 +34,35 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+use Google\ApiCore\ApiException;
+use Google\Maps\FleetEngine\Delivery\V1\Client\DeliveryServiceClient;
+use Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle;
+use Google\Maps\FleetEngine\Delivery\V1\GetDeliveryVehicleRequest;
+
+// Create a client.
+$deliveryServiceClient = new DeliveryServiceClient();
+
+// Prepare the request message.
+$request = (new GetDeliveryVehicleRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var DeliveryVehicle $response */
+    $response = $deliveryServiceClient->getDeliveryVehicle($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-maps-fleetengine-delivery/tree/main/samples) for a canonical list of samples.
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

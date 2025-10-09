@@ -22,20 +22,20 @@ class Location extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cpe_uri = 1;</code>
      */
-    private $cpe_uri = '';
+    protected $cpe_uri = '';
     /**
      * Deprecated.
      * The version installed at this location.
      *
      * Generated from protobuf field <code>.grafeas.v1.Version version = 2;</code>
      */
-    private $version = null;
+    protected $version = null;
     /**
      * The path from which we gathered that this package/version is installed.
      *
      * Generated from protobuf field <code>string path = 3;</code>
      */
-    private $path = '';
+    protected $path = '';
 
     /**
      * Constructor.

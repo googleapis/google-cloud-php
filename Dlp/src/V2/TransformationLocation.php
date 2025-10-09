@@ -21,7 +21,7 @@ class TransformationLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationContainerType container_type = 3;</code>
      */
-    private $container_type = 0;
+    protected $container_type = 0;
     protected $location_type;
 
     /**

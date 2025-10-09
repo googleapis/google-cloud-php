@@ -20,14 +20,14 @@ class CalculateStatsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * A filter to reduce results to a specific subset. This field is useful for
      * getting statistics about conversations with specific properties.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $location Required. The location of the conversations. Please see

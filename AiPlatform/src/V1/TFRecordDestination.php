@@ -20,7 +20,7 @@ class TFRecordDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GcsDestination gcs_destination = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $gcs_destination = null;
+    protected $gcs_destination = null;
 
     /**
      * Constructor.

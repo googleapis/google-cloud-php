@@ -18,6 +18,28 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class SynthesisInput extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * This system instruction is supported only for controllable/promptable voice
+     * models. If this system instruction is used, we pass the unedited text to
+     * Gemini-TTS. Otherwise, a default system instruction is used. AI Studio
+     * calls this system instruction, Style Instructions.
+     *
+     * Generated from protobuf field <code>optional string prompt = 6;</code>
+     */
+    protected $prompt = null;
+    /**
+     * Optional. The pronunciation customizations are applied to the input. If
+     * this is set, the input is synthesized using the given pronunciation
+     * customizations.
+     * The initial support is for en-us, with plans to expand to other locales in
+     * the future. Instant Clone voices aren't supported.
+     * In order to customize the pronunciation of a phrase, there must be an exact
+     * match of the phrase in the input types. If using SSML, the phrase must not
+     * be inside a phoneme tag.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomPronunciations custom_pronunciations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_pronunciations = null;
     protected $input_source;
 
     /**
@@ -28,12 +50,32 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
      *
      *     @type string $text
      *           The raw text to be synthesized.
+     *     @type string $markup
+     *           Markup for HD voices specifically. This field may not be used with any
+     *           other voices.
      *     @type string $ssml
      *           The SSML document to be synthesized. The SSML document must be valid
      *           and well-formed. Otherwise the RPC will fail and return
      *           [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. For
      *           more information, see
      *           [SSML](https://cloud.google.com/text-to-speech/docs/ssml).
+     *     @type \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup $multi_speaker_markup
+     *           The multi-speaker input to be synthesized. Only applicable for
+     *           multi-speaker synthesis.
+     *     @type string $prompt
+     *           This system instruction is supported only for controllable/promptable voice
+     *           models. If this system instruction is used, we pass the unedited text to
+     *           Gemini-TTS. Otherwise, a default system instruction is used. AI Studio
+     *           calls this system instruction, Style Instructions.
+     *     @type \Google\Cloud\TextToSpeech\V1\CustomPronunciations $custom_pronunciations
+     *           Optional. The pronunciation customizations are applied to the input. If
+     *           this is set, the input is synthesized using the given pronunciation
+     *           customizations.
+     *           The initial support is for en-us, with plans to expand to other locales in
+     *           the future. Instant Clone voices aren't supported.
+     *           In order to customize the pronunciation of a phrase, there must be an exact
+     *           match of the phrase in the input types. If using SSML, the phrase must not
+     *           be inside a phoneme tag.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,6 +115,39 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Markup for HD voices specifically. This field may not be used with any
+     * other voices.
+     *
+     * Generated from protobuf field <code>string markup = 5;</code>
+     * @return string
+     */
+    public function getMarkup()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasMarkup()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Markup for HD voices specifically. This field may not be used with any
+     * other voices.
+     *
+     * Generated from protobuf field <code>string markup = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMarkup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
      * The SSML document to be synthesized. The SSML document must be valid
      * and well-formed. Otherwise the RPC will fail and return
      * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. For
@@ -107,6 +182,131 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * The multi-speaker input to be synthesized. Only applicable for
+     * multi-speaker synthesis.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.MultiSpeakerMarkup multi_speaker_markup = 4;</code>
+     * @return \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup|null
+     */
+    public function getMultiSpeakerMarkup()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasMultiSpeakerMarkup()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * The multi-speaker input to be synthesized. Only applicable for
+     * multi-speaker synthesis.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.MultiSpeakerMarkup multi_speaker_markup = 4;</code>
+     * @param \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup $var
+     * @return $this
+     */
+    public function setMultiSpeakerMarkup($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * This system instruction is supported only for controllable/promptable voice
+     * models. If this system instruction is used, we pass the unedited text to
+     * Gemini-TTS. Otherwise, a default system instruction is used. AI Studio
+     * calls this system instruction, Style Instructions.
+     *
+     * Generated from protobuf field <code>optional string prompt = 6;</code>
+     * @return string
+     */
+    public function getPrompt()
+    {
+        return isset($this->prompt) ? $this->prompt : '';
+    }
+
+    public function hasPrompt()
+    {
+        return isset($this->prompt);
+    }
+
+    public function clearPrompt()
+    {
+        unset($this->prompt);
+    }
+
+    /**
+     * This system instruction is supported only for controllable/promptable voice
+     * models. If this system instruction is used, we pass the unedited text to
+     * Gemini-TTS. Otherwise, a default system instruction is used. AI Studio
+     * calls this system instruction, Style Instructions.
+     *
+     * Generated from protobuf field <code>optional string prompt = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPrompt($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->prompt = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The pronunciation customizations are applied to the input. If
+     * this is set, the input is synthesized using the given pronunciation
+     * customizations.
+     * The initial support is for en-us, with plans to expand to other locales in
+     * the future. Instant Clone voices aren't supported.
+     * In order to customize the pronunciation of a phrase, there must be an exact
+     * match of the phrase in the input types. If using SSML, the phrase must not
+     * be inside a phoneme tag.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomPronunciations custom_pronunciations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\TextToSpeech\V1\CustomPronunciations|null
+     */
+    public function getCustomPronunciations()
+    {
+        return $this->custom_pronunciations;
+    }
+
+    public function hasCustomPronunciations()
+    {
+        return isset($this->custom_pronunciations);
+    }
+
+    public function clearCustomPronunciations()
+    {
+        unset($this->custom_pronunciations);
+    }
+
+    /**
+     * Optional. The pronunciation customizations are applied to the input. If
+     * this is set, the input is synthesized using the given pronunciation
+     * customizations.
+     * The initial support is for en-us, with plans to expand to other locales in
+     * the future. Instant Clone voices aren't supported.
+     * In order to customize the pronunciation of a phrase, there must be an exact
+     * match of the phrase in the input types. If using SSML, the phrase must not
+     * be inside a phoneme tag.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomPronunciations custom_pronunciations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\TextToSpeech\V1\CustomPronunciations $var
+     * @return $this
+     */
+    public function setCustomPronunciations($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\CustomPronunciations::class);
+        $this->custom_pronunciations = $var;
 
         return $this;
     }

@@ -20,7 +20,7 @@ class MarkRecommendationSucceededRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * State properties to include with this state. Overwrites any existing
      * `state_metadata`.
@@ -35,7 +35,7 @@ class MarkRecommendationSucceededRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string etag = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name          Required. Name of the recommendation. Please see

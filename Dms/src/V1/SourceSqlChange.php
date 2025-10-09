@@ -23,7 +23,7 @@ class SourceSqlChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sql_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sql_code = '';
+    protected $sql_code = '';
 
     /**
      * Constructor.

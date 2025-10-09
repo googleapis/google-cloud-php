@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_CreateEndpointPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\CreateEndpointPolicyRequest;
 use Google\Cloud\NetworkServices\V1\EndpointMatcher;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy\EndpointPolicyType;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
 use Google\Rpc\Status;
 
 /**
@@ -39,35 +40,31 @@ use Google\Rpc\Status;
  *                                   {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $endpointPolicyId   Short name of the EndpointPolicy resource to be created.
  *                                   E.g. "CustomECS".
- * @param string $endpointPolicyName Name of the EndpointPolicy resource. It matches pattern
- *                                   `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.
  * @param int    $endpointPolicyType The type of endpoint policy. This is primarily used to validate
  *                                   the configuration.
  */
 function create_endpoint_policy_sample(
     string $formattedParent,
     string $endpointPolicyId,
-    string $endpointPolicyName,
     int $endpointPolicyType
 ): void {
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $endpointPolicyEndpointMatcher = new EndpointMatcher();
     $endpointPolicy = (new EndpointPolicy())
-        ->setName($endpointPolicyName)
         ->setType($endpointPolicyType)
         ->setEndpointMatcher($endpointPolicyEndpointMatcher);
+    $request = (new CreateEndpointPolicyRequest())
+        ->setParent($formattedParent)
+        ->setEndpointPolicyId($endpointPolicyId)
+        ->setEndpointPolicy($endpointPolicy);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->createEndpointPolicy(
-            $formattedParent,
-            $endpointPolicyId,
-            $endpointPolicy
-        );
+        $response = $networkServicesClient->createEndpointPolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -97,14 +94,8 @@ function callSample(): void
 {
     $formattedParent = NetworkServicesClient::locationName('[PROJECT]', '[LOCATION]');
     $endpointPolicyId = '[ENDPOINT_POLICY_ID]';
-    $endpointPolicyName = '[NAME]';
     $endpointPolicyType = EndpointPolicyType::ENDPOINT_POLICY_TYPE_UNSPECIFIED;
 
-    create_endpoint_policy_sample(
-        $formattedParent,
-        $endpointPolicyId,
-        $endpointPolicyName,
-        $endpointPolicyType
-    );
+    create_endpoint_policy_sample($formattedParent, $endpointPolicyId, $endpointPolicyType);
 }
 // [END networkservices_v1_generated_NetworkServices_CreateEndpointPolicy_sync]

@@ -20,32 +20,32 @@ class NasTrial extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Output only. The detailed state of the NasTrial.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NasTrial.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The final measurement containing the objective value.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Measurement final_measurement = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $final_measurement = null;
+    protected $final_measurement = null;
     /**
      * Output only. Time when the NasTrial was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Time when the NasTrial's status changed to `SUCCEEDED` or
      * `INFEASIBLE`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

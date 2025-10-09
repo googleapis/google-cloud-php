@@ -20,13 +20,13 @@ class DoubleValueSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double min_value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $min_value = 0.0;
+    protected $min_value = 0.0;
     /**
      * Required. Inclusive maximum value of the parameter.
      *
      * Generated from protobuf field <code>double max_value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_value = 0.0;
+    protected $max_value = 0.0;
     /**
      * A default value for a `DOUBLE` parameter that is assumed to be a
      * relatively good starting point.  Unset value signals that there is no
@@ -36,7 +36,7 @@ class DoubleValueSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double default_value = 4;</code>
      */
-    private $default_value = null;
+    protected $default_value = null;
 
     /**
      * Constructor.

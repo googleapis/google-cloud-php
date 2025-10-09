@@ -21,14 +21,14 @@ class FeatureSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Source column to get the Feature values from. If not set, uses the column
      * with the same name as the Feature ID.
      *
      * Generated from protobuf field <code>string source_field = 2;</code>
      */
-    private $source_field = '';
+    protected $source_field = '';
 
     /**
      * Constructor.

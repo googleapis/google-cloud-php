@@ -25,13 +25,13 @@ class UpdateExternalAccessRuleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. Description of the external access rule.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.ExternalAccessRule external_access_rule = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $external_access_rule = null;
+    protected $external_access_rule = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -48,7 +48,7 @@ class UpdateExternalAccessRuleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param \Google\Cloud\VmwareEngine\V1\ExternalAccessRule $externalAccessRule Required. Description of the external access rule.

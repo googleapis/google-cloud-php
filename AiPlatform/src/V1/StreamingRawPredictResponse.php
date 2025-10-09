@@ -21,7 +21,7 @@ class StreamingRawPredictResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes output = 1;</code>
      */
-    private $output = '';
+    protected $output = '';
 
     /**
      * Constructor.

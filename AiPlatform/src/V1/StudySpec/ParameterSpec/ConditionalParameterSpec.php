@@ -20,7 +20,7 @@ class ConditionalParameterSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.ParameterSpec parameter_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parameter_spec = null;
+    protected $parameter_spec = null;
     protected $parent_value_condition;
 
     /**

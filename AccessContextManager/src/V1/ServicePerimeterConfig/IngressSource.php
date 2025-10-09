@@ -177,6 +177,4 @@ class IngressSource extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IngressSource::class, \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig_IngressSource::class);
 

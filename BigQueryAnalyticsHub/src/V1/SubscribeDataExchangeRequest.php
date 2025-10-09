@@ -17,35 +17,41 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Resource name of the Data Exchange.
-     * e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     * e.g. `projects/publisherproject/locations/us/dataExchanges/123`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The parent resource path of the Subscription.
-     * e.g. `projects/subscriberproject/locations/US`
+     * e.g. `projects/subscriberproject/locations/us`
      *
      * Generated from protobuf field <code>string destination = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $destination = '';
+    protected $destination = '';
+    /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $destination_dataset = null;
     /**
      * Required. Name of the subscription to create.
      * e.g. `subscription1`
      *
      * Generated from protobuf field <code>string subscription = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
     /**
      * Email of the subscriber.
      *
      * Generated from protobuf field <code>string subscriber_contact = 3;</code>
      */
-    private $subscriber_contact = '';
+    protected $subscriber_contact = '';
 
     /**
      * @param string $name Required. Resource name of the Data Exchange.
-     *                     e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     *                     e.g. `projects/publisherproject/locations/us/dataExchanges/123`
      *                     Please see {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeDataExchangeRequest
@@ -66,10 +72,12 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Resource name of the Data Exchange.
-     *           e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     *           e.g. `projects/publisherproject/locations/us/dataExchanges/123`
      *     @type string $destination
      *           Required. The parent resource path of the Subscription.
-     *           e.g. `projects/subscriberproject/locations/US`
+     *           e.g. `projects/subscriberproject/locations/us`
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset $destination_dataset
+     *           Optional. BigQuery destination dataset to create for the subscriber.
      *     @type string $subscription
      *           Required. Name of the subscription to create.
      *           e.g. `subscription1`
@@ -84,7 +92,7 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the Data Exchange.
-     * e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     * e.g. `projects/publisherproject/locations/us/dataExchanges/123`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -96,7 +104,7 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the Data Exchange.
-     * e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     * e.g. `projects/publisherproject/locations/us/dataExchanges/123`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -112,7 +120,7 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource path of the Subscription.
-     * e.g. `projects/subscriberproject/locations/US`
+     * e.g. `projects/subscriberproject/locations/us`
      *
      * Generated from protobuf field <code>string destination = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -124,7 +132,7 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource path of the Subscription.
-     * e.g. `projects/subscriberproject/locations/US`
+     * e.g. `projects/subscriberproject/locations/us`
      *
      * Generated from protobuf field <code>string destination = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -134,6 +142,42 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->destination = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset|null
+     */
+    public function getDestinationDataset()
+    {
+        return $this->destination_dataset;
+    }
+
+    public function hasDestinationDataset()
+    {
+        return isset($this->destination_dataset);
+    }
+
+    public function clearDestinationDataset()
+    {
+        unset($this->destination_dataset);
+    }
+
+    /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset $var
+     * @return $this
+     */
+    public function setDestinationDataset($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset::class);
+        $this->destination_dataset = $var;
 
         return $this;
     }

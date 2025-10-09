@@ -20,14 +20,14 @@ class NetworkSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_internet_access = 1;</code>
      */
-    private $enable_internet_access = false;
+    protected $enable_internet_access = false;
     /**
      * The full name of the Google Compute Engine
      * [network](https://cloud.google.com//compute/docs/networks-and-firewalls#networks)
      *
      * Generated from protobuf field <code>string network = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * The name of the subnet that this instance is in.
      * Format:
@@ -35,7 +35,7 @@ class NetworkSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork = 3 [(.google.api.resource_reference) = {</code>
      */
-    private $subnetwork = '';
+    protected $subnetwork = '';
 
     /**
      * Constructor.

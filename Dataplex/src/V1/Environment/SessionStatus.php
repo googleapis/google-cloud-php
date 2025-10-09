@@ -21,7 +21,7 @@ class SessionStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool active = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $active = false;
+    protected $active = false;
 
     /**
      * Constructor.

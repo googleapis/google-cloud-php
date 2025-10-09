@@ -22,7 +22,7 @@ class UpdateGcpUserAccessBindingRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.GcpUserAccessBinding gcp_user_access_binding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $gcp_user_access_binding = null;
+    protected $gcp_user_access_binding = null;
     /**
      * Required. Only the fields specified in this mask are updated. Because name and
      * group_key cannot be changed, update_mask is required and must always be:
@@ -32,7 +32,7 @@ class UpdateGcpUserAccessBindingRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Identity\AccessContextManager\V1\GcpUserAccessBinding $gcpUserAccessBinding Required. [GcpUserAccessBinding]

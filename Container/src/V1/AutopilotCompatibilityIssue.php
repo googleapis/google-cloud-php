@@ -21,19 +21,19 @@ class AutopilotCompatibilityIssue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_observation = 1;</code>
      */
-    private $last_observation = null;
+    protected $last_observation = null;
     /**
      * The constraint type of the issue.
      *
      * Generated from protobuf field <code>string constraint_type = 2;</code>
      */
-    private $constraint_type = '';
+    protected $constraint_type = '';
     /**
      * The incompatibility type of this issue.
      *
      * Generated from protobuf field <code>.google.container.v1.AutopilotCompatibilityIssue.IssueType incompatibility_type = 3;</code>
      */
-    private $incompatibility_type = 0;
+    protected $incompatibility_type = 0;
     /**
      * The name of the resources which are subject to this issue.
      *
@@ -41,17 +41,17 @@ class AutopilotCompatibilityIssue extends \Google\Protobuf\Internal\Message
      */
     private $subjects;
     /**
-     * A URL to a public documnetation, which addresses resolving this issue.
+     * A URL to a public documentation, which addresses resolving this issue.
      *
      * Generated from protobuf field <code>string documentation_url = 5;</code>
      */
-    private $documentation_url = '';
+    protected $documentation_url = '';
     /**
      * The description of the issue.
      *
      * Generated from protobuf field <code>string description = 6;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.
@@ -68,7 +68,7 @@ class AutopilotCompatibilityIssue extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subjects
      *           The name of the resources which are subject to this issue.
      *     @type string $documentation_url
-     *           A URL to a public documnetation, which addresses resolving this issue.
+     *           A URL to a public documentation, which addresses resolving this issue.
      *     @type string $description
      *           The description of the issue.
      * }
@@ -193,7 +193,7 @@ class AutopilotCompatibilityIssue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A URL to a public documnetation, which addresses resolving this issue.
+     * A URL to a public documentation, which addresses resolving this issue.
      *
      * Generated from protobuf field <code>string documentation_url = 5;</code>
      * @return string
@@ -204,7 +204,7 @@ class AutopilotCompatibilityIssue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A URL to a public documnetation, which addresses resolving this issue.
+     * A URL to a public documentation, which addresses resolving this issue.
      *
      * Generated from protobuf field <code>string documentation_url = 5;</code>
      * @param string $var

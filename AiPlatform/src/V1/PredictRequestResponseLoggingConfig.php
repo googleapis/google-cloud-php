@@ -20,14 +20,14 @@ class PredictRequestResponseLoggingConfig extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Percentage of requests to be logged, expressed as a fraction in
      * range(0,1].
      *
      * Generated from protobuf field <code>double sampling_rate = 2;</code>
      */
-    private $sampling_rate = 0.0;
+    protected $sampling_rate = 0.0;
     /**
      * BigQuery table for logging.
      * If only given a project, a new dataset will be created with name
@@ -38,7 +38,7 @@ class PredictRequestResponseLoggingConfig extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BigQueryDestination bigquery_destination = 3;</code>
      */
-    private $bigquery_destination = null;
+    protected $bigquery_destination = null;
 
     /**
      * Constructor.

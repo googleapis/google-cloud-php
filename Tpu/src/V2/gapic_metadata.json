@@ -15,9 +15,19 @@
                                 "createNode"
                             ]
                         },
+                        "CreateQueuedResource": {
+                            "methods": [
+                                "createQueuedResource"
+                            ]
+                        },
                         "DeleteNode": {
                             "methods": [
                                 "deleteNode"
+                            ]
+                        },
+                        "DeleteQueuedResource": {
+                            "methods": [
+                                "deleteQueuedResource"
                             ]
                         },
                         "GenerateServiceIdentity": {
@@ -40,6 +50,11 @@
                                 "getNode"
                             ]
                         },
+                        "GetQueuedResource": {
+                            "methods": [
+                                "getQueuedResource"
+                            ]
+                        },
                         "GetRuntimeVersion": {
                             "methods": [
                                 "getRuntimeVersion"
@@ -55,9 +70,19 @@
                                 "listNodes"
                             ]
                         },
+                        "ListQueuedResources": {
+                            "methods": [
+                                "listQueuedResources"
+                            ]
+                        },
                         "ListRuntimeVersions": {
                             "methods": [
                                 "listRuntimeVersions"
+                            ]
+                        },
+                        "ResetQueuedResource": {
+                            "methods": [
+                                "resetQueuedResource"
                             ]
                         },
                         "StartNode": {

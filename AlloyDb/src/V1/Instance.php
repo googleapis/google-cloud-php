@@ -109,11 +109,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $gce_zone = '';
     /**
-     * Database flags. Set at instance level.
-     *  * They are copied from primary instance on read instance creation.
-     *  * Read instances can set new or override existing flags that are relevant
-     *    for reads, e.g. for enabling columnar cache on a read instance. Flags
-     *    set on read instance may or may not be present on primary.
+     * Database flags. Set at the instance level.
+     * They are copied from the primary instance on secondary instance creation.
+     * Flags that have restrictions default to the value at primary
+     * instance on read instances during creation. Read instances can set new
+     * flags or override existing flags that are relevant for reads, for example,
+     * for enabling columnar cache on a read instance. Flags set on read instance
+     * might or might not be present on the primary instance.
      * This is a list of "key": "value" pairs.
      * "key": The name of the flag. These flags are passed at instance setup time,
      * so include both server options and system variables for Postgres. Flags are
@@ -146,6 +148,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $query_insights_config = null;
     /**
+     * Configuration for observability.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ObservabilityInstanceConfig observability_config = 26;</code>
+     */
+    protected $observability_config = null;
+    /**
      * Read pool instance configuration.
      * This is required if the value of instanceType is READ_POOL.
      *
@@ -159,6 +167,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string ip_address = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $ip_address = '';
+    /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 27 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     */
+    protected $public_ip_address = '';
     /**
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation).
      * Set to true if the current state of Instance does not match the user's
@@ -189,6 +205,49 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ClientConnectionConfig client_connection_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $client_connection_config = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.PscInstanceConfig psc_instance_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $psc_instance_config = null;
+    /**
+     * Optional. Instance-level network configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.InstanceNetworkConfig network_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $network_config = null;
+    /**
+     * Output only. All outbound public IP addresses configured for the instance.
+     *
+     * Generated from protobuf field <code>repeated string outbound_public_ip_addresses = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     */
+    private $outbound_public_ip_addresses;
+    /**
+     * Optional. Specifies whether an instance needs to spin up. Once the instance
+     * is active, the activation policy can be updated to the `NEVER` to stop the
+     * instance. Likewise, the activation policy can be updated to `ALWAYS` to
+     * start the instance.
+     * There are restrictions around when an instance can/cannot be activated (for
+     * example, a read pool instance should be stopped before stopping primary
+     * etc.). Please refer to the API documentation for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ActivationPolicy activation_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $activation_policy = 0;
+    /**
+     * Optional. The configuration for Managed Connection Pool (MCP).
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ConnectionPoolConfig connection_pool_config = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $connection_pool_config = null;
 
     /**
      * Constructor.
@@ -241,11 +300,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           If this is absent for a ZONAL instance, instance is created in a random
      *           zone with available capacity.
      *     @type array|\Google\Protobuf\Internal\MapField $database_flags
-     *           Database flags. Set at instance level.
-     *            * They are copied from primary instance on read instance creation.
-     *            * Read instances can set new or override existing flags that are relevant
-     *              for reads, e.g. for enabling columnar cache on a read instance. Flags
-     *              set on read instance may or may not be present on primary.
+     *           Database flags. Set at the instance level.
+     *           They are copied from the primary instance on secondary instance creation.
+     *           Flags that have restrictions default to the value at primary
+     *           instance on read instances during creation. Read instances can set new
+     *           flags or override existing flags that are relevant for reads, for example,
+     *           for enabling columnar cache on a read instance. Flags set on read instance
+     *           might or might not be present on the primary instance.
      *           This is a list of "key": "value" pairs.
      *           "key": The name of the flag. These flags are passed at instance setup time,
      *           so include both server options and system variables for Postgres. Flags are
@@ -261,12 +322,18 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           the standby for a PRIMARY instance.
      *     @type \Google\Cloud\AlloyDb\V1\Instance\QueryInsightsInstanceConfig $query_insights_config
      *           Configuration for query insights.
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceConfig $observability_config
+     *           Configuration for observability.
      *     @type \Google\Cloud\AlloyDb\V1\Instance\ReadPoolConfig $read_pool_config
      *           Read pool instance configuration.
      *           This is required if the value of instanceType is READ_POOL.
      *     @type string $ip_address
      *           Output only. The IP address for the Instance.
      *           This is the connection endpoint for an end-user application.
+     *     @type string $public_ip_address
+     *           Output only. The public IP addresses for the Instance. This is available
+     *           ONLY when enable_public_ip is set. This is the connection endpoint for an
+     *           end-user application.
      *     @type bool $reconciling
      *           Output only. Reconciling (https://google.aip.dev/128#reconciliation).
      *           Set to true if the current state of Instance does not match the user's
@@ -281,6 +348,25 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           https://google.aip.dev/128
      *     @type \Google\Cloud\AlloyDb\V1\Instance\ClientConnectionConfig $client_connection_config
      *           Optional. Client connection specific configurations
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\PscInstanceConfig $psc_instance_config
+     *           Optional. The configuration for Private Service Connect (PSC) for the
+     *           instance.
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig $network_config
+     *           Optional. Instance-level network configuration.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $outbound_public_ip_addresses
+     *           Output only. All outbound public IP addresses configured for the instance.
+     *     @type int $activation_policy
+     *           Optional. Specifies whether an instance needs to spin up. Once the instance
+     *           is active, the activation policy can be updated to the `NEVER` to stop the
+     *           instance. Likewise, the activation policy can be updated to `ALWAYS` to
+     *           start the instance.
+     *           There are restrictions around when an instance can/cannot be activated (for
+     *           example, a read pool instance should be stopped before stopping primary
+     *           etc.). Please refer to the API documentation for more details.
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\ConnectionPoolConfig $connection_pool_config
+     *           Optional. The configuration for Managed Connection Pool (MCP).
      * }
      */
     public function __construct($data = NULL) {
@@ -681,11 +767,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Database flags. Set at instance level.
-     *  * They are copied from primary instance on read instance creation.
-     *  * Read instances can set new or override existing flags that are relevant
-     *    for reads, e.g. for enabling columnar cache on a read instance. Flags
-     *    set on read instance may or may not be present on primary.
+     * Database flags. Set at the instance level.
+     * They are copied from the primary instance on secondary instance creation.
+     * Flags that have restrictions default to the value at primary
+     * instance on read instances during creation. Read instances can set new
+     * flags or override existing flags that are relevant for reads, for example,
+     * for enabling columnar cache on a read instance. Flags set on read instance
+     * might or might not be present on the primary instance.
      * This is a list of "key": "value" pairs.
      * "key": The name of the flag. These flags are passed at instance setup time,
      * so include both server options and system variables for Postgres. Flags are
@@ -703,11 +791,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Database flags. Set at instance level.
-     *  * They are copied from primary instance on read instance creation.
-     *  * Read instances can set new or override existing flags that are relevant
-     *    for reads, e.g. for enabling columnar cache on a read instance. Flags
-     *    set on read instance may or may not be present on primary.
+     * Database flags. Set at the instance level.
+     * They are copied from the primary instance on secondary instance creation.
+     * Flags that have restrictions default to the value at primary
+     * instance on read instances during creation. Read instances can set new
+     * flags or override existing flags that are relevant for reads, for example,
+     * for enabling columnar cache on a read instance. Flags set on read instance
+     * might or might not be present on the primary instance.
      * This is a list of "key": "value" pairs.
      * "key": The name of the flag. These flags are passed at instance setup time,
      * so include both server options and system variables for Postgres. Flags are
@@ -831,6 +921,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration for observability.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ObservabilityInstanceConfig observability_config = 26;</code>
+     * @return \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceConfig|null
+     */
+    public function getObservabilityConfig()
+    {
+        return $this->observability_config;
+    }
+
+    public function hasObservabilityConfig()
+    {
+        return isset($this->observability_config);
+    }
+
+    public function clearObservabilityConfig()
+    {
+        unset($this->observability_config);
+    }
+
+    /**
+     * Configuration for observability.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ObservabilityInstanceConfig observability_config = 26;</code>
+     * @param \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceConfig $var
+     * @return $this
+     */
+    public function setObservabilityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceConfig::class);
+        $this->observability_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Read pool instance configuration.
      * This is required if the value of instanceType is READ_POOL.
      *
@@ -892,6 +1018,36 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 27 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getPublicIpAddress()
+    {
+        return $this->public_ip_address;
+    }
+
+    /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 27 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPublicIpAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->public_ip_address = $var;
 
         return $this;
     }
@@ -1018,6 +1174,206 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\ClientConnectionConfig::class);
         $this->client_connection_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.PscInstanceConfig psc_instance_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Instance\PscInstanceConfig|null
+     */
+    public function getPscInstanceConfig()
+    {
+        return $this->psc_instance_config;
+    }
+
+    public function hasPscInstanceConfig()
+    {
+        return isset($this->psc_instance_config);
+    }
+
+    public function clearPscInstanceConfig()
+    {
+        unset($this->psc_instance_config);
+    }
+
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.PscInstanceConfig psc_instance_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Instance\PscInstanceConfig $var
+     * @return $this
+     */
+    public function setPscInstanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\PscInstanceConfig::class);
+        $this->psc_instance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Instance-level network configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.InstanceNetworkConfig network_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig|null
+     */
+    public function getNetworkConfig()
+    {
+        return $this->network_config;
+    }
+
+    public function hasNetworkConfig()
+    {
+        return isset($this->network_config);
+    }
+
+    public function clearNetworkConfig()
+    {
+        unset($this->network_config);
+    }
+
+    /**
+     * Optional. Instance-level network configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.InstanceNetworkConfig network_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig $var
+     * @return $this
+     */
+    public function setNetworkConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig::class);
+        $this->network_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All outbound public IP addresses configured for the instance.
+     *
+     * Generated from protobuf field <code>repeated string outbound_public_ip_addresses = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getOutboundPublicIpAddresses()
+    {
+        return $this->outbound_public_ip_addresses;
+    }
+
+    /**
+     * Output only. All outbound public IP addresses configured for the instance.
+     *
+     * Generated from protobuf field <code>repeated string outbound_public_ip_addresses = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setOutboundPublicIpAddresses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->outbound_public_ip_addresses = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether an instance needs to spin up. Once the instance
+     * is active, the activation policy can be updated to the `NEVER` to stop the
+     * instance. Likewise, the activation policy can be updated to `ALWAYS` to
+     * start the instance.
+     * There are restrictions around when an instance can/cannot be activated (for
+     * example, a read pool instance should be stopped before stopping primary
+     * etc.). Please refer to the API documentation for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ActivationPolicy activation_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getActivationPolicy()
+    {
+        return $this->activation_policy;
+    }
+
+    /**
+     * Optional. Specifies whether an instance needs to spin up. Once the instance
+     * is active, the activation policy can be updated to the `NEVER` to stop the
+     * instance. Likewise, the activation policy can be updated to `ALWAYS` to
+     * start the instance.
+     * There are restrictions around when an instance can/cannot be activated (for
+     * example, a read pool instance should be stopped before stopping primary
+     * etc.). Please refer to the API documentation for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ActivationPolicy activation_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setActivationPolicy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1\Instance\ActivationPolicy::class);
+        $this->activation_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration for Managed Connection Pool (MCP).
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ConnectionPoolConfig connection_pool_config = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Instance\ConnectionPoolConfig|null
+     */
+    public function getConnectionPoolConfig()
+    {
+        return $this->connection_pool_config;
+    }
+
+    public function hasConnectionPoolConfig()
+    {
+        return isset($this->connection_pool_config);
+    }
+
+    public function clearConnectionPoolConfig()
+    {
+        unset($this->connection_pool_config);
+    }
+
+    /**
+     * Optional. The configuration for Managed Connection Pool (MCP).
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ConnectionPoolConfig connection_pool_config = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Instance\ConnectionPoolConfig $var
+     * @return $this
+     */
+    public function setConnectionPoolConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\ConnectionPoolConfig::class);
+        $this->connection_pool_config = $var;
 
         return $this;
     }

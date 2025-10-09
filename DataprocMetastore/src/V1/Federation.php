@@ -22,19 +22,19 @@ class Federation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time when the metastore federation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the metastore federation was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * User-defined labels for the metastore federation.
      *
@@ -47,7 +47,7 @@ class Federation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * A map from `BackendMetastore` rank to `BackendMetastore`s from which the
      * federation service serves metadata at query time. The map key represents
@@ -64,27 +64,27 @@ class Federation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint_uri = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $endpoint_uri = '';
+    protected $endpoint_uri = '';
     /**
      * Output only. The current state of the federation.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.Federation.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Additional information about the current state of the
      * metastore federation, if available.
      *
      * Generated from protobuf field <code>string state_message = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_message = '';
+    protected $state_message = '';
     /**
      * Output only. The globally unique resource identifier of the metastore
      * federation.
      *
      * Generated from protobuf field <code>string uid = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
 
     /**
      * Constructor.

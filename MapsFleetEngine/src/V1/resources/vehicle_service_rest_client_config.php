@@ -38,6 +38,17 @@ return [
                     'vehicle_id',
                 ],
             ],
+            'DeleteVehicle' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=providers/*/vehicles/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetVehicle' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=providers/*/vehicles/*}',

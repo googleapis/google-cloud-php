@@ -35,9 +35,9 @@ use Google\Cloud\SecurityCenter\V1\ListEffectiveSecurityHealthAnalyticsCustomMod
  * parent, and inherited modules, inherited from CRM ancestors.
  *
  * @param string $formattedParent Name of parent to list effective custom modules. Its format is
- *                                "organizations/{organization}/securityHealthAnalyticsSettings",
- *                                "folders/{folder}/securityHealthAnalyticsSettings", or
- *                                "projects/{project}/securityHealthAnalyticsSettings"
+ *                                `organizations/{organization}/securityHealthAnalyticsSettings`,
+ *                                `folders/{folder}/securityHealthAnalyticsSettings`, or
+ *                                `projects/{project}/securityHealthAnalyticsSettings`
  *                                Please see {@see SecurityCenterClient::securityHealthAnalyticsSettingsName()} for help formatting this field.
  */
 function list_effective_security_health_analytics_custom_modules_sample(

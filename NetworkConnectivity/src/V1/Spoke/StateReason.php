@@ -20,19 +20,19 @@ class StateReason extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.Spoke.StateReason.Code code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * Human-readable details about this reason.
      *
      * Generated from protobuf field <code>string message = 2;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Additional information provided by the user in the RejectSpoke call.
      *
      * Generated from protobuf field <code>string user_details = 3;</code>
      */
-    private $user_details = '';
+    protected $user_details = '';
 
     /**
      * Constructor.

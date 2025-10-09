@@ -22,13 +22,13 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $entity = '';
+    protected $entity = '';
     /**
      * Type of entity.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.GovernanceEvent.Entity.EntityType entity_type = 2;</code>
      */
-    private $entity_type = 0;
+    protected $entity_type = 0;
 
     /**
      * Constructor.

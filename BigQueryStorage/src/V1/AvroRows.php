@@ -20,7 +20,7 @@ class AvroRows extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes serialized_binary_rows = 1;</code>
      */
-    private $serialized_binary_rows = '';
+    protected $serialized_binary_rows = '';
     /**
      * [Deprecated] The count of rows in the returning block.
      * Please use the format-independent ReadRowsResponse.row_count instead.
@@ -84,7 +84,9 @@ class AvroRows extends \Google\Protobuf\Internal\Message
      */
     public function getRowCount()
     {
-        @trigger_error('row_count is deprecated.', E_USER_DEPRECATED);
+        if ($this->row_count !== 0) {
+            @trigger_error('row_count is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->row_count;
     }
 

@@ -91,6 +91,21 @@ class State
      * Generated from protobuf enum <code>ERROR = 13;</code>
      */
     const ERROR = 13;
+    /**
+     * The migrating VM has passed its expiration date. It might be possible to
+     * bring it back to "Active" state by updating the TTL field. For more
+     * information, see the documentation.
+     *
+     * Generated from protobuf enum <code>EXPIRED = 14;</code>
+     */
+    const EXPIRED = 14;
+    /**
+     * The migrating VM's has been finalized and migration resources have been
+     * removed.
+     *
+     * Generated from protobuf enum <code>FINALIZED_EXPIRED = 17;</code>
+     */
+    const FINALIZED_EXPIRED = 17;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -105,6 +120,8 @@ class State
         self::FINALIZING => 'FINALIZING',
         self::FINALIZED => 'FINALIZED',
         self::ERROR => 'ERROR',
+        self::EXPIRED => 'EXPIRED',
+        self::FINALIZED_EXPIRED => 'FINALIZED_EXPIRED',
     ];
 
     public static function name($value)

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ namespace Google\Cloud\Monitoring\V3\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -45,6 +46,7 @@ use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
 use Google\Cloud\Monitoring\V3\TimeSeries;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Manages metric descriptors, monitored resource descriptors, and
@@ -58,15 +60,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createMetricDescriptorAsync(CreateMetricDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServiceTimeSeriesAsync(CreateTimeSeriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTimeSeriesAsync(CreateTimeSeriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMetricDescriptorAsync(DeleteMetricDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMetricDescriptorAsync(GetMetricDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMonitoredResourceDescriptorAsync(GetMonitoredResourceDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMetricDescriptorsAsync(ListMetricDescriptorsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMonitoredResourceDescriptorsAsync(ListMonitoredResourceDescriptorsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTimeSeriesAsync(ListTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MetricDescriptor> createMetricDescriptorAsync(CreateMetricDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> createServiceTimeSeriesAsync(CreateTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> createTimeSeriesAsync(CreateTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMetricDescriptorAsync(DeleteMetricDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MetricDescriptor> getMetricDescriptorAsync(GetMetricDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MonitoredResourceDescriptor> getMonitoredResourceDescriptorAsync(GetMonitoredResourceDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMetricDescriptorsAsync(ListMetricDescriptorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMonitoredResourceDescriptorsAsync(ListMonitoredResourceDescriptorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTimeSeriesAsync(ListTimeSeriesRequest $request, array $optionalArgs = [])
  */
 final class MetricServiceClient
 {
@@ -160,8 +162,10 @@ final class MetricServiceClient
      *
      * @return string The formatted folder_monitored_resource_descriptor resource.
      */
-    public static function folderMonitoredResourceDescriptorName(string $folder, string $monitoredResourceDescriptor): string
-    {
+    public static function folderMonitoredResourceDescriptorName(
+        string $folder,
+        string $monitoredResourceDescriptor
+    ): string {
         return self::getPathTemplate('folderMonitoredResourceDescriptor')->render([
             'folder' => $folder,
             'monitored_resource_descriptor' => $monitoredResourceDescriptor,
@@ -243,8 +247,10 @@ final class MetricServiceClient
      *
      * @return string The formatted organization_monitored_resource_descriptor resource.
      */
-    public static function organizationMonitoredResourceDescriptorName(string $organization, string $monitoredResourceDescriptor): string
-    {
+    public static function organizationMonitoredResourceDescriptorName(
+        string $organization,
+        string $monitoredResourceDescriptor
+    ): string {
         return self::getPathTemplate('organizationMonitoredResourceDescriptor')->render([
             'organization' => $organization,
             'monitored_resource_descriptor' => $monitoredResourceDescriptor,
@@ -292,8 +298,10 @@ final class MetricServiceClient
      *
      * @return string The formatted project_monitored_resource_descriptor resource.
      */
-    public static function projectMonitoredResourceDescriptorName(string $project, string $monitoredResourceDescriptor): string
-    {
+    public static function projectMonitoredResourceDescriptorName(
+        string $project,
+        string $monitoredResourceDescriptor
+    ): string {
         return self::getPathTemplate('projectMonitoredResourceDescriptor')->render([
             'project' => $project,
             'monitored_resource_descriptor' => $monitoredResourceDescriptor,
@@ -338,14 +346,14 @@ final class MetricServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -353,20 +361,29 @@ final class MetricServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'monitoring.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Monitoring\V3\MetricServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new MetricServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -400,11 +417,16 @@ final class MetricServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -447,8 +469,10 @@ final class MetricServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createMetricDescriptor(CreateMetricDescriptorRequest $request, array $callOptions = []): MetricDescriptor
-    {
+    public function createMetricDescriptor(
+        CreateMetricDescriptorRequest $request,
+        array $callOptions = []
+    ): MetricDescriptor {
         return $this->startApiCall('CreateMetricDescriptor', $request, $callOptions)->wait();
     }
 
@@ -589,8 +613,10 @@ final class MetricServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getMonitoredResourceDescriptor(GetMonitoredResourceDescriptorRequest $request, array $callOptions = []): MonitoredResourceDescriptor
-    {
+    public function getMonitoredResourceDescriptor(
+        GetMonitoredResourceDescriptorRequest $request,
+        array $callOptions = []
+    ): MonitoredResourceDescriptor {
         return $this->startApiCall('GetMonitoredResourceDescriptor', $request, $callOptions)->wait();
     }
 
@@ -615,8 +641,10 @@ final class MetricServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listMetricDescriptors(ListMetricDescriptorsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMetricDescriptors(
+        ListMetricDescriptorsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMetricDescriptors', $request, $callOptions);
     }
 
@@ -642,8 +670,10 @@ final class MetricServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listMonitoredResourceDescriptors(ListMonitoredResourceDescriptorsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMonitoredResourceDescriptors(
+        ListMonitoredResourceDescriptorsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMonitoredResourceDescriptors', $request, $callOptions);
     }
 

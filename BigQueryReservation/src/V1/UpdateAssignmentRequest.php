@@ -21,13 +21,13 @@ class UpdateAssignmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment assignment = 1;</code>
      */
-    private $assignment = null;
+    protected $assignment = null;
     /**
      * Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\BigQuery\Reservation\V1\Assignment $assignment Content of the assignment to update.

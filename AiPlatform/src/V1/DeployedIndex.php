@@ -23,27 +23,27 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Required. The name of the Index this is the deployment of.
      * We may refer to this Index as the DeployedIndex's "original" Index.
      *
      * Generated from protobuf field <code>string index = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $index = '';
+    protected $index = '';
     /**
      * The display name of the DeployedIndex. If not provided upon creation,
      * the Index's display_name is used.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Timestamp when the DeployedIndex was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Provides paths for users to send requests directly to the
      * deployed index services running on Cloud via private services access. This
@@ -52,7 +52,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexPrivateEndpoints private_endpoints = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $private_endpoints = null;
+    protected $private_endpoints = null;
     /**
      * Output only. The DeployedIndex may depend on various data on its original
      * Index. Additionally when certain changes to the original Index are being
@@ -71,7 +71,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_sync_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $index_sync_time = null;
+    protected $index_sync_time = null;
     /**
      * Optional. A description of resources that the DeployedIndex uses, which to
      * large degree are decided by Vertex AI, and optionally allows only a modest
@@ -83,7 +83,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.AutomaticResources automatic_resources = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $automatic_resources = null;
+    protected $automatic_resources = null;
     /**
      * Optional. A description of resources that are dedicated to the
      * DeployedIndex, and that need a higher degree of manual configuration. The
@@ -102,7 +102,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DedicatedResources dedicated_resources = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $dedicated_resources = null;
+    protected $dedicated_resources = null;
     /**
      * Optional. If true, private endpoint's access logs are sent to Cloud
      * Logging.
@@ -114,13 +114,26 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_access_logging = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_access_logging = false;
+    protected $enable_access_logging = false;
+    /**
+     * Optional. If true, logs to Cloud Logging errors relating to datapoint
+     * upserts.
+     * Under normal operation conditions, these log entries should be very rare.
+     * However, if incompatible datapoint updates are being uploaded to an index,
+     * a high volume of log entries may be generated in a short period of time.
+     * Note that logs may incur a cost, especially if the deployed index receives
+     * a high volume of datapoint upserts. Estimate your costs before enabling
+     * this option.
+     *
+     * Generated from protobuf field <code>bool enable_datapoint_upsert_logging = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_datapoint_upsert_logging = false;
     /**
      * Optional. If set, the authentication is enabled for the private endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndexAuthConfig deployed_index_auth_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $deployed_index_auth_config = null;
+    protected $deployed_index_auth_config = null;
     /**
      * Optional. A list of reserved ip ranges under the VPC network that can be
      * used for this DeployedIndex.
@@ -150,7 +163,22 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deployment_group = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $deployment_group = '';
+    protected $deployment_group = '';
+    /**
+     * Optional. The deployment tier that the index is deployed to.
+     * DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex.DeploymentTier deployment_tier = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deployment_tier = 0;
+    /**
+     * Optional. If set for PSC deployed index, PSC connection will be
+     * automatically created after deployment is done and the endpoint information
+     * is populated in private_endpoints.psc_automated_endpoints.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $psc_automation_configs;
 
     /**
      * Constructor.
@@ -222,6 +250,15 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           Note that logs may incur a cost, especially if the deployed
      *           index receives a high queries per second rate (QPS).
      *           Estimate your costs before enabling this option.
+     *     @type bool $enable_datapoint_upsert_logging
+     *           Optional. If true, logs to Cloud Logging errors relating to datapoint
+     *           upserts.
+     *           Under normal operation conditions, these log entries should be very rare.
+     *           However, if incompatible datapoint updates are being uploaded to an index,
+     *           a high volume of log entries may be generated in a short period of time.
+     *           Note that logs may incur a cost, especially if the deployed index receives
+     *           a high volume of datapoint upserts. Estimate your costs before enabling
+     *           this option.
      *     @type \Google\Cloud\AIPlatform\V1\DeployedIndexAuthConfig $deployed_index_auth_config
      *           Optional. If set, the authentication is enabled for the private endpoint.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reserved_ip_ranges
@@ -246,6 +283,13 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           has been used with reserved_ip_ranges: [a, b, c], using it with [a, b] or
      *           [d, e] is disallowed.
      *           Note: we only support up to 5 deployment groups(not including 'default').
+     *     @type int $deployment_tier
+     *           Optional. The deployment tier that the index is deployed to.
+     *           DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
+     *     @type array<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>|\Google\Protobuf\Internal\RepeatedField $psc_automation_configs
+     *           Optional. If set for PSC deployed index, PSC connection will be
+     *           automatically created after deployment is done and the endpoint information
+     *           is populated in private_endpoints.psc_automated_endpoints.
      * }
      */
     public function __construct($data = NULL) {
@@ -630,6 +674,46 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. If true, logs to Cloud Logging errors relating to datapoint
+     * upserts.
+     * Under normal operation conditions, these log entries should be very rare.
+     * However, if incompatible datapoint updates are being uploaded to an index,
+     * a high volume of log entries may be generated in a short period of time.
+     * Note that logs may incur a cost, especially if the deployed index receives
+     * a high volume of datapoint upserts. Estimate your costs before enabling
+     * this option.
+     *
+     * Generated from protobuf field <code>bool enable_datapoint_upsert_logging = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableDatapointUpsertLogging()
+    {
+        return $this->enable_datapoint_upsert_logging;
+    }
+
+    /**
+     * Optional. If true, logs to Cloud Logging errors relating to datapoint
+     * upserts.
+     * Under normal operation conditions, these log entries should be very rare.
+     * However, if incompatible datapoint updates are being uploaded to an index,
+     * a high volume of log entries may be generated in a short period of time.
+     * Note that logs may incur a cost, especially if the deployed index receives
+     * a high volume of datapoint upserts. Estimate your costs before enabling
+     * this option.
+     *
+     * Generated from protobuf field <code>bool enable_datapoint_upsert_logging = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableDatapointUpsertLogging($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_datapoint_upsert_logging = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. If set, the authentication is enabled for the private endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndexAuthConfig deployed_index_auth_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -749,6 +833,64 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->deployment_group = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The deployment tier that the index is deployed to.
+     * DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex.DeploymentTier deployment_tier = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDeploymentTier()
+    {
+        return $this->deployment_tier;
+    }
+
+    /**
+     * Optional. The deployment tier that the index is deployed to.
+     * DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex.DeploymentTier deployment_tier = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDeploymentTier($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\DeployedIndex\DeploymentTier::class);
+        $this->deployment_tier = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set for PSC deployed index, PSC connection will be
+     * automatically created after deployment is done and the endpoint information
+     * is populated in private_endpoints.psc_automated_endpoints.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPscAutomationConfigs()
+    {
+        return $this->psc_automation_configs;
+    }
+
+    /**
+     * Optional. If set for PSC deployed index, PSC connection will be
+     * automatically created after deployment is done and the endpoint information
+     * is populated in private_endpoints.psc_automated_endpoints.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPscAutomationConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\PSCAutomationConfig::class);
+        $this->psc_automation_configs = $arr;
 
         return $this;
     }

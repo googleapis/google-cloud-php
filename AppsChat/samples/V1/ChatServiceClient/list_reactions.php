@@ -33,8 +33,16 @@ use Google\Apps\Chat\V1\Reaction;
  * Lists reactions to a message. For an example, see
  * [List reactions for a
  * message](https://developers.google.com/workspace/chat/list-reactions).
+ *
  * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following [authorization
+ * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.messages.reactions.readonly`
+ * - `https://www.googleapis.com/auth/chat.messages.reactions`
+ * - `https://www.googleapis.com/auth/chat.messages.readonly`
+ * - `https://www.googleapis.com/auth/chat.messages`
  *
  * @param string $formattedParent The message users reacted to.
  *

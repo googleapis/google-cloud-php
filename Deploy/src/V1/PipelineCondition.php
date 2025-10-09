@@ -20,20 +20,20 @@ class PipelineCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.PipelineReadyCondition pipeline_ready_condition = 1;</code>
      */
-    private $pipeline_ready_condition = null;
+    protected $pipeline_ready_condition = null;
     /**
      * Details around targets enumerated in the pipeline.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.TargetsPresentCondition targets_present_condition = 3;</code>
      */
-    private $targets_present_condition = null;
+    protected $targets_present_condition = null;
     /**
      * Details on the whether the targets enumerated in the pipeline are of the
      * same type.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.TargetsTypeCondition targets_type_condition = 4;</code>
      */
-    private $targets_type_condition = null;
+    protected $targets_type_condition = null;
 
     /**
      * Constructor.

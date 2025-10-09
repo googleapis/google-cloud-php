@@ -17,11 +17,11 @@ class Uint128 extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional uint64 high = 3202466;</code>
      */
-    private $high = null;
+    protected $high = null;
     /**
      * Generated from protobuf field <code>optional uint64 low = 107348;</code>
      */
-    private $low = null;
+    protected $low = null;
 
     /**
      * Constructor.

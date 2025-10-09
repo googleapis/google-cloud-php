@@ -20,13 +20,13 @@ class GetTargetGrpcProxyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the TargetGrpcProxy resource to return.
      *
      * Generated from protobuf field <code>string target_grpc_proxy = 5020283 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_grpc_proxy = '';
+    protected $target_grpc_proxy = '';
 
     /**
      * @param string $project         Project ID for this request.

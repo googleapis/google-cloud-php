@@ -20,13 +20,13 @@ class BackupReencryptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 backup_limit = 1;</code>
      */
-    private $backup_limit = null;
+    protected $backup_limit = null;
     /**
      * Type of backups users want to re-encrypt.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.BackupReencryptionConfig.BackupType backup_type = 2;</code>
      */
-    private $backup_type = null;
+    protected $backup_type = null;
 
     /**
      * Constructor.

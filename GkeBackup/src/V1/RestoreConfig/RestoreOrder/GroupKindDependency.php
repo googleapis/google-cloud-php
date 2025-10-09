@@ -21,14 +21,14 @@ class GroupKindDependency extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.GroupKind satisfying = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $satisfying = null;
+    protected $satisfying = null;
     /**
      * Required. The requiring group kind requires that the other
      * group kind be restored first.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.GroupKind requiring = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $requiring = null;
+    protected $requiring = null;
 
     /**
      * Constructor.

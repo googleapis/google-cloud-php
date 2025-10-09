@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Image represents an image. The supported format is JPEG.
+ * Image represents an image. The supported formats are JPEG, PNG.
  *
  * Generated from protobuf message <code>google.cloud.video.livestream.v1.Asset.ImageAsset</code>
  */
@@ -20,7 +20,7 @@ class ImageAsset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
-    private $uri = '';
+    protected $uri = '';
 
     /**
      * Constructor.

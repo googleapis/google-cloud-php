@@ -22,13 +22,13 @@ class DataQualityAppliedConfigs extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float sampling_percent = 1;</code>
      */
-    private $sampling_percent = 0.0;
+    protected $sampling_percent = 0.0;
     /**
      * Boolean indicating whether a row filter was applied in the DataScan job.
      *
      * Generated from protobuf field <code>bool row_filter_applied = 2;</code>
      */
-    private $row_filter_applied = false;
+    protected $row_filter_applied = false;
 
     /**
      * Constructor.

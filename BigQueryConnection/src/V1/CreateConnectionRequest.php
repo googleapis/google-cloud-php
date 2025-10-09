@@ -22,19 +22,19 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Connection id that should be assigned to the created connection.
      *
      * Generated from protobuf field <code>string connection_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $connection_id = '';
+    protected $connection_id = '';
     /**
      * Required. Connection to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.Connection connection = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $connection = null;
+    protected $connection = null;
 
     /**
      * @param string                                          $parent       Required. Parent resource name.

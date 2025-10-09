@@ -68,6 +68,4 @@ class SnapshotAutoDeleteBehavior
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SnapshotAutoDeleteBehavior::class, \Google\Cloud\BareMetalSolution\V2\Volume_SnapshotAutoDeleteBehavior::class);
 

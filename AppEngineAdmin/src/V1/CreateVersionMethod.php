@@ -20,7 +20,7 @@ class CreateVersionMethod extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.appengine.v1.CreateVersionRequest request = 1;</code>
      */
-    private $request = null;
+    protected $request = null;
 
     /**
      * Constructor.

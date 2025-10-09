@@ -34,7 +34,35 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+use Google\ApiCore\ApiException;
+use Google\Maps\FleetEngine\V1\Client\TripServiceClient;
+use Google\Maps\FleetEngine\V1\GetTripRequest;
+use Google\Maps\FleetEngine\V1\Trip;
+
+// Create a client.
+$tripServiceClient = new TripServiceClient();
+
+// Prepare the request message.
+$request = (new GetTripRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Trip $response */
+    $response = $tripServiceClient->getTrip($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-maps-fleetengine/tree/main/samples) for a canonical list of samples.
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

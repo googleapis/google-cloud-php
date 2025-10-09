@@ -21,7 +21,7 @@ class SslConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.SslConfig.SslType type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key
      * associated with the Client Certificate. If this field is used then the
@@ -29,7 +29,7 @@ class SslConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string client_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $client_key = '';
+    protected $client_key = '';
     /**
      * Input only. The x509 PEM-encoded certificate that will be used by the
      * replica to authenticate against the source database server.If this field is
@@ -37,7 +37,7 @@ class SslConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string client_certificate = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $client_certificate = '';
+    protected $client_certificate = '';
     /**
      * Required. Input only. The x509 PEM-encoded certificate of the CA that
      * signed the source database server's certificate. The replica will use this
@@ -45,7 +45,7 @@ class SslConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ca_certificate = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ca_certificate = '';
+    protected $ca_certificate = '';
 
     /**
      * Constructor.

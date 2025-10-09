@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -42,7 +43,6 @@ use Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendServiceRequest;
 use Google\Cloud\Compute\V1\GetBackendServiceRequest;
 use Google\Cloud\Compute\V1\GetHealthBackendServiceRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyBackendServiceRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertBackendServiceRequest;
 use Google\Cloud\Compute\V1\ListBackendServicesRequest;
 use Google\Cloud\Compute\V1\ListUsableBackendServicesRequest;
@@ -55,6 +55,7 @@ use Google\Cloud\Compute\V1\TestIamPermissionsBackendServiceRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateBackendServiceRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The BackendServices API.
@@ -62,22 +63,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addSignedUrlKeyAsync(AddSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface aggregatedListAsync(AggregatedListBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHealthAsync(GetHealthBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUsableAsync(ListUsableBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addSignedUrlKeyAsync(AddSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendService> getAsync(GetBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendServiceGroupHealth> getHealthAsync(GetHealthBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsableAsync(ListUsableBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSecurityPolicyAsync(SetSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateBackendServiceRequest $request, array $optionalArgs = [])
  */
 final class BackendServicesClient
 {
@@ -126,7 +127,6 @@ final class BackendServicesClient
                     'restClientConfigPath' => __DIR__ . '/../resources/backend_services_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -139,9 +139,7 @@ final class BackendServicesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -158,9 +156,7 @@ final class BackendServicesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -188,29 +184,57 @@ final class BackendServicesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\BackendServicesClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new BackendServicesClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -241,11 +265,16 @@ final class BackendServicesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -268,6 +297,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::addSignedUrlKeyAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/add_signed_url_key.php
+     *
      * @param AddSignedUrlKeyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -282,8 +313,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addSignedUrlKey(AddSignedUrlKeyBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addSignedUrlKey(
+        AddSignedUrlKeyBackendServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddSignedUrlKey', $request, $callOptions)->wait();
     }
 
@@ -291,6 +324,8 @@ final class BackendServicesClient
      * Retrieves the list of all BackendService resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see BackendServicesClient::aggregatedListAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/aggregated_list.php
      *
      * @param AggregatedListBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -306,8 +341,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListBackendServicesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListBackendServicesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -315,6 +352,8 @@ final class BackendServicesClient
      * Deletes the specified BackendService resource.
      *
      * The async variant is {@see BackendServicesClient::deleteAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/delete.php
      *
      * @param DeleteBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -340,6 +379,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::deleteSignedUrlKeyAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/delete_signed_url_key.php
+     *
      * @param DeleteSignedUrlKeyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -354,8 +395,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteSignedUrlKey(DeleteSignedUrlKeyBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteSignedUrlKey(
+        DeleteSignedUrlKeyBackendServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteSignedUrlKey', $request, $callOptions)->wait();
     }
 
@@ -363,6 +406,8 @@ final class BackendServicesClient
      * Returns the specified BackendService resource.
      *
      * The async variant is {@see BackendServicesClient::getAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/get.php
      *
      * @param GetBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -388,6 +433,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::getHealthAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/get_health.php
+     *
      * @param GetHealthBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -402,8 +449,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getHealth(GetHealthBackendServiceRequest $request, array $callOptions = []): BackendServiceGroupHealth
-    {
+    public function getHealth(
+        GetHealthBackendServiceRequest $request,
+        array $callOptions = []
+    ): BackendServiceGroupHealth {
         return $this->startApiCall('GetHealth', $request, $callOptions)->wait();
     }
 
@@ -411,6 +460,8 @@ final class BackendServicesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see BackendServicesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/get_iam_policy.php
      *
      * @param GetIamPolicyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -436,6 +487,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::insertAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/insert.php
+     *
      * @param InsertBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -460,6 +513,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::listAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/list.php
+     *
      * @param ListBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -480,9 +535,11 @@ final class BackendServicesClient
     }
 
     /**
-     * Retrieves an aggregated list of all usable backend services in the specified project.
+     * Retrieves a list of all usable backend services in the specified project.
      *
      * The async variant is {@see BackendServicesClient::listUsableAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/list_usable.php
      *
      * @param ListUsableBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -507,6 +564,8 @@ final class BackendServicesClient
      * Patches the specified BackendService resource with the data included in the request. For more information, see Backend services overview. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * The async variant is {@see BackendServicesClient::patchAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/patch.php
      *
      * @param PatchBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -533,6 +592,8 @@ final class BackendServicesClient
      * The async variant is {@see BackendServicesClient::setEdgeSecurityPolicyAsync()}
      * .
      *
+     * @example samples/V1/BackendServicesClient/set_edge_security_policy.php
+     *
      * @param SetEdgeSecurityPolicyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
@@ -547,8 +608,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setEdgeSecurityPolicy(SetEdgeSecurityPolicyBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setEdgeSecurityPolicy(
+        SetEdgeSecurityPolicyBackendServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetEdgeSecurityPolicy', $request, $callOptions)->wait();
     }
 
@@ -556,6 +619,8 @@ final class BackendServicesClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see BackendServicesClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/set_iam_policy.php
      *
      * @param SetIamPolicyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -581,6 +646,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::setSecurityPolicyAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/set_security_policy.php
+     *
      * @param SetSecurityPolicyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -595,8 +662,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSecurityPolicy(SetSecurityPolicyBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setSecurityPolicy(
+        SetSecurityPolicyBackendServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
     }
 
@@ -604,6 +673,8 @@ final class BackendServicesClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see BackendServicesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -619,8 +690,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsBackendServiceRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsBackendServiceRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -628,6 +701,8 @@ final class BackendServicesClient
      * Updates the specified BackendService resource with the data included in the request. For more information, see Backend services overview.
      *
      * The async variant is {@see BackendServicesClient::updateAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/update.php
      *
      * @param UpdateBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

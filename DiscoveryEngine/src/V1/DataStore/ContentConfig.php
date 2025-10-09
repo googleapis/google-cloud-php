@@ -39,12 +39,21 @@ class ContentConfig
      * Generated from protobuf enum <code>PUBLIC_WEBSITE = 3;</code>
      */
     const PUBLIC_WEBSITE = 3;
+    /**
+     * The data store is used for workspace search. Details of workspace
+     * data store are specified in the
+     * [WorkspaceConfig][google.cloud.discoveryengine.v1.WorkspaceConfig].
+     *
+     * Generated from protobuf enum <code>GOOGLE_WORKSPACE = 4;</code>
+     */
+    const GOOGLE_WORKSPACE = 4;
 
     private static $valueToName = [
         self::CONTENT_CONFIG_UNSPECIFIED => 'CONTENT_CONFIG_UNSPECIFIED',
         self::NO_CONTENT => 'NO_CONTENT',
         self::CONTENT_REQUIRED => 'CONTENT_REQUIRED',
         self::PUBLIC_WEBSITE => 'PUBLIC_WEBSITE',
+        self::GOOGLE_WORKSPACE => 'GOOGLE_WORKSPACE',
     ];
 
     public static function name($value)

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Delele EntryGroup Request
+ * Delete EntryGroup Request.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DeleteEntryGroupRequest</code>
  */
@@ -21,14 +21,15 @@ class DeleteEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. If the client provided etag value does not match the current etag
-     * value, the DeleteEntryGroupRequest method returns an ABORTED error response
+     * value, the DeleteEntryGroupRequest method returns an ABORTED error
+     * response.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. The resource name of the EntryGroup:
@@ -56,7 +57,8 @@ class DeleteEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project_number}/locations/{location_id}/entryGroups/{entry_group_id}`.
      *     @type string $etag
      *           Optional. If the client provided etag value does not match the current etag
-     *           value, the DeleteEntryGroupRequest method returns an ABORTED error response
+     *           value, the DeleteEntryGroupRequest method returns an ABORTED error
+     *           response.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +96,8 @@ class DeleteEntryGroupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If the client provided etag value does not match the current etag
-     * value, the DeleteEntryGroupRequest method returns an ABORTED error response
+     * value, the DeleteEntryGroupRequest method returns an ABORTED error
+     * response.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -106,7 +109,8 @@ class DeleteEntryGroupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If the client provided etag value does not match the current etag
-     * value, the DeleteEntryGroupRequest method returns an ABORTED error response
+     * value, the DeleteEntryGroupRequest method returns an ABORTED error
+     * response.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -25,7 +25,7 @@ class SqlOutOfDiskReport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.DatabaseInstance.SqlOutOfDiskReport.SqlOutOfDiskState sql_out_of_disk_state = 1;</code>
      */
-    private $sql_out_of_disk_state = null;
+    protected $sql_out_of_disk_state = null;
     /**
      * The minimum recommended increase size in GigaBytes
      * This field is consumed by the frontend
@@ -35,7 +35,7 @@ class SqlOutOfDiskReport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 sql_min_recommended_increase_size_gb = 2;</code>
      */
-    private $sql_min_recommended_increase_size_gb = null;
+    protected $sql_min_recommended_increase_size_gb = null;
 
     /**
      * Constructor.

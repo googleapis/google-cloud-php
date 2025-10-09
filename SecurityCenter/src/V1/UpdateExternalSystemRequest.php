@@ -20,14 +20,14 @@ class UpdateExternalSystemRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ExternalSystem external_system = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $external_system = null;
+    protected $external_system = null;
     /**
      * The FieldMask to use when updating the external system resource.
      * If empty all mutable fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\SecurityCenter\V1\ExternalSystem $externalSystem Required. The external system resource to update.

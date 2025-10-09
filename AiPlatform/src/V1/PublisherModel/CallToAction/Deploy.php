@@ -21,48 +21,54 @@ class Deploy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model_display_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $model_display_name = '';
+    protected $model_display_name = '';
     /**
      * Optional. Large model reference. When this is set, model_artifact_spec
      * is not needed.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.LargeModelReference large_model_reference = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $large_model_reference = null;
+    protected $large_model_reference = null;
     /**
      * Optional. The specification of the container that is to be used when
      * deploying this Model in Vertex AI. Not present for Large Models.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelContainerSpec container_spec = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $container_spec = null;
+    protected $container_spec = null;
     /**
      * Optional. The path to the directory containing the Model artifact and
      * any of its supporting files.
      *
      * Generated from protobuf field <code>string artifact_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $artifact_uri = '';
+    protected $artifact_uri = '';
     /**
      * Optional. The name of the deploy task (e.g., "text to image
      * generation").
      *
      * Generated from protobuf field <code>optional string deploy_task_name = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $deploy_task_name = null;
+    protected $deploy_task_name = null;
+    /**
+     * Optional. Metadata information about this deployment config.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.PublisherModel.CallToAction.Deploy.DeployMetadata deploy_metadata = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deploy_metadata = null;
     /**
      * Required. The title of the regional resource reference.
      *
      * Generated from protobuf field <code>string title = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Optional. The signed URI for ephemeral Cloud Storage access to model
      * artifact.
      *
      * Generated from protobuf field <code>string public_artifact_uri = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $public_artifact_uri = '';
+    protected $public_artifact_uri = '';
     protected $prediction_resources;
 
     /**
@@ -95,6 +101,8 @@ class Deploy extends \Google\Protobuf\Internal\Message
      *     @type string $deploy_task_name
      *           Optional. The name of the deploy task (e.g., "text to image
      *           generation").
+     *     @type \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\Deploy\DeployMetadata $deploy_metadata
+     *           Optional. Metadata information about this deployment config.
      *     @type string $title
      *           Required. The title of the regional resource reference.
      *     @type string $public_artifact_uri
@@ -372,6 +380,42 @@ class Deploy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->deploy_task_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Metadata information about this deployment config.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.PublisherModel.CallToAction.Deploy.DeployMetadata deploy_metadata = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\Deploy\DeployMetadata|null
+     */
+    public function getDeployMetadata()
+    {
+        return $this->deploy_metadata;
+    }
+
+    public function hasDeployMetadata()
+    {
+        return isset($this->deploy_metadata);
+    }
+
+    public function clearDeployMetadata()
+    {
+        unset($this->deploy_metadata);
+    }
+
+    /**
+     * Optional. Metadata information about this deployment config.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.PublisherModel.CallToAction.Deploy.DeployMetadata deploy_metadata = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\Deploy\DeployMetadata $var
+     * @return $this
+     */
+    public function setDeployMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\Deploy\DeployMetadata::class);
+        $this->deploy_metadata = $var;
 
         return $this;
     }

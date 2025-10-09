@@ -76,6 +76,4 @@ class PrivateIpv6GoogleAccess
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PrivateIpv6GoogleAccess::class, \Google\Cloud\Dataproc\V1\GceClusterConfig_PrivateIpv6GoogleAccess::class);
 

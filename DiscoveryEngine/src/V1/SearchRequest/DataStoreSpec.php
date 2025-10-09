@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A struct to define data stores to filter on in a search call and
- * configurations for those data stores. A maximum of 1 DataStoreSpec per
- * data_store is allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.
+ * configurations for those data stores. Otherwise, an `INVALID_ARGUMENT`
+ * error is returned.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec</code>
  */
@@ -25,6 +25,31 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string data_store = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $data_store = '';
+    /**
+     * Optional. Filter specification to filter documents in the data store
+     * specified by data_store field. For more information on filtering, see
+     * [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $filter = '';
+    /**
+     * Optional. Boost specification to boost certain documents.
+     * For more information on boosting, see
+     * [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $boost_spec = null;
+    /**
+     * Optional. Custom search operators which if specified will be used to
+     * filter results from workspace data stores. For more information on custom
+     * search operators, see
+     * [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
+     *
+     * Generated from protobuf field <code>string custom_search_operators = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_search_operators = '';
 
     /**
      * Constructor.
@@ -36,6 +61,19 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      *           Required. Full resource name of
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore], such as
      *           `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     *     @type string $filter
+     *           Optional. Filter specification to filter documents in the data store
+     *           specified by data_store field. For more information on filtering, see
+     *           [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec $boost_spec
+     *           Optional. Boost specification to boost certain documents.
+     *           For more information on boosting, see
+     *           [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
+     *     @type string $custom_search_operators
+     *           Optional. Custom search operators which if specified will be used to
+     *           filter results from workspace data stores. For more information on custom
+     *           search operators, see
+     *           [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +107,108 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->data_store = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filter specification to filter documents in the data store
+     * specified by data_store field. For more information on filtering, see
+     * [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Filter specification to filter documents in the data store
+     * specified by data_store field. For more information on filtering, see
+     * [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Boost specification to boost certain documents.
+     * For more information on boosting, see
+     * [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec|null
+     */
+    public function getBoostSpec()
+    {
+        return $this->boost_spec;
+    }
+
+    public function hasBoostSpec()
+    {
+        return isset($this->boost_spec);
+    }
+
+    public function clearBoostSpec()
+    {
+        unset($this->boost_spec);
+    }
+
+    /**
+     * Optional. Boost specification to boost certain documents.
+     * For more information on boosting, see
+     * [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec $var
+     * @return $this
+     */
+    public function setBoostSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec::class);
+        $this->boost_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Custom search operators which if specified will be used to
+     * filter results from workspace data stores. For more information on custom
+     * search operators, see
+     * [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
+     *
+     * Generated from protobuf field <code>string custom_search_operators = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCustomSearchOperators()
+    {
+        return $this->custom_search_operators;
+    }
+
+    /**
+     * Optional. Custom search operators which if specified will be used to
+     * filter results from workspace data stores. For more information on custom
+     * search operators, see
+     * [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
+     *
+     * Generated from protobuf field <code>string custom_search_operators = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomSearchOperators($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->custom_search_operators = $var;
 
         return $this;
     }

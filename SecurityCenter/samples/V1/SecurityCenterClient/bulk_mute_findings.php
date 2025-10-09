@@ -36,8 +36,8 @@ use Google\Rpc\Status;
  * matched by the filter will be muted after the LRO is done.
  *
  * @param string $parent The parent, at which bulk action needs to be applied. Its format
- *                       is "organizations/[organization_id]", "folders/[folder_id]",
- *                       "projects/[project_id]".
+ *                       is `organizations/[organization_id]`, `folders/[folder_id]`,
+ *                       `projects/[project_id]`.
  */
 function bulk_mute_findings_sample(string $parent): void
 {

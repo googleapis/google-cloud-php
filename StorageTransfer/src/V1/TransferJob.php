@@ -39,39 +39,61 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A description provided by the user for the job. Its max length is 1024
      * bytes when Unicode-encoded.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The ID of the Google Cloud project that owns the job.
      *
      * Generated from protobuf field <code>string project_id = 3;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
+    /**
+     * Optional. The user-managed service account to which to delegate service
+     * agent permissions. You can grant Cloud Storage bucket permissions to this
+     * service account instead of to the Transfer Service service agent.
+     * Format is
+     * `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID`
+     * Either the service account email
+     * (`SERVICE_ACCOUNT_NAME&#64;PROJECT_ID.iam.gserviceaccount.com`) or the unique
+     * ID (`123456789012345678901`) are accepted in the string. The `-`
+     * wildcard character is required; replacing it with a project ID is invalid.
+     * See
+     * https://cloud.google.com//storage-transfer/docs/delegate-service-agent-permissions
+     * for required permissions.
+     *
+     * Generated from protobuf field <code>string service_account = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $service_account = '';
     /**
      * Transfer specification.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferSpec transfer_spec = 4;</code>
      */
-    private $transfer_spec = null;
+    protected $transfer_spec = null;
     /**
-     * Notification configuration. This is not supported for transfers involving
-     * PosixFilesystem.
+     * Replication specification.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.ReplicationSpec replication_spec = 17;</code>
+     */
+    protected $replication_spec = null;
+    /**
+     * Notification configuration.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig notification_config = 11;</code>
      */
-    private $notification_config = null;
+    protected $notification_config = null;
     /**
      * Logging configuration.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.LoggingConfig logging_config = 14;</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     /**
      * Specifies schedule for the transfer job.
      * This is an optional field. When the field is not set, the job never
@@ -80,14 +102,14 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.Schedule schedule = 5;</code>
      */
-    private $schedule = null;
+    protected $schedule = null;
     /**
      * Specifies the event stream for the transfer job for event-driven transfers.
      * When EventStream is specified, the Schedule fields are ignored.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.EventStream event_stream = 15;</code>
      */
-    private $event_stream = null;
+    protected $event_stream = null;
     /**
      * Status of the job. This value MUST be specified for
      * `CreateTransferJobRequests`.
@@ -100,32 +122,32 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob.Status status = 6;</code>
      */
-    private $status = 0;
+    protected $status = 0;
     /**
      * Output only. The time that the transfer job was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp creation_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creation_time = null;
+    protected $creation_time = null;
     /**
      * Output only. The time that the transfer job was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_modification_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_modification_time = null;
+    protected $last_modification_time = null;
     /**
      * Output only. The time that the transfer job was deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp deletion_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $deletion_time = null;
+    protected $deletion_time = null;
     /**
      * The name of the most recently started TransferOperation of this JobConfig.
      * Present if a TransferOperation has been created for this JobConfig.
      *
      * Generated from protobuf field <code>string latest_operation_name = 12;</code>
      */
-    private $latest_operation_name = '';
+    protected $latest_operation_name = '';
 
     /**
      * Constructor.
@@ -158,11 +180,25 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *           bytes when Unicode-encoded.
      *     @type string $project_id
      *           The ID of the Google Cloud project that owns the job.
+     *     @type string $service_account
+     *           Optional. The user-managed service account to which to delegate service
+     *           agent permissions. You can grant Cloud Storage bucket permissions to this
+     *           service account instead of to the Transfer Service service agent.
+     *           Format is
+     *           `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID`
+     *           Either the service account email
+     *           (`SERVICE_ACCOUNT_NAME&#64;PROJECT_ID.iam.gserviceaccount.com`) or the unique
+     *           ID (`123456789012345678901`) are accepted in the string. The `-`
+     *           wildcard character is required; replacing it with a project ID is invalid.
+     *           See
+     *           https://cloud.google.com//storage-transfer/docs/delegate-service-agent-permissions
+     *           for required permissions.
      *     @type \Google\Cloud\StorageTransfer\V1\TransferSpec $transfer_spec
      *           Transfer specification.
+     *     @type \Google\Cloud\StorageTransfer\V1\ReplicationSpec $replication_spec
+     *           Replication specification.
      *     @type \Google\Cloud\StorageTransfer\V1\NotificationConfig $notification_config
-     *           Notification configuration. This is not supported for transfers involving
-     *           PosixFilesystem.
+     *           Notification configuration.
      *     @type \Google\Cloud\StorageTransfer\V1\LoggingConfig $logging_config
      *           Logging configuration.
      *     @type \Google\Cloud\StorageTransfer\V1\Schedule $schedule
@@ -315,6 +351,54 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The user-managed service account to which to delegate service
+     * agent permissions. You can grant Cloud Storage bucket permissions to this
+     * service account instead of to the Transfer Service service agent.
+     * Format is
+     * `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID`
+     * Either the service account email
+     * (`SERVICE_ACCOUNT_NAME&#64;PROJECT_ID.iam.gserviceaccount.com`) or the unique
+     * ID (`123456789012345678901`) are accepted in the string. The `-`
+     * wildcard character is required; replacing it with a project ID is invalid.
+     * See
+     * https://cloud.google.com//storage-transfer/docs/delegate-service-agent-permissions
+     * for required permissions.
+     *
+     * Generated from protobuf field <code>string service_account = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServiceAccount()
+    {
+        return $this->service_account;
+    }
+
+    /**
+     * Optional. The user-managed service account to which to delegate service
+     * agent permissions. You can grant Cloud Storage bucket permissions to this
+     * service account instead of to the Transfer Service service agent.
+     * Format is
+     * `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID`
+     * Either the service account email
+     * (`SERVICE_ACCOUNT_NAME&#64;PROJECT_ID.iam.gserviceaccount.com`) or the unique
+     * ID (`123456789012345678901`) are accepted in the string. The `-`
+     * wildcard character is required; replacing it with a project ID is invalid.
+     * See
+     * https://cloud.google.com//storage-transfer/docs/delegate-service-agent-permissions
+     * for required permissions.
+     *
+     * Generated from protobuf field <code>string service_account = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
      * Transfer specification.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferSpec transfer_spec = 4;</code>
@@ -351,8 +435,43 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Notification configuration. This is not supported for transfers involving
-     * PosixFilesystem.
+     * Replication specification.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.ReplicationSpec replication_spec = 17;</code>
+     * @return \Google\Cloud\StorageTransfer\V1\ReplicationSpec|null
+     */
+    public function getReplicationSpec()
+    {
+        return $this->replication_spec;
+    }
+
+    public function hasReplicationSpec()
+    {
+        return isset($this->replication_spec);
+    }
+
+    public function clearReplicationSpec()
+    {
+        unset($this->replication_spec);
+    }
+
+    /**
+     * Replication specification.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.ReplicationSpec replication_spec = 17;</code>
+     * @param \Google\Cloud\StorageTransfer\V1\ReplicationSpec $var
+     * @return $this
+     */
+    public function setReplicationSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\ReplicationSpec::class);
+        $this->replication_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notification configuration.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig notification_config = 11;</code>
      * @return \Google\Cloud\StorageTransfer\V1\NotificationConfig|null
@@ -373,8 +492,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Notification configuration. This is not supported for transfers involving
-     * PosixFilesystem.
+     * Notification configuration.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig notification_config = 11;</code>
      * @param \Google\Cloud\StorageTransfer\V1\NotificationConfig $var

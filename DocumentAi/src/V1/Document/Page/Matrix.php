@@ -21,13 +21,13 @@ class Matrix extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 rows = 1;</code>
      */
-    private $rows = 0;
+    protected $rows = 0;
     /**
      * Number of columns in the matrix.
      *
      * Generated from protobuf field <code>int32 cols = 2;</code>
      */
-    private $cols = 0;
+    protected $cols = 0;
     /**
      * This encodes information about what data type the matrix uses.
      * For example, 0 (CV_8U) is an unsigned 8-bit image. For the full list
@@ -36,13 +36,13 @@ class Matrix extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 type = 3;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The matrix data.
      *
      * Generated from protobuf field <code>bytes data = 4;</code>
      */
-    private $data = '';
+    protected $data = '';
 
     /**
      * Constructor.

@@ -38,7 +38,7 @@ class ShipmentTypeRequirement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.ShipmentTypeRequirement.RequirementMode requirement_mode = 3;</code>
      */
-    private $requirement_mode = 0;
+    protected $requirement_mode = 0;
 
     /**
      * Constructor.

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceGroupManagers_DeletePerInstanceConfigs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\RegionInstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\DeletePerInstanceConfigsRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagerDeleteInstanceConfigReq;
-use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
 use Google\Rpc\Status;
 
 /**
@@ -44,18 +45,20 @@ function delete_per_instance_configs_sample(
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionInstanceGroupManagerDeleteInstanceConfigReqResource = new RegionInstanceGroupManagerDeleteInstanceConfigReq();
+    $request = (new DeletePerInstanceConfigsRegionInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRegionInstanceGroupManagerDeleteInstanceConfigReqResource(
+            $regionInstanceGroupManagerDeleteInstanceConfigReqResource
+        );
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstanceGroupManagersClient->deletePerInstanceConfigs(
-            $instanceGroupManager,
-            $project,
-            $region,
-            $regionInstanceGroupManagerDeleteInstanceConfigReqResource
-        );
+        $response = $regionInstanceGroupManagersClient->deletePerInstanceConfigs($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

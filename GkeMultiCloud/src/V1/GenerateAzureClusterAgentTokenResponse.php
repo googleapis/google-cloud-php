@@ -16,15 +16,15 @@ class GenerateAzureClusterAgentTokenResponse extends \Google\Protobuf\Internal\M
     /**
      * Generated from protobuf field <code>string access_token = 1;</code>
      */
-    private $access_token = '';
+    protected $access_token = '';
     /**
      * Generated from protobuf field <code>int32 expires_in = 2;</code>
      */
-    private $expires_in = 0;
+    protected $expires_in = 0;
     /**
      * Generated from protobuf field <code>string token_type = 3;</code>
      */
-    private $token_type = '';
+    protected $token_type = '';
 
     /**
      * Constructor.

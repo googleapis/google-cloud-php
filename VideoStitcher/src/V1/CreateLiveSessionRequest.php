@@ -21,13 +21,13 @@ class CreateLiveSessionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Parameters for creating a live session.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.LiveSession live_session = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $live_session = null;
+    protected $live_session = null;
 
     /**
      * @param string                                      $parent      Required. The project and location in which the live session should be

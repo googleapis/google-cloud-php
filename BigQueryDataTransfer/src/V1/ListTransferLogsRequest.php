@@ -22,7 +22,7 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Pagination token, which can be used to request a specific page
      * of `ListTransferLogsRequest` list results. For multiple-page
@@ -32,13 +32,13 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Page size. The default page size is the maximum value of 1000 results.
      *
      * Generated from protobuf field <code>int32 page_size = 5;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Message types to return. If not populated - INFO, WARNING and ERROR
      * messages are returned.

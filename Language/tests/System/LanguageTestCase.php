@@ -17,11 +17,7 @@
 
 namespace Google\Cloud\Language\Tests\System;
 
-use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\BigQuery\BigQueryClient;
-use Google\Cloud\Language\LanguageClient;
-use Google\Cloud\PubSub\PubSubClient;
-use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Language\V2\Client\LanguageServiceClient;
 use PHPUnit\Framework\TestCase;
 
 class LanguageTestCase extends TestCase
@@ -29,14 +25,17 @@ class LanguageTestCase extends TestCase
     protected static $client;
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetUp) {
             return;
         }
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        self::$client = new LanguageClient([
+        self::$client = new LanguageServiceClient([
             'keyFilePath' => $keyFilePath
         ]);
         self::$hasSetUp = true;

@@ -23,13 +23,13 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Workload workload = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $workload = null;
+    protected $workload = null;
     /**
      * Required. The list of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AssuredWorkloads\V1\Workload $workload   Required. The workload to update.

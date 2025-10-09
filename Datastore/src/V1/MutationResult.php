@@ -21,7 +21,7 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.Key key = 3;</code>
      */
-    private $key = null;
+    protected $key = null;
     /**
      * The version of the entity on the server after processing the mutation. If
      * the mutation doesn't change anything on the server, then the version will
@@ -31,13 +31,13 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 version = 4;</code>
      */
-    private $version = 0;
+    protected $version = 0;
     /**
      * The create time of the entity. This field will not be set after a 'delete'.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The update time of the entity on the server after processing the mutation.
      * If the mutation doesn't change anything on the server, then the timestamp
@@ -46,14 +46,22 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Whether a conflict was detected for this mutation. Always false when a
      * conflict detection strategy field is not set in the mutation.
      *
      * Generated from protobuf field <code>bool conflict_detected = 5;</code>
      */
-    private $conflict_detected = false;
+    protected $conflict_detected = false;
+    /**
+     * The results of applying each
+     * [PropertyTransform][google.datastore.v1.PropertyTransform], in the same
+     * order of the request.
+     *
+     * Generated from protobuf field <code>repeated .google.datastore.v1.Value transform_results = 8;</code>
+     */
+    private $transform_results;
 
     /**
      * Constructor.
@@ -80,6 +88,10 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      *     @type bool $conflict_detected
      *           Whether a conflict was detected for this mutation. Always false when a
      *           conflict detection strategy field is not set in the mutation.
+     *     @type array<\Google\Cloud\Datastore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $transform_results
+     *           The results of applying each
+     *           [PropertyTransform][google.datastore.v1.PropertyTransform], in the same
+     *           order of the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -261,6 +273,36 @@ class MutationResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->conflict_detected = $var;
+
+        return $this;
+    }
+
+    /**
+     * The results of applying each
+     * [PropertyTransform][google.datastore.v1.PropertyTransform], in the same
+     * order of the request.
+     *
+     * Generated from protobuf field <code>repeated .google.datastore.v1.Value transform_results = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTransformResults()
+    {
+        return $this->transform_results;
+    }
+
+    /**
+     * The results of applying each
+     * [PropertyTransform][google.datastore.v1.PropertyTransform], in the same
+     * order of the request.
+     *
+     * Generated from protobuf field <code>repeated .google.datastore.v1.Value transform_results = 8;</code>
+     * @param array<\Google\Cloud\Datastore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTransformResults($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Datastore\V1\Value::class);
+        $this->transform_results = $arr;
 
         return $this;
     }

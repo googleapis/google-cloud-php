@@ -21,14 +21,14 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A patch environment. Fields specified by the `updateMask` will be copied
      * from the patch environment into the environment under update.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.Environment environment = 1;</code>
      */
-    private $environment = null;
+    protected $environment = null;
     /**
      * Required. A comma-separated list of paths, relative to `Environment`, of
      * fields to update.
@@ -147,7 +147,7 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                                                     $name        The relative resource name of the environment to update, in the form:

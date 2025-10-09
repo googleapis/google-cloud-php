@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/advisorynotifications/v1/.*-php/(.*)
-      dest: /owl-bot-staging/AdvisoryNotifications/v1/$1
+    - source: /google/cloud/advisorynotifications/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/AdvisoryNotifications/$1/$2
 api-name: AdvisoryNotifications

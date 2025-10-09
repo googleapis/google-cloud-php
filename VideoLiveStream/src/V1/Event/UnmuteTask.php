@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Unmutes the stream. The task will fail if the stream is not
- * currently muted.
+ * Unmutes the stream. The task fails if the stream is not currently muted.
  *
  * Generated from protobuf message <code>google.cloud.video.livestream.v1.Event.UnmuteTask</code>
  */

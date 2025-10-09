@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceGroupManagers_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\RegionInstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\InsertRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManager;
-use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,17 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupManagerResource = new InstanceGroupManager();
+    $request = (new InsertRegionInstanceGroupManagerRequest())
+        ->setInstanceGroupManagerResource($instanceGroupManagerResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstanceGroupManagersClient->insert(
-            $instanceGroupManagerResource,
-            $project,
-            $region
-        );
+        $response = $regionInstanceGroupManagersClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

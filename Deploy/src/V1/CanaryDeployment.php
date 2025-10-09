@@ -19,30 +19,33 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      * Required. The percentage based deployments that will occur as a part of a
      * `Rollout`. List is expected in ascending order and each integer n is
      * 0 <= n < 100.
+     * If the GatewayServiceMesh is configured for Kubernetes, then the range for
+     * n is 0 <= n <= 100.
      *
      * Generated from protobuf field <code>repeated int32 percentages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $percentages;
     /**
-     * Whether to run verify tests after each percentage deployment.
+     * Optional. Whether to run verify tests after each percentage deployment via
+     * `skaffold verify`.
      *
-     * Generated from protobuf field <code>bool verify = 2;</code>
+     * Generated from protobuf field <code>bool verify = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $verify = false;
+    protected $verify = false;
     /**
      * Optional. Configuration for the predeploy job of the first phase. If this
      * is not configured, there will be no predeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $predeploy = null;
+    protected $predeploy = null;
     /**
      * Optional. Configuration for the postdeploy job of the last phase. If this
      * is not configured, there will be no postdeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $postdeploy = null;
+    protected $postdeploy = null;
 
     /**
      * Constructor.
@@ -54,8 +57,11 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      *           Required. The percentage based deployments that will occur as a part of a
      *           `Rollout`. List is expected in ascending order and each integer n is
      *           0 <= n < 100.
+     *           If the GatewayServiceMesh is configured for Kubernetes, then the range for
+     *           n is 0 <= n <= 100.
      *     @type bool $verify
-     *           Whether to run verify tests after each percentage deployment.
+     *           Optional. Whether to run verify tests after each percentage deployment via
+     *           `skaffold verify`.
      *     @type \Google\Cloud\Deploy\V1\Predeploy $predeploy
      *           Optional. Configuration for the predeploy job of the first phase. If this
      *           is not configured, there will be no predeploy job for this phase.
@@ -73,6 +79,8 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      * Required. The percentage based deployments that will occur as a part of a
      * `Rollout`. List is expected in ascending order and each integer n is
      * 0 <= n < 100.
+     * If the GatewayServiceMesh is configured for Kubernetes, then the range for
+     * n is 0 <= n <= 100.
      *
      * Generated from protobuf field <code>repeated int32 percentages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -86,6 +94,8 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      * Required. The percentage based deployments that will occur as a part of a
      * `Rollout`. List is expected in ascending order and each integer n is
      * 0 <= n < 100.
+     * If the GatewayServiceMesh is configured for Kubernetes, then the range for
+     * n is 0 <= n <= 100.
      *
      * Generated from protobuf field <code>repeated int32 percentages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -100,9 +110,10 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to run verify tests after each percentage deployment.
+     * Optional. Whether to run verify tests after each percentage deployment via
+     * `skaffold verify`.
      *
-     * Generated from protobuf field <code>bool verify = 2;</code>
+     * Generated from protobuf field <code>bool verify = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getVerify()
@@ -111,9 +122,10 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to run verify tests after each percentage deployment.
+     * Optional. Whether to run verify tests after each percentage deployment via
+     * `skaffold verify`.
      *
-     * Generated from protobuf field <code>bool verify = 2;</code>
+     * Generated from protobuf field <code>bool verify = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

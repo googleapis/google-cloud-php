@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1beta_generated_DataprocMetastore_DeleteBackup_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Metastore\V1beta\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1beta\Client\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1beta\DeleteBackupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function delete_backup_sample(string $formattedName): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
+    // Prepare the request message.
+    $request = (new DeleteBackupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->deleteBackup($formattedName);
+        $response = $dataprocMetastoreClient->deleteBackup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

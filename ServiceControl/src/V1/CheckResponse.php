@@ -22,7 +22,7 @@ class CheckResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operation_id = 1;</code>
      */
-    private $operation_id = '';
+    protected $operation_id = '';
     /**
      * Indicate the decision of the check.
      * If no check errors are present, the service should process the operation.
@@ -37,19 +37,19 @@ class CheckResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_config_id = 5;</code>
      */
-    private $service_config_id = '';
+    protected $service_config_id = '';
     /**
      * The current service rollout id used to process the request.
      *
      * Generated from protobuf field <code>string service_rollout_id = 11;</code>
      */
-    private $service_rollout_id = '';
+    protected $service_rollout_id = '';
     /**
      * Feedback data returned from the server during processing a Check request.
      *
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.CheckResponse.CheckInfo check_info = 6;</code>
      */
-    private $check_info = null;
+    protected $check_info = null;
 
     /**
      * Constructor.

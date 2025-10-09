@@ -21,7 +21,7 @@ class CustomTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string custom_target_type = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $custom_target_type = '';
+    protected $custom_target_type = '';
 
     /**
      * Constructor.

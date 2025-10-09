@@ -23,7 +23,7 @@ class DeleteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_type = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $entity_type = '';
+    protected $entity_type = '';
     protected $DeleteOption;
 
     /**

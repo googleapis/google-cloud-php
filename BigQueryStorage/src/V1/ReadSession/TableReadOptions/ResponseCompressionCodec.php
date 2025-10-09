@@ -58,6 +58,4 @@ class ResponseCompressionCodec
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResponseCompressionCodec::class, \Google\Cloud\BigQuery\Storage\V1\ReadSession_TableReadOptions_ResponseCompressionCodec::class);
 

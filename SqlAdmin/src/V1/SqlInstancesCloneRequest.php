@@ -21,17 +21,17 @@ class SqlInstancesCloneRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Project ID of the source as well as the clone Cloud SQL instance.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Generated from protobuf field <code>.google.cloud.sql.v1.InstancesCloneRequest body = 100;</code>
      */
-    private $body = null;
+    protected $body = null;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.Secret keytab = 1;</code>
      */
-    private $keytab = null;
+    protected $keytab = null;
     /**
      * A Kerberos principal that exists in the both the keytab the KDC
      * to authenticate as. A typical principal is of the form
@@ -29,7 +29,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string principal = 2;</code>
      */
-    private $principal = '';
+    protected $principal = '';
     /**
      * A Cloud Storage URI that specifies the path to a
      * krb5.conf file. It is of the form `gs://{bucket_name}/path/to/krb5.conf`,
@@ -37,7 +37,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string krb5_config_gcs_uri = 3;</code>
      */
-    private $krb5_config_gcs_uri = '';
+    protected $krb5_config_gcs_uri = '';
 
     /**
      * Constructor.

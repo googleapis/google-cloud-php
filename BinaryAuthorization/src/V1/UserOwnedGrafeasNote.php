@@ -26,7 +26,7 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string note_reference = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $note_reference = '';
+    protected $note_reference = '';
     /**
      * Optional. Public keys that verify attestations signed by this
      * attestor.  This field may be updated.
@@ -51,7 +51,7 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string delegation_service_account_email = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delegation_service_account_email = '';
+    protected $delegation_service_account_email = '';
 
     /**
      * Constructor.

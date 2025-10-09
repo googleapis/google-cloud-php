@@ -22,7 +22,7 @@ class AnthosCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string membership = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $membership = '';
+    protected $membership = '';
 
     /**
      * Constructor.

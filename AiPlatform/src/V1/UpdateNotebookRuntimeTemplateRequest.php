@@ -21,7 +21,7 @@ class UpdateNotebookRuntimeTemplateRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookRuntimeTemplate notebook_runtime_template = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $notebook_runtime_template = null;
+    protected $notebook_runtime_template = null;
     /**
      * Required. The update mask applies to the resource.
      * For the `FieldMask` definition, see
@@ -31,7 +31,7 @@ class UpdateNotebookRuntimeTemplateRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\NotebookRuntimeTemplate $notebookRuntimeTemplate Required. The NotebookRuntimeTemplate to update.

@@ -21,7 +21,7 @@ class BatchImportEvaluatedAnnotationsResponse extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>int32 imported_evaluated_annotations_count = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $imported_evaluated_annotations_count = 0;
+    protected $imported_evaluated_annotations_count = 0;
 
     /**
      * Constructor.

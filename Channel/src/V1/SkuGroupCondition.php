@@ -25,7 +25,7 @@ class SkuGroupCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sku_group = 1;</code>
      */
-    private $sku_group = '';
+    protected $sku_group = '';
 
     /**
      * Constructor.

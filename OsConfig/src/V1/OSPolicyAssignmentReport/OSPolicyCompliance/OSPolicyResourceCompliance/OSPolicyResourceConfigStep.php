@@ -21,14 +21,14 @@ class OSPolicyResourceConfigStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance.OSPolicyResourceConfigStep.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * An error message recorded during the execution of this step.
      * Only populated if errors were encountered during this step execution.
      *
      * Generated from protobuf field <code>string error_message = 2;</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
 
     /**
      * Constructor.

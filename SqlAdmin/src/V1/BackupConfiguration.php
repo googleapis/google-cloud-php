@@ -21,64 +21,64 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string start_time = 1;</code>
      */
-    private $start_time = '';
+    protected $start_time = '';
     /**
      * Whether this configuration is enabled.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 2;</code>
      */
-    private $enabled = null;
+    protected $enabled = null;
     /**
      * This is always `sql#backupConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * (MySQL only) Whether binary log is enabled. If backup configuration is
      * disabled, binarylog must be disabled as well.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue binary_log_enabled = 4;</code>
      */
-    private $binary_log_enabled = null;
+    protected $binary_log_enabled = null;
     /**
      * Reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue replication_log_archiving_enabled = 5;</code>
      */
-    private $replication_log_archiving_enabled = null;
+    protected $replication_log_archiving_enabled = null;
     /**
      * Location of the backup
      *
      * Generated from protobuf field <code>string location = 6;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Whether point in time recovery is enabled.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue point_in_time_recovery_enabled = 7;</code>
      */
-    private $point_in_time_recovery_enabled = null;
+    protected $point_in_time_recovery_enabled = null;
     /**
      * Backup retention settings.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.BackupRetentionSettings backup_retention_settings = 8;</code>
      */
-    private $backup_retention_settings = null;
+    protected $backup_retention_settings = null;
     /**
      * The number of days of transaction logs we retain for point in time
      * restore, from 1-7.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value transaction_log_retention_days = 9;</code>
      */
-    private $transaction_log_retention_days = null;
+    protected $transaction_log_retention_days = null;
     /**
      * Output only. This value contains the storage location of transactional logs
      * used to perform point-in-time recovery (PITR) for the database.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.BackupConfiguration.TransactionalLogStorageState transactional_log_storage_state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $transactional_log_storage_state = null;
+    protected $transactional_log_storage_state = null;
 
     /**
      * Constructor.
@@ -174,7 +174,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 2;</code>
      * @return bool|null
      */
-    public function getEnabledValue()
+    public function getEnabledUnwrapped()
     {
         return $this->readWrapperValue("enabled");
     }
@@ -203,7 +203,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setEnabledValue($var)
+    public function setEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("enabled", $var);
         return $this;}
@@ -265,7 +265,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue binary_log_enabled = 4;</code>
      * @return bool|null
      */
-    public function getBinaryLogEnabledValue()
+    public function getBinaryLogEnabledUnwrapped()
     {
         return $this->readWrapperValue("binary_log_enabled");
     }
@@ -296,7 +296,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setBinaryLogEnabledValue($var)
+    public function setBinaryLogEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("binary_log_enabled", $var);
         return $this;}
@@ -330,7 +330,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue replication_log_archiving_enabled = 5;</code>
      * @return bool|null
      */
-    public function getReplicationLogArchivingEnabledValue()
+    public function getReplicationLogArchivingEnabledUnwrapped()
     {
         return $this->readWrapperValue("replication_log_archiving_enabled");
     }
@@ -359,7 +359,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setReplicationLogArchivingEnabledValue($var)
+    public function setReplicationLogArchivingEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("replication_log_archiving_enabled", $var);
         return $this;}
@@ -419,7 +419,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue point_in_time_recovery_enabled = 7;</code>
      * @return bool|null
      */
-    public function getPointInTimeRecoveryEnabledValue()
+    public function getPointInTimeRecoveryEnabledUnwrapped()
     {
         return $this->readWrapperValue("point_in_time_recovery_enabled");
     }
@@ -448,7 +448,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setPointInTimeRecoveryEnabledValue($var)
+    public function setPointInTimeRecoveryEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("point_in_time_recovery_enabled", $var);
         return $this;}
@@ -520,7 +520,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value transaction_log_retention_days = 9;</code>
      * @return int|null
      */
-    public function getTransactionLogRetentionDaysValue()
+    public function getTransactionLogRetentionDaysUnwrapped()
     {
         return $this->readWrapperValue("transaction_log_retention_days");
     }
@@ -551,7 +551,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setTransactionLogRetentionDaysValue($var)
+    public function setTransactionLogRetentionDaysUnwrapped($var)
     {
         $this->writeWrapperValue("transaction_log_retention_days", $var);
         return $this;}

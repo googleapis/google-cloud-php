@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,6 +98,23 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/machineImages/{resource}/setIamPolicy',
                 'body' => 'global_set_policy_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'SetLabels' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/machineImages/{resource}/setLabels',
+                'body' => 'global_set_labels_request_resource',
                 'placeholders' => [
                     'project' => [
                         'getters' => [

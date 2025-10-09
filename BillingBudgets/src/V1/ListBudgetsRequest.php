@@ -21,7 +21,7 @@ class ListBudgetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Set the scope of the budgets to be returned, in the format of the
      * resource name. The scope of a budget is the cost that it tracks, such as
@@ -32,14 +32,14 @@ class ListBudgetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string scope = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scope = '';
+    protected $scope = '';
     /**
      * Optional. The maximum number of budgets to return per page.
      * The default and maximum value are 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. The value returned by the last `ListBudgetsResponse` which
      * indicates that this is a continuation of a prior `ListBudgets` call,
@@ -47,7 +47,7 @@ class ListBudgetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. Name of billing account to list budgets under. Values

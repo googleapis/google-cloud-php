@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START metastore_v1beta_generated_DataprocMetastore_RemoveIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Metastore\V1beta\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1beta\Client\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1beta\RemoveIamPolicyRequest;
 use Google\Cloud\Metastore\V1beta\RemoveIamPolicyResponse;
 
 /**
@@ -42,10 +43,14 @@ function remove_iam_policy_sample(string $resource): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
+    // Prepare the request message.
+    $request = (new RemoveIamPolicyRequest())
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var RemoveIamPolicyResponse $response */
-        $response = $dataprocMetastoreClient->removeIamPolicy($resource);
+        $response = $dataprocMetastoreClient->removeIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A constraint that allows or disallows a list of string values, which are
- * configured by an Organization Policy administrator with a policy.
+ * A constraint type that allows or disallows a list of string values, which
+ * are configured in the
+ * [`PolicyRule`][google.cloud.orgpolicy.v2.PolicySpec.PolicyRule].
  *
  * Generated from protobuf message <code>google.cloud.orgpolicy.v2.Constraint.ListConstraint</code>
  */

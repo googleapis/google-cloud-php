@@ -22,7 +22,7 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The reservation ID. It must only contain lower case alphanumeric
      * characters or dashes. It must start with a letter and must not end
@@ -30,13 +30,13 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string reservation_id = 2;</code>
      */
-    private $reservation_id = '';
+    protected $reservation_id = '';
     /**
      * Definition of the new reservation to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation reservation = 3;</code>
      */
-    private $reservation = null;
+    protected $reservation = null;
 
     /**
      * @param string                                            $parent        Required. Project, location. E.g.,

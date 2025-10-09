@@ -26,7 +26,7 @@ class CertificateIdentityConstraints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Expr cel_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cel_expression = null;
+    protected $cel_expression = null;
     /**
      * Required. If this is true, the
      * [Subject][google.cloud.security.privateca.v1.Subject] field may be copied
@@ -36,7 +36,7 @@ class CertificateIdentityConstraints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool allow_subject_passthrough = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $allow_subject_passthrough = null;
+    protected $allow_subject_passthrough = null;
     /**
      * Required. If this is true, the
      * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames]
@@ -47,7 +47,7 @@ class CertificateIdentityConstraints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool allow_subject_alt_names_passthrough = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $allow_subject_alt_names_passthrough = null;
+    protected $allow_subject_alt_names_passthrough = null;
 
     /**
      * Constructor.

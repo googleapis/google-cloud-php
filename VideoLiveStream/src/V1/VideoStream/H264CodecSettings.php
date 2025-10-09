@@ -17,18 +17,18 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The width of the video in pixels. Must be an even integer.
-     * Valid range is [320, 1920].
+     * Valid range is [320, 4096].
      *
      * Generated from protobuf field <code>int32 width_pixels = 1;</code>
      */
-    private $width_pixels = 0;
+    protected $width_pixels = 0;
     /**
      * Required. The height of the video in pixels. Must be an even integer.
-     * Valid range is [180, 1080].
+     * Valid range is [180, 2160].
      *
      * Generated from protobuf field <code>int32 height_pixels = 2;</code>
      */
-    private $height_pixels = 0;
+    protected $height_pixels = 0;
     /**
      * Required. The target video frame rate in frames per second (FPS). Must be
      * less than or equal to 60. Will default to the input frame rate if larger
@@ -40,22 +40,23 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double frame_rate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $frame_rate = 0.0;
+    protected $frame_rate = 0.0;
     /**
      * Required. The video bitrate in bits per second. Minimum value is 10,000.
      * - For SD resolution (< 720p), must be <= 3,000,000 (3 Mbps).
      * - For HD resolution (<= 1080p), must be <= 15,000,000 (15 Mbps).
+     * - For UHD resolution (<= 2160p), must be <= 25,000,000 (25 Mbps).
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bitrate_bps = 0;
+    protected $bitrate_bps = 0;
     /**
      * Specifies whether an open Group of Pictures (GOP) structure should be
      * allowed or not. The default is `false`.
      *
      * Generated from protobuf field <code>bool allow_open_gop = 6;</code>
      */
-    private $allow_open_gop = false;
+    protected $allow_open_gop = false;
     /**
      * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be
      * greater than zero. The default is equal to
@@ -63,7 +64,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 vbv_size_bits = 9;</code>
      */
-    private $vbv_size_bits = 0;
+    protected $vbv_size_bits = 0;
     /**
      * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits.
      * Must be greater than zero. The default is equal to 90% of
@@ -71,7 +72,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 vbv_fullness_bits = 10;</code>
      */
-    private $vbv_fullness_bits = 0;
+    protected $vbv_fullness_bits = 0;
     /**
      * The entropy coder to use. The default is `cabac`.
      * Supported entropy coders:
@@ -80,14 +81,14 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entropy_coder = 11;</code>
      */
-    private $entropy_coder = '';
+    protected $entropy_coder = '';
     /**
      * Allow B-pyramid for reference frame selection. This may not be supported
      * on all decoders. The default is `false`.
      *
      * Generated from protobuf field <code>bool b_pyramid = 12;</code>
      */
-    private $b_pyramid = false;
+    protected $b_pyramid = false;
     /**
      * The number of consecutive B-frames. Must be greater than or equal to
      * zero. Must be less than
@@ -96,7 +97,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 b_frame_count = 13;</code>
      */
-    private $b_frame_count = 0;
+    protected $b_frame_count = 0;
     /**
      * Specify the intensity of the adaptive quantizer (AQ). Must be between 0
      * and 1, where 0 disables the quantizer and 1 maximizes the quantizer. A
@@ -104,7 +105,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double aq_strength = 14;</code>
      */
-    private $aq_strength = 0.0;
+    protected $aq_strength = 0.0;
     /**
      * Enforces the specified codec profile. The following profiles are
      * supported:
@@ -120,7 +121,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string profile = 15;</code>
      */
-    private $profile = '';
+    protected $profile = '';
     /**
      * Enforces the specified codec tune. The available options are
      * [FFmpeg-compatible Encode
@@ -132,7 +133,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tune = 16;</code>
      */
-    private $tune = '';
+    protected $tune = '';
     protected $gop_mode;
 
     /**
@@ -143,10 +144,10 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *
      *     @type int $width_pixels
      *           Required. The width of the video in pixels. Must be an even integer.
-     *           Valid range is [320, 1920].
+     *           Valid range is [320, 4096].
      *     @type int $height_pixels
      *           Required. The height of the video in pixels. Must be an even integer.
-     *           Valid range is [180, 1080].
+     *           Valid range is [180, 2160].
      *     @type float $frame_rate
      *           Required. The target video frame rate in frames per second (FPS). Must be
      *           less than or equal to 60. Will default to the input frame rate if larger
@@ -159,6 +160,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *           Required. The video bitrate in bits per second. Minimum value is 10,000.
      *           - For SD resolution (< 720p), must be <= 3,000,000 (3 Mbps).
      *           - For HD resolution (<= 1080p), must be <= 15,000,000 (15 Mbps).
+     *           - For UHD resolution (<= 2160p), must be <= 25,000,000 (25 Mbps).
      *     @type bool $allow_open_gop
      *           Specifies whether an open Group of Pictures (GOP) structure should be
      *           allowed or not. The default is `false`.
@@ -230,7 +232,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The width of the video in pixels. Must be an even integer.
-     * Valid range is [320, 1920].
+     * Valid range is [320, 4096].
      *
      * Generated from protobuf field <code>int32 width_pixels = 1;</code>
      * @return int
@@ -242,7 +244,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The width of the video in pixels. Must be an even integer.
-     * Valid range is [320, 1920].
+     * Valid range is [320, 4096].
      *
      * Generated from protobuf field <code>int32 width_pixels = 1;</code>
      * @param int $var
@@ -258,7 +260,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The height of the video in pixels. Must be an even integer.
-     * Valid range is [180, 1080].
+     * Valid range is [180, 2160].
      *
      * Generated from protobuf field <code>int32 height_pixels = 2;</code>
      * @return int
@@ -270,7 +272,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The height of the video in pixels. Must be an even integer.
-     * Valid range is [180, 1080].
+     * Valid range is [180, 2160].
      *
      * Generated from protobuf field <code>int32 height_pixels = 2;</code>
      * @param int $var
@@ -326,6 +328,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      * Required. The video bitrate in bits per second. Minimum value is 10,000.
      * - For SD resolution (< 720p), must be <= 3,000,000 (3 Mbps).
      * - For HD resolution (<= 1080p), must be <= 15,000,000 (15 Mbps).
+     * - For UHD resolution (<= 2160p), must be <= 25,000,000 (25 Mbps).
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -339,6 +342,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      * Required. The video bitrate in bits per second. Minimum value is 10,000.
      * - For SD resolution (< 720p), must be <= 3,000,000 (3 Mbps).
      * - For HD resolution (<= 1080p), must be <= 15,000,000 (15 Mbps).
+     * - For UHD resolution (<= 2160p), must be <= 25,000,000 (25 Mbps).
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

@@ -21,13 +21,13 @@ class UpdateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $crypto_key = null;
+    protected $crypto_key = null;
     /**
      * Required. List of fields to be updated in this request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Kms\V1\CryptoKey $cryptoKey  Required. [CryptoKey][google.cloud.kms.v1.CryptoKey] with updated values.

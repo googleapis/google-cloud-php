@@ -28,10 +28,20 @@ use Google\Apps\Meet\V2beta\Client\SpacesServiceClient;
 use Google\Apps\Meet\V2beta\EndActiveConferenceRequest;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
- * Ends an active conference (if there is one).
+ * Ends an active conference (if there's one).
  *
- * @param string $formattedName Resource name of the space. Please see
+ * For an example, see [End active
+ * conference](https://developers.google.com/meet/api/guides/meeting-spaces#end-active-conference).
+ *
+ * @param string $formattedName Resource name of the space.
+ *
+ *                              Format: `spaces/{space}`.
+ *
+ *                              `{space}` is the resource identifier for the space. It's a unique,
+ *                              server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
+ *
+ *                              For more information, see [How Meet identifies a meeting
+ *                              space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space). Please see
  *                              {@see SpacesServiceClient::spaceName()} for help formatting this field.
  */
 function end_active_conference_sample(string $formattedName): void

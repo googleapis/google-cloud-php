@@ -20,7 +20,7 @@ class PostgresqlTable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 1;</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * PostgreSQL columns in the schema.
      * When unspecified as part of include/exclude objects,

@@ -24,7 +24,7 @@ class ReleaseChannel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel.Channel channel = 1;</code>
      */
-    private $channel = 0;
+    protected $channel = 0;
 
     /**
      * Constructor.

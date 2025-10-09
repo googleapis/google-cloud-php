@@ -23,14 +23,14 @@ class FunctionCall extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Required. The function parameters and values in JSON object
      * format. See [FunctionDeclaration.parameters] for parameter details.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $args = null;
+    protected $args = null;
 
     /**
      * Constructor.

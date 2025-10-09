@@ -21,7 +21,7 @@ class InputStreamProperty extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_establish_time = 1;</code>
      */
-    private $last_establish_time = null;
+    protected $last_establish_time = null;
     /**
      * Properties of the video streams.
      *

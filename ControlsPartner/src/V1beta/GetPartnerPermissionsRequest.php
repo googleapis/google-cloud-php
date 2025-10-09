@@ -17,7 +17,7 @@ class GetPartnerPermissionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the resource to get in the format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class GetPartnerPermissionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the resource to get in the format:
-     *                     organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions
+     *                     `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions`
      *                     Please see {@see CloudControlsPartnerCoreClient::partnerPermissionsName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudControlsPartner\V1beta\GetPartnerPermissionsRequest
@@ -46,7 +46,7 @@ class GetPartnerPermissionsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the resource to get in the format:
-     *           organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions
+     *           `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions`
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetPartnerPermissionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the resource to get in the format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetPartnerPermissionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the resource to get in the format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

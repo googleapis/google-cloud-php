@@ -21,19 +21,19 @@ class FetchLinkableRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string connection = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $connection = '';
+    protected $connection = '';
     /**
      * Number of results to return in the list. Default to 20.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Page start.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

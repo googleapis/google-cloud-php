@@ -21,7 +21,7 @@ class DeleteDataAttributeBindingRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. If the client provided etag value does not match the current etag
      * value, the DeleteDataAttributeBindingRequest method returns an ABORTED
@@ -30,7 +30,7 @@ class DeleteDataAttributeBindingRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. The resource name of the DataAttributeBinding:

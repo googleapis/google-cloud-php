@@ -20,7 +20,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.JobStatus.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Job status events
      *
@@ -39,7 +39,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration run_duration = 5;</code>
      */
-    private $run_duration = null;
+    protected $run_duration = null;
 
     /**
      * Constructor.

@@ -68,6 +68,4 @@ class Impact
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Impact::class, \Google\Cloud\SecurityCenter\V1\Cvssv3_Impact::class);
 

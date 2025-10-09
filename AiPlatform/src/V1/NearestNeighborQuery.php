@@ -21,13 +21,19 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 neighbor_count = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $neighbor_count = 0;
+    protected $neighbor_count = 0;
     /**
      * Optional. The list of string filters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborQuery.StringFilter string_filters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $string_filters;
+    /**
+     * Optional. The list of numeric filters.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborQuery.NumericFilter numeric_filters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $numeric_filters;
     /**
      * Optional. Crowding is a constraint on a neighbor list produced by nearest
      * neighbor search requiring that no more than
@@ -36,13 +42,13 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 per_crowding_attribute_neighbor_count = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $per_crowding_attribute_neighbor_count = 0;
+    protected $per_crowding_attribute_neighbor_count = 0;
     /**
      * Optional. Parameters that can be set to tune query on the fly.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NearestNeighborQuery.Parameters parameters = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
     protected $instance;
 
     /**
@@ -62,6 +68,8 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
      *           for each query.
      *     @type array<\Google\Cloud\AIPlatform\V1\NearestNeighborQuery\StringFilter>|\Google\Protobuf\Internal\RepeatedField $string_filters
      *           Optional. The list of string filters.
+     *     @type array<\Google\Cloud\AIPlatform\V1\NearestNeighborQuery\NumericFilter>|\Google\Protobuf\Internal\RepeatedField $numeric_filters
+     *           Optional. The list of numeric filters.
      *     @type int $per_crowding_attribute_neighbor_count
      *           Optional. Crowding is a constraint on a neighbor list produced by nearest
      *           neighbor search requiring that no more than
@@ -192,6 +200,32 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\NearestNeighborQuery\StringFilter::class);
         $this->string_filters = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The list of numeric filters.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborQuery.NumericFilter numeric_filters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNumericFilters()
+    {
+        return $this->numeric_filters;
+    }
+
+    /**
+     * Optional. The list of numeric filters.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborQuery.NumericFilter numeric_filters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\NearestNeighborQuery\NumericFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNumericFilters($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\NearestNeighborQuery\NumericFilter::class);
+        $this->numeric_filters = $arr;
 
         return $this;
     }

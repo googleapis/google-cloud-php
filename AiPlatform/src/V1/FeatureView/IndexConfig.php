@@ -22,7 +22,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string embedding_column = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $embedding_column = '';
+    protected $embedding_column = '';
     /**
      * Optional. Columns of features that're used to filter vector search
      * results.
@@ -43,19 +43,19 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string crowding_column = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $crowding_column = '';
+    protected $crowding_column = '';
     /**
      * Optional. The number of dimensions of the input embedding.
      *
      * Generated from protobuf field <code>optional int32 embedding_dimension = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $embedding_dimension = null;
+    protected $embedding_dimension = null;
     /**
      * Optional. The distance measure used in nearest neighbor search.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.IndexConfig.DistanceMeasureType distance_measure_type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $distance_measure_type = 0;
+    protected $distance_measure_type = 0;
     protected $algorithm_config;
 
     /**

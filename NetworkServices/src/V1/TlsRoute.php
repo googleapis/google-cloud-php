@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class TlsRoute extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the TlsRoute resource. It matches pattern
+     * Identifier. Name of the TlsRoute resource. It matches pattern
      * `projects/&#42;&#47;locations/global/tlsRoutes/tls_route_name>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -75,6 +75,12 @@ class TlsRoute extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string gateways = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $gateways;
+    /**
+     * Optional. Set of label tags associated with the TlsRoute resource.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
 
     /**
      * Constructor.
@@ -83,7 +89,7 @@ class TlsRoute extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the TlsRoute resource. It matches pattern
+     *           Identifier. Name of the TlsRoute resource. It matches pattern
      *           `projects/&#42;&#47;locations/global/tlsRoutes/tls_route_name>`.
      *     @type string $self_link
      *           Output only. Server-defined URL of this resource
@@ -109,6 +115,8 @@ class TlsRoute extends \Google\Protobuf\Internal\Message
      *           as one of the routing rules to route the requests served by the gateway.
      *           Each gateway reference should match the pattern:
      *           `projects/&#42;&#47;locations/global/gateways/<gateway_name>`
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. Set of label tags associated with the TlsRoute resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,10 +125,10 @@ class TlsRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the TlsRoute resource. It matches pattern
+     * Identifier. Name of the TlsRoute resource. It matches pattern
      * `projects/&#42;&#47;locations/global/tlsRoutes/tls_route_name>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -129,10 +137,10 @@ class TlsRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the TlsRoute resource. It matches pattern
+     * Identifier. Name of the TlsRoute resource. It matches pattern
      * `projects/&#42;&#47;locations/global/tlsRoutes/tls_route_name>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -362,6 +370,32 @@ class TlsRoute extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->gateways = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Set of label tags associated with the TlsRoute resource.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. Set of label tags associated with the TlsRoute resource.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

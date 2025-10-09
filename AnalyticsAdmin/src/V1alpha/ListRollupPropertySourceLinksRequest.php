@@ -21,7 +21,7 @@ class ListRollupPropertySourceLinksRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The maximum number of resources to return. The service may return
      * fewer than this value, even if there are additional pages.
@@ -30,7 +30,7 @@ class ListRollupPropertySourceLinksRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A page token, received from a previous
      * `ListRollupPropertySourceLinks` call. Provide this to retrieve the
@@ -40,7 +40,7 @@ class ListRollupPropertySourceLinksRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The name of the roll-up property to list roll-up property source

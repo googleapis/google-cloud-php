@@ -21,20 +21,20 @@ class MetricSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metric_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metric_id = '';
+    protected $metric_id = '';
     /**
      * Required. The optimization goal of the metric.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.MetricSpec.GoalType goal = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $goal = 0;
+    protected $goal = 0;
     /**
      * Used for safe search. In the case, the metric will be a safety
      * metric. You must provide a separate metric for objective metric.
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.StudySpec.MetricSpec.SafetyMetricConfig safety_config = 3;</code>
      */
-    private $safety_config = null;
+    protected $safety_config = null;
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class DefaultPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Optional. Cloud Storage location where execution outputs should be stored.
      * This can either be a bucket ("gs://my-bucket") or a path within a bucket
@@ -31,7 +31,7 @@ class DefaultPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string artifact_storage = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $artifact_storage = '';
+    protected $artifact_storage = '';
 
     /**
      * Constructor.

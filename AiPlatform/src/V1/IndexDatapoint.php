@@ -20,7 +20,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string datapoint_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $datapoint_id = '';
+    protected $datapoint_id = '';
     /**
      * Required. Feature embedding vector for dense index. An array of numbers
      * with the length of [NearestNeighborSearchConfig.dimensions].
@@ -33,7 +33,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint.SparseEmbedding sparse_embedding = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sparse_embedding = null;
+    protected $sparse_embedding = null;
     /**
      * Optional. List of Restrict of the datapoint, used to perform "restricted
      * searches" where boolean rule are used to filter the subset of the database
@@ -57,7 +57,13 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint.CrowdingTag crowding_tag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $crowding_tag = null;
+    protected $crowding_tag = null;
+    /**
+     * Optional. The key-value map of additional metadata for the datapoint.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct embedding_metadata = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $embedding_metadata = null;
 
     /**
      * Constructor.
@@ -84,6 +90,8 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\IndexDatapoint\CrowdingTag $crowding_tag
      *           Optional. CrowdingTag of the datapoint, the number of neighbors to return
      *           in each crowding can be configured during query.
+     *     @type \Google\Protobuf\Struct $embedding_metadata
+     *           Optional. The key-value map of additional metadata for the datapoint.
      * }
      */
     public function __construct($data = NULL) {
@@ -277,6 +285,42 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\IndexDatapoint\CrowdingTag::class);
         $this->crowding_tag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The key-value map of additional metadata for the datapoint.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct embedding_metadata = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getEmbeddingMetadata()
+    {
+        return $this->embedding_metadata;
+    }
+
+    public function hasEmbeddingMetadata()
+    {
+        return isset($this->embedding_metadata);
+    }
+
+    public function clearEmbeddingMetadata()
+    {
+        unset($this->embedding_metadata);
+    }
+
+    /**
+     * Optional. The key-value map of additional metadata for the datapoint.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct embedding_metadata = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setEmbeddingMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->embedding_metadata = $var;
 
         return $this;
     }

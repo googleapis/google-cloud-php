@@ -25,7 +25,7 @@ class VersionedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * JSON representation of the resource as defined by the corresponding
      * service providing this resource.
@@ -40,7 +40,7 @@ class VersionedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct resource = 2;</code>
      */
-    private $resource = null;
+    protected $resource = null;
 
     /**
      * Constructor.

@@ -20,20 +20,20 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string http_route = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $http_route = '';
+    protected $http_route = '';
     /**
      * Required. Name of the Kubernetes Service.
      *
      * Generated from protobuf field <code>string service = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * Required. Name of the Kubernetes Deployment whose traffic is managed by
      * the specified HTTPRoute and Service.
      *
      * Generated from protobuf field <code>string deployment = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployment = '';
+    protected $deployment = '';
     /**
      * Optional. The time to wait for route updates to propagate. The maximum
      * configurable time is 3 hours, in seconds format. If unspecified, there is
@@ -41,7 +41,7 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration route_update_wait_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $route_update_wait_time = null;
+    protected $route_update_wait_time = null;
     /**
      * Optional. The amount of time to migrate traffic back from the canary
      * Service to the original Service during the stable phase deployment. If
@@ -50,7 +50,24 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration stable_cutback_duration = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $stable_cutback_duration = null;
+    protected $stable_cutback_duration = null;
+    /**
+     * Optional. The label to use when selecting Pods for the Deployment and
+     * Service resources. This label must already be present in both resources.
+     *
+     * Generated from protobuf field <code>string pod_selector_label = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $pod_selector_label = '';
+    /**
+     * Optional. Route destinations allow configuring the Gateway API HTTPRoute
+     * to be deployed to additional clusters. This option is available for
+     * multi-cluster service mesh set ups that require the route to exist in the
+     * clusters that call the service. If unspecified, the HTTPRoute will only
+     * be deployed to the Target cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh.RouteDestinations route_destinations = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $route_destinations = null;
 
     /**
      * Constructor.
@@ -74,6 +91,15 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      *           Service to the original Service during the stable phase deployment. If
      *           specified, must be between 15s and 3600s. If unspecified, there is no
      *           cutback time.
+     *     @type string $pod_selector_label
+     *           Optional. The label to use when selecting Pods for the Deployment and
+     *           Service resources. This label must already be present in both resources.
+     *     @type \Google\Cloud\Deploy\V1\KubernetesConfig\GatewayServiceMesh\RouteDestinations $route_destinations
+     *           Optional. Route destinations allow configuring the Gateway API HTTPRoute
+     *           to be deployed to additional clusters. This option is available for
+     *           multi-cluster service mesh set ups that require the route to exist in the
+     *           clusters that call the service. If unspecified, the HTTPRoute will only
+     *           be deployed to the Target cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -239,6 +265,78 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->stable_cutback_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The label to use when selecting Pods for the Deployment and
+     * Service resources. This label must already be present in both resources.
+     *
+     * Generated from protobuf field <code>string pod_selector_label = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPodSelectorLabel()
+    {
+        return $this->pod_selector_label;
+    }
+
+    /**
+     * Optional. The label to use when selecting Pods for the Deployment and
+     * Service resources. This label must already be present in both resources.
+     *
+     * Generated from protobuf field <code>string pod_selector_label = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPodSelectorLabel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pod_selector_label = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Route destinations allow configuring the Gateway API HTTPRoute
+     * to be deployed to additional clusters. This option is available for
+     * multi-cluster service mesh set ups that require the route to exist in the
+     * clusters that call the service. If unspecified, the HTTPRoute will only
+     * be deployed to the Target cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh.RouteDestinations route_destinations = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Deploy\V1\KubernetesConfig\GatewayServiceMesh\RouteDestinations|null
+     */
+    public function getRouteDestinations()
+    {
+        return $this->route_destinations;
+    }
+
+    public function hasRouteDestinations()
+    {
+        return isset($this->route_destinations);
+    }
+
+    public function clearRouteDestinations()
+    {
+        unset($this->route_destinations);
+    }
+
+    /**
+     * Optional. Route destinations allow configuring the Gateway API HTTPRoute
+     * to be deployed to additional clusters. This option is available for
+     * multi-cluster service mesh set ups that require the route to exist in the
+     * clusters that call the service. If unspecified, the HTTPRoute will only
+     * be deployed to the Target cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh.RouteDestinations route_destinations = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Deploy\V1\KubernetesConfig\GatewayServiceMesh\RouteDestinations $var
+     * @return $this
+     */
+    public function setRouteDestinations($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\KubernetesConfig\GatewayServiceMesh\RouteDestinations::class);
+        $this->route_destinations = $var;
 
         return $this;
     }

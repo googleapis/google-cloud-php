@@ -21,19 +21,19 @@ class VodSession extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Metadata of what was stitched into the content.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Interstitials interstitials = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $interstitials = null;
+    protected $interstitials = null;
     /**
      * Output only. The playback URI of the stitched content.
      *
      * Generated from protobuf field <code>string play_uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $play_uri = '';
+    protected $play_uri = '';
     /**
      * URI of the media to stitch. For most use cases, you should create a
      * [VodConfig][google.cloud.video.stitcher.v1.VodConfig] with this information
@@ -41,7 +41,7 @@ class VodSession extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_uri = 5;</code>
      */
-    private $source_uri = '';
+    protected $source_uri = '';
     /**
      * Ad tag URI. For most use cases, you should create a
      * [VodConfig][google.cloud.video.stitcher.v1.VodConfig] with this information
@@ -49,7 +49,7 @@ class VodSession extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ad_tag_uri = 6;</code>
      */
-    private $ad_tag_uri = '';
+    protected $ad_tag_uri = '';
     /**
      * Key value pairs for ad tag macro replacement, only available for VOD
      * sessions that do not implement Google Ad manager ad insertion. If the
@@ -69,33 +69,33 @@ class VodSession extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.ManifestOptions manifest_options = 9;</code>
      */
-    private $manifest_options = null;
+    protected $manifest_options = null;
     /**
      * Output only. The generated ID of the VodSession's source media.
      *
      * Generated from protobuf field <code>string asset_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $asset_id = '';
+    protected $asset_id = '';
     /**
      * Required. Determines how the ad should be tracked.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ad_tracking = 0;
+    protected $ad_tracking = 0;
     /**
      * This field should be set with appropriate values if GAM is being used for
      * ads.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.VodSession.GamSettings gam_settings = 13;</code>
      */
-    private $gam_settings = null;
+    protected $gam_settings = null;
     /**
      * The resource name of the VOD config for this session, in the form of
      * `projects/{project}/locations/{location}/vodConfigs/{id}`.
      *
      * Generated from protobuf field <code>string vod_config = 14 [(.google.api.resource_reference) = {</code>
      */
-    private $vod_config = '';
+    protected $vod_config = '';
 
     /**
      * Constructor.

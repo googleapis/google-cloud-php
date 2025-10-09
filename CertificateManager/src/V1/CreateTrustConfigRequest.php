@@ -21,20 +21,20 @@ class CreateTrustConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A user-provided name of the TrustConfig. Must match the regexp
      * `[a-z0-9-]{1,63}`.
      *
      * Generated from protobuf field <code>string trust_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trust_config_id = '';
+    protected $trust_config_id = '';
     /**
      * Required. A definition of the TrustConfig to create.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.TrustConfig trust_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trust_config = null;
+    protected $trust_config = null;
 
     /**
      * @param string                                          $parent        Required. The parent resource of the TrustConfig. Must be in the format

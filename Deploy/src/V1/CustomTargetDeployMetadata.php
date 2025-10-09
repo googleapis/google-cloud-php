@@ -22,7 +22,7 @@ class CustomTargetDeployMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string skip_message = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $skip_message = '';
+    protected $skip_message = '';
 
     /**
      * Constructor.

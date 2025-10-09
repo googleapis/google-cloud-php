@@ -20,25 +20,25 @@ class VideoFormat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      */
-    private $codec = '';
+    protected $codec = '';
     /**
      * The width of the video stream in pixels.
      *
      * Generated from protobuf field <code>int32 width_pixels = 2;</code>
      */
-    private $width_pixels = 0;
+    protected $width_pixels = 0;
     /**
      * The height of the video stream in pixels.
      *
      * Generated from protobuf field <code>int32 height_pixels = 3;</code>
      */
-    private $height_pixels = 0;
+    protected $height_pixels = 0;
     /**
      * The frame rate of the input video stream.
      *
      * Generated from protobuf field <code>double frame_rate = 4;</code>
      */
-    private $frame_rate = 0.0;
+    protected $frame_rate = 0.0;
 
     /**
      * Constructor.

@@ -23,13 +23,13 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Task Status.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus status = 2;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.

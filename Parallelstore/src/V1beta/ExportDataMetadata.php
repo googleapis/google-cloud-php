@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ExportDataMetadata contains export data operation metadata
+ * Metadata related to the data export operation.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.ExportDataMetadata</code>
  */
 class ExportDataMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Contains the data transfer operation metadata.
+     * Data transfer operation metadata.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferOperationMetadata operation_metadata = 1;</code>
      */
@@ -54,7 +54,7 @@ class ExportDataMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
-     * have [Operation.error][] value with a
+     * have [Operation.error][google.longrunning.Operation.error] value with a
      * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
      * `Code.CANCELLED`.
      *
@@ -75,7 +75,7 @@ class ExportDataMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Parallelstore\V1beta\TransferOperationMetadata $operation_metadata
-     *           Contains the data transfer operation metadata.
+     *           Data transfer operation metadata.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time the operation was created.
      *     @type \Google\Protobuf\Timestamp $end_time
@@ -89,7 +89,7 @@ class ExportDataMetadata extends \Google\Protobuf\Internal\Message
      *     @type bool $requested_cancellation
      *           Output only. Identifies whether the user has requested cancellation
      *           of the operation. Operations that have successfully been cancelled
-     *           have [Operation.error][] value with a
+     *           have [Operation.error][google.longrunning.Operation.error] value with a
      *           [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
      *           `Code.CANCELLED`.
      *     @type string $api_version
@@ -102,7 +102,7 @@ class ExportDataMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains the data transfer operation metadata.
+     * Data transfer operation metadata.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferOperationMetadata operation_metadata = 1;</code>
      * @return \Google\Cloud\Parallelstore\V1beta\TransferOperationMetadata|null
@@ -123,7 +123,7 @@ class ExportDataMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains the data transfer operation metadata.
+     * Data transfer operation metadata.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferOperationMetadata operation_metadata = 1;</code>
      * @param \Google\Cloud\Parallelstore\V1beta\TransferOperationMetadata $var
@@ -290,7 +290,7 @@ class ExportDataMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
-     * have [Operation.error][] value with a
+     * have [Operation.error][google.longrunning.Operation.error] value with a
      * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
      * `Code.CANCELLED`.
      *
@@ -305,7 +305,7 @@ class ExportDataMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
-     * have [Operation.error][] value with a
+     * have [Operation.error][google.longrunning.Operation.error] value with a
      * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
      * `Code.CANCELLED`.
      *

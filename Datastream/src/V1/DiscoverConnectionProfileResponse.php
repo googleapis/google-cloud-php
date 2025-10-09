@@ -29,6 +29,12 @@ class DiscoverConnectionProfileResponse extends \Google\Protobuf\Internal\Messag
      *           Enriched MySQL RDBMS object.
      *     @type \Google\Cloud\Datastream\V1\PostgresqlRdbms $postgresql_rdbms
      *           Enriched PostgreSQL RDBMS object.
+     *     @type \Google\Cloud\Datastream\V1\SqlServerRdbms $sql_server_rdbms
+     *           Enriched SQLServer RDBMS object.
+     *     @type \Google\Cloud\Datastream\V1\SalesforceOrg $salesforce_org
+     *           Enriched Salesforce organization.
+     *     @type \Google\Cloud\Datastream\V1\MongodbCluster $mongodb_cluster
+     *           Enriched MongoDB cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,6 +131,99 @@ class DiscoverConnectionProfileResponse extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\PostgresqlRdbms::class);
         $this->writeOneof(102, $var);
+
+        return $this;
+    }
+
+    /**
+     * Enriched SQLServer RDBMS object.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms sql_server_rdbms = 103;</code>
+     * @return \Google\Cloud\Datastream\V1\SqlServerRdbms|null
+     */
+    public function getSqlServerRdbms()
+    {
+        return $this->readOneof(103);
+    }
+
+    public function hasSqlServerRdbms()
+    {
+        return $this->hasOneof(103);
+    }
+
+    /**
+     * Enriched SQLServer RDBMS object.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms sql_server_rdbms = 103;</code>
+     * @param \Google\Cloud\Datastream\V1\SqlServerRdbms $var
+     * @return $this
+     */
+    public function setSqlServerRdbms($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SqlServerRdbms::class);
+        $this->writeOneof(103, $var);
+
+        return $this;
+    }
+
+    /**
+     * Enriched Salesforce organization.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg salesforce_org = 104;</code>
+     * @return \Google\Cloud\Datastream\V1\SalesforceOrg|null
+     */
+    public function getSalesforceOrg()
+    {
+        return $this->readOneof(104);
+    }
+
+    public function hasSalesforceOrg()
+    {
+        return $this->hasOneof(104);
+    }
+
+    /**
+     * Enriched Salesforce organization.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg salesforce_org = 104;</code>
+     * @param \Google\Cloud\Datastream\V1\SalesforceOrg $var
+     * @return $this
+     */
+    public function setSalesforceOrg($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SalesforceOrg::class);
+        $this->writeOneof(104, $var);
+
+        return $this;
+    }
+
+    /**
+     * Enriched MongoDB cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster mongodb_cluster = 105;</code>
+     * @return \Google\Cloud\Datastream\V1\MongodbCluster|null
+     */
+    public function getMongodbCluster()
+    {
+        return $this->readOneof(105);
+    }
+
+    public function hasMongodbCluster()
+    {
+        return $this->hasOneof(105);
+    }
+
+    /**
+     * Enriched MongoDB cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster mongodb_cluster = 105;</code>
+     * @param \Google\Cloud\Datastream\V1\MongodbCluster $var
+     * @return $this
+     */
+    public function setMongodbCluster($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MongodbCluster::class);
+        $this->writeOneof(105, $var);
 
         return $this;
     }

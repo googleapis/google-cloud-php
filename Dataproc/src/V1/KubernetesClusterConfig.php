@@ -23,14 +23,14 @@ class KubernetesClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kubernetes_namespace = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $kubernetes_namespace = '';
+    protected $kubernetes_namespace = '';
     /**
      * Optional. The software configuration for this Dataproc cluster running on
      * Kubernetes.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.KubernetesSoftwareConfig kubernetes_software_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $kubernetes_software_config = null;
+    protected $kubernetes_software_config = null;
     protected $config;
 
     /**

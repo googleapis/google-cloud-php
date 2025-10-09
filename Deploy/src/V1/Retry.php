@@ -21,21 +21,21 @@ class Retry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 attempts = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $attempts = 0;
+    protected $attempts = 0;
     /**
      * Optional. How long to wait for the first retry. Default is 0, and the
      * maximum value is 14d.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration wait = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $wait = null;
+    protected $wait = null;
     /**
      * Optional. The pattern of how wait time will be increased. Default is
      * linear. Backoff mode will be ignored if `wait` is 0.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.BackoffMode backoff_mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $backoff_mode = 0;
+    protected $backoff_mode = 0;
 
     /**
      * Constructor.

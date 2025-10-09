@@ -26,7 +26,7 @@ class ParameterMutation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parameter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parameter = '';
+    protected $parameter = '';
     /**
      * Required. The value mutation to perform.
      * * Must be less than 100 characters.
@@ -37,7 +37,7 @@ class ParameterMutation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parameter_value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parameter_value = '';
+    protected $parameter_value = '';
 
     /**
      * Constructor.

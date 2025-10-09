@@ -29,7 +29,7 @@ use Google\Cloud\Dataplex\V1\EntryGroup;
 use Google\Cloud\Dataplex\V1\GetEntryGroupRequest;
 
 /**
- * Retrieves a EntryGroup resource.
+ * Gets an EntryGroup.
  *
  * @param string $formattedName The resource name of the EntryGroup:
  *                              `projects/{project_number}/locations/{location_id}/entryGroups/{entry_group_id}`. Please see

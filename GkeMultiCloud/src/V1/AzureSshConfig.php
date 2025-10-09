@@ -22,7 +22,7 @@ class AzureSshConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authorized_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $authorized_key = '';
+    protected $authorized_key = '';
 
     /**
      * Constructor.

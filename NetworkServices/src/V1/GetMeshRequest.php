@@ -24,6 +24,21 @@ class GetMeshRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. A name of the Mesh to get. Must be in the format
+     *                     `projects/&#42;/locations/global/meshes/*`. Please see
+     *                     {@see NetworkServicesClient::meshName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\GetMeshRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

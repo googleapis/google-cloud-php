@@ -17,15 +17,23 @@ class DeleteListingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Resource name of the listing to delete.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
+    /**
+     * Optional. If the listing is commercial then this field must be set to true,
+     * otherwise a failure is thrown. This acts as a safety guard to avoid
+     * deleting commercial listings accidentally.
+     *
+     * Generated from protobuf field <code>bool delete_commercial = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $delete_commercial = false;
 
     /**
      * @param string $name Required. Resource name of the listing to delete.
-     *                     e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`. Please see
+     *                     e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`. Please see
      *                     {@see AnalyticsHubServiceClient::listingName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteListingRequest
@@ -46,7 +54,11 @@ class DeleteListingRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Resource name of the listing to delete.
-     *           e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     *           e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
+     *     @type bool $delete_commercial
+     *           Optional. If the listing is commercial then this field must be set to true,
+     *           otherwise a failure is thrown. This acts as a safety guard to avoid
+     *           deleting commercial listings accidentally.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +68,7 @@ class DeleteListingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the listing to delete.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +80,7 @@ class DeleteListingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the listing to delete.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -78,6 +90,36 @@ class DeleteListingRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If the listing is commercial then this field must be set to true,
+     * otherwise a failure is thrown. This acts as a safety guard to avoid
+     * deleting commercial listings accidentally.
+     *
+     * Generated from protobuf field <code>bool delete_commercial = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDeleteCommercial()
+    {
+        return $this->delete_commercial;
+    }
+
+    /**
+     * Optional. If the listing is commercial then this field must be set to true,
+     * otherwise a failure is thrown. This acts as a safety guard to avoid
+     * deleting commercial listings accidentally.
+     *
+     * Generated from protobuf field <code>bool delete_commercial = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDeleteCommercial($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->delete_commercial = $var;
 
         return $this;
     }

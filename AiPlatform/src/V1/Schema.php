@@ -11,8 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Schema is used to define the format of input/output data. Represents a select
  * subset of an [OpenAPI 3.0 schema
- * object](https://spec.openapis.org/oas/v3.0.3#schema). More fields may be
- * added in the future as needed.
+ * object](https://spec.openapis.org/oas/v3.0.3#schema-object). More fields may
+ * be added in the future as needed.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.Schema</code>
  */
@@ -23,7 +23,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Type type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Optional. The format of the data.
      * Supported formats:
@@ -33,54 +33,57 @@ class Schema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string format = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $format = '';
+    protected $format = '';
     /**
      * Optional. The title of the Schema.
      *
      * Generated from protobuf field <code>string title = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Optional. The description of the data.
      *
      * Generated from protobuf field <code>string description = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Indicates if the value may be null.
      *
      * Generated from protobuf field <code>bool nullable = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $nullable = false;
+    protected $nullable = false;
     /**
      * Optional. Default value of the data.
      *
      * Generated from protobuf field <code>.google.protobuf.Value default = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $default = null;
+    protected $default = null;
     /**
      * Optional. SCHEMA FIELDS FOR TYPE ARRAY
      * Schema of the elements of Type.ARRAY.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schema items = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $items = null;
+    protected $items = null;
     /**
      * Optional. Minimum number of the elements for Type.ARRAY.
      *
      * Generated from protobuf field <code>int64 min_items = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_items = 0;
+    protected $min_items = 0;
     /**
      * Optional. Maximum number of the elements for Type.ARRAY.
      *
      * Generated from protobuf field <code>int64 max_items = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_items = 0;
+    protected $max_items = 0;
     /**
-     * Optional. Possible values of the element of Type.STRING with enum format.
-     * For example we can define an Enum Direction as :
+     * Optional. Possible values of the element of primitive type with enum
+     * format. Examples:
+     * 1. We can define direction as :
      * {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
+     * 2. We can define apartment number as :
+     * {type:INTEGER, format:enum, enum:["101", "201", "301"]}
      *
      * Generated from protobuf field <code>repeated string enum = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -93,6 +96,14 @@ class Schema extends \Google\Protobuf\Internal\Message
      */
     private $properties;
     /**
+     * Optional. The order of the properties.
+     * Not a standard field in open api spec. Only used to support the order of
+     * the properties.
+     *
+     * Generated from protobuf field <code>repeated string property_ordering = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $property_ordering;
+    /**
      * Optional. Required properties of Type.OBJECT.
      *
      * Generated from protobuf field <code>repeated string required = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -103,53 +114,97 @@ class Schema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 min_properties = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_properties = 0;
+    protected $min_properties = 0;
     /**
      * Optional. Maximum number of the properties for Type.OBJECT.
      *
      * Generated from protobuf field <code>int64 max_properties = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_properties = 0;
+    protected $max_properties = 0;
     /**
      * Optional. SCHEMA FIELDS FOR TYPE INTEGER and NUMBER
      * Minimum value of the Type.INTEGER and Type.NUMBER
      *
      * Generated from protobuf field <code>double minimum = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $minimum = 0.0;
+    protected $minimum = 0.0;
     /**
      * Optional. Maximum value of the Type.INTEGER and Type.NUMBER
      *
      * Generated from protobuf field <code>double maximum = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $maximum = 0.0;
+    protected $maximum = 0.0;
     /**
      * Optional. SCHEMA FIELDS FOR TYPE STRING
      * Minimum length of the Type.STRING
      *
      * Generated from protobuf field <code>int64 min_length = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_length = 0;
+    protected $min_length = 0;
     /**
      * Optional. Maximum length of the Type.STRING
      *
      * Generated from protobuf field <code>int64 max_length = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_length = 0;
+    protected $max_length = 0;
     /**
      * Optional. Pattern of the Type.STRING to restrict a string to a regular
      * expression.
      *
      * Generated from protobuf field <code>string pattern = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $pattern = '';
+    protected $pattern = '';
     /**
      * Optional. Example of the object. Will only populated when the object is the
      * root.
      *
      * Generated from protobuf field <code>.google.protobuf.Value example = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $example = null;
+    protected $example = null;
+    /**
+     * Optional. The value should be validated against any (one or more) of the
+     * subschemas in the list.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Schema any_of = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $any_of;
+    /**
+     * Optional. Can either be a boolean or an object; controls the presence of
+     * additional properties.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value additional_properties = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $additional_properties = null;
+    /**
+     * Optional. Allows indirect references between schema nodes. The value should
+     * be a valid reference to a child of the root `defs`.
+     * For example, the following schema defines a reference to a schema node
+     * named "Pet":
+     * type: object
+     * properties:
+     *   pet:
+     *     ref: #/defs/Pet
+     * defs:
+     *   Pet:
+     *     type: object
+     *     properties:
+     *       name:
+     *         type: string
+     * The value of the "pet" property is a reference to the schema node
+     * named "Pet".
+     * See details in
+     * https://json-schema.org/understanding-json-schema/structuring
+     *
+     * Generated from protobuf field <code>string ref = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ref = '';
+    /**
+     * Optional. A map of definitions for use by `ref`
+     * Only allowed at the root of the schema.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.Schema> defs = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $defs;
 
     /**
      * Constructor.
@@ -181,12 +236,19 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type int|string $max_items
      *           Optional. Maximum number of the elements for Type.ARRAY.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enum
-     *           Optional. Possible values of the element of Type.STRING with enum format.
-     *           For example we can define an Enum Direction as :
+     *           Optional. Possible values of the element of primitive type with enum
+     *           format. Examples:
+     *           1. We can define direction as :
      *           {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
+     *           2. We can define apartment number as :
+     *           {type:INTEGER, format:enum, enum:["101", "201", "301"]}
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. SCHEMA FIELDS FOR TYPE OBJECT
      *           Properties of Type.OBJECT.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $property_ordering
+     *           Optional. The order of the properties.
+     *           Not a standard field in open api spec. Only used to support the order of
+     *           the properties.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required
      *           Optional. Required properties of Type.OBJECT.
      *     @type int|string $min_properties
@@ -209,6 +271,34 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Value $example
      *           Optional. Example of the object. Will only populated when the object is the
      *           root.
+     *     @type array<\Google\Cloud\AIPlatform\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $any_of
+     *           Optional. The value should be validated against any (one or more) of the
+     *           subschemas in the list.
+     *     @type \Google\Protobuf\Value $additional_properties
+     *           Optional. Can either be a boolean or an object; controls the presence of
+     *           additional properties.
+     *     @type string $ref
+     *           Optional. Allows indirect references between schema nodes. The value should
+     *           be a valid reference to a child of the root `defs`.
+     *           For example, the following schema defines a reference to a schema node
+     *           named "Pet":
+     *           type: object
+     *           properties:
+     *             pet:
+     *               ref: #/defs/Pet
+     *           defs:
+     *             Pet:
+     *               type: object
+     *               properties:
+     *                 name:
+     *                   type: string
+     *           The value of the "pet" property is a reference to the schema node
+     *           named "Pet".
+     *           See details in
+     *           https://json-schema.org/understanding-json-schema/structuring
+     *     @type array|\Google\Protobuf\Internal\MapField $defs
+     *           Optional. A map of definitions for use by `ref`
+     *           Only allowed at the root of the schema.
      * }
      */
     public function __construct($data = NULL) {
@@ -481,9 +571,12 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Possible values of the element of Type.STRING with enum format.
-     * For example we can define an Enum Direction as :
+     * Optional. Possible values of the element of primitive type with enum
+     * format. Examples:
+     * 1. We can define direction as :
      * {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
+     * 2. We can define apartment number as :
+     * {type:INTEGER, format:enum, enum:["101", "201", "301"]}
      *
      * Generated from protobuf field <code>repeated string enum = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -494,9 +587,12 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Possible values of the element of Type.STRING with enum format.
-     * For example we can define an Enum Direction as :
+     * Optional. Possible values of the element of primitive type with enum
+     * format. Examples:
+     * 1. We can define direction as :
      * {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
+     * 2. We can define apartment number as :
+     * {type:INTEGER, format:enum, enum:["101", "201", "301"]}
      *
      * Generated from protobuf field <code>repeated string enum = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -534,6 +630,36 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Schema::class);
         $this->properties = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The order of the properties.
+     * Not a standard field in open api spec. Only used to support the order of
+     * the properties.
+     *
+     * Generated from protobuf field <code>repeated string property_ordering = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPropertyOrdering()
+    {
+        return $this->property_ordering;
+    }
+
+    /**
+     * Optional. The order of the properties.
+     * Not a standard field in open api spec. Only used to support the order of
+     * the properties.
+     *
+     * Generated from protobuf field <code>repeated string property_ordering = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPropertyOrdering($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->property_ordering = $arr;
 
         return $this;
     }
@@ -786,6 +912,160 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
         $this->example = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The value should be validated against any (one or more) of the
+     * subschemas in the list.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Schema any_of = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAnyOf()
+    {
+        return $this->any_of;
+    }
+
+    /**
+     * Optional. The value should be validated against any (one or more) of the
+     * subschemas in the list.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Schema any_of = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAnyOf($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Schema::class);
+        $this->any_of = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Can either be a boolean or an object; controls the presence of
+     * additional properties.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value additional_properties = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getAdditionalProperties()
+    {
+        return $this->additional_properties;
+    }
+
+    public function hasAdditionalProperties()
+    {
+        return isset($this->additional_properties);
+    }
+
+    public function clearAdditionalProperties()
+    {
+        unset($this->additional_properties);
+    }
+
+    /**
+     * Optional. Can either be a boolean or an object; controls the presence of
+     * additional properties.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value additional_properties = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setAdditionalProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->additional_properties = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Allows indirect references between schema nodes. The value should
+     * be a valid reference to a child of the root `defs`.
+     * For example, the following schema defines a reference to a schema node
+     * named "Pet":
+     * type: object
+     * properties:
+     *   pet:
+     *     ref: #/defs/Pet
+     * defs:
+     *   Pet:
+     *     type: object
+     *     properties:
+     *       name:
+     *         type: string
+     * The value of the "pet" property is a reference to the schema node
+     * named "Pet".
+     * See details in
+     * https://json-schema.org/understanding-json-schema/structuring
+     *
+     * Generated from protobuf field <code>string ref = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getRef()
+    {
+        return $this->ref;
+    }
+
+    /**
+     * Optional. Allows indirect references between schema nodes. The value should
+     * be a valid reference to a child of the root `defs`.
+     * For example, the following schema defines a reference to a schema node
+     * named "Pet":
+     * type: object
+     * properties:
+     *   pet:
+     *     ref: #/defs/Pet
+     * defs:
+     *   Pet:
+     *     type: object
+     *     properties:
+     *       name:
+     *         type: string
+     * The value of the "pet" property is a reference to the schema node
+     * named "Pet".
+     * See details in
+     * https://json-schema.org/understanding-json-schema/structuring
+     *
+     * Generated from protobuf field <code>string ref = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRef($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ref = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A map of definitions for use by `ref`
+     * Only allowed at the root of the schema.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.Schema> defs = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getDefs()
+    {
+        return $this->defs;
+    }
+
+    /**
+     * Optional. A map of definitions for use by `ref`
+     * Only allowed at the root of the schema.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.Schema> defs = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setDefs($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Schema::class);
+        $this->defs = $arr;
 
         return $this;
     }

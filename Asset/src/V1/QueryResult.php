@@ -29,19 +29,19 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.TableSchema schema = 2;</code>
      */
-    private $schema = null;
+    protected $schema = null;
     /**
      * Token to retrieve the next page of the results.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * Total rows of the whole query results.
      *
      * Generated from protobuf field <code>int64 total_rows = 4;</code>
      */
-    private $total_rows = 0;
+    protected $total_rows = 0;
 
     /**
      * Constructor.

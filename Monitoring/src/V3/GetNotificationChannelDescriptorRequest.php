@@ -21,7 +21,7 @@ class GetNotificationChannelDescriptorRequest extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. The channel type for which to execute the request. The format is:

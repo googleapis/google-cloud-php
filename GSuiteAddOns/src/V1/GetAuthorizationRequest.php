@@ -9,23 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message to get Google Workspace Add-ons authorization information.
+ * Request message to get Google Workspace add-ons authorization information.
  *
  * Generated from protobuf message <code>google.cloud.gsuiteaddons.v1.GetAuthorizationRequest</code>
  */
 class GetAuthorizationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the project for which to get the Google Workspace Add-ons
+     * Required. Name of the project for which to get the Google Workspace add-ons
      * authorization information.
      * Example: `projects/my_project/authorization`.
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
-     * @param string $name Required. Name of the project for which to get the Google Workspace Add-ons
+     * @param string $name Required. Name of the project for which to get the Google Workspace add-ons
      *                     authorization information.
      *
      *                     Example: `projects/my_project/authorization`. Please see
@@ -48,7 +48,7 @@ class GetAuthorizationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the project for which to get the Google Workspace Add-ons
+     *           Required. Name of the project for which to get the Google Workspace add-ons
      *           authorization information.
      *           Example: `projects/my_project/authorization`.
      * }
@@ -59,7 +59,7 @@ class GetAuthorizationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the project for which to get the Google Workspace Add-ons
+     * Required. Name of the project for which to get the Google Workspace add-ons
      * authorization information.
      * Example: `projects/my_project/authorization`.
      *
@@ -72,7 +72,7 @@ class GetAuthorizationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the project for which to get the Google Workspace Add-ons
+     * Required. Name of the project for which to get the Google Workspace add-ons
      * authorization information.
      * Example: `projects/my_project/authorization`.
      *

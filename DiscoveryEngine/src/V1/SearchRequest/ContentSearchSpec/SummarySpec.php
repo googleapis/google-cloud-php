@@ -22,8 +22,9 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * generated from all of the results.
      * At most 10 results for documents mode, or 50 for chunks mode, can be
      * used to generate a summary. The chunks mode is used when
-     * [SearchRequest.ContentSearchSpec.search_result_mode][] is set to
-     * [CHUNKS][SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     * [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     * is set to
+     * [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
      *
      * Generated from protobuf field <code>int32 summary_result_count = 1;</code>
      */
@@ -76,6 +77,31 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      */
     protected $ignore_non_summary_seeking_query = false;
     /**
+     * Specifies whether to filter out queries that have low relevance. The
+     * default value is `false`.
+     * If this field is set to `false`, all search results are used regardless
+     * of relevance to generate answers. If set to `true`, only queries with
+     * high relevance search results will generate answers.
+     *
+     * Generated from protobuf field <code>bool ignore_low_relevant_content = 9;</code>
+     */
+    protected $ignore_low_relevant_content = false;
+    /**
+     * Optional. Specifies whether to filter out jail-breaking queries. The
+     * default value is `false`.
+     * Google employs search-query classification to detect jail-breaking
+     * queries. No summary is returned if the search query is classified as a
+     * jail-breaking query. A user might add instructions to the query to
+     * change the tone, style, language, content of the answer, or ask the
+     * model to act as a different entity, e.g. "Reply in the tone of a
+     * competing company's CEO". If this field is set to `true`, we skip
+     * generating summaries for jail-breaking queries and return fallback
+     * messages instead.
+     *
+     * Generated from protobuf field <code>bool ignore_jail_breaking_query = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ignore_jail_breaking_query = false;
+    /**
      * If specified, the spec will be used to modify the prompt provided to
      * the LLM.
      *
@@ -121,8 +147,9 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      *           generated from all of the results.
      *           At most 10 results for documents mode, or 50 for chunks mode, can be
      *           used to generate a summary. The chunks mode is used when
-     *           [SearchRequest.ContentSearchSpec.search_result_mode][] is set to
-     *           [CHUNKS][SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     *           [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     *           is set to
+     *           [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
      *     @type bool $include_citations
      *           Specifies whether to include citations in the summary. The default
      *           value is `false`.
@@ -158,6 +185,23 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      *           navigational queries. If this field is set to `true`, we skip
      *           generating summaries for non-summary seeking queries and return
      *           fallback messages instead.
+     *     @type bool $ignore_low_relevant_content
+     *           Specifies whether to filter out queries that have low relevance. The
+     *           default value is `false`.
+     *           If this field is set to `false`, all search results are used regardless
+     *           of relevance to generate answers. If set to `true`, only queries with
+     *           high relevance search results will generate answers.
+     *     @type bool $ignore_jail_breaking_query
+     *           Optional. Specifies whether to filter out jail-breaking queries. The
+     *           default value is `false`.
+     *           Google employs search-query classification to detect jail-breaking
+     *           queries. No summary is returned if the search query is classified as a
+     *           jail-breaking query. A user might add instructions to the query to
+     *           change the tone, style, language, content of the answer, or ask the
+     *           model to act as a different entity, e.g. "Reply in the tone of a
+     *           competing company's CEO". If this field is set to `true`, we skip
+     *           generating summaries for jail-breaking queries and return fallback
+     *           messages instead.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SummarySpec\ModelPromptSpec $model_prompt_spec
      *           If specified, the spec will be used to modify the prompt provided to
      *           the LLM.
@@ -188,8 +232,9 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * generated from all of the results.
      * At most 10 results for documents mode, or 50 for chunks mode, can be
      * used to generate a summary. The chunks mode is used when
-     * [SearchRequest.ContentSearchSpec.search_result_mode][] is set to
-     * [CHUNKS][SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     * [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     * is set to
+     * [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
      *
      * Generated from protobuf field <code>int32 summary_result_count = 1;</code>
      * @return int
@@ -205,8 +250,9 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * generated from all of the results.
      * At most 10 results for documents mode, or 50 for chunks mode, can be
      * used to generate a summary. The chunks mode is used when
-     * [SearchRequest.ContentSearchSpec.search_result_mode][] is set to
-     * [CHUNKS][SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     * [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     * is set to
+     * [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
      *
      * Generated from protobuf field <code>int32 summary_result_count = 1;</code>
      * @param int $var
@@ -352,6 +398,84 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ignore_non_summary_seeking_query = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether to filter out queries that have low relevance. The
+     * default value is `false`.
+     * If this field is set to `false`, all search results are used regardless
+     * of relevance to generate answers. If set to `true`, only queries with
+     * high relevance search results will generate answers.
+     *
+     * Generated from protobuf field <code>bool ignore_low_relevant_content = 9;</code>
+     * @return bool
+     */
+    public function getIgnoreLowRelevantContent()
+    {
+        return $this->ignore_low_relevant_content;
+    }
+
+    /**
+     * Specifies whether to filter out queries that have low relevance. The
+     * default value is `false`.
+     * If this field is set to `false`, all search results are used regardless
+     * of relevance to generate answers. If set to `true`, only queries with
+     * high relevance search results will generate answers.
+     *
+     * Generated from protobuf field <code>bool ignore_low_relevant_content = 9;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreLowRelevantContent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_low_relevant_content = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether to filter out jail-breaking queries. The
+     * default value is `false`.
+     * Google employs search-query classification to detect jail-breaking
+     * queries. No summary is returned if the search query is classified as a
+     * jail-breaking query. A user might add instructions to the query to
+     * change the tone, style, language, content of the answer, or ask the
+     * model to act as a different entity, e.g. "Reply in the tone of a
+     * competing company's CEO". If this field is set to `true`, we skip
+     * generating summaries for jail-breaking queries and return fallback
+     * messages instead.
+     *
+     * Generated from protobuf field <code>bool ignore_jail_breaking_query = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIgnoreJailBreakingQuery()
+    {
+        return $this->ignore_jail_breaking_query;
+    }
+
+    /**
+     * Optional. Specifies whether to filter out jail-breaking queries. The
+     * default value is `false`.
+     * Google employs search-query classification to detect jail-breaking
+     * queries. No summary is returned if the search query is classified as a
+     * jail-breaking query. A user might add instructions to the query to
+     * change the tone, style, language, content of the answer, or ask the
+     * model to act as a different entity, e.g. "Reply in the tone of a
+     * competing company's CEO". If this field is set to `true`, we skip
+     * generating summaries for jail-breaking queries and return fallback
+     * messages instead.
+     *
+     * Generated from protobuf field <code>bool ignore_jail_breaking_query = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreJailBreakingQuery($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_jail_breaking_query = $var;
 
         return $this;
     }

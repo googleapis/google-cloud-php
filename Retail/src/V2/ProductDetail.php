@@ -30,7 +30,7 @@ class ProductDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $product = null;
+    protected $product = null;
     /**
      * Quantity of the product associated with the user event.
      * For example, this field will be 2 if two products are added to the shopping
@@ -39,7 +39,7 @@ class ProductDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value quantity = 2;</code>
      */
-    private $quantity = null;
+    protected $quantity = null;
 
     /**
      * Constructor.
@@ -162,7 +162,7 @@ class ProductDetail extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value quantity = 2;</code>
      * @return int|null
      */
-    public function getQuantityValue()
+    public function getQuantityUnwrapped()
     {
         return $this->readWrapperValue("quantity");
     }
@@ -197,7 +197,7 @@ class ProductDetail extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setQuantityValue($var)
+    public function setQuantityUnwrapped($var)
     {
         $this->writeWrapperValue("quantity", $var);
         return $this;}

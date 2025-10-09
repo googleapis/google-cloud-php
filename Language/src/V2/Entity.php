@@ -22,17 +22,16 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The entity type.
      *
      * Generated from protobuf field <code>.google.cloud.language.v2.Entity.Type type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Metadata associated with the entity.
-     * For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`)
-     * and Knowledge Graph MID (`mid`), if they are available. For the metadata
+     * For the metadata
      * associated with other entity types, see the Type table below.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 3;</code>
@@ -53,7 +52,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v2.Sentiment sentiment = 6;</code>
      */
-    private $sentiment = null;
+    protected $sentiment = null;
 
     /**
      * Constructor.
@@ -67,8 +66,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           The entity type.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Metadata associated with the entity.
-     *           For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`)
-     *           and Knowledge Graph MID (`mid`), if they are available. For the metadata
+     *           For the metadata
      *           associated with other entity types, see the Type table below.
      *     @type array<\Google\Cloud\Language\V2\EntityMention>|\Google\Protobuf\Internal\RepeatedField $mentions
      *           The mentions of this entity in the input document. The API currently
@@ -139,8 +137,7 @@ class Entity extends \Google\Protobuf\Internal\Message
 
     /**
      * Metadata associated with the entity.
-     * For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`)
-     * and Knowledge Graph MID (`mid`), if they are available. For the metadata
+     * For the metadata
      * associated with other entity types, see the Type table below.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 3;</code>
@@ -153,8 +150,7 @@ class Entity extends \Google\Protobuf\Internal\Message
 
     /**
      * Metadata associated with the entity.
-     * For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`)
-     * and Knowledge Graph MID (`mid`), if they are available. For the metadata
+     * For the metadata
      * associated with other entity types, see the Type table below.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 3;</code>

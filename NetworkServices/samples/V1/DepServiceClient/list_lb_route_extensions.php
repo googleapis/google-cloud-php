@@ -25,14 +25,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_DepService_ListLbRouteExtensions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\NetworkServices\V1\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
 use Google\Cloud\NetworkServices\V1\LbRouteExtension;
+use Google\Cloud\NetworkServices\V1\ListLbRouteExtensionsRequest;
 
 /**
  * Lists `LbRouteExtension` resources in a given project and location.
  *
  * @param string $formattedParent The project and location from which the `LbRouteExtension`
- *                                resources are listed, specified in the following format:
+ *                                resources are listed. These values are specified in the following format:
  *                                `projects/{project}/locations/{location}`. Please see
  *                                {@see DepServiceClient::locationName()} for help formatting this field.
  */
@@ -41,10 +42,14 @@ function list_lb_route_extensions_sample(string $formattedParent): void
     // Create a client.
     $depServiceClient = new DepServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListLbRouteExtensionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $depServiceClient->listLbRouteExtensions($formattedParent);
+        $response = $depServiceClient->listLbRouteExtensions($request);
 
         /** @var LbRouteExtension $element */
         foreach ($response as $element) {

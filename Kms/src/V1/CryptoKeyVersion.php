@@ -30,14 +30,14 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The current state of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState state = 3;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel]
      * describing how crypto operations are performed with this
@@ -45,7 +45,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $protection_level = 0;
+    protected $protection_level = 0;
     /**
      * Output only. The
      * [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
@@ -54,7 +54,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $algorithm = 0;
+    protected $algorithm = 0;
     /**
      * Output only. Statement that was generated and signed by the HSM at key
      * creation time. Use this statement to verify attributes of the key as stored
@@ -64,14 +64,14 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $attestation = null;
+    protected $attestation = null;
     /**
      * Output only. The time at which this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
@@ -79,7 +79,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $generate_time = null;
+    protected $generate_time = null;
     /**
      * Output only. The time this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is
@@ -89,7 +89,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $destroy_time = null;
+    protected $destroy_time = null;
     /**
      * Output only. The time this CryptoKeyVersion's key material was
      * destroyed. Only present if
@@ -98,7 +98,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_event_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $destroy_event_time = null;
+    protected $destroy_event_time = null;
     /**
      * Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob]
      * used in the most recent import of this
@@ -107,7 +107,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string import_job = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $import_job = '';
+    protected $import_job = '';
     /**
      * Output only. The time at which this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
@@ -115,7 +115,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $import_time = null;
+    protected $import_time = null;
     /**
      * Output only. The root cause of the most recent import failure. Only present
      * if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
@@ -123,7 +123,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string import_failure_reason = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $import_failure_reason = '';
+    protected $import_failure_reason = '';
     /**
      * Output only. The root cause of the most recent generation failure. Only
      * present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
@@ -131,7 +131,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string generation_failure_reason = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $generation_failure_reason = '';
+    protected $generation_failure_reason = '';
     /**
      * Output only. The root cause of the most recent external destruction
      * failure. Only present if
@@ -140,7 +140,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_destruction_failure_reason = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $external_destruction_failure_reason = '';
+    protected $external_destruction_failure_reason = '';
     /**
      * ExternalProtectionLevelOptions stores a group of additional fields for
      * configuring a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that
@@ -151,7 +151,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ExternalProtectionLevelOptions external_protection_level_options = 17;</code>
      */
-    private $external_protection_level_options = null;
+    protected $external_protection_level_options = null;
     /**
      * Output only. Whether or not this key version is eligible for reimport, by
      * being specified as a target in
@@ -159,7 +159,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reimport_eligible = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reimport_eligible = false;
+    protected $reimport_eligible = false;
 
     /**
      * Constructor.

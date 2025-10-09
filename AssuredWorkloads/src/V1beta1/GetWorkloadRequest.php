@@ -24,7 +24,25 @@ class GetWorkloadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
+
+    /**
+     * @param string $name Required. The resource name of the Workload to fetch. This is the workloads's
+     *                     relative path in the API, formatted as
+     *                     "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}".
+     *                     For example,
+     *                     "organizations/123/locations/us-east1/workloads/assured-workload-1". Please see
+     *                     {@see AssuredWorkloadsServiceClient::workloadName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AssuredWorkloads\V1beta1\GetWorkloadRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

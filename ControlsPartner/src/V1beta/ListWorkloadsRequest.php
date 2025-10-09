@@ -18,7 +18,7 @@ class ListWorkloadsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource
      * Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}
+     * `organizations/{organization}/locations/{location}/customers/{customer}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -53,7 +53,7 @@ class ListWorkloadsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Parent resource
      *                       Format:
-     *                       organizations/{organization}/locations/{location}/customers/{customer}
+     *                       `organizations/{organization}/locations/{location}/customers/{customer}`
      *                       Please see {@see CloudControlsPartnerCoreClient::customerName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudControlsPartner\V1beta\ListWorkloadsRequest
@@ -75,7 +75,7 @@ class ListWorkloadsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Parent resource
      *           Format:
-     *           organizations/{organization}/locations/{location}/customers/{customer}
+     *           `organizations/{organization}/locations/{location}/customers/{customer}`
      *     @type int $page_size
      *           The maximum number of workloads to return. The service may return fewer
      *           than this value. If unspecified, at most 500 workloads will be returned.
@@ -96,7 +96,7 @@ class ListWorkloadsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource
      * Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}
+     * `organizations/{organization}/locations/{location}/customers/{customer}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -109,7 +109,7 @@ class ListWorkloadsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource
      * Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}
+     * `organizations/{organization}/locations/{location}/customers/{customer}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

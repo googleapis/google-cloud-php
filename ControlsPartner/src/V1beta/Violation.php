@@ -17,7 +17,7 @@ class Violation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -64,9 +64,9 @@ class Violation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Immutable. Name of the OrgPolicy which was modified with
      * non-compliant change and resulted this violation. Format:
-     *  projects/{project_number}/policies/{constraint_name}
-     *  folders/{folder_id}/policies/{constraint_name}
-     *  organizations/{organization_id}/policies/{constraint_name}
+     *  `projects/{project_number}/policies/{constraint_name}`
+     *  `folders/{folder_id}/policies/{constraint_name}`
+     *  `organizations/{organization_id}/policies/{constraint_name}`
      *
      * Generated from protobuf field <code>string non_compliant_org_policy = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -92,7 +92,7 @@ class Violation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Format:
-     *           organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}
+     *           `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}`
      *     @type string $description
      *           Output only. Description for the Violation.
      *           e.g. OrgPolicy gcp.resourceLocations has non compliant value.
@@ -111,9 +111,9 @@ class Violation extends \Google\Protobuf\Internal\Message
      *     @type string $non_compliant_org_policy
      *           Output only. Immutable. Name of the OrgPolicy which was modified with
      *           non-compliant change and resulted this violation. Format:
-     *            projects/{project_number}/policies/{constraint_name}
-     *            folders/{folder_id}/policies/{constraint_name}
-     *            organizations/{organization_id}/policies/{constraint_name}
+     *            `projects/{project_number}/policies/{constraint_name}`
+     *            `folders/{folder_id}/policies/{constraint_name}`
+     *            `organizations/{organization_id}/policies/{constraint_name}`
      *     @type int|string $folder_id
      *           The folder_id of the violation
      *     @type \Google\Cloud\CloudControlsPartner\V1beta\Violation\Remediation $remediation
@@ -127,7 +127,7 @@ class Violation extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -139,7 +139,7 @@ class Violation extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -348,9 +348,9 @@ class Violation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Immutable. Name of the OrgPolicy which was modified with
      * non-compliant change and resulted this violation. Format:
-     *  projects/{project_number}/policies/{constraint_name}
-     *  folders/{folder_id}/policies/{constraint_name}
-     *  organizations/{organization_id}/policies/{constraint_name}
+     *  `projects/{project_number}/policies/{constraint_name}`
+     *  `folders/{folder_id}/policies/{constraint_name}`
+     *  `organizations/{organization_id}/policies/{constraint_name}`
      *
      * Generated from protobuf field <code>string non_compliant_org_policy = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -363,9 +363,9 @@ class Violation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Immutable. Name of the OrgPolicy which was modified with
      * non-compliant change and resulted this violation. Format:
-     *  projects/{project_number}/policies/{constraint_name}
-     *  folders/{folder_id}/policies/{constraint_name}
-     *  organizations/{organization_id}/policies/{constraint_name}
+     *  `projects/{project_number}/policies/{constraint_name}`
+     *  `folders/{folder_id}/policies/{constraint_name}`
+     *  `organizations/{organization_id}/policies/{constraint_name}`
      *
      * Generated from protobuf field <code>string non_compliant_org_policy = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

@@ -22,13 +22,13 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. User friendly display name.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. System generated globally unique ID for the environment. This
      * ID will be different if the environment is deleted and re-created with the
@@ -36,19 +36,19 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. Environment creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the environment was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. User defined labels for the environment.
      *
@@ -60,38 +60,38 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Current state of the environment.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Required. Infrastructure specification for the Environment.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Environment.InfrastructureSpec infrastructure_spec = 100 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $infrastructure_spec = null;
+    protected $infrastructure_spec = null;
     /**
      * Optional. Configuration for sessions created for this environment.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Environment.SessionSpec session_spec = 101 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $session_spec = null;
+    protected $session_spec = null;
     /**
      * Output only. Status of sessions created for this environment.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Environment.SessionStatus session_status = 102 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $session_status = null;
+    protected $session_status = null;
     /**
      * Output only. URI Endpoints to access sessions associated with the
      * Environment.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Environment.Endpoints endpoints = 200 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $endpoints = null;
+    protected $endpoints = null;
 
     /**
      * Constructor.

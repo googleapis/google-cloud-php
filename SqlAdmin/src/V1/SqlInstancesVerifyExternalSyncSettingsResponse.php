@@ -20,7 +20,7 @@ class SqlInstancesVerifyExternalSyncSettingsResponse extends \Google\Protobuf\In
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * List of migration violations.
      *

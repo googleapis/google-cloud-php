@@ -20,7 +20,7 @@ class ResourcePolicyResourceStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyResourceStatusInstanceSchedulePolicyStatus instance_schedule_policy = 344877104;</code>
      */
-    private $instance_schedule_policy = null;
+    protected $instance_schedule_policy = null;
 
     /**
      * Constructor.

@@ -100,6 +100,13 @@ class SplitCommand extends Command
                 'submitted via the packagist API.',
             )
             ->addOption(
+                'packagist-safe-token',
+                '',
+                InputOption::VALUE_REQUIRED,
+                'A Packagist API Auth Token. This token can only be used for package updates, and ' .
+                'is not very sensitive if leaked.',
+            )
+            ->addOption(
                 'splitsh',
                 null,
                 InputOption::VALUE_OPTIONAL,
@@ -149,7 +156,8 @@ class SplitCommand extends Command
             if (!$packagistToken = $input->getOption('packagist-token')) {
                 throw new \InvalidArgumentException('A packagist token must be provided if a username is provided.');
             }
-            $packagist = new Packagist($guzzle, $packagistUsername, $packagistToken, $output);
+            $packagistSafeToken = $input->getOption('packagist-safe-token');
+            $packagist = new Packagist($guzzle, $packagistUsername, $packagistToken, $packagistSafeToken, $output);
         }
 
 
@@ -341,6 +349,24 @@ class SplitCommand extends Command
 
         // This is the first release!
         if ($tagName === 'v0.1.0') {
+            // Ensure issues/projects/wiki/pages/discussion are disabled and the repo is public
+            $ret = $github->updateRepoDetails($repoName, [
+                'has_issues' => false,
+                'has_projects' => false,
+                'has_wiki' => false,
+                'has_pages' => false,
+                'has_discussions' => false,
+                'visibility' => 'public',
+            ]);
+
+            if ($ret) {
+                $output->writeln(sprintf('<comment>%s</comment>: Disabled repo issues/projects/etc for first release.', $componentId));
+            } else {
+                $output->writeln(sprintf('<error>%s</error>: Unable to update repo details.', $componentId));
+
+                return false;
+            }
+
             // Submit the new package to Packagist and add a webhook to update it
             if ($packagist) {
                 $output->writeln('<comment>[info]</comment> Creating Packagist package.');
@@ -355,30 +381,15 @@ class SplitCommand extends Command
                     return false;
                 }
 
-                if ($github->addWebhook($repoName, $packagist->getWebhookUrl(), $packagist->getApiToken())) {
+                // use the safe API token if possible
+                $apiToken = $packagist->getSafeApiToken() ?: $packagist->getApiToken();
+                if ($github->addWebhook($repoName, $packagist->getWebhookUrl(), $apiToken)) {
                     $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook package created.', $componentId));
                 } else {
                     $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist webhook.', $componentId));
 
                     return false;
                 }
-            }
-
-            // Ensure issues/projects/wiki/pages/discussion are disabled
-            $ret = $github->updateRepoDetails($repoName, [
-                'has_issues' => false,
-                'has_projects' => false,
-                'has_wiki' => false,
-                'has_pages' => false,
-                'has_discussions' => false,
-            ]);
-
-            if ($ret) {
-                $output->writeln(sprintf('<comment>%s</comment>: Disabled repo issues/projects/etc for first release.', $componentId));
-            } else {
-                $output->writeln(sprintf('<error>%s</error>: Unable to update repo details.', $componentId));
-
-                return false;
             }
 
             // Ensure "yoshi-php" is an admin

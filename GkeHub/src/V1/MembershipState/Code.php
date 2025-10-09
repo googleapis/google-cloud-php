@@ -80,6 +80,4 @@ class Code
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Code::class, \Google\Cloud\GkeHub\V1\MembershipState_Code::class);
 

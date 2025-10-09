@@ -24,7 +24,7 @@ class AzureControlPlane extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Optional. The ARM ID of the default subnet for the control plane. The
      * control plane VMs are deployed in this subnet, unless
@@ -38,7 +38,7 @@ class AzureControlPlane extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnet_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $subnet_id = '';
+    protected $subnet_id = '';
     /**
      * Optional. The Azure VM size name. Example: `Standard_DS2_v2`.
      * For available VM sizes, see
@@ -47,14 +47,14 @@ class AzureControlPlane extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vm_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $vm_size = '';
+    protected $vm_size = '';
     /**
      * Required. SSH configuration for how to access the underlying control plane
      * machines.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureSshConfig ssh_config = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ssh_config = null;
+    protected $ssh_config = null;
     /**
      * Optional. Configuration related to the root volume provisioned for each
      * control plane replica.
@@ -62,7 +62,7 @@ class AzureControlPlane extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureDiskTemplate root_volume = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $root_volume = null;
+    protected $root_volume = null;
     /**
      * Optional. Configuration related to the main volume provisioned for each
      * control plane replica.
@@ -71,25 +71,25 @@ class AzureControlPlane extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureDiskTemplate main_volume = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $main_volume = null;
+    protected $main_volume = null;
     /**
      * Optional. Configuration related to application-layer secrets encryption.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureDatabaseEncryption database_encryption = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $database_encryption = null;
+    protected $database_encryption = null;
     /**
      * Optional. Proxy configuration for outbound HTTP(S) traffic.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureProxyConfig proxy_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $proxy_config = null;
+    protected $proxy_config = null;
     /**
      * Optional. Configuration related to vm config encryption.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureConfigEncryption config_encryption = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $config_encryption = null;
+    protected $config_encryption = null;
     /**
      * Optional. A set of tags to apply to all underlying control plane Azure
      * resources.
@@ -114,7 +114,7 @@ class AzureControlPlane extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint_subnet_id = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $endpoint_subnet_id = '';
+    protected $endpoint_subnet_id = '';
 
     /**
      * Constructor.

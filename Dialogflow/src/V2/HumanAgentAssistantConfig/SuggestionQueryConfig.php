@@ -21,7 +21,7 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_results = 4;</code>
      */
-    private $max_results = 0;
+    protected $max_results = 0;
     /**
      * Confidence threshold of query result.
      * Agent Assist gives each suggestion a score in the range [0.0, 1.0], based
@@ -41,21 +41,28 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence_threshold = 5;</code>
      */
-    private $confidence_threshold = 0.0;
+    protected $confidence_threshold = 0.0;
     /**
      * Determines how recent conversation context is filtered when generating
      * suggestions. If unspecified, no messages will be dropped.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.ContextFilterSettings context_filter_settings = 7;</code>
      */
-    private $context_filter_settings = null;
+    protected $context_filter_settings = null;
     /**
      * Optional. The customized sections chosen to return when requesting a
      * summary of a conversation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.Sections sections = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sections = null;
+    protected $sections = null;
+    /**
+     * Optional. The number of recent messages to include in the context.
+     * Supported features: KNOWLEDGE_ASSIST.
+     *
+     * Generated from protobuf field <code>int32 context_size = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $context_size = 0;
     protected $query_source;
 
     /**
@@ -97,6 +104,9 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig\Sections $sections
      *           Optional. The customized sections chosen to return when requesting a
      *           summary of a conversation.
+     *     @type int $context_size
+     *           Optional. The number of recent messages to include in the context.
+     *           Supported features: KNOWLEDGE_ASSIST.
      * }
      */
     public function __construct($data = NULL) {
@@ -355,6 +365,34 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig\Sections::class);
         $this->sections = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The number of recent messages to include in the context.
+     * Supported features: KNOWLEDGE_ASSIST.
+     *
+     * Generated from protobuf field <code>int32 context_size = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getContextSize()
+    {
+        return $this->context_size;
+    }
+
+    /**
+     * Optional. The number of recent messages to include in the context.
+     * Supported features: KNOWLEDGE_ASSIST.
+     *
+     * Generated from protobuf field <code>int32 context_size = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setContextSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->context_size = $var;
 
         return $this;
     }

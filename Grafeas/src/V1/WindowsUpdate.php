@@ -23,19 +23,19 @@ class WindowsUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.WindowsUpdate.Identity identity = 1;</code>
      */
-    private $identity = null;
+    protected $identity = null;
     /**
      * The localized title of the update.
      *
      * Generated from protobuf field <code>string title = 2;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * The localized description of the update.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The list of categories to which the update belongs.
      *
@@ -54,13 +54,13 @@ class WindowsUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string support_url = 6;</code>
      */
-    private $support_url = '';
+    protected $support_url = '';
     /**
      * The last published timestamp of the update.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_published_timestamp = 7;</code>
      */
-    private $last_published_timestamp = null;
+    protected $last_published_timestamp = null;
 
     /**
      * Constructor.

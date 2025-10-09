@@ -26,7 +26,7 @@ class AutoscalingMetricSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metric_name = '';
+    protected $metric_name = '';
     /**
      * The target resource utilization in percentage (1% - 100%) for the given
      * metric; once the real usage deviates from the target by a certain
@@ -35,7 +35,7 @@ class AutoscalingMetricSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 target = 2;</code>
      */
-    private $target = 0;
+    protected $target = 0;
 
     /**
      * Constructor.

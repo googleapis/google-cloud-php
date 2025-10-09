@@ -23,7 +23,7 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Required. The DeployedModel to be created within the Endpoint. Note that
      * [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split]
@@ -33,7 +33,7 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedModel deployed_model = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployed_model = null;
+    protected $deployed_model = null;
     /**
      * A map from a DeployedModel's ID to the percentage of this Endpoint's
      * traffic that should be forwarded to that DeployedModel.

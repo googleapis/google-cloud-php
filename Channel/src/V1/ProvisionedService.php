@@ -22,21 +22,21 @@ class ProvisionedService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string provisioning_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $provisioning_id = '';
+    protected $provisioning_id = '';
     /**
      * Output only. The product pertaining to the provisioning resource as
      * specified in the Offer.
      *
      * Generated from protobuf field <code>string product_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $product_id = '';
+    protected $product_id = '';
     /**
      * Output only. The SKU pertaining to the provisioning resource as specified
      * in the Offer.
      *
      * Generated from protobuf field <code>string sku_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $sku_id = '';
+    protected $sku_id = '';
 
     /**
      * Constructor.

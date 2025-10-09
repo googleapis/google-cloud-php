@@ -20,13 +20,13 @@ class Hash extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Hash.HashType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The hash value.
      *
      * Generated from protobuf field <code>bytes value = 2;</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.

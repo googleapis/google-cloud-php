@@ -18,19 +18,19 @@ class Version extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name of the version, in the format
-     * `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]'.
+     * `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]`.
      * A unique identifier for the version under a product.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The user-supplied description of the version. Maximum of 256
      * characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The asset which has been validated and is ready to be
      * provisioned. See
@@ -38,19 +38,19 @@ class Version extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct asset = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $asset = null;
+    protected $asset = null;
     /**
      * Output only. The time when the version was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the version was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.
@@ -60,7 +60,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The resource name of the version, in the format
-     *           `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]'.
+     *           `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]`.
      *           A unique identifier for the version under a product.
      *     @type string $description
      *           Output only. The user-supplied description of the version. Maximum of 256
@@ -82,7 +82,7 @@ class Version extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the version, in the format
-     * `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]'.
+     * `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]`.
      * A unique identifier for the version under a product.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -95,7 +95,7 @@ class Version extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the version, in the format
-     * `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]'.
+     * `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]`.
      * A unique identifier for the version under a product.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

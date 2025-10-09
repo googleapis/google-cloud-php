@@ -30,7 +30,7 @@ class InstanceSelection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 rank = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rank = 0;
+    protected $rank = 0;
 
     /**
      * Constructor.
@@ -115,6 +115,4 @@ class InstanceSelection extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InstanceSelection::class, \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy_InstanceSelection::class);
 

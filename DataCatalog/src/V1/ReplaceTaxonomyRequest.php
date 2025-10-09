@@ -21,13 +21,13 @@ class ReplaceTaxonomyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Taxonomy to update along with its child policy tags.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SerializedTaxonomy serialized_taxonomy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $serialized_taxonomy = null;
+    protected $serialized_taxonomy = null;
 
     /**
      * Constructor.

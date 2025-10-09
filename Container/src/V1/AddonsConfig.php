@@ -22,7 +22,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.HttpLoadBalancing http_load_balancing = 1;</code>
      */
-    private $http_load_balancing = null;
+    protected $http_load_balancing = null;
     /**
      * Configuration for the horizontal pod autoscaling feature, which
      * increases or decreases the number of replica pods a replication controller
@@ -30,7 +30,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.HorizontalPodAutoscaling horizontal_pod_autoscaling = 2;</code>
      */
-    private $horizontal_pod_autoscaling = null;
+    protected $horizontal_pod_autoscaling = null;
     /**
      * Configuration for the Kubernetes Dashboard.
      * This addon is deprecated, and will be disabled in 1.15. It is recommended
@@ -49,57 +49,81 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkPolicyConfig network_policy_config = 4;</code>
      */
-    private $network_policy_config = null;
+    protected $network_policy_config = null;
     /**
      * Configuration for the Cloud Run addon, which allows the user to use a
      * managed Knative service.
      *
      * Generated from protobuf field <code>.google.container.v1.CloudRunConfig cloud_run_config = 7;</code>
      */
-    private $cloud_run_config = null;
+    protected $cloud_run_config = null;
     /**
      * Configuration for NodeLocalDNS, a dns cache running on cluster nodes
      *
      * Generated from protobuf field <code>.google.container.v1.DnsCacheConfig dns_cache_config = 8;</code>
      */
-    private $dns_cache_config = null;
+    protected $dns_cache_config = null;
     /**
      * Configuration for the ConfigConnector add-on, a Kubernetes
      * extension to manage hosted GCP services through the Kubernetes API
      *
      * Generated from protobuf field <code>.google.container.v1.ConfigConnectorConfig config_connector_config = 10;</code>
      */
-    private $config_connector_config = null;
+    protected $config_connector_config = null;
     /**
      * Configuration for the Compute Engine Persistent Disk CSI driver.
      *
      * Generated from protobuf field <code>.google.container.v1.GcePersistentDiskCsiDriverConfig gce_persistent_disk_csi_driver_config = 11;</code>
      */
-    private $gce_persistent_disk_csi_driver_config = null;
+    protected $gce_persistent_disk_csi_driver_config = null;
     /**
      * Configuration for the GCP Filestore CSI driver.
      *
      * Generated from protobuf field <code>.google.container.v1.GcpFilestoreCsiDriverConfig gcp_filestore_csi_driver_config = 14;</code>
      */
-    private $gcp_filestore_csi_driver_config = null;
+    protected $gcp_filestore_csi_driver_config = null;
     /**
      * Configuration for the Backup for GKE agent addon.
      *
      * Generated from protobuf field <code>.google.container.v1.GkeBackupAgentConfig gke_backup_agent_config = 16;</code>
      */
-    private $gke_backup_agent_config = null;
+    protected $gke_backup_agent_config = null;
     /**
      * Configuration for the Cloud Storage Fuse CSI driver.
      *
      * Generated from protobuf field <code>.google.container.v1.GcsFuseCsiDriverConfig gcs_fuse_csi_driver_config = 17;</code>
      */
-    private $gcs_fuse_csi_driver_config = null;
+    protected $gcs_fuse_csi_driver_config = null;
     /**
      * Optional. Configuration for the StatefulHA add-on.
      *
      * Generated from protobuf field <code>.google.container.v1.StatefulHAConfig stateful_ha_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $stateful_ha_config = null;
+    protected $stateful_ha_config = null;
+    /**
+     * Configuration for the Cloud Storage Parallelstore CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ParallelstoreCsiDriverConfig parallelstore_csi_driver_config = 19;</code>
+     */
+    protected $parallelstore_csi_driver_config = null;
+    /**
+     * Optional. Configuration for Ray Operator addon.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RayOperatorConfig ray_operator_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ray_operator_config = null;
+    /**
+     * Configuration for the High Scale Checkpointing add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.HighScaleCheckpointingConfig high_scale_checkpointing_config = 22;</code>
+     */
+    protected $high_scale_checkpointing_config = null;
+    /**
+     * Configuration for the Lustre CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LustreCsiDriverConfig lustre_csi_driver_config = 23;</code>
+     */
+    protected $lustre_csi_driver_config = null;
 
     /**
      * Constructor.
@@ -142,6 +166,14 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *           Configuration for the Cloud Storage Fuse CSI driver.
      *     @type \Google\Cloud\Container\V1\StatefulHAConfig $stateful_ha_config
      *           Optional. Configuration for the StatefulHA add-on.
+     *     @type \Google\Cloud\Container\V1\ParallelstoreCsiDriverConfig $parallelstore_csi_driver_config
+     *           Configuration for the Cloud Storage Parallelstore CSI driver.
+     *     @type \Google\Cloud\Container\V1\RayOperatorConfig $ray_operator_config
+     *           Optional. Configuration for Ray Operator addon.
+     *     @type \Google\Cloud\Container\V1\HighScaleCheckpointingConfig $high_scale_checkpointing_config
+     *           Configuration for the High Scale Checkpointing add-on.
+     *     @type \Google\Cloud\Container\V1\LustreCsiDriverConfig $lustre_csi_driver_config
+     *           Configuration for the Lustre CSI driver.
      * }
      */
     public function __construct($data = NULL) {
@@ -240,13 +272,17 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getKubernetesDashboard()
     {
-        @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->kubernetes_dashboard)) {
+            @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->kubernetes_dashboard;
     }
 
     public function hasKubernetesDashboard()
     {
-        @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->kubernetes_dashboard)) {
+            @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->kubernetes_dashboard);
     }
 
@@ -605,6 +641,150 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\StatefulHAConfig::class);
         $this->stateful_ha_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the Cloud Storage Parallelstore CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ParallelstoreCsiDriverConfig parallelstore_csi_driver_config = 19;</code>
+     * @return \Google\Cloud\Container\V1\ParallelstoreCsiDriverConfig|null
+     */
+    public function getParallelstoreCsiDriverConfig()
+    {
+        return $this->parallelstore_csi_driver_config;
+    }
+
+    public function hasParallelstoreCsiDriverConfig()
+    {
+        return isset($this->parallelstore_csi_driver_config);
+    }
+
+    public function clearParallelstoreCsiDriverConfig()
+    {
+        unset($this->parallelstore_csi_driver_config);
+    }
+
+    /**
+     * Configuration for the Cloud Storage Parallelstore CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ParallelstoreCsiDriverConfig parallelstore_csi_driver_config = 19;</code>
+     * @param \Google\Cloud\Container\V1\ParallelstoreCsiDriverConfig $var
+     * @return $this
+     */
+    public function setParallelstoreCsiDriverConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ParallelstoreCsiDriverConfig::class);
+        $this->parallelstore_csi_driver_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for Ray Operator addon.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RayOperatorConfig ray_operator_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\RayOperatorConfig|null
+     */
+    public function getRayOperatorConfig()
+    {
+        return $this->ray_operator_config;
+    }
+
+    public function hasRayOperatorConfig()
+    {
+        return isset($this->ray_operator_config);
+    }
+
+    public function clearRayOperatorConfig()
+    {
+        unset($this->ray_operator_config);
+    }
+
+    /**
+     * Optional. Configuration for Ray Operator addon.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RayOperatorConfig ray_operator_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\RayOperatorConfig $var
+     * @return $this
+     */
+    public function setRayOperatorConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RayOperatorConfig::class);
+        $this->ray_operator_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the High Scale Checkpointing add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.HighScaleCheckpointingConfig high_scale_checkpointing_config = 22;</code>
+     * @return \Google\Cloud\Container\V1\HighScaleCheckpointingConfig|null
+     */
+    public function getHighScaleCheckpointingConfig()
+    {
+        return $this->high_scale_checkpointing_config;
+    }
+
+    public function hasHighScaleCheckpointingConfig()
+    {
+        return isset($this->high_scale_checkpointing_config);
+    }
+
+    public function clearHighScaleCheckpointingConfig()
+    {
+        unset($this->high_scale_checkpointing_config);
+    }
+
+    /**
+     * Configuration for the High Scale Checkpointing add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.HighScaleCheckpointingConfig high_scale_checkpointing_config = 22;</code>
+     * @param \Google\Cloud\Container\V1\HighScaleCheckpointingConfig $var
+     * @return $this
+     */
+    public function setHighScaleCheckpointingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\HighScaleCheckpointingConfig::class);
+        $this->high_scale_checkpointing_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the Lustre CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LustreCsiDriverConfig lustre_csi_driver_config = 23;</code>
+     * @return \Google\Cloud\Container\V1\LustreCsiDriverConfig|null
+     */
+    public function getLustreCsiDriverConfig()
+    {
+        return $this->lustre_csi_driver_config;
+    }
+
+    public function hasLustreCsiDriverConfig()
+    {
+        return isset($this->lustre_csi_driver_config);
+    }
+
+    public function clearLustreCsiDriverConfig()
+    {
+        unset($this->lustre_csi_driver_config);
+    }
+
+    /**
+     * Configuration for the Lustre CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LustreCsiDriverConfig lustre_csi_driver_config = 23;</code>
+     * @param \Google\Cloud\Container\V1\LustreCsiDriverConfig $var
+     * @return $this
+     */
+    public function setLustreCsiDriverConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LustreCsiDriverConfig::class);
+        $this->lustre_csi_driver_config = $var;
 
         return $this;
     }

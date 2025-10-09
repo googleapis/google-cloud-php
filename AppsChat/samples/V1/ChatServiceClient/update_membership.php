@@ -33,8 +33,27 @@ use Google\Protobuf\FieldMask;
  * Updates a membership. For an example, see [Update a user's membership in
  * a space](https://developers.google.com/workspace/chat/update-members).
  *
- * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+ *
+ * - [App
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with [administrator
+ * approval](https://support.google.com/a?p=chat-app-auth) and the
+ * authorization scope:
+ * - `https://www.googleapis.com/auth/chat.app.memberships` (only in
+ * spaces the app created)
+ *
+ * - [User
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.memberships`
+ * - `https://www.googleapis.com/auth/chat.import` (import mode spaces
+ * only)
+ * - User authentication grants administrator privileges when an
+ * administrator account authenticates, `use_admin_access` is `true`, and
+ * the following authorization scope is used:
+ * - `https://www.googleapis.com/auth/chat.admin.memberships`
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

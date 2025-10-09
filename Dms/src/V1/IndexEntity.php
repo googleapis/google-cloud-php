@@ -21,13 +21,13 @@ class IndexEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Type of index, for example B-TREE.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Table columns used as part of the Index, for example B-TREE index should
      * list the columns which constitutes the index.
@@ -40,13 +40,13 @@ class IndexEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool unique = 4;</code>
      */
-    private $unique = false;
+    protected $unique = false;
     /**
      * Custom engine specific features.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 5;</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class PolicyControllerState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.PolicyControllerVersion version = 1;</code>
      */
-    private $version = null;
+    protected $version = null;
     /**
      * The state about the policy controller installation.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.GatekeeperDeploymentState deployment_state = 2;</code>
      */
-    private $deployment_state = null;
+    protected $deployment_state = null;
 
     /**
      * Constructor.

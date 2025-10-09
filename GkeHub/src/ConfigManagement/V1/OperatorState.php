@@ -20,13 +20,13 @@ class OperatorState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * The state of the Operator's deployment
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState deployment_state = 2;</code>
      */
-    private $deployment_state = 0;
+    protected $deployment_state = 0;
     /**
      * Install errors.
      *

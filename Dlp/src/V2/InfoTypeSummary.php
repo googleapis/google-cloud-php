@@ -20,7 +20,7 @@ class InfoTypeSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      */
-    private $info_type = null;
+    protected $info_type = null;
     /**
      * Not populated for predicted infotypes.
      *
@@ -91,7 +91,9 @@ class InfoTypeSummary extends \Google\Protobuf\Internal\Message
      */
     public function getEstimatedPrevalence()
     {
-        @trigger_error('estimated_prevalence is deprecated.', E_USER_DEPRECATED);
+        if ($this->estimated_prevalence !== 0) {
+            @trigger_error('estimated_prevalence is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->estimated_prevalence;
     }
 

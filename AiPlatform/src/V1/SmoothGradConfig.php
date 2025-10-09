@@ -27,7 +27,7 @@ class SmoothGradConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 noisy_sample_count = 3;</code>
      */
-    private $noisy_sample_count = 0;
+    protected $noisy_sample_count = 0;
     protected $GradientNoiseSigma;
 
     /**

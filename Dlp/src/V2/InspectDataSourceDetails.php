@@ -20,13 +20,13 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectDataSourceDetails.RequestedOptions requested_options = 2;</code>
      */
-    private $requested_options = null;
+    protected $requested_options = null;
     /**
      * A summary of the outcome of this inspection job.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectDataSourceDetails.Result result = 3;</code>
      */
-    private $result = null;
+    protected $result = null;
 
     /**
      * Constructor.

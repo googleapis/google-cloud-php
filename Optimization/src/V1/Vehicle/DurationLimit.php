@@ -23,7 +23,7 @@ class DurationLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_duration = 1;</code>
      */
-    private $max_duration = null;
+    protected $max_duration = null;
     /**
      * A soft limit not enforcing a maximum duration limit, but when violated
      * makes the route incur a cost. This cost adds up to other costs defined in
@@ -33,7 +33,7 @@ class DurationLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration soft_max_duration = 2;</code>
      */
-    private $soft_max_duration = null;
+    protected $soft_max_duration = null;
     /**
      * Cost per hour incurred if the `soft_max_duration` threshold is violated.
      * The additional cost is 0 if the duration is under the threshold,
@@ -45,7 +45,7 @@ class DurationLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double cost_per_hour_after_soft_max = 3;</code>
      */
-    private $cost_per_hour_after_soft_max = null;
+    protected $cost_per_hour_after_soft_max = null;
     /**
      * A soft limit not enforcing a maximum duration limit, but when violated
      * makes the route incur a cost, quadratic in the duration. This cost adds
@@ -58,7 +58,7 @@ class DurationLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration quadratic_soft_max_duration = 4;</code>
      */
-    private $quadratic_soft_max_duration = null;
+    protected $quadratic_soft_max_duration = null;
     /**
      * Cost per square hour incurred if the
      * `quadratic_soft_max_duration` threshold is violated.
@@ -72,7 +72,7 @@ class DurationLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double cost_per_square_hour_after_quadratic_soft_max = 5;</code>
      */
-    private $cost_per_square_hour_after_quadratic_soft_max = null;
+    protected $cost_per_square_hour_after_quadratic_soft_max = null;
 
     /**
      * Constructor.

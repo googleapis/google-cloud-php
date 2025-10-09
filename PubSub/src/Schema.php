@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\ApiCore\Serializer;
 use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
@@ -27,9 +27,9 @@ use Google\Cloud\PubSub\V1\DeleteSchemaRequest;
 use Google\Cloud\PubSub\V1\DeleteSchemaRevisionRequest;
 use Google\Cloud\PubSub\V1\GetSchemaRequest;
 use Google\Cloud\PubSub\V1\ListSchemaRevisionsRequest;
-use Google\Cloud\PubSub\V1\SchemaView;
 use Google\Cloud\PubSub\V1\Schema as SchemaProto;
 use Google\Cloud\PubSub\V1\Schema\Type;
+use Google\Cloud\PubSub\V1\SchemaView;
 
 /**
  * Represents a Pub/Sub Schema resource.
@@ -313,7 +313,7 @@ class Schema
      */
     public function deleteRevision($revisionId, $options = [])
     {
-        $revisionName = $this->name .'@' . $revisionId;
+        $revisionName = $this->name . '@' . $revisionId;
 
         $request = $this->serializer->decodeMessage(
             new DeleteSchemaRevisionRequest(),

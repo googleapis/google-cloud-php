@@ -21,34 +21,34 @@ class NameMappingKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.NameMappingKey.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The database name (BigQuery project ID equivalent in the source data
      * warehouse).
      *
      * Generated from protobuf field <code>string database = 2;</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * The schema name (BigQuery dataset equivalent in the source data warehouse).
      *
      * Generated from protobuf field <code>string schema = 3;</code>
      */
-    private $schema = '';
+    protected $schema = '';
     /**
      * The relation name (BigQuery table or view equivalent in the source data
      * warehouse).
      *
      * Generated from protobuf field <code>string relation = 4;</code>
      */
-    private $relation = '';
+    protected $relation = '';
     /**
      * The attribute name (BigQuery column equivalent in the source data
      * warehouse).
      *
      * Generated from protobuf field <code>string attribute = 5;</code>
      */
-    private $attribute = '';
+    protected $attribute = '';
 
     /**
      * Constructor.

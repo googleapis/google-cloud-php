@@ -24,21 +24,21 @@ class TagBinding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The full resource name of the resource the TagValue is bound to.
      * E.g. `//cloudresourcemanager.googleapis.com/projects/123`
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The TagValue of the TagBinding.
      * Must be of the form `tagValues/456`.
      *
      * Generated from protobuf field <code>string tag_value = 3;</code>
      */
-    private $tag_value = '';
+    protected $tag_value = '';
     /**
      * The namespaced name for the TagValue of the TagBinding.
      * Must be in the format
@@ -49,7 +49,7 @@ class TagBinding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tag_value_namespaced_name = 4;</code>
      */
-    private $tag_value_namespaced_name = '';
+    protected $tag_value_namespaced_name = '';
 
     /**
      * Constructor.

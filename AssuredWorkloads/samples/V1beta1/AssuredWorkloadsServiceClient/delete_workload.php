@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START assuredworkloads_v1beta1_generated_AssuredWorkloadsService_DeleteWorkload_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\Client\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\DeleteWorkloadRequest;
 
 /**
  * Deletes the workload. Make sure that workload's direct children are already
@@ -44,9 +45,13 @@ function delete_workload_sample(string $formattedName): void
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteWorkloadRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $assuredWorkloadsServiceClient->deleteWorkload($formattedName);
+        $assuredWorkloadsServiceClient->deleteWorkload($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

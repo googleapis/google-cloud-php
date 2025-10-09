@@ -21,14 +21,14 @@ class SearchEntryPoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rendered_content = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rendered_content = '';
+    protected $rendered_content = '';
     /**
      * Optional. Base64 encoded JSON representing array of <search term, search
      * url> tuple.
      *
      * Generated from protobuf field <code>bytes sdk_blob = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sdk_blob = '';
+    protected $sdk_blob = '';
 
     /**
      * Constructor.

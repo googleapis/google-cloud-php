@@ -80,6 +80,13 @@ class ResumableStream implements \IteratorAggregate
     private $callOptions;
 
     /**
+     * @var callable
+     */
+    private $delayFunction;
+
+    private int $totalTimeoutMillis;
+
+    /**
      * Constructs a resumable stream.
      *
      * @param GapicClient $gapicClient The GAPIC client to use in order to send requests.
@@ -89,11 +96,16 @@ class ResumableStream implements \IteratorAggregate
      *        calling `$apiFunction`.
      * @param callable $retryFunction Function which determines whether to retry or not.
      * @param array $callOptions {
-     *        @option RetrySettings|array $retrySettings {
-     *                @option int $maxRetries Number of times to retry. **Defaults to** `3`.
-     *                Only maxRetries works for RetrySettings in this API.
-     *            }
-     *   }
+     *     Configuration options.
+     *
+     *     @type RetrySettings|array $retrySettings {
+     *         Only $maxRetries and $totalTimeoutMillis work for RetrySettings in this API.
+     *
+     *         @type int $maxRetries Number of times to retry. **Defaults to** `3`.
+     *         @type int $totalTimeoutMillis The max accumulative timeout in total for the
+     *               operation. `-1` signifies no total timeout. **Defaults to** `-1`.
+     *     }
+     * }
      */
     public function __construct(
         GapicClient $gapicClient,
@@ -107,6 +119,7 @@ class ResumableStream implements \IteratorAggregate
         $this->method = $method;
         $this->request = $request;
         $this->retries = $this->getMaxRetries($callOptions);
+        $this->totalTimeoutMillis = $this->getTotalTimeoutMillis($callOptions);
         $this->argumentFunction = $argumentFunction;
         $this->retryFunction = $retryFunction;
         $this->callOptions = $callOptions;
@@ -116,6 +129,22 @@ class ResumableStream implements \IteratorAggregate
         $this->callOptions['retrySettings'] = [
             'retriesEnabled' => false
         ];
+
+        $this->delayFunction = function (int $attempt) {
+            // Values here are taken from the Java Bigtable client, and are
+            // different than those set by default in the readRows configuration
+            // @see https://github.com/googleapis/java-bigtable/blob/c618969216c90c42dee6ee48db81e90af4fb102b/google-cloud-bigtable/src/main/java/com/google/cloud/bigtable/data/v2/stub/EnhancedBigtableStubSettings.java#L162-L164
+            $initialDelayMillis = 10;
+            $initialDelayMultiplier = 2;
+            $maxDelayMillis = 60000;
+
+            $delayMultiplier = $initialDelayMultiplier ** $attempt;
+            $delayMs = min($initialDelayMillis * $delayMultiplier, $maxDelayMillis);
+            $actualDelayMs = mt_rand(0, $delayMs); // add jitter
+            $delay = 1000 * $actualDelayMs; // convert ms to µs
+
+            usleep((int) $delay);
+        };
     }
 
     /**
@@ -126,30 +155,44 @@ class ResumableStream implements \IteratorAggregate
      */
     public function readAll()
     {
-        $tries = 0;
-        $argumentFunction = $this->argumentFunction;
-        $retryFunction = $this->retryFunction;
+        // Reset $currentAttempts on successful row read, but keep total attempts for the header.
+        $currentAttempt = $totalAttempt = 0;
+        $startTimeMillis = floor(microtime(true) * 1000);
         do {
+            $this->checkTotalTimeout($startTimeMillis);
             $ex = null;
-            list($this->request, $this->callOptions) = $argumentFunction($this->request, $this->callOptions);
+            list($this->request, $this->callOptions) =
+                ($this->argumentFunction)($this->request, $this->callOptions);
 
             $completed = $this->pluck('requestCompleted', $this->callOptions, false);
 
             if ($completed !== true) {
+                // Send in "bigtable-attempt" header on retry request
+                $headers = $this->callOptions['headers'] ?? [];
+                if ($totalAttempt > 0) {
+                    $headers['bigtable-attempt'] = [(string) $totalAttempt];
+                    ($this->delayFunction)($currentAttempt);
+                }
+
                 $stream = call_user_func_array(
                     [$this->gapicClient, $this->method],
-                    [$this->request, $this->callOptions]
+                    [$this->request, ['headers' => $headers] + $this->callOptions]
                 );
 
                 try {
                     foreach ($stream->readAll() as $item) {
                         yield $item;
+                        $currentAttempt = 0; // reset delay and attempt on successful read.
                     }
                 } catch (\Exception $ex) {
                 }
+                // It's possible for the retry function to retry even when `$ex` is null
+                // (see Table::mutateRowsWithEntries). For this reason, we increment the attemts
+                // outside the try/catch block.
+                $totalAttempt++;
+                $currentAttempt++;
             }
-            $tries++;
-        } while ((!$this->retryFunction || $retryFunction($ex)) && $tries <= $this->retries);
+        } while (($this->retryFunction)($ex) && $currentAttempt <= $this->retries);
         if ($ex !== null) {
             throw $ex;
         }
@@ -177,7 +220,7 @@ class ResumableStream implements \IteratorAggregate
         return isset(self::$retryableStatusCodes[$code]);
     }
 
-    private function getMaxRetries(array $options) : int
+    private function getMaxRetries(array $options): int
     {
         $retrySettings = $options['retrySettings'] ?? [];
 
@@ -186,5 +229,33 @@ class ResumableStream implements \IteratorAggregate
         }
 
         return $retrySettings['maxRetries'] ?? ResumableStream::DEFAULT_MAX_RETRIES;
+    }
+
+    private function getTotalTimeoutMillis(array $options): ?int
+    {
+        $retrySettings = $options['retrySettings'] ?? [];
+
+        if ($retrySettings instanceof RetrySettings) {
+            return $retrySettings->getTotalTimeoutMillis();
+        }
+
+        return $retrySettings['totalTimeoutMillis'] ?? -1;
+    }
+
+    private function checkTotalTimeout(int $startTimeMillis): void
+    {
+        if ($this->totalTimeoutMillis >= 0) {
+            $elapsedTimeMillis = floor(microtime(true) * 1000) - $startTimeMillis;
+            if ($elapsedTimeMillis > $this->totalTimeoutMillis) {
+                throw new ApiException('Operation timeout exceeeded ', Code::DEADLINE_EXCEEDED);
+            }
+            $remainingTimeMillis = $this->totalTimeoutMillis - $elapsedTimeMillis;
+            // Set timeoutMillis if it's unset or less than the remaining time
+            // in order to preempt requests from exceeding total timeout
+            if (!isset($this->callOptions['timeoutMillis'])
+                || $this->callOptions['timeoutMillis'] > $remainingTimeMillis) {
+                $this->callOptions['timeoutMillis'] = $remainingTimeMillis;
+            }
+        }
     }
 }

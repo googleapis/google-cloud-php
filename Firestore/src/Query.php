@@ -20,14 +20,13 @@ namespace Google\Cloud\Firestore;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
-use Google\Cloud\Firestore\QueryTrait;
-use Google\Cloud\Firestore\SnapshotTrait;
+use Google\Cloud\Firestore\V1\ExplainMetrics;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\V1\StructuredQuery\UnaryFilter\Operator as UnaryFilterOperator;
+use InvalidArgumentException;
 
 /**
  * A Cloud Firestore Query.
@@ -189,6 +188,11 @@ class Query
      */
     public function count(array $options = [])
     {
+        if (isset($options['explainOptions'])) {
+            throw new InvalidArgumentException(
+                'The explainOptions option is not supported in the ' . __FUNCTION__ . ' method'
+            );
+        }
         $aggregateQuery = $this->addAggregation(Aggregate::count()->alias('count'));
 
         $aggregationResult = $aggregateQuery->getSnapshot($options);
@@ -218,6 +222,11 @@ class Query
      */
     public function sum(string $field, array $options = [])
     {
+        if (isset($options['explainOptions'])) {
+            throw new InvalidArgumentException(
+                'The explainOptions option is not supported in the ' . __FUNCTION__ . ' method'
+            );
+        }
         $aggregateQuery = $this->addAggregation(Aggregate::sum($field)->alias('sum'));
 
         $aggregationResult = $aggregateQuery->getSnapshot($options);
@@ -247,6 +256,11 @@ class Query
      */
     public function avg(string $field, array $options = [])
     {
+        if (isset($options['explainOptions'])) {
+            throw new InvalidArgumentException(
+                'The explainOptions option is not supported in the ' . __FUNCTION__ . ' method'
+            );
+        }
         $aggregateQuery = $this->addAggregation(Aggregate::avg($field)->alias('avg'));
 
         $aggregationResult = $aggregateQuery->getSnapshot($options);
@@ -320,7 +334,10 @@ class Query
             'query' => $this->query,
             'limitToLast' => $this->limitToLast
         ]);
-        $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($query, $options) {
+
+        $explainMetrics = null;
+
+        $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($query, $options, &$explainMetrics) {
 
             $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
                 'parent' => $this->parentName,
@@ -358,6 +375,10 @@ class Query
                     $out[] = $this->createSnapshotWithData($this->valueMapper, $ref, $document);
                 }
 
+                if (isset($result['explainMetrics'])) {
+                    $explainMetrics = $this->parseMetrics($result['explainMetrics']);
+                }
+
                 $generator->next();
             }
 
@@ -368,7 +389,7 @@ class Query
                 : $out;
         });
 
-        return new QuerySnapshot($this, $rows);
+        return new QuerySnapshot($this, $rows, $explainMetrics);
     }
 
     /**
@@ -1114,7 +1135,7 @@ class Query
             ];
         } else {
             $encodedValue = ($operator === FieldFilterOperator::IN || $operator === FieldFilterOperator::NOT_IN)
-                ? $this->valueMapper->encodeMultiValue((array)$value)
+                ? $this->valueMapper->encodeMultiValue((array) $value)
                 : $this->valueMapper->encodeValue($value);
 
             $filter = [
@@ -1183,5 +1204,14 @@ class Query
         }
 
         return $filters;
+    }
+
+    private function parseMetrics(array $metrics): ExplainMetrics
+    {
+        $explainMetrics = new ExplainMetrics();
+        $json = json_encode($metrics, true);
+        $explainMetrics->mergeFromJsonString($json);
+
+        return $explainMetrics;
     }
 }

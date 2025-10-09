@@ -24,7 +24,7 @@ class ManualScaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 instances = 1;</code>
      */
-    private $instances = 0;
+    protected $instances = 0;
 
     /**
      * Constructor.

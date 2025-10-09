@@ -275,6 +275,12 @@ class Trip extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.maps.fleetengine.v1.TripView view = 31;</code>
      */
     protected $view = 0;
+    /**
+     * A list of custom Trip attributes. Each attribute must have a unique key.
+     *
+     * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripAttribute attributes = 35;</code>
+     */
+    private $attributes;
 
     /**
      * Constructor.
@@ -410,6 +416,8 @@ class Trip extends \Google\Protobuf\Internal\Message
      *     @type int $view
      *           The subset of Trip fields that are populated and how they should be
      *           interpreted.
+     *     @type array<\Google\Maps\FleetEngine\V1\TripAttribute>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *           A list of custom Trip attributes. Each attribute must have a unique key.
      * }
      */
     public function __construct($data = NULL) {
@@ -1606,6 +1614,32 @@ class Trip extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Maps\FleetEngine\V1\TripView::class);
         $this->view = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of custom Trip attributes. Each attribute must have a unique key.
+     *
+     * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripAttribute attributes = 35;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * A list of custom Trip attributes. Each attribute must have a unique key.
+     *
+     * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripAttribute attributes = 35;</code>
+     * @param array<\Google\Maps\FleetEngine\V1\TripAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAttributes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Maps\FleetEngine\V1\TripAttribute::class);
+        $this->attributes = $arr;
 
         return $this;
     }

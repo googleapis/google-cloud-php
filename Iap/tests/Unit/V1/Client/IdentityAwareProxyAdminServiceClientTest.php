@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,6 +42,8 @@ use Google\Cloud\Iap\V1\ListTunnelDestGroupsResponse;
 use Google\Cloud\Iap\V1\TunnelDestGroup;
 use Google\Cloud\Iap\V1\UpdateIapSettingsRequest;
 use Google\Cloud\Iap\V1\UpdateTunnelDestGroupRequest;
+use Google\Cloud\Iap\V1\ValidateIapAttributeExpressionRequest;
+use Google\Cloud\Iap\V1\ValidateIapAttributeExpressionResponse;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -62,7 +64,9 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return IdentityAwareProxyAdminServiceClient */
@@ -90,8 +94,6 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
         $tunnelDestGroup = new TunnelDestGroup();
-        $tunnelDestGroupName = 'tunnelDestGroupName1906281888';
-        $tunnelDestGroup->setName($tunnelDestGroupName);
         $tunnelDestGroupId = 'tunnelDestGroupId-1205367743';
         $request = (new CreateTunnelDestGroupRequest())
             ->setParent($formattedParent)
@@ -124,18 +126,19 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
         $tunnelDestGroup = new TunnelDestGroup();
-        $tunnelDestGroupName = 'tunnelDestGroupName1906281888';
-        $tunnelDestGroup->setName($tunnelDestGroupName);
         $tunnelDestGroupId = 'tunnelDestGroupId-1205367743';
         $request = (new CreateTunnelDestGroupRequest())
             ->setParent($formattedParent)
@@ -167,8 +170,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tunnelDestGroupName('[PROJECT]', '[LOCATION]', '[DEST_GROUP]');
-        $request = (new DeleteTunnelDestGroupRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTunnelDestGroupRequest())->setName($formattedName);
         $gapicClient->deleteTunnelDestGroup($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -191,17 +193,19 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tunnelDestGroupName('[PROJECT]', '[LOCATION]', '[DEST_GROUP]');
-        $request = (new DeleteTunnelDestGroupRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTunnelDestGroupRequest())->setName($formattedName);
         try {
             $gapicClient->deleteTunnelDestGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -232,8 +236,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -257,17 +260,19 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -296,8 +301,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetIapSettingsRequest())
-            ->setName($name);
+        $request = (new GetIapSettingsRequest())->setName($name);
         $response = $gapicClient->getIapSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -321,17 +325,19 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetIapSettingsRequest())
-            ->setName($name);
+        $request = (new GetIapSettingsRequest())->setName($name);
         try {
             $gapicClient->getIapSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -360,8 +366,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tunnelDestGroupName('[PROJECT]', '[LOCATION]', '[DEST_GROUP]');
-        $request = (new GetTunnelDestGroupRequest())
-            ->setName($formattedName);
+        $request = (new GetTunnelDestGroupRequest())->setName($formattedName);
         $response = $gapicClient->getTunnelDestGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -385,17 +390,19 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tunnelDestGroupName('[PROJECT]', '[LOCATION]', '[DEST_GROUP]');
-        $request = (new GetTunnelDestGroupRequest())
-            ->setName($formattedName);
+        $request = (new GetTunnelDestGroupRequest())->setName($formattedName);
         try {
             $gapicClient->getTunnelDestGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -420,17 +427,14 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tunnelDestGroupsElement = new TunnelDestGroup();
-        $tunnelDestGroups = [
-            $tunnelDestGroupsElement,
-        ];
+        $tunnelDestGroups = [$tunnelDestGroupsElement];
         $expectedResponse = new ListTunnelDestGroupsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTunnelDestGroups($tunnelDestGroups);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListTunnelDestGroupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTunnelDestGroupsRequest())->setParent($formattedParent);
         $response = $gapicClient->listTunnelDestGroups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -457,17 +461,19 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListTunnelDestGroupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTunnelDestGroupsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTunnelDestGroups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -499,9 +505,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -527,19 +531,20 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -567,9 +572,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -595,19 +598,20 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -638,8 +642,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $iapSettings = new IapSettings();
         $iapSettingsName = 'iapSettingsName-218298426';
         $iapSettings->setName($iapSettingsName);
-        $request = (new UpdateIapSettingsRequest())
-            ->setIapSettings($iapSettings);
+        $request = (new UpdateIapSettingsRequest())->setIapSettings($iapSettings);
         $response = $gapicClient->updateIapSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -663,19 +666,21 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $iapSettings = new IapSettings();
         $iapSettingsName = 'iapSettingsName-218298426';
         $iapSettings->setName($iapSettingsName);
-        $request = (new UpdateIapSettingsRequest())
-            ->setIapSettings($iapSettings);
+        $request = (new UpdateIapSettingsRequest())->setIapSettings($iapSettings);
         try {
             $gapicClient->updateIapSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -704,10 +709,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $tunnelDestGroup = new TunnelDestGroup();
-        $tunnelDestGroupName = 'tunnelDestGroupName1906281888';
-        $tunnelDestGroup->setName($tunnelDestGroupName);
-        $request = (new UpdateTunnelDestGroupRequest())
-            ->setTunnelDestGroup($tunnelDestGroup);
+        $request = (new UpdateTunnelDestGroupRequest())->setTunnelDestGroup($tunnelDestGroup);
         $response = $gapicClient->updateTunnelDestGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -731,21 +733,91 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $tunnelDestGroup = new TunnelDestGroup();
-        $tunnelDestGroupName = 'tunnelDestGroupName1906281888';
-        $tunnelDestGroup->setName($tunnelDestGroupName);
-        $request = (new UpdateTunnelDestGroupRequest())
-            ->setTunnelDestGroup($tunnelDestGroup);
+        $request = (new UpdateTunnelDestGroupRequest())->setTunnelDestGroup($tunnelDestGroup);
         try {
             $gapicClient->updateTunnelDestGroup($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function validateIapAttributeExpressionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ValidateIapAttributeExpressionResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $expression = 'expression-1795452264';
+        $request = (new ValidateIapAttributeExpressionRequest())->setName($name)->setExpression($expression);
+        $response = $gapicClient->validateIapAttributeExpression($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.iap.v1.IdentityAwareProxyAdminService/ValidateIapAttributeExpression',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getExpression();
+        $this->assertProtobufEquals($expression, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function validateIapAttributeExpressionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $expression = 'expression-1795452264';
+        $request = (new ValidateIapAttributeExpressionRequest())->setName($name)->setExpression($expression);
+        try {
+            $gapicClient->validateIapAttributeExpression($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -773,8 +845,6 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
         $tunnelDestGroup = new TunnelDestGroup();
-        $tunnelDestGroupName = 'tunnelDestGroupName1906281888';
-        $tunnelDestGroup->setName($tunnelDestGroupName);
         $tunnelDestGroupId = 'tunnelDestGroupId-1205367743';
         $request = (new CreateTunnelDestGroupRequest())
             ->setParent($formattedParent)

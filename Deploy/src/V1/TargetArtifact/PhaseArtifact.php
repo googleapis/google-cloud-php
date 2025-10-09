@@ -21,20 +21,20 @@ class PhaseArtifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string skaffold_config_path = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $skaffold_config_path = '';
+    protected $skaffold_config_path = '';
     /**
      * Output only. File path of the rendered manifest relative to the URI.
      *
      * Generated from protobuf field <code>string manifest_path = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $manifest_path = '';
+    protected $manifest_path = '';
     /**
      * Output only. File path of the directory of rendered job manifests
      * relative to the URI. This is only set if it is applicable.
      *
      * Generated from protobuf field <code>string job_manifests_path = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $job_manifests_path = '';
+    protected $job_manifests_path = '';
 
     /**
      * Constructor.

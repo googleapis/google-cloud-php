@@ -19,7 +19,7 @@ class InTotoSlsaProvenanceV1 extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1 [json_name = "_type"];</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.Subject subject = 2;</code>
      */
@@ -27,11 +27,11 @@ class InTotoSlsaProvenanceV1 extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string predicate_type = 3;</code>
      */
-    private $predicate_type = '';
+    protected $predicate_type = '';
     /**
      * Generated from protobuf field <code>.grafeas.v1.InTotoSlsaProvenanceV1.SlsaProvenanceV1 predicate = 4;</code>
      */
-    private $predicate = null;
+    protected $predicate = null;
 
     /**
      * Constructor.

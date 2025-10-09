@@ -9,44 +9,47 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for deleting a EventThreatDetectionCustomModule
+ * Request message for
+ * [SecurityCenterManagement.DeleteEventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.DeleteEventThreatDetectionCustomModule].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.DeleteEventThreatDetectionCustomModuleRequest</code>
  */
 class DeleteEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the ETD custom module.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+     * Required. The resource name of the Event Threat Detection custom module, in
+     * one of the following formats:
+     * * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
     /**
-     * Optional. When set to true, only validations (including IAM checks) will
-     * done for the request (module will not be deleted). An OK response indicates
-     * the request is valid while an error response indicates the request is
-     * invalid. Note that a subsequent request to actually delete the module could
-     * still fail because 1. the state could have changed (e.g. IAM permission
-     * lost) or
-     * 2. A failure occurred while trying to delete the module.
+     * Optional. When set to `true`, the request will be validated (including IAM
+     * checks), but no module will be deleted. An `OK` response indicates that the
+     * request is valid, while an error response indicates that the request is
+     * invalid.
+     * If the request is valid, a subsequent request to delete the module could
+     * still fail for one of the following reasons:
+     * *  The state of your cloud resources changed; for example, you lost a
+     *    required IAM permission
+     * *  An error occurred during creation of the module
+     * Defaults to `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $validate_only = false;
 
     /**
-     * @param string $name Required. The resource name of the ETD custom module.
+     * @param string $name Required. The resource name of the Event Threat Detection custom module, in
+     *                     one of the following formats:
      *
-     *                     Its format is:
-     *
-     *                     * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *                     * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *                     * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`. Please see
-     *                     {@see SecurityCenterManagementClient::eventThreatDetectionCustomModuleName()} for help formatting this field.
+     *                     * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     *                     * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     *                     * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     *                     Please see {@see SecurityCenterManagementClient::eventThreatDetectionCustomModuleName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\DeleteEventThreatDetectionCustomModuleRequest
      *
@@ -65,19 +68,22 @@ class DeleteEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the ETD custom module.
-     *           Its format is:
-     *             * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *             * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *             * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+     *           Required. The resource name of the Event Threat Detection custom module, in
+     *           one of the following formats:
+     *           * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     *           * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     *           * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
      *     @type bool $validate_only
-     *           Optional. When set to true, only validations (including IAM checks) will
-     *           done for the request (module will not be deleted). An OK response indicates
-     *           the request is valid while an error response indicates the request is
-     *           invalid. Note that a subsequent request to actually delete the module could
-     *           still fail because 1. the state could have changed (e.g. IAM permission
-     *           lost) or
-     *           2. A failure occurred while trying to delete the module.
+     *           Optional. When set to `true`, the request will be validated (including IAM
+     *           checks), but no module will be deleted. An `OK` response indicates that the
+     *           request is valid, while an error response indicates that the request is
+     *           invalid.
+     *           If the request is valid, a subsequent request to delete the module could
+     *           still fail for one of the following reasons:
+     *           *  The state of your cloud resources changed; for example, you lost a
+     *              required IAM permission
+     *           *  An error occurred during creation of the module
+     *           Defaults to `false`.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,11 +92,11 @@ class DeleteEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Required. The resource name of the ETD custom module.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+     * Required. The resource name of the Event Threat Detection custom module, in
+     * one of the following formats:
+     * * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -101,11 +107,11 @@ class DeleteEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Required. The resource name of the ETD custom module.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+     * Required. The resource name of the Event Threat Detection custom module, in
+     * one of the following formats:
+     * * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -120,13 +126,16 @@ class DeleteEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Optional. When set to true, only validations (including IAM checks) will
-     * done for the request (module will not be deleted). An OK response indicates
-     * the request is valid while an error response indicates the request is
-     * invalid. Note that a subsequent request to actually delete the module could
-     * still fail because 1. the state could have changed (e.g. IAM permission
-     * lost) or
-     * 2. A failure occurred while trying to delete the module.
+     * Optional. When set to `true`, the request will be validated (including IAM
+     * checks), but no module will be deleted. An `OK` response indicates that the
+     * request is valid, while an error response indicates that the request is
+     * invalid.
+     * If the request is valid, a subsequent request to delete the module could
+     * still fail for one of the following reasons:
+     * *  The state of your cloud resources changed; for example, you lost a
+     *    required IAM permission
+     * *  An error occurred during creation of the module
+     * Defaults to `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -137,13 +146,16 @@ class DeleteEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Optional. When set to true, only validations (including IAM checks) will
-     * done for the request (module will not be deleted). An OK response indicates
-     * the request is valid while an error response indicates the request is
-     * invalid. Note that a subsequent request to actually delete the module could
-     * still fail because 1. the state could have changed (e.g. IAM permission
-     * lost) or
-     * 2. A failure occurred while trying to delete the module.
+     * Optional. When set to `true`, the request will be validated (including IAM
+     * checks), but no module will be deleted. An `OK` response indicates that the
+     * request is valid, while an error response indicates that the request is
+     * invalid.
+     * If the request is valid, a subsequent request to delete the module could
+     * still fail for one of the following reasons:
+     * *  The state of your cloud resources changed; for example, you lost a
+     *    required IAM permission
+     * *  An error occurred during creation of the module
+     * Defaults to `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

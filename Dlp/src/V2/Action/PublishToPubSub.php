@@ -27,7 +27,7 @@ class PublishToPubSub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      */
-    private $topic = '';
+    protected $topic = '';
 
     /**
      * Constructor.
@@ -81,6 +81,4 @@ class PublishToPubSub extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PublishToPubSub::class, \Google\Cloud\Dlp\V2\Action_PublishToPubSub::class);
 

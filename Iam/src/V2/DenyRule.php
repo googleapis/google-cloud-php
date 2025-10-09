@@ -97,7 +97,7 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Expr denial_condition = 5;</code>
      */
-    private $denial_condition = null;
+    protected $denial_condition = null;
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class ReplaceArtifactRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.Artifact artifact = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $artifact = null;
+    protected $artifact = null;
 
     /**
      * @param \Google\Cloud\ApigeeRegistry\V1\Artifact $artifact Required. The artifact to replace.

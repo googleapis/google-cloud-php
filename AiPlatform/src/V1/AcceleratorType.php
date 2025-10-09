@@ -20,9 +20,10 @@ class AcceleratorType
      */
     const ACCELERATOR_TYPE_UNSPECIFIED = 0;
     /**
-     * Nvidia Tesla K80 GPU.
+     * Deprecated: Nvidia Tesla K80 GPU has reached end of support,
+     * see https://cloud.google.com/compute/docs/eol/k80-eol.
      *
-     * Generated from protobuf enum <code>NVIDIA_TESLA_K80 = 1;</code>
+     * Generated from protobuf enum <code>NVIDIA_TESLA_K80 = 1 [deprecated = true];</code>
      */
     const NVIDIA_TESLA_K80 = 1;
     /**
@@ -74,6 +75,36 @@ class AcceleratorType
      */
     const NVIDIA_H100_80GB = 13;
     /**
+     * Nvidia H100 Mega 80Gb GPU.
+     *
+     * Generated from protobuf enum <code>NVIDIA_H100_MEGA_80GB = 14;</code>
+     */
+    const NVIDIA_H100_MEGA_80GB = 14;
+    /**
+     * Nvidia H200 141Gb GPU.
+     *
+     * Generated from protobuf enum <code>NVIDIA_H200_141GB = 15;</code>
+     */
+    const NVIDIA_H200_141GB = 15;
+    /**
+     * Nvidia B200 GPU.
+     *
+     * Generated from protobuf enum <code>NVIDIA_B200 = 16;</code>
+     */
+    const NVIDIA_B200 = 16;
+    /**
+     * Nvidia GB200 GPU.
+     *
+     * Generated from protobuf enum <code>NVIDIA_GB200 = 17;</code>
+     */
+    const NVIDIA_GB200 = 17;
+    /**
+     * Nvidia RTX Pro 6000 GPU.
+     *
+     * Generated from protobuf enum <code>NVIDIA_RTX_PRO_6000 = 18;</code>
+     */
+    const NVIDIA_RTX_PRO_6000 = 18;
+    /**
      * TPU v2.
      *
      * Generated from protobuf enum <code>TPU_V2 = 6;</code>
@@ -109,6 +140,11 @@ class AcceleratorType
         self::NVIDIA_A100_80GB => 'NVIDIA_A100_80GB',
         self::NVIDIA_L4 => 'NVIDIA_L4',
         self::NVIDIA_H100_80GB => 'NVIDIA_H100_80GB',
+        self::NVIDIA_H100_MEGA_80GB => 'NVIDIA_H100_MEGA_80GB',
+        self::NVIDIA_H200_141GB => 'NVIDIA_H200_141GB',
+        self::NVIDIA_B200 => 'NVIDIA_B200',
+        self::NVIDIA_GB200 => 'NVIDIA_GB200',
+        self::NVIDIA_RTX_PRO_6000 => 'NVIDIA_RTX_PRO_6000',
         self::TPU_V2 => 'TPU_V2',
         self::TPU_V3 => 'TPU_V3',
         self::TPU_V4_POD => 'TPU_V4_POD',

@@ -20,7 +20,7 @@ class UsernamePasswordCredentials extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string username = 1;</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * The Secret Manager key version that holds the password to access the
      * remote repository. Must be in the format of
@@ -28,7 +28,7 @@ class UsernamePasswordCredentials extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string password_secret_version = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $password_secret_version = '';
+    protected $password_secret_version = '';
 
     /**
      * Constructor.
@@ -107,6 +107,4 @@ class UsernamePasswordCredentials extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UsernamePasswordCredentials::class, \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig_UpstreamCredentials_UsernamePasswordCredentials::class);
 

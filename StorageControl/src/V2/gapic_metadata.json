@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "StorageControlGapicClient",
                     "rpcs": {
+                        "CreateAnywhereCache": {
+                            "methods": [
+                                "createAnywhereCache"
+                            ]
+                        },
                         "CreateFolder": {
                             "methods": [
                                 "createFolder"
@@ -30,9 +35,29 @@
                                 "deleteManagedFolder"
                             ]
                         },
+                        "DisableAnywhereCache": {
+                            "methods": [
+                                "disableAnywhereCache"
+                            ]
+                        },
+                        "GetAnywhereCache": {
+                            "methods": [
+                                "getAnywhereCache"
+                            ]
+                        },
                         "GetFolder": {
                             "methods": [
                                 "getFolder"
+                            ]
+                        },
+                        "GetFolderIntelligenceConfig": {
+                            "methods": [
+                                "getFolderIntelligenceConfig"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
                             ]
                         },
                         "GetManagedFolder": {
@@ -40,9 +65,24 @@
                                 "getManagedFolder"
                             ]
                         },
+                        "GetOrganizationIntelligenceConfig": {
+                            "methods": [
+                                "getOrganizationIntelligenceConfig"
+                            ]
+                        },
+                        "GetProjectIntelligenceConfig": {
+                            "methods": [
+                                "getProjectIntelligenceConfig"
+                            ]
+                        },
                         "GetStorageLayout": {
                             "methods": [
                                 "getStorageLayout"
+                            ]
+                        },
+                        "ListAnywhereCaches": {
+                            "methods": [
+                                "listAnywhereCaches"
                             ]
                         },
                         "ListFolders": {
@@ -55,9 +95,49 @@
                                 "listManagedFolders"
                             ]
                         },
+                        "PauseAnywhereCache": {
+                            "methods": [
+                                "pauseAnywhereCache"
+                            ]
+                        },
                         "RenameFolder": {
                             "methods": [
                                 "renameFolder"
+                            ]
+                        },
+                        "ResumeAnywhereCache": {
+                            "methods": [
+                                "resumeAnywhereCache"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateAnywhereCache": {
+                            "methods": [
+                                "updateAnywhereCache"
+                            ]
+                        },
+                        "UpdateFolderIntelligenceConfig": {
+                            "methods": [
+                                "updateFolderIntelligenceConfig"
+                            ]
+                        },
+                        "UpdateOrganizationIntelligenceConfig": {
+                            "methods": [
+                                "updateOrganizationIntelligenceConfig"
+                            ]
+                        },
+                        "UpdateProjectIntelligenceConfig": {
+                            "methods": [
+                                "updateProjectIntelligenceConfig"
                             ]
                         }
                     }

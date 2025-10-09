@@ -22,7 +22,7 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kubernetes_api_server_version = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $kubernetes_api_server_version = '';
+    protected $kubernetes_api_server_version = '';
     /**
      * Output only. Node providerID as reported by the first node in the list of
      * nodes on the Kubernetes endpoint. On Kubernetes platforms that support
@@ -31,26 +31,26 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string node_provider_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $node_provider_id = '';
+    protected $node_provider_id = '';
     /**
      * Output only. Node count as reported by Kubernetes nodes resources.
      *
      * Generated from protobuf field <code>int32 node_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $node_count = 0;
+    protected $node_count = 0;
     /**
      * Output only. vCPU count as reported by Kubernetes nodes resources.
      *
      * Generated from protobuf field <code>int32 vcpu_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vcpu_count = 0;
+    protected $vcpu_count = 0;
     /**
      * Output only. The total memory capacity as reported by the sum of all
      * Kubernetes nodes resources, defined in MB.
      *
      * Generated from protobuf field <code>int32 memory_mb = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $memory_mb = 0;
+    protected $memory_mb = 0;
     /**
      * Output only. The time at which these details were last updated. This
      * update_time is different from the Membership-level update_time since
@@ -58,7 +58,7 @@ class KubernetesMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

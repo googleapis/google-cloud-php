@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Instances_GetShieldedInstanceIdentity_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
+use Google\Cloud\Compute\V1\GetShieldedInstanceIdentityInstanceRequest;
 use Google\Cloud\Compute\V1\ShieldedInstanceIdentity;
 
 /**
@@ -42,10 +43,16 @@ function get_shielded_instance_identity_sample(
     // Create a client.
     $instancesClient = new InstancesClient();
 
+    // Prepare the request message.
+    $request = (new GetShieldedInstanceIdentityInstanceRequest())
+        ->setInstance($instance)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var ShieldedInstanceIdentity $response */
-        $response = $instancesClient->getShieldedInstanceIdentity($instance, $project, $zone);
+        $response = $instancesClient->getShieldedInstanceIdentity($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

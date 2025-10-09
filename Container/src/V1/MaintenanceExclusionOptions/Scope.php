@@ -64,6 +64,4 @@ class Scope
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Scope::class, \Google\Cloud\Container\V1\MaintenanceExclusionOptions_Scope::class);
 

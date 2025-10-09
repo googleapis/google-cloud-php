@@ -26,7 +26,7 @@ class Exec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicy.Resource.ExecResource.Exec.Interpreter interpreter = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $interpreter = 0;
+    protected $interpreter = 0;
     /**
      * Only recorded for enforce Exec.
      * Path to an output file (that is created by this Exec) whose
@@ -37,7 +37,7 @@ class Exec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_file_path = 5;</code>
      */
-    private $output_file_path = '';
+    protected $output_file_path = '';
     protected $source;
 
     /**

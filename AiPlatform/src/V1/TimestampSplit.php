@@ -23,19 +23,19 @@ class TimestampSplit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double training_fraction = 1;</code>
      */
-    private $training_fraction = 0.0;
+    protected $training_fraction = 0.0;
     /**
      * The fraction of the input data that is to be used to validate the Model.
      *
      * Generated from protobuf field <code>double validation_fraction = 2;</code>
      */
-    private $validation_fraction = 0.0;
+    protected $validation_fraction = 0.0;
     /**
      * The fraction of the input data that is to be used to evaluate the Model.
      *
      * Generated from protobuf field <code>double test_fraction = 3;</code>
      */
-    private $test_fraction = 0.0;
+    protected $test_fraction = 0.0;
     /**
      * Required. The key is a name of one of the Dataset's data columns.
      * The values of the key (the values in the column) must be in RFC 3339
@@ -45,7 +45,7 @@ class TimestampSplit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = '';
+    protected $key = '';
 
     /**
      * Constructor.

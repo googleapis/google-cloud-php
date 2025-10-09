@@ -24,14 +24,14 @@ class CreateSnoozeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The `Snooze` to create. Omit the `name` field, as it will be
      * filled in by the API.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Snooze snooze = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $snooze = null;
+    protected $snooze = null;
 
     /**
      * @param string                             $parent Required. The

@@ -22,14 +22,14 @@ class ImageOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.Fingerprint fingerprint = 1;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * Output only. The number of layers by which this image differs from the
      * associated image basis.
      *
      * Generated from protobuf field <code>int32 distance = 2;</code>
      */
-    private $distance = 0;
+    protected $distance = 0;
     /**
      * This contains layer-specific metadata, if populated it has length
      * "distance" and is ordered with [distance] being the layer immediately
@@ -44,7 +44,7 @@ class ImageOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string base_resource_url = 4;</code>
      */
-    private $base_resource_url = '';
+    protected $base_resource_url = '';
 
     /**
      * Constructor.

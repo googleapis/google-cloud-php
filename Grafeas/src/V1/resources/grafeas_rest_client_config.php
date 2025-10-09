@@ -27,6 +27,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*}/notes:batchCreate',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/notes:batchCreate',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -39,6 +46,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*}/occurrences:batchCreate',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/occurrences:batchCreate',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -51,6 +65,16 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*}/notes',
                 'body' => 'note',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/notes',
+                        'body' => 'note',
+                        'queryParams' => [
+                            'note_id',
+                        ],
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -66,6 +90,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*}/occurrences',
                 'body' => 'occurrence',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/occurrences',
+                        'body' => 'occurrence',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -77,6 +108,12 @@ return [
             'DeleteNote' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/notes/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/notes/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -88,6 +125,12 @@ return [
             'DeleteOccurrence' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/occurrences/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/occurrences/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -202,6 +245,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{name=projects/*/notes/*}',
                 'body' => 'note',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/notes/*}',
+                        'body' => 'note',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -214,6 +264,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{name=projects/*/occurrences/*}',
                 'body' => 'occurrence',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/occurrences/*}',
+                        'body' => 'occurrence',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [

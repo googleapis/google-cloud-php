@@ -23,7 +23,7 @@ class Recipe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Index in materials containing the recipe steps that are not implied by
      * recipe.type. For example, if the recipe type were "make", then this would
@@ -33,7 +33,7 @@ class Recipe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 defined_in_material = 2;</code>
      */
-    private $defined_in_material = 0;
+    protected $defined_in_material = 0;
     /**
      * String identifying the entry point into the build.
      * This is often a path to a configuration file and/or a target label within
@@ -43,7 +43,7 @@ class Recipe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entry_point = 3;</code>
      */
-    private $entry_point = '';
+    protected $entry_point = '';
     /**
      * Collection of all external inputs that influenced the build on top of
      * recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe

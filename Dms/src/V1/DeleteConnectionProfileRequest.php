@@ -20,7 +20,7 @@ class DeleteConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A unique ID used to identify the request. If the server receives two
      * requests with the same ID, then the second request is ignored.
@@ -30,14 +30,14 @@ class DeleteConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 2;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * In case of force delete, the CloudSQL replica database is also deleted
      * (only for CloudSQL connection profile).
      *
      * Generated from protobuf field <code>bool force = 3;</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $name Required. Name of the connection profile resource to delete. Please see

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata for active A/B testing [Experiment][].
+ * Metadata for active A/B testing experiment.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.ExperimentInfo</code>
  */
@@ -22,7 +22,7 @@ class ExperimentInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string experiment = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $experiment = '';
+    protected $experiment = '';
     protected $experiment_metadata;
 
     /**

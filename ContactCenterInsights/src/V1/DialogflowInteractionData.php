@@ -21,14 +21,14 @@ class DialogflowInteractionData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dialogflow_intent_id = 1;</code>
      */
-    private $dialogflow_intent_id = '';
+    protected $dialogflow_intent_id = '';
     /**
      * The confidence of the match ranging from 0.0 (completely uncertain) to 1.0
      * (completely certain).
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
 
     /**
      * Constructor.

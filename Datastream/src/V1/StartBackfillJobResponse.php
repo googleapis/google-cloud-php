@@ -20,7 +20,7 @@ class StartBackfillJobResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.StreamObject object = 1;</code>
      */
-    private $object = null;
+    protected $object = null;
 
     /**
      * Constructor.

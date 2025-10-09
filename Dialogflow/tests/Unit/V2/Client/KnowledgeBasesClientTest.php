@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,9 @@ class KnowledgeBasesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return KnowledgeBasesClient */
@@ -92,9 +94,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $knowledgeBase = new KnowledgeBase();
         $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
         $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
-        $request = (new CreateKnowledgeBaseRequest())
-            ->setParent($formattedParent)
-            ->setKnowledgeBase($knowledgeBase);
+        $request = (new CreateKnowledgeBaseRequest())->setParent($formattedParent)->setKnowledgeBase($knowledgeBase);
         $response = $gapicClient->createKnowledgeBase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -120,21 +120,22 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $knowledgeBase = new KnowledgeBase();
         $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
         $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
-        $request = (new CreateKnowledgeBaseRequest())
-            ->setParent($formattedParent)
-            ->setKnowledgeBase($knowledgeBase);
+        $request = (new CreateKnowledgeBaseRequest())->setParent($formattedParent)->setKnowledgeBase($knowledgeBase);
         try {
             $gapicClient->createKnowledgeBase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -161,8 +162,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-        $request = (new DeleteKnowledgeBaseRequest())
-            ->setName($formattedName);
+        $request = (new DeleteKnowledgeBaseRequest())->setName($formattedName);
         $gapicClient->deleteKnowledgeBase($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -185,17 +185,19 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-        $request = (new DeleteKnowledgeBaseRequest())
-            ->setName($formattedName);
+        $request = (new DeleteKnowledgeBaseRequest())->setName($formattedName);
         try {
             $gapicClient->deleteKnowledgeBase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -228,8 +230,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-        $request = (new GetKnowledgeBaseRequest())
-            ->setName($formattedName);
+        $request = (new GetKnowledgeBaseRequest())->setName($formattedName);
         $response = $gapicClient->getKnowledgeBase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -253,17 +254,19 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-        $request = (new GetKnowledgeBaseRequest())
-            ->setName($formattedName);
+        $request = (new GetKnowledgeBaseRequest())->setName($formattedName);
         try {
             $gapicClient->getKnowledgeBase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -288,17 +291,14 @@ class KnowledgeBasesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $knowledgeBasesElement = new KnowledgeBase();
-        $knowledgeBases = [
-            $knowledgeBasesElement,
-        ];
+        $knowledgeBases = [$knowledgeBasesElement];
         $expectedResponse = new ListKnowledgeBasesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setKnowledgeBases($knowledgeBases);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListKnowledgeBasesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListKnowledgeBasesRequest())->setParent($formattedParent);
         $response = $gapicClient->listKnowledgeBases($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -325,17 +325,19 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListKnowledgeBasesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListKnowledgeBasesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listKnowledgeBases($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -370,8 +372,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $knowledgeBase = new KnowledgeBase();
         $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
         $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
-        $request = (new UpdateKnowledgeBaseRequest())
-            ->setKnowledgeBase($knowledgeBase);
+        $request = (new UpdateKnowledgeBaseRequest())->setKnowledgeBase($knowledgeBase);
         $response = $gapicClient->updateKnowledgeBase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -395,19 +396,21 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $knowledgeBase = new KnowledgeBase();
         $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
         $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
-        $request = (new UpdateKnowledgeBaseRequest())
-            ->setKnowledgeBase($knowledgeBase);
+        $request = (new UpdateKnowledgeBaseRequest())->setKnowledgeBase($knowledgeBase);
         try {
             $gapicClient->updateKnowledgeBase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -460,12 +463,15 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -492,9 +498,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -524,12 +528,15 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -567,9 +574,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $knowledgeBase = new KnowledgeBase();
         $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
         $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
-        $request = (new CreateKnowledgeBaseRequest())
-            ->setParent($formattedParent)
-            ->setKnowledgeBase($knowledgeBase);
+        $request = (new CreateKnowledgeBaseRequest())->setParent($formattedParent)->setKnowledgeBase($knowledgeBase);
         $response = $gapicClient->createKnowledgeBaseAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

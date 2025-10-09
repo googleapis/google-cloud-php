@@ -21,13 +21,13 @@ class CreateApiRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The API to create.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.Api api = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api = null;
+    protected $api = null;
     /**
      * Required. The ID to use for the API, which will become the final component of
      * the API's resource name.
@@ -37,7 +37,7 @@ class CreateApiRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string api_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api_id = '';
+    protected $api_id = '';
 
     /**
      * @param string                              $parent Required. The parent, which owns this collection of APIs.

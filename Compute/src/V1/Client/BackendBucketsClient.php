@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -39,7 +40,6 @@ use Google\Cloud\Compute\V1\DeleteBackendBucketRequest;
 use Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendBucketRequest;
 use Google\Cloud\Compute\V1\GetBackendBucketRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyBackendBucketRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertBackendBucketRequest;
 use Google\Cloud\Compute\V1\ListBackendBucketsRequest;
 use Google\Cloud\Compute\V1\PatchBackendBucketRequest;
@@ -50,6 +50,7 @@ use Google\Cloud\Compute\V1\TestIamPermissionsBackendBucketRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateBackendBucketRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The BackendBuckets API.
@@ -57,18 +58,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addSignedUrlKeyAsync(AddSignedUrlKeyBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListBackendBucketsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addSignedUrlKeyAsync(AddSignedUrlKeyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendBucket> getAsync(GetBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListBackendBucketsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateBackendBucketRequest $request, array $optionalArgs = [])
  */
 final class BackendBucketsClient
 {
@@ -117,7 +118,6 @@ final class BackendBucketsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/backend_buckets_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -130,9 +130,7 @@ final class BackendBucketsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -149,9 +147,7 @@ final class BackendBucketsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -179,29 +175,57 @@ final class BackendBucketsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\BackendBucketsClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new BackendBucketsClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -232,11 +256,16 @@ final class BackendBucketsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -259,6 +288,8 @@ final class BackendBucketsClient
      *
      * The async variant is {@see BackendBucketsClient::addSignedUrlKeyAsync()} .
      *
+     * @example samples/V1/BackendBucketsClient/add_signed_url_key.php
+     *
      * @param AddSignedUrlKeyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -273,8 +304,10 @@ final class BackendBucketsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addSignedUrlKey(AddSignedUrlKeyBackendBucketRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addSignedUrlKey(
+        AddSignedUrlKeyBackendBucketRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddSignedUrlKey', $request, $callOptions)->wait();
     }
 
@@ -282,6 +315,8 @@ final class BackendBucketsClient
      * Deletes the specified BackendBucket resource.
      *
      * The async variant is {@see BackendBucketsClient::deleteAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/delete.php
      *
      * @param DeleteBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -307,6 +342,8 @@ final class BackendBucketsClient
      *
      * The async variant is {@see BackendBucketsClient::deleteSignedUrlKeyAsync()} .
      *
+     * @example samples/V1/BackendBucketsClient/delete_signed_url_key.php
+     *
      * @param DeleteSignedUrlKeyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -321,8 +358,10 @@ final class BackendBucketsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteSignedUrlKey(DeleteSignedUrlKeyBackendBucketRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteSignedUrlKey(
+        DeleteSignedUrlKeyBackendBucketRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteSignedUrlKey', $request, $callOptions)->wait();
     }
 
@@ -330,6 +369,8 @@ final class BackendBucketsClient
      * Returns the specified BackendBucket resource.
      *
      * The async variant is {@see BackendBucketsClient::getAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/get.php
      *
      * @param GetBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -355,6 +396,8 @@ final class BackendBucketsClient
      *
      * The async variant is {@see BackendBucketsClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/BackendBucketsClient/get_iam_policy.php
+     *
      * @param GetIamPolicyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -378,6 +421,8 @@ final class BackendBucketsClient
      * Creates a BackendBucket resource in the specified project using the data included in the request.
      *
      * The async variant is {@see BackendBucketsClient::insertAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/insert.php
      *
      * @param InsertBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -403,6 +448,8 @@ final class BackendBucketsClient
      *
      * The async variant is {@see BackendBucketsClient::listAsync()} .
      *
+     * @example samples/V1/BackendBucketsClient/list.php
+     *
      * @param ListBackendBucketsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -426,6 +473,8 @@ final class BackendBucketsClient
      * Updates the specified BackendBucket resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * The async variant is {@see BackendBucketsClient::patchAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/patch.php
      *
      * @param PatchBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -451,6 +500,8 @@ final class BackendBucketsClient
      *
      * The async variant is {@see BackendBucketsClient::setEdgeSecurityPolicyAsync()} .
      *
+     * @example samples/V1/BackendBucketsClient/set_edge_security_policy.php
+     *
      * @param SetEdgeSecurityPolicyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -465,8 +516,10 @@ final class BackendBucketsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setEdgeSecurityPolicy(SetEdgeSecurityPolicyBackendBucketRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setEdgeSecurityPolicy(
+        SetEdgeSecurityPolicyBackendBucketRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetEdgeSecurityPolicy', $request, $callOptions)->wait();
     }
 
@@ -474,6 +527,8 @@ final class BackendBucketsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see BackendBucketsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/set_iam_policy.php
      *
      * @param SetIamPolicyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -499,6 +554,8 @@ final class BackendBucketsClient
      *
      * The async variant is {@see BackendBucketsClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/BackendBucketsClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -513,8 +570,10 @@ final class BackendBucketsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsBackendBucketRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsBackendBucketRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -522,6 +581,8 @@ final class BackendBucketsClient
      * Updates the specified BackendBucket resource with the data included in the request.
      *
      * The async variant is {@see BackendBucketsClient::updateAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/update.php
      *
      * @param UpdateBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

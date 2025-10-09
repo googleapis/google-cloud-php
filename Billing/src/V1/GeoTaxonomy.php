@@ -20,7 +20,7 @@ class GeoTaxonomy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.GeoTaxonomy.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The list of regions associated with a sku. Empty for Global skus, which are
      * associated with all Google Cloud regions.

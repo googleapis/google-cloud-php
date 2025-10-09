@@ -18,34 +18,34 @@ class SqlCsvExportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string select_query = 1;</code>
      */
-    private $select_query = '';
+    protected $select_query = '';
     /**
      * Specifies the character that should appear before a data character that
      * needs to be escaped.
      *
      * Generated from protobuf field <code>string escape_character = 2;</code>
      */
-    private $escape_character = '';
+    protected $escape_character = '';
     /**
      * Specifies the quoting character to be used when a data value is quoted.
      *
      * Generated from protobuf field <code>string quote_character = 3;</code>
      */
-    private $quote_character = '';
+    protected $quote_character = '';
     /**
      * Specifies the character that separates columns within each row (line) of
      * the file.
      *
      * Generated from protobuf field <code>string fields_terminated_by = 4;</code>
      */
-    private $fields_terminated_by = '';
+    protected $fields_terminated_by = '';
     /**
      * This is used to separate lines. If a line does not contain all fields,
      * the rest of the columns are set to their default values.
      *
      * Generated from protobuf field <code>string lines_terminated_by = 6;</code>
      */
-    private $lines_terminated_by = '';
+    protected $lines_terminated_by = '';
 
     /**
      * Constructor.

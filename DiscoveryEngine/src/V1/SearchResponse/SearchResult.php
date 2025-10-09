@@ -29,6 +29,27 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document document = 2;</code>
      */
     protected $document = null;
+    /**
+     * The chunk data in the search response if the
+     * [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     * is set to
+     * [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Chunk chunk = 18;</code>
+     */
+    protected $chunk = null;
+    /**
+     * Output only. Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.DoubleList> model_scores = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_scores;
+    /**
+     * A set of ranking signals associated with the result.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals rank_signals = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $rank_signals = null;
 
     /**
      * Constructor.
@@ -42,6 +63,15 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1\Document $document
      *           The document data snippet in the search response. Only fields that are
      *           marked as `retrievable` are populated.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Chunk $chunk
+     *           The chunk data in the search response if the
+     *           [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     *           is set to
+     *           [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     *     @type array|\Google\Protobuf\Internal\MapField $model_scores
+     *           Output only. Google provided available scores.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals $rank_signals
+     *           A set of ranking signals associated with the result.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +141,110 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Document::class);
         $this->document = $var;
+
+        return $this;
+    }
+
+    /**
+     * The chunk data in the search response if the
+     * [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     * is set to
+     * [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Chunk chunk = 18;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Chunk|null
+     */
+    public function getChunk()
+    {
+        return $this->chunk;
+    }
+
+    public function hasChunk()
+    {
+        return isset($this->chunk);
+    }
+
+    public function clearChunk()
+    {
+        unset($this->chunk);
+    }
+
+    /**
+     * The chunk data in the search response if the
+     * [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     * is set to
+     * [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Chunk chunk = 18;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Chunk $var
+     * @return $this
+     */
+    public function setChunk($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Chunk::class);
+        $this->chunk = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.DoubleList> model_scores = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getModelScores()
+    {
+        return $this->model_scores;
+    }
+
+    /**
+     * Output only. Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.DoubleList> model_scores = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setModelScores($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\DoubleList::class);
+        $this->model_scores = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A set of ranking signals associated with the result.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals rank_signals = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals|null
+     */
+    public function getRankSignals()
+    {
+        return $this->rank_signals;
+    }
+
+    public function hasRankSignals()
+    {
+        return isset($this->rank_signals);
+    }
+
+    public function clearRankSignals()
+    {
+        unset($this->rank_signals);
+    }
+
+    /**
+     * A set of ranking signals associated with the result.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals rank_signals = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals $var
+     * @return $this
+     */
+    public function setRankSignals($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals::class);
+        $this->rank_signals = $var;
 
         return $this;
     }

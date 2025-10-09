@@ -21,14 +21,14 @@ class CreateTagKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.TagKey tag_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag_key = null;
+    protected $tag_key = null;
     /**
      * Optional. Set to true to perform validations necessary for creating the
      * resource, but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\ResourceManager\V3\TagKey $tagKey Required. The TagKey to be created. Only fields `short_name`,

@@ -20,13 +20,13 @@ class GoogleCdnKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes private_key = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $private_key = '';
+    protected $private_key = '';
     /**
      * The public name of the Google Cloud CDN key.
      *
      * Generated from protobuf field <code>string key_name = 2;</code>
      */
-    private $key_name = '';
+    protected $key_name = '';
 
     /**
      * Constructor.

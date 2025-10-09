@@ -24,13 +24,13 @@ class UpdateAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. Updated AuthorizationPolicy resource.
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1.AuthorizationPolicy authorization_policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $authorization_policy = null;
+    protected $authorization_policy = null;
 
     /**
      * @param \Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy $authorizationPolicy Required. Updated AuthorizationPolicy resource.

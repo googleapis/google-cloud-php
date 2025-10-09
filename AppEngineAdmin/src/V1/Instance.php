@@ -22,112 +22,112 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Relative name of the instance within the version.
      * Example: `instance-1`.
      *
      * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Output only. App Engine release this instance is running on.
      *
      * Generated from protobuf field <code>string app_engine_release = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $app_engine_release = '';
+    protected $app_engine_release = '';
     /**
      * Output only. Availability of the instance.
      *
      * Generated from protobuf field <code>.google.appengine.v1.Instance.Availability availability = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $availability = 0;
+    protected $availability = 0;
     /**
      * Output only. Name of the virtual machine where this instance lives. Only applicable
      * for instances in App Engine flexible environment.
      *
      * Generated from protobuf field <code>string vm_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vm_name = '';
+    protected $vm_name = '';
     /**
      * Output only. Zone where the virtual machine is located. Only applicable for instances
      * in App Engine flexible environment.
      *
      * Generated from protobuf field <code>string vm_zone_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vm_zone_name = '';
+    protected $vm_zone_name = '';
     /**
      * Output only. Virtual machine ID of this instance. Only applicable for instances in
      * App Engine flexible environment.
      *
      * Generated from protobuf field <code>string vm_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vm_id = '';
+    protected $vm_id = '';
     /**
      * Output only. Time that this instance was started.
      * &#64;OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Number of requests since this instance was started.
      *
      * Generated from protobuf field <code>int32 requests = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $requests = 0;
+    protected $requests = 0;
     /**
      * Output only. Number of errors since this instance was started.
      *
      * Generated from protobuf field <code>int32 errors = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $errors = 0;
+    protected $errors = 0;
     /**
      * Output only. Average queries per second (QPS) over the last minute.
      *
      * Generated from protobuf field <code>float qps = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $qps = 0.0;
+    protected $qps = 0.0;
     /**
      * Output only. Average latency (ms) over the last minute.
      *
      * Generated from protobuf field <code>int32 average_latency = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $average_latency = 0;
+    protected $average_latency = 0;
     /**
      * Output only. Total memory in use (bytes).
      *
      * Generated from protobuf field <code>int64 memory_usage = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $memory_usage = 0;
+    protected $memory_usage = 0;
     /**
      * Output only. Status of the virtual machine where this instance lives. Only applicable
      * for instances in App Engine flexible environment.
      *
      * Generated from protobuf field <code>string vm_status = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vm_status = '';
+    protected $vm_status = '';
     /**
      * Output only. Whether this instance is in debug mode. Only applicable for instances in
      * App Engine flexible environment.
      *
      * Generated from protobuf field <code>bool vm_debug_enabled = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vm_debug_enabled = false;
+    protected $vm_debug_enabled = false;
     /**
      * Output only. The IP address of this instance. Only applicable for instances in App
      * Engine flexible environment.
      *
      * Generated from protobuf field <code>string vm_ip = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vm_ip = '';
+    protected $vm_ip = '';
     /**
      * Output only. The liveness health check of this instance. Only applicable for instances
      * in App Engine flexible environment.
      *
      * Generated from protobuf field <code>.google.appengine.v1.Instance.Liveness.LivenessState vm_liveness = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vm_liveness = 0;
+    protected $vm_liveness = 0;
 
     /**
      * Constructor.

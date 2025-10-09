@@ -16,6 +16,11 @@
                 }
             },
             "methods": {
+                "BatchCreateFeatures": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "CreateFeature": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",

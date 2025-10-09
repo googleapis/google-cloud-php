@@ -21,7 +21,7 @@ class DeleteCustomTargetTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server knows to ignore the
@@ -37,21 +37,21 @@ class DeleteCustomTargetTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set to true, then deleting an already deleted or non-existing
      * `CustomTargetType` will succeed.
      *
      * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
     /**
      * Optional. If set to true, the request is validated but no actual change is
      * made.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Optional. This checksum is computed by the server based on the value of
      * other fields, and may be sent on update and delete requests to ensure the
@@ -59,7 +59,7 @@ class DeleteCustomTargetTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. The name of the `CustomTargetType` to delete. Format must be

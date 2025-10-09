@@ -20,25 +20,25 @@ class ExportEntitiesMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.CommonMetadata common = 1;</code>
      */
-    private $common = null;
+    protected $common = null;
     /**
      * An estimate of the number of entities processed.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Progress progress_entities = 2;</code>
      */
-    private $progress_entities = null;
+    protected $progress_entities = null;
     /**
      * An estimate of the number of bytes processed.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Progress progress_bytes = 3;</code>
      */
-    private $progress_bytes = null;
+    protected $progress_bytes = null;
     /**
      * Description of which entities are being exported.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.EntityFilter entity_filter = 4;</code>
      */
-    private $entity_filter = null;
+    protected $entity_filter = null;
     /**
      * Location for the export metadata and data files. This will be the same
      * value as the
@@ -48,7 +48,7 @@ class ExportEntitiesMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_url_prefix = 5;</code>
      */
-    private $output_url_prefix = '';
+    protected $output_url_prefix = '';
 
     /**
      * Constructor.

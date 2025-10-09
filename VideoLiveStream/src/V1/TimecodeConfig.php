@@ -22,7 +22,7 @@ class TimecodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.TimecodeConfig.TimecodeSource source = 1;</code>
      */
-    private $source = 0;
+    protected $source = 0;
     protected $time_offset;
 
     /**

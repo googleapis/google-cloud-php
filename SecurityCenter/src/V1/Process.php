@@ -22,13 +22,13 @@ class Process extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 12;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * File information for the process executable.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.File binary = 3;</code>
      */
-    private $binary = null;
+    protected $binary = null;
     /**
      * File information for libraries loaded by the process.
      *
@@ -42,7 +42,7 @@ class Process extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.File script = 5;</code>
      */
-    private $script = null;
+    protected $script = null;
     /**
      * Process arguments as JSON encoded strings.
      *
@@ -54,7 +54,7 @@ class Process extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool arguments_truncated = 7;</code>
      */
-    private $arguments_truncated = false;
+    protected $arguments_truncated = false;
     /**
      * Process environment variables.
      *
@@ -66,19 +66,19 @@ class Process extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool env_variables_truncated = 9;</code>
      */
-    private $env_variables_truncated = false;
+    protected $env_variables_truncated = false;
     /**
      * The process ID.
      *
      * Generated from protobuf field <code>int64 pid = 10;</code>
      */
-    private $pid = 0;
+    protected $pid = 0;
     /**
      * The parent process ID.
      *
      * Generated from protobuf field <code>int64 parent_pid = 11;</code>
      */
-    private $parent_pid = 0;
+    protected $parent_pid = 0;
 
     /**
      * Constructor.

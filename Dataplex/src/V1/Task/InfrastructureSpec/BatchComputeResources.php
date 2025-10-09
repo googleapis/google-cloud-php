@@ -21,7 +21,7 @@ class BatchComputeResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 executors_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $executors_count = 0;
+    protected $executors_count = 0;
     /**
      * Optional. Max configurable executors.
      * If max_executors_count > executors_count, then auto-scaling is enabled.
@@ -29,7 +29,7 @@ class BatchComputeResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_executors_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_executors_count = 0;
+    protected $max_executors_count = 0;
 
     /**
      * Constructor.

@@ -20,55 +20,55 @@ class Jwk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kty = 1;</code>
      */
-    private $kty = '';
+    protected $kty = '';
     /**
      * Algorithm.
      *
      * Generated from protobuf field <code>string alg = 2;</code>
      */
-    private $alg = '';
+    protected $alg = '';
     /**
      * Permitted uses for the public keys.
      *
      * Generated from protobuf field <code>string use = 3;</code>
      */
-    private $use = '';
+    protected $use = '';
     /**
      * Key ID.
      *
      * Generated from protobuf field <code>string kid = 4;</code>
      */
-    private $kid = '';
+    protected $kid = '';
     /**
      * Used for RSA keys.
      *
      * Generated from protobuf field <code>string n = 5;</code>
      */
-    private $n = '';
+    protected $n = '';
     /**
      * Used for RSA keys.
      *
      * Generated from protobuf field <code>string e = 6;</code>
      */
-    private $e = '';
+    protected $e = '';
     /**
      * Used for ECDSA keys.
      *
      * Generated from protobuf field <code>string x = 7;</code>
      */
-    private $x = '';
+    protected $x = '';
     /**
      * Used for ECDSA keys.
      *
      * Generated from protobuf field <code>string y = 8;</code>
      */
-    private $y = '';
+    protected $y = '';
     /**
      * Used for ECDSA keys.
      *
      * Generated from protobuf field <code>string crv = 9;</code>
      */
-    private $crv = '';
+    protected $crv = '';
 
     /**
      * Constructor.

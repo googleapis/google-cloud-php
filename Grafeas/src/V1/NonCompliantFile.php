@@ -20,19 +20,19 @@ class NonCompliantFile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 1;</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Command to display the non-compliant files.
      *
      * Generated from protobuf field <code>string display_command = 2;</code>
      */
-    private $display_command = '';
+    protected $display_command = '';
     /**
      * Explains why a file is non compliant for a CIS check.
      *
      * Generated from protobuf field <code>string reason = 3;</code>
      */
-    private $reason = '';
+    protected $reason = '';
 
     /**
      * Constructor.

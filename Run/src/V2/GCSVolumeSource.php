@@ -9,24 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a GCS Bucket mounted as a volume.
+ * Represents a volume backed by a Cloud Storage bucket using Cloud Storage
+ * FUSE.
  *
  * Generated from protobuf message <code>google.cloud.run.v2.GCSVolumeSource</code>
  */
 class GCSVolumeSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * GCS Bucket name
+     * Cloud Storage Bucket name.
      *
      * Generated from protobuf field <code>string bucket = 1;</code>
      */
-    private $bucket = '';
+    protected $bucket = '';
     /**
-     * If true, mount the GCS bucket as read-only
+     * If true, the volume will be mounted as read only for all mounts.
      *
      * Generated from protobuf field <code>bool read_only = 2;</code>
      */
-    private $read_only = false;
+    protected $read_only = false;
+    /**
+     * A list of additional flags to pass to the gcsfuse CLI.
+     * Options should be specified without the leading "--".
+     *
+     * Generated from protobuf field <code>repeated string mount_options = 3;</code>
+     */
+    private $mount_options;
 
     /**
      * Constructor.
@@ -35,9 +43,12 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $bucket
-     *           GCS Bucket name
+     *           Cloud Storage Bucket name.
      *     @type bool $read_only
-     *           If true, mount the GCS bucket as read-only
+     *           If true, the volume will be mounted as read only for all mounts.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mount_options
+     *           A list of additional flags to pass to the gcsfuse CLI.
+     *           Options should be specified without the leading "--".
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +57,7 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCS Bucket name
+     * Cloud Storage Bucket name.
      *
      * Generated from protobuf field <code>string bucket = 1;</code>
      * @return string
@@ -57,7 +68,7 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCS Bucket name
+     * Cloud Storage Bucket name.
      *
      * Generated from protobuf field <code>string bucket = 1;</code>
      * @param string $var
@@ -72,7 +83,7 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, mount the GCS bucket as read-only
+     * If true, the volume will be mounted as read only for all mounts.
      *
      * Generated from protobuf field <code>bool read_only = 2;</code>
      * @return bool
@@ -83,7 +94,7 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, mount the GCS bucket as read-only
+     * If true, the volume will be mounted as read only for all mounts.
      *
      * Generated from protobuf field <code>bool read_only = 2;</code>
      * @param bool $var
@@ -93,6 +104,34 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->read_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of additional flags to pass to the gcsfuse CLI.
+     * Options should be specified without the leading "--".
+     *
+     * Generated from protobuf field <code>repeated string mount_options = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMountOptions()
+    {
+        return $this->mount_options;
+    }
+
+    /**
+     * A list of additional flags to pass to the gcsfuse CLI.
+     * Options should be specified without the leading "--".
+     *
+     * Generated from protobuf field <code>repeated string mount_options = 3;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMountOptions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->mount_options = $arr;
 
         return $this;
     }

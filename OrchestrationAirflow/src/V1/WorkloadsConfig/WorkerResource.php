@@ -20,33 +20,33 @@ class WorkerResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float cpu = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cpu = 0.0;
+    protected $cpu = 0.0;
     /**
      * Optional. Memory (GB) request and limit for a single Airflow worker
      * replica.
      *
      * Generated from protobuf field <code>float memory_gb = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $memory_gb = 0.0;
+    protected $memory_gb = 0.0;
     /**
      * Optional. Storage (GB) request and limit for a single Airflow worker
      * replica.
      *
      * Generated from protobuf field <code>float storage_gb = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $storage_gb = 0.0;
+    protected $storage_gb = 0.0;
     /**
      * Optional. Minimum number of workers for autoscaling.
      *
      * Generated from protobuf field <code>int32 min_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_count = 0;
+    protected $min_count = 0;
     /**
      * Optional. Maximum number of workers for autoscaling.
      *
      * Generated from protobuf field <code>int32 max_count = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_count = 0;
+    protected $max_count = 0;
 
     /**
      * Constructor.

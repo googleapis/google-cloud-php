@@ -24,64 +24,64 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The Kubernetes version (e.g. `1.19.10-gke.1000`) running on this
      * node pool.
      *
      * Generated from protobuf field <code>string version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Required. The node configuration of the node pool.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodeConfig config = 22 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * Required. The ARM ID of the subnet where the node pool VMs run. Make sure
      * it's a subnet under the virtual network in the cluster configuration.
      *
      * Generated from protobuf field <code>string subnet_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subnet_id = '';
+    protected $subnet_id = '';
     /**
      * Required. Autoscaler configuration for this node pool.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodePoolAutoscaling autoscaling = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $autoscaling = null;
+    protected $autoscaling = null;
     /**
      * Output only. The current state of the node pool.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodePool.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. A globally unique identifier for the node pool.
      *
      * Generated from protobuf field <code>string uid = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. If set, there are currently pending changes to the node
      * pool.
      *
      * Generated from protobuf field <code>bool reconciling = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. The time at which this node pool was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which this node pool was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Allows clients to perform consistent read-modify-writes
      * through optimistic concurrency control.
@@ -90,7 +90,7 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 12;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. Annotations on the node pool.
      * This field has the same restrictions as Kubernetes annotations.
@@ -110,14 +110,14 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MaxPodsConstraint max_pods_constraint = 21 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_pods_constraint = null;
+    protected $max_pods_constraint = null;
     /**
      * Optional. The Azure availability zone of the nodes in this nodepool.
      * When unspecified, it defaults to `1`.
      *
      * Generated from protobuf field <code>string azure_availability_zone = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $azure_availability_zone = '';
+    protected $azure_availability_zone = '';
     /**
      * Output only. A set of errors found in the node pool.
      *
@@ -129,7 +129,7 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodeManagement management = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $management = null;
+    protected $management = null;
 
     /**
      * Constructor.

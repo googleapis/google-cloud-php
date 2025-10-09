@@ -33,7 +33,7 @@ use Google\Cloud\Dialogflow\Cx\V3\SecuritySettings;
  *
  * @param string $formattedParent             The location to create an
  *                                            [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] for.
- *                                            Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+ *                                            Format: `projects/<ProjectID>/locations/<LocationID>`. Please see
  *                                            {@see SecuritySettingsServiceClient::locationName()} for help formatting this field.
  * @param string $securitySettingsDisplayName The human-readable name of the security settings, unique within
  *                                            the location.

@@ -20,7 +20,7 @@ class InstancesRestoreBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.RestoreBackupContext restore_backup_context = 1;</code>
      */
-    private $restore_backup_context = null;
+    protected $restore_backup_context = null;
 
     /**
      * Constructor.

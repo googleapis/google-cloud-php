@@ -23,7 +23,7 @@ class UpdateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore feature_online_store = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature_online_store = null;
+    protected $feature_online_store = null;
     /**
      * Field mask is used to specify the fields to be overwritten in the
      * FeatureOnlineStore resource by the update.
@@ -33,14 +33,15 @@ class UpdateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      * request will be overwritten. Set the update_mask to `*` to override all
      * fields.
      * Updatable fields:
-     *   * `big_query_source`
-     *   * `bigtable`
      *   * `labels`
-     *   * `sync_config`
+     *   * `description`
+     *   * `bigtable`
+     *   * `bigtable.auto_scaling`
+     *   * `bigtable.enable_multi_region_replica`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\FeatureOnlineStore $featureOnlineStore Required. The FeatureOnlineStore's `name` field is used to identify the
@@ -56,10 +57,11 @@ class UpdateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                                           Updatable fields:
      *
-     *                                                                           * `big_query_source`
-     *                                                                           * `bigtable`
      *                                                                           * `labels`
-     *                                                                           * `sync_config`
+     *                                                                           * `description`
+     *                                                                           * `bigtable`
+     *                                                                           * `bigtable.auto_scaling`
+     *                                                                           * `bigtable.enable_multi_region_replica`
      *
      * @return \Google\Cloud\AIPlatform\V1\UpdateFeatureOnlineStoreRequest
      *
@@ -91,10 +93,11 @@ class UpdateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      *           request will be overwritten. Set the update_mask to `*` to override all
      *           fields.
      *           Updatable fields:
-     *             * `big_query_source`
-     *             * `bigtable`
      *             * `labels`
-     *             * `sync_config`
+     *             * `description`
+     *             * `bigtable`
+     *             * `bigtable.auto_scaling`
+     *             * `bigtable.enable_multi_region_replica`
      * }
      */
     public function __construct($data = NULL) {
@@ -151,10 +154,11 @@ class UpdateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      * request will be overwritten. Set the update_mask to `*` to override all
      * fields.
      * Updatable fields:
-     *   * `big_query_source`
-     *   * `bigtable`
      *   * `labels`
-     *   * `sync_config`
+     *   * `description`
+     *   * `bigtable`
+     *   * `bigtable.auto_scaling`
+     *   * `bigtable.enable_multi_region_replica`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -183,10 +187,11 @@ class UpdateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      * request will be overwritten. Set the update_mask to `*` to override all
      * fields.
      * Updatable fields:
-     *   * `big_query_source`
-     *   * `bigtable`
      *   * `labels`
-     *   * `sync_config`
+     *   * `description`
+     *   * `bigtable`
+     *   * `bigtable.auto_scaling`
+     *   * `bigtable.enable_multi_region_replica`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

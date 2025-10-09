@@ -20,7 +20,7 @@ class AssignSpecificValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.

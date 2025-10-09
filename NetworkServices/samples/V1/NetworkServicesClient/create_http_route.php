@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_CreateHttpRoute_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\CreateHttpRouteRequest;
 use Google\Cloud\NetworkServices\V1\HttpRoute;
 use Google\Cloud\NetworkServices\V1\HttpRoute\RouteRule;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
 use Google\Rpc\Status;
 
 /**
@@ -37,8 +38,6 @@ use Google\Rpc\Status;
  *                                          format `projects/&#42;/locations/global`. Please see
  *                                          {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $httpRouteId               Short name of the HttpRoute resource to be created.
- * @param string $httpRouteName             Name of the HttpRoute resource. It matches pattern
- *                                          `projects/&#42;/locations/global/httpRoutes/http_route_name>`.
  * @param string $httpRouteHostnamesElement Hostnames define a set of hosts that should match against the
  *                                          HTTP host header to select a HttpRoute to process the request. Hostname is
  *                                          the fully qualified domain name of a network host, as defined by RFC 1123
@@ -67,24 +66,26 @@ use Google\Rpc\Status;
 function create_http_route_sample(
     string $formattedParent,
     string $httpRouteId,
-    string $httpRouteName,
     string $httpRouteHostnamesElement
 ): void {
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $httpRouteHostnames = [$httpRouteHostnamesElement,];
     $httpRouteRules = [new RouteRule()];
     $httpRoute = (new HttpRoute())
-        ->setName($httpRouteName)
         ->setHostnames($httpRouteHostnames)
         ->setRules($httpRouteRules);
+    $request = (new CreateHttpRouteRequest())
+        ->setParent($formattedParent)
+        ->setHttpRouteId($httpRouteId)
+        ->setHttpRoute($httpRoute);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->createHttpRoute($formattedParent, $httpRouteId, $httpRoute);
+        $response = $networkServicesClient->createHttpRoute($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -114,14 +115,8 @@ function callSample(): void
 {
     $formattedParent = NetworkServicesClient::locationName('[PROJECT]', '[LOCATION]');
     $httpRouteId = '[HTTP_ROUTE_ID]';
-    $httpRouteName = '[NAME]';
     $httpRouteHostnamesElement = '[HOSTNAMES]';
 
-    create_http_route_sample(
-        $formattedParent,
-        $httpRouteId,
-        $httpRouteName,
-        $httpRouteHostnamesElement
-    );
+    create_http_route_sample($formattedParent, $httpRouteId, $httpRouteHostnamesElement);
 }
 // [END networkservices_v1_generated_NetworkServices_CreateHttpRoute_sync]

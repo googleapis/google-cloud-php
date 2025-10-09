@@ -20,8 +20,8 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Condition boost specifications. If a document matches multiple
-     * conditions in the specifictions, boost scores from these specifications are
-     * all applied and combined in a non-linear way. Maximum number of
+     * conditions in the specifications, boost scores from these specifications
+     * are all applied and combined in a non-linear way. Maximum number of
      * specifications is 20.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.BoostSpec.ConditionBoostSpec condition_boost_specs = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -36,8 +36,8 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Dialogflow\Cx\V3\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $condition_boost_specs
      *           Optional. Condition boost specifications. If a document matches multiple
-     *           conditions in the specifictions, boost scores from these specifications are
-     *           all applied and combined in a non-linear way. Maximum number of
+     *           conditions in the specifications, boost scores from these specifications
+     *           are all applied and combined in a non-linear way. Maximum number of
      *           specifications is 20.
      * }
      */
@@ -48,8 +48,8 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Condition boost specifications. If a document matches multiple
-     * conditions in the specifictions, boost scores from these specifications are
-     * all applied and combined in a non-linear way. Maximum number of
+     * conditions in the specifications, boost scores from these specifications
+     * are all applied and combined in a non-linear way. Maximum number of
      * specifications is 20.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.BoostSpec.ConditionBoostSpec condition_boost_specs = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -62,8 +62,8 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Condition boost specifications. If a document matches multiple
-     * conditions in the specifictions, boost scores from these specifications are
-     * all applied and combined in a non-linear way. Maximum number of
+     * conditions in the specifications, boost scores from these specifications
+     * are all applied and combined in a non-linear way. Maximum number of
      * specifications is 20.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.BoostSpec.ConditionBoostSpec condition_boost_specs = 1 [(.google.api.field_behavior) = OPTIONAL];</code>

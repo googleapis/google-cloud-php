@@ -32,11 +32,32 @@ class Protocol
      * Generated from protobuf enum <code>TCP = 2;</code>
      */
     const TCP = 2;
+    /**
+     * TLS
+     *
+     * Generated from protobuf enum <code>TLS = 3;</code>
+     */
+    const TLS = 3;
+    /**
+     * SSL
+     *
+     * Generated from protobuf enum <code>SSL = 4;</code>
+     */
+    const SSL = 4;
+    /**
+     * RELP
+     *
+     * Generated from protobuf enum <code>RELP = 5;</code>
+     */
+    const RELP = 5;
 
     private static $valueToName = [
         self::PROTOCOL_UNSPECIFIED => 'PROTOCOL_UNSPECIFIED',
         self::UDP => 'UDP',
         self::TCP => 'TCP',
+        self::TLS => 'TLS',
+        self::SSL => 'SSL',
+        self::RELP => 'RELP',
     ];
 
     public static function name($value)

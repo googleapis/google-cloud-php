@@ -46,7 +46,7 @@ class Destination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1.AuthorizationPolicy.Rule.Destination.HttpHeaderMatch http_header_match = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $http_header_match = null;
+    protected $http_header_match = null;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class MarkInsightAcceptedRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. State properties user wish to include with this state.  Full
      * replace of the current state_metadata.
@@ -33,7 +33,7 @@ class MarkInsightAcceptedRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name          Required. Name of the insight. Please see

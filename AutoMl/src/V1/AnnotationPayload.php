@@ -22,7 +22,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_spec_id = 1;</code>
      */
-    private $annotation_spec_id = '';
+    protected $annotation_spec_id = '';
     /**
      * Output only. The value of
      * [display_name][google.cloud.automl.v1.AnnotationSpec.display_name]
@@ -33,7 +33,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     protected $detail;
 
     /**

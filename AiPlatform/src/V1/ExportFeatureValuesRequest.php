@@ -23,19 +23,19 @@ class ExportFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_type = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $entity_type = '';
+    protected $entity_type = '';
     /**
      * Required. Specifies destination location and format.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureValueDestination destination = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination = null;
+    protected $destination = null;
     /**
      * Required. Selects Features to export values of.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureSelector feature_selector = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature_selector = null;
+    protected $feature_selector = null;
     /**
      * Per-Feature export settings.
      *

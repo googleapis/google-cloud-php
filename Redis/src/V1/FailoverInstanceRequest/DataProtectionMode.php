@@ -63,6 +63,4 @@ class DataProtectionMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DataProtectionMode::class, \Google\Cloud\Redis\V1\FailoverInstanceRequest_DataProtectionMode::class);
 

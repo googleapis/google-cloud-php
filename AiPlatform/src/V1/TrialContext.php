@@ -9,8 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Next ID: 3
- *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.TrialContext</code>
  */
 class TrialContext extends \Google\Protobuf\Internal\Message
@@ -21,7 +19,7 @@ class TrialContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * If/when a Trial is generated or selected from this Context,
      * its Parameters will match any parameters specified here.

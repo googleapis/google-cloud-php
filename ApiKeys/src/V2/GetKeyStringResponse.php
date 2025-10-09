@@ -20,7 +20,7 @@ class GetKeyStringResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_string = 1;</code>
      */
-    private $key_string = '';
+    protected $key_string = '';
 
     /**
      * Constructor.

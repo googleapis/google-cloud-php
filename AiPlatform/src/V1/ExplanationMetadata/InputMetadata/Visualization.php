@@ -24,14 +24,14 @@ class Visualization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.Visualization.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Whether to only highlight pixels with positive contributions, negative
      * or both. Defaults to POSITIVE.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.Visualization.Polarity polarity = 2;</code>
      */
-    private $polarity = 0;
+    protected $polarity = 0;
     /**
      * The color scheme used for the highlighted areas.
      * Defaults to PINK_GREEN for
@@ -46,7 +46,7 @@ class Visualization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.Visualization.ColorMap color_map = 3;</code>
      */
-    private $color_map = 0;
+    protected $color_map = 0;
     /**
      * Excludes attributions above the specified percentile from the
      * highlighted areas. Using the clip_percent_upperbound and
@@ -56,14 +56,14 @@ class Visualization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float clip_percent_upperbound = 4;</code>
      */
-    private $clip_percent_upperbound = 0.0;
+    protected $clip_percent_upperbound = 0.0;
     /**
      * Excludes attributions below the specified percentile, from the
      * highlighted areas. Defaults to 62.
      *
      * Generated from protobuf field <code>float clip_percent_lowerbound = 5;</code>
      */
-    private $clip_percent_lowerbound = 0.0;
+    protected $clip_percent_lowerbound = 0.0;
     /**
      * How the original image is displayed in the visualization.
      * Adjusting the overlay can help increase visual clarity if the original
@@ -71,7 +71,7 @@ class Visualization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.Visualization.OverlayType overlay_type = 6;</code>
      */
-    private $overlay_type = 0;
+    protected $overlay_type = 0;
 
     /**
      * Constructor.

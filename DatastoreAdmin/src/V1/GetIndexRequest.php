@@ -21,13 +21,13 @@ class GetIndexRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The resource ID of the index to get.
      *
      * Generated from protobuf field <code>string index_id = 3;</code>
      */
-    private $index_id = '';
+    protected $index_id = '';
 
     /**
      * Constructor.

@@ -22,27 +22,27 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Job instance to create.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job = null;
+    protected $job = null;
     /**
      * Required. The unique identifier for the Job. The name of the job becomes
      * {parent}/jobs/{job_id}.
      *
      * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * Indicates that the request should be validated and default values
      * populated, without persisting the request or creating any resources.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                   $parent Required. The location and project in which this Job should be created.

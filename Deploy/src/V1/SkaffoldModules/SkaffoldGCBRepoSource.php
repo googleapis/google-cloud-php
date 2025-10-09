@@ -22,20 +22,20 @@ class SkaffoldGCBRepoSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string repository = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $repository = '';
+    protected $repository = '';
     /**
      * Optional. Relative path from the repository root to the Skaffold Config
      * file.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Optional. Branch or tag to use when cloning the repository.
      *
      * Generated from protobuf field <code>string ref = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ref = '';
+    protected $ref = '';
 
     /**
      * Constructor.

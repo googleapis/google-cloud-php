@@ -16,46 +16,47 @@ use Google\Protobuf\Internal\GPBUtil;
 class MysqlSslConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Input only. PEM-encoded private key associated with the Client Certificate.
-     * If this field is used then the 'client_certificate' and the
+     * Optional. Input only. PEM-encoded private key associated with the Client
+     * Certificate. If this field is used then the 'client_certificate' and the
      * 'ca_certificate' fields are mandatory.
      *
-     * Generated from protobuf field <code>string client_key = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string client_key = 1 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $client_key = '';
+    protected $client_key = '';
     /**
      * Output only. Indicates whether the client_key field is set.
      *
      * Generated from protobuf field <code>bool client_key_set = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $client_key_set = false;
+    protected $client_key_set = false;
     /**
-     * Input only. PEM-encoded certificate that will be used by the replica to
-     * authenticate against the source database server. If this field is used
-     * then the 'client_key' and the 'ca_certificate' fields are mandatory.
+     * Optional. Input only. PEM-encoded certificate that will be used by the
+     * replica to authenticate against the source database server. If this field
+     * is used then the 'client_key' and the 'ca_certificate' fields are
+     * mandatory.
      *
-     * Generated from protobuf field <code>string client_certificate = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string client_certificate = 3 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $client_certificate = '';
+    protected $client_certificate = '';
     /**
      * Output only. Indicates whether the client_certificate field is set.
      *
      * Generated from protobuf field <code>bool client_certificate_set = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $client_certificate_set = false;
+    protected $client_certificate_set = false;
     /**
      * Input only. PEM-encoded certificate of the CA that signed the source
      * database server's certificate.
      *
      * Generated from protobuf field <code>string ca_certificate = 5 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $ca_certificate = '';
+    protected $ca_certificate = '';
     /**
      * Output only. Indicates whether the ca_certificate field is set.
      *
      * Generated from protobuf field <code>bool ca_certificate_set = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $ca_certificate_set = false;
+    protected $ca_certificate_set = false;
 
     /**
      * Constructor.
@@ -64,15 +65,16 @@ class MysqlSslConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $client_key
-     *           Input only. PEM-encoded private key associated with the Client Certificate.
-     *           If this field is used then the 'client_certificate' and the
+     *           Optional. Input only. PEM-encoded private key associated with the Client
+     *           Certificate. If this field is used then the 'client_certificate' and the
      *           'ca_certificate' fields are mandatory.
      *     @type bool $client_key_set
      *           Output only. Indicates whether the client_key field is set.
      *     @type string $client_certificate
-     *           Input only. PEM-encoded certificate that will be used by the replica to
-     *           authenticate against the source database server. If this field is used
-     *           then the 'client_key' and the 'ca_certificate' fields are mandatory.
+     *           Optional. Input only. PEM-encoded certificate that will be used by the
+     *           replica to authenticate against the source database server. If this field
+     *           is used then the 'client_key' and the 'ca_certificate' fields are
+     *           mandatory.
      *     @type bool $client_certificate_set
      *           Output only. Indicates whether the client_certificate field is set.
      *     @type string $ca_certificate
@@ -88,11 +90,11 @@ class MysqlSslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. PEM-encoded private key associated with the Client Certificate.
-     * If this field is used then the 'client_certificate' and the
+     * Optional. Input only. PEM-encoded private key associated with the Client
+     * Certificate. If this field is used then the 'client_certificate' and the
      * 'ca_certificate' fields are mandatory.
      *
-     * Generated from protobuf field <code>string client_key = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string client_key = 1 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getClientKey()
@@ -101,11 +103,11 @@ class MysqlSslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. PEM-encoded private key associated with the Client Certificate.
-     * If this field is used then the 'client_certificate' and the
+     * Optional. Input only. PEM-encoded private key associated with the Client
+     * Certificate. If this field is used then the 'client_certificate' and the
      * 'ca_certificate' fields are mandatory.
      *
-     * Generated from protobuf field <code>string client_key = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string client_key = 1 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -144,11 +146,12 @@ class MysqlSslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. PEM-encoded certificate that will be used by the replica to
-     * authenticate against the source database server. If this field is used
-     * then the 'client_key' and the 'ca_certificate' fields are mandatory.
+     * Optional. Input only. PEM-encoded certificate that will be used by the
+     * replica to authenticate against the source database server. If this field
+     * is used then the 'client_key' and the 'ca_certificate' fields are
+     * mandatory.
      *
-     * Generated from protobuf field <code>string client_certificate = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string client_certificate = 3 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getClientCertificate()
@@ -157,11 +160,12 @@ class MysqlSslConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. PEM-encoded certificate that will be used by the replica to
-     * authenticate against the source database server. If this field is used
-     * then the 'client_key' and the 'ca_certificate' fields are mandatory.
+     * Optional. Input only. PEM-encoded certificate that will be used by the
+     * replica to authenticate against the source database server. If this field
+     * is used then the 'client_key' and the 'ca_certificate' fields are
+     * mandatory.
      *
-     * Generated from protobuf field <code>string client_certificate = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string client_certificate = 3 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

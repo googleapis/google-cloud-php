@@ -5,6 +5,224 @@
     "protoPackage": "google.cloud.networkconnectivity.v1",
     "libraryPackage": "Google\\Cloud\\NetworkConnectivity\\V1",
     "services": {
+        "CrossNetworkAutomationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CrossNetworkAutomationServiceGapicClient",
+                    "rpcs": {
+                        "CreateServiceConnectionMap": {
+                            "methods": [
+                                "createServiceConnectionMap"
+                            ]
+                        },
+                        "CreateServiceConnectionPolicy": {
+                            "methods": [
+                                "createServiceConnectionPolicy"
+                            ]
+                        },
+                        "CreateServiceConnectionToken": {
+                            "methods": [
+                                "createServiceConnectionToken"
+                            ]
+                        },
+                        "DeleteServiceClass": {
+                            "methods": [
+                                "deleteServiceClass"
+                            ]
+                        },
+                        "DeleteServiceConnectionMap": {
+                            "methods": [
+                                "deleteServiceConnectionMap"
+                            ]
+                        },
+                        "DeleteServiceConnectionPolicy": {
+                            "methods": [
+                                "deleteServiceConnectionPolicy"
+                            ]
+                        },
+                        "DeleteServiceConnectionToken": {
+                            "methods": [
+                                "deleteServiceConnectionToken"
+                            ]
+                        },
+                        "GetServiceClass": {
+                            "methods": [
+                                "getServiceClass"
+                            ]
+                        },
+                        "GetServiceConnectionMap": {
+                            "methods": [
+                                "getServiceConnectionMap"
+                            ]
+                        },
+                        "GetServiceConnectionPolicy": {
+                            "methods": [
+                                "getServiceConnectionPolicy"
+                            ]
+                        },
+                        "GetServiceConnectionToken": {
+                            "methods": [
+                                "getServiceConnectionToken"
+                            ]
+                        },
+                        "ListServiceClasses": {
+                            "methods": [
+                                "listServiceClasses"
+                            ]
+                        },
+                        "ListServiceConnectionMaps": {
+                            "methods": [
+                                "listServiceConnectionMaps"
+                            ]
+                        },
+                        "ListServiceConnectionPolicies": {
+                            "methods": [
+                                "listServiceConnectionPolicies"
+                            ]
+                        },
+                        "ListServiceConnectionTokens": {
+                            "methods": [
+                                "listServiceConnectionTokens"
+                            ]
+                        },
+                        "UpdateServiceClass": {
+                            "methods": [
+                                "updateServiceClass"
+                            ]
+                        },
+                        "UpdateServiceConnectionMap": {
+                            "methods": [
+                                "updateServiceConnectionMap"
+                            ]
+                        },
+                        "UpdateServiceConnectionPolicy": {
+                            "methods": [
+                                "updateServiceConnectionPolicy"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DataTransferService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataTransferServiceGapicClient",
+                    "rpcs": {
+                        "CreateDestination": {
+                            "methods": [
+                                "createDestination"
+                            ]
+                        },
+                        "CreateMulticloudDataTransferConfig": {
+                            "methods": [
+                                "createMulticloudDataTransferConfig"
+                            ]
+                        },
+                        "DeleteDestination": {
+                            "methods": [
+                                "deleteDestination"
+                            ]
+                        },
+                        "DeleteMulticloudDataTransferConfig": {
+                            "methods": [
+                                "deleteMulticloudDataTransferConfig"
+                            ]
+                        },
+                        "GetDestination": {
+                            "methods": [
+                                "getDestination"
+                            ]
+                        },
+                        "GetMulticloudDataTransferConfig": {
+                            "methods": [
+                                "getMulticloudDataTransferConfig"
+                            ]
+                        },
+                        "GetMulticloudDataTransferSupportedService": {
+                            "methods": [
+                                "getMulticloudDataTransferSupportedService"
+                            ]
+                        },
+                        "ListDestinations": {
+                            "methods": [
+                                "listDestinations"
+                            ]
+                        },
+                        "ListMulticloudDataTransferConfigs": {
+                            "methods": [
+                                "listMulticloudDataTransferConfigs"
+                            ]
+                        },
+                        "ListMulticloudDataTransferSupportedServices": {
+                            "methods": [
+                                "listMulticloudDataTransferSupportedServices"
+                            ]
+                        },
+                        "UpdateDestination": {
+                            "methods": [
+                                "updateDestination"
+                            ]
+                        },
+                        "UpdateMulticloudDataTransferConfig": {
+                            "methods": [
+                                "updateMulticloudDataTransferConfig"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "HubService": {
             "clients": {
                 "grpc": {
@@ -13,6 +231,11 @@
                         "AcceptHubSpoke": {
                             "methods": [
                                 "acceptHubSpoke"
+                            ]
+                        },
+                        "AcceptSpokeUpdate": {
+                            "methods": [
+                                "acceptSpokeUpdate"
                             ]
                         },
                         "CreateHub": {
@@ -90,9 +313,24 @@
                                 "listSpokes"
                             ]
                         },
+                        "QueryHubStatus": {
+                            "methods": [
+                                "queryHubStatus"
+                            ]
+                        },
                         "RejectHubSpoke": {
                             "methods": [
                                 "rejectHubSpoke"
+                            ]
+                        },
+                        "RejectSpokeUpdate": {
+                            "methods": [
+                                "rejectSpokeUpdate"
+                            ]
+                        },
+                        "UpdateGroup": {
+                            "methods": [
+                                "updateGroup"
                             ]
                         },
                         "UpdateHub": {
@@ -103,6 +341,65 @@
                         "UpdateSpoke": {
                             "methods": [
                                 "updateSpoke"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "InternalRangeService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InternalRangeServiceGapicClient",
+                    "rpcs": {
+                        "CreateInternalRange": {
+                            "methods": [
+                                "createInternalRange"
+                            ]
+                        },
+                        "DeleteInternalRange": {
+                            "methods": [
+                                "deleteInternalRange"
+                            ]
+                        },
+                        "GetInternalRange": {
+                            "methods": [
+                                "getInternalRange"
+                            ]
+                        },
+                        "ListInternalRanges": {
+                            "methods": [
+                                "listInternalRanges"
+                            ]
+                        },
+                        "UpdateInternalRange": {
+                            "methods": [
+                                "updateInternalRange"
                             ]
                         },
                         "GetLocation": {

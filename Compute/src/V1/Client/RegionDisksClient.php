@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -43,7 +44,6 @@ use Google\Cloud\Compute\V1\GetRegionDiskRequest;
 use Google\Cloud\Compute\V1\InsertRegionDiskRequest;
 use Google\Cloud\Compute\V1\ListRegionDisksRequest;
 use Google\Cloud\Compute\V1\Policy;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RemoveResourcePoliciesRegionDiskRequest;
 use Google\Cloud\Compute\V1\ResizeRegionDiskRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyRegionDiskRequest;
@@ -55,6 +55,7 @@ use Google\Cloud\Compute\V1\TestIamPermissionsRegionDiskRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateRegionDiskRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionDisks API.
@@ -62,23 +63,23 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addResourcePoliciesAsync(AddResourcePoliciesRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface bulkInsertAsync(BulkInsertRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSnapshotAsync(CreateSnapshotRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionDisksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeResourcePoliciesAsync(RemoveResourcePoliciesRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resizeAsync(ResizeRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startAsyncReplicationAsync(StartAsyncReplicationRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopAsyncReplicationAsync(StopAsyncReplicationRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopGroupAsyncReplicationAsync(StopGroupAsyncReplicationRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRegionDiskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addResourcePoliciesAsync(AddResourcePoliciesRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> bulkInsertAsync(BulkInsertRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSnapshotAsync(CreateSnapshotRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Disk> getAsync(GetRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionDisksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeResourcePoliciesAsync(RemoveResourcePoliciesRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resizeAsync(ResizeRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startAsyncReplicationAsync(StartAsyncReplicationRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopAsyncReplicationAsync(StopAsyncReplicationRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopGroupAsyncReplicationAsync(StopGroupAsyncReplicationRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateRegionDiskRequest $request, array $optionalArgs = [])
  */
 final class RegionDisksClient
 {
@@ -127,7 +128,6 @@ final class RegionDisksClient
                     'restClientConfigPath' => __DIR__ . '/../resources/region_disks_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -140,9 +140,7 @@ final class RegionDisksClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -159,10 +157,7 @@ final class RegionDisksClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -190,29 +185,57 @@ final class RegionDisksClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\RegionDisksClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new RegionDisksClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -243,11 +266,16 @@ final class RegionDisksClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -270,6 +298,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::addResourcePoliciesAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/add_resource_policies.php
+     *
      * @param AddResourcePoliciesRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -284,8 +314,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addResourcePolicies(AddResourcePoliciesRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addResourcePolicies(
+        AddResourcePoliciesRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddResourcePolicies', $request, $callOptions)->wait();
     }
 
@@ -293,6 +325,8 @@ final class RegionDisksClient
      * Bulk create a set of disks.
      *
      * The async variant is {@see RegionDisksClient::bulkInsertAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/bulk_insert.php
      *
      * @param BulkInsertRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -318,6 +352,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::createSnapshotAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/create_snapshot.php
+     *
      * @param CreateSnapshotRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -341,6 +377,8 @@ final class RegionDisksClient
      * Deletes the specified regional persistent disk. Deleting a regional disk removes all the replicas of its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots.
      *
      * The async variant is {@see RegionDisksClient::deleteAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/delete.php
      *
      * @param DeleteRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -366,6 +404,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::getAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/get.php
+     *
      * @param GetRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -389,6 +429,8 @@ final class RegionDisksClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see RegionDisksClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/get_iam_policy.php
      *
      * @param GetIamPolicyRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -414,6 +456,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::insertAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/insert.php
+     *
      * @param InsertRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -437,6 +481,8 @@ final class RegionDisksClient
      * Retrieves the list of persistent disks contained within the specified region.
      *
      * The async variant is {@see RegionDisksClient::listAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/list.php
      *
      * @param ListRegionDisksRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -462,6 +508,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::removeResourcePoliciesAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/remove_resource_policies.php
+     *
      * @param RemoveResourcePoliciesRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -476,8 +524,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeResourcePolicies(RemoveResourcePoliciesRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeResourcePolicies(
+        RemoveResourcePoliciesRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveResourcePolicies', $request, $callOptions)->wait();
     }
 
@@ -485,6 +535,8 @@ final class RegionDisksClient
      * Resizes the specified regional persistent disk.
      *
      * The async variant is {@see RegionDisksClient::resizeAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/resize.php
      *
      * @param ResizeRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -510,6 +562,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -533,6 +587,8 @@ final class RegionDisksClient
      * Sets the labels on the target regional disk.
      *
      * The async variant is {@see RegionDisksClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/set_labels.php
      *
      * @param SetLabelsRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -558,6 +614,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::startAsyncReplicationAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/start_async_replication.php
+     *
      * @param StartAsyncReplicationRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -572,8 +630,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startAsyncReplication(StartAsyncReplicationRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function startAsyncReplication(
+        StartAsyncReplicationRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StartAsyncReplication', $request, $callOptions)->wait();
     }
 
@@ -581,6 +641,8 @@ final class RegionDisksClient
      * Stops asynchronous replication. Can be invoked either on the primary or on the secondary disk.
      *
      * The async variant is {@see RegionDisksClient::stopAsyncReplicationAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/stop_async_replication.php
      *
      * @param StopAsyncReplicationRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -596,8 +658,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopAsyncReplication(StopAsyncReplicationRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function stopAsyncReplication(
+        StopAsyncReplicationRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StopAsyncReplication', $request, $callOptions)->wait();
     }
 
@@ -606,6 +670,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::stopGroupAsyncReplicationAsync()}
      * .
+     *
+     * @example samples/V1/RegionDisksClient/stop_group_async_replication.php
      *
      * @param StopGroupAsyncReplicationRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
@@ -621,8 +687,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopGroupAsyncReplication(StopGroupAsyncReplicationRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function stopGroupAsyncReplication(
+        StopGroupAsyncReplicationRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StopGroupAsyncReplication', $request, $callOptions)->wait();
     }
 
@@ -630,6 +698,8 @@ final class RegionDisksClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see RegionDisksClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -645,8 +715,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRegionDiskRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRegionDiskRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -654,6 +726,8 @@ final class RegionDisksClient
      * Update the specified disk with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: user_license.
      *
      * The async variant is {@see RegionDisksClient::updateAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/update.php
      *
      * @param UpdateRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

@@ -20,20 +20,20 @@ class GovernanceEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 1;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * The type of the event.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.GovernanceEvent.EventType event_type = 2;</code>
      */
-    private $event_type = 0;
+    protected $event_type = 0;
     /**
      * Entity resource information if the log event is associated with a
      * specific entity.
      *
      * Generated from protobuf field <code>optional .google.cloud.dataplex.v1.GovernanceEvent.Entity entity = 3;</code>
      */
-    private $entity = null;
+    protected $entity = null;
 
     /**
      * Constructor.

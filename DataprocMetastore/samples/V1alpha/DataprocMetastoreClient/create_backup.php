@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Metastore\V1alpha\Backup;
-use Google\Cloud\Metastore\V1alpha\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1alpha\Client\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1alpha\CreateBackupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -49,13 +50,17 @@ function create_backup_sample(string $formattedParent, string $backupId): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $backup = new Backup();
+    $request = (new CreateBackupRequest())
+        ->setParent($formattedParent)
+        ->setBackupId($backupId)
+        ->setBackup($backup);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->createBackup($formattedParent, $backupId, $backup);
+        $response = $dataprocMetastoreClient->createBackup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

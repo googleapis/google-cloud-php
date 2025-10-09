@@ -27,7 +27,7 @@ class FeatureRegistryService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Œ"
+©$
 9google/cloud/aiplatform/v1/feature_registry_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/aiplatform/v1/feature.proto.google/cloud/aiplatform/v1/feature_group.proto5google/cloud/aiplatform/v1/featurestore_service.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"À
 CreateFeatureGroupRequest>
 parent (	B.àAúA(&aiplatform.googleapis.com/FeatureGroupD
@@ -60,7 +60,7 @@ page_token (	
 &CreateRegistryFeatureOperationMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"p
 UpdateFeatureOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2Æ
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2ã
 FeatureRegistryService“
 CreateFeatureGroup5.google.cloud.aiplatform.v1.CreateFeatureGroupRequest.google.longrunning.Operation"¦ÊA3
 FeatureGroup#CreateFeatureGroupOperationMetadataÚA%parent,feature_group,feature_group_id‚Óä“B"1/v1/{parent=projects/*/locations/*}/featureGroups:feature_group±
@@ -72,7 +72,9 @@ page_token (	
 google.protobuf.EmptyDeleteOperationMetadataÚA
 name,force‚Óä“3*1/v1/{name=projects/*/locations/*/featureGroups/*}ø
 CreateFeature0.google.cloud.aiplatform.v1.CreateFeatureRequest.google.longrunning.Operation"•ÊA)
-FeatureCreateFeatureOperationMetadataÚAparent,feature,feature_id‚Óä“G"</v1/{parent=projects/*/locations/*/featureGroups/*}/features:feature­
+FeatureCreateFeatureOperationMetadataÚAparent,feature,feature_id‚Óä“G"</v1/{parent=projects/*/locations/*/featureGroups/*}/features:featureš
+BatchCreateFeatures6.google.cloud.aiplatform.v1.BatchCreateFeaturesRequest.google.longrunning.Operation"«ÊAC
+BatchCreateFeaturesResponse$BatchCreateFeaturesOperationMetadataÚAparent,requests‚Óä“M"H/v1/{parent=projects/*/locations/*/featureGroups/*}/features:batchCreate:*­
 
 GetFeature-.google.cloud.aiplatform.v1.GetFeatureRequest#.google.cloud.aiplatform.v1.Feature"KÚAname‚Óä“></v1/{name=projects/*/locations/*/featureGroups/*/features/*}À
 ListFeatures/.google.cloud.aiplatform.v1.ListFeaturesRequest0.google.cloud.aiplatform.v1.ListFeaturesResponse"MÚAparent‚Óä“></v1/{parent=projects/*/locations/*/featureGroups/*}/featuresú

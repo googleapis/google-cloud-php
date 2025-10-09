@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1beta_generated_DataprocMetastore_CreateService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Metastore\V1beta\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1beta\Client\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1beta\CreateServiceRequest;
 use Google\Cloud\Metastore\V1beta\Service;
 use Google\Rpc\Status;
 
@@ -49,13 +50,17 @@ function create_service_sample(string $formattedParent, string $serviceId): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $service = new Service();
+    $request = (new CreateServiceRequest())
+        ->setParent($formattedParent)
+        ->setServiceId($serviceId)
+        ->setService($service);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->createService($formattedParent, $serviceId, $service);
+        $response = $dataprocMetastoreClient->createService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

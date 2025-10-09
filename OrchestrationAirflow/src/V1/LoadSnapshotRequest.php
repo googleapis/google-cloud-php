@@ -21,42 +21,42 @@ class LoadSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string environment = 1;</code>
      */
-    private $environment = '';
+    protected $environment = '';
     /**
      * A Cloud Storage path to a snapshot to load, e.g.:
      * "gs://my-bucket/snapshots/project_location_environment_timestamp".
      *
      * Generated from protobuf field <code>string snapshot_path = 2;</code>
      */
-    private $snapshot_path = '';
+    protected $snapshot_path = '';
     /**
      * Whether or not to skip installing Pypi packages when loading the
      * environment's state.
      *
      * Generated from protobuf field <code>bool skip_pypi_packages_installation = 3;</code>
      */
-    private $skip_pypi_packages_installation = false;
+    protected $skip_pypi_packages_installation = false;
     /**
      * Whether or not to skip setting environment variables when loading the
      * environment's state.
      *
      * Generated from protobuf field <code>bool skip_environment_variables_setting = 4;</code>
      */
-    private $skip_environment_variables_setting = false;
+    protected $skip_environment_variables_setting = false;
     /**
      * Whether or not to skip setting Airflow overrides when loading the
      * environment's state.
      *
      * Generated from protobuf field <code>bool skip_airflow_overrides_setting = 5;</code>
      */
-    private $skip_airflow_overrides_setting = false;
+    protected $skip_airflow_overrides_setting = false;
     /**
      * Whether or not to skip copying Cloud Storage data when loading the
      * environment's state.
      *
      * Generated from protobuf field <code>bool skip_gcs_data_copying = 6;</code>
      */
-    private $skip_gcs_data_copying = false;
+    protected $skip_gcs_data_copying = false;
 
     /**
      * Constructor.

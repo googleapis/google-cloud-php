@@ -20,14 +20,14 @@ class RotateServerCaContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The fingerprint of the next version to be rotated to. If left unspecified,
      * will be rotated to the most recently added server CA version.
      *
      * Generated from protobuf field <code>string next_version = 2;</code>
      */
-    private $next_version = '';
+    protected $next_version = '';
 
     /**
      * Constructor.

@@ -20,56 +20,56 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host_port = 1;</code>
      */
-    private $host_port = '';
+    protected $host_port = '';
     /**
      * This is always `sql#onPremisesConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The username for connecting to on-premises instance.
      *
      * Generated from protobuf field <code>string username = 3;</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * The password for connecting to on-premises instance.
      *
      * Generated from protobuf field <code>string password = 4;</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * PEM representation of the trusted CA's x509 certificate.
      *
      * Generated from protobuf field <code>string ca_certificate = 5;</code>
      */
-    private $ca_certificate = '';
+    protected $ca_certificate = '';
     /**
      * PEM representation of the replica's x509 certificate.
      *
      * Generated from protobuf field <code>string client_certificate = 6;</code>
      */
-    private $client_certificate = '';
+    protected $client_certificate = '';
     /**
      * PEM representation of the replica's private key. The corresponsing public
      * key is encoded in the client's certificate.
      *
      * Generated from protobuf field <code>string client_key = 7;</code>
      */
-    private $client_key = '';
+    protected $client_key = '';
     /**
      * The dump file to create the Cloud SQL replica.
      *
      * Generated from protobuf field <code>string dump_file_path = 8;</code>
      */
-    private $dump_file_path = '';
+    protected $dump_file_path = '';
     /**
      * The reference to Cloud SQL instance if the source is Cloud SQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.InstanceReference source_instance = 15;</code>
      */
-    private $source_instance = null;
+    protected $source_instance = null;
 
     /**
      * Constructor.

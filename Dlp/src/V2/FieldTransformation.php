@@ -35,7 +35,7 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordCondition condition = 3;</code>
      */
-    private $condition = null;
+    protected $condition = null;
     protected $transformation;
 
     /**

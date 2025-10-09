@@ -22,13 +22,13 @@ class DiskSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string boot_disk_type = 1;</code>
      */
-    private $boot_disk_type = '';
+    protected $boot_disk_type = '';
     /**
      * Size in GB of the boot disk (default is 100GB).
      *
      * Generated from protobuf field <code>int32 boot_disk_size_gb = 2;</code>
      */
-    private $boot_disk_size_gb = 0;
+    protected $boot_disk_size_gb = 0;
 
     /**
      * Constructor.

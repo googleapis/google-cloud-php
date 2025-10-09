@@ -23,13 +23,13 @@ class CreateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The FeatureView to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView feature_view = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature_view = null;
+    protected $feature_view = null;
     /**
      * Required. The ID to use for the FeatureView, which will become the final
      * component of the FeatureView's resource name.
@@ -39,7 +39,7 @@ class CreateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string feature_view_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature_view_id = '';
+    protected $feature_view_id = '';
     /**
      * Immutable. If set to true, one on demand sync will be run immediately,
      * regardless whether the
@@ -48,7 +48,7 @@ class CreateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool run_sync_immediately = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $run_sync_immediately = false;
+    protected $run_sync_immediately = false;
 
     /**
      * @param string                                  $parent        Required. The resource name of the FeatureOnlineStore to create

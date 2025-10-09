@@ -23,13 +23,13 @@ class CreateHyperparameterTuningJobRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The HyperparameterTuningJob to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.HyperparameterTuningJob hyperparameter_tuning_job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $hyperparameter_tuning_job = null;
+    protected $hyperparameter_tuning_job = null;
 
     /**
      * @param string                                              $parent                  Required. The resource name of the Location to create the

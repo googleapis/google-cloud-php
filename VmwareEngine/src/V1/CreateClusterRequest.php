@@ -25,7 +25,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The user-provided identifier of the new `Cluster`.
      * This identifier must be unique among clusters within the parent and becomes
@@ -40,27 +40,27 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cluster_id = '';
+    protected $cluster_id = '';
     /**
      * Required. The initial description of the new cluster.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cluster = null;
+    protected $cluster = null;
     /**
      * Optional. The request ID must be a valid UUID with the exception that zero
      * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. True if you want the request to be validated and not executed;
      * false otherwise.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                $parent    Required. The resource name of the private cloud to create a new cluster

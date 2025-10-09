@@ -35,7 +35,7 @@ use Google\Cloud\Dlp\V2\ListDiscoveryConfigsRequest;
  * @param string $formattedParent Parent resource name.
  *
  *                                The format of this value is as follows:
- *                                `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+ *                                `projects/{project_id}/locations/{location_id}`
  *
  *                                The following example `parent` string specifies a parent project with the
  *                                identifier `example-project`, and specifies the `europe-west3` location

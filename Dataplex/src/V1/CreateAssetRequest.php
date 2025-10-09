@@ -21,7 +21,7 @@ class CreateAssetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Asset identifier.
      * This ID will be used to generate names such as table names when publishing
@@ -34,20 +34,20 @@ class CreateAssetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $asset_id = '';
+    protected $asset_id = '';
     /**
      * Required. Asset resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset asset = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $asset = null;
+    protected $asset = null;
     /**
      * Optional. Only validate the request, but do not perform mutations.
      * The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                          $parent  Required. The resource name of the parent zone:

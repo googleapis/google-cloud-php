@@ -32,13 +32,13 @@ class VirtualClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string staging_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $staging_bucket = '';
+    protected $staging_bucket = '';
     /**
      * Optional. Configuration of auxiliary services used by this cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.AuxiliaryServicesConfig auxiliary_services_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $auxiliary_services_config = null;
+    protected $auxiliary_services_config = null;
     protected $infrastructure_config;
 
     /**

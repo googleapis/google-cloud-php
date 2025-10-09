@@ -43,20 +43,20 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string issuance_config = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $issuance_config = '';
+    protected $issuance_config = '';
     /**
      * Output only. State of the managed certificate resource.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Information about issues with provisioning a Managed
      * Certificate.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.ProvisioningIssue provisioning_issue = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $provisioning_issue = null;
+    protected $provisioning_issue = null;
     /**
      * Output only. Detailed state of the latest authorization attempt for each
      * domain specified for managed certificate resource.

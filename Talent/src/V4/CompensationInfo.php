@@ -36,7 +36,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.CompensationInfo.CompensationRange annualized_base_compensation_range = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $annualized_base_compensation_range = null;
+    protected $annualized_base_compensation_range = null;
     /**
      * Output only. Annualized total compensation range. Computed as all
      * compensation entries'
@@ -49,7 +49,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.CompensationInfo.CompensationRange annualized_total_compensation_range = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $annualized_total_compensation_range = null;
+    protected $annualized_total_compensation_range = null;
 
     /**
      * Constructor.

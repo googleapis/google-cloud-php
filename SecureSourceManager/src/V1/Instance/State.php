@@ -43,6 +43,12 @@ class State
      * Generated from protobuf enum <code>PAUSED = 4;</code>
      */
     const PAUSED = 4;
+    /**
+     * Instance is unknown, we are not sure if it's functioning.
+     *
+     * Generated from protobuf enum <code>UNKNOWN = 6;</code>
+     */
+    const UNKNOWN = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class State
         self::ACTIVE => 'ACTIVE',
         self::DELETING => 'DELETING',
         self::PAUSED => 'PAUSED',
+        self::UNKNOWN => 'UNKNOWN',
     ];
 
     public static function name($value)

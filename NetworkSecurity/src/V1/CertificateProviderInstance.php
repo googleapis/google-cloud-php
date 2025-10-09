@@ -25,7 +25,7 @@ class CertificateProviderInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string plugin_instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $plugin_instance = '';
+    protected $plugin_instance = '';
 
     /**
      * Constructor.

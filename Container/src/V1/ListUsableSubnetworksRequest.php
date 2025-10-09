@@ -22,7 +22,7 @@ class ListUsableSubnetworksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Filtering currently only supports equality on the networkProjectId and must
      * be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId`
@@ -31,7 +31,7 @@ class ListUsableSubnetworksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The max number of results per page that should be returned. If the number
      * of available results is larger than `page_size`, a `next_page_token` is
@@ -40,14 +40,14 @@ class ListUsableSubnetworksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Specifies a page token to use. Set this to the nextPageToken returned by
      * previous list requests to get the next page of results.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

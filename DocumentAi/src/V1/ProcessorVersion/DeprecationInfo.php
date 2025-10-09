@@ -20,13 +20,13 @@ class DeprecationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp deprecation_time = 1;</code>
      */
-    private $deprecation_time = null;
+    protected $deprecation_time = null;
     /**
      * If set, the processor version that will be used as a replacement.
      *
      * Generated from protobuf field <code>string replacement_processor_version = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $replacement_processor_version = '';
+    protected $replacement_processor_version = '';
 
     /**
      * Constructor.

@@ -20,20 +20,20 @@ class SecurityBulletin extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bulletin_id = 1;</code>
      */
-    private $bulletin_id = '';
+    protected $bulletin_id = '';
     /**
      * Submission time of this Security Bulletin.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp submission_time = 2;</code>
      */
-    private $submission_time = null;
+    protected $submission_time = null;
     /**
      * This represents a version that the cluster receiving this notification
      * should be upgraded to, based on its current version. For example, 1.15.0
      *
      * Generated from protobuf field <code>string suggested_upgrade_version = 3;</code>
      */
-    private $suggested_upgrade_version = '';
+    protected $suggested_upgrade_version = '';
 
     /**
      * Constructor.

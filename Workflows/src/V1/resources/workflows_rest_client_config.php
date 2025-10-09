@@ -84,6 +84,17 @@ return [
                     ],
                 ],
             ],
+            'ListWorkflowRevisions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/workflows/*}:listRevisions',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListWorkflows' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/workflows',

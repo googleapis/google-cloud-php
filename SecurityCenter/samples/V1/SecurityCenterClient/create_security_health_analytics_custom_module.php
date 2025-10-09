@@ -35,9 +35,9 @@ use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
  * parent. These modules are enabled by default.
  *
  * @param string $formattedParent Resource name of the new custom module's parent. Its format is
- *                                "organizations/{organization}/securityHealthAnalyticsSettings",
- *                                "folders/{folder}/securityHealthAnalyticsSettings", or
- *                                "projects/{project}/securityHealthAnalyticsSettings"
+ *                                `organizations/{organization}/securityHealthAnalyticsSettings`,
+ *                                `folders/{folder}/securityHealthAnalyticsSettings`, or
+ *                                `projects/{project}/securityHealthAnalyticsSettings`
  *                                Please see {@see SecurityCenterClient::securityHealthAnalyticsSettingsName()} for help formatting this field.
  */
 function create_security_health_analytics_custom_module_sample(string $formattedParent): void

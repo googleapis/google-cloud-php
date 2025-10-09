@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class LinkedResource extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Output only. Listing for which linked resource is created.
+     *
+     * Generated from protobuf field <code>string listing = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $listing = '';
     protected $reference;
 
     /**
@@ -26,6 +32,11 @@ class LinkedResource extends \Google\Protobuf\Internal\Message
      *     @type string $linked_dataset
      *           Output only. Name of the linked dataset, e.g.
      *           projects/subscriberproject/datasets/linked_dataset
+     *     @type string $linked_pubsub_subscription
+     *           Output only. Name of the Pub/Sub subscription, e.g.
+     *           projects/subscriberproject/subscriptions/subscriptions/sub_id
+     *     @type string $listing
+     *           Output only. Listing for which linked resource is created.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,6 +73,65 @@ class LinkedResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Name of the Pub/Sub subscription, e.g.
+     * projects/subscriberproject/subscriptions/subscriptions/sub_id
+     *
+     * Generated from protobuf field <code>string linked_pubsub_subscription = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getLinkedPubsubSubscription()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasLinkedPubsubSubscription()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Output only. Name of the Pub/Sub subscription, e.g.
+     * projects/subscriberproject/subscriptions/subscriptions/sub_id
+     *
+     * Generated from protobuf field <code>string linked_pubsub_subscription = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLinkedPubsubSubscription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Listing for which linked resource is created.
+     *
+     * Generated from protobuf field <code>string listing = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getListing()
+    {
+        return $this->listing;
+    }
+
+    /**
+     * Output only. Listing for which linked resource is created.
+     *
+     * Generated from protobuf field <code>string listing = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setListing($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->listing = $var;
 
         return $this;
     }

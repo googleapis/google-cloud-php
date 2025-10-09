@@ -54,6 +54,12 @@ php.owlbot_copy_version(
 s.move(dest / 'src/V1', dest / 'src/Chat/V1', merge=php._merge)
 shutil.rmtree(dest / "src/V1")
 
+# fix protobuf bug (b/418528083)
+s.replace(
+    "src/*/V*/**/*.php",
+    "\$arr->count\(\)",
+    "count($arr)")
+
 # remove class_alias code
 s.replace(
     "src/**/*.php",
@@ -68,7 +74,7 @@ subprocess.run([
     'npm',
     'exec',
     '--yes',
-    '--package=@prettier/plugin-php@^0.16',
+    '--package=@prettier/plugin-php@^0.19',
     '--',
     'prettier',
     '**/Client/*',

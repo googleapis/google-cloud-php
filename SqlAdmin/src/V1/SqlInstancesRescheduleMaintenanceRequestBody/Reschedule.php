@@ -18,7 +18,7 @@ class Reschedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesRescheduleMaintenanceRequestBody.RescheduleType reschedule_type = 1;</code>
      */
-    private $reschedule_type = 0;
+    protected $reschedule_type = 0;
     /**
      * Optional. Timestamp when the maintenance shall be rescheduled to if
      * reschedule_type=SPECIFIC_TIME, in
@@ -27,7 +27,7 @@ class Reschedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $schedule_time = null;
+    protected $schedule_time = null;
 
     /**
      * Constructor.

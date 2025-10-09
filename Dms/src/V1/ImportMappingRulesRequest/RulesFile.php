@@ -22,13 +22,13 @@ class RulesFile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rules_source_filename = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rules_source_filename = '';
+    protected $rules_source_filename = '';
     /**
      * Required. The text content of the rules that needs to be converted.
      *
      * Generated from protobuf field <code>string rules_content = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rules_content = '';
+    protected $rules_content = '';
 
     /**
      * Constructor.

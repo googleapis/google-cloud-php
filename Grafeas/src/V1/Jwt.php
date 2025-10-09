@@ -20,7 +20,7 @@ class Jwt extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string compact_jwt = 1;</code>
      */
-    private $compact_jwt = '';
+    protected $compact_jwt = '';
 
     /**
      * Constructor.

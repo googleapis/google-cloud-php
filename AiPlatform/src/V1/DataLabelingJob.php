@@ -21,7 +21,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user-defined name of the DataLabelingJob.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -30,7 +30,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. Dataset resource names. Right now we only support labeling from a
      * single Dataset. Format:
@@ -56,7 +56,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 labeler_count = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $labeler_count = 0;
+    protected $labeler_count = 0;
     /**
      * Required. The Google Cloud Storage location of the instruction pdf. This
      * pdf is shared with labelers, and provides detailed description on how to
@@ -64,7 +64,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instruction_uri = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instruction_uri = '';
+    protected $instruction_uri = '';
     /**
      * Required. Points to a YAML file stored on Google Cloud Storage describing
      * the config for a specific type of DataLabelingJob. The schema files that
@@ -74,52 +74,52 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string inputs_schema_uri = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $inputs_schema_uri = '';
+    protected $inputs_schema_uri = '';
     /**
      * Required. Input config parameters for the DataLabelingJob.
      *
      * Generated from protobuf field <code>.google.protobuf.Value inputs = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $inputs = null;
+    protected $inputs = null;
     /**
      * Output only. The detailed state of the job.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.JobState state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Current labeling job progress percentage scaled in interval
      * [0, 100], indicating the percentage of DataItems that has been finished.
      *
      * Generated from protobuf field <code>int32 labeling_progress = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $labeling_progress = 0;
+    protected $labeling_progress = 0;
     /**
      * Output only. Estimated cost(in US dollars) that the DataLabelingJob has
      * incurred to date.
      *
      * Generated from protobuf field <code>.google.type.Money current_spend = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $current_spend = null;
+    protected $current_spend = null;
     /**
      * Output only. Timestamp when this DataLabelingJob was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this DataLabelingJob was updated most recently.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. DataLabelingJob errors. It is only populated when job's state
      * is `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * The labels with user-defined metadata to organize your DataLabelingJobs.
      * Label keys and values can be no longer than 64 characters
@@ -149,7 +149,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 20;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * Parameters that configure the active learning pipeline. Active learning
      * will label the data incrementally via several iterations. For every
@@ -157,7 +157,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ActiveLearningConfig active_learning_config = 21;</code>
      */
-    private $active_learning_config = null;
+    protected $active_learning_config = null;
 
     /**
      * Constructor.

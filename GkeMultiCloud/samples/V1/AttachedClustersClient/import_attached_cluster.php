@@ -59,7 +59,7 @@ use Google\Rpc\Status;
  *                                [GetAttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig].
  * @param string $distribution    The Kubernetes distribution of the underlying attached cluster.
  *
- *                                Supported values: ["eks", "aks"].
+ *                                Supported values: ["eks", "aks", "generic"].
  */
 function import_attached_cluster_sample(
     string $formattedParent,

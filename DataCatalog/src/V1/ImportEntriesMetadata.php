@@ -22,7 +22,7 @@ class ImportEntriesMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ImportEntriesMetadata.ImportState state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Partial errors that are encountered during the ImportEntries operation.
      * There is no guarantee that all the encountered errors are reported.

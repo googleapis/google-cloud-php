@@ -17,29 +17,29 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The relative name of the Google Compute Engine
-     * [network][google.container.v1.NetworkConfig.network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
+     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
      * to which the cluster is connected. Example:
      * projects/my-project/global/networks/my-network
      *
-     * Generated from protobuf field <code>string network = 1;</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Output only. The relative name of the Google Compute Engine
-     * [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the
-     * cluster is connected. Example:
+     * [subnetwork](https://cloud.google.com/compute/docs/vpc)
+     * to which the cluster is connected. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      *
-     * Generated from protobuf field <code>string subnetwork = 2;</code>
+     * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $subnetwork = '';
+    protected $subnetwork = '';
     /**
      * Whether Intra-node visibility is enabled for this cluster.
      * This makes same node pod to pod traffic visible for VPC network.
      *
      * Generated from protobuf field <code>bool enable_intra_node_visibility = 5;</code>
      */
-    private $enable_intra_node_visibility = false;
+    protected $enable_intra_node_visibility = false;
     /**
      * Whether the cluster disables default in-node sNAT rules. In-node sNAT rules
      * will be disabled when default_snat_status is disabled. When disabled is set
@@ -48,20 +48,20 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.DefaultSnatStatus default_snat_status = 7;</code>
      */
-    private $default_snat_status = null;
+    protected $default_snat_status = null;
     /**
      * Whether L4ILB Subsetting is enabled for this cluster.
      *
      * Generated from protobuf field <code>bool enable_l4ilb_subsetting = 10;</code>
      */
-    private $enable_l4ilb_subsetting = false;
+    protected $enable_l4ilb_subsetting = false;
     /**
      * The desired datapath provider for this cluster. By default, uses the
      * IPTables-based kube-proxy implementation.
      *
      * Generated from protobuf field <code>.google.container.v1.DatapathProvider datapath_provider = 11;</code>
      */
-    private $datapath_provider = 0;
+    protected $datapath_provider = 0;
     /**
      * The desired state of IPv6 connectivity to Google Services.
      * By default, no private IPv6 access to or from Google Services (all access
@@ -69,58 +69,74 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateIPv6GoogleAccess private_ipv6_google_access = 12;</code>
      */
-    private $private_ipv6_google_access = 0;
+    protected $private_ipv6_google_access = 0;
     /**
      * DNSConfig contains clusterDNS config for this cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.DNSConfig dns_config = 13;</code>
      */
-    private $dns_config = null;
+    protected $dns_config = null;
     /**
      * ServiceExternalIPsConfig specifies if services with externalIPs field are
      * blocked or not.
      *
      * Generated from protobuf field <code>.google.container.v1.ServiceExternalIPsConfig service_external_ips_config = 15;</code>
      */
-    private $service_external_ips_config = null;
+    protected $service_external_ips_config = null;
     /**
      * GatewayAPIConfig contains the desired config of Gateway API on this
      * cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig gateway_api_config = 16;</code>
      */
-    private $gateway_api_config = null;
+    protected $gateway_api_config = null;
     /**
      * Whether multi-networking is enabled for this cluster.
      *
      * Generated from protobuf field <code>bool enable_multi_networking = 17;</code>
      */
-    private $enable_multi_networking = false;
+    protected $enable_multi_networking = false;
     /**
      * Network bandwidth tier configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig network_performance_config = 18;</code>
      */
-    private $network_performance_config = null;
+    protected $network_performance_config = null;
     /**
      * Whether FQDN Network Policy is enabled on this cluster.
      *
      * Generated from protobuf field <code>optional bool enable_fqdn_network_policy = 19;</code>
      */
-    private $enable_fqdn_network_policy = null;
+    protected $enable_fqdn_network_policy = null;
     /**
      * Specify the details of in-transit encryption.
      * Now named inter-node transparent encryption.
      *
      * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig in_transit_encryption_config = 20;</code>
      */
-    private $in_transit_encryption_config = null;
+    protected $in_transit_encryption_config = null;
     /**
      * Whether CiliumClusterwideNetworkPolicy is enabled on this cluster.
      *
      * Generated from protobuf field <code>optional bool enable_cilium_clusterwide_network_policy = 21;</code>
      */
-    private $enable_cilium_clusterwide_network_policy = null;
+    protected $enable_cilium_clusterwide_network_policy = null;
+    /**
+     * Controls whether by default nodes have private IP addresses only.
+     * It is invalid to specify both [PrivateClusterConfig.enablePrivateNodes][]
+     * and this field at the same time.
+     * To update the default setting, use
+     * [ClusterUpdate.desired_default_enable_private_nodes][google.container.v1.ClusterUpdate.desired_default_enable_private_nodes]
+     *
+     * Generated from protobuf field <code>optional bool default_enable_private_nodes = 22;</code>
+     */
+    protected $default_enable_private_nodes = null;
+    /**
+     * Disable L4 load balancer VPC firewalls to enable firewall policies.
+     *
+     * Generated from protobuf field <code>optional bool disable_l4_lb_firewall_reconciliation = 24;</code>
+     */
+    protected $disable_l4_lb_firewall_reconciliation = null;
 
     /**
      * Constructor.
@@ -130,13 +146,13 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $network
      *           Output only. The relative name of the Google Compute Engine
-     *           [network][google.container.v1.NetworkConfig.network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
+     *           [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
      *           to which the cluster is connected. Example:
      *           projects/my-project/global/networks/my-network
      *     @type string $subnetwork
      *           Output only. The relative name of the Google Compute Engine
-     *           [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the
-     *           cluster is connected. Example:
+     *           [subnetwork](https://cloud.google.com/compute/docs/vpc)
+     *           to which the cluster is connected. Example:
      *           projects/my-project/regions/us-central1/subnetworks/my-subnet
      *     @type bool $enable_intra_node_visibility
      *           Whether Intra-node visibility is enabled for this cluster.
@@ -174,6 +190,14 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           Now named inter-node transparent encryption.
      *     @type bool $enable_cilium_clusterwide_network_policy
      *           Whether CiliumClusterwideNetworkPolicy is enabled on this cluster.
+     *     @type bool $default_enable_private_nodes
+     *           Controls whether by default nodes have private IP addresses only.
+     *           It is invalid to specify both [PrivateClusterConfig.enablePrivateNodes][]
+     *           and this field at the same time.
+     *           To update the default setting, use
+     *           [ClusterUpdate.desired_default_enable_private_nodes][google.container.v1.ClusterUpdate.desired_default_enable_private_nodes]
+     *     @type bool $disable_l4_lb_firewall_reconciliation
+     *           Disable L4 load balancer VPC firewalls to enable firewall policies.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,11 +207,11 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The relative name of the Google Compute Engine
-     * [network][google.container.v1.NetworkConfig.network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
+     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
      * to which the cluster is connected. Example:
      * projects/my-project/global/networks/my-network
      *
-     * Generated from protobuf field <code>string network = 1;</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getNetwork()
@@ -197,11 +221,11 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The relative name of the Google Compute Engine
-     * [network][google.container.v1.NetworkConfig.network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
+     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
      * to which the cluster is connected. Example:
      * projects/my-project/global/networks/my-network
      *
-     * Generated from protobuf field <code>string network = 1;</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -215,11 +239,11 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The relative name of the Google Compute Engine
-     * [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the
-     * cluster is connected. Example:
+     * [subnetwork](https://cloud.google.com/compute/docs/vpc)
+     * to which the cluster is connected. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      *
-     * Generated from protobuf field <code>string subnetwork = 2;</code>
+     * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getSubnetwork()
@@ -229,11 +253,11 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The relative name of the Google Compute Engine
-     * [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the
-     * cluster is connected. Example:
+     * [subnetwork](https://cloud.google.com/compute/docs/vpc)
+     * to which the cluster is connected. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      *
-     * Generated from protobuf field <code>string subnetwork = 2;</code>
+     * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -679,6 +703,86 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_cilium_clusterwide_network_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Controls whether by default nodes have private IP addresses only.
+     * It is invalid to specify both [PrivateClusterConfig.enablePrivateNodes][]
+     * and this field at the same time.
+     * To update the default setting, use
+     * [ClusterUpdate.desired_default_enable_private_nodes][google.container.v1.ClusterUpdate.desired_default_enable_private_nodes]
+     *
+     * Generated from protobuf field <code>optional bool default_enable_private_nodes = 22;</code>
+     * @return bool
+     */
+    public function getDefaultEnablePrivateNodes()
+    {
+        return isset($this->default_enable_private_nodes) ? $this->default_enable_private_nodes : false;
+    }
+
+    public function hasDefaultEnablePrivateNodes()
+    {
+        return isset($this->default_enable_private_nodes);
+    }
+
+    public function clearDefaultEnablePrivateNodes()
+    {
+        unset($this->default_enable_private_nodes);
+    }
+
+    /**
+     * Controls whether by default nodes have private IP addresses only.
+     * It is invalid to specify both [PrivateClusterConfig.enablePrivateNodes][]
+     * and this field at the same time.
+     * To update the default setting, use
+     * [ClusterUpdate.desired_default_enable_private_nodes][google.container.v1.ClusterUpdate.desired_default_enable_private_nodes]
+     *
+     * Generated from protobuf field <code>optional bool default_enable_private_nodes = 22;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDefaultEnablePrivateNodes($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->default_enable_private_nodes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Disable L4 load balancer VPC firewalls to enable firewall policies.
+     *
+     * Generated from protobuf field <code>optional bool disable_l4_lb_firewall_reconciliation = 24;</code>
+     * @return bool
+     */
+    public function getDisableL4LbFirewallReconciliation()
+    {
+        return isset($this->disable_l4_lb_firewall_reconciliation) ? $this->disable_l4_lb_firewall_reconciliation : false;
+    }
+
+    public function hasDisableL4LbFirewallReconciliation()
+    {
+        return isset($this->disable_l4_lb_firewall_reconciliation);
+    }
+
+    public function clearDisableL4LbFirewallReconciliation()
+    {
+        unset($this->disable_l4_lb_firewall_reconciliation);
+    }
+
+    /**
+     * Disable L4 load balancer VPC firewalls to enable firewall policies.
+     *
+     * Generated from protobuf field <code>optional bool disable_l4_lb_firewall_reconciliation = 24;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableL4LbFirewallReconciliation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_l4_lb_firewall_reconciliation = $var;
 
         return $this;
     }

@@ -22,7 +22,7 @@ class ChangeOfferPurchase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entitlement = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entitlement = '';
+    protected $entitlement = '';
     /**
      * Optional. Resource name of the new target SKU. Provide this SKU when
      * upgrading or downgrading an entitlement. Format:
@@ -30,7 +30,7 @@ class ChangeOfferPurchase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string new_sku = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $new_sku = '';
+    protected $new_sku = '';
     /**
      * Optional. Resource name of the new target Billing Account. Provide this
      * Billing Account when setting up billing for a trial subscription. Format:
@@ -40,7 +40,7 @@ class ChangeOfferPurchase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string billing_account = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $billing_account = '';
+    protected $billing_account = '';
 
     /**
      * Constructor.

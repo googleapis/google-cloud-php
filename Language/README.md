@@ -31,40 +31,39 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Language\V2\AnalyzeSentimentRequest;
+use Google\Cloud\Language\V2\AnalyzeSentimentResponse;
+use Google\Cloud\Language\V2\Client\LanguageServiceClient;
+use Google\Cloud\Language\V2\Document;
 
-use Google\Cloud\Language\LanguageClient;
+// Create a client.
+$languageServiceClient = new LanguageServiceClient();
 
-$language = new LanguageClient();
+// Prepare the request message.
+$document = new Document();
+$request = (new AnalyzeSentimentRequest())
+    ->setDocument($document);
 
-// Analyze a sentence.
-$annotation = $language->annotateText('Greetings from Michigan!');
-
-// Check the sentiment.
-if ($annotation->sentiment() > 0) {
-    echo "This is a positive message.\n";
-}
-
-// Detect entities.
-$entities = $annotation->entitiesByType('LOCATION');
-
-foreach ($entities as $entity) {
-    echo $entity['name'] . "\n";
-}
-
-// Parse the syntax.
-$tokens = $annotation->tokensByTag('NOUN');
-
-foreach ($tokens as $token) {
-    echo $token['text']['content'] . "\n";
+// Call the API and handle any network failures.
+try {
+    /** @var AnalyzeSentimentResponse $response */
+    $response = $languageServiceClient->analyzeSentiment($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
+
 ### Version
 
-This component is considered beta. As such, it should be expected to be mostly
-stable and we're working towards a release candidate. We will address issues
-and requests with a higher priority.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

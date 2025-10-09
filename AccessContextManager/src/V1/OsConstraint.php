@@ -20,7 +20,7 @@ class OsConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.type.OsType os_type = 1;</code>
      */
-    private $os_type = 0;
+    protected $os_type = 0;
     /**
      * The minimum allowed OS version. If not set, any version of this OS
      * satisfies the constraint. Format: `"major.minor.patch"`.
@@ -28,7 +28,7 @@ class OsConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string minimum_version = 2;</code>
      */
-    private $minimum_version = '';
+    protected $minimum_version = '';
     /**
      * Only allows requests from devices with a verified Chrome OS.
      * Verifications includes requirements that the device is enterprise-managed,
@@ -37,7 +37,7 @@ class OsConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool require_verified_chrome_os = 3;</code>
      */
-    private $require_verified_chrome_os = false;
+    protected $require_verified_chrome_os = false;
 
     /**
      * Constructor.

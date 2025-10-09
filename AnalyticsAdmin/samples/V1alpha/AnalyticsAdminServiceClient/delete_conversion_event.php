@@ -28,6 +28,7 @@ use Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest;
 use Google\ApiCore\ApiException;
 
 /**
+ * Deprecated: Use `DeleteKeyEvent` instead.
  * Deletes a conversion event in a property.
  *
  * @param string $formattedName The resource name of the conversion event to delete.

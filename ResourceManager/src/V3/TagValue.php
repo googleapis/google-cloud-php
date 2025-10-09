@@ -21,14 +21,14 @@ class TagValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. The resource name of the new TagValue's parent TagKey.
      * Must be of the form `tagKeys/{tag_key_id}`.
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Immutable. User-assigned short name for TagValue. The short name
      * should be unique for TagValues within the same parent TagKey.
@@ -38,7 +38,7 @@ class TagValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string short_name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $short_name = '';
+    protected $short_name = '';
     /**
      * Output only. The namespaced name of the TagValue. Can be in the form
      * `{organization_id}/{tag_key_short_name}/{tag_value_short_name}` or
@@ -47,7 +47,7 @@ class TagValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string namespaced_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $namespaced_name = '';
+    protected $namespaced_name = '';
     /**
      * Optional. User-assigned description of the TagValue.
      * Must not exceed 256 characters.
@@ -55,19 +55,19 @@ class TagValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Update time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Entity tag which users can pass to prevent race conditions. This
      * field is always set in server responses. See UpdateTagValueRequest for
@@ -75,7 +75,7 @@ class TagValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

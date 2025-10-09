@@ -33,26 +33,32 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
+use Google\Cloud\Datastore\V1\BeginTransactionResponse;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
 
-use Google\Cloud\Datastore\DatastoreClient;
+// Create a client.
+$datastoreClient = new DatastoreClient();
 
-$datastore = new DatastoreClient();
+// Prepare the request message.
+$request = (new BeginTransactionRequest())
+    ->setProjectId($projectId);
 
-// Create an entity
-$bob = $datastore->entity('Person');
-$bob['firstName'] = 'Bob';
-$bob['email'] = 'bob@example.com';
-$datastore->insert($bob);
-
-// Update the entity
-$bob['email'] = 'bobV2@example.com';
-$datastore->update($bob);
-
-// If you know the ID of the entity, you can look it up
-$key = $datastore->key('Person', '12345328897844');
-$entity = $datastore->lookup($key);
+// Call the API and handle any network failures.
+try {
+    /** @var BeginTransactionResponse $response */
+    $response = $datastoreClient->beginTransaction($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

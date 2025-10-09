@@ -33,13 +33,13 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 progress_percentage = 3;</code>
      */
-    private $progress_percentage = 0;
+    protected $progress_percentage = 0;
     /**
      * The start time of the operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
 
     /**
      * Constructor.

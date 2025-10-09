@@ -21,15 +21,15 @@ class CVSSv3 extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float base_score = 1;</code>
      */
-    private $base_score = 0.0;
+    protected $base_score = 0.0;
     /**
      * Generated from protobuf field <code>float exploitability_score = 2;</code>
      */
-    private $exploitability_score = 0.0;
+    protected $exploitability_score = 0.0;
     /**
      * Generated from protobuf field <code>float impact_score = 3;</code>
      */
-    private $impact_score = 0.0;
+    protected $impact_score = 0.0;
     /**
      * Base Metrics
      * Represents the intrinsic characteristics of a vulnerability that are
@@ -37,35 +37,35 @@ class CVSSv3 extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.CVSSv3.AttackVector attack_vector = 5;</code>
      */
-    private $attack_vector = 0;
+    protected $attack_vector = 0;
     /**
      * Generated from protobuf field <code>.grafeas.v1.CVSSv3.AttackComplexity attack_complexity = 6;</code>
      */
-    private $attack_complexity = 0;
+    protected $attack_complexity = 0;
     /**
      * Generated from protobuf field <code>.grafeas.v1.CVSSv3.PrivilegesRequired privileges_required = 7;</code>
      */
-    private $privileges_required = 0;
+    protected $privileges_required = 0;
     /**
      * Generated from protobuf field <code>.grafeas.v1.CVSSv3.UserInteraction user_interaction = 8;</code>
      */
-    private $user_interaction = 0;
+    protected $user_interaction = 0;
     /**
      * Generated from protobuf field <code>.grafeas.v1.CVSSv3.Scope scope = 9;</code>
      */
-    private $scope = 0;
+    protected $scope = 0;
     /**
      * Generated from protobuf field <code>.grafeas.v1.CVSSv3.Impact confidentiality_impact = 10;</code>
      */
-    private $confidentiality_impact = 0;
+    protected $confidentiality_impact = 0;
     /**
      * Generated from protobuf field <code>.grafeas.v1.CVSSv3.Impact integrity_impact = 11;</code>
      */
-    private $integrity_impact = 0;
+    protected $integrity_impact = 0;
     /**
      * Generated from protobuf field <code>.grafeas.v1.CVSSv3.Impact availability_impact = 12;</code>
      */
-    private $availability_impact = 0;
+    protected $availability_impact = 0;
 
     /**
      * Constructor.

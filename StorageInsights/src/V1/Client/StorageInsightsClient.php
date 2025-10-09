@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,8 @@ namespace Google\Cloud\StorageInsights\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -36,16 +38,28 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\StorageInsights\V1\CreateDatasetConfigRequest;
 use Google\Cloud\StorageInsights\V1\CreateReportConfigRequest;
+use Google\Cloud\StorageInsights\V1\DatasetConfig;
+use Google\Cloud\StorageInsights\V1\DeleteDatasetConfigRequest;
 use Google\Cloud\StorageInsights\V1\DeleteReportConfigRequest;
+use Google\Cloud\StorageInsights\V1\GetDatasetConfigRequest;
 use Google\Cloud\StorageInsights\V1\GetReportConfigRequest;
 use Google\Cloud\StorageInsights\V1\GetReportDetailRequest;
+use Google\Cloud\StorageInsights\V1\LinkDatasetRequest;
+use Google\Cloud\StorageInsights\V1\LinkDatasetResponse;
+use Google\Cloud\StorageInsights\V1\ListDatasetConfigsRequest;
 use Google\Cloud\StorageInsights\V1\ListReportConfigsRequest;
 use Google\Cloud\StorageInsights\V1\ListReportDetailsRequest;
 use Google\Cloud\StorageInsights\V1\ReportConfig;
 use Google\Cloud\StorageInsights\V1\ReportDetail;
+use Google\Cloud\StorageInsights\V1\UnlinkDatasetRequest;
+use Google\Cloud\StorageInsights\V1\UpdateDatasetConfigRequest;
 use Google\Cloud\StorageInsights\V1\UpdateReportConfigRequest;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service describing handlers for resources
@@ -58,15 +72,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createReportConfigAsync(CreateReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteReportConfigAsync(DeleteReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportConfigAsync(GetReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportDetailAsync(GetReportDetailRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportConfigsAsync(ListReportConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportDetailsAsync(ListReportDetailsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateReportConfigAsync(UpdateReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDatasetConfigAsync(CreateDatasetConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportConfig> createReportConfigAsync(CreateReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDatasetConfigAsync(DeleteDatasetConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteReportConfigAsync(DeleteReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DatasetConfig> getDatasetConfigAsync(GetDatasetConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportConfig> getReportConfigAsync(GetReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportDetail> getReportDetailAsync(GetReportDetailRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> linkDatasetAsync(LinkDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatasetConfigsAsync(ListDatasetConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportConfigsAsync(ListReportConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportDetailsAsync(ListReportDetailsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> unlinkDatasetAsync(UnlinkDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDatasetConfigAsync(UpdateDatasetConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportConfig> updateReportConfigAsync(UpdateReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class StorageInsightsClient
 {
@@ -97,6 +118,8 @@ final class StorageInsightsClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -114,6 +137,73 @@ final class StorageInsightsClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * dataset_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $datasetConfig
+     *
+     * @return string The formatted dataset_config resource.
+     */
+    public static function datasetConfigName(string $project, string $location, string $datasetConfig): string
+    {
+        return self::getPathTemplate('datasetConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset_config' => $datasetConfig,
+        ]);
     }
 
     /**
@@ -177,6 +267,7 @@ final class StorageInsightsClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - datasetConfig: projects/{project}/locations/{location}/datasetConfigs/{dataset_config}
      * - location: projects/{project}/locations/{location}
      * - reportConfig: projects/{project}/locations/{location}/reportConfigs/{report_config}
      * - reportDetail: projects/{project}/locations/{location}/reportConfigs/{report_config}/reportDetails/{report_detail}
@@ -187,14 +278,14 @@ final class StorageInsightsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -202,20 +293,29 @@ final class StorageInsightsClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'storageinsights.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\StorageInsights\V1\StorageInsightsClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new StorageInsightsClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -249,14 +349,20 @@ final class StorageInsightsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -268,6 +374,32 @@ final class StorageInsightsClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Creates a dataset configuration in a given project for a given location.
+     *
+     * The async variant is {@see StorageInsightsClient::createDatasetConfigAsync()} .
+     *
+     * @example samples/V1/StorageInsightsClient/create_dataset_config.php
+     *
+     * @param CreateDatasetConfigRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DatasetConfig>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createDatasetConfig(CreateDatasetConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateDatasetConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -297,6 +429,32 @@ final class StorageInsightsClient
     }
 
     /**
+     * Deletes a dataset configuration in a given project for a given location.
+     *
+     * The async variant is {@see StorageInsightsClient::deleteDatasetConfigAsync()} .
+     *
+     * @example samples/V1/StorageInsightsClient/delete_dataset_config.php
+     *
+     * @param DeleteDatasetConfigRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDatasetConfig(DeleteDatasetConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteDatasetConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single ReportConfig.
      *
      * The async variant is {@see StorageInsightsClient::deleteReportConfigAsync()} .
@@ -318,6 +476,32 @@ final class StorageInsightsClient
     public function deleteReportConfig(DeleteReportConfigRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteReportConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the dataset configuration in a given project for a given location.
+     *
+     * The async variant is {@see StorageInsightsClient::getDatasetConfigAsync()} .
+     *
+     * @example samples/V1/StorageInsightsClient/get_dataset_config.php
+     *
+     * @param GetDatasetConfigRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DatasetConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDatasetConfig(GetDatasetConfigRequest $request, array $callOptions = []): DatasetConfig
+    {
+        return $this->startApiCall('GetDatasetConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -373,6 +557,58 @@ final class StorageInsightsClient
     }
 
     /**
+     * Links a dataset to BigQuery in a given project for a given location.
+     *
+     * The async variant is {@see StorageInsightsClient::linkDatasetAsync()} .
+     *
+     * @example samples/V1/StorageInsightsClient/link_dataset.php
+     *
+     * @param LinkDatasetRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<LinkDatasetResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function linkDataset(LinkDatasetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('LinkDataset', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists the dataset configurations in a given project for a given location.
+     *
+     * The async variant is {@see StorageInsightsClient::listDatasetConfigsAsync()} .
+     *
+     * @example samples/V1/StorageInsightsClient/list_dataset_configs.php
+     *
+     * @param ListDatasetConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDatasetConfigs(ListDatasetConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListDatasetConfigs', $request, $callOptions);
+    }
+
+    /**
      * Lists ReportConfigs in a given project and location.
      *
      * The async variant is {@see StorageInsightsClient::listReportConfigsAsync()} .
@@ -422,6 +658,59 @@ final class StorageInsightsClient
     public function listReportDetails(ListReportDetailsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListReportDetails', $request, $callOptions);
+    }
+
+    /**
+     * Unlinks a dataset from BigQuery in a given project
+     * for a given location.
+     *
+     * The async variant is {@see StorageInsightsClient::unlinkDatasetAsync()} .
+     *
+     * @example samples/V1/StorageInsightsClient/unlink_dataset.php
+     *
+     * @param UnlinkDatasetRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function unlinkDataset(UnlinkDatasetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UnlinkDataset', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a dataset configuration in a given project for a given location.
+     *
+     * The async variant is {@see StorageInsightsClient::updateDatasetConfigAsync()} .
+     *
+     * @example samples/V1/StorageInsightsClient/update_dataset_config.php
+     *
+     * @param UpdateDatasetConfigRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DatasetConfig>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateDatasetConfig(UpdateDatasetConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateDatasetConfig', $request, $callOptions)->wait();
     }
 
     /**

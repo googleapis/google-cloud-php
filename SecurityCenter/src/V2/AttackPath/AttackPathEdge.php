@@ -21,13 +21,13 @@ class AttackPathEdge extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source = 1;</code>
      */
-    private $source = '';
+    protected $source = '';
     /**
      * The attack node uuid of the destination node.
      *
      * Generated from protobuf field <code>string destination = 2;</code>
      */
-    private $destination = '';
+    protected $destination = '';
 
     /**
      * Constructor.
@@ -100,6 +100,4 @@ class AttackPathEdge extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AttackPathEdge::class, \Google\Cloud\SecurityCenter\V2\AttackPath_AttackPathEdge::class);
 

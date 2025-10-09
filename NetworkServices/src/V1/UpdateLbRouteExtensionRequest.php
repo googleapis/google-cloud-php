@@ -18,7 +18,7 @@ class UpdateLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Used to specify the fields to be overwritten in the
      * `LbRouteExtension` resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
+     * The fields specified in the `update_mask` are relative to the resource, not
      * the full request. A field is overwritten if it is in the mask. If the
      * user does not specify a mask, then all fields are overwritten.
      *
@@ -35,11 +35,10 @@ class UpdateLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server can ignore
      * the request if it has already been completed. The server guarantees
-     * that for at least 60 minutes since the first request.
+     * that for 60 minutes since the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request
-     * ID, the server can check if original operation with the same request ID
-     * was received, and if so, ignores the second request. This prevents
+     * ID, the server ignores the second request This prevents
      * clients from accidentally creating duplicate commitments.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
@@ -47,6 +46,25 @@ class UpdateLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
+
+    /**
+     * @param \Google\Cloud\NetworkServices\V1\LbRouteExtension $lbRouteExtension Required. `LbRouteExtension` resource being updated.
+     * @param \Google\Protobuf\FieldMask                        $updateMask       Optional. Used to specify the fields to be overwritten in the
+     *                                                                            `LbRouteExtension` resource by the update.
+     *                                                                            The fields specified in the `update_mask` are relative to the resource, not
+     *                                                                            the full request. A field is overwritten if it is in the mask. If the
+     *                                                                            user does not specify a mask, then all fields are overwritten.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\UpdateLbRouteExtensionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\NetworkServices\V1\LbRouteExtension $lbRouteExtension, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setLbRouteExtension($lbRouteExtension)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.
@@ -57,7 +75,7 @@ class UpdateLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. Used to specify the fields to be overwritten in the
      *           `LbRouteExtension` resource by the update.
-     *           The fields specified in the update_mask are relative to the resource, not
+     *           The fields specified in the `update_mask` are relative to the resource, not
      *           the full request. A field is overwritten if it is in the mask. If the
      *           user does not specify a mask, then all fields are overwritten.
      *     @type \Google\Cloud\NetworkServices\V1\LbRouteExtension $lb_route_extension
@@ -66,11 +84,10 @@ class UpdateLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server can ignore
      *           the request if it has already been completed. The server guarantees
-     *           that for at least 60 minutes since the first request.
+     *           that for 60 minutes since the first request.
      *           For example, consider a situation where you make an initial request and the
      *           request times out. If you make the request again with the same request
-     *           ID, the server can check if original operation with the same request ID
-     *           was received, and if so, ignores the second request. This prevents
+     *           ID, the server ignores the second request This prevents
      *           clients from accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
@@ -84,7 +101,7 @@ class UpdateLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Used to specify the fields to be overwritten in the
      * `LbRouteExtension` resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
+     * The fields specified in the `update_mask` are relative to the resource, not
      * the full request. A field is overwritten if it is in the mask. If the
      * user does not specify a mask, then all fields are overwritten.
      *
@@ -109,7 +126,7 @@ class UpdateLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Used to specify the fields to be overwritten in the
      * `LbRouteExtension` resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
+     * The fields specified in the `update_mask` are relative to the resource, not
      * the full request. A field is overwritten if it is in the mask. If the
      * user does not specify a mask, then all fields are overwritten.
      *
@@ -165,11 +182,10 @@ class UpdateLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server can ignore
      * the request if it has already been completed. The server guarantees
-     * that for at least 60 minutes since the first request.
+     * that for 60 minutes since the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request
-     * ID, the server can check if original operation with the same request ID
-     * was received, and if so, ignores the second request. This prevents
+     * ID, the server ignores the second request This prevents
      * clients from accidentally creating duplicate commitments.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
@@ -186,11 +202,10 @@ class UpdateLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server can ignore
      * the request if it has already been completed. The server guarantees
-     * that for at least 60 minutes since the first request.
+     * that for 60 minutes since the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request
-     * ID, the server can check if original operation with the same request ID
-     * was received, and if so, ignores the second request. This prevents
+     * ID, the server ignores the second request This prevents
      * clients from accidentally creating duplicate commitments.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).

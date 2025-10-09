@@ -23,19 +23,19 @@ class Neighbor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint datapoint = 1;</code>
      */
-    private $datapoint = null;
+    protected $datapoint = null;
     /**
      * The distance between the neighbor and the dense embedding query.
      *
      * Generated from protobuf field <code>double distance = 2;</code>
      */
-    private $distance = 0.0;
+    protected $distance = 0.0;
     /**
      * The distance between the neighbor and the query sparse_embedding.
      *
      * Generated from protobuf field <code>double sparse_distance = 3;</code>
      */
-    private $sparse_distance = 0.0;
+    protected $sparse_distance = 0.0;
 
     /**
      * Constructor.

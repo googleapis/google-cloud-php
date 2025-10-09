@@ -20,19 +20,19 @@ class Restore extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. The time when the restore ended.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. The current state of the restore.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.Restore.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The relative resource name of the metastore service backup to
      * restore from, in the following form:
@@ -40,20 +40,20 @@ class Restore extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $backup = '';
+    protected $backup = '';
     /**
      * Output only. The type of restore.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.Restore.RestoreType type = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Output only. The restore details containing the revision of the service to
      * be restored to, in format of JSON.
      *
      * Generated from protobuf field <code>string details = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $details = '';
+    protected $details = '';
 
     /**
      * Constructor.

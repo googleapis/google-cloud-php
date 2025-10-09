@@ -17,29 +17,36 @@ class Customer extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}
+     * `organizations/{organization}/locations/{location}/customers/{customer}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * The customer organization's display name. E.g. "google.com".
+     * Required. Display name for the customer
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $display_name = '';
     /**
-     * Container for customer onboarding steps
+     * Output only. Container for customer onboarding steps
      *
-     * Generated from protobuf field <code>.google.cloud.cloudcontrolspartner.v1beta.CustomerOnboardingState customer_onboarding_state = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.cloudcontrolspartner.v1beta.CustomerOnboardingState customer_onboarding_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $customer_onboarding_state = null;
     /**
-     * Indicates whether a customer is fully onboarded
+     * Output only. Indicates whether a customer is fully onboarded
      *
-     * Generated from protobuf field <code>bool is_onboarded = 4;</code>
+     * Generated from protobuf field <code>bool is_onboarded = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $is_onboarded = false;
+    /**
+     * Output only. The customer organization domain, extracted from
+     * CRM Organization’s display_name field. e.g. "google.com"
+     *
+     * Generated from protobuf field <code>string organization_domain = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $organization_domain = '';
 
     /**
      * Constructor.
@@ -49,13 +56,16 @@ class Customer extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Format:
-     *           organizations/{organization}/locations/{location}/customers/{customer}
+     *           `organizations/{organization}/locations/{location}/customers/{customer}`
      *     @type string $display_name
-     *           The customer organization's display name. E.g. "google.com".
+     *           Required. Display name for the customer
      *     @type \Google\Cloud\CloudControlsPartner\V1beta\CustomerOnboardingState $customer_onboarding_state
-     *           Container for customer onboarding steps
+     *           Output only. Container for customer onboarding steps
      *     @type bool $is_onboarded
-     *           Indicates whether a customer is fully onboarded
+     *           Output only. Indicates whether a customer is fully onboarded
+     *     @type string $organization_domain
+     *           Output only. The customer organization domain, extracted from
+     *           CRM Organization’s display_name field. e.g. "google.com"
      * }
      */
     public function __construct($data = NULL) {
@@ -65,7 +75,7 @@ class Customer extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}
+     * `organizations/{organization}/locations/{location}/customers/{customer}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -77,7 +87,7 @@ class Customer extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}
+     * `organizations/{organization}/locations/{location}/customers/{customer}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -92,9 +102,9 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The customer organization's display name. E.g. "google.com".
+     * Required. Display name for the customer
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
@@ -103,9 +113,9 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The customer organization's display name. E.g. "google.com".
+     * Required. Display name for the customer
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -118,9 +128,9 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Container for customer onboarding steps
+     * Output only. Container for customer onboarding steps
      *
-     * Generated from protobuf field <code>.google.cloud.cloudcontrolspartner.v1beta.CustomerOnboardingState customer_onboarding_state = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.cloudcontrolspartner.v1beta.CustomerOnboardingState customer_onboarding_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\CloudControlsPartner\V1beta\CustomerOnboardingState|null
      */
     public function getCustomerOnboardingState()
@@ -139,9 +149,9 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Container for customer onboarding steps
+     * Output only. Container for customer onboarding steps
      *
-     * Generated from protobuf field <code>.google.cloud.cloudcontrolspartner.v1beta.CustomerOnboardingState customer_onboarding_state = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.cloudcontrolspartner.v1beta.CustomerOnboardingState customer_onboarding_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\CloudControlsPartner\V1beta\CustomerOnboardingState $var
      * @return $this
      */
@@ -154,9 +164,9 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether a customer is fully onboarded
+     * Output only. Indicates whether a customer is fully onboarded
      *
-     * Generated from protobuf field <code>bool is_onboarded = 4;</code>
+     * Generated from protobuf field <code>bool is_onboarded = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getIsOnboarded()
@@ -165,9 +175,9 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether a customer is fully onboarded
+     * Output only. Indicates whether a customer is fully onboarded
      *
-     * Generated from protobuf field <code>bool is_onboarded = 4;</code>
+     * Generated from protobuf field <code>bool is_onboarded = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -175,6 +185,34 @@ class Customer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->is_onboarded = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The customer organization domain, extracted from
+     * CRM Organization’s display_name field. e.g. "google.com"
+     *
+     * Generated from protobuf field <code>string organization_domain = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getOrganizationDomain()
+    {
+        return $this->organization_domain;
+    }
+
+    /**
+     * Output only. The customer organization domain, extracted from
+     * CRM Organization’s display_name field. e.g. "google.com"
+     *
+     * Generated from protobuf field <code>string organization_domain = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrganizationDomain($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->organization_domain = $var;
 
         return $this;
     }

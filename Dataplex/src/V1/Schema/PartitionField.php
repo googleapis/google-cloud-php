@@ -25,13 +25,13 @@ class PartitionField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Immutable. The type of field.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Schema.Type type = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

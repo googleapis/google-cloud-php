@@ -22,13 +22,13 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A [backup resource][google.cloud.filestore.v1.Backup]
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Backup backup = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup = null;
+    protected $backup = null;
     /**
      * Required. The ID to use for the backup.
      * The ID must be unique within the specified project and location.
@@ -39,7 +39,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup_id = '';
+    protected $backup_id = '';
 
     /**
      * @param string                            $parent   Required. The backup's project and location, in the format

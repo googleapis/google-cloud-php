@@ -23,14 +23,14 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_link = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $resource_link = '';
+    protected $resource_link = '';
     /**
      * Output only. If cluster_missing is set then it denotes that the GKE cluster
      * no longer exists in the GKE Control Plane.
      *
      * Generated from protobuf field <code>bool cluster_missing = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cluster_missing = false;
+    protected $cluster_missing = false;
 
     /**
      * Constructor.

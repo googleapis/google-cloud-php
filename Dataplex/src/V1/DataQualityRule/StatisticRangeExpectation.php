@@ -21,7 +21,7 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.StatisticRangeExpectation.ColumnStatistic statistic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $statistic = 0;
+    protected $statistic = 0;
     /**
      * Optional. The minimum column statistic value allowed for a row to pass
      * this validation.
@@ -29,7 +29,7 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string min_value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_value = '';
+    protected $min_value = '';
     /**
      * Optional. The maximum column statistic value allowed for a row to pass
      * this validation.
@@ -37,7 +37,7 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string max_value = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_value = '';
+    protected $max_value = '';
     /**
      * Optional. Whether column statistic needs to be strictly greater than
      * ('>') the minimum, or if equality is allowed.
@@ -45,7 +45,7 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool strict_min_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $strict_min_enabled = false;
+    protected $strict_min_enabled = false;
     /**
      * Optional. Whether column statistic needs to be strictly lesser than ('<')
      * the maximum, or if equality is allowed.
@@ -53,7 +53,7 @@ class StatisticRangeExpectation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool strict_max_enabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $strict_max_enabled = false;
+    protected $strict_max_enabled = false;
 
     /**
      * Constructor.

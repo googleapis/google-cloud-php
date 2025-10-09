@@ -32,17 +32,38 @@ class Tier
      */
     const HD = 2;
     /**
-     * Resolution <= 4096x2160. Not supported yet.
+     * Resolution <= 4096x2160. Bitrate <= 50 Mbps. FPS <= 60.
      *
      * Generated from protobuf enum <code>UHD = 3;</code>
      */
     const UHD = 3;
+    /**
+     * Resolution <= 1280x720. Bitrate <= 6 Mbps. FPS <= 60. H265 codec.
+     *
+     * Generated from protobuf enum <code>SD_H265 = 4;</code>
+     */
+    const SD_H265 = 4;
+    /**
+     * Resolution <= 1920x1080. Bitrate <= 25 Mbps. FPS <= 60. H265 codec.
+     *
+     * Generated from protobuf enum <code>HD_H265 = 5;</code>
+     */
+    const HD_H265 = 5;
+    /**
+     * Resolution <= 4096x2160. Bitrate <= 50 Mbps. FPS <= 60. H265 codec.
+     *
+     * Generated from protobuf enum <code>UHD_H265 = 6;</code>
+     */
+    const UHD_H265 = 6;
 
     private static $valueToName = [
         self::TIER_UNSPECIFIED => 'TIER_UNSPECIFIED',
         self::SD => 'SD',
         self::HD => 'HD',
         self::UHD => 'UHD',
+        self::SD_H265 => 'SD_H265',
+        self::HD_H265 => 'HD_H265',
+        self::UHD_H265 => 'UHD_H265',
     ];
 
     public static function name($value)

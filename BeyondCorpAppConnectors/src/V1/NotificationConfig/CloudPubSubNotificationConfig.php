@@ -20,7 +20,7 @@ class CloudPubSubNotificationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pubsub_subscription = 1;</code>
      */
-    private $pubsub_subscription = '';
+    protected $pubsub_subscription = '';
 
     /**
      * Constructor.

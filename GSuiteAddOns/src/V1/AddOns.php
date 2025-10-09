@@ -9,60 +9,60 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Google Workspace Add-on configuration.
+ * A Google Workspace add-on configuration.
  *
  * Generated from protobuf message <code>google.cloud.gsuiteaddons.v1.AddOns</code>
  */
 class AddOns extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Configuration that is common across all Google Workspace Add-ons.
+     * Configuration that is common across all Google Workspace add-ons.
      *
      * Generated from protobuf field <code>.google.apps.script.type.CommonAddOnManifest common = 1;</code>
      */
-    private $common = null;
+    protected $common = null;
     /**
      * Gmail add-on configuration.
      *
      * Generated from protobuf field <code>.google.apps.script.type.gmail.GmailAddOnManifest gmail = 2;</code>
      */
-    private $gmail = null;
+    protected $gmail = null;
     /**
      * Drive add-on configuration.
      *
      * Generated from protobuf field <code>.google.apps.script.type.drive.DriveAddOnManifest drive = 5;</code>
      */
-    private $drive = null;
+    protected $drive = null;
     /**
      * Calendar add-on configuration.
      *
      * Generated from protobuf field <code>.google.apps.script.type.calendar.CalendarAddOnManifest calendar = 6;</code>
      */
-    private $calendar = null;
+    protected $calendar = null;
     /**
      * Docs add-on configuration.
      *
      * Generated from protobuf field <code>.google.apps.script.type.docs.DocsAddOnManifest docs = 7;</code>
      */
-    private $docs = null;
+    protected $docs = null;
     /**
      * Sheets add-on configuration.
      *
      * Generated from protobuf field <code>.google.apps.script.type.sheets.SheetsAddOnManifest sheets = 8;</code>
      */
-    private $sheets = null;
+    protected $sheets = null;
     /**
      * Slides add-on configuration.
      *
      * Generated from protobuf field <code>.google.apps.script.type.slides.SlidesAddOnManifest slides = 10;</code>
      */
-    private $slides = null;
+    protected $slides = null;
     /**
      * Options for sending requests to add-on HTTP endpoints
      *
      * Generated from protobuf field <code>.google.apps.script.type.HttpOptions http_options = 15;</code>
      */
-    private $http_options = null;
+    protected $http_options = null;
 
     /**
      * Constructor.
@@ -71,7 +71,7 @@ class AddOns extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Apps\Script\Type\CommonAddOnManifest $common
-     *           Configuration that is common across all Google Workspace Add-ons.
+     *           Configuration that is common across all Google Workspace add-ons.
      *     @type \Google\Apps\Script\Type\Gmail\GmailAddOnManifest $gmail
      *           Gmail add-on configuration.
      *     @type \Google\Apps\Script\Type\Drive\DriveAddOnManifest $drive
@@ -94,7 +94,7 @@ class AddOns extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration that is common across all Google Workspace Add-ons.
+     * Configuration that is common across all Google Workspace add-ons.
      *
      * Generated from protobuf field <code>.google.apps.script.type.CommonAddOnManifest common = 1;</code>
      * @return \Google\Apps\Script\Type\CommonAddOnManifest|null
@@ -115,7 +115,7 @@ class AddOns extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration that is common across all Google Workspace Add-ons.
+     * Configuration that is common across all Google Workspace add-ons.
      *
      * Generated from protobuf field <code>.google.apps.script.type.CommonAddOnManifest common = 1;</code>
      * @param \Google\Apps\Script\Type\CommonAddOnManifest $var

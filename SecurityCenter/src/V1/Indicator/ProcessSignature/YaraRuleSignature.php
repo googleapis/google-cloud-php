@@ -20,7 +20,7 @@ class YaraRuleSignature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string yara_rule = 5;</code>
      */
-    private $yara_rule = '';
+    protected $yara_rule = '';
 
     /**
      * Constructor.
@@ -65,6 +65,4 @@ class YaraRuleSignature extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(YaraRuleSignature::class, \Google\Cloud\SecurityCenter\V1\Indicator_ProcessSignature_YaraRuleSignature::class);
 

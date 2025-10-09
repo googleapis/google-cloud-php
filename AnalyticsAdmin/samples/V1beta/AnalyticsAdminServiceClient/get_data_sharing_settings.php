@@ -34,7 +34,8 @@ use Google\ApiCore\ApiException;
  *
  * @param string $formattedName The name of the settings to lookup.
  *                              Format: accounts/{account}/dataSharingSettings
- *                              Example: "accounts/1000/dataSharingSettings"
+ *
+ *                              Example: `accounts/1000/dataSharingSettings`
  *                              Please see {@see AnalyticsAdminServiceClient::dataSharingSettingsName()} for help formatting this field.
  */
 function get_data_sharing_settings_sample(string $formattedName): void

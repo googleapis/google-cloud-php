@@ -42,7 +42,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pubsub_topic = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $pubsub_topic = '';
+    protected $pubsub_topic = '';
     /**
      * Event types for which a notification is desired. If empty, send
      * notifications for all event types.
@@ -55,7 +55,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig.PayloadFormat payload_format = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $payload_format = 0;
+    protected $payload_format = 0;
 
     /**
      * Constructor.

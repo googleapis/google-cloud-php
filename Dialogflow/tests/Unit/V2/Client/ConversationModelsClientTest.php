@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Dialogflow\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\Client\ConversationModelsClient;
@@ -45,6 +44,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -68,7 +68,9 @@ class ConversationModelsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ConversationModelsClient */
@@ -104,10 +106,14 @@ class ConversationModelsClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $languageCode = 'languageCode-412800396';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ConversationModel();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -121,8 +127,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $conversationModel->setDisplayName($conversationModelDisplayName);
         $conversationModelDatasets = [];
         $conversationModel->setDatasets($conversationModelDatasets);
-        $request = (new CreateConversationModelRequest())
-            ->setConversationModel($conversationModel);
+        $request = (new CreateConversationModelRequest())->setConversationModel($conversationModel);
         $response = $gapicClient->createConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -178,12 +183,15 @@ class ConversationModelsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $conversationModel = new ConversationModel();
@@ -191,8 +199,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $conversationModel->setDisplayName($conversationModelDisplayName);
         $conversationModelDatasets = [];
         $conversationModel->setDatasets($conversationModelDatasets);
-        $request = (new CreateConversationModelRequest())
-            ->setConversationModel($conversationModel);
+        $request = (new CreateConversationModelRequest())->setConversationModel($conversationModel);
         $response = $gapicClient->createConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -265,7 +272,10 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/CreateConversationModelEvaluation', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationModels/CreateConversationModelEvaluation',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getConversationModelEvaluation();
@@ -313,12 +323,15 @@ class ConversationModelsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->conversationModelName('[PROJECT]', '[LOCATION]', '[CONVERSATION_MODEL]');
@@ -379,8 +392,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new DeleteConversationModelRequest())
-            ->setName($name);
+        $request = (new DeleteConversationModelRequest())->setName($name);
         $response = $gapicClient->deleteConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -436,17 +448,19 @@ class ConversationModelsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new DeleteConversationModelRequest())
-            ->setName($name);
+        $request = (new DeleteConversationModelRequest())->setName($name);
         $response = $gapicClient->deleteConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -500,8 +514,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new DeployConversationModelRequest())
-            ->setName($name);
+        $request = (new DeployConversationModelRequest())->setName($name);
         $response = $gapicClient->deployConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -557,17 +570,19 @@ class ConversationModelsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new DeployConversationModelRequest())
-            ->setName($name);
+        $request = (new DeployConversationModelRequest())->setName($name);
         $response = $gapicClient->deployConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -602,15 +617,18 @@ class ConversationModelsClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $languageCode = 'languageCode-412800396';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ConversationModel();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetConversationModelRequest())
-            ->setName($name);
+        $request = (new GetConversationModelRequest())->setName($name);
         $response = $gapicClient->getConversationModel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -634,17 +652,19 @@ class ConversationModelsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetConversationModelRequest())
-            ->setName($name);
+        $request = (new GetConversationModelRequest())->setName($name);
         try {
             $gapicClient->getConversationModel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -677,15 +697,17 @@ class ConversationModelsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetConversationModelEvaluationRequest())
-            ->setName($name);
+        $request = (new GetConversationModelEvaluationRequest())->setName($name);
         $response = $gapicClient->getConversationModelEvaluation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/GetConversationModelEvaluation', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationModels/GetConversationModelEvaluation',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -702,17 +724,19 @@ class ConversationModelsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetConversationModelEvaluationRequest())
-            ->setName($name);
+        $request = (new GetConversationModelEvaluationRequest())->setName($name);
         try {
             $gapicClient->getConversationModelEvaluation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -737,17 +761,14 @@ class ConversationModelsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $conversationModelEvaluationsElement = new ConversationModelEvaluation();
-        $conversationModelEvaluations = [
-            $conversationModelEvaluationsElement,
-        ];
+        $conversationModelEvaluations = [$conversationModelEvaluationsElement];
         $expectedResponse = new ListConversationModelEvaluationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversationModelEvaluations($conversationModelEvaluations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListConversationModelEvaluationsRequest())
-            ->setParent($parent);
+        $request = (new ListConversationModelEvaluationsRequest())->setParent($parent);
         $response = $gapicClient->listConversationModelEvaluations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -757,7 +778,10 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/ListConversationModelEvaluations', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationModels/ListConversationModelEvaluations',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -774,17 +798,19 @@ class ConversationModelsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListConversationModelEvaluationsRequest())
-            ->setParent($parent);
+        $request = (new ListConversationModelEvaluationsRequest())->setParent($parent);
         try {
             $gapicClient->listConversationModelEvaluations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -809,17 +835,14 @@ class ConversationModelsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $conversationModelsElement = new ConversationModel();
-        $conversationModels = [
-            $conversationModelsElement,
-        ];
+        $conversationModels = [$conversationModelsElement];
         $expectedResponse = new ListConversationModelsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversationModels($conversationModels);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListConversationModelsRequest())
-            ->setParent($parent);
+        $request = (new ListConversationModelsRequest())->setParent($parent);
         $response = $gapicClient->listConversationModels($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -846,17 +869,19 @@ class ConversationModelsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListConversationModelsRequest())
-            ->setParent($parent);
+        $request = (new ListConversationModelsRequest())->setParent($parent);
         try {
             $gapicClient->listConversationModels($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -901,8 +926,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new UndeployConversationModelRequest())
-            ->setName($name);
+        $request = (new UndeployConversationModelRequest())->setName($name);
         $response = $gapicClient->undeployConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -912,7 +936,10 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/UndeployConversationModel', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationModels/UndeployConversationModel',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -958,17 +985,19 @@ class ConversationModelsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new UndeployConversationModelRequest())
-            ->setName($name);
+        $request = (new UndeployConversationModelRequest())->setName($name);
         $response = $gapicClient->undeployConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1030,12 +1059,15 @@ class ConversationModelsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1062,9 +1094,7 @@ class ConversationModelsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1094,12 +1124,15 @@ class ConversationModelsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1139,10 +1172,14 @@ class ConversationModelsClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $languageCode = 'languageCode-412800396';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ConversationModel();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1156,8 +1193,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $conversationModel->setDisplayName($conversationModelDisplayName);
         $conversationModelDatasets = [];
         $conversationModel->setDatasets($conversationModelDatasets);
-        $request = (new CreateConversationModelRequest())
-            ->setConversationModel($conversationModel);
+        $request = (new CreateConversationModelRequest())->setConversationModel($conversationModel);
         $response = $gapicClient->createConversationModelAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

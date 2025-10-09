@@ -20,7 +20,7 @@ class InstancesRotateServerCaRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.RotateServerCaContext rotate_server_ca_context = 1;</code>
      */
-    private $rotate_server_ca_context = null;
+    protected $rotate_server_ca_context = null;
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,9 @@ class VersionsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return VersionsClient */
@@ -91,9 +93,7 @@ class VersionsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
         $version = new Version();
-        $request = (new CreateVersionRequest())
-            ->setParent($formattedParent)
-            ->setVersion($version);
+        $request = (new CreateVersionRequest())->setParent($formattedParent)->setVersion($version);
         $response = $gapicClient->createVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -119,19 +119,20 @@ class VersionsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
         $version = new Version();
-        $request = (new CreateVersionRequest())
-            ->setParent($formattedParent)
-            ->setVersion($version);
+        $request = (new CreateVersionRequest())->setParent($formattedParent)->setVersion($version);
         try {
             $gapicClient->createVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -158,8 +159,7 @@ class VersionsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->versionName('[PROJECT]', '[VERSION]');
-        $request = (new DeleteVersionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteVersionRequest())->setName($formattedName);
         $gapicClient->deleteVersion($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -182,17 +182,19 @@ class VersionsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->versionName('[PROJECT]', '[VERSION]');
-        $request = (new DeleteVersionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteVersionRequest())->setName($formattedName);
         try {
             $gapicClient->deleteVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -225,8 +227,7 @@ class VersionsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->versionName('[PROJECT]', '[VERSION]');
-        $request = (new GetVersionRequest())
-            ->setName($formattedName);
+        $request = (new GetVersionRequest())->setName($formattedName);
         $response = $gapicClient->getVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -250,17 +251,19 @@ class VersionsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->versionName('[PROJECT]', '[VERSION]');
-        $request = (new GetVersionRequest())
-            ->setName($formattedName);
+        $request = (new GetVersionRequest())->setName($formattedName);
         try {
             $gapicClient->getVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -285,17 +288,14 @@ class VersionsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $versionsElement = new Version();
-        $versions = [
-            $versionsElement,
-        ];
+        $versions = [$versionsElement];
         $expectedResponse = new ListVersionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVersions($versions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $request = (new ListVersionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVersionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -322,17 +322,19 @@ class VersionsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $request = (new ListVersionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVersionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -366,9 +368,7 @@ class VersionsClientTest extends GeneratedTest
         // Mock request
         $version = new Version();
         $updateMask = new FieldMask();
-        $request = (new UpdateVersionRequest())
-            ->setVersion($version)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateVersionRequest())->setVersion($version)->setUpdateMask($updateMask);
         $response = $gapicClient->updateVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -394,19 +394,20 @@ class VersionsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $version = new Version();
         $updateMask = new FieldMask();
-        $request = (new UpdateVersionRequest())
-            ->setVersion($version)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateVersionRequest())->setVersion($version)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -459,12 +460,15 @@ class VersionsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -491,9 +495,7 @@ class VersionsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -523,12 +525,15 @@ class VersionsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -564,9 +569,7 @@ class VersionsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
         $version = new Version();
-        $request = (new CreateVersionRequest())
-            ->setParent($formattedParent)
-            ->setVersion($version);
+        $request = (new CreateVersionRequest())->setParent($formattedParent)->setVersion($version);
         $response = $gapicClient->createVersionAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

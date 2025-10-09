@@ -20,14 +20,14 @@ class RollbackTargetConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout rollout = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rollout = null;
+    protected $rollout = null;
     /**
      * Optional. The starting phase ID for the `Rollout`. If unspecified, the
      * `Rollout` will start in the stable phase.
      *
      * Generated from protobuf field <code>string starting_phase_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $starting_phase_id = '';
+    protected $starting_phase_id = '';
 
     /**
      * Constructor.

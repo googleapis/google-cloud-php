@@ -175,6 +175,45 @@ class AdminTest extends SpannerTestCase
         $this->assertFalse($db->exists());
     }
 
+    public function testDatabaseProtoColumns()
+    {
+        $instance = self::$instance;
+
+        $dbName = uniqid(self::TESTING_PREFIX);
+        $op = $instance->createDatabase($dbName, [
+            'statements' => [
+                'CREATE PROTO BUNDLE (' .
+                    'testing.data.User,' .
+                    'testing.data.User.Address,' .
+                    'testing.data.Book' .
+                ')',
+                'CREATE TABLE Users (' .
+                    'Id INT64,' .
+                    'User `testing.data.User`,' .
+                    'Books ARRAY<`testing.data.Book`>,' .
+                ') PRIMARY KEY (Id)'
+            ],
+            'protoDescriptors' => file_get_contents(__DIR__ . '/../data/proto/user.pb'),
+        ]);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $db = $op->pollUntilComplete();
+        $this->assertInstanceOf(Database::class, $db);
+
+        self::$deletionQueue->add(function () use ($db) {
+            $db->drop();
+        });
+
+        $databases = $instance->databases();
+        $database = array_filter(iterator_to_array($databases), function ($db) use ($dbName) {
+            return $this->parseDbName($db->name()) === $dbName;
+        });
+
+        $this->assertInstanceOf(Database::class, current($database));
+        $this->assertTrue($db->exists());
+        $this->assertStringStartsWith('CREATE PROTO BUNDLE ', $db->ddl()[0]);
+    }
+
     public function testCreateCustomerManagedInstanceConfiguration()
     {
         $this->skipEmulatorTests();

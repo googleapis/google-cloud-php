@@ -1,6 +1,6 @@
 # Google Cloud Vertex AI for PHP
 
-> Idiomatic PHP client for [Google Cloud Vertex AI](https://cloud.google.com/ai-platform).
+> Idiomatic PHP client for [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-ai-platform/v/stable)](https://packagist.org/packages/google/cloud-ai-platform) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-ai-platform.svg)](https://packagist.org/packages/google/cloud-ai-platform)
 
@@ -28,12 +28,40 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\AIPlatform\V1\Client\DataFoundryServiceClient;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\Location;
+
+// Create a client.
+$dataFoundryServiceClient = new DataFoundryServiceClient();
+
+// Prepare the request message.
+$request = new GetLocationRequest();
+
+// Call the API and handle any network failures.
+try {
+    /** @var Location $response */
+    $response = $dataFoundryServiceClient->getLocation($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
+
 ### Version
 
-This component is considered beta. As such, it should be expected to be mostly
-stable and we're working towards a release candidate. We will address issues
-and requests with a higher priority.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/ai-platform/docs).
+1. Understand the [official documentation](https://cloud.google.com/vertex-ai/docs).

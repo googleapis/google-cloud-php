@@ -86,10 +86,21 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $offset = 0;
     /**
-     * Specs defining dataStores to filter on in a search call and configurations
-     * for those dataStores. This is only considered for engines with multiple
-     * dataStores use case. For single dataStore within an engine, they should
-     * use the specs at the top level.
+     * The maximum number of results to return for OneBox.
+     * This applies to each OneBox type individually.
+     * Default number is 10.
+     *
+     * Generated from protobuf field <code>int32 one_box_page_size = 47;</code>
+     */
+    protected $one_box_page_size = 0;
+    /**
+     * Specifications that define the specific
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+     * along with configurations for those data stores. This is only considered
+     * for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+     * stores. For engines with a single data store, the specs directly under
+     * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
+     * used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
      */
@@ -131,8 +142,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * a field in an [Document][google.cloud.discoveryengine.v1.Document] object.
      * Leave it unset if ordered by relevance. `order_by` expression is
      * case-sensitive.
-     * For more information on ordering for retail search, see
-     * [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
+     * For more information on ordering the website search results, see
+     * [Order web search
+     * results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results).
+     * For more information on ordering the healthcare search results, see
+     * [Order healthcare search
+     * results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results).
      * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
@@ -140,13 +155,23 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
     /**
      * Information about the end user.
-     * Highly recommended for analytics.
+     * Highly recommended for analytics and personalization.
      * [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
      * is used to deduce `device_type` for analytics.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.UserInfo user_info = 21;</code>
      */
     protected $user_info = null;
+    /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     * information, see [Standard
+     * fields](https://cloud.google.com/apis/design/standard_fields). This field
+     * helps to better interpret the query. If a value isn't specified, the query
+     * language code is automatically detected, which may not be accurate.
+     *
+     * Generated from protobuf field <code>string language_code = 35;</code>
+     */
+    protected $language_code = '';
     /**
      * Facet specifications for faceted search. If empty, no facets are returned.
      * A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
@@ -242,6 +267,152 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> user_labels = 22;</code>
      */
     private $user_labels;
+    /**
+     * Search as you type configuration. Only supported for the
+     * [IndustryVertical.MEDIA][google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]
+     * vertical.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec search_as_you_type_spec = 31;</code>
+     */
+    protected $search_as_you_type_spec = null;
+    /**
+     * Optional. Config for display feature, like match highlighting on search
+     * results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.DisplaySpec display_spec = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $display_spec = null;
+    /**
+     * The session resource name. Optional.
+     * Session allows users to do multi-turn /search API calls or coordination
+     * between /search API calls and /answer API calls.
+     * Example #1 (multi-turn /search API calls):
+     *   Call /search API with the session ID generated in the first call.
+     *   Here, the previous search query gets considered in query
+     *   standing. I.e., if the first query is "How did Alphabet do in 2022?"
+     *   and the current query is "How about 2023?", the current query will
+     *   be interpreted as "How did Alphabet do in 2023?".
+     * Example #2 (coordination between /search API calls and /answer API calls):
+     *   Call /answer API with the session ID generated in the first call.
+     *   Here, the answer generation happens in the context of the search
+     *   results from the first search call.
+     * Multi-turn Search feature is currently at private GA stage. Please use
+     * v1alpha or v1beta version instead before we launch this feature to public
+     * GA. Or ask for allowlisting through Google Support team.
+     *
+     * Generated from protobuf field <code>string session = 41 [(.google.api.resource_reference) = {</code>
+     */
+    protected $session = '';
+    /**
+     * Session specification.
+     * Can be used only when `session` is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SessionSpec session_spec = 42;</code>
+     */
+    protected $session_spec = null;
+    /**
+     * The relevance threshold of the search results.
+     * Default to Google defined threshold, leveraging a balance of
+     * precision and recall to deliver both highly accurate results and
+     * comprehensive coverage of relevant information.
+     * This feature is not supported for healthcare search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceThreshold relevance_threshold = 44;</code>
+     */
+    protected $relevance_threshold = 0;
+    /**
+     * Optional. The specification for returning the relevance score.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceScoreSpec relevance_score_spec = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $relevance_score_spec = null;
+    /**
+     * The ranking expression controls the customized ranking on retrieval
+     * documents. This overrides
+     * [ServingConfig.ranking_expression][google.cloud.discoveryengine.v1.ServingConfig.ranking_expression].
+     * The syntax and supported features depend on the
+     * `ranking_expression_backend` value. If `ranking_expression_backend` is not
+     * provided, it defaults to `RANK_BY_EMBEDDING`.
+     * If
+     * [ranking_expression_backend][google.cloud.discoveryengine.v1.SearchRequest.ranking_expression_backend]
+     * is not provided or set to `RANK_BY_EMBEDDING`, it should be a single
+     * function or multiple functions that are joined by "+".
+     *   * ranking_expression = function, { " + ", function };
+     * Supported functions:
+     *   * double * relevance_score
+     *   * double * dotProduct(embedding_field_path)
+     * Function variables:
+     *   * `relevance_score`: pre-defined keywords, used for measure relevance
+     *   between query and document.
+     *   * `embedding_field_path`: the document embedding field
+     *   used with query embedding vector.
+     *   * `dotProduct`: embedding function between `embedding_field_path` and
+     *   query embedding vector.
+     *  Example ranking expression:
+     *    If document has an embedding field doc_embedding, the ranking expression
+     *    could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     * If
+     * [ranking_expression_backend][google.cloud.discoveryengine.v1.SearchRequest.ranking_expression_backend]
+     * is set to `RANK_BY_FORMULA`, the following expression types (and
+     * combinations of those chained using + or
+     * * operators) are supported:
+     *   * `double`
+     *   * `signal`
+     *   * `log(signal)`
+     *   * `exp(signal)`
+     *   * `rr(signal, double > 0)`  -- reciprocal rank transformation with second
+     *   argument being a denominator constant.
+     *   * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise.
+     *   * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns
+     *   signal2 | double, else returns signal1.
+     *   Here are a few examples of ranking formulas that use the supported
+     *   ranking expression types:
+     *   - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)`
+     *   -- mostly rank by the logarithm of `keyword_similarity_score` with slight
+     *   `semantic_smilarity_score` adjustment.
+     *   - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 *
+     *   is_nan(keyword_similarity_score)` -- rank by the exponent of
+     *   `semantic_similarity_score` filling the value with 0 if it's NaN, also
+     *   add constant 0.3 adjustment to the final score if
+     *   `semantic_similarity_score` is NaN.
+     *   - `0.2 * rr(semantic_similarity_score, 16) + 0.8 *
+     *   rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank
+     *   of `keyword_similarity_score` with slight adjustment of reciprocal rank
+     *   of `semantic_smilarity_score`.
+     * The following signals are supported:
+     *   * `semantic_similarity_score`: semantic similarity adjustment that is
+     *   calculated using the embeddings generated by a proprietary Google model.
+     *   This score determines how semantically similar a search query is to a
+     *   document.
+     *   * `keyword_similarity_score`: keyword match adjustment uses the Best
+     *   Match 25 (BM25) ranking function. This score is calculated using a
+     *   probabilistic model to estimate the probability that a document is
+     *   relevant to a given query.
+     *   * `relevance_score`: semantic relevance adjustment that uses a
+     *   proprietary Google model to determine the meaning and intent behind a
+     *   user's query in context with the content in the documents.
+     *   * `pctr_rank`: predicted conversion rate adjustment as a rank use
+     *   predicted Click-through rate (pCTR) to gauge the relevance and
+     *   attractiveness of a search result from a user's perspective. A higher
+     *   pCTR suggests that the result is more likely to satisfy the user's query
+     *   and intent, making it a valuable signal for ranking.
+     *   * `freshness_rank`: freshness adjustment as a rank
+     *   * `document_age`: The time in hours elapsed since the document was last
+     *   updated, a floating-point number (e.g., 0.25 means 15 minutes).
+     *   * `topicality_rank`: topicality adjustment as a rank. Uses proprietary
+     *   Google model to determine the keyword-based overlap between the query and
+     *   the document.
+     *   * `base_rank`: the default rank of the result
+     *
+     * Generated from protobuf field <code>string ranking_expression = 26;</code>
+     */
+    protected $ranking_expression = '';
+    /**
+     * The backend to use for the ranking expression evaluation.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RankingExpressionBackend ranking_expression_backend = 53 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ranking_expression_backend = 0;
 
     /**
      * Constructor.
@@ -289,11 +460,18 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           [page_token][google.cloud.discoveryengine.v1.SearchRequest.page_token] is
      *           unset.
      *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     *     @type int $one_box_page_size
+     *           The maximum number of results to return for OneBox.
+     *           This applies to each OneBox type individually.
+     *           Default number is 10.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
-     *           Specs defining dataStores to filter on in a search call and configurations
-     *           for those dataStores. This is only considered for engines with multiple
-     *           dataStores use case. For single dataStore within an engine, they should
-     *           use the specs at the top level.
+     *           Specifications that define the specific
+     *           [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+     *           along with configurations for those data stores. This is only considered
+     *           for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+     *           stores. For engines with a single data store, the specs directly under
+     *           [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
+     *           used.
      *     @type string $filter
      *           The filter syntax consists of an expression language for constructing a
      *           predicate from one or more fields of the documents being filtered. Filter
@@ -323,14 +501,24 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           a field in an [Document][google.cloud.discoveryengine.v1.Document] object.
      *           Leave it unset if ordered by relevance. `order_by` expression is
      *           case-sensitive.
-     *           For more information on ordering for retail search, see
-     *           [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
+     *           For more information on ordering the website search results, see
+     *           [Order web search
+     *           results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results).
+     *           For more information on ordering the healthcare search results, see
+     *           [Order healthcare search
+     *           results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results).
      *           If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *     @type \Google\Cloud\DiscoveryEngine\V1\UserInfo $user_info
      *           Information about the end user.
-     *           Highly recommended for analytics.
+     *           Highly recommended for analytics and personalization.
      *           [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
      *           is used to deduce `device_type` for analytics.
+     *     @type string $language_code
+     *           The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     *           information, see [Standard
+     *           fields](https://cloud.google.com/apis/design/standard_fields). This field
+     *           helps to better interpret the query. If a value isn't specified, the query
+     *           language code is automatically detected, which may not be accurate.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\FacetSpec>|\Google\Protobuf\Internal\RepeatedField $facet_specs
      *           Facet specifications for faceted search. If empty, no facets are returned.
      *           A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
@@ -390,6 +578,120 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           See [Google Cloud
      *           Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
      *           for more details.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec $search_as_you_type_spec
+     *           Search as you type configuration. Only supported for the
+     *           [IndustryVertical.MEDIA][google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]
+     *           vertical.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DisplaySpec $display_spec
+     *           Optional. Config for display feature, like match highlighting on search
+     *           results.
+     *     @type string $session
+     *           The session resource name. Optional.
+     *           Session allows users to do multi-turn /search API calls or coordination
+     *           between /search API calls and /answer API calls.
+     *           Example #1 (multi-turn /search API calls):
+     *             Call /search API with the session ID generated in the first call.
+     *             Here, the previous search query gets considered in query
+     *             standing. I.e., if the first query is "How did Alphabet do in 2022?"
+     *             and the current query is "How about 2023?", the current query will
+     *             be interpreted as "How did Alphabet do in 2023?".
+     *           Example #2 (coordination between /search API calls and /answer API calls):
+     *             Call /answer API with the session ID generated in the first call.
+     *             Here, the answer generation happens in the context of the search
+     *             results from the first search call.
+     *           Multi-turn Search feature is currently at private GA stage. Please use
+     *           v1alpha or v1beta version instead before we launch this feature to public
+     *           GA. Or ask for allowlisting through Google Support team.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SessionSpec $session_spec
+     *           Session specification.
+     *           Can be used only when `session` is set.
+     *     @type int $relevance_threshold
+     *           The relevance threshold of the search results.
+     *           Default to Google defined threshold, leveraging a balance of
+     *           precision and recall to deliver both highly accurate results and
+     *           comprehensive coverage of relevant information.
+     *           This feature is not supported for healthcare search.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceScoreSpec $relevance_score_spec
+     *           Optional. The specification for returning the relevance score.
+     *     @type string $ranking_expression
+     *           The ranking expression controls the customized ranking on retrieval
+     *           documents. This overrides
+     *           [ServingConfig.ranking_expression][google.cloud.discoveryengine.v1.ServingConfig.ranking_expression].
+     *           The syntax and supported features depend on the
+     *           `ranking_expression_backend` value. If `ranking_expression_backend` is not
+     *           provided, it defaults to `RANK_BY_EMBEDDING`.
+     *           If
+     *           [ranking_expression_backend][google.cloud.discoveryengine.v1.SearchRequest.ranking_expression_backend]
+     *           is not provided or set to `RANK_BY_EMBEDDING`, it should be a single
+     *           function or multiple functions that are joined by "+".
+     *             * ranking_expression = function, { " + ", function };
+     *           Supported functions:
+     *             * double * relevance_score
+     *             * double * dotProduct(embedding_field_path)
+     *           Function variables:
+     *             * `relevance_score`: pre-defined keywords, used for measure relevance
+     *             between query and document.
+     *             * `embedding_field_path`: the document embedding field
+     *             used with query embedding vector.
+     *             * `dotProduct`: embedding function between `embedding_field_path` and
+     *             query embedding vector.
+     *            Example ranking expression:
+     *              If document has an embedding field doc_embedding, the ranking expression
+     *              could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     *           If
+     *           [ranking_expression_backend][google.cloud.discoveryengine.v1.SearchRequest.ranking_expression_backend]
+     *           is set to `RANK_BY_FORMULA`, the following expression types (and
+     *           combinations of those chained using + or
+     *           * operators) are supported:
+     *             * `double`
+     *             * `signal`
+     *             * `log(signal)`
+     *             * `exp(signal)`
+     *             * `rr(signal, double > 0)`  -- reciprocal rank transformation with second
+     *             argument being a denominator constant.
+     *             * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise.
+     *             * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns
+     *             signal2 | double, else returns signal1.
+     *             Here are a few examples of ranking formulas that use the supported
+     *             ranking expression types:
+     *             - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)`
+     *             -- mostly rank by the logarithm of `keyword_similarity_score` with slight
+     *             `semantic_smilarity_score` adjustment.
+     *             - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 *
+     *             is_nan(keyword_similarity_score)` -- rank by the exponent of
+     *             `semantic_similarity_score` filling the value with 0 if it's NaN, also
+     *             add constant 0.3 adjustment to the final score if
+     *             `semantic_similarity_score` is NaN.
+     *             - `0.2 * rr(semantic_similarity_score, 16) + 0.8 *
+     *             rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank
+     *             of `keyword_similarity_score` with slight adjustment of reciprocal rank
+     *             of `semantic_smilarity_score`.
+     *           The following signals are supported:
+     *             * `semantic_similarity_score`: semantic similarity adjustment that is
+     *             calculated using the embeddings generated by a proprietary Google model.
+     *             This score determines how semantically similar a search query is to a
+     *             document.
+     *             * `keyword_similarity_score`: keyword match adjustment uses the Best
+     *             Match 25 (BM25) ranking function. This score is calculated using a
+     *             probabilistic model to estimate the probability that a document is
+     *             relevant to a given query.
+     *             * `relevance_score`: semantic relevance adjustment that uses a
+     *             proprietary Google model to determine the meaning and intent behind a
+     *             user's query in context with the content in the documents.
+     *             * `pctr_rank`: predicted conversion rate adjustment as a rank use
+     *             predicted Click-through rate (pCTR) to gauge the relevance and
+     *             attractiveness of a search result from a user's perspective. A higher
+     *             pCTR suggests that the result is more likely to satisfy the user's query
+     *             and intent, making it a valuable signal for ranking.
+     *             * `freshness_rank`: freshness adjustment as a rank
+     *             * `document_age`: The time in hours elapsed since the document was last
+     *             updated, a floating-point number (e.g., 0.25 means 15 minutes).
+     *             * `topicality_rank`: topicality adjustment as a rank. Uses proprietary
+     *             Google model to determine the keyword-based overlap between the query and
+     *             the document.
+     *             * `base_rank`: the default rank of the result
+     *     @type int $ranking_expression_backend
+     *           The backend to use for the ranking expression evaluation.
      * }
      */
     public function __construct($data = NULL) {
@@ -642,10 +944,43 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specs defining dataStores to filter on in a search call and configurations
-     * for those dataStores. This is only considered for engines with multiple
-     * dataStores use case. For single dataStore within an engine, they should
-     * use the specs at the top level.
+     * The maximum number of results to return for OneBox.
+     * This applies to each OneBox type individually.
+     * Default number is 10.
+     *
+     * Generated from protobuf field <code>int32 one_box_page_size = 47;</code>
+     * @return int
+     */
+    public function getOneBoxPageSize()
+    {
+        return $this->one_box_page_size;
+    }
+
+    /**
+     * The maximum number of results to return for OneBox.
+     * This applies to each OneBox type individually.
+     * Default number is 10.
+     *
+     * Generated from protobuf field <code>int32 one_box_page_size = 47;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOneBoxPageSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->one_box_page_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifications that define the specific
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+     * along with configurations for those data stores. This is only considered
+     * for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+     * stores. For engines with a single data store, the specs directly under
+     * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
+     * used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -656,10 +991,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specs defining dataStores to filter on in a search call and configurations
-     * for those dataStores. This is only considered for engines with multiple
-     * dataStores use case. For single dataStore within an engine, they should
-     * use the specs at the top level.
+     * Specifications that define the specific
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+     * along with configurations for those data stores. This is only considered
+     * for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+     * stores. For engines with a single data store, the specs directly under
+     * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
+     * used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
      * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $var
@@ -770,8 +1108,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * a field in an [Document][google.cloud.discoveryengine.v1.Document] object.
      * Leave it unset if ordered by relevance. `order_by` expression is
      * case-sensitive.
-     * For more information on ordering for retail search, see
-     * [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
+     * For more information on ordering the website search results, see
+     * [Order web search
+     * results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results).
+     * For more information on ordering the healthcare search results, see
+     * [Order healthcare search
+     * results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results).
      * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
@@ -787,8 +1129,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * a field in an [Document][google.cloud.discoveryengine.v1.Document] object.
      * Leave it unset if ordered by relevance. `order_by` expression is
      * case-sensitive.
-     * For more information on ordering for retail search, see
-     * [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
+     * For more information on ordering the website search results, see
+     * [Order web search
+     * results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results).
+     * For more information on ordering the healthcare search results, see
+     * [Order healthcare search
+     * results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results).
      * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
@@ -805,7 +1151,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Information about the end user.
-     * Highly recommended for analytics.
+     * Highly recommended for analytics and personalization.
      * [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
      * is used to deduce `device_type` for analytics.
      *
@@ -829,7 +1175,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Information about the end user.
-     * Highly recommended for analytics.
+     * Highly recommended for analytics and personalization.
      * [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
      * is used to deduce `device_type` for analytics.
      *
@@ -841,6 +1187,40 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\UserInfo::class);
         $this->user_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     * information, see [Standard
+     * fields](https://cloud.google.com/apis/design/standard_fields). This field
+     * helps to better interpret the query. If a value isn't specified, the query
+     * language code is automatically detected, which may not be accurate.
+     *
+     * Generated from protobuf field <code>string language_code = 35;</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     * information, see [Standard
+     * fields](https://cloud.google.com/apis/design/standard_fields). This field
+     * helps to better interpret the query. If a value isn't specified, the query
+     * language code is automatically detected, which may not be accurate.
+     *
+     * Generated from protobuf field <code>string language_code = 35;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
 
         return $this;
     }
@@ -1197,6 +1577,450 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->user_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Search as you type configuration. Only supported for the
+     * [IndustryVertical.MEDIA][google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]
+     * vertical.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec search_as_you_type_spec = 31;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec|null
+     */
+    public function getSearchAsYouTypeSpec()
+    {
+        return $this->search_as_you_type_spec;
+    }
+
+    public function hasSearchAsYouTypeSpec()
+    {
+        return isset($this->search_as_you_type_spec);
+    }
+
+    public function clearSearchAsYouTypeSpec()
+    {
+        unset($this->search_as_you_type_spec);
+    }
+
+    /**
+     * Search as you type configuration. Only supported for the
+     * [IndustryVertical.MEDIA][google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]
+     * vertical.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec search_as_you_type_spec = 31;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec $var
+     * @return $this
+     */
+    public function setSearchAsYouTypeSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec::class);
+        $this->search_as_you_type_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Config for display feature, like match highlighting on search
+     * results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.DisplaySpec display_spec = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DisplaySpec|null
+     */
+    public function getDisplaySpec()
+    {
+        return $this->display_spec;
+    }
+
+    public function hasDisplaySpec()
+    {
+        return isset($this->display_spec);
+    }
+
+    public function clearDisplaySpec()
+    {
+        unset($this->display_spec);
+    }
+
+    /**
+     * Optional. Config for display feature, like match highlighting on search
+     * results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.DisplaySpec display_spec = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DisplaySpec $var
+     * @return $this
+     */
+    public function setDisplaySpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DisplaySpec::class);
+        $this->display_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * The session resource name. Optional.
+     * Session allows users to do multi-turn /search API calls or coordination
+     * between /search API calls and /answer API calls.
+     * Example #1 (multi-turn /search API calls):
+     *   Call /search API with the session ID generated in the first call.
+     *   Here, the previous search query gets considered in query
+     *   standing. I.e., if the first query is "How did Alphabet do in 2022?"
+     *   and the current query is "How about 2023?", the current query will
+     *   be interpreted as "How did Alphabet do in 2023?".
+     * Example #2 (coordination between /search API calls and /answer API calls):
+     *   Call /answer API with the session ID generated in the first call.
+     *   Here, the answer generation happens in the context of the search
+     *   results from the first search call.
+     * Multi-turn Search feature is currently at private GA stage. Please use
+     * v1alpha or v1beta version instead before we launch this feature to public
+     * GA. Or ask for allowlisting through Google Support team.
+     *
+     * Generated from protobuf field <code>string session = 41 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getSession()
+    {
+        return $this->session;
+    }
+
+    /**
+     * The session resource name. Optional.
+     * Session allows users to do multi-turn /search API calls or coordination
+     * between /search API calls and /answer API calls.
+     * Example #1 (multi-turn /search API calls):
+     *   Call /search API with the session ID generated in the first call.
+     *   Here, the previous search query gets considered in query
+     *   standing. I.e., if the first query is "How did Alphabet do in 2022?"
+     *   and the current query is "How about 2023?", the current query will
+     *   be interpreted as "How did Alphabet do in 2023?".
+     * Example #2 (coordination between /search API calls and /answer API calls):
+     *   Call /answer API with the session ID generated in the first call.
+     *   Here, the answer generation happens in the context of the search
+     *   results from the first search call.
+     * Multi-turn Search feature is currently at private GA stage. Please use
+     * v1alpha or v1beta version instead before we launch this feature to public
+     * GA. Or ask for allowlisting through Google Support team.
+     *
+     * Generated from protobuf field <code>string session = 41 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSession($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->session = $var;
+
+        return $this;
+    }
+
+    /**
+     * Session specification.
+     * Can be used only when `session` is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SessionSpec session_spec = 42;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SessionSpec|null
+     */
+    public function getSessionSpec()
+    {
+        return $this->session_spec;
+    }
+
+    public function hasSessionSpec()
+    {
+        return isset($this->session_spec);
+    }
+
+    public function clearSessionSpec()
+    {
+        unset($this->session_spec);
+    }
+
+    /**
+     * Session specification.
+     * Can be used only when `session` is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SessionSpec session_spec = 42;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SessionSpec $var
+     * @return $this
+     */
+    public function setSessionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SessionSpec::class);
+        $this->session_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * The relevance threshold of the search results.
+     * Default to Google defined threshold, leveraging a balance of
+     * precision and recall to deliver both highly accurate results and
+     * comprehensive coverage of relevant information.
+     * This feature is not supported for healthcare search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceThreshold relevance_threshold = 44;</code>
+     * @return int
+     */
+    public function getRelevanceThreshold()
+    {
+        return $this->relevance_threshold;
+    }
+
+    /**
+     * The relevance threshold of the search results.
+     * Default to Google defined threshold, leveraging a balance of
+     * precision and recall to deliver both highly accurate results and
+     * comprehensive coverage of relevant information.
+     * This feature is not supported for healthcare search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceThreshold relevance_threshold = 44;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRelevanceThreshold($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceThreshold::class);
+        $this->relevance_threshold = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The specification for returning the relevance score.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceScoreSpec relevance_score_spec = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceScoreSpec|null
+     */
+    public function getRelevanceScoreSpec()
+    {
+        return $this->relevance_score_spec;
+    }
+
+    public function hasRelevanceScoreSpec()
+    {
+        return isset($this->relevance_score_spec);
+    }
+
+    public function clearRelevanceScoreSpec()
+    {
+        unset($this->relevance_score_spec);
+    }
+
+    /**
+     * Optional. The specification for returning the relevance score.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceScoreSpec relevance_score_spec = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceScoreSpec $var
+     * @return $this
+     */
+    public function setRelevanceScoreSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceScoreSpec::class);
+        $this->relevance_score_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * The ranking expression controls the customized ranking on retrieval
+     * documents. This overrides
+     * [ServingConfig.ranking_expression][google.cloud.discoveryengine.v1.ServingConfig.ranking_expression].
+     * The syntax and supported features depend on the
+     * `ranking_expression_backend` value. If `ranking_expression_backend` is not
+     * provided, it defaults to `RANK_BY_EMBEDDING`.
+     * If
+     * [ranking_expression_backend][google.cloud.discoveryengine.v1.SearchRequest.ranking_expression_backend]
+     * is not provided or set to `RANK_BY_EMBEDDING`, it should be a single
+     * function or multiple functions that are joined by "+".
+     *   * ranking_expression = function, { " + ", function };
+     * Supported functions:
+     *   * double * relevance_score
+     *   * double * dotProduct(embedding_field_path)
+     * Function variables:
+     *   * `relevance_score`: pre-defined keywords, used for measure relevance
+     *   between query and document.
+     *   * `embedding_field_path`: the document embedding field
+     *   used with query embedding vector.
+     *   * `dotProduct`: embedding function between `embedding_field_path` and
+     *   query embedding vector.
+     *  Example ranking expression:
+     *    If document has an embedding field doc_embedding, the ranking expression
+     *    could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     * If
+     * [ranking_expression_backend][google.cloud.discoveryengine.v1.SearchRequest.ranking_expression_backend]
+     * is set to `RANK_BY_FORMULA`, the following expression types (and
+     * combinations of those chained using + or
+     * * operators) are supported:
+     *   * `double`
+     *   * `signal`
+     *   * `log(signal)`
+     *   * `exp(signal)`
+     *   * `rr(signal, double > 0)`  -- reciprocal rank transformation with second
+     *   argument being a denominator constant.
+     *   * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise.
+     *   * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns
+     *   signal2 | double, else returns signal1.
+     *   Here are a few examples of ranking formulas that use the supported
+     *   ranking expression types:
+     *   - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)`
+     *   -- mostly rank by the logarithm of `keyword_similarity_score` with slight
+     *   `semantic_smilarity_score` adjustment.
+     *   - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 *
+     *   is_nan(keyword_similarity_score)` -- rank by the exponent of
+     *   `semantic_similarity_score` filling the value with 0 if it's NaN, also
+     *   add constant 0.3 adjustment to the final score if
+     *   `semantic_similarity_score` is NaN.
+     *   - `0.2 * rr(semantic_similarity_score, 16) + 0.8 *
+     *   rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank
+     *   of `keyword_similarity_score` with slight adjustment of reciprocal rank
+     *   of `semantic_smilarity_score`.
+     * The following signals are supported:
+     *   * `semantic_similarity_score`: semantic similarity adjustment that is
+     *   calculated using the embeddings generated by a proprietary Google model.
+     *   This score determines how semantically similar a search query is to a
+     *   document.
+     *   * `keyword_similarity_score`: keyword match adjustment uses the Best
+     *   Match 25 (BM25) ranking function. This score is calculated using a
+     *   probabilistic model to estimate the probability that a document is
+     *   relevant to a given query.
+     *   * `relevance_score`: semantic relevance adjustment that uses a
+     *   proprietary Google model to determine the meaning and intent behind a
+     *   user's query in context with the content in the documents.
+     *   * `pctr_rank`: predicted conversion rate adjustment as a rank use
+     *   predicted Click-through rate (pCTR) to gauge the relevance and
+     *   attractiveness of a search result from a user's perspective. A higher
+     *   pCTR suggests that the result is more likely to satisfy the user's query
+     *   and intent, making it a valuable signal for ranking.
+     *   * `freshness_rank`: freshness adjustment as a rank
+     *   * `document_age`: The time in hours elapsed since the document was last
+     *   updated, a floating-point number (e.g., 0.25 means 15 minutes).
+     *   * `topicality_rank`: topicality adjustment as a rank. Uses proprietary
+     *   Google model to determine the keyword-based overlap between the query and
+     *   the document.
+     *   * `base_rank`: the default rank of the result
+     *
+     * Generated from protobuf field <code>string ranking_expression = 26;</code>
+     * @return string
+     */
+    public function getRankingExpression()
+    {
+        return $this->ranking_expression;
+    }
+
+    /**
+     * The ranking expression controls the customized ranking on retrieval
+     * documents. This overrides
+     * [ServingConfig.ranking_expression][google.cloud.discoveryengine.v1.ServingConfig.ranking_expression].
+     * The syntax and supported features depend on the
+     * `ranking_expression_backend` value. If `ranking_expression_backend` is not
+     * provided, it defaults to `RANK_BY_EMBEDDING`.
+     * If
+     * [ranking_expression_backend][google.cloud.discoveryengine.v1.SearchRequest.ranking_expression_backend]
+     * is not provided or set to `RANK_BY_EMBEDDING`, it should be a single
+     * function or multiple functions that are joined by "+".
+     *   * ranking_expression = function, { " + ", function };
+     * Supported functions:
+     *   * double * relevance_score
+     *   * double * dotProduct(embedding_field_path)
+     * Function variables:
+     *   * `relevance_score`: pre-defined keywords, used for measure relevance
+     *   between query and document.
+     *   * `embedding_field_path`: the document embedding field
+     *   used with query embedding vector.
+     *   * `dotProduct`: embedding function between `embedding_field_path` and
+     *   query embedding vector.
+     *  Example ranking expression:
+     *    If document has an embedding field doc_embedding, the ranking expression
+     *    could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     * If
+     * [ranking_expression_backend][google.cloud.discoveryengine.v1.SearchRequest.ranking_expression_backend]
+     * is set to `RANK_BY_FORMULA`, the following expression types (and
+     * combinations of those chained using + or
+     * * operators) are supported:
+     *   * `double`
+     *   * `signal`
+     *   * `log(signal)`
+     *   * `exp(signal)`
+     *   * `rr(signal, double > 0)`  -- reciprocal rank transformation with second
+     *   argument being a denominator constant.
+     *   * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise.
+     *   * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns
+     *   signal2 | double, else returns signal1.
+     *   Here are a few examples of ranking formulas that use the supported
+     *   ranking expression types:
+     *   - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)`
+     *   -- mostly rank by the logarithm of `keyword_similarity_score` with slight
+     *   `semantic_smilarity_score` adjustment.
+     *   - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 *
+     *   is_nan(keyword_similarity_score)` -- rank by the exponent of
+     *   `semantic_similarity_score` filling the value with 0 if it's NaN, also
+     *   add constant 0.3 adjustment to the final score if
+     *   `semantic_similarity_score` is NaN.
+     *   - `0.2 * rr(semantic_similarity_score, 16) + 0.8 *
+     *   rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank
+     *   of `keyword_similarity_score` with slight adjustment of reciprocal rank
+     *   of `semantic_smilarity_score`.
+     * The following signals are supported:
+     *   * `semantic_similarity_score`: semantic similarity adjustment that is
+     *   calculated using the embeddings generated by a proprietary Google model.
+     *   This score determines how semantically similar a search query is to a
+     *   document.
+     *   * `keyword_similarity_score`: keyword match adjustment uses the Best
+     *   Match 25 (BM25) ranking function. This score is calculated using a
+     *   probabilistic model to estimate the probability that a document is
+     *   relevant to a given query.
+     *   * `relevance_score`: semantic relevance adjustment that uses a
+     *   proprietary Google model to determine the meaning and intent behind a
+     *   user's query in context with the content in the documents.
+     *   * `pctr_rank`: predicted conversion rate adjustment as a rank use
+     *   predicted Click-through rate (pCTR) to gauge the relevance and
+     *   attractiveness of a search result from a user's perspective. A higher
+     *   pCTR suggests that the result is more likely to satisfy the user's query
+     *   and intent, making it a valuable signal for ranking.
+     *   * `freshness_rank`: freshness adjustment as a rank
+     *   * `document_age`: The time in hours elapsed since the document was last
+     *   updated, a floating-point number (e.g., 0.25 means 15 minutes).
+     *   * `topicality_rank`: topicality adjustment as a rank. Uses proprietary
+     *   Google model to determine the keyword-based overlap between the query and
+     *   the document.
+     *   * `base_rank`: the default rank of the result
+     *
+     * Generated from protobuf field <code>string ranking_expression = 26;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRankingExpression($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ranking_expression = $var;
+
+        return $this;
+    }
+
+    /**
+     * The backend to use for the ranking expression evaluation.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RankingExpressionBackend ranking_expression_backend = 53 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getRankingExpressionBackend()
+    {
+        return $this->ranking_expression_backend;
+    }
+
+    /**
+     * The backend to use for the ranking expression evaluation.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RankingExpressionBackend ranking_expression_backend = 53 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRankingExpressionBackend($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RankingExpressionBackend::class);
+        $this->ranking_expression_backend = $var;
 
         return $this;
     }

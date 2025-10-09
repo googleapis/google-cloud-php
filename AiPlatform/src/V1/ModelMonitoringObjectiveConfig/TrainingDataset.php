@@ -28,7 +28,7 @@ class TrainingDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_format = 2;</code>
      */
-    private $data_format = '';
+    protected $data_format = '';
     /**
      * The target field name the model is to predict.
      * This field will be excluded when doing Predict and (or) Explain for the
@@ -36,14 +36,14 @@ class TrainingDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target_field = 6;</code>
      */
-    private $target_field = '';
+    protected $target_field = '';
     /**
      * Strategy to sample data from Training Dataset.
      * If not set, we process the whole dataset.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SamplingStrategy logging_sampling_strategy = 7;</code>
      */
-    private $logging_sampling_strategy = null;
+    protected $logging_sampling_strategy = null;
     protected $data_source;
 
     /**

@@ -22,7 +22,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $instance_type = '';
+    protected $instance_type = '';
     /**
      * Optional. Template for the root volume provisioned for node pool nodes.
      * Volumes will be provisioned in the availability zone assigned
@@ -31,7 +31,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsVolumeTemplate root_volume = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $root_volume = null;
+    protected $root_volume = null;
     /**
      * Optional. The initial taints assigned to nodes of this node pool.
      *
@@ -61,7 +61,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string iam_instance_profile = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $iam_instance_profile = '';
+    protected $iam_instance_profile = '';
     /**
      * Optional. The OS image type to use on node pool instances.
      * Can be unspecified, or have a value of `ubuntu`.
@@ -69,13 +69,13 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_type = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image_type = '';
+    protected $image_type = '';
     /**
      * Optional. The SSH configuration.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsSshConfig ssh_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ssh_config = null;
+    protected $ssh_config = null;
     /**
      * Optional. The IDs of additional security groups to add to nodes in this
      * pool. The manager will automatically create security groups with minimum
@@ -89,20 +89,20 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsProxyConfig proxy_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $proxy_config = null;
+    protected $proxy_config = null;
     /**
      * Required. Config encryption for user data.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsConfigEncryption config_encryption = 13 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $config_encryption = null;
+    protected $config_encryption = null;
     /**
      * Optional. Placement related info for this node.
      * When unspecified, the VPC's default tenancy will be used.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsInstancePlacement instance_placement = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $instance_placement = null;
+    protected $instance_placement = null;
     /**
      * Optional. Configuration related to CloudWatch metrics collection on the
      * Auto Scaling group of the node pool.
@@ -110,7 +110,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsAutoscalingGroupMetricsCollection autoscaling_metrics_collection = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $autoscaling_metrics_collection = null;
+    protected $autoscaling_metrics_collection = null;
     /**
      * Optional. Configuration for provisioning EC2 Spot instances
      * When specified, the node pool will provision Spot instances from the set
@@ -119,7 +119,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.SpotConfig spot_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $spot_config = null;
+    protected $spot_config = null;
 
     /**
      * Constructor.

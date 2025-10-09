@@ -69,7 +69,7 @@ items:
         -
           id: '↳ violence'
           var_type: int
-          description: 'Likelihood that this image contains violent content.'
+          description: 'Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals.'
         -
           id: '↳ racy'
           var_type: int
@@ -90,6 +90,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setAdult()'
     name: setAdult
@@ -107,7 +108,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -127,6 +128,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setSpoof()'
     name: setSpoof
@@ -144,7 +146,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -161,6 +163,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setMedical()'
     name: setMedical
@@ -175,7 +178,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -183,7 +186,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::getViolence()'
     name: getViolence
     id: getViolence
-    summary: 'Likelihood that this image contains violent content.'
+    summary: |-
+      Likelihood that this image contains violent content. Violent content may
+      include death, serious harm, or injury to individuals or groups of
+      individuals.
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:
@@ -192,11 +198,15 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setViolence()'
     name: setViolence
     id: setViolence
-    summary: 'Likelihood that this image contains violent content.'
+    summary: |-
+      Likelihood that this image contains violent content. Violent content may
+      include death, serious harm, or injury to individuals or groups of
+      individuals.
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:
@@ -206,7 +216,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -227,6 +237,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setRacy()'
     name: setRacy
@@ -245,7 +256,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this

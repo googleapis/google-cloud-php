@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -39,18 +40,24 @@ use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\Tpu\V2\AcceleratorType;
 use Google\Cloud\Tpu\V2\CreateNodeRequest;
+use Google\Cloud\Tpu\V2\CreateQueuedResourceRequest;
 use Google\Cloud\Tpu\V2\DeleteNodeRequest;
+use Google\Cloud\Tpu\V2\DeleteQueuedResourceRequest;
 use Google\Cloud\Tpu\V2\GenerateServiceIdentityRequest;
 use Google\Cloud\Tpu\V2\GenerateServiceIdentityResponse;
 use Google\Cloud\Tpu\V2\GetAcceleratorTypeRequest;
 use Google\Cloud\Tpu\V2\GetGuestAttributesRequest;
 use Google\Cloud\Tpu\V2\GetGuestAttributesResponse;
 use Google\Cloud\Tpu\V2\GetNodeRequest;
+use Google\Cloud\Tpu\V2\GetQueuedResourceRequest;
 use Google\Cloud\Tpu\V2\GetRuntimeVersionRequest;
 use Google\Cloud\Tpu\V2\ListAcceleratorTypesRequest;
 use Google\Cloud\Tpu\V2\ListNodesRequest;
+use Google\Cloud\Tpu\V2\ListQueuedResourcesRequest;
 use Google\Cloud\Tpu\V2\ListRuntimeVersionsRequest;
 use Google\Cloud\Tpu\V2\Node;
+use Google\Cloud\Tpu\V2\QueuedResource;
+use Google\Cloud\Tpu\V2\ResetQueuedResourceRequest;
 use Google\Cloud\Tpu\V2\RuntimeVersion;
 use Google\Cloud\Tpu\V2\StartNodeRequest;
 use Google\Cloud\Tpu\V2\StopNodeRequest;
@@ -58,6 +65,7 @@ use Google\Cloud\Tpu\V2\UpdateNodeRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Manages TPU nodes and other resources
@@ -72,21 +80,26 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createNodeAsync(CreateNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNodeAsync(DeleteNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateServiceIdentityAsync(GenerateServiceIdentityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAcceleratorTypeAsync(GetAcceleratorTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGuestAttributesAsync(GetGuestAttributesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNodeAsync(GetNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuntimeVersionAsync(GetRuntimeVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAcceleratorTypesAsync(ListAcceleratorTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNodesAsync(ListNodesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRuntimeVersionsAsync(ListRuntimeVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startNodeAsync(StartNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopNodeAsync(StopNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNodeAsync(UpdateNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createNodeAsync(CreateNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createQueuedResourceAsync(CreateQueuedResourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNodeAsync(DeleteNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteQueuedResourceAsync(DeleteQueuedResourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateServiceIdentityResponse> generateServiceIdentityAsync(GenerateServiceIdentityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AcceleratorType> getAcceleratorTypeAsync(GetAcceleratorTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetGuestAttributesResponse> getGuestAttributesAsync(GetGuestAttributesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Node> getNodeAsync(GetNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueuedResource> getQueuedResourceAsync(GetQueuedResourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RuntimeVersion> getRuntimeVersionAsync(GetRuntimeVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAcceleratorTypesAsync(ListAcceleratorTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNodesAsync(ListNodesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listQueuedResourcesAsync(ListQueuedResourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRuntimeVersionsAsync(ListRuntimeVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resetQueuedResourceAsync(ResetQueuedResourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startNodeAsync(StartNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopNodeAsync(StopNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateNodeAsync(UpdateNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class TpuClient
 {
@@ -161,7 +174,7 @@ final class TpuClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -243,6 +256,25 @@ final class TpuClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * queued_resource resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $queuedResource
+     *
+     * @return string The formatted queued_resource resource.
+     */
+    public static function queuedResourceName(string $project, string $location, string $queuedResource): string
+    {
+        return self::getPathTemplate('queuedResource')->render([
+            'project' => $project,
+            'location' => $location,
+            'queued_resource' => $queuedResource,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * runtime_version resource.
      *
      * @param string $project
@@ -267,6 +299,7 @@ final class TpuClient
      * - acceleratorType: projects/{project}/locations/{location}/acceleratorTypes/{accelerator_type}
      * - location: projects/{project}/locations/{location}
      * - node: projects/{project}/locations/{location}/nodes/{node}
+     * - queuedResource: projects/{project}/locations/{location}/queuedResources/{queued_resource}
      * - runtimeVersion: projects/{project}/locations/{location}/runtimeVersions/{runtime_version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -275,14 +308,14 @@ final class TpuClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -290,20 +323,29 @@ final class TpuClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'tpu.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Tpu\V2\TpuClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new TpuClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -337,11 +379,16 @@ final class TpuClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -376,13 +423,39 @@ final class TpuClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Node>
      *
      * @throws ApiException Thrown if the API call fails.
      */
     public function createNode(CreateNodeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateNode', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a QueuedResource TPU instance.
+     *
+     * The async variant is {@see TpuClient::createQueuedResourceAsync()} .
+     *
+     * @example samples/V2/TpuClient/create_queued_resource.php
+     *
+     * @param CreateQueuedResourceRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<QueuedResource>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createQueuedResource(CreateQueuedResourceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateQueuedResource', $request, $callOptions)->wait();
     }
 
     /**
@@ -402,13 +475,39 @@ final class TpuClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
     public function deleteNode(DeleteNodeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteNode', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a QueuedResource TPU instance.
+     *
+     * The async variant is {@see TpuClient::deleteQueuedResourceAsync()} .
+     *
+     * @example samples/V2/TpuClient/delete_queued_resource.php
+     *
+     * @param DeleteQueuedResourceRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteQueuedResource(DeleteQueuedResourceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteQueuedResource', $request, $callOptions)->wait();
     }
 
     /**
@@ -516,6 +615,32 @@ final class TpuClient
     }
 
     /**
+     * Gets details of a queued resource.
+     *
+     * The async variant is {@see TpuClient::getQueuedResourceAsync()} .
+     *
+     * @example samples/V2/TpuClient/get_queued_resource.php
+     *
+     * @param GetQueuedResourceRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QueuedResource
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getQueuedResource(GetQueuedResourceRequest $request, array $callOptions = []): QueuedResource
+    {
+        return $this->startApiCall('GetQueuedResource', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a runtime version.
      *
      * The async variant is {@see TpuClient::getRuntimeVersionAsync()} .
@@ -594,6 +719,32 @@ final class TpuClient
     }
 
     /**
+     * Lists queued resources.
+     *
+     * The async variant is {@see TpuClient::listQueuedResourcesAsync()} .
+     *
+     * @example samples/V2/TpuClient/list_queued_resources.php
+     *
+     * @param ListQueuedResourcesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listQueuedResources(ListQueuedResourcesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListQueuedResources', $request, $callOptions);
+    }
+
+    /**
      * Lists runtime versions supported by this API.
      *
      * The async variant is {@see TpuClient::listRuntimeVersionsAsync()} .
@@ -620,6 +771,32 @@ final class TpuClient
     }
 
     /**
+     * Resets a QueuedResource TPU instance
+     *
+     * The async variant is {@see TpuClient::resetQueuedResourceAsync()} .
+     *
+     * @example samples/V2/TpuClient/reset_queued_resource.php
+     *
+     * @param ResetQueuedResourceRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<QueuedResource>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function resetQueuedResource(ResetQueuedResourceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ResetQueuedResource', $request, $callOptions)->wait();
+    }
+
+    /**
      * Starts a node.
      *
      * The async variant is {@see TpuClient::startNodeAsync()} .
@@ -636,7 +813,7 @@ final class TpuClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Node>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -662,7 +839,7 @@ final class TpuClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Node>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -688,7 +865,7 @@ final class TpuClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Node>
      *
      * @throws ApiException Thrown if the API call fails.
      */

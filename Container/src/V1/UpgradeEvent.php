@@ -21,38 +21,38 @@ class UpgradeEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.UpgradeResourceType resource_type = 1;</code>
      */
-    private $resource_type = 0;
+    protected $resource_type = 0;
     /**
      * The operation associated with this upgrade.
      *
      * Generated from protobuf field <code>string operation = 2;</code>
      */
-    private $operation = '';
+    protected $operation = '';
     /**
      * The time when the operation was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp operation_start_time = 3;</code>
      */
-    private $operation_start_time = null;
+    protected $operation_start_time = null;
     /**
      * The current version before the upgrade.
      *
      * Generated from protobuf field <code>string current_version = 4;</code>
      */
-    private $current_version = '';
+    protected $current_version = '';
     /**
      * The target version for the upgrade.
      *
      * Generated from protobuf field <code>string target_version = 5;</code>
      */
-    private $target_version = '';
+    protected $target_version = '';
     /**
      * Optional relative path to the resource. For example in node pool upgrades,
      * the relative path of the node pool.
      *
      * Generated from protobuf field <code>string resource = 6;</code>
      */
-    private $resource = '';
+    protected $resource = '';
 
     /**
      * Constructor.

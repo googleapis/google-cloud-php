@@ -20,13 +20,13 @@ class PipelineJobDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Context pipeline_context = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pipeline_context = null;
+    protected $pipeline_context = null;
     /**
      * Output only. The context of the current pipeline run.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Context pipeline_run_context = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pipeline_run_context = null;
+    protected $pipeline_run_context = null;
     /**
      * Output only. The runtime details of the tasks under the pipeline.
      *

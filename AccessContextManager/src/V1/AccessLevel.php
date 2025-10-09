@@ -25,31 +25,31 @@ class AccessLevel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Human readable title. Must be unique within the Policy.
      *
      * Generated from protobuf field <code>string title = 2;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Description of the `AccessLevel` and its use. Does not affect behavior.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Time the `AccessLevel` was created in UTC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time the `AccessLevel` was updated in UTC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     protected $level;
 
     /**

@@ -65,6 +65,16 @@
                                 "deleteUser"
                             ]
                         },
+                        "ExecuteSql": {
+                            "methods": [
+                                "executeSql"
+                            ]
+                        },
+                        "ExportCluster": {
+                            "methods": [
+                                "exportCluster"
+                            ]
+                        },
                         "FailoverInstance": {
                             "methods": [
                                 "failoverInstance"
@@ -100,6 +110,11 @@
                                 "getUser"
                             ]
                         },
+                        "ImportCluster": {
+                            "methods": [
+                                "importCluster"
+                            ]
+                        },
                         "InjectFault": {
                             "methods": [
                                 "injectFault"
@@ -113,6 +128,11 @@
                         "ListClusters": {
                             "methods": [
                                 "listClusters"
+                            ]
+                        },
+                        "ListDatabases": {
+                            "methods": [
+                                "listDatabases"
                             ]
                         },
                         "ListInstances": {
@@ -145,6 +165,11 @@
                                 "restoreCluster"
                             ]
                         },
+                        "SwitchoverCluster": {
+                            "methods": [
+                                "switchoverCluster"
+                            ]
+                        },
                         "UpdateBackup": {
                             "methods": [
                                 "updateBackup"
@@ -163,6 +188,35 @@
                         "UpdateUser": {
                             "methods": [
                                 "updateUser"
+                            ]
+                        },
+                        "UpgradeCluster": {
+                            "methods": [
+                                "upgradeCluster"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AlloyDBCSQLAdmin": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AlloyDBCSQLAdminGapicClient",
+                    "rpcs": {
+                        "RestoreFromCloudSQL": {
+                            "methods": [
+                                "restoreFromCloudSQL"
                             ]
                         },
                         "GetLocation": {

@@ -26,14 +26,14 @@ class TrinoJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool continue_on_failure = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $continue_on_failure = false;
+    protected $continue_on_failure = false;
     /**
      * Optional. The format in which query output will be displayed. See the
      * Trino documentation for supported output formats
      *
      * Generated from protobuf field <code>string output_format = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $output_format = '';
+    protected $output_format = '';
     /**
      * Optional. Trino client tags to attach to this query
      *
@@ -53,7 +53,7 @@ class TrinoJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     protected $queries;
 
     /**

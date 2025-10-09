@@ -27,19 +27,19 @@ class KMapEstimationHistogramBucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 min_anonymity = 1;</code>
      */
-    private $min_anonymity = 0;
+    protected $min_anonymity = 0;
     /**
      * Always greater than or equal to min_anonymity.
      *
      * Generated from protobuf field <code>int64 max_anonymity = 2;</code>
      */
-    private $max_anonymity = 0;
+    protected $max_anonymity = 0;
     /**
      * Number of records within these anonymity bounds.
      *
      * Generated from protobuf field <code>int64 bucket_size = 5;</code>
      */
-    private $bucket_size = 0;
+    protected $bucket_size = 0;
     /**
      * Sample of quasi-identifier tuple values in this bucket. The total
      * number of classes returned per bucket is capped at 20.
@@ -52,7 +52,7 @@ class KMapEstimationHistogramBucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 bucket_value_count = 7;</code>
      */
-    private $bucket_value_count = 0;
+    protected $bucket_value_count = 0;
 
     /**
      * Constructor.
@@ -212,6 +212,4 @@ class KMapEstimationHistogramBucket extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KMapEstimationHistogramBucket::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_KMapEstimationResult_KMapEstimationHistogramBucket::class);
 

@@ -20,7 +20,7 @@ class SuggestTrialsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenericOperationMetadata generic_metadata = 1;</code>
      */
-    private $generic_metadata = null;
+    protected $generic_metadata = null;
     /**
      * The identifier of the client that is requesting the suggestion.
      * If multiple SuggestTrialsRequests have the same `client_id`,
@@ -29,7 +29,7 @@ class SuggestTrialsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string client_id = 2;</code>
      */
-    private $client_id = '';
+    protected $client_id = '';
 
     /**
      * Constructor.

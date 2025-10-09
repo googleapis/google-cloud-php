@@ -21,7 +21,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The type of the flag. Flags are typed to being `BOOLEAN`, `STRING`,
      * `INTEGER` or `NONE`. `NONE` is used for flags that do not take a
@@ -29,7 +29,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlFlagType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The database version this flag applies to. Can be
      * MySQL instances: `MYSQL_8_0`, `MYSQL_8_0_18`, `MYSQL_8_0_26`, `MYSQL_5_7`,
@@ -40,7 +40,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or
      * `SQLSERVER_2019_WEB`.
      * See [the complete
-     * list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
+     * list](/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SqlDatabaseVersion applies_to = 3;</code>
      */
@@ -56,32 +56,32 @@ class Flag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value min_value = 5;</code>
      */
-    private $min_value = null;
+    protected $min_value = null;
     /**
      * For `INTEGER` flags, the maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value max_value = 6;</code>
      */
-    private $max_value = null;
+    protected $max_value = null;
     /**
      * Indicates whether changing this flag will trigger a database restart. Only
      * applicable to Second Generation instances.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue requires_restart = 7;</code>
      */
-    private $requires_restart = null;
+    protected $requires_restart = null;
     /**
      * This is always `sql#flag`.
      *
      * Generated from protobuf field <code>string kind = 8;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Whether or not the flag is considered in beta.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue in_beta = 9;</code>
      */
-    private $in_beta = null;
+    protected $in_beta = null;
     /**
      * Use this field if only certain integers are accepted. Can be combined
      * with min_value and max_value to add additional values.
@@ -113,7 +113,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      *           `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or
      *           `SQLSERVER_2019_WEB`.
      *           See [the complete
-     *           list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
+     *           list](/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_string_values
      *           For `STRING` flags, a list of strings that the value can be set to.
      *     @type \Google\Protobuf\Int64Value $min_value
@@ -205,7 +205,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or
      * `SQLSERVER_2019_WEB`.
      * See [the complete
-     * list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
+     * list](/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SqlDatabaseVersion applies_to = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -225,7 +225,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or
      * `SQLSERVER_2019_WEB`.
      * See [the complete
-     * list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
+     * list](/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SqlDatabaseVersion applies_to = 3;</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -294,7 +294,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value min_value = 5;</code>
      * @return int|string|null
      */
-    public function getMinValueValue()
+    public function getMinValueUnwrapped()
     {
         return $this->readWrapperValue("min_value");
     }
@@ -323,7 +323,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setMinValueValue($var)
+    public function setMinValueUnwrapped($var)
     {
         $this->writeWrapperValue("min_value", $var);
         return $this;}
@@ -357,7 +357,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value max_value = 6;</code>
      * @return int|string|null
      */
-    public function getMaxValueValue()
+    public function getMaxValueUnwrapped()
     {
         return $this->readWrapperValue("max_value");
     }
@@ -386,7 +386,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setMaxValueValue($var)
+    public function setMaxValueUnwrapped($var)
     {
         $this->writeWrapperValue("max_value", $var);
         return $this;}
@@ -422,7 +422,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue requires_restart = 7;</code>
      * @return bool|null
      */
-    public function getRequiresRestartValue()
+    public function getRequiresRestartUnwrapped()
     {
         return $this->readWrapperValue("requires_restart");
     }
@@ -453,7 +453,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setRequiresRestartValue($var)
+    public function setRequiresRestartUnwrapped($var)
     {
         $this->writeWrapperValue("requires_restart", $var);
         return $this;}
@@ -513,7 +513,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue in_beta = 9;</code>
      * @return bool|null
      */
-    public function getInBetaValue()
+    public function getInBetaUnwrapped()
     {
         return $this->readWrapperValue("in_beta");
     }
@@ -542,7 +542,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setInBetaValue($var)
+    public function setInBetaUnwrapped($var)
     {
         $this->writeWrapperValue("in_beta", $var);
         return $this;}

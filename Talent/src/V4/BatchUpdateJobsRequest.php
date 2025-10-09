@@ -22,7 +22,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The jobs to be updated.
      * A maximum of 200 jobs can be updated in a batch.
@@ -40,14 +40,14 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      * top level fields of [Job][google.cloud.talent.v4.Job] are supported.
      * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
      * is provided, The [Job][google.cloud.talent.v4.Job] inside
-     * [JobResult][JobOperationResult.JobResult]
+     * [JobResult][google.cloud.talent.v4.JobResult]
      * will only contains fields that is updated, plus the Id of the Job.
      * Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields,
      * which can yield a very large response.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                        $parent Required. The resource name of the tenant under which the job is created.
@@ -92,7 +92,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      *           top level fields of [Job][google.cloud.talent.v4.Job] are supported.
      *           If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
      *           is provided, The [Job][google.cloud.talent.v4.Job] inside
-     *           [JobResult][JobOperationResult.JobResult]
+     *           [JobResult][google.cloud.talent.v4.JobResult]
      *           will only contains fields that is updated, plus the Id of the Job.
      *           Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields,
      *           which can yield a very large response.
@@ -171,7 +171,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      * top level fields of [Job][google.cloud.talent.v4.Job] are supported.
      * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
      * is provided, The [Job][google.cloud.talent.v4.Job] inside
-     * [JobResult][JobOperationResult.JobResult]
+     * [JobResult][google.cloud.talent.v4.JobResult]
      * will only contains fields that is updated, plus the Id of the Job.
      * Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields,
      * which can yield a very large response.
@@ -204,7 +204,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      * top level fields of [Job][google.cloud.talent.v4.Job] are supported.
      * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
      * is provided, The [Job][google.cloud.talent.v4.Job] inside
-     * [JobResult][JobOperationResult.JobResult]
+     * [JobResult][google.cloud.talent.v4.JobResult]
      * will only contains fields that is updated, plus the Id of the Job.
      * Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields,
      * which can yield a very large response.

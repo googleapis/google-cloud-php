@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/managedidentities/(.*)/.*-php/(.*)
+    - source: /google/cloud/managedidentities/(v1)/.*-php/(.*)
       dest: /owl-bot-staging/ManagedIdentities/$1/$2
 api-name: ManagedIdentities

@@ -221,6 +221,73 @@ class StorageObjectTest extends TestCase
         $copiedObject = $object->copy($object);
     }
 
+    public function testMoveObject()
+    {
+        $destinationObject = 'new-object';
+        $apiResponse = [
+            'name' => $destinationObject,
+            'bucket' => self::BUCKET,
+            'generation' => 1,
+        ];
+
+        $this->connection->moveObject(Argument::any())->willReturn($apiResponse);
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
+        $movedObject = $object->move($destinationObject);
+
+        $this->assertInstanceOf(StorageObject::class, $movedObject);
+        $this->assertEquals($destinationObject, $movedObject->name());
+        $this->assertEquals(self::BUCKET, $movedObject->info()['bucket']);
+        $this->assertEquals(1, $movedObject->info()['generation']);
+    }
+
+    public function testMoveObjectThrowsExceptionWithInvalidType()
+    {
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
+        $this->expectException(\InvalidArgumentException::class);
+        $object->move(123);
+    }
+
+    public function testMoveObjectFailureWithPreCondition()
+    {
+        $destinationObject = 'new-object';
+        $options = ['ifGenerationMatch' => 123];
+
+        $this->connection->moveObject(Argument::any())->willThrow(\Exception::class);
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
+        $this->expectException(\Exception::class);
+        $object->move($destinationObject, $options);
+    }
+
+    public function testMoveObjectSuccessWithPreCondition()
+    {
+        $destinationObject = 'new-object';
+        $options = ['ifGenerationMatch' => 123];
+        $apiResponse = [
+            'name' => $destinationObject,
+            'bucket' => self::BUCKET,
+            'generation' => 1,
+        ];
+
+        $this->connection->moveObject(Argument::any())->willReturn($apiResponse);
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
+        $movedObject = $object->move($destinationObject, $options);
+
+        $this->assertInstanceOf(StorageObject::class, $movedObject);
+        $this->assertEquals($destinationObject, $movedObject->name());
+        $this->assertEquals(self::BUCKET, $movedObject->info()['bucket']);
+        $this->assertEquals(1, $movedObject->info()['generation']);
+    }
+
+    public function testMoveObjectThrowsExceptionWithInvalidBucket()
+    {
+        $destinationObject = 'new-object';
+
+        $this->connection->moveObject(Argument::any())->willThrow(\Exception::class);
+        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
+        $this->expectException(\Exception::class);
+        $object->move($destinationObject, ['bucket' => 'invalid-bucket']);
+    }
+
     public function testRewriteObjectWithDefaultName()
     {
         $sourceBucket = 'bucket';
@@ -635,6 +702,31 @@ class StorageObjectTest extends TestCase
         ];
     }
 
+    public function testDownloadAsStreamShouldNotReadFromStream()
+    {
+        $stream = $this->prophesize(StreamInterface::class);
+        $stream->eof()->shouldNotBeCalled();
+        $stream->read(Argument::any())->shouldNotBeCalled();
+
+        $httpHandler = function ($request, $options) use ($stream) {
+            return new Response(200, [], $stream->reveal());
+        };
+
+        $rest = new Rest([
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            }
+        ]);
+
+        $object = new StorageObject($rest, 'object', 'bucket');
+        $stream = $object->downloadAsStream();
+
+        // assert the resulting stream looks like we'd expect
+        $this->assertInstanceOf(StreamInterface::class, $stream);
+    }
+
     public function testGetsInfo()
     {
         $objectInfo = [
@@ -952,7 +1044,7 @@ class StorageObjectTest extends TestCase
     }
 
     private function getStorageObjectForSigning(
-        SignBlobInterface $credentials = null,
+        ?SignBlobInterface $credentials = null,
         $scopes = '',
         $generation = null
     ) {

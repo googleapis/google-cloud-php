@@ -21,14 +21,14 @@ class PrimaryInstanceSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Configuration for the machines that host the underlying
      * database engine.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.AlloyDbSettings.PrimaryInstanceSettings.MachineConfig machine_config = 2;</code>
      */
-    private $machine_config = null;
+    protected $machine_config = null;
     /**
      * Database flags to pass to AlloyDB when DMS is creating the AlloyDB
      * cluster and instances. See the AlloyDB documentation for how these can be
@@ -50,7 +50,7 @@ class PrimaryInstanceSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string private_ip = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $private_ip = '';
+    protected $private_ip = '';
 
     /**
      * Constructor.

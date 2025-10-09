@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message to simulate a CustomConfig against a given test resource.
- * Maximum size of the request is 4 MB by default.
+ * Request message for
+ * [SecurityCenterManagement.SimulateSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.SimulateSecurityHealthAnalyticsCustomModule].
+ * The maximum size of the request is 4 MiB.
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.SimulateSecurityHealthAnalyticsCustomModuleRequest</code>
  */
@@ -18,10 +19,9 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
 {
     /**
      * Required. The relative resource name of the organization, project, or
-     * folder. For more information about relative resource names, see [Relative
-     * Resource
-     * Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
-     * Example: `organizations/{organization_id}`.
+     * folder. For more information about relative resource names, see [AIP-122:
+     * Resource names](https://google.aip.dev/122). Example:
+     * `organizations/{organization_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -41,10 +41,9 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
 
     /**
      * @param string                                                                                                         $parent       Required. The relative resource name of the organization, project, or
-     *                                                                                                                                     folder. For more information about relative resource names, see [Relative
-     *                                                                                                                                     Resource
-     *                                                                                                                                     Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
-     *                                                                                                                                     Example: `organizations/{organization_id}`.
+     *                                                                                                                                     folder. For more information about relative resource names, see [AIP-122:
+     *                                                                                                                                     Resource names](https://google.aip.dev/122). Example:
+     *                                                                                                                                     `organizations/{organization_id}`.
      * @param \Google\Cloud\SecurityCenterManagement\V1\CustomConfig                                                         $customConfig Required. The custom configuration that you need to test.
      * @param \Google\Cloud\SecurityCenterManagement\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest\SimulatedResource $resource     Required. Resource data to simulate custom module against.
      *
@@ -68,10 +67,9 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
      *
      *     @type string $parent
      *           Required. The relative resource name of the organization, project, or
-     *           folder. For more information about relative resource names, see [Relative
-     *           Resource
-     *           Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
-     *           Example: `organizations/{organization_id}`.
+     *           folder. For more information about relative resource names, see [AIP-122:
+     *           Resource names](https://google.aip.dev/122). Example:
+     *           `organizations/{organization_id}`.
      *     @type \Google\Cloud\SecurityCenterManagement\V1\CustomConfig $custom_config
      *           Required. The custom configuration that you need to test.
      *     @type \Google\Cloud\SecurityCenterManagement\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest\SimulatedResource $resource
@@ -85,10 +83,9 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
 
     /**
      * Required. The relative resource name of the organization, project, or
-     * folder. For more information about relative resource names, see [Relative
-     * Resource
-     * Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
-     * Example: `organizations/{organization_id}`.
+     * folder. For more information about relative resource names, see [AIP-122:
+     * Resource names](https://google.aip.dev/122). Example:
+     * `organizations/{organization_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -100,10 +97,9 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
 
     /**
      * Required. The relative resource name of the organization, project, or
-     * folder. For more information about relative resource names, see [Relative
-     * Resource
-     * Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
-     * Example: `organizations/{organization_id}`.
+     * folder. For more information about relative resource names, see [AIP-122:
+     * Resource names](https://google.aip.dev/122). Example:
+     * `organizations/{organization_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
  * last change to the object's content or metadata — specifically, this is
  * the `updated` property of Cloud Storage objects, the `LastModified` field
  * of S3 objects, and the `Last-Modified` header of Azure blobs.
+ * For S3 objects, the `LastModified` value is the time the object begins
+ * uploading. If the object meets your "last modification time" criteria,
+ * but has not finished uploading, the object is not transferred. See
+ * [Transfer from Amazon S3 to Cloud
+ * Storage](https://cloud.google.com/storage-transfer/docs/create-transfers/agentless/s3#transfer_options)
+ * for more information.
  * Transfers with a [PosixFilesystem][google.storagetransfer.v1.PosixFilesystem]
  * source or destination don't support `ObjectConditions`.
  *
@@ -35,7 +41,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_time_elapsed_since_last_modification = 1;</code>
      */
-    private $min_time_elapsed_since_last_modification = null;
+    protected $min_time_elapsed_since_last_modification = null;
     /**
      * Ensures that objects are not transferred if a specific maximum time
      * has elapsed since the "last modification time".
@@ -49,7 +55,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_time_elapsed_since_last_modification = 2;</code>
      */
-    private $max_time_elapsed_since_last_modification = null;
+    protected $max_time_elapsed_since_last_modification = null;
     /**
      * If you specify `include_prefixes`, Storage Transfer Service uses the items
      * in the `include_prefixes` array to determine which objects to include in a
@@ -72,7 +78,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *     include-prefix.
      * The max size of `include_prefixes` is 1000.
      * For more information, see [Filtering objects from
-     * transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
+     * transfers](/storage-transfer/docs/filtering-objects-from-transfers).
      *
      * Generated from protobuf field <code>repeated string include_prefixes = 3;</code>
      */
@@ -100,7 +106,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *   path explicitly included by `include_prefixes`.
      * The max size of `exclude_prefixes` is 1000.
      * For more information, see [Filtering objects from
-     * transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
+     * transfers](/storage-transfer/docs/filtering-objects-from-transfers).
      *
      * Generated from protobuf field <code>repeated string exclude_prefixes = 4;</code>
      */
@@ -118,7 +124,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified_since = 5;</code>
      */
-    private $last_modified_since = null;
+    protected $last_modified_since = null;
     /**
      * If specified, only objects with a "last modification time" before this
      * timestamp and objects that don't have a "last modification time" are
@@ -126,7 +132,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified_before = 6;</code>
      */
-    private $last_modified_before = null;
+    protected $last_modified_before = null;
 
     /**
      * Constructor.
@@ -176,7 +182,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *               include-prefix.
      *           The max size of `include_prefixes` is 1000.
      *           For more information, see [Filtering objects from
-     *           transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
+     *           transfers](/storage-transfer/docs/filtering-objects-from-transfers).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_prefixes
      *           If you specify `exclude_prefixes`, Storage Transfer Service uses the items
      *           in the `exclude_prefixes` array to determine which objects to exclude from
@@ -200,7 +206,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *             path explicitly included by `include_prefixes`.
      *           The max size of `exclude_prefixes` is 1000.
      *           For more information, see [Filtering objects from
-     *           transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
+     *           transfers](/storage-transfer/docs/filtering-objects-from-transfers).
      *     @type \Google\Protobuf\Timestamp $last_modified_since
      *           If specified, only objects with a "last modification time" on or after
      *           this timestamp and objects that don't have a "last modification time" are
@@ -348,7 +354,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *     include-prefix.
      * The max size of `include_prefixes` is 1000.
      * For more information, see [Filtering objects from
-     * transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
+     * transfers](/storage-transfer/docs/filtering-objects-from-transfers).
      *
      * Generated from protobuf field <code>repeated string include_prefixes = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -380,7 +386,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *     include-prefix.
      * The max size of `include_prefixes` is 1000.
      * For more information, see [Filtering objects from
-     * transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
+     * transfers](/storage-transfer/docs/filtering-objects-from-transfers).
      *
      * Generated from protobuf field <code>repeated string include_prefixes = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -417,7 +423,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *   path explicitly included by `include_prefixes`.
      * The max size of `exclude_prefixes` is 1000.
      * For more information, see [Filtering objects from
-     * transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
+     * transfers](/storage-transfer/docs/filtering-objects-from-transfers).
      *
      * Generated from protobuf field <code>repeated string exclude_prefixes = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -450,7 +456,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *   path explicitly included by `include_prefixes`.
      * The max size of `exclude_prefixes` is 1000.
      * For more information, see [Filtering objects from
-     * transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
+     * transfers](/storage-transfer/docs/filtering-objects-from-transfers).
      *
      * Generated from protobuf field <code>repeated string exclude_prefixes = 4;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

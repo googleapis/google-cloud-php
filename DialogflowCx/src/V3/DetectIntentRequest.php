@@ -17,9 +17,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the session this query is sent to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/sessions/<Session ID>` or `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/environments/<Environment ID>/sessions/<Session ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<Session
+     * ID>` or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>`.
      * If `Environment ID` is not specified, we assume default 'draft'
      * environment.
      * It's up to the API caller to choose an appropriate `Session ID`. It can be
@@ -61,9 +62,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $session
      *           Required. The name of the session this query is sent to.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/sessions/<Session ID>` or `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/environments/<Environment ID>/sessions/<Session ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<Session
+     *           ID>` or
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>`.
      *           If `Environment ID` is not specified, we assume default 'draft'
      *           environment.
      *           It's up to the API caller to choose an appropriate `Session ID`. It can be
@@ -89,9 +91,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the session this query is sent to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/sessions/<Session ID>` or `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/environments/<Environment ID>/sessions/<Session ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<Session
+     * ID>` or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>`.
      * If `Environment ID` is not specified, we assume default 'draft'
      * environment.
      * It's up to the API caller to choose an appropriate `Session ID`. It can be
@@ -113,9 +116,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the session this query is sent to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/sessions/<Session ID>` or `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/environments/<Environment ID>/sessions/<Session ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<Session
+     * ID>` or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>`.
      * If `Environment ID` is not specified, we assume default 'draft'
      * environment.
      * It's up to the API caller to choose an appropriate `Session ID`. It can be

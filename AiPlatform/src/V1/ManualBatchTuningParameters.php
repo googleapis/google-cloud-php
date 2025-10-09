@@ -26,7 +26,7 @@ class ManualBatchTuningParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 batch_size = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $batch_size = 0;
+    protected $batch_size = 0;
 
     /**
      * Constructor.

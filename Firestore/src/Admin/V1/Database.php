@@ -44,6 +44,13 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
+     * Output only. The timestamp at which this database was deleted. Only set if
+     * the database has been deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $delete_time = null;
+    /**
      * The location of the database. Available locations are listed at
      * https://cloud.google.com/firestore/docs/locations.
      *
@@ -103,8 +110,8 @@ class Database extends \Google\Protobuf\Internal\Message
     private $app_engine_integration_mode = 0;
     /**
      * Output only. The key_prefix for this database. This key_prefix is used, in
-     * combination with the project id ("<key prefix>~<project id>") to construct
-     * the application id that is returned from the Cloud Datastore APIs in Google
+     * combination with the project ID ("<key prefix>~<project id>") to construct
+     * the application ID that is returned from the Cloud Datastore APIs in Google
      * App Engine first generation runtimes.
      * This value may be empty in which case the appid to use for URL-encoded keys
      * is the project_id (eg: foo instead of v~foo).
@@ -119,6 +126,48 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     private $delete_protection_state = 0;
     /**
+     * Optional. Presence indicates CMEK is enabled for this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.CmekConfig cmek_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $cmek_config = null;
+    /**
+     * Output only. The database resource's prior database ID. This field is only
+     * populated for deleted databases.
+     *
+     * Generated from protobuf field <code>string previous_id = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $previous_id = '';
+    /**
+     * Output only. Information about the provenance of this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.SourceInfo source_info = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $source_info = null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 29 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
+    /**
+     * Output only. Background: Free tier is the ability of a Firestore database
+     * to use a small amount of resources every day without being charged. Once
+     * usage exceeds the free tier limit further usage is charged.
+     * Whether this database can make use of the free tier. Only one database
+     * per project can be eligible for the free tier.
+     * The first (or next) database that is created in a project without a free
+     * tier database will be marked as eligible for the free tier. Databases that
+     * are created while there is a free tier database will not be eligible for
+     * the free tier.
+     *
+     * Generated from protobuf field <code>optional bool free_tier = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $free_tier = null;
+    /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
@@ -126,6 +175,12 @@ class Database extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 99;</code>
      */
     private $etag = '';
+    /**
+     * Immutable. The edition of the database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DatabaseEdition database_edition = 28 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $database_edition = 0;
 
     /**
      * Constructor.
@@ -145,6 +200,9 @@ class Database extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp at which this database was most recently
      *           updated. Note this only includes updates to the database resource and not
      *           data contained by the database.
+     *     @type \Google\Protobuf\Timestamp $delete_time
+     *           Output only. The timestamp at which this database was deleted. Only set if
+     *           the database has been deleted.
      *     @type string $location_id
      *           The location of the database. Available locations are listed at
      *           https://cloud.google.com/firestore/docs/locations.
@@ -177,17 +235,41 @@ class Database extends \Google\Protobuf\Internal\Message
      *           The App Engine integration mode to use for this database.
      *     @type string $key_prefix
      *           Output only. The key_prefix for this database. This key_prefix is used, in
-     *           combination with the project id ("<key prefix>~<project id>") to construct
-     *           the application id that is returned from the Cloud Datastore APIs in Google
+     *           combination with the project ID ("<key prefix>~<project id>") to construct
+     *           the application ID that is returned from the Cloud Datastore APIs in Google
      *           App Engine first generation runtimes.
      *           This value may be empty in which case the appid to use for URL-encoded keys
      *           is the project_id (eg: foo instead of v~foo).
      *     @type int $delete_protection_state
      *           State of delete protection for the database.
+     *     @type \Google\Cloud\Firestore\Admin\V1\Database\CmekConfig $cmek_config
+     *           Optional. Presence indicates CMEK is enabled for this database.
+     *     @type string $previous_id
+     *           Output only. The database resource's prior database ID. This field is only
+     *           populated for deleted databases.
+     *     @type \Google\Cloud\Firestore\Admin\V1\Database\SourceInfo $source_info
+     *           Output only. Information about the provenance of this database.
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag keys/values directly bound to this
+     *           resource. For example:
+     *             "123/environment": "production",
+     *             "123/costCenter": "marketing"
+     *     @type bool $free_tier
+     *           Output only. Background: Free tier is the ability of a Firestore database
+     *           to use a small amount of resources every day without being charged. Once
+     *           usage exceeds the free tier limit further usage is charged.
+     *           Whether this database can make use of the free tier. Only one database
+     *           per project can be eligible for the free tier.
+     *           The first (or next) database that is created in a project without a free
+     *           tier database will be marked as eligible for the free tier. Databases that
+     *           are created while there is a free tier database will not be eligible for
+     *           the free tier.
      *     @type string $etag
      *           This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
+     *     @type int $database_edition
+     *           Immutable. The edition of the database.
      * }
      */
     public function __construct($data = NULL) {
@@ -323,6 +405,44 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp at which this database was deleted. Only set if
+     * the database has been deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getDeleteTime()
+    {
+        return $this->delete_time;
+    }
+
+    public function hasDeleteTime()
+    {
+        return isset($this->delete_time);
+    }
+
+    public function clearDeleteTime()
+    {
+        unset($this->delete_time);
+    }
+
+    /**
+     * Output only. The timestamp at which this database was deleted. Only set if
+     * the database has been deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setDeleteTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->delete_time = $var;
 
         return $this;
     }
@@ -563,8 +683,8 @@ class Database extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The key_prefix for this database. This key_prefix is used, in
-     * combination with the project id ("<key prefix>~<project id>") to construct
-     * the application id that is returned from the Cloud Datastore APIs in Google
+     * combination with the project ID ("<key prefix>~<project id>") to construct
+     * the application ID that is returned from the Cloud Datastore APIs in Google
      * App Engine first generation runtimes.
      * This value may be empty in which case the appid to use for URL-encoded keys
      * is the project_id (eg: foo instead of v~foo).
@@ -579,8 +699,8 @@ class Database extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The key_prefix for this database. This key_prefix is used, in
-     * combination with the project id ("<key prefix>~<project id>") to construct
-     * the application id that is returned from the Cloud Datastore APIs in Google
+     * combination with the project ID ("<key prefix>~<project id>") to construct
+     * the application ID that is returned from the Cloud Datastore APIs in Google
      * App Engine first generation runtimes.
      * This value may be empty in which case the appid to use for URL-encoded keys
      * is the project_id (eg: foo instead of v~foo).
@@ -624,6 +744,190 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Presence indicates CMEK is enabled for this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.CmekConfig cmek_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Firestore\Admin\V1\Database\CmekConfig|null
+     */
+    public function getCmekConfig()
+    {
+        return $this->cmek_config;
+    }
+
+    public function hasCmekConfig()
+    {
+        return isset($this->cmek_config);
+    }
+
+    public function clearCmekConfig()
+    {
+        unset($this->cmek_config);
+    }
+
+    /**
+     * Optional. Presence indicates CMEK is enabled for this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.CmekConfig cmek_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Firestore\Admin\V1\Database\CmekConfig $var
+     * @return $this
+     */
+    public function setCmekConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Database\CmekConfig::class);
+        $this->cmek_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The database resource's prior database ID. This field is only
+     * populated for deleted databases.
+     *
+     * Generated from protobuf field <code>string previous_id = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPreviousId()
+    {
+        return $this->previous_id;
+    }
+
+    /**
+     * Output only. The database resource's prior database ID. This field is only
+     * populated for deleted databases.
+     *
+     * Generated from protobuf field <code>string previous_id = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPreviousId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->previous_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information about the provenance of this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.SourceInfo source_info = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Firestore\Admin\V1\Database\SourceInfo|null
+     */
+    public function getSourceInfo()
+    {
+        return $this->source_info;
+    }
+
+    public function hasSourceInfo()
+    {
+        return isset($this->source_info);
+    }
+
+    public function clearSourceInfo()
+    {
+        unset($this->source_info);
+    }
+
+    /**
+     * Output only. Information about the provenance of this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.SourceInfo source_info = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Firestore\Admin\V1\Database\SourceInfo $var
+     * @return $this
+     */
+    public function setSourceInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Database\SourceInfo::class);
+        $this->source_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 29 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 29 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Background: Free tier is the ability of a Firestore database
+     * to use a small amount of resources every day without being charged. Once
+     * usage exceeds the free tier limit further usage is charged.
+     * Whether this database can make use of the free tier. Only one database
+     * per project can be eligible for the free tier.
+     * The first (or next) database that is created in a project without a free
+     * tier database will be marked as eligible for the free tier. Databases that
+     * are created while there is a free tier database will not be eligible for
+     * the free tier.
+     *
+     * Generated from protobuf field <code>optional bool free_tier = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getFreeTier()
+    {
+        return isset($this->free_tier) ? $this->free_tier : false;
+    }
+
+    public function hasFreeTier()
+    {
+        return isset($this->free_tier);
+    }
+
+    public function clearFreeTier()
+    {
+        unset($this->free_tier);
+    }
+
+    /**
+     * Output only. Background: Free tier is the ability of a Firestore database
+     * to use a small amount of resources every day without being charged. Once
+     * usage exceeds the free tier limit further usage is charged.
+     * Whether this database can make use of the free tier. Only one database
+     * per project can be eligible for the free tier.
+     * The first (or next) database that is created in a project without a free
+     * tier database will be marked as eligible for the free tier. Databases that
+     * are created while there is a free tier database will not be eligible for
+     * the free tier.
+     *
+     * Generated from protobuf field <code>optional bool free_tier = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setFreeTier($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->free_tier = $var;
+
+        return $this;
+    }
+
+    /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
@@ -649,6 +953,32 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The edition of the database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DatabaseEdition database_edition = 28 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getDatabaseEdition()
+    {
+        return $this->database_edition;
+    }
+
+    /**
+     * Immutable. The edition of the database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DatabaseEdition database_edition = 28 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDatabaseEdition($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Database\DatabaseEdition::class);
+        $this->database_edition = $var;
 
         return $this;
     }

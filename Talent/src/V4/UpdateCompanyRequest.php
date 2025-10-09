@@ -21,7 +21,7 @@ class UpdateCompanyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Company company = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $company = null;
+    protected $company = null;
     /**
      * Strongly recommended for the best service experience.
      * If [update_mask][google.cloud.talent.v4.UpdateCompanyRequest.update_mask]
@@ -34,7 +34,7 @@ class UpdateCompanyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Talent\V4\Company $company    Required. The company resource to replace the current resource in the

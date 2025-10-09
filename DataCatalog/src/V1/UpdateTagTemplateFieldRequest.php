@@ -21,13 +21,13 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The template to update.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagTemplateField tag_template_field = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag_template_field = null;
+    protected $tag_template_field = null;
     /**
      * Optional. Names of fields whose values to overwrite on an individual field
      * of a tag template. The following fields are modifiable:
@@ -45,7 +45,7 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                                        $name             Required. The name of the tag template field. Please see

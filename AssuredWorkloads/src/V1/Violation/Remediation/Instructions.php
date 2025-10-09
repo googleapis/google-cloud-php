@@ -20,13 +20,13 @@ class Instructions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Violation.Remediation.Instructions.Gcloud gcloud_instructions = 1;</code>
      */
-    private $gcloud_instructions = null;
+    protected $gcloud_instructions = null;
     /**
      * Remediation instructions to resolve violation via cloud console
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Violation.Remediation.Instructions.Console console_instructions = 2;</code>
      */
-    private $console_instructions = null;
+    protected $console_instructions = null;
 
     /**
      * Constructor.
@@ -119,6 +119,4 @@ class Instructions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Instructions::class, \Google\Cloud\AssuredWorkloads\V1\Violation_Remediation_Instructions::class);
 

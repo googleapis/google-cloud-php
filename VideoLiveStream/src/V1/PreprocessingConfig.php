@@ -20,19 +20,19 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.PreprocessingConfig.Audio audio = 1;</code>
      */
-    private $audio = null;
+    protected $audio = null;
     /**
      * Specify the video cropping configuration.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.PreprocessingConfig.Crop crop = 2;</code>
      */
-    private $crop = null;
+    protected $crop = null;
     /**
      * Specify the video pad filter configuration.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.PreprocessingConfig.Pad pad = 3;</code>
      */
-    private $pad = null;
+    protected $pad = null;
 
     /**
      * Constructor.

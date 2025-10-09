@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,9 @@ class BudgetServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return BudgetServiceClient */
@@ -89,9 +91,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $budget = new Budget();
         $budgetAmount = new BudgetAmount();
         $budget->setAmount($budgetAmount);
-        $request = (new CreateBudgetRequest())
-            ->setParent($formattedParent)
-            ->setBudget($budget);
+        $request = (new CreateBudgetRequest())->setParent($formattedParent)->setBudget($budget);
         $response = $gapicClient->createBudget($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -117,21 +117,22 @@ class BudgetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
         $budget = new Budget();
         $budgetAmount = new BudgetAmount();
         $budget->setAmount($budgetAmount);
-        $request = (new CreateBudgetRequest())
-            ->setParent($formattedParent)
-            ->setBudget($budget);
+        $request = (new CreateBudgetRequest())->setParent($formattedParent)->setBudget($budget);
         try {
             $gapicClient->createBudget($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -158,8 +159,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
-        $request = (new DeleteBudgetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBudgetRequest())->setName($formattedName);
         $gapicClient->deleteBudget($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -182,17 +182,19 @@ class BudgetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
-        $request = (new DeleteBudgetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBudgetRequest())->setName($formattedName);
         try {
             $gapicClient->deleteBudget($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -225,8 +227,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
-        $request = (new GetBudgetRequest())
-            ->setName($formattedName);
+        $request = (new GetBudgetRequest())->setName($formattedName);
         $response = $gapicClient->getBudget($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -250,17 +251,19 @@ class BudgetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
-        $request = (new GetBudgetRequest())
-            ->setName($formattedName);
+        $request = (new GetBudgetRequest())->setName($formattedName);
         try {
             $gapicClient->getBudget($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -285,17 +288,14 @@ class BudgetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $budgetsElement = new Budget();
-        $budgets = [
-            $budgetsElement,
-        ];
+        $budgets = [$budgetsElement];
         $expectedResponse = new ListBudgetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBudgets($budgets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
-        $request = (new ListBudgetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBudgetsRequest())->setParent($formattedParent);
         $response = $gapicClient->listBudgets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -322,17 +322,19 @@ class BudgetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
-        $request = (new ListBudgetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBudgetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listBudgets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -367,8 +369,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $budget = new Budget();
         $budgetAmount = new BudgetAmount();
         $budget->setAmount($budgetAmount);
-        $request = (new UpdateBudgetRequest())
-            ->setBudget($budget);
+        $request = (new UpdateBudgetRequest())->setBudget($budget);
         $response = $gapicClient->updateBudget($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -392,19 +393,21 @@ class BudgetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $budget = new Budget();
         $budgetAmount = new BudgetAmount();
         $budget->setAmount($budgetAmount);
-        $request = (new UpdateBudgetRequest())
-            ->setBudget($budget);
+        $request = (new UpdateBudgetRequest())->setBudget($budget);
         try {
             $gapicClient->updateBudget($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -440,9 +443,7 @@ class BudgetServiceClientTest extends GeneratedTest
         $budget = new Budget();
         $budgetAmount = new BudgetAmount();
         $budget->setAmount($budgetAmount);
-        $request = (new CreateBudgetRequest())
-            ->setParent($formattedParent)
-            ->setBudget($budget);
+        $request = (new CreateBudgetRequest())->setParent($formattedParent)->setBudget($budget);
         $response = $gapicClient->createBudgetAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

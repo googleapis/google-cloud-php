@@ -24,13 +24,13 @@ class InstancesListServerCasResponse extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string active_version = 2;</code>
      */
-    private $active_version = '';
+    protected $active_version = '';
     /**
      * This is always `sql#instancesListServerCas`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.

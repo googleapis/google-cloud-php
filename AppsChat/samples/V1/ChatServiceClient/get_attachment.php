@@ -35,11 +35,16 @@ use Google\Apps\Chat\V1\GetAttachmentRequest;
  * For an example, see
  * [Get metadata about a message
  * attachment](https://developers.google.com/workspace/chat/get-media-attachments).
+ *
  * Requires [app
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with the [authorization
+ * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.bot`
  *
  * @param string $formattedName Resource name of the attachment, in the form
- *                              `spaces/&#42;/messages/&#42;/attachments/*`. Please see
+ *                              `spaces/{space}/messages/{message}/attachments/{attachment}`. Please see
  *                              {@see ChatServiceClient::attachmentName()} for help formatting this field.
  */
 function get_attachment_sample(string $formattedName): void

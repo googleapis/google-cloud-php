@@ -34,7 +34,7 @@ class PredictSchemata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_schema_uri = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $instance_schema_uri = '';
+    protected $instance_schema_uri = '';
     /**
      * Immutable. Points to a YAML file stored on Google Cloud Storage describing
      * the parameters of prediction and explanation via
@@ -52,7 +52,7 @@ class PredictSchemata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parameters_schema_uri = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $parameters_schema_uri = '';
+    protected $parameters_schema_uri = '';
     /**
      * Immutable. Points to a YAML file stored on Google Cloud Storage describing
      * the format of a single prediction produced by this Model, which are
@@ -70,7 +70,7 @@ class PredictSchemata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string prediction_schema_uri = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $prediction_schema_uri = '';
+    protected $prediction_schema_uri = '';
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class ExamplesRestrictionsNamespace extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string namespace_name = 1;</code>
      */
-    private $namespace_name = '';
+    protected $namespace_name = '';
     /**
      * The list of allowed tags.
      *

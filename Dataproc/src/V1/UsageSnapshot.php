@@ -23,14 +23,14 @@ class UsageSnapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 milli_dcu = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $milli_dcu = 0;
+    protected $milli_dcu = 0;
     /**
      * Optional. Shuffle Storage in gigabytes (GB). (see [Dataproc Serverless
      * pricing] (https://cloud.google.com/dataproc-serverless/pricing))
      *
      * Generated from protobuf field <code>int64 shuffle_storage_gb = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $shuffle_storage_gb = 0;
+    protected $shuffle_storage_gb = 0;
     /**
      * Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at
      * premium tier (see [Dataproc Serverless pricing]
@@ -38,7 +38,7 @@ class UsageSnapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 milli_dcu_premium = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $milli_dcu_premium = 0;
+    protected $milli_dcu_premium = 0;
     /**
      * Optional. Shuffle Storage in gigabytes (GB) charged at premium tier. (see
      * [Dataproc Serverless pricing]
@@ -46,26 +46,26 @@ class UsageSnapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 shuffle_storage_gb_premium = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $shuffle_storage_gb_premium = 0;
+    protected $shuffle_storage_gb_premium = 0;
     /**
      * Optional. Milli (one-thousandth) accelerator. (see [Dataproc
      * Serverless pricing] (https://cloud.google.com/dataproc-serverless/pricing))
      *
      * Generated from protobuf field <code>int64 milli_accelerator = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $milli_accelerator = 0;
+    protected $milli_accelerator = 0;
     /**
      * Optional. Accelerator type being used, if any
      *
      * Generated from protobuf field <code>string accelerator_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $accelerator_type = '';
+    protected $accelerator_type = '';
     /**
      * Optional. The timestamp of the usage snapshot.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $snapshot_time = null;
+    protected $snapshot_time = null;
 
     /**
      * Constructor.

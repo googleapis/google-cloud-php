@@ -33,31 +33,31 @@ class Registration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Immutable. The domain name. Unicode domain names must be expressed in Punycode format.
      *
      * Generated from protobuf field <code>string domain_name = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $domain_name = '';
+    protected $domain_name = '';
     /**
      * Output only. The creation timestamp of the `Registration` resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The expiration timestamp of the `Registration`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Output only. The state of the `Registration`
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.Registration.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The set of issues with the `Registration` that require attention.
      *
@@ -78,7 +78,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.ManagementSettings management_settings = 10;</code>
      */
-    private $management_settings = null;
+    protected $management_settings = null;
     /**
      * Settings controlling the DNS configuration of the `Registration`. You
      * cannot update these with the `UpdateRegistration` method. To update these
@@ -86,7 +86,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.DnsSettings dns_settings = 11;</code>
      */
-    private $dns_settings = null;
+    protected $dns_settings = null;
     /**
      * Required. Settings for contact information linked to the `Registration`. You cannot
      * update these with the `UpdateRegistration` method. To update these
@@ -94,7 +94,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.ContactSettings contact_settings = 12 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $contact_settings = null;
+    protected $contact_settings = null;
     /**
      * Output only. Pending contact settings for the `Registration`. Updates to the
      * `contact_settings` field that change its `registrant_contact` or `privacy`
@@ -106,7 +106,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.ContactSettings pending_contact_settings = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pending_contact_settings = null;
+    protected $pending_contact_settings = null;
     /**
      * Output only. Set of options for the `contact_settings.privacy` field that this
      * `Registration` supports.

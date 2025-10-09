@@ -21,13 +21,13 @@ class CreateApiSpecRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The spec to create.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.ApiSpec api_spec = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api_spec = null;
+    protected $api_spec = null;
     /**
      * Required. The ID to use for the spec, which will become the final component of
      * the spec's resource name.
@@ -37,7 +37,7 @@ class CreateApiSpecRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string api_spec_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api_spec_id = '';
+    protected $api_spec_id = '';
 
     /**
      * @param string                                  $parent    Required. The parent, which owns this collection of specs.

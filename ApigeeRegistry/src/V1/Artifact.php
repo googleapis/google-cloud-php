@@ -27,19 +27,19 @@ class Artifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Creation timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Last update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * A content type specifier for the artifact.
      * Content type specifiers are Media Types
@@ -50,21 +50,21 @@ class Artifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 4;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Output only. The size of the artifact in bytes. If the artifact is gzipped, this is
      * the size of the uncompressed artifact.
      *
      * Generated from protobuf field <code>int32 size_bytes = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $size_bytes = 0;
+    protected $size_bytes = 0;
     /**
      * Output only. A SHA-256 hash of the artifact's contents. If the artifact is gzipped,
      * this is the hash of the uncompressed artifact.
      *
      * Generated from protobuf field <code>string hash = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $hash = '';
+    protected $hash = '';
     /**
      * Input only. The contents of the artifact.
      * Provided by API callers when artifacts are created or replaced.
@@ -72,7 +72,7 @@ class Artifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes contents = 7 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $contents = '';
+    protected $contents = '';
 
     /**
      * Constructor.

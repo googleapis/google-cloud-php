@@ -20,13 +20,13 @@ class KubernetesSecret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Namespace in which the kubernetes secret is stored.
      *
      * Generated from protobuf field <code>string namespace = 2;</code>
      */
-    private $namespace = '';
+    protected $namespace = '';
 
     /**
      * Constructor.

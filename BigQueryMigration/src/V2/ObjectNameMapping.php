@@ -21,13 +21,13 @@ class ObjectNameMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.NameMappingKey source = 1;</code>
      */
-    private $source = null;
+    protected $source = null;
     /**
      * The desired target name of the object that is being mapped.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.NameMappingValue target = 2;</code>
      */
-    private $target = null;
+    protected $target = null;
 
     /**
      * Constructor.

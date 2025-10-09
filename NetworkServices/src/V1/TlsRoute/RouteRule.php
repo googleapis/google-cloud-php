@@ -18,7 +18,8 @@ class RouteRule extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. RouteMatch defines the predicate used to match requests to a
-     * given action. Multiple match types are "OR"ed for evaluation.
+     * given action. Multiple match types are "OR"ed for evaluation. Atleast one
+     * RouteMatch must be supplied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.TlsRoute.RouteMatch matches = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,7 +39,8 @@ class RouteRule extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\NetworkServices\V1\TlsRoute\RouteMatch>|\Google\Protobuf\Internal\RepeatedField $matches
      *           Required. RouteMatch defines the predicate used to match requests to a
-     *           given action. Multiple match types are "OR"ed for evaluation.
+     *           given action. Multiple match types are "OR"ed for evaluation. Atleast one
+     *           RouteMatch must be supplied.
      *     @type \Google\Cloud\NetworkServices\V1\TlsRoute\RouteAction $action
      *           Required. The detailed rule defining how to route matched traffic.
      * }
@@ -50,7 +52,8 @@ class RouteRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. RouteMatch defines the predicate used to match requests to a
-     * given action. Multiple match types are "OR"ed for evaluation.
+     * given action. Multiple match types are "OR"ed for evaluation. Atleast one
+     * RouteMatch must be supplied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.TlsRoute.RouteMatch matches = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -62,7 +65,8 @@ class RouteRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. RouteMatch defines the predicate used to match requests to a
-     * given action. Multiple match types are "OR"ed for evaluation.
+     * given action. Multiple match types are "OR"ed for evaluation. Atleast one
+     * RouteMatch must be supplied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.TlsRoute.RouteMatch matches = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\NetworkServices\V1\TlsRoute\RouteMatch>|\Google\Protobuf\Internal\RepeatedField $var

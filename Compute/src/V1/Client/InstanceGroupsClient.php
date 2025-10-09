@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -43,8 +44,10 @@ use Google\Cloud\Compute\V1\ListInstanceGroupsRequest;
 use Google\Cloud\Compute\V1\ListInstancesInstanceGroupsRequest;
 use Google\Cloud\Compute\V1\RemoveInstancesInstanceGroupRequest;
 use Google\Cloud\Compute\V1\SetNamedPortsInstanceGroupRequest;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
+use Google\Cloud\Compute\V1\TestIamPermissionsInstanceGroupRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The InstanceGroups API.
@@ -52,15 +55,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addInstancesAsync(AddInstancesInstanceGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface aggregatedListAsync(AggregatedListInstanceGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteInstanceGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetInstanceGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertInstanceGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListInstanceGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancesAsync(ListInstancesInstanceGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeInstancesAsync(RemoveInstancesInstanceGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNamedPortsAsync(SetNamedPortsInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addInstancesAsync(AddInstancesInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListInstanceGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstanceGroup> getAsync(GetInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListInstanceGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesInstanceGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeInstancesAsync(RemoveInstancesInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setNamedPortsAsync(SetNamedPortsInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsInstanceGroupRequest $request, array $optionalArgs = [])
  */
 final class InstanceGroupsClient
 {
@@ -109,7 +113,6 @@ final class InstanceGroupsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/instance_groups_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => ZoneOperationsClient::class,
         ];
     }
 
@@ -122,9 +125,7 @@ final class InstanceGroupsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -141,10 +142,7 @@ final class InstanceGroupsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -172,29 +170,57 @@ final class InstanceGroupsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return ZoneOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new ZoneOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\InstanceGroupsClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new InstanceGroupsClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -225,11 +251,16 @@ final class InstanceGroupsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -251,6 +282,8 @@ final class InstanceGroupsClient
      * Adds a list of instances to the specified instance group. All of the instances in the instance group must be in the same network/subnetwork. Read Adding instances for more information.
      *
      * The async variant is {@see InstanceGroupsClient::addInstancesAsync()} .
+     *
+     * @example samples/V1/InstanceGroupsClient/add_instances.php
      *
      * @param AddInstancesInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -276,6 +309,8 @@ final class InstanceGroupsClient
      *
      * The async variant is {@see InstanceGroupsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/InstanceGroupsClient/aggregated_list.php
+     *
      * @param AggregatedListInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -290,8 +325,10 @@ final class InstanceGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListInstanceGroupsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListInstanceGroupsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -299,6 +336,8 @@ final class InstanceGroupsClient
      * Deletes the specified instance group. The instances in the group are not deleted. Note that instance group must not belong to a backend service. Read Deleting an instance group for more information.
      *
      * The async variant is {@see InstanceGroupsClient::deleteAsync()} .
+     *
+     * @example samples/V1/InstanceGroupsClient/delete.php
      *
      * @param DeleteInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -324,6 +363,8 @@ final class InstanceGroupsClient
      *
      * The async variant is {@see InstanceGroupsClient::getAsync()} .
      *
+     * @example samples/V1/InstanceGroupsClient/get.php
+     *
      * @param GetInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -347,6 +388,8 @@ final class InstanceGroupsClient
      * Creates an instance group in the specified project using the parameters that are included in the request.
      *
      * The async variant is {@see InstanceGroupsClient::insertAsync()} .
+     *
+     * @example samples/V1/InstanceGroupsClient/insert.php
      *
      * @param InsertInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -372,6 +415,8 @@ final class InstanceGroupsClient
      *
      * The async variant is {@see InstanceGroupsClient::listAsync()} .
      *
+     * @example samples/V1/InstanceGroupsClient/list.php
+     *
      * @param ListInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -396,6 +441,8 @@ final class InstanceGroupsClient
      *
      * The async variant is {@see InstanceGroupsClient::listInstancesAsync()} .
      *
+     * @example samples/V1/InstanceGroupsClient/list_instances.php
+     *
      * @param ListInstancesInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -410,8 +457,10 @@ final class InstanceGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listInstances(ListInstancesInstanceGroupsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listInstances(
+        ListInstancesInstanceGroupsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListInstances', $request, $callOptions);
     }
 
@@ -419,6 +468,8 @@ final class InstanceGroupsClient
      * Removes one or more instances from the specified instance group, but does not delete those instances. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration before the VM instance is removed or deleted.
      *
      * The async variant is {@see InstanceGroupsClient::removeInstancesAsync()} .
+     *
+     * @example samples/V1/InstanceGroupsClient/remove_instances.php
      *
      * @param RemoveInstancesInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -434,8 +485,10 @@ final class InstanceGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeInstances(RemoveInstancesInstanceGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeInstances(
+        RemoveInstancesInstanceGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveInstances', $request, $callOptions)->wait();
     }
 
@@ -443,6 +496,8 @@ final class InstanceGroupsClient
      * Sets the named ports for the specified instance group.
      *
      * The async variant is {@see InstanceGroupsClient::setNamedPortsAsync()} .
+     *
+     * @example samples/V1/InstanceGroupsClient/set_named_ports.php
      *
      * @param SetNamedPortsInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -458,8 +513,38 @@ final class InstanceGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setNamedPorts(SetNamedPortsInstanceGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setNamedPorts(
+        SetNamedPortsInstanceGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetNamedPorts', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see InstanceGroupsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/InstanceGroupsClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsInstanceGroupRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsInstanceGroupRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

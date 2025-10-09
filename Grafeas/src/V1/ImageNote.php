@@ -25,13 +25,13 @@ class ImageNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_url = 1;</code>
      */
-    private $resource_url = '';
+    protected $resource_url = '';
     /**
      * Required. Immutable. The fingerprint of the base image.
      *
      * Generated from protobuf field <code>.grafeas.v1.Fingerprint fingerprint = 2;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
 
     /**
      * Constructor.

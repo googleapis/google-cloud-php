@@ -19,7 +19,7 @@ class QueryProfile
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‰
+„
 \'google/datastore/v1/query_profile.protogoogle.datastore.v1google/protobuf/duration.protogoogle/protobuf/struct.proto"&
 ExplainOptions
 analyze (B‡A"Ü
@@ -32,8 +32,8 @@ class QueryProfile
 results_returned (5
 execution_duration (2.google.protobuf.Duration
 read_operations (,
-debug_stats (2.google.protobuf.StructB√
-com.google.datastore.v1BQueryProfileProtoPZ<google.golang.org/genproto/googleapis/datastore/v1;datastore™Google.Cloud.Datastore.V1 Google\\Cloud\\Datastore\\V1ÍGoogle::Cloud::Datastore::V1bproto3'
+debug_stats (2.google.protobuf.StructB¬
+com.google.datastore.v1BQueryProfileProtoPZ;cloud.google.com/go/datastore/apiv1/datastorepb;datastorepb™Google.Cloud.Datastore.V1 Google\\Cloud\\Datastore\\V1ÍGoogle::Cloud::Datastore::V1bproto3'
         , true);
 
         static::$is_initialized = true;

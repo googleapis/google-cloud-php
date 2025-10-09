@@ -23,7 +23,7 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The data encrypted with the named
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public key using
@@ -31,7 +31,7 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes ciphertext = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ciphertext = '';
+    protected $ciphertext = '';
     /**
      * Optional. An optional CRC32C checksum of the
      * [AsymmetricDecryptRequest.ciphertext][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext].
@@ -55,7 +55,7 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ciphertext_crc32c = null;
+    protected $ciphertext_crc32c = null;
 
     /**
      * @param string $name       Required. The resource name of the
@@ -243,7 +243,7 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getCiphertextCrc32CValue()
+    public function getCiphertextCrc32CUnwrapped()
     {
         return $this->readWrapperValue("ciphertext_crc32c");
     }
@@ -308,7 +308,7 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setCiphertextCrc32CValue($var)
+    public function setCiphertextCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("ciphertext_crc32c", $var);
         return $this;}

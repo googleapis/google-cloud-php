@@ -46,24 +46,20 @@ use Google\Rpc\Status;
  * <code>AMBIGUOUS</code>. For more information,
  * see the Connectivity Test documentation.
  *
- * @param string $parent       The parent resource of the Connectivity Test to create:
- *                             `projects/{project_id}/locations/global`
- * @param string $testId       The logical name of the Connectivity Test in your project
- *                             with the following restrictions:
+ * @param string $formattedParent The parent resource of the Connectivity Test to create:
+ *                                `projects/{project_id}/locations/global`
+ *                                Please see {@see ReachabilityServiceClient::projectName()} for help formatting this field.
+ * @param string $testId          The logical name of the Connectivity Test in your project
+ *                                with the following restrictions:
  *
- *                             * Must contain only lowercase letters, numbers, and hyphens.
- *                             * Must start with a letter.
- *                             * Must be between 1-40 characters.
- *                             * Must end with a number or a letter.
- *                             * Must be unique within the customer project
- * @param string $resourceName Unique name of the resource using the form:
- *                             `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+ *                                * Must contain only lowercase letters, numbers, and hyphens.
+ *                                * Must start with a letter.
+ *                                * Must be between 1-40 characters.
+ *                                * Must end with a number or a letter.
+ *                                * Must be unique within the customer project
  */
-function create_connectivity_test_sample(
-    string $parent,
-    string $testId,
-    string $resourceName
-): void {
+function create_connectivity_test_sample(string $formattedParent, string $testId): void
+{
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
@@ -71,11 +67,10 @@ function create_connectivity_test_sample(
     $resourceSource = new Endpoint();
     $resourceDestination = new Endpoint();
     $resource = (new ConnectivityTest())
-        ->setName($resourceName)
         ->setSource($resourceSource)
         ->setDestination($resourceDestination);
     $request = (new CreateConnectivityTestRequest())
-        ->setParent($parent)
+        ->setParent($formattedParent)
         ->setTestId($testId)
         ->setResource($resource);
 
@@ -110,10 +105,9 @@ function create_connectivity_test_sample(
  */
 function callSample(): void
 {
-    $parent = '[PARENT]';
+    $formattedParent = ReachabilityServiceClient::projectName('[PROJECT]');
     $testId = '[TEST_ID]';
-    $resourceName = '[NAME]';
 
-    create_connectivity_test_sample($parent, $testId, $resourceName);
+    create_connectivity_test_sample($formattedParent, $testId);
 }
 // [END networkmanagement_v1_generated_ReachabilityService_CreateConnectivityTest_sync]

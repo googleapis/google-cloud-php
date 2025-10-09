@@ -26,20 +26,20 @@ class InfoType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional version name for this InfoType.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Optional custom sensitivity for this InfoType.
      * This only applies to data profiling.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 3;</code>
      */
-    private $sensitivity_score = null;
+    protected $sensitivity_score = null;
 
     /**
      * Constructor.

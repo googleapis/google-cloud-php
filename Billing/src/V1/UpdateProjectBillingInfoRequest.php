@@ -22,7 +22,7 @@ class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The new billing information for the project. Output-only fields are
      * ignored; thus, you can leave empty all fields except
@@ -30,7 +30,7 @@ class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.ProjectBillingInfo project_billing_info = 2;</code>
      */
-    private $project_billing_info = null;
+    protected $project_billing_info = null;
 
     /**
      * @param string                                      $name               Required. The resource name of the project associated with the billing

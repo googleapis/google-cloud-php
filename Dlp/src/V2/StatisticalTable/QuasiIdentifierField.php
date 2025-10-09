@@ -21,15 +21,15 @@ class QuasiIdentifierField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
      */
-    private $field = null;
+    protected $field = null;
     /**
      * A column can be tagged with a custom tag. In this case, the user must
      * indicate an auxiliary table that contains statistical information on
-     * the possible values of this column (below).
+     * the possible values of this column.
      *
      * Generated from protobuf field <code>string custom_tag = 2;</code>
      */
-    private $custom_tag = '';
+    protected $custom_tag = '';
 
     /**
      * Constructor.
@@ -42,7 +42,7 @@ class QuasiIdentifierField extends \Google\Protobuf\Internal\Message
      *     @type string $custom_tag
      *           A column can be tagged with a custom tag. In this case, the user must
      *           indicate an auxiliary table that contains statistical information on
-     *           the possible values of this column (below).
+     *           the possible values of this column.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,7 +89,7 @@ class QuasiIdentifierField extends \Google\Protobuf\Internal\Message
     /**
      * A column can be tagged with a custom tag. In this case, the user must
      * indicate an auxiliary table that contains statistical information on
-     * the possible values of this column (below).
+     * the possible values of this column.
      *
      * Generated from protobuf field <code>string custom_tag = 2;</code>
      * @return string
@@ -102,7 +102,7 @@ class QuasiIdentifierField extends \Google\Protobuf\Internal\Message
     /**
      * A column can be tagged with a custom tag. In this case, the user must
      * indicate an auxiliary table that contains statistical information on
-     * the possible values of this column (below).
+     * the possible values of this column.
      *
      * Generated from protobuf field <code>string custom_tag = 2;</code>
      * @param string $var
@@ -118,6 +118,4 @@ class QuasiIdentifierField extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(QuasiIdentifierField::class, \Google\Cloud\Dlp\V2\StatisticalTable_QuasiIdentifierField::class);
 

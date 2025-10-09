@@ -91,6 +91,18 @@ class Component
      * Generated from protobuf enum <code>KUBELET = 14;</code>
      */
     const KUBELET = 14;
+    /**
+     * NVIDIA Data Center GPU Manager (DCGM)
+     *
+     * Generated from protobuf enum <code>DCGM = 15;</code>
+     */
+    const DCGM = 15;
+    /**
+     * JobSet
+     *
+     * Generated from protobuf enum <code>JOBSET = 16;</code>
+     */
+    const JOBSET = 16;
 
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
@@ -106,6 +118,8 @@ class Component
         self::STATEFULSET => 'STATEFULSET',
         self::CADVISOR => 'CADVISOR',
         self::KUBELET => 'KUBELET',
+        self::DCGM => 'DCGM',
+        self::JOBSET => 'JOBSET',
     ];
 
     public static function name($value)
@@ -129,6 +143,4 @@ class Component
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Component::class, \Google\Cloud\Container\V1\MonitoringComponentConfig_Component::class);
 

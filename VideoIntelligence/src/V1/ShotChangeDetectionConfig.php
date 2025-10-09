@@ -22,7 +22,7 @@ class ShotChangeDetectionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1;</code>
      */
-    private $model = '';
+    protected $model = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * GCP labels for this Feature.
      *
@@ -33,14 +33,14 @@ class Feature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.FeatureResourceState resource_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $resource_state = null;
+    protected $resource_state = null;
     /**
      * Optional. Hub-wide Feature configuration. If this Feature does not support any
      * Hub-wide configuration, this field may be unused.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.CommonFeatureSpec spec = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $spec = null;
+    protected $spec = null;
     /**
      * Optional. Membership-specific configuration for this Feature. If this Feature does
      * not support any per-Membership configuration, this field may be unused.
@@ -64,7 +64,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.CommonFeatureState state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * Output only. Membership-specific Feature status. If this Feature does
      * report any per-Membership status, this field may be unused.
@@ -82,19 +82,19 @@ class Feature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. When the Feature resource was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. When the Feature resource was deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
 
     /**
      * Constructor.

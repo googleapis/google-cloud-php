@@ -23,7 +23,7 @@ class AwsInstancePlacement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsInstancePlacement.Tenancy tenancy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tenancy = 0;
+    protected $tenancy = 0;
 
     /**
      * Constructor.

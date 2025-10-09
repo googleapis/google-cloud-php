@@ -25,36 +25,36 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_UpdateEndpointPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
 use Google\Cloud\NetworkServices\V1\EndpointMatcher;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy\EndpointPolicyType;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\UpdateEndpointPolicyRequest;
 use Google\Rpc\Status;
 
 /**
  * Updates the parameters of a single EndpointPolicy.
  *
- * @param string $endpointPolicyName Name of the EndpointPolicy resource. It matches pattern
- *                                   `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.
- * @param int    $endpointPolicyType The type of endpoint policy. This is primarily used to validate
- *                                   the configuration.
+ * @param int $endpointPolicyType The type of endpoint policy. This is primarily used to validate
+ *                                the configuration.
  */
-function update_endpoint_policy_sample(string $endpointPolicyName, int $endpointPolicyType): void
+function update_endpoint_policy_sample(int $endpointPolicyType): void
 {
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $endpointPolicyEndpointMatcher = new EndpointMatcher();
     $endpointPolicy = (new EndpointPolicy())
-        ->setName($endpointPolicyName)
         ->setType($endpointPolicyType)
         ->setEndpointMatcher($endpointPolicyEndpointMatcher);
+    $request = (new UpdateEndpointPolicyRequest())
+        ->setEndpointPolicy($endpointPolicy);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->updateEndpointPolicy($endpointPolicy);
+        $response = $networkServicesClient->updateEndpointPolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -82,9 +82,8 @@ function update_endpoint_policy_sample(string $endpointPolicyName, int $endpoint
  */
 function callSample(): void
 {
-    $endpointPolicyName = '[NAME]';
     $endpointPolicyType = EndpointPolicyType::ENDPOINT_POLICY_TYPE_UNSPECIFIED;
 
-    update_endpoint_policy_sample($endpointPolicyName, $endpointPolicyType);
+    update_endpoint_policy_sample($endpointPolicyType);
 }
 // [END networkservices_v1_generated_NetworkServices_UpdateEndpointPolicy_sync]

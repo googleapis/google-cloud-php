@@ -15,6 +15,11 @@
                                 "completeImportSpace"
                             ]
                         },
+                        "CreateCustomEmoji": {
+                            "methods": [
+                                "createCustomEmoji"
+                            ]
+                        },
                         "CreateMembership": {
                             "methods": [
                                 "createMembership"
@@ -33,6 +38,11 @@
                         "CreateSpace": {
                             "methods": [
                                 "createSpace"
+                            ]
+                        },
+                        "DeleteCustomEmoji": {
+                            "methods": [
+                                "deleteCustomEmoji"
                             ]
                         },
                         "DeleteMembership": {
@@ -65,6 +75,11 @@
                                 "getAttachment"
                             ]
                         },
+                        "GetCustomEmoji": {
+                            "methods": [
+                                "getCustomEmoji"
+                            ]
+                        },
                         "GetMembership": {
                             "methods": [
                                 "getMembership"
@@ -80,6 +95,16 @@
                                 "getSpace"
                             ]
                         },
+                        "GetSpaceEvent": {
+                            "methods": [
+                                "getSpaceEvent"
+                            ]
+                        },
+                        "GetSpaceNotificationSetting": {
+                            "methods": [
+                                "getSpaceNotificationSetting"
+                            ]
+                        },
                         "GetSpaceReadState": {
                             "methods": [
                                 "getSpaceReadState"
@@ -88,6 +113,11 @@
                         "GetThreadReadState": {
                             "methods": [
                                 "getThreadReadState"
+                            ]
+                        },
+                        "ListCustomEmojis": {
+                            "methods": [
+                                "listCustomEmojis"
                             ]
                         },
                         "ListMemberships": {
@@ -105,9 +135,19 @@
                                 "listReactions"
                             ]
                         },
+                        "ListSpaceEvents": {
+                            "methods": [
+                                "listSpaceEvents"
+                            ]
+                        },
                         "ListSpaces": {
                             "methods": [
                                 "listSpaces"
+                            ]
+                        },
+                        "SearchSpaces": {
+                            "methods": [
+                                "searchSpaces"
                             ]
                         },
                         "SetUpSpace": {
@@ -128,6 +168,11 @@
                         "UpdateSpace": {
                             "methods": [
                                 "updateSpace"
+                            ]
+                        },
+                        "UpdateSpaceNotificationSetting": {
+                            "methods": [
+                                "updateSpaceNotificationSetting"
                             ]
                         },
                         "UpdateSpaceReadState": {

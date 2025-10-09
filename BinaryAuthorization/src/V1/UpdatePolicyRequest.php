@@ -22,7 +22,7 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.Policy policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $policy = null;
+    protected $policy = null;
 
     /**
      * @param \Google\Cloud\BinaryAuthorization\V1\Policy $policy Required. A new or updated [policy][google.cloud.binaryauthorization.v1.Policy] value. The service will

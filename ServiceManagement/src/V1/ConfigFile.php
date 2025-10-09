@@ -20,19 +20,19 @@ class ConfigFile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string file_path = 1;</code>
      */
-    private $file_path = '';
+    protected $file_path = '';
     /**
      * The bytes that constitute the file.
      *
      * Generated from protobuf field <code>bytes file_contents = 3;</code>
      */
-    private $file_contents = '';
+    protected $file_contents = '';
     /**
      * The type of configuration file this represents.
      *
      * Generated from protobuf field <code>.google.api.servicemanagement.v1.ConfigFile.FileType file_type = 4;</code>
      */
-    private $file_type = 0;
+    protected $file_type = 0;
 
     /**
      * Constructor.

@@ -27,7 +27,7 @@ class DnsBindPermission extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Users/Service accounts which have access for binding on the
      * intranet VPC project corresponding to the consumer project.

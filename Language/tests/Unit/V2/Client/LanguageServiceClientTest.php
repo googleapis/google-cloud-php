@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,9 @@ class LanguageServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return LanguageServiceClient */
@@ -87,8 +89,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $document = new Document();
-        $request = (new AnalyzeEntitiesRequest())
-            ->setDocument($document);
+        $request = (new AnalyzeEntitiesRequest())->setDocument($document);
         $response = $gapicClient->analyzeEntities($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -112,17 +113,19 @@ class LanguageServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $document = new Document();
-        $request = (new AnalyzeEntitiesRequest())
-            ->setDocument($document);
+        $request = (new AnalyzeEntitiesRequest())->setDocument($document);
         try {
             $gapicClient->analyzeEntities($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -153,8 +156,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $document = new Document();
-        $request = (new AnalyzeSentimentRequest())
-            ->setDocument($document);
+        $request = (new AnalyzeSentimentRequest())->setDocument($document);
         $response = $gapicClient->analyzeSentiment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -178,17 +180,19 @@ class LanguageServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $document = new Document();
-        $request = (new AnalyzeSentimentRequest())
-            ->setDocument($document);
+        $request = (new AnalyzeSentimentRequest())->setDocument($document);
         try {
             $gapicClient->analyzeSentiment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -220,9 +224,7 @@ class LanguageServiceClientTest extends GeneratedTest
         // Mock request
         $document = new Document();
         $features = new Features();
-        $request = (new AnnotateTextRequest())
-            ->setDocument($document)
-            ->setFeatures($features);
+        $request = (new AnnotateTextRequest())->setDocument($document)->setFeatures($features);
         $response = $gapicClient->annotateText($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -248,19 +250,20 @@ class LanguageServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $document = new Document();
         $features = new Features();
-        $request = (new AnnotateTextRequest())
-            ->setDocument($document)
-            ->setFeatures($features);
+        $request = (new AnnotateTextRequest())->setDocument($document)->setFeatures($features);
         try {
             $gapicClient->annotateText($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -291,8 +294,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $document = new Document();
-        $request = (new ClassifyTextRequest())
-            ->setDocument($document);
+        $request = (new ClassifyTextRequest())->setDocument($document);
         $response = $gapicClient->classifyText($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -316,17 +318,19 @@ class LanguageServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $document = new Document();
-        $request = (new ClassifyTextRequest())
-            ->setDocument($document);
+        $request = (new ClassifyTextRequest())->setDocument($document);
         try {
             $gapicClient->classifyText($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -357,8 +361,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $document = new Document();
-        $request = (new ModerateTextRequest())
-            ->setDocument($document);
+        $request = (new ModerateTextRequest())->setDocument($document);
         $response = $gapicClient->moderateText($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -382,17 +385,19 @@ class LanguageServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $document = new Document();
-        $request = (new ModerateTextRequest())
-            ->setDocument($document);
+        $request = (new ModerateTextRequest())->setDocument($document);
         try {
             $gapicClient->moderateText($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -423,8 +428,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $document = new Document();
-        $request = (new AnalyzeEntitiesRequest())
-            ->setDocument($document);
+        $request = (new AnalyzeEntitiesRequest())->setDocument($document);
         $response = $gapicClient->analyzeEntitiesAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

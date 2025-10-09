@@ -25,41 +25,42 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string phase_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $phase_id = '';
+    protected $phase_id = '';
     /**
      * Required. Percentage deployment for the phase.
      *
      * Generated from protobuf field <code>int32 percentage = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $percentage = 0;
+    protected $percentage = 0;
     /**
-     * Skaffold profiles to use when rendering the manifest for this phase.
-     * These are in addition to the profiles list specified in the
+     * Optional. Skaffold profiles to use when rendering the manifest for this
+     * phase. These are in addition to the profiles list specified in the
      * `DeliveryPipeline` stage.
      *
-     * Generated from protobuf field <code>repeated string profiles = 3;</code>
+     * Generated from protobuf field <code>repeated string profiles = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $profiles;
     /**
-     * Whether to run verify tests after the deployment.
+     * Optional. Whether to run verify tests after the deployment via `skaffold
+     * verify`.
      *
-     * Generated from protobuf field <code>bool verify = 4;</code>
+     * Generated from protobuf field <code>bool verify = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $verify = false;
+    protected $verify = false;
     /**
      * Optional. Configuration for the predeploy job of this phase. If this is
      * not configured, there will be no predeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $predeploy = null;
+    protected $predeploy = null;
     /**
      * Optional. Configuration for the postdeploy job of this phase. If this is
      * not configured, there will be no postdeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $postdeploy = null;
+    protected $postdeploy = null;
 
     /**
      * Constructor.
@@ -76,11 +77,12 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
      *     @type int $percentage
      *           Required. Percentage deployment for the phase.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $profiles
-     *           Skaffold profiles to use when rendering the manifest for this phase.
-     *           These are in addition to the profiles list specified in the
+     *           Optional. Skaffold profiles to use when rendering the manifest for this
+     *           phase. These are in addition to the profiles list specified in the
      *           `DeliveryPipeline` stage.
      *     @type bool $verify
-     *           Whether to run verify tests after the deployment.
+     *           Optional. Whether to run verify tests after the deployment via `skaffold
+     *           verify`.
      *     @type \Google\Cloud\Deploy\V1\Predeploy $predeploy
      *           Optional. Configuration for the predeploy job of this phase. If this is
      *           not configured, there will be no predeploy job for this phase.
@@ -155,11 +157,11 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Skaffold profiles to use when rendering the manifest for this phase.
-     * These are in addition to the profiles list specified in the
+     * Optional. Skaffold profiles to use when rendering the manifest for this
+     * phase. These are in addition to the profiles list specified in the
      * `DeliveryPipeline` stage.
      *
-     * Generated from protobuf field <code>repeated string profiles = 3;</code>
+     * Generated from protobuf field <code>repeated string profiles = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getProfiles()
@@ -168,11 +170,11 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Skaffold profiles to use when rendering the manifest for this phase.
-     * These are in addition to the profiles list specified in the
+     * Optional. Skaffold profiles to use when rendering the manifest for this
+     * phase. These are in addition to the profiles list specified in the
      * `DeliveryPipeline` stage.
      *
-     * Generated from protobuf field <code>repeated string profiles = 3;</code>
+     * Generated from protobuf field <code>repeated string profiles = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -185,9 +187,10 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to run verify tests after the deployment.
+     * Optional. Whether to run verify tests after the deployment via `skaffold
+     * verify`.
      *
-     * Generated from protobuf field <code>bool verify = 4;</code>
+     * Generated from protobuf field <code>bool verify = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getVerify()
@@ -196,9 +199,10 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to run verify tests after the deployment.
+     * Optional. Whether to run verify tests after the deployment via `skaffold
+     * verify`.
      *
-     * Generated from protobuf field <code>bool verify = 4;</code>
+     * Generated from protobuf field <code>bool verify = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

@@ -25,6 +25,9 @@
                     "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"
                 },
+                "ExecuteQuery": {
+                    "timeout_millis": 60000
+                },
                 "GenerateInitialChangeStreamPartitions": {
                     "timeout_millis": 60000
                 },
@@ -37,6 +40,11 @@
                     "timeout_millis": 60000
                 },
                 "PingAndWarm": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "PrepareQuery": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"

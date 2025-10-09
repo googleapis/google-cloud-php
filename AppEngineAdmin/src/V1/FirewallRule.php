@@ -25,13 +25,13 @@ class FirewallRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 priority = 1;</code>
      */
-    private $priority = 0;
+    protected $priority = 0;
     /**
      * The action to take on matched requests.
      *
      * Generated from protobuf field <code>.google.appengine.v1.FirewallRule.Action action = 2;</code>
      */
-    private $action = 0;
+    protected $action = 0;
     /**
      * IP address or range, defined using CIDR notation, of requests that this
      * rule applies to. You can use the wildcard character "*" to match all IPs
@@ -45,14 +45,14 @@ class FirewallRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_range = 3;</code>
      */
-    private $source_range = '';
+    protected $source_range = '';
     /**
      * An optional string description of this rule.
      * This field has a maximum length of 100 characters.
      *
      * Generated from protobuf field <code>string description = 4;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

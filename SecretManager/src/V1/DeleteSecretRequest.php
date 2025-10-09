@@ -23,7 +23,7 @@ class DeleteSecretRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The
      * request succeeds if it matches the etag of the currently stored secret
@@ -31,7 +31,7 @@ class DeleteSecretRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. The resource name of the

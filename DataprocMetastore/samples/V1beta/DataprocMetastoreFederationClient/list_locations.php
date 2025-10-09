@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1beta_generated_DataprocMetastoreFederation_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\Cloud\Metastore\V1beta\DataprocMetastoreFederationClient;
+use Google\Cloud\Metastore\V1beta\Client\DataprocMetastoreFederationClient;
 
 /**
  * Lists information about the supported locations for this service.
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataprocMetastoreFederationClient->listLocations();
+        $response = $dataprocMetastoreFederationClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

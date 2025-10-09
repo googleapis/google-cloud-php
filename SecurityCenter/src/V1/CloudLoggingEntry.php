@@ -21,7 +21,7 @@ class CloudLoggingEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string insert_id = 1;</code>
      */
-    private $insert_id = '';
+    protected $insert_id = '';
     /**
      * The type of the log (part of `log_name`. `log_name` is the resource name of
      * the log to which this log entry belongs). For example:
@@ -30,20 +30,20 @@ class CloudLoggingEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string log_id = 2;</code>
      */
-    private $log_id = '';
+    protected $log_id = '';
     /**
      * The organization, folder, or project of the monitored resource that
      * produced this log entry.
      *
      * Generated from protobuf field <code>string resource_container = 3;</code>
      */
-    private $resource_container = '';
+    protected $resource_container = '';
     /**
      * The time the event described by the log entry occurred.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 4;</code>
      */
-    private $timestamp = null;
+    protected $timestamp = null;
 
     /**
      * Constructor.

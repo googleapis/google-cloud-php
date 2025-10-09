@@ -22,7 +22,7 @@ class ListEffectiveTagsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The maximum number of effective tags to return in the response.
      * The server allows a maximum of 300 effective tags to return in a single
@@ -30,14 +30,14 @@ class ListEffectiveTagsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A pagination token returned from a previous call to
      * `ListEffectiveTags` that indicates from where this listing should continue.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The full resource name of a resource for which you want to list

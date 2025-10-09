@@ -22,13 +22,13 @@ class AdvanceChildRolloutJobRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rollout = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $rollout = '';
+    protected $rollout = '';
     /**
      * Output only. the ID of the ChildRollout's Phase.
      *
      * Generated from protobuf field <code>string rollout_phase_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $rollout_phase_id = '';
+    protected $rollout_phase_id = '';
 
     /**
      * Constructor.

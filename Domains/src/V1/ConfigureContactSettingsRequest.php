@@ -21,13 +21,13 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string registration = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $registration = '';
+    protected $registration = '';
     /**
      * Fields of the `ContactSettings` to update.
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.ContactSettings contact_settings = 2;</code>
      */
-    private $contact_settings = null;
+    protected $contact_settings = null;
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
      * For example, if only the registrant contact is being updated, the
@@ -35,7 +35,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * The list of contact notices that the caller acknowledges. The notices
      * needed here depend on the values specified in `contact_settings`.
@@ -48,7 +48,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool validate_only = 5;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                   $registration    Required. The name of the `Registration` whose contact settings are being updated,

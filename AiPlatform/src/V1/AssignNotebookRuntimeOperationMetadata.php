@@ -21,14 +21,14 @@ class AssignNotebookRuntimeOperationMetadata extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenericOperationMetadata generic_metadata = 1;</code>
      */
-    private $generic_metadata = null;
+    protected $generic_metadata = null;
     /**
      * A human-readable message that shows the intermediate progress details of
      * NotebookRuntime.
      *
      * Generated from protobuf field <code>string progress_message = 2;</code>
      */
-    private $progress_message = '';
+    protected $progress_message = '';
 
     /**
      * Constructor.

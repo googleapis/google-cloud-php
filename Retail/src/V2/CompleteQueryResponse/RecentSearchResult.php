@@ -21,7 +21,7 @@ class RecentSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string recent_search = 1;</code>
      */
-    private $recent_search = '';
+    protected $recent_search = '';
 
     /**
      * Constructor.

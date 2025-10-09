@@ -22,7 +22,7 @@ class DisableProcessorMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 5;</code>
      */
-    private $common_metadata = null;
+    protected $common_metadata = null;
 
     /**
      * Constructor.

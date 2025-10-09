@@ -45,28 +45,28 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_tensor_name = 2;</code>
      */
-    private $input_tensor_name = '';
+    protected $input_tensor_name = '';
     /**
      * Defines how the feature is encoded into the input tensor. Defaults to
      * IDENTITY.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.Encoding encoding = 3;</code>
      */
-    private $encoding = 0;
+    protected $encoding = 0;
     /**
      * Modality of the feature. Valid values are: numeric, image. Defaults to
      * numeric.
      *
      * Generated from protobuf field <code>string modality = 4;</code>
      */
-    private $modality = '';
+    protected $modality = '';
     /**
      * The domain details of the input feature value. Like min/max, original
      * mean or standard deviation if normalized.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.FeatureValueDomain feature_value_domain = 5;</code>
      */
-    private $feature_value_domain = null;
+    protected $feature_value_domain = null;
     /**
      * Specifies the index of the values of the input tensor.
      * Required when the input tensor is a sparse representation. Refer to
@@ -75,7 +75,7 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string indices_tensor_name = 6;</code>
      */
-    private $indices_tensor_name = '';
+    protected $indices_tensor_name = '';
     /**
      * Specifies the shape of the values of the input if the input is a sparse
      * representation. Refer to Tensorflow documentation for more details:
@@ -83,7 +83,7 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dense_shape_tensor_name = 7;</code>
      */
-    private $dense_shape_tensor_name = '';
+    protected $dense_shape_tensor_name = '';
     /**
      * A list of feature names for each index in the input tensor.
      * Required when the input
@@ -106,7 +106,7 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string encoded_tensor_name = 9;</code>
      */
-    private $encoded_tensor_name = '';
+    protected $encoded_tensor_name = '';
     /**
      * A list of baselines for the encoded tensor.
      * The shape of each baseline should match the shape of the encoded tensor.
@@ -121,7 +121,7 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.Visualization visualization = 11;</code>
      */
-    private $visualization = null;
+    protected $visualization = null;
     /**
      * Name of the group that the input belongs to. Features with the same group
      * name will be treated as one feature when computing attributions. Features
@@ -132,7 +132,7 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group_name = 12;</code>
      */
-    private $group_name = '';
+    protected $group_name = '';
 
     /**
      * Constructor.

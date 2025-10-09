@@ -20,22 +20,22 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string address = 462920692;</code>
      */
-    private $address = null;
+    protected $address = null;
     /**
      * [Output Only] Availability zone for this InterconnectLocation. Within a metropolitan area (metro), maintenance will not be simultaneously scheduled in more than one availability zone. Example: "zone1" or "zone2".
      *
      * Generated from protobuf field <code>optional string availability_zone = 158459920;</code>
      */
-    private $availability_zone = null;
+    protected $availability_zone = null;
     /**
-     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - MACSEC
+     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - IF_MACSEC
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
      */
     private $available_features;
     /**
-     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR
+     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR - LINK_TYPE_ETHERNET_400G_LR4
      * Check the AvailableLinkTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_link_types = 509504298;</code>
@@ -46,62 +46,62 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string city = 3053931;</code>
      */
-    private $city = null;
+    protected $city = null;
     /**
      * [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA
      * Check the Continent enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string continent = 133442996;</code>
      */
-    private $continent = null;
+    protected $continent = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] An optional description of the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
      * Generated from protobuf field <code>optional string facility_provider = 533303309;</code>
      */
-    private $facility_provider = null;
+    protected $facility_provider = null;
     /**
      * [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
      *
      * Generated from protobuf field <code>optional string facility_provider_facility_id = 87269125;</code>
      */
-    private $facility_provider_facility_id = null;
+    protected $facility_provider_facility_id = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#interconnectLocation for interconnect locations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
      *
      * Generated from protobuf field <code>optional string peeringdb_facility_id = 536567094;</code>
      */
-    private $peeringdb_facility_id = null;
+    protected $peeringdb_facility_id = null;
     /**
      * [Output Only] A list of InterconnectLocation.RegionInfo objects, that describe parameters pertaining to the relation between this InterconnectLocation and various Google Cloud regions.
      *
@@ -113,20 +113,26 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
+    /**
+     * [Output Only] URLs of the other locations that can pair up with this location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
+     *
+     * Generated from protobuf field <code>repeated string single_region_production_critical_peer_locations = 439537103;</code>
+     */
+    private $single_region_production_critical_peer_locations;
     /**
      * [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      */
-    private $supports_pzs = null;
+    protected $supports_pzs = null;
 
     /**
      * Constructor.
@@ -139,10 +145,10 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *     @type string $availability_zone
      *           [Output Only] Availability zone for this InterconnectLocation. Within a metropolitan area (metro), maintenance will not be simultaneously scheduled in more than one availability zone. Example: "zone1" or "zone2".
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_features
-     *           [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - MACSEC
+     *           [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - IF_MACSEC
      *           Check the AvailableFeatures enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_link_types
-     *           [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR
+     *           [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR - LINK_TYPE_ETHERNET_400G_LR4
      *           Check the AvailableLinkTypes enum for the list of possible values.
      *     @type string $city
      *           [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
@@ -169,6 +175,8 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *           [Output Only] A list of InterconnectLocation.RegionInfo objects, that describe parameters pertaining to the relation between this InterconnectLocation and various Google Cloud regions.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $single_region_production_critical_peer_locations
+     *           [Output Only] URLs of the other locations that can pair up with this location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
      *     @type string $status
      *           [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects.
      *           Check the Status enum for the list of possible values.
@@ -254,7 +262,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - MACSEC
+     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - IF_MACSEC
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
@@ -266,7 +274,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - MACSEC
+     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - IF_MACSEC
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
@@ -282,7 +290,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR
+     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR - LINK_TYPE_ETHERNET_400G_LR4
      * Check the AvailableLinkTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_link_types = 509504298;</code>
@@ -294,7 +302,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR
+     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR - LINK_TYPE_ETHERNET_400G_LR4
      * Check the AvailableLinkTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_link_types = 509504298;</code>
@@ -729,6 +737,32 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] URLs of the other locations that can pair up with this location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
+     *
+     * Generated from protobuf field <code>repeated string single_region_production_critical_peer_locations = 439537103;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSingleRegionProductionCriticalPeerLocations()
+    {
+        return $this->single_region_production_critical_peer_locations;
+    }
+
+    /**
+     * [Output Only] URLs of the other locations that can pair up with this location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
+     *
+     * Generated from protobuf field <code>repeated string single_region_production_critical_peer_locations = 439537103;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSingleRegionProductionCriticalPeerLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->single_region_production_critical_peer_locations = $arr;
 
         return $this;
     }

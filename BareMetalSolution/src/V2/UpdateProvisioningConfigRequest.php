@@ -20,20 +20,20 @@ class UpdateProvisioningConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.ProvisioningConfig provisioning_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $provisioning_config = null;
+    protected $provisioning_config = null;
     /**
      * Required. The list of fields to update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional. Email provided to send a confirmation with provisioning config
      * to.
      *
      * Generated from protobuf field <code>string email = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $email = '';
+    protected $email = '';
 
     /**
      * @param \Google\Cloud\BareMetalSolution\V2\ProvisioningConfig $provisioningConfig Required. The ProvisioningConfig to update.

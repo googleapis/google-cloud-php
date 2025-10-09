@@ -88,8 +88,11 @@ class PublishAndPullTest extends PubSubTestCase
     /**
      * @dataProvider clientProvider
      */
-    public function testOrderingKeys($client)
+    public function testOrderingKeys($client, $transport)
     {
+        if ($transport === 'rest' && $this->isEmulatorUsed()) {
+            $this->markTestSkipped('This times out for REST transport emulator tests');
+        }
         list ($topic, $sub) = self::topicAndSubscription($client, [], [
             'enableMessageOrdering' => true
         ]);

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,12 +27,12 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Client\GlobalForwardingRulesClient;
+use Google\Cloud\Compute\V1\Client\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\DeleteGlobalForwardingRuleRequest;
 use Google\Cloud\Compute\V1\ForwardingRule;
 use Google\Cloud\Compute\V1\ForwardingRuleList;
 use Google\Cloud\Compute\V1\GetGlobalForwardingRuleRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\InsertGlobalForwardingRuleRequest;
 use Google\Cloud\Compute\V1\ListGlobalForwardingRulesRequest;
@@ -61,7 +61,9 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return GlobalForwardingRulesClient */
@@ -101,9 +103,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         // Mock request
         $forwardingRule = 'forwardingRule-1340648706';
         $project = 'project-309310695';
-        $request = (new DeleteGlobalForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setProject($project);
+        $request = (new DeleteGlobalForwardingRuleRequest())->setForwardingRule($forwardingRule)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -160,19 +160,20 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $forwardingRule = 'forwardingRule-1340648706';
         $project = 'project-309310695';
-        $request = (new DeleteGlobalForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setProject($project);
+        $request = (new DeleteGlobalForwardingRuleRequest())->setForwardingRule($forwardingRule)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -211,6 +212,8 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $baseForwardingRule = 'baseForwardingRule524873104';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
+        $externalManagedBackendBucketMigrationState = 'externalManagedBackendBucketMigrationState-429059542';
+        $externalManagedBackendBucketMigrationTestingPercentage = 3856772;
         $fingerprint = 'fingerprint-1375934236';
         $id = 3355;
         $ipCollection = 'ipCollection176818358';
@@ -228,6 +231,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $pscConnectionStatus = 'pscConnectionStatus-889592652';
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
+        $selfLinkWithId = 'selfLinkWithId-1029220862';
         $serviceLabel = 'serviceLabel-1730474774';
         $serviceName = 'serviceName359880149';
         $subnetwork = 'subnetwork-1302785042';
@@ -242,6 +246,10 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setBaseForwardingRule($baseForwardingRule);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setExternalManagedBackendBucketMigrationState($externalManagedBackendBucketMigrationState);
+        $expectedResponse->setExternalManagedBackendBucketMigrationTestingPercentage(
+            $externalManagedBackendBucketMigrationTestingPercentage
+        );
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);
         $expectedResponse->setIpCollection($ipCollection);
@@ -259,6 +267,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setPscConnectionStatus($pscConnectionStatus);
         $expectedResponse->setRegion($region);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setSelfLinkWithId($selfLinkWithId);
         $expectedResponse->setServiceLabel($serviceLabel);
         $expectedResponse->setServiceName($serviceName);
         $expectedResponse->setSubnetwork($subnetwork);
@@ -267,9 +276,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         // Mock request
         $forwardingRule = 'forwardingRule-1340648706';
         $project = 'project-309310695';
-        $request = (new GetGlobalForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setProject($project);
+        $request = (new GetGlobalForwardingRuleRequest())->setForwardingRule($forwardingRule)->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -295,19 +302,20 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $forwardingRule = 'forwardingRule-1340648706';
         $project = 'project-309310695';
-        $request = (new GetGlobalForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setProject($project);
+        $request = (new GetGlobalForwardingRuleRequest())->setForwardingRule($forwardingRule)->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -408,12 +416,15 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $forwardingRuleResource = new ForwardingRule();
@@ -455,9 +466,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new ForwardingRule();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new ForwardingRuleList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -467,8 +476,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListGlobalForwardingRulesRequest())
-            ->setProject($project);
+        $request = (new ListGlobalForwardingRulesRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -495,17 +503,19 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListGlobalForwardingRulesRequest())
-            ->setProject($project);
+        $request = (new ListGlobalForwardingRulesRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -610,12 +620,15 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $forwardingRule = 'forwardingRule-1340648706';
@@ -736,12 +749,15 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
@@ -862,12 +878,15 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $forwardingRule = 'forwardingRule-1340648706';
@@ -925,9 +944,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         // Mock request
         $forwardingRule = 'forwardingRule-1340648706';
         $project = 'project-309310695';
-        $request = (new DeleteGlobalForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setProject($project);
+        $request = (new DeleteGlobalForwardingRuleRequest())->setForwardingRule($forwardingRule)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();

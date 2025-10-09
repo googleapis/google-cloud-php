@@ -21,13 +21,13 @@ class VertexDatasetSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 data_item_count = 1;</code>
      */
-    private $data_item_count = 0;
+    protected $data_item_count = 0;
     /**
      * Type of the dataset.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.VertexDatasetSpec.DataType data_type = 2;</code>
      */
-    private $data_type = 0;
+    protected $data_type = 0;
 
     /**
      * Constructor.

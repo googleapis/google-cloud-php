@@ -26,7 +26,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Immutable. The replication policy of the secret data attached to
      * the [Secret][google.cloud.secretmanager.v1.Secret].
@@ -34,14 +34,14 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Replication replication = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $replication = null;
+    protected $replication = null;
     /**
      * Output only. The time at which the
      * [Secret][google.cloud.secretmanager.v1.Secret] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The labels assigned to this Secret.
      * Label keys must be between 1 and 63 characters long, have a UTF-8 encoding
@@ -68,7 +68,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. Rotation policy attached to the
      * [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is
@@ -76,7 +76,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Rotation rotation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rotation = null;
+    protected $rotation = null;
     /**
      * Optional. Mapping from version alias to version name.
      * A version alias is a string with a maximum length of 63 characters and can
@@ -114,10 +114,10 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration version_destroy_ttl = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $version_destroy_ttl = null;
+    protected $version_destroy_ttl = null;
     /**
-     * Optional. The customer-managed encryption configuration of the Regionalised
-     * Secrets. If no configuration is provided, Google-managed default encryption
+     * Optional. The customer-managed encryption configuration of the regionalized
+     * secrets. If no configuration is provided, Google-managed default encryption
      * is used.
      * Updates to the [Secret][google.cloud.secretmanager.v1.Secret] encryption
      * configuration only apply to
@@ -127,7 +127,18 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryption customer_managed_encryption = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $customer_managed_encryption = null;
+    protected $customer_managed_encryption = null;
+    /**
+     * Optional. Input only. Immutable. Mapping of Tag keys/values directly bound
+     * to this resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     * Tags are used to organize and group resources.
+     * Tags can be used to control policy evaluation for the resource.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 16 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
     protected $expiration;
 
     /**
@@ -200,14 +211,21 @@ class Secret extends \Google\Protobuf\Internal\Message
      *           on calling destroy instead the version goes to a disabled state and
      *           destruction happens after the TTL expires.
      *     @type \Google\Cloud\SecretManager\V1\CustomerManagedEncryption $customer_managed_encryption
-     *           Optional. The customer-managed encryption configuration of the Regionalised
-     *           Secrets. If no configuration is provided, Google-managed default encryption
+     *           Optional. The customer-managed encryption configuration of the regionalized
+     *           secrets. If no configuration is provided, Google-managed default encryption
      *           is used.
      *           Updates to the [Secret][google.cloud.secretmanager.v1.Secret] encryption
      *           configuration only apply to
      *           [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] added
      *           afterwards. They do not apply retroactively to existing
      *           [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Mapping of Tag keys/values directly bound
+     *           to this resource. For example:
+     *             "123/environment": "production",
+     *             "123/costCenter": "marketing"
+     *           Tags are used to organize and group resources.
+     *           Tags can be used to control policy evaluation for the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -656,8 +674,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The customer-managed encryption configuration of the Regionalised
-     * Secrets. If no configuration is provided, Google-managed default encryption
+     * Optional. The customer-managed encryption configuration of the regionalized
+     * secrets. If no configuration is provided, Google-managed default encryption
      * is used.
      * Updates to the [Secret][google.cloud.secretmanager.v1.Secret] encryption
      * configuration only apply to
@@ -684,8 +702,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The customer-managed encryption configuration of the Regionalised
-     * Secrets. If no configuration is provided, Google-managed default encryption
+     * Optional. The customer-managed encryption configuration of the regionalized
+     * secrets. If no configuration is provided, Google-managed default encryption
      * is used.
      * Updates to the [Secret][google.cloud.secretmanager.v1.Secret] encryption
      * configuration only apply to
@@ -701,6 +719,42 @@ class Secret extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1\CustomerManagedEncryption::class);
         $this->customer_managed_encryption = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Mapping of Tag keys/values directly bound
+     * to this resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     * Tags are used to organize and group resources.
+     * Tags can be used to control policy evaluation for the resource.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 16 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Mapping of Tag keys/values directly bound
+     * to this resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     * Tags are used to organize and group resources.
+     * Tags can be used to control policy evaluation for the resource.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 16 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

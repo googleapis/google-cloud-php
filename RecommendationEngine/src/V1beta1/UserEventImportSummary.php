@@ -21,14 +21,14 @@ class UserEventImportSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 joined_events_count = 1;</code>
      */
-    private $joined_events_count = 0;
+    protected $joined_events_count = 0;
     /**
      * Count of user events imported, but with catalog information not found
      * in the imported catalog.
      *
      * Generated from protobuf field <code>int64 unjoined_events_count = 2;</code>
      */
-    private $unjoined_events_count = 0;
+    protected $unjoined_events_count = 0;
 
     /**
      * Constructor.

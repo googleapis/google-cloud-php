@@ -30,6 +30,7 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -61,6 +62,9 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancePartitionOperationsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancePartitionsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\MoveInstanceMetadata;
+use Google\Cloud\Spanner\Admin\Instance\V1\MoveInstanceRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\MoveInstanceResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
@@ -70,6 +74,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\LongRunning\Operation;
 use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Cloud Spanner Instance Admin API
@@ -102,26 +107,27 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createInstanceConfigAsync(CreateInstanceConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createInstancePartitionAsync(CreateInstancePartitionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInstanceConfigAsync(DeleteInstanceConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInstancePartitionAsync(DeleteInstancePartitionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstanceConfigAsync(GetInstanceConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstancePartitionAsync(GetInstancePartitionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstanceConfigOperationsAsync(ListInstanceConfigOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstanceConfigsAsync(ListInstanceConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancePartitionOperationsAsync(ListInstancePartitionOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancePartitionsAsync(ListInstancePartitionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInstanceConfigAsync(UpdateInstanceConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInstancePartitionAsync(UpdateInstancePartitionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInstanceConfigAsync(CreateInstanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInstancePartitionAsync(CreateInstancePartitionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteInstanceConfigAsync(DeleteInstanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteInstancePartitionAsync(DeleteInstancePartitionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstanceConfig> getInstanceConfigAsync(GetInstanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstancePartition> getInstancePartitionAsync(GetInstancePartitionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstanceConfigOperationsAsync(ListInstanceConfigOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstanceConfigsAsync(ListInstanceConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancePartitionOperationsAsync(ListInstancePartitionOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancePartitionsAsync(ListInstancePartitionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveInstanceAsync(MoveInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateInstanceConfigAsync(UpdateInstanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateInstancePartitionAsync(UpdateInstancePartitionRequest $request, array $optionalArgs = [])
  */
 final class InstanceAdminClient
 {
@@ -197,7 +203,7 @@ final class InstanceAdminClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -286,14 +292,14 @@ final class InstanceAdminClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -305,20 +311,29 @@ final class InstanceAdminClient
      * the API Endpoint to the value specified in the variable, as well as ensure that
      * empty credentials are used in the transport layer.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'spanner.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new InstanceAdminClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -352,13 +367,18 @@ final class InstanceAdminClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
-        $options = $options + $this->getDefaultEmulatorConfig();
+        $options = $this->setDefaultEmulatorConfig($options);
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
@@ -377,7 +397,7 @@ final class InstanceAdminClient
 
     /**
      * Creates an instance and begins preparing it to begin serving. The
-     * returned [long-running operation][google.longrunning.Operation]
+     * returned long-running operation
      * can be used to track the progress of preparing the new
      * instance. The instance name is assigned by the caller. If the
      * named instance already exists, `CreateInstance` returns
@@ -403,12 +423,12 @@ final class InstanceAdminClient
      * * The instance's allocated resource levels are readable via the API.
      * * The instance's state becomes `READY`.
      *
-     * The returned [long-running operation][google.longrunning.Operation] will
+     * The returned long-running operation will
      * have a name of the format `<instance_name>/operations/<operation_id>` and
      * can be used to track creation of the instance.  The
-     * [metadata][google.longrunning.Operation.metadata] field type is
+     * metadata field type is
      * [CreateInstanceMetadata][google.spanner.admin.instance.v1.CreateInstanceMetadata].
-     * The [response][google.longrunning.Operation.response] field type is
+     * The response field type is
      * [Instance][google.spanner.admin.instance.v1.Instance], if successful.
      *
      * The async variant is {@see InstanceAdminClient::createInstanceAsync()} .
@@ -425,7 +445,7 @@ final class InstanceAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Instance>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -435,41 +455,41 @@ final class InstanceAdminClient
     }
 
     /**
-     * Creates an instance config and begins preparing it to be used. The
-     * returned [long-running operation][google.longrunning.Operation]
+     * Creates an instance configuration and begins preparing it to be used. The
+     * returned long-running operation
      * can be used to track the progress of preparing the new
-     * instance config. The instance config name is assigned by the caller. If the
-     * named instance config already exists, `CreateInstanceConfig` returns
-     * `ALREADY_EXISTS`.
+     * instance configuration. The instance configuration name is assigned by the
+     * caller. If the named instance configuration already exists,
+     * `CreateInstanceConfig` returns `ALREADY_EXISTS`.
      *
      * Immediately after the request returns:
      *
-     * * The instance config is readable via the API, with all requested
-     * attributes. The instance config's
+     * * The instance configuration is readable via the API, with all requested
+     * attributes. The instance configuration's
      * [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
      * field is set to true. Its state is `CREATING`.
      *
      * While the operation is pending:
      *
-     * * Cancelling the operation renders the instance config immediately
+     * * Cancelling the operation renders the instance configuration immediately
      * unreadable via the API.
      * * Except for deleting the creating resource, all other attempts to modify
-     * the instance config are rejected.
+     * the instance configuration are rejected.
      *
      * Upon completion of the returned operation:
      *
      * * Instances can be created using the instance configuration.
-     * * The instance config's
+     * * The instance configuration's
      * [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
      * field becomes false. Its state becomes `READY`.
      *
-     * The returned [long-running operation][google.longrunning.Operation] will
+     * The returned long-running operation will
      * have a name of the format
      * `<instance_config_name>/operations/<operation_id>` and can be used to track
-     * creation of the instance config. The
-     * [metadata][google.longrunning.Operation.metadata] field type is
+     * creation of the instance configuration. The
+     * metadata field type is
      * [CreateInstanceConfigMetadata][google.spanner.admin.instance.v1.CreateInstanceConfigMetadata].
-     * The [response][google.longrunning.Operation.response] field type is
+     * The response field type is
      * [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig], if
      * successful.
      *
@@ -491,7 +511,7 @@ final class InstanceAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<InstanceConfig>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -502,7 +522,7 @@ final class InstanceAdminClient
 
     /**
      * Creates an instance partition and begins preparing it to be used. The
-     * returned [long-running operation][google.longrunning.Operation]
+     * returned long-running operation
      * can be used to track the progress of preparing the new instance partition.
      * The instance partition name is assigned by the caller. If the named
      * instance partition already exists, `CreateInstancePartition` returns
@@ -529,13 +549,13 @@ final class InstanceAdminClient
      * API.
      * * The instance partition's state becomes `READY`.
      *
-     * The returned [long-running operation][google.longrunning.Operation] will
+     * The returned long-running operation will
      * have a name of the format
      * `<instance_partition_name>/operations/<operation_id>` and can be used to
      * track creation of the instance partition.  The
-     * [metadata][google.longrunning.Operation.metadata] field type is
+     * metadata field type is
      * [CreateInstancePartitionMetadata][google.spanner.admin.instance.v1.CreateInstancePartitionMetadata].
-     * The [response][google.longrunning.Operation.response] field type is
+     * The response field type is
      * [InstancePartition][google.spanner.admin.instance.v1.InstancePartition], if
      * successful.
      *
@@ -554,7 +574,7 @@ final class InstanceAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<InstancePartition>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -598,11 +618,11 @@ final class InstanceAdminClient
     }
 
     /**
-     * Deletes the instance config. Deletion is only allowed when no
+     * Deletes the instance configuration. Deletion is only allowed when no
      * instances are using the configuration. If any instances are using
-     * the config, returns `FAILED_PRECONDITION`.
+     * the configuration, returns `FAILED_PRECONDITION`.
      *
-     * Only user managed configurations can be deleted.
+     * Only user-managed configurations can be deleted.
      *
      * Authorization requires `spanner.instanceConfigs.delete` permission on
      * the resource [name][google.spanner.admin.instance.v1.InstanceConfig.name].
@@ -768,12 +788,12 @@ final class InstanceAdminClient
     }
 
     /**
-     * Lists the user-managed instance config [long-running
-     * operations][google.longrunning.Operation] in the given project. An instance
-     * config operation has a name of the form
+     * Lists the user-managed instance configuration long-running
+     * operations in the given project. An instance
+     * configuration operation has a name of the form
      * `projects/<project>/instanceConfigs/<instance_config>/operations/<operation>`.
      * The long-running operation
-     * [metadata][google.longrunning.Operation.metadata] field type
+     * metadata field type
      * `metadata.type_url` describes the type of the metadata. Operations returned
      * include those that have completed/failed/canceled within the last 7 days,
      * and pending operations. Operations returned are ordered by
@@ -807,6 +827,9 @@ final class InstanceAdminClient
     /**
      * Lists the supported instance configurations for a given project.
      *
+     * Returns both Google-managed configurations and user-managed
+     * configurations.
+     *
      * The async variant is {@see InstanceAdminClient::listInstanceConfigsAsync()} .
      *
      * @example samples/V1/InstanceAdminClient/list_instance_configs.php
@@ -831,12 +854,11 @@ final class InstanceAdminClient
     }
 
     /**
-     * Lists instance partition [long-running
-     * operations][google.longrunning.Operation] in the given instance.
+     * Lists instance partition long-running operations in the given instance.
      * An instance partition operation has a name of the form
      * `projects/<project>/instances/<instance>/instancePartitions/<instance_partition>/operations/<operation>`.
      * The long-running operation
-     * [metadata][google.longrunning.Operation.metadata] field type
+     * metadata field type
      * `metadata.type_url` describes the type of the metadata. Operations returned
      * include those that have completed/failed/canceled within the last 7 days,
      * and pending operations. Operations returned are ordered by
@@ -924,6 +946,92 @@ final class InstanceAdminClient
     }
 
     /**
+     * Moves an instance to the target instance configuration. You can use the
+     * returned long-running operation to track
+     * the progress of moving the instance.
+     *
+     * `MoveInstance` returns `FAILED_PRECONDITION` if the instance meets any of
+     * the following criteria:
+     *
+     * * Is undergoing a move to a different instance configuration
+     * * Has backups
+     * * Has an ongoing update
+     * * Contains any CMEK-enabled databases
+     * * Is a free trial instance
+     *
+     * While the operation is pending:
+     *
+     * * All other attempts to modify the instance, including changes to its
+     * compute capacity, are rejected.
+     * * The following database and backup admin operations are rejected:
+     *
+     * * `DatabaseAdmin.CreateDatabase`
+     * * `DatabaseAdmin.UpdateDatabaseDdl` (disabled if default_leader is
+     * specified in the request.)
+     * * `DatabaseAdmin.RestoreDatabase`
+     * * `DatabaseAdmin.CreateBackup`
+     * * `DatabaseAdmin.CopyBackup`
+     *
+     * * Both the source and target instance configurations are subject to
+     * hourly compute and storage charges.
+     * * The instance might experience higher read-write latencies and a higher
+     * transaction abort rate. However, moving an instance doesn't cause any
+     * downtime.
+     *
+     * The returned long-running operation has
+     * a name of the format
+     * `<instance_name>/operations/<operation_id>` and can be used to track
+     * the move instance operation. The
+     * metadata field type is
+     * [MoveInstanceMetadata][google.spanner.admin.instance.v1.MoveInstanceMetadata].
+     * The response field type is
+     * [Instance][google.spanner.admin.instance.v1.Instance],
+     * if successful.
+     * Cancelling the operation sets its metadata's
+     * [cancel_time][google.spanner.admin.instance.v1.MoveInstanceMetadata.cancel_time].
+     * Cancellation is not immediate because it involves moving any data
+     * previously moved to the target instance configuration back to the original
+     * instance configuration. You can use this operation to track the progress of
+     * the cancellation. Upon successful completion of the cancellation, the
+     * operation terminates with `CANCELLED` status.
+     *
+     * If not cancelled, upon completion of the returned operation:
+     *
+     * * The instance successfully moves to the target instance
+     * configuration.
+     * * You are billed for compute and storage in target instance
+     * configuration.
+     *
+     * Authorization requires the `spanner.instances.update` permission on
+     * the resource [instance][google.spanner.admin.instance.v1.Instance].
+     *
+     * For more details, see
+     * [Move an instance](https://cloud.google.com/spanner/docs/move-instance).
+     *
+     * The async variant is {@see InstanceAdminClient::moveInstanceAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/move_instance.php
+     *
+     * @param MoveInstanceRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<MoveInstanceResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function moveInstance(MoveInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('MoveInstance', $request, $callOptions)->wait();
+    }
+
+    /**
      * Sets the access control policy on an instance resource. Replaces any
      * existing policy.
      *
@@ -986,8 +1094,7 @@ final class InstanceAdminClient
 
     /**
      * Updates an instance, and begins allocating or releasing resources
-     * as requested. The returned [long-running
-     * operation][google.longrunning.Operation] can be used to track the
+     * as requested. The returned long-running operation can be used to track the
      * progress of updating the instance. If the named instance does not
      * exist, returns `NOT_FOUND`.
      *
@@ -1015,12 +1122,12 @@ final class InstanceAdminClient
      * tables.
      * * The instance's new resource levels are readable via the API.
      *
-     * The returned [long-running operation][google.longrunning.Operation] will
+     * The returned long-running operation will
      * have a name of the format `<instance_name>/operations/<operation_id>` and
      * can be used to track the instance modification.  The
-     * [metadata][google.longrunning.Operation.metadata] field type is
+     * metadata field type is
      * [UpdateInstanceMetadata][google.spanner.admin.instance.v1.UpdateInstanceMetadata].
-     * The [response][google.longrunning.Operation.response] field type is
+     * The response field type is
      * [Instance][google.spanner.admin.instance.v1.Instance], if successful.
      *
      * Authorization requires `spanner.instances.update` permission on
@@ -1040,7 +1147,7 @@ final class InstanceAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Instance>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1050,16 +1157,16 @@ final class InstanceAdminClient
     }
 
     /**
-     * Updates an instance config. The returned
-     * [long-running operation][google.longrunning.Operation] can be used to track
-     * the progress of updating the instance. If the named instance config does
-     * not exist, returns `NOT_FOUND`.
+     * Updates an instance configuration. The returned
+     * long-running operation can be used to track
+     * the progress of updating the instance. If the named instance configuration
+     * does not exist, returns `NOT_FOUND`.
      *
-     * Only user managed configurations can be updated.
+     * Only user-managed configurations can be updated.
      *
      * Immediately after the request returns:
      *
-     * * The instance config's
+     * * The instance configuration's
      * [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
      * field is set to true.
      *
@@ -1069,26 +1176,26 @@ final class InstanceAdminClient
      * [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata.cancel_time].
      * The operation is guaranteed to succeed at undoing all changes, after
      * which point it terminates with a `CANCELLED` status.
-     * * All other attempts to modify the instance config are rejected.
-     * * Reading the instance config via the API continues to give the
+     * * All other attempts to modify the instance configuration are rejected.
+     * * Reading the instance configuration via the API continues to give the
      * pre-request values.
      *
      * Upon completion of the returned operation:
      *
      * * Creating instances using the instance configuration uses the new
      * values.
-     * * The instance config's new values are readable via the API.
-     * * The instance config's
+     * * The new values of the instance configuration are readable via the API.
+     * * The instance configuration's
      * [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
      * field becomes false.
      *
-     * The returned [long-running operation][google.longrunning.Operation] will
+     * The returned long-running operation will
      * have a name of the format
      * `<instance_config_name>/operations/<operation_id>` and can be used to track
-     * the instance config modification.  The
-     * [metadata][google.longrunning.Operation.metadata] field type is
+     * the instance configuration modification.  The
+     * metadata field type is
      * [UpdateInstanceConfigMetadata][google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata].
-     * The [response][google.longrunning.Operation.response] field type is
+     * The response field type is
      * [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig], if
      * successful.
      *
@@ -1109,7 +1216,7 @@ final class InstanceAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<InstanceConfig>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1120,8 +1227,7 @@ final class InstanceAdminClient
 
     /**
      * Updates an instance partition, and begins allocating or releasing resources
-     * as requested. The returned [long-running
-     * operation][google.longrunning.Operation] can be used to track the
+     * as requested. The returned long-running operation can be used to track the
      * progress of updating the instance partition. If the named instance
      * partition does not exist, returns `NOT_FOUND`.
      *
@@ -1150,13 +1256,13 @@ final class InstanceAdminClient
      * partition's tables.
      * * The instance partition's new resource levels are readable via the API.
      *
-     * The returned [long-running operation][google.longrunning.Operation] will
+     * The returned long-running operation will
      * have a name of the format
      * `<instance_partition_name>/operations/<operation_id>` and can be used to
      * track the instance partition modification. The
-     * [metadata][google.longrunning.Operation.metadata] field type is
+     * metadata field type is
      * [UpdateInstancePartitionMetadata][google.spanner.admin.instance.v1.UpdateInstancePartitionMetadata].
-     * The [response][google.longrunning.Operation.response] field type is
+     * The response field type is
      * [InstancePartition][google.spanner.admin.instance.v1.InstancePartition], if
      * successful.
      *
@@ -1179,7 +1285,7 @@ final class InstanceAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<InstancePartition>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1189,11 +1295,11 @@ final class InstanceAdminClient
     }
 
     /** Configure the gapic configuration to use a service emulator. */
-    private function getDefaultEmulatorConfig(): array
+    private function setDefaultEmulatorConfig(array $options): array
     {
         $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
         if (empty($emulatorHost)) {
-            return [];
+            return $options;
         }
 
         if ($scheme = parse_url($emulatorHost, PHP_URL_SCHEME)) {
@@ -1201,16 +1307,12 @@ final class InstanceAdminClient
             $emulatorHost = str_replace($search, '', $emulatorHost);
         }
 
-        return [
-            'apiEndpoint' => $emulatorHost,
-            'transportConfig' => [
-                'grpc' => [
-                    'stubOpts' => [
-                        'credentials' => ChannelCredentials::createInsecure(),
-                    ],
-                ],
-            ],
-            'credentials' => new InsecureCredentialsWrapper(),
-        ];
+        $options['apiEndpoint'] ??= $emulatorHost;
+        if (class_exists(ChannelCredentials::class)) {
+            $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        }
+
+        $options['credentials'] ??= new InsecureCredentialsWrapper();
+        return $options;
     }
 }

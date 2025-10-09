@@ -24,19 +24,19 @@ class Node extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Fully qualified domain name of the node.
      *
      * Generated from protobuf field <code>string fqdn = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $fqdn = '';
+    protected $fqdn = '';
     /**
      * Output only. Internal IP address of the node.
      *
      * Generated from protobuf field <code>string internal_ip = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $internal_ip = '';
+    protected $internal_ip = '';
     /**
      * Output only. The canonical identifier of the node type (corresponds to the
      * `NodeType`).
@@ -44,26 +44,26 @@ class Node extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string node_type_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $node_type_id = '';
+    protected $node_type_id = '';
     /**
      * Output only. The version number of the VMware ESXi
      * management component in this cluster.
      *
      * Generated from protobuf field <code>string version = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Output only. Customized number of cores
      *
      * Generated from protobuf field <code>int64 custom_core_count = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $custom_core_count = 0;
+    protected $custom_core_count = 0;
     /**
      * Output only. The state of the appliance.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.Node.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

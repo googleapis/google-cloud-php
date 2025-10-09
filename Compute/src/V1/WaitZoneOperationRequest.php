@@ -16,28 +16,28 @@ use Google\Protobuf\Internal\GPBUtil;
 class WaitZoneOperationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the Operations resource to return.
+     * Name of the Operations resource to return, or its unique numeric identifier.
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $operation = '';
+    protected $operation = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the zone for this request.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project   Project ID for this request.
      * @param string $zone      Name of the zone for this request.
-     * @param string $operation Name of the Operations resource to return.
+     * @param string $operation Name of the Operations resource to return, or its unique numeric identifier.
      *
      * @return \Google\Cloud\Compute\V1\WaitZoneOperationRequest
      *
@@ -58,7 +58,7 @@ class WaitZoneOperationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $operation
-     *           Name of the Operations resource to return.
+     *           Name of the Operations resource to return, or its unique numeric identifier.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $zone
@@ -71,7 +71,7 @@ class WaitZoneOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the Operations resource to return.
+     * Name of the Operations resource to return, or its unique numeric identifier.
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -82,7 +82,7 @@ class WaitZoneOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the Operations resource to return.
+     * Name of the Operations resource to return, or its unique numeric identifier.
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -22,7 +22,7 @@ class HistogramQueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string histogram_query = 1;</code>
      */
-    private $histogram_query = '';
+    protected $histogram_query = '';
     /**
      * A map from the values of the facet associated with distinct values to the
      * number of matching entries with corresponding value.

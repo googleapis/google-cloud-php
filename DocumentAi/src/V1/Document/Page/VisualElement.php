@@ -22,14 +22,14 @@ class VisualElement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
-    private $layout = null;
+    protected $layout = null;
     /**
      * Type of the
      * [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * A list of detected languages together with confidence.
      *

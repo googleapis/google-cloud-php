@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,6 +40,23 @@ return [
                     ],
                 ],
             ],
+            'AddPacketMirroringRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/firewallPolicies/{firewall_policy}/addPacketMirroringRule',
+                'body' => 'firewall_policy_rule_resource',
+                'placeholders' => [
+                    'firewall_policy' => [
+                        'getters' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'AddRule' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/firewallPolicies/{firewall_policy}/addRule',
@@ -50,6 +67,17 @@ return [
                             'getFirewallPolicy',
                         ],
                     ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/firewallPolicies',
+                'placeholders' => [
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -137,6 +165,22 @@ return [
                     ],
                 ],
             ],
+            'GetPacketMirroringRule' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/firewallPolicies/{firewall_policy}/getPacketMirroringRule',
+                'placeholders' => [
+                    'firewall_policy' => [
+                        'getters' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'GetRule' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/firewallPolicies/{firewall_policy}/getRule',
@@ -193,6 +237,23 @@ return [
                     ],
                 ],
             ],
+            'PatchPacketMirroringRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/firewallPolicies/{firewall_policy}/patchPacketMirroringRule',
+                'body' => 'firewall_policy_rule_resource',
+                'placeholders' => [
+                    'firewall_policy' => [
+                        'getters' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'PatchRule' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/firewallPolicies/{firewall_policy}/patchRule',
@@ -213,6 +274,22 @@ return [
             'RemoveAssociation' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/firewallPolicies/{firewall_policy}/removeAssociation',
+                'placeholders' => [
+                    'firewall_policy' => [
+                        'getters' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'RemovePacketMirroringRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/firewallPolicies/{firewall_policy}/removePacketMirroringRule',
                 'placeholders' => [
                     'firewall_policy' => [
                         'getters' => [

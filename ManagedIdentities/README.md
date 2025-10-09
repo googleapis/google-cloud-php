@@ -28,6 +28,36 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\ManagedIdentities\V1\Client\ManagedIdentitiesServiceClient;
+use Google\Cloud\ManagedIdentities\V1\Domain;
+use Google\Cloud\ManagedIdentities\V1\GetDomainRequest;
+
+// Create a client.
+$managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
+
+// Prepare the request message.
+$request = (new GetDomainRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Domain $response */
+    $response = $managedIdentitiesServiceClient->getDomain($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
+
 ### Version
 
 This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in

@@ -20,21 +20,27 @@ class Segment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 part_index = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $part_index = 0;
+    protected $part_index = 0;
     /**
      * Output only. Start index in the given Part, measured in bytes. Offset from
      * the start of the Part, inclusive, starting at zero.
      *
      * Generated from protobuf field <code>int32 start_index = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_index = 0;
+    protected $start_index = 0;
     /**
      * Output only. End index in the given Part, measured in bytes. Offset from
      * the start of the Part, exclusive, starting at zero.
      *
      * Generated from protobuf field <code>int32 end_index = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_index = 0;
+    protected $end_index = 0;
+    /**
+     * Output only. The text corresponding to the segment from the response.
+     *
+     * Generated from protobuf field <code>string text = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $text = '';
 
     /**
      * Constructor.
@@ -50,6 +56,8 @@ class Segment extends \Google\Protobuf\Internal\Message
      *     @type int $end_index
      *           Output only. End index in the given Part, measured in bytes. Offset from
      *           the start of the Part, exclusive, starting at zero.
+     *     @type string $text
+     *           Output only. The text corresponding to the segment from the response.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,6 +143,32 @@ class Segment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->end_index = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The text corresponding to the segment from the response.
+     *
+     * Generated from protobuf field <code>string text = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Output only. The text corresponding to the segment from the response.
+     *
+     * Generated from protobuf field <code>string text = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setText($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->text = $var;
 
         return $this;
     }

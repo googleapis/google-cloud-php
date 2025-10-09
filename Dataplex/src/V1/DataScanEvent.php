@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * These messages contain information about the execution of a datascan.
  * The monitored resource is 'DataScan'
- * Next ID: 13
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataScanEvent</code>
  */
@@ -22,73 +21,80 @@ class DataScanEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_source = 1;</code>
      */
-    private $data_source = '';
+    protected $data_source = '';
     /**
      * The identifier of the specific data scan job this log entry is for.
      *
      * Generated from protobuf field <code>string job_id = 2;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * The time when the data scan job was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The time when the data scan job started to run.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The time when the data scan job finished.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The type of the data scan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanEvent.ScanType type = 5;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The status of the data scan job.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanEvent.State state = 6;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The message describing the data scan job event.
      *
      * Generated from protobuf field <code>string message = 7;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * A version identifier of the spec which was used to execute this job.
      *
      * Generated from protobuf field <code>string spec_version = 8;</code>
      */
-    private $spec_version = '';
+    protected $spec_version = '';
     /**
      * The trigger type of the data scan job.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanEvent.Trigger trigger = 9;</code>
      */
-    private $trigger = 0;
+    protected $trigger = 0;
     /**
      * The scope of the data scan (e.g. full, incremental).
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanEvent.Scope scope = 10;</code>
      */
-    private $scope = 0;
+    protected $scope = 0;
     /**
      * The result of post scan actions.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanEvent.PostScanActionsResult post_scan_actions_result = 11;</code>
      */
-    private $post_scan_actions_result = null;
+    protected $post_scan_actions_result = null;
+    /**
+     * The status of publishing the data scan as Dataplex Universal Catalog
+     * metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus catalog_publishing_status = 13;</code>
+     */
+    protected $catalog_publishing_status = null;
     protected $result;
     protected $appliedConfigs;
 
@@ -130,6 +136,9 @@ class DataScanEvent extends \Google\Protobuf\Internal\Message
      *           Applied configs for data quality type data scan.
      *     @type \Google\Cloud\Dataplex\V1\DataScanEvent\PostScanActionsResult $post_scan_actions_result
      *           The result of post scan actions.
+     *     @type \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus $catalog_publishing_status
+     *           The status of publishing the data scan as Dataplex Universal Catalog
+     *           metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -609,6 +618,44 @@ class DataScanEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataScanEvent\PostScanActionsResult::class);
         $this->post_scan_actions_result = $var;
+
+        return $this;
+    }
+
+    /**
+     * The status of publishing the data scan as Dataplex Universal Catalog
+     * metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus catalog_publishing_status = 13;</code>
+     * @return \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus|null
+     */
+    public function getCatalogPublishingStatus()
+    {
+        return $this->catalog_publishing_status;
+    }
+
+    public function hasCatalogPublishingStatus()
+    {
+        return isset($this->catalog_publishing_status);
+    }
+
+    public function clearCatalogPublishingStatus()
+    {
+        unset($this->catalog_publishing_status);
+    }
+
+    /**
+     * The status of publishing the data scan as Dataplex Universal Catalog
+     * metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus catalog_publishing_status = 13;</code>
+     * @param \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus $var
+     * @return $this
+     */
+    public function setCatalogPublishingStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus::class);
+        $this->catalog_publishing_status = $var;
 
         return $this;
     }

@@ -20,7 +20,7 @@ class RecurringTimeWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.TimeWindow window = 1;</code>
      */
-    private $window = null;
+    protected $window = null;
     /**
      * An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how
      * this window reccurs. They go on for the span of time between the start and
@@ -51,7 +51,7 @@ class RecurringTimeWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string recurrence = 2;</code>
      */
-    private $recurrence = '';
+    protected $recurrence = '';
 
     /**
      * Constructor.

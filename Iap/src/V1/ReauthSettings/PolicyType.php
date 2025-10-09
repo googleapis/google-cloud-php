@@ -7,7 +7,7 @@ namespace Google\Cloud\Iap\V1\ReauthSettings;
 use UnexpectedValueException;
 
 /**
- * Type of policy in the case of hierarchial policies.
+ * Type of policy in the case of hierarchical policies.
  *
  * Protobuf type <code>google.cloud.iap.v1.ReauthSettings.PolicyType</code>
  */

@@ -20,7 +20,7 @@ class AttachedPlatformVersionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

@@ -80,7 +80,8 @@ class ManageTopicsTest extends PubSubTestCase
         $topic = self::topic($client);
 
         $policy = [
-            'allowedPersistenceRegions' => ['us-central1', 'us-east1']
+            'allowedPersistenceRegions' => ['us-central1', 'us-east1'],
+            'enforceInTransit' => false,
         ];
 
         $topic->update([

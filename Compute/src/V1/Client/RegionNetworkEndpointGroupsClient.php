@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -41,8 +42,8 @@ use Google\Cloud\Compute\V1\InsertRegionNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\ListNetworkEndpointsRegionNetworkEndpointGroupsRequest;
 use Google\Cloud\Compute\V1\ListRegionNetworkEndpointGroupsRequest;
 use Google\Cloud\Compute\V1\NetworkEndpointGroup;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionNetworkEndpointGroups API.
@@ -50,13 +51,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface attachNetworkEndpointsAsync(AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface detachNetworkEndpointsAsync(DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNetworkEndpointsAsync(ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> attachNetworkEndpointsAsync(AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> detachNetworkEndpointsAsync(DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NetworkEndpointGroup> getAsync(GetRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNetworkEndpointsAsync(ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
  */
 final class RegionNetworkEndpointGroupsClient
 {
@@ -102,10 +103,10 @@ final class RegionNetworkEndpointGroupsClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/region_network_endpoint_groups_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/region_network_endpoint_groups_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -118,9 +119,7 @@ final class RegionNetworkEndpointGroupsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -137,10 +136,7 @@ final class RegionNetworkEndpointGroupsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -168,29 +164,57 @@ final class RegionNetworkEndpointGroupsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new RegionNetworkEndpointGroupsClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -221,11 +245,16 @@ final class RegionNetworkEndpointGroupsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -249,6 +278,8 @@ final class RegionNetworkEndpointGroupsClient
      * The async variant is
      * {@see RegionNetworkEndpointGroupsClient::attachNetworkEndpointsAsync()} .
      *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/attach_network_endpoints.php
+     *
      * @param AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                                   $callOptions {
      *     Optional.
@@ -263,8 +294,10 @@ final class RegionNetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function attachNetworkEndpoints(AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function attachNetworkEndpoints(
+        AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AttachNetworkEndpoints', $request, $callOptions)->wait();
     }
 
@@ -272,6 +305,8 @@ final class RegionNetworkEndpointGroupsClient
      * Deletes the specified network endpoint group. Note that the NEG cannot be deleted if it is configured as a backend of a backend service.
      *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::deleteAsync()} .
+     *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/delete.php
      *
      * @param DeleteRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -298,6 +333,8 @@ final class RegionNetworkEndpointGroupsClient
      * The async variant is
      * {@see RegionNetworkEndpointGroupsClient::detachNetworkEndpointsAsync()} .
      *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/detach_network_endpoints.php
+     *
      * @param DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                                   $callOptions {
      *     Optional.
@@ -312,8 +349,10 @@ final class RegionNetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function detachNetworkEndpoints(DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function detachNetworkEndpoints(
+        DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DetachNetworkEndpoints', $request, $callOptions)->wait();
     }
 
@@ -321,6 +360,8 @@ final class RegionNetworkEndpointGroupsClient
      * Returns the specified network endpoint group.
      *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::getAsync()} .
+     *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/get.php
      *
      * @param GetRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -346,6 +387,8 @@ final class RegionNetworkEndpointGroupsClient
      *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::insertAsync()} .
      *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/insert.php
+     *
      * @param InsertRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -369,6 +412,8 @@ final class RegionNetworkEndpointGroupsClient
      * Retrieves the list of regional network endpoint groups available to the specified project in the given region.
      *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::listAsync()} .
+     *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/list.php
      *
      * @param ListRegionNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -395,6 +440,8 @@ final class RegionNetworkEndpointGroupsClient
      * The async variant is
      * {@see RegionNetworkEndpointGroupsClient::listNetworkEndpointsAsync()} .
      *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/list_network_endpoints.php
+     *
      * @param ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                                  $callOptions {
      *     Optional.
@@ -409,8 +456,10 @@ final class RegionNetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNetworkEndpoints(ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listNetworkEndpoints(
+        ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListNetworkEndpoints', $request, $callOptions);
     }
 }

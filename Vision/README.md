@@ -31,26 +31,32 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Vision\V1\Client\ProductSearchClient;
+use Google\Cloud\Vision\V1\GetProductRequest;
+use Google\Cloud\Vision\V1\Product;
 
-use Google\Cloud\Vision\V1\Feature\Type;
-use Google\Cloud\Vision\V1\ImageAnnotatorClient;
-use Google\Cloud\Vision\V1\Likelihood;
+// Create a client.
+$productSearchClient = new ProductSearchClient();
 
-$client = new ImageAnnotatorClient();
+// Prepare the request message.
+$request = (new GetProductRequest())
+    ->setName($formattedName);
 
-// Annotate an image, detecting faces.
-$annotation = $client->annotateImage(
-    fopen('/data/photos/family_photo.jpg', 'r'),
-    [Type::FACE_DETECTION]
-);
-
-// Determine if the detected faces have headwear.
-foreach ($annotation->getFaceAnnotations() as $faceAnnotation) {
-	$likelihood = Likelihood::name($faceAnnotation->getHeadwearLikelihood());
-    echo "Likelihood of headwear: $likelihood" . PHP_EOL;
+// Call the API and handle any network failures.
+try {
+    /** @var Product $response */
+    $response = $productSearchClient->getProduct($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 
@@ -61,4 +67,3 @@ any minor or patch releases. We will address issues and requests with the highes
 
 1. Understand the [official documentation](https://cloud.google.com/vision/docs/).
 2. Take a look at [in-depth usage samples](https://github.com/GoogleCloudPlatform/php-docs-samples/tree/master/vision/).
-

@@ -24,11 +24,11 @@ class Strategy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Deploy\V1\Standard $standard
-     *           Standard deployment strategy executes a single deploy and allows
-     *           verifying the deployment.
+     *           Optional. Standard deployment strategy executes a single deploy and
+     *           allows verifying the deployment.
      *     @type \Google\Cloud\Deploy\V1\Canary $canary
-     *           Canary deployment strategy provides progressive percentage based
-     *           deployments to a Target.
+     *           Optional. Canary deployment strategy provides progressive percentage
+     *           based deployments to a Target.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,10 +37,10 @@ class Strategy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Standard deployment strategy executes a single deploy and allows
-     * verifying the deployment.
+     * Optional. Standard deployment strategy executes a single deploy and
+     * allows verifying the deployment.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.Standard standard = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Standard standard = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\Standard|null
      */
     public function getStandard()
@@ -54,10 +54,10 @@ class Strategy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Standard deployment strategy executes a single deploy and allows
-     * verifying the deployment.
+     * Optional. Standard deployment strategy executes a single deploy and
+     * allows verifying the deployment.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.Standard standard = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Standard standard = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\Standard $var
      * @return $this
      */
@@ -70,10 +70,10 @@ class Strategy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Canary deployment strategy provides progressive percentage based
-     * deployments to a Target.
+     * Optional. Canary deployment strategy provides progressive percentage
+     * based deployments to a Target.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.Canary canary = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Canary canary = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\Canary|null
      */
     public function getCanary()
@@ -87,10 +87,10 @@ class Strategy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Canary deployment strategy provides progressive percentage based
-     * deployments to a Target.
+     * Optional. Canary deployment strategy provides progressive percentage
+     * based deployments to a Target.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.Canary canary = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Canary canary = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\Canary $var
      * @return $this
      */

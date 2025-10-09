@@ -71,7 +71,7 @@ trait DetectProjectIdTrait
         if ($config['credentials']
             && $config['credentials'] instanceof ProjectIdProviderInterface
             && $projectId = $config['credentials']->getProjectId()) {
-                return $projectId;
+            return $projectId;
         }
 
         if (getenv('GOOGLE_CLOUD_PROJECT')) {

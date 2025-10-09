@@ -207,6 +207,7 @@ return [
             ],
             'templateMap' => [
                 'connectivityTest' => 'projects/{project}/locations/global/connectivityTests/{test}',
+                'project' => 'projects/{project}',
             ],
         ],
     ],

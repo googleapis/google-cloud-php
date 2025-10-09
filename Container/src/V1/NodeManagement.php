@@ -23,7 +23,7 @@ class NodeManagement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool auto_upgrade = 1;</code>
      */
-    private $auto_upgrade = false;
+    protected $auto_upgrade = false;
     /**
      * A flag that specifies whether the node auto-repair is enabled for the node
      * pool. If enabled, the nodes in this node pool will be monitored and, if
@@ -32,13 +32,13 @@ class NodeManagement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool auto_repair = 2;</code>
      */
-    private $auto_repair = false;
+    protected $auto_repair = false;
     /**
      * Specifies the Auto Upgrade knobs for the node pool.
      *
      * Generated from protobuf field <code>.google.container.v1.AutoUpgradeOptions upgrade_options = 10;</code>
      */
-    private $upgrade_options = null;
+    protected $upgrade_options = null;
 
     /**
      * Constructor.

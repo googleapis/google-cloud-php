@@ -20,26 +20,32 @@ class AgentInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string agent_id = 1;</code>
      */
-    private $agent_id = '';
+    protected $agent_id = '';
     /**
      * The agent's name.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * A user-specified string representing the agent's team.
      *
      * Generated from protobuf field <code>string team = 3;</code>
      */
-    private $team = '';
+    protected $team = '';
     /**
      * A user-provided string indicating the outcome of the agent's segment of
      * the call.
      *
      * Generated from protobuf field <code>string disposition_code = 4;</code>
      */
-    private $disposition_code = '';
+    protected $disposition_code = '';
+    /**
+     * The agent type, e.g. HUMAN_AGENT.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationParticipant.Role agent_type = 5;</code>
+     */
+    protected $agent_type = 0;
 
     /**
      * Constructor.
@@ -56,6 +62,8 @@ class AgentInfo extends \Google\Protobuf\Internal\Message
      *     @type string $disposition_code
      *           A user-provided string indicating the outcome of the agent's segment of
      *           the call.
+     *     @type int $agent_type
+     *           The agent type, e.g. HUMAN_AGENT.
      * }
      */
     public function __construct($data = NULL) {
@@ -165,6 +173,32 @@ class AgentInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->disposition_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * The agent type, e.g. HUMAN_AGENT.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationParticipant.Role agent_type = 5;</code>
+     * @return int
+     */
+    public function getAgentType()
+    {
+        return $this->agent_type;
+    }
+
+    /**
+     * The agent type, e.g. HUMAN_AGENT.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationParticipant.Role agent_type = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAgentType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ContactCenterInsights\V1\ConversationParticipant\Role::class);
+        $this->agent_type = $var;
 
         return $this;
     }

@@ -21,61 +21,61 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 1;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * The unique id identifying the job.
      *
      * Generated from protobuf field <code>string job_id = 2;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * The time when the job started running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The time when the job ended running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The job state on completion.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.JobEvent.State state = 5;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The number of retries.
      *
      * Generated from protobuf field <code>int32 retries = 6;</code>
      */
-    private $retries = 0;
+    protected $retries = 0;
     /**
      * The type of the job.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.JobEvent.Type type = 7;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The service used to execute the job.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.JobEvent.Service service = 8;</code>
      */
-    private $service = 0;
+    protected $service = 0;
     /**
      * The reference to the job within the service.
      *
      * Generated from protobuf field <code>string service_job = 9;</code>
      */
-    private $service_job = '';
+    protected $service_job = '';
     /**
      * Job execution trigger.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.JobEvent.ExecutionTrigger execution_trigger = 11;</code>
      */
-    private $execution_trigger = 0;
+    protected $execution_trigger = 0;
 
     /**
      * Constructor.

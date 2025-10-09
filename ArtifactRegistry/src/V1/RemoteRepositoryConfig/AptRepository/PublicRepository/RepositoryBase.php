@@ -31,11 +31,18 @@ class RepositoryBase
      * Generated from protobuf enum <code>UBUNTU = 2;</code>
      */
     const UBUNTU = 2;
+    /**
+     * Archived Debian.
+     *
+     * Generated from protobuf enum <code>DEBIAN_SNAPSHOT = 3;</code>
+     */
+    const DEBIAN_SNAPSHOT = 3;
 
     private static $valueToName = [
         self::REPOSITORY_BASE_UNSPECIFIED => 'REPOSITORY_BASE_UNSPECIFIED',
         self::DEBIAN => 'DEBIAN',
         self::UBUNTU => 'UBUNTU',
+        self::DEBIAN_SNAPSHOT => 'DEBIAN_SNAPSHOT',
     ];
 
     public static function name($value)
@@ -59,6 +66,4 @@ class RepositoryBase
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RepositoryBase::class, \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig_AptRepository_PublicRepository_RepositoryBase::class);
 

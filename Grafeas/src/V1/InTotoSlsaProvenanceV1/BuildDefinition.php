@@ -16,15 +16,15 @@ class BuildDefinition extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string build_type = 1;</code>
      */
-    private $build_type = '';
+    protected $build_type = '';
     /**
      * Generated from protobuf field <code>.google.protobuf.Struct external_parameters = 2;</code>
      */
-    private $external_parameters = null;
+    protected $external_parameters = null;
     /**
      * Generated from protobuf field <code>.google.protobuf.Struct internal_parameters = 3;</code>
      */
-    private $internal_parameters = null;
+    protected $internal_parameters = null;
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.InTotoSlsaProvenanceV1.ResourceDescriptor resolved_dependencies = 4;</code>
      */

@@ -20,7 +20,7 @@ class AzureClusterUser extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string username = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $username = '';
+    protected $username = '';
 
     /**
      * Constructor.

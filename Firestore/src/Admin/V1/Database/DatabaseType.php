@@ -17,7 +17,7 @@ use UnexpectedValueException;
 class DatabaseType
 {
     /**
-     * The default value. This value is used if the database type is omitted.
+     * Not used.
      *
      * Generated from protobuf enum <code>DATABASE_TYPE_UNSPECIFIED = 0;</code>
      */

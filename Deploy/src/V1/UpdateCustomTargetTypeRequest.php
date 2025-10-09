@@ -16,21 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateCustomTargetTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * `CustomTargetType` resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it's in the mask. If the
-     * user doesn't provide a mask then all fields are overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten by the
+     * update in the `CustomTargetType` resource. The fields specified in the
+     * update_mask are relative to the resource, not the full request. A field
+     * will be overwritten if it's in the mask. If the user doesn't provide a mask
+     * then all fields are overwritten.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The `CustomTargetType` to update.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomTargetType custom_target_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $custom_target_type = null;
+    protected $custom_target_type = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server knows to ignore the
@@ -46,29 +46,29 @@ class UpdateCustomTargetTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set to true, updating a `CustomTargetType` that does not exist
      * will result in the creation of a new `CustomTargetType`.
      *
      * Generated from protobuf field <code>bool allow_missing = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
     /**
      * Optional. If set to true, the request is validated and the user is provided
      * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\Deploy\V1\CustomTargetType $customTargetType Required. The `CustomTargetType` to update.
-     * @param \Google\Protobuf\FieldMask               $updateMask       Required. Field mask is used to specify the fields to be overwritten in the
-     *                                                                   `CustomTargetType` resource by the update.
-     *                                                                   The fields specified in the update_mask are relative to the resource, not
-     *                                                                   the full request. A field will be overwritten if it's in the mask. If the
-     *                                                                   user doesn't provide a mask then all fields are overwritten.
+     * @param \Google\Protobuf\FieldMask               $updateMask       Required. Field mask is used to specify the fields to be overwritten by the
+     *                                                                   update in the `CustomTargetType` resource. The fields specified in the
+     *                                                                   update_mask are relative to the resource, not the full request. A field
+     *                                                                   will be overwritten if it's in the mask. If the user doesn't provide a mask
+     *                                                                   then all fields are overwritten.
      *
      * @return \Google\Cloud\Deploy\V1\UpdateCustomTargetTypeRequest
      *
@@ -88,11 +88,11 @@ class UpdateCustomTargetTypeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
-     *           `CustomTargetType` resource by the update.
-     *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request. A field will be overwritten if it's in the mask. If the
-     *           user doesn't provide a mask then all fields are overwritten.
+     *           Required. Field mask is used to specify the fields to be overwritten by the
+     *           update in the `CustomTargetType` resource. The fields specified in the
+     *           update_mask are relative to the resource, not the full request. A field
+     *           will be overwritten if it's in the mask. If the user doesn't provide a mask
+     *           then all fields are overwritten.
      *     @type \Google\Cloud\Deploy\V1\CustomTargetType $custom_target_type
      *           Required. The `CustomTargetType` to update.
      *     @type string $request_id
@@ -121,11 +121,11 @@ class UpdateCustomTargetTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * `CustomTargetType` resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it's in the mask. If the
-     * user doesn't provide a mask then all fields are overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten by the
+     * update in the `CustomTargetType` resource. The fields specified in the
+     * update_mask are relative to the resource, not the full request. A field
+     * will be overwritten if it's in the mask. If the user doesn't provide a mask
+     * then all fields are overwritten.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -146,11 +146,11 @@ class UpdateCustomTargetTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * `CustomTargetType` resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it's in the mask. If the
-     * user doesn't provide a mask then all fields are overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten by the
+     * update in the `CustomTargetType` resource. The fields specified in the
+     * update_mask are relative to the resource, not the full request. A field
+     * will be overwritten if it's in the mask. If the user doesn't provide a mask
+     * then all fields are overwritten.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

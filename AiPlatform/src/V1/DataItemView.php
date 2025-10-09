@@ -20,7 +20,7 @@ class DataItemView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DataItem data_item = 1;</code>
      */
-    private $data_item = null;
+    protected $data_item = null;
     /**
      * The Annotations on the DataItem. If too many Annotations should be returned
      * for the DataItem, this field will be truncated per annotations_limit in
@@ -39,7 +39,7 @@ class DataItemView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool has_truncated_annotations = 3;</code>
      */
-    private $has_truncated_annotations = false;
+    protected $has_truncated_annotations = false;
 
     /**
      * Constructor.

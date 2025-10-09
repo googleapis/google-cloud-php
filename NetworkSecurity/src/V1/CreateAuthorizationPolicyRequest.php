@@ -21,7 +21,7 @@ class CreateAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Short name of the AuthorizationPolicy resource to be created.
      * This value should be 1-63 characters long, containing only
@@ -30,13 +30,13 @@ class CreateAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authorization_policy_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $authorization_policy_id = '';
+    protected $authorization_policy_id = '';
     /**
      * Required. AuthorizationPolicy resource to be created.
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1.AuthorizationPolicy authorization_policy = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $authorization_policy = null;
+    protected $authorization_policy = null;
 
     /**
      * @param string                                               $parent                Required. The parent resource of the AuthorizationPolicy. Must be in the

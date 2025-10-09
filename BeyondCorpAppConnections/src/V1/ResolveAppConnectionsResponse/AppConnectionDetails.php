@@ -20,7 +20,7 @@ class AppConnectionDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.appconnections.v1.AppConnection app_connection = 1;</code>
      */
-    private $app_connection = null;
+    protected $app_connection = null;
     /**
      * If type=GCP_REGIONAL_MIG, contains most recent VM instances, like
      * `https://www.googleapis.com/compute/v1/projects/{project_id}/zones/{zone_id}/instances/{instance_id}`.

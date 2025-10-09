@@ -27,11 +27,10 @@ class DeleteLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server can ignore
      * the request if it has already been completed. The server guarantees
-     * that for at least 60 minutes after the first request.
+     * that for 60 minutes after the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request
-     * ID, the server can check if original operation with the same request ID
-     * was received, and if so, ignores the second request. This prevents
+     * ID, the server ignores the second request This prevents
      * clients from accidentally creating duplicate commitments.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
@@ -39,6 +38,22 @@ class DeleteLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
+
+    /**
+     * @param string $name Required. The name of the `LbRouteExtension` resource to delete. Must be in
+     *                     the format
+     *                     `projects/{project}/locations/{location}/lbRouteExtensions/{lb_route_extension}`. Please see
+     *                     {@see DepServiceClient::lbRouteExtensionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\DeleteLbRouteExtensionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -54,11 +69,10 @@ class DeleteLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server can ignore
      *           the request if it has already been completed. The server guarantees
-     *           that for at least 60 minutes after the first request.
+     *           that for 60 minutes after the first request.
      *           For example, consider a situation where you make an initial request and the
      *           request times out. If you make the request again with the same request
-     *           ID, the server can check if original operation with the same request ID
-     *           was received, and if so, ignores the second request. This prevents
+     *           ID, the server ignores the second request This prevents
      *           clients from accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
@@ -103,11 +117,10 @@ class DeleteLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server can ignore
      * the request if it has already been completed. The server guarantees
-     * that for at least 60 minutes after the first request.
+     * that for 60 minutes after the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request
-     * ID, the server can check if original operation with the same request ID
-     * was received, and if so, ignores the second request. This prevents
+     * ID, the server ignores the second request This prevents
      * clients from accidentally creating duplicate commitments.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
@@ -124,11 +137,10 @@ class DeleteLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server can ignore
      * the request if it has already been completed. The server guarantees
-     * that for at least 60 minutes after the first request.
+     * that for 60 minutes after the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request
-     * ID, the server can check if original operation with the same request ID
-     * was received, and if so, ignores the second request. This prevents
+     * ID, the server ignores the second request This prevents
      * clients from accidentally creating duplicate commitments.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).

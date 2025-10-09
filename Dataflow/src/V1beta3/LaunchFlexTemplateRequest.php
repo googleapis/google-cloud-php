@@ -20,13 +20,13 @@ class LaunchFlexTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. Parameter to launch a job form Flex Template.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.LaunchFlexTemplateParameter launch_parameter = 2;</code>
      */
-    private $launch_parameter = null;
+    protected $launch_parameter = null;
     /**
      * Required. The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
@@ -34,14 +34,14 @@ class LaunchFlexTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 3;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * If true, the request is validated but not actually executed.
      * Defaults to false.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * Constructor.

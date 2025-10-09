@@ -39,6 +39,7 @@ use UnexpectedValueException;
  * [MAC][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.MAC].
  * The suffix following `HMAC_` corresponds to the hash algorithm being used
  * (eg. SHA256).
+ * Algorithms beginning with `PQ_` are post-quantum.
  * For more information, see [Key purposes and algorithms]
  * (https://cloud.google.com/kms/docs/algorithms).
  *
@@ -269,6 +270,39 @@ class CryptoKeyVersionAlgorithm
      * Generated from protobuf enum <code>EXTERNAL_SYMMETRIC_ENCRYPTION = 18;</code>
      */
     const EXTERNAL_SYMMETRIC_ENCRYPTION = 18;
+    /**
+     * ML-KEM-768 (FIPS 203)
+     *
+     * Generated from protobuf enum <code>ML_KEM_768 = 47;</code>
+     */
+    const ML_KEM_768 = 47;
+    /**
+     * ML-KEM-1024 (FIPS 203)
+     *
+     * Generated from protobuf enum <code>ML_KEM_1024 = 48;</code>
+     */
+    const ML_KEM_1024 = 48;
+    /**
+     * X-Wing hybrid KEM combining ML-KEM-768 with X25519 following
+     * datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.
+     *
+     * Generated from protobuf enum <code>KEM_XWING = 63;</code>
+     */
+    const KEM_XWING = 63;
+    /**
+     * The post-quantum Module-Lattice-Based Digital Signature Algorithm, at
+     * security level 3. Randomized version.
+     *
+     * Generated from protobuf enum <code>PQ_SIGN_ML_DSA_65 = 56;</code>
+     */
+    const PQ_SIGN_ML_DSA_65 = 56;
+    /**
+     * The post-quantum stateless hash-based digital signature algorithm, at
+     * security level 1. Randomized version.
+     *
+     * Generated from protobuf enum <code>PQ_SIGN_SLH_DSA_SHA2_128S = 57;</code>
+     */
+    const PQ_SIGN_SLH_DSA_SHA2_128S = 57;
 
     private static $valueToName = [
         self::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED => 'CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED',
@@ -307,6 +341,11 @@ class CryptoKeyVersionAlgorithm
         self::HMAC_SHA512 => 'HMAC_SHA512',
         self::HMAC_SHA224 => 'HMAC_SHA224',
         self::EXTERNAL_SYMMETRIC_ENCRYPTION => 'EXTERNAL_SYMMETRIC_ENCRYPTION',
+        self::ML_KEM_768 => 'ML_KEM_768',
+        self::ML_KEM_1024 => 'ML_KEM_1024',
+        self::KEM_XWING => 'KEM_XWING',
+        self::PQ_SIGN_ML_DSA_65 => 'PQ_SIGN_ML_DSA_65',
+        self::PQ_SIGN_SLH_DSA_SHA2_128S => 'PQ_SIGN_SLH_DSA_SHA2_128S',
     ];
 
     public static function name($value)
@@ -330,6 +369,4 @@ class CryptoKeyVersionAlgorithm
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CryptoKeyVersionAlgorithm::class, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionAlgorithm::class);
 

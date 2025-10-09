@@ -149,6 +149,4 @@ class StorageErrorCode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StorageErrorCode::class, \Google\Cloud\BigQuery\Storage\V1\StorageError_StorageErrorCode::class);
 

@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/maintenance/api/(v1beta)/.*-php/(.*)
+      dest: /owl-bot-staging/Maintenance/$1/$2
+api-name: Maintenance

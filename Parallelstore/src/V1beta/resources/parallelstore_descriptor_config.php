@@ -190,6 +190,7 @@ return [
                 'instance' => 'projects/{project}/locations/{location}/instances/{instance}',
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'serviceAccount' => 'projects/{project}/serviceAccounts/{service_account}',
             ],
         ],
     ],

@@ -28,26 +28,31 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require __DIR__ . '/vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\TextToSpeech\V1\Client\TextToSpeechClient;
+use Google\Cloud\TextToSpeech\V1\ListVoicesRequest;
+use Google\Cloud\TextToSpeech\V1\ListVoicesResponse;
 
-use Google\Cloud\TextToSpeech\V1\AudioConfig;
-use Google\Cloud\TextToSpeech\V1\AudioEncoding;
-use Google\Cloud\TextToSpeech\V1\SynthesisInput;
-use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
-use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
-
+// Create a client.
 $textToSpeechClient = new TextToSpeechClient();
 
-$input = new SynthesisInput();
-$input->setText('Japan\'s national soccer team won against Colombia!');
-$voice = new VoiceSelectionParams();
-$voice->setLanguageCode('en-US');
-$audioConfig = new AudioConfig();
-$audioConfig->setAudioEncoding(AudioEncoding::MP3);
+// Prepare the request message.
+$request = new ListVoicesRequest();
 
-$resp = $textToSpeechClient->synthesizeSpeech($input, $voice, $audioConfig);
-file_put_contents('test.mp3', $resp->getAudioContent());
+// Call the API and handle any network failures.
+try {
+    /** @var ListVoicesResponse $response */
+    $response = $textToSpeechClient->listVoices($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

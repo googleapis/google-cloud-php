@@ -21,7 +21,7 @@ class VolumeDataRestorePolicyOverride extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicy policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $policy = 0;
+    protected $policy = 0;
     protected $scope;
 
     /**

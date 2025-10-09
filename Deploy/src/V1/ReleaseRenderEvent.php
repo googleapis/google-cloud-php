@@ -22,13 +22,13 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 1;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Unique identifier of the `DeliveryPipeline`.
      *
      * Generated from protobuf field <code>string pipeline_uid = 4;</code>
      */
-    private $pipeline_uid = '';
+    protected $pipeline_uid = '';
     /**
      * The name of the release.
      * release_uid is not in this log message because we write some of these log
@@ -36,19 +36,19 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string release = 2;</code>
      */
-    private $release = '';
+    protected $release = '';
     /**
      * Type of this notification, e.g. for a release render state change event.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 5;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The state of the release render.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.RenderState release_render_state = 3;</code>
      */
-    private $release_render_state = 0;
+    protected $release_render_state = 0;
 
     /**
      * Constructor.

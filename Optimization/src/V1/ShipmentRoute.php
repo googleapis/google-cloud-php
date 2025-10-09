@@ -98,26 +98,26 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 vehicle_index = 1;</code>
      */
-    private $vehicle_index = 0;
+    protected $vehicle_index = 0;
     /**
      * Label of the vehicle performing this route, equal to
      * `ShipmentModel.vehicles(vehicle_index).label`, if specified.
      *
      * Generated from protobuf field <code>string vehicle_label = 2;</code>
      */
-    private $vehicle_label = '';
+    protected $vehicle_label = '';
     /**
      * Time at which the vehicle starts its route.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp vehicle_start_time = 5;</code>
      */
-    private $vehicle_start_time = null;
+    protected $vehicle_start_time = null;
     /**
      * Time at which the vehicle finishes its route.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp vehicle_end_time = 6;</code>
      */
-    private $vehicle_end_time = null;
+    protected $vehicle_end_time = null;
     /**
      * Ordered sequence of visits representing a route.
      * visits[i] is the i-th visit in the route.
@@ -152,7 +152,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool has_traffic_infeasibilities = 9;</code>
      */
-    private $has_traffic_infeasibilities = false;
+    protected $has_traffic_infeasibilities = false;
     /**
      * The encoded polyline representation of the route.
      * This field is only populated if
@@ -161,7 +161,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.ShipmentRoute.EncodedPolyline route_polyline = 10;</code>
      */
-    private $route_polyline = null;
+    protected $route_polyline = null;
     /**
      * Breaks scheduled for the vehicle performing this route.
      * The `breaks` sequence represents time intervals, each starting at the
@@ -181,7 +181,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.AggregatedMetrics metrics = 12;</code>
      */
-    private $metrics = null;
+    protected $metrics = null;
     /**
      * Cost of the route, broken down by cost-related request fields.
      * The keys are proto paths, relative to the input OptimizeToursRequest, e.g.
@@ -200,7 +200,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double route_total_cost = 18;</code>
      */
-    private $route_total_cost = 0.0;
+    protected $route_total_cost = 0.0;
     /**
      * Deprecated: Use
      * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
@@ -788,7 +788,9 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function getEndLoads()
     {
-        @trigger_error('end_loads is deprecated.', E_USER_DEPRECATED);
+        if ($this->end_loads->count() !== 0) {
+            @trigger_error('end_loads is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->end_loads;
     }
 
@@ -809,8 +811,10 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function setEndLoads($var)
     {
-        @trigger_error('end_loads is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantity::class);
+        if (count($arr) !== 0) {
+            @trigger_error('end_loads is deprecated.', E_USER_DEPRECATED);
+        }
         $this->end_loads = $arr;
 
         return $this;
@@ -827,7 +831,9 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function getTravelSteps()
     {
-        @trigger_error('travel_steps is deprecated.', E_USER_DEPRECATED);
+        if ($this->travel_steps->count() !== 0) {
+            @trigger_error('travel_steps is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->travel_steps;
     }
 
@@ -843,8 +849,10 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function setTravelSteps($var)
     {
-        @trigger_error('travel_steps is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\ShipmentRoute\TravelStep::class);
+        if (count($arr) !== 0) {
+            @trigger_error('travel_steps is deprecated.', E_USER_DEPRECATED);
+        }
         $this->travel_steps = $arr;
 
         return $this;
@@ -866,13 +874,17 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function getVehicleDetour()
     {
-        @trigger_error('vehicle_detour is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vehicle_detour)) {
+            @trigger_error('vehicle_detour is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->vehicle_detour;
     }
 
     public function hasVehicleDetour()
     {
-        @trigger_error('vehicle_detour is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vehicle_detour)) {
+            @trigger_error('vehicle_detour is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->vehicle_detour);
     }
 
@@ -916,13 +928,17 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function getDelayBeforeVehicleEnd()
     {
-        @trigger_error('delay_before_vehicle_end is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->delay_before_vehicle_end)) {
+            @trigger_error('delay_before_vehicle_end is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->delay_before_vehicle_end;
     }
 
     public function hasDelayBeforeVehicleEnd()
     {
-        @trigger_error('delay_before_vehicle_end is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->delay_before_vehicle_end)) {
+            @trigger_error('delay_before_vehicle_end is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->delay_before_vehicle_end);
     }
 

@@ -31,7 +31,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The resource name of the company listing the job.
      * The format is
@@ -40,7 +40,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string company = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $company = '';
+    protected $company = '';
     /**
      * Required. The requisition ID, also referred to as the posting ID, is
      * assigned by the client to identify a job. This field is intended to be used
@@ -53,14 +53,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string requisition_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $requisition_id = '';
+    protected $requisition_id = '';
     /**
      * Required. The title of the job, such as "Software Engineer"
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>string title = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Required. The description of the job, which typically includes a
      * multi-paragraph description of the company and related information.
@@ -74,7 +74,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Strongly recommended for the best service experience.
      * Location(s) where the employer is looking to hire for this job posting.
@@ -93,13 +93,16 @@ class Job extends \Google\Protobuf\Internal\Message
      * to group the locations that close to each other in the same job for better
      * search experience.
      * Jobs with multiple addresses must have their addresses with the same
-     * [LocationType][] to allow location filtering to work properly. (For
-     * example, a Job with addresses "1600 Amphitheatre Parkway, Mountain View,
-     * CA, USA" and "London, UK" may not have location filters applied correctly
-     * at search time since the first is a [LocationType.STREET_ADDRESS][] and the
-     * second is a [LocationType.LOCALITY][].) If a job needs to have multiple
-     * addresses, it is suggested to split it into multiple jobs with same
-     * LocationTypes.
+     * [LocationType][google.cloud.talent.v4.Location.LocationType] to allow
+     * location filtering to work properly. (For example, a Job with addresses
+     * "1600 Amphitheatre Parkway, Mountain View, CA, USA" and "London, UK" may
+     * not have location filters applied correctly at search time since the first
+     * is a
+     * [LocationType.STREET_ADDRESS][google.cloud.talent.v4.Location.LocationType.STREET_ADDRESS]
+     * and the second is a
+     * [LocationType.LOCALITY][google.cloud.talent.v4.Location.LocationType.LOCALITY].)
+     * If a job needs to have multiple addresses, it is suggested to split it into
+     * multiple jobs with same LocationTypes.
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
@@ -110,7 +113,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job.ApplicationInfo application_info = 7;</code>
      */
-    private $application_info = null;
+    protected $application_info = null;
     /**
      * The benefits included with the job.
      *
@@ -123,7 +126,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.CompensationInfo compensation_info = 9;</code>
      */
-    private $compensation_info = null;
+    protected $compensation_info = null;
     /**
      * A map of fields to hold both filterable and non-filterable custom job
      * attributes that are not covered by the provided structured fields.
@@ -152,7 +155,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string department = 12;</code>
      */
-    private $department = '';
+    protected $department = '';
     /**
      * The employment type(s) of a job, for example,
      * [full time][google.cloud.talent.v4.EmploymentType.FULL_TIME] or
@@ -168,7 +171,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string incentives = 14;</code>
      */
-    private $incentives = '';
+    protected $incentives = '';
     /**
      * The language of the posting. This field is distinct from
      * any requirements for fluency that are associated with the job.
@@ -184,13 +187,13 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 15;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * The experience level associated with the job, such as "Entry Level".
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.JobLevel job_level = 16;</code>
      */
-    private $job_level = 0;
+    protected $job_level = 0;
     /**
      * A promotion value of the job, as determined by the client.
      * The value determines the sort order of the jobs returned when searching for
@@ -201,7 +204,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 promotion_value = 17;</code>
      */
-    private $promotion_value = 0;
+    protected $promotion_value = 0;
     /**
      * A description of the qualifications required to perform the
      * job. The use of this field is recommended
@@ -213,7 +216,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string qualifications = 18;</code>
      */
-    private $qualifications = '';
+    protected $qualifications = '';
     /**
      * A description of job responsibilities. The use of this field is
      * recommended as an alternative to using the more general
@@ -224,7 +227,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string responsibilities = 19;</code>
      */
-    private $responsibilities = '';
+    protected $responsibilities = '';
     /**
      * The job [PostingRegion][google.cloud.talent.v4.PostingRegion] (for example,
      * state, country) throughout which the job is available. If this field is
@@ -238,7 +241,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.PostingRegion posting_region = 20;</code>
      */
-    private $posting_region = 0;
+    protected $posting_region = 0;
     /**
      * Deprecated. The job is only visible to the owner.
      * The visibility of the job.
@@ -256,14 +259,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp job_start_time = 22;</code>
      */
-    private $job_start_time = null;
+    protected $job_start_time = null;
     /**
      * The end timestamp of the job. Typically this field is used for contracting
      * engagements. Invalid timestamps are ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp job_end_time = 23;</code>
      */
-    private $job_end_time = null;
+    protected $job_end_time = null;
     /**
      * The timestamp this job posting was most recently published. The default
      * value is the time the request arrives at the server. Invalid timestamps are
@@ -271,7 +274,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_publish_time = 24;</code>
      */
-    private $posting_publish_time = null;
+    protected $posting_publish_time = null;
     /**
      * Strongly recommended for the best service experience.
      * The expiration timestamp of the job. After this timestamp, the
@@ -300,10 +303,11 @@ class Job extends \Google\Protobuf\Internal\Message
      * [posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
      * must be set before
      * [posting_expire_time][google.cloud.talent.v4.Job.posting_expire_time]. The
-     * purpose of this feature is to allow other objects, such as [Application][],
-     * to refer a job that didn't exist in the system prior to becoming expired.
-     * If you want to modify a job that was expired on creation, delete it and
-     * create a new one.
+     * purpose of this feature is to allow other objects, such as
+     * [ApplicationInfo][google.cloud.talent.v4.Job.ApplicationInfo], to refer a
+     * job that didn't exist in the system prior to becoming expired. If you want
+     * to modify a job that was expired on creation, delete it and create a new
+     * one.
      * If this value isn't provided at the time of job creation or is invalid,
      * the job posting expires after 30 days from the job's creation time. For
      * example, if the job was created on 2017/01/01 13:00AM UTC with an
@@ -319,37 +323,37 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_expire_time = 25;</code>
      */
-    private $posting_expire_time = null;
+    protected $posting_expire_time = null;
     /**
      * Output only. The timestamp when this job posting was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_create_time = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $posting_create_time = null;
+    protected $posting_create_time = null;
     /**
      * Output only. The timestamp when this job posting was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_update_time = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $posting_update_time = null;
+    protected $posting_update_time = null;
     /**
      * Output only. Display name of the company listing the job.
      *
      * Generated from protobuf field <code>string company_display_name = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $company_display_name = '';
+    protected $company_display_name = '';
     /**
      * Output only. Derived details about the job posting.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job.DerivedInfo derived_info = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $derived_info = null;
+    protected $derived_info = null;
     /**
      * Options for job processing.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job.ProcessingOptions processing_options = 30;</code>
      */
-    private $processing_options = null;
+    protected $processing_options = null;
 
     /**
      * Constructor.
@@ -412,13 +416,16 @@ class Job extends \Google\Protobuf\Internal\Message
      *           to group the locations that close to each other in the same job for better
      *           search experience.
      *           Jobs with multiple addresses must have their addresses with the same
-     *           [LocationType][] to allow location filtering to work properly. (For
-     *           example, a Job with addresses "1600 Amphitheatre Parkway, Mountain View,
-     *           CA, USA" and "London, UK" may not have location filters applied correctly
-     *           at search time since the first is a [LocationType.STREET_ADDRESS][] and the
-     *           second is a [LocationType.LOCALITY][].) If a job needs to have multiple
-     *           addresses, it is suggested to split it into multiple jobs with same
-     *           LocationTypes.
+     *           [LocationType][google.cloud.talent.v4.Location.LocationType] to allow
+     *           location filtering to work properly. (For example, a Job with addresses
+     *           "1600 Amphitheatre Parkway, Mountain View, CA, USA" and "London, UK" may
+     *           not have location filters applied correctly at search time since the first
+     *           is a
+     *           [LocationType.STREET_ADDRESS][google.cloud.talent.v4.Location.LocationType.STREET_ADDRESS]
+     *           and the second is a
+     *           [LocationType.LOCALITY][google.cloud.talent.v4.Location.LocationType.LOCALITY].)
+     *           If a job needs to have multiple addresses, it is suggested to split it into
+     *           multiple jobs with same LocationTypes.
      *           The maximum number of allowed characters is 500.
      *     @type \Google\Cloud\Talent\V4\Job\ApplicationInfo $application_info
      *           Job application information.
@@ -542,10 +549,11 @@ class Job extends \Google\Protobuf\Internal\Message
      *           [posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
      *           must be set before
      *           [posting_expire_time][google.cloud.talent.v4.Job.posting_expire_time]. The
-     *           purpose of this feature is to allow other objects, such as [Application][],
-     *           to refer a job that didn't exist in the system prior to becoming expired.
-     *           If you want to modify a job that was expired on creation, delete it and
-     *           create a new one.
+     *           purpose of this feature is to allow other objects, such as
+     *           [ApplicationInfo][google.cloud.talent.v4.Job.ApplicationInfo], to refer a
+     *           job that didn't exist in the system prior to becoming expired. If you want
+     *           to modify a job that was expired on creation, delete it and create a new
+     *           one.
      *           If this value isn't provided at the time of job creation or is invalid,
      *           the job posting expires after 30 days from the job's creation time. For
      *           example, if the job was created on 2017/01/01 13:00AM UTC with an
@@ -777,13 +785,16 @@ class Job extends \Google\Protobuf\Internal\Message
      * to group the locations that close to each other in the same job for better
      * search experience.
      * Jobs with multiple addresses must have their addresses with the same
-     * [LocationType][] to allow location filtering to work properly. (For
-     * example, a Job with addresses "1600 Amphitheatre Parkway, Mountain View,
-     * CA, USA" and "London, UK" may not have location filters applied correctly
-     * at search time since the first is a [LocationType.STREET_ADDRESS][] and the
-     * second is a [LocationType.LOCALITY][].) If a job needs to have multiple
-     * addresses, it is suggested to split it into multiple jobs with same
-     * LocationTypes.
+     * [LocationType][google.cloud.talent.v4.Location.LocationType] to allow
+     * location filtering to work properly. (For example, a Job with addresses
+     * "1600 Amphitheatre Parkway, Mountain View, CA, USA" and "London, UK" may
+     * not have location filters applied correctly at search time since the first
+     * is a
+     * [LocationType.STREET_ADDRESS][google.cloud.talent.v4.Location.LocationType.STREET_ADDRESS]
+     * and the second is a
+     * [LocationType.LOCALITY][google.cloud.talent.v4.Location.LocationType.LOCALITY].)
+     * If a job needs to have multiple addresses, it is suggested to split it into
+     * multiple jobs with same LocationTypes.
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
@@ -812,13 +823,16 @@ class Job extends \Google\Protobuf\Internal\Message
      * to group the locations that close to each other in the same job for better
      * search experience.
      * Jobs with multiple addresses must have their addresses with the same
-     * [LocationType][] to allow location filtering to work properly. (For
-     * example, a Job with addresses "1600 Amphitheatre Parkway, Mountain View,
-     * CA, USA" and "London, UK" may not have location filters applied correctly
-     * at search time since the first is a [LocationType.STREET_ADDRESS][] and the
-     * second is a [LocationType.LOCALITY][].) If a job needs to have multiple
-     * addresses, it is suggested to split it into multiple jobs with same
-     * LocationTypes.
+     * [LocationType][google.cloud.talent.v4.Location.LocationType] to allow
+     * location filtering to work properly. (For example, a Job with addresses
+     * "1600 Amphitheatre Parkway, Mountain View, CA, USA" and "London, UK" may
+     * not have location filters applied correctly at search time since the first
+     * is a
+     * [LocationType.STREET_ADDRESS][google.cloud.talent.v4.Location.LocationType.STREET_ADDRESS]
+     * and the second is a
+     * [LocationType.LOCALITY][google.cloud.talent.v4.Location.LocationType.LOCALITY].)
+     * If a job needs to have multiple addresses, it is suggested to split it into
+     * multiple jobs with same LocationTypes.
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
@@ -1330,7 +1344,9 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getVisibility()
     {
-        @trigger_error('visibility is deprecated.', E_USER_DEPRECATED);
+        if ($this->visibility !== 0) {
+            @trigger_error('visibility is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->visibility;
     }
 
@@ -1499,10 +1515,11 @@ class Job extends \Google\Protobuf\Internal\Message
      * [posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
      * must be set before
      * [posting_expire_time][google.cloud.talent.v4.Job.posting_expire_time]. The
-     * purpose of this feature is to allow other objects, such as [Application][],
-     * to refer a job that didn't exist in the system prior to becoming expired.
-     * If you want to modify a job that was expired on creation, delete it and
-     * create a new one.
+     * purpose of this feature is to allow other objects, such as
+     * [ApplicationInfo][google.cloud.talent.v4.Job.ApplicationInfo], to refer a
+     * job that didn't exist in the system prior to becoming expired. If you want
+     * to modify a job that was expired on creation, delete it and create a new
+     * one.
      * If this value isn't provided at the time of job creation or is invalid,
      * the job posting expires after 30 days from the job's creation time. For
      * example, if the job was created on 2017/01/01 13:00AM UTC with an
@@ -1562,10 +1579,11 @@ class Job extends \Google\Protobuf\Internal\Message
      * [posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
      * must be set before
      * [posting_expire_time][google.cloud.talent.v4.Job.posting_expire_time]. The
-     * purpose of this feature is to allow other objects, such as [Application][],
-     * to refer a job that didn't exist in the system prior to becoming expired.
-     * If you want to modify a job that was expired on creation, delete it and
-     * create a new one.
+     * purpose of this feature is to allow other objects, such as
+     * [ApplicationInfo][google.cloud.talent.v4.Job.ApplicationInfo], to refer a
+     * job that didn't exist in the system prior to becoming expired. If you want
+     * to modify a job that was expired on creation, delete it and create a new
+     * one.
      * If this value isn't provided at the time of job creation or is invalid,
      * the job posting expires after 30 days from the job's creation time. For
      * example, if the job was created on 2017/01/01 13:00AM UTC with an

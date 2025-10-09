@@ -22,95 +22,96 @@ class MachineType extends \Google\Protobuf\Internal\Message
      */
     private $accelerators;
     /**
+     * [Output Only] The architecture of the machine type.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     */
+    protected $architecture = null;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] The deprecation status associated with this machine type. Only applicable if the machine type is unavailable.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
-    private $deprecated = null;
+    protected $deprecated = null;
     /**
      * [Output Only] An optional textual description of the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The number of virtual CPUs that are available to the instance.
      *
      * Generated from protobuf field <code>optional int32 guest_cpus = 393356754;</code>
      */
-    private $guest_cpus = null;
+    protected $guest_cpus = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Deprecated] This property is deprecated and will never be populated with any relevant values.
      *
      * Generated from protobuf field <code>optional int32 image_space_gb = 75331864;</code>
      */
-    private $image_space_gb = null;
+    protected $image_space_gb = null;
     /**
      * [Output Only] Whether this machine type has a shared CPU. See Shared-core machine types for more information.
      *
      * Generated from protobuf field <code>optional bool is_shared_cpu = 521399555;</code>
      */
-    private $is_shared_cpu = null;
+    protected $is_shared_cpu = null;
     /**
      * [Output Only] The type of the resource. Always compute#machineType for machine types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Maximum persistent disks allowed.
      *
      * Generated from protobuf field <code>optional int32 maximum_persistent_disks = 496220941;</code>
      */
-    private $maximum_persistent_disks = null;
+    protected $maximum_persistent_disks = null;
     /**
      * [Output Only] Maximum total persistent disks size (GB) allowed.
      *
      * Generated from protobuf field <code>optional int64 maximum_persistent_disks_size_gb = 154274471;</code>
      */
-    private $maximum_persistent_disks_size_gb = null;
+    protected $maximum_persistent_disks_size_gb = null;
     /**
      * [Output Only] The amount of physical memory available to the instance, defined in MB.
      *
      * Generated from protobuf field <code>optional int32 memory_mb = 116001171;</code>
      */
-    private $memory_mb = null;
+    protected $memory_mb = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
-    /**
-     * [Output Only] A list of extended scratch disks assigned to the instance.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ScratchDisks scratch_disks = 480778481;</code>
-     */
-    private $scratch_disks;
+    protected $name = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] The name of the zone where the machine type resides, such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.
@@ -120,6 +121,9 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Compute\V1\Accelerators>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           [Output Only] A list of accelerator configurations assigned to this machine type.
+     *     @type string $architecture
+     *           [Output Only] The architecture of the machine type.
+     *           Check the Architecture enum for the list of possible values.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type \Google\Cloud\Compute\V1\DeprecationStatus $deprecated
@@ -144,8 +148,6 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *           [Output Only] The amount of physical memory available to the instance, defined in MB.
      *     @type string $name
      *           [Output Only] Name of the resource.
-     *     @type array<\Google\Cloud\Compute\V1\ScratchDisks>|\Google\Protobuf\Internal\RepeatedField $scratch_disks
-     *           [Output Only] A list of extended scratch disks assigned to the instance.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $zone
@@ -179,6 +181,44 @@ class MachineType extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\Accelerators::class);
         $this->accelerators = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The architecture of the machine type.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @return string
+     */
+    public function getArchitecture()
+    {
+        return isset($this->architecture) ? $this->architecture : '';
+    }
+
+    public function hasArchitecture()
+    {
+        return isset($this->architecture);
+    }
+
+    public function clearArchitecture()
+    {
+        unset($this->architecture);
+    }
+
+    /**
+     * [Output Only] The architecture of the machine type.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setArchitecture($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->architecture = $var;
 
         return $this;
     }
@@ -611,32 +651,6 @@ class MachineType extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
-
-        return $this;
-    }
-
-    /**
-     * [Output Only] A list of extended scratch disks assigned to the instance.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ScratchDisks scratch_disks = 480778481;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getScratchDisks()
-    {
-        return $this->scratch_disks;
-    }
-
-    /**
-     * [Output Only] A list of extended scratch disks assigned to the instance.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ScratchDisks scratch_disks = 480778481;</code>
-     * @param array<\Google\Cloud\Compute\V1\ScratchDisks>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setScratchDisks($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\ScratchDisks::class);
-        $this->scratch_disks = $arr;
 
         return $this;
     }

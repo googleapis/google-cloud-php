@@ -73,6 +73,4 @@ class ServiceCidr
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ServiceCidr::class, \Google\Cloud\BareMetalSolution\V2\NetworkConfig_ServiceCidr::class);
 

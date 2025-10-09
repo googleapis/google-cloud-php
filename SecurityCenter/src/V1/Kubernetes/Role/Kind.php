@@ -59,6 +59,4 @@ class Kind
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Kind::class, \Google\Cloud\SecurityCenter\V1\Kubernetes_Role_Kind::class);
 

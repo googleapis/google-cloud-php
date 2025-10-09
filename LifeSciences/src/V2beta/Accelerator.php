@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Accelerator extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The accelerator type string (for example, "nvidia-tesla-k80").
+     * The accelerator type string (for example, "nvidia-tesla-t4").
      * Only NVIDIA GPU accelerators are currently supported. If an NVIDIA GPU is
      * attached, the required runtime libraries will be made available to all
      * containers under `/usr/local/nvidia`. The driver version to install must
@@ -26,13 +26,13 @@ class Accelerator extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * How many accelerators of this type to attach.
      *
      * Generated from protobuf field <code>int64 count = 2;</code>
      */
-    private $count = 0;
+    protected $count = 0;
 
     /**
      * Constructor.
@@ -41,7 +41,7 @@ class Accelerator extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $type
-     *           The accelerator type string (for example, "nvidia-tesla-k80").
+     *           The accelerator type string (for example, "nvidia-tesla-t4").
      *           Only NVIDIA GPU accelerators are currently supported. If an NVIDIA GPU is
      *           attached, the required runtime libraries will be made available to all
      *           containers under `/usr/local/nvidia`. The driver version to install must
@@ -58,7 +58,7 @@ class Accelerator extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The accelerator type string (for example, "nvidia-tesla-k80").
+     * The accelerator type string (for example, "nvidia-tesla-t4").
      * Only NVIDIA GPU accelerators are currently supported. If an NVIDIA GPU is
      * attached, the required runtime libraries will be made available to all
      * containers under `/usr/local/nvidia`. The driver version to install must
@@ -75,7 +75,7 @@ class Accelerator extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The accelerator type string (for example, "nvidia-tesla-k80").
+     * The accelerator type string (for example, "nvidia-tesla-t4").
      * Only NVIDIA GPU accelerators are currently supported. If an NVIDIA GPU is
      * attached, the required runtime libraries will be made available to all
      * containers under `/usr/local/nvidia`. The driver version to install must

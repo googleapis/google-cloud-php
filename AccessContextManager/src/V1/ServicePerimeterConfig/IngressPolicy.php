@@ -39,7 +39,7 @@ class IngressPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressFrom ingress_from = 1;</code>
      */
-    private $ingress_from = null;
+    protected $ingress_from = null;
     /**
      * Defines the conditions on the [ApiOperation]
      * [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation]
@@ -49,7 +49,7 @@ class IngressPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressTo ingress_to = 2;</code>
      */
-    private $ingress_to = null;
+    protected $ingress_to = null;
 
     /**
      * Constructor.
@@ -163,6 +163,4 @@ class IngressPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IngressPolicy::class, \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig_IngressPolicy::class);
 

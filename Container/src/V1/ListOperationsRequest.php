@@ -26,9 +26,9 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
     protected $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) to return
-     * operations for, or `-` for all zones. This field has been deprecated and
-     * replaced by the parent field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * to return operations for, or `-` for all zones. This field has been
+     * deprecated and replaced by the parent field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @deprecated
@@ -41,16 +41,16 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 4;</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * @param string $projectId Deprecated. The Google Developers Console [project ID or project
      *                          number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *                          This field has been deprecated and replaced by the parent field.
      * @param string $zone      Deprecated. The name of the Google Compute Engine
-     *                          [zone](https://cloud.google.com/compute/docs/zones#available) to return
-     *                          operations for, or `-` for all zones. This field has been deprecated and
-     *                          replaced by the parent field.
+     *                          [zone](https://cloud.google.com/compute/docs/zones#available)
+     *                          to return operations for, or `-` for all zones. This field has been
+     *                          deprecated and replaced by the parent field.
      *
      * @return \Google\Cloud\Container\V1\ListOperationsRequest
      *
@@ -90,9 +90,9 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) to return
-     *           operations for, or `-` for all zones. This field has been deprecated and
-     *           replaced by the parent field.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available)
+     *           to return operations for, or `-` for all zones. This field has been
+     *           deprecated and replaced by the parent field.
      *     @type string $parent
      *           The parent (project and location) where the operations will be listed.
      *           Specified in the format `projects/&#42;&#47;locations/&#42;`.
@@ -115,7 +115,9 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProjectId()
     {
-        @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->project_id !== '') {
+            @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->project_id;
     }
 
@@ -140,9 +142,9 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) to return
-     * operations for, or `-` for all zones. This field has been deprecated and
-     * replaced by the parent field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * to return operations for, or `-` for all zones. This field has been
+     * deprecated and replaced by the parent field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
@@ -150,15 +152,17 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        if ($this->zone !== '') {
+            @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->zone;
     }
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) to return
-     * operations for, or `-` for all zones. This field has been deprecated and
-     * replaced by the parent field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * to return operations for, or `-` for all zones. This field has been
+     * deprecated and replaced by the parent field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var

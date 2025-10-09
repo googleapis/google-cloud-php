@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionSecurityPolicies_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\Client\RegionSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\DeleteRegionSecurityPolicyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $project, string $region, string $securityPolicy):
     // Create a client.
     $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRegionSecurityPolicyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSecurityPolicy($securityPolicy);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionSecurityPoliciesClient->delete($project, $region, $securityPolicy);
+        $response = $regionSecurityPoliciesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

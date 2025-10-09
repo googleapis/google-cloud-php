@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,7 +78,9 @@ class DomainsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DomainsClient */
@@ -186,12 +188,15 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
@@ -317,12 +322,15 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
@@ -448,12 +456,15 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
@@ -514,8 +525,7 @@ class DomainsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new DeleteRegistrationRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRegistrationRequest())->setName($formattedName);
         $response = $gapicClient->deleteRegistration($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -571,17 +581,19 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new DeleteRegistrationRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRegistrationRequest())->setName($formattedName);
         $response = $gapicClient->deleteRegistration($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -639,8 +651,7 @@ class DomainsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new ExportRegistrationRequest())
-            ->setName($formattedName);
+        $request = (new ExportRegistrationRequest())->setName($formattedName);
         $response = $gapicClient->exportRegistration($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -696,17 +707,19 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new ExportRegistrationRequest())
-            ->setName($formattedName);
+        $request = (new ExportRegistrationRequest())->setName($formattedName);
         $response = $gapicClient->exportRegistration($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -746,8 +759,7 @@ class DomainsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new GetRegistrationRequest())
-            ->setName($formattedName);
+        $request = (new GetRegistrationRequest())->setName($formattedName);
         $response = $gapicClient->getRegistration($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -771,17 +783,19 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new GetRegistrationRequest())
-            ->setName($formattedName);
+        $request = (new GetRegistrationRequest())->setName($formattedName);
         try {
             $gapicClient->getRegistration($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -806,17 +820,14 @@ class DomainsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $registrationsElement = new Registration();
-        $registrations = [
-            $registrationsElement,
-        ];
+        $registrations = [$registrationsElement];
         $expectedResponse = new ListRegistrationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRegistrations($registrations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRegistrationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRegistrationsRequest())->setParent($formattedParent);
         $response = $gapicClient->listRegistrations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -843,17 +854,19 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRegistrationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRegistrationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRegistrations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -997,12 +1010,15 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1079,8 +1095,7 @@ class DomainsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new ResetAuthorizationCodeRequest())
-            ->setRegistration($formattedRegistration);
+        $request = (new ResetAuthorizationCodeRequest())->setRegistration($formattedRegistration);
         $response = $gapicClient->resetAuthorizationCode($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1104,17 +1119,19 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new ResetAuthorizationCodeRequest())
-            ->setRegistration($formattedRegistration);
+        $request = (new ResetAuthorizationCodeRequest())->setRegistration($formattedRegistration);
         try {
             $gapicClient->resetAuthorizationCode($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1143,8 +1160,7 @@ class DomainsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new RetrieveAuthorizationCodeRequest())
-            ->setRegistration($formattedRegistration);
+        $request = (new RetrieveAuthorizationCodeRequest())->setRegistration($formattedRegistration);
         $response = $gapicClient->retrieveAuthorizationCode($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1168,17 +1184,19 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new RetrieveAuthorizationCodeRequest())
-            ->setRegistration($formattedRegistration);
+        $request = (new RetrieveAuthorizationCodeRequest())->setRegistration($formattedRegistration);
         try {
             $gapicClient->retrieveAuthorizationCode($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1234,12 +1252,15 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $domainName = 'domainName104118566';
@@ -1302,12 +1323,15 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $domainName = 'domainName104118566';
@@ -1342,9 +1366,7 @@ class DomainsClientTest extends GeneratedTest
         // Mock request
         $query = 'query107944136';
         $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new SearchDomainsRequest())
-            ->setQuery($query)
-            ->setLocation($formattedLocation);
+        $request = (new SearchDomainsRequest())->setQuery($query)->setLocation($formattedLocation);
         $response = $gapicClient->searchDomains($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1370,19 +1392,20 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $query = 'query107944136';
         $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new SearchDomainsRequest())
-            ->setQuery($query)
-            ->setLocation($formattedLocation);
+        $request = (new SearchDomainsRequest())->setQuery($query)->setLocation($formattedLocation);
         try {
             $gapicClient->searchDomains($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1526,12 +1549,15 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1628,8 +1654,7 @@ class DomainsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $updateMask = new FieldMask();
-        $request = (new UpdateRegistrationRequest())
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateRegistrationRequest())->setUpdateMask($updateMask);
         $response = $gapicClient->updateRegistration($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1685,17 +1710,19 @@ class DomainsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
-        $request = (new UpdateRegistrationRequest())
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateRegistrationRequest())->setUpdateMask($updateMask);
         $response = $gapicClient->updateRegistration($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

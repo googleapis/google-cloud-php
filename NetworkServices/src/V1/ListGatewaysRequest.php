@@ -38,6 +38,21 @@ class ListGatewaysRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The project and location from which the Gateways should be
+     *                       listed, specified in the format `projects/&#42;/locations/*`. Please see
+     *                       {@see NetworkServicesClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\ListGatewaysRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

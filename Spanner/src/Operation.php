@@ -41,6 +41,7 @@ use InvalidArgumentException;
 class Operation
 {
     use ArrayTrait;
+    use MutationTrait;
     use TimeTrait;
     use ValidateTrait;
 
@@ -73,43 +74,6 @@ class Operation
     {
         $this->connection = $connection;
         $this->mapper = new ValueMapper($returnInt64AsObject);
-    }
-
-    /**
-     * Create a formatted mutation.
-     *
-     * @param string $operation The operation type.
-     * @param string $table The table name.
-     * @param array $mutation The mutation data, represented as a set of
-     *        key/value pairs.
-     * @return array
-     */
-    public function mutation($operation, $table, $mutation)
-    {
-        return [
-            $operation => [
-                'table' => $table,
-                'columns' => array_keys($mutation),
-                'values' => $this->mapper->encodeValuesAsSimpleType(array_values($mutation))
-            ]
-        ];
-    }
-
-    /**
-     * Create a formatted delete mutation.
-     *
-     * @param string $table The table name.
-     * @param KeySet $keySet The keys to delete.
-     * @return array
-     */
-    public function deleteMutation($table, KeySet $keySet)
-    {
-        return [
-            self::OP_DELETE => [
-                'table' => $table,
-                'keySet' => $this->flattenKeySet($keySet),
-            ]
-        ];
     }
 
     /**
@@ -491,6 +455,7 @@ class Operation
      *           `false`.
      *     @type array $begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
      * }
      * @return Transaction
      */
@@ -553,7 +518,8 @@ class Operation
             $res['id'],
             $options['isRetry'],
             $options['tag'],
-            $options['transactionOptions']
+            $options['transactionOptions'],
+            $this->mapper
         );
     }
 

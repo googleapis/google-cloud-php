@@ -43,11 +43,11 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. A per-transaction sequence number used to identify this request.
      * This field makes each request idempotent such that if the request is
-     * received multiple times, at most one will succeed.
+     * received multiple times, at most one succeeds.
      * The sequence number must be monotonically increasing within the
      * transaction. If a request arrives for the first time with an out-of-order
-     * sequence number, the transaction may be aborted. Replays of previously
-     * handled requests will yield the same response as the first execution.
+     * sequence number, the transaction might be aborted. Replays of previously
+     * handled requests yield the same response as the first execution.
      *
      * Generated from protobuf field <code>int64 seqno = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -58,6 +58,19 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 5;</code>
      */
     private $request_options = null;
+    /**
+     * Optional. If set to `true`, this request marks the end of the transaction.
+     * After these statements execute, you must commit or abort the transaction.
+     * Attempts to execute any other requests against this transaction
+     * (including reads and queries) are rejected.
+     * Setting this option might cause some error reporting to be deferred until
+     * commit time (for example, validation of unique constraints). Given this,
+     * successful execution of statements shouldn't be assumed until a subsequent
+     * `Commit` call completes successfully.
+     *
+     * Generated from protobuf field <code>bool last_statements = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $last_statements = false;
 
     /**
      * Constructor.
@@ -81,13 +94,22 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      *     @type int|string $seqno
      *           Required. A per-transaction sequence number used to identify this request.
      *           This field makes each request idempotent such that if the request is
-     *           received multiple times, at most one will succeed.
+     *           received multiple times, at most one succeeds.
      *           The sequence number must be monotonically increasing within the
      *           transaction. If a request arrives for the first time with an out-of-order
-     *           sequence number, the transaction may be aborted. Replays of previously
-     *           handled requests will yield the same response as the first execution.
+     *           sequence number, the transaction might be aborted. Replays of previously
+     *           handled requests yield the same response as the first execution.
      *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
      *           Common options for this request.
+     *     @type bool $last_statements
+     *           Optional. If set to `true`, this request marks the end of the transaction.
+     *           After these statements execute, you must commit or abort the transaction.
+     *           Attempts to execute any other requests against this transaction
+     *           (including reads and queries) are rejected.
+     *           Setting this option might cause some error reporting to be deferred until
+     *           commit time (for example, validation of unique constraints). Given this,
+     *           successful execution of statements shouldn't be assumed until a subsequent
+     *           `Commit` call completes successfully.
      * }
      */
     public function __construct($data = NULL) {
@@ -200,11 +222,11 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. A per-transaction sequence number used to identify this request.
      * This field makes each request idempotent such that if the request is
-     * received multiple times, at most one will succeed.
+     * received multiple times, at most one succeeds.
      * The sequence number must be monotonically increasing within the
      * transaction. If a request arrives for the first time with an out-of-order
-     * sequence number, the transaction may be aborted. Replays of previously
-     * handled requests will yield the same response as the first execution.
+     * sequence number, the transaction might be aborted. Replays of previously
+     * handled requests yield the same response as the first execution.
      *
      * Generated from protobuf field <code>int64 seqno = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int|string
@@ -217,11 +239,11 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. A per-transaction sequence number used to identify this request.
      * This field makes each request idempotent such that if the request is
-     * received multiple times, at most one will succeed.
+     * received multiple times, at most one succeeds.
      * The sequence number must be monotonically increasing within the
      * transaction. If a request arrives for the first time with an out-of-order
-     * sequence number, the transaction may be aborted. Replays of previously
-     * handled requests will yield the same response as the first execution.
+     * sequence number, the transaction might be aborted. Replays of previously
+     * handled requests yield the same response as the first execution.
      *
      * Generated from protobuf field <code>int64 seqno = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int|string $var
@@ -267,6 +289,46 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RequestOptions::class);
         $this->request_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to `true`, this request marks the end of the transaction.
+     * After these statements execute, you must commit or abort the transaction.
+     * Attempts to execute any other requests against this transaction
+     * (including reads and queries) are rejected.
+     * Setting this option might cause some error reporting to be deferred until
+     * commit time (for example, validation of unique constraints). Given this,
+     * successful execution of statements shouldn't be assumed until a subsequent
+     * `Commit` call completes successfully.
+     *
+     * Generated from protobuf field <code>bool last_statements = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getLastStatements()
+    {
+        return $this->last_statements;
+    }
+
+    /**
+     * Optional. If set to `true`, this request marks the end of the transaction.
+     * After these statements execute, you must commit or abort the transaction.
+     * Attempts to execute any other requests against this transaction
+     * (including reads and queries) are rejected.
+     * Setting this option might cause some error reporting to be deferred until
+     * commit time (for example, validation of unique constraints). Given this,
+     * successful execution of statements shouldn't be assumed until a subsequent
+     * `Commit` call completes successfully.
+     *
+     * Generated from protobuf field <code>bool last_statements = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLastStatements($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->last_statements = $var;
 
         return $this;
     }

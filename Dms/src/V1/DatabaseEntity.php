@@ -22,25 +22,25 @@ class DatabaseEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string short_name = 1;</code>
      */
-    private $short_name = '';
+    protected $short_name = '';
     /**
      * The full name of the parent entity (e.g. schema name).
      *
      * Generated from protobuf field <code>string parent_entity = 2;</code>
      */
-    private $parent_entity = '';
+    protected $parent_entity = '';
     /**
      * The type of tree the entity belongs to.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEntity.TreeType tree = 3;</code>
      */
-    private $tree = 0;
+    protected $tree = 0;
     /**
      * The type of the database entity (table, view, index, ...).
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEntityType entity_type = 4;</code>
      */
-    private $entity_type = 0;
+    protected $entity_type = 0;
     /**
      * Details about entity mappings.
      * For source tree entities, this holds the draft entities which were

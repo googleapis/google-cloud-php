@@ -22,21 +22,21 @@ class AwsVolumeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 size_gib = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $size_gib = 0;
+    protected $size_gib = 0;
     /**
      * Optional. Type of the EBS volume.
      * When unspecified, it defaults to GP2 volume.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsVolumeTemplate.VolumeType volume_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $volume_type = 0;
+    protected $volume_type = 0;
     /**
      * Optional. The number of I/O operations per second (IOPS) to provision for
      * GP3 volume.
      *
      * Generated from protobuf field <code>int32 iops = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $iops = 0;
+    protected $iops = 0;
     /**
      * Optional. The throughput that the volume supports, in MiB/s. Only valid if
      * volume_type is GP3.
@@ -44,7 +44,7 @@ class AwsVolumeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 throughput = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $throughput = 0;
+    protected $throughput = 0;
     /**
      * Optional. The Amazon Resource Name (ARN) of the Customer Managed Key (CMK)
      * used to encrypt AWS EBS volumes.
@@ -53,7 +53,7 @@ class AwsVolumeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_arn = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $kms_key_arn = '';
+    protected $kms_key_arn = '';
 
     /**
      * Constructor.

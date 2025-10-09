@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\RemoveDirectoryRequest;
+use Google\Cloud\Dataform\V1beta1\RemoveDirectoryResponse;
 
 /**
  * Deletes a directory (inside a Workspace) and all of its contents.
@@ -47,8 +48,9 @@ function remove_directory_sample(string $formattedWorkspace, string $path): void
 
     // Call the API and handle any network failures.
     try {
-        $dataformClient->removeDirectory($request);
-        printf('Call completed successfully.' . PHP_EOL);
+        /** @var RemoveDirectoryResponse $response */
+        $response = $dataformClient->removeDirectory($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

@@ -21,14 +21,14 @@ class ContainerPort extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Port number the container listens on.
      * This must be a valid TCP port number, 0 < container_port < 65536.
      *
      * Generated from protobuf field <code>int32 container_port = 3;</code>
      */
-    private $container_port = 0;
+    protected $container_port = 0;
 
     /**
      * Constructor.

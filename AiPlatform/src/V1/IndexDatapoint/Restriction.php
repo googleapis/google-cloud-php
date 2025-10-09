@@ -21,7 +21,7 @@ class Restriction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string namespace = 1;</code>
      */
-    private $namespace = '';
+    protected $namespace = '';
     /**
      * The attributes to allow in this namespace. e.g.: 'red'
      *

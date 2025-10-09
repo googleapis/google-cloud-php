@@ -22,13 +22,13 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedCluster attached_cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $attached_cluster = null;
+    protected $attached_cluster = null;
     /**
      * If set, only validate the request, but do not actually update the cluster.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Required. Mask of fields to update. At least one path must be supplied in
      * this field. The elements of the repeated paths field can only include these
@@ -44,10 +44,12 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `platform_version`.
      *  *   `proxy_config.kubernetes_secret.name`.
      *  *   `proxy_config.kubernetes_secret.namespace`.
+     *  *   `security_posture_config.vulnerability_mode`
+     *  *   `monitoring_config.cloud_monitoring_config.enabled`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\GkeMultiCloud\V1\AttachedCluster $attachedCluster Required. The
@@ -68,6 +70,8 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *                                                                        *   `platform_version`.
      *                                                                        *   `proxy_config.kubernetes_secret.name`.
      *                                                                        *   `proxy_config.kubernetes_secret.namespace`.
+     *                                                                        *   `security_posture_config.vulnerability_mode`
+     *                                                                        *   `monitoring_config.cloud_monitoring_config.enabled`
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\UpdateAttachedClusterRequest
      *
@@ -107,6 +111,8 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *            *   `platform_version`.
      *            *   `proxy_config.kubernetes_secret.name`.
      *            *   `proxy_config.kubernetes_secret.namespace`.
+     *            *   `security_posture_config.vulnerability_mode`
+     *            *   `monitoring_config.cloud_monitoring_config.enabled`
      * }
      */
     public function __construct($data = NULL) {
@@ -195,6 +201,8 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `platform_version`.
      *  *   `proxy_config.kubernetes_secret.name`.
      *  *   `proxy_config.kubernetes_secret.namespace`.
+     *  *   `security_posture_config.vulnerability_mode`
+     *  *   `monitoring_config.cloud_monitoring_config.enabled`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -229,6 +237,8 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `platform_version`.
      *  *   `proxy_config.kubernetes_secret.name`.
      *  *   `proxy_config.kubernetes_secret.namespace`.
+     *  *   `security_posture_config.vulnerability_mode`
+     *  *   `monitoring_config.cloud_monitoring_config.enabled`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

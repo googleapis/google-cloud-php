@@ -21,13 +21,13 @@ class ReportStatusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string app_connector = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $app_connector = '';
+    protected $app_connector = '';
     /**
      * Required. Resource info of the connector.
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.appconnectors.v1.ResourceInfo resource_info = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource_info = null;
+    protected $resource_info = null;
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server will know to
@@ -43,14 +43,14 @@ class ReportStatusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set, validates request by executing a dry-run which would not
      * alter the resource in any way.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                                 $appConnector Required. BeyondCorp Connector name using the form:

@@ -20,7 +20,7 @@ class SqlFailoverReplica extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The availability status of the failover replica. A false status indicates
      * that the failover replica is out of sync. The primary instance can only
@@ -28,7 +28,7 @@ class SqlFailoverReplica extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue available = 2;</code>
      */
-    private $available = null;
+    protected $available = null;
 
     /**
      * Constructor.
@@ -114,7 +114,7 @@ class SqlFailoverReplica extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue available = 2;</code>
      * @return bool|null
      */
-    public function getAvailableValue()
+    public function getAvailableUnwrapped()
     {
         return $this->readWrapperValue("available");
     }
@@ -147,7 +147,7 @@ class SqlFailoverReplica extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setAvailableValue($var)
+    public function setAvailableUnwrapped($var)
     {
         $this->writeWrapperValue("available", $var);
         return $this;}

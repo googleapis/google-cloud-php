@@ -25,7 +25,7 @@ class ReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_type = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $entity_type = '';
+    protected $entity_type = '';
     /**
      * Required. ID for a specific entity. For example,
      * for a machine learning model predicting user clicks on a website, an entity
@@ -33,13 +33,13 @@ class ReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entity_id = '';
+    protected $entity_id = '';
     /**
      * Required. Selector choosing Features of the target EntityType.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureSelector feature_selector = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature_selector = null;
+    protected $feature_selector = null;
 
     /**
      * @param string $entityType Required. The resource name of the EntityType for the entity being read.

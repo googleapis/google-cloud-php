@@ -20,7 +20,7 @@ class AwsSshConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ec2_key_pair = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ec2_key_pair = '';
+    protected $ec2_key_pair = '';
 
     /**
      * Constructor.

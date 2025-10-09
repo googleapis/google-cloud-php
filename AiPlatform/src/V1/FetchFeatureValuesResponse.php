@@ -23,7 +23,7 @@ class FetchFeatureValuesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureViewDataKey data_key = 4;</code>
      */
-    private $data_key = null;
+    protected $data_key = null;
     protected $format;
 
     /**

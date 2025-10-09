@@ -30,32 +30,33 @@ use Google\Cloud\Spanner\V1\PartitionResponse;
 
 /**
  * Creates a set of partition tokens that can be used to execute a query
- * operation in parallel.  Each of the returned partition tokens can be used
+ * operation in parallel. Each of the returned partition tokens can be used
  * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to
- * specify a subset of the query result to read.  The same session and
- * read-only transaction must be used by the PartitionQueryRequest used to
- * create the partition tokens and the ExecuteSqlRequests that use the
+ * specify a subset of the query result to read. The same session and
+ * read-only transaction must be used by the `PartitionQueryRequest` used to
+ * create the partition tokens and the `ExecuteSqlRequests` that use the
  * partition tokens.
  *
  * Partition tokens become invalid when the session used to create them
  * is deleted, is idle for too long, begins a new transaction, or becomes too
- * old.  When any of these happen, it is not possible to resume the query, and
+ * old. When any of these happen, it isn't possible to resume the query, and
  * the whole operation must be restarted from the beginning.
  *
  * @param string $formattedSession The session used to create the partitions. Please see
  *                                 {@see SpannerClient::sessionName()} for help formatting this field.
- * @param string $sql              The query request to generate partitions for. The request will
- *                                 fail if the query is not root partitionable. For a query to be root
+ * @param string $sql              The query request to generate partitions for. The request fails
+ *                                 if the query isn't root partitionable. For a query to be root
  *                                 partitionable, it needs to satisfy a few conditions. For example, if the
  *                                 query execution plan contains a distributed union operator, then it must be
  *                                 the first operator in the plan. For more information about other
  *                                 conditions, see [Read data in
  *                                 parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel).
  *
- *                                 The query request must not contain DML commands, such as INSERT, UPDATE, or
- *                                 DELETE. Use
- *                                 [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
- *                                 PartitionedDml transaction for large, partition-friendly DML operations.
+ *                                 The query request must not contain DML commands, such as `INSERT`,
+ *                                 `UPDATE`, or `DELETE`. Use
+ *                                 [`ExecuteStreamingSql`][google.spanner.v1.Spanner.ExecuteStreamingSql] with
+ *                                 a `PartitionedDml` transaction for large, partition-friendly DML
+ *                                 operations.
  */
 function partition_query_sample(string $formattedSession, string $sql): void
 {

@@ -20,28 +20,28 @@ class IngestConversationsStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 processed_object_count = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $processed_object_count = 0;
+    protected $processed_object_count = 0;
     /**
      * Output only. The number of objects skipped because another conversation
      * with the same transcript uri had already been ingested.
      *
      * Generated from protobuf field <code>int32 duplicates_skipped_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $duplicates_skipped_count = 0;
+    protected $duplicates_skipped_count = 0;
     /**
      * Output only. The number of new conversations added during this ingest
      * operation.
      *
      * Generated from protobuf field <code>int32 successful_ingest_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $successful_ingest_count = 0;
+    protected $successful_ingest_count = 0;
     /**
      * Output only. The number of objects which were unable to be ingested due
      * to errors. The errors are populated in the partial_errors field.
      *
      * Generated from protobuf field <code>int32 failed_ingest_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failed_ingest_count = 0;
+    protected $failed_ingest_count = 0;
 
     /**
      * Constructor.

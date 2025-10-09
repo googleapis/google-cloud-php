@@ -20,31 +20,31 @@ class ApproveDecision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp approve_time = 1;</code>
      */
-    private $approve_time = null;
+    protected $approve_time = null;
     /**
      * The time at which the approval expires.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2;</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * If set, denotes the timestamp at which the approval is invalidated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp invalidate_time = 3;</code>
      */
-    private $invalidate_time = null;
+    protected $invalidate_time = null;
     /**
      * The signature for the ApprovalRequest and details on how it was signed.
      *
      * Generated from protobuf field <code>.google.cloud.accessapproval.v1.SignatureInfo signature_info = 4;</code>
      */
-    private $signature_info = null;
+    protected $signature_info = null;
     /**
      * True when the request has been auto-approved.
      *
      * Generated from protobuf field <code>bool auto_approved = 5;</code>
      */
-    private $auto_approved = false;
+    protected $auto_approved = false;
 
     /**
      * Constructor.

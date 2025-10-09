@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -51,13 +52,13 @@ use Google\Cloud\Compute\V1\PatchRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\PatchRuleRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RemoveAssociationRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\RemoveRuleRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionNetworkFirewallPolicies API.
@@ -65,23 +66,23 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addAssociationAsync(AddAssociationRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface addRuleAsync(AddRuleRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cloneRulesAsync(CloneRulesRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAssociationAsync(GetAssociationRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEffectiveFirewallsAsync(GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuleAsync(GetRuleRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionNetworkFirewallPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchRuleAsync(PatchRuleRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeAssociationAsync(RemoveAssociationRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeRuleAsync(RemoveRuleRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addAssociationAsync(AddAssociationRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addRuleAsync(AddRuleRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cloneRulesAsync(CloneRulesRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicy> getAsync(GetRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicyAssociation> getAssociationAsync(GetAssociationRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse> getEffectiveFirewallsAsync(GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicyRule> getRuleAsync(GetRuleRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionNetworkFirewallPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchRuleAsync(PatchRuleRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeAssociationAsync(RemoveAssociationRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeRuleAsync(RemoveRuleRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  */
 final class RegionNetworkFirewallPoliciesClient
 {
@@ -127,10 +128,10 @@ final class RegionNetworkFirewallPoliciesClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/region_network_firewall_policies_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/region_network_firewall_policies_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -143,9 +144,7 @@ final class RegionNetworkFirewallPoliciesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -162,10 +161,7 @@ final class RegionNetworkFirewallPoliciesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -193,29 +189,57 @@ final class RegionNetworkFirewallPoliciesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new RegionNetworkFirewallPoliciesClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -246,11 +270,16 @@ final class RegionNetworkFirewallPoliciesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -274,6 +303,8 @@ final class RegionNetworkFirewallPoliciesClient
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::addAssociationAsync()} .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/add_association.php
+     *
      * @param AddAssociationRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -288,8 +319,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addAssociation(AddAssociationRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addAssociation(
+        AddAssociationRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddAssociation', $request, $callOptions)->wait();
     }
 
@@ -298,6 +331,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::addRuleAsync()}
      * .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/add_rule.php
      *
      * @param AddRuleRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -313,8 +348,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addRule(AddRuleRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addRule(
+        AddRuleRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddRule', $request, $callOptions)->wait();
     }
 
@@ -323,6 +360,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::cloneRulesAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/clone_rules.php
      *
      * @param CloneRulesRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
@@ -338,8 +377,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function cloneRules(CloneRulesRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function cloneRules(
+        CloneRulesRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CloneRules', $request, $callOptions)->wait();
     }
 
@@ -347,6 +388,8 @@ final class RegionNetworkFirewallPoliciesClient
      * Deletes the specified network firewall policy.
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::deleteAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/delete.php
      *
      * @param DeleteRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -362,8 +405,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function delete(
+        DeleteRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 
@@ -371,6 +416,8 @@ final class RegionNetworkFirewallPoliciesClient
      * Returns the specified network firewall policy.
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/get.php
      *
      * @param GetRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -397,6 +444,8 @@ final class RegionNetworkFirewallPoliciesClient
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::getAssociationAsync()} .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/get_association.php
+     *
      * @param GetAssociationRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -411,8 +460,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAssociation(GetAssociationRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): FirewallPolicyAssociation
-    {
+    public function getAssociation(
+        GetAssociationRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): FirewallPolicyAssociation {
         return $this->startApiCall('GetAssociation', $request, $callOptions)->wait();
     }
 
@@ -421,6 +472,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::getEffectiveFirewallsAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/get_effective_firewalls.php
      *
      * @param GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                                   $callOptions {
@@ -436,8 +489,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getEffectiveFirewalls(GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse
-    {
+    public function getEffectiveFirewalls(
+        GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse {
         return $this->startApiCall('GetEffectiveFirewalls', $request, $callOptions)->wait();
     }
 
@@ -446,6 +501,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/get_iam_policy.php
      *
      * @param GetIamPolicyRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {
@@ -461,8 +518,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getIamPolicy(GetIamPolicyRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): Policy
-    {
+    public function getIamPolicy(
+        GetIamPolicyRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): Policy {
         return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
     }
 
@@ -471,6 +530,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::getRuleAsync()}
      * .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/get_rule.php
      *
      * @param GetRuleRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -486,8 +547,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getRule(GetRuleRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): FirewallPolicyRule
-    {
+    public function getRule(
+        GetRuleRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): FirewallPolicyRule {
         return $this->startApiCall('GetRule', $request, $callOptions)->wait();
     }
 
@@ -495,6 +558,8 @@ final class RegionNetworkFirewallPoliciesClient
      * Creates a new network firewall policy in the specified project and region.
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::insertAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/insert.php
      *
      * @param InsertRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -510,8 +575,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insert(InsertRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function insert(
+        InsertRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Insert', $request, $callOptions)->wait();
     }
 
@@ -519,6 +586,8 @@ final class RegionNetworkFirewallPoliciesClient
      * Lists all the network firewall policies that have been configured for the specified project in the given region.
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/list.php
      *
      * @param ListRegionNetworkFirewallPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -543,6 +612,8 @@ final class RegionNetworkFirewallPoliciesClient
      * Patches the specified network firewall policy.
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::patchAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/patch.php
      *
      * @param PatchRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -569,6 +640,8 @@ final class RegionNetworkFirewallPoliciesClient
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::patchRuleAsync()} .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/patch_rule.php
+     *
      * @param PatchRuleRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {
      *     Optional.
@@ -583,8 +656,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function patchRule(PatchRuleRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function patchRule(
+        PatchRuleRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PatchRule', $request, $callOptions)->wait();
     }
 
@@ -593,6 +668,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::removeAssociationAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/remove_association.php
      *
      * @param RemoveAssociationRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                               $callOptions {
@@ -608,8 +685,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeAssociation(RemoveAssociationRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeAssociation(
+        RemoveAssociationRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveAssociation', $request, $callOptions)->wait();
     }
 
@@ -618,6 +697,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::removeRuleAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/remove_rule.php
      *
      * @param RemoveRuleRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
@@ -633,8 +714,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeRule(RemoveRuleRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeRule(
+        RemoveRuleRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveRule', $request, $callOptions)->wait();
     }
 
@@ -643,6 +726,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/set_iam_policy.php
      *
      * @param SetIamPolicyRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {
@@ -658,8 +743,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setIamPolicy(SetIamPolicyRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): Policy
-    {
+    public function setIamPolicy(
+        SetIamPolicyRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): Policy {
         return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
     }
 
@@ -668,6 +755,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                                $callOptions {
@@ -683,8 +772,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

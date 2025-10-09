@@ -21,7 +21,7 @@ class DeleteRestorePlanRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. If provided, this value must match the current value of the
      * target RestorePlan's [etag][google.cloud.gkebackup.v1.RestorePlan.etag]
@@ -29,7 +29,7 @@ class DeleteRestorePlanRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. If set to true, any Restores below this RestorePlan will also be
      * deleted. Otherwise, the request will only succeed if the RestorePlan has no
@@ -37,7 +37,7 @@ class DeleteRestorePlanRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $name Required. Fully qualified RestorePlan name.

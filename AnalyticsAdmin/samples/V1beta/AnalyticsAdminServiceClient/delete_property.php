@@ -35,11 +35,11 @@ use Google\ApiCore\ApiException;
  * However, they can be restored using the Trash Can UI.
  *
  * If the properties are not restored before the expiration time, the Property
- * and all child resources (eg: GoogleAdsLinks, Streams, UserLinks)
+ * and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings)
  * will be permanently purged.
  * https://support.google.com/analytics/answer/6154772
  *
- * Returns an error if the target is not found, or is not a GA4 Property.
+ * Returns an error if the target is not found.
  *
  * @param string $formattedName The name of the Property to soft-delete.
  *                              Format: properties/{property_id}

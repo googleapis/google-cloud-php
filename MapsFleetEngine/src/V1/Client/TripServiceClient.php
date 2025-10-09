@@ -27,6 +27,7 @@ namespace Google\Maps\FleetEngine\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -34,12 +35,14 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Maps\FleetEngine\V1\CreateTripRequest;
+use Google\Maps\FleetEngine\V1\DeleteTripRequest;
 use Google\Maps\FleetEngine\V1\GetTripRequest;
 use Google\Maps\FleetEngine\V1\ReportBillableTripRequest;
 use Google\Maps\FleetEngine\V1\SearchTripsRequest;
 use Google\Maps\FleetEngine\V1\Trip;
 use Google\Maps\FleetEngine\V1\UpdateTripRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Trip management service.
@@ -52,11 +55,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTripAsync(CreateTripRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTripAsync(GetTripRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reportBillableTripAsync(ReportBillableTripRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchTripsAsync(SearchTripsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTripAsync(UpdateTripRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Trip> createTripAsync(CreateTripRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTripAsync(DeleteTripRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Trip> getTripAsync(GetTripRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> reportBillableTripAsync(ReportBillableTripRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchTripsAsync(SearchTripsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Trip> updateTripAsync(UpdateTripRequest $request, array $optionalArgs = [])
  */
 final class TripServiceClient
 {
@@ -133,14 +137,14 @@ final class TripServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -148,20 +152,29 @@ final class TripServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'fleetengine.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Maps\FleetEngine\V1\TripServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new TripServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -195,11 +208,16 @@ final class TripServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -240,6 +258,33 @@ final class TripServiceClient
     public function createTrip(CreateTripRequest $request, array $callOptions = []): Trip
     {
         return $this->startApiCall('CreateTrip', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single Trip.
+     *
+     * Returns FAILED_PRECONDITION if the Trip is active and assigned to a
+     * vehicle.
+     *
+     * The async variant is {@see TripServiceClient::deleteTripAsync()} .
+     *
+     * @example samples/V1/TripServiceClient/delete_trip.php
+     *
+     * @param DeleteTripRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteTrip(DeleteTripRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteTrip', $request, $callOptions)->wait();
     }
 
     /**

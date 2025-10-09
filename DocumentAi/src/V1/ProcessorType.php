@@ -22,19 +22,19 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * The processor category, used by UI to group processor types.
      *
      * Generated from protobuf field <code>string category = 3;</code>
      */
-    private $category = '';
+    protected $category = '';
     /**
      * The locations in which this processor is available.
      *
@@ -47,13 +47,13 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_creation = 6;</code>
      */
-    private $allow_creation = false;
+    protected $allow_creation = false;
     /**
      * Launch stage of the processor type
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 8;</code>
      */
-    private $launch_stage = 0;
+    protected $launch_stage = 0;
     /**
      * A set of Cloud Storage URIs of sample documents for this processor.
      *

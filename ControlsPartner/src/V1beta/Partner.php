@@ -17,7 +17,7 @@ class Partner extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The resource name of the partner.
-     * Format: organizations/{organization}/locations/{location}/partner
+     * Format: `organizations/{organization}/locations/{location}/partner`
      * Example: "organizations/123456/locations/us-central1/partner"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
@@ -71,7 +71,7 @@ class Partner extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The resource name of the partner.
-     *           Format: organizations/{organization}/locations/{location}/partner
+     *           Format: `organizations/{organization}/locations/{location}/partner`
      *           Example: "organizations/123456/locations/us-central1/partner"
      *     @type array<\Google\Cloud\CloudControlsPartner\V1beta\Sku>|\Google\Protobuf\Internal\RepeatedField $skus
      *           List of SKUs the partner is offering
@@ -97,7 +97,7 @@ class Partner extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the partner.
-     * Format: organizations/{organization}/locations/{location}/partner
+     * Format: `organizations/{organization}/locations/{location}/partner`
      * Example: "organizations/123456/locations/us-central1/partner"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
@@ -110,7 +110,7 @@ class Partner extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the partner.
-     * Format: organizations/{organization}/locations/{location}/partner
+     * Format: `organizations/{organization}/locations/{location}/partner`
      * Example: "organizations/123456/locations/us-central1/partner"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>

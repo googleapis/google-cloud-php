@@ -22,21 +22,21 @@ class ComplianceVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cpe_uri = 1;</code>
      */
-    private $cpe_uri = '';
+    protected $cpe_uri = '';
     /**
      * The name of the document that defines this benchmark, e.g. "CIS
      * Container-Optimized OS".
      *
      * Generated from protobuf field <code>string benchmark_document = 3;</code>
      */
-    private $benchmark_document = '';
+    protected $benchmark_document = '';
     /**
      * The version of the benchmark. This is set to the version of the OS-specific
      * CIS document the benchmark is defined in.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

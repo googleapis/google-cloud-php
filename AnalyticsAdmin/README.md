@@ -31,18 +31,32 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\Analytics\Admin\V1beta\Account;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\GetAccountRequest;
+use Google\ApiCore\ApiException;
 
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+// Create a client.
+$analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-$client = new AnalyticsAdminServiceClient();
+// Prepare the request message.
+$request = (new GetAccountRequest())
+    ->setName($formattedName);
 
-$accounts = $client->listAccounts();
-
-foreach ($accounts as $account) {
-    print 'Found account: ' . $account->getName() . PHP_EOL;
+// Call the API and handle any network failures.
+try {
+    /** @var Account $response */
+    $response = $analyticsAdminServiceClient->getAccount($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

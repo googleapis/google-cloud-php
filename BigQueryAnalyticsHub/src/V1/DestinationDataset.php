@@ -20,19 +20,19 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDatasetReference dataset_reference = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset_reference = null;
+    protected $dataset_reference = null;
     /**
      * Optional. A descriptive name for the dataset.
      *
      * Generated from protobuf field <code>.google.protobuf.StringValue friendly_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $friendly_name = null;
+    protected $friendly_name = null;
     /**
      * Optional. A user-friendly description of the dataset.
      *
      * Generated from protobuf field <code>.google.protobuf.StringValue description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Optional. The labels associated with this dataset. You can use these
      * to organize and group your datasets.
@@ -50,7 +50,15 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $location = '';
+    protected $location = '';
+    /**
+     * Optional. The geographic locations where the dataset should be replicated.
+     * See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations)
+     * for supported locations.
+     *
+     * Generated from protobuf field <code>repeated string replica_locations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $replica_locations;
 
     /**
      * Constructor.
@@ -74,6 +82,10 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
      *           Required. The geographic location where the dataset should reside. See
      *           https://cloud.google.com/bigquery/docs/locations for supported
      *           locations.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_locations
+     *           Optional. The geographic locations where the dataset should be replicated.
+     *           See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations)
+     *           for supported locations.
      * }
      */
     public function __construct($data = NULL) {
@@ -146,7 +158,7 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.StringValue friendly_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string|null
      */
-    public function getFriendlyNameValue()
+    public function getFriendlyNameUnwrapped()
     {
         return $this->readWrapperValue("friendly_name");
     }
@@ -175,7 +187,7 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
      * @param string|null $var
      * @return $this
      */
-    public function setFriendlyNameValue($var)
+    public function setFriendlyNameUnwrapped($var)
     {
         $this->writeWrapperValue("friendly_name", $var);
         return $this;}
@@ -209,7 +221,7 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.StringValue description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string|null
      */
-    public function getDescriptionValue()
+    public function getDescriptionUnwrapped()
     {
         return $this->readWrapperValue("description");
     }
@@ -238,7 +250,7 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
      * @param string|null $var
      * @return $this
      */
-    public function setDescriptionValue($var)
+    public function setDescriptionUnwrapped($var)
     {
         $this->writeWrapperValue("description", $var);
         return $this;}
@@ -303,6 +315,36 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The geographic locations where the dataset should be replicated.
+     * See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations)
+     * for supported locations.
+     *
+     * Generated from protobuf field <code>repeated string replica_locations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReplicaLocations()
+    {
+        return $this->replica_locations;
+    }
+
+    /**
+     * Optional. The geographic locations where the dataset should be replicated.
+     * See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations)
+     * for supported locations.
+     *
+     * Generated from protobuf field <code>repeated string replica_locations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReplicaLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->replica_locations = $arr;
 
         return $this;
     }

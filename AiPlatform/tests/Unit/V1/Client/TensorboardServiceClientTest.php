@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\AIPlatform\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
@@ -88,6 +87,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -112,7 +112,9 @@ class TensorboardServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return TensorboardServiceClient */
@@ -136,11 +138,14 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse = new BatchCreateTensorboardRunsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $formattedParent = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
         $requests = [];
-        $request = (new BatchCreateTensorboardRunsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateTensorboardRunsRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchCreateTensorboardRuns($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -166,19 +171,25 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $formattedParent = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
         $requests = [];
-        $request = (new BatchCreateTensorboardRunsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateTensorboardRunsRequest())->setParent($formattedParent)->setRequests($requests);
         try {
             $gapicClient->batchCreateTensorboardRuns($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -204,18 +215,24 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse = new BatchCreateTensorboardTimeSeriesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $formattedParent = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
         $requests = [];
-        $request = (new BatchCreateTensorboardTimeSeriesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateTensorboardTimeSeriesRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchCreateTensorboardTimeSeries($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/BatchCreateTensorboardTimeSeries', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.TensorboardService/BatchCreateTensorboardTimeSeries',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getRequests();
@@ -234,19 +251,25 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $formattedParent = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
         $requests = [];
-        $request = (new BatchCreateTensorboardTimeSeriesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateTensorboardTimeSeriesRequest())->setParent($formattedParent)->setRequests($requests);
         try {
             $gapicClient->batchCreateTensorboardTimeSeries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -274,7 +297,14 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock request
         $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
         $formattedTimeSeries = [
-            $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]'),
+            $gapicClient->tensorboardTimeSeriesName(
+                '[PROJECT]',
+                '[LOCATION]',
+                '[TENSORBOARD]',
+                '[EXPERIMENT]',
+                '[RUN]',
+                '[TIME_SERIES]'
+            ),
         ];
         $request = (new BatchReadTensorboardTimeSeriesDataRequest())
             ->setTensorboard($formattedTensorboard)
@@ -285,7 +315,10 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/BatchReadTensorboardTimeSeriesData', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.TensorboardService/BatchReadTensorboardTimeSeriesData',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getTensorboard();
         $this->assertProtobufEquals($formattedTensorboard, $actualValue);
         $actualValue = $actualRequestObject->getTimeSeries();
@@ -304,17 +337,27 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
         $formattedTimeSeries = [
-            $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]'),
+            $gapicClient->tensorboardTimeSeriesName(
+                '[PROJECT]',
+                '[LOCATION]',
+                '[TENSORBOARD]',
+                '[EXPERIMENT]',
+                '[RUN]',
+                '[TIME_SERIES]'
+            ),
         ];
         $request = (new BatchReadTensorboardTimeSeriesDataRequest())
             ->setTensorboard($formattedTensorboard)
@@ -360,6 +403,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $runCount = 485221797;
         $etag = 'etag3123477';
         $isDefault = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Tensorboard();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -368,6 +413,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setRunCount($runCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setIsDefault($isDefault);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -380,9 +427,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $tensorboard = new Tensorboard();
         $tensorboardDisplayName = 'tensorboardDisplayName-448676352';
         $tensorboard->setDisplayName($tensorboardDisplayName);
-        $request = (new CreateTensorboardRequest())
-            ->setParent($formattedParent)
-            ->setTensorboard($tensorboard);
+        $request = (new CreateTensorboardRequest())->setParent($formattedParent)->setTensorboard($tensorboard);
         $response = $gapicClient->createTensorboard($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -440,21 +485,22 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
         $tensorboard = new Tensorboard();
         $tensorboardDisplayName = 'tensorboardDisplayName-448676352';
         $tensorboard->setDisplayName($tensorboardDisplayName);
-        $request = (new CreateTensorboardRequest())
-            ->setParent($formattedParent)
-            ->setTensorboard($tensorboard);
+        $request = (new CreateTensorboardRequest())->setParent($formattedParent)->setTensorboard($tensorboard);
         $response = $gapicClient->createTensorboard($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -499,7 +545,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setSource($source);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $formattedParent = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
         $tensorboardExperimentId = 'tensorboardExperimentId932137483';
         $request = (new CreateTensorboardExperimentRequest())
             ->setParent($formattedParent)
@@ -510,7 +561,10 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/CreateTensorboardExperiment', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.TensorboardService/CreateTensorboardExperiment',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getTensorboardExperimentId();
@@ -529,15 +583,23 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $formattedParent = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
         $tensorboardExperimentId = 'tensorboardExperimentId932137483';
         $request = (new CreateTensorboardExperimentRequest())
             ->setParent($formattedParent)
@@ -575,7 +637,13 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+        $formattedParent = $gapicClient->tensorboardRunName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]'
+        );
         $tensorboardRun = new TensorboardRun();
         $tensorboardRunDisplayName = 'tensorboardRunDisplayName-996156817';
         $tensorboardRun->setDisplayName($tensorboardRunDisplayName);
@@ -611,15 +679,24 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+        $formattedParent = $gapicClient->tensorboardRunName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]'
+        );
         $tensorboardRun = new TensorboardRun();
         $tensorboardRunDisplayName = 'tensorboardRunDisplayName-996156817';
         $tensorboardRun->setDisplayName($tensorboardRunDisplayName);
@@ -665,7 +742,14 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setPluginData($pluginData);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+        $formattedParent = $gapicClient->tensorboardTimeSeriesName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]',
+            '[TIME_SERIES]'
+        );
         $tensorboardTimeSeries = new TensorboardTimeSeries();
         $tensorboardTimeSeriesDisplayName = 'tensorboardTimeSeriesDisplayName1084140540';
         $tensorboardTimeSeries->setDisplayName($tensorboardTimeSeriesDisplayName);
@@ -680,7 +764,10 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/CreateTensorboardTimeSeries', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.TensorboardService/CreateTensorboardTimeSeries',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getTensorboardTimeSeries();
@@ -699,15 +786,25 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+        $formattedParent = $gapicClient->tensorboardTimeSeriesName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]',
+            '[TIME_SERIES]'
+        );
         $tensorboardTimeSeries = new TensorboardTimeSeries();
         $tensorboardTimeSeriesDisplayName = 'tensorboardTimeSeriesDisplayName1084140540';
         $tensorboardTimeSeries->setDisplayName($tensorboardTimeSeriesDisplayName);
@@ -760,8 +857,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
-        $request = (new DeleteTensorboardRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTensorboardRequest())->setName($formattedName);
         $response = $gapicClient->deleteTensorboard($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -817,17 +913,19 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
-        $request = (new DeleteTensorboardRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTensorboardRequest())->setName($formattedName);
         $response = $gapicClient->deleteTensorboard($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -880,9 +978,13 @@ class TensorboardServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
-        $request = (new DeleteTensorboardExperimentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
+        $request = (new DeleteTensorboardExperimentRequest())->setName($formattedName);
         $response = $gapicClient->deleteTensorboardExperiment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -892,7 +994,10 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/DeleteTensorboardExperiment', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.TensorboardService/DeleteTensorboardExperiment',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -938,17 +1043,24 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
-        $request = (new DeleteTensorboardExperimentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
+        $request = (new DeleteTensorboardExperimentRequest())->setName($formattedName);
         $response = $gapicClient->deleteTensorboardExperiment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1001,9 +1113,14 @@ class TensorboardServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
-        $request = (new DeleteTensorboardRunRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->tensorboardRunName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]'
+        );
+        $request = (new DeleteTensorboardRunRequest())->setName($formattedName);
         $response = $gapicClient->deleteTensorboardRun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1059,17 +1176,25 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
-        $request = (new DeleteTensorboardRunRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->tensorboardRunName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]'
+        );
+        $request = (new DeleteTensorboardRunRequest())->setName($formattedName);
         $response = $gapicClient->deleteTensorboardRun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1122,9 +1247,15 @@ class TensorboardServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
-        $request = (new DeleteTensorboardTimeSeriesRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->tensorboardTimeSeriesName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]',
+            '[TIME_SERIES]'
+        );
+        $request = (new DeleteTensorboardTimeSeriesRequest())->setName($formattedName);
         $response = $gapicClient->deleteTensorboardTimeSeries($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1134,7 +1265,10 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/DeleteTensorboardTimeSeries', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.TensorboardService/DeleteTensorboardTimeSeries',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1180,17 +1314,26 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
-        $request = (new DeleteTensorboardTimeSeriesRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->tensorboardTimeSeriesName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]',
+            '[TIME_SERIES]'
+        );
+        $request = (new DeleteTensorboardTimeSeriesRequest())->setName($formattedName);
         $response = $gapicClient->deleteTensorboardTimeSeries($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1224,17 +1367,23 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $timeSeriesDataPointsElement = new TimeSeriesDataPoint();
-        $timeSeriesDataPoints = [
-            $timeSeriesDataPointsElement,
-        ];
+        $timeSeriesDataPoints = [$timeSeriesDataPointsElement];
         $expectedResponse = new ExportTensorboardTimeSeriesDataResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTimeSeriesDataPoints($timeSeriesDataPoints);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedTensorboardTimeSeries = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
-        $request = (new ExportTensorboardTimeSeriesDataRequest())
-            ->setTensorboardTimeSeries($formattedTensorboardTimeSeries);
+        $formattedTensorboardTimeSeries = $gapicClient->tensorboardTimeSeriesName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]',
+            '[TIME_SERIES]'
+        );
+        $request = (new ExportTensorboardTimeSeriesDataRequest())->setTensorboardTimeSeries(
+            $formattedTensorboardTimeSeries
+        );
         $response = $gapicClient->exportTensorboardTimeSeriesData($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1244,7 +1393,10 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ExportTensorboardTimeSeriesData', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.TensorboardService/ExportTensorboardTimeSeriesData',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getTensorboardTimeSeries();
         $this->assertProtobufEquals($formattedTensorboardTimeSeries, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1261,17 +1413,28 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedTensorboardTimeSeries = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
-        $request = (new ExportTensorboardTimeSeriesDataRequest())
-            ->setTensorboardTimeSeries($formattedTensorboardTimeSeries);
+        $formattedTensorboardTimeSeries = $gapicClient->tensorboardTimeSeriesName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]',
+            '[TIME_SERIES]'
+        );
+        $request = (new ExportTensorboardTimeSeriesDataRequest())->setTensorboardTimeSeries(
+            $formattedTensorboardTimeSeries
+        );
         try {
             $gapicClient->exportTensorboardTimeSeriesData($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1301,6 +1464,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $runCount = 485221797;
         $etag = 'etag3123477';
         $isDefault = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Tensorboard();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -1309,11 +1474,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setRunCount($runCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setIsDefault($isDefault);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
-        $request = (new GetTensorboardRequest())
-            ->setName($formattedName);
+        $request = (new GetTensorboardRequest())->setName($formattedName);
         $response = $gapicClient->getTensorboard($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1337,17 +1503,19 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
-        $request = (new GetTensorboardRequest())
-            ->setName($formattedName);
+        $request = (new GetTensorboardRequest())->setName($formattedName);
         try {
             $gapicClient->getTensorboard($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1383,9 +1551,13 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setSource($source);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
-        $request = (new GetTensorboardExperimentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
+        $request = (new GetTensorboardExperimentRequest())->setName($formattedName);
         $response = $gapicClient->getTensorboardExperiment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1409,17 +1581,24 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
-        $request = (new GetTensorboardExperimentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
+        $request = (new GetTensorboardExperimentRequest())->setName($formattedName);
         try {
             $gapicClient->getTensorboardExperiment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1453,9 +1632,14 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
-        $request = (new GetTensorboardRunRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->tensorboardRunName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]'
+        );
+        $request = (new GetTensorboardRunRequest())->setName($formattedName);
         $response = $gapicClient->getTensorboardRun($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1479,17 +1663,25 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
-        $request = (new GetTensorboardRunRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->tensorboardRunName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]'
+        );
+        $request = (new GetTensorboardRunRequest())->setName($formattedName);
         try {
             $gapicClient->getTensorboardRun($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1527,9 +1719,15 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setPluginData($pluginData);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
-        $request = (new GetTensorboardTimeSeriesRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->tensorboardTimeSeriesName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]',
+            '[TIME_SERIES]'
+        );
+        $request = (new GetTensorboardTimeSeriesRequest())->setName($formattedName);
         $response = $gapicClient->getTensorboardTimeSeries($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1553,17 +1751,26 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
-        $request = (new GetTensorboardTimeSeriesRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->tensorboardTimeSeriesName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]',
+            '[TIME_SERIES]'
+        );
+        $request = (new GetTensorboardTimeSeriesRequest())->setName($formattedName);
         try {
             $gapicClient->getTensorboardTimeSeries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1588,17 +1795,14 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tensorboardExperimentsElement = new TensorboardExperiment();
-        $tensorboardExperiments = [
-            $tensorboardExperimentsElement,
-        ];
+        $tensorboardExperiments = [$tensorboardExperimentsElement];
         $expectedResponse = new ListTensorboardExperimentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTensorboardExperiments($tensorboardExperiments);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
-        $request = (new ListTensorboardExperimentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTensorboardExperimentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listTensorboardExperiments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1625,17 +1829,19 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
-        $request = (new ListTensorboardExperimentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTensorboardExperimentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTensorboardExperiments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1660,17 +1866,19 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tensorboardRunsElement = new TensorboardRun();
-        $tensorboardRuns = [
-            $tensorboardRunsElement,
-        ];
+        $tensorboardRuns = [$tensorboardRunsElement];
         $expectedResponse = new ListTensorboardRunsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTensorboardRuns($tensorboardRuns);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
-        $request = (new ListTensorboardRunsRequest())
-            ->setParent($formattedParent);
+        $formattedParent = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
+        $request = (new ListTensorboardRunsRequest())->setParent($formattedParent);
         $response = $gapicClient->listTensorboardRuns($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1697,17 +1905,24 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
-        $request = (new ListTensorboardRunsRequest())
-            ->setParent($formattedParent);
+        $formattedParent = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
+        $request = (new ListTensorboardRunsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTensorboardRuns($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1732,17 +1947,20 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tensorboardTimeSeriesElement = new TensorboardTimeSeries();
-        $tensorboardTimeSeries = [
-            $tensorboardTimeSeriesElement,
-        ];
+        $tensorboardTimeSeries = [$tensorboardTimeSeriesElement];
         $expectedResponse = new ListTensorboardTimeSeriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTensorboardTimeSeries($tensorboardTimeSeries);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
-        $request = (new ListTensorboardTimeSeriesRequest())
-            ->setParent($formattedParent);
+        $formattedParent = $gapicClient->tensorboardRunName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]'
+        );
+        $request = (new ListTensorboardTimeSeriesRequest())->setParent($formattedParent);
         $response = $gapicClient->listTensorboardTimeSeries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1769,17 +1987,25 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
-        $request = (new ListTensorboardTimeSeriesRequest())
-            ->setParent($formattedParent);
+        $formattedParent = $gapicClient->tensorboardRunName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]'
+        );
+        $request = (new ListTensorboardTimeSeriesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTensorboardTimeSeries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1804,17 +2030,14 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tensorboardsElement = new Tensorboard();
-        $tensorboards = [
-            $tensorboardsElement,
-        ];
+        $tensorboards = [$tensorboardsElement];
         $expectedResponse = new ListTensorboardsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTensorboards($tensorboards);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListTensorboardsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTensorboardsRequest())->setParent($formattedParent);
         $response = $gapicClient->listTensorboards($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1841,17 +2064,19 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListTensorboardsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTensorboardsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTensorboards($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1881,9 +2106,15 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse3 = new ReadTensorboardBlobDataResponse();
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $formattedTimeSeries = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
-        $request = (new ReadTensorboardBlobDataRequest())
-            ->setTimeSeries($formattedTimeSeries);
+        $formattedTimeSeries = $gapicClient->tensorboardTimeSeriesName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]',
+            '[TIME_SERIES]'
+        );
+        $request = (new ReadTensorboardBlobDataRequest())->setTimeSeries($formattedTimeSeries);
         $serverStream = $gapicClient->readTensorboardBlobData($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
@@ -1912,18 +2143,27 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
-        $formattedTimeSeries = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
-        $request = (new ReadTensorboardBlobDataRequest())
-            ->setTimeSeries($formattedTimeSeries);
+        $formattedTimeSeries = $gapicClient->tensorboardTimeSeriesName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]',
+            '[TIME_SERIES]'
+        );
+        $request = (new ReadTensorboardBlobDataRequest())->setTimeSeries($formattedTimeSeries);
         $serverStream = $gapicClient->readTensorboardBlobData($request);
         $results = $serverStream->readAll();
         try {
@@ -1954,8 +2194,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
-        $request = (new ReadTensorboardSizeRequest())
-            ->setTensorboard($formattedTensorboard);
+        $request = (new ReadTensorboardSizeRequest())->setTensorboard($formattedTensorboard);
         $response = $gapicClient->readTensorboardSize($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1979,17 +2218,19 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
-        $request = (new ReadTensorboardSizeRequest())
-            ->setTensorboard($formattedTensorboard);
+        $request = (new ReadTensorboardSizeRequest())->setTensorboard($formattedTensorboard);
         try {
             $gapicClient->readTensorboardSize($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2015,16 +2256,27 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse = new ReadTensorboardTimeSeriesDataResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedTensorboardTimeSeries = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
-        $request = (new ReadTensorboardTimeSeriesDataRequest())
-            ->setTensorboardTimeSeries($formattedTensorboardTimeSeries);
+        $formattedTensorboardTimeSeries = $gapicClient->tensorboardTimeSeriesName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]',
+            '[TIME_SERIES]'
+        );
+        $request = (new ReadTensorboardTimeSeriesDataRequest())->setTensorboardTimeSeries(
+            $formattedTensorboardTimeSeries
+        );
         $response = $gapicClient->readTensorboardTimeSeriesData($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardTimeSeriesData', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardTimeSeriesData',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getTensorboardTimeSeries();
         $this->assertProtobufEquals($formattedTensorboardTimeSeries, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2041,17 +2293,28 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedTensorboardTimeSeries = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
-        $request = (new ReadTensorboardTimeSeriesDataRequest())
-            ->setTensorboardTimeSeries($formattedTensorboardTimeSeries);
+        $formattedTensorboardTimeSeries = $gapicClient->tensorboardTimeSeriesName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]',
+            '[TIME_SERIES]'
+        );
+        $request = (new ReadTensorboardTimeSeriesDataRequest())->setTensorboardTimeSeries(
+            $formattedTensorboardTimeSeries
+        );
         try {
             $gapicClient->readTensorboardTimeSeriesData($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2078,8 +2341,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
-        $request = (new ReadTensorboardUsageRequest())
-            ->setTensorboard($formattedTensorboard);
+        $request = (new ReadTensorboardUsageRequest())->setTensorboard($formattedTensorboard);
         $response = $gapicClient->readTensorboardUsage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2103,17 +2365,19 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
-        $request = (new ReadTensorboardUsageRequest())
-            ->setTensorboard($formattedTensorboard);
+        $request = (new ReadTensorboardUsageRequest())->setTensorboard($formattedTensorboard);
         try {
             $gapicClient->readTensorboardUsage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2155,6 +2419,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $runCount = 485221797;
         $etag = 'etag3123477';
         $isDefault = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Tensorboard();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -2163,6 +2429,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setRunCount($runCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setIsDefault($isDefault);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2175,9 +2443,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $tensorboard = new Tensorboard();
         $tensorboardDisplayName = 'tensorboardDisplayName-448676352';
         $tensorboard->setDisplayName($tensorboardDisplayName);
-        $request = (new UpdateTensorboardRequest())
-            ->setUpdateMask($updateMask)
-            ->setTensorboard($tensorboard);
+        $request = (new UpdateTensorboardRequest())->setUpdateMask($updateMask)->setTensorboard($tensorboard);
         $response = $gapicClient->updateTensorboard($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2235,21 +2501,22 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $tensorboard = new Tensorboard();
         $tensorboardDisplayName = 'tensorboardDisplayName-448676352';
         $tensorboard->setDisplayName($tensorboardDisplayName);
-        $request = (new UpdateTensorboardRequest())
-            ->setUpdateMask($updateMask)
-            ->setTensorboard($tensorboard);
+        $request = (new UpdateTensorboardRequest())->setUpdateMask($updateMask)->setTensorboard($tensorboard);
         $response = $gapicClient->updateTensorboard($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2305,7 +2572,10 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/UpdateTensorboardExperiment', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.TensorboardService/UpdateTensorboardExperiment',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualRequestObject->getTensorboardExperiment();
@@ -2324,12 +2594,15 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -2374,9 +2647,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $tensorboardRun = new TensorboardRun();
         $tensorboardRunDisplayName = 'tensorboardRunDisplayName-996156817';
         $tensorboardRun->setDisplayName($tensorboardRunDisplayName);
-        $request = (new UpdateTensorboardRunRequest())
-            ->setUpdateMask($updateMask)
-            ->setTensorboardRun($tensorboardRun);
+        $request = (new UpdateTensorboardRunRequest())->setUpdateMask($updateMask)->setTensorboardRun($tensorboardRun);
         $response = $gapicClient->updateTensorboardRun($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2402,21 +2673,22 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $tensorboardRun = new TensorboardRun();
         $tensorboardRunDisplayName = 'tensorboardRunDisplayName-996156817';
         $tensorboardRun->setDisplayName($tensorboardRunDisplayName);
-        $request = (new UpdateTensorboardRunRequest())
-            ->setUpdateMask($updateMask)
-            ->setTensorboardRun($tensorboardRun);
+        $request = (new UpdateTensorboardRunRequest())->setUpdateMask($updateMask)->setTensorboardRun($tensorboardRun);
         try {
             $gapicClient->updateTensorboardRun($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2469,7 +2741,10 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/UpdateTensorboardTimeSeries', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.TensorboardService/UpdateTensorboardTimeSeries',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualRequestObject->getTensorboardTimeSeries();
@@ -2488,12 +2763,15 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -2530,7 +2808,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse = new WriteTensorboardExperimentDataResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedTensorboardExperiment = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $formattedTensorboardExperiment = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
         $writeRunDataRequests = [];
         $request = (new WriteTensorboardExperimentDataRequest())
             ->setTensorboardExperiment($formattedTensorboardExperiment)
@@ -2541,7 +2824,10 @@ class TensorboardServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/WriteTensorboardExperimentData', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.TensorboardService/WriteTensorboardExperimentData',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getTensorboardExperiment();
         $this->assertProtobufEquals($formattedTensorboardExperiment, $actualValue);
         $actualValue = $actualRequestObject->getWriteRunDataRequests();
@@ -2560,15 +2846,23 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedTensorboardExperiment = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $formattedTensorboardExperiment = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
         $writeRunDataRequests = [];
         $request = (new WriteTensorboardExperimentDataRequest())
             ->setTensorboardExperiment($formattedTensorboardExperiment)
@@ -2598,7 +2892,13 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse = new WriteTensorboardRunDataResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedTensorboardRun = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+        $formattedTensorboardRun = $gapicClient->tensorboardRunName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]'
+        );
         $timeSeriesData = [];
         $request = (new WriteTensorboardRunDataRequest())
             ->setTensorboardRun($formattedTensorboardRun)
@@ -2628,15 +2928,24 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedTensorboardRun = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+        $formattedTensorboardRun = $gapicClient->tensorboardRunName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]',
+            '[RUN]'
+        );
         $timeSeriesData = [];
         $request = (new WriteTensorboardRunDataRequest())
             ->setTensorboardRun($formattedTensorboardRun)
@@ -2693,12 +3002,15 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -2725,9 +3037,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -2757,12 +3067,15 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -2795,8 +3108,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2820,17 +3132,19 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2862,9 +3176,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2890,19 +3202,20 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2930,9 +3243,7 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2958,19 +3269,20 @@ class TensorboardServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2996,11 +3308,14 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse = new BatchCreateTensorboardRunsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $formattedParent = $gapicClient->tensorboardExperimentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[TENSORBOARD]',
+            '[EXPERIMENT]'
+        );
         $requests = [];
-        $request = (new BatchCreateTensorboardRunsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateTensorboardRunsRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchCreateTensorboardRunsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

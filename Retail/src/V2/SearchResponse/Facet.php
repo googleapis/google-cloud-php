@@ -21,7 +21,7 @@ class Facet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * The facet values for this field.
      *
@@ -33,7 +33,7 @@ class Facet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool dynamic_facet = 3;</code>
      */
-    private $dynamic_facet = false;
+    protected $dynamic_facet = false;
 
     /**
      * Constructor.

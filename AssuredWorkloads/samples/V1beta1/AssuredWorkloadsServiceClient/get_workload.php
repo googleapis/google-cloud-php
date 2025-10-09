@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START assuredworkloads_v1beta1_generated_AssuredWorkloadsService_GetWorkload_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\Client\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\GetWorkloadRequest;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
 
 /**
@@ -42,10 +43,14 @@ function get_workload_sample(string $formattedName): void
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetWorkloadRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Workload $response */
-        $response = $assuredWorkloadsServiceClient->getWorkload($formattedName);
+        $response = $assuredWorkloadsServiceClient->getWorkload($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

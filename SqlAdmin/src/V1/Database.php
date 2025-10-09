@@ -20,52 +20,52 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The Cloud SQL charset value.
      *
      * Generated from protobuf field <code>string charset = 2;</code>
      */
-    private $charset = '';
+    protected $charset = '';
     /**
      * The Cloud SQL collation value.
      *
      * Generated from protobuf field <code>string collation = 3;</code>
      */
-    private $collation = '';
+    protected $collation = '';
     /**
      * This field is deprecated and will be removed from a future version of the
      * API.
      *
      * Generated from protobuf field <code>string etag = 4;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The name of the database in the Cloud SQL instance. This does not include
      * the project ID or instance name.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The name of the Cloud SQL instance. This does not include the project ID.
      *
      * Generated from protobuf field <code>string instance = 6;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * The URI of this resource.
      *
      * Generated from protobuf field <code>string self_link = 7;</code>
      */
-    private $self_link = '';
+    protected $self_link = '';
     /**
      * The project ID of the project containing the Cloud SQL database. The Google
      * apps domain is prefixed if applicable.
      *
      * Generated from protobuf field <code>string project = 8;</code>
      */
-    private $project = '';
+    protected $project = '';
     protected $database_details;
 
     /**

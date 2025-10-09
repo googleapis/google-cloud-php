@@ -27,25 +27,25 @@ class UsageStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float total_completions = 1;</code>
      */
-    private $total_completions = 0.0;
+    protected $total_completions = 0.0;
     /**
      * The number of failed attempts to use the underlying entry.
      *
      * Generated from protobuf field <code>float total_failures = 2;</code>
      */
-    private $total_failures = 0.0;
+    protected $total_failures = 0.0;
     /**
      * The number of cancelled attempts to use the underlying entry.
      *
      * Generated from protobuf field <code>float total_cancellations = 3;</code>
      */
-    private $total_cancellations = 0.0;
+    protected $total_cancellations = 0.0;
     /**
      * Total time spent only on successful uses, in milliseconds.
      *
      * Generated from protobuf field <code>float total_execution_time_for_completions_millis = 4;</code>
      */
-    private $total_execution_time_for_completions_millis = 0.0;
+    protected $total_execution_time_for_completions_millis = 0.0;
 
     /**
      * Constructor.

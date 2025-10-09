@@ -31,11 +31,13 @@ use Google\Analytics\Data\V1alpha\CreateAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateReportTaskRequest;
 use Google\Analytics\Data\V1alpha\GetAudienceListRequest;
+use Google\Analytics\Data\V1alpha\GetPropertyQuotasSnapshotRequest;
 use Google\Analytics\Data\V1alpha\GetRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\GetReportTaskRequest;
 use Google\Analytics\Data\V1alpha\ListAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\ListReportTasksRequest;
+use Google\Analytics\Data\V1alpha\PropertyQuotasSnapshot;
 use Google\Analytics\Data\V1alpha\QueryAudienceListRequest;
 use Google\Analytics\Data\V1alpha\QueryAudienceListResponse;
 use Google\Analytics\Data\V1alpha\QueryReportTaskRequest;
@@ -50,16 +52,18 @@ use Google\Analytics\Data\V1alpha\SheetExportAudienceListResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Google Analytics reporting data service.
@@ -74,19 +78,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createAudienceListAsync(CreateAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRecurringAudienceListAsync(CreateRecurringAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReportTaskAsync(CreateReportTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAudienceListAsync(GetAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecurringAudienceListAsync(GetRecurringAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportTaskAsync(GetReportTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAudienceListsAsync(ListAudienceListsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRecurringAudienceListsAsync(ListRecurringAudienceListsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportTasksAsync(ListReportTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryAudienceListAsync(QueryAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryReportTaskAsync(QueryReportTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runFunnelReportAsync(RunFunnelReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface sheetExportAudienceListAsync(SheetExportAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAudienceListAsync(CreateAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecurringAudienceList> createRecurringAudienceListAsync(CreateRecurringAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createReportTaskAsync(CreateReportTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AudienceList> getAudienceListAsync(GetAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PropertyQuotasSnapshot> getPropertyQuotasSnapshotAsync(GetPropertyQuotasSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecurringAudienceList> getRecurringAudienceListAsync(GetRecurringAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportTask> getReportTaskAsync(GetReportTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAudienceListsAsync(ListAudienceListsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRecurringAudienceListsAsync(ListRecurringAudienceListsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportTasksAsync(ListReportTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryAudienceListResponse> queryAudienceListAsync(QueryAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryReportTaskResponse> queryReportTaskAsync(QueryReportTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunFunnelReportResponse> runFunnelReportAsync(RunFunnelReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SheetExportAudienceListResponse> sheetExportAudienceListAsync(SheetExportAudienceListRequest $request, array $optionalArgs = [])
  */
 final class AlphaAnalyticsDataClient
 {
@@ -169,10 +174,29 @@ final class AlphaAnalyticsDataClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -207,6 +231,23 @@ final class AlphaAnalyticsDataClient
     public static function propertyName(string $property): string
     {
         return self::getPathTemplate('property')->render([
+            'property' => $property,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * property_quotas_snapshot resource.
+     *
+     * @param string $property
+     *
+     * @return string The formatted property_quotas_snapshot resource.
+     *
+     * @experimental
+     */
+    public static function propertyQuotasSnapshotName(string $property): string
+    {
+        return self::getPathTemplate('propertyQuotasSnapshot')->render([
             'property' => $property,
         ]);
     }
@@ -255,6 +296,7 @@ final class AlphaAnalyticsDataClient
      * Template: Pattern
      * - audienceList: properties/{property}/audienceLists/{audience_list}
      * - property: properties/{property}
+     * - propertyQuotasSnapshot: properties/{property}/propertyQuotasSnapshot
      * - recurringAudienceList: properties/{property}/recurringAudienceLists/{recurring_audience_list}
      * - reportTask: properties/{property}/reportTasks/{report_task}
      *
@@ -264,8 +306,8 @@ final class AlphaAnalyticsDataClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -273,7 +315,7 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -281,20 +323,29 @@ final class AlphaAnalyticsDataClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'analyticsdata.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Analytics\Data\V1alpha\AlphaAnalyticsDataClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new AlphaAnalyticsDataClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -328,13 +379,18 @@ final class AlphaAnalyticsDataClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -393,7 +449,7 @@ final class AlphaAnalyticsDataClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AudienceList>
      *
      * @throws ApiException Thrown if the API call fails.
      *
@@ -456,6 +512,12 @@ final class AlphaAnalyticsDataClient
      * asynchronous request to form a customized report of your Google Analytics
      * event data.
      *
+     * A report task will be retained and available for querying for 72 hours
+     * after it has been created.
+     *
+     * A report task created by one user can be listed and queried by all users
+     * who have access to the property.
+     *
      * The async variant is {@see AlphaAnalyticsDataClient::createReportTaskAsync()} .
      *
      * @example samples/V1alpha/AlphaAnalyticsDataClient/create_report_task.php
@@ -470,7 +532,7 @@ final class AlphaAnalyticsDataClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ReportTask>
      *
      * @throws ApiException Thrown if the API call fails.
      *
@@ -518,6 +580,36 @@ final class AlphaAnalyticsDataClient
     public function getAudienceList(GetAudienceListRequest $request, array $callOptions = []): AudienceList
     {
         return $this->startApiCall('GetAudienceList', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get all property quotas organized by quota category for a given property.
+     * This will charge 1 property quota from the category with the most quota.
+     *
+     * The async variant is
+     * {@see AlphaAnalyticsDataClient::getPropertyQuotasSnapshotAsync()} .
+     *
+     * @example samples/V1alpha/AlphaAnalyticsDataClient/get_property_quotas_snapshot.php
+     *
+     * @param GetPropertyQuotasSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PropertyQuotasSnapshot
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getPropertyQuotasSnapshot(GetPropertyQuotasSnapshotRequest $request, array $callOptions = []): PropertyQuotasSnapshot
+    {
+        return $this->startApiCall('GetPropertyQuotasSnapshot', $request, $callOptions)->wait();
     }
 
     /**

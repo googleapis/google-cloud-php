@@ -21,45 +21,45 @@ class SessionEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 1;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * The information about the user that created the session. It will be the
      * email address of the user.
      *
      * Generated from protobuf field <code>string user_id = 2;</code>
      */
-    private $user_id = '';
+    protected $user_id = '';
     /**
      * Unique identifier for the session.
      *
      * Generated from protobuf field <code>string session_id = 3;</code>
      */
-    private $session_id = '';
+    protected $session_id = '';
     /**
      * The type of the event.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.SessionEvent.EventType type = 4;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The status of the event.
      *
      * Generated from protobuf field <code>bool event_succeeded = 6;</code>
      */
-    private $event_succeeded = false;
+    protected $event_succeeded = false;
     /**
      * If the session is associated with an environment with fast startup enabled,
      * and was created before being assigned to a user.
      *
      * Generated from protobuf field <code>bool fast_startup_enabled = 7;</code>
      */
-    private $fast_startup_enabled = false;
+    protected $fast_startup_enabled = false;
     /**
      * The idle duration of a warm pooled session before it is assigned to user.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration unassigned_duration = 8;</code>
      */
-    private $unassigned_duration = null;
+    protected $unassigned_duration = null;
     protected $detail;
 
     /**

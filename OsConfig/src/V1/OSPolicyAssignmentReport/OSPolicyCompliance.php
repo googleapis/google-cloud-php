@@ -20,13 +20,13 @@ class OSPolicyCompliance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string os_policy_id = 1;</code>
      */
-    private $os_policy_id = '';
+    protected $os_policy_id = '';
     /**
      * The compliance state of the OS policy.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicyAssignmentReport.OSPolicyCompliance.ComplianceState compliance_state = 2;</code>
      */
-    private $compliance_state = 0;
+    protected $compliance_state = 0;
     /**
      * The reason for the OS policy to be in an unknown compliance state.
      * This field is always populated when `compliance_state` is `UNKNOWN`.
@@ -49,7 +49,7 @@ class OSPolicyCompliance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string compliance_state_reason = 3;</code>
      */
-    private $compliance_state_reason = '';
+    protected $compliance_state_reason = '';
     /**
      * Compliance data for each resource within the policy that is applied to
      * the VM.

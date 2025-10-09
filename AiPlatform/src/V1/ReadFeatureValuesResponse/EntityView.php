@@ -20,7 +20,7 @@ class EntityView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_id = 1;</code>
      */
-    private $entity_id = '';
+    protected $entity_id = '';
     /**
      * Each piece of data holds the k
      * requested values for one requested Feature. If no values

@@ -22,14 +22,14 @@ class SearchFoldersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A pagination token returned from a previous call to
      * `SearchFolders` that indicates from where search should continue.
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. Search criteria used to select the folders to return.
      * If no search criteria is specified then all accessible folders will be
@@ -60,7 +60,7 @@ class SearchFoldersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $query = '';
+    protected $query = '';
 
     /**
      * @param string $query Optional. Search criteria used to select the folders to return.

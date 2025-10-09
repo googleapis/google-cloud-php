@@ -25,19 +25,19 @@ class ImportAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * If set, only validate the request, but do not actually import the cluster.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Required. The name of the fleet membership resource to import.
      *
      * Generated from protobuf field <code>string fleet_membership = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $fleet_membership = '';
+    protected $fleet_membership = '';
     /**
      * Required. The platform version for the cluster (e.g. `1.19.0-gke.1000`).
      * You can list all supported versions on a given Google Cloud region by
@@ -46,20 +46,20 @@ class ImportAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string platform_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $platform_version = '';
+    protected $platform_version = '';
     /**
      * Required. The Kubernetes distribution of the underlying attached cluster.
-     * Supported values: ["eks", "aks"].
+     * Supported values: ["eks", "aks", "generic"].
      *
      * Generated from protobuf field <code>string distribution = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $distribution = '';
+    protected $distribution = '';
     /**
      * Optional. Proxy configuration for outbound HTTP(S) traffic.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedProxyConfig proxy_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $proxy_config = null;
+    protected $proxy_config = null;
 
     /**
      * @param string $parent          Required. The parent location where this
@@ -108,7 +108,7 @@ class ImportAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *           [GetAttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig].
      *     @type string $distribution
      *           Required. The Kubernetes distribution of the underlying attached cluster.
-     *           Supported values: ["eks", "aks"].
+     *           Supported values: ["eks", "aks", "generic"].
      *     @type \Google\Cloud\GkeMultiCloud\V1\AttachedProxyConfig $proxy_config
      *           Optional. Proxy configuration for outbound HTTP(S) traffic.
      * }
@@ -240,7 +240,7 @@ class ImportAttachedClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Kubernetes distribution of the underlying attached cluster.
-     * Supported values: ["eks", "aks"].
+     * Supported values: ["eks", "aks", "generic"].
      *
      * Generated from protobuf field <code>string distribution = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -252,7 +252,7 @@ class ImportAttachedClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Kubernetes distribution of the underlying attached cluster.
-     * Supported values: ["eks", "aks"].
+     * Supported values: ["eks", "aks", "generic"].
      *
      * Generated from protobuf field <code>string distribution = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

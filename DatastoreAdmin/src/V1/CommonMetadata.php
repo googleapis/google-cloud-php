@@ -20,20 +20,20 @@ class CommonMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The time the operation ended, either successfully or otherwise.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.OperationType operation_type = 3;</code>
      */
-    private $operation_type = 0;
+    protected $operation_type = 0;
     /**
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
@@ -46,7 +46,7 @@ class CommonMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.CommonMetadata.State state = 5;</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

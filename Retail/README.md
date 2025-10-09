@@ -31,20 +31,32 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Retail\V2\AttributesConfig;
+use Google\Cloud\Retail\V2\Client\CatalogServiceClient;
+use Google\Cloud\Retail\V2\GetAttributesConfigRequest;
 
-use Google\Cloud\Retail\V2\CatalogServiceClient;
+// Create a client.
+$catalogServiceClient = new CatalogServiceClient();
 
-$client = new CatalogServiceClient();
+// Prepare the request message.
+$request = (new GetAttributesConfigRequest())
+    ->setName($formattedName);
 
-$catalogs = $client->listCatalogs(
-    CatalogServiceClient::locationName('[MY_PROJECT_ID]', 'global')
-);
-
-foreach ($catalogs as $catalog) {
-    print 'Catalog: ' . $catalog->getName() . PHP_EOL;
+// Call the API and handle any network failures.
+try {
+    /** @var AttributesConfig $response */
+    $response = $catalogServiceClient->getAttributesConfig($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

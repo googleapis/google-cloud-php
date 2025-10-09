@@ -22,7 +22,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * Required. The language of this conversational query. See [Language
      * Support](https://cloud.google.com/dialogflow/docs/reference/language)
@@ -31,7 +31,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

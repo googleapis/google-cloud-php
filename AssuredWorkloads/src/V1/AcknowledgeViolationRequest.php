@@ -23,13 +23,13 @@ class AcknowledgeViolationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Business justification explaining the need for violation acknowledgement
      *
      * Generated from protobuf field <code>string comment = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $comment = '';
+    protected $comment = '';
     /**
      * Optional. This field is deprecated and will be removed in future version of the API.
      * Name of the OrgPolicy which was modified with non-compliant change and
@@ -142,7 +142,9 @@ class AcknowledgeViolationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNonCompliantOrgPolicy()
     {
-        @trigger_error('non_compliant_org_policy is deprecated.', E_USER_DEPRECATED);
+        if ($this->non_compliant_org_policy !== '') {
+            @trigger_error('non_compliant_org_policy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->non_compliant_org_policy;
     }
 

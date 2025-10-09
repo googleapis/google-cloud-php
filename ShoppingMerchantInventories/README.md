@@ -34,11 +34,38 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+use Google\ApiCore\ApiException;
+use Google\Shopping\Merchant\Inventories\V1\Client\LocalInventoryServiceClient;
+use Google\Shopping\Merchant\Inventories\V1\DeleteLocalInventoryRequest;
+
+// Create a client.
+$localInventoryServiceClient = new LocalInventoryServiceClient();
+
+// Prepare the request message.
+$request = (new DeleteLocalInventoryRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    $localInventoryServiceClient->deleteLocalInventory($request);
+    printf('Call completed successfully.' . PHP_EOL);
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-shopping-merchant-inventories/tree/main/samples) for a canonical list of samples.
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

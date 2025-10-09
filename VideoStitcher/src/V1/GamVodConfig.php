@@ -20,7 +20,7 @@ class GamVodConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network_code = '';
+    protected $network_code = '';
 
     /**
      * Constructor.

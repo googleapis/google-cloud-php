@@ -20,7 +20,7 @@ class RegisterParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string domain_name = 1;</code>
      */
-    private $domain_name = '';
+    protected $domain_name = '';
     /**
      * Indicates whether the domain is available for registration. This value is
      * accurate when obtained by calling `RetrieveRegisterParameters`, but is
@@ -28,7 +28,7 @@ class RegisterParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.RegisterParameters.Availability availability = 2;</code>
      */
-    private $availability = 0;
+    protected $availability = 0;
     /**
      * Contact privacy options that the domain supports.
      *
@@ -46,7 +46,7 @@ class RegisterParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Money yearly_price = 5;</code>
      */
-    private $yearly_price = null;
+    protected $yearly_price = null;
 
     /**
      * Constructor.

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -64,6 +65,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  */
 class Transaction implements TransactionalReadInterface
 {
+    use MutationTrait;
     use TransactionalReadTrait;
 
     /**
@@ -81,6 +83,8 @@ class Transaction implements TransactionalReadInterface
      */
     private $isRetry = false;
 
+    private ValueMapper $mapper;
+
     /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
@@ -94,7 +98,10 @@ class Transaction implements TransactionalReadInterface
      *
      *     @type array $begin The begin Transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type int $isolationLevel level of Isolation for this transaction instance
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
+     * @param ValueMapper $mapper Consumed internally for properly map mutation data.
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
      */
     public function __construct(
@@ -103,7 +110,8 @@ class Transaction implements TransactionalReadInterface
         $transactionId = null,
         $isRetry = false,
         $tag = null,
-        $options = []
+        $options = [],
+        $mapper = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
@@ -116,13 +124,16 @@ class Transaction implements TransactionalReadInterface
 
         if ($this->type == self::TYPE_SINGLE_USE && isset($tag)) {
             throw new \InvalidArgumentException(
-                "Cannot set a transaction tag on a single-use transaction."
+                'Cannot set a transaction tag on a single-use transaction.'
             );
         }
         $this->tag = $tag;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
         $this->options = $options;
+        if (!is_null($mapper)) {
+            $this->mapper = $mapper;
+        }
     }
 
     /**
@@ -141,213 +152,6 @@ class Transaction implements TransactionalReadInterface
     public function getCommitStats()
     {
         return $this->commitStats;
-    }
-
-    /**
-     * Enqueue an insert mutation.
-     *
-     * Example:
-     * ```
-     * $transaction->insert('Posts', [
-     *     'ID' => 10,
-     *     'title' => 'My New Post',
-     *     'content' => 'Hello World'
-     * ]);
-     * ```
-     *
-     * @param string $table The table to insert into.
-     * @param array $data The data to insert.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function insert($table, array $data)
-    {
-        return $this->insertBatch($table, [$data]);
-    }
-
-    /**
-     * Enqueue one or more insert mutations.
-     *
-     * Example:
-     * ```
-     * $transaction->insertBatch('Posts', [
-     *     [
-     *         'ID' => 10,
-     *         'title' => 'My New Post',
-     *         'content' => 'Hello World'
-     *     ]
-     * ]);
-     * ```
-     *
-     * @param string $table The table to insert into.
-     * @param array $dataSet The data to insert.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function insertBatch($table, array $dataSet)
-    {
-        $this->enqueue(Operation::OP_INSERT, $table, $dataSet);
-
-        return $this;
-    }
-
-    /**
-     * Enqueue an update mutation.
-     *
-     * Example:
-     * ```
-     * $transaction->update('Posts', [
-     *     'ID' => 10,
-     *     'title' => 'My New Post [Updated!]',
-     *     'content' => 'Modified Content'
-     * ]);
-     * ```
-     *
-     * @param string $table The table to update.
-     * @param array $data The data to update.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function update($table, array $data)
-    {
-        return $this->updateBatch($table, [$data]);
-    }
-
-    /**
-     * Enqueue one or more update mutations.
-     *
-     * Example:
-     * ```
-     * $transaction->updateBatch('Posts', [
-     *     [
-     *         'ID' => 10,
-     *         'title' => 'My New Post [Updated!]',
-     *         'content' => 'Modified Content'
-     *     ]
-     * ]);
-     * ```
-     *
-     * @param string $table The table to update.
-     * @param array $dataSet The data to update.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function updateBatch($table, array $dataSet)
-    {
-        $this->enqueue(Operation::OP_UPDATE, $table, $dataSet);
-
-        return $this;
-    }
-
-    /**
-     * Enqueue an insert or update mutation.
-     *
-     * Example:
-     * ```
-     * $transaction->insertOrUpdate('Posts', [
-     *     'ID' => 10,
-     *     'title' => 'My New Post',
-     *     'content' => 'Hello World'
-     * ]);
-     * ```
-     *
-     * @param string $table The table to insert into or update.
-     * @param array $data The data to insert or update.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function insertOrUpdate($table, array $data)
-    {
-        return $this->insertOrUpdateBatch($table, [$data]);
-    }
-
-    /**
-     * Enqueue one or more insert or update mutations.
-     *
-     * Example:
-     * ```
-     * $transaction->insertOrUpdateBatch('Posts', [
-     *     [
-     *         'ID' => 10,
-     *         'title' => 'My New Post',
-     *         'content' => 'Hello World'
-     *     ]
-     * ]);
-     * ```
-     *
-     * @param string $table The table to insert into or update.
-     * @param array $dataSet The data to insert or update.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function insertOrUpdateBatch($table, array $dataSet)
-    {
-        $this->enqueue(Operation::OP_INSERT_OR_UPDATE, $table, $dataSet);
-
-        return $this;
-    }
-
-    /**
-     * Enqueue an replace mutation.
-     *
-     * Example:
-     * ```
-     * $transaction->replace('Posts', [
-     *     'ID' => 10,
-     *     'title' => 'My New Post [Replaced]',
-     *     'content' => 'Hello Moon'
-     * ]);
-     * ```
-     *
-     * @param string $table The table to replace into.
-     * @param array $data The data to replace.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function replace($table, array $data)
-    {
-        return $this->replaceBatch($table, [$data]);
-    }
-
-    /**
-     * Enqueue one or more replace mutations.
-     *
-     * Example:
-     * ```
-     * $transaction->replaceBatch('Posts', [
-     *     [
-     *         'ID' => 10,
-     *         'title' => 'My New Post [Replaced]',
-     *         'content' => 'Hello Moon'
-     *     ]
-     * ]);
-     * ```
-     *
-     * @param string $table The table to replace into.
-     * @param array $dataSet The data to replace.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function replaceBatch($table, array $dataSet)
-    {
-        $this->enqueue(Operation::OP_REPLACE, $table, $dataSet);
-
-        return $this;
-    }
-
-    /**
-     * Enqueue an delete mutation.
-     *
-     * Example:
-     * ```
-     * $keySet = new KeySet([
-     *     'keys' => [10]
-     * ]);
-     *
-     * $transaction->delete('Posts', $keySet);
-     * ```
-     *
-     * @param string $table The table to mutate.
-     * @param KeySet $keySet The KeySet to identify rows to delete.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function delete($table, KeySet $keySet)
-    {
-        $this->enqueue(Operation::OP_DELETE, $table, [$keySet]);
-
-        return $this;
     }
 
     /**
@@ -427,17 +231,41 @@ class Transaction implements TransactionalReadInterface
      *           parameter types. Likewise, for structs, use
      *           {@see \Google\Cloud\Spanner\StructType}.
      *     @type array $requestOptions Request options.
-     *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
-     *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
-     *         been set when creating the transaction.
+     *           For more information on available options, please see
+     *           [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *           Please note, if using the `priority` setting you may utilize the constants available
+     *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *           Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *           been set when creating the transaction.
+     *     @type array $transaction a set of Options for a transaction selector.
+     *           For more details on these options please
+     *           {@see https://cloud.google.com/spanner/docs/reference/rest/v1/TransactionSelector}
      * }
      * @return int The number of rows modified.
+     * @throws ValidationException
      */
     public function executeUpdate($sql, array $options = [])
     {
+        if (isset($options['transaction']['begin']['excludeTxnFromChangeStreams'])) {
+            throw new ValidationException(
+                'The excludeTxnFromChangeStreams option cannot be set for individual DML requests.'
+                . ' This option should be set at the transaction level.'
+            );
+        }
+
+        if (isset($options['transaction']['begin']['isolationLevel']) && empty($this->transactionId)) {
+            if (isset($options['transaction']['begin']['readOnly'])) {
+                // isolationLevel can only be used with read/write transactions
+                throw new ValidationException(
+                    'The isolation level can only be applied to read/write transactions.' .
+                    'Single use transactions are not read/write',
+                );
+            }
+
+            // We are planning to create a new transaction, switch to pre allocated.
+            $this->type = self::TYPE_PRE_ALLOCATED;
+        }
+
         $options = $this->buildUpdateOptions($options);
         return $this->operation
             ->executeUpdate($this->session, $this, $sql, $options);
@@ -637,7 +465,7 @@ class Transaction implements TransactionalReadInterface
             'requestOptions' => []
         ];
 
-        $options['mutations'] += $this->mutations;
+        $options['mutations'] += $this->getMutations();
 
         $options['transactionId'] = $this->transactionId;
 
@@ -700,25 +528,6 @@ class Transaction implements TransactionalReadInterface
     }
 
     /**
-     * Format, validate and enqueue mutations in the transaction.
-     *
-     * @param string $op The operation type.
-     * @param string $table The table name
-     * @param array $dataSet the mutations to enqueue
-     * @return void
-     */
-    private function enqueue($op, $table, array $dataSet)
-    {
-        foreach ($dataSet as $data) {
-            if ($op === Operation::OP_DELETE) {
-                $this->mutations[] = $this->operation->deleteMutation($table, $data);
-            } else {
-                $this->mutations[] = $this->operation->mutation($op, $table, $data);
-            }
-        }
-    }
-
-    /**
      * Build the update options.
      *
      * @param array $options The update options
@@ -727,6 +536,11 @@ class Transaction implements TransactionalReadInterface
     private function buildUpdateOptions(array $options): array
     {
         unset($options['requestOptions']['transactionTag']);
+
+        if (!empty($options['transaction']['begin'])) {
+            $options['begin'] = $this->pluck('transaction', $options)['begin'];
+        }
+
         if (isset($this->tag)) {
             $options['requestOptions']['transactionTag'] = $this->tag;
         }

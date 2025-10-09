@@ -16,13 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class Interconnect extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Enable or disable the application awareness feature on this Cloud Interconnect.
+     *
+     * Generated from protobuf field <code>optional bool aai_enabled = 388780363;</code>
+     */
+    protected $aai_enabled = null;
+    /**
      * Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
      *
      * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
      */
-    private $admin_enabled = null;
+    protected $admin_enabled = null;
     /**
-     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
+     * Configuration information for application awareness on this Cloud Interconnect.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectApplicationAwareInterconnect application_aware_interconnect = 429095966;</code>
+     */
+    protected $application_aware_interconnect = null;
+    /**
+     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - IF_MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
@@ -39,19 +51,19 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.
      *
      * Generated from protobuf field <code>optional string customer_name = 3665484;</code>
      */
-    private $customer_name = null;
+    protected $customer_name = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] A list of outages expected for this Interconnect.
      *
@@ -63,19 +75,19 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string google_ip_address = 443105954;</code>
      */
-    private $google_ip_address = null;
+    protected $google_ip_address = null;
     /**
      * [Output Only] Google reference ID to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
      *
      * Generated from protobuf field <code>optional string google_reference_id = 534944469;</code>
      */
-    private $google_reference_id = null;
+    protected $google_reference_id = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
      *
@@ -83,24 +95,30 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $interconnect_attachments;
     /**
+     * [Output Only] URLs of InterconnectGroups that include this Interconnect. Order is arbitrary and items are unique.
+     *
+     * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
+     */
+    private $interconnect_groups;
+    /**
      * Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      * Check the InterconnectType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interconnect_type = 515165259;</code>
      */
-    private $interconnect_type = null;
+    protected $interconnect_type = null;
     /**
      * [Output Only] Type of the resource. Always compute#interconnect for interconnects.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * A fingerprint for the labels being applied to this Interconnect, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an Interconnect.
      *
      * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      */
-    private $label_fingerprint = null;
+    protected $label_fingerprint = null;
     /**
      * Labels for this resource. These can only be added or modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
      *
@@ -108,69 +126,69 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      * Check the LinkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string link_type = 523207775;</code>
      */
-    private $link_type = null;
+    protected $link_type = null;
     /**
      * URL of the InterconnectLocation object that represents where this connection is to be provisioned.
      *
      * Generated from protobuf field <code>optional string location = 290430901;</code>
      */
-    private $location = null;
+    protected $location = null;
     /**
      * Configuration that enables Media Access Control security (MACsec) on the Cloud Interconnect connection between Google and your on-premises router.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectMacsec macsec = 528867490;</code>
      */
-    private $macsec = null;
+    protected $macsec = null;
     /**
      * Enable or disable MACsec on this Interconnect connection. MACsec enablement fails if the MACsec object is not specified.
      *
      * Generated from protobuf field <code>optional bool macsec_enabled = 194203812;</code>
      */
-    private $macsec_enabled = null;
+    protected $macsec_enabled = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Cloud Monitoring logs alerting and Cloud Notifications. This field is required for users who sign up for Cloud Interconnect using workforce identity federation.
      *
      * Generated from protobuf field <code>optional string noc_contact_email = 14072832;</code>
      */
-    private $noc_contact_email = null;
+    protected $noc_contact_email = null;
     /**
      * [Output Only] The current status of this Interconnect's functionality, which can take one of the following values: - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to use. Attachments may be provisioned on this Interconnect. - OS_UNPROVISIONED: An Interconnect that has not completed turnup. No attachments may be provisioned on this Interconnect. - OS_UNDER_MAINTENANCE: An Interconnect that is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
      * Check the OperationalStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string operational_status = 201070847;</code>
      */
-    private $operational_status = null;
+    protected $operational_status = null;
     /**
      * [Output Only] IP address configured on the customer side of the Interconnect link. The customer should configure this IP address during turnup when prompted by Google NOC. This can be used only for ping tests.
      *
      * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
      */
-    private $peer_ip_address = null;
+    protected $peer_ip_address = null;
     /**
      * [Output Only] Number of links actually provisioned in this interconnect.
      *
      * Generated from protobuf field <code>optional int32 provisioned_link_count = 410888565;</code>
      */
-    private $provisioned_link_count = null;
+    protected $provisioned_link_count = null;
     /**
      * Indicates that this is a Cross-Cloud Interconnect. This field specifies the location outside of Google's network that the interconnect is connected to.
      *
      * Generated from protobuf field <code>optional string remote_location = 324388750;</code>
      */
-    private $remote_location = null;
+    protected $remote_location = null;
     /**
-     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - IF_MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
@@ -181,26 +199,26 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 requested_link_count = 45051387;</code>
      */
-    private $requested_link_count = null;
+    protected $requested_link_count = null;
     /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
-    private $satisfies_pzs = null;
+    protected $satisfies_pzs = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] The current state of Interconnect functionality, which can take one of the following values: - ACTIVE: The Interconnect is valid, turned up and ready to use. Attachments may be provisioned on this Interconnect. - UNPROVISIONED: The Interconnect has not completed turnup. No attachments may be provisioned on this Interconnect. - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
 
     /**
      * Constructor.
@@ -208,10 +226,14 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $aai_enabled
+     *           Enable or disable the application awareness feature on this Cloud Interconnect.
      *     @type bool $admin_enabled
      *           Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
+     *     @type \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnect $application_aware_interconnect
+     *           Configuration information for application awareness on this Cloud Interconnect.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_features
-     *           [Output only] List of features available for this Interconnect connection, which can take one of the following values: - MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
+     *           [Output only] List of features available for this Interconnect connection, which can take one of the following values: - IF_MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
      *           Check the AvailableFeatures enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectCircuitInfo>|\Google\Protobuf\Internal\RepeatedField $circuit_infos
      *           [Output Only] A list of CircuitInfo objects, that describe the individual circuits in this LAG.
@@ -231,6 +253,8 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnect_attachments
      *           [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnect_groups
+     *           [Output Only] URLs of InterconnectGroups that include this Interconnect. Order is arbitrary and items are unique.
      *     @type string $interconnect_type
      *           Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      *           Check the InterconnectType enum for the list of possible values.
@@ -241,7 +265,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels for this resource. These can only be added or modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
      *     @type string $link_type
-     *           Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     *           Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      *           Check the LinkType enum for the list of possible values.
      *     @type string $location
      *           URL of the InterconnectLocation object that represents where this connection is to be provisioned.
@@ -263,7 +287,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type string $remote_location
      *           Indicates that this is a Cross-Cloud Interconnect. This field specifies the location outside of Google's network that the interconnect is connected to.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $requested_features
-     *           Optional. List of features requested for this Interconnect connection, which can take one of the following values: - MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     *           Optional. List of features requested for this Interconnect connection, which can take one of the following values: - IF_MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
      *           Check the RequestedFeatures enum for the list of possible values.
      *     @type int $requested_link_count
      *           Target number of physical links in the link bundle, as requested by the customer.
@@ -279,6 +303,42 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Enable or disable the application awareness feature on this Cloud Interconnect.
+     *
+     * Generated from protobuf field <code>optional bool aai_enabled = 388780363;</code>
+     * @return bool
+     */
+    public function getAaiEnabled()
+    {
+        return isset($this->aai_enabled) ? $this->aai_enabled : false;
+    }
+
+    public function hasAaiEnabled()
+    {
+        return isset($this->aai_enabled);
+    }
+
+    public function clearAaiEnabled()
+    {
+        unset($this->aai_enabled);
+    }
+
+    /**
+     * Enable or disable the application awareness feature on this Cloud Interconnect.
+     *
+     * Generated from protobuf field <code>optional bool aai_enabled = 388780363;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAaiEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->aai_enabled = $var;
+
+        return $this;
     }
 
     /**
@@ -318,7 +378,43 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
+     * Configuration information for application awareness on this Cloud Interconnect.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectApplicationAwareInterconnect application_aware_interconnect = 429095966;</code>
+     * @return \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnect|null
+     */
+    public function getApplicationAwareInterconnect()
+    {
+        return $this->application_aware_interconnect;
+    }
+
+    public function hasApplicationAwareInterconnect()
+    {
+        return isset($this->application_aware_interconnect);
+    }
+
+    public function clearApplicationAwareInterconnect()
+    {
+        unset($this->application_aware_interconnect);
+    }
+
+    /**
+     * Configuration information for application awareness on this Cloud Interconnect.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectApplicationAwareInterconnect application_aware_interconnect = 429095966;</code>
+     * @param \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnect $var
+     * @return $this
+     */
+    public function setApplicationAwareInterconnect($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnect::class);
+        $this->application_aware_interconnect = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - IF_MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
@@ -330,7 +426,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
+     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - IF_MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
@@ -640,6 +736,32 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [Output Only] URLs of InterconnectGroups that include this Interconnect. Order is arbitrary and items are unique.
+     *
+     * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getInterconnectGroups()
+    {
+        return $this->interconnect_groups;
+    }
+
+    /**
+     * [Output Only] URLs of InterconnectGroups that include this Interconnect. Order is arbitrary and items are unique.
+     *
+     * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setInterconnectGroups($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->interconnect_groups = $arr;
+
+        return $this;
+    }
+
+    /**
      * Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      * Check the InterconnectType enum for the list of possible values.
      *
@@ -776,7 +898,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      * Check the LinkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string link_type = 523207775;</code>
@@ -798,7 +920,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      * Check the LinkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string link_type = 523207775;</code>
@@ -1140,7 +1262,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - IF_MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
@@ -1152,7 +1274,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - IF_MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>

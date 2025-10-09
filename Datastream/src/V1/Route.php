@@ -17,23 +17,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class Route extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The create time of the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The update time of the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Labels.
      *
@@ -45,19 +45,19 @@ class Route extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. Destination address for connection
      *
      * Generated from protobuf field <code>string destination_address = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination_address = '';
+    protected $destination_address = '';
     /**
      * Destination port for connection
      *
      * Generated from protobuf field <code>int32 destination_port = 7;</code>
      */
-    private $destination_port = 0;
+    protected $destination_port = 0;
 
     /**
      * Constructor.
@@ -66,7 +66,7 @@ class Route extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource's name.
+     *           Output only. Identifier. The resource's name.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The create time of the resource.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -87,9 +87,9 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -98,9 +98,9 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

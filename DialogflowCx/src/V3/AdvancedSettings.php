@@ -34,6 +34,17 @@ class AdvancedSettings extends \Google\Protobuf\Internal\Message
      */
     protected $audio_export_gcs_destination = null;
     /**
+     * Settings for speech to text detection.
+     * Exposed at the following levels:
+     * - Agent level
+     * - Flow level
+     * - Page level
+     * - Parameter level
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.AdvancedSettings.SpeechSettings speech_settings = 3;</code>
+     */
+    protected $speech_settings = null;
+    /**
      * Settings for DTMF.
      * Exposed at the following levels:
      * - Agent level
@@ -67,6 +78,13 @@ class AdvancedSettings extends \Google\Protobuf\Internal\Message
      *           Exposed at the following levels:
      *           - Agent level
      *           - Flow level
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\AdvancedSettings\SpeechSettings $speech_settings
+     *           Settings for speech to text detection.
+     *           Exposed at the following levels:
+     *           - Agent level
+     *           - Flow level
+     *           - Page level
+     *           - Parameter level
      *     @type \Google\Cloud\Dialogflow\Cx\V3\AdvancedSettings\DtmfSettings $dtmf_settings
      *           Settings for DTMF.
      *           Exposed at the following levels:
@@ -127,6 +145,52 @@ class AdvancedSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\GcsDestination::class);
         $this->audio_export_gcs_destination = $var;
+
+        return $this;
+    }
+
+    /**
+     * Settings for speech to text detection.
+     * Exposed at the following levels:
+     * - Agent level
+     * - Flow level
+     * - Page level
+     * - Parameter level
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.AdvancedSettings.SpeechSettings speech_settings = 3;</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\AdvancedSettings\SpeechSettings|null
+     */
+    public function getSpeechSettings()
+    {
+        return $this->speech_settings;
+    }
+
+    public function hasSpeechSettings()
+    {
+        return isset($this->speech_settings);
+    }
+
+    public function clearSpeechSettings()
+    {
+        unset($this->speech_settings);
+    }
+
+    /**
+     * Settings for speech to text detection.
+     * Exposed at the following levels:
+     * - Agent level
+     * - Flow level
+     * - Page level
+     * - Parameter level
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.AdvancedSettings.SpeechSettings speech_settings = 3;</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\AdvancedSettings\SpeechSettings $var
+     * @return $this
+     */
+    public function setSpeechSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\AdvancedSettings\SpeechSettings::class);
+        $this->speech_settings = $var;
 
         return $this;
     }

@@ -23,13 +23,13 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The desired output location.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExportDataConfig export_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $export_config = null;
+    protected $export_config = null;
 
     /**
      * @param string                                       $name         Required. The name of the Dataset resource.

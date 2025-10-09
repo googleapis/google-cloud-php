@@ -66,6 +66,4 @@ class ReconciliationState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReconciliationState::class, \Google\Cloud\DataCatalog\V1\ReconcileTagsMetadata_ReconciliationState::class);
 

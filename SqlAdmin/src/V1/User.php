@@ -20,27 +20,27 @@ class User extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The password for the user.
      *
      * Generated from protobuf field <code>string password = 2;</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * This field is deprecated and will be removed from a future version of the
      * API.
      *
      * Generated from protobuf field <code>string etag = 3;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The name of the user in the Cloud SQL instance. Can be omitted for
      * `update` because it is already specified in the URL.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The host from which the user can connect. For `insert`
      * operations, host defaults to an empty string. For `update`
@@ -50,7 +50,7 @@ class User extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $host = '';
+    protected $host = '';
     /**
      * The name of the Cloud SQL instance. This does not include the project ID.
      * Can be omitted for `update` because it is already specified on the
@@ -58,7 +58,7 @@ class User extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 6;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * The project ID of the project containing the Cloud SQL database. The Google
      * apps domain is prefixed if applicable. Can be omitted for `update` because
@@ -66,26 +66,26 @@ class User extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 7;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The user type. It determines the method to authenticate the user during
      * login. The default is the database's built-in user type.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.User.SqlUserType type = 8;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * User level password validation policy.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.UserPasswordValidationPolicy password_policy = 12;</code>
      */
-    private $password_policy = null;
+    protected $password_policy = null;
     /**
      * Dual password status for the user.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.User.DualPasswordType dual_password_type = 13;</code>
      */
-    private $dual_password_type = null;
+    protected $dual_password_type = null;
     protected $user_details;
 
     /**

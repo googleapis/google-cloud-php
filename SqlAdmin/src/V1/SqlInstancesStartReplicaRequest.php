@@ -20,13 +20,13 @@ class SqlInstancesStartReplicaRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * ID of the project that contains the read replica.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * Constructor.

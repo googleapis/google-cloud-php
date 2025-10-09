@@ -20,13 +20,13 @@ class PerUserUsageData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string username = 1;</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Number of times the user has read data within the Tensorboard.
      *
      * Generated from protobuf field <code>int64 view_count = 2;</code>
      */
-    private $view_count = 0;
+    protected $view_count = 0;
 
     /**
      * Constructor.

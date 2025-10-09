@@ -20,19 +20,19 @@ class GamLiveConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network_code = '';
+    protected $network_code = '';
     /**
      * Output only. The asset key identifier generated for the live config.
      *
      * Generated from protobuf field <code>string asset_key = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $asset_key = '';
+    protected $asset_key = '';
     /**
      * Output only. The custom asset key identifier generated for the live config.
      *
      * Generated from protobuf field <code>string custom_asset_key = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $custom_asset_key = '';
+    protected $custom_asset_key = '';
 
     /**
      * Constructor.

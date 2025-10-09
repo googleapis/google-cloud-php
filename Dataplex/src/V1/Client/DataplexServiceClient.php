@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ namespace Google\Cloud\Dataplex\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -83,8 +83,10 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Dataplex service provides data lakes as a service. The primary resources
@@ -101,44 +103,44 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface cancelJobAsync(CancelJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAssetAsync(CreateAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEnvironmentAsync(CreateEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createLakeAsync(CreateLakeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createZoneAsync(CreateZoneRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAssetAsync(DeleteAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEnvironmentAsync(DeleteEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteLakeAsync(DeleteLakeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTaskAsync(DeleteTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteZoneAsync(DeleteZoneRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAssetAsync(GetAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEnvironmentAsync(GetEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJobAsync(GetJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLakeAsync(GetLakeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getZoneAsync(GetZoneRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAssetActionsAsync(ListAssetActionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAssetsAsync(ListAssetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEnvironmentsAsync(ListEnvironmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLakeActionsAsync(ListLakeActionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLakesAsync(ListLakesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSessionsAsync(ListSessionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listZoneActionsAsync(ListZoneActionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listZonesAsync(ListZonesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runTaskAsync(RunTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAssetAsync(UpdateAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEnvironmentAsync(UpdateEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateLakeAsync(UpdateLakeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTaskAsync(UpdateTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateZoneAsync(UpdateZoneRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelJobAsync(CancelJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAssetAsync(CreateAssetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEnvironmentAsync(CreateEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createLakeAsync(CreateLakeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createZoneAsync(CreateZoneRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAssetAsync(DeleteAssetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteEnvironmentAsync(DeleteEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteLakeAsync(DeleteLakeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTaskAsync(DeleteTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteZoneAsync(DeleteZoneRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Asset> getAssetAsync(GetAssetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Environment> getEnvironmentAsync(GetEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> getJobAsync(GetJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Lake> getLakeAsync(GetLakeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Zone> getZoneAsync(GetZoneRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAssetActionsAsync(ListAssetActionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAssetsAsync(ListAssetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEnvironmentsAsync(ListEnvironmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLakeActionsAsync(ListLakeActionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLakesAsync(ListLakesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSessionsAsync(ListSessionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listZoneActionsAsync(ListZoneActionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listZonesAsync(ListZonesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunTaskResponse> runTaskAsync(RunTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAssetAsync(UpdateAssetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateEnvironmentAsync(UpdateEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateLakeAsync(UpdateLakeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTaskAsync(UpdateTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateZoneAsync(UpdateZoneRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class DataplexServiceClient
 {
@@ -213,10 +215,29 @@ final class DataplexServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -382,14 +403,14 @@ final class DataplexServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -397,20 +418,29 @@ final class DataplexServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dataplex.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Dataplex\V1\DataplexServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new DataplexServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -444,11 +474,16 @@ final class DataplexServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -507,7 +542,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Asset>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -533,7 +568,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Environment>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -559,7 +594,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Lake>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -585,7 +620,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Task>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -611,7 +646,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Zone>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -638,7 +673,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -665,7 +700,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -692,7 +727,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -718,7 +753,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -745,7 +780,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1213,7 +1248,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Asset>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1239,7 +1274,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Environment>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1265,7 +1300,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Lake>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1291,7 +1326,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Task>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1317,7 +1352,7 @@ final class DataplexServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Zone>
      *
      * @throws ApiException Thrown if the API call fails.
      */

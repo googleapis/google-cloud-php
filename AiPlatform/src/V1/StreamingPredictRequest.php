@@ -26,7 +26,7 @@ class StreamingPredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * The prediction input.
      *
@@ -38,7 +38,7 @@ class StreamingPredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tensor parameters = 3;</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class SeedJobDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string connection_profile = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $connection_profile = '';
+    protected $connection_profile = '';
 
     /**
      * Constructor.

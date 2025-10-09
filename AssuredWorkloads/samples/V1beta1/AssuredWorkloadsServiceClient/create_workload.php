@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START assuredworkloads_v1beta1_generated_AssuredWorkloadsService_CreateWorkload_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\Client\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\CreateWorkloadRequest;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload\ComplianceRegime;
 use Google\Rpc\Status;
@@ -52,15 +53,18 @@ function create_workload_sample(
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $workload = (new Workload())
         ->setDisplayName($workloadDisplayName)
         ->setComplianceRegime($workloadComplianceRegime);
+    $request = (new CreateWorkloadRequest())
+        ->setParent($formattedParent)
+        ->setWorkload($workload);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $assuredWorkloadsServiceClient->createWorkload($formattedParent, $workload);
+        $response = $assuredWorkloadsServiceClient->createWorkload($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

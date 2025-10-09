@@ -21,7 +21,7 @@ class DemoteMasterConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * MySQL specific configuration when replicating from a MySQL on-premises
      * primary instance. Replication configuration information such as the
@@ -32,7 +32,7 @@ class DemoteMasterConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DemoteMasterMySqlReplicaConfiguration mysql_replica_configuration = 2;</code>
      */
-    private $mysql_replica_configuration = null;
+    protected $mysql_replica_configuration = null;
 
     /**
      * Constructor.

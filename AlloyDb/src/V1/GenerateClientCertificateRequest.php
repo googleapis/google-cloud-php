@@ -25,13 +25,13 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
-     * request ID so that if you must retry your request, the server will know to
-     * ignore the request if it has already been completed. The server will
-     * guarantee that for at least 60 minutes after the first request.
+     * request ID so that if you must retry your request, the server ignores the
+     * request if it has already been completed. The server guarantees that for at
+     * least 60 minutes since the first request.
      * For example, consider a situation where you make an initial request and
      * the request times out. If you make the request again with the same request
-     * ID, the server can check if original operation with the same request ID
-     * was received, and if so, will ignore the second request. This prevents
+     * ID, the server can check if the original operation with the same request ID
+     * was received, and if so, ignores the second request. This prevents
      * clients from accidentally creating duplicate commitments.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
@@ -56,9 +56,9 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
      */
     protected $public_key = '';
     /**
-     * Optional. An optional hint to the endpoint to generate a client
-     * ceritificate that can be used by AlloyDB connectors to exchange additional
-     * metadata with the server after TLS handshake.
+     * Optional. An optional hint to the endpoint to generate a client certificate
+     * that can be used by AlloyDB connectors to exchange additional metadata with
+     * the server after TLS handshake.
      *
      * Generated from protobuf field <code>bool use_metadata_exchange = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -90,13 +90,13 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
      *            * projects/{project}/locations/{location}/clusters/{cluster}
      *     @type string $request_id
      *           Optional. An optional request ID to identify requests. Specify a unique
-     *           request ID so that if you must retry your request, the server will know to
-     *           ignore the request if it has already been completed. The server will
-     *           guarantee that for at least 60 minutes after the first request.
+     *           request ID so that if you must retry your request, the server ignores the
+     *           request if it has already been completed. The server guarantees that for at
+     *           least 60 minutes since the first request.
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
-     *           ID, the server can check if original operation with the same request ID
-     *           was received, and if so, will ignore the second request. This prevents
+     *           ID, the server can check if the original operation with the same request ID
+     *           was received, and if so, ignores the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
@@ -109,9 +109,9 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
      *     @type string $public_key
      *           Optional. The public key from the client.
      *     @type bool $use_metadata_exchange
-     *           Optional. An optional hint to the endpoint to generate a client
-     *           ceritificate that can be used by AlloyDB connectors to exchange additional
-     *           metadata with the server after TLS handshake.
+     *           Optional. An optional hint to the endpoint to generate a client certificate
+     *           that can be used by AlloyDB connectors to exchange additional metadata with
+     *           the server after TLS handshake.
      * }
      */
     public function __construct($data = NULL) {
@@ -149,13 +149,13 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
-     * request ID so that if you must retry your request, the server will know to
-     * ignore the request if it has already been completed. The server will
-     * guarantee that for at least 60 minutes after the first request.
+     * request ID so that if you must retry your request, the server ignores the
+     * request if it has already been completed. The server guarantees that for at
+     * least 60 minutes since the first request.
      * For example, consider a situation where you make an initial request and
      * the request times out. If you make the request again with the same request
-     * ID, the server can check if original operation with the same request ID
-     * was received, and if so, will ignore the second request. This prevents
+     * ID, the server can check if the original operation with the same request ID
+     * was received, and if so, ignores the second request. This prevents
      * clients from accidentally creating duplicate commitments.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
@@ -170,13 +170,13 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
-     * request ID so that if you must retry your request, the server will know to
-     * ignore the request if it has already been completed. The server will
-     * guarantee that for at least 60 minutes after the first request.
+     * request ID so that if you must retry your request, the server ignores the
+     * request if it has already been completed. The server guarantees that for at
+     * least 60 minutes since the first request.
      * For example, consider a situation where you make an initial request and
      * the request times out. If you make the request again with the same request
-     * ID, the server can check if original operation with the same request ID
-     * was received, and if so, will ignore the second request. This prevents
+     * ID, the server can check if the original operation with the same request ID
+     * was received, and if so, ignores the second request. This prevents
      * clients from accidentally creating duplicate commitments.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
@@ -264,9 +264,9 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional hint to the endpoint to generate a client
-     * ceritificate that can be used by AlloyDB connectors to exchange additional
-     * metadata with the server after TLS handshake.
+     * Optional. An optional hint to the endpoint to generate a client certificate
+     * that can be used by AlloyDB connectors to exchange additional metadata with
+     * the server after TLS handshake.
      *
      * Generated from protobuf field <code>bool use_metadata_exchange = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -277,9 +277,9 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional hint to the endpoint to generate a client
-     * ceritificate that can be used by AlloyDB connectors to exchange additional
-     * metadata with the server after TLS handshake.
+     * Optional. An optional hint to the endpoint to generate a client certificate
+     * that can be used by AlloyDB connectors to exchange additional metadata with
+     * the server after TLS handshake.
      *
      * Generated from protobuf field <code>bool use_metadata_exchange = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

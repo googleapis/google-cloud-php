@@ -21,7 +21,7 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_street_address_resolution = 1;</code>
      */
-    private $disable_street_address_resolution = false;
+    protected $disable_street_address_resolution = false;
     /**
      * Option for job HTML content sanitization. Applied fields are:
      * * description
@@ -36,7 +36,7 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.HtmlSanitization html_sanitization = 2;</code>
      */
-    private $html_sanitization = 0;
+    protected $html_sanitization = 0;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class UpdateSubpropertyEventFilterRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertyEventFilter subproperty_event_filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subproperty_event_filter = null;
+    protected $subproperty_event_filter = null;
     /**
      * Required. The list of fields to update. Field names must be in snake case
      * (for example, "field_to_update"). Omitted fields will not be updated. To
@@ -29,7 +29,7 @@ class UpdateSubpropertyEventFilterRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\SubpropertyEventFilter $subpropertyEventFilter Required. The subproperty event filter to update.

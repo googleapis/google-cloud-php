@@ -27,30 +27,41 @@ namespace Google\Cloud\Bigtable\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\InsecureCredentialsWrapper;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
-use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
+use Google\Cloud\Bigtable\V2\ExecuteQueryRequest;
+use Google\Cloud\Bigtable\V2\ExecuteQueryResponse;
 use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsRequest;
+use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
+use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\PingAndWarmRequest;
 use Google\Cloud\Bigtable\V2\PingAndWarmResponse;
+use Google\Cloud\Bigtable\V2\PrepareQueryRequest;
+use Google\Cloud\Bigtable\V2\PrepareQueryResponse;
 use Google\Cloud\Bigtable\V2\ReadChangeStreamRequest;
+use Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
+use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
+use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for reading from and writing to existing Bigtable tables.
@@ -63,10 +74,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface checkAndMutateRowAsync(CheckAndMutateRowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface mutateRowAsync(MutateRowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pingAndWarmAsync(PingAndWarmRequest $request, array $optionalArgs = [])
- * @method PromiseInterface readModifyWriteRowAsync(ReadModifyWriteRowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckAndMutateRowResponse> checkAndMutateRowAsync(CheckAndMutateRowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MutateRowResponse> mutateRowAsync(MutateRowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PingAndWarmResponse> pingAndWarmAsync(PingAndWarmRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PrepareQueryResponse> prepareQueryAsync(PrepareQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReadModifyWriteRowResponse> readModifyWriteRowAsync(ReadModifyWriteRowRequest $request, array $optionalArgs = [])
  */
 final class BigtableClient
 {
@@ -160,6 +172,25 @@ final class BigtableClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * materialized_view resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $materializedView
+     *
+     * @return string The formatted materialized_view resource.
+     */
+    public static function materializedViewName(string $project, string $instance, string $materializedView): string
+    {
+        return self::getPathTemplate('materializedView')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'materialized_view' => $materializedView,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a table
      * resource.
      *
@@ -184,6 +215,7 @@ final class BigtableClient
      * Template: Pattern
      * - authorizedView: projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}
      * - instance: projects/{project}/instances/{instance}
+     * - materializedView: projects/{project}/instances/{instance}/materializedViews/{materialized_view}
      * - table: projects/{project}/instances/{instance}/tables/{table}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -192,14 +224,14 @@ final class BigtableClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -207,20 +239,33 @@ final class BigtableClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * Setting the "BIGTABLE_EMULATOR_HOST" environment variable will automatically set
+     * the API Endpoint to the value specified in the variable, as well as ensure that
+     * empty credentials are used in the transport layer.
+     *
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'bigtable.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Bigtable\V2\BigtableClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new BigtableClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -254,11 +299,16 @@ final class BigtableClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $options = $this->setDefaultEmulatorConfig($options);
         $clientOptions = $this->buildClientOptions($options);
@@ -303,10 +353,32 @@ final class BigtableClient
     }
 
     /**
-     * NOTE: This API is intended to be used by Apache Beam BigtableIO.
+     * Executes a SQL query against a particular Bigtable instance.
+     *
+     * @example samples/V2/BigtableClient/execute_query.php
+     *
+     * @param ExecuteQueryRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream<ExecuteQueryResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function executeQuery(ExecuteQueryRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('ExecuteQuery', $request, $callOptions);
+    }
+
+    /**
      * Returns the current list of partitions that make up the table's
      * change stream. The union of partitions will cover the entire keyspace.
      * Partitions can be read with `ReadChangeStream`.
+     * NOTE: This API is only intended to be used by Apache Beam BigtableIO.
      *
      * @example samples/V2/BigtableClient/generate_initial_change_stream_partitions.php
      *
@@ -318,7 +390,7 @@ final class BigtableClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<GenerateInitialChangeStreamPartitionsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -369,7 +441,7 @@ final class BigtableClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<MutateRowsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -406,10 +478,36 @@ final class BigtableClient
     }
 
     /**
-     * NOTE: This API is intended to be used by Apache Beam BigtableIO.
+     * Prepares a GoogleSQL query for execution on a particular Bigtable instance.
+     *
+     * The async variant is {@see BigtableClient::prepareQueryAsync()} .
+     *
+     * @example samples/V2/BigtableClient/prepare_query.php
+     *
+     * @param PrepareQueryRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PrepareQueryResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function prepareQuery(PrepareQueryRequest $request, array $callOptions = []): PrepareQueryResponse
+    {
+        return $this->startApiCall('PrepareQuery', $request, $callOptions)->wait();
+    }
+
+    /**
      * Reads changes from a table's change stream. Changes will
      * reflect both user-initiated mutations and mutations that are caused by
      * garbage collection.
+     * NOTE: This API is only intended to be used by Apache Beam BigtableIO.
      *
      * @example samples/V2/BigtableClient/read_change_stream.php
      *
@@ -421,7 +519,7 @@ final class BigtableClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<ReadChangeStreamResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -477,7 +575,7 @@ final class BigtableClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<ReadRowsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -502,7 +600,7 @@ final class BigtableClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<SampleRowKeysResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -525,7 +623,10 @@ final class BigtableClient
         }
 
         $options['apiEndpoint'] ??= $emulatorHost;
-        $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        if (class_exists(ChannelCredentials::class)) {
+            $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        }
+
         $options['credentials'] ??= new InsecureCredentialsWrapper();
         return $options;
     }

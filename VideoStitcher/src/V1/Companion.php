@@ -20,43 +20,43 @@ class Companion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string api_framework = 1;</code>
      */
-    private $api_framework = '';
+    protected $api_framework = '';
     /**
      * The pixel height of the placement slot for the intended creative.
      *
      * Generated from protobuf field <code>int32 height_px = 2;</code>
      */
-    private $height_px = 0;
+    protected $height_px = 0;
     /**
      * The pixel width of the placement slot for the intended creative.
      *
      * Generated from protobuf field <code>int32 width_px = 3;</code>
      */
-    private $width_px = 0;
+    protected $width_px = 0;
     /**
      * The pixel height of the creative.
      *
      * Generated from protobuf field <code>int32 asset_height_px = 4;</code>
      */
-    private $asset_height_px = 0;
+    protected $asset_height_px = 0;
     /**
      * The maximum pixel height of the creative in its expanded state.
      *
      * Generated from protobuf field <code>int32 expanded_height_px = 5;</code>
      */
-    private $expanded_height_px = 0;
+    protected $expanded_height_px = 0;
     /**
      * The pixel width of the creative.
      *
      * Generated from protobuf field <code>int32 asset_width_px = 6;</code>
      */
-    private $asset_width_px = 0;
+    protected $asset_width_px = 0;
     /**
      * The maximum pixel width of the creative in its expanded state.
      *
      * Generated from protobuf field <code>int32 expanded_width_px = 7;</code>
      */
-    private $expanded_width_px = 0;
+    protected $expanded_width_px = 0;
     /**
      * The ID used to identify the desired placement on a publisher's page.
      * Values to be used should be discussed between publishers and
@@ -64,7 +64,7 @@ class Companion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ad_slot_id = 8;</code>
      */
-    private $ad_slot_id = '';
+    protected $ad_slot_id = '';
     /**
      * The list of tracking events for the companion.
      *

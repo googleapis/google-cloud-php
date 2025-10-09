@@ -20,14 +20,14 @@ class HiveMetastoreVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Whether `version` will be chosen by the server if a metastore service is
      * created with a `HiveMetastoreConfig` that omits the `version`.
      *
      * Generated from protobuf field <code>bool is_default = 2;</code>
      */
-    private $is_default = false;
+    protected $is_default = false;
 
     /**
      * Constructor.
@@ -103,6 +103,4 @@ class HiveMetastoreVersion extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HiveMetastoreVersion::class, \Google\Cloud\Metastore\V1\LocationMetadata_HiveMetastoreVersion::class);
 

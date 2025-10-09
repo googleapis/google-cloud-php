@@ -24,19 +24,19 @@ class ExplanationSpecOverride extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationParameters parameters = 1;</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
     /**
      * The metadata to be overridden. If not specified, no metadata is overridden.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadataOverride metadata = 2;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * The example-based explanations parameter overrides.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExamplesOverride examples_override = 3;</code>
      */
-    private $examples_override = null;
+    protected $examples_override = null;
 
     /**
      * Constructor.

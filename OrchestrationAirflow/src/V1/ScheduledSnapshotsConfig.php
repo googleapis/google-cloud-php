@@ -20,14 +20,14 @@ class ScheduledSnapshotsConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Optional. The Cloud Storage location for storing automatically created
      * snapshots.
      *
      * Generated from protobuf field <code>string snapshot_location = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $snapshot_location = '';
+    protected $snapshot_location = '';
     /**
      * Optional. The cron expression representing the time when snapshots creation
      * mechanism runs. This field is subject to additional validation around
@@ -35,14 +35,14 @@ class ScheduledSnapshotsConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string snapshot_creation_schedule = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $snapshot_creation_schedule = '';
+    protected $snapshot_creation_schedule = '';
     /**
      * Optional. Time zone that sets the context to interpret
      * snapshot_creation_schedule.
      *
      * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $time_zone = '';
+    protected $time_zone = '';
 
     /**
      * Constructor.

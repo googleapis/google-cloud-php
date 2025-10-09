@@ -107,7 +107,7 @@ class DocFxCommandTest extends TestCase
     {
         $this->assertTrue(
             file_exists(self::$fixturesDir . '/docfx/Vision/' . $file),
-            sprintf('tests/fixtures/docfx/%s does not exist (%s)', $file, self::$tmpDir . '/' . $file)
+            sprintf(self::$fixturesDir . '/docfx/Vision/%s does not exist (%s)', $file, self::$tmpDir . '/' . $file)
         );
 
         $left  = self::$fixturesDir . '/docfx/Vision/' . $file;
@@ -131,7 +131,7 @@ class DocFxCommandTest extends TestCase
         $rightContents = preg_replace('/nanos: \d+/', 'nanos: *', $rightContents);
         file_put_contents($right, $rightContents);
 
-        $this->assertFileEqualsWithDiff($left, $right);
+        $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
 
     public function provideDocFxFiles()
@@ -141,7 +141,8 @@ class DocFxCommandTest extends TestCase
             '--xml' => self::$fixturesDir . '/phpdoc/structure.xml',
             '--out' => self::$tmpDir = sys_get_temp_dir() . '/' . rand(),
             '--metadata-version' => '1.0.0',
-            '--component-path' => self::$fixturesDir . '/component/Vision',
+            '--path' => self::$fixturesDir . '/component/Vision',
+            '--with-cache' => true,
         ]);
 
         $filesAsArguments = [];
@@ -163,6 +164,7 @@ class DocFxCommandTest extends TestCase
             '--xml' => self::$fixturesDir . '/phpdoc/newclient.xml',
             '--out' => $tmpDir = sys_get_temp_dir() . '/' . rand(),
             '--metadata-version' => '1.0.0',
+            '--with-cache' => true,
         ]);
 
         return [
@@ -190,6 +192,41 @@ class DocFxCommandTest extends TestCase
             fn ($child) => 'Async()' === substr($child, -7)
         );
         $this->assertGreaterThan(0, count($asyncMethods));
+    }
+
+    public function provideProductNeutralGuides()
+    {
+        self::getCommandTester()->execute([
+            '--generate-product-neutral-guides' => true,
+            '--out' => $tmpDir = sys_get_temp_dir() . '/' . rand(),
+            '--metadata-version' => '1.0.0',
+        ]);
+
+        $generatedFiles = array_filter(
+            array_diff(scandir($tmpDir), ['..', '.']),
+            fn ($file) => $file !== 'docs.metadata'
+        );
+
+        return array_map(
+            fn ($file) => [$tmpDir . '/' . $file],
+            $generatedFiles
+        );
+    }
+
+    /**
+     * @dataProvider provideProductNeutralGuides
+     */
+    public function testProductNeutralGuides(string $filepath)
+    {
+        $file = basename($filepath);
+        $this->assertTrue(
+            file_exists(self::$fixturesDir . '/docfx/ProductNeutralGuides/' . basename($file)),
+            sprintf(self::$fixturesDir . '/docfx/ProductNeutralGuides/%s does not exist (%s)', $file, self::$tmpDir . '/' . $file)
+        );
+
+        $left  = self::$fixturesDir . '/docfx/ProductNeutralGuides/' . $file;
+        $right = $filepath;
+        $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
 
     private function assertFileEqualsWithDiff(string $left, string $right, bool $updateFixtures = false)

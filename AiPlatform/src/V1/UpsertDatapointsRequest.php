@@ -23,7 +23,7 @@ class UpsertDatapointsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string index = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $index = '';
+    protected $index = '';
     /**
      * A list of datapoints to be created/updated.
      *
@@ -39,7 +39,7 @@ class UpsertDatapointsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

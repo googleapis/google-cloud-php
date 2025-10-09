@@ -31,14 +31,13 @@ use Google\Cloud\SecurityCenterManagement\V1\GetEventThreatDetectionCustomModule
 /**
  * Gets an Event Threat Detection custom module.
  *
- * @param string $formattedName The resource name of the ETD custom module.
+ * @param string $formattedName The resource name of the Event Threat Detection custom module, in
+ *                              one of the following formats:
  *
- *                              Its format is:
- *
- *                              * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
- *                              * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
- *                              * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`. Please see
- *                              {@see SecurityCenterManagementClient::eventThreatDetectionCustomModuleName()} for help formatting this field.
+ *                              * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+ *                              * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+ *                              * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+ *                              Please see {@see SecurityCenterManagementClient::eventThreatDetectionCustomModuleName()} for help formatting this field.
  */
 function get_event_threat_detection_custom_module_sample(string $formattedName): void
 {

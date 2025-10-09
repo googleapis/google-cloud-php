@@ -60,6 +60,4 @@ class AncestorMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AncestorMode::class, \Google\Cloud\Datastore\Admin\V1\Index_AncestorMode::class);
 

@@ -20,13 +20,13 @@ class Interval extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The number of conversations created in this interval.
      *
      * Generated from protobuf field <code>int32 conversation_count = 2;</code>
      */
-    private $conversation_count = 0;
+    protected $conversation_count = 0;
 
     /**
      * Constructor.

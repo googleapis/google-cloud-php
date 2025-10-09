@@ -22,14 +22,14 @@ class CreateContactRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The contact to create. Must specify an email address and language
      * tag.
      *
      * Generated from protobuf field <code>.google.cloud.essentialcontacts.v1.Contact contact = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $contact = null;
+    protected $contact = null;
 
     /**
      * @param string                                     $parent  Required. The resource to save this contact for.

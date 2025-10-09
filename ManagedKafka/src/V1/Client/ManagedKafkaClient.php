@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -37,26 +38,37 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\ManagedKafka\V1\Acl;
+use Google\Cloud\ManagedKafka\V1\AddAclEntryRequest;
+use Google\Cloud\ManagedKafka\V1\AddAclEntryResponse;
 use Google\Cloud\ManagedKafka\V1\Cluster;
 use Google\Cloud\ManagedKafka\V1\ConsumerGroup;
+use Google\Cloud\ManagedKafka\V1\CreateAclRequest;
 use Google\Cloud\ManagedKafka\V1\CreateClusterRequest;
 use Google\Cloud\ManagedKafka\V1\CreateTopicRequest;
+use Google\Cloud\ManagedKafka\V1\DeleteAclRequest;
 use Google\Cloud\ManagedKafka\V1\DeleteClusterRequest;
 use Google\Cloud\ManagedKafka\V1\DeleteConsumerGroupRequest;
 use Google\Cloud\ManagedKafka\V1\DeleteTopicRequest;
+use Google\Cloud\ManagedKafka\V1\GetAclRequest;
 use Google\Cloud\ManagedKafka\V1\GetClusterRequest;
 use Google\Cloud\ManagedKafka\V1\GetConsumerGroupRequest;
 use Google\Cloud\ManagedKafka\V1\GetTopicRequest;
+use Google\Cloud\ManagedKafka\V1\ListAclsRequest;
 use Google\Cloud\ManagedKafka\V1\ListClustersRequest;
 use Google\Cloud\ManagedKafka\V1\ListConsumerGroupsRequest;
 use Google\Cloud\ManagedKafka\V1\ListTopicsRequest;
+use Google\Cloud\ManagedKafka\V1\RemoveAclEntryRequest;
+use Google\Cloud\ManagedKafka\V1\RemoveAclEntryResponse;
 use Google\Cloud\ManagedKafka\V1\Topic;
+use Google\Cloud\ManagedKafka\V1\UpdateAclRequest;
 use Google\Cloud\ManagedKafka\V1\UpdateClusterRequest;
 use Google\Cloud\ManagedKafka\V1\UpdateConsumerGroupRequest;
 use Google\Cloud\ManagedKafka\V1\UpdateTopicRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The service that a client application uses to manage Apache Kafka clusters,
@@ -70,22 +82,29 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTopicAsync(CreateTopicRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConsumerGroupAsync(DeleteConsumerGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTopicAsync(DeleteTopicRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConsumerGroupAsync(GetConsumerGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTopicAsync(GetTopicRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConsumerGroupsAsync(ListConsumerGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTopicsAsync(ListTopicsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConsumerGroupAsync(UpdateConsumerGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTopicAsync(UpdateTopicRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AddAclEntryResponse> addAclEntryAsync(AddAclEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Acl> createAclAsync(CreateAclRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Topic> createTopicAsync(CreateTopicRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAclAsync(DeleteAclRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteConsumerGroupAsync(DeleteConsumerGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTopicAsync(DeleteTopicRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Acl> getAclAsync(GetAclRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConsumerGroup> getConsumerGroupAsync(GetConsumerGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Topic> getTopicAsync(GetTopicRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAclsAsync(ListAclsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConsumerGroupsAsync(ListConsumerGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTopicsAsync(ListTopicsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RemoveAclEntryResponse> removeAclEntryAsync(RemoveAclEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Acl> updateAclAsync(UpdateAclRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConsumerGroup> updateConsumerGroupAsync(UpdateConsumerGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Topic> updateTopicAsync(UpdateTopicRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ManagedKafkaClient
 {
@@ -158,9 +177,7 @@ final class ManagedKafkaClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -183,6 +200,46 @@ final class ManagedKafkaClient
         }
 
         return new OperationsClient($options);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a acl
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $cluster
+     * @param string $acl
+     *
+     * @return string The formatted acl resource.
+     */
+    public static function aclName(string $project, string $location, string $cluster, string $acl): string
+    {
+        return self::getPathTemplate('acl')->render([
+            'project' => $project,
+            'location' => $location,
+            'cluster' => $cluster,
+            'acl' => $acl,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a ca_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $caPool
+     *
+     * @return string The formatted ca_pool resource.
+     */
+    public static function caPoolName(string $project, string $location, string $caPool): string
+    {
+        return self::getPathTemplate('caPool')->render([
+            'project' => $project,
+            'location' => $location,
+            'ca_pool' => $caPool,
+        ]);
     }
 
     /**
@@ -292,6 +349,8 @@ final class ManagedKafkaClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - acl: projects/{project}/locations/{location}/clusters/{cluster}/acls/{acl}
+     * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
      * - consumerGroup: projects/{project}/locations/{location}/clusters/{cluster}/consumerGroups/{consumer_group}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
@@ -304,14 +363,14 @@ final class ManagedKafkaClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -319,20 +378,29 @@ final class ManagedKafkaClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'managedkafka.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\ManagedKafka\V1\ManagedKafkaClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new ManagedKafkaClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -366,11 +434,16 @@ final class ManagedKafkaClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -386,6 +459,59 @@ final class ManagedKafkaClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Incremental update: Adds an acl entry to an acl. Creates the acl if it does
+     * not exist yet.
+     *
+     * The async variant is {@see ManagedKafkaClient::addAclEntryAsync()} .
+     *
+     * @example samples/V1/ManagedKafkaClient/add_acl_entry.php
+     *
+     * @param AddAclEntryRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AddAclEntryResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addAclEntry(AddAclEntryRequest $request, array $callOptions = []): AddAclEntryResponse
+    {
+        return $this->startApiCall('AddAclEntry', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new acl in the given project, location, and cluster.
+     *
+     * The async variant is {@see ManagedKafkaClient::createAclAsync()} .
+     *
+     * @example samples/V1/ManagedKafkaClient/create_acl.php
+     *
+     * @param CreateAclRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Acl
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAcl(CreateAclRequest $request, array $callOptions = []): Acl
+    {
+        return $this->startApiCall('CreateAcl', $request, $callOptions)->wait();
     }
 
     /**
@@ -405,7 +531,7 @@ final class ManagedKafkaClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Cluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -441,6 +567,30 @@ final class ManagedKafkaClient
     }
 
     /**
+     * Deletes an acl.
+     *
+     * The async variant is {@see ManagedKafkaClient::deleteAclAsync()} .
+     *
+     * @example samples/V1/ManagedKafkaClient/delete_acl.php
+     *
+     * @param DeleteAclRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAcl(DeleteAclRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteAcl', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single cluster.
      *
      * The async variant is {@see ManagedKafkaClient::deleteClusterAsync()} .
@@ -457,7 +607,7 @@ final class ManagedKafkaClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -512,6 +662,32 @@ final class ManagedKafkaClient
     public function deleteTopic(DeleteTopicRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteTopic', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the properties of a single acl.
+     *
+     * The async variant is {@see ManagedKafkaClient::getAclAsync()} .
+     *
+     * @example samples/V1/ManagedKafkaClient/get_acl.php
+     *
+     * @param GetAclRequest $request     A request to house fields associated with the call.
+     * @param array         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Acl
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAcl(GetAclRequest $request, array $callOptions = []): Acl
+    {
+        return $this->startApiCall('GetAcl', $request, $callOptions)->wait();
     }
 
     /**
@@ -593,6 +769,32 @@ final class ManagedKafkaClient
     }
 
     /**
+     * Lists the acls in a given cluster.
+     *
+     * The async variant is {@see ManagedKafkaClient::listAclsAsync()} .
+     *
+     * @example samples/V1/ManagedKafkaClient/list_acls.php
+     *
+     * @param ListAclsRequest $request     A request to house fields associated with the call.
+     * @param array           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAcls(ListAclsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAcls', $request, $callOptions);
+    }
+
+    /**
      * Lists the clusters in a given project and location.
      *
      * The async variant is {@see ManagedKafkaClient::listClustersAsync()} .
@@ -671,6 +873,60 @@ final class ManagedKafkaClient
     }
 
     /**
+     * Incremental update: Removes an acl entry from an acl. Deletes the acl if
+     * its acl entries become empty (i.e. if the removed entry was the last one in
+     * the acl).
+     *
+     * The async variant is {@see ManagedKafkaClient::removeAclEntryAsync()} .
+     *
+     * @example samples/V1/ManagedKafkaClient/remove_acl_entry.php
+     *
+     * @param RemoveAclEntryRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RemoveAclEntryResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function removeAclEntry(RemoveAclEntryRequest $request, array $callOptions = []): RemoveAclEntryResponse
+    {
+        return $this->startApiCall('RemoveAclEntry', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the properties of a single acl.
+     *
+     * The async variant is {@see ManagedKafkaClient::updateAclAsync()} .
+     *
+     * @example samples/V1/ManagedKafkaClient/update_acl.php
+     *
+     * @param UpdateAclRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Acl
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAcl(UpdateAclRequest $request, array $callOptions = []): Acl
+    {
+        return $this->startApiCall('UpdateAcl', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates the properties of a single cluster.
      *
      * The async variant is {@see ManagedKafkaClient::updateClusterAsync()} .
@@ -687,7 +943,7 @@ final class ManagedKafkaClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Cluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */

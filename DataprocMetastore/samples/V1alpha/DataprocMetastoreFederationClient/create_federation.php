@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1alpha_generated_DataprocMetastoreFederation_CreateFederation_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Metastore\V1alpha\DataprocMetastoreFederationClient;
+use Google\Cloud\Metastore\V1alpha\Client\DataprocMetastoreFederationClient;
+use Google\Cloud\Metastore\V1alpha\CreateFederationRequest;
 use Google\Cloud\Metastore\V1alpha\Federation;
 use Google\Rpc\Status;
 
@@ -49,17 +50,17 @@ function create_federation_sample(string $formattedParent, string $federationId)
     // Create a client.
     $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $federation = new Federation();
+    $request = (new CreateFederationRequest())
+        ->setParent($formattedParent)
+        ->setFederationId($federationId)
+        ->setFederation($federation);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreFederationClient->createFederation(
-            $formattedParent,
-            $federationId,
-            $federation
-        );
+        $response = $dataprocMetastoreFederationClient->createFederation($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

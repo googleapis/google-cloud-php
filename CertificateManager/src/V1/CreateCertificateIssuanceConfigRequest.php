@@ -21,19 +21,19 @@ class CreateCertificateIssuanceConfigRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A user-provided name of the certificate config.
      *
      * Generated from protobuf field <code>string certificate_issuance_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate_issuance_config_id = '';
+    protected $certificate_issuance_config_id = '';
     /**
      * Required. A definition of the certificate issuance config to create.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.CertificateIssuanceConfig certificate_issuance_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate_issuance_config = null;
+    protected $certificate_issuance_config = null;
 
     /**
      * @param string                                                        $parent                      Required. The parent resource of the certificate issuance config. Must be

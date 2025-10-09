@@ -24,7 +24,7 @@ class QueryMetadataResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string result_manifest_uri = 1;</code>
      */
-    private $result_manifest_uri = '';
+    protected $result_manifest_uri = '';
 
     /**
      * Constructor.

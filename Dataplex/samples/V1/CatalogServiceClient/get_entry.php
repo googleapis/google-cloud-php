@@ -29,7 +29,7 @@ use Google\Cloud\Dataplex\V1\Entry;
 use Google\Cloud\Dataplex\V1\GetEntryRequest;
 
 /**
- * Gets a single entry.
+ * Gets an Entry.
  *
  * @param string $formattedName The resource name of the Entry:
  *                              `projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}`. Please see

@@ -21,7 +21,7 @@ class UpdateIndexRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Index index = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $index = null;
+    protected $index = null;
     /**
      * The update mask applies to the resource.
      * For the `FieldMask` definition, see
@@ -29,7 +29,7 @@ class UpdateIndexRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\Index $index      Required. The Index which updates the resource on the server.

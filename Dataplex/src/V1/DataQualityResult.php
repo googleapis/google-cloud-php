@@ -16,24 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class DataQualityResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Overall data quality result -- `true` if all rules passed.
+     * Output only. Overall data quality result -- `true` if all rules passed.
      *
-     * Generated from protobuf field <code>bool passed = 5;</code>
+     * Generated from protobuf field <code>bool passed = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $passed = false;
+    protected $passed = false;
     /**
      * Output only. The overall data quality score.
      * The score ranges between [0, 100] (up to two decimal points).
      *
      * Generated from protobuf field <code>optional float score = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $score = null;
+    protected $score = null;
     /**
-     * A list of results at the dimension level.
+     * Output only. A list of results at the dimension level.
      * A dimension will have a corresponding `DataQualityDimensionResult` if and
      * only if there is at least one rule with the 'dimension' field set to it.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $dimensions;
     /**
@@ -45,29 +45,36 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      */
     private $columns;
     /**
-     * A list of all the rules in a job, and their results.
+     * Output only. A list of all the rules in a job, and their results.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRuleResult rules = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRuleResult rules = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $rules;
     /**
-     * The count of rows processed.
+     * Output only. The count of rows processed.
      *
-     * Generated from protobuf field <code>int64 row_count = 4;</code>
+     * Generated from protobuf field <code>int64 row_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
-     * The data scanned for this result.
+     * Output only. The data scanned for this result.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $scanned_data = null;
+    protected $scanned_data = null;
     /**
      * Output only. The result of post scan actions.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityResult.PostScanActionsResult post_scan_actions_result = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $post_scan_actions_result = null;
+    protected $post_scan_actions_result = null;
+    /**
+     * Output only. The status of publishing the data scan as Dataplex Universal
+     * Catalog metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus catalog_publishing_status = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $catalog_publishing_status = null;
 
     /**
      * Constructor.
@@ -76,12 +83,12 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $passed
-     *           Overall data quality result -- `true` if all rules passed.
+     *           Output only. Overall data quality result -- `true` if all rules passed.
      *     @type float $score
      *           Output only. The overall data quality score.
      *           The score ranges between [0, 100] (up to two decimal points).
      *     @type array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $dimensions
-     *           A list of results at the dimension level.
+     *           Output only. A list of results at the dimension level.
      *           A dimension will have a corresponding `DataQualityDimensionResult` if and
      *           only if there is at least one rule with the 'dimension' field set to it.
      *     @type array<\Google\Cloud\Dataplex\V1\DataQualityColumnResult>|\Google\Protobuf\Internal\RepeatedField $columns
@@ -89,13 +96,16 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      *           A column will have a corresponding `DataQualityColumnResult` if and only if
      *           there is at least one rule with the 'column' field set to it.
      *     @type array<\Google\Cloud\Dataplex\V1\DataQualityRuleResult>|\Google\Protobuf\Internal\RepeatedField $rules
-     *           A list of all the rules in a job, and their results.
+     *           Output only. A list of all the rules in a job, and their results.
      *     @type int|string $row_count
-     *           The count of rows processed.
+     *           Output only. The count of rows processed.
      *     @type \Google\Cloud\Dataplex\V1\ScannedData $scanned_data
-     *           The data scanned for this result.
+     *           Output only. The data scanned for this result.
      *     @type \Google\Cloud\Dataplex\V1\DataQualityResult\PostScanActionsResult $post_scan_actions_result
      *           Output only. The result of post scan actions.
+     *     @type \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus $catalog_publishing_status
+     *           Output only. The status of publishing the data scan as Dataplex Universal
+     *           Catalog metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -104,9 +114,9 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Overall data quality result -- `true` if all rules passed.
+     * Output only. Overall data quality result -- `true` if all rules passed.
      *
-     * Generated from protobuf field <code>bool passed = 5;</code>
+     * Generated from protobuf field <code>bool passed = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getPassed()
@@ -115,9 +125,9 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Overall data quality result -- `true` if all rules passed.
+     * Output only. Overall data quality result -- `true` if all rules passed.
      *
-     * Generated from protobuf field <code>bool passed = 5;</code>
+     * Generated from protobuf field <code>bool passed = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -168,11 +178,11 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of results at the dimension level.
+     * Output only. A list of results at the dimension level.
      * A dimension will have a corresponding `DataQualityDimensionResult` if and
      * only if there is at least one rule with the 'dimension' field set to it.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getDimensions()
@@ -181,11 +191,11 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of results at the dimension level.
+     * Output only. A list of results at the dimension level.
      * A dimension will have a corresponding `DataQualityDimensionResult` if and
      * only if there is at least one rule with the 'dimension' field set to it.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -228,9 +238,9 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of all the rules in a job, and their results.
+     * Output only. A list of all the rules in a job, and their results.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRuleResult rules = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRuleResult rules = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRules()
@@ -239,9 +249,9 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of all the rules in a job, and their results.
+     * Output only. A list of all the rules in a job, and their results.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRuleResult rules = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRuleResult rules = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataQualityRuleResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -254,9 +264,9 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The count of rows processed.
+     * Output only. The count of rows processed.
      *
-     * Generated from protobuf field <code>int64 row_count = 4;</code>
+     * Generated from protobuf field <code>int64 row_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getRowCount()
@@ -265,9 +275,9 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The count of rows processed.
+     * Output only. The count of rows processed.
      *
-     * Generated from protobuf field <code>int64 row_count = 4;</code>
+     * Generated from protobuf field <code>int64 row_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -280,9 +290,9 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The data scanned for this result.
+     * Output only. The data scanned for this result.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataplex\V1\ScannedData|null
      */
     public function getScannedData()
@@ -301,9 +311,9 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The data scanned for this result.
+     * Output only. The data scanned for this result.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataplex\V1\ScannedData $var
      * @return $this
      */
@@ -347,6 +357,44 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualityResult\PostScanActionsResult::class);
         $this->post_scan_actions_result = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The status of publishing the data scan as Dataplex Universal
+     * Catalog metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus catalog_publishing_status = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus|null
+     */
+    public function getCatalogPublishingStatus()
+    {
+        return $this->catalog_publishing_status;
+    }
+
+    public function hasCatalogPublishingStatus()
+    {
+        return isset($this->catalog_publishing_status);
+    }
+
+    public function clearCatalogPublishingStatus()
+    {
+        unset($this->catalog_publishing_status);
+    }
+
+    /**
+     * Output only. The status of publishing the data scan as Dataplex Universal
+     * Catalog metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus catalog_publishing_status = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus $var
+     * @return $this
+     */
+    public function setCatalogPublishingStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus::class);
+        $this->catalog_publishing_status = $var;
 
         return $this;
     }

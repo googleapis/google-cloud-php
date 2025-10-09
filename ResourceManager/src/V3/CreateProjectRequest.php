@@ -28,7 +28,7 @@ class CreateProjectRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Project project = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = null;
+    protected $project = null;
 
     /**
      * @param \Google\Cloud\ResourceManager\V3\Project $project Required. The Project to create.

@@ -22,14 +22,14 @@ class PolicyInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attached_resource = 1;</code>
      */
-    private $attached_resource = '';
+    protected $attached_resource = '';
     /**
      * The IAM policy that's directly attached to the
      * [attached_resource][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo.attached_resource].
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy policy = 2;</code>
      */
-    private $policy = null;
+    protected $policy = null;
 
     /**
      * Constructor.
@@ -121,6 +121,4 @@ class PolicyInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PolicyInfo::class, \Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse_EffectiveIamPolicy_PolicyInfo::class);
 

@@ -21,7 +21,7 @@ class Command extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Environment variables set before running this command.
      *
@@ -40,14 +40,14 @@ class Command extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dir = 4;</code>
      */
-    private $dir = '';
+    protected $dir = '';
     /**
      * Optional unique identifier for this command, used in wait_for to reference
      * this command as a dependency.
      *
      * Generated from protobuf field <code>string id = 5;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The ID(s) of the command(s) that this command depends on.
      *

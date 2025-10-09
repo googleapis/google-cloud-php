@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,9 @@ class CloudCatalogClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CloudCatalogClient */
@@ -75,9 +77,7 @@ class CloudCatalogClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $servicesElement = new Service();
-        $services = [
-            $servicesElement,
-        ];
+        $services = [$servicesElement];
         $expectedResponse = new ListServicesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServices($services);
@@ -107,12 +107,15 @@ class CloudCatalogClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListServicesRequest();
         try {
@@ -139,17 +142,14 @@ class CloudCatalogClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $skusElement = new Sku();
-        $skus = [
-            $skusElement,
-        ];
+        $skus = [$skusElement];
         $expectedResponse = new ListSkusResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSkus($skus);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->serviceName('[SERVICE]');
-        $request = (new ListSkusRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSkusRequest())->setParent($formattedParent);
         $response = $gapicClient->listSkus($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -176,17 +176,19 @@ class CloudCatalogClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->serviceName('[SERVICE]');
-        $request = (new ListSkusRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSkusRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSkus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -211,9 +213,7 @@ class CloudCatalogClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $servicesElement = new Service();
-        $services = [
-            $servicesElement,
-        ];
+        $services = [$servicesElement];
         $expectedResponse = new ListServicesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServices($services);

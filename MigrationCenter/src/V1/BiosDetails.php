@@ -90,7 +90,9 @@ class BiosDetails extends \Google\Protobuf\Internal\Message
      */
     public function getBiosName()
     {
-        @trigger_error('bios_name is deprecated.', E_USER_DEPRECATED);
+        if ($this->bios_name !== '') {
+            @trigger_error('bios_name is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->bios_name;
     }
 

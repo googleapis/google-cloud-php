@@ -22,37 +22,37 @@ class Connection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * User provided display name for the connection.
      *
      * Generated from protobuf field <code>string friendly_name = 2;</code>
      */
-    private $friendly_name = '';
+    protected $friendly_name = '';
     /**
      * User provided description.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The creation timestamp of the connection.
      *
      * Generated from protobuf field <code>int64 creation_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creation_time = 0;
+    protected $creation_time = 0;
     /**
      * Output only. The last update timestamp of the connection.
      *
      * Generated from protobuf field <code>int64 last_modified_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_modified_time = 0;
+    protected $last_modified_time = 0;
     /**
      * Output only. True, if credential is configured for this connection.
      *
      * Generated from protobuf field <code>bool has_credential = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $has_credential = false;
+    protected $has_credential = false;
     protected $properties;
 
     /**

@@ -22,7 +22,7 @@ class GenerateAttachedClusterInstallManifestResponse extends \Google\Protobuf\In
      *
      * Generated from protobuf field <code>string manifest = 1;</code>
      */
-    private $manifest = '';
+    protected $manifest = '';
 
     /**
      * Constructor.

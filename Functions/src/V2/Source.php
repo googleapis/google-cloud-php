@@ -28,6 +28,10 @@ class Source extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Functions\V2\RepoSource $repo_source
      *           If provided, get the source from this location in a Cloud Source
      *           Repository.
+     *     @type string $git_uri
+     *           If provided, get the source from GitHub repository. This option is valid
+     *           only for GCF 1st Gen function.
+     *           Example: https://github.com/<user>/<repo>/blob/<commit>/<path-to-code>
      * }
      */
     public function __construct($data = NULL) {
@@ -95,6 +99,41 @@ class Source extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Functions\V2\RepoSource::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * If provided, get the source from GitHub repository. This option is valid
+     * only for GCF 1st Gen function.
+     * Example: https://github.com/<user>/<repo>/blob/<commit>/<path-to-code>
+     *
+     * Generated from protobuf field <code>string git_uri = 3;</code>
+     * @return string
+     */
+    public function getGitUri()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasGitUri()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * If provided, get the source from GitHub repository. This option is valid
+     * only for GCF 1st Gen function.
+     * Example: https://github.com/<user>/<repo>/blob/<commit>/<path-to-code>
+     *
+     * Generated from protobuf field <code>string git_uri = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGitUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

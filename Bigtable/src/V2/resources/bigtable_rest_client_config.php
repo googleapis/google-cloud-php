@@ -47,6 +47,18 @@ return [
                     ],
                 ],
             ],
+            'ExecuteQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{instance_name=projects/*/instances/*}:executeQuery',
+                'body' => '*',
+                'placeholders' => [
+                    'instance_name' => [
+                        'getters' => [
+                            'getInstanceName',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateInitialChangeStreamPartitions' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:generateInitialChangeStreamPartitions',
@@ -119,6 +131,18 @@ return [
                     ],
                 ],
             ],
+            'PrepareQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{instance_name=projects/*/instances/*}:prepareQuery',
+                'body' => '*',
+                'placeholders' => [
+                    'instance_name' => [
+                        'getters' => [
+                            'getInstanceName',
+                        ],
+                    ],
+                ],
+            ],
             'ReadChangeStream' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:readChangeStream',
@@ -165,11 +189,21 @@ return [
                         'uriTemplate' => '/v2/{authorized_view_name=projects/*/instances/*/tables/*/authorizedViews/*}:readRows',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{materialized_view_name=projects/*/instances/*/materializedViews/*}:readRows',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'authorized_view_name' => [
                         'getters' => [
                             'getAuthorizedViewName',
+                        ],
+                    ],
+                    'materialized_view_name' => [
+                        'getters' => [
+                            'getMaterializedViewName',
                         ],
                     ],
                     'table_name' => [
@@ -187,11 +221,20 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{authorized_view_name=projects/*/instances/*/tables/*/authorizedViews/*}:sampleRowKeys',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{materialized_view_name=projects/*/instances/*/materializedViews/*}:sampleRowKeys',
+                    ],
                 ],
                 'placeholders' => [
                     'authorized_view_name' => [
                         'getters' => [
                             'getAuthorizedViewName',
+                        ],
+                    ],
+                    'materialized_view_name' => [
+                        'getters' => [
+                            'getMaterializedViewName',
                         ],
                     ],
                     'table_name' => [

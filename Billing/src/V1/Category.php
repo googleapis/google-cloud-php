@@ -20,28 +20,28 @@ class Category extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_display_name = 1;</code>
      */
-    private $service_display_name = '';
+    protected $service_display_name = '';
     /**
      * The type of product the SKU refers to.
      * Example: "Compute", "Storage", "Network", "ApplicationServices" etc.
      *
      * Generated from protobuf field <code>string resource_family = 2;</code>
      */
-    private $resource_family = '';
+    protected $resource_family = '';
     /**
      * A group classification for related SKUs.
      * Example: "RAM", "GPU", "Prediction", "Ops", "GoogleEgress" etc.
      *
      * Generated from protobuf field <code>string resource_group = 3;</code>
      */
-    private $resource_group = '';
+    protected $resource_group = '';
     /**
      * Represents how the SKU is consumed.
      * Example: "OnDemand", "Preemptible", "Commit1Mo", "Commit1Yr" etc.
      *
      * Generated from protobuf field <code>string usage_type = 4;</code>
      */
-    private $usage_type = '';
+    protected $usage_type = '';
 
     /**
      * Constructor.

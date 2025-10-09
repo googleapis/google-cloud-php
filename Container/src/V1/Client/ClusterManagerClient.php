@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ namespace Google\Cloud\Container\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -37,12 +38,15 @@ use Google\Cloud\Container\V1\CancelOperationRequest;
 use Google\Cloud\Container\V1\CheckAutopilotCompatibilityRequest;
 use Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse;
 use Google\Cloud\Container\V1\Cluster;
+use Google\Cloud\Container\V1\ClusterUpgradeInfo;
 use Google\Cloud\Container\V1\CompleteIPRotationRequest;
 use Google\Cloud\Container\V1\CompleteNodePoolUpgradeRequest;
 use Google\Cloud\Container\V1\CreateClusterRequest;
 use Google\Cloud\Container\V1\CreateNodePoolRequest;
 use Google\Cloud\Container\V1\DeleteClusterRequest;
 use Google\Cloud\Container\V1\DeleteNodePoolRequest;
+use Google\Cloud\Container\V1\FetchClusterUpgradeInfoRequest;
+use Google\Cloud\Container\V1\FetchNodePoolUpgradeInfoRequest;
 use Google\Cloud\Container\V1\GetClusterRequest;
 use Google\Cloud\Container\V1\GetJSONWebKeysRequest;
 use Google\Cloud\Container\V1\GetJSONWebKeysResponse;
@@ -57,6 +61,7 @@ use Google\Cloud\Container\V1\ListOperationsRequest;
 use Google\Cloud\Container\V1\ListOperationsResponse;
 use Google\Cloud\Container\V1\ListUsableSubnetworksRequest;
 use Google\Cloud\Container\V1\NodePool;
+use Google\Cloud\Container\V1\NodePoolUpgradeInfo;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest;
 use Google\Cloud\Container\V1\ServerConfig;
@@ -77,6 +82,7 @@ use Google\Cloud\Container\V1\UpdateClusterRequest;
 use Google\Cloud\Container\V1\UpdateMasterRequest;
 use Google\Cloud\Container\V1\UpdateNodePoolRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Google Kubernetes Engine Cluster Manager v1
@@ -89,40 +95,42 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface cancelOperationAsync(CancelOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface checkAutopilotCompatibilityAsync(CheckAutopilotCompatibilityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface completeIPRotationAsync(CompleteIPRotationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface completeNodePoolUpgradeAsync(CompleteNodePoolUpgradeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNodePoolAsync(CreateNodePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNodePoolAsync(DeleteNodePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJSONWebKeysAsync(GetJSONWebKeysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNodePoolAsync(GetNodePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOperationAsync(GetOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServerConfigAsync(GetServerConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNodePoolsAsync(ListNodePoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOperationsAsync(ListOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUsableSubnetworksAsync(ListUsableSubnetworksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackNodePoolUpgradeAsync(RollbackNodePoolUpgradeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setAddonsConfigAsync(SetAddonsConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLegacyAbacAsync(SetLegacyAbacRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLocationsAsync(SetLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLoggingServiceAsync(SetLoggingServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setMaintenancePolicyAsync(SetMaintenancePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setMasterAuthAsync(SetMasterAuthRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setMonitoringServiceAsync(SetMonitoringServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNetworkPolicyAsync(SetNetworkPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNodePoolAutoscalingAsync(SetNodePoolAutoscalingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNodePoolManagementAsync(SetNodePoolManagementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNodePoolSizeAsync(SetNodePoolSizeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startIPRotationAsync(StartIPRotationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMasterAsync(UpdateMasterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNodePoolAsync(UpdateNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelOperationAsync(CancelOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckAutopilotCompatibilityResponse> checkAutopilotCompatibilityAsync(CheckAutopilotCompatibilityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> completeIPRotationAsync(CompleteIPRotationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> completeNodePoolUpgradeAsync(CompleteNodePoolUpgradeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> createNodePoolAsync(CreateNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> deleteNodePoolAsync(DeleteNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ClusterUpgradeInfo> fetchClusterUpgradeInfoAsync(FetchClusterUpgradeInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NodePoolUpgradeInfo> fetchNodePoolUpgradeInfoAsync(FetchNodePoolUpgradeInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetJSONWebKeysResponse> getJSONWebKeysAsync(GetJSONWebKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NodePool> getNodePoolAsync(GetNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> getOperationAsync(GetOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServerConfig> getServerConfigAsync(GetServerConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListClustersResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListNodePoolsResponse> listNodePoolsAsync(ListNodePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListOperationsResponse> listOperationsAsync(ListOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsableSubnetworksAsync(ListUsableSubnetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> rollbackNodePoolUpgradeAsync(RollbackNodePoolUpgradeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setAddonsConfigAsync(SetAddonsConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setLabelsAsync(SetLabelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setLegacyAbacAsync(SetLegacyAbacRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setLocationsAsync(SetLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setLoggingServiceAsync(SetLoggingServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setMaintenancePolicyAsync(SetMaintenancePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setMasterAuthAsync(SetMasterAuthRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setMonitoringServiceAsync(SetMonitoringServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setNetworkPolicyAsync(SetNetworkPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setNodePoolAutoscalingAsync(SetNodePoolAutoscalingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setNodePoolManagementAsync(SetNodePoolManagementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setNodePoolSizeAsync(SetNodePoolSizeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> startIPRotationAsync(StartIPRotationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> updateMasterAsync(UpdateMasterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> updateNodePoolAsync(UpdateNodePoolRequest $request, array $optionalArgs = [])
  */
 final class ClusterManagerClient
 {
@@ -149,9 +157,7 @@ final class ClusterManagerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -170,6 +176,53 @@ final class ClusterManagerClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a ca_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $caPool
+     *
+     * @return string The formatted ca_pool resource.
+     */
+    public static function caPoolName(string $project, string $location, string $caPool): string
+    {
+        return self::getPathTemplate('caPool')->render([
+            'project' => $project,
+            'location' => $location,
+            'ca_pool' => $caPool,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_version resource.
+     */
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
+        return self::getPathTemplate('cryptoKeyVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+            'crypto_key_version' => $cryptoKeyVersion,
+        ]);
     }
 
     /**
@@ -193,6 +246,8 @@ final class ClusterManagerClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
+     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - topic: projects/{project}/topics/{topic}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -201,14 +256,14 @@ final class ClusterManagerClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -216,20 +271,29 @@ final class ClusterManagerClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'container.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Container\V1\ClusterManagerClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new ClusterManagerClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -263,11 +327,16 @@ final class ClusterManagerClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -331,8 +400,10 @@ final class ClusterManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function checkAutopilotCompatibility(CheckAutopilotCompatibilityRequest $request, array $callOptions = []): CheckAutopilotCompatibilityResponse
-    {
+    public function checkAutopilotCompatibility(
+        CheckAutopilotCompatibilityRequest $request,
+        array $callOptions = []
+    ): CheckAutopilotCompatibilityResponse {
         return $this->startApiCall('CheckAutopilotCompatibility', $request, $callOptions)->wait();
     }
 
@@ -511,6 +582,64 @@ final class ClusterManagerClient
     public function deleteNodePool(DeleteNodePoolRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('DeleteNodePool', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetch upgrade information of a specific cluster.
+     *
+     * The async variant is {@see ClusterManagerClient::fetchClusterUpgradeInfoAsync()}
+     * .
+     *
+     * @example samples/V1/ClusterManagerClient/fetch_cluster_upgrade_info.php
+     *
+     * @param FetchClusterUpgradeInfoRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ClusterUpgradeInfo
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchClusterUpgradeInfo(
+        FetchClusterUpgradeInfoRequest $request,
+        array $callOptions = []
+    ): ClusterUpgradeInfo {
+        return $this->startApiCall('FetchClusterUpgradeInfo', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetch upgrade information of a specific nodepool.
+     *
+     * The async variant is
+     * {@see ClusterManagerClient::fetchNodePoolUpgradeInfoAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/fetch_node_pool_upgrade_info.php
+     *
+     * @param FetchNodePoolUpgradeInfoRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return NodePoolUpgradeInfo
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchNodePoolUpgradeInfo(
+        FetchNodePoolUpgradeInfoRequest $request,
+        array $callOptions = []
+    ): NodePoolUpgradeInfo {
+        return $this->startApiCall('FetchNodePoolUpgradeInfo', $request, $callOptions)->wait();
     }
 
     /**
@@ -744,8 +873,10 @@ final class ClusterManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listUsableSubnetworks(ListUsableSubnetworksRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listUsableSubnetworks(
+        ListUsableSubnetworksRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListUsableSubnetworks', $request, $callOptions);
     }
 

@@ -62,6 +62,4 @@ class CgroupMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CgroupMode::class, \Google\Cloud\Container\V1\LinuxNodeConfig_CgroupMode::class);
 

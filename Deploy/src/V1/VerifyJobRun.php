@@ -22,34 +22,34 @@ class VerifyJobRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $build = '';
+    protected $build = '';
     /**
      * Output only. URI of a directory containing the verify artifacts. This
      * contains the Skaffold event log.
      *
      * Generated from protobuf field <code>string artifact_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $artifact_uri = '';
+    protected $artifact_uri = '';
     /**
      * Output only. File path of the Skaffold event log relative to the artifact
      * URI.
      *
      * Generated from protobuf field <code>string event_log_path = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $event_log_path = '';
+    protected $event_log_path = '';
     /**
      * Output only. The reason the verify failed. This will always be unspecified
      * while the verify is in progress or if it succeeded.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.VerifyJobRun.FailureCause failure_cause = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failure_cause = 0;
+    protected $failure_cause = 0;
     /**
      * Output only. Additional information about the verify failure, if available.
      *
      * Generated from protobuf field <code>string failure_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failure_message = '';
+    protected $failure_message = '';
 
     /**
      * Constructor.

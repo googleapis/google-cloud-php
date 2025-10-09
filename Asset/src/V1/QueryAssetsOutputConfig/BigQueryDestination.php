@@ -21,7 +21,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Required. The BigQuery table where the query results will be saved. If
      * this table does not exist, a new table with the given name will be
@@ -29,7 +29,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * Specifies the action that occurs if the destination table or partition
      * already exists. The following values are supported:
@@ -43,7 +43,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string write_disposition = 3;</code>
      */
-    private $write_disposition = '';
+    protected $write_disposition = '';
 
     /**
      * Constructor.
@@ -177,6 +177,4 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BigQueryDestination::class, \Google\Cloud\Asset\V1\QueryAssetsOutputConfig_BigQueryDestination::class);
 

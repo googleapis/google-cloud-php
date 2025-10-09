@@ -20,14 +20,14 @@ class BigQueryConnectionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryConnectionSpec.ConnectionType connection_type = 1;</code>
      */
-    private $connection_type = 0;
+    protected $connection_type = 0;
     /**
      * True if there are credentials attached to the BigQuery connection; false
      * otherwise.
      *
      * Generated from protobuf field <code>bool has_credential = 3;</code>
      */
-    private $has_credential = false;
+    protected $has_credential = false;
     protected $connection_spec;
 
     /**

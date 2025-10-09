@@ -44,11 +44,11 @@ items:
           description: 'Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results.'
         -
           id: '↳ results'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\Result">Google\Cloud\Vision\V1\ProductSearchResults\Result</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\Result">ProductSearchResults\Result</xref>&gt;'
           description: 'List of results, one for each product match.'
         -
           id: '↳ product_grouped_results'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult">Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult">ProductSearchResults\GroupedResult</xref>&gt;'
           description: 'List of results grouped by products detected in the query image. Each entry corresponds to one bounding polygon in the query image, and contains the matching products specific to that region. There may be duplicate product matches in the union of all the per-product results.'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::getIndexTime()'
@@ -129,7 +129,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\Result">Google\Cloud\Vision\V1\ProductSearchResults\Result</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\Result">ProductSearchResults\Result</xref>&gt;'
           description: ''
       returns:
         -
@@ -168,7 +168,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult">Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult">ProductSearchResults\GroupedResult</xref>&gt;'
           description: ''
       returns:
         -

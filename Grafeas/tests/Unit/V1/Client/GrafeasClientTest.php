@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,7 +68,9 @@ class GrafeasClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return GrafeasClient */
@@ -97,9 +99,7 @@ class GrafeasClientTest extends GeneratedTest
         $notes = [
             'notesKey' => $notesValue,
         ];
-        $request = (new BatchCreateNotesRequest())
-            ->setParent($formattedParent)
-            ->setNotes($notes);
+        $request = (new BatchCreateNotesRequest())->setParent($formattedParent)->setNotes($notes);
         $response = $gapicClient->batchCreateNotes($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -125,12 +125,15 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -138,9 +141,7 @@ class GrafeasClientTest extends GeneratedTest
         $notes = [
             'notesKey' => $notesValue,
         ];
-        $request = (new BatchCreateNotesRequest())
-            ->setParent($formattedParent)
-            ->setNotes($notes);
+        $request = (new BatchCreateNotesRequest())->setParent($formattedParent)->setNotes($notes);
         try {
             $gapicClient->batchCreateNotes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -168,9 +169,7 @@ class GrafeasClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $occurrences = [];
-        $request = (new BatchCreateOccurrencesRequest())
-            ->setParent($formattedParent)
-            ->setOccurrences($occurrences);
+        $request = (new BatchCreateOccurrencesRequest())->setParent($formattedParent)->setOccurrences($occurrences);
         $response = $gapicClient->batchCreateOccurrences($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -196,19 +195,20 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $occurrences = [];
-        $request = (new BatchCreateOccurrencesRequest())
-            ->setParent($formattedParent)
-            ->setOccurrences($occurrences);
+        $request = (new BatchCreateOccurrencesRequest())->setParent($formattedParent)->setOccurrences($occurrences);
         try {
             $gapicClient->batchCreateOccurrences($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -274,12 +274,15 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -324,9 +327,7 @@ class GrafeasClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $occurrence = new Occurrence();
-        $request = (new CreateOccurrenceRequest())
-            ->setParent($formattedParent)
-            ->setOccurrence($occurrence);
+        $request = (new CreateOccurrenceRequest())->setParent($formattedParent)->setOccurrence($occurrence);
         $response = $gapicClient->createOccurrence($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -352,19 +353,20 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $occurrence = new Occurrence();
-        $request = (new CreateOccurrenceRequest())
-            ->setParent($formattedParent)
-            ->setOccurrence($occurrence);
+        $request = (new CreateOccurrenceRequest())->setParent($formattedParent)->setOccurrence($occurrence);
         try {
             $gapicClient->createOccurrence($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -391,8 +393,7 @@ class GrafeasClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
-        $request = (new DeleteNoteRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNoteRequest())->setName($formattedName);
         $gapicClient->deleteNote($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -415,17 +416,19 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
-        $request = (new DeleteNoteRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNoteRequest())->setName($formattedName);
         try {
             $gapicClient->deleteNote($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -452,8 +455,7 @@ class GrafeasClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
-        $request = (new DeleteOccurrenceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteOccurrenceRequest())->setName($formattedName);
         $gapicClient->deleteOccurrence($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -476,17 +478,19 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
-        $request = (new DeleteOccurrenceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteOccurrenceRequest())->setName($formattedName);
         try {
             $gapicClient->deleteOccurrence($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -519,8 +523,7 @@ class GrafeasClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
-        $request = (new GetNoteRequest())
-            ->setName($formattedName);
+        $request = (new GetNoteRequest())->setName($formattedName);
         $response = $gapicClient->getNote($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -544,17 +547,19 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
-        $request = (new GetNoteRequest())
-            ->setName($formattedName);
+        $request = (new GetNoteRequest())->setName($formattedName);
         try {
             $gapicClient->getNote($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -589,8 +594,7 @@ class GrafeasClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
-        $request = (new GetOccurrenceRequest())
-            ->setName($formattedName);
+        $request = (new GetOccurrenceRequest())->setName($formattedName);
         $response = $gapicClient->getOccurrence($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -614,17 +618,19 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
-        $request = (new GetOccurrenceRequest())
-            ->setName($formattedName);
+        $request = (new GetOccurrenceRequest())->setName($formattedName);
         try {
             $gapicClient->getOccurrence($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -657,8 +663,7 @@ class GrafeasClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
-        $request = (new GetOccurrenceNoteRequest())
-            ->setName($formattedName);
+        $request = (new GetOccurrenceNoteRequest())->setName($formattedName);
         $response = $gapicClient->getOccurrenceNote($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -682,17 +687,19 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
-        $request = (new GetOccurrenceNoteRequest())
-            ->setName($formattedName);
+        $request = (new GetOccurrenceNoteRequest())->setName($formattedName);
         try {
             $gapicClient->getOccurrenceNote($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -717,17 +724,14 @@ class GrafeasClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $occurrencesElement = new Occurrence();
-        $occurrences = [
-            $occurrencesElement,
-        ];
+        $occurrences = [$occurrencesElement];
         $expectedResponse = new ListNoteOccurrencesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOccurrences($occurrences);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
-        $request = (new ListNoteOccurrencesRequest())
-            ->setName($formattedName);
+        $request = (new ListNoteOccurrencesRequest())->setName($formattedName);
         $response = $gapicClient->listNoteOccurrences($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -754,17 +758,19 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
-        $request = (new ListNoteOccurrencesRequest())
-            ->setName($formattedName);
+        $request = (new ListNoteOccurrencesRequest())->setName($formattedName);
         try {
             $gapicClient->listNoteOccurrences($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -789,17 +795,14 @@ class GrafeasClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $notesElement = new Note();
-        $notes = [
-            $notesElement,
-        ];
+        $notes = [$notesElement];
         $expectedResponse = new ListNotesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNotes($notes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListNotesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNotesRequest())->setParent($formattedParent);
         $response = $gapicClient->listNotes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -826,17 +829,19 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListNotesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNotesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNotes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -861,17 +866,14 @@ class GrafeasClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $occurrencesElement = new Occurrence();
-        $occurrences = [
-            $occurrencesElement,
-        ];
+        $occurrences = [$occurrencesElement];
         $expectedResponse = new ListOccurrencesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOccurrences($occurrences);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListOccurrencesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListOccurrencesRequest())->setParent($formattedParent);
         $response = $gapicClient->listOccurrences($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -898,17 +900,19 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListOccurrencesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListOccurrencesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listOccurrences($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -942,9 +946,7 @@ class GrafeasClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
         $note = new Note();
-        $request = (new UpdateNoteRequest())
-            ->setName($formattedName)
-            ->setNote($note);
+        $request = (new UpdateNoteRequest())->setName($formattedName)->setNote($note);
         $response = $gapicClient->updateNote($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -970,19 +972,20 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->noteName('[PROJECT]', '[NOTE]');
         $note = new Note();
-        $request = (new UpdateNoteRequest())
-            ->setName($formattedName)
-            ->setNote($note);
+        $request = (new UpdateNoteRequest())->setName($formattedName)->setNote($note);
         try {
             $gapicClient->updateNote($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1018,9 +1021,7 @@ class GrafeasClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
         $occurrence = new Occurrence();
-        $request = (new UpdateOccurrenceRequest())
-            ->setName($formattedName)
-            ->setOccurrence($occurrence);
+        $request = (new UpdateOccurrenceRequest())->setName($formattedName)->setOccurrence($occurrence);
         $response = $gapicClient->updateOccurrence($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1046,19 +1047,20 @@ class GrafeasClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->occurrenceName('[PROJECT]', '[OCCURRENCE]');
         $occurrence = new Occurrence();
-        $request = (new UpdateOccurrenceRequest())
-            ->setName($formattedName)
-            ->setOccurrence($occurrence);
+        $request = (new UpdateOccurrenceRequest())->setName($formattedName)->setOccurrence($occurrence);
         try {
             $gapicClient->updateOccurrence($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1089,9 +1091,7 @@ class GrafeasClientTest extends GeneratedTest
         $notes = [
             'notesKey' => $notesValue,
         ];
-        $request = (new BatchCreateNotesRequest())
-            ->setParent($formattedParent)
-            ->setNotes($notes);
+        $request = (new BatchCreateNotesRequest())->setParent($formattedParent)->setNotes($notes);
         $response = $gapicClient->batchCreateNotesAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

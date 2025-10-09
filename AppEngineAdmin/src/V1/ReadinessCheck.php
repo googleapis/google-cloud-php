@@ -21,40 +21,40 @@ class ReadinessCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 1;</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Host header to send when performing a HTTP Readiness check.
      * Example: "myapp.appspot.com"
      *
      * Generated from protobuf field <code>string host = 2;</code>
      */
-    private $host = '';
+    protected $host = '';
     /**
      * Number of consecutive failed checks required before removing
      * traffic.
      *
      * Generated from protobuf field <code>uint32 failure_threshold = 3;</code>
      */
-    private $failure_threshold = 0;
+    protected $failure_threshold = 0;
     /**
      * Number of consecutive successful checks required before receiving
      * traffic.
      *
      * Generated from protobuf field <code>uint32 success_threshold = 4;</code>
      */
-    private $success_threshold = 0;
+    protected $success_threshold = 0;
     /**
      * Interval between health checks.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration check_interval = 5;</code>
      */
-    private $check_interval = null;
+    protected $check_interval = null;
     /**
      * Time before the check is considered failed.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 6;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
      * A maximum time limit on application initialization, measured from moment
      * the application successfully replies to a healthcheck until it is ready to
@@ -62,7 +62,7 @@ class ReadinessCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration app_start_timeout = 7;</code>
      */
-    private $app_start_timeout = null;
+    protected $app_start_timeout = null;
 
     /**
      * Constructor.

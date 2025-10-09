@@ -20,19 +20,19 @@ class GroupVersionKind extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group = 1;</code>
      */
-    private $group = '';
+    protected $group = '';
     /**
      * Kubernetes Version
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Kubernetes Kind
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.

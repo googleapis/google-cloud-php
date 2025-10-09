@@ -21,13 +21,13 @@ class CreateVodSessionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Parameters for creating a session.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.VodSession vod_session = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vod_session = null;
+    protected $vod_session = null;
 
     /**
      * @param string                                     $parent     Required. The project and location in which the VOD session should be

@@ -29,13 +29,15 @@ use Google\Cloud\SecurityCenterManagement\V1\CreateSecurityHealthAnalyticsCustom
 use Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule;
 
 /**
- * Creates a resident SecurityHealthAnalyticsCustomModule at the scope of the
- * given CRM parent, and also creates inherited
- * SecurityHealthAnalyticsCustomModules for all CRM descendants of the given
- * parent. These modules are enabled by default.
+ * Creates a resident
+ * [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+ * at the scope of the given organization, folder, or project, and also
+ * creates inherited `SecurityHealthAnalyticsCustomModule` resources for all
+ * folders and projects that are descendants of the given parent. These
+ * modules are enabled by default.
  *
  * @param string $formattedParent Name of the parent organization, folder, or project of the
- *                                module, specified in one of the following formats:
+ *                                module, in one of the following formats:
  *
  *                                * `organizations/{organization}/locations/{location}`
  *                                * `folders/{folder}/locations/{location}`

@@ -24,13 +24,13 @@ class PipelineReadyCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool status = 3;</code>
      */
-    private $status = false;
+    protected $status = false;
     /**
      * Last time the condition was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

@@ -25,13 +25,13 @@ class UpdateServerTlsPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. Updated ServerTlsPolicy resource.
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1.ServerTlsPolicy server_tls_policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $server_tls_policy = null;
+    protected $server_tls_policy = null;
 
     /**
      * @param \Google\Cloud\NetworkSecurity\V1\ServerTlsPolicy $serverTlsPolicy Required. Updated ServerTlsPolicy resource.

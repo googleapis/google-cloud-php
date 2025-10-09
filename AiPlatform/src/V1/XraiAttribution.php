@@ -27,7 +27,7 @@ class XraiAttribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 step_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $step_count = 0;
+    protected $step_count = 0;
     /**
      * Config for SmoothGrad approximation of gradients.
      * When enabled, the gradients are approximated by averaging the gradients
@@ -37,7 +37,7 @@ class XraiAttribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SmoothGradConfig smooth_grad_config = 2;</code>
      */
-    private $smooth_grad_config = null;
+    protected $smooth_grad_config = null;
     /**
      * Config for XRAI with blur baseline.
      * When enabled, a linear path from the maximally blurred image to the input
@@ -47,7 +47,7 @@ class XraiAttribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BlurBaselineConfig blur_baseline_config = 3;</code>
      */
-    private $blur_baseline_config = null;
+    protected $blur_baseline_config = null;
 
     /**
      * Constructor.

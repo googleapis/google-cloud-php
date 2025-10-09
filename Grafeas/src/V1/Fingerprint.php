@@ -21,7 +21,7 @@ class Fingerprint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string v1_name = 1;</code>
      */
-    private $v1_name = '';
+    protected $v1_name = '';
     /**
      * Required. The ordered list of v2 blobs that represent a given image.
      *
@@ -36,7 +36,7 @@ class Fingerprint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string v2_name = 3;</code>
      */
-    private $v2_name = '';
+    protected $v2_name = '';
 
     /**
      * Constructor.

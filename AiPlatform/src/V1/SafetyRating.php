@@ -20,38 +20,38 @@ class SafetyRating extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.HarmCategory category = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $category = 0;
+    protected $category = 0;
     /**
      * Output only. Harm probability levels in the content.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SafetyRating.HarmProbability probability = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $probability = 0;
+    protected $probability = 0;
     /**
      * Output only. Harm probability score.
      *
      * Generated from protobuf field <code>float probability_score = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $probability_score = 0.0;
+    protected $probability_score = 0.0;
     /**
      * Output only. Harm severity levels in the content.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SafetyRating.HarmSeverity severity = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
     /**
      * Output only. Harm severity score.
      *
      * Generated from protobuf field <code>float severity_score = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $severity_score = 0.0;
+    protected $severity_score = 0.0;
     /**
      * Output only. Indicates whether the content was filtered out because of this
      * rating.
      *
      * Generated from protobuf field <code>bool blocked = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $blocked = false;
+    protected $blocked = false;
 
     /**
      * Constructor.

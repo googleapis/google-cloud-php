@@ -20,7 +20,7 @@ class PartitionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.PartitionSpec.PartitionKey partition_key = 1;</code>
      */
-    private $partition_key = 0;
+    protected $partition_key = 0;
 
     /**
      * Constructor.

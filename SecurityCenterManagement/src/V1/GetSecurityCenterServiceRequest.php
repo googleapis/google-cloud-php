@@ -9,45 +9,52 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for getting a Security Command Center service.
+ * Request message for
+ * [SecurityCenterManagement.GetSecurityCenterService][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.GetSecurityCenterService].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.GetSecurityCenterServiceRequest</code>
  */
 class GetSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The Security Command Center service to retrieve.
-     * Formats:
-     *   * organizations/{organization}/locations/{location}/securityCenterServices/{service}
-     *   * folders/{folder}/locations/{location}/securityCenterServices/{service}
-     *   * projects/{project}/locations/{location}/securityCenterServices/{service}
-     * The possible values for id {service} are:
-     *   * container-threat-detection
-     *   * event-threat-detection
-     *   * security-health-analytics
-     *   * vm-threat-detection
-     *   * web-security-scanner
+     * Required. The Security Command Center service to retrieve, in one of the
+     * following formats:
+     * * organizations/{organization}/locations/{location}/securityCenterServices/{service}
+     * * folders/{folder}/locations/{location}/securityCenterServices/{service}
+     * * projects/{project}/locations/{location}/securityCenterServices/{service}
+     * The following values are valid for `{service}`:
+     * * `container-threat-detection`
+     * * `event-threat-detection`
+     * * `security-health-analytics`
+     * * `vm-threat-detection`
+     * * `web-security-scanner`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Set to `true` to show only modules that are in scope. By default, all
+     * modules are shown.
+     *
+     * Generated from protobuf field <code>bool show_eligible_modules_only = 2;</code>
+     */
+    protected $show_eligible_modules_only = false;
 
     /**
-     * @param string $name Required. The Security Command Center service to retrieve.
-     *
-     *                     Formats:
+     * @param string $name Required. The Security Command Center service to retrieve, in one of the
+     *                     following formats:
      *
      *                     * organizations/{organization}/locations/{location}/securityCenterServices/{service}
      *                     * folders/{folder}/locations/{location}/securityCenterServices/{service}
      *                     * projects/{project}/locations/{location}/securityCenterServices/{service}
      *
-     *                     The possible values for id {service} are:
+     *                     The following values are valid for `{service}`:
      *
-     *                     * container-threat-detection
-     *                     * event-threat-detection
-     *                     * security-health-analytics
-     *                     * vm-threat-detection
-     *                     * web-security-scanner
+     *                     * `container-threat-detection`
+     *                     * `event-threat-detection`
+     *                     * `security-health-analytics`
+     *                     * `vm-threat-detection`
+     *                     * `web-security-scanner`
      *                     Please see {@see SecurityCenterManagementClient::securityCenterServiceName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\GetSecurityCenterServiceRequest
@@ -67,17 +74,20 @@ class GetSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The Security Command Center service to retrieve.
-     *           Formats:
-     *             * organizations/{organization}/locations/{location}/securityCenterServices/{service}
-     *             * folders/{folder}/locations/{location}/securityCenterServices/{service}
-     *             * projects/{project}/locations/{location}/securityCenterServices/{service}
-     *           The possible values for id {service} are:
-     *             * container-threat-detection
-     *             * event-threat-detection
-     *             * security-health-analytics
-     *             * vm-threat-detection
-     *             * web-security-scanner
+     *           Required. The Security Command Center service to retrieve, in one of the
+     *           following formats:
+     *           * organizations/{organization}/locations/{location}/securityCenterServices/{service}
+     *           * folders/{folder}/locations/{location}/securityCenterServices/{service}
+     *           * projects/{project}/locations/{location}/securityCenterServices/{service}
+     *           The following values are valid for `{service}`:
+     *           * `container-threat-detection`
+     *           * `event-threat-detection`
+     *           * `security-health-analytics`
+     *           * `vm-threat-detection`
+     *           * `web-security-scanner`
+     *     @type bool $show_eligible_modules_only
+     *           Set to `true` to show only modules that are in scope. By default, all
+     *           modules are shown.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,17 +96,17 @@ class GetSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Security Command Center service to retrieve.
-     * Formats:
-     *   * organizations/{organization}/locations/{location}/securityCenterServices/{service}
-     *   * folders/{folder}/locations/{location}/securityCenterServices/{service}
-     *   * projects/{project}/locations/{location}/securityCenterServices/{service}
-     * The possible values for id {service} are:
-     *   * container-threat-detection
-     *   * event-threat-detection
-     *   * security-health-analytics
-     *   * vm-threat-detection
-     *   * web-security-scanner
+     * Required. The Security Command Center service to retrieve, in one of the
+     * following formats:
+     * * organizations/{organization}/locations/{location}/securityCenterServices/{service}
+     * * folders/{folder}/locations/{location}/securityCenterServices/{service}
+     * * projects/{project}/locations/{location}/securityCenterServices/{service}
+     * The following values are valid for `{service}`:
+     * * `container-threat-detection`
+     * * `event-threat-detection`
+     * * `security-health-analytics`
+     * * `vm-threat-detection`
+     * * `web-security-scanner`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -107,17 +117,17 @@ class GetSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Security Command Center service to retrieve.
-     * Formats:
-     *   * organizations/{organization}/locations/{location}/securityCenterServices/{service}
-     *   * folders/{folder}/locations/{location}/securityCenterServices/{service}
-     *   * projects/{project}/locations/{location}/securityCenterServices/{service}
-     * The possible values for id {service} are:
-     *   * container-threat-detection
-     *   * event-threat-detection
-     *   * security-health-analytics
-     *   * vm-threat-detection
-     *   * web-security-scanner
+     * Required. The Security Command Center service to retrieve, in one of the
+     * following formats:
+     * * organizations/{organization}/locations/{location}/securityCenterServices/{service}
+     * * folders/{folder}/locations/{location}/securityCenterServices/{service}
+     * * projects/{project}/locations/{location}/securityCenterServices/{service}
+     * The following values are valid for `{service}`:
+     * * `container-threat-detection`
+     * * `event-threat-detection`
+     * * `security-health-analytics`
+     * * `vm-threat-detection`
+     * * `web-security-scanner`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -127,6 +137,34 @@ class GetSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Set to `true` to show only modules that are in scope. By default, all
+     * modules are shown.
+     *
+     * Generated from protobuf field <code>bool show_eligible_modules_only = 2;</code>
+     * @return bool
+     */
+    public function getShowEligibleModulesOnly()
+    {
+        return $this->show_eligible_modules_only;
+    }
+
+    /**
+     * Set to `true` to show only modules that are in scope. By default, all
+     * modules are shown.
+     *
+     * Generated from protobuf field <code>bool show_eligible_modules_only = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setShowEligibleModulesOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->show_eligible_modules_only = $var;
 
         return $this;
     }

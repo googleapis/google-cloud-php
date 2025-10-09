@@ -27,13 +27,13 @@ class InvalidDataFormat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string expected_format = 2;</code>
      */
-    private $expected_format = '';
+    protected $expected_format = '';
     /**
      * The new unexpected data format within the entity.
      *
      * Generated from protobuf field <code>string new_format = 3;</code>
      */
-    private $new_format = '';
+    protected $new_format = '';
 
     /**
      * Constructor.

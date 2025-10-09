@@ -25,13 +25,13 @@ class ReportJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The current status of report generation.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ReportStatus report_status = 2;</code>
      */
-    private $report_status = null;
+    protected $report_status = null;
 
     /**
      * Constructor.

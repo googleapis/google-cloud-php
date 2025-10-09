@@ -20,19 +20,19 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Action.Category category = 1;</code>
      */
-    private $category = 0;
+    protected $category = 0;
     /**
      * Detailed description of the issue requiring action.
      *
      * Generated from protobuf field <code>string issue = 2;</code>
      */
-    private $issue = '';
+    protected $issue = '';
     /**
      * The time that the issue was detected.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp detect_time = 4;</code>
      */
-    private $detect_time = null;
+    protected $detect_time = null;
     /**
      * Output only. The relative resource name of the action, of the form:
      * `projects/{project}/locations/{location}/lakes/{lake}/actions/{action}`
@@ -41,28 +41,28 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The relative resource name of the lake, of the form:
      * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      *
      * Generated from protobuf field <code>string lake = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $lake = '';
+    protected $lake = '';
     /**
      * Output only. The relative resource name of the zone, of the form:
      * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      *
      * Generated from protobuf field <code>string zone = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * Output only. The relative resource name of the asset, of the form:
      * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`.
      *
      * Generated from protobuf field <code>string asset = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $asset = '';
+    protected $asset = '';
     /**
      * The list of data locations associated with this action. Cloud Storage
      * locations are represented as URI paths(E.g.

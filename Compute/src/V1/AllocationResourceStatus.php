@@ -16,11 +16,29 @@ use Google\Protobuf\Internal\GPBUtil;
 class AllocationResourceStatus extends \Google\Protobuf\Internal\Message
 {
     /**
+     * [Output only] Health information for the reservation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatusHealthInfo health_info = 235287729;</code>
+     */
+    protected $health_info = null;
+    /**
+     * The number of reservation blocks associated with this reservation.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_block_count = 161835754;</code>
+     */
+    protected $reservation_block_count = null;
+    /**
+     * Maintenance information for this reservation
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GroupMaintenanceInfo reservation_maintenance = 340607776;</code>
+     */
+    protected $reservation_maintenance = null;
+    /**
      * Allocation Properties of this reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatusSpecificSKUAllocation specific_sku_allocation = 196231151;</code>
      */
-    private $specific_sku_allocation = null;
+    protected $specific_sku_allocation = null;
 
     /**
      * Constructor.
@@ -28,6 +46,12 @@ class AllocationResourceStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\AllocationResourceStatusHealthInfo $health_info
+     *           [Output only] Health information for the reservation.
+     *     @type int $reservation_block_count
+     *           The number of reservation blocks associated with this reservation.
+     *     @type \Google\Cloud\Compute\V1\GroupMaintenanceInfo $reservation_maintenance
+     *           Maintenance information for this reservation
      *     @type \Google\Cloud\Compute\V1\AllocationResourceStatusSpecificSKUAllocation $specific_sku_allocation
      *           Allocation Properties of this reservation.
      * }
@@ -35,6 +59,114 @@ class AllocationResourceStatus extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * [Output only] Health information for the reservation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatusHealthInfo health_info = 235287729;</code>
+     * @return \Google\Cloud\Compute\V1\AllocationResourceStatusHealthInfo|null
+     */
+    public function getHealthInfo()
+    {
+        return $this->health_info;
+    }
+
+    public function hasHealthInfo()
+    {
+        return isset($this->health_info);
+    }
+
+    public function clearHealthInfo()
+    {
+        unset($this->health_info);
+    }
+
+    /**
+     * [Output only] Health information for the reservation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatusHealthInfo health_info = 235287729;</code>
+     * @param \Google\Cloud\Compute\V1\AllocationResourceStatusHealthInfo $var
+     * @return $this
+     */
+    public function setHealthInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\AllocationResourceStatusHealthInfo::class);
+        $this->health_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of reservation blocks associated with this reservation.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_block_count = 161835754;</code>
+     * @return int
+     */
+    public function getReservationBlockCount()
+    {
+        return isset($this->reservation_block_count) ? $this->reservation_block_count : 0;
+    }
+
+    public function hasReservationBlockCount()
+    {
+        return isset($this->reservation_block_count);
+    }
+
+    public function clearReservationBlockCount()
+    {
+        unset($this->reservation_block_count);
+    }
+
+    /**
+     * The number of reservation blocks associated with this reservation.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_block_count = 161835754;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReservationBlockCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->reservation_block_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Maintenance information for this reservation
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GroupMaintenanceInfo reservation_maintenance = 340607776;</code>
+     * @return \Google\Cloud\Compute\V1\GroupMaintenanceInfo|null
+     */
+    public function getReservationMaintenance()
+    {
+        return $this->reservation_maintenance;
+    }
+
+    public function hasReservationMaintenance()
+    {
+        return isset($this->reservation_maintenance);
+    }
+
+    public function clearReservationMaintenance()
+    {
+        unset($this->reservation_maintenance);
+    }
+
+    /**
+     * Maintenance information for this reservation
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GroupMaintenanceInfo reservation_maintenance = 340607776;</code>
+     * @param \Google\Cloud\Compute\V1\GroupMaintenanceInfo $var
+     * @return $this
+     */
+    public function setReservationMaintenance($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\GroupMaintenanceInfo::class);
+        $this->reservation_maintenance = $var;
+
+        return $this;
     }
 
     /**

@@ -42,6 +42,25 @@ return [
                     ],
                 ],
             ],
+            'AcceptSpokeUpdate' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkConnectivity\V1\AcceptSpokeUpdateResponse',
+                    'metadataReturnType' => '\Google\Cloud\NetworkConnectivity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateHub' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetworkConnectivity\V1\Hub',
@@ -132,6 +151,45 @@ return [
                     [
                         'keyName' => 'name',
                         'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RejectSpokeUpdate' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkConnectivity\V1\RejectSpokeUpdateResponse',
+                    'metadataReturnType' => '\Google\Cloud\NetworkConnectivity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGroup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkConnectivity\V1\Group',
+                    'metadataReturnType' => '\Google\Cloud\NetworkConnectivity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'group.name',
+                        'fieldAccessors' => [
+                            'getGroup',
                             'getName',
                         ],
                     ],
@@ -353,6 +411,26 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryHubStatus' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getHubStatusEntries',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkConnectivity\V1\QueryHubStatusResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
                         ],
                     ],
                 ],

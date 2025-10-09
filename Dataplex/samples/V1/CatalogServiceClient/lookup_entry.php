@@ -29,7 +29,7 @@ use Google\Cloud\Dataplex\V1\Entry;
 use Google\Cloud\Dataplex\V1\LookupEntryRequest;
 
 /**
- * Looks up a single entry.
+ * Looks up an entry by name using the permission on the source system.
  *
  * @param string $name           The project to which the request should be attributed in the
  *                               following form: `projects/{project}/locations/{location}`.

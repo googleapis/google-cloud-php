@@ -21,14 +21,14 @@ class Artifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string checksum = 1;</code>
      */
-    private $checksum = '';
+    protected $checksum = '';
     /**
      * Artifact ID, if any; for container images, this will be a URL by digest
      * like `gcr.io/projectID/imagename&#64;sha256:123456`.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Related artifact names. This may be the path to a binary or jar file, or in
      * the case of a container build, the name used to push the container image to

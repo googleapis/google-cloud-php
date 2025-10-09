@@ -28,7 +28,7 @@ class PricingExpression extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string usage_unit = 1;</code>
      */
-    private $usage_unit = '';
+    protected $usage_unit = '';
     /**
      * The recommended quantity of units for displaying pricing info. When
      * displaying pricing info it is recommended to display:
@@ -41,7 +41,7 @@ class PricingExpression extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double display_quantity = 2;</code>
      */
-    private $display_quantity = 0.0;
+    protected $display_quantity = 0.0;
     /**
      * The list of tiered rates for this pricing. The total cost is computed by
      * applying each of the tiered rates on usage. This repeated list is sorted
@@ -56,21 +56,21 @@ class PricingExpression extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string usage_unit_description = 4;</code>
      */
-    private $usage_unit_description = '';
+    protected $usage_unit_description = '';
     /**
      * The base unit for the SKU which is the unit used in usage exports.
      * Example: "By"
      *
      * Generated from protobuf field <code>string base_unit = 5;</code>
      */
-    private $base_unit = '';
+    protected $base_unit = '';
     /**
      * The base unit in human readable form.
      * Example: "byte".
      *
      * Generated from protobuf field <code>string base_unit_description = 6;</code>
      */
-    private $base_unit_description = '';
+    protected $base_unit_description = '';
     /**
      * Conversion factor for converting from price per usage_unit to price per
      * base_unit, and start_usage_amount to start_usage_amount in base_unit.
@@ -80,7 +80,7 @@ class PricingExpression extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double base_unit_conversion_factor = 7;</code>
      */
-    private $base_unit_conversion_factor = 0.0;
+    protected $base_unit_conversion_factor = 0.0;
 
     /**
      * Constructor.

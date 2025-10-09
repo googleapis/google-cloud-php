@@ -32,7 +32,6 @@ use Google\Cloud\Storage\Control\V2\ListFoldersRequest;
 /**
  * Retrieves a list of folders. This operation is only applicable to a
  * hierarchical namespace enabled bucket.
- * Hierarchical namespace buckets are in allowlist preview.
  *
  * @param string $formattedParent Name of the bucket in which to look for folders. The bucket must
  *                                be a hierarchical namespace enabled bucket. Please see

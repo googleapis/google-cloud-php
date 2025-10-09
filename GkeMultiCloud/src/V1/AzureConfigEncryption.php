@@ -25,7 +25,7 @@ class AzureConfigEncryption extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key_id = '';
+    protected $key_id = '';
     /**
      * Optional. RSA key of the Azure Key Vault public key to use for encrypting
      * the data.
@@ -35,7 +35,7 @@ class AzureConfigEncryption extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string public_key = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $public_key = '';
+    protected $public_key = '';
 
     /**
      * Constructor.

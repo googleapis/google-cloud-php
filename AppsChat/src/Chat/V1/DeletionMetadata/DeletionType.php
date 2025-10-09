@@ -7,7 +7,10 @@ namespace Google\Apps\Chat\V1\DeletionMetadata;
 use UnexpectedValueException;
 
 /**
- * Who deleted the message and how it was deleted.
+ * Who deleted the message and how it was deleted. More values may be added in
+ * the future. See [Edit or delete a message in Google
+ * Chat](https://support.google.com/chat/answer/7653281) for details on when
+ * messages can be deleted.
  *
  * Protobuf type <code>google.chat.v1.DeletionMetadata.DeletionType</code>
  */
@@ -26,13 +29,15 @@ class DeletionType
      */
     const CREATOR = 1;
     /**
-     * The space owner deleted the message.
+     * A space manager deleted the message.
      *
      * Generated from protobuf enum <code>SPACE_OWNER = 2;</code>
      */
     const SPACE_OWNER = 2;
     /**
-     * A Google Workspace admin deleted the message.
+     * A Google Workspace administrator deleted the message. Administrators can
+     * delete any message in the space, including messages sent by any space
+     * member or Chat app.
      *
      * Generated from protobuf enum <code>ADMIN = 3;</code>
      */
@@ -44,17 +49,26 @@ class DeletionType
      */
     const APP_MESSAGE_EXPIRY = 4;
     /**
-     * A Chat app deleted the message on behalf of the user.
+     * A Chat app deleted the message on behalf of the creator (using user
+     * authentication).
      *
      * Generated from protobuf enum <code>CREATOR_VIA_APP = 5;</code>
      */
     const CREATOR_VIA_APP = 5;
     /**
-     * A Chat app deleted the message on behalf of the space owner.
+     * A Chat app deleted the message on behalf of a space manager (using user
+     * authentication).
      *
      * Generated from protobuf enum <code>SPACE_OWNER_VIA_APP = 6;</code>
      */
     const SPACE_OWNER_VIA_APP = 6;
+    /**
+     * A member of the space deleted the message. Users can delete messages sent
+     * by apps.
+     *
+     * Generated from protobuf enum <code>SPACE_MEMBER = 7;</code>
+     */
+    const SPACE_MEMBER = 7;
 
     private static $valueToName = [
         self::DELETION_TYPE_UNSPECIFIED => 'DELETION_TYPE_UNSPECIFIED',
@@ -64,6 +78,7 @@ class DeletionType
         self::APP_MESSAGE_EXPIRY => 'APP_MESSAGE_EXPIRY',
         self::CREATOR_VIA_APP => 'CREATOR_VIA_APP',
         self::SPACE_OWNER_VIA_APP => 'SPACE_OWNER_VIA_APP',
+        self::SPACE_MEMBER => 'SPACE_MEMBER',
     ];
 
     public static function name($value)

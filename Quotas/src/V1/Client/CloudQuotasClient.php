@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ namespace Google\Cloud\CloudQuotas\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -42,6 +43,7 @@ use Google\Cloud\CloudQuotas\V1\QuotaInfo;
 use Google\Cloud\CloudQuotas\V1\QuotaPreference;
 use Google\Cloud\CloudQuotas\V1\UpdateQuotaPreferenceRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Cloud Quotas API is an infrastructure service for Google Cloud that lets
@@ -60,12 +62,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createQuotaPreferenceAsync(CreateQuotaPreferenceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getQuotaInfoAsync(GetQuotaInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getQuotaPreferenceAsync(GetQuotaPreferenceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listQuotaInfosAsync(ListQuotaInfosRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listQuotaPreferencesAsync(ListQuotaPreferencesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateQuotaPreferenceAsync(UpdateQuotaPreferenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QuotaPreference> createQuotaPreferenceAsync(CreateQuotaPreferenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QuotaInfo> getQuotaInfoAsync(GetQuotaInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QuotaPreference> getQuotaPreferenceAsync(GetQuotaPreferenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listQuotaInfosAsync(ListQuotaInfosRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listQuotaPreferencesAsync(ListQuotaPreferencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QuotaPreference> updateQuotaPreferenceAsync(UpdateQuotaPreferenceRequest $request, array $optionalArgs = [])
  */
 final class CloudQuotasClient
 {
@@ -92,7 +94,9 @@ final class CloudQuotasClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -140,11 +144,8 @@ final class CloudQuotasClient
      *
      * @return string The formatted folder_location_quota_preference resource.
      */
-    public static function folderLocationQuotaPreferenceName(
-        string $folder,
-        string $location,
-        string $quotaPreference
-    ): string {
+    public static function folderLocationQuotaPreferenceName(string $folder, string $location, string $quotaPreference): string
+    {
         return self::getPathTemplate('folderLocationQuotaPreference')->render([
             'folder' => $folder,
             'location' => $location,
@@ -182,12 +183,8 @@ final class CloudQuotasClient
      *
      * @return string The formatted folder_location_service_quota_info resource.
      */
-    public static function folderLocationServiceQuotaInfoName(
-        string $folder,
-        string $location,
-        string $service,
-        string $quotaInfo
-    ): string {
+    public static function folderLocationServiceQuotaInfoName(string $folder, string $location, string $service, string $quotaInfo): string
+    {
         return self::getPathTemplate('folderLocationServiceQuotaInfo')->render([
             'folder' => $folder,
             'location' => $location,
@@ -240,11 +237,8 @@ final class CloudQuotasClient
      *
      * @return string The formatted organization_location_quota_preference resource.
      */
-    public static function organizationLocationQuotaPreferenceName(
-        string $organization,
-        string $location,
-        string $quotaPreference
-    ): string {
+    public static function organizationLocationQuotaPreferenceName(string $organization, string $location, string $quotaPreference): string
+    {
         return self::getPathTemplate('organizationLocationQuotaPreference')->render([
             'organization' => $organization,
             'location' => $location,
@@ -262,11 +256,8 @@ final class CloudQuotasClient
      *
      * @return string The formatted organization_location_service resource.
      */
-    public static function organizationLocationServiceName(
-        string $organization,
-        string $location,
-        string $service
-    ): string {
+    public static function organizationLocationServiceName(string $organization, string $location, string $service): string
+    {
         return self::getPathTemplate('organizationLocationService')->render([
             'organization' => $organization,
             'location' => $location,
@@ -285,12 +276,8 @@ final class CloudQuotasClient
      *
      * @return string The formatted organization_location_service_quota_info resource.
      */
-    public static function organizationLocationServiceQuotaInfoName(
-        string $organization,
-        string $location,
-        string $service,
-        string $quotaInfo
-    ): string {
+    public static function organizationLocationServiceQuotaInfoName(string $organization, string $location, string $service, string $quotaInfo): string
+    {
         return self::getPathTemplate('organizationLocationServiceQuotaInfo')->render([
             'organization' => $organization,
             'location' => $location,
@@ -326,11 +313,8 @@ final class CloudQuotasClient
      *
      * @return string The formatted project_location_quota_preference resource.
      */
-    public static function projectLocationQuotaPreferenceName(
-        string $project,
-        string $location,
-        string $quotaPreference
-    ): string {
+    public static function projectLocationQuotaPreferenceName(string $project, string $location, string $quotaPreference): string
+    {
         return self::getPathTemplate('projectLocationQuotaPreference')->render([
             'project' => $project,
             'location' => $location,
@@ -368,12 +352,8 @@ final class CloudQuotasClient
      *
      * @return string The formatted project_location_service_quota_info resource.
      */
-    public static function projectLocationServiceQuotaInfoName(
-        string $project,
-        string $location,
-        string $service,
-        string $quotaInfo
-    ): string {
+    public static function projectLocationServiceQuotaInfoName(string $project, string $location, string $service, string $quotaInfo): string
+    {
         return self::getPathTemplate('projectLocationServiceQuotaInfo')->render([
             'project' => $project,
             'location' => $location,
@@ -468,14 +448,14 @@ final class CloudQuotasClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -483,20 +463,29 @@ final class CloudQuotasClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudquotas.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\CloudQuotas\V1\CloudQuotasClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new CloudQuotasClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -530,11 +519,16 @@ final class CloudQuotasClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -572,10 +566,8 @@ final class CloudQuotasClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createQuotaPreference(
-        CreateQuotaPreferenceRequest $request,
-        array $callOptions = []
-    ): QuotaPreference {
+    public function createQuotaPreference(CreateQuotaPreferenceRequest $request, array $callOptions = []): QuotaPreference
+    {
         return $this->startApiCall('CreateQuotaPreference', $request, $callOptions)->wait();
     }
 
@@ -678,10 +670,8 @@ final class CloudQuotasClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listQuotaPreferences(
-        ListQuotaPreferencesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listQuotaPreferences(ListQuotaPreferencesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListQuotaPreferences', $request, $callOptions);
     }
 
@@ -707,10 +697,8 @@ final class CloudQuotasClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateQuotaPreference(
-        UpdateQuotaPreferenceRequest $request,
-        array $callOptions = []
-    ): QuotaPreference {
+    public function updateQuotaPreference(UpdateQuotaPreferenceRequest $request, array $callOptions = []): QuotaPreference
+    {
         return $this->startApiCall('UpdateQuotaPreference', $request, $callOptions)->wait();
     }
 }

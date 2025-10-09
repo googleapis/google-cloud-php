@@ -23,7 +23,7 @@ class BatchEnableServicesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The identifiers of the services to enable on the project.
      * A valid identifier would be:

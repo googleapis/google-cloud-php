@@ -22,7 +22,7 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string results_table = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $results_table = '';
+    protected $results_table = '';
 
     /**
      * Constructor.

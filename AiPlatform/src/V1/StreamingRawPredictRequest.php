@@ -33,7 +33,7 @@ class StreamingRawPredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Fully qualified name of the API method being invoked to perform
      * predictions.
@@ -44,13 +44,13 @@ class StreamingRawPredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string method_name = 2;</code>
      */
-    private $method_name = '';
+    protected $method_name = '';
     /**
      * The prediction input.
      *
      * Generated from protobuf field <code>bytes input = 3;</code>
      */
-    private $input = '';
+    protected $input = '';
 
     /**
      * Constructor.

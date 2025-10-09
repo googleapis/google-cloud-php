@@ -21,7 +21,7 @@ class Examples extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 neighbor_count = 3;</code>
      */
-    private $neighbor_count = 0;
+    protected $neighbor_count = 0;
     protected $source;
     protected $config;
 

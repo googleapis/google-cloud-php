@@ -21,7 +21,7 @@ class MembershipFeatureState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.FeatureState state = 1;</code>
      */
-    private $state = null;
+    protected $state = null;
     protected $feature_state;
 
     /**

@@ -61,6 +61,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateDeploymentResourcePool' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\DeploymentResourcePool',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\UpdateDeploymentResourcePoolOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'deployment_resource_pool.name',
+                        'fieldAccessors' => [
+                            'getDeploymentResourcePool',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDeploymentResourcePool' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\DeploymentResourcePool',
@@ -190,6 +210,7 @@ return [
                 'deploymentResourcePool' => 'projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}',
                 'location' => 'projects/{project}/locations/{location}',
                 'project' => 'projects/{project}',
+                'reservation' => 'projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}',
             ],
         ],
     ],

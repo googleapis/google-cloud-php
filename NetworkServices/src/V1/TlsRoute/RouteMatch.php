@@ -11,8 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * RouteMatch defines the predicate used to match requests to a given action.
  * Multiple match types are "AND"ed for evaluation.
- * If no routeMatch field is specified, this rule will unconditionally match
- * traffic.
  *
  * Generated from protobuf message <code>google.cloud.networkservices.v1.TlsRoute.RouteMatch</code>
  */
@@ -26,7 +24,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * Partial wildcards are not supported, and values like *w.example.com are
      * invalid.
      * At least one of sni_host and alpn is required.
-     * Up to 5 sni hosts across all matches can be set.
+     * Up to 100 sni hosts across all matches can be set.
      *
      * Generated from protobuf field <code>repeated string sni_host = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,7 +53,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      *           Partial wildcards are not supported, and values like *w.example.com are
      *           invalid.
      *           At least one of sni_host and alpn is required.
-     *           Up to 5 sni hosts across all matches can be set.
+     *           Up to 100 sni hosts across all matches can be set.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $alpn
      *           Optional. ALPN (Application-Layer Protocol Negotiation) to match against.
      *           Examples: "http/1.1", "h2".
@@ -76,7 +74,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * Partial wildcards are not supported, and values like *w.example.com are
      * invalid.
      * At least one of sni_host and alpn is required.
-     * Up to 5 sni hosts across all matches can be set.
+     * Up to 100 sni hosts across all matches can be set.
      *
      * Generated from protobuf field <code>repeated string sni_host = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -94,7 +92,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * Partial wildcards are not supported, and values like *w.example.com are
      * invalid.
      * At least one of sni_host and alpn is required.
-     * Up to 5 sni hosts across all matches can be set.
+     * Up to 100 sni hosts across all matches can be set.
      *
      * Generated from protobuf field <code>repeated string sni_host = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

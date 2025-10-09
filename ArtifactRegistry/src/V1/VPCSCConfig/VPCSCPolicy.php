@@ -63,6 +63,4 @@ class VPCSCPolicy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VPCSCPolicy::class, \Google\Cloud\ArtifactRegistry\V1\VPCSCConfig_VPCSCPolicy::class);
 

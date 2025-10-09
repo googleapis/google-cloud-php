@@ -27,22 +27,23 @@ use Google\ApiCore\ApiException;
 use Google\Shopping\Merchant\Products\V1beta\Client\ProductInputsServiceClient;
 use Google\Shopping\Merchant\Products\V1beta\InsertProductInputRequest;
 use Google\Shopping\Merchant\Products\V1beta\ProductInput;
-use Google\Shopping\Type\Channel\ChannelEnum;
 
 /**
- * Uploads a product input to your Merchant Center account. If an input
- * with the same contentLanguage, offerId, and dataSource already exists,
- * this method replaces that entry.
+ * [Uploads a product input to your Merchant Center
+ * account](/merchant/api/guides/products/overview#upload-product-input). You
+ * must have a products data source to be able to insert a product. The unique
+ * identifier of the data source is passed as a query parameter in the request
+ * URL.
+ *
+ * If an input with the same contentLanguage, offerId, and dataSource already
+ * exists, this method replaces that entry.
  *
  * After inserting, updating, or deleting a product input, it may take several
  * minutes before the processed product can be retrieved.
  *
  * @param string $formattedParent             The account where this product will be inserted.
- *                                            Format: accounts/{account}
+ *                                            Format: `accounts/{account}`
  *                                            Please see {@see ProductInputsServiceClient::accountName()} for help formatting this field.
- * @param int    $productInputChannel         Immutable. The
- *                                            [channel](https://support.google.com/merchants/answer/7361332) of the
- *                                            product.
  * @param string $productInputOfferId         Immutable. Your unique identifier for the product. This is the
  *                                            same for the product input and processed product. Leading and trailing
  *                                            whitespaces are stripped and multiple whitespaces are replaced by a single
@@ -52,17 +53,24 @@ use Google\Shopping\Type\Channel\ChannelEnum;
  * @param string $productInputContentLanguage Immutable. The two-letter [ISO
  *                                            639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the
  *                                            product.
- * @param string $productInputFeedLabel       Immutable. The [feed
- *                                            label](https://developers.google.com/shopping-content/guides/products/feed-labels)
- *                                            for the product.
+ * @param string $productInputFeedLabel       Immutable. The label that lets you categorize and identify your
+ *                                            products. The maximum allowed characters are 20, and the supported
+ *                                            characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must
+ *                                            not include any spaces. For more information, see [Using feed
+ *                                            labels](//support.google.com/merchants/answer/14994087).
  * @param string $dataSource                  The primary or supplemental product data source name. If the
  *                                            product already exists and data source provided is different, then the
- *                                            product will be moved to a new data source. Format:
- *                                            `accounts/{account}/dataSources/{datasource}`.
+ *                                            product will be moved to a new data source. For more information, see
+ *                                            [Overview of Data sources
+ *                                            sub-API](/merchant/api/guides/data-sources/overview).
+ *
+ *                                            Only API data sources are supported.
+ *
+ *                                            Format: `accounts/{account}/dataSources/{datasource}`. For example,
+ *                                            `accounts/123456/dataSources/104628`.
  */
 function insert_product_input_sample(
     string $formattedParent,
-    int $productInputChannel,
     string $productInputOfferId,
     string $productInputContentLanguage,
     string $productInputFeedLabel,
@@ -73,7 +81,6 @@ function insert_product_input_sample(
 
     // Prepare the request message.
     $productInput = (new ProductInput())
-        ->setChannel($productInputChannel)
         ->setOfferId($productInputOfferId)
         ->setContentLanguage($productInputContentLanguage)
         ->setFeedLabel($productInputFeedLabel);
@@ -104,7 +111,6 @@ function insert_product_input_sample(
 function callSample(): void
 {
     $formattedParent = ProductInputsServiceClient::accountName('[ACCOUNT]');
-    $productInputChannel = ChannelEnum::CHANNEL_ENUM_UNSPECIFIED;
     $productInputOfferId = '[OFFER_ID]';
     $productInputContentLanguage = '[CONTENT_LANGUAGE]';
     $productInputFeedLabel = '[FEED_LABEL]';
@@ -112,7 +118,6 @@ function callSample(): void
 
     insert_product_input_sample(
         $formattedParent,
-        $productInputChannel,
         $productInputOfferId,
         $productInputContentLanguage,
         $productInputFeedLabel,

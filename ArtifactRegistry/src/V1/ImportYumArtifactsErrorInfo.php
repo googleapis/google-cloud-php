@@ -20,7 +20,7 @@ class ImportYumArtifactsErrorInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 2;</code>
      */
-    private $error = null;
+    protected $error = null;
     protected $source;
 
     /**

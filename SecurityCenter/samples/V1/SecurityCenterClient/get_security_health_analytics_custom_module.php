@@ -32,10 +32,10 @@ use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
  * Retrieves a SecurityHealthAnalyticsCustomModule.
  *
  * @param string $formattedName Name of the custom module to get. Its format is
- *                              "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
- *                              "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+ *                              `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`,
+ *                              `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`,
  *                              or
- *                              "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
+ *                              `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`
  *                              Please see {@see SecurityCenterClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
  */
 function get_security_health_analytics_custom_module_sample(string $formattedName): void

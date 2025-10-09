@@ -19,10 +19,10 @@ class BigqueryExport
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-™
-4google/cloud/securitycenter/v2/bigquery_export.protogoogle.cloud.securitycenter.v2google/api/resource.protogoogle/protobuf/timestamp.proto"ù
-BigQueryExport
-name (	
+Ø
+4google/cloud/securitycenter/v2/bigquery_export.protogoogle.cloud.securitycenter.v2google/api/resource.protogoogle/protobuf/timestamp.proto"¢
+BigQueryExport
+name (	B‡A
 description (	
 filter (	
 dataset (	4

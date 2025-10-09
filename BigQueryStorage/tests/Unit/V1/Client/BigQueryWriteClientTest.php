@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,9 @@ class BigQueryWriteClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return BigQueryWriteClient */
@@ -106,10 +108,7 @@ class BigQueryWriteClientTest extends GeneratedTest
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
+        $bidi->writeAll([$request2, $request3]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -147,12 +146,15 @@ class BigQueryWriteClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->appendRows();
@@ -184,9 +186,7 @@ class BigQueryWriteClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
         $writeStreams = [];
-        $request = (new BatchCommitWriteStreamsRequest())
-            ->setParent($formattedParent)
-            ->setWriteStreams($writeStreams);
+        $request = (new BatchCommitWriteStreamsRequest())->setParent($formattedParent)->setWriteStreams($writeStreams);
         $response = $gapicClient->batchCommitWriteStreams($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -212,19 +212,20 @@ class BigQueryWriteClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
         $writeStreams = [];
-        $request = (new BatchCommitWriteStreamsRequest())
-            ->setParent($formattedParent)
-            ->setWriteStreams($writeStreams);
+        $request = (new BatchCommitWriteStreamsRequest())->setParent($formattedParent)->setWriteStreams($writeStreams);
         try {
             $gapicClient->batchCommitWriteStreams($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -256,9 +257,7 @@ class BigQueryWriteClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
         $writeStream = new WriteStream();
-        $request = (new CreateWriteStreamRequest())
-            ->setParent($formattedParent)
-            ->setWriteStream($writeStream);
+        $request = (new CreateWriteStreamRequest())->setParent($formattedParent)->setWriteStream($writeStream);
         $response = $gapicClient->createWriteStream($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -284,19 +283,20 @@ class BigQueryWriteClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
         $writeStream = new WriteStream();
-        $request = (new CreateWriteStreamRequest())
-            ->setParent($formattedParent)
-            ->setWriteStream($writeStream);
+        $request = (new CreateWriteStreamRequest())->setParent($formattedParent)->setWriteStream($writeStream);
         try {
             $gapicClient->createWriteStream($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -325,8 +325,7 @@ class BigQueryWriteClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
-        $request = (new FinalizeWriteStreamRequest())
-            ->setName($formattedName);
+        $request = (new FinalizeWriteStreamRequest())->setName($formattedName);
         $response = $gapicClient->finalizeWriteStream($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -350,17 +349,19 @@ class BigQueryWriteClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
-        $request = (new FinalizeWriteStreamRequest())
-            ->setName($formattedName);
+        $request = (new FinalizeWriteStreamRequest())->setName($formattedName);
         try {
             $gapicClient->finalizeWriteStream($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -389,8 +390,7 @@ class BigQueryWriteClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedWriteStream = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
-        $request = (new FlushRowsRequest())
-            ->setWriteStream($formattedWriteStream);
+        $request = (new FlushRowsRequest())->setWriteStream($formattedWriteStream);
         $response = $gapicClient->flushRows($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -414,17 +414,19 @@ class BigQueryWriteClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedWriteStream = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
-        $request = (new FlushRowsRequest())
-            ->setWriteStream($formattedWriteStream);
+        $request = (new FlushRowsRequest())->setWriteStream($formattedWriteStream);
         try {
             $gapicClient->flushRows($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -455,8 +457,7 @@ class BigQueryWriteClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
-        $request = (new GetWriteStreamRequest())
-            ->setName($formattedName);
+        $request = (new GetWriteStreamRequest())->setName($formattedName);
         $response = $gapicClient->getWriteStream($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -480,17 +481,19 @@ class BigQueryWriteClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
-        $request = (new GetWriteStreamRequest())
-            ->setName($formattedName);
+        $request = (new GetWriteStreamRequest())->setName($formattedName);
         try {
             $gapicClient->getWriteStream($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -518,9 +521,7 @@ class BigQueryWriteClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
         $writeStreams = [];
-        $request = (new BatchCommitWriteStreamsRequest())
-            ->setParent($formattedParent)
-            ->setWriteStreams($writeStreams);
+        $request = (new BatchCommitWriteStreamsRequest())->setParent($formattedParent)->setWriteStreams($writeStreams);
         $response = $gapicClient->batchCommitWriteStreamsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

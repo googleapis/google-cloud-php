@@ -20,7 +20,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.InputConfig.InputSwitchMode input_switch_mode = 1;</code>
      */
-    private $input_switch_mode = 0;
+    protected $input_switch_mode = 0;
 
     /**
      * Constructor.

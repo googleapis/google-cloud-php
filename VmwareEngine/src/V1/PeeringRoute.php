@@ -20,26 +20,26 @@ class PeeringRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dest_range = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $dest_range = '';
+    protected $dest_range = '';
     /**
      * Output only. Type of the route in the peer VPC network.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PeeringRoute.Type type = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Output only. Region containing the next hop of the peering route. This
      * field only applies to dynamic routes in the peer VPC network.
      *
      * Generated from protobuf field <code>string next_hop_region = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $next_hop_region = '';
+    protected $next_hop_region = '';
     /**
      * Output only. The priority of the peering route.
      *
      * Generated from protobuf field <code>int64 priority = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $priority = 0;
+    protected $priority = 0;
     /**
      * Output only. True if the peering route has been imported from a peered
      * VPC network; false otherwise. The import happens if the field
@@ -49,7 +49,7 @@ class PeeringRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool imported = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $imported = false;
+    protected $imported = false;
     /**
      * Output only. Direction of the routes exchanged with the peer network, from
      * the VMware Engine network perspective:
@@ -59,7 +59,7 @@ class PeeringRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PeeringRoute.Direction direction = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $direction = 0;
+    protected $direction = 0;
 
     /**
      * Constructor.

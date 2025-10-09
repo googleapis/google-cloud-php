@@ -12,46 +12,52 @@ use Google\Protobuf\Internal\GPBUtil;
  * Represents a user-visible job which provides the insights for the related
  * data source.
  * For example:
- * * Data Quality: generates queries based on the rules and runs against the
- *   data to get data quality check results.
- * * Data Profile: analyzes the data in table(s) and generates insights about
+ * * Data quality: generates queries based on the rules and runs against the
+ *   data to get data quality check results. For more information, see [Auto
+ *   data quality
+ *   overview](https://cloud.google.com/dataplex/docs/auto-data-quality-overview).
+ * * Data profile: analyzes the data in tables and generates insights about
  *   the structure, content and relationships (such as null percent,
- *   cardinality, min/max/mean, etc).
+ *   cardinality, min/max/mean, etc). For more information, see [About data
+ *   profiling](https://cloud.google.com/dataplex/docs/data-profiling-overview).
+ * * Data discovery: scans data in Cloud Storage buckets to extract and then
+ *   catalog metadata. For more information, see [Discover and catalog Cloud
+ *   Storage data](https://cloud.google.com/bigquery/docs/automatic-discovery).
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataScan</code>
  */
 class DataScan extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The relative resource name of the scan, of the form:
-     * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+     * Output only. Identifier. The relative resource name of the scan, of the
+     * form: `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. System generated globally unique ID for the scan. This ID will
      * be different if the scan is deleted and re-created with the same name.
      *
-     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Optional. Description of the scan.
      * * Must be between 1-1024 characters.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. User friendly display name.
      * * Must be between 1-256 characters.
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. User-defined labels for the scan.
      *
@@ -63,44 +69,44 @@ class DataScan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The time when the scan was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the scan was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Required. The data source for DataScan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataSource data = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data = null;
+    protected $data = null;
     /**
      * Optional. DataScan execution settings.
      * If not specified, the fields in it will use their default values.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScan.ExecutionSpec execution_spec = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $execution_spec = null;
+    protected $execution_spec = null;
     /**
      * Output only. Status of the data scan execution.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScan.ExecutionStatus execution_status = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $execution_status = null;
+    protected $execution_status = null;
     /**
      * Output only. The type of DataScan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanType type = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     protected $spec;
     protected $result;
 
@@ -111,10 +117,10 @@ class DataScan extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The relative resource name of the scan, of the form:
-     *           `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+     *           Output only. Identifier. The relative resource name of the scan, of the
+     *           form: `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
      *           where `project` refers to a *project_id* or *project_number* and
-     *           `location_id` refers to a GCP region.
+     *           `location_id` refers to a Google Cloud region.
      *     @type string $uid
      *           Output only. System generated globally unique ID for the scan. This ID will
      *           be different if the scan is deleted and re-created with the same name.
@@ -142,13 +148,17 @@ class DataScan extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Output only. The type of DataScan.
      *     @type \Google\Cloud\Dataplex\V1\DataQualitySpec $data_quality_spec
-     *           DataQualityScan related setting.
+     *           Settings for a data quality scan.
      *     @type \Google\Cloud\Dataplex\V1\DataProfileSpec $data_profile_spec
-     *           DataProfileScan related setting.
+     *           Settings for a data profile scan.
+     *     @type \Google\Cloud\Dataplex\V1\DataDiscoverySpec $data_discovery_spec
+     *           Settings for a data discovery scan.
      *     @type \Google\Cloud\Dataplex\V1\DataQualityResult $data_quality_result
-     *           Output only. The result of the data quality scan.
+     *           Output only. The result of a data quality scan.
      *     @type \Google\Cloud\Dataplex\V1\DataProfileResult $data_profile_result
-     *           Output only. The result of the data profile scan.
+     *           Output only. The result of a data profile scan.
+     *     @type \Google\Cloud\Dataplex\V1\DataDiscoveryResult $data_discovery_result
+     *           Output only. The result of a data discovery scan.
      * }
      */
     public function __construct($data = NULL) {
@@ -157,12 +167,12 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The relative resource name of the scan, of the form:
-     * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+     * Output only. Identifier. The relative resource name of the scan, of the
+     * form: `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -171,12 +181,12 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The relative resource name of the scan, of the form:
-     * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+     * Output only. Identifier. The relative resource name of the scan, of the
+     * form: `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -192,7 +202,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
      * Output only. System generated globally unique ID for the scan. This ID will
      * be different if the scan is deleted and re-created with the same name.
      *
-     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getUid()
@@ -204,7 +214,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
      * Output only. System generated globally unique ID for the scan. This ID will
      * be different if the scan is deleted and re-created with the same name.
      *
-     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */
@@ -533,7 +543,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * DataQualityScan related setting.
+     * Settings for a data quality scan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec data_quality_spec = 100;</code>
      * @return \Google\Cloud\Dataplex\V1\DataQualitySpec|null
@@ -549,7 +559,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * DataQualityScan related setting.
+     * Settings for a data quality scan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec data_quality_spec = 100;</code>
      * @param \Google\Cloud\Dataplex\V1\DataQualitySpec $var
@@ -564,7 +574,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * DataProfileScan related setting.
+     * Settings for a data profile scan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileSpec data_profile_spec = 101;</code>
      * @return \Google\Cloud\Dataplex\V1\DataProfileSpec|null
@@ -580,7 +590,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * DataProfileScan related setting.
+     * Settings for a data profile scan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileSpec data_profile_spec = 101;</code>
      * @param \Google\Cloud\Dataplex\V1\DataProfileSpec $var
@@ -595,7 +605,38 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The result of the data quality scan.
+     * Settings for a data discovery scan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoverySpec data_discovery_spec = 102;</code>
+     * @return \Google\Cloud\Dataplex\V1\DataDiscoverySpec|null
+     */
+    public function getDataDiscoverySpec()
+    {
+        return $this->readOneof(102);
+    }
+
+    public function hasDataDiscoverySpec()
+    {
+        return $this->hasOneof(102);
+    }
+
+    /**
+     * Settings for a data discovery scan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoverySpec data_discovery_spec = 102;</code>
+     * @param \Google\Cloud\Dataplex\V1\DataDiscoverySpec $var
+     * @return $this
+     */
+    public function setDataDiscoverySpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDiscoverySpec::class);
+        $this->writeOneof(102, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The result of a data quality scan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityResult data_quality_result = 200 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataplex\V1\DataQualityResult|null
@@ -611,7 +652,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The result of the data quality scan.
+     * Output only. The result of a data quality scan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityResult data_quality_result = 200 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataplex\V1\DataQualityResult $var
@@ -626,7 +667,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The result of the data profile scan.
+     * Output only. The result of a data profile scan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult data_profile_result = 201 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataplex\V1\DataProfileResult|null
@@ -642,7 +683,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The result of the data profile scan.
+     * Output only. The result of a data profile scan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult data_profile_result = 201 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataplex\V1\DataProfileResult $var
@@ -652,6 +693,37 @@ class DataScan extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataProfileResult::class);
         $this->writeOneof(201, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The result of a data discovery scan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoveryResult data_discovery_result = 202 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataDiscoveryResult|null
+     */
+    public function getDataDiscoveryResult()
+    {
+        return $this->readOneof(202);
+    }
+
+    public function hasDataDiscoveryResult()
+    {
+        return $this->hasOneof(202);
+    }
+
+    /**
+     * Output only. The result of a data discovery scan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoveryResult data_discovery_result = 202 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataDiscoveryResult $var
+     * @return $this
+     */
+    public function setDataDiscoveryResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDiscoveryResult::class);
+        $this->writeOneof(202, $var);
 
         return $this;
     }

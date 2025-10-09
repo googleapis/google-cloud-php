@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,9 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataRequest;
+use Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataRequest\Matcher;
+use Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataResponse;
 use Google\Cloud\DiscoveryEngine\V1\Client\DocumentServiceClient;
 use Google\Cloud\DiscoveryEngine\V1\CreateDocumentRequest;
 use Google\Cloud\DiscoveryEngine\V1\DeleteDocumentRequest;
@@ -74,6 +77,76 @@ class DocumentServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new DocumentServiceClient($options);
+    }
+
+    /** @test */
+    public function batchGetDocumentsMetadataTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchGetDocumentsMetadataResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
+        $matcher = new Matcher();
+        $request = (new BatchGetDocumentsMetadataRequest())->setParent($formattedParent)->setMatcher($matcher);
+        $response = $gapicClient->batchGetDocumentsMetadata($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.discoveryengine.v1.DocumentService/BatchGetDocumentsMetadata',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getMatcher();
+        $this->assertProtobufEquals($matcher, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchGetDocumentsMetadataExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
+        $matcher = new Matcher();
+        $request = (new BatchGetDocumentsMetadataRequest())->setParent($formattedParent)->setMatcher($matcher);
+        try {
+            $gapicClient->batchGetDocumentsMetadata($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -717,7 +790,7 @@ class DocumentServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createDocumentAsyncTest()
+    public function batchGetDocumentsMetadataAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -725,39 +798,26 @@ class DocumentServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $jsonData = 'jsonData-1083208543';
-        $name = 'name3373707';
-        $id = 'id3355';
-        $schemaId = 'schemaId-153006983';
-        $parentDocumentId = 'parentDocumentId-1870594390';
-        $expectedResponse = new Document();
-        $expectedResponse->setJsonData($jsonData);
-        $expectedResponse->setName($name);
-        $expectedResponse->setId($id);
-        $expectedResponse->setSchemaId($schemaId);
-        $expectedResponse->setParentDocumentId($parentDocumentId);
+        $expectedResponse = new BatchGetDocumentsMetadataResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $document = new Document();
-        $documentId = 'documentId506676927';
-        $request = (new CreateDocumentRequest())
-            ->setParent($formattedParent)
-            ->setDocument($document)
-            ->setDocumentId($documentId);
-        $response = $gapicClient->createDocumentAsync($request)->wait();
+        $matcher = new Matcher();
+        $request = (new BatchGetDocumentsMetadataRequest())->setParent($formattedParent)->setMatcher($matcher);
+        $response = $gapicClient->batchGetDocumentsMetadataAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.discoveryengine.v1.DocumentService/CreateDocument', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.discoveryengine.v1.DocumentService/BatchGetDocumentsMetadata',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
-        $actualValue = $actualRequestObject->getDocumentId();
-        $this->assertProtobufEquals($documentId, $actualValue);
+        $actualValue = $actualRequestObject->getMatcher();
+        $this->assertProtobufEquals($matcher, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

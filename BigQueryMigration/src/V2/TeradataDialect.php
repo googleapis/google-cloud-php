@@ -20,7 +20,7 @@ class TeradataDialect extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.TeradataDialect.Mode mode = 1;</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
 
     /**
      * Constructor.

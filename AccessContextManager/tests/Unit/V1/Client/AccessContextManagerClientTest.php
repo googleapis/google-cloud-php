@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Identity\AccessContextManager\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -66,6 +65,7 @@ use Google\Identity\AccessContextManager\V1\UpdateAccessLevelRequest;
 use Google\Identity\AccessContextManager\V1\UpdateAccessPolicyRequest;
 use Google\Identity\AccessContextManager\V1\UpdateGcpUserAccessBindingRequest;
 use Google\Identity\AccessContextManager\V1\UpdateServicePerimeterRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -90,7 +90,9 @@ class AccessContextManagerClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AccessContextManagerClient */
@@ -133,8 +135,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
-        $request = (new CommitServicePerimetersRequest())
-            ->setParent($formattedParent);
+        $request = (new CommitServicePerimetersRequest())->setParent($formattedParent);
         $response = $gapicClient->commitServicePerimeters($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -144,7 +145,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/CommitServicePerimeters', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/CommitServicePerimeters',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -190,17 +194,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
-        $request = (new CommitServicePerimetersRequest())
-            ->setParent($formattedParent);
+        $request = (new CommitServicePerimetersRequest())->setParent($formattedParent);
         $response = $gapicClient->commitServicePerimeters($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -261,9 +267,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         $accessLevel = new AccessLevel();
-        $request = (new CreateAccessLevelRequest())
-            ->setParent($formattedParent)
-            ->setAccessLevel($accessLevel);
+        $request = (new CreateAccessLevelRequest())->setParent($formattedParent)->setAccessLevel($accessLevel);
         $response = $gapicClient->createAccessLevel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -273,7 +277,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/CreateAccessLevel', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/CreateAccessLevel',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getAccessLevel();
@@ -321,19 +328,20 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         $accessLevel = new AccessLevel();
-        $request = (new CreateAccessLevelRequest())
-            ->setParent($formattedParent)
-            ->setAccessLevel($accessLevel);
+        $request = (new CreateAccessLevelRequest())->setParent($formattedParent)->setAccessLevel($accessLevel);
         $response = $gapicClient->createAccessLevel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -403,7 +411,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/CreateAccessPolicy', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/CreateAccessPolicy',
+            $actualApiFuncCall
+        );
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createAccessPolicyTest');
         $response->pollUntilComplete([
@@ -447,12 +458,15 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         $request = new AccessPolicy();
         $response = $gapicClient->createAccessPolicy($request);
@@ -515,9 +529,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         $gcpUserAccessBinding = new GcpUserAccessBinding();
         $gcpUserAccessBindingGroupKey = 'gcpUserAccessBindingGroupKey-1338087614';
         $gcpUserAccessBinding->setGroupKey($gcpUserAccessBindingGroupKey);
-        $gcpUserAccessBindingAccessLevels = [
-            $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]'),
-        ];
+        $gcpUserAccessBindingAccessLevels = [$gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]')];
         $gcpUserAccessBinding->setAccessLevels($gcpUserAccessBindingAccessLevels);
         $request = (new CreateGcpUserAccessBindingRequest())
             ->setParent($formattedParent)
@@ -531,7 +543,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/CreateGcpUserAccessBinding', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/CreateGcpUserAccessBinding',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getGcpUserAccessBinding();
@@ -579,21 +594,22 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
         $gcpUserAccessBinding = new GcpUserAccessBinding();
         $gcpUserAccessBindingGroupKey = 'gcpUserAccessBindingGroupKey-1338087614';
         $gcpUserAccessBinding->setGroupKey($gcpUserAccessBindingGroupKey);
-        $gcpUserAccessBindingAccessLevels = [
-            $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]'),
-        ];
+        $gcpUserAccessBindingAccessLevels = [$gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]')];
         $gcpUserAccessBinding->setAccessLevels($gcpUserAccessBindingAccessLevels);
         $request = (new CreateGcpUserAccessBindingRequest())
             ->setParent($formattedParent)
@@ -672,7 +688,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/CreateServicePerimeter', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/CreateServicePerimeter',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getServicePerimeter();
@@ -720,12 +739,15 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
@@ -786,8 +808,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]');
-        $request = (new DeleteAccessLevelRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAccessLevelRequest())->setName($formattedName);
         $response = $gapicClient->deleteAccessLevel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -797,7 +818,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteAccessLevel', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteAccessLevel',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -843,17 +867,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]');
-        $request = (new DeleteAccessLevelRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAccessLevelRequest())->setName($formattedName);
         $response = $gapicClient->deleteAccessLevel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -907,8 +933,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
-        $request = (new DeleteAccessPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAccessPolicyRequest())->setName($formattedName);
         $response = $gapicClient->deleteAccessPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -918,7 +943,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteAccessPolicy', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteAccessPolicy',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -964,17 +992,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
-        $request = (new DeleteAccessPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAccessPolicyRequest())->setName($formattedName);
         $response = $gapicClient->deleteAccessPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1028,8 +1058,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->gcpUserAccessBindingName('[ORGANIZATION]', '[GCP_USER_ACCESS_BINDING]');
-        $request = (new DeleteGcpUserAccessBindingRequest())
-            ->setName($formattedName);
+        $request = (new DeleteGcpUserAccessBindingRequest())->setName($formattedName);
         $response = $gapicClient->deleteGcpUserAccessBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1039,7 +1068,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteGcpUserAccessBinding', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteGcpUserAccessBinding',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1085,17 +1117,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->gcpUserAccessBindingName('[ORGANIZATION]', '[GCP_USER_ACCESS_BINDING]');
-        $request = (new DeleteGcpUserAccessBindingRequest())
-            ->setName($formattedName);
+        $request = (new DeleteGcpUserAccessBindingRequest())->setName($formattedName);
         $response = $gapicClient->deleteGcpUserAccessBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1149,8 +1183,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->servicePerimeterName('[ACCESS_POLICY]', '[SERVICE_PERIMETER]');
-        $request = (new DeleteServicePerimeterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteServicePerimeterRequest())->setName($formattedName);
         $response = $gapicClient->deleteServicePerimeter($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1160,7 +1193,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteServicePerimeter', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/DeleteServicePerimeter',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1206,17 +1242,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->servicePerimeterName('[ACCESS_POLICY]', '[SERVICE_PERIMETER]');
-        $request = (new DeleteServicePerimeterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteServicePerimeterRequest())->setName($formattedName);
         $response = $gapicClient->deleteServicePerimeter($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1258,15 +1296,17 @@ class AccessContextManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]');
-        $request = (new GetAccessLevelRequest())
-            ->setName($formattedName);
+        $request = (new GetAccessLevelRequest())->setName($formattedName);
         $response = $gapicClient->getAccessLevel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/GetAccessLevel', $actualFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/GetAccessLevel',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1283,17 +1323,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]');
-        $request = (new GetAccessLevelRequest())
-            ->setName($formattedName);
+        $request = (new GetAccessLevelRequest())->setName($formattedName);
         try {
             $gapicClient->getAccessLevel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1328,15 +1370,17 @@ class AccessContextManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
-        $request = (new GetAccessPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetAccessPolicyRequest())->setName($formattedName);
         $response = $gapicClient->getAccessPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/GetAccessPolicy', $actualFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/GetAccessPolicy',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1353,17 +1397,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
-        $request = (new GetAccessPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetAccessPolicyRequest())->setName($formattedName);
         try {
             $gapicClient->getAccessPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1394,15 +1440,17 @@ class AccessContextManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->gcpUserAccessBindingName('[ORGANIZATION]', '[GCP_USER_ACCESS_BINDING]');
-        $request = (new GetGcpUserAccessBindingRequest())
-            ->setName($formattedName);
+        $request = (new GetGcpUserAccessBindingRequest())->setName($formattedName);
         $response = $gapicClient->getGcpUserAccessBinding($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/GetGcpUserAccessBinding', $actualFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/GetGcpUserAccessBinding',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1419,17 +1467,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->gcpUserAccessBindingName('[ORGANIZATION]', '[GCP_USER_ACCESS_BINDING]');
-        $request = (new GetGcpUserAccessBindingRequest())
-            ->setName($formattedName);
+        $request = (new GetGcpUserAccessBindingRequest())->setName($formattedName);
         try {
             $gapicClient->getGcpUserAccessBinding($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1460,15 +1510,17 @@ class AccessContextManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/GetIamPolicy', $actualFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/GetIamPolicy',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getResource();
         $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1485,17 +1537,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1530,15 +1584,17 @@ class AccessContextManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->servicePerimeterName('[ACCESS_POLICY]', '[SERVICE_PERIMETER]');
-        $request = (new GetServicePerimeterRequest())
-            ->setName($formattedName);
+        $request = (new GetServicePerimeterRequest())->setName($formattedName);
         $response = $gapicClient->getServicePerimeter($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/GetServicePerimeter', $actualFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/GetServicePerimeter',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1555,17 +1611,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->servicePerimeterName('[ACCESS_POLICY]', '[SERVICE_PERIMETER]');
-        $request = (new GetServicePerimeterRequest())
-            ->setName($formattedName);
+        $request = (new GetServicePerimeterRequest())->setName($formattedName);
         try {
             $gapicClient->getServicePerimeter($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1590,17 +1648,14 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $accessLevelsElement = new AccessLevel();
-        $accessLevels = [
-            $accessLevelsElement,
-        ];
+        $accessLevels = [$accessLevelsElement];
         $expectedResponse = new ListAccessLevelsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAccessLevels($accessLevels);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
-        $request = (new ListAccessLevelsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAccessLevelsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAccessLevels($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1610,7 +1665,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/ListAccessLevels', $actualFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/ListAccessLevels',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1627,17 +1685,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
-        $request = (new ListAccessLevelsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAccessLevelsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAccessLevels($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1662,17 +1722,14 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $accessPoliciesElement = new AccessPolicy();
-        $accessPolicies = [
-            $accessPoliciesElement,
-        ];
+        $accessPolicies = [$accessPoliciesElement];
         $expectedResponse = new ListAccessPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAccessPolicies($accessPolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new ListAccessPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAccessPoliciesRequest())->setParent($formattedParent);
         $response = $gapicClient->listAccessPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1682,7 +1739,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/ListAccessPolicies', $actualFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/ListAccessPolicies',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1699,17 +1759,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new ListAccessPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAccessPoliciesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAccessPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1734,17 +1796,14 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $gcpUserAccessBindingsElement = new GcpUserAccessBinding();
-        $gcpUserAccessBindings = [
-            $gcpUserAccessBindingsElement,
-        ];
+        $gcpUserAccessBindings = [$gcpUserAccessBindingsElement];
         $expectedResponse = new ListGcpUserAccessBindingsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGcpUserAccessBindings($gcpUserAccessBindings);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new ListGcpUserAccessBindingsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListGcpUserAccessBindingsRequest())->setParent($formattedParent);
         $response = $gapicClient->listGcpUserAccessBindings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1754,7 +1813,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/ListGcpUserAccessBindings', $actualFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/ListGcpUserAccessBindings',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1771,17 +1833,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new ListGcpUserAccessBindingsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListGcpUserAccessBindingsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listGcpUserAccessBindings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1806,17 +1870,14 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $servicePerimetersElement = new ServicePerimeter();
-        $servicePerimeters = [
-            $servicePerimetersElement,
-        ];
+        $servicePerimeters = [$servicePerimetersElement];
         $expectedResponse = new ListServicePerimetersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServicePerimeters($servicePerimeters);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
-        $request = (new ListServicePerimetersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListServicePerimetersRequest())->setParent($formattedParent);
         $response = $gapicClient->listServicePerimeters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1826,7 +1887,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/ListServicePerimeters', $actualFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/ListServicePerimeters',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1843,17 +1907,19 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
-        $request = (new ListServicePerimetersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListServicePerimetersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listServicePerimeters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1899,9 +1965,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         $accessLevels = [];
-        $request = (new ReplaceAccessLevelsRequest())
-            ->setParent($formattedParent)
-            ->setAccessLevels($accessLevels);
+        $request = (new ReplaceAccessLevelsRequest())->setParent($formattedParent)->setAccessLevels($accessLevels);
         $response = $gapicClient->replaceAccessLevels($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1911,7 +1975,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/ReplaceAccessLevels', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/ReplaceAccessLevels',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getAccessLevels();
@@ -1959,19 +2026,20 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         $accessLevels = [];
-        $request = (new ReplaceAccessLevelsRequest())
-            ->setParent($formattedParent)
-            ->setAccessLevels($accessLevels);
+        $request = (new ReplaceAccessLevelsRequest())->setParent($formattedParent)->setAccessLevels($accessLevels);
         $response = $gapicClient->replaceAccessLevels($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2038,7 +2106,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/ReplaceServicePerimeters', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/ReplaceServicePerimeters',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getServicePerimeters();
@@ -2086,12 +2157,15 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
@@ -2139,16 +2213,17 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/SetIamPolicy', $actualFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/SetIamPolicy',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getResource();
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPolicy();
@@ -2167,19 +2242,20 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2207,16 +2283,17 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/TestIamPermissions', $actualFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/TestIamPermissions',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getResource();
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPermissions();
@@ -2235,19 +2312,20 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2299,9 +2377,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock request
         $accessLevel = new AccessLevel();
         $updateMask = new FieldMask();
-        $request = (new UpdateAccessLevelRequest())
-            ->setAccessLevel($accessLevel)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAccessLevelRequest())->setAccessLevel($accessLevel)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAccessLevel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2311,7 +2387,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateAccessLevel', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateAccessLevel',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getAccessLevel();
         $this->assertProtobufEquals($accessLevel, $actualValue);
         $actualValue = $actualApiRequestObject->getUpdateMask();
@@ -2359,19 +2438,20 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $accessLevel = new AccessLevel();
         $updateMask = new FieldMask();
-        $request = (new UpdateAccessLevelRequest())
-            ->setAccessLevel($accessLevel)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAccessLevelRequest())->setAccessLevel($accessLevel)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAccessLevel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2434,9 +2514,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock request
         $policy = new AccessPolicy();
         $updateMask = new FieldMask();
-        $request = (new UpdateAccessPolicyRequest())
-            ->setPolicy($policy)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAccessPolicyRequest())->setPolicy($policy)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAccessPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2446,7 +2524,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateAccessPolicy', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateAccessPolicy',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getPolicy();
         $this->assertProtobufEquals($policy, $actualValue);
         $actualValue = $actualApiRequestObject->getUpdateMask();
@@ -2494,19 +2575,20 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $policy = new AccessPolicy();
         $updateMask = new FieldMask();
-        $request = (new UpdateAccessPolicyRequest())
-            ->setPolicy($policy)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAccessPolicyRequest())->setPolicy($policy)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAccessPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2566,9 +2648,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         $gcpUserAccessBinding = new GcpUserAccessBinding();
         $gcpUserAccessBindingGroupKey = 'gcpUserAccessBindingGroupKey-1338087614';
         $gcpUserAccessBinding->setGroupKey($gcpUserAccessBindingGroupKey);
-        $gcpUserAccessBindingAccessLevels = [
-            $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]'),
-        ];
+        $gcpUserAccessBindingAccessLevels = [$gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]')];
         $gcpUserAccessBinding->setAccessLevels($gcpUserAccessBindingAccessLevels);
         $updateMask = new FieldMask();
         $request = (new UpdateGcpUserAccessBindingRequest())
@@ -2583,7 +2663,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateGcpUserAccessBinding', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateGcpUserAccessBinding',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getGcpUserAccessBinding();
         $this->assertProtobufEquals($gcpUserAccessBinding, $actualValue);
         $actualValue = $actualApiRequestObject->getUpdateMask();
@@ -2631,20 +2714,21 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $gcpUserAccessBinding = new GcpUserAccessBinding();
         $gcpUserAccessBindingGroupKey = 'gcpUserAccessBindingGroupKey-1338087614';
         $gcpUserAccessBinding->setGroupKey($gcpUserAccessBindingGroupKey);
-        $gcpUserAccessBindingAccessLevels = [
-            $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]'),
-        ];
+        $gcpUserAccessBindingAccessLevels = [$gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]')];
         $gcpUserAccessBinding->setAccessLevels($gcpUserAccessBindingAccessLevels);
         $updateMask = new FieldMask();
         $request = (new UpdateGcpUserAccessBindingRequest())
@@ -2724,7 +2808,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateServicePerimeter', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/UpdateServicePerimeter',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getServicePerimeter();
         $this->assertProtobufEquals($servicePerimeter, $actualValue);
         $actualValue = $actualApiRequestObject->getUpdateMask();
@@ -2772,12 +2859,15 @@ class AccessContextManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $servicePerimeter = new ServicePerimeter();
@@ -2838,8 +2928,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
-        $request = (new CommitServicePerimetersRequest())
-            ->setParent($formattedParent);
+        $request = (new CommitServicePerimetersRequest())->setParent($formattedParent);
         $response = $gapicClient->commitServicePerimetersAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2849,7 +2938,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.identity.accesscontextmanager.v1.AccessContextManager/CommitServicePerimeters', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.identity.accesscontextmanager.v1.AccessContextManager/CommitServicePerimeters',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();

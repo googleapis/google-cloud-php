@@ -24,26 +24,26 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server generated global unique identifier of
      * [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier)
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The timestamp when this Backup resource was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The timestamp when this Backup resource was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. This flag indicates whether this Backup resource was created
      * manually by a user or via a schedule in the BackupPlan. A value of True
@@ -51,7 +51,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool manual = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $manual = false;
+    protected $manual = false;
     /**
      * Optional. A set of custom labels supplied by user.
      *
@@ -71,7 +71,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 delete_lock_days = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $delete_lock_days = 0;
+    protected $delete_lock_days = 0;
     /**
      * Output only. The time at which an existing delete lock will expire for this
      * backup (calculated from create_time +
@@ -79,7 +79,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_lock_expire_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_lock_expire_time = null;
+    protected $delete_lock_expire_time = null;
     /**
      * Optional. The age (in days) after which this Backup will be automatically
      * deleted. Must be an integer value >= 0:
@@ -94,7 +94,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 retain_days = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $retain_days = 0;
+    protected $retain_days = 0;
     /**
      * Output only. The time at which this Backup will be automatically deleted
      * (calculated from create_time +
@@ -102,7 +102,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp retain_expire_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $retain_expire_time = null;
+    protected $retain_expire_time = null;
     /**
      * Output only. The customer managed encryption key that was used to encrypt
      * the Backup's artifacts.  Inherited from the parent BackupPlan's
@@ -111,7 +111,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.EncryptionKey encryption_key = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $encryption_key = null;
+    protected $encryption_key = null;
     /**
      * Output only. Whether or not the Backup contains volume data.  Controlled by
      * the parent BackupPlan's
@@ -120,7 +120,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool contains_volume_data = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $contains_volume_data = false;
+    protected $contains_volume_data = false;
     /**
      * Output only. Whether or not the Backup contains Kubernetes Secrets.
      * Controlled by the parent BackupPlan's
@@ -129,53 +129,54 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool contains_secrets = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $contains_secrets = false;
+    protected $contains_secrets = false;
     /**
      * Output only. Information about the GKE cluster from which this Backup was
      * created.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.Backup.ClusterMetadata cluster_metadata = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cluster_metadata = null;
+    protected $cluster_metadata = null;
     /**
      * Output only. Current state of the Backup
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.Backup.State state = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Human-readable description of why the backup is in the current
-     * `state`.
+     * `state`. This field is only meant for human readability and should not be
+     * used programmatically as this field is not guaranteed to be consistent.
      *
      * Generated from protobuf field <code>string state_reason = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_reason = '';
+    protected $state_reason = '';
     /**
      * Output only. Completion time of the Backup
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp complete_time = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $complete_time = null;
+    protected $complete_time = null;
     /**
      * Output only. The total number of Kubernetes resources included in the
      * Backup.
      *
      * Generated from protobuf field <code>int32 resource_count = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $resource_count = 0;
+    protected $resource_count = 0;
     /**
      * Output only. The total number of volume backups contained in the Backup.
      *
      * Generated from protobuf field <code>int32 volume_count = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $volume_count = 0;
+    protected $volume_count = 0;
     /**
      * Output only. The total size of the Backup in bytes = config backup size +
      * sum(volume backup sizes)
      *
      * Generated from protobuf field <code>int64 size_bytes = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $size_bytes = 0;
+    protected $size_bytes = 0;
     /**
      * Output only. `etag` is used for optimistic concurrency control as a way to
      * help prevent simultaneous updates of a backup from overwriting each other.
@@ -188,25 +189,25 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. User specified descriptive string for this Backup.
      *
      * Generated from protobuf field <code>string description = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The total number of Kubernetes Pods contained in the Backup.
      *
      * Generated from protobuf field <code>int32 pod_count = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pod_count = 0;
+    protected $pod_count = 0;
     /**
      * Output only. The size of the config backup in bytes.
      *
      * Generated from protobuf field <code>int64 config_backup_size_bytes = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $config_backup_size_bytes = 0;
+    protected $config_backup_size_bytes = 0;
     /**
      * Output only. If false, Backup will fail when Backup for GKE detects
      * Kubernetes configuration that is non-standard or
@@ -217,7 +218,19 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool permissive_mode = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $permissive_mode = false;
+    protected $permissive_mode = false;
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
     protected $backup_scope;
 
     /**
@@ -301,7 +314,8 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. Current state of the Backup
      *     @type string $state_reason
      *           Output only. Human-readable description of why the backup is in the current
-     *           `state`.
+     *           `state`. This field is only meant for human readability and should not be
+     *           used programmatically as this field is not guaranteed to be consistent.
      *     @type \Google\Protobuf\Timestamp $complete_time
      *           Output only. Completion time of the Backup
      *     @type int $resource_count
@@ -334,6 +348,10 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Inherited from the parent BackupPlan's
      *           [permissive_mode][google.cloud.gkebackup.v1.BackupPlan.BackupConfig.permissive_mode]
      *           value.
+     *     @type bool $satisfies_pzs
+     *           Output only. [Output Only] Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. [Output Only] Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -960,7 +978,8 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Human-readable description of why the backup is in the current
-     * `state`.
+     * `state`. This field is only meant for human readability and should not be
+     * used programmatically as this field is not guaranteed to be consistent.
      *
      * Generated from protobuf field <code>string state_reason = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -972,7 +991,8 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Human-readable description of why the backup is in the current
-     * `state`.
+     * `state`. This field is only meant for human readability and should not be
+     * used programmatically as this field is not guaranteed to be consistent.
      *
      * Generated from protobuf field <code>string state_reason = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -1254,6 +1274,58 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->permissive_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

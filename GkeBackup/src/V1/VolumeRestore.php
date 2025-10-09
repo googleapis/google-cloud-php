@@ -21,28 +21,28 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server generated global unique identifier of
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The timestamp when this VolumeRestore resource was
      * created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The timestamp when this VolumeRestore resource was last
      * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The full name of the VolumeBackup from which the volume will
      * be restored. Format:
@@ -50,46 +50,46 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string volume_backup = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $volume_backup = '';
+    protected $volume_backup = '';
     /**
      * Output only. The reference to the target Kubernetes PVC to be restored.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.NamespacedName target_pvc = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $target_pvc = null;
+    protected $target_pvc = null;
     /**
      * Output only. A storage system-specific opaque handler to the underlying
      * volume created for the target PVC from the volume backup.
      *
      * Generated from protobuf field <code>string volume_handle = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $volume_handle = '';
+    protected $volume_handle = '';
     /**
      * Output only. The type of volume provisioned
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.VolumeRestore.VolumeType volume_type = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $volume_type = 0;
+    protected $volume_type = 0;
     /**
      * Output only. The timestamp when the associated underlying volume
      * restoration completed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp complete_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $complete_time = null;
+    protected $complete_time = null;
     /**
      * Output only. The current state of this VolumeRestore.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.VolumeRestore.State state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. A human readable message explaining why the VolumeRestore is
      * in its current state.
      *
      * Generated from protobuf field <code>string state_message = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_message = '';
+    protected $state_message = '';
     /**
      * Output only. `etag` is used for optimistic concurrency control as a way to
      * help prevent simultaneous updates of a volume restore from overwriting each
@@ -99,7 +99,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

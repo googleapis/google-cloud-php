@@ -31,17 +31,32 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Billing\V1\BillingAccount;
+use Google\Cloud\Billing\V1\Client\CloudBillingClient;
+use Google\Cloud\Billing\V1\GetBillingAccountRequest;
 
-use Google\Cloud\Billing\V1\CloudBillingClient;
+// Create a client.
+$cloudBillingClient = new CloudBillingClient();
 
-$client = new CloudBillingClient();
-$accounts = $client->listBillingAccounts();
+// Prepare the request message.
+$request = (new GetBillingAccountRequest())
+    ->setName($formattedName);
 
-foreach ($accounts as $account) {
-    print('Billing account: ' . $account->getName() . PHP_EOL);
+// Call the API and handle any network failures.
+try {
+    /** @var BillingAccount $response */
+    $response = $cloudBillingClient->getBillingAccount($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

@@ -18,14 +18,14 @@ class DestinationFeatureSetting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string feature_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature_id = '';
+    protected $feature_id = '';
     /**
      * Specify the field name in the export destination. If not specified,
      * Feature ID is used.
      *
      * Generated from protobuf field <code>string destination_field = 2;</code>
      */
-    private $destination_field = '';
+    protected $destination_field = '';
 
     /**
      * Constructor.

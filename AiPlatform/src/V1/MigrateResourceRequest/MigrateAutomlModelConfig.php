@@ -22,14 +22,14 @@ class MigrateAutomlModelConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Optional. Display name of the model in Vertex AI.
      * System will pick a display name if unspecified.
      *
      * Generated from protobuf field <code>string model_display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $model_display_name = '';
+    protected $model_display_name = '';
 
     /**
      * Constructor.

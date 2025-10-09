@@ -21,7 +21,7 @@ class ListHubSpokesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A list of locations.
      * Specify one of the following: `[global]`, a single region (for
@@ -40,25 +40,25 @@ class ListHubSpokesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * An expression that filters the list of results.
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Sort the results by name or create_time.
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * The view of the spoke to return.
      * The view that you use determines which spoke fields are included in the
@@ -66,7 +66,7 @@ class ListHubSpokesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.ListHubSpokesRequest.SpokeView view = 7;</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * @param string $name Required. The name of the hub. Please see

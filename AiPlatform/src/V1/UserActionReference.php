@@ -22,7 +22,7 @@ class UserActionReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string method = 3;</code>
      */
-    private $method = '';
+    protected $method = '';
     protected $reference;
 
     /**

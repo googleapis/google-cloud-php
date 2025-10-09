@@ -22,7 +22,7 @@ class ChangeParametersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Entitlement parameters to update. You can only change editable
      * parameters.
@@ -47,13 +47,13 @@ class ChangeParametersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. Purchase order ID provided by the reseller.
      *
      * Generated from protobuf field <code>string purchase_order_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $purchase_order_id = '';
+    protected $purchase_order_id = '';
 
     /**
      * Constructor.

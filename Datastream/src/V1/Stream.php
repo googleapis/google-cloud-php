@@ -16,23 +16,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class Stream extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The stream's name.
+     * Output only. Identifier. The stream's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The creation time of the stream.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update time of the stream.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Labels.
      *
@@ -44,25 +44,25 @@ class Stream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. Source connection profile configuration.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceConfig source_config = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source_config = null;
+    protected $source_config = null;
     /**
      * Required. Destination connection profile configuration.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.DestinationConfig destination_config = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination_config = null;
+    protected $destination_config = null;
     /**
      * The state of the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.Stream.State state = 8;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Errors on the Stream.
      *
@@ -77,7 +77,26 @@ class Stream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string customer_managed_encryption_key = 10 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $customer_managed_encryption_key = null;
+    protected $customer_managed_encryption_key = null;
+    /**
+     * Output only. If the stream was recovered, the time of the last recovery.
+     * Note: This field is currently experimental.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_recovery_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $last_recovery_time = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = null;
     protected $backfill_strategy;
 
     /**
@@ -87,7 +106,7 @@ class Stream extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The stream's name.
+     *           Output only. Identifier. The stream's name.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation time of the stream.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -114,6 +133,13 @@ class Stream extends \Google\Protobuf\Internal\Message
      *           If provided, it will be used to encrypt the data.
      *           If left blank, data will be encrypted using an internal Stream-specific
      *           encryption key provisioned through KMS.
+     *     @type \Google\Protobuf\Timestamp $last_recovery_time
+     *           Output only. If the stream was recovered, the time of the last recovery.
+     *           Note: This field is currently experimental.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,9 +148,9 @@ class Stream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The stream's name.
+     * Output only. Identifier. The stream's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -133,9 +159,9 @@ class Stream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The stream's name.
+     * Output only. Identifier. The stream's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -497,6 +523,116 @@ class Stream extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->customer_managed_encryption_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If the stream was recovered, the time of the last recovery.
+     * Note: This field is currently experimental.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_recovery_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getLastRecoveryTime()
+    {
+        return $this->last_recovery_time;
+    }
+
+    public function hasLastRecoveryTime()
+    {
+        return isset($this->last_recovery_time);
+    }
+
+    public function clearLastRecoveryTime()
+    {
+        unset($this->last_recovery_time);
+    }
+
+    /**
+     * Output only. If the stream was recovered, the time of the last recovery.
+     * Note: This field is currently experimental.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_recovery_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setLastRecoveryTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->last_recovery_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

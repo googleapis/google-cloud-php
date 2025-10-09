@@ -39,7 +39,7 @@ class RouteType
      */
     const DYNAMIC = 3;
     /**
-     * A subnet route received from peering network.
+     * A subnet route received from peering network or NCC Hub.
      *
      * Generated from protobuf enum <code>PEERING_SUBNET = 4;</code>
      */
@@ -51,7 +51,7 @@ class RouteType
      */
     const PEERING_STATIC = 5;
     /**
-     * A dynamic route received from peering network.
+     * A dynamic route received from peering network or NCC Hub.
      *
      * Generated from protobuf enum <code>PEERING_DYNAMIC = 6;</code>
      */
@@ -62,6 +62,13 @@ class RouteType
      * Generated from protobuf enum <code>POLICY_BASED = 7;</code>
      */
     const POLICY_BASED = 7;
+    /**
+     * Advertised route. Synthetic route which is used to transition from the
+     * StartFromPrivateNetwork state in Connectivity tests.
+     *
+     * Generated from protobuf enum <code>ADVERTISED = 101;</code>
+     */
+    const ADVERTISED = 101;
 
     private static $valueToName = [
         self::ROUTE_TYPE_UNSPECIFIED => 'ROUTE_TYPE_UNSPECIFIED',
@@ -72,6 +79,7 @@ class RouteType
         self::PEERING_STATIC => 'PEERING_STATIC',
         self::PEERING_DYNAMIC => 'PEERING_DYNAMIC',
         self::POLICY_BASED => 'POLICY_BASED',
+        self::ADVERTISED => 'ADVERTISED',
     ];
 
     public static function name($value)

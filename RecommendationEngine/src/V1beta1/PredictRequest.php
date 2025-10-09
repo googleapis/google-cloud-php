@@ -42,7 +42,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Context about the user, what they are looking at and what action
      * they took to trigger the predict request. Note that this user event detail
@@ -51,7 +51,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.UserEvent user_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $user_event = null;
+    protected $user_event = null;
     /**
      * Optional. Maximum number of results to return per page. Set this property
      * to the number of prediction results required. If zero, the service will
@@ -59,13 +59,13 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. The previous PredictResponse.next_page_token.
      *
      * Generated from protobuf field <code>string page_token = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. Filter for restricting prediction results. Accepts values for
      * tags and the `filterOutOfStockItems` flag.
@@ -84,7 +84,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. Use dryRun mode for this prediction query. If set to true, a
      * dummy model will be used that returns arbitrary catalog items.
@@ -93,7 +93,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool dry_run = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $dry_run = false;
+    protected $dry_run = false;
     /**
      * Optional. Additional domain specific parameters for the predictions.
      * Allowed values:

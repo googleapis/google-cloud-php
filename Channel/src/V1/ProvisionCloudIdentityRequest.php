@@ -22,25 +22,25 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string customer = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $customer = '';
+    protected $customer = '';
     /**
      * CloudIdentity-specific customer information.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CloudIdentityInfo cloud_identity_info = 2;</code>
      */
-    private $cloud_identity_info = null;
+    protected $cloud_identity_info = null;
     /**
      * Admin user information.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.AdminUser user = 3;</code>
      */
-    private $user = null;
+    protected $user = null;
     /**
      * Validate the request and preview the review, but do not post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * Constructor.

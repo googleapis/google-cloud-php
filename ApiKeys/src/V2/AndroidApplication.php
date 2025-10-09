@@ -23,13 +23,13 @@ class AndroidApplication extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sha1_fingerprint = 1;</code>
      */
-    private $sha1_fingerprint = '';
+    protected $sha1_fingerprint = '';
     /**
      * The package name of the application.
      *
      * Generated from protobuf field <code>string package_name = 2;</code>
      */
-    private $package_name = '';
+    protected $package_name = '';
 
     /**
      * Constructor.

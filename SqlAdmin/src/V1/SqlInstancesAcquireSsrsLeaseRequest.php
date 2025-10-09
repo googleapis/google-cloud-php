@@ -23,20 +23,20 @@ class SqlInstancesAcquireSsrsLeaseRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Required. Project ID of the project that contains the instance (Example:
      * project-id).
      *
      * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Required. The request body.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.InstancesAcquireSsrsLeaseRequest body = 100 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $body = null;
+    protected $body = null;
 
     /**
      * Constructor.

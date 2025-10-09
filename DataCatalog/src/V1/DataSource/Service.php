@@ -59,6 +59,4 @@ class Service
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Service::class, \Google\Cloud\DataCatalog\V1\DataSource_Service::class);
 

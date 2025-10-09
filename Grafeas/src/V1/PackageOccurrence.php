@@ -20,7 +20,7 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * All of the places within the filesystem versions of this package
      * have been found.
@@ -34,7 +34,7 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string package_type = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $package_type = '';
+    protected $package_type = '';
     /**
      * The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
      * denoting the package manager version distributing a package.
@@ -42,26 +42,26 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cpe_uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cpe_uri = '';
+    protected $cpe_uri = '';
     /**
      * The CPU architecture for which packages in this distribution channel were
      * built. Architecture will be blank for language packages.
      *
      * Generated from protobuf field <code>.grafeas.v1.Architecture architecture = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $architecture = 0;
+    protected $architecture = 0;
     /**
      * Licenses that have been declared by the authors of the package.
      *
      * Generated from protobuf field <code>.grafeas.v1.License license = 6;</code>
      */
-    private $license = null;
+    protected $license = null;
     /**
      * The version of the package.
      *
      * Generated from protobuf field <code>.grafeas.v1.Version version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $version = null;
+    protected $version = null;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class EntityIdSelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_id_field = 5;</code>
      */
-    private $entity_id_field = '';
+    protected $entity_id_field = '';
     protected $EntityIdsSource;
 
     /**

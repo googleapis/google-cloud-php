@@ -20,7 +20,7 @@ class EnvVarSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.SecretKeySelector secret_key_ref = 1;</code>
      */
-    private $secret_key_ref = null;
+    protected $secret_key_ref = null;
 
     /**
      * Constructor.

@@ -17,13 +17,13 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
 {
     /**
      * Required. Resource name of the new custom module's parent. Its format is
-     * "organizations/{organization}/securityHealthAnalyticsSettings",
-     * "folders/{folder}/securityHealthAnalyticsSettings", or
-     * "projects/{project}/securityHealthAnalyticsSettings"
+     * `organizations/{organization}/securityHealthAnalyticsSettings`,
+     * `folders/{folder}/securityHealthAnalyticsSettings`, or
+     * `projects/{project}/securityHealthAnalyticsSettings`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. SecurityHealthAnalytics custom module to create. The provided
      * name is ignored and reset with provided parent information and
@@ -31,13 +31,13 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule security_health_analytics_custom_module = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $security_health_analytics_custom_module = null;
+    protected $security_health_analytics_custom_module = null;
 
     /**
      * @param string                                                              $parent                              Required. Resource name of the new custom module's parent. Its format is
-     *                                                                                                                 "organizations/{organization}/securityHealthAnalyticsSettings",
-     *                                                                                                                 "folders/{folder}/securityHealthAnalyticsSettings", or
-     *                                                                                                                 "projects/{project}/securityHealthAnalyticsSettings"
+     *                                                                                                                 `organizations/{organization}/securityHealthAnalyticsSettings`,
+     *                                                                                                                 `folders/{folder}/securityHealthAnalyticsSettings`, or
+     *                                                                                                                 `projects/{project}/securityHealthAnalyticsSettings`
      *                                                                                                                 Please see {@see SecurityCenterClient::securityHealthAnalyticsSettingsName()} for help formatting this field.
      * @param \Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. SecurityHealthAnalytics custom module to create. The provided
      *                                                                                                                 name is ignored and reset with provided parent information and
@@ -62,9 +62,9 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *
      *     @type string $parent
      *           Required. Resource name of the new custom module's parent. Its format is
-     *           "organizations/{organization}/securityHealthAnalyticsSettings",
-     *           "folders/{folder}/securityHealthAnalyticsSettings", or
-     *           "projects/{project}/securityHealthAnalyticsSettings"
+     *           `organizations/{organization}/securityHealthAnalyticsSettings`,
+     *           `folders/{folder}/securityHealthAnalyticsSettings`, or
+     *           `projects/{project}/securityHealthAnalyticsSettings`
      *     @type \Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule $security_health_analytics_custom_module
      *           Required. SecurityHealthAnalytics custom module to create. The provided
      *           name is ignored and reset with provided parent information and
@@ -78,9 +78,9 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
 
     /**
      * Required. Resource name of the new custom module's parent. Its format is
-     * "organizations/{organization}/securityHealthAnalyticsSettings",
-     * "folders/{folder}/securityHealthAnalyticsSettings", or
-     * "projects/{project}/securityHealthAnalyticsSettings"
+     * `organizations/{organization}/securityHealthAnalyticsSettings`,
+     * `folders/{folder}/securityHealthAnalyticsSettings`, or
+     * `projects/{project}/securityHealthAnalyticsSettings`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -92,9 +92,9 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
 
     /**
      * Required. Resource name of the new custom module's parent. Its format is
-     * "organizations/{organization}/securityHealthAnalyticsSettings",
-     * "folders/{folder}/securityHealthAnalyticsSettings", or
-     * "projects/{project}/securityHealthAnalyticsSettings"
+     * `organizations/{organization}/securityHealthAnalyticsSettings`,
+     * `folders/{folder}/securityHealthAnalyticsSettings`, or
+     * `projects/{project}/securityHealthAnalyticsSettings`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

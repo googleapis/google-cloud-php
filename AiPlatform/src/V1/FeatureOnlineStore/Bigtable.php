@@ -18,7 +18,7 @@ class Bigtable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.AutoScaling auto_scaling = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $auto_scaling = null;
+    protected $auto_scaling = null;
 
     /**
      * Constructor.

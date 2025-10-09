@@ -20,7 +20,7 @@ class SystemTimestamps extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Timestamp of the last modification of the resource or its metadata within
      * a given system.
@@ -31,14 +31,14 @@ class SystemTimestamps extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Expiration timestamp of the resource within the given system.
      * Currently only applicable to BigQuery resources.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
 
     /**
      * Constructor.

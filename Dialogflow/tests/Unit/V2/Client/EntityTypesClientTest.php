@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Dialogflow\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\BatchCreateEntitiesRequest;
@@ -46,6 +45,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -69,7 +69,9 @@ class EntityTypesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return EntityTypesClient */
@@ -113,9 +115,7 @@ class EntityTypesClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entities = [];
-        $request = (new BatchCreateEntitiesRequest())
-            ->setParent($formattedParent)
-            ->setEntities($entities);
+        $request = (new BatchCreateEntitiesRequest())->setParent($formattedParent)->setEntities($entities);
         $response = $gapicClient->batchCreateEntities($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -173,19 +173,20 @@ class EntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entities = [];
-        $request = (new BatchCreateEntitiesRequest())
-            ->setParent($formattedParent)
-            ->setEntities($entities);
+        $request = (new BatchCreateEntitiesRequest())->setParent($formattedParent)->setEntities($entities);
         $response = $gapicClient->batchCreateEntities($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -240,9 +241,7 @@ class EntityTypesClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entityValues = [];
-        $request = (new BatchDeleteEntitiesRequest())
-            ->setParent($formattedParent)
-            ->setEntityValues($entityValues);
+        $request = (new BatchDeleteEntitiesRequest())->setParent($formattedParent)->setEntityValues($entityValues);
         $response = $gapicClient->batchDeleteEntities($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -300,19 +299,20 @@ class EntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entityValues = [];
-        $request = (new BatchDeleteEntitiesRequest())
-            ->setParent($formattedParent)
-            ->setEntityValues($entityValues);
+        $request = (new BatchDeleteEntitiesRequest())->setParent($formattedParent)->setEntityValues($entityValues);
         $response = $gapicClient->batchDeleteEntities($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -427,12 +427,15 @@ class EntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
@@ -494,9 +497,7 @@ class EntityTypesClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entities = [];
-        $request = (new BatchUpdateEntitiesRequest())
-            ->setParent($formattedParent)
-            ->setEntities($entities);
+        $request = (new BatchUpdateEntitiesRequest())->setParent($formattedParent)->setEntities($entities);
         $response = $gapicClient->batchUpdateEntities($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -554,19 +555,20 @@ class EntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entities = [];
-        $request = (new BatchUpdateEntitiesRequest())
-            ->setParent($formattedParent)
-            ->setEntities($entities);
+        $request = (new BatchUpdateEntitiesRequest())->setParent($formattedParent)->setEntities($entities);
         $response = $gapicClient->batchUpdateEntities($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -620,8 +622,7 @@ class EntityTypesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $request = (new BatchUpdateEntityTypesRequest())
-            ->setParent($formattedParent);
+        $request = (new BatchUpdateEntityTypesRequest())->setParent($formattedParent);
         $response = $gapicClient->batchUpdateEntityTypes($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -677,17 +678,19 @@ class EntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $request = (new BatchUpdateEntityTypesRequest())
-            ->setParent($formattedParent);
+        $request = (new BatchUpdateEntityTypesRequest())->setParent($formattedParent);
         $response = $gapicClient->batchUpdateEntityTypes($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -734,9 +737,7 @@ class EntityTypesClientTest extends GeneratedTest
         $entityType->setDisplayName($entityTypeDisplayName);
         $entityTypeKind = Kind::KIND_UNSPECIFIED;
         $entityType->setKind($entityTypeKind);
-        $request = (new CreateEntityTypeRequest())
-            ->setParent($formattedParent)
-            ->setEntityType($entityType);
+        $request = (new CreateEntityTypeRequest())->setParent($formattedParent)->setEntityType($entityType);
         $response = $gapicClient->createEntityType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -762,12 +763,15 @@ class EntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
@@ -776,9 +780,7 @@ class EntityTypesClientTest extends GeneratedTest
         $entityType->setDisplayName($entityTypeDisplayName);
         $entityTypeKind = Kind::KIND_UNSPECIFIED;
         $entityType->setKind($entityTypeKind);
-        $request = (new CreateEntityTypeRequest())
-            ->setParent($formattedParent)
-            ->setEntityType($entityType);
+        $request = (new CreateEntityTypeRequest())->setParent($formattedParent)->setEntityType($entityType);
         try {
             $gapicClient->createEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -805,8 +807,7 @@ class EntityTypesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $request = (new DeleteEntityTypeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteEntityTypeRequest())->setName($formattedName);
         $gapicClient->deleteEntityType($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -829,17 +830,19 @@ class EntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $request = (new DeleteEntityTypeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteEntityTypeRequest())->setName($formattedName);
         try {
             $gapicClient->deleteEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -872,8 +875,7 @@ class EntityTypesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $request = (new GetEntityTypeRequest())
-            ->setName($formattedName);
+        $request = (new GetEntityTypeRequest())->setName($formattedName);
         $response = $gapicClient->getEntityType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -897,17 +899,19 @@ class EntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $request = (new GetEntityTypeRequest())
-            ->setName($formattedName);
+        $request = (new GetEntityTypeRequest())->setName($formattedName);
         try {
             $gapicClient->getEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -932,17 +936,14 @@ class EntityTypesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $entityTypesElement = new EntityType();
-        $entityTypes = [
-            $entityTypesElement,
-        ];
+        $entityTypes = [$entityTypesElement];
         $expectedResponse = new ListEntityTypesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntityTypes($entityTypes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $request = (new ListEntityTypesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEntityTypesRequest())->setParent($formattedParent);
         $response = $gapicClient->listEntityTypes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -969,17 +970,19 @@ class EntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $request = (new ListEntityTypesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEntityTypesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEntityTypes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1016,8 +1019,7 @@ class EntityTypesClientTest extends GeneratedTest
         $entityType->setDisplayName($entityTypeDisplayName);
         $entityTypeKind = Kind::KIND_UNSPECIFIED;
         $entityType->setKind($entityTypeKind);
-        $request = (new UpdateEntityTypeRequest())
-            ->setEntityType($entityType);
+        $request = (new UpdateEntityTypeRequest())->setEntityType($entityType);
         $response = $gapicClient->updateEntityType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1041,12 +1043,15 @@ class EntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $entityType = new EntityType();
@@ -1054,8 +1059,7 @@ class EntityTypesClientTest extends GeneratedTest
         $entityType->setDisplayName($entityTypeDisplayName);
         $entityTypeKind = Kind::KIND_UNSPECIFIED;
         $entityType->setKind($entityTypeKind);
-        $request = (new UpdateEntityTypeRequest())
-            ->setEntityType($entityType);
+        $request = (new UpdateEntityTypeRequest())->setEntityType($entityType);
         try {
             $gapicClient->updateEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1108,12 +1112,15 @@ class EntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1140,9 +1147,7 @@ class EntityTypesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1172,12 +1177,15 @@ class EntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1225,9 +1233,7 @@ class EntityTypesClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entities = [];
-        $request = (new BatchCreateEntitiesRequest())
-            ->setParent($formattedParent)
-            ->setEntities($entities);
+        $request = (new BatchCreateEntitiesRequest())->setParent($formattedParent)->setEntities($entities);
         $response = $gapicClient->batchCreateEntitiesAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_ListHttpRoutes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
 use Google\Cloud\NetworkServices\V1\HttpRoute;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\ListHttpRoutesRequest;
 
 /**
  * Lists HttpRoute in a given project and location.
@@ -40,10 +41,14 @@ function list_http_routes_sample(string $formattedParent): void
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
+    // Prepare the request message.
+    $request = (new ListHttpRoutesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $networkServicesClient->listHttpRoutes($formattedParent);
+        $response = $networkServicesClient->listHttpRoutes($request);
 
         /** @var HttpRoute $element */
         foreach ($response as $element) {

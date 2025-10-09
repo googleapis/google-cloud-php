@@ -20,21 +20,21 @@ class IssueAssignment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string issue = 1;</code>
      */
-    private $issue = '';
+    protected $issue = '';
     /**
      * Score indicating the likelihood of the issue assignment.
      * currently bounded on [0,1].
      *
      * Generated from protobuf field <code>double score = 2;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
     /**
      * Immutable. Display name of the assigned issue. This field is set at time of
      * analyis and immutable since then.
      *
      * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

@@ -20,37 +20,37 @@ class QueryDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query_id = 1;</code>
      */
-    private $query_id = '';
+    protected $query_id = '';
     /**
      * The query text executed.
      *
      * Generated from protobuf field <code>string query_text = 2;</code>
      */
-    private $query_text = '';
+    protected $query_text = '';
     /**
      * Query Execution engine.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.SessionEvent.QueryDetail.Engine engine = 3;</code>
      */
-    private $engine = 0;
+    protected $engine = 0;
     /**
      * Time taken for execution of the query.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 4;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * The size of results the query produced.
      *
      * Generated from protobuf field <code>int64 result_size_bytes = 5;</code>
      */
-    private $result_size_bytes = 0;
+    protected $result_size_bytes = 0;
     /**
      * The data processed by the query.
      *
      * Generated from protobuf field <code>int64 data_processed_bytes = 6;</code>
      */
-    private $data_processed_bytes = 0;
+    protected $data_processed_bytes = 0;
 
     /**
      * Constructor.

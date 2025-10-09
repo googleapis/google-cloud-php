@@ -25,81 +25,81 @@ class SingleColumnChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_type = '';
+    protected $data_type = '';
     /**
      * Optional. Charset override - instead of table level charset.
      *
      * Generated from protobuf field <code>string charset = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $charset = '';
+    protected $charset = '';
     /**
      * Optional. Collation override - instead of table level collation.
      *
      * Generated from protobuf field <code>string collation = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $collation = '';
+    protected $collation = '';
     /**
      * Optional. Column length - e.g. 50 as in varchar (50) - when relevant.
      *
      * Generated from protobuf field <code>int64 length = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $length = 0;
+    protected $length = 0;
     /**
      * Optional. Column precision - e.g. 8 as in double (8,2) - when relevant.
      *
      * Generated from protobuf field <code>int32 precision = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $precision = 0;
+    protected $precision = 0;
     /**
      * Optional. Column scale - e.g. 2 as in double (8,2) - when relevant.
      *
      * Generated from protobuf field <code>int32 scale = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scale = 0;
+    protected $scale = 0;
     /**
      * Optional. Column fractional seconds precision - e.g. 2 as in timestamp (2)
      * - when relevant.
      *
      * Generated from protobuf field <code>int32 fractional_seconds_precision = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $fractional_seconds_precision = 0;
+    protected $fractional_seconds_precision = 0;
     /**
      * Optional. Is the column of array type.
      *
      * Generated from protobuf field <code>bool array = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $array = false;
+    protected $array = false;
     /**
      * Optional. The length of the array, only relevant if the column type is an
      * array.
      *
      * Generated from protobuf field <code>int32 array_length = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $array_length = 0;
+    protected $array_length = 0;
     /**
      * Optional. Is the column nullable.
      *
      * Generated from protobuf field <code>bool nullable = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $nullable = false;
+    protected $nullable = false;
     /**
      * Optional. Is the column auto-generated/identity.
      *
      * Generated from protobuf field <code>bool auto_generated = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $auto_generated = false;
+    protected $auto_generated = false;
     /**
      * Optional. Is the column a UDT (User-defined Type).
      *
      * Generated from protobuf field <code>bool udt = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $udt = false;
+    protected $udt = false;
     /**
      * Optional. Custom engine specific features.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
     /**
      * Optional. Specifies the list of values allowed in the column.
      *
@@ -111,7 +111,7 @@ class SingleColumnChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string comment = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $comment = '';
+    protected $comment = '';
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MachineSpec machine_spec = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $machine_spec = null;
+    protected $machine_spec = null;
     /**
      * Optional. The number of worker replicas to use for this worker pool.
      *
      * Generated from protobuf field <code>int64 replica_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $replica_count = 0;
+    protected $replica_count = 0;
     /**
      * Optional. List of NFS mount spec.
      *
@@ -38,7 +38,7 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DiskSpec disk_spec = 5;</code>
      */
-    private $disk_spec = null;
+    protected $disk_spec = null;
     protected $task;
 
     /**

@@ -20,7 +20,7 @@ class IpConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_address = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $ip_address = '';
+    protected $ip_address = '';
     /**
      * Output only. Ports.
      *

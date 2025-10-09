@@ -22,13 +22,13 @@ class CreateCustomJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The CustomJob to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CustomJob custom_job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $custom_job = null;
+    protected $custom_job = null;
 
     /**
      * @param string                                $parent    Required. The resource name of the Location to create the CustomJob in.

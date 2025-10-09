@@ -29,6 +29,7 @@ namespace Google\Shopping\Merchant\Notifications\V1beta\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -42,6 +43,7 @@ use Google\Shopping\Merchant\Notifications\V1beta\ListNotificationSubscriptionsR
 use Google\Shopping\Merchant\Notifications\V1beta\NotificationSubscription;
 use Google\Shopping\Merchant\Notifications\V1beta\UpdateNotificationSubscriptionRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service to manage notification subscriptions for merchants
@@ -56,11 +58,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createNotificationSubscriptionAsync(CreateNotificationSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNotificationSubscriptionAsync(DeleteNotificationSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNotificationSubscriptionAsync(GetNotificationSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNotificationSubscriptionsAsync(ListNotificationSubscriptionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNotificationSubscriptionAsync(UpdateNotificationSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationSubscription> createNotificationSubscriptionAsync(CreateNotificationSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteNotificationSubscriptionAsync(DeleteNotificationSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationSubscription> getNotificationSubscriptionAsync(GetNotificationSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNotificationSubscriptionsAsync(ListNotificationSubscriptionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationSubscription> updateNotificationSubscriptionAsync(UpdateNotificationSubscriptionRequest $request, array $optionalArgs = [])
  */
 final class NotificationsApiServiceClient
 {
@@ -87,7 +89,9 @@ final class NotificationsApiServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/content',
+    ];
 
     private static function getClientDefaults()
     {
@@ -102,8 +106,7 @@ final class NotificationsApiServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/notifications_api_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/notifications_api_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -158,8 +161,8 @@ final class NotificationsApiServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -167,7 +170,7 @@ final class NotificationsApiServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -175,20 +178,29 @@ final class NotificationsApiServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'merchantapi.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Shopping\Merchant\Notifications\V1beta\NotificationsApiServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new NotificationsApiServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -222,13 +234,18 @@ final class NotificationsApiServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -280,10 +297,8 @@ final class NotificationsApiServiceClient
      *
      * @experimental
      */
-    public function createNotificationSubscription(
-        CreateNotificationSubscriptionRequest $request,
-        array $callOptions = []
-    ): NotificationSubscription {
+    public function createNotificationSubscription(CreateNotificationSubscriptionRequest $request, array $callOptions = []): NotificationSubscription
+    {
         return $this->startApiCall('CreateNotificationSubscription', $request, $callOptions)->wait();
     }
 
@@ -309,10 +324,8 @@ final class NotificationsApiServiceClient
      *
      * @experimental
      */
-    public function deleteNotificationSubscription(
-        DeleteNotificationSubscriptionRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteNotificationSubscription(DeleteNotificationSubscriptionRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteNotificationSubscription', $request, $callOptions)->wait();
     }
 
@@ -340,10 +353,8 @@ final class NotificationsApiServiceClient
      *
      * @experimental
      */
-    public function getNotificationSubscription(
-        GetNotificationSubscriptionRequest $request,
-        array $callOptions = []
-    ): NotificationSubscription {
+    public function getNotificationSubscription(GetNotificationSubscriptionRequest $request, array $callOptions = []): NotificationSubscription
+    {
         return $this->startApiCall('GetNotificationSubscription', $request, $callOptions)->wait();
     }
 
@@ -371,10 +382,8 @@ final class NotificationsApiServiceClient
      *
      * @experimental
      */
-    public function listNotificationSubscriptions(
-        ListNotificationSubscriptionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listNotificationSubscriptions(ListNotificationSubscriptionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListNotificationSubscriptions', $request, $callOptions);
     }
 
@@ -402,10 +411,8 @@ final class NotificationsApiServiceClient
      *
      * @experimental
      */
-    public function updateNotificationSubscription(
-        UpdateNotificationSubscriptionRequest $request,
-        array $callOptions = []
-    ): NotificationSubscription {
+    public function updateNotificationSubscription(UpdateNotificationSubscriptionRequest $request, array $callOptions = []): NotificationSubscription
+    {
         return $this->startApiCall('UpdateNotificationSubscription', $request, $callOptions)->wait();
     }
 }

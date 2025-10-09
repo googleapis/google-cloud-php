@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Text extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A collection of text responses.
+     * Required. A collection of text response variants. If multiple variants
+     * are defined, only one text response variant is returned at runtime.
      *
      * Generated from protobuf field <code>repeated string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,7 +38,8 @@ class Text extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $text
-     *           Required. A collection of text responses.
+     *           Required. A collection of text response variants. If multiple variants
+     *           are defined, only one text response variant is returned at runtime.
      *     @type bool $allow_playback_interruption
      *           Output only. Whether the playback of this message can be interrupted by
      *           the end user's speech and the client can then starts the next Dialogflow
@@ -50,7 +52,8 @@ class Text extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A collection of text responses.
+     * Required. A collection of text response variants. If multiple variants
+     * are defined, only one text response variant is returned at runtime.
      *
      * Generated from protobuf field <code>repeated string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -61,7 +64,8 @@ class Text extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A collection of text responses.
+     * Required. A collection of text response variants. If multiple variants
+     * are defined, only one text response variant is returned at runtime.
      *
      * Generated from protobuf field <code>repeated string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

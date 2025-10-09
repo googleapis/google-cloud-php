@@ -21,13 +21,13 @@ class ModelDeploymentMonitoringObjectiveConfig extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>string deployed_model_id = 1;</code>
      */
-    private $deployed_model_id = '';
+    protected $deployed_model_id = '';
     /**
      * The objective config of for the modelmonitoring job of this deployed model.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelMonitoringObjectiveConfig objective_config = 2;</code>
      */
-    private $objective_config = null;
+    protected $objective_config = null;
 
     /**
      * Constructor.

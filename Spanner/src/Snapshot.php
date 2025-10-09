@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
 /**
  * Read-only snapshot Transaction.
@@ -60,7 +59,7 @@ class Snapshot implements TransactionalReadInterface
     {
         if (isset($options['tag'])) {
             throw new \InvalidArgumentException(
-                "Cannot set a transaction tag on a read-only transaction."
+                'Cannot set a transaction tag on a read-only transaction.'
             );
         }
         $this->initialize($operation, $session, $options);

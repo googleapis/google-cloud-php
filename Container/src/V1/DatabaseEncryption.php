@@ -21,19 +21,19 @@ class DatabaseEncryption extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_name = 1;</code>
      */
-    private $key_name = '';
+    protected $key_name = '';
     /**
      * The desired state of etcd encryption.
      *
      * Generated from protobuf field <code>.google.container.v1.DatabaseEncryption.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The current state of etcd encryption.
      *
      * Generated from protobuf field <code>optional .google.container.v1.DatabaseEncryption.CurrentState current_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $current_state = null;
+    protected $current_state = null;
     /**
      * Output only. Keys in use by the cluster for decrypting
      * existing objects, in addition to the key in `key_name`.

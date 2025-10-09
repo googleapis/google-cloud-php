@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,9 @@ class KeyTrackingServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return KeyTrackingServiceClient */
@@ -81,16 +83,23 @@ class KeyTrackingServiceClientTest extends GeneratedTest
         $expectedResponse->setProjectCount($projectCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->protectedResourcesSummaryName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
-        $request = (new GetProtectedResourcesSummaryRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->protectedResourcesSummaryName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]'
+        );
+        $request = (new GetProtectedResourcesSummaryRequest())->setName($formattedName);
         $response = $gapicClient->getProtectedResourcesSummary($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.kms.inventory.v1.KeyTrackingService/GetProtectedResourcesSummary', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.kms.inventory.v1.KeyTrackingService/GetProtectedResourcesSummary',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -107,17 +116,24 @@ class KeyTrackingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->protectedResourcesSummaryName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
-        $request = (new GetProtectedResourcesSummaryRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->protectedResourcesSummaryName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]'
+        );
+        $request = (new GetProtectedResourcesSummaryRequest())->setName($formattedName);
         try {
             $gapicClient->getProtectedResourcesSummary($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -142,9 +158,7 @@ class KeyTrackingServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $protectedResourcesElement = new ProtectedResource();
-        $protectedResources = [
-            $protectedResourcesElement,
-        ];
+        $protectedResources = [$protectedResourcesElement];
         $expectedResponse = new SearchProtectedResourcesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProtectedResources($protectedResources);
@@ -152,9 +166,7 @@ class KeyTrackingServiceClientTest extends GeneratedTest
         // Mock request
         $formattedScope = $gapicClient->organizationName('[ORGANIZATION]');
         $cryptoKey = 'cryptoKey-1992067615';
-        $request = (new SearchProtectedResourcesRequest())
-            ->setScope($formattedScope)
-            ->setCryptoKey($cryptoKey);
+        $request = (new SearchProtectedResourcesRequest())->setScope($formattedScope)->setCryptoKey($cryptoKey);
         $response = $gapicClient->searchProtectedResources($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -164,7 +176,10 @@ class KeyTrackingServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.kms.inventory.v1.KeyTrackingService/SearchProtectedResources', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.kms.inventory.v1.KeyTrackingService/SearchProtectedResources',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getScope();
         $this->assertProtobufEquals($formattedScope, $actualValue);
         $actualValue = $actualRequestObject->getCryptoKey();
@@ -183,19 +198,20 @@ class KeyTrackingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedScope = $gapicClient->organizationName('[ORGANIZATION]');
         $cryptoKey = 'cryptoKey-1992067615';
-        $request = (new SearchProtectedResourcesRequest())
-            ->setScope($formattedScope)
-            ->setCryptoKey($cryptoKey);
+        $request = (new SearchProtectedResourcesRequest())->setScope($formattedScope)->setCryptoKey($cryptoKey);
         try {
             $gapicClient->searchProtectedResources($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -227,16 +243,23 @@ class KeyTrackingServiceClientTest extends GeneratedTest
         $expectedResponse->setProjectCount($projectCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->protectedResourcesSummaryName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
-        $request = (new GetProtectedResourcesSummaryRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->protectedResourcesSummaryName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]'
+        );
+        $request = (new GetProtectedResourcesSummaryRequest())->setName($formattedName);
         $response = $gapicClient->getProtectedResourcesSummaryAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.kms.inventory.v1.KeyTrackingService/GetProtectedResourcesSummary', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.kms.inventory.v1.KeyTrackingService/GetProtectedResourcesSummary',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());

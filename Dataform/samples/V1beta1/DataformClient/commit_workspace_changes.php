@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\CommitAuthor;
 use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesRequest;
+use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesResponse;
 
 /**
  * Applies a Git commit for uncommitted files in a Workspace.
@@ -54,8 +55,9 @@ function commit_workspace_changes_sample(
 
     // Call the API and handle any network failures.
     try {
-        $dataformClient->commitWorkspaceChanges($request);
-        printf('Call completed successfully.' . PHP_EOL);
+        /** @var CommitWorkspaceChangesResponse $response */
+        $response = $dataformClient->commitWorkspaceChanges($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

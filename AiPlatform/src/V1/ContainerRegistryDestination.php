@@ -27,7 +27,7 @@ class ContainerRegistryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_uri = '';
+    protected $output_uri = '';
 
     /**
      * Constructor.

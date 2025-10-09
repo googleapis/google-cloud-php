@@ -23,20 +23,20 @@ class ResourceSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Immutable. Type of resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.ResourceSpec.Type type = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Optional. Determines how read permissions are handled for each asset and
      * their associated tables. Only available to storage buckets assets.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.ResourceSpec.AccessMode read_access_mode = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $read_access_mode = 0;
+    protected $read_access_mode = 0;
 
     /**
      * Constructor.

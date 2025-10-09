@@ -23,7 +23,7 @@ class ContainerDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string main_job = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $main_job = '';
+    protected $main_job = '';
     /**
      * Output only. The name of the
      * [CustomJob][google.cloud.aiplatform.v1.CustomJob] for the
@@ -33,7 +33,7 @@ class ContainerDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pre_caching_check_job = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $pre_caching_check_job = '';
+    protected $pre_caching_check_job = '';
     /**
      * Output only. The names of the previously failed
      * [CustomJob][google.cloud.aiplatform.v1.CustomJob] for the main container

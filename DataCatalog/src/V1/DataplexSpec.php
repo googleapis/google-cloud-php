@@ -22,19 +22,19 @@ class DataplexSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset = 1;</code>
      */
-    private $asset = '';
+    protected $asset = '';
     /**
      * Format of the data.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.PhysicalSchema data_format = 2;</code>
      */
-    private $data_format = null;
+    protected $data_format = null;
     /**
      * Compression format of the data, e.g., zip, gzip etc.
      *
      * Generated from protobuf field <code>string compression_format = 3;</code>
      */
-    private $compression_format = '';
+    protected $compression_format = '';
     /**
      * Project ID of the underlying Cloud Storage or BigQuery data. Note that
      * this may not be the same project as the correspondingly Dataplex lake /
@@ -42,7 +42,7 @@ class DataplexSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 4;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
 
     /**
      * Constructor.

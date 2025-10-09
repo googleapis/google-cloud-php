@@ -87,6 +87,38 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 chain_storage_bytes = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $chain_storage_bytes = 0;
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
+    /**
+     * Output only. Region of the volume from which the backup was created.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string volume_region = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $volume_region = '';
+    /**
+     * Output only. Region in which backup is stored.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string backup_region = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $backup_region = '';
+    /**
+     * Output only. The time until which the backup is not deletable.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp enforced_retention_end_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $enforced_retention_end_time = null;
 
     /**
      * Constructor.
@@ -126,6 +158,18 @@ class Backup extends \Google\Protobuf\Internal\Message
      *     @type int|string $chain_storage_bytes
      *           Output only. Total size of all backups in a chain in bytes = baseline
      *           backup size + sum(incremental backup size)
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use
+     *     @type string $volume_region
+     *           Output only. Region of the volume from which the backup was created.
+     *           Format: `projects/{project_id}/locations/{location}`
+     *     @type string $backup_region
+     *           Output only. Region in which backup is stored.
+     *           Format: `projects/{project_id}/locations/{location}`
+     *     @type \Google\Protobuf\Timestamp $enforced_retention_end_time
+     *           Output only. The time until which the backup is not deletable.
      * }
      */
     public function __construct($data = NULL) {
@@ -433,6 +477,150 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->chain_storage_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Region of the volume from which the backup was created.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string volume_region = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getVolumeRegion()
+    {
+        return $this->volume_region;
+    }
+
+    /**
+     * Output only. Region of the volume from which the backup was created.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string volume_region = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVolumeRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->volume_region = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Region in which backup is stored.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string backup_region = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getBackupRegion()
+    {
+        return $this->backup_region;
+    }
+
+    /**
+     * Output only. Region in which backup is stored.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string backup_region = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backup_region = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time until which the backup is not deletable.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp enforced_retention_end_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getEnforcedRetentionEndTime()
+    {
+        return $this->enforced_retention_end_time;
+    }
+
+    public function hasEnforcedRetentionEndTime()
+    {
+        return isset($this->enforced_retention_end_time);
+    }
+
+    public function clearEnforcedRetentionEndTime()
+    {
+        unset($this->enforced_retention_end_time);
+    }
+
+    /**
+     * Output only. The time until which the backup is not deletable.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp enforced_retention_end_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setEnforcedRetentionEndTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->enforced_retention_end_time = $var;
 
         return $this;
     }

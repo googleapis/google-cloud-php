@@ -20,13 +20,13 @@ class Identity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string update_id = 1;</code>
      */
-    private $update_id = '';
+    protected $update_id = '';
     /**
      * The revision number of the update.
      *
      * Generated from protobuf field <code>int32 revision = 2;</code>
      */
-    private $revision = 0;
+    protected $revision = 0;
 
     /**
      * Constructor.

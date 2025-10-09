@@ -26,7 +26,7 @@ class PubsubTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic_name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $topic_name = '';
+    protected $topic_name = '';
     /**
      * The message payload for PubsubMessage.
      * Pubsub message must contain either non-empty data, or at least one
@@ -34,7 +34,7 @@ class PubsubTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes data = 3;</code>
      */
-    private $data = '';
+    protected $data = '';
     /**
      * Attributes for PubsubMessage.
      * Pubsub message must contain either non-empty data, or at least one

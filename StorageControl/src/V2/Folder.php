@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A folder resource. This resource can only exist in a hierarchical namespace
  * enabled bucket.
- * Hierarchical namespace buckets are in allowlist preview.
  *
  * Generated from protobuf message <code>google.storage.control.v2.Folder</code>
  */

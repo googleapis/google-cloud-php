@@ -20,7 +20,7 @@ class DataCacheConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool data_cache_enabled = 1;</code>
      */
-    private $data_cache_enabled = false;
+    protected $data_cache_enabled = false;
 
     /**
      * Constructor.

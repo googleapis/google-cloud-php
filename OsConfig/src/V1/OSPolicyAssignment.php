@@ -31,14 +31,14 @@ class OSPolicyAssignment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * OS policy assignment description.
      * Length of the description is limited to 1024 characters.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. List of OS policies to be applied to the VMs.
      *
@@ -50,7 +50,7 @@ class OSPolicyAssignment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicyAssignment.InstanceFilter instance_filter = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_filter = null;
+    protected $instance_filter = null;
     /**
      * Required. Rollout to deploy the OS policy assignment.
      * A rollout is triggered in the following situations:
@@ -63,7 +63,7 @@ class OSPolicyAssignment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicyAssignment.Rollout rollout = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rollout = null;
+    protected $rollout = null;
     /**
      * Output only. The assignment revision ID
      * A new revision is committed whenever a rollout is triggered for a OS policy
@@ -71,26 +71,26 @@ class OSPolicyAssignment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision_id = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision_id = '';
+    protected $revision_id = '';
     /**
      * Output only. The timestamp that the revision was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revision_create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision_create_time = null;
+    protected $revision_create_time = null;
     /**
      * The etag for this OS policy assignment.
      * If this is provided on update, it must match the server's etag.
      *
      * Generated from protobuf field <code>string etag = 8;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. OS policy assignment rollout state
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicyAssignment.RolloutState rollout_state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $rollout_state = 0;
+    protected $rollout_state = 0;
     /**
      * Output only. Indicates that this revision has been successfully rolled out
      * in this zone and new VMs will be assigned OS policies from this revision.
@@ -99,13 +99,13 @@ class OSPolicyAssignment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool baseline = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $baseline = false;
+    protected $baseline = false;
     /**
      * Output only. Indicates that this revision deletes the OS policy assignment.
      *
      * Generated from protobuf field <code>bool deleted = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $deleted = false;
+    protected $deleted = false;
     /**
      * Output only. Indicates that reconciliation is in progress for the revision.
      * This value is `true` when the `rollout_state` is one of:
@@ -114,14 +114,14 @@ class OSPolicyAssignment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reconciling = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. Server generated unique id for the OS policy assignment
      * resource.
      *
      * Generated from protobuf field <code>string uid = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
 
     /**
      * Constructor.

@@ -18,11 +18,11 @@ class GetSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the session entity type.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/sessions/<Session ID>/entityTypes/<Entity Type ID>` or
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/sessions/<Session ID>/entityTypes/<Entity
-     * Type ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
      * environment.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -31,11 +31,11 @@ class GetSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the session entity type.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/sessions/<Session ID>/entityTypes/<Entity Type ID>` or
-     *                     `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/environments/<Environment ID>/sessions/<Session ID>/entityTypes/<Entity
-     *                     Type ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`
+     *                     or
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`.
+     *                     If `Environment ID` is not specified, we assume default 'draft'
      *                     environment. Please see
      *                     {@see SessionEntityTypesClient::sessionEntityTypeName()} for help formatting this field.
      *
@@ -57,11 +57,11 @@ class GetSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the session entity type.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/sessions/<Session ID>/entityTypes/<Entity Type ID>` or
-     *           `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/environments/<Environment ID>/sessions/<Session ID>/entityTypes/<Entity
-     *           Type ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`
+     *           or
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`.
+     *           If `Environment ID` is not specified, we assume default 'draft'
      *           environment.
      * }
      */
@@ -72,11 +72,11 @@ class GetSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the session entity type.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/sessions/<Session ID>/entityTypes/<Entity Type ID>` or
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/sessions/<Session ID>/entityTypes/<Entity
-     * Type ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
      * environment.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -89,11 +89,11 @@ class GetSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the session entity type.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/sessions/<Session ID>/entityTypes/<Entity Type ID>` or
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/sessions/<Session ID>/entityTypes/<Entity
-     * Type ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
      * environment.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

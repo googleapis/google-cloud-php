@@ -23,13 +23,13 @@ class IpMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlIpAddressType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The IP address assigned.
      *
      * Generated from protobuf field <code>string ip_address = 2;</code>
      */
-    private $ip_address = '';
+    protected $ip_address = '';
     /**
      * The due time for this IP to be retired in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -38,7 +38,7 @@ class IpMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp time_to_retire = 3;</code>
      */
-    private $time_to_retire = null;
+    protected $time_to_retire = null;
 
     /**
      * Constructor.

@@ -9,9 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only. Annotations associated with the plain-text body of the message.
- * To add basic formatting to a text message, see
- * [Format text
+ * Output only. Annotations can be associated with the plain-text body of the
+ * message or with chips that link to Google Workspace resources like Google
+ * Docs or Sheets with `start_index` and `length` of 0. To add basic formatting
+ * to a text message, see [Format text
  * messages](https://developers.google.com/workspace/chat/format-messages).
  * Example plain-text message body:
  * ```
@@ -54,7 +55,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
     protected $start_index = null;
     /**
      * Length of the substring in the plain-text message body this annotation
-     * corresponds to.
+     * corresponds to. If not present, indicates a length of 0.
      *
      * Generated from protobuf field <code>int32 length = 3;</code>
      */
@@ -74,13 +75,15 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *           annotation corresponds to.
      *     @type int $length
      *           Length of the substring in the plain-text message body this annotation
-     *           corresponds to.
+     *           corresponds to. If not present, indicates a length of 0.
      *     @type \Google\Apps\Chat\V1\UserMentionMetadata $user_mention
      *           The metadata of user mention.
      *     @type \Google\Apps\Chat\V1\SlashCommandMetadata $slash_command
      *           The metadata for a slash command.
      *     @type \Google\Apps\Chat\V1\RichLinkMetadata $rich_link_metadata
      *           The metadata for a rich link.
+     *     @type \Google\Apps\Chat\V1\CustomEmojiMetadata $custom_emoji_metadata
+     *           The metadata for a custom emoji.
      * }
      */
     public function __construct($data = NULL) {
@@ -154,7 +157,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
 
     /**
      * Length of the substring in the plain-text message body this annotation
-     * corresponds to.
+     * corresponds to. If not present, indicates a length of 0.
      *
      * Generated from protobuf field <code>int32 length = 3;</code>
      * @return int
@@ -166,7 +169,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
 
     /**
      * Length of the substring in the plain-text message body this annotation
-     * corresponds to.
+     * corresponds to. If not present, indicates a length of 0.
      *
      * Generated from protobuf field <code>int32 length = 3;</code>
      * @param int $var
@@ -269,6 +272,37 @@ class Annotation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\RichLinkMetadata::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * The metadata for a custom emoji.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.CustomEmojiMetadata custom_emoji_metadata = 7;</code>
+     * @return \Google\Apps\Chat\V1\CustomEmojiMetadata|null
+     */
+    public function getCustomEmojiMetadata()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasCustomEmojiMetadata()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * The metadata for a custom emoji.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.CustomEmojiMetadata custom_emoji_metadata = 7;</code>
+     * @param \Google\Apps\Chat\V1\CustomEmojiMetadata $var
+     * @return $this
+     */
+    public function setCustomEmojiMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\CustomEmojiMetadata::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

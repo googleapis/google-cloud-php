@@ -21,13 +21,16 @@ class TimedCountAlignment
     const ERROR_COUNT_ALIGNMENT_UNSPECIFIED = 0;
     /**
      * The time periods shall be consecutive, have width equal to the
-     * requested duration, and be aligned at the `alignment_time` provided in
-     * the request.
-     * The `alignment_time` does not have to be inside the query period but
-     * even if it is outside, only time periods are returned which overlap
-     * with the query period.
-     * A rounded alignment will typically result in a
-     * different size of the first or the last time period.
+     * requested duration, and be aligned at the
+     * [alignment_time]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest.alignment_time]
+     * provided in the request.
+     * The [alignment_time]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest.alignment_time]
+     * does not have to be inside the query period but even if it is outside, only
+     * time periods are returned which overlap with the query period.
+     * A rounded alignment will typically result in a different size of the first
+     * or the last time period.
      *
      * Generated from protobuf enum <code>ALIGNMENT_EQUAL_ROUNDED = 1;</code>
      */

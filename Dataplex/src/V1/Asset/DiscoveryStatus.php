@@ -20,37 +20,37 @@ class DiscoveryStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.DiscoveryStatus.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Additional information about the current state.
      *
      * Generated from protobuf field <code>string message = 2;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Last update time of the status.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The start time of the last discovery run.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_run_time = 4;</code>
      */
-    private $last_run_time = null;
+    protected $last_run_time = null;
     /**
      * Data Stats of the asset reported by discovery.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.DiscoveryStatus.Stats stats = 6;</code>
      */
-    private $stats = null;
+    protected $stats = null;
     /**
      * The duration of the last discovery run.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration last_run_duration = 7;</code>
      */
-    private $last_run_duration = null;
+    protected $last_run_duration = null;
 
     /**
      * Constructor.

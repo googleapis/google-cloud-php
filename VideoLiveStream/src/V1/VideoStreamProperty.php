@@ -20,13 +20,13 @@ class VideoStreamProperty extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 index = 1;</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * Properties of the video format.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.VideoFormat video_format = 2;</code>
      */
-    private $video_format = null;
+    protected $video_format = null;
 
     /**
      * Constructor.

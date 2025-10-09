@@ -20,7 +20,7 @@ class RetrieveRegisterParametersResponse extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.RegisterParameters register_parameters = 1;</code>
      */
-    private $register_parameters = null;
+    protected $register_parameters = null;
 
     /**
      * Constructor.

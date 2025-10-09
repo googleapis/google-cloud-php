@@ -38,12 +38,19 @@ class EventType
      * Generated from protobuf enum <code>SECURITY_BULLETIN_EVENT = 3;</code>
      */
     const SECURITY_BULLETIN_EVENT = 3;
+    /**
+     * Corresponds with UpgradeInfoEvent.
+     *
+     * Generated from protobuf enum <code>UPGRADE_INFO_EVENT = 4;</code>
+     */
+    const UPGRADE_INFO_EVENT = 4;
 
     private static $valueToName = [
         self::EVENT_TYPE_UNSPECIFIED => 'EVENT_TYPE_UNSPECIFIED',
         self::UPGRADE_AVAILABLE_EVENT => 'UPGRADE_AVAILABLE_EVENT',
         self::UPGRADE_EVENT => 'UPGRADE_EVENT',
         self::SECURITY_BULLETIN_EVENT => 'SECURITY_BULLETIN_EVENT',
+        self::UPGRADE_INFO_EVENT => 'UPGRADE_INFO_EVENT',
     ];
 
     public static function name($value)
@@ -67,6 +74,4 @@ class EventType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EventType::class, \Google\Cloud\Container\V1\NotificationConfig_EventType::class);
 

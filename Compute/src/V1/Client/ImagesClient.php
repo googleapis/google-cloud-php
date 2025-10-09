@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -38,7 +39,6 @@ use Google\Cloud\Compute\V1\DeprecateImageRequest;
 use Google\Cloud\Compute\V1\GetFromFamilyImageRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyImageRequest;
 use Google\Cloud\Compute\V1\GetImageRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Image;
 use Google\Cloud\Compute\V1\InsertImageRequest;
 use Google\Cloud\Compute\V1\ListImagesRequest;
@@ -49,6 +49,7 @@ use Google\Cloud\Compute\V1\SetLabelsImageRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsImageRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Images API.
@@ -56,17 +57,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deprecateAsync(DeprecateImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFromFamilyAsync(GetFromFamilyImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListImagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deprecateAsync(DeprecateImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Image> getAsync(GetImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Image> getFromFamilyAsync(GetFromFamilyImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListImagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsImageRequest $request, array $optionalArgs = [])
  */
 final class ImagesClient
 {
@@ -115,7 +116,6 @@ final class ImagesClient
                     'restClientConfigPath' => __DIR__ . '/../resources/images_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -128,9 +128,7 @@ final class ImagesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -147,9 +145,7 @@ final class ImagesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -177,29 +173,57 @@ final class ImagesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\ImagesClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new ImagesClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -230,11 +254,16 @@ final class ImagesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -256,6 +285,8 @@ final class ImagesClient
      * Deletes the specified image.
      *
      * The async variant is {@see ImagesClient::deleteAsync()} .
+     *
+     * @example samples/V1/ImagesClient/delete.php
      *
      * @param DeleteImageRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -281,6 +312,8 @@ final class ImagesClient
      *
      * The async variant is {@see ImagesClient::deprecateAsync()} .
      *
+     * @example samples/V1/ImagesClient/deprecate.php
+     *
      * @param DeprecateImageRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -304,6 +337,8 @@ final class ImagesClient
      * Returns the specified image.
      *
      * The async variant is {@see ImagesClient::getAsync()} .
+     *
+     * @example samples/V1/ImagesClient/get.php
      *
      * @param GetImageRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -329,6 +364,8 @@ final class ImagesClient
      *
      * The async variant is {@see ImagesClient::getFromFamilyAsync()} .
      *
+     * @example samples/V1/ImagesClient/get_from_family.php
+     *
      * @param GetFromFamilyImageRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -352,6 +389,8 @@ final class ImagesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see ImagesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ImagesClient/get_iam_policy.php
      *
      * @param GetIamPolicyImageRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -377,6 +416,8 @@ final class ImagesClient
      *
      * The async variant is {@see ImagesClient::insertAsync()} .
      *
+     * @example samples/V1/ImagesClient/insert.php
+     *
      * @param InsertImageRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -400,6 +441,8 @@ final class ImagesClient
      * Retrieves the list of custom images available to the specified project. Custom images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
      *
      * The async variant is {@see ImagesClient::listAsync()} .
+     *
+     * @example samples/V1/ImagesClient/list.php
      *
      * @param ListImagesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -425,6 +468,8 @@ final class ImagesClient
      *
      * The async variant is {@see ImagesClient::patchAsync()} .
      *
+     * @example samples/V1/ImagesClient/patch.php
+     *
      * @param PatchImageRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -448,6 +493,8 @@ final class ImagesClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see ImagesClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ImagesClient/set_iam_policy.php
      *
      * @param SetIamPolicyImageRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -473,6 +520,8 @@ final class ImagesClient
      *
      * The async variant is {@see ImagesClient::setLabelsAsync()} .
      *
+     * @example samples/V1/ImagesClient/set_labels.php
+     *
      * @param SetLabelsImageRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -497,6 +546,8 @@ final class ImagesClient
      *
      * The async variant is {@see ImagesClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/ImagesClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsImageRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -511,8 +562,10 @@ final class ImagesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsImageRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsImageRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

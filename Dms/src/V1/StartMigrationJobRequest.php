@@ -20,14 +20,14 @@ class StartMigrationJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Start the migration job without running prior configuration
      * verification. Defaults to `false`.
      *
      * Generated from protobuf field <code>bool skip_validation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $skip_validation = false;
+    protected $skip_validation = false;
 
     /**
      * Constructor.

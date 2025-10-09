@@ -24,7 +24,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Databases to be exported. <br /> `MySQL instances:` If
      * `fileType` is `SQL` and no database is specified, all
@@ -47,38 +47,38 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Options for exporting data as SQL statements.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext.SqlExportOptions sql_export_options = 4;</code>
      */
-    private $sql_export_options = null;
+    protected $sql_export_options = null;
     /**
      * Options for exporting data as CSV. `MySQL` and `PostgreSQL`
      * instances only.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext.SqlCsvExportOptions csv_export_options = 5;</code>
      */
-    private $csv_export_options = null;
+    protected $csv_export_options = null;
     /**
      * The file type for the specified uri.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlFileType file_type = 6;</code>
      */
-    private $file_type = 0;
+    protected $file_type = 0;
     /**
      * Option for export offload.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue offload = 8;</code>
      */
-    private $offload = null;
+    protected $offload = null;
     /**
      * Options for exporting data as BAK files.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext.SqlBakExportOptions bak_export_options = 9;</code>
      */
-    private $bak_export_options = null;
+    protected $bak_export_options = null;
 
     /**
      * Constructor.
@@ -362,7 +362,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue offload = 8;</code>
      * @return bool|null
      */
-    public function getOffloadValue()
+    public function getOffloadUnwrapped()
     {
         return $this->readWrapperValue("offload");
     }
@@ -391,7 +391,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setOffloadValue($var)
+    public function setOffloadUnwrapped($var)
     {
         $this->writeWrapperValue("offload", $var);
         return $this;}

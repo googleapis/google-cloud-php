@@ -20,7 +20,7 @@ class Projection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyReference property = 1;</code>
      */
-    private $property = null;
+    protected $property = null;
 
     /**
      * Constructor.

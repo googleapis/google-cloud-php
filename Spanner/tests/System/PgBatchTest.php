@@ -34,12 +34,15 @@ class PgBatchTest extends SpannerPgTestCase
     private static $tableName;
     private static $isSetup = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$isSetup) {
             return;
         }
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$tableName = uniqid(self::TESTING_PREFIX);
 
@@ -83,7 +86,7 @@ class PgBatchTest extends SpannerPgTestCase
      */
     public function testBatchWithDbRole($dbRole, $expected)
     {
-        // Emulator does not support FGAC
+        // Emulator does not support FGAC for the PG dialect.
         $this->skipEmulatorTests();
 
         $error = null;

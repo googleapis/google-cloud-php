@@ -23,7 +23,7 @@ class QueryExecutionInputsAndOutputsRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string execution = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $execution = '';
+    protected $execution = '';
 
     /**
      * @param string $execution Required. The resource name of the Execution whose input and output

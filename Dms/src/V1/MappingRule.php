@@ -23,38 +23,38 @@ class MappingRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. A human readable name
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. The mapping rule state
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.MappingRule.State state = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Required. The rule scope
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEntityType rule_scope = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rule_scope = 0;
+    protected $rule_scope = 0;
     /**
      * Required. The rule filter
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.MappingRuleFilter filter = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = null;
+    protected $filter = null;
     /**
      * Required. The order in which the rule is applied. Lower order rules are
      * applied before higher value rules so they may end up being overridden.
      *
      * Generated from protobuf field <code>int64 rule_order = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rule_order = 0;
+    protected $rule_order = 0;
     /**
      * Output only. The revision ID of the mapping rule.
      * A new revision is committed whenever the mapping rule is changed in any
@@ -62,13 +62,13 @@ class MappingRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision_id = '';
+    protected $revision_id = '';
     /**
      * Output only. The timestamp that the revision was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revision_create_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision_create_time = null;
+    protected $revision_create_time = null;
     protected $details;
 
     /**

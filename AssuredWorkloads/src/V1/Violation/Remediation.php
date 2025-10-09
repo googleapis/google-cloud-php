@@ -21,7 +21,7 @@ class Remediation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Violation.Remediation.Instructions instructions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instructions = null;
+    protected $instructions = null;
     /**
      * Values that can resolve the violation
      * For example: for list org policy violations, this will either be the list
@@ -35,7 +35,7 @@ class Remediation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Violation.Remediation.RemediationType remediation_type = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $remediation_type = 0;
+    protected $remediation_type = 0;
 
     /**
      * Constructor.
@@ -152,6 +152,4 @@ class Remediation extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Remediation::class, \Google\Cloud\AssuredWorkloads\V1\Violation_Remediation::class);
 

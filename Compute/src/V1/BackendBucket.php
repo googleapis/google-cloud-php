@@ -20,26 +20,26 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string bucket_name = 283610048;</code>
      */
-    private $bucket_name = null;
+    protected $bucket_name = null;
     /**
      * Cloud CDN configuration for this BackendBucket.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketCdnPolicy cdn_policy = 213976452;</code>
      */
-    private $cdn_policy = null;
+    protected $cdn_policy = null;
     /**
      * Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
      * Check the CompressionMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string compression_mode = 95520988;</code>
      */
-    private $compression_mode = null;
+    protected $compression_mode = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * Headers that the Application Load Balancer should add to proxied responses.
      *
@@ -51,43 +51,62 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The resource URL for the edge security policy associated with this backend bucket.
      *
      * Generated from protobuf field <code>optional string edge_security_policy = 41036943;</code>
      */
-    private $edge_security_policy = null;
+    protected $edge_security_policy = null;
     /**
      * If true, enable Cloud CDN for this BackendBucket.
      *
      * Generated from protobuf field <code>optional bool enable_cdn = 282942321;</code>
      */
-    private $enable_cdn = null;
+    protected $enable_cdn = null;
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * Type of the resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
+    /**
+     * The value can only be INTERNAL_MANAGED for cross-region internal layer 7 load balancer. If loadBalancingScheme is not specified, the backend bucket can be used by classic global external load balancers, or global application external load balancers, or both.
+     * Check the LoadBalancingScheme enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string load_balancing_scheme = 363890244;</code>
+     */
+    protected $load_balancing_scheme = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketParams params = 78313862;</code>
+     */
+    protected $params = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
+    /**
+     * [Output Only] List of resources referencing that backend bucket.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendBucketUsedBy used_by = 389320729;</code>
+     */
+    private $used_by;
 
     /**
      * Constructor.
@@ -116,10 +135,17 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *           [Output Only] Unique identifier for the resource; defined by the server.
      *     @type string $kind
      *           Type of the resource.
+     *     @type string $load_balancing_scheme
+     *           The value can only be INTERNAL_MANAGED for cross-region internal layer 7 load balancer. If loadBalancingScheme is not specified, the backend bucket can be used by classic global external load balancers, or global application external load balancers, or both.
+     *           Check the LoadBalancingScheme enum for the list of possible values.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *     @type \Google\Cloud\Compute\V1\BackendBucketParams $params
+     *           Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type array<\Google\Cloud\Compute\V1\BackendBucketUsedBy>|\Google\Protobuf\Internal\RepeatedField $used_by
+     *           [Output Only] List of resources referencing that backend bucket.
      * }
      */
     public function __construct($data = NULL) {
@@ -480,6 +506,44 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The value can only be INTERNAL_MANAGED for cross-region internal layer 7 load balancer. If loadBalancingScheme is not specified, the backend bucket can be used by classic global external load balancers, or global application external load balancers, or both.
+     * Check the LoadBalancingScheme enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string load_balancing_scheme = 363890244;</code>
+     * @return string
+     */
+    public function getLoadBalancingScheme()
+    {
+        return isset($this->load_balancing_scheme) ? $this->load_balancing_scheme : '';
+    }
+
+    public function hasLoadBalancingScheme()
+    {
+        return isset($this->load_balancing_scheme);
+    }
+
+    public function clearLoadBalancingScheme()
+    {
+        unset($this->load_balancing_scheme);
+    }
+
+    /**
+     * The value can only be INTERNAL_MANAGED for cross-region internal layer 7 load balancer. If loadBalancingScheme is not specified, the backend bucket can be used by classic global external load balancers, or global application external load balancers, or both.
+     * Check the LoadBalancingScheme enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string load_balancing_scheme = 363890244;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLoadBalancingScheme($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->load_balancing_scheme = $var;
+
+        return $this;
+    }
+
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -516,6 +580,42 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\BackendBucketParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\BackendBucketParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BackendBucketParams::class);
+        $this->params = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -547,6 +647,32 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] List of resources referencing that backend bucket.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendBucketUsedBy used_by = 389320729;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUsedBy()
+    {
+        return $this->used_by;
+    }
+
+    /**
+     * [Output Only] List of resources referencing that backend bucket.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendBucketUsedBy used_by = 389320729;</code>
+     * @param array<\Google\Cloud\Compute\V1\BackendBucketUsedBy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUsedBy($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\BackendBucketUsedBy::class);
+        $this->used_by = $arr;
 
         return $this;
     }

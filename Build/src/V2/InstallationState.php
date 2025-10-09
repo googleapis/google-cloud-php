@@ -22,21 +22,21 @@ class InstallationState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.InstallationState.Stage stage = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $stage = 0;
+    protected $stage = 0;
     /**
      * Output only. Message of what the user should do next to continue the
      * installation. Empty string if the installation is already complete.
      *
      * Generated from protobuf field <code>string message = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Output only. Link to follow for next action. Empty string if the
      * installation is already complete.
      *
      * Generated from protobuf field <code>string action_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $action_uri = '';
+    protected $action_uri = '';
 
     /**
      * Constructor.

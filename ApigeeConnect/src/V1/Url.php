@@ -22,19 +22,19 @@ class Url extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.apigeeconnect.v1.Scheme scheme = 1;</code>
      */
-    private $scheme = 0;
+    protected $scheme = 0;
     /**
      * Host or Host:Port.
      *
      * Generated from protobuf field <code>string host = 2;</code>
      */
-    private $host = '';
+    protected $host = '';
     /**
      * Path starts with `/`.
      *
      * Generated from protobuf field <code>string path = 3;</code>
      */
-    private $path = '';
+    protected $path = '';
 
     /**
      * Constructor.

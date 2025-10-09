@@ -27,10 +27,17 @@ class ApiScope
      * Generated from protobuf enum <code>DATASTORE_MODE_API = 1;</code>
      */
     const DATASTORE_MODE_API = 1;
+    /**
+     * The index can only be used by the MONGODB_COMPATIBLE_API.
+     *
+     * Generated from protobuf enum <code>MONGODB_COMPATIBLE_API = 2;</code>
+     */
+    const MONGODB_COMPATIBLE_API = 2;
 
     private static $valueToName = [
         self::ANY_API => 'ANY_API',
         self::DATASTORE_MODE_API => 'DATASTORE_MODE_API',
+        self::MONGODB_COMPATIBLE_API => 'MONGODB_COMPATIBLE_API',
     ];
 
     public static function name($value)

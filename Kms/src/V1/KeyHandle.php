@@ -23,7 +23,7 @@ class KeyHandle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Name of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that has
      * been provisioned for Customer Managed Encryption Key (CMEK) use in the
@@ -39,7 +39,7 @@ class KeyHandle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $kms_key = '';
+    protected $kms_key = '';
     /**
      * Required. Indicates the resource type that the resulting
      * [CryptoKey][google.cloud.kms.v1.CryptoKey] is meant to protect, e.g.
@@ -48,7 +48,7 @@ class KeyHandle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_type_selector = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource_type_selector = '';
+    protected $resource_type_selector = '';
 
     /**
      * Constructor.

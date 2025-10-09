@@ -32,7 +32,7 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The display name of the Security Health Analytics custom module. This
      * display name becomes the finding category for all findings that are
@@ -42,25 +42,25 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The enablement state of the custom module.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule.EnablementState enablement_state = 4;</code>
      */
-    private $enablement_state = 0;
+    protected $enablement_state = 0;
     /**
      * Output only. The time at which the custom module was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The editor that last updated the custom module.
      *
      * Generated from protobuf field <code>string last_editor = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_editor = '';
+    protected $last_editor = '';
     /**
      * Output only. If empty, indicates that the custom module was created in the
      * organization, folder, or project in which you are viewing the custom
@@ -69,13 +69,13 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string ancestor_module = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $ancestor_module = '';
+    protected $ancestor_module = '';
     /**
      * The user specified custom configuration for the module.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CustomConfig custom_config = 8;</code>
      */
-    private $custom_config = null;
+    protected $custom_config = null;
 
     /**
      * Constructor.

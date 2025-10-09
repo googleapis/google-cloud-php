@@ -31,23 +31,32 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\AutoMl\V1\AnnotationSpec;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
+use Google\Cloud\AutoMl\V1\GetAnnotationSpecRequest;
 
-use Google\Cloud\AutoMl\V1\AutoMlClient;
-use Google\Cloud\AutoMl\V1\Dataset;
-use Google\Cloud\AutoMl\V1\TranslationDatasetMetadata;
-
+// Create a client.
 $autoMlClient = new AutoMlClient();
-$formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
-$dataset = new Dataset([
-    'display_name' => '[DISPLAY_NAME]',
-    'translation_dataset_metadata' => new TranslationDatasetMetadata([
-        'source_language_code' => 'en',
-        'target_language_code' => 'es'
-    ])
-]);
-$response = $autoMlClient->createDataset($formattedParent, $dataset);
+
+// Prepare the request message.
+$request = (new GetAnnotationSpecRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var AnnotationSpec $response */
+    $response = $autoMlClient->getAnnotationSpec($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

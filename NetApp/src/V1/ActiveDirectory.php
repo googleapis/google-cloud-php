@@ -94,6 +94,12 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
      */
     private $backup_operators;
     /**
+     * Optional. Users to be added to the Built-in Admininstrators group.
+     *
+     * Generated from protobuf field <code>repeated string administrators = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $administrators;
+    /**
      * Optional. Domain users to be given the SeSecurityPrivilege.
      *
      * Generated from protobuf field <code>repeated string security_operators = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -187,6 +193,8 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $backup_operators
      *           Optional. Users to be added to the Built-in Backup Operator active
      *           directory group.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $administrators
+     *           Optional. Users to be added to the Built-in Admininstrators group.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $security_operators
      *           Optional. Domain users to be given the SeSecurityPrivilege.
      *     @type string $kdc_hostname
@@ -545,6 +553,32 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->backup_operators = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Users to be added to the Built-in Admininstrators group.
+     *
+     * Generated from protobuf field <code>repeated string administrators = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAdministrators()
+    {
+        return $this->administrators;
+    }
+
+    /**
+     * Optional. Users to be added to the Built-in Admininstrators group.
+     *
+     * Generated from protobuf field <code>repeated string administrators = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAdministrators($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->administrators = $arr;
 
         return $this;
     }

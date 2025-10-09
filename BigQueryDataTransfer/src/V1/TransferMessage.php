@@ -20,19 +20,19 @@ class TransferMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp message_time = 1;</code>
      */
-    private $message_time = null;
+    protected $message_time = null;
     /**
      * Message severity.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferMessage.MessageSeverity severity = 2;</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
     /**
      * Message text.
      *
      * Generated from protobuf field <code>string message_text = 3;</code>
      */
-    private $message_text = '';
+    protected $message_text = '';
 
     /**
      * Constructor.

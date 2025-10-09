@@ -17,11 +17,11 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Format: properties/{property_id}
-     * Example: properties/1234
+     * Example: `properties/1234`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of resources to return. The service may return
      * fewer than this value, even if there are additional pages.
@@ -30,7 +30,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous `ListFirebaseLinks` call.
      * Provide this to retrieve the subsequent page.
@@ -39,11 +39,12 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. Format: properties/{property_id}
-     *                       Example: properties/1234
+     *
+     *                       Example: `properties/1234`
      *                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1beta\ListFirebaseLinksRequest
@@ -64,7 +65,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Format: properties/{property_id}
-     *           Example: properties/1234
+     *           Example: `properties/1234`
      *     @type int $page_size
      *           The maximum number of resources to return. The service may return
      *           fewer than this value, even if there are additional pages.
@@ -84,7 +85,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Format: properties/{property_id}
-     * Example: properties/1234
+     * Example: `properties/1234`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -96,7 +97,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Format: properties/{property_id}
-     * Example: properties/1234
+     * Example: `properties/1234`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

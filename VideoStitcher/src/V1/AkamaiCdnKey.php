@@ -20,7 +20,7 @@ class AkamaiCdnKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes token_key = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $token_key = '';
+    protected $token_key = '';
 
     /**
      * Constructor.

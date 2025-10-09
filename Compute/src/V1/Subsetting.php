@@ -21,7 +21,7 @@ class Subsetting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string policy = 91071794;</code>
      */
-    private $policy = null;
+    protected $policy = null;
 
     /**
      * Constructor.

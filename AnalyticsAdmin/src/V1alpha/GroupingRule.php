@@ -20,13 +20,13 @@ class GroupingRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. The Filter Expression that defines the Grouping Rule.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ChannelGroupFilterExpression expression = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $expression = null;
+    protected $expression = null;
 
     /**
      * Constructor.

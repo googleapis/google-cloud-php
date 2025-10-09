@@ -27,7 +27,7 @@ class ShieldedVmConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_secure_boot = 1;</code>
      */
-    private $enable_secure_boot = false;
+    protected $enable_secure_boot = false;
 
     /**
      * Constructor.

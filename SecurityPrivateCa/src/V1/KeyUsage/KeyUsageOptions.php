@@ -22,56 +22,56 @@ class KeyUsageOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool digital_signature = 1;</code>
      */
-    private $digital_signature = false;
+    protected $digital_signature = false;
     /**
      * The key may be used for cryptographic commitments. Note that this may
      * also be referred to as "non-repudiation".
      *
      * Generated from protobuf field <code>bool content_commitment = 2;</code>
      */
-    private $content_commitment = false;
+    protected $content_commitment = false;
     /**
      * The key may be used to encipher other keys.
      *
      * Generated from protobuf field <code>bool key_encipherment = 3;</code>
      */
-    private $key_encipherment = false;
+    protected $key_encipherment = false;
     /**
      * The key may be used to encipher data.
      *
      * Generated from protobuf field <code>bool data_encipherment = 4;</code>
      */
-    private $data_encipherment = false;
+    protected $data_encipherment = false;
     /**
      * The key may be used in a key agreement protocol.
      *
      * Generated from protobuf field <code>bool key_agreement = 5;</code>
      */
-    private $key_agreement = false;
+    protected $key_agreement = false;
     /**
      * The key may be used to sign certificates.
      *
      * Generated from protobuf field <code>bool cert_sign = 6;</code>
      */
-    private $cert_sign = false;
+    protected $cert_sign = false;
     /**
      * The key may be used sign certificate revocation lists.
      *
      * Generated from protobuf field <code>bool crl_sign = 7;</code>
      */
-    private $crl_sign = false;
+    protected $crl_sign = false;
     /**
      * The key may be used to encipher only.
      *
      * Generated from protobuf field <code>bool encipher_only = 8;</code>
      */
-    private $encipher_only = false;
+    protected $encipher_only = false;
     /**
      * The key may be used to decipher only.
      *
      * Generated from protobuf field <code>bool decipher_only = 9;</code>
      */
-    private $decipher_only = false;
+    protected $decipher_only = false;
 
     /**
      * Constructor.

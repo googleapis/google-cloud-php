@@ -23,7 +23,7 @@ class Parameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 approximate_neighbor_candidates = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $approximate_neighbor_candidates = 0;
+    protected $approximate_neighbor_candidates = 0;
     /**
      * Optional. The fraction of the number of leaves to search, set at query
      * time allows user to tune search performance. This value increase result
@@ -32,7 +32,7 @@ class Parameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double leaf_nodes_search_fraction = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $leaf_nodes_search_fraction = 0.0;
+    protected $leaf_nodes_search_fraction = 0.0;
 
     /**
      * Constructor.

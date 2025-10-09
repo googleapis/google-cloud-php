@@ -24,7 +24,7 @@ class ContainerInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image = 1;</code>
      */
-    private $image = '';
+    protected $image = '';
 
     /**
      * Constructor.

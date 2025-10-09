@@ -21,7 +21,7 @@ class Checksum extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes sha256 = 1;</code>
      */
-    private $sha256 = '';
+    protected $sha256 = '';
 
     /**
      * Constructor.
@@ -69,6 +69,4 @@ class Checksum extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Checksum::class, \Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse_Checksum::class);
 

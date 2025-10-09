@@ -20,19 +20,19 @@ class Role extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Kubernetes.Role.Kind kind = 1;</code>
      */
-    private $kind = 0;
+    protected $kind = 0;
     /**
      * Role namespace.
      *
      * Generated from protobuf field <code>string ns = 2;</code>
      */
-    private $ns = '';
+    protected $ns = '';
     /**
      * Role name.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.
@@ -133,6 +133,4 @@ class Role extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Role::class, \Google\Cloud\SecurityCenter\V2\Kubernetes_Role::class);
 

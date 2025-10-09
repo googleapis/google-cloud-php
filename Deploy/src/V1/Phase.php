@@ -21,20 +21,20 @@ class Phase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Output only. Current state of the Phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Phase.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Additional information on why the Phase was skipped, if
      * available.
      *
      * Generated from protobuf field <code>string skip_message = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $skip_message = '';
+    protected $skip_message = '';
     protected $jobs;
 
     /**

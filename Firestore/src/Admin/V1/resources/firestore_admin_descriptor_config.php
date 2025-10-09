@@ -42,6 +42,35 @@ return [
                     ],
                 ],
             ],
+            'CloneDatabase' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Firestore\Admin\V1\Database',
+                    'metadataReturnType' => '\Google\Cloud\Firestore\Admin\V1\CloneDatabaseMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getPitrSnapshot',
+                            'getDatabase',
+                        ],
+                        'matchers' => [],
+                    ],
+                    [
+                        'keyName' => 'database_id',
+                        'fieldAccessors' => [
+                            'getPitrSnapshot',
+                            'getDatabase',
+                        ],
+                        'matchers' => [],
+                    ],
+                ],
+            ],
             'CreateDatabase' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Firestore\Admin\V1\Database',
@@ -208,6 +237,18 @@ return [
                     ],
                 ],
             ],
+            'CreateUserCreds' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Firestore\Admin\V1\UserCreds',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteBackup' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
@@ -235,6 +276,42 @@ return [
             'DeleteIndex' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteUserCreds' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DisableUserCreds' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Firestore\Admin\V1\UserCreds',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'EnableUserCreds' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Firestore\Admin\V1\UserCreds',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -295,6 +372,18 @@ return [
             'GetIndex' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Firestore\Admin\V1\Index',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetUserCreds' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Firestore\Admin\V1\UserCreds',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -380,6 +469,30 @@ return [
                     ],
                 ],
             ],
+            'ListUserCreds' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Firestore\Admin\V1\ListUserCredsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ResetUserPassword' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Firestore\Admin\V1\UserCreds',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateBackupSchedule' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Firestore\Admin\V1\BackupSchedule',
@@ -401,7 +514,9 @@ return [
                 'field' => 'projects/{project}/databases/{database}/collectionGroups/{collection}/fields/{field}',
                 'index' => 'projects/{project}/databases/{database}/collectionGroups/{collection}/indexes/{index}',
                 'location' => 'projects/{project}/locations/{location}',
+                'operation' => 'projects/{project}/databases/{database}/operations/{operation}',
                 'project' => 'projects/{project}',
+                'userCreds' => 'projects/{project}/databases/{database}/userCreds/{user_creds}',
             ],
         ],
     ],

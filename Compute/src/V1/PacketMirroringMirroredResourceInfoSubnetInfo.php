@@ -19,13 +19,13 @@ class PacketMirroringMirroredResourceInfoSubnetInfo extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      */
-    private $canonical_url = null;
+    protected $canonical_url = null;
     /**
      * Resource URL to the subnetwork for which traffic from/to all VM instances will be mirrored.
      *
      * Generated from protobuf field <code>optional string url = 116079;</code>
      */
-    private $url = null;
+    protected $url = null;
 
     /**
      * Constructor.

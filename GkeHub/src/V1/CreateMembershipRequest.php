@@ -21,7 +21,7 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Client chosen ID for the membership. `membership_id` must be a
      * valid RFC 1123 compliant DNS label:
@@ -33,13 +33,13 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string membership_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $membership_id = '';
+    protected $membership_id = '';
     /**
      * Required. The membership to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.Membership resource = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource = null;
+    protected $resource = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -55,7 +55,7 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                             $parent       Required. The parent (project and location) where the Memberships will be

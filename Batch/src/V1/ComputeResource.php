@@ -39,7 +39,7 @@ class ComputeResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 cpu_milli = 1;</code>
      */
-    private $cpu_milli = 0;
+    protected $cpu_milli = 0;
     /**
      * Memory in MiB.
      * `memoryMib` defines the amount of memory per task in MiB units.
@@ -58,13 +58,13 @@ class ComputeResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 memory_mib = 2;</code>
      */
-    private $memory_mib = 0;
+    protected $memory_mib = 0;
     /**
      * Extra boot disk size in MiB for each task.
      *
      * Generated from protobuf field <code>int64 boot_disk_mib = 4;</code>
      */
-    private $boot_disk_mib = 0;
+    protected $boot_disk_mib = 0;
 
     /**
      * Constructor.

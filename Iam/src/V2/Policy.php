@@ -28,27 +28,27 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. The globally unique ID of the `Policy`. Assigned automatically when the
      * `Policy` is created.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The kind of the `Policy`. Always contains the value `DenyPolicy`.
      *
      * Generated from protobuf field <code>string kind = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * A user-specified description of the `Policy`. This value can be up to 63
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 4;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * A key-value map to store arbitrary metadata for the `Policy`. Keys
      * can be up to 63 characters. Values can be up to 255 characters.
@@ -65,25 +65,25 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 6;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. The time when the `Policy` was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the `Policy` was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The time when the `Policy` was deleted. Empty if the policy is not deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * A list of rules that specify the behavior of the `Policy`. All of the rules
      * should be of the `kind` specified in the `Policy`.
@@ -97,7 +97,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string managing_authority = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $managing_authority = '';
+    protected $managing_authority = '';
 
     /**
      * Constructor.

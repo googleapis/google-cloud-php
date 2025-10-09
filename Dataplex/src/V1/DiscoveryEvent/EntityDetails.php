@@ -21,13 +21,13 @@ class EntityDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity = 1;</code>
      */
-    private $entity = '';
+    protected $entity = '';
     /**
      * The type of the entity resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DiscoveryEvent.EntityType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

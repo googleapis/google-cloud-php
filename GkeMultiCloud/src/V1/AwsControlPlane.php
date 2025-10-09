@@ -24,21 +24,21 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Optional. The AWS instance type.
      * When unspecified, it uses a default based on the cluster's version.
      *
      * Generated from protobuf field <code>string instance_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $instance_type = '';
+    protected $instance_type = '';
     /**
      * Optional. SSH configuration for how to access the underlying control plane
      * machines.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsSshConfig ssh_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ssh_config = null;
+    protected $ssh_config = null;
     /**
      * Required. The list of subnets where control plane replicas will run.
      * A replica will be provisioned on each subnet and up to three values
@@ -62,7 +62,7 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string iam_instance_profile = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $iam_instance_profile = '';
+    protected $iam_instance_profile = '';
     /**
      * Optional. Configuration related to the root volume provisioned for each
      * control plane replica.
@@ -72,7 +72,7 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsVolumeTemplate root_volume = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $root_volume = null;
+    protected $root_volume = null;
     /**
      * Optional. Configuration related to the main volume provisioned for each
      * control plane replica.
@@ -83,13 +83,13 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsVolumeTemplate main_volume = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $main_volume = null;
+    protected $main_volume = null;
     /**
      * Required. The ARN of the AWS KMS key used to encrypt cluster secrets.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsDatabaseEncryption database_encryption = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database_encryption = null;
+    protected $database_encryption = null;
     /**
      * Optional. A set of AWS resource tags to propagate to all underlying managed
      * AWS resources.
@@ -105,26 +105,26 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsServicesAuthentication aws_services_authentication = 12 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $aws_services_authentication = null;
+    protected $aws_services_authentication = null;
     /**
      * Optional. Proxy configuration for outbound HTTP(S) traffic.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsProxyConfig proxy_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $proxy_config = null;
+    protected $proxy_config = null;
     /**
      * Required. Config encryption for user data.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsConfigEncryption config_encryption = 17 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $config_encryption = null;
+    protected $config_encryption = null;
     /**
      * Optional. The placement to use on control plane instances.
      * When unspecified, the VPC's default tenancy will be used.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsInstancePlacement instance_placement = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $instance_placement = null;
+    protected $instance_placement = null;
 
     /**
      * Constructor.

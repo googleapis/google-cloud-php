@@ -20,7 +20,7 @@ class InstancesReencryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.BackupReencryptionConfig backup_reencryption_config = 1;</code>
      */
-    private $backup_reencryption_config = null;
+    protected $backup_reencryption_config = null;
 
     /**
      * Constructor.

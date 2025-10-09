@@ -27,8 +27,8 @@ namespace Google\Cloud\Dataplex\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -36,26 +36,35 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dataplex\V1\AspectType;
+use Google\Cloud\Dataplex\V1\CancelMetadataJobRequest;
 use Google\Cloud\Dataplex\V1\CreateAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryGroupRequest;
+use Google\Cloud\Dataplex\V1\CreateEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryTypeRequest;
+use Google\Cloud\Dataplex\V1\CreateMetadataJobRequest;
 use Google\Cloud\Dataplex\V1\DeleteAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryGroupRequest;
+use Google\Cloud\Dataplex\V1\DeleteEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryTypeRequest;
 use Google\Cloud\Dataplex\V1\Entry;
 use Google\Cloud\Dataplex\V1\EntryGroup;
+use Google\Cloud\Dataplex\V1\EntryLink;
 use Google\Cloud\Dataplex\V1\EntryType;
 use Google\Cloud\Dataplex\V1\GetAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\GetEntryGroupRequest;
+use Google\Cloud\Dataplex\V1\GetEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\GetEntryRequest;
 use Google\Cloud\Dataplex\V1\GetEntryTypeRequest;
+use Google\Cloud\Dataplex\V1\GetMetadataJobRequest;
 use Google\Cloud\Dataplex\V1\ListAspectTypesRequest;
 use Google\Cloud\Dataplex\V1\ListEntriesRequest;
 use Google\Cloud\Dataplex\V1\ListEntryGroupsRequest;
 use Google\Cloud\Dataplex\V1\ListEntryTypesRequest;
+use Google\Cloud\Dataplex\V1\ListMetadataJobsRequest;
 use Google\Cloud\Dataplex\V1\LookupEntryRequest;
+use Google\Cloud\Dataplex\V1\MetadataJob;
 use Google\Cloud\Dataplex\V1\SearchEntriesRequest;
 use Google\Cloud\Dataplex\V1\UpdateAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\UpdateEntryGroupRequest;
@@ -69,15 +78,17 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The primary resources offered by this service are EntryGroups, EntryTypes,
- * AspectTypes, Entry and Aspect which collectively allow a data administrator
- * to organize, manage, secure and catalog data across their organization
- * located across cloud projects in a variety of storage systems including Cloud
- * Storage and BigQuery.
+ * AspectTypes, Entries and EntryLinks. They collectively let data
+ * administrators organize, manage, secure, and catalog data located across
+ * cloud projects in their organization in a variety of storage systems,
+ * including Cloud Storage and BigQuery.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -87,33 +98,40 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAspectTypeAsync(CreateAspectTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEntryAsync(CreateEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEntryGroupAsync(CreateEntryGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEntryTypeAsync(CreateEntryTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAspectTypeAsync(DeleteAspectTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEntryAsync(DeleteEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEntryGroupAsync(DeleteEntryGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEntryTypeAsync(DeleteEntryTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAspectTypeAsync(GetAspectTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEntryAsync(GetEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEntryGroupAsync(GetEntryGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEntryTypeAsync(GetEntryTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAspectTypesAsync(ListAspectTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntriesAsync(ListEntriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntryGroupsAsync(ListEntryGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntryTypesAsync(ListEntryTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupEntryAsync(LookupEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchEntriesAsync(SearchEntriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAspectTypeAsync(UpdateAspectTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEntryAsync(UpdateEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEntryGroupAsync(UpdateEntryGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEntryTypeAsync(UpdateEntryTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelMetadataJobAsync(CancelMetadataJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAspectTypeAsync(CreateAspectTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Entry> createEntryAsync(CreateEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEntryGroupAsync(CreateEntryGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntryLink> createEntryLinkAsync(CreateEntryLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEntryTypeAsync(CreateEntryTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createMetadataJobAsync(CreateMetadataJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAspectTypeAsync(DeleteAspectTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Entry> deleteEntryAsync(DeleteEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteEntryGroupAsync(DeleteEntryGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntryLink> deleteEntryLinkAsync(DeleteEntryLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteEntryTypeAsync(DeleteEntryTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AspectType> getAspectTypeAsync(GetAspectTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Entry> getEntryAsync(GetEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntryGroup> getEntryGroupAsync(GetEntryGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntryLink> getEntryLinkAsync(GetEntryLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntryType> getEntryTypeAsync(GetEntryTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MetadataJob> getMetadataJobAsync(GetMetadataJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAspectTypesAsync(ListAspectTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntriesAsync(ListEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntryGroupsAsync(ListEntryGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntryTypesAsync(ListEntryTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMetadataJobsAsync(ListMetadataJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Entry> lookupEntryAsync(LookupEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchEntriesAsync(SearchEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAspectTypeAsync(UpdateAspectTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Entry> updateEntryAsync(UpdateEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateEntryGroupAsync(UpdateEntryGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateEntryTypeAsync(UpdateEntryTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class CatalogServiceClient
 {
@@ -188,10 +206,29 @@ final class CatalogServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -254,6 +291,27 @@ final class CatalogServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a entry_link
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $entryGroup
+     * @param string $entryLink
+     *
+     * @return string The formatted entry_link resource.
+     */
+    public static function entryLinkName(string $project, string $location, string $entryGroup, string $entryLink): string
+    {
+        return self::getPathTemplate('entryLink')->render([
+            'project' => $project,
+            'location' => $location,
+            'entry_group' => $entryGroup,
+            'entry_link' => $entryLink,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a entry_type
      * resource.
      *
@@ -269,6 +327,25 @@ final class CatalogServiceClient
             'project' => $project,
             'location' => $location,
             'entry_type' => $entryType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a glossary
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $glossary
+     *
+     * @return string The formatted glossary resource.
+     */
+    public static function glossaryName(string $project, string $location, string $glossary): string
+    {
+        return self::getPathTemplate('glossary')->render([
+            'project' => $project,
+            'location' => $location,
+            'glossary' => $glossary,
         ]);
     }
 
@@ -290,14 +367,52 @@ final class CatalogServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a metadata_job
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataJob
+     *
+     * @return string The formatted metadata_job resource.
+     */
+    public static function metadataJobName(string $project, string $location, string $metadataJob): string
+    {
+        return self::getPathTemplate('metadataJob')->render([
+            'project' => $project,
+            'location' => $location,
+            'metadataJob' => $metadataJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName(string $project): string
+    {
+        return self::getPathTemplate('project')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - aspectType: projects/{project}/locations/{location}/aspectTypes/{aspect_type}
      * - entry: projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}
      * - entryGroup: projects/{project}/locations/{location}/entryGroups/{entry_group}
+     * - entryLink: projects/{project}/locations/{location}/entryGroups/{entry_group}/entryLinks/{entry_link}
      * - entryType: projects/{project}/locations/{location}/entryTypes/{entry_type}
+     * - glossary: projects/{project}/locations/{location}/glossaries/{glossary}
      * - location: projects/{project}/locations/{location}
+     * - metadataJob: projects/{project}/locations/{location}/metadataJobs/{metadataJob}
+     * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -305,14 +420,14 @@ final class CatalogServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -320,20 +435,29 @@ final class CatalogServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dataplex.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Dataplex\V1\CatalogServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new CatalogServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -367,11 +491,16 @@ final class CatalogServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -390,7 +519,36 @@ final class CatalogServiceClient
     }
 
     /**
-     * Creates an AspectType
+     * Cancels a metadata job.
+     *
+     * If you cancel a metadata import job that is in progress, the changes in the
+     * job might be partially applied. We recommend that you reset the state of
+     * the entry groups in your project by running another metadata job that
+     * reverts the changes from the canceled job.
+     *
+     * The async variant is {@see CatalogServiceClient::cancelMetadataJobAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/cancel_metadata_job.php
+     *
+     * @param CancelMetadataJobRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancelMetadataJob(CancelMetadataJobRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('CancelMetadataJob', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates an AspectType.
      *
      * The async variant is {@see CatalogServiceClient::createAspectTypeAsync()} .
      *
@@ -406,7 +564,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AspectType>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -442,7 +600,7 @@ final class CatalogServiceClient
     }
 
     /**
-     * Creates an EntryGroup
+     * Creates an EntryGroup.
      *
      * The async variant is {@see CatalogServiceClient::createEntryGroupAsync()} .
      *
@@ -458,7 +616,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EntryGroup>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -468,7 +626,33 @@ final class CatalogServiceClient
     }
 
     /**
-     * Creates an EntryType
+     * Creates an Entry Link.
+     *
+     * The async variant is {@see CatalogServiceClient::createEntryLinkAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/create_entry_link.php
+     *
+     * @param CreateEntryLinkRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EntryLink
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createEntryLink(CreateEntryLinkRequest $request, array $callOptions = []): EntryLink
+    {
+        return $this->startApiCall('CreateEntryLink', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates an EntryType.
      *
      * The async variant is {@see CatalogServiceClient::createEntryTypeAsync()} .
      *
@@ -484,7 +668,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EntryType>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -494,7 +678,34 @@ final class CatalogServiceClient
     }
 
     /**
-     * Deletes a AspectType resource.
+     * Creates a metadata job. For example, use a metadata job to import metadata
+     * from a third-party system into Dataplex Universal Catalog.
+     *
+     * The async variant is {@see CatalogServiceClient::createMetadataJobAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/create_metadata_job.php
+     *
+     * @param CreateMetadataJobRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<MetadataJob>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createMetadataJob(CreateMetadataJobRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateMetadataJob', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes an AspectType.
      *
      * The async variant is {@see CatalogServiceClient::deleteAspectTypeAsync()} .
      *
@@ -510,7 +721,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -546,7 +757,7 @@ final class CatalogServiceClient
     }
 
     /**
-     * Deletes a EntryGroup resource.
+     * Deletes an EntryGroup.
      *
      * The async variant is {@see CatalogServiceClient::deleteEntryGroupAsync()} .
      *
@@ -562,7 +773,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -572,7 +783,33 @@ final class CatalogServiceClient
     }
 
     /**
-     * Deletes a EntryType resource.
+     * Deletes an Entry Link.
+     *
+     * The async variant is {@see CatalogServiceClient::deleteEntryLinkAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/delete_entry_link.php
+     *
+     * @param DeleteEntryLinkRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EntryLink
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteEntryLink(DeleteEntryLinkRequest $request, array $callOptions = []): EntryLink
+    {
+        return $this->startApiCall('DeleteEntryLink', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes an EntryType.
      *
      * The async variant is {@see CatalogServiceClient::deleteEntryTypeAsync()} .
      *
@@ -588,7 +825,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -598,7 +835,7 @@ final class CatalogServiceClient
     }
 
     /**
-     * Retrieves a AspectType resource.
+     * Gets an AspectType.
      *
      * The async variant is {@see CatalogServiceClient::getAspectTypeAsync()} .
      *
@@ -624,7 +861,7 @@ final class CatalogServiceClient
     }
 
     /**
-     * Gets a single entry.
+     * Gets an Entry.
      *
      * The async variant is {@see CatalogServiceClient::getEntryAsync()} .
      *
@@ -650,7 +887,7 @@ final class CatalogServiceClient
     }
 
     /**
-     * Retrieves a EntryGroup resource.
+     * Gets an EntryGroup.
      *
      * The async variant is {@see CatalogServiceClient::getEntryGroupAsync()} .
      *
@@ -676,7 +913,33 @@ final class CatalogServiceClient
     }
 
     /**
-     * Retrieves a EntryType resource.
+     * Gets an Entry Link.
+     *
+     * The async variant is {@see CatalogServiceClient::getEntryLinkAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/get_entry_link.php
+     *
+     * @param GetEntryLinkRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EntryLink
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getEntryLink(GetEntryLinkRequest $request, array $callOptions = []): EntryLink
+    {
+        return $this->startApiCall('GetEntryLink', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets an EntryType.
      *
      * The async variant is {@see CatalogServiceClient::getEntryTypeAsync()} .
      *
@@ -699,6 +962,32 @@ final class CatalogServiceClient
     public function getEntryType(GetEntryTypeRequest $request, array $callOptions = []): EntryType
     {
         return $this->startApiCall('GetEntryType', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a metadata job.
+     *
+     * The async variant is {@see CatalogServiceClient::getMetadataJobAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/get_metadata_job.php
+     *
+     * @param GetMetadataJobRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MetadataJob
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getMetadataJob(GetMetadataJobRequest $request, array $callOptions = []): MetadataJob
+    {
+        return $this->startApiCall('GetMetadataJob', $request, $callOptions)->wait();
     }
 
     /**
@@ -728,7 +1017,7 @@ final class CatalogServiceClient
     }
 
     /**
-     * Lists entries within an entry group.
+     * Lists Entries within an EntryGroup.
      *
      * The async variant is {@see CatalogServiceClient::listEntriesAsync()} .
      *
@@ -806,7 +1095,33 @@ final class CatalogServiceClient
     }
 
     /**
-     * Looks up a single entry.
+     * Lists metadata jobs.
+     *
+     * The async variant is {@see CatalogServiceClient::listMetadataJobsAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/list_metadata_jobs.php
+     *
+     * @param ListMetadataJobsRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMetadataJobs(ListMetadataJobsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListMetadataJobs', $request, $callOptions);
+    }
+
+    /**
+     * Looks up an entry by name using the permission on the source system.
      *
      * The async variant is {@see CatalogServiceClient::lookupEntryAsync()} .
      *
@@ -832,7 +1147,7 @@ final class CatalogServiceClient
     }
 
     /**
-     * Searches for entries matching given query and scope.
+     * Searches for Entries matching the given query and scope.
      *
      * The async variant is {@see CatalogServiceClient::searchEntriesAsync()} .
      *
@@ -858,7 +1173,7 @@ final class CatalogServiceClient
     }
 
     /**
-     * Updates a AspectType resource.
+     * Updates an AspectType.
      *
      * The async variant is {@see CatalogServiceClient::updateAspectTypeAsync()} .
      *
@@ -874,7 +1189,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AspectType>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -910,7 +1225,7 @@ final class CatalogServiceClient
     }
 
     /**
-     * Updates a EntryGroup resource.
+     * Updates an EntryGroup.
      *
      * The async variant is {@see CatalogServiceClient::updateEntryGroupAsync()} .
      *
@@ -926,7 +1241,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EntryGroup>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -936,7 +1251,7 @@ final class CatalogServiceClient
     }
 
     /**
-     * Updates a EntryType resource.
+     * Updates an EntryType.
      *
      * The async variant is {@see CatalogServiceClient::updateEntryTypeAsync()} .
      *
@@ -952,7 +1267,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EntryType>
      *
      * @throws ApiException Thrown if the API call fails.
      */

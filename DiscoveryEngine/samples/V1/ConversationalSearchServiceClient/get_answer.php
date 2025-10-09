@@ -32,7 +32,7 @@ use Google\Cloud\DiscoveryEngine\V1\GetAnswerRequest;
  * Gets a Answer.
  *
  * @param string $formattedName The resource name of the Answer to get. Format:
- *                              `projects/{project_number}/locations/{location_id}/collections/{collection}/engines/{engine_id}/sessions/{session_id}/answers/{answer_id}`
+ *                              `projects/{project}/locations/{location}/collections/{collection}/engines/{engine_id}/sessions/{session_id}/answers/{answer_id}`
  *                              Please see {@see ConversationalSearchServiceClient::answerName()} for help formatting this field.
  */
 function get_answer_sample(string $formattedName): void

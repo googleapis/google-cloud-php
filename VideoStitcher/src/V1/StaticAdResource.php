@@ -20,13 +20,13 @@ class StaticAdResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Describes the MIME type of the ad resource.
      *
      * Generated from protobuf field <code>string creative_type = 2;</code>
      */
-    private $creative_type = '';
+    protected $creative_type = '';
 
     /**
      * Constructor.

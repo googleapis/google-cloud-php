@@ -29,34 +29,34 @@ class MultiColumnDatatypeChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_data_type_filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source_data_type_filter = '';
+    protected $source_data_type_filter = '';
     /**
      * Required. New data type.
      *
      * Generated from protobuf field <code>string new_data_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $new_data_type = '';
+    protected $new_data_type = '';
     /**
      * Optional. Column length - e.g. varchar (50) - if not specified and relevant
      * uses the source column length.
      *
      * Generated from protobuf field <code>int64 override_length = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $override_length = 0;
+    protected $override_length = 0;
     /**
      * Optional. Column scale - when relevant - if not specified and relevant
      * uses the source column scale.
      *
      * Generated from protobuf field <code>int32 override_scale = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $override_scale = 0;
+    protected $override_scale = 0;
     /**
      * Optional. Column precision - when relevant - if not specified and relevant
      * uses the source column precision.
      *
      * Generated from protobuf field <code>int32 override_precision = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $override_precision = 0;
+    protected $override_precision = 0;
     /**
      * Optional. Column fractional seconds precision - used only for timestamp
      * based datatypes - if not specified and relevant uses the source column
@@ -64,13 +64,13 @@ class MultiColumnDatatypeChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 override_fractional_seconds_precision = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $override_fractional_seconds_precision = 0;
+    protected $override_fractional_seconds_precision = 0;
     /**
      * Optional. Custom engine specific features.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
     protected $source_filter;
 
     /**

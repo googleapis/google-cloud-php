@@ -20,13 +20,13 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Reason for this deletion.
      *
      * Generated from protobuf field <code>string reason = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $reason = '';
+    protected $reason = '';
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server will know to
@@ -42,7 +42,7 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string $name Job name.

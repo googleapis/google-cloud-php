@@ -23,7 +23,7 @@ class CreateDatasetVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The version to be created. The same CMEK policies with the
      * original Dataset will be applied the dataset version. So here we don't need
@@ -31,7 +31,7 @@ class CreateDatasetVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DatasetVersion dataset_version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset_version = null;
+    protected $dataset_version = null;
 
     /**
      * @param string                                     $parent         Required. The name of the Dataset resource.

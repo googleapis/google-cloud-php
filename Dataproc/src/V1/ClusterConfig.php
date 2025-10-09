@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. The cluster tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.ClusterTier cluster_tier = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cluster_tier = 0;
+    /**
      * Optional. A Cloud Storage bucket used to stage job
      * dependencies, config files, and job driver console output.
      * If you do not specify a staging bucket, Cloud
@@ -30,7 +36,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string config_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $config_bucket = '';
+    protected $config_bucket = '';
     /**
      * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs
      * data, such as Spark and MapReduce history files. If you do not specify a
@@ -46,41 +52,41 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $temp_bucket = '';
+    protected $temp_bucket = '';
     /**
      * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $gce_cluster_config = null;
+    protected $gce_cluster_config = null;
     /**
      * Optional. The Compute Engine config settings for
      * the cluster's master instance.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $master_config = null;
+    protected $master_config = null;
     /**
      * Optional. The Compute Engine config settings for
      * the cluster's worker instances.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $worker_config = null;
+    protected $worker_config = null;
     /**
      * Optional. The Compute Engine config settings for
      * a cluster's secondary worker instances
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $secondary_worker_config = null;
+    protected $secondary_worker_config = null;
     /**
      * Optional. The config settings for cluster software.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SoftwareConfig software_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $software_config = null;
+    protected $software_config = null;
     /**
      * Optional. Commands to execute on each node after config is
      * completed. By default, executables are run on master and all worker nodes.
@@ -103,44 +109,44 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.EncryptionConfig encryption_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encryption_config = null;
+    protected $encryption_config = null;
     /**
      * Optional. Autoscaling config for the policy associated with the cluster.
      * Cluster does not autoscale if this field is unset.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingConfig autoscaling_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $autoscaling_config = null;
+    protected $autoscaling_config = null;
     /**
      * Optional. Security settings for the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SecurityConfig security_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $security_config = null;
+    protected $security_config = null;
     /**
      * Optional. Lifecycle setting for the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.LifecycleConfig lifecycle_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $lifecycle_config = null;
+    protected $lifecycle_config = null;
     /**
      * Optional. Port/endpoint configuration for this cluster
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.EndpointConfig endpoint_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $endpoint_config = null;
+    protected $endpoint_config = null;
     /**
      * Optional. Metastore configuration.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.MetastoreConfig metastore_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $metastore_config = null;
+    protected $metastore_config = null;
     /**
      * Optional. The config for Dataproc metrics.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $dataproc_metric_config = null;
+    protected $dataproc_metric_config = null;
     /**
      * Optional. The node group settings.
      *
@@ -154,6 +160,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $cluster_tier
+     *           Optional. The cluster tier.
      *     @type string $config_bucket
      *           Optional. A Cloud Storage bucket used to stage job
      *           dependencies, config files, and job driver console output.
@@ -227,6 +235,32 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. The cluster tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.ClusterTier cluster_tier = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getClusterTier()
+    {
+        return $this->cluster_tier;
+    }
+
+    /**
+     * Optional. The cluster tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.ClusterTier cluster_tier = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setClusterTier($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\ClusterConfig\ClusterTier::class);
+        $this->cluster_tier = $var;
+
+        return $this;
     }
 
     /**

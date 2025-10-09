@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,9 @@ class CaseAttachmentServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CaseAttachmentServiceClient */
@@ -72,17 +74,14 @@ class CaseAttachmentServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $attachmentsElement = new Attachment();
-        $attachments = [
-            $attachmentsElement,
-        ];
+        $attachments = [$attachmentsElement];
         $expectedResponse = new ListAttachmentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAttachments($attachments);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new ListAttachmentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAttachmentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAttachments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -109,17 +108,19 @@ class CaseAttachmentServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new ListAttachmentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAttachmentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAttachments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -144,17 +145,14 @@ class CaseAttachmentServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $attachmentsElement = new Attachment();
-        $attachments = [
-            $attachmentsElement,
-        ];
+        $attachments = [$attachmentsElement];
         $expectedResponse = new ListAttachmentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAttachments($attachments);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new ListAttachmentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAttachmentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAttachmentsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());

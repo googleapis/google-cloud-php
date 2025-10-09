@@ -20,25 +20,25 @@ class CloudBigtableClusterSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Location of the cluster, typically a Cloud zone.
      *
      * Generated from protobuf field <code>string location = 2;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Type of the resource. For a cluster this would be "CLUSTER".
      *
      * Generated from protobuf field <code>string type = 3;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * A link back to the parent resource, in this case Instance.
      *
      * Generated from protobuf field <code>string linked_resource = 4;</code>
      */
-    private $linked_resource = '';
+    protected $linked_resource = '';
 
     /**
      * Constructor.
@@ -167,6 +167,4 @@ class CloudBigtableClusterSpec extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudBigtableClusterSpec::class, \Google\Cloud\DataCatalog\V1\CloudBigtableInstanceSpec_CloudBigtableClusterSpec::class);
 

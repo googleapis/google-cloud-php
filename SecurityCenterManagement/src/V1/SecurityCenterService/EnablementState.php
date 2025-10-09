@@ -7,8 +7,7 @@ namespace Google\Cloud\SecurityCenterManagement\V1\SecurityCenterService;
 use UnexpectedValueException;
 
 /**
- * Represents the possible intended states of enablement for a service or
- * module.
+ * Represents the possible enablement states for a service or module.
  *
  * Protobuf type <code>google.cloud.securitycentermanagement.v1.SecurityCenterService.EnablementState</code>
  */
@@ -21,8 +20,8 @@ class EnablementState
      */
     const ENABLEMENT_STATE_UNSPECIFIED = 0;
     /**
-     * State is inherited from the parent resource. Not a valid effective
-     * enablement state.
+     * State is inherited from the parent resource. Valid as an intended
+     * enablement state, but not as an effective enablement state.
      *
      * Generated from protobuf enum <code>INHERITED = 1;</code>
      */
@@ -39,12 +38,22 @@ class EnablementState
      * Generated from protobuf enum <code>DISABLED = 3;</code>
      */
     const DISABLED = 3;
+    /**
+     * Security Command Center is configured to ingest findings from this
+     * service, but not to enable this service. This state indicates that
+     * Security Command Center is misconfigured. You can't set this state
+     * yourself.
+     *
+     * Generated from protobuf enum <code>INGEST_ONLY = 4;</code>
+     */
+    const INGEST_ONLY = 4;
 
     private static $valueToName = [
         self::ENABLEMENT_STATE_UNSPECIFIED => 'ENABLEMENT_STATE_UNSPECIFIED',
         self::INHERITED => 'INHERITED',
         self::ENABLED => 'ENABLED',
         self::DISABLED => 'DISABLED',
+        self::INGEST_ONLY => 'INGEST_ONLY',
     ];
 
     public static function name($value)

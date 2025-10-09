@@ -5,6 +5,68 @@
     "protoPackage": "google.cloud.discoveryengine.v1",
     "libraryPackage": "Google\\Cloud\\DiscoveryEngine\\V1",
     "services": {
+        "SearchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchServiceGapicClient",
+                    "rpcs": {
+                        "Search": {
+                            "methods": [
+                                "search"
+                            ]
+                        },
+                        "SearchLite": {
+                            "methods": [
+                                "searchLite"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AssistantService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AssistantServiceGapicClient",
+                    "rpcs": {
+                        "StreamAssist": {
+                            "methods": [
+                                "streamAssist"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CmekConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CmekConfigServiceGapicClient",
+                    "rpcs": {
+                        "DeleteCmekConfig": {
+                            "methods": [
+                                "deleteCmekConfig"
+                            ]
+                        },
+                        "GetCmekConfig": {
+                            "methods": [
+                                "getCmekConfig"
+                            ]
+                        },
+                        "ListCmekConfigs": {
+                            "methods": [
+                                "listCmekConfigs"
+                            ]
+                        },
+                        "UpdateCmekConfig": {
+                            "methods": [
+                                "updateCmekConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "CompletionService": {
             "clients": {
                 "grpc": {
@@ -15,9 +77,19 @@
                                 "completeQuery"
                             ]
                         },
+                        "ImportCompletionSuggestions": {
+                            "methods": [
+                                "importCompletionSuggestions"
+                            ]
+                        },
                         "ImportSuggestionDenyListEntries": {
                             "methods": [
                                 "importSuggestionDenyListEntries"
+                            ]
+                        },
+                        "PurgeCompletionSuggestions": {
+                            "methods": [
+                                "purgeCompletionSuggestions"
                             ]
                         },
                         "PurgeSuggestionDenyListEntries": {
@@ -57,20 +129,6 @@
                         "UpdateControl": {
                             "methods": [
                                 "updateControl"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "SearchService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "SearchServiceGapicClient",
-                    "rpcs": {
-                        "Search": {
-                            "methods": [
-                                "search"
                             ]
                         }
                     }
@@ -137,6 +195,11 @@
                                 "listSessions"
                             ]
                         },
+                        "StreamAnswerQuery": {
+                            "methods": [
+                                "streamAnswerQuery"
+                            ]
+                        },
                         "UpdateConversation": {
                             "methods": [
                                 "updateConversation"
@@ -190,6 +253,11 @@
                 "grpc": {
                     "libraryClient": "DocumentServiceGapicClient",
                     "rpcs": {
+                        "BatchGetDocumentsMetadata": {
+                            "methods": [
+                                "batchGetDocumentsMetadata"
+                            ]
+                        },
                         "CreateDocument": {
                             "methods": [
                                 "createDocument"
@@ -272,6 +340,60 @@
                             "methods": [
                                 "checkGrounding"
                             ]
+                        },
+                        "GenerateGroundedContent": {
+                            "methods": [
+                                "generateGroundedContent"
+                            ]
+                        },
+                        "StreamGenerateGroundedContent": {
+                            "methods": [
+                                "streamGenerateGroundedContent"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "IdentityMappingStoreService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "IdentityMappingStoreServiceGapicClient",
+                    "rpcs": {
+                        "CreateIdentityMappingStore": {
+                            "methods": [
+                                "createIdentityMappingStore"
+                            ]
+                        },
+                        "DeleteIdentityMappingStore": {
+                            "methods": [
+                                "deleteIdentityMappingStore"
+                            ]
+                        },
+                        "GetIdentityMappingStore": {
+                            "methods": [
+                                "getIdentityMappingStore"
+                            ]
+                        },
+                        "ImportIdentityMappings": {
+                            "methods": [
+                                "importIdentityMappings"
+                            ]
+                        },
+                        "ListIdentityMappingStores": {
+                            "methods": [
+                                "listIdentityMappingStores"
+                            ]
+                        },
+                        "ListIdentityMappings": {
+                            "methods": [
+                                "listIdentityMappings"
+                            ]
+                        },
+                        "PurgeIdentityMappings": {
+                            "methods": [
+                                "purgeIdentityMappings"
+                            ]
                         }
                     }
                 }
@@ -353,6 +475,73 @@
                 }
             }
         },
+        "SearchTuningService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchTuningServiceGapicClient",
+                    "rpcs": {
+                        "ListCustomModels": {
+                            "methods": [
+                                "listCustomModels"
+                            ]
+                        },
+                        "TrainCustomModel": {
+                            "methods": [
+                                "trainCustomModel"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ServingConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServingConfigServiceGapicClient",
+                    "rpcs": {
+                        "UpdateServingConfig": {
+                            "methods": [
+                                "updateServingConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SessionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SessionServiceGapicClient",
+                    "rpcs": {
+                        "CreateSession": {
+                            "methods": [
+                                "createSession"
+                            ]
+                        },
+                        "DeleteSession": {
+                            "methods": [
+                                "deleteSession"
+                            ]
+                        },
+                        "GetSession": {
+                            "methods": [
+                                "getSession"
+                            ]
+                        },
+                        "ListSessions": {
+                            "methods": [
+                                "listSessions"
+                            ]
+                        },
+                        "UpdateSession": {
+                            "methods": [
+                                "updateSession"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SiteSearchEngineService": {
             "clients": {
                 "grpc": {
@@ -368,9 +557,19 @@
                                 "batchVerifyTargetSites"
                             ]
                         },
+                        "CreateSitemap": {
+                            "methods": [
+                                "createSitemap"
+                            ]
+                        },
                         "CreateTargetSite": {
                             "methods": [
                                 "createTargetSite"
+                            ]
+                        },
+                        "DeleteSitemap": {
+                            "methods": [
+                                "deleteSitemap"
                             ]
                         },
                         "DeleteTargetSite": {
@@ -391,6 +590,11 @@
                         "FetchDomainVerificationStatus": {
                             "methods": [
                                 "fetchDomainVerificationStatus"
+                            ]
+                        },
+                        "FetchSitemaps": {
+                            "methods": [
+                                "fetchSitemaps"
                             ]
                         },
                         "GetSiteSearchEngine": {
@@ -437,9 +641,33 @@
                                 "importUserEvents"
                             ]
                         },
+                        "PurgeUserEvents": {
+                            "methods": [
+                                "purgeUserEvents"
+                            ]
+                        },
                         "WriteUserEvent": {
                             "methods": [
                                 "writeUserEvent"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserLicenseService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserLicenseServiceGapicClient",
+                    "rpcs": {
+                        "BatchUpdateUserLicenses": {
+                            "methods": [
+                                "batchUpdateUserLicenses"
+                            ]
+                        },
+                        "ListUserLicenses": {
+                            "methods": [
+                                "listUserLicenses"
                             ]
                         }
                     }

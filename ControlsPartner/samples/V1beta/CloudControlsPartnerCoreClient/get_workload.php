@@ -32,7 +32,7 @@ use Google\Cloud\CloudControlsPartner\V1beta\Workload;
  * Gets details of a single workload
  *
  * @param string $formattedName Format:
- *                              organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+ *                              `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
  *                              Please see {@see CloudControlsPartnerCoreClient::workloadName()} for help formatting this field.
  */
 function get_workload_sample(string $formattedName): void

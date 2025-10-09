@@ -21,8 +21,12 @@ use Google\Cloud\Storage\Acl;
 use Google\Cloud\Core\Exception\NotFoundException;
 
 /**
+ * These tests are marked flakey because they often throw RateLimitExceeded and
+ * ServiceException.
+ *
  * @group storage
  * @group storage-acl
+ * @group flakey
  */
 class ManageAclTest extends StorageTestCase
 {

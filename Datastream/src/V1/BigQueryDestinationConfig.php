@@ -23,8 +23,15 @@ class BigQueryDestinationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration data_freshness = 300;</code>
      */
-    private $data_freshness = null;
+    protected $data_freshness = null;
+    /**
+     * Optional. Big Lake Managed Tables (BLMT) configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.BlmtConfig blmt_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $blmt_config = null;
     protected $dataset_config;
+    protected $write_mode;
 
     /**
      * Constructor.
@@ -41,6 +48,12 @@ class BigQueryDestinationConfig extends \Google\Protobuf\Internal\Message
      *           the stream. Editing this field will only affect new tables created in the
      *           future, but existing tables will not be impacted. Lower values mean that
      *           queries will return fresher data, but may result in higher cost.
+     *     @type \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\BlmtConfig $blmt_config
+     *           Optional. Big Lake Managed Tables (BLMT) configuration.
+     *     @type \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\Merge $merge
+     *           The standard mode
+     *     @type \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\AppendOnly $append_only
+     *           Append only mode
      * }
      */
     public function __construct($data = NULL) {
@@ -153,11 +166,117 @@ class BigQueryDestinationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Big Lake Managed Tables (BLMT) configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.BlmtConfig blmt_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\BlmtConfig|null
+     */
+    public function getBlmtConfig()
+    {
+        return $this->blmt_config;
+    }
+
+    public function hasBlmtConfig()
+    {
+        return isset($this->blmt_config);
+    }
+
+    public function clearBlmtConfig()
+    {
+        unset($this->blmt_config);
+    }
+
+    /**
+     * Optional. Big Lake Managed Tables (BLMT) configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.BlmtConfig blmt_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\BlmtConfig $var
+     * @return $this
+     */
+    public function setBlmtConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\BlmtConfig::class);
+        $this->blmt_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The standard mode
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.Merge merge = 301;</code>
+     * @return \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\Merge|null
+     */
+    public function getMerge()
+    {
+        return $this->readOneof(301);
+    }
+
+    public function hasMerge()
+    {
+        return $this->hasOneof(301);
+    }
+
+    /**
+     * The standard mode
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.Merge merge = 301;</code>
+     * @param \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\Merge $var
+     * @return $this
+     */
+    public function setMerge($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\Merge::class);
+        $this->writeOneof(301, $var);
+
+        return $this;
+    }
+
+    /**
+     * Append only mode
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.AppendOnly append_only = 302;</code>
+     * @return \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\AppendOnly|null
+     */
+    public function getAppendOnly()
+    {
+        return $this->readOneof(302);
+    }
+
+    public function hasAppendOnly()
+    {
+        return $this->hasOneof(302);
+    }
+
+    /**
+     * Append only mode
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.AppendOnly append_only = 302;</code>
+     * @param \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\AppendOnly $var
+     * @return $this
+     */
+    public function setAppendOnly($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\AppendOnly::class);
+        $this->writeOneof(302, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getDatasetConfig()
     {
         return $this->whichOneof("dataset_config");
+    }
+
+    /**
+     * @return string
+     */
+    public function getWriteMode()
+    {
+        return $this->whichOneof("write_mode");
     }
 
 }

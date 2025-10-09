@@ -22,14 +22,14 @@ class ExportModelOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenericOperationMetadata generic_metadata = 1;</code>
      */
-    private $generic_metadata = null;
+    protected $generic_metadata = null;
     /**
      * Output only. Information further describing the output of this Model
      * export.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExportModelOperationMetadata.OutputInfo output_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $output_info = null;
+    protected $output_info = null;
 
     /**
      * Constructor.

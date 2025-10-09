@@ -25,13 +25,13 @@ class UpdateSubnetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. Subnet description.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.Subnet subnet = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subnet = null;
+    protected $subnet = null;
 
     /**
      * @param \Google\Cloud\VmwareEngine\V1\Subnet $subnet     Required. Subnet description.

@@ -30,8 +30,8 @@ use Google\Apps\Meet\V2beta\ConferenceRecord;
 use Google\Apps\Meet\V2beta\ListConferenceRecordsRequest;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
- * Lists the conference records by start time and in descending order.
+ * Lists the conference records. By default, ordered by start time and in
+ * descending order.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

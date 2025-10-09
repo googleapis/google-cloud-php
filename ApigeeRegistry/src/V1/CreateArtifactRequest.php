@@ -21,13 +21,13 @@ class CreateArtifactRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The artifact to create.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.Artifact artifact = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $artifact = null;
+    protected $artifact = null;
     /**
      * Required. The ID to use for the artifact, which will become the final component of
      * the artifact's resource name.
@@ -37,7 +37,7 @@ class CreateArtifactRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string artifact_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $artifact_id = '';
+    protected $artifact_id = '';
 
     /**
      * @param string                                   $parent     Required. The parent, which owns this collection of artifacts.

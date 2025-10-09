@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A request for an OIDC token, providing all the necessary information needed
- * for this service to verify the plaform state of the requestor.
+ * A request for an attestation token, providing all the necessary information
+ * needed for this service to verify the platform state of the requestor.
  *
  * Generated from protobuf message <code>google.cloud.confidentialcomputing.v1.VerifyAttestationRequest</code>
  */
@@ -51,6 +51,14 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TokenOptions token_options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $token_options = null;
+    /**
+     * Optional. An optional indicator of the attester, only applies to certain
+     * products.
+     *
+     * Generated from protobuf field <code>string attester = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $attester = '';
+    protected $tee_attestation;
 
     /**
      * Constructor.
@@ -58,6 +66,10 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\ConfidentialComputing\V1\TdxCcelAttestation $td_ccel
+     *           Optional. A TDX with CCEL and RTMR Attestation Quote.
+     *     @type \Google\Cloud\ConfidentialComputing\V1\SevSnpAttestation $sev_snp_attestation
+     *           Optional. An SEV-SNP Attestation Report.
      *     @type string $challenge
      *           Required. The name of the Challenge whose nonce was used to generate the
      *           attestation, in the format `projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;`. The
@@ -73,11 +85,76 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ConfidentialComputing\V1\TokenOptions $token_options
      *           Optional. A collection of optional, workload-specified claims that modify
      *           the token output.
+     *     @type string $attester
+     *           Optional. An optional indicator of the attester, only applies to certain
+     *           products.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Confidentialcomputing\V1\Service::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. A TDX with CCEL and RTMR Attestation Quote.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TdxCcelAttestation td_ccel = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ConfidentialComputing\V1\TdxCcelAttestation|null
+     */
+    public function getTdCcel()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasTdCcel()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. A TDX with CCEL and RTMR Attestation Quote.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TdxCcelAttestation td_ccel = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ConfidentialComputing\V1\TdxCcelAttestation $var
+     * @return $this
+     */
+    public function setTdCcel($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\TdxCcelAttestation::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. An SEV-SNP Attestation Report.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.SevSnpAttestation sev_snp_attestation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ConfidentialComputing\V1\SevSnpAttestation|null
+     */
+    public function getSevSnpAttestation()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasSevSnpAttestation()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Optional. An SEV-SNP Attestation Report.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.SevSnpAttestation sev_snp_attestation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ConfidentialComputing\V1\SevSnpAttestation $var
+     * @return $this
+     */
+    public function setSevSnpAttestation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\SevSnpAttestation::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
     }
 
     /**
@@ -258,6 +335,42 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
         $this->token_options = $var;
 
         return $this;
+    }
+
+    /**
+     * Optional. An optional indicator of the attester, only applies to certain
+     * products.
+     *
+     * Generated from protobuf field <code>string attester = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAttester()
+    {
+        return $this->attester;
+    }
+
+    /**
+     * Optional. An optional indicator of the attester, only applies to certain
+     * products.
+     *
+     * Generated from protobuf field <code>string attester = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAttester($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->attester = $var;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTeeAttestation()
+    {
+        return $this->whichOneof("tee_attestation");
     }
 
 }

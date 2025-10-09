@@ -20,7 +20,7 @@ class TensorboardTimeSeries extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. User provided name of this TensorboardTimeSeries.
      * This value should be unique among all TensorboardTimeSeries resources
@@ -28,58 +28,58 @@ class TensorboardTimeSeries extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Description of this TensorboardTimeSeries.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Immutable. Type of TensorboardTimeSeries value.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardTimeSeries.ValueType value_type = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $value_type = 0;
+    protected $value_type = 0;
     /**
      * Output only. Timestamp when this TensorboardTimeSeries was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this TensorboardTimeSeries was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Used to perform a consistent read-modify-write updates. If not set, a blind
      * "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 7;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Immutable. Name of the plugin this time series pertain to. Such as Scalar,
      * Tensor, Blob
      *
      * Generated from protobuf field <code>string plugin_name = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $plugin_name = '';
+    protected $plugin_name = '';
     /**
      * Data of the current plugin, with the size limited to 65KB.
      *
      * Generated from protobuf field <code>bytes plugin_data = 9;</code>
      */
-    private $plugin_data = '';
+    protected $plugin_data = '';
     /**
      * Output only. Scalar, Tensor, or Blob metadata for this
      * TensorboardTimeSeries.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardTimeSeries.Metadata metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

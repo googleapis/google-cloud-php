@@ -30,6 +30,12 @@ class BackfillAllStrategy extends \Google\Protobuf\Internal\Message
      *           MySQL data source objects to avoid backfilling.
      *     @type \Google\Cloud\Datastream\V1\PostgresqlRdbms $postgresql_excluded_objects
      *           PostgreSQL data source objects to avoid backfilling.
+     *     @type \Google\Cloud\Datastream\V1\SqlServerRdbms $sql_server_excluded_objects
+     *           SQLServer data source objects to avoid backfilling
+     *     @type \Google\Cloud\Datastream\V1\SalesforceOrg $salesforce_excluded_objects
+     *           Salesforce data source objects to avoid backfilling
+     *     @type \Google\Cloud\Datastream\V1\MongodbCluster $mongodb_excluded_objects
+     *           MongoDB data source objects to avoid backfilling
      * }
      */
     public function __construct($data = NULL) {
@@ -126,6 +132,99 @@ class BackfillAllStrategy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\PostgresqlRdbms::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * SQLServer data source objects to avoid backfilling
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms sql_server_excluded_objects = 4;</code>
+     * @return \Google\Cloud\Datastream\V1\SqlServerRdbms|null
+     */
+    public function getSqlServerExcludedObjects()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasSqlServerExcludedObjects()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * SQLServer data source objects to avoid backfilling
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms sql_server_excluded_objects = 4;</code>
+     * @param \Google\Cloud\Datastream\V1\SqlServerRdbms $var
+     * @return $this
+     */
+    public function setSqlServerExcludedObjects($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SqlServerRdbms::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Salesforce data source objects to avoid backfilling
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg salesforce_excluded_objects = 5;</code>
+     * @return \Google\Cloud\Datastream\V1\SalesforceOrg|null
+     */
+    public function getSalesforceExcludedObjects()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasSalesforceExcludedObjects()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Salesforce data source objects to avoid backfilling
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg salesforce_excluded_objects = 5;</code>
+     * @param \Google\Cloud\Datastream\V1\SalesforceOrg $var
+     * @return $this
+     */
+    public function setSalesforceExcludedObjects($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SalesforceOrg::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * MongoDB data source objects to avoid backfilling
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster mongodb_excluded_objects = 6;</code>
+     * @return \Google\Cloud\Datastream\V1\MongodbCluster|null
+     */
+    public function getMongodbExcludedObjects()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasMongodbExcludedObjects()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * MongoDB data source objects to avoid backfilling
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster mongodb_excluded_objects = 6;</code>
+     * @param \Google\Cloud\Datastream\V1\MongodbCluster $var
+     * @return $this
+     */
+    public function setMongodbExcludedObjects($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MongodbCluster::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

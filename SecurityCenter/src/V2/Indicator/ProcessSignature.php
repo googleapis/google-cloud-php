@@ -20,7 +20,7 @@ class ProcessSignature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Indicator.ProcessSignature.SignatureType signature_type = 8;</code>
      */
-    private $signature_type = 0;
+    protected $signature_type = 0;
     protected $signature;
 
     /**
@@ -140,6 +140,4 @@ class ProcessSignature extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProcessSignature::class, \Google\Cloud\SecurityCenter\V2\Indicator_ProcessSignature::class);
 

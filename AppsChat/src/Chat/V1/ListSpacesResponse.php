@@ -17,6 +17,8 @@ class ListSpacesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * List of spaces in the requested (or first) page.
+     * Note: The `permissionSettings` field is not returned in the Space
+     * object for list requests.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1;</code>
      */
@@ -37,6 +39,8 @@ class ListSpacesResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Apps\Chat\V1\Space>|\Google\Protobuf\Internal\RepeatedField $spaces
      *           List of spaces in the requested (or first) page.
+     *           Note: The `permissionSettings` field is not returned in the Space
+     *           object for list requests.
      *     @type string $next_page_token
      *           You can send a token as `pageToken` to retrieve the next page of
      *           results. If empty, there are no subsequent pages.
@@ -49,6 +53,8 @@ class ListSpacesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * List of spaces in the requested (or first) page.
+     * Note: The `permissionSettings` field is not returned in the Space
+     * object for list requests.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -60,6 +66,8 @@ class ListSpacesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * List of spaces in the requested (or first) page.
+     * Note: The `permissionSettings` field is not returned in the Space
+     * object for list requests.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1;</code>
      * @param array<\Google\Apps\Chat\V1\Space>|\Google\Protobuf\Internal\RepeatedField $var

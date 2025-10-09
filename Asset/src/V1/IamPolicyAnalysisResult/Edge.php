@@ -21,14 +21,14 @@ class Edge extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_node = 1;</code>
      */
-    private $source_node = '';
+    protected $source_node = '';
     /**
      * The target node of the edge. For example, it could be a full resource
      * name for a resource node or an email of an identity.
      *
      * Generated from protobuf field <code>string target_node = 2;</code>
      */
-    private $target_node = '';
+    protected $target_node = '';
 
     /**
      * Constructor.
@@ -107,6 +107,4 @@ class Edge extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Edge::class, \Google\Cloud\Asset\V1\IamPolicyAnalysisResult_Edge::class);
 

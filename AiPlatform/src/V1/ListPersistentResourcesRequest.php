@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [PersistentResourceService.ListPersistentResource][].
+ * Request message for
+ * [PersistentResourceService.ListPersistentResources][google.cloud.aiplatform.v1.PersistentResourceService.ListPersistentResources].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ListPersistentResourcesRequest</code>
  */
@@ -21,22 +22,22 @@ class ListPersistentResourcesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The standard list page size.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. The standard list page token.
      * Typically obtained via
-     * [ListPersistentResourceResponse.next_page_token][] of the previous
-     * [PersistentResourceService.ListPersistentResource][] call.
+     * [ListPersistentResourcesResponse.next_page_token][google.cloud.aiplatform.v1.ListPersistentResourcesResponse.next_page_token]
+     * of the previous [PersistentResourceService.ListPersistentResource][] call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The resource name of the Location to list the PersistentResources
@@ -67,8 +68,8 @@ class ListPersistentResourcesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. The standard list page token.
      *           Typically obtained via
-     *           [ListPersistentResourceResponse.next_page_token][] of the previous
-     *           [PersistentResourceService.ListPersistentResource][] call.
+     *           [ListPersistentResourcesResponse.next_page_token][google.cloud.aiplatform.v1.ListPersistentResourcesResponse.next_page_token]
+     *           of the previous [PersistentResourceService.ListPersistentResource][] call.
      * }
      */
     public function __construct($data = NULL) {
@@ -133,8 +134,8 @@ class ListPersistentResourcesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The standard list page token.
      * Typically obtained via
-     * [ListPersistentResourceResponse.next_page_token][] of the previous
-     * [PersistentResourceService.ListPersistentResource][] call.
+     * [ListPersistentResourcesResponse.next_page_token][google.cloud.aiplatform.v1.ListPersistentResourcesResponse.next_page_token]
+     * of the previous [PersistentResourceService.ListPersistentResource][] call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -147,8 +148,8 @@ class ListPersistentResourcesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The standard list page token.
      * Typically obtained via
-     * [ListPersistentResourceResponse.next_page_token][] of the previous
-     * [PersistentResourceService.ListPersistentResource][] call.
+     * [ListPersistentResourcesResponse.next_page_token][google.cloud.aiplatform.v1.ListPersistentResourcesResponse.next_page_token]
+     * of the previous [PersistentResourceService.ListPersistentResource][] call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

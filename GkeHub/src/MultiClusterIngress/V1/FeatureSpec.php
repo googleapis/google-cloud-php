@@ -22,7 +22,7 @@ class FeatureSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string config_membership = 1;</code>
      */
-    private $config_membership = '';
+    protected $config_membership = '';
 
     /**
      * Constructor.

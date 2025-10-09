@@ -22,7 +22,7 @@ class CertificateAuthorityServiceConfig extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string ca_pool = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $ca_pool = '';
+    protected $ca_pool = '';
 
     /**
      * Constructor.

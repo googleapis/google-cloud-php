@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InterconnectAttachments_SetLabels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InterconnectAttachmentsClient;
+use Google\Cloud\Compute\V1\Client\InterconnectAttachmentsClient;
 use Google\Cloud\Compute\V1\RegionSetLabelsRequest;
+use Google\Cloud\Compute\V1\SetLabelsInterconnectAttachmentRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function set_labels_sample(string $project, string $region, string $resource): v
     // Create a client.
     $interconnectAttachmentsClient = new InterconnectAttachmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
+    $request = (new SetLabelsInterconnectAttachmentRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRegionSetLabelsRequestResource($regionSetLabelsRequestResource)
+        ->setResource($resource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $interconnectAttachmentsClient->setLabels(
-            $project,
-            $region,
-            $regionSetLabelsRequestResource,
-            $resource
-        );
+        $response = $interconnectAttachmentsClient->setLabels($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

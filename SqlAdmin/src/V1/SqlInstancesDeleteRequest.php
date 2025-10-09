@@ -20,13 +20,13 @@ class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Project ID of the project that contains the instance to be deleted.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * Constructor.

@@ -21,20 +21,20 @@ class CreateTagHoldRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The TagHold to be created.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.TagHold tag_hold = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag_hold = null;
+    protected $tag_hold = null;
     /**
      * Optional. Set to true to perform the validations necessary for creating the
      * resource, but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                   $parent  Required. The resource name of the TagHold's parent TagValue. Must be of

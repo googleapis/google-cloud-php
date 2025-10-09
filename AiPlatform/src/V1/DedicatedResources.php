@@ -22,7 +22,7 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MachineSpec machine_spec = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $machine_spec = null;
+    protected $machine_spec = null;
     /**
      * Required. Immutable. The minimum number of machine replicas this
      * DeployedModel will be always deployed on. This value must be greater than
@@ -33,7 +33,7 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_replica_count = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $min_replica_count = 0;
+    protected $min_replica_count = 0;
     /**
      * Immutable. The maximum number of replicas this DeployedModel may be
      * deployed on when the traffic against it increases. If the requested value
@@ -51,7 +51,18 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_replica_count = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $max_replica_count = 0;
+    protected $max_replica_count = 0;
+    /**
+     * Optional. Number of required available replicas for the deployment to
+     * succeed. This field is only needed when partial model deployment/mutation
+     * is desired. If set, the model deploy/mutate operation will succeed once
+     * available_replica_count reaches required_replica_count, and the rest of
+     * the replicas will be retried. If not set, the default
+     * required_replica_count will be min_replica_count.
+     *
+     * Generated from protobuf field <code>int32 required_replica_count = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $required_replica_count = 0;
     /**
      * Immutable. The metric specifications that overrides a resource
      * utilization metric (CPU utilization, accelerator's duty cycle, and so on)
@@ -77,6 +88,13 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.AutoscalingMetricSpec autoscaling_metric_specs = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $autoscaling_metric_specs;
+    /**
+     * Optional. If true, schedule the deployment workload on [spot
+     * VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).
+     *
+     * Generated from protobuf field <code>bool spot = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $spot = false;
 
     /**
      * Constructor.
@@ -108,6 +126,13 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *           quotas. Specifically, you will be charged for (max_replica_count *
      *           number of cores in the selected machine type) and (max_replica_count *
      *           number of GPUs per replica in the selected machine type).
+     *     @type int $required_replica_count
+     *           Optional. Number of required available replicas for the deployment to
+     *           succeed. This field is only needed when partial model deployment/mutation
+     *           is desired. If set, the model deploy/mutate operation will succeed once
+     *           available_replica_count reaches required_replica_count, and the rest of
+     *           the replicas will be retried. If not set, the default
+     *           required_replica_count will be min_replica_count.
      *     @type array<\Google\Cloud\AIPlatform\V1\AutoscalingMetricSpec>|\Google\Protobuf\Internal\RepeatedField $autoscaling_metric_specs
      *           Immutable. The metric specifications that overrides a resource
      *           utilization metric (CPU utilization, accelerator's duty cycle, and so on)
@@ -129,6 +154,9 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *           to `aiplatform.googleapis.com/prediction/online/cpu/utilization` and
      *           [autoscaling_metric_specs.target][google.cloud.aiplatform.v1.AutoscalingMetricSpec.target]
      *           to `80`.
+     *     @type bool $spot
+     *           Optional. If true, schedule the deployment workload on [spot
+     *           VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).
      * }
      */
     public function __construct($data = NULL) {
@@ -261,6 +289,42 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Number of required available replicas for the deployment to
+     * succeed. This field is only needed when partial model deployment/mutation
+     * is desired. If set, the model deploy/mutate operation will succeed once
+     * available_replica_count reaches required_replica_count, and the rest of
+     * the replicas will be retried. If not set, the default
+     * required_replica_count will be min_replica_count.
+     *
+     * Generated from protobuf field <code>int32 required_replica_count = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getRequiredReplicaCount()
+    {
+        return $this->required_replica_count;
+    }
+
+    /**
+     * Optional. Number of required available replicas for the deployment to
+     * succeed. This field is only needed when partial model deployment/mutation
+     * is desired. If set, the model deploy/mutate operation will succeed once
+     * available_replica_count reaches required_replica_count, and the rest of
+     * the replicas will be retried. If not set, the default
+     * required_replica_count will be min_replica_count.
+     *
+     * Generated from protobuf field <code>int32 required_replica_count = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRequiredReplicaCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->required_replica_count = $var;
+
+        return $this;
+    }
+
+    /**
      * Immutable. The metric specifications that overrides a resource
      * utilization metric (CPU utilization, accelerator's duty cycle, and so on)
      * target value (default to 60 if not set). At most one entry is allowed per
@@ -320,6 +384,34 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\AutoscalingMetricSpec::class);
         $this->autoscaling_metric_specs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, schedule the deployment workload on [spot
+     * VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).
+     *
+     * Generated from protobuf field <code>bool spot = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSpot()
+    {
+        return $this->spot;
+    }
+
+    /**
+     * Optional. If true, schedule the deployment workload on [spot
+     * VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).
+     *
+     * Generated from protobuf field <code>bool spot = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSpot($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->spot = $var;
 
         return $this;
     }

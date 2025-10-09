@@ -20,26 +20,26 @@ class Price extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Money base_price = 1;</code>
      */
-    private $base_price = null;
+    protected $base_price = null;
     /**
      * Discount percentage, represented as decimal.
      * For example, a 20% discount will be represent as 0.2.
      *
      * Generated from protobuf field <code>double discount = 2;</code>
      */
-    private $discount = 0.0;
+    protected $discount = 0.0;
     /**
      * Effective Price after applying the discounts.
      *
      * Generated from protobuf field <code>.google.type.Money effective_price = 3;</code>
      */
-    private $effective_price = null;
+    protected $effective_price = null;
     /**
      * Link to external price list, such as link to Google Voice rate card.
      *
      * Generated from protobuf field <code>string external_price_uri = 4;</code>
      */
-    private $external_price_uri = '';
+    protected $external_price_uri = '';
 
     /**
      * Constructor.

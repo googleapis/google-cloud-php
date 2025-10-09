@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The Model Registry Model and Online Prediction Endpoint assiociated with
+ * The Model Registry Model and Online Prediction Endpoint associated with
  * this [TuningJob][google.cloud.aiplatform.v1.TuningJob].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.TunedModel</code>
@@ -22,14 +22,22 @@ class TunedModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Output only. A resource name of an Endpoint. Format:
      * `projects/{project}/locations/{location}/endpoints/{endpoint}`.
      *
      * Generated from protobuf field <code>string endpoint = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
+    /**
+     * Output only. The checkpoints associated with this TunedModel.
+     * This field is only populated for tuning jobs that enable intermediate
+     * checkpoints.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TunedModelCheckpoint checkpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $checkpoints;
 
     /**
      * Constructor.
@@ -43,6 +51,10 @@ class TunedModel extends \Google\Protobuf\Internal\Message
      *     @type string $endpoint
      *           Output only. A resource name of an Endpoint. Format:
      *           `projects/{project}/locations/{location}/endpoints/{endpoint}`.
+     *     @type array<\Google\Cloud\AIPlatform\V1\TunedModelCheckpoint>|\Google\Protobuf\Internal\RepeatedField $checkpoints
+     *           Output only. The checkpoints associated with this TunedModel.
+     *           This field is only populated for tuning jobs that enable intermediate
+     *           checkpoints.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,6 +114,36 @@ class TunedModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->endpoint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The checkpoints associated with this TunedModel.
+     * This field is only populated for tuning jobs that enable intermediate
+     * checkpoints.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TunedModelCheckpoint checkpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCheckpoints()
+    {
+        return $this->checkpoints;
+    }
+
+    /**
+     * Output only. The checkpoints associated with this TunedModel.
+     * This field is only populated for tuning jobs that enable intermediate
+     * checkpoints.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TunedModelCheckpoint checkpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\TunedModelCheckpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCheckpoints($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\TunedModelCheckpoint::class);
+        $this->checkpoints = $arr;
 
         return $this;
     }

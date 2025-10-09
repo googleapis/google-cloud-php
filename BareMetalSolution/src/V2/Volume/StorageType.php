@@ -59,6 +59,4 @@ class StorageType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StorageType::class, \Google\Cloud\BareMetalSolution\V2\Volume_StorageType::class);
 

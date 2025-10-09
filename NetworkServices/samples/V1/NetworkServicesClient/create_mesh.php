@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_CreateMesh_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\CreateMeshRequest;
 use Google\Cloud\NetworkServices\V1\Mesh;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
 use Google\Rpc\Status;
 
 /**
@@ -36,22 +37,23 @@ use Google\Rpc\Status;
  *                                format `projects/&#42;/locations/global`. Please see
  *                                {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $meshId          Short name of the Mesh resource to be created.
- * @param string $meshName        Name of the Mesh resource. It matches pattern
- *                                `projects/&#42;/locations/global/meshes/<mesh_name>`.
  */
-function create_mesh_sample(string $formattedParent, string $meshId, string $meshName): void
+function create_mesh_sample(string $formattedParent, string $meshId): void
 {
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $mesh = (new Mesh())
-        ->setName($meshName);
+    // Prepare the request message.
+    $mesh = new Mesh();
+    $request = (new CreateMeshRequest())
+        ->setParent($formattedParent)
+        ->setMeshId($meshId)
+        ->setMesh($mesh);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->createMesh($formattedParent, $meshId, $mesh);
+        $response = $networkServicesClient->createMesh($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -81,8 +83,7 @@ function callSample(): void
 {
     $formattedParent = NetworkServicesClient::locationName('[PROJECT]', '[LOCATION]');
     $meshId = '[MESH_ID]';
-    $meshName = '[NAME]';
 
-    create_mesh_sample($formattedParent, $meshId, $meshName);
+    create_mesh_sample($formattedParent, $meshId);
 }
 // [END networkservices_v1_generated_NetworkServices_CreateMesh_sync]

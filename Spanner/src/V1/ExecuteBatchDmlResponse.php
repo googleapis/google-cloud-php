@@ -59,6 +59,15 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
     private $status = null;
+    /**
+     * Optional. A precommit token is included if the read-write transaction
+     * is on a multiplexed session. Pass the precommit token with the highest
+     * sequence number from this transaction attempt should be passed to the
+     * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $precommit_token = null;
 
     /**
      * Constructor.
@@ -78,6 +87,11 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $status
      *           If all DML statements are executed successfully, the status is `OK`.
      *           Otherwise, the error status of the first failed statement.
+     *     @type \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $precommit_token
+     *           Optional. A precommit token is included if the read-write transaction
+     *           is on a multiplexed session. Pass the precommit token with the highest
+     *           sequence number from this transaction attempt should be passed to the
+     *           [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
      * }
      */
     public function __construct($data = NULL) {
@@ -159,6 +173,48 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A precommit token is included if the read-write transaction
+     * is on a multiplexed session. Pass the precommit token with the highest
+     * sequence number from this transaction attempt should be passed to the
+     * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken|null
+     */
+    public function getPrecommitToken()
+    {
+        return $this->precommit_token;
+    }
+
+    public function hasPrecommitToken()
+    {
+        return isset($this->precommit_token);
+    }
+
+    public function clearPrecommitToken()
+    {
+        unset($this->precommit_token);
+    }
+
+    /**
+     * Optional. A precommit token is included if the read-write transaction
+     * is on a multiplexed session. Pass the precommit token with the highest
+     * sequence number from this transaction attempt should be passed to the
+     * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $var
+     * @return $this
+     */
+    public function setPrecommitToken($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken::class);
+        $this->precommit_token = $var;
 
         return $this;
     }

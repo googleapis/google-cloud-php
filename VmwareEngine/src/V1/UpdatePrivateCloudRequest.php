@@ -21,7 +21,7 @@ class UpdatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateCloud private_cloud = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $private_cloud = null;
+    protected $private_cloud = null;
     /**
      * Required. Field mask is used to specify the fields to be overwritten in the
      * `PrivateCloud` resource by the update. The fields specified in `updateMask`
@@ -31,14 +31,14 @@ class UpdatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional. The request ID must be a valid UUID with the exception that zero
      * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param \Google\Cloud\VmwareEngine\V1\PrivateCloud $privateCloud Required. Private cloud description.

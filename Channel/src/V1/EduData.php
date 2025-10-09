@@ -20,19 +20,19 @@ class EduData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EduData.InstituteType institute_type = 1;</code>
      */
-    private $institute_type = 0;
+    protected $institute_type = 0;
     /**
      * Size of the institute.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EduData.InstituteSize institute_size = 2;</code>
      */
-    private $institute_size = 0;
+    protected $institute_size = 0;
     /**
      * Web address for the edu customer's institution.
      *
      * Generated from protobuf field <code>string website = 3;</code>
      */
-    private $website = '';
+    protected $website = '';
 
     /**
      * Constructor.

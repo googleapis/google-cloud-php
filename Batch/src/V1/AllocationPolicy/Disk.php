@@ -22,11 +22,13 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Disk type as shown in `gcloud compute disk-types list`.
      * For example, local SSD uses type "local-ssd".
      * Persistent disks and boot disks use "pd-balanced", "pd-extreme", "pd-ssd"
-     * or "pd-standard".
+     * or "pd-standard". If not specified, "pd-standard" will be used as the
+     * default type for non-boot disks, "pd-balanced" will be used as the
+     * default type for boot disks.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Disk size in GB.
      * **Non-Boot Disk**:
@@ -48,7 +50,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 size_gb = 2;</code>
      */
-    private $size_gb = 0;
+    protected $size_gb = 0;
     /**
      * Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      * If not indicated, "NVMe" will be the default one for local ssds.
@@ -58,7 +60,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string disk_interface = 6;</code>
      */
-    private $disk_interface = '';
+    protected $disk_interface = '';
     protected $data_source;
 
     /**
@@ -77,9 +79,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           You can also use Batch customized image in short names.
      *           The following image values are supported for a boot disk:
      *           * `batch-debian`: use Batch Debian images.
-     *           * `batch-centos`: use Batch CentOS images.
      *           * `batch-cos`: use Batch Container-Optimized images.
-     *           * `batch-hpc-centos`: use Batch HPC CentOS images.
      *           * `batch-hpc-rocky`: use Batch HPC Rocky Linux images.
      *     @type string $snapshot
      *           Name of a snapshot used as the data source.
@@ -88,7 +88,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           Disk type as shown in `gcloud compute disk-types list`.
      *           For example, local SSD uses type "local-ssd".
      *           Persistent disks and boot disks use "pd-balanced", "pd-extreme", "pd-ssd"
-     *           or "pd-standard".
+     *           or "pd-standard". If not specified, "pd-standard" will be used as the
+     *           default type for non-boot disks, "pd-balanced" will be used as the
+     *           default type for boot disks.
      *     @type int|string $size_gb
      *           Disk size in GB.
      *           **Non-Boot Disk**:
@@ -130,9 +132,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * You can also use Batch customized image in short names.
      * The following image values are supported for a boot disk:
      * * `batch-debian`: use Batch Debian images.
-     * * `batch-centos`: use Batch CentOS images.
      * * `batch-cos`: use Batch Container-Optimized images.
-     * * `batch-hpc-centos`: use Batch HPC CentOS images.
      * * `batch-hpc-rocky`: use Batch HPC Rocky Linux images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
@@ -158,9 +158,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * You can also use Batch customized image in short names.
      * The following image values are supported for a boot disk:
      * * `batch-debian`: use Batch Debian images.
-     * * `batch-centos`: use Batch CentOS images.
      * * `batch-cos`: use Batch Container-Optimized images.
-     * * `batch-hpc-centos`: use Batch HPC CentOS images.
      * * `batch-hpc-rocky`: use Batch HPC Rocky Linux images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
@@ -212,7 +210,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Disk type as shown in `gcloud compute disk-types list`.
      * For example, local SSD uses type "local-ssd".
      * Persistent disks and boot disks use "pd-balanced", "pd-extreme", "pd-ssd"
-     * or "pd-standard".
+     * or "pd-standard". If not specified, "pd-standard" will be used as the
+     * default type for non-boot disks, "pd-balanced" will be used as the
+     * default type for boot disks.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      * @return string
@@ -226,7 +226,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Disk type as shown in `gcloud compute disk-types list`.
      * For example, local SSD uses type "local-ssd".
      * Persistent disks and boot disks use "pd-balanced", "pd-extreme", "pd-ssd"
-     * or "pd-standard".
+     * or "pd-standard". If not specified, "pd-standard" will be used as the
+     * default type for non-boot disks, "pd-balanced" will be used as the
+     * default type for boot disks.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      * @param string $var

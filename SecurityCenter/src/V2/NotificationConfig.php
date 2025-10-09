@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NotificationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The relative resource name of this notification config. See:
+     * Identifier. The relative resource name of this notification config. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * The following list shows some examples:
      * +
@@ -28,29 +28,36 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * +
      * `projects/{project_id}/locations/{location_id}/notificationConfigs/notify_public_bucket`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The description of the notification config (max of 1024 characters).
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The Pub/Sub topic to send notifications to. Its format is
      * "projects/[project_id]/topics/[topic]".
      *
      * Generated from protobuf field <code>string pubsub_topic = 3 [(.google.api.resource_reference) = {</code>
      */
-    private $pubsub_topic = '';
+    protected $pubsub_topic = '';
     /**
      * Output only. The service account that needs "pubsub.topics.publish"
      * permission to publish to the Pub/Sub topic.
      *
      * Generated from protobuf field <code>string service_account = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
+    /**
+     * Output only. The timestamp of when the notification config was last
+     * updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $update_time = null;
     protected $notify_config;
 
     /**
@@ -60,7 +67,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The relative resource name of this notification config. See:
+     *           Identifier. The relative resource name of this notification config. See:
      *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
      *           The following list shows some examples:
      *           +
@@ -79,6 +86,9 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *           permission to publish to the Pub/Sub topic.
      *     @type \Google\Cloud\SecurityCenter\V2\NotificationConfig\StreamingConfig $streaming_config
      *           The config for triggering streaming-based notifications.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The timestamp of when the notification config was last
+     *           updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -87,7 +97,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative resource name of this notification config. See:
+     * Identifier. The relative resource name of this notification config. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * The following list shows some examples:
      * +
@@ -97,7 +107,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * +
      * `projects/{project_id}/locations/{location_id}/notificationConfigs/notify_public_bucket`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -106,7 +116,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative resource name of this notification config. See:
+     * Identifier. The relative resource name of this notification config. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * The following list shows some examples:
      * +
@@ -116,7 +126,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * +
      * `projects/{project_id}/locations/{location_id}/notificationConfigs/notify_public_bucket`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -237,6 +247,44 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\NotificationConfig\StreamingConfig::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp of when the notification config was last
+     * updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. The timestamp of when the notification config was last
+     * updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }

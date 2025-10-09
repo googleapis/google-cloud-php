@@ -26,14 +26,14 @@ class MlEngineModelVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1;</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Full resource name of ml engine model Version.
      * Format: `projects/{project}/models/{model}/versions/{version}`.
      *
      * Generated from protobuf field <code>string version = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

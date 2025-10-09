@@ -18,16 +18,16 @@ class DeployFlowRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The environment to deploy the flow to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     * environments/<Environment ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string environment = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $environment = '';
     /**
      * Required. The flow version to deploy.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     * flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string flow_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -41,12 +41,12 @@ class DeployFlowRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $environment
      *           Required. The environment to deploy the flow to.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     *           environments/<Environment ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *     @type string $flow_version
      *           Required. The flow version to deploy.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     *           flows/<Flow ID>/versions/<Version ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,8 +56,8 @@ class DeployFlowRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The environment to deploy the flow to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     * environments/<Environment ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string environment = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -69,8 +69,8 @@ class DeployFlowRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The environment to deploy the flow to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     * environments/<Environment ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string environment = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -86,8 +86,8 @@ class DeployFlowRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The flow version to deploy.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     * flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string flow_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -99,8 +99,8 @@ class DeployFlowRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The flow version to deploy.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     * flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string flow_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

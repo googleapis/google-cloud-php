@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A result of Resource Search, containing information of a cloud resource.
- * Next ID: 34
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.ResourceSearchResult</code>
  */
@@ -28,7 +27,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The type of this resource. Example: `compute.googleapis.com/Disk`.
      * To search against the `asset_type`:
@@ -36,7 +35,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset_type = 2;</code>
      */
-    private $asset_type = '';
+    protected $asset_type = '';
     /**
      * The project that this resource belongs to, in the form of
      * projects/{PROJECT_NUMBER}. This field is available when the resource
@@ -48,7 +47,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 3;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The folder(s) that this resource belongs to, in the form of
      * folders/{FOLDER_NUMBER}. This field is available when the resource
@@ -72,7 +71,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string organization = 18;</code>
      */
-    private $organization = '';
+    protected $organization = '';
     /**
      * The display name of this resource. This field is available only when the
      * resource's Protobuf contains it.
@@ -82,7 +81,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 4;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * One or more paragraphs of text description of this resource. Maximum length
      * could be up to 1M bytes. This field is available only when the resource's
@@ -93,7 +92,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Location can be `global`, regional like `us-east1`, or zonal like
      * `us-west1-b`. This field is available only when the resource's Protobuf
@@ -104,10 +103,10 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 6;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
-     * Labels associated with this resource. See [Labelling and grouping Google
-     * Cloud
+     * User labels associated with this resource. See [Labelling and grouping
+     * Google Cloud
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information. This field is available only when the resource's
      * Protobuf contains it.
@@ -182,7 +181,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The last update timestamp of this resource, at which the resource was last
      * modified or deleted. The granularity is in seconds. Timestamp.nanos will
@@ -197,7 +196,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 12;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The state of this resource. Different resources types have different state
      * definitions that are mapped from various fields of different resource
@@ -219,7 +218,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string state = 13;</code>
      */
-    private $state = '';
+    protected $state = '';
     /**
      * The additional searchable attributes of this resource. The attributes may
      * vary from one resource type to another. Examples: `projectId` for Project,
@@ -240,7 +239,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct additional_attributes = 9;</code>
      */
-    private $additional_attributes = null;
+    protected $additional_attributes = null;
     /**
      * The full resource name of this resource's parent, if it has one.
      * To search against the `parent_full_resource_name`:
@@ -251,7 +250,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_full_resource_name = 19;</code>
      */
-    private $parent_full_resource_name = '';
+    protected $parent_full_resource_name = '';
     /**
      * Versioned resource representations of this resource. This is repeated
      * because there could be multiple versions of resource representations during
@@ -373,6 +372,29 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     private $effective_tags;
     /**
+     * Enrichments of the asset. Currently supported enrichment types with
+     * SearchAllResources API:
+     * * RESOURCE_OWNERS
+     * The corresponding read masks in order to get the enrichment:
+     * * enrichments.resource_owners
+     * The corresponding required permissions:
+     * * cloudasset.assets.searchEnrichmentResourceOwners
+     * Example query to get resource owner enrichment:
+     * ```
+     *   scope: "projects/my-project"
+     *   query: "name: my-project"
+     *   assetTypes: "cloudresourcemanager.googleapis.com/Project"
+     *   readMask: {
+     *      paths: "asset_type"
+     *      paths: "name"
+     *      paths: "enrichments.resource_owners"
+     *   }
+     * ```
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AssetEnrichment enrichments = 31;</code>
+     */
+    private $enrichments;
+    /**
      * The type of this resource's immediate parent, if there is one.
      * To search against the `parent_asset_type`:
      * * Use a field query. Example:
@@ -382,7 +404,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_asset_type = 103;</code>
      */
-    private $parent_asset_type = '';
+    protected $parent_asset_type = '';
     /**
      * The actual content of Security Command Center security marks associated
      * with the asset.
@@ -459,8 +481,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           * Use a field query. Example: `location:us-west*`
      *           * Use a free text query. Example: `us-west*`
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Labels associated with this resource. See [Labelling and grouping Google
-     *           Cloud
+     *           User labels associated with this resource. See [Labelling and grouping
+     *           Google Cloud
      *           resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      *           for more information. This field is available only when the resource's
      *           Protobuf contains it.
@@ -653,6 +675,25 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - `effectiveTagValues:"123456789/env/prod*"`
      *               - `effectiveTagValues="123456789/env/prod"`
      *               - `effectiveTagValueIds="tagValues/456"`
+     *     @type array<\Google\Cloud\Asset\V1\AssetEnrichment>|\Google\Protobuf\Internal\RepeatedField $enrichments
+     *           Enrichments of the asset. Currently supported enrichment types with
+     *           SearchAllResources API:
+     *           * RESOURCE_OWNERS
+     *           The corresponding read masks in order to get the enrichment:
+     *           * enrichments.resource_owners
+     *           The corresponding required permissions:
+     *           * cloudasset.assets.searchEnrichmentResourceOwners
+     *           Example query to get resource owner enrichment:
+     *           ```
+     *             scope: "projects/my-project"
+     *             query: "name: my-project"
+     *             assetTypes: "cloudresourcemanager.googleapis.com/Project"
+     *             readMask: {
+     *                paths: "asset_type"
+     *                paths: "name"
+     *                paths: "enrichments.resource_owners"
+     *             }
+     *           ```
      *     @type string $parent_asset_type
      *           The type of this resource's immediate parent, if there is one.
      *           To search against the `parent_asset_type`:
@@ -965,8 +1006,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Labels associated with this resource. See [Labelling and grouping Google
-     * Cloud
+     * User labels associated with this resource. See [Labelling and grouping
+     * Google Cloud
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information. This field is available only when the resource's
      * Protobuf contains it.
@@ -986,8 +1027,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Labels associated with this resource. See [Labelling and grouping Google
-     * Cloud
+     * User labels associated with this resource. See [Labelling and grouping
+     * Google Cloud
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information. This field is available only when the resource's
      * Protobuf contains it.
@@ -1074,7 +1115,9 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getKmsKey()
     {
-        @trigger_error('kms_key is deprecated.', E_USER_DEPRECATED);
+        if ($this->kms_key !== '') {
+            @trigger_error('kms_key is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->kms_key;
     }
 
@@ -1542,7 +1585,9 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getTagKeys()
     {
-        @trigger_error('tag_keys is deprecated.', E_USER_DEPRECATED);
+        if ($this->tag_keys->count() !== 0) {
+            @trigger_error('tag_keys is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->tag_keys;
     }
 
@@ -1565,8 +1610,10 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function setTagKeys($var)
     {
-        @trigger_error('tag_keys is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if (count($arr) !== 0) {
+            @trigger_error('tag_keys is deprecated.', E_USER_DEPRECATED);
+        }
         $this->tag_keys = $arr;
 
         return $this;
@@ -1592,7 +1639,9 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getTagValues()
     {
-        @trigger_error('tag_values is deprecated.', E_USER_DEPRECATED);
+        if ($this->tag_values->count() !== 0) {
+            @trigger_error('tag_values is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->tag_values;
     }
 
@@ -1617,8 +1666,10 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function setTagValues($var)
     {
-        @trigger_error('tag_values is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if (count($arr) !== 0) {
+            @trigger_error('tag_values is deprecated.', E_USER_DEPRECATED);
+        }
         $this->tag_values = $arr;
 
         return $this;
@@ -1640,7 +1691,9 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getTagValueIds()
     {
-        @trigger_error('tag_value_ids is deprecated.', E_USER_DEPRECATED);
+        if ($this->tag_value_ids->count() !== 0) {
+            @trigger_error('tag_value_ids is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->tag_value_ids;
     }
 
@@ -1661,8 +1714,10 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function setTagValueIds($var)
     {
-        @trigger_error('tag_value_ids is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if (count($arr) !== 0) {
+            @trigger_error('tag_value_ids is deprecated.', E_USER_DEPRECATED);
+        }
         $this->tag_value_ids = $arr;
 
         return $this;
@@ -1770,6 +1825,66 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\EffectiveTagDetails::class);
         $this->effective_tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Enrichments of the asset. Currently supported enrichment types with
+     * SearchAllResources API:
+     * * RESOURCE_OWNERS
+     * The corresponding read masks in order to get the enrichment:
+     * * enrichments.resource_owners
+     * The corresponding required permissions:
+     * * cloudasset.assets.searchEnrichmentResourceOwners
+     * Example query to get resource owner enrichment:
+     * ```
+     *   scope: "projects/my-project"
+     *   query: "name: my-project"
+     *   assetTypes: "cloudresourcemanager.googleapis.com/Project"
+     *   readMask: {
+     *      paths: "asset_type"
+     *      paths: "name"
+     *      paths: "enrichments.resource_owners"
+     *   }
+     * ```
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AssetEnrichment enrichments = 31;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEnrichments()
+    {
+        return $this->enrichments;
+    }
+
+    /**
+     * Enrichments of the asset. Currently supported enrichment types with
+     * SearchAllResources API:
+     * * RESOURCE_OWNERS
+     * The corresponding read masks in order to get the enrichment:
+     * * enrichments.resource_owners
+     * The corresponding required permissions:
+     * * cloudasset.assets.searchEnrichmentResourceOwners
+     * Example query to get resource owner enrichment:
+     * ```
+     *   scope: "projects/my-project"
+     *   query: "name: my-project"
+     *   assetTypes: "cloudresourcemanager.googleapis.com/Project"
+     *   readMask: {
+     *      paths: "asset_type"
+     *      paths: "name"
+     *      paths: "enrichments.resource_owners"
+     *   }
+     * ```
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AssetEnrichment enrichments = 31;</code>
+     * @param array<\Google\Cloud\Asset\V1\AssetEnrichment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEnrichments($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\AssetEnrichment::class);
+        $this->enrichments = $arr;
 
         return $this;
     }

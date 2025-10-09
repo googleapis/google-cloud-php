@@ -20,31 +20,31 @@ class Stage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.Stage.Name name = 1;</code>
      */
-    private $name = 0;
+    protected $name = 0;
     /**
      * Message describing the Stage
      *
      * Generated from protobuf field <code>string message = 2;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Current state of the Stage
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.Stage.State state = 3;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Resource of the Stage
      *
      * Generated from protobuf field <code>string resource = 4;</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * Link to the current Stage resource
      *
      * Generated from protobuf field <code>string resource_uri = 5;</code>
      */
-    private $resource_uri = '';
+    protected $resource_uri = '';
     /**
      * State messages from the current Stage.
      *

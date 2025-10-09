@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -37,7 +38,6 @@ use Google\Cloud\Compute\V1\DeleteInterconnectRequest;
 use Google\Cloud\Compute\V1\GetDiagnosticsInterconnectRequest;
 use Google\Cloud\Compute\V1\GetInterconnectRequest;
 use Google\Cloud\Compute\V1\GetMacsecConfigInterconnectRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertInterconnectRequest;
 use Google\Cloud\Compute\V1\Interconnect;
 use Google\Cloud\Compute\V1\InterconnectsGetDiagnosticsResponse;
@@ -46,6 +46,7 @@ use Google\Cloud\Compute\V1\ListInterconnectsRequest;
 use Google\Cloud\Compute\V1\PatchInterconnectRequest;
 use Google\Cloud\Compute\V1\SetLabelsInterconnectRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Interconnects API.
@@ -53,14 +54,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDiagnosticsAsync(GetDiagnosticsInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMacsecConfigAsync(GetMacsecConfigInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListInterconnectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Interconnect> getAsync(GetInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InterconnectsGetDiagnosticsResponse> getDiagnosticsAsync(GetDiagnosticsInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InterconnectsGetMacsecConfigResponse> getMacsecConfigAsync(GetMacsecConfigInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListInterconnectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsInterconnectRequest $request, array $optionalArgs = [])
  */
 final class InterconnectsClient
 {
@@ -109,7 +110,6 @@ final class InterconnectsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/interconnects_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -122,9 +122,7 @@ final class InterconnectsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -141,9 +139,7 @@ final class InterconnectsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -171,29 +167,57 @@ final class InterconnectsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\InterconnectsClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new InterconnectsClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -224,11 +248,16 @@ final class InterconnectsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -250,6 +279,8 @@ final class InterconnectsClient
      * Deletes the specified Interconnect.
      *
      * The async variant is {@see InterconnectsClient::deleteAsync()} .
+     *
+     * @example samples/V1/InterconnectsClient/delete.php
      *
      * @param DeleteInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -275,6 +306,8 @@ final class InterconnectsClient
      *
      * The async variant is {@see InterconnectsClient::getAsync()} .
      *
+     * @example samples/V1/InterconnectsClient/get.php
+     *
      * @param GetInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -299,6 +332,8 @@ final class InterconnectsClient
      *
      * The async variant is {@see InterconnectsClient::getDiagnosticsAsync()} .
      *
+     * @example samples/V1/InterconnectsClient/get_diagnostics.php
+     *
      * @param GetDiagnosticsInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -313,8 +348,10 @@ final class InterconnectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDiagnostics(GetDiagnosticsInterconnectRequest $request, array $callOptions = []): InterconnectsGetDiagnosticsResponse
-    {
+    public function getDiagnostics(
+        GetDiagnosticsInterconnectRequest $request,
+        array $callOptions = []
+    ): InterconnectsGetDiagnosticsResponse {
         return $this->startApiCall('GetDiagnostics', $request, $callOptions)->wait();
     }
 
@@ -322,6 +359,8 @@ final class InterconnectsClient
      * Returns the interconnectMacsecConfig for the specified Interconnect.
      *
      * The async variant is {@see InterconnectsClient::getMacsecConfigAsync()} .
+     *
+     * @example samples/V1/InterconnectsClient/get_macsec_config.php
      *
      * @param GetMacsecConfigInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -337,8 +376,10 @@ final class InterconnectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getMacsecConfig(GetMacsecConfigInterconnectRequest $request, array $callOptions = []): InterconnectsGetMacsecConfigResponse
-    {
+    public function getMacsecConfig(
+        GetMacsecConfigInterconnectRequest $request,
+        array $callOptions = []
+    ): InterconnectsGetMacsecConfigResponse {
         return $this->startApiCall('GetMacsecConfig', $request, $callOptions)->wait();
     }
 
@@ -346,6 +387,8 @@ final class InterconnectsClient
      * Creates an Interconnect in the specified project using the data included in the request.
      *
      * The async variant is {@see InterconnectsClient::insertAsync()} .
+     *
+     * @example samples/V1/InterconnectsClient/insert.php
      *
      * @param InsertInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -371,6 +414,8 @@ final class InterconnectsClient
      *
      * The async variant is {@see InterconnectsClient::listAsync()} .
      *
+     * @example samples/V1/InterconnectsClient/list.php
+     *
      * @param ListInterconnectsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -395,6 +440,8 @@ final class InterconnectsClient
      *
      * The async variant is {@see InterconnectsClient::patchAsync()} .
      *
+     * @example samples/V1/InterconnectsClient/patch.php
+     *
      * @param PatchInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -418,6 +465,8 @@ final class InterconnectsClient
      * Sets the labels on an Interconnect. To learn more about labels, read the Labeling Resources documentation.
      *
      * The async variant is {@see InterconnectsClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/InterconnectsClient/set_labels.php
      *
      * @param SetLabelsInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {

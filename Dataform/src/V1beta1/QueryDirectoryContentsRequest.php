@@ -20,14 +20,14 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string workspace = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $workspace = '';
+    protected $workspace = '';
     /**
      * Optional. The directory's full path including directory name, relative to
      * the workspace root. If left unset, the workspace root is used.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Optional. Maximum number of paths to return. The server may return fewer
      * items than requested. If unspecified, the server will pick an appropriate
@@ -35,17 +35,17 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. Page token received from a previous `QueryDirectoryContents`
      * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * `QueryDirectoryContents` must match the call that provided the page
-     * token.
+     * `QueryDirectoryContents`, with the exception of `page_size`, must match the
+     * call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.
@@ -66,8 +66,8 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Page token received from a previous `QueryDirectoryContents`
      *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
-     *           `QueryDirectoryContents` must match the call that provided the page
-     *           token.
+     *           `QueryDirectoryContents`, with the exception of `page_size`, must match the
+     *           call that provided the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -163,8 +163,8 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Page token received from a previous `QueryDirectoryContents`
      * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * `QueryDirectoryContents` must match the call that provided the page
-     * token.
+     * `QueryDirectoryContents`, with the exception of `page_size`, must match the
+     * call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -178,8 +178,8 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Page token received from a previous `QueryDirectoryContents`
      * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * `QueryDirectoryContents` must match the call that provided the page
-     * token.
+     * `QueryDirectoryContents`, with the exception of `page_size`, must match the
+     * call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

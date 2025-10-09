@@ -21,7 +21,7 @@ class GamSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string stream_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $stream_id = '';
+    protected $stream_id = '';
     /**
      * [Targeting
      * parameters](https://support.google.com/admanager/answer/7320899) to send

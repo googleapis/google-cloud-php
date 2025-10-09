@@ -20,25 +20,25 @@ class DNSConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.DNSConfig.Provider cluster_dns = 1;</code>
      */
-    private $cluster_dns = 0;
+    protected $cluster_dns = 0;
     /**
      * cluster_dns_scope indicates the scope of access to cluster DNS records.
      *
      * Generated from protobuf field <code>.google.container.v1.DNSConfig.DNSScope cluster_dns_scope = 2;</code>
      */
-    private $cluster_dns_scope = 0;
+    protected $cluster_dns_scope = 0;
     /**
      * cluster_dns_domain is the suffix used for all cluster service records.
      *
      * Generated from protobuf field <code>string cluster_dns_domain = 3;</code>
      */
-    private $cluster_dns_domain = '';
+    protected $cluster_dns_domain = '';
     /**
      * Optional. The domain used in Additive VPC scope.
      *
      * Generated from protobuf field <code>string additive_vpc_scope_dns_domain = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $additive_vpc_scope_dns_domain = '';
+    protected $additive_vpc_scope_dns_domain = '';
 
     /**
      * Constructor.

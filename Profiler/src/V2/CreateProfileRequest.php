@@ -23,13 +23,13 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 4 [(.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Deployment details.
      *
      * Generated from protobuf field <code>.google.devtools.cloudprofiler.v2.Deployment deployment = 1;</code>
      */
-    private $deployment = null;
+    protected $deployment = null;
     /**
      * One or more profile types that the agent is capable of providing.
      *

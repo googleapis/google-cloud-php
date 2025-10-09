@@ -30,7 +30,7 @@ class TextAnchor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string content = 2;</code>
      */
-    private $content = '';
+    protected $content = '';
 
     /**
      * Constructor.

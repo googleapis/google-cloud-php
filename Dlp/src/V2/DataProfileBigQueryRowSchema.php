@@ -28,6 +28,8 @@ class DataProfileBigQueryRowSchema extends \Google\Protobuf\Internal\Message
      *           Table data profile column
      *     @type \Google\Cloud\Dlp\V2\ColumnDataProfile $column_profile
      *           Column data profile column
+     *     @type \Google\Cloud\Dlp\V2\FileStoreDataProfile $file_store_profile
+     *           File store data profile column.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +95,37 @@ class DataProfileBigQueryRowSchema extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ColumnDataProfile::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * File store data profile column.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FileStoreDataProfile file_store_profile = 3;</code>
+     * @return \Google\Cloud\Dlp\V2\FileStoreDataProfile|null
+     */
+    public function getFileStoreProfile()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasFileStoreProfile()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * File store data profile column.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FileStoreDataProfile file_store_profile = 3;</code>
+     * @param \Google\Cloud\Dlp\V2\FileStoreDataProfile $var
+     * @return $this
+     */
+    public function setFileStoreProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\FileStoreDataProfile::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

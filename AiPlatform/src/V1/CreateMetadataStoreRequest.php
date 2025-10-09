@@ -23,13 +23,13 @@ class CreateMetadataStoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The MetadataStore to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MetadataStore metadata_store = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metadata_store = null;
+    protected $metadata_store = null;
     /**
      * The {metadatastore} portion of the resource name with the format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
@@ -42,7 +42,7 @@ class CreateMetadataStoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metadata_store_id = 3;</code>
      */
-    private $metadata_store_id = '';
+    protected $metadata_store_id = '';
 
     /**
      * @param string                                    $parent          Required. The resource name of the Location where the MetadataStore should

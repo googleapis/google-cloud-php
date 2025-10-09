@@ -20,13 +20,13 @@ class RenderMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunRenderMetadata cloud_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cloud_run = null;
+    protected $cloud_run = null;
     /**
      * Output only. Custom metadata provided by user-defined render operation.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomMetadata custom = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $custom = null;
+    protected $custom = null;
 
     /**
      * Constructor.

@@ -21,19 +21,19 @@ class SqlExternalSyncSettingError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Identifies the specific error that occurred.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlExternalSyncSettingError.SqlExternalSyncSettingErrorType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Additional information about the error encountered.
      *
      * Generated from protobuf field <code>string detail = 3;</code>
      */
-    private $detail = '';
+    protected $detail = '';
 
     /**
      * Constructor.

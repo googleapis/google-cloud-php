@@ -21,19 +21,19 @@ class AdvancedDatapathObservabilityConfig extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>bool enable_metrics = 1;</code>
      */
-    private $enable_metrics = false;
+    protected $enable_metrics = false;
     /**
      * Method used to make Relay available
      *
      * Generated from protobuf field <code>.google.container.v1.AdvancedDatapathObservabilityConfig.RelayMode relay_mode = 2;</code>
      */
-    private $relay_mode = 0;
+    protected $relay_mode = 0;
     /**
      * Enable Relay component
      *
      * Generated from protobuf field <code>optional bool enable_relay = 3;</code>
      */
-    private $enable_relay = null;
+    protected $enable_relay = null;
 
     /**
      * Constructor.

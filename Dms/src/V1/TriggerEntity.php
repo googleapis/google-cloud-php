@@ -21,7 +21,7 @@ class TriggerEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The DML, DDL, or database events that fire the trigger, for example
      * INSERT, UPDATE.
@@ -35,19 +35,19 @@ class TriggerEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string trigger_type = 3;</code>
      */
-    private $trigger_type = '';
+    protected $trigger_type = '';
     /**
      * The SQL code which creates the trigger.
      *
      * Generated from protobuf field <code>string sql_code = 4;</code>
      */
-    private $sql_code = '';
+    protected $sql_code = '';
     /**
      * Custom engine specific features.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 5;</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
 
     /**
      * Constructor.

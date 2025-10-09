@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,9 @@ class TemplatesServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return TemplatesServiceClient */
@@ -83,6 +85,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $location2 = 'location21541837352';
         $createdFromSnapshotId = 'createdFromSnapshotId1520659672';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Job();
         $expectedResponse->setId($id);
         $expectedResponse->setProjectId($projectId2);
@@ -94,6 +97,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $expectedResponse->setLocation($location2);
         $expectedResponse->setCreatedFromSnapshotId($createdFromSnapshotId);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         $request = new CreateJobFromTemplateRequest();
         $response = $gapicClient->createJobFromTemplate($request);
@@ -117,12 +121,15 @@ class TemplatesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new CreateJobFromTemplateRequest();
         try {
@@ -171,12 +178,15 @@ class TemplatesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetTemplateRequest();
         try {
@@ -225,12 +235,15 @@ class TemplatesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new LaunchTemplateRequest();
         try {
@@ -265,6 +278,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $location2 = 'location21541837352';
         $createdFromSnapshotId = 'createdFromSnapshotId1520659672';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Job();
         $expectedResponse->setId($id);
         $expectedResponse->setProjectId($projectId2);
@@ -276,6 +290,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $expectedResponse->setLocation($location2);
         $expectedResponse->setCreatedFromSnapshotId($createdFromSnapshotId);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         $request = new CreateJobFromTemplateRequest();
         $response = $gapicClient->createJobFromTemplateAsync($request)->wait();

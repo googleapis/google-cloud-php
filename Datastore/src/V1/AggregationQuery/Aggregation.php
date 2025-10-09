@@ -48,7 +48,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string alias = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $alias = '';
+    protected $alias = '';
     protected $operator;
 
     /**
@@ -285,6 +285,4 @@ class Aggregation extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Aggregation::class, \Google\Cloud\Datastore\V1\AggregationQuery_Aggregation::class);
 

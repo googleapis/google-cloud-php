@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AbandonInstancesRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\Client\RegionInstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
 use Google\Cloud\Compute\V1\CreateInstancesRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\DeleteInstancesRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\DeletePerInstanceConfigsRegionInstanceGroupManagerRequest;
@@ -61,12 +62,19 @@ use Google\Cloud\Compute\V1\RegionInstanceGroupManagersListErrorsResponse;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersListInstanceConfigsResp;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersListInstancesResponse;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersRecreateRequest;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersResumeInstancesRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTargetPoolsRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTemplateRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersStartInstancesRequest;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersStopInstancesRequest;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSuspendInstancesRequest;
 use Google\Cloud\Compute\V1\ResizeRegionInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\ResumeInstancesRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SetInstanceTemplateRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SetTargetPoolsRegionInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\StartInstancesRegionInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\StopInstancesRegionInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\SuspendInstancesRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest;
 use Google\Rpc\Code;
 use stdClass;
@@ -87,7 +95,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return RegionInstanceGroupManagersClient */
@@ -133,7 +143,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersAbandonInstancesRequestResource($regionInstanceGroupManagersAbandonInstancesRequestResource);
+            ->setRegionInstanceGroupManagersAbandonInstancesRequestResource(
+                $regionInstanceGroupManagersAbandonInstancesRequestResource
+            );
         $response = $gapicClient->abandonInstances($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -195,12 +207,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -211,7 +226,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersAbandonInstancesRequestResource($regionInstanceGroupManagersAbandonInstancesRequestResource);
+            ->setRegionInstanceGroupManagersAbandonInstancesRequestResource(
+                $regionInstanceGroupManagersAbandonInstancesRequestResource
+            );
         $response = $gapicClient->abandonInstances($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -266,7 +283,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersApplyUpdatesRequestResource($regionInstanceGroupManagersApplyUpdatesRequestResource);
+            ->setRegionInstanceGroupManagersApplyUpdatesRequestResource(
+                $regionInstanceGroupManagersApplyUpdatesRequestResource
+            );
         $response = $gapicClient->applyUpdatesToInstances($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -275,7 +294,10 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/ApplyUpdatesToInstances', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.RegionInstanceGroupManagers/ApplyUpdatesToInstances',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
@@ -328,12 +350,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -344,7 +369,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersApplyUpdatesRequestResource($regionInstanceGroupManagersApplyUpdatesRequestResource);
+            ->setRegionInstanceGroupManagersApplyUpdatesRequestResource(
+                $regionInstanceGroupManagersApplyUpdatesRequestResource
+            );
         $response = $gapicClient->applyUpdatesToInstances($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -399,7 +426,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersCreateInstancesRequestResource($regionInstanceGroupManagersCreateInstancesRequestResource);
+            ->setRegionInstanceGroupManagersCreateInstancesRequestResource(
+                $regionInstanceGroupManagersCreateInstancesRequestResource
+            );
         $response = $gapicClient->createInstances($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -461,12 +490,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -477,7 +509,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersCreateInstancesRequestResource($regionInstanceGroupManagersCreateInstancesRequestResource);
+            ->setRegionInstanceGroupManagersCreateInstancesRequestResource(
+                $regionInstanceGroupManagersCreateInstancesRequestResource
+            );
         $response = $gapicClient->createInstances($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -590,12 +624,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -659,7 +696,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersDeleteInstancesRequestResource($regionInstanceGroupManagersDeleteInstancesRequestResource);
+            ->setRegionInstanceGroupManagersDeleteInstancesRequestResource(
+                $regionInstanceGroupManagersDeleteInstancesRequestResource
+            );
         $response = $gapicClient->deleteInstances($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -721,12 +760,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -737,7 +779,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersDeleteInstancesRequestResource($regionInstanceGroupManagersDeleteInstancesRequestResource);
+            ->setRegionInstanceGroupManagersDeleteInstancesRequestResource(
+                $regionInstanceGroupManagersDeleteInstancesRequestResource
+            );
         $response = $gapicClient->deleteInstances($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -792,7 +836,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagerDeleteInstanceConfigReqResource($regionInstanceGroupManagerDeleteInstanceConfigReqResource);
+            ->setRegionInstanceGroupManagerDeleteInstanceConfigReqResource(
+                $regionInstanceGroupManagerDeleteInstanceConfigReqResource
+            );
         $response = $gapicClient->deletePerInstanceConfigs($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -801,7 +847,10 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/DeletePerInstanceConfigs', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.RegionInstanceGroupManagers/DeletePerInstanceConfigs',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
@@ -854,12 +903,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -870,7 +922,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagerDeleteInstanceConfigReqResource($regionInstanceGroupManagerDeleteInstanceConfigReqResource);
+            ->setRegionInstanceGroupManagerDeleteInstanceConfigReqResource(
+                $regionInstanceGroupManagerDeleteInstanceConfigReqResource
+            );
         $response = $gapicClient->deletePerInstanceConfigs($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -911,8 +965,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $listManagedInstancesResults = 'listManagedInstancesResults832918068';
         $name = 'name3373707';
         $region2 = 'region2-690338393';
+        $satisfiesPzi = false;
+        $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $targetSize = 2084603409;
+        $targetStoppedSize = 1613032225;
+        $targetSuspendedSize = 765655981;
         $zone = 'zone3744684';
         $expectedResponse = new InstanceGroupManager();
         $expectedResponse->setBaseInstanceName($baseInstanceName);
@@ -926,8 +984,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setListManagedInstancesResults($listManagedInstancesResults);
         $expectedResponse->setName($name);
         $expectedResponse->setRegion($region2);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetSize($targetSize);
+        $expectedResponse->setTargetStoppedSize($targetStoppedSize);
+        $expectedResponse->setTargetSuspendedSize($targetSuspendedSize);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -965,12 +1027,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1085,12 +1150,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManagerResource = new InstanceGroupManager();
@@ -1134,9 +1202,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new InstanceGroupManager();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new RegionInstanceGroupManagerList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -1147,9 +1213,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new ListRegionInstanceGroupManagersRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = (new ListRegionInstanceGroupManagersRequest())->setProject($project)->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1178,19 +1242,20 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new ListRegionInstanceGroupManagersRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = (new ListRegionInstanceGroupManagersRequest())->setProject($project)->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1215,9 +1280,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $itemsElement = new InstanceManagedByIgmError();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new RegionInstanceGroupManagersListErrorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setItems($items);
@@ -1260,12 +1323,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1299,9 +1365,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $managedInstancesElement = new ManagedInstance();
-        $managedInstances = [
-            $managedInstancesElement,
-        ];
+        $managedInstances = [$managedInstancesElement];
         $expectedResponse = new RegionInstanceGroupManagersListInstancesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setManagedInstances($managedInstances);
@@ -1344,12 +1408,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1383,9 +1450,7 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $itemsElement = new PerInstanceConfig();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new RegionInstanceGroupManagersListInstanceConfigsResp();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setItems($items);
@@ -1407,7 +1472,10 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/ListPerInstanceConfigs', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.RegionInstanceGroupManagers/ListPerInstanceConfigs',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualRequestObject->getProject();
@@ -1428,12 +1496,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1552,12 +1623,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1623,7 +1697,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagerPatchInstanceConfigReqResource($regionInstanceGroupManagerPatchInstanceConfigReqResource);
+            ->setRegionInstanceGroupManagerPatchInstanceConfigReqResource(
+                $regionInstanceGroupManagerPatchInstanceConfigReqResource
+            );
         $response = $gapicClient->patchPerInstanceConfigs($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1632,7 +1708,10 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/PatchPerInstanceConfigs', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.RegionInstanceGroupManagers/PatchPerInstanceConfigs',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
@@ -1685,12 +1764,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1701,7 +1783,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagerPatchInstanceConfigReqResource($regionInstanceGroupManagerPatchInstanceConfigReqResource);
+            ->setRegionInstanceGroupManagerPatchInstanceConfigReqResource(
+                $regionInstanceGroupManagerPatchInstanceConfigReqResource
+            );
         $response = $gapicClient->patchPerInstanceConfigs($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1756,7 +1840,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersRecreateRequestResource($regionInstanceGroupManagersRecreateRequestResource);
+            ->setRegionInstanceGroupManagersRecreateRequestResource(
+                $regionInstanceGroupManagersRecreateRequestResource
+            );
         $response = $gapicClient->recreateInstances($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1818,12 +1904,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1834,7 +1923,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersRecreateRequestResource($regionInstanceGroupManagersRecreateRequestResource);
+            ->setRegionInstanceGroupManagersRecreateRequestResource(
+                $regionInstanceGroupManagersRecreateRequestResource
+            );
         $response = $gapicClient->recreateInstances($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1951,12 +2042,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1969,6 +2063,146 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setRegion($region)
             ->setSize($size);
         $response = $gapicClient->resize($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function resumeInstancesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/resumeInstancesTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/resumeInstancesTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersResumeInstancesRequestResource = new RegionInstanceGroupManagersResumeInstancesRequest();
+        $request = (new ResumeInstancesRegionInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionInstanceGroupManagersResumeInstancesRequestResource(
+                $regionInstanceGroupManagersResumeInstancesRequestResource
+            );
+        $response = $gapicClient->resumeInstances($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/ResumeInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagersResumeInstancesRequestResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagersResumeInstancesRequestResource, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function resumeInstancesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/resumeInstancesExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersResumeInstancesRequestResource = new RegionInstanceGroupManagersResumeInstancesRequest();
+        $request = (new ResumeInstancesRegionInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionInstanceGroupManagersResumeInstancesRequestResource(
+                $regionInstanceGroupManagersResumeInstancesRequestResource
+            );
+        $response = $gapicClient->resumeInstances($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -2022,7 +2256,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersSetTemplateRequestResource($regionInstanceGroupManagersSetTemplateRequestResource);
+            ->setRegionInstanceGroupManagersSetTemplateRequestResource(
+                $regionInstanceGroupManagersSetTemplateRequestResource
+            );
         $response = $gapicClient->setInstanceTemplate($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -2031,7 +2267,10 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/SetInstanceTemplate', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.RegionInstanceGroupManagers/SetInstanceTemplate',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
@@ -2084,12 +2323,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -2100,7 +2342,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersSetTemplateRequestResource($regionInstanceGroupManagersSetTemplateRequestResource);
+            ->setRegionInstanceGroupManagersSetTemplateRequestResource(
+                $regionInstanceGroupManagersSetTemplateRequestResource
+            );
         $response = $gapicClient->setInstanceTemplate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2155,7 +2399,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersSetTargetPoolsRequestResource($regionInstanceGroupManagersSetTargetPoolsRequestResource);
+            ->setRegionInstanceGroupManagersSetTargetPoolsRequestResource(
+                $regionInstanceGroupManagersSetTargetPoolsRequestResource
+            );
         $response = $gapicClient->setTargetPools($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -2217,12 +2463,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -2233,8 +2482,430 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersSetTargetPoolsRequestResource($regionInstanceGroupManagersSetTargetPoolsRequestResource);
+            ->setRegionInstanceGroupManagersSetTargetPoolsRequestResource(
+                $regionInstanceGroupManagersSetTargetPoolsRequestResource
+            );
         $response = $gapicClient->setTargetPools($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function startInstancesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/startInstancesTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/startInstancesTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersStartInstancesRequestResource = new RegionInstanceGroupManagersStartInstancesRequest();
+        $request = (new StartInstancesRegionInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionInstanceGroupManagersStartInstancesRequestResource(
+                $regionInstanceGroupManagersStartInstancesRequestResource
+            );
+        $response = $gapicClient->startInstances($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/StartInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagersStartInstancesRequestResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagersStartInstancesRequestResource, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function startInstancesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/startInstancesExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersStartInstancesRequestResource = new RegionInstanceGroupManagersStartInstancesRequest();
+        $request = (new StartInstancesRegionInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionInstanceGroupManagersStartInstancesRequestResource(
+                $regionInstanceGroupManagersStartInstancesRequestResource
+            );
+        $response = $gapicClient->startInstances($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function stopInstancesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/stopInstancesTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/stopInstancesTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersStopInstancesRequestResource = new RegionInstanceGroupManagersStopInstancesRequest();
+        $request = (new StopInstancesRegionInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionInstanceGroupManagersStopInstancesRequestResource(
+                $regionInstanceGroupManagersStopInstancesRequestResource
+            );
+        $response = $gapicClient->stopInstances($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/StopInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagersStopInstancesRequestResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagersStopInstancesRequestResource, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function stopInstancesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/stopInstancesExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersStopInstancesRequestResource = new RegionInstanceGroupManagersStopInstancesRequest();
+        $request = (new StopInstancesRegionInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionInstanceGroupManagersStopInstancesRequestResource(
+                $regionInstanceGroupManagersStopInstancesRequestResource
+            );
+        $response = $gapicClient->stopInstances($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function suspendInstancesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/suspendInstancesTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/suspendInstancesTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersSuspendInstancesRequestResource = new RegionInstanceGroupManagersSuspendInstancesRequest();
+        $request = (new SuspendInstancesRegionInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionInstanceGroupManagersSuspendInstancesRequestResource(
+                $regionInstanceGroupManagersSuspendInstancesRequestResource
+            );
+        $response = $gapicClient->suspendInstances($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/SuspendInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagersSuspendInstancesRequestResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagersSuspendInstancesRequestResource, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function suspendInstancesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/suspendInstancesExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersSuspendInstancesRequestResource = new RegionInstanceGroupManagersSuspendInstancesRequest();
+        $request = (new SuspendInstancesRegionInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionInstanceGroupManagersSuspendInstancesRequestResource(
+                $regionInstanceGroupManagersSuspendInstancesRequestResource
+            );
+        $response = $gapicClient->suspendInstances($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -2288,7 +2959,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagerUpdateInstanceConfigReqResource($regionInstanceGroupManagerUpdateInstanceConfigReqResource);
+            ->setRegionInstanceGroupManagerUpdateInstanceConfigReqResource(
+                $regionInstanceGroupManagerUpdateInstanceConfigReqResource
+            );
         $response = $gapicClient->updatePerInstanceConfigs($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -2297,7 +2970,10 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/UpdatePerInstanceConfigs', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.RegionInstanceGroupManagers/UpdatePerInstanceConfigs',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
@@ -2350,12 +3026,15 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -2366,7 +3045,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagerUpdateInstanceConfigReqResource($regionInstanceGroupManagerUpdateInstanceConfigReqResource);
+            ->setRegionInstanceGroupManagerUpdateInstanceConfigReqResource(
+                $regionInstanceGroupManagerUpdateInstanceConfigReqResource
+            );
         $response = $gapicClient->updatePerInstanceConfigs($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2421,7 +3102,9 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
             ->setRegion($region)
-            ->setRegionInstanceGroupManagersAbandonInstancesRequestResource($regionInstanceGroupManagersAbandonInstancesRequestResource);
+            ->setRegionInstanceGroupManagersAbandonInstancesRequestResource(
+                $regionInstanceGroupManagersAbandonInstancesRequestResource
+            );
         $response = $gapicClient->abandonInstances($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();

@@ -22,20 +22,42 @@ use Google\Protobuf\Internal\GPBUtil;
 class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the dataset source for this listing.
+     * Optional. Resource name of the dataset source for this listing.
      * e.g. `projects/myproject/datasets/123`
      *
-     * Generated from protobuf field <code>string dataset = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
-     * Optional. Resources in this dataset that are selectively shared.
-     * If this field is empty, then the entire dataset (all resources) are
-     * shared. This field is only valid for data clean room exchanges.
+     * Optional. Resource in this dataset that is selectively shared.
+     * This field is required for data clean room exchanges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource selected_resources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $selected_resources;
+    /**
+     * Optional. If set, restricted export policy will be propagated and
+     * enforced on the linked dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.RestrictedExportPolicy restricted_export_policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $restricted_export_policy = null;
+    /**
+     * Optional. A list of regions where the publisher has created shared
+     * dataset replicas.
+     *
+     * Generated from protobuf field <code>repeated string replica_locations = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $replica_locations;
+    /**
+     * Output only. Server-owned effective state of replicas.
+     * Contains both primary and secondary replicas.
+     * Each replica includes a system-computed (output-only) state and primary
+     * designation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.Replica effective_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $effective_replicas;
 
     /**
      * Constructor.
@@ -44,12 +66,22 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $dataset
-     *           Resource name of the dataset source for this listing.
+     *           Optional. Resource name of the dataset source for this listing.
      *           e.g. `projects/myproject/datasets/123`
      *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\SelectedResource>|\Google\Protobuf\Internal\RepeatedField $selected_resources
-     *           Optional. Resources in this dataset that are selectively shared.
-     *           If this field is empty, then the entire dataset (all resources) are
-     *           shared. This field is only valid for data clean room exchanges.
+     *           Optional. Resource in this dataset that is selectively shared.
+     *           This field is required for data clean room exchanges.
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\RestrictedExportPolicy $restricted_export_policy
+     *           Optional. If set, restricted export policy will be propagated and
+     *           enforced on the linked dataset.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_locations
+     *           Optional. A list of regions where the publisher has created shared
+     *           dataset replicas.
+     *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\Replica>|\Google\Protobuf\Internal\RepeatedField $effective_replicas
+     *           Output only. Server-owned effective state of replicas.
+     *           Contains both primary and secondary replicas.
+     *           Each replica includes a system-computed (output-only) state and primary
+     *           designation.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,10 +90,10 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the dataset source for this listing.
+     * Optional. Resource name of the dataset source for this listing.
      * e.g. `projects/myproject/datasets/123`
      *
-     * Generated from protobuf field <code>string dataset = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDataset()
@@ -70,10 +102,10 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the dataset source for this listing.
+     * Optional. Resource name of the dataset source for this listing.
      * e.g. `projects/myproject/datasets/123`
      *
-     * Generated from protobuf field <code>string dataset = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -86,9 +118,8 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resources in this dataset that are selectively shared.
-     * If this field is empty, then the entire dataset (all resources) are
-     * shared. This field is only valid for data clean room exchanges.
+     * Optional. Resource in this dataset that is selectively shared.
+     * This field is required for data clean room exchanges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource selected_resources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -99,9 +130,8 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resources in this dataset that are selectively shared.
-     * If this field is empty, then the entire dataset (all resources) are
-     * shared. This field is only valid for data clean room exchanges.
+     * Optional. Resource in this dataset that is selectively shared.
+     * This field is required for data clean room exchanges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource selected_resources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\SelectedResource>|\Google\Protobuf\Internal\RepeatedField $var
@@ -111,6 +141,104 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\SelectedResource::class);
         $this->selected_resources = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, restricted export policy will be propagated and
+     * enforced on the linked dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.RestrictedExportPolicy restricted_export_policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\RestrictedExportPolicy|null
+     */
+    public function getRestrictedExportPolicy()
+    {
+        return $this->restricted_export_policy;
+    }
+
+    public function hasRestrictedExportPolicy()
+    {
+        return isset($this->restricted_export_policy);
+    }
+
+    public function clearRestrictedExportPolicy()
+    {
+        unset($this->restricted_export_policy);
+    }
+
+    /**
+     * Optional. If set, restricted export policy will be propagated and
+     * enforced on the linked dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.RestrictedExportPolicy restricted_export_policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\RestrictedExportPolicy $var
+     * @return $this
+     */
+    public function setRestrictedExportPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\RestrictedExportPolicy::class);
+        $this->restricted_export_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of regions where the publisher has created shared
+     * dataset replicas.
+     *
+     * Generated from protobuf field <code>repeated string replica_locations = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReplicaLocations()
+    {
+        return $this->replica_locations;
+    }
+
+    /**
+     * Optional. A list of regions where the publisher has created shared
+     * dataset replicas.
+     *
+     * Generated from protobuf field <code>repeated string replica_locations = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReplicaLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->replica_locations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Server-owned effective state of replicas.
+     * Contains both primary and secondary replicas.
+     * Each replica includes a system-computed (output-only) state and primary
+     * designation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.Replica effective_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEffectiveReplicas()
+    {
+        return $this->effective_replicas;
+    }
+
+    /**
+     * Output only. Server-owned effective state of replicas.
+     * Contains both primary and secondary replicas.
+     * Each replica includes a system-computed (output-only) state and primary
+     * designation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.Replica effective_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\Replica>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEffectiveReplicas($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\Replica::class);
+        $this->effective_replicas = $arr;
 
         return $this;
     }

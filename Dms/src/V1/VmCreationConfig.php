@@ -20,19 +20,19 @@ class VmCreationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vm_machine_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vm_machine_type = '';
+    protected $vm_machine_type = '';
     /**
      * The Google Cloud Platform zone to create the VM in.
      *
      * Generated from protobuf field <code>string vm_zone = 2;</code>
      */
-    private $vm_zone = '';
+    protected $vm_zone = '';
     /**
      * The subnet name the vm needs to be created in.
      *
      * Generated from protobuf field <code>string subnet = 3;</code>
      */
-    private $subnet = '';
+    protected $subnet = '';
 
     /**
      * Constructor.

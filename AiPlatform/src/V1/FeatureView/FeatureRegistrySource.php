@@ -27,7 +27,7 @@ class FeatureRegistrySource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 project_number = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $project_number = null;
+    protected $project_number = null;
 
     /**
      * Constructor.

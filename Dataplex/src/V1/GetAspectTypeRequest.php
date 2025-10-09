@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Get AspectType request
+ * Get AspectType request.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.GetAspectTypeRequest</code>
  */
@@ -21,7 +21,7 @@ class GetAspectTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. The resource name of the AspectType:

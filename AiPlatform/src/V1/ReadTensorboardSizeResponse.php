@@ -21,7 +21,7 @@ class ReadTensorboardSizeResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 storage_size_byte = 1;</code>
      */
-    private $storage_size_byte = 0;
+    protected $storage_size_byte = 0;
 
     /**
      * Constructor.

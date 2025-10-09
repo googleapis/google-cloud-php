@@ -20,13 +20,13 @@ class NfsExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network_id = 1;</code>
      */
-    private $network_id = '';
+    protected $network_id = '';
     /**
      * Export permissions.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VolumeConfig.NfsExport.Permissions permissions = 4;</code>
      */
-    private $permissions = 0;
+    protected $permissions = 0;
     /**
      * Disable root squashing, which is a feature of NFS.
      * Root squash is a special mapping of the remote superuser (root) identity
@@ -34,19 +34,19 @@ class NfsExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool no_root_squash = 5;</code>
      */
-    private $no_root_squash = false;
+    protected $no_root_squash = false;
     /**
      * Allow the setuid flag.
      *
      * Generated from protobuf field <code>bool allow_suid = 6;</code>
      */
-    private $allow_suid = false;
+    protected $allow_suid = false;
     /**
      * Allow dev flag in NfsShare AllowedClientsRequest.
      *
      * Generated from protobuf field <code>bool allow_dev = 7;</code>
      */
-    private $allow_dev = false;
+    protected $allow_dev = false;
     protected $client;
 
     /**
@@ -287,6 +287,4 @@ class NfsExport extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NfsExport::class, \Google\Cloud\BareMetalSolution\V2\VolumeConfig_NfsExport::class);
 

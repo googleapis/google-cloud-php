@@ -9,21 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Allows customers to configure tenant_id for GCIP instance per-app.
+ * Allows customers to configure tenant IDs for a Cloud Identity Platform (GCIP)
+ * instance for each application.
  *
  * Generated from protobuf message <code>google.cloud.iap.v1.GcipSettings</code>
  */
 class GcipSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * GCIP tenant ids that are linked to the IAP resource.
-     * tenant_ids could be a string beginning with a number character to indicate
-     * authenticating with GCIP tenant flow, or in the format of _<ProjectNumber>
-     * to indicate authenticating with GCIP agent flow.
-     * If agent flow is used, tenant_ids should only contain one single element,
-     * while for tenant flow, tenant_ids can contain multiple elements.
+     * Optional. GCIP tenant IDs that are linked to the IAP resource. `tenant_ids`
+     * could be a string beginning with a number character to indicate
+     * authenticating with GCIP tenant flow, or in the format of
+     * `_<ProjectNumber>` to indicate authenticating with GCIP agent flow. If
+     * agent flow is used, `tenant_ids` should only contain one single element,
+     * while for tenant flow, `tenant_ids` can contain multiple elements.
      *
-     * Generated from protobuf field <code>repeated string tenant_ids = 1;</code>
+     * Generated from protobuf field <code>repeated string tenant_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tenant_ids;
     /**
@@ -33,7 +34,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.StringValue login_page_uri = 2;</code>
      */
-    private $login_page_uri = null;
+    protected $login_page_uri = null;
 
     /**
      * Constructor.
@@ -42,12 +43,12 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tenant_ids
-     *           GCIP tenant ids that are linked to the IAP resource.
-     *           tenant_ids could be a string beginning with a number character to indicate
-     *           authenticating with GCIP tenant flow, or in the format of _<ProjectNumber>
-     *           to indicate authenticating with GCIP agent flow.
-     *           If agent flow is used, tenant_ids should only contain one single element,
-     *           while for tenant flow, tenant_ids can contain multiple elements.
+     *           Optional. GCIP tenant IDs that are linked to the IAP resource. `tenant_ids`
+     *           could be a string beginning with a number character to indicate
+     *           authenticating with GCIP tenant flow, or in the format of
+     *           `_<ProjectNumber>` to indicate authenticating with GCIP agent flow. If
+     *           agent flow is used, `tenant_ids` should only contain one single element,
+     *           while for tenant flow, `tenant_ids` can contain multiple elements.
      *     @type \Google\Protobuf\StringValue $login_page_uri
      *           Login page URI associated with the GCIP tenants.
      *           Typically, all resources within the same project share the same login page,
@@ -60,14 +61,14 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCIP tenant ids that are linked to the IAP resource.
-     * tenant_ids could be a string beginning with a number character to indicate
-     * authenticating with GCIP tenant flow, or in the format of _<ProjectNumber>
-     * to indicate authenticating with GCIP agent flow.
-     * If agent flow is used, tenant_ids should only contain one single element,
-     * while for tenant flow, tenant_ids can contain multiple elements.
+     * Optional. GCIP tenant IDs that are linked to the IAP resource. `tenant_ids`
+     * could be a string beginning with a number character to indicate
+     * authenticating with GCIP tenant flow, or in the format of
+     * `_<ProjectNumber>` to indicate authenticating with GCIP agent flow. If
+     * agent flow is used, `tenant_ids` should only contain one single element,
+     * while for tenant flow, `tenant_ids` can contain multiple elements.
      *
-     * Generated from protobuf field <code>repeated string tenant_ids = 1;</code>
+     * Generated from protobuf field <code>repeated string tenant_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTenantIds()
@@ -76,14 +77,14 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCIP tenant ids that are linked to the IAP resource.
-     * tenant_ids could be a string beginning with a number character to indicate
-     * authenticating with GCIP tenant flow, or in the format of _<ProjectNumber>
-     * to indicate authenticating with GCIP agent flow.
-     * If agent flow is used, tenant_ids should only contain one single element,
-     * while for tenant flow, tenant_ids can contain multiple elements.
+     * Optional. GCIP tenant IDs that are linked to the IAP resource. `tenant_ids`
+     * could be a string beginning with a number character to indicate
+     * authenticating with GCIP tenant flow, or in the format of
+     * `_<ProjectNumber>` to indicate authenticating with GCIP agent flow. If
+     * agent flow is used, `tenant_ids` should only contain one single element,
+     * while for tenant flow, `tenant_ids` can contain multiple elements.
      *
-     * Generated from protobuf field <code>repeated string tenant_ids = 1;</code>
+     * Generated from protobuf field <code>repeated string tenant_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -128,7 +129,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.StringValue login_page_uri = 2;</code>
      * @return string|null
      */
-    public function getLoginPageUriValue()
+    public function getLoginPageUriUnwrapped()
     {
         return $this->readWrapperValue("login_page_uri");
     }
@@ -161,7 +162,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      * @param string|null $var
      * @return $this
      */
-    public function setLoginPageUriValue($var)
+    public function setLoginPageUriUnwrapped($var)
     {
         $this->writeWrapperValue("login_page_uri", $var);
         return $this;}

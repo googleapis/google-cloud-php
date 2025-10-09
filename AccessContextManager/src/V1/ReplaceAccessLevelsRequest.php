@@ -24,7 +24,7 @@ class ReplaceAccessLevelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The desired [Access Levels]
      * [google.identity.accesscontextmanager.v1.AccessLevel] that should
@@ -47,7 +47,7 @@ class ReplaceAccessLevelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 4;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

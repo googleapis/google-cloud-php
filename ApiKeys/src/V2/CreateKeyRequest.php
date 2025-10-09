@@ -20,7 +20,7 @@ class CreateKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The API key fields to set at creation time.
      * You can configure only the `display_name`, `restrictions`, and
@@ -28,7 +28,7 @@ class CreateKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.apikeys.v2.Key key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = null;
+    protected $key = null;
     /**
      * User specified key id (optional). If specified, it will become the final
      * component of the key resource name.
@@ -40,7 +40,7 @@ class CreateKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_id = 3;</code>
      */
-    private $key_id = '';
+    protected $key_id = '';
 
     /**
      * @param string                       $parent Required. The project in which the API key is created. Please see

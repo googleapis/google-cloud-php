@@ -25,13 +25,13 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attached_resource_full_name = 1;</code>
      */
-    private $attached_resource_full_name = '';
+    protected $attached_resource_full_name = '';
     /**
      * The IAM policy binding under analysis.
      *
      * Generated from protobuf field <code>.google.iam.v1.Binding iam_binding = 2;</code>
      */
-    private $iam_binding = null;
+    protected $iam_binding = null;
     /**
      * The access control lists derived from the
      * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
@@ -48,7 +48,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisResult.IdentityList identity_list = 4;</code>
      */
-    private $identity_list = null;
+    protected $identity_list = null;
     /**
      * Represents whether all analyses on the
      * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
@@ -56,7 +56,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool fully_explored = 5;</code>
      */
-    private $fully_explored = false;
+    protected $fully_explored = false;
 
     /**
      * Constructor.

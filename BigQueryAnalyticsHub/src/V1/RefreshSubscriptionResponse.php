@@ -20,7 +20,7 @@ class RefreshSubscriptionResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Subscription subscription = 1;</code>
      */
-    private $subscription = null;
+    protected $subscription = null;
 
     /**
      * Constructor.

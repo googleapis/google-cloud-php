@@ -25,19 +25,19 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Creation time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Last update time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Required. The relative resource name of the network to peer with
      * a standard VMware Engine network. The provided network can be a
@@ -50,21 +50,21 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string peer_network = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $peer_network = '';
+    protected $peer_network = '';
     /**
      * Optional. True if custom routes are exported to the peered network;
      * false otherwise. The default value is true.
      *
      * Generated from protobuf field <code>optional bool export_custom_routes = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $export_custom_routes = null;
+    protected $export_custom_routes = null;
     /**
      * Optional. True if custom routes are imported from the peered network;
      * false otherwise. The default value is true.
      *
      * Generated from protobuf field <code>optional bool import_custom_routes = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $import_custom_routes = null;
+    protected $import_custom_routes = null;
     /**
      * Optional. True if full mesh connectivity is created and managed
      * automatically between peered networks; false otherwise. Currently this
@@ -74,7 +74,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool exchange_subnet_routes = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $exchange_subnet_routes = null;
+    protected $exchange_subnet_routes = null;
     /**
      * Optional. True if all subnet routes with a public IP address range are
      * exported; false otherwise. The default value is true. IPv4 special-use
@@ -83,7 +83,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool export_custom_routes_with_public_ip = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $export_custom_routes_with_public_ip = null;
+    protected $export_custom_routes_with_public_ip = null;
     /**
      * Optional. True if all subnet routes with public IP address range are
      * imported; false otherwise. The default value is true. IPv4 special-use
@@ -92,7 +92,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool import_custom_routes_with_public_ip = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $import_custom_routes_with_public_ip = null;
+    protected $import_custom_routes_with_public_ip = null;
     /**
      * Output only. State of the network peering. This field
      * has a value of 'ACTIVE' when there's a matching configuration in the peer
@@ -100,14 +100,14 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.NetworkPeering.State state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Output Only. Details about the current state of the network
      * peering.
      *
      * Generated from protobuf field <code>string state_details = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_details = '';
+    protected $state_details = '';
     /**
      * Optional. Maximum transmission unit (MTU) in bytes.
      * The default value is `1500`. If a value of `0` is provided for this field,
@@ -115,19 +115,19 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 peer_mtu = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $peer_mtu = 0;
+    protected $peer_mtu = 0;
     /**
      * Required. The type of the network to peer with the VMware Engine network.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.NetworkPeering.PeerNetworkType peer_network_type = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $peer_network_type = 0;
+    protected $peer_network_type = 0;
     /**
      * Output only. System-generated unique identifier for the resource.
      *
      * Generated from protobuf field <code>string uid = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Required. The relative resource name of the VMware Engine network.
      * Specify the name in the following form:
@@ -136,13 +136,13 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vmware_engine_network = 20 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $vmware_engine_network = '';
+    protected $vmware_engine_network = '';
     /**
      * Optional. User-provided description for this network peering.
      *
      * Generated from protobuf field <code>string description = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

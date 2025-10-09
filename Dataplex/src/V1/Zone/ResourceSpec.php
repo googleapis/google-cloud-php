@@ -21,7 +21,7 @@ class ResourceSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.ResourceSpec.LocationType location_type = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $location_type = 0;
+    protected $location_type = 0;
 
     /**
      * Constructor.

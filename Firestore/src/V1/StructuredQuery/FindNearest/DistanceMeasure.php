@@ -22,19 +22,21 @@ class DistanceMeasure
     /**
      * Measures the EUCLIDEAN distance between the vectors. See
      * [Euclidean](https://en.wikipedia.org/wiki/Euclidean_distance) to learn
-     * more
+     * more. The resulting distance decreases the more similar two vectors
+     * are.
      *
      * Generated from protobuf enum <code>EUCLIDEAN = 1;</code>
      */
     const EUCLIDEAN = 1;
     /**
-     * Compares vectors based on the angle between them, which allows you to
-     * measure similarity that isn't based on the vectors magnitude.
-     * We recommend using DOT_PRODUCT with unit normalized vectors instead of
-     * COSINE distance, which is mathematically equivalent with better
-     * performance. See [Cosine
+     * COSINE distance compares vectors based on the angle between them, which
+     * allows you to measure similarity that isn't based on the vectors
+     * magnitude. We recommend using DOT_PRODUCT with unit normalized vectors
+     * instead of COSINE distance, which is mathematically equivalent with
+     * better performance. See [Cosine
      * Similarity](https://en.wikipedia.org/wiki/Cosine_similarity) to learn
-     * more.
+     * more about COSINE similarity and COSINE distance. The resulting
+     * COSINE distance decreases the more similar two vectors are.
      *
      * Generated from protobuf enum <code>COSINE = 2;</code>
      */
@@ -42,6 +44,7 @@ class DistanceMeasure
     /**
      * Similar to cosine but is affected by the magnitude of the vectors. See
      * [Dot Product](https://en.wikipedia.org/wiki/Dot_product) to learn more.
+     * The resulting distance increases the more similar two vectors are.
      *
      * Generated from protobuf enum <code>DOT_PRODUCT = 3;</code>
      */

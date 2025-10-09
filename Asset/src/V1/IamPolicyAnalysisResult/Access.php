@@ -20,7 +20,7 @@ class Access extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisState analysis_state = 3;</code>
      */
-    private $analysis_state = null;
+    protected $analysis_state = null;
     protected $oneof_access;
 
     /**
@@ -150,6 +150,4 @@ class Access extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Access::class, \Google\Cloud\Asset\V1\IamPolicyAnalysisResult_Access::class);
 

@@ -61,9 +61,33 @@ return [
                     ],
                 ],
             ],
+            'BatchCreateResourceValueConfigs' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\BatchCreateResourceValueConfigsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBigQueryExport' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\SecurityCenter\V1\BigQueryExport',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateEventThreatDetectionCustomModule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\EventThreatDetectionCustomModule',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -145,6 +169,18 @@ return [
                     ],
                 ],
             ],
+            'DeleteEventThreatDetectionCustomModule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteMuteConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
@@ -158,6 +194,18 @@ return [
                 ],
             ],
             'DeleteNotificationConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteResourceValueConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -193,9 +241,33 @@ return [
                     ],
                 ],
             ],
+            'GetEffectiveEventThreatDetectionCustomModule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\EffectiveEventThreatDetectionCustomModule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetEffectiveSecurityHealthAnalyticsCustomModule' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\SecurityCenter\V1\EffectiveSecurityHealthAnalyticsCustomModule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEventThreatDetectionCustomModule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\EventThreatDetectionCustomModule',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -253,6 +325,18 @@ return [
                     ],
                 ],
             ],
+            'GetResourceValueConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\ResourceValueConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSecurityHealthAnalyticsCustomModule' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule',
@@ -265,9 +349,33 @@ return [
                     ],
                 ],
             ],
+            'GetSimulation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\Simulation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSource' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\SecurityCenter\V1\Source',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetValuedResource' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\ValuedResource',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -337,6 +445,26 @@ return [
                     ],
                 ],
             ],
+            'ListAttackPaths' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAttackPaths',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\ListAttackPathsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListBigQueryExports' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -348,6 +476,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\SecurityCenter\V1\ListBigQueryExportsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDescendantEventThreatDetectionCustomModules' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEventThreatDetectionCustomModules',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\ListDescendantEventThreatDetectionCustomModulesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -377,6 +525,26 @@ return [
                     ],
                 ],
             ],
+            'ListEffectiveEventThreatDetectionCustomModules' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEffectiveEventThreatDetectionCustomModules',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\ListEffectiveEventThreatDetectionCustomModulesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListEffectiveSecurityHealthAnalyticsCustomModules' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -388,6 +556,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\SecurityCenter\V1\ListEffectiveSecurityHealthAnalyticsCustomModulesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListEventThreatDetectionCustomModules' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEventThreatDetectionCustomModules',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\ListEventThreatDetectionCustomModulesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -457,6 +645,26 @@ return [
                     ],
                 ],
             ],
+            'ListResourceValueConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResourceValueConfigs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\ListResourceValueConfigsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListSecurityHealthAnalyticsCustomModules' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -488,6 +696,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\SecurityCenter\V1\ListSourcesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListValuedResources' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getValuedResources',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\ListValuedResourcesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -570,6 +798,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateEventThreatDetectionCustomModule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\EventThreatDetectionCustomModule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'event_threat_detection_custom_module.name',
+                        'fieldAccessors' => [
+                            'getEventThreatDetectionCustomModule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateExternalSystem' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\SecurityCenter\V1\ExternalSystem',
@@ -635,6 +876,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateResourceValueConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\ResourceValueConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource_value_config.name',
+                        'fieldAccessors' => [
+                            'getResourceValueConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSecurityHealthAnalyticsCustomModule' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule',
@@ -674,10 +928,25 @@ return [
                     ],
                 ],
             ],
+            'ValidateEventThreatDetectionCustomModule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\ValidateEventThreatDetectionCustomModuleResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'bigQueryExport' => 'organizations/{organization}/bigQueryExports/{export}',
                 'dlpJob' => 'projects/{project}/dlpJobs/{dlp_job}',
+                'effectiveEventThreatDetectionCustomModule' => 'organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}',
                 'effectiveSecurityHealthAnalyticsCustomModule' => 'organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}',
+                'eventThreatDetectionCustomModule' => 'organizations/{organization}/eventThreatDetectionSettings/customModules/{module}',
+                'eventThreatDetectionSettings' => 'organizations/{organization}/eventThreatDetectionSettings',
                 'externalSystem' => 'organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}',
                 'finding' => 'organizations/{organization}/sources/{source}/findings/{finding}',
                 'folder' => 'folders/{folder}',
@@ -685,7 +954,11 @@ return [
                 'folderConstraintName' => 'folders/{folder}/policies/{constraint_name}',
                 'folderCustomModule' => 'folders/{folder}/securityHealthAnalyticsSettings/customModules/{custom_module}',
                 'folderEffectiveCustomModule' => 'folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}',
+                'folderEventThreatDetectionSettings' => 'folders/{folder}/eventThreatDetectionSettings',
                 'folderExport' => 'folders/{folder}/bigQueryExports/{export}',
+                'folderLocation' => 'folders/{folder}/locations/{location}',
+                'folderLocationMuteConfig' => 'folders/{folder}/locations/{location}/muteConfigs/{mute_config}',
+                'folderModule' => 'folders/{folder}/eventThreatDetectionSettings/customModules/{module}',
                 'folderMuteConfig' => 'folders/{folder}/muteConfigs/{mute_config}',
                 'folderNotificationConfig' => 'folders/{folder}/notificationConfigs/{notification_config}',
                 'folderSecurityHealthAnalyticsSettings' => 'folders/{folder}/securityHealthAnalyticsSettings',
@@ -693,6 +966,7 @@ return [
                 'folderSourceFinding' => 'folders/{folder}/sources/{source}/findings/{finding}',
                 'folderSourceFindingExternalsystem' => 'folders/{folder}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}',
                 'folderSourceFindingSecurityMarks' => 'folders/{folder}/sources/{source}/findings/{finding}/securityMarks',
+                'location' => 'projects/{project}/locations/{location}',
                 'muteConfig' => 'organizations/{organization}/muteConfigs/{mute_config}',
                 'notificationConfig' => 'organizations/{organization}/notificationConfigs/{notification_config}',
                 'organization' => 'organizations/{organization}',
@@ -700,7 +974,11 @@ return [
                 'organizationConstraintName' => 'organizations/{organization}/policies/{constraint_name}',
                 'organizationCustomModule' => 'organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}',
                 'organizationEffectiveCustomModule' => 'organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}',
+                'organizationEventThreatDetectionSettings' => 'organizations/{organization}/eventThreatDetectionSettings',
                 'organizationExport' => 'organizations/{organization}/bigQueryExports/{export}',
+                'organizationLocation' => 'organizations/{organization}/locations/{location}',
+                'organizationLocationMuteConfig' => 'organizations/{organization}/locations/{location}/muteConfigs/{mute_config}',
+                'organizationModule' => 'organizations/{organization}/eventThreatDetectionSettings/customModules/{module}',
                 'organizationMuteConfig' => 'organizations/{organization}/muteConfigs/{mute_config}',
                 'organizationNotificationConfig' => 'organizations/{organization}/notificationConfigs/{notification_config}',
                 'organizationSecurityHealthAnalyticsSettings' => 'organizations/{organization}/securityHealthAnalyticsSettings',
@@ -716,9 +994,12 @@ return [
                 'projectCustomModule' => 'projects/{project}/securityHealthAnalyticsSettings/customModules/{custom_module}',
                 'projectDlpJob' => 'projects/{project}/dlpJobs/{dlp_job}',
                 'projectEffectiveCustomModule' => 'projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}',
+                'projectEventThreatDetectionSettings' => 'projects/{project}/eventThreatDetectionSettings',
                 'projectExport' => 'projects/{project}/bigQueryExports/{export}',
                 'projectLocationDlpJob' => 'projects/{project}/locations/{location}/dlpJobs/{dlp_job}',
+                'projectLocationMuteConfig' => 'projects/{project}/locations/{location}/muteConfigs/{mute_config}',
                 'projectLocationTableProfile' => 'projects/{project}/locations/{location}/tableProfiles/{table_profile}',
+                'projectModule' => 'projects/{project}/eventThreatDetectionSettings/customModules/{module}',
                 'projectMuteConfig' => 'projects/{project}/muteConfigs/{mute_config}',
                 'projectNotificationConfig' => 'projects/{project}/notificationConfigs/{notification_config}',
                 'projectSecurityHealthAnalyticsSettings' => 'projects/{project}/securityHealthAnalyticsSettings',
@@ -727,12 +1008,15 @@ return [
                 'projectSourceFindingExternalsystem' => 'projects/{project}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}',
                 'projectSourceFindingSecurityMarks' => 'projects/{project}/sources/{source}/findings/{finding}/securityMarks',
                 'projectTableProfile' => 'projects/{project}/tableProfiles/{table_profile}',
+                'resourceValueConfig' => 'organizations/{organization}/resourceValueConfigs/{resource_value_config}',
                 'securityHealthAnalyticsCustomModule' => 'organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}',
                 'securityHealthAnalyticsSettings' => 'organizations/{organization}/securityHealthAnalyticsSettings',
                 'securityMarks' => 'organizations/{organization}/assets/{asset}/securityMarks',
+                'simulation' => 'organizations/{organization}/simulations/{simulation}',
                 'source' => 'organizations/{organization}/sources/{source}',
                 'tableDataProfile' => 'projects/{project}/tableProfiles/{table_profile}',
                 'topic' => 'projects/{project}/topics/{topic}',
+                'valuedResource' => 'organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}',
             ],
         ],
     ],

@@ -23,13 +23,13 @@ class AddTrialMeasurementRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string trial_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $trial_name = '';
+    protected $trial_name = '';
     /**
      * Required. The measurement to be added to a Trial.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Measurement measurement = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $measurement = null;
+    protected $measurement = null;
 
     /**
      * Constructor.

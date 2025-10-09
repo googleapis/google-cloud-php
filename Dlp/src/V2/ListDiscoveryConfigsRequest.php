@@ -18,7 +18,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource name.
      * The format of this value is as follows:
-     * `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * `projects/{project_id}/locations/{location_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -26,7 +26,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Page token to continue retrieval. Comes from the previous call
      * to ListDiscoveryConfigs. `order_by` field must not
@@ -34,15 +34,15 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Size of the page. This value can be limited by a server.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
-     * Comma separated list of config fields to order by,
+     * Comma-separated list of config fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.
@@ -54,13 +54,13 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. Parent resource name.
      *
      *                       The format of this value is as follows:
-     *                       `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *                       `projects/{project_id}/locations/{location_id}`
      *
      *                       The following example `parent` string specifies a parent project with the
      *                       identifier `example-project`, and specifies the `europe-west3` location
@@ -88,7 +88,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Parent resource name.
      *           The format of this value is as follows:
-     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           `projects/{project_id}/locations/{location_id}`
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
      *           for processing data:
@@ -100,7 +100,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
      *     @type int $page_size
      *           Size of the page. This value can be limited by a server.
      *     @type string $order_by
-     *           Comma separated list of config fields to order by,
+     *           Comma-separated list of config fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case insensitive. The
      *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
@@ -119,7 +119,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource name.
      * The format of this value is as follows:
-     * `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * `projects/{project_id}/locations/{location_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -136,7 +136,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource name.
      * The format of this value is as follows:
-     * `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * `projects/{project_id}/locations/{location_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -211,7 +211,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Comma separated list of config fields to order by,
+     * Comma-separated list of config fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.
@@ -230,7 +230,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Comma separated list of config fields to order by,
+     * Comma-separated list of config fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.

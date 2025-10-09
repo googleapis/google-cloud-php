@@ -21,7 +21,7 @@ class AttestorPublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string comment = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $comment = '';
+    protected $comment = '';
     /**
      * The ID of this public key.
      * Signatures verified by BinAuthz must include the ID of the public key that
@@ -33,7 +33,7 @@ class AttestorPublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
     protected $public_key;
 
     /**

@@ -29,13 +29,13 @@ class StatusCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 2;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Canonical code of the condition.
      *
      * Generated from protobuf field <code>.google.rpc.Code canonical_code = 3;</code>
      */
-    private $canonical_code = 0;
+    protected $canonical_code = 0;
 
     /**
      * Constructor.
@@ -67,7 +67,9 @@ class StatusCondition extends \Google\Protobuf\Internal\Message
      */
     public function getCode()
     {
-        @trigger_error('code is deprecated.', E_USER_DEPRECATED);
+        if ($this->code !== 0) {
+            @trigger_error('code is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->code;
     }
 

@@ -19,13 +19,13 @@ class InstanceMoveRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string destination_zone = 131854653;</code>
      */
-    private $destination_zone = null;
+    protected $destination_zone = null;
     /**
      * The URL of the target instance to move. This can be a full or partial URL. For example, the following are all valid URLs to an instance: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance - zones/zone/instances/instance 
      *
      * Generated from protobuf field <code>optional string target_instance = 289769347;</code>
      */
-    private $target_instance = null;
+    protected $target_instance = null;
 
     /**
      * Constructor.

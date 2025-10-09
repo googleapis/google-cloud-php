@@ -20,27 +20,27 @@ class Contact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.PostalAddress postal_address = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $postal_address = null;
+    protected $postal_address = null;
     /**
      * Required. Email address of the contact.
      *
      * Generated from protobuf field <code>string email = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $email = '';
+    protected $email = '';
     /**
      * Required. Phone number of the contact in international format. For example,
      * `"+1-800-555-0123"`.
      *
      * Generated from protobuf field <code>string phone_number = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $phone_number = '';
+    protected $phone_number = '';
     /**
      * Fax number of the contact in international format. For example,
      * `"+1-800-555-0123"`.
      *
      * Generated from protobuf field <code>string fax_number = 4;</code>
      */
-    private $fax_number = '';
+    protected $fax_number = '';
 
     /**
      * Constructor.

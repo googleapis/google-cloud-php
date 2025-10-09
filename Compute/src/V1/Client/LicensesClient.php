@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -36,7 +37,6 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\DeleteLicenseRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyLicenseRequest;
 use Google\Cloud\Compute\V1\GetLicenseRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertLicenseRequest;
 use Google\Cloud\Compute\V1\License;
 use Google\Cloud\Compute\V1\ListLicensesRequest;
@@ -44,7 +44,9 @@ use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetIamPolicyLicenseRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsLicenseRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
+use Google\Cloud\Compute\V1\UpdateLicenseRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Licenses API.
@@ -52,13 +54,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteLicenseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetLicenseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyLicenseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertLicenseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListLicensesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyLicenseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<License> getAsync(GetLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListLicensesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateLicenseRequest $request, array $optionalArgs = [])
  */
 final class LicensesClient
 {
@@ -107,7 +110,6 @@ final class LicensesClient
                     'restClientConfigPath' => __DIR__ . '/../resources/licenses_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -120,9 +122,7 @@ final class LicensesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -139,9 +139,7 @@ final class LicensesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -169,29 +167,57 @@ final class LicensesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\LicensesClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new LicensesClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -222,11 +248,16 @@ final class LicensesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -248,6 +279,8 @@ final class LicensesClient
      * Deletes the specified license. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
      * The async variant is {@see LicensesClient::deleteAsync()} .
+     *
+     * @example samples/V1/LicensesClient/delete.php
      *
      * @param DeleteLicenseRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -273,6 +306,8 @@ final class LicensesClient
      *
      * The async variant is {@see LicensesClient::getAsync()} .
      *
+     * @example samples/V1/LicensesClient/get.php
+     *
      * @param GetLicenseRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -296,6 +331,8 @@ final class LicensesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
      * The async variant is {@see LicensesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/LicensesClient/get_iam_policy.php
      *
      * @param GetIamPolicyLicenseRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -321,6 +358,8 @@ final class LicensesClient
      *
      * The async variant is {@see LicensesClient::insertAsync()} .
      *
+     * @example samples/V1/LicensesClient/insert.php
+     *
      * @param InsertLicenseRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -344,6 +383,8 @@ final class LicensesClient
      * Retrieves the list of licenses available in the specified project. This method does not get any licenses that belong to other projects, including licenses attached to publicly-available images, like Debian 9. If you want to get a list of publicly-available licenses, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
      * The async variant is {@see LicensesClient::listAsync()} .
+     *
+     * @example samples/V1/LicensesClient/list.php
      *
      * @param ListLicensesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -369,6 +410,8 @@ final class LicensesClient
      *
      * The async variant is {@see LicensesClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/LicensesClient/set_iam_policy.php
+     *
      * @param SetIamPolicyLicenseRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -393,6 +436,8 @@ final class LicensesClient
      *
      * The async variant is {@see LicensesClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/LicensesClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsLicenseRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -407,8 +452,36 @@ final class LicensesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsLicenseRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsLicenseRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a License resource in the specified project. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
+     *
+     * The async variant is {@see LicensesClient::updateAsync()} .
+     *
+     * @example samples/V1/LicensesClient/update.php
+     *
+     * @param UpdateLicenseRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function update(UpdateLicenseRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Update', $request, $callOptions)->wait();
     }
 }

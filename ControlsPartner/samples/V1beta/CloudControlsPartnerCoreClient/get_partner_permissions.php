@@ -32,7 +32,7 @@ use Google\Cloud\CloudControlsPartner\V1beta\PartnerPermissions;
  * Gets the partner permissions granted for a workload
  *
  * @param string $formattedName Name of the resource to get in the format:
- *                              organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions
+ *                              `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions`
  *                              Please see {@see CloudControlsPartnerCoreClient::partnerPermissionsName()} for help formatting this field.
  */
 function get_partner_permissions_sample(string $formattedName): void

@@ -60,7 +60,7 @@ items:
           description: 'Score of the result. Range [0, 1].'
         -
           id: '↳ bounding_poly'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: 'Image region to which this object belongs. This must be populated.'
   -
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getMid()'
@@ -204,7 +204,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::hasBoundingPoly()'
     name: hasBoundingPoly
@@ -234,7 +234,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: ''
       returns:
         -

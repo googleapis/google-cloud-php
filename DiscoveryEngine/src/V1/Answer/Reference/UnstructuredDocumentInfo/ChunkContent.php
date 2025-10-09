@@ -27,6 +27,16 @@ class ChunkContent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_identifier = 2;</code>
      */
     protected $page_identifier = '';
+    /**
+     * The relevance of the chunk for a given query. Values range from 0.0
+     * (completely irrelevant) to 1.0 (completely relevant).
+     * This value is for informational purpose only. It may change for
+     * the same query and chunk at any time due to a model retraining or
+     * change in implementation.
+     *
+     * Generated from protobuf field <code>optional float relevance_score = 3;</code>
+     */
+    protected $relevance_score = null;
 
     /**
      * Constructor.
@@ -38,6 +48,12 @@ class ChunkContent extends \Google\Protobuf\Internal\Message
      *           Chunk textual content.
      *     @type string $page_identifier
      *           Page identifier.
+     *     @type float $relevance_score
+     *           The relevance of the chunk for a given query. Values range from 0.0
+     *           (completely irrelevant) to 1.0 (completely relevant).
+     *           This value is for informational purpose only. It may change for
+     *           the same query and chunk at any time due to a model retraining or
+     *           change in implementation.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +109,50 @@ class ChunkContent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_identifier = $var;
+
+        return $this;
+    }
+
+    /**
+     * The relevance of the chunk for a given query. Values range from 0.0
+     * (completely irrelevant) to 1.0 (completely relevant).
+     * This value is for informational purpose only. It may change for
+     * the same query and chunk at any time due to a model retraining or
+     * change in implementation.
+     *
+     * Generated from protobuf field <code>optional float relevance_score = 3;</code>
+     * @return float
+     */
+    public function getRelevanceScore()
+    {
+        return isset($this->relevance_score) ? $this->relevance_score : 0.0;
+    }
+
+    public function hasRelevanceScore()
+    {
+        return isset($this->relevance_score);
+    }
+
+    public function clearRelevanceScore()
+    {
+        unset($this->relevance_score);
+    }
+
+    /**
+     * The relevance of the chunk for a given query. Values range from 0.0
+     * (completely irrelevant) to 1.0 (completely relevant).
+     * This value is for informational purpose only. It may change for
+     * the same query and chunk at any time due to a model retraining or
+     * change in implementation.
+     *
+     * Generated from protobuf field <code>optional float relevance_score = 3;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setRelevanceScore($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->relevance_score = $var;
 
         return $this;
     }

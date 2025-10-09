@@ -23,7 +23,7 @@ class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string attestor = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $attestor = '';
+    protected $attestor = '';
     /**
      * Required. An [AttestationOccurrence][grafeas.v1.AttestationOccurrence] to
      * be checked that it can be verified by the Attestor. It does not have to be
@@ -32,21 +32,21 @@ class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>.grafeas.v1.AttestationOccurrence attestation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $attestation = null;
+    protected $attestation = null;
     /**
      * Required. The resource name of the [Note][grafeas.v1.Note] to which the
      * containing [Occurrence][grafeas.v1.Occurrence] is associated.
      *
      * Generated from protobuf field <code>string occurrence_note = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $occurrence_note = '';
+    protected $occurrence_note = '';
     /**
      * Required. The URI of the artifact (e.g. container image) that is the
      * subject of the containing [Occurrence][grafeas.v1.Occurrence].
      *
      * Generated from protobuf field <code>string occurrence_resource_uri = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $occurrence_resource_uri = '';
+    protected $occurrence_resource_uri = '';
 
     /**
      * Constructor.

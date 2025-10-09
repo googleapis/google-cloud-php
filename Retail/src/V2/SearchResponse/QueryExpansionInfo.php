@@ -21,7 +21,7 @@ class QueryExpansionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool expanded_query = 1;</code>
      */
-    private $expanded_query = false;
+    protected $expanded_query = false;
     /**
      * Number of pinned results. This field will only be set when expansion
      * happens and
@@ -30,7 +30,7 @@ class QueryExpansionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 pinned_result_count = 2;</code>
      */
-    private $pinned_result_count = 0;
+    protected $pinned_result_count = 0;
 
     /**
      * Constructor.

@@ -23,14 +23,14 @@ class Measurement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration elapsed_duration = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $elapsed_duration = null;
+    protected $elapsed_duration = null;
     /**
      * Output only. The number of steps the machine learning model has been
      * trained for. Must be non-negative.
      *
      * Generated from protobuf field <code>int64 step_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $step_count = 0;
+    protected $step_count = 0;
     /**
      * Output only. A list of metrics got by evaluating the objective functions
      * using suggested Parameter values.

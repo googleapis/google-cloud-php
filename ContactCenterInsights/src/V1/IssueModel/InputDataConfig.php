@@ -29,14 +29,14 @@ class InputDataConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 training_conversations_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $training_conversations_count = 0;
+    protected $training_conversations_count = 0;
     /**
      * A filter to reduce the conversations used for training the model to a
      * specific subset.
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * Constructor.
@@ -71,7 +71,9 @@ class InputDataConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMedium()
     {
-        @trigger_error('medium is deprecated.', E_USER_DEPRECATED);
+        if ($this->medium !== 0) {
+            @trigger_error('medium is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->medium;
     }
 

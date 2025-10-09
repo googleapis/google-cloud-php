@@ -24,7 +24,7 @@ class SampledShapleyAttribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 path_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $path_count = 0;
+    protected $path_count = 0;
 
     /**
      * Constructor.

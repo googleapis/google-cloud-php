@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/oslogin/(.*)/.*-php/(.*)
+    - source: /google/cloud/oslogin/(v1)/.*-php/(.*)
       dest: /owl-bot-staging/OsLogin/$1/$2
 api-name: OsLogin

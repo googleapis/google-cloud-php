@@ -21,14 +21,14 @@ class ErrorLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 line = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $line = 0;
+    protected $line = 0;
     /**
      * Optional. If applicable, denotes the column where the error occurred. A
      * zero value means that there is no columns information.
      *
      * Generated from protobuf field <code>int32 column = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $column = 0;
+    protected $column = 0;
 
     /**
      * Constructor.

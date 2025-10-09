@@ -31,7 +31,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\Key;
 /**
  * Creates a new reCAPTCHA Enterprise key.
  *
- * @param string $formattedParent The name of the project in which the key will be created, in the
+ * @param string $formattedParent The name of the project in which the key is created, in the
  *                                format `projects/{project}`. Please see
  *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
  * @param string $keyDisplayName  Human-readable display name of this key. Modifiable by user.

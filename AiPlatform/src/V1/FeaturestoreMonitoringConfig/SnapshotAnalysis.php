@@ -33,14 +33,14 @@ class SnapshotAnalysis extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disabled = 1;</code>
      */
-    private $disabled = false;
+    protected $disabled = false;
     /**
      * Configuration of the snapshot analysis based monitoring pipeline
      * running interval. The value indicates number of days.
      *
      * Generated from protobuf field <code>int32 monitoring_interval_days = 3;</code>
      */
-    private $monitoring_interval_days = 0;
+    protected $monitoring_interval_days = 0;
     /**
      * Customized export features time window for snapshot analysis. Unit is one
      * day. Default value is 3 weeks. Minimum value is 1 day. Maximum value is
@@ -48,7 +48,7 @@ class SnapshotAnalysis extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 staleness_days = 4;</code>
      */
-    private $staleness_days = 0;
+    protected $staleness_days = 0;
 
     /**
      * Constructor.

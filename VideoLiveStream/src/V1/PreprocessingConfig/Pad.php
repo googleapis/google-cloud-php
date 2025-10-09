@@ -21,25 +21,25 @@ class Pad extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 top_pixels = 1;</code>
      */
-    private $top_pixels = 0;
+    protected $top_pixels = 0;
     /**
      * The number of pixels to add to the bottom. The default is 0.
      *
      * Generated from protobuf field <code>int32 bottom_pixels = 2;</code>
      */
-    private $bottom_pixels = 0;
+    protected $bottom_pixels = 0;
     /**
      * The number of pixels to add to the left. The default is 0.
      *
      * Generated from protobuf field <code>int32 left_pixels = 3;</code>
      */
-    private $left_pixels = 0;
+    protected $left_pixels = 0;
     /**
      * The number of pixels to add to the right. The default is 0.
      *
      * Generated from protobuf field <code>int32 right_pixels = 4;</code>
      */
-    private $right_pixels = 0;
+    protected $right_pixels = 0;
 
     /**
      * Constructor.

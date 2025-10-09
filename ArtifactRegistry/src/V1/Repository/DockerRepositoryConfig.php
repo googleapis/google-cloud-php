@@ -24,7 +24,7 @@ class DockerRepositoryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool immutable_tags = 1;</code>
      */
-    private $immutable_tags = false;
+    protected $immutable_tags = false;
 
     /**
      * Constructor.
@@ -75,6 +75,4 @@ class DockerRepositoryConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DockerRepositoryConfig::class, \Google\Cloud\ArtifactRegistry\V1\Repository_DockerRepositoryConfig::class);
 

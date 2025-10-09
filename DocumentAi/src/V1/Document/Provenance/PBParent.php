@@ -21,14 +21,14 @@ class PBParent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 revision = 1;</code>
      */
-    private $revision = 0;
+    protected $revision = 0;
     /**
      * The index of the parent item in the corresponding item list (eg. list
      * of entities, properties within entities, etc.) in the parent revision.
      *
      * Generated from protobuf field <code>int32 index = 3;</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * The id of the parent provenance.
      *
@@ -120,7 +120,9 @@ class PBParent extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        @trigger_error('id is deprecated.', E_USER_DEPRECATED);
+        if ($this->id !== 0) {
+            @trigger_error('id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->id;
     }
 

@@ -24,7 +24,7 @@ class RunReportJobResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ReportJob report_job = 1;</code>
      */
-    private $report_job = null;
+    protected $report_job = null;
     /**
      * The metadata for the report's results (display name, columns, row count,
      * and date range). If you view this before the operation finishes,
@@ -32,7 +32,7 @@ class RunReportJobResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ReportResultsMetadata report_metadata = 2;</code>
      */
-    private $report_metadata = null;
+    protected $report_metadata = null;
 
     /**
      * Constructor.

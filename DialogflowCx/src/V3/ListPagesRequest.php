@@ -18,8 +18,8 @@ class ListPagesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The flow to list all pages for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -64,8 +64,8 @@ class ListPagesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The flow to list all pages for.
-     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                       ID>/flows/<Flow ID>`. Please see
+     *                       Format:
+     *                       `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`. Please see
      *                       {@see PagesClient::flowName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListPagesRequest
@@ -86,8 +86,8 @@ class ListPagesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The flow to list all pages for.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *     @type string $language_code
      *           The language to list pages for. The following fields are language
      *           dependent:
@@ -122,8 +122,8 @@ class ListPagesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The flow to list all pages for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -135,8 +135,8 @@ class ListPagesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The flow to list all pages for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

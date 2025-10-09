@@ -21,7 +21,7 @@ class AllocateQuotaResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operation_id = 1;</code>
      */
-    private $operation_id = '';
+    protected $operation_id = '';
     /**
      * Indicates the decision of the allocate.
      *
@@ -46,7 +46,7 @@ class AllocateQuotaResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_config_id = 4;</code>
      */
-    private $service_config_id = '';
+    protected $service_config_id = '';
 
     /**
      * Constructor.

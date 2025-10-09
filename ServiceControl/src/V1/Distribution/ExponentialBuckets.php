@@ -22,7 +22,7 @@ class ExponentialBuckets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 num_finite_buckets = 1;</code>
      */
-    private $num_finite_buckets = 0;
+    protected $num_finite_buckets = 0;
     /**
      * The i'th exponential bucket covers the interval
      *   [scale * growth_factor^(i-1), scale * growth_factor^i)
@@ -31,7 +31,7 @@ class ExponentialBuckets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double growth_factor = 2;</code>
      */
-    private $growth_factor = 0.0;
+    protected $growth_factor = 0.0;
     /**
      * The i'th exponential bucket covers the interval
      *   [scale * growth_factor^(i-1), scale * growth_factor^i)
@@ -40,7 +40,7 @@ class ExponentialBuckets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double scale = 3;</code>
      */
-    private $scale = 0.0;
+    protected $scale = 0.0;
 
     /**
      * Constructor.

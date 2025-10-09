@@ -21,14 +21,14 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tensorboard_time_series_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tensorboard_time_series_id = '';
+    protected $tensorboard_time_series_id = '';
     /**
      * Required. Immutable. The value type of this time series. All the values in
      * this time series data must match this value type.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardTimeSeries.ValueType value_type = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $value_type = 0;
+    protected $value_type = 0;
     /**
      * Required. Data points in this time series.
      *

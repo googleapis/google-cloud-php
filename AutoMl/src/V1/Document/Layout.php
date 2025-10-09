@@ -21,14 +21,14 @@ class Layout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.TextSegment text_segment = 1;</code>
      */
-    private $text_segment = null;
+    protected $text_segment = null;
     /**
      * Page number of the [text_segment][google.cloud.automl.v1.Document.Layout.text_segment] in the original document, starts
      * from 1.
      *
      * Generated from protobuf field <code>int32 page_number = 2;</code>
      */
-    private $page_number = 0;
+    protected $page_number = 0;
     /**
      * The position of the [text_segment][google.cloud.automl.v1.Document.Layout.text_segment] in the page.
      * Contains exactly 4
@@ -41,13 +41,13 @@ class Layout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.BoundingPoly bounding_poly = 3;</code>
      */
-    private $bounding_poly = null;
+    protected $bounding_poly = null;
     /**
      * The type of the [text_segment][google.cloud.automl.v1.Document.Layout.text_segment] in document.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.Document.Layout.TextSegmentType text_segment_type = 4;</code>
      */
-    private $text_segment_type = 0;
+    protected $text_segment_type = 0;
 
     /**
      * Constructor.
@@ -223,6 +223,4 @@ class Layout extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Layout::class, \Google\Cloud\AutoMl\V1\Document_Layout::class);
 

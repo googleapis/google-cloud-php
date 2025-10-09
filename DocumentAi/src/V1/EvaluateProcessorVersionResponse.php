@@ -22,7 +22,7 @@ class EvaluateProcessorVersionResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string evaluation = 2;</code>
      */
-    private $evaluation = '';
+    protected $evaluation = '';
 
     /**
      * Constructor.

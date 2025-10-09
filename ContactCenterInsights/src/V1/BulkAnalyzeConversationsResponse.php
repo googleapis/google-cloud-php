@@ -20,13 +20,13 @@ class BulkAnalyzeConversationsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 successful_analysis_count = 1;</code>
      */
-    private $successful_analysis_count = 0;
+    protected $successful_analysis_count = 0;
     /**
      * Count of failed analyses.
      *
      * Generated from protobuf field <code>int32 failed_analysis_count = 2;</code>
      */
-    private $failed_analysis_count = 0;
+    protected $failed_analysis_count = 0;
 
     /**
      * Constructor.

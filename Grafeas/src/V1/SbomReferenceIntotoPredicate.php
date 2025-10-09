@@ -20,19 +20,19 @@ class SbomReferenceIntotoPredicate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string referrer_id = 1;</code>
      */
-    private $referrer_id = '';
+    protected $referrer_id = '';
     /**
      * The location of the SBOM.
      *
      * Generated from protobuf field <code>string location = 2;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * The mime type of the SBOM.
      *
      * Generated from protobuf field <code>string mime_type = 3;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * A map of algorithm to digest of the contents of the SBOM.
      *

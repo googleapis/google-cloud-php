@@ -23,25 +23,25 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Free-text description of the resource.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The timestamp when the resource was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The timestamp when the resource was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Set of label tags associated with the resource.
      *
@@ -60,7 +60,7 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_open = 6;</code>
      */
-    private $allow_open = false;
+    protected $allow_open = false;
     /**
      * Defines a mechanism to provision server identity (public and private keys).
      * Cannot be combined with `allow_open` as a permissive mode that allows both
@@ -68,7 +68,7 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1.CertificateProvider server_certificate = 7;</code>
      */
-    private $server_certificate = null;
+    protected $server_certificate = null;
     /**
      * Defines a mechanism to provision peer validation certificates for peer to
      * peer authentication (Mutual TLS - mTLS). If not specified, client
@@ -78,7 +78,7 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1.ServerTlsPolicy.MTLSPolicy mtls_policy = 8;</code>
      */
-    private $mtls_policy = null;
+    protected $mtls_policy = null;
 
     /**
      * Constructor.

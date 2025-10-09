@@ -24,13 +24,13 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Execution execution = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $execution = null;
+    protected $execution = null;
     /**
      * Optional. A FieldMask indicating which fields should be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution]
      * is not found, a new [Execution][google.cloud.aiplatform.v1.Execution] is
@@ -38,7 +38,7 @@ class UpdateExecutionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\Execution $execution  Required. The Execution containing updates.

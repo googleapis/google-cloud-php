@@ -20,13 +20,13 @@ class AllocatedConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string psc_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $psc_uri = '';
+    protected $psc_uri = '';
     /**
      * Required. The ingress port of an allocated connection
      *
      * Generated from protobuf field <code>int32 ingress_port = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ingress_port = 0;
+    protected $ingress_port = 0;
 
     /**
      * Constructor.

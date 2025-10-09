@@ -21,14 +21,14 @@ class CreateEntitlementPurchase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sku = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sku = '';
+    protected $sku = '';
     /**
      * Optional. Billing account that the result should be restricted to.
      * Format: accounts/{account_id}/billingAccounts/{billing_account_id}.
      *
      * Generated from protobuf field <code>string billing_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $billing_account = '';
+    protected $billing_account = '';
 
     /**
      * Constructor.

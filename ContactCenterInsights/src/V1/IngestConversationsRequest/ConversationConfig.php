@@ -16,12 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConversationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * An opaque, user-specified string representing the human agent who handled
-     * the conversations.
+     * Optional. An opaque, user-specified string representing a human agent who
+     * handled all conversations in the import. Note that this will be
+     * overridden if per-conversation metadata is provided through the
+     * `metadata_bucket_uri`.
      *
-     * Generated from protobuf field <code>string agent_id = 1;</code>
+     * Generated from protobuf field <code>string agent_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $agent_id = '';
+    protected $agent_id = '';
     /**
      * Optional. Indicates which of the channels, 1 or 2, contains the agent.
      * Note that this must be set for conversations to be properly displayed and
@@ -29,7 +31,7 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 agent_channel = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $agent_channel = 0;
+    protected $agent_channel = 0;
     /**
      * Optional. Indicates which of the channels, 1 or 2, contains the agent.
      * Note that this must be set for conversations to be properly displayed and
@@ -37,7 +39,7 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 customer_channel = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $customer_channel = 0;
+    protected $customer_channel = 0;
 
     /**
      * Constructor.
@@ -46,8 +48,10 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $agent_id
-     *           An opaque, user-specified string representing the human agent who handled
-     *           the conversations.
+     *           Optional. An opaque, user-specified string representing a human agent who
+     *           handled all conversations in the import. Note that this will be
+     *           overridden if per-conversation metadata is provided through the
+     *           `metadata_bucket_uri`.
      *     @type int $agent_channel
      *           Optional. Indicates which of the channels, 1 or 2, contains the agent.
      *           Note that this must be set for conversations to be properly displayed and
@@ -64,10 +68,12 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An opaque, user-specified string representing the human agent who handled
-     * the conversations.
+     * Optional. An opaque, user-specified string representing a human agent who
+     * handled all conversations in the import. Note that this will be
+     * overridden if per-conversation metadata is provided through the
+     * `metadata_bucket_uri`.
      *
-     * Generated from protobuf field <code>string agent_id = 1;</code>
+     * Generated from protobuf field <code>string agent_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAgentId()
@@ -76,10 +82,12 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An opaque, user-specified string representing the human agent who handled
-     * the conversations.
+     * Optional. An opaque, user-specified string representing a human agent who
+     * handled all conversations in the import. Note that this will be
+     * overridden if per-conversation metadata is provided through the
+     * `metadata_bucket_uri`.
      *
-     * Generated from protobuf field <code>string agent_id = 1;</code>
+     * Generated from protobuf field <code>string agent_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

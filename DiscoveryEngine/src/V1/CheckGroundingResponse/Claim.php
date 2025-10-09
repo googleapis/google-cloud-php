@@ -17,14 +17,24 @@ class Claim extends \Google\Protobuf\Internal\Message
 {
     /**
      * Position indicating the start of the claim in the answer candidate,
-     * measured in bytes.
+     * measured in bytes. Note that this is not measured in characters and,
+     * therefore, must be rendered in the user interface keeping in mind that
+     * some characters may take more than one byte. For example,
+     * if the claim text contains non-ASCII characters, the start and end
+     * positions vary when measured in characters
+     * (programming-language-dependent) and when measured in bytes
+     * (programming-language-independent).
      *
      * Generated from protobuf field <code>optional int32 start_pos = 1;</code>
      */
     protected $start_pos = null;
     /**
      * Position indicating the end of the claim in the answer candidate,
-     * exclusive.
+     * exclusive, in bytes. Note that this is not measured in characters and,
+     * therefore, must be rendered as such. For example, if the claim text
+     * contains non-ASCII characters, the start and end positions vary when
+     * measured in characters (programming-language-dependent) and when measured
+     * in bytes (programming-language-independent).
      *
      * Generated from protobuf field <code>optional int32 end_pos = 2;</code>
      */
@@ -51,14 +61,20 @@ class Claim extends \Google\Protobuf\Internal\Message
      * decided this claim doesn't require attribution/grounding check, this
      * field will be set to false. In that case, no grounding check was done for
      * the claim and therefore
-     * [citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.citation_indices],
-     * and
-     * [anti_citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.anti_citation_indices]
+     * [citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.citation_indices]
      * should not be returned.
      *
      * Generated from protobuf field <code>optional bool grounding_check_required = 6;</code>
      */
     protected $grounding_check_required = null;
+    /**
+     * Confidence score for the claim in the answer candidate, in the range of
+     * [0, 1]. This is set only when
+     * `CheckGroundingRequest.grounding_spec.enable_claim_level_score` is true.
+     *
+     * Generated from protobuf field <code>optional double score = 7;</code>
+     */
+    protected $score = null;
 
     /**
      * Constructor.
@@ -68,10 +84,20 @@ class Claim extends \Google\Protobuf\Internal\Message
      *
      *     @type int $start_pos
      *           Position indicating the start of the claim in the answer candidate,
-     *           measured in bytes.
+     *           measured in bytes. Note that this is not measured in characters and,
+     *           therefore, must be rendered in the user interface keeping in mind that
+     *           some characters may take more than one byte. For example,
+     *           if the claim text contains non-ASCII characters, the start and end
+     *           positions vary when measured in characters
+     *           (programming-language-dependent) and when measured in bytes
+     *           (programming-language-independent).
      *     @type int $end_pos
      *           Position indicating the end of the claim in the answer candidate,
-     *           exclusive.
+     *           exclusive, in bytes. Note that this is not measured in characters and,
+     *           therefore, must be rendered as such. For example, if the claim text
+     *           contains non-ASCII characters, the start and end positions vary when
+     *           measured in characters (programming-language-dependent) and when measured
+     *           in bytes (programming-language-independent).
      *     @type string $claim_text
      *           Text for the claim in the answer candidate. Always provided regardless of
      *           whether citations or anti-citations are found.
@@ -86,10 +112,12 @@ class Claim extends \Google\Protobuf\Internal\Message
      *           decided this claim doesn't require attribution/grounding check, this
      *           field will be set to false. In that case, no grounding check was done for
      *           the claim and therefore
-     *           [citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.citation_indices],
-     *           and
-     *           [anti_citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.anti_citation_indices]
+     *           [citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.citation_indices]
      *           should not be returned.
+     *     @type float $score
+     *           Confidence score for the claim in the answer candidate, in the range of
+     *           [0, 1]. This is set only when
+     *           `CheckGroundingRequest.grounding_spec.enable_claim_level_score` is true.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,7 +127,13 @@ class Claim extends \Google\Protobuf\Internal\Message
 
     /**
      * Position indicating the start of the claim in the answer candidate,
-     * measured in bytes.
+     * measured in bytes. Note that this is not measured in characters and,
+     * therefore, must be rendered in the user interface keeping in mind that
+     * some characters may take more than one byte. For example,
+     * if the claim text contains non-ASCII characters, the start and end
+     * positions vary when measured in characters
+     * (programming-language-dependent) and when measured in bytes
+     * (programming-language-independent).
      *
      * Generated from protobuf field <code>optional int32 start_pos = 1;</code>
      * @return int
@@ -121,7 +155,13 @@ class Claim extends \Google\Protobuf\Internal\Message
 
     /**
      * Position indicating the start of the claim in the answer candidate,
-     * measured in bytes.
+     * measured in bytes. Note that this is not measured in characters and,
+     * therefore, must be rendered in the user interface keeping in mind that
+     * some characters may take more than one byte. For example,
+     * if the claim text contains non-ASCII characters, the start and end
+     * positions vary when measured in characters
+     * (programming-language-dependent) and when measured in bytes
+     * (programming-language-independent).
      *
      * Generated from protobuf field <code>optional int32 start_pos = 1;</code>
      * @param int $var
@@ -137,7 +177,11 @@ class Claim extends \Google\Protobuf\Internal\Message
 
     /**
      * Position indicating the end of the claim in the answer candidate,
-     * exclusive.
+     * exclusive, in bytes. Note that this is not measured in characters and,
+     * therefore, must be rendered as such. For example, if the claim text
+     * contains non-ASCII characters, the start and end positions vary when
+     * measured in characters (programming-language-dependent) and when measured
+     * in bytes (programming-language-independent).
      *
      * Generated from protobuf field <code>optional int32 end_pos = 2;</code>
      * @return int
@@ -159,7 +203,11 @@ class Claim extends \Google\Protobuf\Internal\Message
 
     /**
      * Position indicating the end of the claim in the answer candidate,
-     * exclusive.
+     * exclusive, in bytes. Note that this is not measured in characters and,
+     * therefore, must be rendered as such. For example, if the claim text
+     * contains non-ASCII characters, the start and end positions vary when
+     * measured in characters (programming-language-dependent) and when measured
+     * in bytes (programming-language-independent).
      *
      * Generated from protobuf field <code>optional int32 end_pos = 2;</code>
      * @param int $var
@@ -240,9 +288,7 @@ class Claim extends \Google\Protobuf\Internal\Message
      * decided this claim doesn't require attribution/grounding check, this
      * field will be set to false. In that case, no grounding check was done for
      * the claim and therefore
-     * [citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.citation_indices],
-     * and
-     * [anti_citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.anti_citation_indices]
+     * [citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.citation_indices]
      * should not be returned.
      *
      * Generated from protobuf field <code>optional bool grounding_check_required = 6;</code>
@@ -268,9 +314,7 @@ class Claim extends \Google\Protobuf\Internal\Message
      * decided this claim doesn't require attribution/grounding check, this
      * field will be set to false. In that case, no grounding check was done for
      * the claim and therefore
-     * [citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.citation_indices],
-     * and
-     * [anti_citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.anti_citation_indices]
+     * [citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.citation_indices]
      * should not be returned.
      *
      * Generated from protobuf field <code>optional bool grounding_check_required = 6;</code>
@@ -281,6 +325,46 @@ class Claim extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->grounding_check_required = $var;
+
+        return $this;
+    }
+
+    /**
+     * Confidence score for the claim in the answer candidate, in the range of
+     * [0, 1]. This is set only when
+     * `CheckGroundingRequest.grounding_spec.enable_claim_level_score` is true.
+     *
+     * Generated from protobuf field <code>optional double score = 7;</code>
+     * @return float
+     */
+    public function getScore()
+    {
+        return isset($this->score) ? $this->score : 0.0;
+    }
+
+    public function hasScore()
+    {
+        return isset($this->score);
+    }
+
+    public function clearScore()
+    {
+        unset($this->score);
+    }
+
+    /**
+     * Confidence score for the claim in the answer candidate, in the range of
+     * [0, 1]. This is set only when
+     * `CheckGroundingRequest.grounding_spec.enable_claim_level_score` is true.
+     *
+     * Generated from protobuf field <code>optional double score = 7;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setScore($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->score = $var;
 
         return $this;
     }

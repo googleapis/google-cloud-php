@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response of the updated widget.
- * Used to provide autocomplete options for a widget.
+ * For `selectionInput` widgets, returns autocomplete suggestions for a
+ * multiselect menu.
  *
  * Generated from protobuf message <code>google.chat.v1.ActionResponse.UpdatedWidget</code>
  */

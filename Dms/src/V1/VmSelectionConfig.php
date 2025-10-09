@@ -20,7 +20,7 @@ class VmSelectionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vm_zone = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vm_zone = '';
+    protected $vm_zone = '';
 
     /**
      * Constructor.

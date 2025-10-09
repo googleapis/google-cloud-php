@@ -19,11 +19,11 @@ class DataExchange extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name of the data exchange.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Human-readable display name of the data exchange. The display
      * name must contain only Unicode letters, numbers (0-9), underscores (_),
@@ -32,7 +32,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. Description of the data exchange. The description must not
      * contain Unicode non-characters as well as C0 and C1 control codes except
@@ -42,26 +42,26 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Email or URL of the primary point of contact of the data
      * exchange. Max Length: 1000 bytes.
      *
      * Generated from protobuf field <code>string primary_contact = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $primary_contact = '';
+    protected $primary_contact = '';
     /**
      * Optional. Documentation describing the data exchange.
      *
      * Generated from protobuf field <code>string documentation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $documentation = '';
+    protected $documentation = '';
     /**
      * Output only. Number of listings contained in the data exchange.
      *
      * Generated from protobuf field <code>int32 listing_count = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $listing_count = 0;
+    protected $listing_count = 0;
     /**
      * Optional. Base64 encoded image representing the data exchange. Max
      * Size: 3.0MiB Expected image dimensions are 512x512 pixels, however the API
@@ -71,13 +71,28 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes icon = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $icon = '';
+    protected $icon = '';
     /**
      * Optional. Configurable data sharing environment option for a data exchange.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig sharing_environment_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sharing_environment_config = null;
+    protected $sharing_environment_config = null;
+    /**
+     * Optional. Type of discovery on the discovery page for all the listings
+     * under this exchange. Updating this field also updates (overwrites) the
+     * discovery_type field for all the listings under this exchange.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $discovery_type = null;
+    /**
+     * Optional. By default, false.
+     * If true, the DataExchange has an email sharing mandate enabled.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $log_linked_dataset_query_user_email = null;
 
     /**
      * Constructor.
@@ -87,7 +102,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The resource name of the data exchange.
-     *           e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     *           e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *     @type string $display_name
      *           Required. Human-readable display name of the data exchange. The display
      *           name must contain only Unicode letters, numbers (0-9), underscores (_),
@@ -114,6 +129,13 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *           size of the data by 33-36%) when using JSON on the wire.
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\SharingEnvironmentConfig $sharing_environment_config
      *           Optional. Configurable data sharing environment option for a data exchange.
+     *     @type int $discovery_type
+     *           Optional. Type of discovery on the discovery page for all the listings
+     *           under this exchange. Updating this field also updates (overwrites) the
+     *           discovery_type field for all the listings under this exchange.
+     *     @type bool $log_linked_dataset_query_user_email
+     *           Optional. By default, false.
+     *           If true, the DataExchange has an email sharing mandate enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,7 +145,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the data exchange.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -135,7 +157,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the data exchange.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -361,6 +383,84 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\SharingEnvironmentConfig::class);
         $this->sharing_environment_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Type of discovery on the discovery page for all the listings
+     * under this exchange. Updating this field also updates (overwrites) the
+     * discovery_type field for all the listings under this exchange.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDiscoveryType()
+    {
+        return isset($this->discovery_type) ? $this->discovery_type : 0;
+    }
+
+    public function hasDiscoveryType()
+    {
+        return isset($this->discovery_type);
+    }
+
+    public function clearDiscoveryType()
+    {
+        unset($this->discovery_type);
+    }
+
+    /**
+     * Optional. Type of discovery on the discovery page for all the listings
+     * under this exchange. Updating this field also updates (overwrites) the
+     * discovery_type field for all the listings under this exchange.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDiscoveryType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\DiscoveryType::class);
+        $this->discovery_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. By default, false.
+     * If true, the DataExchange has an email sharing mandate enabled.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getLogLinkedDatasetQueryUserEmail()
+    {
+        return isset($this->log_linked_dataset_query_user_email) ? $this->log_linked_dataset_query_user_email : false;
+    }
+
+    public function hasLogLinkedDatasetQueryUserEmail()
+    {
+        return isset($this->log_linked_dataset_query_user_email);
+    }
+
+    public function clearLogLinkedDatasetQueryUserEmail()
+    {
+        unset($this->log_linked_dataset_query_user_email);
+    }
+
+    /**
+     * Optional. By default, false.
+     * If true, the DataExchange has an email sharing mandate enabled.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLogLinkedDatasetQueryUserEmail($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->log_linked_dataset_query_user_email = $var;
 
         return $this;
     }

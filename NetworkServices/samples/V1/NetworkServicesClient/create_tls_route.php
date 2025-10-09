@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_CreateTlsRoute_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\CreateTlsRouteRequest;
 use Google\Cloud\NetworkServices\V1\TlsRoute;
 use Google\Cloud\NetworkServices\V1\TlsRoute\RouteAction;
 use Google\Cloud\NetworkServices\V1\TlsRoute\RouteDestination;
@@ -40,21 +41,18 @@ use Google\Rpc\Status;
  *                                                                    format `projects/&#42;/locations/global`. Please see
  *                                                                    {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $tlsRouteId                                          Short name of the TlsRoute resource to be created.
- * @param string $tlsRouteName                                        Name of the TlsRoute resource. It matches pattern
- *                                                                    `projects/&#42;/locations/global/tlsRoutes/tls_route_name>`.
  * @param string $formattedTlsRouteRulesActionDestinationsServiceName The URL of a BackendService to route traffic to. Please see
  *                                                                    {@see NetworkServicesClient::backendServiceName()} for help formatting this field.
  */
 function create_tls_route_sample(
     string $formattedParent,
     string $tlsRouteId,
-    string $tlsRouteName,
     string $formattedTlsRouteRulesActionDestinationsServiceName
 ): void {
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tlsRouteRulesMatches = [new RouteMatch()];
     $routeDestination = (new RouteDestination())
         ->setServiceName($formattedTlsRouteRulesActionDestinationsServiceName);
@@ -66,13 +64,16 @@ function create_tls_route_sample(
         ->setAction($tlsRouteRulesAction);
     $tlsRouteRules = [$routeRule,];
     $tlsRoute = (new TlsRoute())
-        ->setName($tlsRouteName)
         ->setRules($tlsRouteRules);
+    $request = (new CreateTlsRouteRequest())
+        ->setParent($formattedParent)
+        ->setTlsRouteId($tlsRouteId)
+        ->setTlsRoute($tlsRoute);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->createTlsRoute($formattedParent, $tlsRouteId, $tlsRoute);
+        $response = $networkServicesClient->createTlsRoute($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -102,7 +103,6 @@ function callSample(): void
 {
     $formattedParent = NetworkServicesClient::locationName('[PROJECT]', '[LOCATION]');
     $tlsRouteId = '[TLS_ROUTE_ID]';
-    $tlsRouteName = '[NAME]';
     $formattedTlsRouteRulesActionDestinationsServiceName = NetworkServicesClient::backendServiceName(
         '[PROJECT]',
         '[LOCATION]',
@@ -112,7 +112,6 @@ function callSample(): void
     create_tls_route_sample(
         $formattedParent,
         $tlsRouteId,
-        $tlsRouteName,
         $formattedTlsRouteRulesActionDestinationsServiceName
     );
 }

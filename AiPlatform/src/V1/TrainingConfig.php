@@ -23,7 +23,7 @@ class TrainingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 timeout_training_milli_hours = 1;</code>
      */
-    private $timeout_training_milli_hours = 0;
+    protected $timeout_training_milli_hours = 0;
 
     /**
      * Constructor.

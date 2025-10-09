@@ -20,19 +20,19 @@ class BulkDeleteConversationsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The time the operation finished running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The original request for bulk delete.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.BulkDeleteConversationsRequest request = 3;</code>
      */
-    private $request = null;
+    protected $request = null;
     /**
      * Partial errors during bulk delete conversations operation that might cause
      * the operation output to be incomplete.

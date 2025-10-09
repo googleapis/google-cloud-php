@@ -23,13 +23,13 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The EntityType to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EntityType entity_type = 2;</code>
      */
-    private $entity_type = null;
+    protected $entity_type = null;
     /**
      * Required. The ID to use for the EntityType, which will become the final
      * component of the EntityType's resource name.
@@ -39,7 +39,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_type_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entity_type_id = '';
+    protected $entity_type_id = '';
 
     /**
      * @param string                                 $parent     Required. The resource name of the Featurestore to create EntityTypes.

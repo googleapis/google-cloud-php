@@ -19,14 +19,14 @@ class SecurityPolicyRuleRedirectOptions extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>optional string target = 192835985;</code>
      */
-    private $target = null;
+    protected $target = null;
     /**
-     * Type of the redirect action.
+     * Type of the redirect action. Possible values are: - GOOGLE_RECAPTCHA: redirect to reCAPTCHA for manual challenge assessment. - EXTERNAL_302: redirect to a different URL via a 302 response.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.
@@ -37,7 +37,7 @@ class SecurityPolicyRuleRedirectOptions extends \Google\Protobuf\Internal\Messag
      *     @type string $target
      *           Target for the redirect action. This is required if the type is EXTERNAL_302 and cannot be specified for GOOGLE_RECAPTCHA.
      *     @type string $type
-     *           Type of the redirect action.
+     *           Type of the redirect action. Possible values are: - GOOGLE_RECAPTCHA: redirect to reCAPTCHA for manual challenge assessment. - EXTERNAL_302: redirect to a different URL via a 302 response.
      *           Check the Type enum for the list of possible values.
      * }
      */
@@ -83,7 +83,7 @@ class SecurityPolicyRuleRedirectOptions extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Type of the redirect action.
+     * Type of the redirect action. Possible values are: - GOOGLE_RECAPTCHA: redirect to reCAPTCHA for manual challenge assessment. - EXTERNAL_302: redirect to a different URL via a 302 response.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -105,7 +105,7 @@ class SecurityPolicyRuleRedirectOptions extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Type of the redirect action.
+     * Type of the redirect action. Possible values are: - GOOGLE_RECAPTCHA: redirect to reCAPTCHA for manual challenge assessment. - EXTERNAL_302: redirect to a different URL via a 302 response.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>

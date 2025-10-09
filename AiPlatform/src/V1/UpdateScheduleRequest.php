@@ -25,14 +25,14 @@ class UpdateScheduleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schedule schedule = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $schedule = null;
+    protected $schedule = null;
     /**
      * Required. The update mask applies to the resource. See
      * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\Schedule $schedule   Required. The Schedule which replaces the resource on the server.

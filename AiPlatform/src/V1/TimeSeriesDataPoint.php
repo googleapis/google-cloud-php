@@ -20,13 +20,13 @@ class TimeSeriesDataPoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp wall_time = 1;</code>
      */
-    private $wall_time = null;
+    protected $wall_time = null;
     /**
      * Step index of this data point within the run.
      *
      * Generated from protobuf field <code>int64 step = 2;</code>
      */
-    private $step = 0;
+    protected $step = 0;
     protected $value;
 
     /**

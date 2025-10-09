@@ -21,7 +21,7 @@ class PublishChannelConnectionEventsRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string channel_connection = 1;</code>
      */
-    private $channel_connection = '';
+    protected $channel_connection = '';
     /**
      * The CloudEvents v1.0 events to publish. No other types are allowed.
      * If this field is set, then the `text_events` fields must not be set.

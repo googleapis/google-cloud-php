@@ -21,7 +21,7 @@ class NetworkSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.appengine.v1.NetworkSettings.IngressTrafficAllowed ingress_traffic_allowed = 1;</code>
      */
-    private $ingress_traffic_allowed = 0;
+    protected $ingress_traffic_allowed = 0;
 
     /**
      * Constructor.

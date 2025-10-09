@@ -35,11 +35,14 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      */
     protected $accept_terms_of_service = null;
     /**
-     * Optional. If specified, an account service between the account to be
-     * created and the provider account is initialized as part of the
-     * creation.
+     * Required. An account service between the account to be created and the
+     * provider account is initialized as part of the creation. At least one such
+     * service needs to be provided. Currently exactly one of these needs to be
+     * `account_aggregation`, which means you can only create sub accounts, not
+     * standalone account through this method. Additional `account_management` or
+     * `product_management` services may be provided.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $service;
 
@@ -57,9 +60,12 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The Terms of Service (ToS) to be accepted immediately upon
      *           account creation.
      *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\CreateAndConfigureAccountRequest\AddAccountService>|\Google\Protobuf\Internal\RepeatedField $service
-     *           Optional. If specified, an account service between the account to be
-     *           created and the provider account is initialized as part of the
-     *           creation.
+     *           Required. An account service between the account to be created and the
+     *           provider account is initialized as part of the creation. At least one such
+     *           service needs to be provided. Currently exactly one of these needs to be
+     *           `account_aggregation`, which means you can only create sub accounts, not
+     *           standalone account through this method. Additional `account_management` or
+     *           `product_management` services may be provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -168,11 +174,14 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If specified, an account service between the account to be
-     * created and the provider account is initialized as part of the
-     * creation.
+     * Required. An account service between the account to be created and the
+     * provider account is initialized as part of the creation. At least one such
+     * service needs to be provided. Currently exactly one of these needs to be
+     * `account_aggregation`, which means you can only create sub accounts, not
+     * standalone account through this method. Additional `account_management` or
+     * `product_management` services may be provided.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getService()
@@ -181,11 +190,14 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If specified, an account service between the account to be
-     * created and the provider account is initialized as part of the
-     * creation.
+     * Required. An account service between the account to be created and the
+     * provider account is initialized as part of the creation. At least one such
+     * service needs to be provided. Currently exactly one of these needs to be
+     * `account_aggregation`, which means you can only create sub accounts, not
+     * standalone account through this method. Additional `account_management` or
+     * `product_management` services may be provided.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Shopping\Merchant\Accounts\V1beta\CreateAndConfigureAccountRequest\AddAccountService>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

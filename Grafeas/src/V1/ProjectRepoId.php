@@ -21,13 +21,13 @@ class ProjectRepoId extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The name of the repo. Leave empty for the default repo.
      *
      * Generated from protobuf field <code>string repo_name = 2;</code>
      */
-    private $repo_name = '';
+    protected $repo_name = '';
 
     /**
      * Constructor.

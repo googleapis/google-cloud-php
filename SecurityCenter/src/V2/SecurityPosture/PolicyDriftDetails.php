@@ -22,21 +22,21 @@ class PolicyDriftDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field = 1;</code>
      */
-    private $field = '';
+    protected $field = '';
     /**
      * The value of this field that was configured in a posture, for example,
      * `true` or `allowed_values={"projects/29831892"}`.
      *
      * Generated from protobuf field <code>string expected_value = 2;</code>
      */
-    private $expected_value = '';
+    protected $expected_value = '';
     /**
      * The detected value that violates the deployed posture, for example,
      * `false` or `allowed_values={"projects/22831892"}`.
      *
      * Generated from protobuf field <code>string detected_value = 3;</code>
      */
-    private $detected_value = '';
+    protected $detected_value = '';
 
     /**
      * Constructor.
@@ -146,6 +146,4 @@ class PolicyDriftDetails extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PolicyDriftDetails::class, \Google\Cloud\SecurityCenter\V2\SecurityPosture_PolicyDriftDetails::class);
 

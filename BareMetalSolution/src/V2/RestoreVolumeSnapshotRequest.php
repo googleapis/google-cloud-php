@@ -21,7 +21,7 @@ class RestoreVolumeSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string volume_snapshot = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $volume_snapshot = '';
+    protected $volume_snapshot = '';
 
     /**
      * @param string $volumeSnapshot Required. Name of the snapshot which will be used to restore its parent

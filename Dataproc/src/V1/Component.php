@@ -20,14 +20,21 @@ class Component
      */
     const COMPONENT_UNSPECIFIED = 0;
     /**
-     * The Anaconda python distribution. The Anaconda component is not supported
-     * in the Dataproc [2.0 image]
-     * (/https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-release-2.0).
-     * The 2.0 image is pre-installed with Miniconda.
+     * The Anaconda component is no longer supported or applicable to
+     * [supported Dataproc on Compute Engine image versions]
+     * (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-version-clusters#supported-dataproc-image-versions).
+     * It cannot be activated on clusters created with supported Dataproc on
+     * Compute Engine image versions.
      *
      * Generated from protobuf enum <code>ANACONDA = 5;</code>
      */
     const ANACONDA = 5;
+    /**
+     * Delta Lake.
+     *
+     * Generated from protobuf enum <code>DELTA = 20;</code>
+     */
+    const DELTA = 20;
     /**
      * Docker
      *
@@ -65,11 +72,29 @@ class Component
      */
     const HUDI = 18;
     /**
+     * Iceberg.
+     *
+     * Generated from protobuf enum <code>ICEBERG = 19;</code>
+     */
+    const ICEBERG = 19;
+    /**
      * The Jupyter Notebook.
      *
      * Generated from protobuf enum <code>JUPYTER = 1;</code>
      */
     const JUPYTER = 1;
+    /**
+     * The Jupyter Kernel Gateway.
+     *
+     * Generated from protobuf enum <code>JUPYTER_KERNEL_GATEWAY = 22;</code>
+     */
+    const JUPYTER_KERNEL_GATEWAY = 22;
+    /**
+     * The Pig component.
+     *
+     * Generated from protobuf enum <code>PIG = 21;</code>
+     */
+    const PIG = 21;
     /**
      * The Presto query engine.
      *
@@ -110,13 +135,17 @@ class Component
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
         self::ANACONDA => 'ANACONDA',
+        self::DELTA => 'DELTA',
         self::DOCKER => 'DOCKER',
         self::DRUID => 'DRUID',
         self::FLINK => 'FLINK',
         self::HBASE => 'HBASE',
         self::HIVE_WEBHCAT => 'HIVE_WEBHCAT',
         self::HUDI => 'HUDI',
+        self::ICEBERG => 'ICEBERG',
         self::JUPYTER => 'JUPYTER',
+        self::JUPYTER_KERNEL_GATEWAY => 'JUPYTER_KERNEL_GATEWAY',
+        self::PIG => 'PIG',
         self::PRESTO => 'PRESTO',
         self::TRINO => 'TRINO',
         self::RANGER => 'RANGER',

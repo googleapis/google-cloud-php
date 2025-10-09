@@ -17,7 +17,8 @@
 
 namespace Google\Cloud\Datastore\Query;
 
-use Google\Cloud\Datastore\Query\Query;
+use Google\Cloud\Datastore\V1\CompositeFilter\Operator;
+use InvalidArgumentException;
 
 /**
  * Represents an interface to create composite and property filters for
@@ -82,7 +83,7 @@ class Filter
      */
     public static function and(array $filters)
     {
-        return self::compositeFilter('AND', $filters);
+        return self::compositeFilter(Operator::PBAND, $filters);
     }
 
     /**
@@ -94,7 +95,7 @@ class Filter
      */
     public static function or(array $filters)
     {
-        return self::compositeFilter('OR', $filters);
+        return self::compositeFilter(Operator::PBOR, $filters);
     }
 
     private static function propertyFilter($property, $operator, $value)
@@ -103,7 +104,7 @@ class Filter
             'propertyFilter' => [
                 'property' => $property,
                 'value' => $value,
-                'op' => $operator
+                'op' => self::mapStringToProtoEnum($operator)
             ]
         ];
         return $filter;
@@ -123,5 +124,37 @@ class Filter
             ]
         ];
         return $filter;
+    }
+
+    private static function mapStringToProtoEnum(string $operator): int
+    {
+        switch ($operator) {
+            case '=':
+                return Query::OP_EQUALS;
+                break;
+            case '<':
+                return Query::OP_LESS_THAN;
+                break;
+            case '<=':
+                return Query::OP_LESS_THAN_OR_EQUAL;
+                break;
+            case '>':
+                return Query::OP_GREATER_THAN;
+                break;
+            case '>=':
+                return Query::OP_GREATER_THAN_OR_EQUAL;
+                break;
+            case '!=':
+                return Query::OP_NOT_EQUALS;
+                break;
+            case 'IN':
+                return Query::OP_IN;
+                break;
+            case 'NOT IN':
+                return Query::OP_NOT_IN;
+                break;
+        }
+
+        throw new InvalidArgumentException('Invalid query operator' . $operator);
     }
 }

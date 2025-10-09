@@ -23,13 +23,13 @@ class SbomReferenceIntotoPayload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1 [json_name = "_type"];</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * URI identifying the type of the Predicate.
      *
      * Generated from protobuf field <code>string predicate_type = 2;</code>
      */
-    private $predicate_type = '';
+    protected $predicate_type = '';
     /**
      * Set of software artifacts that the attestation applies to. Each element
      * represents a single software artifact.
@@ -43,7 +43,7 @@ class SbomReferenceIntotoPayload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.SbomReferenceIntotoPredicate predicate = 4;</code>
      */
-    private $predicate = null;
+    protected $predicate = null;
 
     /**
      * Constructor.

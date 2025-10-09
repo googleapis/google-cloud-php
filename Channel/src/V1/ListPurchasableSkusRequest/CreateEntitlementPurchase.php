@@ -23,7 +23,7 @@ class CreateEntitlementPurchase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $product = '';
+    protected $product = '';
 
     /**
      * Constructor.

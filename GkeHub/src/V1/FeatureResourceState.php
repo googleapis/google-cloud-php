@@ -22,7 +22,7 @@ class FeatureResourceState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.FeatureResourceState.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ namespace Google\Cloud\Dataflow\V1beta3\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -40,6 +41,7 @@ use Google\Cloud\Dataflow\V1beta3\Job;
 use Google\Cloud\Dataflow\V1beta3\LaunchTemplateRequest;
 use Google\Cloud\Dataflow\V1beta3\LaunchTemplateResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Provides a method to create Cloud Dataflow jobs from templates.
@@ -49,9 +51,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createJobFromTemplateAsync(CreateJobFromTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTemplateAsync(GetTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface launchTemplateAsync(LaunchTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> createJobFromTemplateAsync(CreateJobFromTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetTemplateResponse> getTemplateAsync(GetTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LaunchTemplateResponse> launchTemplateAsync(LaunchTemplateRequest $request, array $optionalArgs = [])
  */
 final class TemplatesServiceClient
 {
@@ -80,8 +82,6 @@ final class TemplatesServiceClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/compute',
-        'https://www.googleapis.com/auth/compute.readonly',
-        'https://www.googleapis.com/auth/userinfo.email',
     ];
 
     private static function getClientDefaults()
@@ -106,20 +106,29 @@ final class TemplatesServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dataflow.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Dataflow\V1beta3\TemplatesServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new TemplatesServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -153,13 +162,18 @@ final class TemplatesServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -177,7 +191,14 @@ final class TemplatesServiceClient
     }
 
     /**
-     * Creates a Cloud Dataflow job from a template.
+     * Creates a Cloud Dataflow job from a template. Do not enter confidential
+     * information when you supply string values using the API.
+     *
+     * To create a job, we recommend using `projects.locations.templates.create`
+     * with a [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+     * `projects.templates.create` is not recommended, because your job will
+     * always start in `us-central1`.
      *
      * The async variant is {@see TemplatesServiceClient::createJobFromTemplateAsync()}
      * .
@@ -208,6 +229,12 @@ final class TemplatesServiceClient
     /**
      * Get the template associated with a template.
      *
+     * To get the template, we recommend using `projects.locations.templates.get`
+     * with a [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+     * `projects.templates.get` is not recommended, because only
+     * templates that are running in `us-central1` are retrieved.
+     *
      * The async variant is {@see TemplatesServiceClient::getTemplateAsync()} .
      *
      * @example samples/V1beta3/TemplatesServiceClient/get_template.php
@@ -234,7 +261,13 @@ final class TemplatesServiceClient
     }
 
     /**
-     * Launch a template.
+     * Launches a template.
+     *
+     * To launch a template, we recommend using
+     * `projects.locations.templates.launch` with a [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+     * `projects.templates.launch` is not recommended, because jobs launched
+     * from the template will always start in `us-central1`.
      *
      * The async variant is {@see TemplatesServiceClient::launchTemplateAsync()} .
      *

@@ -23,13 +23,13 @@ class MigratableResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_migrate_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_migrate_time = null;
+    protected $last_migrate_time = null;
     /**
      * Output only. Timestamp when this MigratableResource was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_update_time = null;
+    protected $last_update_time = null;
     protected $resource;
 
     /**

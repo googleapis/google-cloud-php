@@ -81,6 +81,4 @@ class BreakType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BreakType::class, \Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak_BreakType::class);
 

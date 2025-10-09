@@ -23,20 +23,20 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Tasks in the group share the same task spec.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskSpec task_spec = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $task_spec = null;
+    protected $task_spec = null;
     /**
      * Number of Tasks in the TaskGroup.
      * Default is 1.
      *
      * Generated from protobuf field <code>int64 task_count = 4;</code>
      */
-    private $task_count = 0;
+    protected $task_count = 0;
     /**
      * Max number of tasks that can run in parallel.
      * Default to min(task_count, parallel tasks per job limit).
@@ -45,14 +45,14 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 parallelism = 5;</code>
      */
-    private $parallelism = 0;
+    protected $parallelism = 0;
     /**
      * Scheduling policy for Tasks in the TaskGroup.
      * The default value is AS_SOON_AS_POSSIBLE.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskGroup.SchedulingPolicy scheduling_policy = 6;</code>
      */
-    private $scheduling_policy = 0;
+    protected $scheduling_policy = 0;
     /**
      * An array of environment variable mappings, which are passed to Tasks with
      * matching indices. If task_environments is used then task_count should
@@ -73,7 +73,7 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 task_count_per_node = 10;</code>
      */
-    private $task_count_per_node = 0;
+    protected $task_count_per_node = 0;
     /**
      * When true, Batch will populate a file with a list of all VMs assigned to
      * the TaskGroup and set the BATCH_HOSTS_FILE environment variable to the path
@@ -81,14 +81,14 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool require_hosts_file = 11;</code>
      */
-    private $require_hosts_file = false;
+    protected $require_hosts_file = false;
     /**
      * When true, Batch will configure SSH to allow passwordless login between
      * VMs running the Batch tasks in the same TaskGroup.
      *
      * Generated from protobuf field <code>bool permissive_ssh = 12;</code>
      */
-    private $permissive_ssh = false;
+    protected $permissive_ssh = false;
     /**
      * Optional. If not set or set to false, Batch uses the root user to execute
      * runnables. If set to true, Batch runs the runnables using a non-root user.
@@ -98,7 +98,7 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool run_as_non_root = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $run_as_non_root = false;
+    protected $run_as_non_root = false;
 
     /**
      * Constructor.

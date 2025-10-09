@@ -22,7 +22,7 @@ class DatabaseFailoverRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string environment = 1;</code>
      */
-    private $environment = '';
+    protected $environment = '';
 
     /**
      * Constructor.

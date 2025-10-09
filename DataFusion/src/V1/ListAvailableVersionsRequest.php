@@ -21,20 +21,20 @@ class ListAvailableVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of items to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The next_page_token value to use if there are additional
      * results to retrieve for this list request.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Whether or not to return the latest patch of every available minor version.
      * If true, only the latest patch will be returned. Ex. if allowed versions is
@@ -42,7 +42,7 @@ class ListAvailableVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool latest_patch_only = 4;</code>
      */
-    private $latest_patch_only = false;
+    protected $latest_patch_only = false;
 
     /**
      * @param string $parent Required. The project and location for which to retrieve instance information

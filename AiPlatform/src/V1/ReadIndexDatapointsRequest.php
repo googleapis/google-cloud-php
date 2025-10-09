@@ -23,13 +23,13 @@ class ReadIndexDatapointsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string index_endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $index_endpoint = '';
+    protected $index_endpoint = '';
     /**
      * The ID of the DeployedIndex that will serve the request.
      *
      * Generated from protobuf field <code>string deployed_index_id = 2;</code>
      */
-    private $deployed_index_id = '';
+    protected $deployed_index_id = '';
     /**
      * IDs of the datapoints to be searched for.
      *

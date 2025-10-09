@@ -55,6 +55,11 @@
                                 "createGoogleAdsLink"
                             ]
                         },
+                        "CreateKeyEvent": {
+                            "methods": [
+                                "createKeyEvent"
+                            ]
+                        },
                         "CreateMeasurementProtocolSecret": {
                             "methods": [
                                 "createMeasurementProtocolSecret"
@@ -88,6 +93,11 @@
                         "DeleteGoogleAdsLink": {
                             "methods": [
                                 "deleteGoogleAdsLink"
+                            ]
+                        },
+                        "DeleteKeyEvent": {
+                            "methods": [
+                                "deleteKeyEvent"
                             ]
                         },
                         "DeleteMeasurementProtocolSecret": {
@@ -133,6 +143,11 @@
                         "GetDataStream": {
                             "methods": [
                                 "getDataStream"
+                            ]
+                        },
+                        "GetKeyEvent": {
+                            "methods": [
+                                "getKeyEvent"
                             ]
                         },
                         "GetMeasurementProtocolSecret": {
@@ -183,6 +198,11 @@
                         "ListGoogleAdsLinks": {
                             "methods": [
                                 "listGoogleAdsLinks"
+                            ]
+                        },
+                        "ListKeyEvents": {
+                            "methods": [
+                                "listKeyEvents"
                             ]
                         },
                         "ListMeasurementProtocolSecrets": {
@@ -243,6 +263,11 @@
                         "UpdateGoogleAdsLink": {
                             "methods": [
                                 "updateGoogleAdsLink"
+                            ]
+                        },
+                        "UpdateKeyEvent": {
+                            "methods": [
+                                "updateKeyEvent"
                             ]
                         },
                         "UpdateMeasurementProtocolSecret": {

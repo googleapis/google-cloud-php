@@ -44,6 +44,9 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "StreamingSynthesize": {
+                    "timeout_millis": 300000
+                },
                 "SynthesizeSpeech": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "retry_policy_1_codes",

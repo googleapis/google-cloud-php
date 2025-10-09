@@ -92,6 +92,13 @@ s.replace(
     '@group instance',
     '@group spanner-admin-instance')
 
+# fix protobuf bug (b/418528083)
+s.replace(
+    "src/**/V*/**/*.php",
+    "\$arr->count\(\)",
+    "count($arr)")
+
+
 # remove ReadOnly class_alias code
 s.replace(
     "src/V*/**/PBReadOnly.php",
@@ -132,7 +139,7 @@ subprocess.run([
     'npm',
     'exec',
     '--yes',
-    '--package=@prettier/plugin-php@^0.16',
+    '--package=@prettier/plugin-php@^0.19',
     '--',
     'prettier',
     '**/Gapic/*',

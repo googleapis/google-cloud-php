@@ -12,12 +12,12 @@ jobs:
     env:
       PHPDOC_ENV: prod
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
-        python-version: '3.9'
-    - run: pip install --require-hashes -r .kokoro/docs/docker/requirements.txt
+        python-version: '3.14'
+    - run: pip install --no-deps --require-hashes -r .kokoro/docs/docker/requirements.txt
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
@@ -26,7 +26,7 @@ jobs:
       id: extract
       uses: shrink/actions-docker-extract@v2
       with:
-        image: "phpdoc/phpdoc:3.4.1"
+        image: "phpdoc/phpdoc:3.5.3"
         path: "/opt/phpdoc/."
     - name: Symlink phpDocumentor
       run: ln -s $(pwd)/${{ steps.extract.outputs.destination }}/bin/phpdoc /usr/local/bin/phpdoc

@@ -20,13 +20,13 @@ class CleanupPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Policy action.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.CleanupPolicy.Action action = 3;</code>
      */
-    private $action = 0;
+    protected $action = 0;
     protected $condition_type;
 
     /**

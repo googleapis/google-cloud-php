@@ -68,6 +68,4 @@ class AuthorizationType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AuthorizationType::class, \Google\Cloud\BigQuery\DataTransfer\V1\DataSource_AuthorizationType::class);
 

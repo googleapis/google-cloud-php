@@ -87,6 +87,4 @@ class TimePart
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TimePart::class, \Google\Cloud\Dlp\V2\TimePartConfig_TimePart::class);
 

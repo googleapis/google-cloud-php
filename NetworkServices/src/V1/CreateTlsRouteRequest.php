@@ -36,6 +36,25 @@ class CreateTlsRouteRequest extends \Google\Protobuf\Internal\Message
     protected $tls_route = null;
 
     /**
+     * @param string                                    $parent     Required. The parent resource of the TlsRoute. Must be in the
+     *                                                              format `projects/&#42;/locations/global`. Please see
+     *                                                              {@see NetworkServicesClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\NetworkServices\V1\TlsRoute $tlsRoute   Required. TlsRoute resource to be created.
+     * @param string                                    $tlsRouteId Required. Short name of the TlsRoute resource to be created.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\CreateTlsRouteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\NetworkServices\V1\TlsRoute $tlsRoute, string $tlsRouteId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTlsRoute($tlsRoute)
+            ->setTlsRouteId($tlsRouteId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

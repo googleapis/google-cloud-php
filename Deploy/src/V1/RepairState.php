@@ -50,11 +50,11 @@ class RepairState
      */
     const REPAIR_STATE_PENDING = 5;
     /**
-     * The `repair` action was skipped.
+     * The `repair` action was aborted.
      *
-     * Generated from protobuf enum <code>REPAIR_STATE_SKIPPED = 6;</code>
+     * Generated from protobuf enum <code>REPAIR_STATE_ABORTED = 7;</code>
      */
-    const REPAIR_STATE_SKIPPED = 6;
+    const REPAIR_STATE_ABORTED = 7;
 
     private static $valueToName = [
         self::REPAIR_STATE_UNSPECIFIED => 'REPAIR_STATE_UNSPECIFIED',
@@ -63,7 +63,7 @@ class RepairState
         self::REPAIR_STATE_FAILED => 'REPAIR_STATE_FAILED',
         self::REPAIR_STATE_IN_PROGRESS => 'REPAIR_STATE_IN_PROGRESS',
         self::REPAIR_STATE_PENDING => 'REPAIR_STATE_PENDING',
-        self::REPAIR_STATE_SKIPPED => 'REPAIR_STATE_SKIPPED',
+        self::REPAIR_STATE_ABORTED => 'REPAIR_STATE_ABORTED',
     ];
 
     public static function name($value)

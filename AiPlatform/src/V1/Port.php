@@ -21,7 +21,7 @@ class Port extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 container_port = 3;</code>
      */
-    private $container_port = 0;
+    protected $container_port = 0;
 
     /**
      * Constructor.

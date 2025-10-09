@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ use Google\Cloud\NetApp\V1\CreateBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\CreateBackupRequest;
 use Google\Cloud\NetApp\V1\CreateBackupVaultRequest;
 use Google\Cloud\NetApp\V1\CreateKmsConfigRequest;
+use Google\Cloud\NetApp\V1\CreateQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\CreateReplicationRequest;
 use Google\Cloud\NetApp\V1\CreateSnapshotRequest;
 use Google\Cloud\NetApp\V1\CreateStoragePoolRequest;
@@ -49,17 +50,20 @@ use Google\Cloud\NetApp\V1\DeleteBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\DeleteBackupRequest;
 use Google\Cloud\NetApp\V1\DeleteBackupVaultRequest;
 use Google\Cloud\NetApp\V1\DeleteKmsConfigRequest;
+use Google\Cloud\NetApp\V1\DeleteQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\DeleteReplicationRequest;
 use Google\Cloud\NetApp\V1\DeleteSnapshotRequest;
 use Google\Cloud\NetApp\V1\DeleteStoragePoolRequest;
 use Google\Cloud\NetApp\V1\DeleteVolumeRequest;
 use Google\Cloud\NetApp\V1\DestinationVolumeParameters;
 use Google\Cloud\NetApp\V1\EncryptVolumesRequest;
+use Google\Cloud\NetApp\V1\EstablishPeeringRequest;
 use Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\GetBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\GetBackupRequest;
 use Google\Cloud\NetApp\V1\GetBackupVaultRequest;
 use Google\Cloud\NetApp\V1\GetKmsConfigRequest;
+use Google\Cloud\NetApp\V1\GetQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\GetReplicationRequest;
 use Google\Cloud\NetApp\V1\GetSnapshotRequest;
 use Google\Cloud\NetApp\V1\GetStoragePoolRequest;
@@ -75,6 +79,8 @@ use Google\Cloud\NetApp\V1\ListBackupsRequest;
 use Google\Cloud\NetApp\V1\ListBackupsResponse;
 use Google\Cloud\NetApp\V1\ListKmsConfigsRequest;
 use Google\Cloud\NetApp\V1\ListKmsConfigsResponse;
+use Google\Cloud\NetApp\V1\ListQuotaRulesRequest;
+use Google\Cloud\NetApp\V1\ListQuotaRulesResponse;
 use Google\Cloud\NetApp\V1\ListReplicationsRequest;
 use Google\Cloud\NetApp\V1\ListReplicationsResponse;
 use Google\Cloud\NetApp\V1\ListSnapshotsRequest;
@@ -83,6 +89,8 @@ use Google\Cloud\NetApp\V1\ListStoragePoolsRequest;
 use Google\Cloud\NetApp\V1\ListStoragePoolsResponse;
 use Google\Cloud\NetApp\V1\ListVolumesRequest;
 use Google\Cloud\NetApp\V1\ListVolumesResponse;
+use Google\Cloud\NetApp\V1\QuotaRule;
+use Google\Cloud\NetApp\V1\QuotaRule\Type;
 use Google\Cloud\NetApp\V1\Replication;
 use Google\Cloud\NetApp\V1\Replication\ReplicationSchedule;
 use Google\Cloud\NetApp\V1\ResumeReplicationRequest;
@@ -92,15 +100,19 @@ use Google\Cloud\NetApp\V1\ServiceLevel;
 use Google\Cloud\NetApp\V1\Snapshot;
 use Google\Cloud\NetApp\V1\StopReplicationRequest;
 use Google\Cloud\NetApp\V1\StoragePool;
+use Google\Cloud\NetApp\V1\SwitchActiveReplicaZoneRequest;
+use Google\Cloud\NetApp\V1\SyncReplicationRequest;
 use Google\Cloud\NetApp\V1\UpdateActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupVaultRequest;
 use Google\Cloud\NetApp\V1\UpdateKmsConfigRequest;
+use Google\Cloud\NetApp\V1\UpdateQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\UpdateReplicationRequest;
 use Google\Cloud\NetApp\V1\UpdateSnapshotRequest;
 use Google\Cloud\NetApp\V1\UpdateStoragePoolRequest;
 use Google\Cloud\NetApp\V1\UpdateVolumeRequest;
+use Google\Cloud\NetApp\V1\ValidateDirectoryServiceRequest;
 use Google\Cloud\NetApp\V1\VerifyKmsConfigRequest;
 use Google\Cloud\NetApp\V1\VerifyKmsConfigResponse;
 use Google\Cloud\NetApp\V1\Volume;
@@ -358,6 +370,10 @@ class NetAppClientTest extends GeneratedTest
         $sourceVolume = 'sourceVolume327497662';
         $sourceSnapshot = 'sourceSnapshot-947679896';
         $chainStorageBytes = 1614651561;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
+        $volumeRegion = 'volumeRegion1126820793';
+        $backupRegion = 'backupRegion-2028072943';
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -365,6 +381,10 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setSourceVolume($sourceVolume);
         $expectedResponse->setSourceSnapshot($sourceSnapshot);
         $expectedResponse->setChainStorageBytes($chainStorageBytes);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setVolumeRegion($volumeRegion);
+        $expectedResponse->setBackupRegion($backupRegion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -652,9 +672,17 @@ class NetAppClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
+        $sourceRegion = 'sourceRegion203585432';
+        $backupRegion = 'backupRegion-2028072943';
+        $sourceBackupVault = 'sourceBackupVault1668478745';
+        $destinationBackupVault = 'destinationBackupVault1650417158';
         $expectedResponse = new BackupVault();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setSourceRegion($sourceRegion);
+        $expectedResponse->setBackupRegion($backupRegion);
+        $expectedResponse->setSourceBackupVault($sourceBackupVault);
+        $expectedResponse->setDestinationBackupVault($destinationBackupVault);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -922,6 +950,160 @@ class NetAppClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createQuotaRuleTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createQuotaRuleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $target = 'target-880905839';
+        $diskLimitMib = 838650976;
+        $stateDetails = 'stateDetails632437908';
+        $description = 'description-1724546052';
+        $expectedResponse = new QuotaRule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setTarget($target);
+        $expectedResponse->setDiskLimitMib($diskLimitMib);
+        $expectedResponse->setStateDetails($stateDetails);
+        $expectedResponse->setDescription($description);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createQuotaRuleTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $quotaRule = new QuotaRule();
+        $quotaRuleType = Type::TYPE_UNSPECIFIED;
+        $quotaRule->setType($quotaRuleType);
+        $quotaRuleDiskLimitMib = 217148668;
+        $quotaRule->setDiskLimitMib($quotaRuleDiskLimitMib);
+        $quotaRuleId = 'quotaRuleId591631991';
+        $request = (new CreateQuotaRuleRequest())
+            ->setParent($formattedParent)
+            ->setQuotaRule($quotaRule)
+            ->setQuotaRuleId($quotaRuleId);
+        $response = $gapicClient->createQuotaRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/CreateQuotaRule', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getQuotaRule();
+        $this->assertProtobufEquals($quotaRule, $actualValue);
+        $actualValue = $actualApiRequestObject->getQuotaRuleId();
+        $this->assertProtobufEquals($quotaRuleId, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createQuotaRuleTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createQuotaRuleExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createQuotaRuleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $quotaRule = new QuotaRule();
+        $quotaRuleType = Type::TYPE_UNSPECIFIED;
+        $quotaRule->setType($quotaRuleType);
+        $quotaRuleDiskLimitMib = 217148668;
+        $quotaRule->setDiskLimitMib($quotaRuleDiskLimitMib);
+        $quotaRuleId = 'quotaRuleId591631991';
+        $request = (new CreateQuotaRuleRequest())
+            ->setParent($formattedParent)
+            ->setQuotaRule($quotaRule)
+            ->setQuotaRuleId($quotaRuleId);
+        $response = $gapicClient->createQuotaRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createQuotaRuleTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createReplicationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -948,6 +1130,7 @@ class NetAppClientTest extends GeneratedTest
         $destinationVolume = 'destinationVolume-1177512853';
         $description = 'description-1724546052';
         $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
         $expectedResponse = new Replication();
         $expectedResponse->setName($name);
         $expectedResponse->setStateDetails($stateDetails);
@@ -955,6 +1138,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDestinationVolume($destinationVolume);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1266,6 +1450,19 @@ class NetAppClientTest extends GeneratedTest
         $ldapEnabled = false;
         $psaRange = 'psaRange1004849276';
         $globalAccessAllowed = false;
+        $allowAutoTiering = true;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
+        $customPerformanceEnabled = true;
+        $totalThroughputMibps = 2085075953;
+        $totalIops = 705711676;
+        $hotTierSizeGib = 369881037;
+        $enableHotTierAutoResize = false;
+        $availableThroughputMibps = 1.48766289e8;
+        $coldTierSizeUsedGib = 1242809254;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -1279,6 +1476,19 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setLdapEnabled($ldapEnabled);
         $expectedResponse->setPsaRange($psaRange);
         $expectedResponse->setGlobalAccessAllowed($globalAccessAllowed);
+        $expectedResponse->setAllowAutoTiering($allowAutoTiering);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
+        $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
+        $expectedResponse->setTotalIops($totalIops);
+        $expectedResponse->setHotTierSizeGib($hotTierSizeGib);
+        $expectedResponse->setEnableHotTierAutoResize($enableHotTierAutoResize);
+        $expectedResponse->setAvailableThroughputMibps($availableThroughputMibps);
+        $expectedResponse->setColdTierSizeUsedGib($coldTierSizeUsedGib);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1443,6 +1653,13 @@ class NetAppClientTest extends GeneratedTest
         $activeDirectory = 'activeDirectory475662452';
         $kmsConfig = 'kmsConfig917255152';
         $hasReplication = false;
+        $largeCapacity = true;
+        $multipleEndpoints = false;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
+        $coldTierSizeGib = 212809252;
+        $throughputMibps = 1.49869682e8;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new Volume();
         $expectedResponse->setName($name);
         $expectedResponse->setStateDetails($stateDetails);
@@ -1461,6 +1678,13 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setActiveDirectory($activeDirectory);
         $expectedResponse->setKmsConfig($kmsConfig);
         $expectedResponse->setHasReplication($hasReplication);
+        $expectedResponse->setLargeCapacity($largeCapacity);
+        $expectedResponse->setMultipleEndpoints($multipleEndpoints);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setColdTierSizeGib($coldTierSizeGib);
+        $expectedResponse->setThroughputMibps($throughputMibps);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2202,6 +2426,128 @@ class NetAppClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteQuotaRuleTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteQuotaRuleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteQuotaRuleTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->quotaRuleName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[QUOTA_RULE]');
+        $request = (new DeleteQuotaRuleRequest())->setName($formattedName);
+        $response = $gapicClient->deleteQuotaRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/DeleteQuotaRule', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteQuotaRuleTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteQuotaRuleExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteQuotaRuleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->quotaRuleName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[QUOTA_RULE]');
+        $request = (new DeleteQuotaRuleRequest())->setName($formattedName);
+        $response = $gapicClient->deleteQuotaRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteQuotaRuleTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteReplicationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2824,6 +3170,162 @@ class NetAppClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function establishPeeringTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/establishPeeringTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $stateDetails = 'stateDetails632437908';
+        $healthy = false;
+        $destinationVolume = 'destinationVolume-1177512853';
+        $description = 'description-1724546052';
+        $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
+        $expectedResponse = new Replication();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setStateDetails($stateDetails);
+        $expectedResponse->setHealthy($healthy);
+        $expectedResponse->setDestinationVolume($destinationVolume);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/establishPeeringTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
+        $peerClusterName = 'peerClusterName-1759308435';
+        $peerSvmName = 'peerSvmName-1166928515';
+        $peerVolumeName = 'peerVolumeName486635827';
+        $request = (new EstablishPeeringRequest())
+            ->setName($formattedName)
+            ->setPeerClusterName($peerClusterName)
+            ->setPeerSvmName($peerSvmName)
+            ->setPeerVolumeName($peerVolumeName);
+        $response = $gapicClient->establishPeering($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/EstablishPeering', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getPeerClusterName();
+        $this->assertProtobufEquals($peerClusterName, $actualValue);
+        $actualValue = $actualApiRequestObject->getPeerSvmName();
+        $this->assertProtobufEquals($peerSvmName, $actualValue);
+        $actualValue = $actualApiRequestObject->getPeerVolumeName();
+        $this->assertProtobufEquals($peerVolumeName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/establishPeeringTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function establishPeeringExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/establishPeeringTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
+        $peerClusterName = 'peerClusterName-1759308435';
+        $peerSvmName = 'peerSvmName-1166928515';
+        $peerVolumeName = 'peerVolumeName486635827';
+        $request = (new EstablishPeeringRequest())
+            ->setName($formattedName)
+            ->setPeerClusterName($peerClusterName)
+            ->setPeerSvmName($peerSvmName)
+            ->setPeerVolumeName($peerVolumeName);
+        $response = $gapicClient->establishPeering($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/establishPeeringTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function getActiveDirectoryTest()
     {
         $transport = $this->createTransport();
@@ -2933,6 +3435,10 @@ class NetAppClientTest extends GeneratedTest
         $sourceVolume = 'sourceVolume327497662';
         $sourceSnapshot = 'sourceSnapshot-947679896';
         $chainStorageBytes = 1614651561;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
+        $volumeRegion = 'volumeRegion1126820793';
+        $backupRegion = 'backupRegion-2028072943';
         $expectedResponse = new Backup();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -2940,6 +3446,10 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setSourceVolume($sourceVolume);
         $expectedResponse->setSourceSnapshot($sourceSnapshot);
         $expectedResponse->setChainStorageBytes($chainStorageBytes);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setVolumeRegion($volumeRegion);
+        $expectedResponse->setBackupRegion($backupRegion);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]', '[BACKUP]');
@@ -3081,9 +3591,17 @@ class NetAppClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
+        $sourceRegion = 'sourceRegion203585432';
+        $backupRegion = 'backupRegion-2028072943';
+        $sourceBackupVault = 'sourceBackupVault1668478745';
+        $destinationBackupVault = 'destinationBackupVault1650417158';
         $expectedResponse = new BackupVault();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setSourceRegion($sourceRegion);
+        $expectedResponse->setBackupRegion($backupRegion);
+        $expectedResponse->setSourceBackupVault($sourceBackupVault);
+        $expectedResponse->setDestinationBackupVault($destinationBackupVault);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]');
@@ -3213,6 +3731,79 @@ class NetAppClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getQuotaRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $target = 'target-880905839';
+        $diskLimitMib = 838650976;
+        $stateDetails = 'stateDetails632437908';
+        $description = 'description-1724546052';
+        $expectedResponse = new QuotaRule();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setTarget($target);
+        $expectedResponse->setDiskLimitMib($diskLimitMib);
+        $expectedResponse->setStateDetails($stateDetails);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->quotaRuleName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[QUOTA_RULE]');
+        $request = (new GetQuotaRuleRequest())->setName($formattedName);
+        $response = $gapicClient->getQuotaRule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/GetQuotaRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getQuotaRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->quotaRuleName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[QUOTA_RULE]');
+        $request = (new GetQuotaRuleRequest())->setName($formattedName);
+        try {
+            $gapicClient->getQuotaRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getReplicationTest()
     {
         $transport = $this->createTransport();
@@ -3227,6 +3818,7 @@ class NetAppClientTest extends GeneratedTest
         $destinationVolume = 'destinationVolume-1177512853';
         $description = 'description-1724546052';
         $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
         $expectedResponse = new Replication();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -3234,6 +3826,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDestinationVolume($destinationVolume);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
@@ -3379,6 +3972,19 @@ class NetAppClientTest extends GeneratedTest
         $ldapEnabled = false;
         $psaRange = 'psaRange1004849276';
         $globalAccessAllowed = false;
+        $allowAutoTiering = true;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
+        $customPerformanceEnabled = true;
+        $totalThroughputMibps = 2085075953;
+        $totalIops = 705711676;
+        $hotTierSizeGib = 369881037;
+        $enableHotTierAutoResize = false;
+        $availableThroughputMibps = 1.48766289e8;
+        $coldTierSizeUsedGib = 1242809254;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name2);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -3392,6 +3998,19 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setLdapEnabled($ldapEnabled);
         $expectedResponse->setPsaRange($psaRange);
         $expectedResponse->setGlobalAccessAllowed($globalAccessAllowed);
+        $expectedResponse->setAllowAutoTiering($allowAutoTiering);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
+        $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
+        $expectedResponse->setTotalIops($totalIops);
+        $expectedResponse->setHotTierSizeGib($hotTierSizeGib);
+        $expectedResponse->setEnableHotTierAutoResize($enableHotTierAutoResize);
+        $expectedResponse->setAvailableThroughputMibps($availableThroughputMibps);
+        $expectedResponse->setColdTierSizeUsedGib($coldTierSizeUsedGib);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
@@ -3471,6 +4090,13 @@ class NetAppClientTest extends GeneratedTest
         $activeDirectory = 'activeDirectory475662452';
         $kmsConfig = 'kmsConfig917255152';
         $hasReplication = false;
+        $largeCapacity = true;
+        $multipleEndpoints = false;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
+        $coldTierSizeGib = 212809252;
+        $throughputMibps = 1.49869682e8;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new Volume();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -3489,6 +4115,13 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setActiveDirectory($activeDirectory);
         $expectedResponse->setKmsConfig($kmsConfig);
         $expectedResponse->setHasReplication($hasReplication);
+        $expectedResponse->setLargeCapacity($largeCapacity);
+        $expectedResponse->setMultipleEndpoints($multipleEndpoints);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setColdTierSizeGib($coldTierSizeGib);
+        $expectedResponse->setThroughputMibps($throughputMibps);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
@@ -3898,6 +4531,77 @@ class NetAppClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listQuotaRulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $quotaRulesElement = new QuotaRule();
+        $quotaRules = [$quotaRulesElement];
+        $expectedResponse = new ListQuotaRulesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setQuotaRules($quotaRules);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $request = (new ListQuotaRulesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listQuotaRules($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getQuotaRules()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/ListQuotaRules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listQuotaRulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $request = (new ListQuotaRulesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listQuotaRules($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listReplicationsTest()
     {
         $transport = $this->createTransport();
@@ -4208,6 +4912,7 @@ class NetAppClientTest extends GeneratedTest
         $destinationVolume = 'destinationVolume-1177512853';
         $description = 'description-1724546052';
         $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
         $expectedResponse = new Replication();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -4215,6 +4920,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDestinationVolume($destinationVolume);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -4342,6 +5048,7 @@ class NetAppClientTest extends GeneratedTest
         $destinationVolume = 'destinationVolume-1177512853';
         $description = 'description-1724546052';
         $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
         $expectedResponse = new Replication();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -4349,6 +5056,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDestinationVolume($destinationVolume);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -4487,6 +5195,13 @@ class NetAppClientTest extends GeneratedTest
         $activeDirectory = 'activeDirectory475662452';
         $kmsConfig = 'kmsConfig917255152';
         $hasReplication = false;
+        $largeCapacity = true;
+        $multipleEndpoints = false;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
+        $coldTierSizeGib = 212809252;
+        $throughputMibps = 1.49869682e8;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new Volume();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -4505,6 +5220,13 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setActiveDirectory($activeDirectory);
         $expectedResponse->setKmsConfig($kmsConfig);
         $expectedResponse->setHasReplication($hasReplication);
+        $expectedResponse->setLargeCapacity($largeCapacity);
+        $expectedResponse->setMultipleEndpoints($multipleEndpoints);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setColdTierSizeGib($coldTierSizeGib);
+        $expectedResponse->setThroughputMibps($throughputMibps);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -4636,6 +5358,7 @@ class NetAppClientTest extends GeneratedTest
         $destinationVolume = 'destinationVolume-1177512853';
         $description = 'description-1724546052';
         $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
         $expectedResponse = new Replication();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -4643,6 +5366,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDestinationVolume($destinationVolume);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -4726,6 +5450,314 @@ class NetAppClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/stopReplicationTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function switchActiveReplicaZoneTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/switchActiveReplicaZoneTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $capacityGib = 498394811;
+        $volumeCapacityGib = 643777472;
+        $volumeCount = 1362665558;
+        $stateDetails = 'stateDetails632437908';
+        $description = 'description-1724546052';
+        $network = 'network1843485230';
+        $activeDirectory = 'activeDirectory475662452';
+        $kmsConfig = 'kmsConfig917255152';
+        $ldapEnabled = false;
+        $psaRange = 'psaRange1004849276';
+        $globalAccessAllowed = false;
+        $allowAutoTiering = true;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
+        $customPerformanceEnabled = true;
+        $totalThroughputMibps = 2085075953;
+        $totalIops = 705711676;
+        $hotTierSizeGib = 369881037;
+        $enableHotTierAutoResize = false;
+        $availableThroughputMibps = 1.48766289e8;
+        $coldTierSizeUsedGib = 1242809254;
+        $hotTierSizeUsedGib = 151116719;
+        $expectedResponse = new StoragePool();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setCapacityGib($capacityGib);
+        $expectedResponse->setVolumeCapacityGib($volumeCapacityGib);
+        $expectedResponse->setVolumeCount($volumeCount);
+        $expectedResponse->setStateDetails($stateDetails);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setNetwork($network);
+        $expectedResponse->setActiveDirectory($activeDirectory);
+        $expectedResponse->setKmsConfig($kmsConfig);
+        $expectedResponse->setLdapEnabled($ldapEnabled);
+        $expectedResponse->setPsaRange($psaRange);
+        $expectedResponse->setGlobalAccessAllowed($globalAccessAllowed);
+        $expectedResponse->setAllowAutoTiering($allowAutoTiering);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
+        $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
+        $expectedResponse->setTotalIops($totalIops);
+        $expectedResponse->setHotTierSizeGib($hotTierSizeGib);
+        $expectedResponse->setEnableHotTierAutoResize($enableHotTierAutoResize);
+        $expectedResponse->setAvailableThroughputMibps($availableThroughputMibps);
+        $expectedResponse->setColdTierSizeUsedGib($coldTierSizeUsedGib);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/switchActiveReplicaZoneTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
+        $request = (new SwitchActiveReplicaZoneRequest())->setName($formattedName);
+        $response = $gapicClient->switchActiveReplicaZone($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/SwitchActiveReplicaZone', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/switchActiveReplicaZoneTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function switchActiveReplicaZoneExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/switchActiveReplicaZoneTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
+        $request = (new SwitchActiveReplicaZoneRequest())->setName($formattedName);
+        $response = $gapicClient->switchActiveReplicaZone($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/switchActiveReplicaZoneTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function syncReplicationTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/syncReplicationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $stateDetails = 'stateDetails632437908';
+        $healthy = false;
+        $destinationVolume = 'destinationVolume-1177512853';
+        $description = 'description-1724546052';
+        $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
+        $expectedResponse = new Replication();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setStateDetails($stateDetails);
+        $expectedResponse->setHealthy($healthy);
+        $expectedResponse->setDestinationVolume($destinationVolume);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/syncReplicationTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
+        $request = (new SyncReplicationRequest())->setName($formattedName);
+        $response = $gapicClient->syncReplication($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/SyncReplication', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/syncReplicationTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function syncReplicationExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/syncReplicationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
+        $request = (new SyncReplicationRequest())->setName($formattedName);
+        $response = $gapicClient->syncReplication($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/syncReplicationTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -4952,6 +5984,10 @@ class NetAppClientTest extends GeneratedTest
         $sourceVolume = 'sourceVolume327497662';
         $sourceSnapshot = 'sourceSnapshot-947679896';
         $chainStorageBytes = 1614651561;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
+        $volumeRegion = 'volumeRegion1126820793';
+        $backupRegion = 'backupRegion-2028072943';
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -4959,6 +5995,10 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setSourceVolume($sourceVolume);
         $expectedResponse->setSourceSnapshot($sourceSnapshot);
         $expectedResponse->setChainStorageBytes($chainStorageBytes);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setVolumeRegion($volumeRegion);
+        $expectedResponse->setBackupRegion($backupRegion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -5226,9 +6266,17 @@ class NetAppClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
+        $sourceRegion = 'sourceRegion203585432';
+        $backupRegion = 'backupRegion-2028072943';
+        $sourceBackupVault = 'sourceBackupVault1668478745';
+        $destinationBackupVault = 'destinationBackupVault1650417158';
         $expectedResponse = new BackupVault();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setSourceRegion($sourceRegion);
+        $expectedResponse->setBackupRegion($backupRegion);
+        $expectedResponse->setSourceBackupVault($sourceBackupVault);
+        $expectedResponse->setDestinationBackupVault($destinationBackupVault);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -5476,6 +6524,146 @@ class NetAppClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateQuotaRuleTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateQuotaRuleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $target = 'target-880905839';
+        $diskLimitMib = 838650976;
+        $stateDetails = 'stateDetails632437908';
+        $description = 'description-1724546052';
+        $expectedResponse = new QuotaRule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setTarget($target);
+        $expectedResponse->setDiskLimitMib($diskLimitMib);
+        $expectedResponse->setStateDetails($stateDetails);
+        $expectedResponse->setDescription($description);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateQuotaRuleTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $quotaRule = new QuotaRule();
+        $quotaRuleType = Type::TYPE_UNSPECIFIED;
+        $quotaRule->setType($quotaRuleType);
+        $quotaRuleDiskLimitMib = 217148668;
+        $quotaRule->setDiskLimitMib($quotaRuleDiskLimitMib);
+        $request = (new UpdateQuotaRuleRequest())->setQuotaRule($quotaRule);
+        $response = $gapicClient->updateQuotaRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/UpdateQuotaRule', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getQuotaRule();
+        $this->assertProtobufEquals($quotaRule, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateQuotaRuleTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateQuotaRuleExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateQuotaRuleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $quotaRule = new QuotaRule();
+        $quotaRuleType = Type::TYPE_UNSPECIFIED;
+        $quotaRule->setType($quotaRuleType);
+        $quotaRuleDiskLimitMib = 217148668;
+        $quotaRule->setDiskLimitMib($quotaRuleDiskLimitMib);
+        $request = (new UpdateQuotaRuleRequest())->setQuotaRule($quotaRule);
+        $response = $gapicClient->updateQuotaRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateQuotaRuleTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function updateReplicationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -5502,6 +6690,7 @@ class NetAppClientTest extends GeneratedTest
         $destinationVolume = 'destinationVolume-1177512853';
         $description = 'description-1724546052';
         $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
         $expectedResponse = new Replication();
         $expectedResponse->setName($name);
         $expectedResponse->setStateDetails($stateDetails);
@@ -5509,6 +6698,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDestinationVolume($destinationVolume);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -5800,6 +6990,19 @@ class NetAppClientTest extends GeneratedTest
         $ldapEnabled = false;
         $psaRange = 'psaRange1004849276';
         $globalAccessAllowed = false;
+        $allowAutoTiering = true;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
+        $customPerformanceEnabled = true;
+        $totalThroughputMibps = 2085075953;
+        $totalIops = 705711676;
+        $hotTierSizeGib = 369881037;
+        $enableHotTierAutoResize = false;
+        $availableThroughputMibps = 1.48766289e8;
+        $coldTierSizeUsedGib = 1242809254;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -5813,6 +7016,19 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setLdapEnabled($ldapEnabled);
         $expectedResponse->setPsaRange($psaRange);
         $expectedResponse->setGlobalAccessAllowed($globalAccessAllowed);
+        $expectedResponse->setAllowAutoTiering($allowAutoTiering);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
+        $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
+        $expectedResponse->setTotalIops($totalIops);
+        $expectedResponse->setHotTierSizeGib($hotTierSizeGib);
+        $expectedResponse->setEnableHotTierAutoResize($enableHotTierAutoResize);
+        $expectedResponse->setAvailableThroughputMibps($availableThroughputMibps);
+        $expectedResponse->setColdTierSizeUsedGib($coldTierSizeUsedGib);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -5967,6 +7183,13 @@ class NetAppClientTest extends GeneratedTest
         $activeDirectory = 'activeDirectory475662452';
         $kmsConfig = 'kmsConfig917255152';
         $hasReplication = false;
+        $largeCapacity = true;
+        $multipleEndpoints = false;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
+        $coldTierSizeGib = 212809252;
+        $throughputMibps = 1.49869682e8;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new Volume();
         $expectedResponse->setName($name);
         $expectedResponse->setStateDetails($stateDetails);
@@ -5985,6 +7208,13 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setActiveDirectory($activeDirectory);
         $expectedResponse->setKmsConfig($kmsConfig);
         $expectedResponse->setHasReplication($hasReplication);
+        $expectedResponse->setLargeCapacity($largeCapacity);
+        $expectedResponse->setMultipleEndpoints($multipleEndpoints);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setColdTierSizeGib($coldTierSizeGib);
+        $expectedResponse->setThroughputMibps($throughputMibps);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -6088,6 +7318,128 @@ class NetAppClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateVolumeTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function validateDirectoryServiceTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/validateDirectoryServiceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/validateDirectoryServiceTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
+        $request = (new ValidateDirectoryServiceRequest())->setName($formattedName);
+        $response = $gapicClient->validateDirectoryService($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/ValidateDirectoryService', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/validateDirectoryServiceTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function validateDirectoryServiceExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/validateDirectoryServiceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
+        $request = (new ValidateDirectoryServiceRequest())->setName($formattedName);
+        $response = $gapicClient->validateDirectoryService($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/validateDirectoryServiceTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,

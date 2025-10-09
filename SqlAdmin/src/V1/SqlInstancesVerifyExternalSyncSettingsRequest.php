@@ -20,31 +20,31 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Flag to enable verifying connection only
      *
      * Generated from protobuf field <code>bool verify_connection_only = 3;</code>
      */
-    private $verify_connection_only = false;
+    protected $verify_connection_only = false;
     /**
      * External sync mode
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesVerifyExternalSyncSettingsRequest.ExternalSyncMode sync_mode = 4;</code>
      */
-    private $sync_mode = 0;
+    protected $sync_mode = 0;
     /**
      * Optional. Flag to verify settings required by replication setup only
      *
      * Generated from protobuf field <code>bool verify_replication_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $verify_replication_only = false;
+    protected $verify_replication_only = false;
     /**
      * Optional. MigrationType configures the migration to use physical files or
      * logical dump files. If not set, then the logical dump file configuration is
@@ -52,14 +52,14 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType migration_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $migration_type = 0;
+    protected $migration_type = 0;
     /**
      * Optional. Parallel level for initial data sync. Only applicable for
      * PostgreSQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ExternalSyncParallelLevel sync_parallel_level = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sync_parallel_level = 0;
+    protected $sync_parallel_level = 0;
     protected $sync_config;
 
     /**

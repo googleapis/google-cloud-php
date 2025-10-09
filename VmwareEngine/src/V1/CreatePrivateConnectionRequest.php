@@ -25,7 +25,7 @@ class CreatePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The user-provided identifier of the new private connection.
      * This identifier must be unique among private connection resources
@@ -40,13 +40,13 @@ class CreatePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string private_connection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $private_connection_id = '';
+    protected $private_connection_id = '';
     /**
      * Required. The initial description of the new private connection.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateConnection private_connection = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $private_connection = null;
+    protected $private_connection = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -63,7 +63,7 @@ class CreatePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                          $parent              Required. The resource name of the location to create the new private

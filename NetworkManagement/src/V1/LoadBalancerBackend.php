@@ -20,19 +20,19 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * URI of a Compute Engine instance or network endpoint.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * State of the health check firewall configuration.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.LoadBalancerBackend.HealthCheckFirewallState health_check_firewall_state = 3;</code>
      */
-    private $health_check_firewall_state = 0;
+    protected $health_check_firewall_state = 0;
     /**
      * A list of firewall rule URIs allowing probes from health check IP ranges.
      *

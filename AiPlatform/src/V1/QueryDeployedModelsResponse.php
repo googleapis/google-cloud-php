@@ -28,7 +28,7 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * References to the DeployedModels that share the specified
      * deploymentResourcePool.
@@ -41,14 +41,14 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 total_deployed_model_count = 4;</code>
      */
-    private $total_deployed_model_count = 0;
+    protected $total_deployed_model_count = 0;
     /**
      * The total number of Endpoints that have DeployedModels on this
      * DeploymentResourcePool.
      *
      * Generated from protobuf field <code>int32 total_endpoint_count = 5;</code>
      */
-    private $total_endpoint_count = 0;
+    protected $total_endpoint_count = 0;
 
     /**
      * Constructor.
@@ -85,7 +85,9 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getDeployedModels()
     {
-        @trigger_error('deployed_models is deprecated.', E_USER_DEPRECATED);
+        if ($this->deployed_models->count() !== 0) {
+            @trigger_error('deployed_models is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->deployed_models;
     }
 
@@ -99,8 +101,10 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      */
     public function setDeployedModels($var)
     {
-        @trigger_error('deployed_models is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\DeployedModel::class);
+        if (count($arr) !== 0) {
+            @trigger_error('deployed_models is deprecated.', E_USER_DEPRECATED);
+        }
         $this->deployed_models = $arr;
 
         return $this;

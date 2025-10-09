@@ -22,7 +22,7 @@ class AwsAutoscalingGroupMetricsCollection extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string granularity = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $granularity = '';
+    protected $granularity = '';
     /**
      * Optional. The metrics to enable. For a list of valid metrics, see
      * https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_EnableMetricsCollection.html.

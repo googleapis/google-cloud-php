@@ -23,7 +23,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string domain = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $domain = '';
+    protected $domain = '';
     /**
      * Required. List of DNS servers to use for domain resolution
      *

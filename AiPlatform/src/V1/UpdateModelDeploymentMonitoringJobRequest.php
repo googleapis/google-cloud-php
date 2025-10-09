@@ -22,7 +22,7 @@ class UpdateModelDeploymentMonitoringJobRequest extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob model_deployment_monitoring_job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $model_deployment_monitoring_job = null;
+    protected $model_deployment_monitoring_job = null;
     /**
      * Required. The update mask is used to specify the fields to be overwritten
      * in the ModelDeploymentMonitoringJob resource by the update. The fields
@@ -51,7 +51,7 @@ class UpdateModelDeploymentMonitoringJobRequest extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob Required. The model monitoring configuration which replaces the resource on

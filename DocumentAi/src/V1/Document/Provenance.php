@@ -42,7 +42,7 @@ class Provenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance.OperationType type = 4;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.
@@ -75,7 +75,9 @@ class Provenance extends \Google\Protobuf\Internal\Message
      */
     public function getRevision()
     {
-        @trigger_error('revision is deprecated.', E_USER_DEPRECATED);
+        if ($this->revision !== 0) {
+            @trigger_error('revision is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->revision;
     }
 
@@ -106,7 +108,9 @@ class Provenance extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        @trigger_error('id is deprecated.', E_USER_DEPRECATED);
+        if ($this->id !== 0) {
+            @trigger_error('id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->id;
     }
 

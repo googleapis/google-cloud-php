@@ -59,6 +59,4 @@ class ParentType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ParentType::class, \Google\Cloud\SecurityCenter\V2\CloudDlpDataProfile_ParentType::class);
 

@@ -34,8 +34,8 @@ use Google\Cloud\Dialogflow\Cx\V3\Version;
  * [Flow][google.cloud.dialogflow.cx.v3.Flow].
  *
  * @param string $formattedParent The [Flow][google.cloud.dialogflow.cx.v3.Flow] to list all
- *                                versions for. Format: `projects/<Project ID>/locations/<Location
- *                                ID>/agents/<Agent ID>/flows/<Flow ID>`. Please see
+ *                                versions for. Format:
+ *                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`. Please see
  *                                {@see VersionsClient::flowName()} for help formatting this field.
  */
 function list_versions_sample(string $formattedParent): void

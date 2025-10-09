@@ -59,6 +59,4 @@ class EndpointProtocol
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EndpointProtocol::class, \Google\Cloud\Metastore\V1\HiveMetastoreConfig_EndpointProtocol::class);
 

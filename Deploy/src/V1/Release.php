@@ -18,31 +18,32 @@ use Google\Protobuf\Internal\GPBUtil;
 class Release extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Name of the `Release`. Format is
+     * Identifier. Name of the `Release`. Format is
      * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
      * The `release` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Unique identifier of the `Release`.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
-     * Description of the `Release`. Max length is 255 characters.
+     * Optional. Description of the `Release`. Max length is 255 characters.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
-     * User annotations. These attributes can only be set and used by the
-     * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
-     * for more details such as format and size limitations.
+     * Optional. User annotations. These attributes can only be set and used by
+     * the user, and not by Cloud Deploy. See
+     * https://google.aip.dev/128#annotations for more details such as format and
+     * size limitations.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $annotations;
     /**
@@ -64,41 +65,42 @@ class Release extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool abandoned = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $abandoned = false;
+    protected $abandoned = false;
     /**
      * Output only. Time at which the `Release` was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time at which the render began.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp render_start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $render_start_time = null;
+    protected $render_start_time = null;
     /**
      * Output only. Time at which the render completed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp render_end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $render_end_time = null;
+    protected $render_end_time = null;
     /**
-     * Cloud Storage URI of tar.gz archive containing Skaffold configuration.
+     * Optional. Cloud Storage URI of tar.gz archive containing Skaffold
+     * configuration.
      *
-     * Generated from protobuf field <code>string skaffold_config_uri = 17;</code>
+     * Generated from protobuf field <code>string skaffold_config_uri = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $skaffold_config_uri = '';
+    protected $skaffold_config_uri = '';
     /**
-     * Filepath of the Skaffold config inside of the config URI.
+     * Optional. Filepath of the Skaffold config inside of the config URI.
      *
-     * Generated from protobuf field <code>string skaffold_config_path = 9;</code>
+     * Generated from protobuf field <code>string skaffold_config_path = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $skaffold_config_path = '';
+    protected $skaffold_config_path = '';
     /**
-     * List of artifacts to pass through to Skaffold command.
+     * Optional. List of artifacts to pass through to Skaffold command.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.BuildArtifact build_artifacts = 10;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.BuildArtifact build_artifacts = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $build_artifacts;
     /**
@@ -107,7 +109,7 @@ class Release extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.DeliveryPipeline delivery_pipeline_snapshot = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delivery_pipeline_snapshot = null;
+    protected $delivery_pipeline_snapshot = null;
     /**
      * Output only. Snapshot of the targets taken at release creation time.
      *
@@ -126,7 +128,7 @@ class Release extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.RenderState render_state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $render_state = 0;
+    protected $render_state = 0;
     /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
@@ -134,16 +136,16 @@ class Release extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 16;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
-     * The Skaffold version to use when operating on this release, such as
-     * "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set
-     * of versions.
+     * Optional. The Skaffold version to use when operating on this release, such
+     * as "1.20.0". Not all versions are valid; Cloud Deploy supports a specific
+     * set of versions.
      * If unset, the most recent supported Skaffold version will be used.
      *
-     * Generated from protobuf field <code>string skaffold_version = 19;</code>
+     * Generated from protobuf field <code>string skaffold_version = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $skaffold_version = '';
+    protected $skaffold_version = '';
     /**
      * Output only. Map from target ID to the target artifacts created
      * during the render operation.
@@ -163,7 +165,7 @@ class Release extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.ReleaseCondition condition = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $condition = null;
+    protected $condition = null;
     /**
      * Optional. The deploy parameters to use for all targets in this release.
      *
@@ -178,17 +180,18 @@ class Release extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Name of the `Release`. Format is
+     *           Identifier. Name of the `Release`. Format is
      *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
      *           The `release` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *     @type string $uid
      *           Output only. Unique identifier of the `Release`.
      *     @type string $description
-     *           Description of the `Release`. Max length is 255 characters.
+     *           Optional. Description of the `Release`. Max length is 255 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           User annotations. These attributes can only be set and used by the
-     *           user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
-     *           for more details such as format and size limitations.
+     *           Optional. User annotations. These attributes can only be set and used by
+     *           the user, and not by Cloud Deploy. See
+     *           https://google.aip.dev/128#annotations for more details such as format and
+     *           size limitations.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels are attributes that can be set and used by both the
      *           user and by Cloud Deploy. Labels must meet the following constraints:
@@ -208,11 +211,12 @@ class Release extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $render_end_time
      *           Output only. Time at which the render completed.
      *     @type string $skaffold_config_uri
-     *           Cloud Storage URI of tar.gz archive containing Skaffold configuration.
+     *           Optional. Cloud Storage URI of tar.gz archive containing Skaffold
+     *           configuration.
      *     @type string $skaffold_config_path
-     *           Filepath of the Skaffold config inside of the config URI.
+     *           Optional. Filepath of the Skaffold config inside of the config URI.
      *     @type array<\Google\Cloud\Deploy\V1\BuildArtifact>|\Google\Protobuf\Internal\RepeatedField $build_artifacts
-     *           List of artifacts to pass through to Skaffold command.
+     *           Optional. List of artifacts to pass through to Skaffold command.
      *     @type \Google\Cloud\Deploy\V1\DeliveryPipeline $delivery_pipeline_snapshot
      *           Output only. Snapshot of the parent pipeline taken at release creation
      *           time.
@@ -228,9 +232,9 @@ class Release extends \Google\Protobuf\Internal\Message
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
      *     @type string $skaffold_version
-     *           The Skaffold version to use when operating on this release, such as
-     *           "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set
-     *           of versions.
+     *           Optional. The Skaffold version to use when operating on this release, such
+     *           as "1.20.0". Not all versions are valid; Cloud Deploy supports a specific
+     *           set of versions.
      *           If unset, the most recent supported Skaffold version will be used.
      *     @type array|\Google\Protobuf\Internal\MapField $target_artifacts
      *           Output only. Map from target ID to the target artifacts created
@@ -250,11 +254,11 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `Release`. Format is
+     * Identifier. Name of the `Release`. Format is
      * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
      * The `release` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -263,11 +267,11 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `Release`. Format is
+     * Identifier. Name of the `Release`. Format is
      * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
      * The `release` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -306,9 +310,9 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Description of the `Release`. Max length is 255 characters.
+     * Optional. Description of the `Release`. Max length is 255 characters.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -317,9 +321,9 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Description of the `Release`. Max length is 255 characters.
+     * Optional. Description of the `Release`. Max length is 255 characters.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -332,11 +336,12 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User annotations. These attributes can only be set and used by the
-     * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
-     * for more details such as format and size limitations.
+     * Optional. User annotations. These attributes can only be set and used by
+     * the user, and not by Cloud Deploy. See
+     * https://google.aip.dev/128#annotations for more details such as format and
+     * size limitations.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAnnotations()
@@ -345,11 +350,12 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User annotations. These attributes can only be set and used by the
-     * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
-     * for more details such as format and size limitations.
+     * Optional. User annotations. These attributes can only be set and used by
+     * the user, and not by Cloud Deploy. See
+     * https://google.aip.dev/128#annotations for more details such as format and
+     * size limitations.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -538,9 +544,10 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Storage URI of tar.gz archive containing Skaffold configuration.
+     * Optional. Cloud Storage URI of tar.gz archive containing Skaffold
+     * configuration.
      *
-     * Generated from protobuf field <code>string skaffold_config_uri = 17;</code>
+     * Generated from protobuf field <code>string skaffold_config_uri = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSkaffoldConfigUri()
@@ -549,9 +556,10 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Storage URI of tar.gz archive containing Skaffold configuration.
+     * Optional. Cloud Storage URI of tar.gz archive containing Skaffold
+     * configuration.
      *
-     * Generated from protobuf field <code>string skaffold_config_uri = 17;</code>
+     * Generated from protobuf field <code>string skaffold_config_uri = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -564,9 +572,9 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filepath of the Skaffold config inside of the config URI.
+     * Optional. Filepath of the Skaffold config inside of the config URI.
      *
-     * Generated from protobuf field <code>string skaffold_config_path = 9;</code>
+     * Generated from protobuf field <code>string skaffold_config_path = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSkaffoldConfigPath()
@@ -575,9 +583,9 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filepath of the Skaffold config inside of the config URI.
+     * Optional. Filepath of the Skaffold config inside of the config URI.
      *
-     * Generated from protobuf field <code>string skaffold_config_path = 9;</code>
+     * Generated from protobuf field <code>string skaffold_config_path = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -590,9 +598,9 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of artifacts to pass through to Skaffold command.
+     * Optional. List of artifacts to pass through to Skaffold command.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.BuildArtifact build_artifacts = 10;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.BuildArtifact build_artifacts = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getBuildArtifacts()
@@ -601,9 +609,9 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of artifacts to pass through to Skaffold command.
+     * Optional. List of artifacts to pass through to Skaffold command.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.BuildArtifact build_artifacts = 10;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.BuildArtifact build_artifacts = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Deploy\V1\BuildArtifact>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -764,12 +772,12 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Skaffold version to use when operating on this release, such as
-     * "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set
-     * of versions.
+     * Optional. The Skaffold version to use when operating on this release, such
+     * as "1.20.0". Not all versions are valid; Cloud Deploy supports a specific
+     * set of versions.
      * If unset, the most recent supported Skaffold version will be used.
      *
-     * Generated from protobuf field <code>string skaffold_version = 19;</code>
+     * Generated from protobuf field <code>string skaffold_version = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSkaffoldVersion()
@@ -778,12 +786,12 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Skaffold version to use when operating on this release, such as
-     * "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set
-     * of versions.
+     * Optional. The Skaffold version to use when operating on this release, such
+     * as "1.20.0". Not all versions are valid; Cloud Deploy supports a specific
+     * set of versions.
      * If unset, the most recent supported Skaffold version will be used.
      *
-     * Generated from protobuf field <code>string skaffold_version = 19;</code>
+     * Generated from protobuf field <code>string skaffold_version = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

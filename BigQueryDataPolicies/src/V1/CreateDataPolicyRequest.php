@@ -21,14 +21,14 @@ class CreateDataPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The data policy to create. The `name` field does not need to be
      * provided for the data policy creation.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datapolicies.v1.DataPolicy data_policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_policy = null;
+    protected $data_policy = null;
 
     /**
      * @param string                                            $parent     Required. Resource name of the project that the data policy will belong to.

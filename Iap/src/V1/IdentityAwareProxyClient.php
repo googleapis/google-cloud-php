@@ -20,19 +20,19 @@ class IdentityAwareProxyClient extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Client secret of the OAuth client.
      *
      * Generated from protobuf field <code>string secret = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $secret = '';
+    protected $secret = '';
     /**
      * Human-friendly name given to the OAuth client.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

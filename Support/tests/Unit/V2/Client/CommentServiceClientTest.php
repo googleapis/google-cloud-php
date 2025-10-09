@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,9 @@ class CommentServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CommentServiceClient */
@@ -82,9 +84,7 @@ class CommentServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
         $comment = new Comment();
-        $request = (new CreateCommentRequest())
-            ->setParent($formattedParent)
-            ->setComment($comment);
+        $request = (new CreateCommentRequest())->setParent($formattedParent)->setComment($comment);
         $response = $gapicClient->createComment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -110,19 +110,20 @@ class CommentServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
         $comment = new Comment();
-        $request = (new CreateCommentRequest())
-            ->setParent($formattedParent)
-            ->setComment($comment);
+        $request = (new CreateCommentRequest())->setParent($formattedParent)->setComment($comment);
         try {
             $gapicClient->createComment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -147,17 +148,14 @@ class CommentServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $commentsElement = new Comment();
-        $comments = [
-            $commentsElement,
-        ];
+        $comments = [$commentsElement];
         $expectedResponse = new ListCommentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setComments($comments);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new ListCommentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCommentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listComments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -184,17 +182,19 @@ class CommentServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new ListCommentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCommentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listComments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -228,9 +228,7 @@ class CommentServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
         $comment = new Comment();
-        $request = (new CreateCommentRequest())
-            ->setParent($formattedParent)
-            ->setComment($comment);
+        $request = (new CreateCommentRequest())->setParent($formattedParent)->setComment($comment);
         $response = $gapicClient->createCommentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

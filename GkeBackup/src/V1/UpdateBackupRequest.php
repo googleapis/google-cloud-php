@@ -21,7 +21,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.Backup backup = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup = null;
+    protected $backup = null;
     /**
      * Optional. This is used to specify the fields to be overwritten in the
      * Backup targeted for update. The values for each of these
@@ -34,7 +34,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\GkeBackup\V1\Backup $backup     Required. A new version of the Backup resource that contains updated

@@ -34,6 +34,7 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/',
+                            '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                     [
@@ -42,13 +43,28 @@ return [
                             'getAppProfileId',
                         ],
                     ],
+                ],
+            ],
+            'ExecuteQuery' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\V2\ExecuteQueryResponse',
+                'headerParams' => [
                     [
-                        'keyName' => 'authorized_view_name',
+                        'keyName' => 'name',
                         'fieldAccessors' => [
-                            'getAuthorizedViewName',
+                            'getInstanceName',
                         ],
                         'matchers' => [
-                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
+                            '/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)$/',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'app_profile_id',
+                        'fieldAccessors' => [
+                            'getAppProfileId',
                         ],
                     ],
                 ],
@@ -79,21 +95,13 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/',
+                            '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                     [
                         'keyName' => 'app_profile_id',
                         'fieldAccessors' => [
                             'getAppProfileId',
-                        ],
-                    ],
-                    [
-                        'keyName' => 'authorized_view_name',
-                        'fieldAccessors' => [
-                            'getAuthorizedViewName',
-                        ],
-                        'matchers' => [
-                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
                         ],
                     ],
                 ],
@@ -112,21 +120,13 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/',
+                            '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                     [
                         'keyName' => 'app_profile_id',
                         'fieldAccessors' => [
                             'getAppProfileId',
-                        ],
-                    ],
-                    [
-                        'keyName' => 'authorized_view_name',
-                        'fieldAccessors' => [
-                            'getAuthorizedViewName',
-                        ],
-                        'matchers' => [
-                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
                         ],
                     ],
                 ],
@@ -139,6 +139,27 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)$/',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'app_profile_id',
+                        'fieldAccessors' => [
+                            'getAppProfileId',
+                        ],
+                    ],
+                ],
+            ],
+            'PrepareQuery' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\V2\PrepareQueryResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getInstanceName',
                         ],
                         'matchers' => [
                             '/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)$/',
@@ -178,21 +199,13 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/',
+                            '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                     [
                         'keyName' => 'app_profile_id',
                         'fieldAccessors' => [
                             'getAppProfileId',
-                        ],
-                    ],
-                    [
-                        'keyName' => 'authorized_view_name',
-                        'fieldAccessors' => [
-                            'getAuthorizedViewName',
-                        ],
-                        'matchers' => [
-                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
                         ],
                     ],
                 ],
@@ -211,6 +224,7 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/',
+                            '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                     [
@@ -220,12 +234,12 @@ return [
                         ],
                     ],
                     [
-                        'keyName' => 'authorized_view_name',
+                        'keyName' => 'name',
                         'fieldAccessors' => [
-                            'getAuthorizedViewName',
+                            'getMaterializedViewName',
                         ],
                         'matchers' => [
-                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
+                            '/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                 ],
@@ -244,6 +258,7 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/',
+                            '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                     [
@@ -253,12 +268,12 @@ return [
                         ],
                     ],
                     [
-                        'keyName' => 'authorized_view_name',
+                        'keyName' => 'name',
                         'fieldAccessors' => [
-                            'getAuthorizedViewName',
+                            'getMaterializedViewName',
                         ],
                         'matchers' => [
-                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
+                            '/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                 ],
@@ -266,6 +281,7 @@ return [
             'templateMap' => [
                 'authorizedView' => 'projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}',
                 'instance' => 'projects/{project}/instances/{instance}',
+                'materializedView' => 'projects/{project}/instances/{instance}/materializedViews/{materialized_view}',
                 'table' => 'projects/{project}/instances/{instance}/tables/{table}',
             ],
         ],

@@ -26,25 +26,25 @@ class DataplexExternalTable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.IntegratedSystem system = 1;</code>
      */
-    private $system = 0;
+    protected $system = 0;
     /**
      * Fully qualified name (FQN) of the external table.
      *
      * Generated from protobuf field <code>string fully_qualified_name = 28;</code>
      */
-    private $fully_qualified_name = '';
+    protected $fully_qualified_name = '';
     /**
      * Google Cloud resource name of the external table.
      *
      * Generated from protobuf field <code>string google_cloud_resource = 3;</code>
      */
-    private $google_cloud_resource = '';
+    protected $google_cloud_resource = '';
     /**
      * Name of the Data Catalog entry representing the external table.
      *
      * Generated from protobuf field <code>string data_catalog_entry = 4;</code>
      */
-    private $data_catalog_entry = '';
+    protected $data_catalog_entry = '';
 
     /**
      * Constructor.

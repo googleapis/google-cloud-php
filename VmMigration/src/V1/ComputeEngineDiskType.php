@@ -38,12 +38,19 @@ class ComputeEngineDiskType
      * Generated from protobuf enum <code>COMPUTE_ENGINE_DISK_TYPE_BALANCED = 3;</code>
      */
     const COMPUTE_ENGINE_DISK_TYPE_BALANCED = 3;
+    /**
+     * Hyperdisk balanced disk type.
+     *
+     * Generated from protobuf enum <code>COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED = 4;</code>
+     */
+    const COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED = 4;
 
     private static $valueToName = [
         self::COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED => 'COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED',
         self::COMPUTE_ENGINE_DISK_TYPE_STANDARD => 'COMPUTE_ENGINE_DISK_TYPE_STANDARD',
         self::COMPUTE_ENGINE_DISK_TYPE_SSD => 'COMPUTE_ENGINE_DISK_TYPE_SSD',
         self::COMPUTE_ENGINE_DISK_TYPE_BALANCED => 'COMPUTE_ENGINE_DISK_TYPE_BALANCED',
+        self::COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED => 'COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED',
     ];
 
     public static function name($value)

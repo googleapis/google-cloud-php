@@ -20,26 +20,26 @@ class AsyncModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.AsyncModelMetadata.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * A message providing more details about the current state of the operation.
      * For example, the error message if the operation is failed.
      *
      * Generated from protobuf field <code>string state_message = 2;</code>
      */
-    private $state_message = '';
+    protected $state_message = '';
     /**
      * The creation time of the operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The last update time of the operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

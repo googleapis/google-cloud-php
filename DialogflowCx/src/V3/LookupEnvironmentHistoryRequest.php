@@ -18,8 +18,8 @@ class LookupEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Resource name of the environment to look up the history for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -40,8 +40,8 @@ class LookupEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Resource name of the environment to look up the history for.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/environments/<Environment ID>`. Please see
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`. Please see
      *                     {@see EnvironmentsClient::environmentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\LookupEnvironmentHistoryRequest
@@ -62,8 +62,8 @@ class LookupEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Resource name of the environment to look up the history for.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/environments/<Environment ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *     @type int $page_size
      *           The maximum number of items to return in a single page. By default 100 and
      *           at most 1000.
@@ -78,8 +78,8 @@ class LookupEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the environment to look up the history for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,8 +91,8 @@ class LookupEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the environment to look up the history for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

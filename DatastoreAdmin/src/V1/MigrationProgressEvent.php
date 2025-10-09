@@ -24,7 +24,7 @@ class MigrationProgressEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.MigrationStep step = 1;</code>
      */
-    private $step = 0;
+    protected $step = 0;
     protected $step_details;
 
     /**

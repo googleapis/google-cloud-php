@@ -20,7 +20,7 @@ class LookupKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_string = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key_string = '';
+    protected $key_string = '';
 
     /**
      * Constructor.

@@ -22,13 +22,13 @@ class Blob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Required. Raw bytes.
      *
      * Generated from protobuf field <code>bytes data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data = '';
+    protected $data = '';
 
     /**
      * Constructor.

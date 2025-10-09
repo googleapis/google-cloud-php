@@ -21,7 +21,7 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     protected $kind;
 
     /**

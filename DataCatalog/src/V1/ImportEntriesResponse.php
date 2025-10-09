@@ -23,13 +23,13 @@ class ImportEntriesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 upserted_entries_count = 5;</code>
      */
-    private $upserted_entries_count = null;
+    protected $upserted_entries_count = null;
     /**
      * Number of entries deleted as a result of import operation.
      *
      * Generated from protobuf field <code>optional int64 deleted_entries_count = 6;</code>
      */
-    private $deleted_entries_count = null;
+    protected $deleted_entries_count = null;
 
     /**
      * Constructor.

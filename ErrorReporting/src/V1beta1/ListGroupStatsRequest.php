@@ -17,24 +17,40 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
-     * and `{projectNumber}` can be found in the
-     * [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
-     * Examples: `projects/my-project-123`, `projects/5551234`.
+     * as `projects/{projectID}` or `projects/{projectNumber}`, where
+     * `{projectID}` and `{projectNumber}` can be found in the
+     * [Google Cloud console](https://support.google.com/cloud/answer/6158840).
+     * It may also include a location, such as
+     * `projects/{projectID}/locations/{location}` where `{location}` is a cloud
+     * region.
+     * Examples: `projects/my-project-123`, `projects/5551234`,
+     * `projects/my-project-123/locations/us-central1`,
+     * `projects/5551234/locations/us-central1`.
+     * For a list of supported locations, see [Supported
+     * Regions](https://cloud.google.com/logging/docs/region-support). `global` is
+     * the default when unspecified. Use `-` as a wildcard to request group stats
+     * from all regions.
      *
      * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $project_name = '';
     /**
-     * Optional. List all <code>ErrorGroupStats</code> with these IDs.
+     * Optional. List all [ErrorGroupStats]
+     * [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with these
+     * IDs. The `group_id` is a unique identifier for a particular error group.
+     * The identifier is derived from key parts of the error-log content and is
+     * treated as Service Data. For information about how Service Data
+     * is handled, see [Google Cloud Privacy Notice]
+     * (https://cloud.google.com/terms/cloud-privacy-notice).
      *
      * Generated from protobuf field <code>repeated string group_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $group_id;
     /**
-     * Optional. List only <code>ErrorGroupStats</code> which belong to a service
-     * context that matches the filter.
-     * Data for all service contexts is returned if this field is not specified.
+     * Optional. List only [ErrorGroupStats]
+     * [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] which belong
+     * to a service context that matches the filter. Data for all service contexts
+     * is returned if this field is not specified.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -42,19 +58,27 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. List data for the given time range.
      * If not set, a default time range is used. The field
-     * <code>time_range_begin</code> in the response will specify the beginning
-     * of this time range.
-     * Only <code>ErrorGroupStats</code> with a non-zero count in the given time
-     * range are returned, unless the request contains an explicit
-     * <code>group_id</code> list. If a <code>group_id</code> list is given, also
-     * <code>ErrorGroupStats</code> with zero occurrences are returned.
+     * [time_range_begin]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse.time_range_begin]
+     * in the response will specify the beginning of this time range. Only
+     * [ErrorGroupStats]
+     * [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with a
+     * non-zero count in the given time range are returned, unless the request
+     * contains an explicit [group_id]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest.group_id]
+     * list. If a [group_id]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest.group_id]
+     * list is given, also [ErrorGroupStats]
+     * [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with zero
+     * occurrences are returned.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $time_range = null;
     /**
-     * Optional. The preferred duration for a single returned `TimedCount`.
-     * If not set, no timed counts are returned.
+     * Optional. The preferred duration for a single returned [TimedCount]
+     * [google.devtools.clouderrorreporting.v1beta1.TimedCount]. If not set, no
+     * timed counts are returned.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timed_count_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -88,9 +112,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * Optional. A `next_page_token` provided by a previous response. To view
-     * additional results, pass this token along with the identical query
-     * parameters as the first request.
+     * Optional. A [next_page_token]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse.next_page_token]
+     * provided by a previous response. To view additional results, pass this
+     * token along with the identical query parameters as the first request.
      *
      * Generated from protobuf field <code>string page_token = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -98,20 +123,37 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                              $projectName Required. The resource name of the Google Cloud Platform project. Written
-     *                                                                         as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
-     *                                                                         and `{projectNumber}` can be found in the
-     *                                                                         [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
+     *                                                                         as `projects/{projectID}` or `projects/{projectNumber}`, where
+     *                                                                         `{projectID}` and `{projectNumber}` can be found in the
+     *                                                                         [Google Cloud console](https://support.google.com/cloud/answer/6158840).
+     *                                                                         It may also include a location, such as
+     *                                                                         `projects/{projectID}/locations/{location}` where `{location}` is a cloud
+     *                                                                         region.
      *
-     *                                                                         Examples: `projects/my-project-123`, `projects/5551234`. Please see
+     *                                                                         Examples: `projects/my-project-123`, `projects/5551234`,
+     *                                                                         `projects/my-project-123/locations/us-central1`,
+     *                                                                         `projects/5551234/locations/us-central1`.
+     *
+     *                                                                         For a list of supported locations, see [Supported
+     *                                                                         Regions](https://cloud.google.com/logging/docs/region-support). `global` is
+     *                                                                         the default when unspecified. Use `-` as a wildcard to request group stats
+     *                                                                         from all regions. Please see
      *                                                                         {@see ErrorStatsServiceClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $timeRange   Optional. List data for the given time range.
      *                                                                         If not set, a default time range is used. The field
-     *                                                                         <code>time_range_begin</code> in the response will specify the beginning
-     *                                                                         of this time range.
-     *                                                                         Only <code>ErrorGroupStats</code> with a non-zero count in the given time
-     *                                                                         range are returned, unless the request contains an explicit
-     *                                                                         <code>group_id</code> list. If a <code>group_id</code> list is given, also
-     *                                                                         <code>ErrorGroupStats</code> with zero occurrences are returned.
+     *                                                                         [time_range_begin]
+     *                                                                         [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse.time_range_begin]
+     *                                                                         in the response will specify the beginning of this time range. Only
+     *                                                                         [ErrorGroupStats]
+     *                                                                         [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with a
+     *                                                                         non-zero count in the given time range are returned, unless the request
+     *                                                                         contains an explicit [group_id]
+     *                                                                         [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest.group_id]
+     *                                                                         list. If a [group_id]
+     *                                                                         [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest.group_id]
+     *                                                                         list is given, also [ErrorGroupStats]
+     *                                                                         [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with zero
+     *                                                                         occurrences are returned.
      *
      * @return \Google\Cloud\ErrorReporting\V1beta1\ListGroupStatsRequest
      *
@@ -132,28 +174,52 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_name
      *           Required. The resource name of the Google Cloud Platform project. Written
-     *           as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
-     *           and `{projectNumber}` can be found in the
-     *           [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
-     *           Examples: `projects/my-project-123`, `projects/5551234`.
+     *           as `projects/{projectID}` or `projects/{projectNumber}`, where
+     *           `{projectID}` and `{projectNumber}` can be found in the
+     *           [Google Cloud console](https://support.google.com/cloud/answer/6158840).
+     *           It may also include a location, such as
+     *           `projects/{projectID}/locations/{location}` where `{location}` is a cloud
+     *           region.
+     *           Examples: `projects/my-project-123`, `projects/5551234`,
+     *           `projects/my-project-123/locations/us-central1`,
+     *           `projects/5551234/locations/us-central1`.
+     *           For a list of supported locations, see [Supported
+     *           Regions](https://cloud.google.com/logging/docs/region-support). `global` is
+     *           the default when unspecified. Use `-` as a wildcard to request group stats
+     *           from all regions.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $group_id
-     *           Optional. List all <code>ErrorGroupStats</code> with these IDs.
+     *           Optional. List all [ErrorGroupStats]
+     *           [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with these
+     *           IDs. The `group_id` is a unique identifier for a particular error group.
+     *           The identifier is derived from key parts of the error-log content and is
+     *           treated as Service Data. For information about how Service Data
+     *           is handled, see [Google Cloud Privacy Notice]
+     *           (https://cloud.google.com/terms/cloud-privacy-notice).
      *     @type \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $service_filter
-     *           Optional. List only <code>ErrorGroupStats</code> which belong to a service
-     *           context that matches the filter.
-     *           Data for all service contexts is returned if this field is not specified.
+     *           Optional. List only [ErrorGroupStats]
+     *           [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] which belong
+     *           to a service context that matches the filter. Data for all service contexts
+     *           is returned if this field is not specified.
      *     @type \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $time_range
      *           Optional. List data for the given time range.
      *           If not set, a default time range is used. The field
-     *           <code>time_range_begin</code> in the response will specify the beginning
-     *           of this time range.
-     *           Only <code>ErrorGroupStats</code> with a non-zero count in the given time
-     *           range are returned, unless the request contains an explicit
-     *           <code>group_id</code> list. If a <code>group_id</code> list is given, also
-     *           <code>ErrorGroupStats</code> with zero occurrences are returned.
+     *           [time_range_begin]
+     *           [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse.time_range_begin]
+     *           in the response will specify the beginning of this time range. Only
+     *           [ErrorGroupStats]
+     *           [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with a
+     *           non-zero count in the given time range are returned, unless the request
+     *           contains an explicit [group_id]
+     *           [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest.group_id]
+     *           list. If a [group_id]
+     *           [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest.group_id]
+     *           list is given, also [ErrorGroupStats]
+     *           [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with zero
+     *           occurrences are returned.
      *     @type \Google\Protobuf\Duration $timed_count_duration
-     *           Optional. The preferred duration for a single returned `TimedCount`.
-     *           If not set, no timed counts are returned.
+     *           Optional. The preferred duration for a single returned [TimedCount]
+     *           [google.devtools.clouderrorreporting.v1beta1.TimedCount]. If not set, no
+     *           timed counts are returned.
      *     @type int $alignment
      *           Optional. The alignment of the timed counts to be returned.
      *           Default is `ALIGNMENT_EQUAL_AT_END`.
@@ -167,9 +233,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The maximum number of results to return per response.
      *           Default is 20.
      *     @type string $page_token
-     *           Optional. A `next_page_token` provided by a previous response. To view
-     *           additional results, pass this token along with the identical query
-     *           parameters as the first request.
+     *           Optional. A [next_page_token]
+     *           [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse.next_page_token]
+     *           provided by a previous response. To view additional results, pass this
+     *           token along with the identical query parameters as the first request.
      * }
      */
     public function __construct($data = NULL) {
@@ -179,10 +246,19 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
-     * and `{projectNumber}` can be found in the
-     * [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
-     * Examples: `projects/my-project-123`, `projects/5551234`.
+     * as `projects/{projectID}` or `projects/{projectNumber}`, where
+     * `{projectID}` and `{projectNumber}` can be found in the
+     * [Google Cloud console](https://support.google.com/cloud/answer/6158840).
+     * It may also include a location, such as
+     * `projects/{projectID}/locations/{location}` where `{location}` is a cloud
+     * region.
+     * Examples: `projects/my-project-123`, `projects/5551234`,
+     * `projects/my-project-123/locations/us-central1`,
+     * `projects/5551234/locations/us-central1`.
+     * For a list of supported locations, see [Supported
+     * Regions](https://cloud.google.com/logging/docs/region-support). `global` is
+     * the default when unspecified. Use `-` as a wildcard to request group stats
+     * from all regions.
      *
      * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -194,10 +270,19 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
-     * and `{projectNumber}` can be found in the
-     * [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
-     * Examples: `projects/my-project-123`, `projects/5551234`.
+     * as `projects/{projectID}` or `projects/{projectNumber}`, where
+     * `{projectID}` and `{projectNumber}` can be found in the
+     * [Google Cloud console](https://support.google.com/cloud/answer/6158840).
+     * It may also include a location, such as
+     * `projects/{projectID}/locations/{location}` where `{location}` is a cloud
+     * region.
+     * Examples: `projects/my-project-123`, `projects/5551234`,
+     * `projects/my-project-123/locations/us-central1`,
+     * `projects/5551234/locations/us-central1`.
+     * For a list of supported locations, see [Supported
+     * Regions](https://cloud.google.com/logging/docs/region-support). `global` is
+     * the default when unspecified. Use `-` as a wildcard to request group stats
+     * from all regions.
      *
      * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -212,7 +297,13 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List all <code>ErrorGroupStats</code> with these IDs.
+     * Optional. List all [ErrorGroupStats]
+     * [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with these
+     * IDs. The `group_id` is a unique identifier for a particular error group.
+     * The identifier is derived from key parts of the error-log content and is
+     * treated as Service Data. For information about how Service Data
+     * is handled, see [Google Cloud Privacy Notice]
+     * (https://cloud.google.com/terms/cloud-privacy-notice).
      *
      * Generated from protobuf field <code>repeated string group_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -223,7 +314,13 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List all <code>ErrorGroupStats</code> with these IDs.
+     * Optional. List all [ErrorGroupStats]
+     * [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with these
+     * IDs. The `group_id` is a unique identifier for a particular error group.
+     * The identifier is derived from key parts of the error-log content and is
+     * treated as Service Data. For information about how Service Data
+     * is handled, see [Google Cloud Privacy Notice]
+     * (https://cloud.google.com/terms/cloud-privacy-notice).
      *
      * Generated from protobuf field <code>repeated string group_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -238,9 +335,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List only <code>ErrorGroupStats</code> which belong to a service
-     * context that matches the filter.
-     * Data for all service contexts is returned if this field is not specified.
+     * Optional. List only [ErrorGroupStats]
+     * [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] which belong
+     * to a service context that matches the filter. Data for all service contexts
+     * is returned if this field is not specified.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter|null
@@ -261,9 +359,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List only <code>ErrorGroupStats</code> which belong to a service
-     * context that matches the filter.
-     * Data for all service contexts is returned if this field is not specified.
+     * Optional. List only [ErrorGroupStats]
+     * [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] which belong
+     * to a service context that matches the filter. Data for all service contexts
+     * is returned if this field is not specified.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $var
@@ -280,12 +379,19 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. List data for the given time range.
      * If not set, a default time range is used. The field
-     * <code>time_range_begin</code> in the response will specify the beginning
-     * of this time range.
-     * Only <code>ErrorGroupStats</code> with a non-zero count in the given time
-     * range are returned, unless the request contains an explicit
-     * <code>group_id</code> list. If a <code>group_id</code> list is given, also
-     * <code>ErrorGroupStats</code> with zero occurrences are returned.
+     * [time_range_begin]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse.time_range_begin]
+     * in the response will specify the beginning of this time range. Only
+     * [ErrorGroupStats]
+     * [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with a
+     * non-zero count in the given time range are returned, unless the request
+     * contains an explicit [group_id]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest.group_id]
+     * list. If a [group_id]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest.group_id]
+     * list is given, also [ErrorGroupStats]
+     * [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with zero
+     * occurrences are returned.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange|null
@@ -308,12 +414,19 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. List data for the given time range.
      * If not set, a default time range is used. The field
-     * <code>time_range_begin</code> in the response will specify the beginning
-     * of this time range.
-     * Only <code>ErrorGroupStats</code> with a non-zero count in the given time
-     * range are returned, unless the request contains an explicit
-     * <code>group_id</code> list. If a <code>group_id</code> list is given, also
-     * <code>ErrorGroupStats</code> with zero occurrences are returned.
+     * [time_range_begin]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse.time_range_begin]
+     * in the response will specify the beginning of this time range. Only
+     * [ErrorGroupStats]
+     * [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with a
+     * non-zero count in the given time range are returned, unless the request
+     * contains an explicit [group_id]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest.group_id]
+     * list. If a [group_id]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest.group_id]
+     * list is given, also [ErrorGroupStats]
+     * [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with zero
+     * occurrences are returned.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $var
@@ -328,8 +441,9 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The preferred duration for a single returned `TimedCount`.
-     * If not set, no timed counts are returned.
+     * Optional. The preferred duration for a single returned [TimedCount]
+     * [google.devtools.clouderrorreporting.v1beta1.TimedCount]. If not set, no
+     * timed counts are returned.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timed_count_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -350,8 +464,9 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The preferred duration for a single returned `TimedCount`.
-     * If not set, no timed counts are returned.
+     * Optional. The preferred duration for a single returned [TimedCount]
+     * [google.devtools.clouderrorreporting.v1beta1.TimedCount]. If not set, no
+     * timed counts are returned.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timed_count_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
@@ -488,9 +603,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A `next_page_token` provided by a previous response. To view
-     * additional results, pass this token along with the identical query
-     * parameters as the first request.
+     * Optional. A [next_page_token]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse.next_page_token]
+     * provided by a previous response. To view additional results, pass this
+     * token along with the identical query parameters as the first request.
      *
      * Generated from protobuf field <code>string page_token = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -501,9 +617,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A `next_page_token` provided by a previous response. To view
-     * additional results, pass this token along with the identical query
-     * parameters as the first request.
+     * Optional. A [next_page_token]
+     * [google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse.next_page_token]
+     * provided by a previous response. To view additional results, pass this
+     * token along with the identical query parameters as the first request.
      *
      * Generated from protobuf field <code>string page_token = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

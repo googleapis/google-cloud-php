@@ -21,7 +21,7 @@ class SslCertsInsertRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string common_name = 1;</code>
      */
-    private $common_name = '';
+    protected $common_name = '';
 
     /**
      * Constructor.

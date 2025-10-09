@@ -21,7 +21,7 @@ class RemoveIamPolicyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool success = 1;</code>
      */
-    private $success = false;
+    protected $success = false;
 
     /**
      * Constructor.

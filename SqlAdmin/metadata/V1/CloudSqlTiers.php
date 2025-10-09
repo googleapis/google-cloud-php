@@ -18,19 +18,19 @@ class CloudSqlTiers
         \GPBMetadata\Google\Api\Client::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ô
+©
 )google/cloud/sql/v1/cloud_sql_tiers.protogoogle.cloud.sql.v1google/api/client.proto"&
 SqlTiersListRequest
 project (	"K
 TiersListResponse
 kind (	(
-items (2.google.cloud.sql.v1.Tier"S
+items (2.google.cloud.sql.v1.Tier"c
 Tier
-tier (	
-RAM (
-kind (	
+tier (	
+RAM (RRAM
+kind (	
 
-Disk_Quota (
+Disk_Quota (R	DiskQuota
 region (	2è
 SqlTiersService~
 List(.google.cloud.sql.v1.SqlTiersListRequest&.google.cloud.sql.v1.TiersListResponse"$Ç”‰ì/v1/projects/{project}/tiers| Asqladmin.googleapis.com“A_https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/sqlservice.adminBZ

@@ -138,7 +138,43 @@ return [
                     ],
                 ],
             ],
+            'AddSplitPoints' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'database',
+                        'fieldAccessors' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateBackupSchedule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Spanner\Admin\Database\V1\BackupSchedule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteBackup' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackupSchedule' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -165,6 +201,18 @@ return [
             'GetBackup' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Spanner\Admin\Database\V1\Backup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupSchedule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Spanner\Admin\Database\V1\BackupSchedule',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -210,6 +258,10 @@ return [
                     ],
                 ],
             ],
+            'InternalUpdateGraphOperation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Spanner\Admin\Database\V1\InternalUpdateGraphOperationResponse',
+            ],
             'ListBackupOperations' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -221,6 +273,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupSchedules' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBackupSchedules',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Spanner\Admin\Database\V1\ListBackupSchedulesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -347,12 +419,27 @@ return [
                     ],
                 ],
             ],
+            'UpdateBackupSchedule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Spanner\Admin\Database\V1\BackupSchedule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'backup_schedule.name',
+                        'fieldAccessors' => [
+                            'getBackupSchedule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'backup' => 'projects/{project}/instances/{instance}/backups/{backup}',
+                'backupSchedule' => 'projects/{project}/instances/{instance}/databases/{database}/backupSchedules/{schedule}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'database' => 'projects/{project}/instances/{instance}/databases/{database}',
                 'instance' => 'projects/{project}/instances/{instance}',
+                'instancePartition' => 'projects/{project}/instances/{instance}/instancePartitions/{instance_partition}',
             ],
         ],
     ],

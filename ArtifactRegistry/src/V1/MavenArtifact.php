@@ -27,7 +27,7 @@ class MavenArtifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. URL to access the pom file of the artifact.
      * Example:
@@ -35,7 +35,7 @@ class MavenArtifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pom_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $pom_uri = '';
+    protected $pom_uri = '';
     /**
      * Group ID for the artifact.
      * Example:
@@ -43,31 +43,31 @@ class MavenArtifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group_id = 3;</code>
      */
-    private $group_id = '';
+    protected $group_id = '';
     /**
      * Artifact ID for the artifact.
      *
      * Generated from protobuf field <code>string artifact_id = 4;</code>
      */
-    private $artifact_id = '';
+    protected $artifact_id = '';
     /**
      * Version of this artifact.
      *
      * Generated from protobuf field <code>string version = 5;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Output only. Time the artifact was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time the artifact was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

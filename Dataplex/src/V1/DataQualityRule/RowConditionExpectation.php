@@ -10,8 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Evaluates whether each row passes the specified condition.
- * The SQL expression needs to use BigQuery standard SQL syntax and should
- * produce a boolean value per row as the result.
+ * The SQL expression needs to use [GoogleSQL
+ * syntax](https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax)
+ * and should produce a boolean value per row as the result.
  * Example: col1 >= 0 AND col2 < 10
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataQualityRule.RowConditionExpectation</code>
@@ -23,7 +24,7 @@ class RowConditionExpectation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sql_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sql_expression = '';
+    protected $sql_expression = '';
 
     /**
      * Constructor.

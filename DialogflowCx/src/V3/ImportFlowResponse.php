@@ -18,8 +18,8 @@ class ImportFlowResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique identifier of the new flow.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string flow = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -33,8 +33,8 @@ class ImportFlowResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $flow
      *           The unique identifier of the new flow.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,8 +44,8 @@ class ImportFlowResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the new flow.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string flow = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -57,8 +57,8 @@ class ImportFlowResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the new flow.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string flow = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

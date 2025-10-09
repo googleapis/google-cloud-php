@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -27,16 +28,17 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\Retry;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Rpc\Code;
 
@@ -119,10 +121,12 @@ class Database
     const TYPE_ARRAY = TypeCode::PBARRAY;
     const TYPE_STRUCT = TypeCode::STRUCT;
     const TYPE_NUMERIC = TypeCode::NUMERIC;
+    const TYPE_PROTO = TypeCode::PROTO;
     const TYPE_PG_NUMERIC = 'pgNumeric';
     const TYPE_PG_JSONB = 'pgJsonb';
     const TYPE_JSON = TypeCode::JSON;
     const TYPE_PG_OID = 'pgOid';
+    const TYPE_INTERVAL = TypeCode::INTERVAL;
 
     /**
      * @var ConnectionInterface
@@ -186,6 +190,16 @@ class Database
     private $directedReadOptions;
 
     /**
+     * @var bool
+     */
+    private $returnInt64AsObject;
+
+    /**
+     * @var int
+     */
+    private int $isolationLevel;
+
+    /**
      * Create an object representing a Database.
      *
      * @param ConnectionInterface $connection The connection to the
@@ -203,6 +217,8 @@ class Database
      *        be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility. **Defaults to** false.
      * @param string $databaseRole The user created database role which creates the session.
+     * @param int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -211,10 +227,11 @@ class Database
         array $lroCallables,
         $projectId,
         $name,
-        SessionPoolInterface $sessionPool = null,
+        ?SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
         array $info = [],
-        $databaseRole = ''
+        $databaseRole = '',
+        $isolationLevel = IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
@@ -231,6 +248,8 @@ class Database
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
         $this->databaseRole = $databaseRole;
         $this->directedReadOptions = $instance->directedReadOptions();
+        $this->returnInt64AsObject = $returnInt64AsObject;
+        $this->isolationLevel = $isolationLevel;
     }
 
     /**
@@ -286,7 +305,7 @@ class Database
      */
     public function backups(array $options = [])
     {
-        $filter = "database:" . $this->name();
+        $filter = 'database:' . $this->name();
 
         if (isset($options['filter'])) {
             $filter = sprintf('(%1$s) AND (%2$s)', $filter, $this->pluck('filter', $options));
@@ -421,6 +440,10 @@ class Database
      *     Configuration Options
      *
      *     @type string[] $statements Additional DDL statements.
+     *     @type \Google\Protobuf\FileDescriptorSet|string $protoDescriptors The file
+     *         descriptor set object to be used in the update, or alternatively, an absolute
+     *         path to the generated file descriptor set. The descriptor set is only used
+     *         during DDL statements, such as `CREATE PROTO BUNDLE`.
      * }
      * @return LongRunningOperation<Database>
      */
@@ -763,10 +786,8 @@ class Database
      * If you wish Google Cloud PHP to handle retry logic for you (recommended
      * for most cases), use {@see \Google\Cloud\Spanner\Database::runTransaction()}.
      *
-     * Please note that once a transaction reads data, it will lock the read
-     * data, preventing other users from modifying that data. For this reason,
-     * it is important that every transaction commits or rolls back as early as
-     * possible. Do not hold transactions open longer than necessary.
+     * Please note for locking semantics and defaults for the transactions
+     * use {@see \Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode}
      *
      * Example:
      * ```
@@ -789,6 +810,8 @@ class Database
      *           Session labels may be applied using the `labels` key.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      * @return Transaction
      * @throws \BadMethodCallException If attempting to call this method within
@@ -800,8 +823,10 @@ class Database
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions();
+        // Configure readWrite options here. Any nested options for readWrite should be added to this call
+        $options['transactionOptions'] = $this->configureTransactionOptions($options['transactionOptions'] ?? [
+            'isolationLevel' => $options['isolationLevel'] ?? $this->isolationLevel
+        ]);
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -828,10 +853,8 @@ class Database
      * exception types will immediately bubble up and will interrupt the retry
      * operation.
      *
-     * Please note that once a transaction reads data, it will lock the read
-     * data, preventing other users from modifying that data. For this reason,
-     * it is important that every transaction commits or rolls back as early as
-     * possible. Do not hold transactions open longer than necessary.
+     * Please note for locking semantics and defaults for the transactions
+     * use {@see \Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode}
      *
      * Please also note that nested transactions are NOT supported by this client.
      * Attempting to call `runTransaction` inside a transaction callable will
@@ -892,6 +915,9 @@ class Database
      *           Session labels may be applied using the `labels` key.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
+     *     @type array transactionOptions Options for the transaction.
+     *           {@see \Google\Cloud\Spanner\V1\TransactionOptions}
+     *           for available options
      * }
      * @return mixed The return value of `$operation`.
      * @throws \RuntimeException If a transaction is not committed or rolled back.
@@ -908,8 +934,11 @@ class Database
             'maxRetries' => self::MAX_RETRIES,
         ];
 
-        // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions();
+        $transactionOptions = (isset($options['transactionOptions'])) ? $options['transactionOptions'] : [];
+
+        $options['transactionOptions'] = $this->configureTransactionOptions([
+            'isolationLevel' => $options['transactionOptions']['isolationLevel'] ?? $this->isolationLevel
+        ] + $transactionOptions);
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -921,6 +950,10 @@ class Database
 
             // Initial attempt requires to set `begin` options (ILB).
             if ($attempt === 0) {
+                if (!isset($options['transactionOptions']['isolationLevel'])) {
+                    $options['transactionOptions']['isolationLevel'] = IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
+                }
+
                 // Partitioned DML does not support ILB.
                 if (!isset($options['transactionOptions']['partitionedDml'])) {
                     $options['begin'] = $options['transactionOptions'];
@@ -1548,7 +1581,7 @@ class Database
      * use Google\Cloud\Spanner\Session\SessionPoolInterface;
      *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
-     *      'parameters' => [
+     *     'parameters' => [
      *         'postId' => 1337
      *     ],
      *     'begin' => true,
@@ -1565,7 +1598,7 @@ class Database
      * use Google\Cloud\Spanner\Session\SessionPoolInterface;
      *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
-     *      'parameters' => [
+     *     'parameters' => [
      *         'postId' => 1337
      *     ],
      *     'begin' => true,
@@ -1585,11 +1618,10 @@ class Database
      * @param string $sql The query string to execute.
      * @param array $options [optional] {
      *     Configuration Options.
-     *     See [TransactionOptions](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions)
-     *     for detailed description of available transaction options. Please
-     *     note that only one of `$strong`, `$minReadTimestamp`,
-     *     `$maxStaleness`, `$readTimestamp` or `$exactStaleness` may be set in
-     *     a request.
+     *     See {@see V1\TransactionOptions\PBReadOnly} for detailed description of
+     *     available transaction options. Please note that only one of
+     *     `$strong`, `$minReadTimestamp`, `$maxStaleness`, `$readTimestamp` or
+     *     `$exactStaleness` may be set in a request.
      *
      *     @type array $parameters A key/value array of Query Parameters, where
      *           the key is represented in the query string prefixed by a `@`
@@ -1620,11 +1652,12 @@ class Database
      *           timestamp.
      *     @type Duration $exactStaleness Represents a number of seconds. Executes
      *           all reads at a timestamp that is $exactStaleness old.
-     *     @type bool $begin If true, will begin a new transaction. If a
+     *     @type bool|array $begin If true, will begin a new transaction. If a
      *           read/write transaction is desired, set the value of
      *           $transactionType. If a transaction or snapshot is created, it
      *           will be returned as `$result->transaction()` or
      *           `$result->snapshot()`. **Defaults to** `false`.
+     *           If $begin is an array {@see TransactionOptions}
      *     @type string $transactionType One of `SessionPoolInterface::CONTEXT_READ`
      *           or `SessionPoolInterface::CONTEXT_READWRITE`. If read/write is
      *           chosen, any snapshot options will be disregarded. If `$begin`
@@ -1675,6 +1708,10 @@ class Database
         ) = $this->transactionSelector($options);
         $options = $this->addLarHeader($options, true, $options['transactionContext']);
 
+        if (isset($options['transaction']['readWrite'])) {
+            $options['transaction']['begin']['isolationLevel'] ??= $this->isolationLevel;
+        }
+
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
             $this->directedReadOptions ?? []
@@ -1683,6 +1720,88 @@ class Database
         try {
             return $this->operation->execute($session, $sql, $options);
         } finally {
+            $session->setExpiration();
+        }
+    }
+
+    /**
+     * Create a new {@see \Google\Cloud\Spanner\MutationGroup} object.
+     *
+     * @return MutationGroup
+     */
+    public function mutationGroup()
+    {
+        return new MutationGroup($this->returnInt64AsObject);
+    }
+
+    /**
+     * Batches the supplied mutation groups in a collection of efficient
+     * transactions. All mutations in a group are committed atomically. However,
+     * mutations across groups can be committed non-atomically in an unspecified
+     * order and thus, they must be independent of each other. Partial failure is
+     * possible, i.e., some groups may have been committed successfully, while
+     * some may have failed. The results of individual batches are streamed into
+     * the response as the batches are applied.
+     *
+     * BatchWrite requests are not replay protected, meaning that each mutation
+     * group may be applied more than once. Replays of non-idempotent mutations
+     * may have undesirable effects. For example, replays of an insert mutation
+     * may produce an already exists error or if you use generated or commit
+     * timestamp-based keys, it may result in additional rows being added to the
+     * mutation's table. We recommend structuring your mutation groups to be
+     * idempotent to avoid this issue.
+     *
+     * Sample code:
+     * ```
+     * ```
+     *
+     * @param array<MutationGroup> $mutationGroups Required. The groups of mutations to be applied.
+     * @param array           $options   {
+     *     Optional.
+     *
+     *     @type array $requestOptions
+     *           Common options for this request.
+     *     @type bool $excludeTxnFromChangeStreams
+     *           Optional. When `exclude_txn_from_change_streams` is set to `true`:
+     *           * Mutations from all transactions in this batch write operation will not
+     *           be recorded in change streams with DDL option `allow_txn_exclusion=true`
+     *           that are tracking columns modified by these transactions.
+     *           * Mutations from all transactions in this batch write operation will be
+     *           recorded in change streams with DDL option `allow_txn_exclusion=false or
+     *           not set` that are tracking columns modified by these transactions.
+     *
+     *           When `exclude_txn_from_change_streams` is set to `false` or not set,
+     *           mutations from all transactions in this batch write operation will be
+     *           recorded in all change streams that are tracking columns modified by these
+     *           transactions.
+     * }
+     *
+     * @return \Generator {@see \Google\Cloud\Spanner\V1\BatchWriteResponse}
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function batchWrite(array $mutationGroups, array $options = [])
+    {
+        if ($this->isRunningTransaction) {
+            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+        }
+        // Prevent nested transactions.
+        $this->isRunningTransaction = true;
+        $session = $this->selectSession(
+            SessionPoolInterface::CONTEXT_READWRITE,
+            $this->pluck('sessionOptions', $options, false) ?: []
+        );
+
+        $mutationGroups = array_map(fn ($x) => $x->toArray(), $mutationGroups);
+
+        try {
+            return $this->connection->batchWrite([
+                'database' => $this->name(),
+                'session' => $session->name(),
+                'mutationGroups' => $mutationGroups
+            ] + $options);
+        } finally {
+            $this->isRunningTransaction = false;
             $session->setExpiration();
         }
     }
@@ -1801,19 +1920,34 @@ class Database
      *           Please note, if using the `priority` setting you may utilize the constants available
      *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *           Please note, the `transactionTag` setting will be ignored as it is not supported for partitioned DML.
+     *     @type array $transactionOptions Transaction options.
+     *           {@see V1\TransactionOptions}
      * }
      * @return int The number of rows modified.
+     * @throws ValidationException
      */
     public function executePartitionedUpdate($statement, array $options = [])
     {
         unset($options['requestOptions']['transactionTag']);
+
+        if (isset($options['transactionOptions']['isolationLevel'])) {
+            throw new ValidationException('Partitioned DML cannot be configured with an isolation level');
+        }
+
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
-        $transaction = $this->operation->transaction($session, [
+        $beginTransactionOptions = [
             'transactionOptions' => [
-                'partitionedDml' => []
+                'partitionedDml' => [],
             ]
-        ]);
+        ];
+
+        if (isset($options['transactionOptions']['excludeTxnFromChangeStreams'])) {
+            $beginTransactionOptions['transactionOptions']['excludeTxnFromChangeStreams'] =
+                $options['transactionOptions']['excludeTxnFromChangeStreams'];
+        }
+
+        $transaction = $this->operation->transaction($session, $beginTransactionOptions);
 
         $options = $this->addLarHeader($options);
 
@@ -1939,6 +2073,12 @@ class Database
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type int $orderBy Set the OrderBy option for the ReadRequest.
+     *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\OrderBy}
+     *           for more information and available options.
+     *     @type int $lockHint Set the LockHint option for the ReadRequest. Only available when transactionType is read/write.
+     *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\LockHint}
+     *           for more information and available options.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -2017,9 +2157,10 @@ class Database
     {
         try {
             $this->close();
-        //@codingStandardsIgnoreStart
-        //@codeCoverageIgnoreStart
-        } catch (\Exception $ex) {}
+            //@codingStandardsIgnoreStart
+            //@codeCoverageIgnoreStart
+        } catch (\Exception $ex) {
+        }
         //@codeCoverageIgnoreEnd
         //@codingStandardsIgnoreStart
     }
@@ -2174,7 +2315,7 @@ class Database
                 $instance,
                 $name
             );
-        //@codeCoverageIgnoreStart
+            //@codeCoverageIgnoreStart
         } catch (ValidationException $e) {
             return $name;
         }

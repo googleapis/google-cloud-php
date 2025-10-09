@@ -20,13 +20,13 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The conversation resource to create.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Conversation conversation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $conversation = null;
+    protected $conversation = null;
     /**
      * A unique ID for the new conversation. This ID will become the final
      * component of the conversation's resource name. If no ID is specified, a
@@ -36,7 +36,7 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string conversation_id = 3;</code>
      */
-    private $conversation_id = '';
+    protected $conversation_id = '';
 
     /**
      * @param string                                              $parent         Required. The parent resource of the conversation. Please see

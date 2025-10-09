@@ -32,13 +32,13 @@ class TravelStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 1;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * Distance traveled during the step.
      *
      * Generated from protobuf field <code>double distance_meters = 2;</code>
      */
-    private $distance_meters = 0.0;
+    protected $distance_meters = 0.0;
     /**
      * When traffic is requested via
      * [OptimizeToursRequest.consider_road_traffic][google.cloud.optimization.v1.OptimizeToursRequest.consider_road_traffic],
@@ -48,7 +48,7 @@ class TravelStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool traffic_info_unavailable = 3;</code>
      */
-    private $traffic_info_unavailable = false;
+    protected $traffic_info_unavailable = false;
     /**
      * The encoded polyline representation of the route followed during the
      * step.
@@ -58,7 +58,7 @@ class TravelStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.ShipmentRoute.EncodedPolyline route_polyline = 4;</code>
      */
-    private $route_polyline = null;
+    protected $route_polyline = null;
 
     /**
      * Constructor.

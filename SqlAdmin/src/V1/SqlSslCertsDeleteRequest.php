@@ -18,19 +18,19 @@ class SqlSslCertsDeleteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Sha1 FingerPrint.
      *
      * Generated from protobuf field <code>string sha1_fingerprint = 3;</code>
      */
-    private $sha1_fingerprint = '';
+    protected $sha1_fingerprint = '';
 
     /**
      * Constructor.

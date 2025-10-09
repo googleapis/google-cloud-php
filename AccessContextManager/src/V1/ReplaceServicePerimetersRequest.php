@@ -24,7 +24,7 @@ class ReplaceServicePerimetersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The desired [Service Perimeters]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter] that should
@@ -47,7 +47,7 @@ class ReplaceServicePerimetersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 3;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

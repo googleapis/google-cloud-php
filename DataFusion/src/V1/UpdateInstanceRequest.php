@@ -24,7 +24,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datafusion.v1.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = null;
+    protected $instance = null;
     /**
      * Field mask is used to specify the fields that the update will overwrite
      * in an instance resource. The fields specified in the update_mask are
@@ -35,7 +35,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\DataFusion\V1\Instance $instance   Required. The instance resource that replaces the resource on the server. Currently,

@@ -23,6 +23,14 @@ class Session extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
+     * Optional. The display name of the session.
+     * This field is used to identify the session in the UI.
+     * By default, the display name is the first turn query text in the session.
+     *
+     * Generated from protobuf field <code>string display_name = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $display_name = '';
+    /**
      * The state of the session.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Session.State state = 2;</code>
@@ -52,6 +60,13 @@ class Session extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $end_time = null;
+    /**
+     * Optional. Whether the session is pinned, pinned session will be displayed
+     * on the top of the session list.
+     *
+     * Generated from protobuf field <code>bool is_pinned = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $is_pinned = false;
 
     /**
      * Constructor.
@@ -62,6 +77,10 @@ class Session extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Immutable. Fully qualified name
      *           `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;`
+     *     @type string $display_name
+     *           Optional. The display name of the session.
+     *           This field is used to identify the session in the UI.
+     *           By default, the display name is the first turn query text in the session.
      *     @type int $state
      *           The state of the session.
      *     @type string $user_pseudo_id
@@ -72,6 +91,9 @@ class Session extends \Google\Protobuf\Internal\Message
      *           Output only. The time the session started.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. The time the session finished.
+     *     @type bool $is_pinned
+     *           Optional. Whether the session is pinned, pinned session will be displayed
+     *           on the top of the session list.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,6 +125,36 @@ class Session extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The display name of the session.
+     * This field is used to identify the session in the UI.
+     * By default, the display name is the first turn query text in the session.
+     *
+     * Generated from protobuf field <code>string display_name = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * Optional. The display name of the session.
+     * This field is used to identify the session in the UI.
+     * By default, the display name is the first turn query text in the session.
+     *
+     * Generated from protobuf field <code>string display_name = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
 
         return $this;
     }
@@ -253,6 +305,34 @@ class Session extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether the session is pinned, pinned session will be displayed
+     * on the top of the session list.
+     *
+     * Generated from protobuf field <code>bool is_pinned = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIsPinned()
+    {
+        return $this->is_pinned;
+    }
+
+    /**
+     * Optional. Whether the session is pinned, pinned session will be displayed
+     * on the top of the session list.
+     *
+     * Generated from protobuf field <code>bool is_pinned = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsPinned($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_pinned = $var;
 
         return $this;
     }

@@ -25,7 +25,7 @@ class SingleEntityRename extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string new_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $new_name = '';
+    protected $new_name = '';
 
     /**
      * Constructor.

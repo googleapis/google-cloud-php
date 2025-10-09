@@ -21,7 +21,7 @@ class BlueGreenSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.protobuf.Duration node_pool_soak_duration = 2;</code>
      */
-    private $node_pool_soak_duration = null;
+    protected $node_pool_soak_duration = null;
     protected $rollout_policy;
 
     /**

@@ -20,13 +20,13 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ManagingSystem name = 1;</code>
      */
-    private $name = 0;
+    protected $name = 0;
     /**
      * The service agent for the service.
      *
      * Generated from protobuf field <code>string identity = 2;</code>
      */
-    private $identity = '';
+    protected $identity = '';
 
     /**
      * Constructor.
@@ -99,6 +99,4 @@ class Service extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Service::class, \Google\Cloud\DataCatalog\V1\Taxonomy_Service::class);
 

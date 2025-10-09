@@ -28,10 +28,10 @@ class Index extends \Google\Protobuf\Internal\Message
     /**
      * Indexes with a collection query scope specified allow queries
      * against a collection that is the child of a specific document, specified at
-     * query time, and that has the same collection id.
+     * query time, and that has the same collection ID.
      * Indexes with a collection group query scope specified allow queries against
      * all collections descended from a specific document, specified at query
-     * time, and that have the same collection id as this index.
+     * time, and that have the same collection ID as this index.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.QueryScope query_scope = 2;</code>
      */
@@ -62,6 +62,30 @@ class Index extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.State state = 4;</code>
      */
     private $state = 0;
+    /**
+     * Immutable. The density configuration of the index.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Index.Density density = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $density = 0;
+    /**
+     * Optional. Whether the index is multikey. By default, the index is not
+     * multikey. For non-multikey indexes, none of the paths in the index
+     * definition reach or traverse an array, except via an explicit array index.
+     * For multikey indexes, at most one of the paths in the index definition
+     * reach or traverse an array, except via an explicit array index. Violations
+     * will result in errors.
+     * Note this field only applies to index with MONGODB_COMPATIBLE_API ApiScope.
+     *
+     * Generated from protobuf field <code>bool multikey = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $multikey = false;
+    /**
+     * Optional. The number of shards for the index.
+     *
+     * Generated from protobuf field <code>int32 shard_count = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $shard_count = 0;
 
     /**
      * Constructor.
@@ -77,10 +101,10 @@ class Index extends \Google\Protobuf\Internal\Message
      *     @type int $query_scope
      *           Indexes with a collection query scope specified allow queries
      *           against a collection that is the child of a specific document, specified at
-     *           query time, and that has the same collection id.
+     *           query time, and that has the same collection ID.
      *           Indexes with a collection group query scope specified allow queries against
      *           all collections descended from a specific document, specified at query
-     *           time, and that have the same collection id as this index.
+     *           time, and that have the same collection ID as this index.
      *     @type int $api_scope
      *           The API scope supported by this index.
      *     @type array<\Google\Cloud\Firestore\Admin\V1\Index\IndexField>|\Google\Protobuf\Internal\RepeatedField $fields
@@ -95,6 +119,18 @@ class Index extends \Google\Protobuf\Internal\Message
      *           field path equal to the field path of the associated field.
      *     @type int $state
      *           Output only. The serving state of the index.
+     *     @type int $density
+     *           Immutable. The density configuration of the index.
+     *     @type bool $multikey
+     *           Optional. Whether the index is multikey. By default, the index is not
+     *           multikey. For non-multikey indexes, none of the paths in the index
+     *           definition reach or traverse an array, except via an explicit array index.
+     *           For multikey indexes, at most one of the paths in the index definition
+     *           reach or traverse an array, except via an explicit array index. Violations
+     *           will result in errors.
+     *           Note this field only applies to index with MONGODB_COMPATIBLE_API ApiScope.
+     *     @type int $shard_count
+     *           Optional. The number of shards for the index.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,10 +173,10 @@ class Index extends \Google\Protobuf\Internal\Message
     /**
      * Indexes with a collection query scope specified allow queries
      * against a collection that is the child of a specific document, specified at
-     * query time, and that has the same collection id.
+     * query time, and that has the same collection ID.
      * Indexes with a collection group query scope specified allow queries against
      * all collections descended from a specific document, specified at query
-     * time, and that have the same collection id as this index.
+     * time, and that have the same collection ID as this index.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.QueryScope query_scope = 2;</code>
      * @return int
@@ -153,10 +189,10 @@ class Index extends \Google\Protobuf\Internal\Message
     /**
      * Indexes with a collection query scope specified allow queries
      * against a collection that is the child of a specific document, specified at
-     * query time, and that has the same collection id.
+     * query time, and that has the same collection ID.
      * Indexes with a collection group query scope specified allow queries against
      * all collections descended from a specific document, specified at query
-     * time, and that have the same collection id as this index.
+     * time, and that have the same collection ID as this index.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.QueryScope query_scope = 2;</code>
      * @param int $var
@@ -260,6 +296,96 @@ class Index extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Index\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The density configuration of the index.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Index.Density density = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getDensity()
+    {
+        return $this->density;
+    }
+
+    /**
+     * Immutable. The density configuration of the index.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Index.Density density = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDensity($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Index\Density::class);
+        $this->density = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether the index is multikey. By default, the index is not
+     * multikey. For non-multikey indexes, none of the paths in the index
+     * definition reach or traverse an array, except via an explicit array index.
+     * For multikey indexes, at most one of the paths in the index definition
+     * reach or traverse an array, except via an explicit array index. Violations
+     * will result in errors.
+     * Note this field only applies to index with MONGODB_COMPATIBLE_API ApiScope.
+     *
+     * Generated from protobuf field <code>bool multikey = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getMultikey()
+    {
+        return $this->multikey;
+    }
+
+    /**
+     * Optional. Whether the index is multikey. By default, the index is not
+     * multikey. For non-multikey indexes, none of the paths in the index
+     * definition reach or traverse an array, except via an explicit array index.
+     * For multikey indexes, at most one of the paths in the index definition
+     * reach or traverse an array, except via an explicit array index. Violations
+     * will result in errors.
+     * Note this field only applies to index with MONGODB_COMPATIBLE_API ApiScope.
+     *
+     * Generated from protobuf field <code>bool multikey = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMultikey($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->multikey = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The number of shards for the index.
+     *
+     * Generated from protobuf field <code>int32 shard_count = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getShardCount()
+    {
+        return $this->shard_count;
+    }
+
+    /**
+     * Optional. The number of shards for the index.
+     *
+     * Generated from protobuf field <code>int32 shard_count = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setShardCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->shard_count = $var;
 
         return $this;
     }

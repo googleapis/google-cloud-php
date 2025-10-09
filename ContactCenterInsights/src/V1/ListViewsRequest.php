@@ -20,7 +20,7 @@ class ListViewsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of views to return in the response. If this
      * value is zero, the service will select a default size. A call may return
@@ -29,7 +29,7 @@ class ListViewsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The value returned by the last `ListViewsResponse`; indicates
      * that this is a continuation of a prior `ListViews` call and
@@ -37,7 +37,7 @@ class ListViewsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The parent resource of the views. Please see

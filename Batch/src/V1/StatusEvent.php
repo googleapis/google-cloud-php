@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Status event
+ * Status event.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.StatusEvent</code>
  */
@@ -20,31 +20,34 @@ class StatusEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 3;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Description of the event.
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The time this event occurred.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 2;</code>
      */
-    private $event_time = null;
+    protected $event_time = null;
     /**
-     * Task Execution
+     * Task Execution.
+     * This field is only defined for task-level status events where the task
+     * fails.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskExecution task_execution = 4;</code>
      */
-    private $task_execution = null;
+    protected $task_execution = null;
     /**
-     * Task State
+     * Task State.
+     * This field is only defined for task-level status events.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus.State task_state = 5;</code>
      */
-    private $task_state = 0;
+    protected $task_state = 0;
 
     /**
      * Constructor.
@@ -59,9 +62,12 @@ class StatusEvent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $event_time
      *           The time this event occurred.
      *     @type \Google\Cloud\Batch\V1\TaskExecution $task_execution
-     *           Task Execution
+     *           Task Execution.
+     *           This field is only defined for task-level status events where the task
+     *           fails.
      *     @type int $task_state
-     *           Task State
+     *           Task State.
+     *           This field is only defined for task-level status events.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,7 +164,9 @@ class StatusEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Task Execution
+     * Task Execution.
+     * This field is only defined for task-level status events where the task
+     * fails.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskExecution task_execution = 4;</code>
      * @return \Google\Cloud\Batch\V1\TaskExecution|null
@@ -179,7 +187,9 @@ class StatusEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Task Execution
+     * Task Execution.
+     * This field is only defined for task-level status events where the task
+     * fails.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskExecution task_execution = 4;</code>
      * @param \Google\Cloud\Batch\V1\TaskExecution $var
@@ -194,7 +204,8 @@ class StatusEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Task State
+     * Task State.
+     * This field is only defined for task-level status events.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus.State task_state = 5;</code>
      * @return int
@@ -205,7 +216,8 @@ class StatusEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Task State
+     * Task State.
+     * This field is only defined for task-level status events.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus.State task_state = 5;</code>
      * @param int $var

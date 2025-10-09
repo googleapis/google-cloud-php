@@ -124,6 +124,102 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      * @deprecated
      */
     protected $global_access_allowed = null;
+    /**
+     * Optional. True if the storage pool supports Auto Tiering enabled volumes.
+     * Default is false. Auto-tiering can be enabled after storage pool creation
+     * but it can't be disabled once enabled.
+     *
+     * Generated from protobuf field <code>bool allow_auto_tiering = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $allow_auto_tiering = false;
+    /**
+     * Optional. Specifies the replica zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string replica_zone = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $replica_zone = '';
+    /**
+     * Optional. Specifies the active zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string zone = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $zone = '';
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
+    /**
+     * Optional. True if using Independent Scaling of capacity and performance
+     * (Hyperdisk) By default set to false
+     *
+     * Generated from protobuf field <code>bool custom_performance_enabled = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_performance_enabled = false;
+    /**
+     * Optional. Custom Performance Total Throughput of the pool (in MiBps)
+     *
+     * Generated from protobuf field <code>int64 total_throughput_mibps = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $total_throughput_mibps = 0;
+    /**
+     * Optional. Custom Performance Total IOPS of the pool
+     * if not provided, it will be calculated based on the total_throughput_mibps
+     *
+     * Generated from protobuf field <code>int64 total_iops = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $total_iops = 0;
+    /**
+     * Optional. Total hot tier capacity for the Storage Pool. It is applicable
+     * only to Flex service level. It should be less than the minimum storage pool
+     * size and cannot be more than the current storage pool size. It cannot be
+     * decreased once set.
+     *
+     * Generated from protobuf field <code>int64 hot_tier_size_gib = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $hot_tier_size_gib = 0;
+    /**
+     * Optional. Flag indicating that the hot-tier threshold will be
+     * auto-increased by 10% of the hot-tier when it hits 100%. Default is true.
+     * The increment will kick in only if the new size after increment is
+     * still less than or equal to storage pool size.
+     *
+     * Generated from protobuf field <code>optional bool enable_hot_tier_auto_resize = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_hot_tier_auto_resize = null;
+    /**
+     * Optional. QoS (Quality of Service) Type of the storage pool
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.QosType qos_type = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $qos_type = 0;
+    /**
+     * Output only. Available throughput of the storage pool (in MiB/s).
+     *
+     * Generated from protobuf field <code>double available_throughput_mibps = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $available_throughput_mibps = 0.0;
+    /**
+     * Output only. Total cold tier data rounded down to the nearest GiB used by
+     * the storage pool.
+     *
+     * Generated from protobuf field <code>int64 cold_tier_size_used_gib = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $cold_tier_size_used_gib = 0;
+    /**
+     * Output only. Total hot tier data rounded down to the nearest GiB used by
+     * the storage pool.
+     *
+     * Generated from protobuf field <code>int64 hot_tier_size_used_gib = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $hot_tier_size_used_gib = 0;
 
     /**
      * Constructor.
@@ -169,6 +265,46 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *     @type bool $global_access_allowed
      *           Deprecated. Used to allow SO pool to access AD or DNS server from other
      *           regions.
+     *     @type bool $allow_auto_tiering
+     *           Optional. True if the storage pool supports Auto Tiering enabled volumes.
+     *           Default is false. Auto-tiering can be enabled after storage pool creation
+     *           but it can't be disabled once enabled.
+     *     @type string $replica_zone
+     *           Optional. Specifies the replica zone for regional storagePool.
+     *     @type string $zone
+     *           Optional. Specifies the active zone for regional storagePool.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use
+     *     @type bool $custom_performance_enabled
+     *           Optional. True if using Independent Scaling of capacity and performance
+     *           (Hyperdisk) By default set to false
+     *     @type int|string $total_throughput_mibps
+     *           Optional. Custom Performance Total Throughput of the pool (in MiBps)
+     *     @type int|string $total_iops
+     *           Optional. Custom Performance Total IOPS of the pool
+     *           if not provided, it will be calculated based on the total_throughput_mibps
+     *     @type int|string $hot_tier_size_gib
+     *           Optional. Total hot tier capacity for the Storage Pool. It is applicable
+     *           only to Flex service level. It should be less than the minimum storage pool
+     *           size and cannot be more than the current storage pool size. It cannot be
+     *           decreased once set.
+     *     @type bool $enable_hot_tier_auto_resize
+     *           Optional. Flag indicating that the hot-tier threshold will be
+     *           auto-increased by 10% of the hot-tier when it hits 100%. Default is true.
+     *           The increment will kick in only if the new size after increment is
+     *           still less than or equal to storage pool size.
+     *     @type int $qos_type
+     *           Optional. QoS (Quality of Service) Type of the storage pool
+     *     @type float $available_throughput_mibps
+     *           Output only. Available throughput of the storage pool (in MiB/s).
+     *     @type int|string $cold_tier_size_used_gib
+     *           Output only. Total cold tier data rounded down to the nearest GiB used by
+     *           the storage pool.
+     *     @type int|string $hot_tier_size_used_gib
+     *           Output only. Total hot tier data rounded down to the nearest GiB used by
+     *           the storage pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -618,13 +754,17 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     public function getGlobalAccessAllowed()
     {
-        @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->global_access_allowed)) {
+            @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->global_access_allowed) ? $this->global_access_allowed : false;
     }
 
     public function hasGlobalAccessAllowed()
     {
-        @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->global_access_allowed)) {
+            @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->global_access_allowed);
     }
 
@@ -648,6 +788,404 @@ class StoragePool extends \Google\Protobuf\Internal\Message
         @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->global_access_allowed = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. True if the storage pool supports Auto Tiering enabled volumes.
+     * Default is false. Auto-tiering can be enabled after storage pool creation
+     * but it can't be disabled once enabled.
+     *
+     * Generated from protobuf field <code>bool allow_auto_tiering = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAllowAutoTiering()
+    {
+        return $this->allow_auto_tiering;
+    }
+
+    /**
+     * Optional. True if the storage pool supports Auto Tiering enabled volumes.
+     * Default is false. Auto-tiering can be enabled after storage pool creation
+     * but it can't be disabled once enabled.
+     *
+     * Generated from protobuf field <code>bool allow_auto_tiering = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowAutoTiering($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_auto_tiering = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the replica zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string replica_zone = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getReplicaZone()
+    {
+        return $this->replica_zone;
+    }
+
+    /**
+     * Optional. Specifies the replica zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string replica_zone = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReplicaZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->replica_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the active zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string zone = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getZone()
+    {
+        return $this->zone;
+    }
+
+    /**
+     * Optional. Specifies the active zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string zone = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. True if using Independent Scaling of capacity and performance
+     * (Hyperdisk) By default set to false
+     *
+     * Generated from protobuf field <code>bool custom_performance_enabled = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getCustomPerformanceEnabled()
+    {
+        return $this->custom_performance_enabled;
+    }
+
+    /**
+     * Optional. True if using Independent Scaling of capacity and performance
+     * (Hyperdisk) By default set to false
+     *
+     * Generated from protobuf field <code>bool custom_performance_enabled = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCustomPerformanceEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->custom_performance_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Custom Performance Total Throughput of the pool (in MiBps)
+     *
+     * Generated from protobuf field <code>int64 total_throughput_mibps = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getTotalThroughputMibps()
+    {
+        return $this->total_throughput_mibps;
+    }
+
+    /**
+     * Optional. Custom Performance Total Throughput of the pool (in MiBps)
+     *
+     * Generated from protobuf field <code>int64 total_throughput_mibps = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalThroughputMibps($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_throughput_mibps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Custom Performance Total IOPS of the pool
+     * if not provided, it will be calculated based on the total_throughput_mibps
+     *
+     * Generated from protobuf field <code>int64 total_iops = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getTotalIops()
+    {
+        return $this->total_iops;
+    }
+
+    /**
+     * Optional. Custom Performance Total IOPS of the pool
+     * if not provided, it will be calculated based on the total_throughput_mibps
+     *
+     * Generated from protobuf field <code>int64 total_iops = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalIops($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_iops = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Total hot tier capacity for the Storage Pool. It is applicable
+     * only to Flex service level. It should be less than the minimum storage pool
+     * size and cannot be more than the current storage pool size. It cannot be
+     * decreased once set.
+     *
+     * Generated from protobuf field <code>int64 hot_tier_size_gib = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getHotTierSizeGib()
+    {
+        return $this->hot_tier_size_gib;
+    }
+
+    /**
+     * Optional. Total hot tier capacity for the Storage Pool. It is applicable
+     * only to Flex service level. It should be less than the minimum storage pool
+     * size and cannot be more than the current storage pool size. It cannot be
+     * decreased once set.
+     *
+     * Generated from protobuf field <code>int64 hot_tier_size_gib = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setHotTierSizeGib($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->hot_tier_size_gib = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Flag indicating that the hot-tier threshold will be
+     * auto-increased by 10% of the hot-tier when it hits 100%. Default is true.
+     * The increment will kick in only if the new size after increment is
+     * still less than or equal to storage pool size.
+     *
+     * Generated from protobuf field <code>optional bool enable_hot_tier_auto_resize = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableHotTierAutoResize()
+    {
+        return isset($this->enable_hot_tier_auto_resize) ? $this->enable_hot_tier_auto_resize : false;
+    }
+
+    public function hasEnableHotTierAutoResize()
+    {
+        return isset($this->enable_hot_tier_auto_resize);
+    }
+
+    public function clearEnableHotTierAutoResize()
+    {
+        unset($this->enable_hot_tier_auto_resize);
+    }
+
+    /**
+     * Optional. Flag indicating that the hot-tier threshold will be
+     * auto-increased by 10% of the hot-tier when it hits 100%. Default is true.
+     * The increment will kick in only if the new size after increment is
+     * still less than or equal to storage pool size.
+     *
+     * Generated from protobuf field <code>optional bool enable_hot_tier_auto_resize = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableHotTierAutoResize($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_hot_tier_auto_resize = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. QoS (Quality of Service) Type of the storage pool
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.QosType qos_type = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getQosType()
+    {
+        return $this->qos_type;
+    }
+
+    /**
+     * Optional. QoS (Quality of Service) Type of the storage pool
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.QosType qos_type = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setQosType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\QosType::class);
+        $this->qos_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Available throughput of the storage pool (in MiB/s).
+     *
+     * Generated from protobuf field <code>double available_throughput_mibps = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return float
+     */
+    public function getAvailableThroughputMibps()
+    {
+        return $this->available_throughput_mibps;
+    }
+
+    /**
+     * Output only. Available throughput of the storage pool (in MiB/s).
+     *
+     * Generated from protobuf field <code>double available_throughput_mibps = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setAvailableThroughputMibps($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->available_throughput_mibps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Total cold tier data rounded down to the nearest GiB used by
+     * the storage pool.
+     *
+     * Generated from protobuf field <code>int64 cold_tier_size_used_gib = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getColdTierSizeUsedGib()
+    {
+        return $this->cold_tier_size_used_gib;
+    }
+
+    /**
+     * Output only. Total cold tier data rounded down to the nearest GiB used by
+     * the storage pool.
+     *
+     * Generated from protobuf field <code>int64 cold_tier_size_used_gib = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setColdTierSizeUsedGib($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->cold_tier_size_used_gib = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Total hot tier data rounded down to the nearest GiB used by
+     * the storage pool.
+     *
+     * Generated from protobuf field <code>int64 hot_tier_size_used_gib = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getHotTierSizeUsedGib()
+    {
+        return $this->hot_tier_size_used_gib;
+    }
+
+    /**
+     * Output only. Total hot tier data rounded down to the nearest GiB used by
+     * the storage pool.
+     *
+     * Generated from protobuf field <code>int64 hot_tier_size_used_gib = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setHotTierSizeUsedGib($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->hot_tier_size_used_gib = $var;
 
         return $this;
     }

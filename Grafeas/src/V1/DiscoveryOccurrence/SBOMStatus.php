@@ -20,14 +20,14 @@ class SBOMStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.SBOMStatus.SBOMState sbom_state = 1;</code>
      */
-    private $sbom_state = 0;
+    protected $sbom_state = 0;
     /**
      * If there was an error generating an SBOM, this will indicate what that
      * error was.
      *
      * Generated from protobuf field <code>string error = 2;</code>
      */
-    private $error = '';
+    protected $error = '';
 
     /**
      * Constructor.

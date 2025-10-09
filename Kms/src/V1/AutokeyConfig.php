@@ -21,7 +21,7 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Name of the key project, e.g. `projects/{PROJECT_ID}` or
      * `projects/{PROJECT_NUMBER}`, where Cloud KMS Autokey will provision a new
@@ -37,7 +37,22 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_project = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $key_project = '';
+    protected $key_project = '';
+    /**
+     * Output only. The state for the AutokeyConfig.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.AutokeyConfig.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $state = 0;
+    /**
+     * Optional. A checksum computed by the server based on the value of other
+     * fields. This may be sent on update requests to ensure that the client has
+     * an up-to-date value before proceeding. The request will be rejected with an
+     * ABORTED error on a mismatched etag.
+     *
+     * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $etag = '';
 
     /**
      * Constructor.
@@ -60,6 +75,13 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
      *           Cloud KMS Service Agent for this key project must be granted the
      *           `cloudkms.admin` role (or pertinent permissions). A request with an empty
      *           key project field will clear the configuration.
+     *     @type int $state
+     *           Output only. The state for the AutokeyConfig.
+     *     @type string $etag
+     *           Optional. A checksum computed by the server based on the value of other
+     *           fields. This may be sent on update requests to ensure that the client has
+     *           an up-to-date value before proceeding. The request will be rejected with an
+     *           ABORTED error on a mismatched etag.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,6 +159,64 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->key_project = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The state for the AutokeyConfig.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.AutokeyConfig.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Output only. The state for the AutokeyConfig.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.AutokeyConfig.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\AutokeyConfig\State::class);
+        $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A checksum computed by the server based on the value of other
+     * fields. This may be sent on update requests to ensure that the client has
+     * an up-to-date value before proceeding. The request will be rejected with an
+     * ABORTED error on a mismatched etag.
+     *
+     * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * Optional. A checksum computed by the server based on the value of other
+     * fields. This may be sent on update requests to ensure that the client has
+     * an up-to-date value before proceeding. The request will be rejected with an
+     * ABORTED error on a mismatched etag.
+     *
+     * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

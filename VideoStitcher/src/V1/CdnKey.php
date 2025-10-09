@@ -24,13 +24,13 @@ class CdnKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The hostname this key applies to.
      *
      * Generated from protobuf field <code>string hostname = 4;</code>
      */
-    private $hostname = '';
+    protected $hostname = '';
     protected $cdn_key_config;
 
     /**

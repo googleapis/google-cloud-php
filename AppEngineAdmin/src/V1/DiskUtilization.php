@@ -21,25 +21,25 @@ class DiskUtilization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 target_write_bytes_per_second = 14;</code>
      */
-    private $target_write_bytes_per_second = 0;
+    protected $target_write_bytes_per_second = 0;
     /**
      * Target ops written per second.
      *
      * Generated from protobuf field <code>int32 target_write_ops_per_second = 15;</code>
      */
-    private $target_write_ops_per_second = 0;
+    protected $target_write_ops_per_second = 0;
     /**
      * Target bytes read per second.
      *
      * Generated from protobuf field <code>int32 target_read_bytes_per_second = 16;</code>
      */
-    private $target_read_bytes_per_second = 0;
+    protected $target_read_bytes_per_second = 0;
     /**
      * Target ops read per seconds.
      *
      * Generated from protobuf field <code>int32 target_read_ops_per_second = 17;</code>
      */
-    private $target_read_ops_per_second = 0;
+    protected $target_read_ops_per_second = 0;
 
     /**
      * Constructor.

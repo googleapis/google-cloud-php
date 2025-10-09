@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ namespace Google\Cloud\Recommender\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -51,6 +52,7 @@ use Google\Cloud\Recommender\V1\RecommenderConfig;
 use Google\Cloud\Recommender\V1\UpdateInsightTypeConfigRequest;
 use Google\Cloud\Recommender\V1\UpdateRecommenderConfigRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Provides insights and recommendations for cloud customers for various
@@ -66,19 +68,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getInsightAsync(GetInsightRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInsightTypeConfigAsync(GetInsightTypeConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecommendationAsync(GetRecommendationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecommenderConfigAsync(GetRecommenderConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInsightsAsync(ListInsightsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRecommendationsAsync(ListRecommendationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markInsightAcceptedAsync(MarkInsightAcceptedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markRecommendationClaimedAsync(MarkRecommendationClaimedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markRecommendationDismissedAsync(MarkRecommendationDismissedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markRecommendationFailedAsync(MarkRecommendationFailedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markRecommendationSucceededAsync(MarkRecommendationSucceededRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInsightTypeConfigAsync(UpdateInsightTypeConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRecommenderConfigAsync(UpdateRecommenderConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Insight> getInsightAsync(GetInsightRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InsightTypeConfig> getInsightTypeConfigAsync(GetInsightTypeConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> getRecommendationAsync(GetRecommendationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecommenderConfig> getRecommenderConfigAsync(GetRecommenderConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInsightsAsync(ListInsightsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRecommendationsAsync(ListRecommendationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Insight> markInsightAcceptedAsync(MarkInsightAcceptedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> markRecommendationClaimedAsync(MarkRecommendationClaimedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> markRecommendationDismissedAsync(MarkRecommendationDismissedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> markRecommendationFailedAsync(MarkRecommendationFailedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> markRecommendationSucceededAsync(MarkRecommendationSucceededRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InsightTypeConfig> updateInsightTypeConfigAsync(UpdateInsightTypeConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecommenderConfig> updateRecommenderConfigAsync(UpdateRecommenderConfigRequest $request, array $optionalArgs = [])
  */
 final class RecommenderClient
 {
@@ -719,14 +721,14 @@ final class RecommenderClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -734,20 +736,29 @@ final class RecommenderClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'recommender.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Recommender\V1\RecommenderClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new RecommenderClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -781,11 +792,16 @@ final class RecommenderClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);

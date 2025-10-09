@@ -30,7 +30,8 @@ use Google\Cloud\Run\V2\ListRevisionsRequest;
 use Google\Cloud\Run\V2\Revision;
 
 /**
- * Lists Revisions from a given Service, or from a given location.
+ * Lists Revisions from a given Service, or from a given location.  Results
+ * are sorted by creation time, descending.
  *
  * @param string $formattedParent The Service from which the Revisions should be listed.
  *                                To list all Revisions across Services, use "-" instead of Service name.

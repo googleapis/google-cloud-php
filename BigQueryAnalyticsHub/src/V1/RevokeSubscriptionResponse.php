@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Message for response when you revoke a subscription.
+ * Empty for now.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.analyticshub.v1.RevokeSubscriptionResponse</code>
  */

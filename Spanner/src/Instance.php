@@ -29,10 +29,10 @@ use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 
 /**
  * Represents a Cloud Spanner instance
@@ -128,6 +128,11 @@ class Instance
     private $directedReadOptions;
 
     /**
+     * @var int
+     */
+    private $isolationLevel;
+
+    /**
      * Create an object representing a Cloud Spanner instance.
      *
      * @param ConnectionInterface $connection The connection to the
@@ -149,6 +154,8 @@ class Instance
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      */
     public function __construct(
@@ -169,6 +176,7 @@ class Instance
 
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
+        $this->isolationLevel = $options['isolationLevel'] ?? IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
     }
 
     /**
@@ -318,7 +326,7 @@ class Instance
         ];
 
         if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
-            throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
+            throw new \InvalidArgumentException('Must only set either `nodeCount` or `processingUnits`');
         }
         if (empty($options['nodeCount']) && empty($options['processingUnits'])) {
             $options['nodeCount'] = self::DEFAULT_NODE_COUNT;
@@ -397,7 +405,7 @@ class Instance
     public function update(array $options = [])
     {
         if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
-            throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
+            throw new \InvalidArgumentException('Must only set either `nodeCount` or `processingUnits`');
         }
 
         $operation = $this->connection->updateInstance([
@@ -446,6 +454,10 @@ class Instance
      *     Configuration Options
      *
      *     @type array $statements Additional DDL statements.
+     *     @type \Google\Protobuf\FileDescriptorSet|string $protoDescriptors The file
+     *         descriptor set object to be used in the update, or alternatively, an absolute
+     *         path to the generated file descriptor set. The descriptor set is only used
+     *         during DDL statements, such as `CREATE PROTO BUNDLE`.
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
      * }
@@ -512,6 +524,8 @@ class Instance
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
      *     @type string $databaseRole The user created database role which creates the session.
+     *     @type int $isolationLevel The IsolationLevel set for the transaction.
+     *           Check {@see IsolationLevel} for more details.
      * }
      * @return Database
      */
@@ -527,7 +541,8 @@ class Instance
             isset($options['sessionPool']) ? $options['sessionPool'] : null,
             $this->returnInt64AsObject,
             isset($options['database']) ? $options['database'] : [],
-            isset($options['databaseRole']) ? $options['databaseRole'] : ''
+            isset($options['databaseRole']) ? $options['databaseRole'] : '',
+            $options['isolationLevel'] ?? $this->isolationLevel,
         );
     }
 
@@ -770,10 +785,10 @@ class Instance
     private function fullyQualifiedInstanceName($name, $project)
     {
         // try {
-            return InstanceAdminClient::instanceName(
-                $project,
-                $name
-            );
+        return InstanceAdminClient::instanceName(
+            $project,
+            $name
+        );
         // } catch (ValidationException $e) {
         //     return $name;
         // }

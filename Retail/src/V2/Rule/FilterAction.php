@@ -34,7 +34,7 @@ class FilterAction extends \Google\Protobuf\Internal\Message
      * * Filter syntax is identical to
      * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter]. For
      * more
-     *   information, see [Filter](https://cloud.google.com/retail/docs/filter-and-order#filter).
+     *   information, see [Filter](/retail/docs/filter-and-order#filter).
      * * To filter products with product ID "product_1" or "product_2", and
      * color
      *   "Red" or "Blue":<br>
@@ -44,7 +44,7 @@ class FilterAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 1;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * Constructor.
@@ -58,7 +58,7 @@ class FilterAction extends \Google\Protobuf\Internal\Message
      *           * Filter syntax is identical to
      *           [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter]. For
      *           more
-     *             information, see [Filter](https://cloud.google.com/retail/docs/filter-and-order#filter).
+     *             information, see [Filter](/retail/docs/filter-and-order#filter).
      *           * To filter products with product ID "product_1" or "product_2", and
      *           color
      *             "Red" or "Blue":<br>
@@ -78,7 +78,7 @@ class FilterAction extends \Google\Protobuf\Internal\Message
      * * Filter syntax is identical to
      * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter]. For
      * more
-     *   information, see [Filter](https://cloud.google.com/retail/docs/filter-and-order#filter).
+     *   information, see [Filter](/retail/docs/filter-and-order#filter).
      * * To filter products with product ID "product_1" or "product_2", and
      * color
      *   "Red" or "Blue":<br>
@@ -100,7 +100,7 @@ class FilterAction extends \Google\Protobuf\Internal\Message
      * * Filter syntax is identical to
      * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter]. For
      * more
-     *   information, see [Filter](https://cloud.google.com/retail/docs/filter-and-order#filter).
+     *   information, see [Filter](/retail/docs/filter-and-order#filter).
      * * To filter products with product ID "product_1" or "product_2", and
      * color
      *   "Red" or "Blue":<br>

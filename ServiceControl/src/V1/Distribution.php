@@ -26,26 +26,26 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 count = 1;</code>
      */
-    private $count = 0;
+    protected $count = 0;
     /**
      * The arithmetic mean of the samples in the distribution. If `count` is
      * zero then this field must be zero.
      *
      * Generated from protobuf field <code>double mean = 2;</code>
      */
-    private $mean = 0.0;
+    protected $mean = 0.0;
     /**
      * The minimum of the population of values. Ignored if `count` is zero.
      *
      * Generated from protobuf field <code>double minimum = 3;</code>
      */
-    private $minimum = 0.0;
+    protected $minimum = 0.0;
     /**
      * The maximum of the population of values. Ignored if `count` is zero.
      *
      * Generated from protobuf field <code>double maximum = 4;</code>
      */
-    private $maximum = 0.0;
+    protected $maximum = 0.0;
     /**
      * The sum of squared deviations from the mean:
      *   Sum[i=1..count]((x_i - mean)^2)
@@ -54,7 +54,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double sum_of_squared_deviation = 5;</code>
      */
-    private $sum_of_squared_deviation = 0.0;
+    protected $sum_of_squared_deviation = 0.0;
     /**
      * The number of samples in each histogram bucket. `bucket_counts` are
      * optional. If present, they must sum to the `count` value.

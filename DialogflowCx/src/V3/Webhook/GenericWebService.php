@@ -37,8 +37,7 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      */
     protected $password = '';
     /**
-     * The HTTP request headers to send together with webhook
-     * requests.
+     * The HTTP request headers to send together with webhook requests.
      *
      * Generated from protobuf field <code>map<string, string> request_headers = 4;</code>
      */
@@ -60,6 +59,23 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated bytes allowed_ca_certs = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allowed_ca_certs;
+    /**
+     * Optional. The OAuth configuration of the webhook. If specified,
+     * Dialogflow will initiate the OAuth client credential flow to exchange an
+     * access token from the 3rd party platform and put it in the auth header.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.OAuthConfig oauth_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $oauth_config = null;
+    /**
+     * Optional. Indicate the auth token type generated from the [Diglogflow
+     * service
+     * agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
+     * The generated token is sent in the Authorization header.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.ServiceAgentAuth service_agent_auth = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $service_agent_auth = 0;
     /**
      * Optional. Type of the webhook.
      *
@@ -104,8 +120,7 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      *     @type string $password
      *           The password for HTTP Basic authentication.
      *     @type array|\Google\Protobuf\Internal\MapField $request_headers
-     *           The HTTP request headers to send together with webhook
-     *           requests.
+     *           The HTTP request headers to send together with webhook requests.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_ca_certs
      *           Optional. Specifies a list of allowed custom CA certificates (in DER
      *           format) for HTTPS verification. This overrides the default SSL trust
@@ -119,6 +134,15 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      *                -out example.com.crt \
      *                -extfile <(printf "\nsubjectAltName='DNS:www.example.com'")
      *           ```
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\OAuthConfig $oauth_config
+     *           Optional. The OAuth configuration of the webhook. If specified,
+     *           Dialogflow will initiate the OAuth client credential flow to exchange an
+     *           access token from the 3rd party platform and put it in the auth header.
+     *     @type int $service_agent_auth
+     *           Optional. Indicate the auth token type generated from the [Diglogflow
+     *           service
+     *           agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
+     *           The generated token is sent in the Authorization header.
      *     @type int $webhook_type
      *           Optional. Type of the webhook.
      *     @type int $http_method
@@ -176,7 +200,9 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      */
     public function getUsername()
     {
-        @trigger_error('username is deprecated.', E_USER_DEPRECATED);
+        if ($this->username !== '') {
+            @trigger_error('username is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->username;
     }
 
@@ -206,7 +232,9 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      */
     public function getPassword()
     {
-        @trigger_error('password is deprecated.', E_USER_DEPRECATED);
+        if ($this->password !== '') {
+            @trigger_error('password is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->password;
     }
 
@@ -228,8 +256,7 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The HTTP request headers to send together with webhook
-     * requests.
+     * The HTTP request headers to send together with webhook requests.
      *
      * Generated from protobuf field <code>map<string, string> request_headers = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -240,8 +267,7 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The HTTP request headers to send together with webhook
-     * requests.
+     * The HTTP request headers to send together with webhook requests.
      *
      * Generated from protobuf field <code>map<string, string> request_headers = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -299,6 +325,78 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::BYTES);
         $this->allowed_ca_certs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The OAuth configuration of the webhook. If specified,
+     * Dialogflow will initiate the OAuth client credential flow to exchange an
+     * access token from the 3rd party platform and put it in the auth header.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.OAuthConfig oauth_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\OAuthConfig|null
+     */
+    public function getOauthConfig()
+    {
+        return $this->oauth_config;
+    }
+
+    public function hasOauthConfig()
+    {
+        return isset($this->oauth_config);
+    }
+
+    public function clearOauthConfig()
+    {
+        unset($this->oauth_config);
+    }
+
+    /**
+     * Optional. The OAuth configuration of the webhook. If specified,
+     * Dialogflow will initiate the OAuth client credential flow to exchange an
+     * access token from the 3rd party platform and put it in the auth header.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.OAuthConfig oauth_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\OAuthConfig $var
+     * @return $this
+     */
+    public function setOauthConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\OAuthConfig::class);
+        $this->oauth_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicate the auth token type generated from the [Diglogflow
+     * service
+     * agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
+     * The generated token is sent in the Authorization header.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.ServiceAgentAuth service_agent_auth = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getServiceAgentAuth()
+    {
+        return $this->service_agent_auth;
+    }
+
+    /**
+     * Optional. Indicate the auth token type generated from the [Diglogflow
+     * service
+     * agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
+     * The generated token is sent in the Authorization header.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.ServiceAgentAuth service_agent_auth = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setServiceAgentAuth($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\ServiceAgentAuth::class);
+        $this->service_agent_auth = $var;
 
         return $this;
     }

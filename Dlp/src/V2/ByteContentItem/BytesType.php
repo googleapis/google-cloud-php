@@ -10,6 +10,8 @@ use UnexpectedValueException;
  * The type of data being sent for inspection. To learn more, see
  * [Supported file
  * types](https://cloud.google.com/sensitive-data-protection/docs/supported-file-types).
+ * Only the first frame of each multiframe image is inspected. Metadata and
+ * other frames aren't inspected.
  *
  * Protobuf type <code>google.privacy.dlp.v2.ByteContentItem.BytesType</code>
  */
@@ -99,6 +101,30 @@ class BytesType
      * Generated from protobuf enum <code>TSV = 13;</code>
      */
     const TSV = 13;
+    /**
+     * Audio file types. Only used for profiling.
+     *
+     * Generated from protobuf enum <code>AUDIO = 15;</code>
+     */
+    const AUDIO = 15;
+    /**
+     * Video file types. Only used for profiling.
+     *
+     * Generated from protobuf enum <code>VIDEO = 16;</code>
+     */
+    const VIDEO = 16;
+    /**
+     * Executable file types. Only used for profiling.
+     *
+     * Generated from protobuf enum <code>EXECUTABLE = 17;</code>
+     */
+    const EXECUTABLE = 17;
+    /**
+     * AI model file types. Only used for profiling.
+     *
+     * Generated from protobuf enum <code>AI_MODEL = 18;</code>
+     */
+    const AI_MODEL = 18;
 
     private static $valueToName = [
         self::BYTES_TYPE_UNSPECIFIED => 'BYTES_TYPE_UNSPECIFIED',
@@ -115,6 +141,10 @@ class BytesType
         self::AVRO => 'AVRO',
         self::CSV => 'CSV',
         self::TSV => 'TSV',
+        self::AUDIO => 'AUDIO',
+        self::VIDEO => 'VIDEO',
+        self::EXECUTABLE => 'EXECUTABLE',
+        self::AI_MODEL => 'AI_MODEL',
     ];
 
     public static function name($value)
@@ -138,6 +168,4 @@ class BytesType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BytesType::class, \Google\Cloud\Dlp\V2\ByteContentItem_BytesType::class);
 

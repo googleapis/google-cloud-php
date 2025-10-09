@@ -21,25 +21,25 @@ class RestoreBackupContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The ID of the backup run to restore from.
      *
      * Generated from protobuf field <code>int64 backup_run_id = 2;</code>
      */
-    private $backup_run_id = 0;
+    protected $backup_run_id = 0;
     /**
      * The ID of the instance that the backup was taken from.
      *
      * Generated from protobuf field <code>string instance_id = 3;</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * The full project ID of the source instance.
      *
      * Generated from protobuf field <code>string project = 4;</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * Constructor.

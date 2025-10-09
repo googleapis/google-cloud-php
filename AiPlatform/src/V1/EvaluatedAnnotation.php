@@ -22,7 +22,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EvaluatedAnnotation.EvaluatedAnnotationType type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Output only. The model predicted annotations.
      * For true positive, there is one and only one prediction, which matches the
@@ -30,7 +30,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * [ground_truths][google.cloud.aiplatform.v1.EvaluatedAnnotation.ground_truths].
      * For false positive, there is one and only one prediction, which doesn't
      * match any ground truth annotation of the corresponding
-     * [data_item_view_id][EvaluatedAnnotation.data_item_view_id].
+     * [data_item_view_id][google.cloud.aiplatform.v1.EvaluatedAnnotation.evaluated_data_item_view_id].
      * For false negative, there are zero or more predictions which are similar to
      * the only ground truth annotation in
      * [ground_truths][google.cloud.aiplatform.v1.EvaluatedAnnotation.ground_truths]
@@ -65,7 +65,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value data_item_payload = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $data_item_payload = null;
+    protected $data_item_payload = null;
     /**
      * Output only. ID of the EvaluatedDataItemView under the same ancestor
      * ModelEvaluation. The EvaluatedDataItemView consists of all ground truths
@@ -74,7 +74,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string evaluated_data_item_view_id = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $evaluated_data_item_view_id = '';
+    protected $evaluated_data_item_view_id = '';
     /**
      * Explanations of
      * [predictions][google.cloud.aiplatform.v1.EvaluatedAnnotation.predictions].
@@ -112,7 +112,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      *           [ground_truths][google.cloud.aiplatform.v1.EvaluatedAnnotation.ground_truths].
      *           For false positive, there is one and only one prediction, which doesn't
      *           match any ground truth annotation of the corresponding
-     *           [data_item_view_id][EvaluatedAnnotation.data_item_view_id].
+     *           [data_item_view_id][google.cloud.aiplatform.v1.EvaluatedAnnotation.evaluated_data_item_view_id].
      *           For false negative, there are zero or more predictions which are similar to
      *           the only ground truth annotation in
      *           [ground_truths][google.cloud.aiplatform.v1.EvaluatedAnnotation.ground_truths]
@@ -194,7 +194,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * [ground_truths][google.cloud.aiplatform.v1.EvaluatedAnnotation.ground_truths].
      * For false positive, there is one and only one prediction, which doesn't
      * match any ground truth annotation of the corresponding
-     * [data_item_view_id][EvaluatedAnnotation.data_item_view_id].
+     * [data_item_view_id][google.cloud.aiplatform.v1.EvaluatedAnnotation.evaluated_data_item_view_id].
      * For false negative, there are zero or more predictions which are similar to
      * the only ground truth annotation in
      * [ground_truths][google.cloud.aiplatform.v1.EvaluatedAnnotation.ground_truths]
@@ -217,7 +217,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * [ground_truths][google.cloud.aiplatform.v1.EvaluatedAnnotation.ground_truths].
      * For false positive, there is one and only one prediction, which doesn't
      * match any ground truth annotation of the corresponding
-     * [data_item_view_id][EvaluatedAnnotation.data_item_view_id].
+     * [data_item_view_id][google.cloud.aiplatform.v1.EvaluatedAnnotation.evaluated_data_item_view_id].
      * For false negative, there are zero or more predictions which are similar to
      * the only ground truth annotation in
      * [ground_truths][google.cloud.aiplatform.v1.EvaluatedAnnotation.ground_truths]

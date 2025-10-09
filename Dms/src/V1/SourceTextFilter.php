@@ -21,14 +21,14 @@ class SourceTextFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 source_min_length_filter = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $source_min_length_filter = 0;
+    protected $source_min_length_filter = 0;
     /**
      * Optional. The filter will match columns with length smaller than or equal
      * to this number.
      *
      * Generated from protobuf field <code>int64 source_max_length_filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $source_max_length_filter = 0;
+    protected $source_max_length_filter = 0;
 
     /**
      * Constructor.

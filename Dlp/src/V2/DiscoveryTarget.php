@@ -33,6 +33,21 @@ class DiscoveryTarget extends \Google\Protobuf\Internal\Message
      *           Discovery target that looks for credentials and secrets stored in cloud
      *           resource metadata and reports them as vulnerabilities to Security Command
      *           Center. Only one target of this type is allowed.
+     *     @type \Google\Cloud\Dlp\V2\CloudStorageDiscoveryTarget $cloud_storage_target
+     *           Cloud Storage target for Discovery. The first target to match a table
+     *           will be the one applied.
+     *     @type \Google\Cloud\Dlp\V2\OtherCloudDiscoveryTarget $other_cloud_target
+     *           Other clouds target for discovery. The first target to match a resource
+     *           will be the one applied.
+     *     @type \Google\Cloud\Dlp\V2\VertexDatasetDiscoveryTarget $vertex_dataset_target
+     *           Vertex AI dataset target for Discovery. The first target to match a
+     *           dataset will be the one applied. Note that discovery for Vertex AI can
+     *           incur Cloud Storage Class B operation charges for storage.objects.get
+     *           operations and retrieval fees. For more information, see [Cloud Storage
+     *           pricing](https://cloud.google.com/storage/pricing#price-tables).
+     *           Note that discovery for Vertex AI dataset will not be able to scan images
+     *           unless DiscoveryConfig.processing_location.image_fallback_location has
+     *           multi_region_processing or global_processing configured.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,6 +152,117 @@ class DiscoveryTarget extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\SecretsDiscoveryTarget::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Cloud Storage target for Discovery. The first target to match a table
+     * will be the one applied.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageDiscoveryTarget cloud_storage_target = 4;</code>
+     * @return \Google\Cloud\Dlp\V2\CloudStorageDiscoveryTarget|null
+     */
+    public function getCloudStorageTarget()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasCloudStorageTarget()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Cloud Storage target for Discovery. The first target to match a table
+     * will be the one applied.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageDiscoveryTarget cloud_storage_target = 4;</code>
+     * @param \Google\Cloud\Dlp\V2\CloudStorageDiscoveryTarget $var
+     * @return $this
+     */
+    public function setCloudStorageTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CloudStorageDiscoveryTarget::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Other clouds target for discovery. The first target to match a resource
+     * will be the one applied.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.OtherCloudDiscoveryTarget other_cloud_target = 5;</code>
+     * @return \Google\Cloud\Dlp\V2\OtherCloudDiscoveryTarget|null
+     */
+    public function getOtherCloudTarget()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasOtherCloudTarget()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Other clouds target for discovery. The first target to match a resource
+     * will be the one applied.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.OtherCloudDiscoveryTarget other_cloud_target = 5;</code>
+     * @param \Google\Cloud\Dlp\V2\OtherCloudDiscoveryTarget $var
+     * @return $this
+     */
+    public function setOtherCloudTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\OtherCloudDiscoveryTarget::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Vertex AI dataset target for Discovery. The first target to match a
+     * dataset will be the one applied. Note that discovery for Vertex AI can
+     * incur Cloud Storage Class B operation charges for storage.objects.get
+     * operations and retrieval fees. For more information, see [Cloud Storage
+     * pricing](https://cloud.google.com/storage/pricing#price-tables).
+     * Note that discovery for Vertex AI dataset will not be able to scan images
+     * unless DiscoveryConfig.processing_location.image_fallback_location has
+     * multi_region_processing or global_processing configured.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.VertexDatasetDiscoveryTarget vertex_dataset_target = 7;</code>
+     * @return \Google\Cloud\Dlp\V2\VertexDatasetDiscoveryTarget|null
+     */
+    public function getVertexDatasetTarget()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasVertexDatasetTarget()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Vertex AI dataset target for Discovery. The first target to match a
+     * dataset will be the one applied. Note that discovery for Vertex AI can
+     * incur Cloud Storage Class B operation charges for storage.objects.get
+     * operations and retrieval fees. For more information, see [Cloud Storage
+     * pricing](https://cloud.google.com/storage/pricing#price-tables).
+     * Note that discovery for Vertex AI dataset will not be able to scan images
+     * unless DiscoveryConfig.processing_location.image_fallback_location has
+     * multi_region_processing or global_processing configured.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.VertexDatasetDiscoveryTarget vertex_dataset_target = 7;</code>
+     * @param \Google\Cloud\Dlp\V2\VertexDatasetDiscoveryTarget $var
+     * @return $this
+     */
+    public function setVertexDatasetTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\VertexDatasetDiscoveryTarget::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

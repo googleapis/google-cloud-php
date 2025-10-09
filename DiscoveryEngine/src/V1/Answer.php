@@ -35,11 +35,24 @@ class Answer extends \Google\Protobuf\Internal\Message
      */
     protected $answer_text = '';
     /**
+     * A score in the range of [0, 1] describing how grounded the answer is by the
+     * reference chunks.
+     *
+     * Generated from protobuf field <code>optional double grounding_score = 12;</code>
+     */
+    protected $grounding_score = null;
+    /**
      * Citations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Citation citations = 4;</code>
      */
     private $citations;
+    /**
+     * Optional. Grounding supports.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.GroundingSupport grounding_supports = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $grounding_supports;
     /**
      * References.
      *
@@ -83,6 +96,12 @@ class Answer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp complete_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $complete_time = null;
+    /**
+     * Optional. Safety ratings.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SafetyRating safety_ratings = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $safety_ratings;
 
     /**
      * Constructor.
@@ -97,8 +116,13 @@ class Answer extends \Google\Protobuf\Internal\Message
      *           The state of the answer generation.
      *     @type string $answer_text
      *           The textual answer.
+     *     @type float $grounding_score
+     *           A score in the range of [0, 1] describing how grounded the answer is by the
+     *           reference chunks.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\Citation>|\Google\Protobuf\Internal\RepeatedField $citations
      *           Citations.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\GroundingSupport>|\Google\Protobuf\Internal\RepeatedField $grounding_supports
+     *           Optional. Grounding supports.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\Reference>|\Google\Protobuf\Internal\RepeatedField $references
      *           References.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_questions
@@ -114,6 +138,8 @@ class Answer extends \Google\Protobuf\Internal\Message
      *           Output only. Answer creation timestamp.
      *     @type \Google\Protobuf\Timestamp $complete_time
      *           Output only. Answer completed timestamp.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SafetyRating>|\Google\Protobuf\Internal\RepeatedField $safety_ratings
+     *           Optional. Safety ratings.
      * }
      */
     public function __construct($data = NULL) {
@@ -202,6 +228,44 @@ class Answer extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A score in the range of [0, 1] describing how grounded the answer is by the
+     * reference chunks.
+     *
+     * Generated from protobuf field <code>optional double grounding_score = 12;</code>
+     * @return float
+     */
+    public function getGroundingScore()
+    {
+        return isset($this->grounding_score) ? $this->grounding_score : 0.0;
+    }
+
+    public function hasGroundingScore()
+    {
+        return isset($this->grounding_score);
+    }
+
+    public function clearGroundingScore()
+    {
+        unset($this->grounding_score);
+    }
+
+    /**
+     * A score in the range of [0, 1] describing how grounded the answer is by the
+     * reference chunks.
+     *
+     * Generated from protobuf field <code>optional double grounding_score = 12;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setGroundingScore($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->grounding_score = $var;
+
+        return $this;
+    }
+
+    /**
      * Citations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Citation citations = 4;</code>
@@ -223,6 +287,32 @@ class Answer extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\Answer\Citation::class);
         $this->citations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Grounding supports.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.GroundingSupport grounding_supports = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGroundingSupports()
+    {
+        return $this->grounding_supports;
+    }
+
+    /**
+     * Optional. Grounding supports.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.GroundingSupport grounding_supports = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\GroundingSupport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGroundingSupports($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\Answer\GroundingSupport::class);
+        $this->grounding_supports = $arr;
 
         return $this;
     }
@@ -437,6 +527,32 @@ class Answer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->complete_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Safety ratings.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SafetyRating safety_ratings = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSafetyRatings()
+    {
+        return $this->safety_ratings;
+    }
+
+    /**
+     * Optional. Safety ratings.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SafetyRating safety_ratings = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1\SafetyRating>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSafetyRatings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\SafetyRating::class);
+        $this->safety_ratings = $arr;
 
         return $this;
     }

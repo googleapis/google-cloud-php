@@ -24,7 +24,7 @@ class CreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The user specified unique ID to use for the
      * TensorboardTimeSeries, which becomes the final component of the
@@ -33,13 +33,13 @@ class CreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string tensorboard_time_series_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $tensorboard_time_series_id = '';
+    protected $tensorboard_time_series_id = '';
     /**
      * Required. The TensorboardTimeSeries to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardTimeSeries tensorboard_time_series = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tensorboard_time_series = null;
+    protected $tensorboard_time_series = null;
 
     /**
      * @param string                                            $parent                Required. The resource name of the TensorboardRun to create the

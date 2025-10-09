@@ -20,25 +20,25 @@ class Vcenter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string internal_ip = 2;</code>
      */
-    private $internal_ip = '';
+    protected $internal_ip = '';
     /**
      * Version of the appliance.
      *
      * Generated from protobuf field <code>string version = 4;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Output only. The state of the appliance.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.Vcenter.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Fully qualified domain name of the appliance.
      *
      * Generated from protobuf field <code>string fqdn = 6;</code>
      */
-    private $fqdn = '';
+    protected $fqdn = '';
 
     /**
      * Constructor.

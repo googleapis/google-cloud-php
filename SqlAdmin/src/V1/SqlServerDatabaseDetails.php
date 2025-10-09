@@ -20,13 +20,13 @@ class SqlServerDatabaseDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 compatibility_level = 1;</code>
      */
-    private $compatibility_level = 0;
+    protected $compatibility_level = 0;
     /**
      * The recovery model of a SQL Server database
      *
      * Generated from protobuf field <code>string recovery_model = 2;</code>
      */
-    private $recovery_model = '';
+    protected $recovery_model = '';
 
     /**
      * Constructor.

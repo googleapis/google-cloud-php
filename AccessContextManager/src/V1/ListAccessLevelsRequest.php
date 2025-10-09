@@ -23,7 +23,7 @@ class ListAccessLevelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Number of [Access Levels]
      * [google.identity.accesscontextmanager.v1.AccessLevel] to include in
@@ -31,7 +31,7 @@ class ListAccessLevelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Next page token for the next batch of [Access Level]
      * [google.identity.accesscontextmanager.v1.AccessLevel] instances.
@@ -39,7 +39,7 @@ class ListAccessLevelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Whether to return `BasicLevels` in the Cloud Common Expression language, as
      * `CustomLevels`, rather than as `BasicLevels`. Defaults to returning
@@ -47,7 +47,7 @@ class ListAccessLevelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.LevelFormat access_level_format = 4;</code>
      */
-    private $access_level_format = 0;
+    protected $access_level_format = 0;
 
     /**
      * @param string $parent Required. Resource name for the access policy to list [Access Levels]

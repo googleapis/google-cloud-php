@@ -21,13 +21,13 @@ class WeekDayOfMonth extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 week_ordinal = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $week_ordinal = 0;
+    protected $week_ordinal = 0;
     /**
      * Required. A day of the week.
      *
      * Generated from protobuf field <code>.google.type.DayOfWeek day_of_week = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $day_of_week = 0;
+    protected $day_of_week = 0;
     /**
      * Optional. Represents the number of days before or after the given week day
      * of month that the patch deployment is scheduled for. For example if
@@ -39,7 +39,7 @@ class WeekDayOfMonth extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 day_offset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $day_offset = 0;
+    protected $day_offset = 0;
 
     /**
      * Constructor.

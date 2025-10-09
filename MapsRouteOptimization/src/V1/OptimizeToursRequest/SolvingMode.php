@@ -18,7 +18,8 @@ use UnexpectedValueException;
 class SolvingMode
 {
     /**
-     * Solve the model.
+     * Solve the model. Warnings may be issued in
+     * [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors].
      *
      * Generated from protobuf enum <code>DEFAULT_SOLVE = 0;</code>
      */

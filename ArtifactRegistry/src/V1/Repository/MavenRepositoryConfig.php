@@ -23,13 +23,13 @@ class MavenRepositoryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_snapshot_overwrites = 1;</code>
      */
-    private $allow_snapshot_overwrites = false;
+    protected $allow_snapshot_overwrites = false;
     /**
      * Version policy defines the versions that the registry will accept.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.MavenRepositoryConfig.VersionPolicy version_policy = 2;</code>
      */
-    private $version_policy = 0;
+    protected $version_policy = 0;
 
     /**
      * Constructor.
@@ -105,6 +105,4 @@ class MavenRepositoryConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MavenRepositoryConfig::class, \Google\Cloud\ArtifactRegistry\V1\Repository_MavenRepositoryConfig::class);
 

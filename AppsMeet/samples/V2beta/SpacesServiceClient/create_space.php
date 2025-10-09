@@ -29,7 +29,6 @@ use Google\Apps\Meet\V2beta\CreateSpaceRequest;
 use Google\Apps\Meet\V2beta\Space;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * Creates a space.
  *
  * This sample has been automatically generated and should be regarded as a code

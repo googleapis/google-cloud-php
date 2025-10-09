@@ -20,7 +20,7 @@ class InstancesFailoverRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.FailoverContext failover_context = 1;</code>
      */
-    private $failover_context = null;
+    protected $failover_context = null;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class PosixFilesystem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string root_directory = 1;</code>
      */
-    private $root_directory = '';
+    protected $root_directory = '';
 
     /**
      * Constructor.

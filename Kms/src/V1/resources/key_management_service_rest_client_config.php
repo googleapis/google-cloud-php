@@ -104,6 +104,18 @@ return [
                     'key_ring_id',
                 ],
             ],
+            'Decapsulate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:decapsulate',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'Decrypt' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:decrypt',

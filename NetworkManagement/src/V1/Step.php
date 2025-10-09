@@ -21,25 +21,25 @@ class Step extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Each step is in one of the pre-defined states.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Step.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * This is a step that leads to the final state Drop.
      *
      * Generated from protobuf field <code>bool causes_drop = 3;</code>
      */
-    private $causes_drop = false;
+    protected $causes_drop = false;
     /**
      * Project ID that contains the configuration this step is validating.
      *
      * Generated from protobuf field <code>string project_id = 4;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     protected $step_info;
 
     /**
@@ -77,6 +77,10 @@ class Step extends \Google\Protobuf\Internal\Message
      *           Display information of a Compute Engine VPN tunnel.
      *     @type \Google\Cloud\NetworkManagement\V1\VpcConnectorInfo $vpc_connector
      *           Display information of a VPC connector.
+     *     @type \Google\Cloud\NetworkManagement\V1\DirectVpcEgressConnectionInfo $direct_vpc_egress_connection
+     *           Display information of a serverless direct VPC egress connection.
+     *     @type \Google\Cloud\NetworkManagement\V1\ServerlessExternalConnectionInfo $serverless_external_connection
+     *           Display information of a serverless public (external) connection.
      *     @type \Google\Cloud\NetworkManagement\V1\DeliverInfo $deliver
      *           Display information of the final state "deliver" and reason.
      *     @type \Google\Cloud\NetworkManagement\V1\ForwardInfo $forward
@@ -94,6 +98,10 @@ class Step extends \Google\Protobuf\Internal\Message
      *           Display information of a Google Kubernetes Engine cluster master.
      *     @type \Google\Cloud\NetworkManagement\V1\CloudSQLInstanceInfo $cloud_sql_instance
      *           Display information of a Cloud SQL instance.
+     *     @type \Google\Cloud\NetworkManagement\V1\RedisInstanceInfo $redis_instance
+     *           Display information of a Redis Instance.
+     *     @type \Google\Cloud\NetworkManagement\V1\RedisClusterInfo $redis_cluster
+     *           Display information of a Redis Cluster.
      *     @type \Google\Cloud\NetworkManagement\V1\CloudFunctionInfo $cloud_function
      *           Display information of a Cloud Function.
      *     @type \Google\Cloud\NetworkManagement\V1\AppEngineVersionInfo $app_engine_version
@@ -108,6 +116,9 @@ class Step extends \Google\Protobuf\Internal\Message
      *           Display information of a specific load balancer backend.
      *     @type \Google\Cloud\NetworkManagement\V1\StorageBucketInfo $storage_bucket
      *           Display information of a Storage Bucket. Used only for return traces.
+     *     @type \Google\Cloud\NetworkManagement\V1\ServerlessNegInfo $serverless_neg
+     *           Display information of a Serverless network endpoint group backend. Used
+     *           only for return traces.
      * }
      */
     public function __construct($data = NULL) {
@@ -505,6 +516,68 @@ class Step extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Display information of a serverless direct VPC egress connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.DirectVpcEgressConnectionInfo direct_vpc_egress_connection = 33;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\DirectVpcEgressConnectionInfo|null
+     */
+    public function getDirectVpcEgressConnection()
+    {
+        return $this->readOneof(33);
+    }
+
+    public function hasDirectVpcEgressConnection()
+    {
+        return $this->hasOneof(33);
+    }
+
+    /**
+     * Display information of a serverless direct VPC egress connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.DirectVpcEgressConnectionInfo direct_vpc_egress_connection = 33;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\DirectVpcEgressConnectionInfo $var
+     * @return $this
+     */
+    public function setDirectVpcEgressConnection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\DirectVpcEgressConnectionInfo::class);
+        $this->writeOneof(33, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a serverless public (external) connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ServerlessExternalConnectionInfo serverless_external_connection = 34;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\ServerlessExternalConnectionInfo|null
+     */
+    public function getServerlessExternalConnection()
+    {
+        return $this->readOneof(34);
+    }
+
+    public function hasServerlessExternalConnection()
+    {
+        return $this->hasOneof(34);
+    }
+
+    /**
+     * Display information of a serverless public (external) connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ServerlessExternalConnectionInfo serverless_external_connection = 34;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\ServerlessExternalConnectionInfo $var
+     * @return $this
+     */
+    public function setServerlessExternalConnection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ServerlessExternalConnectionInfo::class);
+        $this->writeOneof(34, $var);
+
+        return $this;
+    }
+
+    /**
      * Display information of the final state "deliver" and reason.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.DeliverInfo deliver = 12;</code>
@@ -638,13 +711,17 @@ class Step extends \Google\Protobuf\Internal\Message
      */
     public function getLoadBalancer()
     {
-        @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(16)) {
+            @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(16);
     }
 
     public function hasLoadBalancer()
     {
-        @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(16)) {
+            @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(16);
     }
 
@@ -755,6 +832,68 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\CloudSQLInstanceInfo::class);
         $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a Redis Instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RedisInstanceInfo redis_instance = 30;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\RedisInstanceInfo|null
+     */
+    public function getRedisInstance()
+    {
+        return $this->readOneof(30);
+    }
+
+    public function hasRedisInstance()
+    {
+        return $this->hasOneof(30);
+    }
+
+    /**
+     * Display information of a Redis Instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RedisInstanceInfo redis_instance = 30;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\RedisInstanceInfo $var
+     * @return $this
+     */
+    public function setRedisInstance($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\RedisInstanceInfo::class);
+        $this->writeOneof(30, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a Redis Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RedisClusterInfo redis_cluster = 31;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\RedisClusterInfo|null
+     */
+    public function getRedisCluster()
+    {
+        return $this->readOneof(31);
+    }
+
+    public function hasRedisCluster()
+    {
+        return $this->hasOneof(31);
+    }
+
+    /**
+     * Display information of a Redis Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RedisClusterInfo redis_cluster = 31;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\RedisClusterInfo $var
+     * @return $this
+     */
+    public function setRedisCluster($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\RedisClusterInfo::class);
+        $this->writeOneof(31, $var);
 
         return $this;
     }
@@ -972,6 +1111,39 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\StorageBucketInfo::class);
         $this->writeOneof(28, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a Serverless network endpoint group backend. Used
+     * only for return traces.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ServerlessNegInfo serverless_neg = 29;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\ServerlessNegInfo|null
+     */
+    public function getServerlessNeg()
+    {
+        return $this->readOneof(29);
+    }
+
+    public function hasServerlessNeg()
+    {
+        return $this->hasOneof(29);
+    }
+
+    /**
+     * Display information of a Serverless network endpoint group backend. Used
+     * only for return traces.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ServerlessNegInfo serverless_neg = 29;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\ServerlessNegInfo $var
+     * @return $this
+     */
+    public function setServerlessNeg($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ServerlessNegInfo::class);
+        $this->writeOneof(29, $var);
 
         return $this;
     }

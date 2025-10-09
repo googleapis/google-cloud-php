@@ -23,7 +23,7 @@ class ReadTensorboardBlobDataRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string time_series = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $time_series = '';
+    protected $time_series = '';
     /**
      * IDs of the blobs to read.
      *

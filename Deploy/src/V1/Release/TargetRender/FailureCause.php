@@ -51,8 +51,8 @@ class FailureCause
     const VERIFICATION_CONFIG_NOT_FOUND = 4;
     /**
      * The render operation did not complete successfully because the custom
-     * action required for predeploy or postdeploy was not found in the
-     * Skaffold configuration. See failure_message for additional details.
+     * action(s) required for Rollout jobs were not found in the Skaffold
+     * configuration. See failure_message for additional details.
      *
      * Generated from protobuf enum <code>CUSTOM_ACTION_NOT_FOUND = 5;</code>
      */

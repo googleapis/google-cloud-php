@@ -24,14 +24,14 @@ class VPCSCConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The project per location VPC SC policy that defines the VPC SC behavior for
      * the Remote Repository (Allow/Deny).
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.VPCSCConfig.VPCSCPolicy vpcsc_policy = 2;</code>
      */
-    private $vpcsc_policy = 0;
+    protected $vpcsc_policy = 0;
 
     /**
      * Constructor.

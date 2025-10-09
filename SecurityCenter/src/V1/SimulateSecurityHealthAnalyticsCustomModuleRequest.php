@@ -25,19 +25,19 @@ class SimulateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobu
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The custom configuration that you need to test.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CustomConfig custom_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $custom_config = null;
+    protected $custom_config = null;
     /**
      * Required. Resource data to simulate custom module against.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SimulateSecurityHealthAnalyticsCustomModuleRequest.SimulatedResource resource = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource = null;
+    protected $resource = null;
 
     /**
      * @param string                                                                                               $parent       Required. The relative resource name of the organization, project, or

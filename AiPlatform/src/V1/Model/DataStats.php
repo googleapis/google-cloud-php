@@ -20,14 +20,14 @@ class DataStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 training_data_items_count = 1;</code>
      */
-    private $training_data_items_count = 0;
+    protected $training_data_items_count = 0;
     /**
      * Number of DataItems that were used for validating this Model during
      * training.
      *
      * Generated from protobuf field <code>int64 validation_data_items_count = 2;</code>
      */
-    private $validation_data_items_count = 0;
+    protected $validation_data_items_count = 0;
     /**
      * Number of DataItems that were used for evaluating this Model. If the
      * Model is evaluated multiple times, this will be the number of test
@@ -36,20 +36,20 @@ class DataStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 test_data_items_count = 3;</code>
      */
-    private $test_data_items_count = 0;
+    protected $test_data_items_count = 0;
     /**
      * Number of Annotations that are used for training this Model.
      *
      * Generated from protobuf field <code>int64 training_annotations_count = 4;</code>
      */
-    private $training_annotations_count = 0;
+    protected $training_annotations_count = 0;
     /**
      * Number of Annotations that are used for validating this Model during
      * training.
      *
      * Generated from protobuf field <code>int64 validation_annotations_count = 5;</code>
      */
-    private $validation_annotations_count = 0;
+    protected $validation_annotations_count = 0;
     /**
      * Number of Annotations that are used for evaluating this Model. If the
      * Model is evaluated multiple times, this will be the number of test
@@ -58,7 +58,7 @@ class DataStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 test_annotations_count = 6;</code>
      */
-    private $test_annotations_count = 0;
+    protected $test_annotations_count = 0;
 
     /**
      * Constructor.

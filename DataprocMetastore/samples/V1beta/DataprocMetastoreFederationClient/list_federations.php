@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1beta_generated_DataprocMetastoreFederation_ListFederations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Metastore\V1beta\DataprocMetastoreFederationClient;
+use Google\Cloud\Metastore\V1beta\Client\DataprocMetastoreFederationClient;
 use Google\Cloud\Metastore\V1beta\Federation;
+use Google\Cloud\Metastore\V1beta\ListFederationsRequest;
 
 /**
  * Lists federations in a project and location.
@@ -41,10 +42,14 @@ function list_federations_sample(string $formattedParent): void
     // Create a client.
     $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
 
+    // Prepare the request message.
+    $request = (new ListFederationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataprocMetastoreFederationClient->listFederations($formattedParent);
+        $response = $dataprocMetastoreFederationClient->listFederations($request);
 
         /** @var Federation $element */
         foreach ($response as $element) {

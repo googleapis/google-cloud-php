@@ -16,7 +16,7 @@ class Subject extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * `"<ALGORITHM>": "<HEX_VALUE>"`
      * Algorithms can be e.g. sha256, sha512

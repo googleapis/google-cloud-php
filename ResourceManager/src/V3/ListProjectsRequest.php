@@ -26,7 +26,7 @@ class ListProjectsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. A pagination token returned from a previous call to
      * [ListProjects] [google.cloud.resourcemanager.v3.Projects.ListProjects] that
@@ -34,7 +34,7 @@ class ListProjectsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. The maximum number of projects to return in the response.
      * The server can return fewer projects than requested.
@@ -42,14 +42,14 @@ class ListProjectsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. Indicate that projects in the `DELETE_REQUESTED` state should
      * also be returned. Normally only `ACTIVE` projects are returned.
      *
      * Generated from protobuf field <code>bool show_deleted = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $show_deleted = false;
+    protected $show_deleted = false;
 
     /**
      * @param string $parent Required. The name of the parent resource whose projects are being listed.

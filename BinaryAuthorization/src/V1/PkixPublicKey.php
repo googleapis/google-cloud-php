@@ -24,7 +24,7 @@ class PkixPublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string public_key_pem = 1;</code>
      */
-    private $public_key_pem = '';
+    protected $public_key_pem = '';
     /**
      * The signature algorithm used to verify a message against a signature using
      * this key.
@@ -34,7 +34,7 @@ class PkixPublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.PkixPublicKey.SignatureAlgorithm signature_algorithm = 2;</code>
      */
-    private $signature_algorithm = 0;
+    protected $signature_algorithm = 0;
 
     /**
      * Constructor.

@@ -125,6 +125,18 @@ return [
             ],
         ],
         'google.spanner.admin.database.v1.DatabaseAdmin' => [
+            'AddSplitPoints' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{database=projects/*/instances/*/databases/*}:addSplitPoints',
+                'body' => '*',
+                'placeholders' => [
+                    'database' => [
+                        'getters' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
             'CopyBackup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/backups:copy',
@@ -152,6 +164,21 @@ return [
                     'backup_id',
                 ],
             ],
+            'CreateBackupSchedule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*/databases/*}/backupSchedules',
+                'body' => 'backup_schedule',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'backup_schedule_id',
+                ],
+            ],
             'CreateDatabase' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
@@ -175,6 +202,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteBackupSchedule' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/backupSchedules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DropDatabase' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{database=projects/*/instances/*/databases/*}',
@@ -189,6 +227,17 @@ return [
             'GetBackup' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/instances/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupSchedule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/backupSchedules/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -229,6 +278,11 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/instances/*/backups/*}:getIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/instances/*/databases/*/backupSchedules/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -241,6 +295,17 @@ return [
             'ListBackupOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/backupOperations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupSchedules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*/databases/*}/backupSchedules',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -315,6 +380,11 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/instances/*/backups/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/instances/*/databases/*/backupSchedules/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -332,6 +402,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/instances/*/backups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/instances/*/databases/*/backupSchedules/*}:testIamPermissions',
                         'body' => '*',
                     ],
                     [
@@ -356,6 +431,22 @@ return [
                     'backup.name' => [
                         'getters' => [
                             'getBackup',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateBackupSchedule' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup_schedule.name=projects/*/instances/*/databases/*/backupSchedules/*}',
+                'body' => 'backup_schedule',
+                'placeholders' => [
+                    'backup_schedule.name' => [
+                        'getters' => [
+                            'getBackupSchedule',
                             'getName',
                         ],
                     ],

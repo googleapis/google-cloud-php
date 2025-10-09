@@ -25,7 +25,7 @@ class GcpUserAccessBinding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Immutable. Google Group id whose members are subject to this binding's restrictions.
      * See "id" in the [G Suite Directory API's Groups resource]
@@ -37,7 +37,7 @@ class GcpUserAccessBinding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group_key = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $group_key = '';
+    protected $group_key = '';
     /**
      * Required. Access level that a user must have to be granted access. Only one access
      * level is supported, not multiple. This repeated field must have exactly

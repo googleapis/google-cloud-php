@@ -32,7 +32,7 @@ use Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret;
  * Creates a user workloads Secret.
  *
  * This method is supported for Cloud Composer environments in versions
- * composer-3.*.*-airflow-*.*.* and newer.
+ * composer-3-airflow-*.*.*-build.* and newer.
  *
  * @param string $formattedParent The environment name to create a Secret for, in the form:
  *                                "projects/{projectId}/locations/{locationId}/environments/{environmentId}"

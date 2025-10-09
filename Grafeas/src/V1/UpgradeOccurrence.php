@@ -24,14 +24,14 @@ class UpgradeOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string package = 1;</code>
      */
-    private $package = '';
+    protected $package = '';
     /**
      * Required for non-Windows OS. The version of the package in a machine +
      * human readable form.
      *
      * Generated from protobuf field <code>.grafeas.v1.Version parsed_version = 3;</code>
      */
-    private $parsed_version = null;
+    protected $parsed_version = null;
     /**
      * Metadata about the upgrade for available for the specific operating system
      * for the resource_url. This allows efficient filtering, as well as
@@ -39,13 +39,13 @@ class UpgradeOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.UpgradeDistribution distribution = 4;</code>
      */
-    private $distribution = null;
+    protected $distribution = null;
     /**
      * Required for Windows OS. Represents the metadata about the Windows update.
      *
      * Generated from protobuf field <code>.grafeas.v1.WindowsUpdate windows_update = 5;</code>
      */
-    private $windows_update = null;
+    protected $windows_update = null;
 
     /**
      * Constructor.

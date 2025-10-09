@@ -23,7 +23,7 @@ class RawPredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * The prediction input. Supports HTTP headers and arbitrary data payload.
      * A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an
@@ -41,7 +41,7 @@ class RawPredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.HttpBody http_body = 2;</code>
      */
-    private $http_body = null;
+    protected $http_body = null;
 
     /**
      * @param string               $endpoint Required. The name of the Endpoint requested to serve the prediction.

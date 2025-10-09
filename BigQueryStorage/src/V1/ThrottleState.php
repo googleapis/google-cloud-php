@@ -21,7 +21,7 @@ class ThrottleState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 throttle_percent = 1;</code>
      */
-    private $throttle_percent = 0;
+    protected $throttle_percent = 0;
 
     /**
      * Constructor.

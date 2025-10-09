@@ -22,10 +22,10 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on whether you have [specified a
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
-     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
-     *   `projects/`<var>PROJECT_ID</var>
+     * + Projects scope, location specified:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Projects scope, no location specified (defaults to global):
+     *   `projects/{project_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -33,7 +33,7 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The job id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
@@ -42,13 +42,13 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_id = 4;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
     protected $job;
 
     /**
@@ -58,10 +58,10 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *                                                          processing
      *                                                          location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                                                          + Projects scope, location specified:<br/>
-     *                                                          `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                                          + Projects scope, no location specified (defaults to global):<br/>
-     *                                                          `projects/`<var>PROJECT_ID</var>
+     *                                                          + Projects scope, location specified:
+     *                                                          `projects/{project_id}/locations/{location_id}`
+     *                                                          + Projects scope, no location specified (defaults to global):
+     *                                                          `projects/{project_id}`
      *
      *                                                          The following example `parent` string specifies a parent project with the
      *                                                          identifier `example-project`, and specifies the `europe-west3` location
@@ -89,10 +89,10 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *                                                            processing
      *                                                            location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                                                            + Projects scope, location specified:<br/>
-     *                                                            `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                                            + Projects scope, no location specified (defaults to global):<br/>
-     *                                                            `projects/`<var>PROJECT_ID</var>
+     *                                                            + Projects scope, location specified:
+     *                                                            `projects/{project_id}/locations/{location_id}`
+     *                                                            + Projects scope, no location specified (defaults to global):
+     *                                                            `projects/{project_id}`
      *
      *                                                            The following example `parent` string specifies a parent project with the
      *                                                            identifier `example-project`, and specifies the `europe-west3` location
@@ -125,10 +125,10 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *           The format of this value varies depending on whether you have [specified a
      *           processing
      *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     *           + Projects scope, location specified:<br/>
-     *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *           + Projects scope, no location specified (defaults to global):<br/>
-     *             `projects/`<var>PROJECT_ID</var>
+     *           + Projects scope, location specified:
+     *             `projects/{project_id}/locations/{location_id}`
+     *           + Projects scope, no location specified (defaults to global):
+     *             `projects/{project_id}`
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
      *           for processing data:
@@ -157,10 +157,10 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on whether you have [specified a
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
-     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
-     *   `projects/`<var>PROJECT_ID</var>
+     * + Projects scope, location specified:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Projects scope, no location specified (defaults to global):
+     *   `projects/{project_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -179,10 +179,10 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on whether you have [specified a
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
-     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
-     *   `projects/`<var>PROJECT_ID</var>
+     * + Projects scope, location specified:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Projects scope, no location specified (defaults to global):
+     *   `projects/{project_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:

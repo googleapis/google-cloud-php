@@ -21,14 +21,14 @@ class Compatibility extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool compatible = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $compatible = false;
+    protected $compatible = false;
     /**
      * Output only. Provides additional detail if the entity is incompatible
      * with the metadata store.
      *
      * Generated from protobuf field <code>string reason = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reason = '';
+    protected $reason = '';
 
     /**
      * Constructor.

@@ -20,38 +20,38 @@ class VolumeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A transient unique identifier to identify a volume within an
      * ProvisioningConfig request.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Whether snapshots should be enabled.
      *
      * Generated from protobuf field <code>bool snapshots_enabled = 3;</code>
      */
-    private $snapshots_enabled = false;
+    protected $snapshots_enabled = false;
     /**
      * The type of this Volume.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VolumeConfig.Type type = 4;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Volume protocol.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VolumeConfig.Protocol protocol = 5;</code>
      */
-    private $protocol = 0;
+    protected $protocol = 0;
     /**
      * The requested size of this volume, in GB.
      *
      * Generated from protobuf field <code>int32 size_gb = 6;</code>
      */
-    private $size_gb = 0;
+    protected $size_gb = 0;
     /**
      * LUN ranges to be configured. Set only when protocol is PROTOCOL_FC.
      *
@@ -77,21 +77,21 @@ class VolumeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_note = 10;</code>
      */
-    private $user_note = '';
+    protected $user_note = '';
     /**
      * The GCP service of the storage volume. Available gcp_service are in
      * https://cloud.google.com/bare-metal/docs/bms-planning.
      *
      * Generated from protobuf field <code>string gcp_service = 11;</code>
      */
-    private $gcp_service = '';
+    protected $gcp_service = '';
     /**
      * Performance tier of the Volume.
      * Default is SHARED.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VolumePerformanceTier performance_tier = 12;</code>
      */
-    private $performance_tier = 0;
+    protected $performance_tier = 0;
 
     /**
      * Constructor.

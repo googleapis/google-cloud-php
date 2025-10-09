@@ -31,9 +31,9 @@ use Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest;
  * Deletes an existing BigQuery export.
  *
  * @param string $formattedName The name of the BigQuery export to delete. Its format is
- *                              organizations/{organization}/bigQueryExports/{export_id},
- *                              folders/{folder}/bigQueryExports/{export_id}, or
- *                              projects/{project}/bigQueryExports/{export_id}
+ *                              `organizations/{organization}/bigQueryExports/{export_id}`,
+ *                              `folders/{folder}/bigQueryExports/{export_id}`, or
+ *                              `projects/{project}/bigQueryExports/{export_id}`
  *                              Please see {@see SecurityCenterClient::bigQueryExportName()} for help formatting this field.
  */
 function delete_big_query_export_sample(string $formattedName): void

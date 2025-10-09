@@ -20,7 +20,7 @@ class InstancesExportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext export_context = 1;</code>
      */
-    private $export_context = null;
+    protected $export_context = null;
 
     /**
      * Constructor.

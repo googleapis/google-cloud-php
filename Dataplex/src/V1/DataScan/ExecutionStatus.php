@@ -16,17 +16,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExecutionStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The time when the latest DataScanJob started.
+     * Optional. The time when the latest DataScanJob started.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_start_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_start_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $latest_job_start_time = null;
+    protected $latest_job_start_time = null;
     /**
-     * The time when the latest DataScanJob ended.
+     * Optional. The time when the latest DataScanJob ended.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_end_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_end_time = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $latest_job_end_time = null;
+    protected $latest_job_end_time = null;
+    /**
+     * Optional. The time when the DataScanJob execution was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_create_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $latest_job_create_time = null;
 
     /**
      * Constructor.
@@ -35,9 +41,11 @@ class ExecutionStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $latest_job_start_time
-     *           The time when the latest DataScanJob started.
+     *           Optional. The time when the latest DataScanJob started.
      *     @type \Google\Protobuf\Timestamp $latest_job_end_time
-     *           The time when the latest DataScanJob ended.
+     *           Optional. The time when the latest DataScanJob ended.
+     *     @type \Google\Protobuf\Timestamp $latest_job_create_time
+     *           Optional. The time when the DataScanJob execution was created.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +54,9 @@ class ExecutionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time when the latest DataScanJob started.
+     * Optional. The time when the latest DataScanJob started.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_start_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_start_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getLatestJobStartTime()
@@ -67,9 +75,9 @@ class ExecutionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time when the latest DataScanJob started.
+     * Optional. The time when the latest DataScanJob started.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_start_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_start_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -82,9 +90,9 @@ class ExecutionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time when the latest DataScanJob ended.
+     * Optional. The time when the latest DataScanJob ended.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_end_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_end_time = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getLatestJobEndTime()
@@ -103,9 +111,9 @@ class ExecutionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time when the latest DataScanJob ended.
+     * Optional. The time when the latest DataScanJob ended.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_end_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_end_time = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -113,6 +121,42 @@ class ExecutionStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->latest_job_end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The time when the DataScanJob execution was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_create_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getLatestJobCreateTime()
+    {
+        return $this->latest_job_create_time;
+    }
+
+    public function hasLatestJobCreateTime()
+    {
+        return isset($this->latest_job_create_time);
+    }
+
+    public function clearLatestJobCreateTime()
+    {
+        unset($this->latest_job_create_time);
+    }
+
+    /**
+     * Optional. The time when the DataScanJob execution was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_create_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setLatestJobCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->latest_job_create_time = $var;
 
         return $this;
     }

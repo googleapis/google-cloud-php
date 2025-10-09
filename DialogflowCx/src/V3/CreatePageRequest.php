@@ -18,8 +18,8 @@ class CreatePageRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The flow to create a page for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -56,8 +56,8 @@ class CreatePageRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                              $parent Required. The flow to create a page for.
-     *                                                    Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                                                    ID>/flows/<Flow ID>`. Please see
+     *                                                    Format:
+     *                                                    `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`. Please see
      *                                                    {@see PagesClient::flowName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\Cx\V3\Page $page   Required. The page to create.
      *
@@ -80,8 +80,8 @@ class CreatePageRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The flow to create a page for.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Page $page
      *           Required. The page to create.
      *     @type string $language_code
@@ -112,8 +112,8 @@ class CreatePageRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The flow to create a page for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -125,8 +125,8 @@ class CreatePageRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The flow to create a page for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -21,19 +21,19 @@ class ListNpmPackagesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
-     * The maximum number of artifacts to return.
+     * The maximum number of artifacts to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The next_page_token value returned from a previous list request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The name of the parent resource whose npm packages will be
@@ -60,7 +60,7 @@ class ListNpmPackagesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the parent resource whose npm packages will be
      *           listed.
      *     @type int $page_size
-     *           The maximum number of artifacts to return.
+     *           The maximum number of artifacts to return. Maximum page size is 1,000.
      *     @type string $page_token
      *           The next_page_token value returned from a previous list request, if any.
      * }
@@ -99,7 +99,7 @@ class ListNpmPackagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of artifacts to return.
+     * The maximum number of artifacts to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -110,7 +110,7 @@ class ListNpmPackagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of artifacts to return.
+     * The maximum number of artifacts to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

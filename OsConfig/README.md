@@ -31,20 +31,32 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\OsConfig\V1\Client\OsConfigServiceClient;
+use Google\Cloud\OsConfig\V1\GetPatchDeploymentRequest;
+use Google\Cloud\OsConfig\V1\PatchDeployment;
 
-use Google\Cloud\OsConfig\V1\OsConfigServiceClient;
+// Create a client.
+$osConfigServiceClient = new OsConfigServiceClient();
 
-$client = new OsConfigServiceClient();
+// Prepare the request message.
+$request = (new GetPatchDeploymentRequest())
+    ->setName($formattedName);
 
-$jobs = $client->listPatchJobs(
-	OsConfigServiceClient::projectName('[MY_PROJECT_ID]')
-);
-
-foreach ($jobs as $job) {
-	print $job->getName() . ': ' . $job->getDescription() . PHP_EOL;
+// Call the API and handle any network failures.
+try {
+    /** @var PatchDeployment $response */
+    $response = $osConfigServiceClient->getPatchDeployment($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

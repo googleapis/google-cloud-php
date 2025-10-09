@@ -31,21 +31,21 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deployed_model_id = 2;</code>
      */
-    private $deployed_model_id = '';
+    protected $deployed_model_id = '';
     /**
      * Output only. The resource name of the Model which is deployed as the
      * DeployedModel that this prediction hits.
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Output only. The version ID of the Model which is deployed as the
      * DeployedModel that this prediction hits.
      *
      * Generated from protobuf field <code>string model_version_id = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $model_version_id = '';
+    protected $model_version_id = '';
     /**
      * Output only. The [display
      * name][google.cloud.aiplatform.v1.Model.display_name] of the Model which is
@@ -53,14 +53,14 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model_display_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $model_display_name = '';
+    protected $model_display_name = '';
     /**
      * Output only. Request-level metadata returned by the model. The metadata
      * type will be dependent upon the model implementation.
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

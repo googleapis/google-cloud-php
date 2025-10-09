@@ -21,13 +21,13 @@ class RejectHubSpokeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The URI of the spoke to reject from the hub.
      *
      * Generated from protobuf field <code>string spoke_uri = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $spoke_uri = '';
+    protected $spoke_uri = '';
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID so
      * that if you must retry your request, the server knows to ignore the request
@@ -44,13 +44,13 @@ class RejectHubSpokeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. Additional information provided by the hub administrator.
      *
      * Generated from protobuf field <code>string details = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $details = '';
+    protected $details = '';
 
     /**
      * @param string $name     Required. The name of the hub from which to reject the spoke. Please see

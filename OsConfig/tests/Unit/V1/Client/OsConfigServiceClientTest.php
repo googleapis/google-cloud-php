@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,7 +68,9 @@ class OsConfigServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return OsConfigServiceClient */
@@ -94,7 +96,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $dryRun = false;
         $errorMessage = 'errorMessage-1938755376';
-        $percentComplete = -1.96096922E8;
+        $percentComplete = -1.96096922e8;
         $patchDeployment = 'patchDeployment633565980';
         $expectedResponse = new PatchJob();
         $expectedResponse->setName($name2);
@@ -107,8 +109,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new CancelPatchJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelPatchJobRequest())->setName($formattedName);
         $response = $gapicClient->cancelPatchJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -132,17 +133,19 @@ class OsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new CancelPatchJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelPatchJobRequest())->setName($formattedName);
         try {
             $gapicClient->cancelPatchJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -212,12 +215,15 @@ class OsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -259,8 +265,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new DeletePatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new DeletePatchDeploymentRequest())->setName($formattedName);
         $gapicClient->deletePatchDeployment($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -283,17 +288,19 @@ class OsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new DeletePatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new DeletePatchDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->deletePatchDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -321,7 +328,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $description2 = 'description2568623279';
         $dryRun2 = true;
         $errorMessage = 'errorMessage-1938755376';
-        $percentComplete = -1.96096922E8;
+        $percentComplete = -1.96096922e8;
         $patchDeployment = 'patchDeployment633565980';
         $expectedResponse = new PatchJob();
         $expectedResponse->setName($name);
@@ -335,9 +342,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $instanceFilter = new PatchInstanceFilter();
-        $request = (new ExecutePatchJobRequest())
-            ->setParent($formattedParent)
-            ->setInstanceFilter($instanceFilter);
+        $request = (new ExecutePatchJobRequest())->setParent($formattedParent)->setInstanceFilter($instanceFilter);
         $response = $gapicClient->executePatchJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -363,19 +368,20 @@ class OsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $instanceFilter = new PatchInstanceFilter();
-        $request = (new ExecutePatchJobRequest())
-            ->setParent($formattedParent)
-            ->setInstanceFilter($instanceFilter);
+        $request = (new ExecutePatchJobRequest())->setParent($formattedParent)->setInstanceFilter($instanceFilter);
         try {
             $gapicClient->executePatchJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -406,8 +412,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new GetPatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new GetPatchDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->getPatchDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -431,17 +436,19 @@ class OsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new GetPatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new GetPatchDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->getPatchDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -469,7 +476,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $dryRun = false;
         $errorMessage = 'errorMessage-1938755376';
-        $percentComplete = -1.96096922E8;
+        $percentComplete = -1.96096922e8;
         $patchDeployment = 'patchDeployment633565980';
         $expectedResponse = new PatchJob();
         $expectedResponse->setName($name2);
@@ -482,8 +489,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new GetPatchJobRequest())
-            ->setName($formattedName);
+        $request = (new GetPatchJobRequest())->setName($formattedName);
         $response = $gapicClient->getPatchJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -507,17 +513,19 @@ class OsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new GetPatchJobRequest())
-            ->setName($formattedName);
+        $request = (new GetPatchJobRequest())->setName($formattedName);
         try {
             $gapicClient->getPatchJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -542,17 +550,14 @@ class OsConfigServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $patchDeploymentsElement = new PatchDeployment();
-        $patchDeployments = [
-            $patchDeploymentsElement,
-        ];
+        $patchDeployments = [$patchDeploymentsElement];
         $expectedResponse = new ListPatchDeploymentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPatchDeployments($patchDeployments);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListPatchDeploymentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPatchDeploymentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listPatchDeployments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -579,17 +584,19 @@ class OsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListPatchDeploymentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPatchDeploymentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPatchDeployments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -614,17 +621,14 @@ class OsConfigServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $patchJobInstanceDetailsElement = new PatchJobInstanceDetails();
-        $patchJobInstanceDetails = [
-            $patchJobInstanceDetailsElement,
-        ];
+        $patchJobInstanceDetails = [$patchJobInstanceDetailsElement];
         $expectedResponse = new ListPatchJobInstanceDetailsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPatchJobInstanceDetails($patchJobInstanceDetails);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new ListPatchJobInstanceDetailsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPatchJobInstanceDetailsRequest())->setParent($formattedParent);
         $response = $gapicClient->listPatchJobInstanceDetails($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -651,17 +655,19 @@ class OsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new ListPatchJobInstanceDetailsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPatchJobInstanceDetailsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPatchJobInstanceDetails($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -686,17 +692,14 @@ class OsConfigServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $patchJobsElement = new PatchJob();
-        $patchJobs = [
-            $patchJobsElement,
-        ];
+        $patchJobs = [$patchJobsElement];
         $expectedResponse = new ListPatchJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPatchJobs($patchJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListPatchJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPatchJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listPatchJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -723,17 +726,19 @@ class OsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListPatchJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPatchJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPatchJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -764,8 +769,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new PausePatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new PausePatchDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->pausePatchDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -789,17 +793,19 @@ class OsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new PausePatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new PausePatchDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->pausePatchDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -830,8 +836,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new ResumePatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new ResumePatchDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->resumePatchDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -855,17 +860,19 @@ class OsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new ResumePatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new ResumePatchDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->resumePatchDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -902,8 +909,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $oneTimeScheduleExecuteTime = new Timestamp();
         $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
         $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
-        $request = (new UpdatePatchDeploymentRequest())
-            ->setPatchDeployment($patchDeployment);
+        $request = (new UpdatePatchDeploymentRequest())->setPatchDeployment($patchDeployment);
         $response = $gapicClient->updatePatchDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -927,12 +933,15 @@ class OsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $patchDeployment = new PatchDeployment();
@@ -942,8 +951,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $oneTimeScheduleExecuteTime = new Timestamp();
         $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
         $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
-        $request = (new UpdatePatchDeploymentRequest())
-            ->setPatchDeployment($patchDeployment);
+        $request = (new UpdatePatchDeploymentRequest())->setPatchDeployment($patchDeployment);
         try {
             $gapicClient->updatePatchDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -971,7 +979,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $dryRun = false;
         $errorMessage = 'errorMessage-1938755376';
-        $percentComplete = -1.96096922E8;
+        $percentComplete = -1.96096922e8;
         $patchDeployment = 'patchDeployment633565980';
         $expectedResponse = new PatchJob();
         $expectedResponse->setName($name2);
@@ -984,8 +992,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new CancelPatchJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelPatchJobRequest())->setName($formattedName);
         $response = $gapicClient->cancelPatchJobAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

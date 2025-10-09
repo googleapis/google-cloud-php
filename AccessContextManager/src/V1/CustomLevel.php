@@ -22,7 +22,7 @@ class CustomLevel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Expr expr = 1;</code>
      */
-    private $expr = null;
+    protected $expr = null;
 
     /**
      * Constructor.

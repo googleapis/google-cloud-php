@@ -31,7 +31,6 @@ use Google\Cloud\Storage\Control\V2\Folder;
 /**
  * Creates a new folder. This operation is only applicable to a hierarchical
  * namespace enabled bucket.
- * Hierarchical namespace buckets are in allowlist preview.
  *
  * @param string $formattedParent Name of the bucket in which the folder will reside. The bucket
  *                                must be a hierarchical namespace enabled bucket. Please see

@@ -16,14 +16,14 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlBakImportOptions.EncryptionOptions encryption_options = 1;</code>
      */
-    private $encryption_options = null;
+    protected $encryption_options = null;
     /**
      * Whether or not the backup set being restored is striped.
      * Applies only to Cloud SQL for SQL Server.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue striped = 2;</code>
      */
-    private $striped = null;
+    protected $striped = null;
     /**
      * Whether or not the backup importing will restore database
      * with NORECOVERY option
@@ -31,7 +31,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue no_recovery = 4;</code>
      */
-    private $no_recovery = null;
+    protected $no_recovery = null;
     /**
      * Whether or not the backup importing request will just bring database
      * online without downloading Bak content only one of "no_recovery" and
@@ -40,13 +40,13 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue recovery_only = 5;</code>
      */
-    private $recovery_only = null;
+    protected $recovery_only = null;
     /**
      * Type of the bak content, FULL or DIFF
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.BakType bak_type = 6;</code>
      */
-    private $bak_type = 0;
+    protected $bak_type = 0;
     /**
      * Optional. The timestamp when the import should stop. This timestamp is in
      * the [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example,
@@ -55,7 +55,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp stop_at = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $stop_at = null;
+    protected $stop_at = null;
     /**
      * Optional. The marked transaction where the import should stop. This field
      * is equivalent to the STOPATMARK keyword and applies to Cloud SQL for SQL
@@ -63,7 +63,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string stop_at_mark = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $stop_at_mark = '';
+    protected $stop_at_mark = '';
 
     /**
      * Constructor.
@@ -165,7 +165,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue striped = 2;</code>
      * @return bool|null
      */
-    public function getStripedValue()
+    public function getStripedUnwrapped()
     {
         return $this->readWrapperValue("striped");
     }
@@ -196,7 +196,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setStripedValue($var)
+    public function setStripedUnwrapped($var)
     {
         $this->writeWrapperValue("striped", $var);
         return $this;}
@@ -234,7 +234,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue no_recovery = 4;</code>
      * @return bool|null
      */
-    public function getNoRecoveryValue()
+    public function getNoRecoveryUnwrapped()
     {
         return $this->readWrapperValue("no_recovery");
     }
@@ -267,7 +267,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setNoRecoveryValue($var)
+    public function setNoRecoveryUnwrapped($var)
     {
         $this->writeWrapperValue("no_recovery", $var);
         return $this;}
@@ -307,7 +307,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue recovery_only = 5;</code>
      * @return bool|null
      */
-    public function getRecoveryOnlyValue()
+    public function getRecoveryOnlyUnwrapped()
     {
         return $this->readWrapperValue("recovery_only");
     }
@@ -342,7 +342,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setRecoveryOnlyValue($var)
+    public function setRecoveryOnlyUnwrapped($var)
     {
         $this->writeWrapperValue("recovery_only", $var);
         return $this;}

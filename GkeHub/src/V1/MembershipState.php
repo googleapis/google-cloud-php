@@ -20,7 +20,7 @@ class MembershipState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.MembershipState.Code code = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $code = 0;
+    protected $code = 0;
 
     /**
      * Constructor.

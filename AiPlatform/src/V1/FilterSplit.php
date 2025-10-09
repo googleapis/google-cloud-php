@@ -31,7 +31,7 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string training_filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $training_filter = '';
+    protected $training_filter = '';
     /**
      * Required. A filter on DataItems of the Dataset. DataItems that match
      * this filter are used to validate the Model. A filter with same syntax
@@ -43,7 +43,7 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string validation_filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $validation_filter = '';
+    protected $validation_filter = '';
     /**
      * Required. A filter on DataItems of the Dataset. DataItems that match
      * this filter are used to test the Model. A filter with same syntax
@@ -55,7 +55,7 @@ class FilterSplit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string test_filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $test_filter = '';
+    protected $test_filter = '';
 
     /**
      * Constructor.

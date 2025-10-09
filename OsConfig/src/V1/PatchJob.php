@@ -27,96 +27,96 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Display name for this patch job. This is not a unique identifier.
      *
      * Generated from protobuf field <code>string display_name = 14;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Description of the patch job. Length of the description is limited
      * to 1024 characters.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Time this patch job was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Last time this patch job was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The current state of the PatchJob.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchJob.State state = 5;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Instances to patch.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchInstanceFilter instance_filter = 13;</code>
      */
-    private $instance_filter = null;
+    protected $instance_filter = null;
     /**
      * Patch configuration being applied.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchConfig patch_config = 7;</code>
      */
-    private $patch_config = null;
+    protected $patch_config = null;
     /**
      * Duration of the patch job. After the duration ends, the
      * patch job times out.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 8;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * Summary of instance details.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchJob.InstanceDetailsSummary instance_details_summary = 9;</code>
      */
-    private $instance_details_summary = null;
+    protected $instance_details_summary = null;
     /**
      * If this patch job is a dry run, the agent reports that it has
      * finished without running any updates on the VM instance.
      *
      * Generated from protobuf field <code>bool dry_run = 10;</code>
      */
-    private $dry_run = false;
+    protected $dry_run = false;
     /**
      * If this patch job failed, this message provides information about the
      * failure.
      *
      * Generated from protobuf field <code>string error_message = 11;</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
     /**
      * Reflects the overall progress of the patch job in the range of
      * 0.0 being no progress to 100.0 being complete.
      *
      * Generated from protobuf field <code>double percent_complete = 12;</code>
      */
-    private $percent_complete = 0.0;
+    protected $percent_complete = 0.0;
     /**
      * Output only. Name of the patch deployment that created this patch job.
      *
      * Generated from protobuf field <code>string patch_deployment = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $patch_deployment = '';
+    protected $patch_deployment = '';
     /**
      * Rollout strategy being applied.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 16;</code>
      */
-    private $rollout = null;
+    protected $rollout = null;
 
     /**
      * Constructor.

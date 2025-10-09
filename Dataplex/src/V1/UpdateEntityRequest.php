@@ -23,14 +23,14 @@ class UpdateEntityRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entity entity = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entity = null;
+    protected $entity = null;
     /**
      * Optional. Only validate the request, but do not perform mutations.
      * The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * Constructor.

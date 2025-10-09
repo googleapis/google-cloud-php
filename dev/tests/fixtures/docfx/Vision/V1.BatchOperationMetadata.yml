@@ -68,6 +68,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\BatchOperationMetadata\State">State</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::setState()'
     name: setState
@@ -82,7 +83,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\BatchOperationMetadata\State">State</xref>. '
       returns:
         -
           var_type: $this
@@ -139,7 +140,8 @@ items:
     id: getEndTime
     summary: |-
       The time when the batch request is finished and
-      <xref uid="\Google\LongRunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.
+      <xref uid="\Google\LongRunning\Operation::getDone()">google.longrunning.Operation.done</xref> is
+      set to true.
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata
     type: method
     langs:
@@ -170,7 +172,8 @@ items:
     id: setEndTime
     summary: |-
       The time when the batch request is finished and
-      <xref uid="\Google\LongRunning\Operation::getDone()">google.longrunning.Operation.done</xref> is set to true.
+      <xref uid="\Google\LongRunning\Operation::getDone()">google.longrunning.Operation.done</xref> is
+      set to true.
     parent: \Google\Cloud\Vision\V1\BatchOperationMetadata
     type: method
     langs:

@@ -20,7 +20,7 @@ class AzureClusterGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $group = '';
+    protected $group = '';
 
     /**
      * Constructor.

@@ -27,7 +27,7 @@ class InputDataConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset_id = '';
+    protected $dataset_id = '';
     /**
      * Applicable only to Datasets that have DataItems and Annotations.
      * A filter on Annotations of the Dataset. Only Annotations that both
@@ -41,7 +41,7 @@ class InputDataConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotations_filter = 6;</code>
      */
-    private $annotations_filter = '';
+    protected $annotations_filter = '';
     /**
      * Applicable only to custom training with Datasets that have DataItems and
      * Annotations.
@@ -66,7 +66,7 @@ class InputDataConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_schema_uri = 9;</code>
      */
-    private $annotation_schema_uri = '';
+    protected $annotation_schema_uri = '';
     /**
      * Only applicable to Datasets that have SavedQueries.
      * The ID of a SavedQuery (annotation set) under the Dataset specified by
@@ -87,13 +87,13 @@ class InputDataConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string saved_query_id = 7;</code>
      */
-    private $saved_query_id = '';
+    protected $saved_query_id = '';
     /**
      * Whether to persist the ML use assignment to data item system labels.
      *
      * Generated from protobuf field <code>bool persist_ml_use_assignment = 11;</code>
      */
-    private $persist_ml_use_assignment = false;
+    protected $persist_ml_use_assignment = false;
     protected $split;
     protected $destination;
 

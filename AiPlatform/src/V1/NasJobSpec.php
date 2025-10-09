@@ -23,13 +23,13 @@ class NasJobSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resume_nas_job_id = 3;</code>
      */
-    private $resume_nas_job_id = '';
+    protected $resume_nas_job_id = '';
     /**
      * It defines the search space for Neural Architecture Search (NAS).
      *
      * Generated from protobuf field <code>string search_space_spec = 1;</code>
      */
-    private $search_space_spec = '';
+    protected $search_space_spec = '';
     protected $nas_algorithm_spec;
 
     /**

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1beta_generated_DataprocMetastoreFederation_UpdateFederation_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Metastore\V1beta\DataprocMetastoreFederationClient;
+use Google\Cloud\Metastore\V1beta\Client\DataprocMetastoreFederationClient;
 use Google\Cloud\Metastore\V1beta\Federation;
+use Google\Cloud\Metastore\V1beta\UpdateFederationRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -44,14 +45,17 @@ function update_federation_sample(): void
     // Create a client.
     $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $federation = new Federation();
+    $request = (new UpdateFederationRequest())
+        ->setUpdateMask($updateMask)
+        ->setFederation($federation);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreFederationClient->updateFederation($updateMask, $federation);
+        $response = $dataprocMetastoreFederationClient->updateFederation($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

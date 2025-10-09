@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ namespace Google\Cloud\Monitoring\V3\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -40,6 +41,7 @@ use Google\Cloud\Monitoring\V3\GetAlertPolicyRequest;
 use Google\Cloud\Monitoring\V3\ListAlertPoliciesRequest;
 use Google\Cloud\Monitoring\V3\UpdateAlertPolicyRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The AlertPolicyService API is used to manage (list, create, delete,
@@ -60,11 +62,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAlertPolicyAsync(CreateAlertPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAlertPolicyAsync(DeleteAlertPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAlertPolicyAsync(GetAlertPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAlertPoliciesAsync(ListAlertPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAlertPolicyAsync(UpdateAlertPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AlertPolicy> createAlertPolicyAsync(CreateAlertPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAlertPolicyAsync(DeleteAlertPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AlertPolicy> getAlertPolicyAsync(GetAlertPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAlertPoliciesAsync(ListAlertPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AlertPolicy> updateAlertPolicyAsync(UpdateAlertPolicyRequest $request, array $optionalArgs = [])
  */
 final class AlertPolicyServiceClient
 {
@@ -179,8 +181,11 @@ final class AlertPolicyServiceClient
      *
      * @return string The formatted folder_alert_policy_condition resource.
      */
-    public static function folderAlertPolicyConditionName(string $folder, string $alertPolicy, string $condition): string
-    {
+    public static function folderAlertPolicyConditionName(
+        string $folder,
+        string $alertPolicy,
+        string $condition
+    ): string {
         return self::getPathTemplate('folderAlertPolicyCondition')->render([
             'folder' => $folder,
             'alert_policy' => $alertPolicy,
@@ -215,8 +220,11 @@ final class AlertPolicyServiceClient
      *
      * @return string The formatted organization_alert_policy_condition resource.
      */
-    public static function organizationAlertPolicyConditionName(string $organization, string $alertPolicy, string $condition): string
-    {
+    public static function organizationAlertPolicyConditionName(
+        string $organization,
+        string $alertPolicy,
+        string $condition
+    ): string {
         return self::getPathTemplate('organizationAlertPolicyCondition')->render([
             'organization' => $organization,
             'alert_policy' => $alertPolicy,
@@ -251,8 +259,11 @@ final class AlertPolicyServiceClient
      *
      * @return string The formatted project_alert_policy_condition resource.
      */
-    public static function projectAlertPolicyConditionName(string $project, string $alertPolicy, string $condition): string
-    {
+    public static function projectAlertPolicyConditionName(
+        string $project,
+        string $alertPolicy,
+        string $condition
+    ): string {
         return self::getPathTemplate('projectAlertPolicyCondition')->render([
             'project' => $project,
             'alert_policy' => $alertPolicy,
@@ -279,14 +290,14 @@ final class AlertPolicyServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -294,20 +305,29 @@ final class AlertPolicyServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'monitoring.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Monitoring\V3\AlertPolicyServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new AlertPolicyServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -341,11 +361,16 @@ final class AlertPolicyServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);

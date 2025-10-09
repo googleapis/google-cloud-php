@@ -21,7 +21,7 @@ class GCS extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string remote_path = 1;</code>
      */
-    private $remote_path = '';
+    protected $remote_path = '';
 
     /**
      * Constructor.

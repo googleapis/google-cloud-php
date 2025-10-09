@@ -48,7 +48,7 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * Optional. A pagination token returned from a previous call to
      * [ListProjects] [google.cloud.resourcemanager.v3.Projects.ListProjects] that
@@ -56,7 +56,7 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. The maximum number of projects to return in the response.
      * The server can return fewer projects than requested.
@@ -64,7 +64,7 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
 
     /**
      * @param string $query Optional. A query string for searching for projects that the caller has

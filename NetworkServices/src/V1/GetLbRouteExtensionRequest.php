@@ -25,6 +25,22 @@ class GetLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. A name of the `LbRouteExtension` resource to get. Must be in the
+     *                     format
+     *                     `projects/{project}/locations/{location}/lbRouteExtensions/{lb_route_extension}`. Please see
+     *                     {@see DepServiceClient::lbRouteExtensionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\GetLbRouteExtensionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

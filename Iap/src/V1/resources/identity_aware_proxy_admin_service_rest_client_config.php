@@ -144,6 +144,17 @@ return [
                     ],
                 ],
             ],
+            'ValidateIapAttributeExpression' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=**}:validateAttributeExpression',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
     'numericEnums' => true,

@@ -26,14 +26,14 @@ class UpdateDomainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. Domain message with updated fields. Only supported fields specified in
      * update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.managedidentities.v1.Domain domain = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $domain = null;
+    protected $domain = null;
 
     /**
      * @param \Google\Cloud\ManagedIdentities\V1\Domain $domain     Required. Domain message with updated fields. Only supported fields specified in

@@ -22,19 +22,19 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The update time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * User-defined key/value metadata.
      *
@@ -50,7 +50,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool execute_now = 9;</code>
      */
-    private $execute_now = false;
+    protected $execute_now = false;
     /**
      * The time to execute the event. If you set
      * [execute_now][google.cloud.video.livestream.v1.Event.execute_now] to
@@ -62,20 +62,20 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp execution_time = 10;</code>
      */
-    private $execution_time = null;
+    protected $execution_time = null;
     /**
      * Output only. The state of the event.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. An error object that describes the reason for the failure.
      * This property is always present when `state` is `FAILED`.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     protected $task;
 
     /**
@@ -105,6 +105,8 @@ class Event extends \Google\Protobuf\Internal\Message
      *           Mutes the stream.
      *     @type \Google\Cloud\Video\LiveStream\V1\Event\UnmuteTask $unmute
      *           Unmutes the stream.
+     *     @type \Google\Cloud\Video\LiveStream\V1\Event\UpdateEncryptionsTask $update_encryptions
+     *           Updates encryption settings.
      *     @type bool $execute_now
      *           When this field is set to true, the event will be executed at the earliest
      *           time that the server can schedule the event and
@@ -439,6 +441,37 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\Event\UnmuteTask::class);
         $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
+     * Updates encryption settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.UpdateEncryptionsTask update_encryptions = 17;</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\Event\UpdateEncryptionsTask|null
+     */
+    public function getUpdateEncryptions()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasUpdateEncryptions()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * Updates encryption settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.UpdateEncryptionsTask update_encryptions = 17;</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\Event\UpdateEncryptionsTask $var
+     * @return $this
+     */
+    public function setUpdateEncryptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\Event\UpdateEncryptionsTask::class);
+        $this->writeOneof(17, $var);
 
         return $this;
     }

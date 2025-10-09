@@ -36,7 +36,7 @@ use Google\Cloud\Dialogflow\Cx\V3\Intent;
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
  * @param string $formattedParent   The agent to create an intent for.
- *                                  Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                  Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                  {@see IntentsClient::agentName()} for help formatting this field.
  * @param string $intentDisplayName The human-readable name of the intent, unique within the agent.
  */

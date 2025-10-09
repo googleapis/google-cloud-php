@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Finding extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The [relative resource
+     * Identifier. The [relative resource
      * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      * of the finding. The following list shows some examples:
      * +
@@ -35,9 +35,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      * +
      * `projects/{project_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The canonical name of the finding. The following list shows
      * some examples:
@@ -56,7 +56,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string canonical_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $canonical_name = '';
+    protected $canonical_name = '';
     /**
      * The relative resource name of the source and location the finding belongs
      * to. See:
@@ -73,7 +73,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 3;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Immutable. For findings on Google Cloud resources, the full resource
      * name of the Google Cloud resource this finding is for. See:
@@ -83,20 +83,20 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_name = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $resource_name = '';
+    protected $resource_name = '';
     /**
      * Output only. The state of the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Immutable. The additional taxonomy group within findings from a given
      * source. Example: "XSS_FLASH_INJECTION"
      *
      * Generated from protobuf field <code>string category = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $category = '';
+    protected $category = '';
     /**
      * The URI that, if available, points to a web page outside of Security
      * Command Center where additional information about the finding can be found.
@@ -104,7 +104,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_uri = 8;</code>
      */
-    private $external_uri = '';
+    protected $external_uri = '';
     /**
      * Source specific properties. These properties are managed by the source
      * that writes the finding. The key names in the source_properties map must be
@@ -121,7 +121,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.SecurityMarks security_marks = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $security_marks = null;
+    protected $security_marks = null;
     /**
      * The time the finding was first detected. If an existing finding is updated,
      * then this is the time the update occurred.
@@ -133,21 +133,21 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 11;</code>
      */
-    private $event_time = null;
+    protected $event_time = null;
     /**
      * Output only. The time at which the finding was created in Security Command
      * Center.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The severity of the finding. This field is managed by the source that
      * writes the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.Severity severity = 14;</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
     /**
      * Indicates the mute state of a finding (either muted, unmuted
      * or undefined). Unlike other attributes of a finding, a finding provider
@@ -155,13 +155,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.Mute mute = 15;</code>
      */
-    private $mute = 0;
+    protected $mute = 0;
+    /**
+     * Output only. The mute information regarding this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.MuteInfo mute_info = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $mute_info = null;
     /**
      * The class of the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.FindingClass finding_class = 16;</code>
      */
-    private $finding_class = 0;
+    protected $finding_class = 0;
     /**
      * Represents what's commonly known as an *indicator of compromise* (IoC) in
      * computer forensics. This is an artifact observed on a network or in an
@@ -171,7 +177,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Indicator indicator = 17;</code>
      */
-    private $indicator = null;
+    protected $indicator = null;
     /**
      * Represents vulnerability-specific fields like CVE and CVSS scores.
      * CVE stands for Common Vulnerabilities and Exposures
@@ -179,13 +185,13 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Vulnerability vulnerability = 18;</code>
      */
-    private $vulnerability = null;
+    protected $vulnerability = null;
     /**
      * Output only. The most recent time this finding was muted or unmuted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp mute_update_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $mute_update_time = null;
+    protected $mute_update_time = null;
     /**
      * Output only. Third party SIEM/SOAR fields within SCC, contains external
      * system information and external system finding fields.
@@ -199,14 +205,14 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.MitreAttack mitre_attack = 21;</code>
      */
-    private $mitre_attack = null;
+    protected $mitre_attack = null;
     /**
      * Access details associated with the finding, such as more information on the
      * caller, which method was accessed, and from where.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Access access = 22;</code>
      */
-    private $access = null;
+    protected $access = null;
     /**
      * Contains information about the IP connection associated with the finding.
      *
@@ -221,7 +227,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mute_initiator = 24;</code>
      */
-    private $mute_initiator = '';
+    protected $mute_initiator = '';
     /**
      * Represents operating system processes associated with the Finding.
      *
@@ -262,19 +268,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_display_name = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $parent_display_name = '';
+    protected $parent_display_name = '';
     /**
      * Contains more details about the finding.
      *
      * Generated from protobuf field <code>string description = 30;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Represents exfiltrations associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Exfiltration exfiltration = 31;</code>
      */
-    private $exfiltration = null;
+    protected $exfiltration = null;
     /**
      * Represents IAM bindings associated with the finding.
      *
@@ -286,7 +292,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_steps = 33;</code>
      */
-    private $next_steps = '';
+    protected $next_steps = '';
     /**
      * Unique identifier of the module which generated the finding.
      * Example:
@@ -294,7 +300,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string module_name = 34;</code>
      */
-    private $module_name = '';
+    protected $module_name = '';
     /**
      * Containers associated with the finding. This field provides information for
      * both Kubernetes and non-Kubernetes containers.
@@ -307,19 +313,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Kubernetes kubernetes = 36;</code>
      */
-    private $kubernetes = null;
+    protected $kubernetes = null;
     /**
      * Database associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Database database = 37;</code>
      */
-    private $database = null;
+    protected $database = null;
     /**
      * The results of an attack path simulation relevant to this finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AttackExposure attack_exposure = 38;</code>
      */
-    private $attack_exposure = null;
+    protected $attack_exposure = null;
     /**
      * File associated with the finding.
      *
@@ -332,19 +338,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudDlpInspection cloud_dlp_inspection = 40;</code>
      */
-    private $cloud_dlp_inspection = null;
+    protected $cloud_dlp_inspection = null;
     /**
      * Cloud DLP data profile that is associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudDlpDataProfile cloud_dlp_data_profile = 41;</code>
      */
-    private $cloud_dlp_data_profile = null;
+    protected $cloud_dlp_data_profile = null;
     /**
      * Signature of the kernel rootkit.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.KernelRootkit kernel_rootkit = 42;</code>
      */
-    private $kernel_rootkit = null;
+    protected $kernel_rootkit = null;
     /**
      * Contains information about the org policies associated with the finding.
      *
@@ -352,23 +358,35 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $org_policies;
     /**
+     * Job associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Job job = 44;</code>
+     */
+    protected $job = null;
+    /**
      * Represents an application associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Application application = 45;</code>
      */
-    private $application = null;
+    protected $application = null;
+    /**
+     * IP rules associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.IpRules ip_rules = 46;</code>
+     */
+    protected $ip_rules = null;
     /**
      * Fields related to Backup and DR findings.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.BackupDisasterRecovery backup_disaster_recovery = 47;</code>
      */
-    private $backup_disaster_recovery = null;
+    protected $backup_disaster_recovery = null;
     /**
      * The security posture associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.SecurityPosture security_posture = 48;</code>
      */
-    private $security_posture = null;
+    protected $security_posture = null;
     /**
      * Log entries that are relevant to the finding.
      *
@@ -381,6 +399,93 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.LoadBalancer load_balancers = 50;</code>
      */
     private $load_balancers;
+    /**
+     * Fields related to Cloud Armor findings.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudArmor cloud_armor = 51;</code>
+     */
+    protected $cloud_armor = null;
+    /**
+     * Notebook associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Notebook notebook = 55;</code>
+     */
+    protected $notebook = null;
+    /**
+     * Contains details about a group of security issues that, when the issues
+     * occur together, represent a greater risk than when the issues occur
+     * independently. A group of such issues is referred to as a toxic
+     * combination.
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ToxicCombination toxic_combination = 56;</code>
+     */
+    protected $toxic_combination = null;
+    /**
+     * Contains details about groups of which this finding is a member. A group is
+     * a collection of findings that are related in some way.
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.GroupMembership group_memberships = 57;</code>
+     */
+    private $group_memberships;
+    /**
+     * Disk associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Disk disk = 58;</code>
+     */
+    protected $disk = null;
+    /**
+     * Data access events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataAccessEvent data_access_events = 61;</code>
+     */
+    private $data_access_events;
+    /**
+     * Data flow events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataFlowEvent data_flow_events = 62;</code>
+     */
+    private $data_flow_events;
+    /**
+     * Represents the VPC networks that the resource is attached to.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Network networks = 63;</code>
+     */
+    private $networks;
+    /**
+     * Data retention deletion events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataRetentionDeletionEvent data_retention_deletion_events = 64;</code>
+     */
+    private $data_retention_deletion_events;
+    /**
+     * AffectedResources associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AffectedResources affected_resources = 65;</code>
+     */
+    protected $affected_resources = null;
+    /**
+     * The AI model associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AiModel ai_model = 66;</code>
+     */
+    protected $ai_model = null;
+    /**
+     * Contains details about a chokepoint, which is a resource or resource group
+     * where high-risk attack paths converge, based on [attack path simulations]
+     * (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Chokepoint chokepoint = 69;</code>
+     */
+    protected $chokepoint = null;
+    /**
+     * VertexAi associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.VertexAi vertex_ai = 72;</code>
+     */
+    protected $vertex_ai = null;
 
     /**
      * Constructor.
@@ -389,7 +494,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The [relative resource
+     *           Identifier. The [relative resource
      *           name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      *           of the finding. The following list shows some examples:
      *           +
@@ -472,6 +577,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Indicates the mute state of a finding (either muted, unmuted
      *           or undefined). Unlike other attributes of a finding, a finding provider
      *           shouldn't set the value of mute.
+     *     @type \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo $mute_info
+     *           Output only. The mute information regarding this finding.
      *     @type int $finding_class
      *           The class of the finding.
      *     @type \Google\Cloud\SecurityCenter\V2\Indicator $indicator
@@ -559,8 +666,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Signature of the kernel rootkit.
      *     @type array<\Google\Cloud\SecurityCenter\V2\OrgPolicy>|\Google\Protobuf\Internal\RepeatedField $org_policies
      *           Contains information about the org policies associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V2\Job $job
+     *           Job associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V2\Application $application
      *           Represents an application associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V2\IpRules $ip_rules
+     *           IP rules associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V2\BackupDisasterRecovery $backup_disaster_recovery
      *           Fields related to Backup and DR findings.
      *     @type \Google\Cloud\SecurityCenter\V2\SecurityPosture $security_posture
@@ -569,6 +680,41 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Log entries that are relevant to the finding.
      *     @type array<\Google\Cloud\SecurityCenter\V2\LoadBalancer>|\Google\Protobuf\Internal\RepeatedField $load_balancers
      *           The load balancers associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V2\CloudArmor $cloud_armor
+     *           Fields related to Cloud Armor findings.
+     *     @type \Google\Cloud\SecurityCenter\V2\Notebook $notebook
+     *           Notebook associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V2\ToxicCombination $toxic_combination
+     *           Contains details about a group of security issues that, when the issues
+     *           occur together, represent a greater risk than when the issues occur
+     *           independently. A group of such issues is referred to as a toxic
+     *           combination.
+     *           This field cannot be updated. Its value is ignored in all update requests.
+     *     @type array<\Google\Cloud\SecurityCenter\V2\GroupMembership>|\Google\Protobuf\Internal\RepeatedField $group_memberships
+     *           Contains details about groups of which this finding is a member. A group is
+     *           a collection of findings that are related in some way.
+     *           This field cannot be updated. Its value is ignored in all update requests.
+     *     @type \Google\Cloud\SecurityCenter\V2\Disk $disk
+     *           Disk associated with the finding.
+     *     @type array<\Google\Cloud\SecurityCenter\V2\DataAccessEvent>|\Google\Protobuf\Internal\RepeatedField $data_access_events
+     *           Data access events associated with the finding.
+     *     @type array<\Google\Cloud\SecurityCenter\V2\DataFlowEvent>|\Google\Protobuf\Internal\RepeatedField $data_flow_events
+     *           Data flow events associated with the finding.
+     *     @type array<\Google\Cloud\SecurityCenter\V2\Network>|\Google\Protobuf\Internal\RepeatedField $networks
+     *           Represents the VPC networks that the resource is attached to.
+     *     @type array<\Google\Cloud\SecurityCenter\V2\DataRetentionDeletionEvent>|\Google\Protobuf\Internal\RepeatedField $data_retention_deletion_events
+     *           Data retention deletion events associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V2\AffectedResources $affected_resources
+     *           AffectedResources associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V2\AiModel $ai_model
+     *           The AI model associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V2\Chokepoint $chokepoint
+     *           Contains details about a chokepoint, which is a resource or resource group
+     *           where high-risk attack paths converge, based on [attack path simulations]
+     *           (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
+     *           This field cannot be updated. Its value is ignored in all update requests.
+     *     @type \Google\Cloud\SecurityCenter\V2\VertexAi $vertex_ai
+     *           VertexAi associated with the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -577,7 +723,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [relative resource
+     * Identifier. The [relative resource
      * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      * of the finding. The following list shows some examples:
      * +
@@ -591,7 +737,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * +
      * `projects/{project_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -600,7 +746,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [relative resource
+     * Identifier. The [relative resource
      * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      * of the finding. The following list shows some examples:
      * +
@@ -614,7 +760,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * +
      * `projects/{project_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -1056,6 +1202,42 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V2\Finding\Mute::class);
         $this->mute = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The mute information regarding this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.MuteInfo mute_info = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo|null
+     */
+    public function getMuteInfo()
+    {
+        return $this->mute_info;
+    }
+
+    public function hasMuteInfo()
+    {
+        return isset($this->mute_info);
+    }
+
+    public function clearMuteInfo()
+    {
+        unset($this->mute_info);
+    }
+
+    /**
+     * Output only. The mute information regarding this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.MuteInfo mute_info = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo $var
+     * @return $this
+     */
+    public function setMuteInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo::class);
+        $this->mute_info = $var;
 
         return $this;
     }
@@ -1949,6 +2131,42 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Job associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Job job = 44;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\Job|null
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    public function hasJob()
+    {
+        return isset($this->job);
+    }
+
+    public function clearJob()
+    {
+        unset($this->job);
+    }
+
+    /**
+     * Job associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Job job = 44;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\Job $var
+     * @return $this
+     */
+    public function setJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\Job::class);
+        $this->job = $var;
+
+        return $this;
+    }
+
+    /**
      * Represents an application associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Application application = 45;</code>
@@ -1980,6 +2198,42 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\Application::class);
         $this->application = $var;
+
+        return $this;
+    }
+
+    /**
+     * IP rules associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.IpRules ip_rules = 46;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\IpRules|null
+     */
+    public function getIpRules()
+    {
+        return $this->ip_rules;
+    }
+
+    public function hasIpRules()
+    {
+        return isset($this->ip_rules);
+    }
+
+    public function clearIpRules()
+    {
+        unset($this->ip_rules);
+    }
+
+    /**
+     * IP rules associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.IpRules ip_rules = 46;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\IpRules $var
+     * @return $this
+     */
+    public function setIpRules($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\IpRules::class);
+        $this->ip_rules = $var;
 
         return $this;
     }
@@ -2104,6 +2358,442 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\LoadBalancer::class);
         $this->load_balancers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Fields related to Cloud Armor findings.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudArmor cloud_armor = 51;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\CloudArmor|null
+     */
+    public function getCloudArmor()
+    {
+        return $this->cloud_armor;
+    }
+
+    public function hasCloudArmor()
+    {
+        return isset($this->cloud_armor);
+    }
+
+    public function clearCloudArmor()
+    {
+        unset($this->cloud_armor);
+    }
+
+    /**
+     * Fields related to Cloud Armor findings.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudArmor cloud_armor = 51;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\CloudArmor $var
+     * @return $this
+     */
+    public function setCloudArmor($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\CloudArmor::class);
+        $this->cloud_armor = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notebook associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Notebook notebook = 55;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\Notebook|null
+     */
+    public function getNotebook()
+    {
+        return $this->notebook;
+    }
+
+    public function hasNotebook()
+    {
+        return isset($this->notebook);
+    }
+
+    public function clearNotebook()
+    {
+        unset($this->notebook);
+    }
+
+    /**
+     * Notebook associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Notebook notebook = 55;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\Notebook $var
+     * @return $this
+     */
+    public function setNotebook($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\Notebook::class);
+        $this->notebook = $var;
+
+        return $this;
+    }
+
+    /**
+     * Contains details about a group of security issues that, when the issues
+     * occur together, represent a greater risk than when the issues occur
+     * independently. A group of such issues is referred to as a toxic
+     * combination.
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ToxicCombination toxic_combination = 56;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\ToxicCombination|null
+     */
+    public function getToxicCombination()
+    {
+        return $this->toxic_combination;
+    }
+
+    public function hasToxicCombination()
+    {
+        return isset($this->toxic_combination);
+    }
+
+    public function clearToxicCombination()
+    {
+        unset($this->toxic_combination);
+    }
+
+    /**
+     * Contains details about a group of security issues that, when the issues
+     * occur together, represent a greater risk than when the issues occur
+     * independently. A group of such issues is referred to as a toxic
+     * combination.
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ToxicCombination toxic_combination = 56;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\ToxicCombination $var
+     * @return $this
+     */
+    public function setToxicCombination($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\ToxicCombination::class);
+        $this->toxic_combination = $var;
+
+        return $this;
+    }
+
+    /**
+     * Contains details about groups of which this finding is a member. A group is
+     * a collection of findings that are related in some way.
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.GroupMembership group_memberships = 57;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGroupMemberships()
+    {
+        return $this->group_memberships;
+    }
+
+    /**
+     * Contains details about groups of which this finding is a member. A group is
+     * a collection of findings that are related in some way.
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.GroupMembership group_memberships = 57;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V2\GroupMembership>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGroupMemberships($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\GroupMembership::class);
+        $this->group_memberships = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Disk associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Disk disk = 58;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\Disk|null
+     */
+    public function getDisk()
+    {
+        return $this->disk;
+    }
+
+    public function hasDisk()
+    {
+        return isset($this->disk);
+    }
+
+    public function clearDisk()
+    {
+        unset($this->disk);
+    }
+
+    /**
+     * Disk associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Disk disk = 58;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\Disk $var
+     * @return $this
+     */
+    public function setDisk($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\Disk::class);
+        $this->disk = $var;
+
+        return $this;
+    }
+
+    /**
+     * Data access events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataAccessEvent data_access_events = 61;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDataAccessEvents()
+    {
+        return $this->data_access_events;
+    }
+
+    /**
+     * Data access events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataAccessEvent data_access_events = 61;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V2\DataAccessEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDataAccessEvents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\DataAccessEvent::class);
+        $this->data_access_events = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Data flow events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataFlowEvent data_flow_events = 62;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDataFlowEvents()
+    {
+        return $this->data_flow_events;
+    }
+
+    /**
+     * Data flow events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataFlowEvent data_flow_events = 62;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V2\DataFlowEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDataFlowEvents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\DataFlowEvent::class);
+        $this->data_flow_events = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Represents the VPC networks that the resource is attached to.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Network networks = 63;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNetworks()
+    {
+        return $this->networks;
+    }
+
+    /**
+     * Represents the VPC networks that the resource is attached to.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Network networks = 63;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V2\Network>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNetworks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\Network::class);
+        $this->networks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Data retention deletion events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataRetentionDeletionEvent data_retention_deletion_events = 64;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDataRetentionDeletionEvents()
+    {
+        return $this->data_retention_deletion_events;
+    }
+
+    /**
+     * Data retention deletion events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataRetentionDeletionEvent data_retention_deletion_events = 64;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V2\DataRetentionDeletionEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDataRetentionDeletionEvents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\DataRetentionDeletionEvent::class);
+        $this->data_retention_deletion_events = $arr;
+
+        return $this;
+    }
+
+    /**
+     * AffectedResources associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AffectedResources affected_resources = 65;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\AffectedResources|null
+     */
+    public function getAffectedResources()
+    {
+        return $this->affected_resources;
+    }
+
+    public function hasAffectedResources()
+    {
+        return isset($this->affected_resources);
+    }
+
+    public function clearAffectedResources()
+    {
+        unset($this->affected_resources);
+    }
+
+    /**
+     * AffectedResources associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AffectedResources affected_resources = 65;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\AffectedResources $var
+     * @return $this
+     */
+    public function setAffectedResources($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\AffectedResources::class);
+        $this->affected_resources = $var;
+
+        return $this;
+    }
+
+    /**
+     * The AI model associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AiModel ai_model = 66;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\AiModel|null
+     */
+    public function getAiModel()
+    {
+        return $this->ai_model;
+    }
+
+    public function hasAiModel()
+    {
+        return isset($this->ai_model);
+    }
+
+    public function clearAiModel()
+    {
+        unset($this->ai_model);
+    }
+
+    /**
+     * The AI model associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AiModel ai_model = 66;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\AiModel $var
+     * @return $this
+     */
+    public function setAiModel($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\AiModel::class);
+        $this->ai_model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Contains details about a chokepoint, which is a resource or resource group
+     * where high-risk attack paths converge, based on [attack path simulations]
+     * (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Chokepoint chokepoint = 69;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\Chokepoint|null
+     */
+    public function getChokepoint()
+    {
+        return $this->chokepoint;
+    }
+
+    public function hasChokepoint()
+    {
+        return isset($this->chokepoint);
+    }
+
+    public function clearChokepoint()
+    {
+        unset($this->chokepoint);
+    }
+
+    /**
+     * Contains details about a chokepoint, which is a resource or resource group
+     * where high-risk attack paths converge, based on [attack path simulations]
+     * (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Chokepoint chokepoint = 69;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\Chokepoint $var
+     * @return $this
+     */
+    public function setChokepoint($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\Chokepoint::class);
+        $this->chokepoint = $var;
+
+        return $this;
+    }
+
+    /**
+     * VertexAi associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.VertexAi vertex_ai = 72;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\VertexAi|null
+     */
+    public function getVertexAi()
+    {
+        return $this->vertex_ai;
+    }
+
+    public function hasVertexAi()
+    {
+        return isset($this->vertex_ai);
+    }
+
+    public function clearVertexAi()
+    {
+        unset($this->vertex_ai);
+    }
+
+    /**
+     * VertexAi associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.VertexAi vertex_ai = 72;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\VertexAi $var
+     * @return $this
+     */
+    public function setVertexAi($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\VertexAi::class);
+        $this->vertex_ai = $var;
 
         return $this;
     }

@@ -20,14 +20,14 @@ class FlushRowsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string write_stream = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $write_stream = '';
+    protected $write_stream = '';
     /**
      * Ending offset of the flush operation. Rows before this offset(including
      * this offset) will be flushed.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value offset = 2;</code>
      */
-    private $offset = null;
+    protected $offset = null;
 
     /**
      * @param string $writeStream Required. The stream that is the target of the flush operation. Please see
@@ -118,7 +118,7 @@ class FlushRowsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value offset = 2;</code>
      * @return int|string|null
      */
-    public function getOffsetValue()
+    public function getOffsetUnwrapped()
     {
         return $this->readWrapperValue("offset");
     }
@@ -149,7 +149,7 @@ class FlushRowsRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setOffsetValue($var)
+    public function setOffsetUnwrapped($var)
     {
         $this->writeWrapperValue("offset", $var);
         return $this;}

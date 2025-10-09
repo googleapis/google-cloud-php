@@ -23,7 +23,7 @@ class ReadTensorboardUsageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tensorboard = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $tensorboard = '';
+    protected $tensorboard = '';
 
     /**
      * @param string $tensorboard Required. The name of the Tensorboard resource.

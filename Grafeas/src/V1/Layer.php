@@ -21,13 +21,13 @@ class Layer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string directive = 1;</code>
      */
-    private $directive = '';
+    protected $directive = '';
     /**
      * The recovered arguments to the Dockerfile directive.
      *
      * Generated from protobuf field <code>string arguments = 2;</code>
      */
-    private $arguments = '';
+    protected $arguments = '';
 
     /**
      * Constructor.

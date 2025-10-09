@@ -23,14 +23,14 @@ class DeploymentResourcePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The underlying DedicatedResources that the DeploymentResourcePool
      * uses.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DedicatedResources dedicated_resources = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dedicated_resources = null;
+    protected $dedicated_resources = null;
     /**
      * Customer-managed encryption key spec for a DeploymentResourcePool. If set,
      * this DeploymentResourcePool will be secured by this key. Endpoints and the
@@ -38,7 +38,7 @@ class DeploymentResourcePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 5;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * The service account that the DeploymentResourcePool's container(s) run as.
      * Specify the email address of the service account. If this service account
@@ -49,7 +49,7 @@ class DeploymentResourcePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 6;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * If the DeploymentResourcePool is deployed with custom-trained Models or
      * AutoML Tabular Models, the container(s) of the DeploymentResourcePool will
@@ -60,13 +60,25 @@ class DeploymentResourcePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_container_logging = 7;</code>
      */
-    private $disable_container_logging = false;
+    protected $disable_container_logging = false;
     /**
      * Output only. Timestamp when this DeploymentResourcePool was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -101,6 +113,10 @@ class DeploymentResourcePool extends \Google\Protobuf\Internal\Message
      *           User can disable container logging by setting this flag to true.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this DeploymentResourcePool was created.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -320,6 +336,58 @@ class DeploymentResourcePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

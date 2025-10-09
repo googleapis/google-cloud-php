@@ -9,17 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Create a de-identified copy of the requested table or files.
+ * Create a de-identified copy of a storage bucket. Only compatible
+ * with Cloud Storage buckets.
  * A TransformationDetail will be created for each transformation.
- * If any rows in BigQuery are skipped during de-identification
- * (transformation errors or row size exceeds BigQuery insert API limits) they
- * are placed in the failure output table. If the original row exceeds
- * the BigQuery insert API limit it will be truncated when written to the
- * failure output table. The failure output table can be set in the
- * action.deidentify.output.big_query_output.deidentified_failure_output_table
- * field, if no table is set, a table will be automatically created in the
- * same project and dataset as the original table.
- * Compatible with: Inspect
+ * Compatible with: Inspection of Cloud Storage
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Action.Deidentify</code>
  */
@@ -31,27 +24,70 @@ class Deidentify extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationConfig transformation_config = 7;</code>
      */
-    private $transformation_config = null;
+    protected $transformation_config = null;
     /**
-     * Config for storing transformation details. This is separate from the
-     * de-identified content, and contains metadata about the successful
-     * transformations and/or failures that occurred while de-identifying. This
-     * needs to be set in order for users to access information about the status
-     * of each transformation (see
+     * Config for storing transformation details.
+     * This field specifies the configuration for storing detailed metadata
+     * about each transformation performed during a de-identification process.
+     * The metadata is stored separately from the de-identified content itself
+     * and provides a granular record of both successful transformations and any
+     * failures that occurred.
+     * Enabling this configuration is essential for users who need to access
+     * comprehensive information about the status, outcome, and specifics of
+     * each transformation. The details are captured in the
      * [TransformationDetails][google.privacy.dlp.v2.TransformationDetails]
-     * message for more information about what is noted).
+     * message for each operation.
+     * Key use cases:
+     * * **Auditing and compliance**
+     *     * Provides a verifiable audit trail of de-identification activities,
+     *     which is crucial for meeting regulatory requirements and internal
+     *     data governance policies.
+     *     * Logs what data was transformed, what transformations were applied,
+     *     when they occurred, and their success status. This helps
+     *     demonstrate accountability and due diligence in protecting
+     *     sensitive data.
+     * * **Troubleshooting and debugging**
+     *     * Offers detailed error messages and context if a transformation
+     *     fails. This information is useful for diagnosing and resolving
+     *     issues in the de-identification pipeline.
+     *     * Helps pinpoint the exact location and nature of failures, speeding
+     *     up the debugging process.
+     * * **Process verification and quality assurance**
+     *     * Allows users to confirm that de-identification rules and
+     *     transformations were applied correctly and consistently across
+     *     the dataset as intended.
+     *     * Helps in verifying the effectiveness of the chosen
+     *     de-identification strategies.
+     * * **Data lineage and impact analysis**
+     *     * Creates a record of how data elements were modified, contributing
+     *     to data lineage. This is useful for understanding the provenance
+     *     of de-identified data.
+     *     * Aids in assessing the potential impact of de-identification choices
+     *     on downstream analytical processes or data usability.
+     * * **Reporting and operational insights**
+     *     * You can analyze the metadata stored in a queryable BigQuery table
+     *     to generate reports on transformation success rates, common
+     *     error types, processing volumes (e.g., transformedBytes), and the
+     *     types of transformations applied.
+     *     * These insights can inform optimization of de-identification
+     *     configurations and resource planning.
+     * To take advantage of these benefits, set this configuration. The stored
+     * details include a description of the transformation, success or
+     * error codes, error messages, the number of bytes transformed, the
+     * location of the transformed content, and identifiers for the job and
+     * source data.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationDetailsStorageConfig transformation_details_storage_config = 3;</code>
      */
-    private $transformation_details_storage_config = null;
+    protected $transformation_details_storage_config = null;
     /**
      * List of user-specified file type groups to transform. If specified, only
-     * the files with these filetypes will be transformed. If empty, all
-     * supported files will be transformed. Supported types may be automatically
-     * added over time. If a file type is set in this field that isn't supported
-     * by the Deidentify action then the job will fail and will not be
-     * successfully created/started. Currently the only filetypes supported are:
-     * IMAGES, TEXT_FILES, CSV, TSV.
+     * the files with these file types are transformed. If empty, all
+     * supported files are transformed. Supported types may be automatically
+     * added over time. Any unsupported file types that are set in this field
+     * are excluded from de-identification. An error is recorded for each
+     * unsupported file in the TransformationDetails output table. Currently the
+     * only file types supported are: IMAGES, TEXT_FILES, CSV, TSV.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types_to_transform = 8;</code>
      */
@@ -68,28 +104,71 @@ class Deidentify extends \Google\Protobuf\Internal\Message
      *           User specified deidentify templates and configs for structured,
      *           unstructured, and image files.
      *     @type \Google\Cloud\Dlp\V2\TransformationDetailsStorageConfig $transformation_details_storage_config
-     *           Config for storing transformation details. This is separate from the
-     *           de-identified content, and contains metadata about the successful
-     *           transformations and/or failures that occurred while de-identifying. This
-     *           needs to be set in order for users to access information about the status
-     *           of each transformation (see
+     *           Config for storing transformation details.
+     *           This field specifies the configuration for storing detailed metadata
+     *           about each transformation performed during a de-identification process.
+     *           The metadata is stored separately from the de-identified content itself
+     *           and provides a granular record of both successful transformations and any
+     *           failures that occurred.
+     *           Enabling this configuration is essential for users who need to access
+     *           comprehensive information about the status, outcome, and specifics of
+     *           each transformation. The details are captured in the
      *           [TransformationDetails][google.privacy.dlp.v2.TransformationDetails]
-     *           message for more information about what is noted).
+     *           message for each operation.
+     *           Key use cases:
+     *           * **Auditing and compliance**
+     *               * Provides a verifiable audit trail of de-identification activities,
+     *               which is crucial for meeting regulatory requirements and internal
+     *               data governance policies.
+     *               * Logs what data was transformed, what transformations were applied,
+     *               when they occurred, and their success status. This helps
+     *               demonstrate accountability and due diligence in protecting
+     *               sensitive data.
+     *           * **Troubleshooting and debugging**
+     *               * Offers detailed error messages and context if a transformation
+     *               fails. This information is useful for diagnosing and resolving
+     *               issues in the de-identification pipeline.
+     *               * Helps pinpoint the exact location and nature of failures, speeding
+     *               up the debugging process.
+     *           * **Process verification and quality assurance**
+     *               * Allows users to confirm that de-identification rules and
+     *               transformations were applied correctly and consistently across
+     *               the dataset as intended.
+     *               * Helps in verifying the effectiveness of the chosen
+     *               de-identification strategies.
+     *           * **Data lineage and impact analysis**
+     *               * Creates a record of how data elements were modified, contributing
+     *               to data lineage. This is useful for understanding the provenance
+     *               of de-identified data.
+     *               * Aids in assessing the potential impact of de-identification choices
+     *               on downstream analytical processes or data usability.
+     *           * **Reporting and operational insights**
+     *               * You can analyze the metadata stored in a queryable BigQuery table
+     *               to generate reports on transformation success rates, common
+     *               error types, processing volumes (e.g., transformedBytes), and the
+     *               types of transformations applied.
+     *               * These insights can inform optimization of de-identification
+     *               configurations and resource planning.
+     *           To take advantage of these benefits, set this configuration. The stored
+     *           details include a description of the transformation, success or
+     *           error codes, error messages, the number of bytes transformed, the
+     *           location of the transformed content, and identifiers for the job and
+     *           source data.
      *     @type string $cloud_storage_output
      *           Required. User settable Cloud Storage bucket and folders to store
-     *           de-identified files. This field must be set for cloud storage
+     *           de-identified files. This field must be set for Cloud Storage
      *           deidentification. The output Cloud Storage bucket must be different
      *           from the input bucket. De-identified files will overwrite files in the
      *           output path.
      *           Form of: gs://bucket/folder/ or gs://bucket
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $file_types_to_transform
      *           List of user-specified file type groups to transform. If specified, only
-     *           the files with these filetypes will be transformed. If empty, all
-     *           supported files will be transformed. Supported types may be automatically
-     *           added over time. If a file type is set in this field that isn't supported
-     *           by the Deidentify action then the job will fail and will not be
-     *           successfully created/started. Currently the only filetypes supported are:
-     *           IMAGES, TEXT_FILES, CSV, TSV.
+     *           the files with these file types are transformed. If empty, all
+     *           supported files are transformed. Supported types may be automatically
+     *           added over time. Any unsupported file types that are set in this field
+     *           are excluded from de-identification. An error is recorded for each
+     *           unsupported file in the TransformationDetails output table. Currently the
+     *           only file types supported are: IMAGES, TEXT_FILES, CSV, TSV.
      * }
      */
     public function __construct($data = NULL) {
@@ -136,13 +215,56 @@ class Deidentify extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Config for storing transformation details. This is separate from the
-     * de-identified content, and contains metadata about the successful
-     * transformations and/or failures that occurred while de-identifying. This
-     * needs to be set in order for users to access information about the status
-     * of each transformation (see
+     * Config for storing transformation details.
+     * This field specifies the configuration for storing detailed metadata
+     * about each transformation performed during a de-identification process.
+     * The metadata is stored separately from the de-identified content itself
+     * and provides a granular record of both successful transformations and any
+     * failures that occurred.
+     * Enabling this configuration is essential for users who need to access
+     * comprehensive information about the status, outcome, and specifics of
+     * each transformation. The details are captured in the
      * [TransformationDetails][google.privacy.dlp.v2.TransformationDetails]
-     * message for more information about what is noted).
+     * message for each operation.
+     * Key use cases:
+     * * **Auditing and compliance**
+     *     * Provides a verifiable audit trail of de-identification activities,
+     *     which is crucial for meeting regulatory requirements and internal
+     *     data governance policies.
+     *     * Logs what data was transformed, what transformations were applied,
+     *     when they occurred, and their success status. This helps
+     *     demonstrate accountability and due diligence in protecting
+     *     sensitive data.
+     * * **Troubleshooting and debugging**
+     *     * Offers detailed error messages and context if a transformation
+     *     fails. This information is useful for diagnosing and resolving
+     *     issues in the de-identification pipeline.
+     *     * Helps pinpoint the exact location and nature of failures, speeding
+     *     up the debugging process.
+     * * **Process verification and quality assurance**
+     *     * Allows users to confirm that de-identification rules and
+     *     transformations were applied correctly and consistently across
+     *     the dataset as intended.
+     *     * Helps in verifying the effectiveness of the chosen
+     *     de-identification strategies.
+     * * **Data lineage and impact analysis**
+     *     * Creates a record of how data elements were modified, contributing
+     *     to data lineage. This is useful for understanding the provenance
+     *     of de-identified data.
+     *     * Aids in assessing the potential impact of de-identification choices
+     *     on downstream analytical processes or data usability.
+     * * **Reporting and operational insights**
+     *     * You can analyze the metadata stored in a queryable BigQuery table
+     *     to generate reports on transformation success rates, common
+     *     error types, processing volumes (e.g., transformedBytes), and the
+     *     types of transformations applied.
+     *     * These insights can inform optimization of de-identification
+     *     configurations and resource planning.
+     * To take advantage of these benefits, set this configuration. The stored
+     * details include a description of the transformation, success or
+     * error codes, error messages, the number of bytes transformed, the
+     * location of the transformed content, and identifiers for the job and
+     * source data.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationDetailsStorageConfig transformation_details_storage_config = 3;</code>
      * @return \Google\Cloud\Dlp\V2\TransformationDetailsStorageConfig|null
@@ -163,13 +285,56 @@ class Deidentify extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Config for storing transformation details. This is separate from the
-     * de-identified content, and contains metadata about the successful
-     * transformations and/or failures that occurred while de-identifying. This
-     * needs to be set in order for users to access information about the status
-     * of each transformation (see
+     * Config for storing transformation details.
+     * This field specifies the configuration for storing detailed metadata
+     * about each transformation performed during a de-identification process.
+     * The metadata is stored separately from the de-identified content itself
+     * and provides a granular record of both successful transformations and any
+     * failures that occurred.
+     * Enabling this configuration is essential for users who need to access
+     * comprehensive information about the status, outcome, and specifics of
+     * each transformation. The details are captured in the
      * [TransformationDetails][google.privacy.dlp.v2.TransformationDetails]
-     * message for more information about what is noted).
+     * message for each operation.
+     * Key use cases:
+     * * **Auditing and compliance**
+     *     * Provides a verifiable audit trail of de-identification activities,
+     *     which is crucial for meeting regulatory requirements and internal
+     *     data governance policies.
+     *     * Logs what data was transformed, what transformations were applied,
+     *     when they occurred, and their success status. This helps
+     *     demonstrate accountability and due diligence in protecting
+     *     sensitive data.
+     * * **Troubleshooting and debugging**
+     *     * Offers detailed error messages and context if a transformation
+     *     fails. This information is useful for diagnosing and resolving
+     *     issues in the de-identification pipeline.
+     *     * Helps pinpoint the exact location and nature of failures, speeding
+     *     up the debugging process.
+     * * **Process verification and quality assurance**
+     *     * Allows users to confirm that de-identification rules and
+     *     transformations were applied correctly and consistently across
+     *     the dataset as intended.
+     *     * Helps in verifying the effectiveness of the chosen
+     *     de-identification strategies.
+     * * **Data lineage and impact analysis**
+     *     * Creates a record of how data elements were modified, contributing
+     *     to data lineage. This is useful for understanding the provenance
+     *     of de-identified data.
+     *     * Aids in assessing the potential impact of de-identification choices
+     *     on downstream analytical processes or data usability.
+     * * **Reporting and operational insights**
+     *     * You can analyze the metadata stored in a queryable BigQuery table
+     *     to generate reports on transformation success rates, common
+     *     error types, processing volumes (e.g., transformedBytes), and the
+     *     types of transformations applied.
+     *     * These insights can inform optimization of de-identification
+     *     configurations and resource planning.
+     * To take advantage of these benefits, set this configuration. The stored
+     * details include a description of the transformation, success or
+     * error codes, error messages, the number of bytes transformed, the
+     * location of the transformed content, and identifiers for the job and
+     * source data.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationDetailsStorageConfig transformation_details_storage_config = 3;</code>
      * @param \Google\Cloud\Dlp\V2\TransformationDetailsStorageConfig $var
@@ -185,7 +350,7 @@ class Deidentify extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. User settable Cloud Storage bucket and folders to store
-     * de-identified files. This field must be set for cloud storage
+     * de-identified files. This field must be set for Cloud Storage
      * deidentification. The output Cloud Storage bucket must be different
      * from the input bucket. De-identified files will overwrite files in the
      * output path.
@@ -206,7 +371,7 @@ class Deidentify extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. User settable Cloud Storage bucket and folders to store
-     * de-identified files. This field must be set for cloud storage
+     * de-identified files. This field must be set for Cloud Storage
      * deidentification. The output Cloud Storage bucket must be different
      * from the input bucket. De-identified files will overwrite files in the
      * output path.
@@ -226,12 +391,12 @@ class Deidentify extends \Google\Protobuf\Internal\Message
 
     /**
      * List of user-specified file type groups to transform. If specified, only
-     * the files with these filetypes will be transformed. If empty, all
-     * supported files will be transformed. Supported types may be automatically
-     * added over time. If a file type is set in this field that isn't supported
-     * by the Deidentify action then the job will fail and will not be
-     * successfully created/started. Currently the only filetypes supported are:
-     * IMAGES, TEXT_FILES, CSV, TSV.
+     * the files with these file types are transformed. If empty, all
+     * supported files are transformed. Supported types may be automatically
+     * added over time. Any unsupported file types that are set in this field
+     * are excluded from de-identification. An error is recorded for each
+     * unsupported file in the TransformationDetails output table. Currently the
+     * only file types supported are: IMAGES, TEXT_FILES, CSV, TSV.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types_to_transform = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -243,12 +408,12 @@ class Deidentify extends \Google\Protobuf\Internal\Message
 
     /**
      * List of user-specified file type groups to transform. If specified, only
-     * the files with these filetypes will be transformed. If empty, all
-     * supported files will be transformed. Supported types may be automatically
-     * added over time. If a file type is set in this field that isn't supported
-     * by the Deidentify action then the job will fail and will not be
-     * successfully created/started. Currently the only filetypes supported are:
-     * IMAGES, TEXT_FILES, CSV, TSV.
+     * the files with these file types are transformed. If empty, all
+     * supported files are transformed. Supported types may be automatically
+     * added over time. Any unsupported file types that are set in this field
+     * are excluded from de-identification. An error is recorded for each
+     * unsupported file in the TransformationDetails output table. Currently the
+     * only file types supported are: IMAGES, TEXT_FILES, CSV, TSV.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types_to_transform = 8;</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -272,6 +437,4 @@ class Deidentify extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Deidentify::class, \Google\Cloud\Dlp\V2\Action_Deidentify::class);
 

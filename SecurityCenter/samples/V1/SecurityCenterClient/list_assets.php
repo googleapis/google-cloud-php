@@ -35,8 +35,8 @@ use Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult;
  * @param string $formattedParent The name of the parent resource that contains the assets. The
  *                                value that you can specify on parent depends on the method in which you
  *                                specify parent. You can specify one of the following values:
- *                                "organizations/[organization_id]", "folders/[folder_id]", or
- *                                "projects/[project_id]". Please see
+ *                                `organizations/[organization_id]`, `folders/[folder_id]`, or
+ *                                `projects/[project_id]`. Please see
  *                                {@see SecurityCenterClient::projectName()} for help formatting this field.
  */
 function list_assets_sample(string $formattedParent): void

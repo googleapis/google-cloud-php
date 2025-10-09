@@ -22,15 +22,16 @@ class QueryExpansionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.QueryExpansionSpec.Condition condition = 1;</code>
      */
-    private $condition = 0;
+    protected $condition = 0;
     /**
-     * Whether to pin unexpanded results. If this field is set to true,
+     * Whether to pin unexpanded results. The default value is false. If this
+     * field is set to true,
      * unexpanded products are always at the top of the search results, followed
      * by the expanded results.
      *
      * Generated from protobuf field <code>bool pin_unexpanded_results = 2;</code>
      */
-    private $pin_unexpanded_results = false;
+    protected $pin_unexpanded_results = false;
 
     /**
      * Constructor.
@@ -42,7 +43,8 @@ class QueryExpansionSpec extends \Google\Protobuf\Internal\Message
      *           The condition under which query expansion should occur. Default to
      *           [Condition.DISABLED][google.cloud.retail.v2.SearchRequest.QueryExpansionSpec.Condition.DISABLED].
      *     @type bool $pin_unexpanded_results
-     *           Whether to pin unexpanded results. If this field is set to true,
+     *           Whether to pin unexpanded results. The default value is false. If this
+     *           field is set to true,
      *           unexpanded products are always at the top of the search results, followed
      *           by the expanded results.
      * }
@@ -81,7 +83,8 @@ class QueryExpansionSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to pin unexpanded results. If this field is set to true,
+     * Whether to pin unexpanded results. The default value is false. If this
+     * field is set to true,
      * unexpanded products are always at the top of the search results, followed
      * by the expanded results.
      *
@@ -94,7 +97,8 @@ class QueryExpansionSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to pin unexpanded results. If this field is set to true,
+     * Whether to pin unexpanded results. The default value is false. If this
+     * field is set to true,
      * unexpanded products are always at the top of the search results, followed
      * by the expanded results.
      *

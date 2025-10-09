@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request to fetch list of participant per conference.
+ * Request to fetch list of participants per conference.
  *
  * Generated from protobuf message <code>google.apps.meet.v2beta.ListParticipantsRequest</code>
  */
@@ -38,8 +38,9 @@ class ListParticipantsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_token = '';
     /**
-     * Optional. User specified filtering condition in EBNF format. The following
-     * are the filterable fields:
+     * Optional. User specified filtering condition in [EBNF
+     * format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+     * The following are the filterable fields:
      * * `earliest_start_time`
      * * `latest_end_time`
      * For example, `latest_end_time IS NULL` returns active participants in
@@ -80,8 +81,9 @@ class ListParticipantsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Page token returned from previous List Call.
      *     @type string $filter
-     *           Optional. User specified filtering condition in EBNF format. The following
-     *           are the filterable fields:
+     *           Optional. User specified filtering condition in [EBNF
+     *           format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+     *           The following are the filterable fields:
      *           * `earliest_start_time`
      *           * `latest_end_time`
      *           For example, `latest_end_time IS NULL` returns active participants in
@@ -180,8 +182,9 @@ class ListParticipantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User specified filtering condition in EBNF format. The following
-     * are the filterable fields:
+     * Optional. User specified filtering condition in [EBNF
+     * format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+     * The following are the filterable fields:
      * * `earliest_start_time`
      * * `latest_end_time`
      * For example, `latest_end_time IS NULL` returns active participants in
@@ -196,8 +199,9 @@ class ListParticipantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User specified filtering condition in EBNF format. The following
-     * are the filterable fields:
+     * Optional. User specified filtering condition in [EBNF
+     * format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+     * The following are the filterable fields:
      * * `earliest_start_time`
      * * `latest_end_time`
      * For example, `latest_end_time IS NULL` returns active participants in

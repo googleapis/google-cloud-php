@@ -23,13 +23,13 @@ class UndeployModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Required. The ID of the DeployedModel to be undeployed from the Endpoint.
      *
      * Generated from protobuf field <code>string deployed_model_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployed_model_id = '';
+    protected $deployed_model_id = '';
     /**
      * If this field is provided, then the Endpoint's
      * [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be

@@ -21,13 +21,13 @@ class PublicRepository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.RemoteRepositoryConfig.AptRepository.PublicRepository.RepositoryBase repository_base = 1;</code>
      */
-    private $repository_base = 0;
+    protected $repository_base = 0;
     /**
      * A custom field to define a path to a specific repository from the base.
      *
      * Generated from protobuf field <code>string repository_path = 2;</code>
      */
-    private $repository_path = '';
+    protected $repository_path = '';
 
     /**
      * Constructor.
@@ -100,6 +100,4 @@ class PublicRepository extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PublicRepository::class, \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig_AptRepository_PublicRepository::class);
 

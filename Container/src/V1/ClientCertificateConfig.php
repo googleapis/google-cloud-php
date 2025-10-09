@@ -20,7 +20,7 @@ class ClientCertificateConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool issue_client_certificate = 1;</code>
      */
-    private $issue_client_certificate = false;
+    protected $issue_client_certificate = false;
 
     /**
      * Constructor.

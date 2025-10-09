@@ -23,7 +23,7 @@ class FullExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Exports Feature values as of this timestamp. If not set,
      * retrieve values as of now. Timestamp, if present, must not have higher
@@ -31,7 +31,7 @@ class FullExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 1;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

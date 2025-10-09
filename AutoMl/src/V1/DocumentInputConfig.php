@@ -23,7 +23,7 @@ class DocumentInputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.GcsSource gcs_source = 1;</code>
      */
-    private $gcs_source = null;
+    protected $gcs_source = null;
 
     /**
      * Constructor.

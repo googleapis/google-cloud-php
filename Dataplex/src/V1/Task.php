@@ -22,44 +22,44 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. System generated globally unique ID for the task. This ID will
      * be different if the task is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The time when the task was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the task was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Description of the task.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. User friendly display name.
      *
      * Generated from protobuf field <code>string display_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Current state of the task.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Optional. User-defined labels for the task.
      *
@@ -71,19 +71,19 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.TriggerSpec trigger_spec = 100 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trigger_spec = null;
+    protected $trigger_spec = null;
     /**
      * Required. Spec related to how a task is executed.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionSpec execution_spec = 101 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $execution_spec = null;
+    protected $execution_spec = null;
     /**
      * Output only. Status of the latest task executions.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionStatus execution_status = 201 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $execution_status = null;
+    protected $execution_status = null;
     protected $config;
 
     /**

@@ -21,20 +21,20 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string domain = 1;</code>
      */
-    private $domain = '';
+    protected $domain = '';
     /**
      * Output only. State of the domain for managed certificate issuance.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Reason for failure of the authorization attempt for the
      * domain.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.FailureReason failure_reason = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failure_reason = 0;
+    protected $failure_reason = 0;
     /**
      * Output only. Human readable explanation for reaching the state.
      * Provided to help address the configuration issues. Not guaranteed to be
@@ -42,7 +42,7 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $details = '';
+    protected $details = '';
 
     /**
      * Constructor.

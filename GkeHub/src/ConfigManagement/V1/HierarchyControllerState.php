@@ -20,13 +20,13 @@ class HierarchyControllerState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.HierarchyControllerVersion version = 1;</code>
      */
-    private $version = null;
+    protected $version = null;
     /**
      * The deployment state for Hierarchy Controller
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.HierarchyControllerDeploymentState state = 2;</code>
      */
-    private $state = null;
+    protected $state = null;
 
     /**
      * Constructor.

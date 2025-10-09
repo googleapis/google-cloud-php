@@ -27,6 +27,13 @@ class AvroConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool write_metadata = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $write_metadata = false;
+    /**
+     * Optional. When true, the output Cloud Storage file will be serialized
+     * using the topic schema, if it exists.
+     *
+     * Generated from protobuf field <code>bool use_topic_schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $use_topic_schema = false;
 
     /**
      * Constructor.
@@ -41,6 +48,9 @@ class AvroConfig extends \Google\Protobuf\Internal\Message
      *           put in their own fields while all other message properties other than
      *           data (for example, an ordering_key, if present) are added as entries in
      *           the attributes map.
+     *     @type bool $use_topic_schema
+     *           Optional. When true, the output Cloud Storage file will be serialized
+     *           using the topic schema, if it exists.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,6 +90,34 @@ class AvroConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->write_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When true, the output Cloud Storage file will be serialized
+     * using the topic schema, if it exists.
+     *
+     * Generated from protobuf field <code>bool use_topic_schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getUseTopicSchema()
+    {
+        return $this->use_topic_schema;
+    }
+
+    /**
+     * Optional. When true, the output Cloud Storage file will be serialized
+     * using the topic schema, if it exists.
+     *
+     * Generated from protobuf field <code>bool use_topic_schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseTopicSchema($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_topic_schema = $var;
 
         return $this;
     }

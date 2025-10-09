@@ -23,7 +23,7 @@ class CryptoKeyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_reference = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $key_reference = '';
+    protected $key_reference = '';
 
     /**
      * Constructor.

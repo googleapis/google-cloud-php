@@ -31,7 +31,7 @@ class RelatedAsset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $asset = '';
+    protected $asset = '';
     /**
      * The type of the asset. Example: `compute.googleapis.com/Disk`
      * See [Supported asset
@@ -40,7 +40,7 @@ class RelatedAsset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset_type = 2;</code>
      */
-    private $asset_type = '';
+    protected $asset_type = '';
     /**
      * The ancestors of an asset in Google Cloud [resource
      * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
@@ -57,7 +57,7 @@ class RelatedAsset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string relationship_type = 4;</code>
      */
-    private $relationship_type = '';
+    protected $relationship_type = '';
 
     /**
      * Constructor.

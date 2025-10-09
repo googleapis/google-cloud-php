@@ -28,13 +28,13 @@ class FieldReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Recursively nested sub-field, if needed.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.OptimizeToursValidationError.FieldReference sub_field = 3;</code>
      */
-    private $sub_field = null;
+    protected $sub_field = null;
     protected $index_or_key;
 
     /**

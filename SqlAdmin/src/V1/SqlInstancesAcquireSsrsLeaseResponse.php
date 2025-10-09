@@ -20,7 +20,7 @@ class SqlInstancesAcquireSsrsLeaseResponse extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string operation_id = 1;</code>
      */
-    private $operation_id = '';
+    protected $operation_id = '';
 
     /**
      * Constructor.

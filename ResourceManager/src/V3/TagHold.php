@@ -26,7 +26,7 @@ class TagHold extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The name of the resource where the TagValue is being used. Must
      * be less than 200 characters. E.g.
@@ -34,7 +34,7 @@ class TagHold extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string holder = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $holder = '';
+    protected $holder = '';
     /**
      * Optional. An optional string representing the origin of this request. This
      * field should include human-understandable information to distinguish
@@ -43,7 +43,7 @@ class TagHold extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string origin = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $origin = '';
+    protected $origin = '';
     /**
      * Optional. A URL where an end user can learn more about removing this hold.
      * E.g.
@@ -51,13 +51,13 @@ class TagHold extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string help_link = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $help_link = '';
+    protected $help_link = '';
     /**
      * Output only. The time this TagHold was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

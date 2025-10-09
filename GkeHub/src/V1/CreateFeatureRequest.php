@@ -16,24 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent (project and location) where the Feature will be created.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Feature will be
+     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The ID of the feature to create.
      *
      * Generated from protobuf field <code>string feature_id = 2;</code>
      */
-    private $feature_id = '';
+    protected $feature_id = '';
     /**
      * The Feature resource to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.Feature resource = 3;</code>
      */
-    private $resource = null;
+    protected $resource = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -49,11 +49,11 @@ class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
-     * @param string                          $parent    Required. The parent (project and location) where the Feature will be created.
-     *                                                   Specified in the format `projects/&#42;/locations/*`.
+     * @param string                          $parent    Required. The parent (project and location) where the Feature will be
+     *                                                   created. Specified in the format `projects/&#42;/locations/*`.
      * @param \Google\Cloud\GkeHub\V1\Feature $resource  The Feature resource to create.
      * @param string                          $featureId The ID of the feature to create.
      *
@@ -76,8 +76,8 @@ class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent (project and location) where the Feature will be created.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           Required. The parent (project and location) where the Feature will be
+     *           created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *     @type string $feature_id
      *           The ID of the feature to create.
      *     @type \Google\Cloud\GkeHub\V1\Feature $resource
@@ -102,8 +102,8 @@ class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project and location) where the Feature will be created.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Feature will be
+     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -114,8 +114,8 @@ class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project and location) where the Feature will be created.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Feature will be
+     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

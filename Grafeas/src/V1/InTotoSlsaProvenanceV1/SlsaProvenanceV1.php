@@ -20,11 +20,11 @@ class SlsaProvenanceV1 extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.grafeas.v1.InTotoSlsaProvenanceV1.BuildDefinition build_definition = 1;</code>
      */
-    private $build_definition = null;
+    protected $build_definition = null;
     /**
      * Generated from protobuf field <code>.grafeas.v1.InTotoSlsaProvenanceV1.RunDetails run_details = 2;</code>
      */
-    private $run_details = null;
+    protected $run_details = null;
 
     /**
      * Constructor.

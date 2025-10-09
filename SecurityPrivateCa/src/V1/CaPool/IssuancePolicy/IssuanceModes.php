@@ -25,7 +25,7 @@ class IssuanceModes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_csr_based_issuance = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_csr_based_issuance = false;
+    protected $allow_csr_based_issuance = false;
     /**
      * Optional. When true, allows callers to create
      * [Certificates][google.cloud.security.privateca.v1.Certificate] by
@@ -34,7 +34,7 @@ class IssuanceModes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_config_based_issuance = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_config_based_issuance = false;
+    protected $allow_config_based_issuance = false;
 
     /**
      * Constructor.

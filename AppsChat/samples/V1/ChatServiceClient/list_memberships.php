@@ -42,13 +42,28 @@ use Google\Apps\Chat\V1\Membership;
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
  * lists memberships in spaces that the authenticated user has access to.
  *
- * Requires
- * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
- * Supports
- * [app
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+ *
+ * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
- * and [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.bot`
+ * - `https://www.googleapis.com/auth/chat.app.memberships` (requires
+ * [administrator approval](https://support.google.com/a?p=chat-app-auth))
+ *
+ * - [User
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.memberships.readonly`
+ * - `https://www.googleapis.com/auth/chat.memberships`
+ * - `https://www.googleapis.com/auth/chat.import` (import mode spaces
+ * only)
+ * - User authentication grants administrator privileges when an
+ * administrator account authenticates, `use_admin_access` is `true`, and
+ * one of the following authorization scopes is used:
+ * - `https://www.googleapis.com/auth/chat.admin.memberships.readonly`
+ * - `https://www.googleapis.com/auth/chat.admin.memberships`
  *
  * @param string $formattedParent The resource name of the space for which to fetch a membership
  *                                list.

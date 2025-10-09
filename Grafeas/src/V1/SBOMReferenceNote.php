@@ -20,14 +20,14 @@ class SBOMReferenceNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string format = 1;</code>
      */
-    private $format = '';
+    protected $format = '';
     /**
      * The version of the format that the SBOM takes. E.g. if the format
      * is spdx, the version may be 2.3.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

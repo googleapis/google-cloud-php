@@ -20,13 +20,13 @@ class VodSessionAd extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 1;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * Metadata of companion ads associated with the ad.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.CompanionAds companion_ads = 2;</code>
      */
-    private $companion_ads = null;
+    protected $companion_ads = null;
     /**
      * The list of progress tracking events for the ad break. These can be of
      * the following IAB types: `MUTE`, `UNMUTE`, `PAUSE`, `CLICK`,

@@ -20,7 +20,7 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Verify the GTID consistency for demote operation. Default value:
      * `True`. Setting this flag to `false` enables you to bypass the GTID
@@ -32,27 +32,27 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_gtid_consistency = 2;</code>
      */
-    private $verify_gtid_consistency = null;
+    protected $verify_gtid_consistency = null;
     /**
      * The name of the instance which will act as on-premises primary instance
      * in the replication setup.
      *
      * Generated from protobuf field <code>string master_instance_name = 3;</code>
      */
-    private $master_instance_name = '';
+    protected $master_instance_name = '';
     /**
      * Configuration specific to read-replicas replicating from the on-premises
      * primary instance.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DemoteMasterConfiguration replica_configuration = 4;</code>
      */
-    private $replica_configuration = null;
+    protected $replica_configuration = null;
     /**
      * Flag to skip replication setup on the instance.
      *
      * Generated from protobuf field <code>bool skip_replication_setup = 5;</code>
      */
-    private $skip_replication_setup = false;
+    protected $skip_replication_setup = false;
 
     /**
      * Constructor.
@@ -152,7 +152,7 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_gtid_consistency = 2;</code>
      * @return bool|null
      */
-    public function getVerifyGtidConsistencyValue()
+    public function getVerifyGtidConsistencyUnwrapped()
     {
         return $this->readWrapperValue("verify_gtid_consistency");
     }
@@ -193,7 +193,7 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setVerifyGtidConsistencyValue($var)
+    public function setVerifyGtidConsistencyUnwrapped($var)
     {
         $this->writeWrapperValue("verify_gtid_consistency", $var);
         return $this;}

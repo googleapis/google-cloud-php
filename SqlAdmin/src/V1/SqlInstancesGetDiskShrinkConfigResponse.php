@@ -20,19 +20,19 @@ class SqlInstancesGetDiskShrinkConfigResponse extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The minimum size to which a disk can be shrunk in GigaBytes.
      *
      * Generated from protobuf field <code>int64 minimal_target_size_gb = 2;</code>
      */
-    private $minimal_target_size_gb = 0;
+    protected $minimal_target_size_gb = 0;
     /**
      * Additional message to customers.
      *
      * Generated from protobuf field <code>string message = 3;</code>
      */
-    private $message = '';
+    protected $message = '';
 
     /**
      * Constructor.

@@ -53,7 +53,7 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
         self::$projectId = getenv('PROJECT_ID');
 
         $config = [
-            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
+            'credentials' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
             'namespaceId' => uniqid(self::TESTING_PREFIX),
             'databaseId' => self::TEST_DB_NAME,
         ];
@@ -72,7 +72,7 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
 
     public function multiDbClientProvider()
     {
-        self::setUpBeforeClass();
+        self::setUpTestFixtures();
         self::setUpMultiDbBeforeClass();
 
         if (!self::$multipleDbValidationResult) {

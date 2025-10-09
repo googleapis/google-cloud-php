@@ -20,7 +20,7 @@ class MoveImpact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string detail = 1;</code>
      */
-    private $detail = '';
+    protected $detail = '';
 
     /**
      * Constructor.

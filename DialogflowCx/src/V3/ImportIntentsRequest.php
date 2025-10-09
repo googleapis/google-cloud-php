@@ -18,7 +18,7 @@ class ImportIntentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The agent to import the intents into.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -39,7 +39,7 @@ class ImportIntentsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The agent to import the intents into.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type string $intents_uri
      *           The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI
      *           to import intents from. The format of this URI must be
@@ -62,7 +62,7 @@ class ImportIntentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to import the intents into.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -74,7 +74,7 @@ class ImportIntentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to import the intents into.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

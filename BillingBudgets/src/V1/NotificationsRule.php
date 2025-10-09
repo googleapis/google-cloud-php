@@ -42,7 +42,7 @@ class NotificationsRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pubsub_topic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $pubsub_topic = '';
+    protected $pubsub_topic = '';
     /**
      * Optional. Required when
      * [NotificationsRule.pubsub_topic][google.cloud.billing.budgets.v1.NotificationsRule.pubsub_topic]
@@ -53,7 +53,7 @@ class NotificationsRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schema_version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $schema_version = '';
+    protected $schema_version = '';
     /**
      * Optional. Email targets to send notifications to when a threshold is
      * exceeded. This is in addition to the `DefaultIamRecipients` who receive
@@ -87,7 +87,7 @@ class NotificationsRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_default_iam_recipients = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disable_default_iam_recipients = false;
+    protected $disable_default_iam_recipients = false;
     /**
      * Optional. When set to true, and when the budget has a single project
      * configured, notifications will be sent to project level recipients of that
@@ -98,7 +98,7 @@ class NotificationsRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_project_level_recipients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_project_level_recipients = false;
+    protected $enable_project_level_recipients = false;
 
     /**
      * Constructor.

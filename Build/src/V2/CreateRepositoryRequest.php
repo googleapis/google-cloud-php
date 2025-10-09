@@ -22,13 +22,13 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The repository to create.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.Repository repository = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $repository = null;
+    protected $repository = null;
     /**
      * Required. The ID to use for the repository, which will become the final
      * component of the repository's resource name. This ID should be unique in
@@ -37,7 +37,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string repository_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $repository_id = '';
+    protected $repository_id = '';
 
     /**
      * @param string                            $parent       Required. The connection to contain the repository. If the request is part

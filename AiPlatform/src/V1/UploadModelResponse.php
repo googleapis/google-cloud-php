@@ -23,13 +23,13 @@ class UploadModelResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Output only. The version ID of the model that is uploaded.
      *
      * Generated from protobuf field <code>string model_version_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $model_version_id = '';
+    protected $model_version_id = '';
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class InstancesImportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext import_context = 1;</code>
      */
-    private $import_context = null;
+    protected $import_context = null;
 
     /**
      * Constructor.

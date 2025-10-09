@@ -32,9 +32,9 @@ use Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest;
  * Gets a BigQuery export.
  *
  * @param string $formattedName Name of the BigQuery export to retrieve. Its format is
- *                              organizations/{organization}/bigQueryExports/{export_id},
- *                              folders/{folder}/bigQueryExports/{export_id}, or
- *                              projects/{project}/bigQueryExports/{export_id}
+ *                              `organizations/{organization}/bigQueryExports/{export_id}`,
+ *                              `folders/{folder}/bigQueryExports/{export_id}`, or
+ *                              `projects/{project}/bigQueryExports/{export_id}`
  *                              Please see {@see SecurityCenterClient::bigQueryExportName()} for help formatting this field.
  */
 function get_big_query_export_sample(string $formattedName): void

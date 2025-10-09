@@ -20,14 +20,14 @@ class CreateTagBindingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.TagBinding tag_binding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag_binding = null;
+    protected $tag_binding = null;
     /**
      * Optional. Set to true to perform the validations necessary for creating the
      * resource, but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\ResourceManager\V3\TagBinding $tagBinding Required. The TagBinding to be created.

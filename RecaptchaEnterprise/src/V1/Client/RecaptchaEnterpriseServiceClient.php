@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,12 +27,15 @@ namespace Google\Cloud\RecaptchaEnterprise\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\RecaptchaEnterprise\V1\AddIpOverrideRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\AddIpOverrideResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Assessment;
@@ -47,11 +50,14 @@ use Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
 use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ListIpOverridesRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\RemoveIpOverrideRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\RemoveIpOverrideResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
@@ -60,6 +66,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequ
 use Google\Cloud\RecaptchaEnterprise\V1\UpdateFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service to determine the likelihood an event is legitimate.
@@ -72,25 +79,28 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface annotateAssessmentAsync(AnnotateAssessmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAssessmentAsync(CreateAssessmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFirewallPolicyAsync(CreateFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createKeyAsync(CreateKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFirewallPolicyAsync(DeleteFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteKeyAsync(DeleteKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFirewallPolicyAsync(GetFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getKeyAsync(GetKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMetricsAsync(GetMetricsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFirewallPoliciesAsync(ListFirewallPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listKeysAsync(ListKeysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRelatedAccountGroupMembershipsAsync(ListRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRelatedAccountGroupsAsync(ListRelatedAccountGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface migrateKeyAsync(MigrateKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reorderFirewallPoliciesAsync(ReorderFirewallPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface retrieveLegacySecretKeyAsync(RetrieveLegacySecretKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchRelatedAccountGroupMembershipsAsync(SearchRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFirewallPolicyAsync(UpdateFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateKeyAsync(UpdateKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AddIpOverrideResponse> addIpOverrideAsync(AddIpOverrideRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnnotateAssessmentResponse> annotateAssessmentAsync(AnnotateAssessmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Assessment> createAssessmentAsync(CreateAssessmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicy> createFirewallPolicyAsync(CreateFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Key> createKeyAsync(CreateKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteFirewallPolicyAsync(DeleteFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteKeyAsync(DeleteKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicy> getFirewallPolicyAsync(GetFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Key> getKeyAsync(GetKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Metrics> getMetricsAsync(GetMetricsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFirewallPoliciesAsync(ListFirewallPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIpOverridesAsync(ListIpOverridesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listKeysAsync(ListKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRelatedAccountGroupMembershipsAsync(ListRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRelatedAccountGroupsAsync(ListRelatedAccountGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Key> migrateKeyAsync(MigrateKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RemoveIpOverrideResponse> removeIpOverrideAsync(RemoveIpOverrideRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReorderFirewallPoliciesResponse> reorderFirewallPoliciesAsync(ReorderFirewallPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RetrieveLegacySecretKeyResponse> retrieveLegacySecretKeyAsync(RetrieveLegacySecretKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchRelatedAccountGroupMembershipsAsync(SearchRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicy> updateFirewallPolicyAsync(UpdateFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Key> updateKeyAsync(UpdateKeyRequest $request, array $optionalArgs = [])
  */
 final class RecaptchaEnterpriseServiceClient
 {
@@ -257,14 +267,14 @@ final class RecaptchaEnterpriseServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -272,20 +282,29 @@ final class RecaptchaEnterpriseServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'recaptchaenterprise.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new RecaptchaEnterpriseServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -319,11 +338,16 @@ final class RecaptchaEnterpriseServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -338,6 +362,36 @@ final class RecaptchaEnterpriseServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Adds an IP override to a key. The following restrictions hold:
+     * * The maximum number of IP overrides per key is 100.
+     * * For any conflict (such as IP already exists or IP part of an existing
+     * IP range), an error is returned.
+     *
+     * The async variant is
+     * {@see RecaptchaEnterpriseServiceClient::addIpOverrideAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/add_ip_override.php
+     *
+     * @param AddIpOverrideRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AddIpOverrideResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addIpOverride(AddIpOverrideRequest $request, array $callOptions = []): AddIpOverrideResponse
+    {
+        return $this->startApiCall('AddIpOverride', $request, $callOptions)->wait();
     }
 
     /**
@@ -608,6 +662,33 @@ final class RecaptchaEnterpriseServiceClient
     }
 
     /**
+     * Lists all IP overrides for a key.
+     *
+     * The async variant is
+     * {@see RecaptchaEnterpriseServiceClient::listIpOverridesAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/list_ip_overrides.php
+     *
+     * @param ListIpOverridesRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listIpOverrides(ListIpOverridesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListIpOverrides', $request, $callOptions);
+    }
+
+    /**
      * Returns the list of all keys that belong to a project.
      *
      * The async variant is {@see RecaptchaEnterpriseServiceClient::listKeysAsync()} .
@@ -718,6 +799,37 @@ final class RecaptchaEnterpriseServiceClient
     public function migrateKey(MigrateKeyRequest $request, array $callOptions = []): Key
     {
         return $this->startApiCall('MigrateKey', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Removes an IP override from a key. The following restrictions hold:
+     * * If the IP isn't found in an existing IP override, a `NOT_FOUND` error
+     * is returned.
+     * * If the IP is found in an existing IP override, but the
+     * override type does not match, a `NOT_FOUND` error is returned.
+     *
+     * The async variant is
+     * {@see RecaptchaEnterpriseServiceClient::removeIpOverrideAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/remove_ip_override.php
+     *
+     * @param RemoveIpOverrideRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RemoveIpOverrideResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function removeIpOverride(RemoveIpOverrideRequest $request, array $callOptions = []): RemoveIpOverrideResponse
+    {
+        return $this->startApiCall('RemoveIpOverride', $request, $callOptions)->wait();
     }
 
     /**

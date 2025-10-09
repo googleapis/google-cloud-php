@@ -20,13 +20,13 @@ class Range extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 start = 1;</code>
      */
-    private $start = 0;
+    protected $start = 0;
     /**
      * Index of the last character of the range (exclusive).
      *
      * Generated from protobuf field <code>int64 end = 2;</code>
      */
-    private $end = 0;
+    protected $end = 0;
 
     /**
      * Constructor.

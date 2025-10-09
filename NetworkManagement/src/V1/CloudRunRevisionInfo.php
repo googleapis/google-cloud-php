@@ -20,25 +20,25 @@ class CloudRunRevisionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * URI of a Cloud Run revision.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Location in which this revision is deployed.
      *
      * Generated from protobuf field <code>string location = 4;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * URI of Cloud Run service this revision belongs to.
      *
      * Generated from protobuf field <code>string service_uri = 5;</code>
      */
-    private $service_uri = '';
+    protected $service_uri = '';
 
     /**
      * Constructor.

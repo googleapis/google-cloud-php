@@ -20,13 +20,13 @@ class CreateSSHKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The SSH key to register.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.SSHKey ssh_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ssh_key = null;
+    protected $ssh_key = null;
     /**
      * Required. The ID to use for the key, which will become the final component
      * of the key's resource name.
@@ -35,7 +35,7 @@ class CreateSSHKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ssh_key_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ssh_key_id = '';
+    protected $ssh_key_id = '';
 
     /**
      * @param string                                    $parent   Required. The parent containing the SSH keys. Please see

@@ -20,27 +20,27 @@ class Counters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 input_documents_count = 1;</code>
      */
-    private $input_documents_count = 0;
+    protected $input_documents_count = 0;
     /**
      * How many documents were not included in the evaluation as they didn't
      * pass validation.
      *
      * Generated from protobuf field <code>int32 invalid_documents_count = 2;</code>
      */
-    private $invalid_documents_count = 0;
+    protected $invalid_documents_count = 0;
     /**
      * How many documents were not included in the evaluation as Document AI
      * failed to process them.
      *
      * Generated from protobuf field <code>int32 failed_documents_count = 3;</code>
      */
-    private $failed_documents_count = 0;
+    protected $failed_documents_count = 0;
     /**
      * How many documents were used in the evaluation.
      *
      * Generated from protobuf field <code>int32 evaluated_documents_count = 4;</code>
      */
-    private $evaluated_documents_count = 0;
+    protected $evaluated_documents_count = 0;
 
     /**
      * Constructor.

@@ -19,27 +19,27 @@ class SetMuteRequest extends \Google\Protobuf\Internal\Message
      * Required. The [relative resource
      * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      * of the finding. Example:
-     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     * "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
+     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
+     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
+     * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The desired state of the Mute.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.Mute mute = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mute = 0;
+    protected $mute = 0;
 
     /**
      * @param string $name Required. The [relative resource
      *                     name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      *                     of the finding. Example:
-     *                     "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     *                     "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     *                     "projects/{project_id}/sources/{source_id}/findings/{finding_id}". Please see
+     *                     `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
+     *                     `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
+     *                     `projects/{project_id}/sources/{source_id}/findings/{finding_id}`. Please see
      *                     {@see SecurityCenterClient::findingName()} for help formatting this field.
      * @param int    $mute Required. The desired state of the Mute.
      *                     For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\Mute}
@@ -65,9 +65,9 @@ class SetMuteRequest extends \Google\Protobuf\Internal\Message
      *           Required. The [relative resource
      *           name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      *           of the finding. Example:
-     *           "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     *           "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     *           "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
+     *           `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
+     *           `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
+     *           `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
      *     @type int $mute
      *           Required. The desired state of the Mute.
      * }
@@ -81,9 +81,9 @@ class SetMuteRequest extends \Google\Protobuf\Internal\Message
      * Required. The [relative resource
      * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      * of the finding. Example:
-     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     * "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
+     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
+     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
+     * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -97,9 +97,9 @@ class SetMuteRequest extends \Google\Protobuf\Internal\Message
      * Required. The [relative resource
      * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      * of the finding. Example:
-     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     * "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
+     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
+     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
+     * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

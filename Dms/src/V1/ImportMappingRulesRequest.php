@@ -22,13 +22,13 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The format of the rules content file.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat rules_format = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rules_format = 0;
+    protected $rules_format = 0;
     /**
      * Required. One or more rules files.
      *
@@ -41,7 +41,7 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool auto_commit = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $auto_commit = false;
+    protected $auto_commit = false;
 
     /**
      * Constructor.

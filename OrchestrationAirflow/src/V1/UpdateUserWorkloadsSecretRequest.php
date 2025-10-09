@@ -20,7 +20,7 @@ class UpdateUserWorkloadsSecretRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.UserWorkloadsSecret user_workloads_secret = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $user_workloads_secret = null;
+    protected $user_workloads_secret = null;
 
     /**
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret $userWorkloadsSecret Optional. User workloads Secret to override.

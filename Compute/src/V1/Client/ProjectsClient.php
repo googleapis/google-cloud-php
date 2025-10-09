@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -40,7 +41,6 @@ use Google\Cloud\Compute\V1\EnableXpnResourceProjectRequest;
 use Google\Cloud\Compute\V1\GetProjectRequest;
 use Google\Cloud\Compute\V1\GetXpnHostProjectRequest;
 use Google\Cloud\Compute\V1\GetXpnResourcesProjectsRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\ListXpnHostsProjectsRequest;
 use Google\Cloud\Compute\V1\MoveDiskProjectRequest;
 use Google\Cloud\Compute\V1\MoveInstanceProjectRequest;
@@ -50,6 +50,7 @@ use Google\Cloud\Compute\V1\SetCommonInstanceMetadataProjectRequest;
 use Google\Cloud\Compute\V1\SetDefaultNetworkTierProjectRequest;
 use Google\Cloud\Compute\V1\SetUsageExportBucketProjectRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Projects API.
@@ -57,20 +58,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface disableXpnHostAsync(DisableXpnHostProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface disableXpnResourceAsync(DisableXpnResourceProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface enableXpnHostAsync(EnableXpnHostProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface enableXpnResourceAsync(EnableXpnResourceProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getXpnHostAsync(GetXpnHostProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getXpnResourcesAsync(GetXpnResourcesProjectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listXpnHostsAsync(ListXpnHostsProjectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveDiskAsync(MoveDiskProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveInstanceAsync(MoveInstanceProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setCloudArmorTierAsync(SetCloudArmorTierProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setCommonInstanceMetadataAsync(SetCommonInstanceMetadataProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setDefaultNetworkTierAsync(SetDefaultNetworkTierProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setUsageExportBucketAsync(SetUsageExportBucketProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> disableXpnHostAsync(DisableXpnHostProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> disableXpnResourceAsync(DisableXpnResourceProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> enableXpnHostAsync(EnableXpnHostProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> enableXpnResourceAsync(EnableXpnResourceProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Project> getAsync(GetProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Project> getXpnHostAsync(GetXpnHostProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> getXpnResourcesAsync(GetXpnResourcesProjectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listXpnHostsAsync(ListXpnHostsProjectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveDiskAsync(MoveDiskProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveInstanceAsync(MoveInstanceProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setCloudArmorTierAsync(SetCloudArmorTierProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setCommonInstanceMetadataAsync(SetCommonInstanceMetadataProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setDefaultNetworkTierAsync(SetDefaultNetworkTierProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setUsageExportBucketAsync(SetUsageExportBucketProjectRequest $request, array $optionalArgs = [])
  */
 final class ProjectsClient
 {
@@ -119,7 +120,6 @@ final class ProjectsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/projects_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -132,9 +132,7 @@ final class ProjectsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -151,9 +149,7 @@ final class ProjectsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -181,29 +177,57 @@ final class ProjectsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\ProjectsClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new ProjectsClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -234,11 +258,16 @@ final class ProjectsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -260,6 +289,8 @@ final class ProjectsClient
      * Disable this project as a shared VPC host project.
      *
      * The async variant is {@see ProjectsClient::disableXpnHostAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/disable_xpn_host.php
      *
      * @param DisableXpnHostProjectRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -285,6 +316,8 @@ final class ProjectsClient
      *
      * The async variant is {@see ProjectsClient::disableXpnResourceAsync()} .
      *
+     * @example samples/V1/ProjectsClient/disable_xpn_resource.php
+     *
      * @param DisableXpnResourceProjectRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -299,8 +332,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function disableXpnResource(DisableXpnResourceProjectRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function disableXpnResource(
+        DisableXpnResourceProjectRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DisableXpnResource', $request, $callOptions)->wait();
     }
 
@@ -308,6 +343,8 @@ final class ProjectsClient
      * Enable this project as a shared VPC host project.
      *
      * The async variant is {@see ProjectsClient::enableXpnHostAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/enable_xpn_host.php
      *
      * @param EnableXpnHostProjectRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -333,6 +370,8 @@ final class ProjectsClient
      *
      * The async variant is {@see ProjectsClient::enableXpnResourceAsync()} .
      *
+     * @example samples/V1/ProjectsClient/enable_xpn_resource.php
+     *
      * @param EnableXpnResourceProjectRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -347,8 +386,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function enableXpnResource(EnableXpnResourceProjectRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function enableXpnResource(
+        EnableXpnResourceProjectRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('EnableXpnResource', $request, $callOptions)->wait();
     }
 
@@ -356,6 +397,8 @@ final class ProjectsClient
      * Returns the specified Project resource. To decrease latency for this method, you can optionally omit any unneeded information from the response by using a field mask. This practice is especially recommended for unused quota information (the `quotas` field). To exclude one or more fields, set your request's `fields` query parameter to only include the fields you need. For example, to only include the `id` and `selfLink` fields, add the query parameter `?fields=id,selfLink` to your request.
      *
      * The async variant is {@see ProjectsClient::getAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/get.php
      *
      * @param GetProjectRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -381,6 +424,8 @@ final class ProjectsClient
      *
      * The async variant is {@see ProjectsClient::getXpnHostAsync()} .
      *
+     * @example samples/V1/ProjectsClient/get_xpn_host.php
+     *
      * @param GetXpnHostProjectRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -404,6 +449,8 @@ final class ProjectsClient
      * Gets service resources (a.k.a service project) associated with this host project.
      *
      * The async variant is {@see ProjectsClient::getXpnResourcesAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/get_xpn_resources.php
      *
      * @param GetXpnResourcesProjectsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -429,6 +476,8 @@ final class ProjectsClient
      *
      * The async variant is {@see ProjectsClient::listXpnHostsAsync()} .
      *
+     * @example samples/V1/ProjectsClient/list_xpn_hosts.php
+     *
      * @param ListXpnHostsProjectsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -449,9 +498,11 @@ final class ProjectsClient
     }
 
     /**
-     * Moves a persistent disk from one zone to another.
+     * Starting September 29, 2025, you can't use the moveDisk API on new projects. To move a disk to a different region or zone, follow the steps in [Change the location of a disk](https://{$universe.dns_names.final_documentation_domain}/compute/docs/disks/migrate-to-hyperdisk#migrate-to-hd). Projects that already use the moveDisk API can continue usage until September 29, 2026. Starting November 1, 2025, API responses will include a warning message in the response body about the upcoming deprecation. You can skip the message to continue using the service without interruption.
      *
      * The async variant is {@see ProjectsClient::moveDiskAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/move_disk.php
      *
      * @param MoveDiskProjectRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -473,9 +524,11 @@ final class ProjectsClient
     }
 
     /**
-     * Moves an instance and its attached persistent disks from one zone to another. *Note*: Moving VMs or disks by using this method might cause unexpected behavior. For more information, see the [known issue](/compute/docs/troubleshooting/known-issues#moving_vms_or_disks_using_the_moveinstance_api_or_the_causes_unexpected_behavior). [Deprecated] This method is deprecated. See [moving instance across zones](https://cloud.google.com/compute/docs/instances/moving-instance-across-zones) instead.
+     * Moves an instance and its attached persistent disks from one zone to another. *Note*: Moving VMs or disks by using this method might cause unexpected behavior. For more information, see the [known issue](/compute/docs/troubleshooting/known-issues#moving_vms_or_disks_using_the_moveinstance_api_or_the_causes_unexpected_behavior). [Deprecated] This method is deprecated. See [moving instance across zones](/compute/docs/instances/moving-instance-across-zones) instead.
      *
      * The async variant is {@see ProjectsClient::moveInstanceAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/move_instance.php
      *
      * @param MoveInstanceProjectRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -501,6 +554,8 @@ final class ProjectsClient
      *
      * The async variant is {@see ProjectsClient::setCloudArmorTierAsync()} .
      *
+     * @example samples/V1/ProjectsClient/set_cloud_armor_tier.php
+     *
      * @param SetCloudArmorTierProjectRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -515,8 +570,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setCloudArmorTier(SetCloudArmorTierProjectRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setCloudArmorTier(
+        SetCloudArmorTierProjectRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetCloudArmorTier', $request, $callOptions)->wait();
     }
 
@@ -524,6 +581,8 @@ final class ProjectsClient
      * Sets metadata common to all instances within the specified project using the data included in the request.
      *
      * The async variant is {@see ProjectsClient::setCommonInstanceMetadataAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/set_common_instance_metadata.php
      *
      * @param SetCommonInstanceMetadataProjectRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -539,8 +598,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setCommonInstanceMetadata(SetCommonInstanceMetadataProjectRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setCommonInstanceMetadata(
+        SetCommonInstanceMetadataProjectRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetCommonInstanceMetadata', $request, $callOptions)->wait();
     }
 
@@ -548,6 +609,8 @@ final class ProjectsClient
      * Sets the default network tier of the project. The default network tier is used when an address/forwardingRule/instance is created without specifying the network tier field.
      *
      * The async variant is {@see ProjectsClient::setDefaultNetworkTierAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/set_default_network_tier.php
      *
      * @param SetDefaultNetworkTierProjectRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -563,8 +626,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setDefaultNetworkTier(SetDefaultNetworkTierProjectRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setDefaultNetworkTier(
+        SetDefaultNetworkTierProjectRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetDefaultNetworkTier', $request, $callOptions)->wait();
     }
 
@@ -572,6 +637,8 @@ final class ProjectsClient
      * Enables the usage export feature and sets the usage export bucket where reports are stored. If you provide an empty request body using this method, the usage export feature will be disabled.
      *
      * The async variant is {@see ProjectsClient::setUsageExportBucketAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/set_usage_export_bucket.php
      *
      * @param SetUsageExportBucketProjectRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -587,8 +654,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setUsageExportBucket(SetUsageExportBucketProjectRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setUsageExportBucket(
+        SetUsageExportBucketProjectRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetUsageExportBucket', $request, $callOptions)->wait();
     }
 }

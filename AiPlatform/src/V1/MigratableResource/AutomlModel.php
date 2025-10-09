@@ -22,13 +22,13 @@ class AutomlModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * The Model's display name in automl.googleapis.com.
      *
      * Generated from protobuf field <code>string model_display_name = 3;</code>
      */
-    private $model_display_name = '';
+    protected $model_display_name = '';
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The resource name of the consumer.
      * A valid name would be:
@@ -30,7 +30,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The service configuration of the available service.
      * Some fields may be filtered out of the configuration in responses to
@@ -39,13 +39,13 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.serviceusage.v1.ServiceConfig config = 2;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * Whether or not the service has been enabled for use by the consumer.
      *
      * Generated from protobuf field <code>.google.api.serviceusage.v1.State state = 4;</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

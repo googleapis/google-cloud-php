@@ -34,7 +34,8 @@ use Google\ApiCore\PagedListResponse;
  * Properties can have at most one FirebaseLink.
  *
  * @param string $formattedParent Format: properties/{property_id}
- *                                Example: properties/1234
+ *
+ *                                Example: `properties/1234`
  *                                Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
  */
 function list_firebase_links_sample(string $formattedParent): void

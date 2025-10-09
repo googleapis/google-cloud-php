@@ -66,6 +66,4 @@ class TagState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TagState::class, \Google\Cloud\ArtifactRegistry\V1\CleanupPolicyCondition_TagState::class);
 

@@ -27,7 +27,7 @@ class ConvertRowIdToColumn extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool only_if_no_primary_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $only_if_no_primary_key = false;
+    protected $only_if_no_primary_key = false;
 
     /**
      * Constructor.

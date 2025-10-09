@@ -20,19 +20,19 @@ class ForwardSshTunnelConnectivity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string hostname = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $hostname = '';
+    protected $hostname = '';
     /**
      * Required. Username for the SSH tunnel.
      *
      * Generated from protobuf field <code>string username = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Port for the SSH tunnel, default value is 22.
      *
      * Generated from protobuf field <code>int32 port = 3;</code>
      */
-    private $port = 0;
+    protected $port = 0;
     protected $authentication_method;
 
     /**

@@ -158,6 +158,4 @@ class IngressTo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IngressTo::class, \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig_IngressTo::class);
 

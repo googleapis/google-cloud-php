@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,7 +60,9 @@ class GSuiteAddOnsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return GSuiteAddOnsClient */
@@ -122,12 +124,15 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -163,8 +168,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-        $request = (new DeleteDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDeploymentRequest())->setName($formattedName);
         $gapicClient->deleteDeployment($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -187,17 +191,19 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-        $request = (new DeleteDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->deleteDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -230,8 +236,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->authorizationName('[PROJECT]');
-        $request = (new GetAuthorizationRequest())
-            ->setName($formattedName);
+        $request = (new GetAuthorizationRequest())->setName($formattedName);
         $response = $gapicClient->getAuthorization($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -255,17 +260,19 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->authorizationName('[PROJECT]');
-        $request = (new GetAuthorizationRequest())
-            ->setName($formattedName);
+        $request = (new GetAuthorizationRequest())->setName($formattedName);
         try {
             $gapicClient->getAuthorization($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -296,8 +303,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-        $request = (new GetDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new GetDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->getDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -321,17 +327,19 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-        $request = (new GetDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new GetDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->getDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -360,8 +368,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->installStatusName('[PROJECT]', '[DEPLOYMENT]');
-        $request = (new GetInstallStatusRequest())
-            ->setName($formattedName);
+        $request = (new GetInstallStatusRequest())->setName($formattedName);
         $response = $gapicClient->getInstallStatus($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -385,17 +392,19 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->installStatusName('[PROJECT]', '[DEPLOYMENT]');
-        $request = (new GetInstallStatusRequest())
-            ->setName($formattedName);
+        $request = (new GetInstallStatusRequest())->setName($formattedName);
         try {
             $gapicClient->getInstallStatus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -422,8 +431,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-        $request = (new InstallDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new InstallDeploymentRequest())->setName($formattedName);
         $gapicClient->installDeployment($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -446,17 +454,19 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-        $request = (new InstallDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new InstallDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->installDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -481,17 +491,14 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $deploymentsElement = new Deployment();
-        $deployments = [
-            $deploymentsElement,
-        ];
+        $deployments = [$deploymentsElement];
         $expectedResponse = new ListDeploymentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeployments($deployments);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListDeploymentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDeploymentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDeployments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -518,17 +525,19 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListDeploymentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDeploymentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDeployments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -559,8 +568,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $deployment = new Deployment();
-        $request = (new ReplaceDeploymentRequest())
-            ->setDeployment($deployment);
+        $request = (new ReplaceDeploymentRequest())->setDeployment($deployment);
         $response = $gapicClient->replaceDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -584,17 +592,19 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $deployment = new Deployment();
-        $request = (new ReplaceDeploymentRequest())
-            ->setDeployment($deployment);
+        $request = (new ReplaceDeploymentRequest())->setDeployment($deployment);
         try {
             $gapicClient->replaceDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -621,8 +631,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-        $request = (new UninstallDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new UninstallDeploymentRequest())->setName($formattedName);
         $gapicClient->uninstallDeployment($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -645,17 +654,19 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-        $request = (new UninstallDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new UninstallDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->uninstallDeployment($request);
             // If the $gapicClient method call did not throw, fail the test

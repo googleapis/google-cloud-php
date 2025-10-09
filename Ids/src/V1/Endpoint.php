@@ -21,19 +21,19 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The create time timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The update time timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The labels of the endpoint.
      *
@@ -46,43 +46,43 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Output only. The fully qualified URL of the endpoint's ILB Forwarding Rule.
      *
      * Generated from protobuf field <code>string endpoint_forwarding_rule = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $endpoint_forwarding_rule = '';
+    protected $endpoint_forwarding_rule = '';
     /**
      * Output only. The IP address of the IDS Endpoint's ILB.
      *
      * Generated from protobuf field <code>string endpoint_ip = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $endpoint_ip = '';
+    protected $endpoint_ip = '';
     /**
      * User-provided description of the endpoint
      *
      * Generated from protobuf field <code>string description = 8;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Lowest threat severity that this endpoint will alert on.
      *
      * Generated from protobuf field <code>.google.cloud.ids.v1.Endpoint.Severity severity = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
     /**
      * Output only. Current state of the endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.ids.v1.Endpoint.State state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Whether the endpoint should report traffic logs in addition to threat logs.
      *
      * Generated from protobuf field <code>bool traffic_logs = 13;</code>
      */
-    private $traffic_logs = false;
+    protected $traffic_logs = false;
 
     /**
      * Constructor.

@@ -21,19 +21,19 @@ class CalculateStatsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration average_duration = 1;</code>
      */
-    private $average_duration = null;
+    protected $average_duration = null;
     /**
      * The average number of turns per conversation.
      *
      * Generated from protobuf field <code>int32 average_turn_count = 2;</code>
      */
-    private $average_turn_count = 0;
+    protected $average_turn_count = 0;
     /**
      * The total number of conversations.
      *
      * Generated from protobuf field <code>int32 conversation_count = 3;</code>
      */
-    private $conversation_count = 0;
+    protected $conversation_count = 0;
     /**
      * A map associating each smart highlighter display name with its respective
      * number of matches in the set of conversations.
@@ -72,7 +72,7 @@ class CalculateStatsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries conversation_count_time_series = 7;</code>
      */
-    private $conversation_count_time_series = null;
+    protected $conversation_count_time_series = null;
 
     /**
      * Constructor.
@@ -270,7 +270,9 @@ class CalculateStatsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getIssueMatches()
     {
-        @trigger_error('issue_matches is deprecated.', E_USER_DEPRECATED);
+        if ($this->issue_matches->count() !== 0) {
+            @trigger_error('issue_matches is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->issue_matches;
     }
 
@@ -287,8 +289,10 @@ class CalculateStatsResponse extends \Google\Protobuf\Internal\Message
      */
     public function setIssueMatches($var)
     {
-        @trigger_error('issue_matches is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::INT32);
+        if (count($arr) !== 0) {
+            @trigger_error('issue_matches is deprecated.', E_USER_DEPRECATED);
+        }
         $this->issue_matches = $arr;
 
         return $this;

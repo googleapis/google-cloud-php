@@ -18,7 +18,7 @@ class AspectInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $type = '';
+    protected $type = '';
 
     /**
      * Constructor.

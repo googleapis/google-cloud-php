@@ -67,6 +67,12 @@ class Format
      * Generated from protobuf enum <code>GO = 10;</code>
      */
     const GO = 10;
+    /**
+     * Generic package format.
+     *
+     * Generated from protobuf enum <code>GENERIC = 11;</code>
+     */
+    const GENERIC = 11;
 
     private static $valueToName = [
         self::FORMAT_UNSPECIFIED => 'FORMAT_UNSPECIFIED',
@@ -78,6 +84,7 @@ class Format
         self::PYTHON => 'PYTHON',
         self::KFP => 'KFP',
         self::GO => 'GO',
+        self::GENERIC => 'GENERIC',
     ];
 
     public static function name($value)
@@ -101,6 +108,4 @@ class Format
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Format::class, \Google\Cloud\ArtifactRegistry\V1\Repository_Format::class);
 

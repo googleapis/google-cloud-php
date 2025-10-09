@@ -21,7 +21,7 @@ class CreateDataAttributeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. DataAttribute identifier.
      * * Must contain only lowercase letters, numbers and hyphens.
@@ -32,20 +32,20 @@ class CreateDataAttributeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_attribute_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_attribute_id = '';
+    protected $data_attribute_id = '';
     /**
      * Required. DataAttribute resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataAttribute data_attribute = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_attribute = null;
+    protected $data_attribute = null;
     /**
      * Optional. Only validate the request, but do not perform mutations.
      * The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                  $parent          Required. The resource name of the parent data taxonomy

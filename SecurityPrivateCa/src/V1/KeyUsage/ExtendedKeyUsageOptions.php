@@ -23,42 +23,42 @@ class ExtendedKeyUsageOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool server_auth = 1;</code>
      */
-    private $server_auth = false;
+    protected $server_auth = false;
     /**
      * Corresponds to OID 1.3.6.1.5.5.7.3.2. Officially described as "TLS WWW
      * client authentication", though regularly used for non-WWW TLS.
      *
      * Generated from protobuf field <code>bool client_auth = 2;</code>
      */
-    private $client_auth = false;
+    protected $client_auth = false;
     /**
      * Corresponds to OID 1.3.6.1.5.5.7.3.3. Officially described as "Signing of
      * downloadable executable code client authentication".
      *
      * Generated from protobuf field <code>bool code_signing = 3;</code>
      */
-    private $code_signing = false;
+    protected $code_signing = false;
     /**
      * Corresponds to OID 1.3.6.1.5.5.7.3.4. Officially described as "Email
      * protection".
      *
      * Generated from protobuf field <code>bool email_protection = 4;</code>
      */
-    private $email_protection = false;
+    protected $email_protection = false;
     /**
      * Corresponds to OID 1.3.6.1.5.5.7.3.8. Officially described as "Binding
      * the hash of an object to a time".
      *
      * Generated from protobuf field <code>bool time_stamping = 5;</code>
      */
-    private $time_stamping = false;
+    protected $time_stamping = false;
     /**
      * Corresponds to OID 1.3.6.1.5.5.7.3.9. Officially described as "Signing
      * OCSP responses".
      *
      * Generated from protobuf field <code>bool ocsp_signing = 6;</code>
      */
-    private $ocsp_signing = false;
+    protected $ocsp_signing = false;
 
     /**
      * Constructor.

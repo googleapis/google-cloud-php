@@ -23,7 +23,7 @@ class GetAzureOpenIdConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string azure_cluster = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $azure_cluster = '';
+    protected $azure_cluster = '';
 
     /**
      * @param string $azureCluster Required. The AzureCluster, which owns the OIDC discovery document.

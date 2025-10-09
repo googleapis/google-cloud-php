@@ -21,7 +21,7 @@ class SearchNearestEntitiesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NearestNeighbors nearest_neighbors = 1;</code>
      */
-    private $nearest_neighbors = null;
+    protected $nearest_neighbors = null;
 
     /**
      * Constructor.

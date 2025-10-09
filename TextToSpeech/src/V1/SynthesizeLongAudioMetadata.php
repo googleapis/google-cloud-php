@@ -20,7 +20,7 @@ class SynthesizeLongAudioMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Deprecated. Do not use.
      *
@@ -33,7 +33,7 @@ class SynthesizeLongAudioMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double progress_percentage = 3;</code>
      */
-    private $progress_percentage = 0.0;
+    protected $progress_percentage = 0.0;
 
     /**
      * Constructor.
@@ -99,13 +99,17 @@ class SynthesizeLongAudioMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getLastUpdateTime()
     {
-        @trigger_error('last_update_time is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->last_update_time)) {
+            @trigger_error('last_update_time is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->last_update_time;
     }
 
     public function hasLastUpdateTime()
     {
-        @trigger_error('last_update_time is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->last_update_time)) {
+            @trigger_error('last_update_time is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->last_update_time);
     }
 

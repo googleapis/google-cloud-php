@@ -51,6 +51,12 @@ class Dialect extends \Google\Protobuf\Internal\Message
      *           The Presto dialect
      *     @type \Google\Cloud\BigQuery\Migration\V2\MySQLDialect $mysql_dialect
      *           The MySQL dialect
+     *     @type \Google\Cloud\BigQuery\Migration\V2\DB2Dialect $db2_dialect
+     *           DB2 dialect
+     *     @type \Google\Cloud\BigQuery\Migration\V2\SQLiteDialect $sqlite_dialect
+     *           SQLite dialect
+     *     @type \Google\Cloud\BigQuery\Migration\V2\GreenplumDialect $greenplum_dialect
+     *           Greenplum dialect
      * }
      */
     public function __construct($data = NULL) {
@@ -488,6 +494,99 @@ class Dialect extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Migration\V2\MySQLDialect::class);
         $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * DB2 dialect
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.DB2Dialect db2_dialect = 15;</code>
+     * @return \Google\Cloud\BigQuery\Migration\V2\DB2Dialect|null
+     */
+    public function getDb2Dialect()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasDb2Dialect()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * DB2 dialect
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.DB2Dialect db2_dialect = 15;</code>
+     * @param \Google\Cloud\BigQuery\Migration\V2\DB2Dialect $var
+     * @return $this
+     */
+    public function setDb2Dialect($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Migration\V2\DB2Dialect::class);
+        $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
+     * SQLite dialect
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.SQLiteDialect sqlite_dialect = 16;</code>
+     * @return \Google\Cloud\BigQuery\Migration\V2\SQLiteDialect|null
+     */
+    public function getSqliteDialect()
+    {
+        return $this->readOneof(16);
+    }
+
+    public function hasSqliteDialect()
+    {
+        return $this->hasOneof(16);
+    }
+
+    /**
+     * SQLite dialect
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.SQLiteDialect sqlite_dialect = 16;</code>
+     * @param \Google\Cloud\BigQuery\Migration\V2\SQLiteDialect $var
+     * @return $this
+     */
+    public function setSqliteDialect($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Migration\V2\SQLiteDialect::class);
+        $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
+     * Greenplum dialect
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.GreenplumDialect greenplum_dialect = 17;</code>
+     * @return \Google\Cloud\BigQuery\Migration\V2\GreenplumDialect|null
+     */
+    public function getGreenplumDialect()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasGreenplumDialect()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * Greenplum dialect
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.GreenplumDialect greenplum_dialect = 17;</code>
+     * @param \Google\Cloud\BigQuery\Migration\V2\GreenplumDialect $var
+     * @return $this
+     */
+    public function setGreenplumDialect($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Migration\V2\GreenplumDialect::class);
+        $this->writeOneof(17, $var);
 
         return $this;
     }

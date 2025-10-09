@@ -22,7 +22,7 @@ class TroubleshootIamPolicyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessState access = 1;</code>
      */
-    private $access = 0;
+    protected $access = 0;
     /**
      * List of IAM policies that were evaluated to check the principal's
      * permissions, with annotations to indicate how each policy contributed to

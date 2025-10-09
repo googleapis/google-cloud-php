@@ -20,7 +20,7 @@ class OperationErrors extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The list of errors encountered while processing this operation.
      *

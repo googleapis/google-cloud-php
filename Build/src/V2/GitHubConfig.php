@@ -22,13 +22,13 @@ class GitHubConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.OAuthCredential authorizer_credential = 1;</code>
      */
-    private $authorizer_credential = null;
+    protected $authorizer_credential = null;
     /**
      * GitHub App installation id.
      *
      * Generated from protobuf field <code>int64 app_installation_id = 2;</code>
      */
-    private $app_installation_id = 0;
+    protected $app_installation_id = 0;
 
     /**
      * Constructor.

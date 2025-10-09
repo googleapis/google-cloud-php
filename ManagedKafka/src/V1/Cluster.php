@@ -58,6 +58,24 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.managedkafka.v1.Cluster.State state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = null;
+    /**
+     * Optional. TLS configuration for the Kafka cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.managedkafka.v1.TlsConfig tls_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $tls_config = null;
     protected $platform_config;
 
     /**
@@ -84,6 +102,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Optional. Rebalance configuration for the Kafka cluster.
      *     @type int $state
      *           Output only. The current state of the cluster.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\ManagedKafka\V1\TlsConfig $tls_config
+     *           Optional. TLS configuration for the Kafka cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -344,6 +368,114 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\ManagedKafka\V1\Cluster\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. TLS configuration for the Kafka cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.managedkafka.v1.TlsConfig tls_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ManagedKafka\V1\TlsConfig|null
+     */
+    public function getTlsConfig()
+    {
+        return $this->tls_config;
+    }
+
+    public function hasTlsConfig()
+    {
+        return isset($this->tls_config);
+    }
+
+    public function clearTlsConfig()
+    {
+        unset($this->tls_config);
+    }
+
+    /**
+     * Optional. TLS configuration for the Kafka cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.managedkafka.v1.TlsConfig tls_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ManagedKafka\V1\TlsConfig $var
+     * @return $this
+     */
+    public function setTlsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ManagedKafka\V1\TlsConfig::class);
+        $this->tls_config = $var;
 
         return $this;
     }

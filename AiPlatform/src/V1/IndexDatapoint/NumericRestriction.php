@@ -21,14 +21,14 @@ class NumericRestriction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string namespace = 1;</code>
      */
-    private $namespace = '';
+    protected $namespace = '';
     /**
      * This MUST be specified for queries and must NOT be specified for
      * datapoints.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint.NumericRestriction.Operator op = 5;</code>
      */
-    private $op = 0;
+    protected $op = 0;
     protected $Value;
 
     /**

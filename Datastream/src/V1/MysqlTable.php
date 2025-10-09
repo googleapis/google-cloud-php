@@ -20,7 +20,7 @@ class MysqlTable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 1;</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * MySQL columns in the database.
      * When unspecified as part of include/exclude objects, includes/excludes

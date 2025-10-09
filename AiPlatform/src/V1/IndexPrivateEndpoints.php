@@ -24,14 +24,14 @@ class IndexPrivateEndpoints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string match_grpc_address = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $match_grpc_address = '';
+    protected $match_grpc_address = '';
     /**
      * Output only. The name of the service attachment resource. Populated if
      * private service connect is enabled.
      *
      * Generated from protobuf field <code>string service_attachment = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $service_attachment = '';
+    protected $service_attachment = '';
     /**
      * Output only. PscAutomatedEndpoints is populated if private service connect
      * is enabled if PscAutomatedConfig is set.

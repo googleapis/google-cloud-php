@@ -23,7 +23,7 @@ class File extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_insecure = 4;</code>
      */
-    private $allow_insecure = false;
+    protected $allow_insecure = false;
     protected $type;
 
     /**

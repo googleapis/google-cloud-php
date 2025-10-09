@@ -21,32 +21,32 @@ class StopAirflowCommandRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string environment = 1;</code>
      */
-    private $environment = '';
+    protected $environment = '';
     /**
      * The unique ID of the command execution.
      *
      * Generated from protobuf field <code>string execution_id = 2;</code>
      */
-    private $execution_id = '';
+    protected $execution_id = '';
     /**
      * The name of the pod where the command is executed.
      *
      * Generated from protobuf field <code>string pod = 3;</code>
      */
-    private $pod = '';
+    protected $pod = '';
     /**
      * The namespace of the pod where the command is executed.
      *
      * Generated from protobuf field <code>string pod_namespace = 4;</code>
      */
-    private $pod_namespace = '';
+    protected $pod_namespace = '';
     /**
      * If true, the execution is terminated forcefully (SIGKILL). If false, the
      * execution is stopped gracefully, giving it time for cleanup.
      *
      * Generated from protobuf field <code>bool force = 5;</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * Constructor.

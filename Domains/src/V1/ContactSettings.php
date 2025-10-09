@@ -23,7 +23,7 @@ class ContactSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.ContactPrivacy privacy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $privacy = 0;
+    protected $privacy = 0;
     /**
      * Required. The registrant contact for the `Registration`.
      * *Caution: Anyone with access to this email address, phone number,
@@ -34,19 +34,19 @@ class ContactSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.ContactSettings.Contact registrant_contact = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $registrant_contact = null;
+    protected $registrant_contact = null;
     /**
      * Required. The administrative contact for the `Registration`.
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.ContactSettings.Contact admin_contact = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $admin_contact = null;
+    protected $admin_contact = null;
     /**
      * Required. The technical contact for the `Registration`.
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.ContactSettings.Contact technical_contact = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $technical_contact = null;
+    protected $technical_contact = null;
 
     /**
      * Constructor.

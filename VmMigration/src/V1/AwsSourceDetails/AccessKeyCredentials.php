@@ -27,6 +27,14 @@ class AccessKeyCredentials extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string secret_access_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     protected $secret_access_key = '';
+    /**
+     * Input only. AWS session token.
+     * Used only when AWS security token service (STS) is responsible for
+     * creating the temporary credentials.
+     *
+     * Generated from protobuf field <code>string session_token = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $session_token = '';
 
     /**
      * Constructor.
@@ -38,6 +46,10 @@ class AccessKeyCredentials extends \Google\Protobuf\Internal\Message
      *           AWS access key ID.
      *     @type string $secret_access_key
      *           Input only. AWS secret access key.
+     *     @type string $session_token
+     *           Input only. AWS session token.
+     *           Used only when AWS security token service (STS) is responsible for
+     *           creating the temporary credentials.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +105,36 @@ class AccessKeyCredentials extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->secret_access_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. AWS session token.
+     * Used only when AWS security token service (STS) is responsible for
+     * creating the temporary credentials.
+     *
+     * Generated from protobuf field <code>string session_token = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return string
+     */
+    public function getSessionToken()
+    {
+        return $this->session_token;
+    }
+
+    /**
+     * Input only. AWS session token.
+     * Used only when AWS security token service (STS) is responsible for
+     * creating the temporary credentials.
+     *
+     * Generated from protobuf field <code>string session_token = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSessionToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->session_token = $var;
 
         return $this;
     }

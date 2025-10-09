@@ -32,6 +32,35 @@ return [
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'AnalyzeWorkloadMove' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AssuredWorkloads\V1beta1\AnalyzeWorkloadMoveResponse',
+            ],
+            'DeleteWorkload' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetWorkload' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AssuredWorkloads\V1beta1\Workload',
             ],
             'ListWorkloads' => [
                 'pageStreaming' => [
@@ -42,6 +71,28 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getWorkloads',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\AssuredWorkloads\V1beta1\ListWorkloadsResponse',
+            ],
+            'RestrictAllowedResources' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateWorkload' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AssuredWorkloads\V1beta1\Workload',
+            ],
+            'templateMap' => [
+                'location' => 'organizations/{organization}/locations/{location}',
+                'workload' => 'organizations/{organization}/locations/{location}/workloads/{workload}',
             ],
         ],
     ],

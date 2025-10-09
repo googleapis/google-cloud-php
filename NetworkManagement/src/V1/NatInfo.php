@@ -20,81 +20,81 @@ class NatInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.NatInfo.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * IP protocol in string format, for example: "TCP", "UDP", "ICMP".
      *
      * Generated from protobuf field <code>string protocol = 2;</code>
      */
-    private $protocol = '';
+    protected $protocol = '';
     /**
      * URI of the network where NAT translation takes place.
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
      */
-    private $network_uri = '';
+    protected $network_uri = '';
     /**
      * Source IP address before NAT translation.
      *
      * Generated from protobuf field <code>string old_source_ip = 4;</code>
      */
-    private $old_source_ip = '';
+    protected $old_source_ip = '';
     /**
      * Source IP address after NAT translation.
      *
      * Generated from protobuf field <code>string new_source_ip = 5;</code>
      */
-    private $new_source_ip = '';
+    protected $new_source_ip = '';
     /**
      * Destination IP address before NAT translation.
      *
      * Generated from protobuf field <code>string old_destination_ip = 6;</code>
      */
-    private $old_destination_ip = '';
+    protected $old_destination_ip = '';
     /**
      * Destination IP address after NAT translation.
      *
      * Generated from protobuf field <code>string new_destination_ip = 7;</code>
      */
-    private $new_destination_ip = '';
+    protected $new_destination_ip = '';
     /**
      * Source port before NAT translation. Only valid when protocol is TCP or UDP.
      *
      * Generated from protobuf field <code>int32 old_source_port = 8;</code>
      */
-    private $old_source_port = 0;
+    protected $old_source_port = 0;
     /**
      * Source port after NAT translation. Only valid when protocol is TCP or UDP.
      *
      * Generated from protobuf field <code>int32 new_source_port = 9;</code>
      */
-    private $new_source_port = 0;
+    protected $new_source_port = 0;
     /**
      * Destination port before NAT translation. Only valid when protocol is TCP or
      * UDP.
      *
      * Generated from protobuf field <code>int32 old_destination_port = 10;</code>
      */
-    private $old_destination_port = 0;
+    protected $old_destination_port = 0;
     /**
      * Destination port after NAT translation. Only valid when protocol is TCP or
      * UDP.
      *
      * Generated from protobuf field <code>int32 new_destination_port = 11;</code>
      */
-    private $new_destination_port = 0;
+    protected $new_destination_port = 0;
     /**
      * Uri of the Cloud Router. Only valid when type is CLOUD_NAT.
      *
      * Generated from protobuf field <code>string router_uri = 12;</code>
      */
-    private $router_uri = '';
+    protected $router_uri = '';
     /**
      * The name of Cloud NAT Gateway. Only valid when type is CLOUD_NAT.
      *
      * Generated from protobuf field <code>string nat_gateway_name = 13;</code>
      */
-    private $nat_gateway_name = '';
+    protected $nat_gateway_name = '';
 
     /**
      * Constructor.

@@ -59,6 +59,4 @@ class KajEnrollmentState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KajEnrollmentState::class, \Google\Cloud\AssuredWorkloads\V1\Workload_KajEnrollmentState::class);
 

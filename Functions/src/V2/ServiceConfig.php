@@ -23,7 +23,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * The function execution timeout. Execution is considered failed and
      * can be terminated if the function is not completed at the end of the
@@ -31,7 +31,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 timeout_seconds = 2;</code>
      */
-    private $timeout_seconds = 0;
+    protected $timeout_seconds = 0;
     /**
      * The amount of memory available for a function.
      * Defaults to 256M. Supported units are k, M, G, Mi, Gi. If no unit is
@@ -42,9 +42,9 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string available_memory = 13;</code>
      */
-    private $available_memory = '';
+    protected $available_memory = '';
     /**
-     * [Preview] The number of CPUs used in a single container instance.
+     * The number of CPUs used in a single container instance.
      * Default value is calculated from available memory.
      * Supports the same values as Cloud Run, see
      * https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements
@@ -52,7 +52,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string available_cpu = 22;</code>
      */
-    private $available_cpu = '';
+    protected $available_cpu = '';
     /**
      * Environment variables that shall be available during function execution.
      *
@@ -73,7 +73,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_instance_count = 5;</code>
      */
-    private $max_instance_count = 0;
+    protected $max_instance_count = 0;
     /**
      * The limit on the minimum number of function instances that may coexist at a
      * given time.
@@ -86,41 +86,41 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_instance_count = 12;</code>
      */
-    private $min_instance_count = 0;
+    protected $min_instance_count = 0;
     /**
      * The Serverless VPC Access connector that this cloud function can connect
      * to. The format of this field is `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`.
      *
      * Generated from protobuf field <code>string vpc_connector = 6 [(.google.api.resource_reference) = {</code>
      */
-    private $vpc_connector = '';
+    protected $vpc_connector = '';
     /**
      * The egress settings for the connector, controlling what traffic is diverted
      * through it.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.ServiceConfig.VpcConnectorEgressSettings vpc_connector_egress_settings = 7;</code>
      */
-    private $vpc_connector_egress_settings = 0;
+    protected $vpc_connector_egress_settings = 0;
     /**
      * The ingress settings for the function, controlling what traffic can reach
      * it.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.ServiceConfig.IngressSettings ingress_settings = 8;</code>
      */
-    private $ingress_settings = 0;
+    protected $ingress_settings = 0;
     /**
      * Output only. URI of the Service deployed.
      *
      * Generated from protobuf field <code>string uri = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * The email of the service's service account. If empty, defaults to
      * `{project_number}-compute&#64;developer.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string service_account_email = 10;</code>
      */
-    private $service_account_email = '';
+    protected $service_account_email = '';
     /**
      * Whether 100% of traffic is routed to the latest revision.
      * On CreateFunction and UpdateFunction, when set to true, the revision being
@@ -130,7 +130,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool all_traffic_on_latest_revision = 16;</code>
      */
-    private $all_traffic_on_latest_revision = false;
+    protected $all_traffic_on_latest_revision = false;
     /**
      * Secret environment variables configuration.
      *
@@ -148,14 +148,14 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision = '';
+    protected $revision = '';
     /**
-     * [Preview] Sets the maximum number of concurrent requests that each instance
+     * Sets the maximum number of concurrent requests that each instance
      * can receive. Defaults to 1.
      *
      * Generated from protobuf field <code>int32 max_instance_request_concurrency = 20;</code>
      */
-    private $max_instance_request_concurrency = 0;
+    protected $max_instance_request_concurrency = 0;
     /**
      * Security level configure whether the function only accepts https.
      * This configuration is only applicable to 1st Gen functions with Http
@@ -164,7 +164,14 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.ServiceConfig.SecurityLevel security_level = 21;</code>
      */
-    private $security_level = 0;
+    protected $security_level = 0;
+    /**
+     * Optional. The binary authorization policy to be checked when deploying the
+     * Cloud Run service.
+     *
+     * Generated from protobuf field <code>string binary_authorization_policy = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $binary_authorization_policy = '';
 
     /**
      * Constructor.
@@ -188,7 +195,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *           https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      *           a full description.
      *     @type string $available_cpu
-     *           [Preview] The number of CPUs used in a single container instance.
+     *           The number of CPUs used in a single container instance.
      *           Default value is calculated from available memory.
      *           Supports the same values as Cloud Run, see
      *           https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements
@@ -242,13 +249,16 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *     @type string $revision
      *           Output only. The name of service revision.
      *     @type int $max_instance_request_concurrency
-     *           [Preview] Sets the maximum number of concurrent requests that each instance
+     *           Sets the maximum number of concurrent requests that each instance
      *           can receive. Defaults to 1.
      *     @type int $security_level
      *           Security level configure whether the function only accepts https.
      *           This configuration is only applicable to 1st Gen functions with Http
      *           trigger. By default https is optional for 1st Gen functions; 2nd Gen
      *           functions are https ONLY.
+     *     @type string $binary_authorization_policy
+     *           Optional. The binary authorization policy to be checked when deploying the
+     *           Cloud Run service.
      * }
      */
     public function __construct($data = NULL) {
@@ -353,7 +363,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Preview] The number of CPUs used in a single container instance.
+     * The number of CPUs used in a single container instance.
      * Default value is calculated from available memory.
      * Supports the same values as Cloud Run, see
      * https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements
@@ -368,7 +378,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Preview] The number of CPUs used in a single container instance.
+     * The number of CPUs used in a single container instance.
      * Default value is calculated from available memory.
      * Supports the same values as Cloud Run, see
      * https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements
@@ -747,7 +757,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Preview] Sets the maximum number of concurrent requests that each instance
+     * Sets the maximum number of concurrent requests that each instance
      * can receive. Defaults to 1.
      *
      * Generated from protobuf field <code>int32 max_instance_request_concurrency = 20;</code>
@@ -759,7 +769,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Preview] Sets the maximum number of concurrent requests that each instance
+     * Sets the maximum number of concurrent requests that each instance
      * can receive. Defaults to 1.
      *
      * Generated from protobuf field <code>int32 max_instance_request_concurrency = 20;</code>
@@ -802,6 +812,34 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Functions\V2\ServiceConfig\SecurityLevel::class);
         $this->security_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The binary authorization policy to be checked when deploying the
+     * Cloud Run service.
+     *
+     * Generated from protobuf field <code>string binary_authorization_policy = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getBinaryAuthorizationPolicy()
+    {
+        return $this->binary_authorization_policy;
+    }
+
+    /**
+     * Optional. The binary authorization policy to be checked when deploying the
+     * Cloud Run service.
+     *
+     * Generated from protobuf field <code>string binary_authorization_policy = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBinaryAuthorizationPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->binary_authorization_policy = $var;
 
         return $this;
     }

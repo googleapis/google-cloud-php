@@ -21,19 +21,19 @@ class SupervisedHyperParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 epoch_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $epoch_count = 0;
+    protected $epoch_count = 0;
     /**
      * Optional. Multiplier for adjusting the default learning rate.
      *
      * Generated from protobuf field <code>double learning_rate_multiplier = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $learning_rate_multiplier = 0.0;
+    protected $learning_rate_multiplier = 0.0;
     /**
      * Optional. Adapter size for tuning.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SupervisedHyperParameters.AdapterSize adapter_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $adapter_size = 0;
+    protected $adapter_size = 0;
 
     /**
      * Constructor.

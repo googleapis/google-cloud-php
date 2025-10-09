@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -43,6 +44,7 @@ use Google\Cloud\SecurityCenter\V2\BatchCreateResourceValueConfigsRequest;
 use Google\Cloud\SecurityCenter\V2\BatchCreateResourceValueConfigsResponse;
 use Google\Cloud\SecurityCenter\V2\BigQueryExport;
 use Google\Cloud\SecurityCenter\V2\BulkMuteFindingsRequest;
+use Google\Cloud\SecurityCenter\V2\BulkMuteFindingsResponse;
 use Google\Cloud\SecurityCenter\V2\CreateBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V2\CreateFindingRequest;
 use Google\Cloud\SecurityCenter\V2\CreateMuteConfigRequest;
@@ -90,6 +92,7 @@ use Google\Cloud\SecurityCenter\V2\ValuedResource;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: V2 APIs for Security Center service.
@@ -102,46 +105,46 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateResourceValueConfigsAsync(BatchCreateResourceValueConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface bulkMuteFindingsAsync(BulkMuteFindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBigQueryExportAsync(CreateBigQueryExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFindingAsync(CreateFindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMuteConfigAsync(CreateMuteConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNotificationConfigAsync(CreateNotificationConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSourceAsync(CreateSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBigQueryExportAsync(DeleteBigQueryExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMuteConfigAsync(DeleteMuteConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNotificationConfigAsync(DeleteNotificationConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteResourceValueConfigAsync(DeleteResourceValueConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBigQueryExportAsync(GetBigQueryExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMuteConfigAsync(GetMuteConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNotificationConfigAsync(GetNotificationConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getResourceValueConfigAsync(GetResourceValueConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSimulationAsync(GetSimulationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSourceAsync(GetSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getValuedResourceAsync(GetValuedResourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface groupFindingsAsync(GroupFindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAttackPathsAsync(ListAttackPathsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBigQueryExportsAsync(ListBigQueryExportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFindingsAsync(ListFindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMuteConfigsAsync(ListMuteConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNotificationConfigsAsync(ListNotificationConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listResourceValueConfigsAsync(ListResourceValueConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSourcesAsync(ListSourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listValuedResourcesAsync(ListValuedResourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setFindingStateAsync(SetFindingStateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setMuteAsync(SetMuteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBigQueryExportAsync(UpdateBigQueryExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateExternalSystemAsync(UpdateExternalSystemRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFindingAsync(UpdateFindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMuteConfigAsync(UpdateMuteConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNotificationConfigAsync(UpdateNotificationConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateResourceValueConfigAsync(UpdateResourceValueConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSecurityMarksAsync(UpdateSecurityMarksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSourceAsync(UpdateSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateResourceValueConfigsResponse> batchCreateResourceValueConfigsAsync(BatchCreateResourceValueConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> bulkMuteFindingsAsync(BulkMuteFindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BigQueryExport> createBigQueryExportAsync(CreateBigQueryExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Finding> createFindingAsync(CreateFindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MuteConfig> createMuteConfigAsync(CreateMuteConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationConfig> createNotificationConfigAsync(CreateNotificationConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Source> createSourceAsync(CreateSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteBigQueryExportAsync(DeleteBigQueryExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMuteConfigAsync(DeleteMuteConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteNotificationConfigAsync(DeleteNotificationConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteResourceValueConfigAsync(DeleteResourceValueConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BigQueryExport> getBigQueryExportAsync(GetBigQueryExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MuteConfig> getMuteConfigAsync(GetMuteConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationConfig> getNotificationConfigAsync(GetNotificationConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResourceValueConfig> getResourceValueConfigAsync(GetResourceValueConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Simulation> getSimulationAsync(GetSimulationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Source> getSourceAsync(GetSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ValuedResource> getValuedResourceAsync(GetValuedResourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> groupFindingsAsync(GroupFindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAttackPathsAsync(ListAttackPathsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBigQueryExportsAsync(ListBigQueryExportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFindingsAsync(ListFindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMuteConfigsAsync(ListMuteConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNotificationConfigsAsync(ListNotificationConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listResourceValueConfigsAsync(ListResourceValueConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSourcesAsync(ListSourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listValuedResourcesAsync(ListValuedResourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Finding> setFindingStateAsync(SetFindingStateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Finding> setMuteAsync(SetMuteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BigQueryExport> updateBigQueryExportAsync(UpdateBigQueryExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExternalSystem> updateExternalSystemAsync(UpdateExternalSystemRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Finding> updateFindingAsync(UpdateFindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MuteConfig> updateMuteConfigAsync(UpdateMuteConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationConfig> updateNotificationConfigAsync(UpdateNotificationConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResourceValueConfig> updateResourceValueConfigAsync(UpdateResourceValueConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityMarks> updateSecurityMarksAsync(UpdateSecurityMarksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Source> updateSourceAsync(UpdateSourceRequest $request, array $optionalArgs = [])
  */
 final class SecurityCenterClient
 {
@@ -216,7 +219,7 @@ final class SecurityCenterClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -776,6 +779,65 @@ final class SecurityCenterClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_location_resource_value_config resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $resourceValueConfig
+     *
+     * @return string The formatted organization_location_resource_value_config resource.
+     */
+    public static function organizationLocationResourceValueConfigName(string $organization, string $location, string $resourceValueConfig): string
+    {
+        return self::getPathTemplate('organizationLocationResourceValueConfig')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'resource_value_config' => $resourceValueConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_simluation resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $simluation
+     *
+     * @return string The formatted organization_location_simluation resource.
+     */
+    public static function organizationLocationSimluationName(string $organization, string $location, string $simluation): string
+    {
+        return self::getPathTemplate('organizationLocationSimluation')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'simluation' => $simluation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_simluation_valued_resource resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $simluation
+     * @param string $valuedResource
+     *
+     * @return string The formatted organization_location_simluation_valued_resource resource.
+     */
+    public static function organizationLocationSimluationValuedResourceName(string $organization, string $location, string $simluation, string $valuedResource): string
+    {
+        return self::getPathTemplate('organizationLocationSimluationValuedResource')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'simluation' => $simluation,
+            'valued_resource' => $valuedResource,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_mute_config resource.
      *
      * @param string $organization
@@ -788,6 +850,59 @@ final class SecurityCenterClient
         return self::getPathTemplate('organizationMuteConfig')->render([
             'organization' => $organization,
             'mute_config' => $muteConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_resource_value_config resource.
+     *
+     * @param string $organization
+     * @param string $resourceValueConfig
+     *
+     * @return string The formatted organization_resource_value_config resource.
+     */
+    public static function organizationResourceValueConfigName(string $organization, string $resourceValueConfig): string
+    {
+        return self::getPathTemplate('organizationResourceValueConfig')->render([
+            'organization' => $organization,
+            'resource_value_config' => $resourceValueConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_simulation resource.
+     *
+     * @param string $organization
+     * @param string $simulation
+     *
+     * @return string The formatted organization_simulation resource.
+     */
+    public static function organizationSimulationName(string $organization, string $simulation): string
+    {
+        return self::getPathTemplate('organizationSimulation')->render([
+            'organization' => $organization,
+            'simulation' => $simulation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_simulation_valued_resource resource.
+     *
+     * @param string $organization
+     * @param string $simulation
+     * @param string $valuedResource
+     *
+     * @return string The formatted organization_simulation_valued_resource resource.
+     */
+    public static function organizationSimulationValuedResourceName(string $organization, string $simulation, string $valuedResource): string
+    {
+        return self::getPathTemplate('organizationSimulationValuedResource')->render([
+            'organization' => $organization,
+            'simulation' => $simulation,
+            'valued_resource' => $valuedResource,
         ]);
     }
 
@@ -929,6 +1044,27 @@ final class SecurityCenterClient
             'source' => $source,
             'location' => $location,
             'finding' => $finding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_valued_resource resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $simulation
+     * @param string $valuedResource
+     *
+     * @return string The formatted organization_valued_resource resource.
+     */
+    public static function organizationValuedResourceName(string $organization, string $location, string $simulation, string $valuedResource): string
+    {
+        return self::getPathTemplate('organizationValuedResource')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'simulation' => $simulation,
+            'valued_resource' => $valuedResource,
         ]);
     }
 
@@ -1439,7 +1575,13 @@ final class SecurityCenterClient
      * - organizationLocationExport: organizations/{organization}/locations/{location}/bigQueryExports/{export}
      * - organizationLocationMuteConfig: organizations/{organization}/locations/{location}/muteConfigs/{mute_config}
      * - organizationLocationNotificationConfig: organizations/{organization}/locations/{location}/notificationConfigs/{notification_config}
+     * - organizationLocationResourceValueConfig: organizations/{organization}/locations/{location}/resourceValueConfigs/{resource_value_config}
+     * - organizationLocationSimluation: organizations/{organization}/locations/{location}/simulations/{simluation}
+     * - organizationLocationSimluationValuedResource: organizations/{organization}/locations/{location}/simulations/{simluation}/valuedResources/{valued_resource}
      * - organizationMuteConfig: organizations/{organization}/muteConfigs/{mute_config}
+     * - organizationResourceValueConfig: organizations/{organization}/resourceValueConfigs/{resource_value_config}
+     * - organizationSimulation: organizations/{organization}/simulations/{simulation}
+     * - organizationSimulationValuedResource: organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}
      * - organizationSource: organizations/{organization}/sources/{source}
      * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}
      * - organizationSourceFindingExternalsystem: organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
@@ -1447,6 +1589,7 @@ final class SecurityCenterClient
      * - organizationSourceLocationFinding: organizations/{organization}/sources/{source}/locations/{location}/findings/{finding}
      * - organizationSourceLocationFindingExternalsystem: organizations/{organization}/sources/{source}/locations/{location}/findings/{finding}/externalSystems/{externalsystem}
      * - organizationSourceLocationFindingSecurityMarks: organizations/{organization}/sources/{source}/locations/{location}/findings/{finding}/securityMarks
+     * - organizationValuedResource: organizations/{organization}/locations/{location}/simulations/{simulation}/valuedResources/{valued_resource}
      * - policy: organizations/{organization}/policies/{constraint_name}
      * - project: projects/{project}
      * - projectAssetSecurityMarks: projects/{project}/assets/{asset}/securityMarks
@@ -1480,14 +1623,14 @@ final class SecurityCenterClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -1495,20 +1638,29 @@ final class SecurityCenterClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'securitycenter.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\SecurityCenter\V2\SecurityCenterClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new SecurityCenterClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -1542,11 +1694,16 @@ final class SecurityCenterClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -1612,7 +1769,7 @@ final class SecurityCenterClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BulkMuteFindingsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */

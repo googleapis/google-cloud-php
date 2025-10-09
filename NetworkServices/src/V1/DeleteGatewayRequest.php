@@ -24,6 +24,21 @@ class DeleteGatewayRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. A name of the Gateway to delete. Must be in the format
+     *                     `projects/&#42;/locations/&#42;/gateways/*`. Please see
+     *                     {@see NetworkServicesClient::gatewayName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\DeleteGatewayRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

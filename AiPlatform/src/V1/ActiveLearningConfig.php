@@ -23,7 +23,7 @@ class ActiveLearningConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SampleConfig sample_config = 3;</code>
      */
-    private $sample_config = null;
+    protected $sample_config = null;
     /**
      * CMLE training config. For every active learning labeling iteration, system
      * will train a machine learning model on CMLE. The trained model will be used
@@ -31,7 +31,7 @@ class ActiveLearningConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TrainingConfig training_config = 4;</code>
      */
-    private $training_config = null;
+    protected $training_config = null;
     protected $human_labeling_budget;
 
     /**

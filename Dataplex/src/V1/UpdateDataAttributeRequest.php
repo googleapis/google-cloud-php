@@ -20,20 +20,20 @@ class UpdateDataAttributeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. Only fields specified in `update_mask` are updated.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataAttribute data_attribute = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_attribute = null;
+    protected $data_attribute = null;
     /**
      * Optional. Only validate the request, but do not perform mutations.
      * The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\Dataplex\V1\DataAttribute $dataAttribute Required. Only fields specified in `update_mask` are updated.

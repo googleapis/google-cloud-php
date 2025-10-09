@@ -25,11 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_LlmUtilityService_CountTokens_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\LlmUtilityServiceClient;
-use Google\Cloud\AIPlatform\V1\Content;
 use Google\Cloud\AIPlatform\V1\CountTokensRequest;
 use Google\Cloud\AIPlatform\V1\CountTokensResponse;
-use Google\Cloud\AIPlatform\V1\Part;
-use Google\Protobuf\Value;
 
 /**
  * Perform a token counting.
@@ -38,26 +35,15 @@ use Google\Protobuf\Value;
  *                                  Format:
  *                                  `projects/{project}/locations/{location}/endpoints/{endpoint}`
  *                                  Please see {@see LlmUtilityServiceClient::endpointName()} for help formatting this field.
- * @param string $model             The name of the publisher model requested to serve the
- *                                  prediction. Format:
- *                                  `projects/{project}/locations/{location}/publishers/&#42;/models/*`
  */
-function count_tokens_sample(string $formattedEndpoint, string $model): void
+function count_tokens_sample(string $formattedEndpoint): void
 {
     // Create a client.
     $llmUtilityServiceClient = new LlmUtilityServiceClient();
 
     // Prepare the request message.
-    $instances = [new Value()];
-    $contentsParts = [new Part()];
-    $content = (new Content())
-        ->setParts($contentsParts);
-    $contents = [$content,];
     $request = (new CountTokensRequest())
-        ->setEndpoint($formattedEndpoint)
-        ->setModel($model)
-        ->setInstances($instances)
-        ->setContents($contents);
+        ->setEndpoint($formattedEndpoint);
 
     // Call the API and handle any network failures.
     try {
@@ -81,8 +67,7 @@ function count_tokens_sample(string $formattedEndpoint, string $model): void
 function callSample(): void
 {
     $formattedEndpoint = LlmUtilityServiceClient::endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-    $model = '[MODEL]';
 
-    count_tokens_sample($formattedEndpoint, $model);
+    count_tokens_sample($formattedEndpoint);
 }
 // [END aiplatform_v1_generated_LlmUtilityService_CountTokens_sync]

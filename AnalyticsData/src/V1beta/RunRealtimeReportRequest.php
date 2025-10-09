@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked.
+     * A Google Analytics property identifier whose events are tracked.
      * Specified in the URL path and not the body. To learn more, see [where to
      * find your Property
      * ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
@@ -24,7 +24,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string property = 1;</code>
      */
-    private $property = '';
+    protected $property = '';
     /**
      * The dimensions requested and displayed.
      *
@@ -42,14 +42,14 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression dimension_filter = 4;</code>
      */
-    private $dimension_filter = null;
+    protected $dimension_filter = null;
     /**
      * The filter clause of metrics. Applied at post aggregation phase, similar to
      * SQL having-clause. Dimensions cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression metric_filter = 5;</code>
      */
-    private $metric_filter = null;
+    protected $metric_filter = null;
     /**
      * The number of rows to return. If unspecified, 10,000 rows are returned. The
      * API returns a maximum of 250,000 rows per request, no matter how many you
@@ -62,7 +62,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 limit = 6;</code>
      */
-    private $limit = 0;
+    protected $limit = 0;
     /**
      * Aggregation of metrics. Aggregated metric values will be shown in rows
      * where the dimension_values are set to "RESERVED_(MetricAggregation)".
@@ -77,12 +77,13 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      */
     private $order_bys;
     /**
-     * Toggles whether to return the current state of this Analytics Property's
-     * Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     * Toggles whether to return the current state of this Google Analytics
+     * property's Realtime quota. Quota is returned in
+     * [PropertyQuota](#PropertyQuota).
      *
      * Generated from protobuf field <code>bool return_property_quota = 9;</code>
      */
-    private $return_property_quota = false;
+    protected $return_property_quota = false;
     /**
      * The minute ranges of event data to read. If unspecified, one minute range
      * for the last 30 minutes will be used. If multiple minute ranges are
@@ -101,7 +102,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $property
-     *           A Google Analytics GA4 property identifier whose events are tracked.
+     *           A Google Analytics property identifier whose events are tracked.
      *           Specified in the URL path and not the body. To learn more, see [where to
      *           find your Property
      *           ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
@@ -130,8 +131,9 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Analytics\Data\V1beta\OrderBy>|\Google\Protobuf\Internal\RepeatedField $order_bys
      *           Specifies how rows are ordered in the response.
      *     @type bool $return_property_quota
-     *           Toggles whether to return the current state of this Analytics Property's
-     *           Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     *           Toggles whether to return the current state of this Google Analytics
+     *           property's Realtime quota. Quota is returned in
+     *           [PropertyQuota](#PropertyQuota).
      *     @type array<\Google\Analytics\Data\V1beta\MinuteRange>|\Google\Protobuf\Internal\RepeatedField $minute_ranges
      *           The minute ranges of event data to read. If unspecified, one minute range
      *           for the last 30 minutes will be used. If multiple minute ranges are
@@ -146,7 +148,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked.
+     * A Google Analytics property identifier whose events are tracked.
      * Specified in the URL path and not the body. To learn more, see [where to
      * find your Property
      * ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
@@ -161,7 +163,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked.
+     * A Google Analytics property identifier whose events are tracked.
      * Specified in the URL path and not the body. To learn more, see [where to
      * find your Property
      * ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
@@ -400,8 +402,9 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Toggles whether to return the current state of this Analytics Property's
-     * Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     * Toggles whether to return the current state of this Google Analytics
+     * property's Realtime quota. Quota is returned in
+     * [PropertyQuota](#PropertyQuota).
      *
      * Generated from protobuf field <code>bool return_property_quota = 9;</code>
      * @return bool
@@ -412,8 +415,9 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Toggles whether to return the current state of this Analytics Property's
-     * Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     * Toggles whether to return the current state of this Google Analytics
+     * property's Realtime quota. Quota is returned in
+     * [PropertyQuota](#PropertyQuota).
      *
      * Generated from protobuf field <code>bool return_property_quota = 9;</code>
      * @param bool $var

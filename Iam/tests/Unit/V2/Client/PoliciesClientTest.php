@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Iam\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V2\Client\PoliciesClient;
@@ -35,6 +34,7 @@ use Google\Cloud\Iam\V2\ListPoliciesRequest;
 use Google\Cloud\Iam\V2\ListPoliciesResponse;
 use Google\Cloud\Iam\V2\Policy;
 use Google\Cloud\Iam\V2\UpdatePolicyRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -57,7 +57,9 @@ class PoliciesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return PoliciesClient */
@@ -113,9 +115,7 @@ class PoliciesClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($parent)
-            ->setPolicy($policy);
+        $request = (new CreatePolicyRequest())->setParent($parent)->setPolicy($policy);
         $response = $gapicClient->createPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -173,19 +173,20 @@ class PoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($parent)
-            ->setPolicy($policy);
+        $request = (new CreatePolicyRequest())->setParent($parent)->setPolicy($policy);
         $response = $gapicClient->createPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -251,8 +252,7 @@ class PoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new DeletePolicyRequest())
-            ->setName($name);
+        $request = (new DeletePolicyRequest())->setName($name);
         $response = $gapicClient->deletePolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -308,17 +308,19 @@ class PoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new DeletePolicyRequest())
-            ->setName($name);
+        $request = (new DeletePolicyRequest())->setName($name);
         $response = $gapicClient->deletePolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -366,8 +368,7 @@ class PoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetPolicyRequest())
-            ->setName($name);
+        $request = (new GetPolicyRequest())->setName($name);
         $response = $gapicClient->getPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -391,17 +392,19 @@ class PoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetPolicyRequest())
-            ->setName($name);
+        $request = (new GetPolicyRequest())->setName($name);
         try {
             $gapicClient->getPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -426,17 +429,14 @@ class PoliciesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $policiesElement = new Policy();
-        $policies = [
-            $policiesElement,
-        ];
+        $policies = [$policiesElement];
         $expectedResponse = new ListPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPolicies($policies);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListPoliciesRequest())
-            ->setParent($parent);
+        $request = (new ListPoliciesRequest())->setParent($parent);
         $response = $gapicClient->listPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -463,17 +463,19 @@ class PoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListPoliciesRequest())
-            ->setParent($parent);
+        $request = (new ListPoliciesRequest())->setParent($parent);
         try {
             $gapicClient->listPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -530,8 +532,7 @@ class PoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $policy = new Policy();
-        $request = (new UpdatePolicyRequest())
-            ->setPolicy($policy);
+        $request = (new UpdatePolicyRequest())->setPolicy($policy);
         $response = $gapicClient->updatePolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -587,17 +588,19 @@ class PoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $policy = new Policy();
-        $request = (new UpdatePolicyRequest())
-            ->setPolicy($policy);
+        $request = (new UpdatePolicyRequest())->setPolicy($policy);
         $response = $gapicClient->updatePolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -664,9 +667,7 @@ class PoliciesClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($parent)
-            ->setPolicy($policy);
+        $request = (new CreatePolicyRequest())->setParent($parent)->setPolicy($policy);
         $response = $gapicClient->createPolicyAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

@@ -46,6 +46,13 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>float boost = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $boost = 0.0;
+    /**
+     * Optional. Complex specification for custom ranking based on customer
+     * defined attribute value.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.BoostSpec.ConditionBoostSpec.BoostControlSpec boost_control_spec = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $boost_control_spec = null;
 
     /**
      * Constructor.
@@ -76,6 +83,9 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      *           out completely.
      *           Setting to 0.0 means no boost applied. The boosting condition is
      *           ignored.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\BoostSpec\ConditionBoostSpec\BoostControlSpec $boost_control_spec
+     *           Optional. Complex specification for custom ranking based on customer
+     *           defined attribute value.
      * }
      */
     public function __construct($data = NULL) {
@@ -169,6 +179,44 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->boost = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Complex specification for custom ranking based on customer
+     * defined attribute value.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.BoostSpec.ConditionBoostSpec.BoostControlSpec boost_control_spec = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\BoostSpec\ConditionBoostSpec\BoostControlSpec|null
+     */
+    public function getBoostControlSpec()
+    {
+        return $this->boost_control_spec;
+    }
+
+    public function hasBoostControlSpec()
+    {
+        return isset($this->boost_control_spec);
+    }
+
+    public function clearBoostControlSpec()
+    {
+        unset($this->boost_control_spec);
+    }
+
+    /**
+     * Optional. Complex specification for custom ranking based on customer
+     * defined attribute value.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.BoostSpec.ConditionBoostSpec.BoostControlSpec boost_control_spec = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\BoostSpec\ConditionBoostSpec\BoostControlSpec $var
+     * @return $this
+     */
+    public function setBoostControlSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\BoostSpec\ConditionBoostSpec\BoostControlSpec::class);
+        $this->boost_control_spec = $var;
 
         return $this;
     }

@@ -33,15 +33,36 @@ use Google\Apps\Chat\V1\Space;
  * [Get details about a
  * space](https://developers.google.com/workspace/chat/get-spaces).
  *
- * Requires
- * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
- * Supports
- * [app
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
- * and [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
  *
- * @param string $formattedName Resource name of the space, in the form "spaces/*".
+ * - [App
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.bot`
+ * - `https://www.googleapis.com/auth/chat.app.spaces` with [administrator
+ * approval](https://support.google.com/a?p=chat-app-auth)
+ *
+ * - [User
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.spaces.readonly`
+ * - `https://www.googleapis.com/auth/chat.spaces`
+ * - User authentication grants administrator privileges when an
+ * administrator account authenticates, `use_admin_access` is `true`, and
+ * one of the following authorization scopes is used:
+ * - `https://www.googleapis.com/auth/chat.admin.spaces.readonly`
+ * - `https://www.googleapis.com/auth/chat.admin.spaces`
+ *
+ * App authentication has the following limitations:
+ *
+ * - `space.access_settings` is only populated when using the
+ * `chat.app.spaces` scope.
+ * - `space.predefind_permission_settings` and `space.permission_settings` are
+ * only populated when using the `chat.app.spaces` scope, and only for
+ * spaces the app created.
+ *
+ * @param string $formattedName Resource name of the space, in the form `spaces/{space}`.
  *
  *                              Format: `spaces/{space}`
  *                              Please see {@see ChatServiceClient::spaceName()} for help formatting this field.

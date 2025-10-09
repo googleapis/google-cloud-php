@@ -27,7 +27,7 @@ class Tenant extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Client side tenant identifier, used to uniquely identify the
      * tenant.
@@ -35,7 +35,7 @@ class Tenant extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $external_id = '';
+    protected $external_id = '';
 
     /**
      * Constructor.

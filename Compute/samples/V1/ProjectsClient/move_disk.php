@@ -25,12 +25,13 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Projects_MoveDisk_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\ProjectsClient;
 use Google\Cloud\Compute\V1\DiskMoveRequest;
-use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\MoveDiskProjectRequest;
 use Google\Rpc\Status;
 
 /**
- * Moves a persistent disk from one zone to another.
+ * Starting September 29, 2025, you can't use the moveDisk API on new projects. To move a disk to a different region or zone, follow the steps in [Change the location of a disk](https://{$universe.dns_names.final_documentation_domain}/compute/docs/disks/migrate-to-hyperdisk#migrate-to-hd). Projects that already use the moveDisk API can continue usage until September 29, 2026. Starting November 1, 2025, API responses will include a warning message in the response body about the upcoming deprecation. You can skip the message to continue using the service without interruption.
  *
  * @param string $project Project ID for this request.
  */
@@ -39,13 +40,16 @@ function move_disk_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $diskMoveRequestResource = new DiskMoveRequest();
+    $request = (new MoveDiskProjectRequest())
+        ->setDiskMoveRequestResource($diskMoveRequestResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->moveDisk($diskMoveRequestResource, $project);
+        $response = $projectsClient->moveDisk($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

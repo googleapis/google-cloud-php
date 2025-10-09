@@ -44,7 +44,7 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string write_stream = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $write_stream = '';
+    protected $write_stream = '';
     /**
      * If present, the write is only performed if the next append offset is same
      * as the provided value. If not present, the write is performed at the
@@ -53,14 +53,14 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value offset = 2;</code>
      */
-    private $offset = null;
+    protected $offset = null;
     /**
      * Id set by client to annotate its identity. Only initial request setting is
      * respected.
      *
      * Generated from protobuf field <code>string trace_id = 6;</code>
      */
-    private $trace_id = '';
+    protected $trace_id = '';
     /**
      * A map to indicate how to interpret missing value for some fields. Missing
      * values are fields present in user schema but missing in rows. The key is
@@ -93,7 +93,7 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.MissingValueInterpretation default_missing_value_interpretation = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $default_missing_value_interpretation = 0;
+    protected $default_missing_value_interpretation = 0;
     protected $rows;
 
     /**
@@ -174,6 +174,9 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *           when calling AppendRows for the '_default' stream.
      *     @type \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ProtoData $proto_rows
      *           Rows in proto format.
+     *     @type \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ArrowData $arrow_rows
+     *           Rows in arrow format. This is an experimental feature only selected for
+     *           allowlisted customers.
      *     @type string $trace_id
      *           Id set by client to annotate its identity. Only initial request setting is
      *           respected.
@@ -306,7 +309,7 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value offset = 2;</code>
      * @return int|string|null
      */
-    public function getOffsetValue()
+    public function getOffsetUnwrapped()
     {
         return $this->readWrapperValue("offset");
     }
@@ -341,7 +344,7 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setOffsetValue($var)
+    public function setOffsetUnwrapped($var)
     {
         $this->writeWrapperValue("offset", $var);
         return $this;}
@@ -373,6 +376,39 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ProtoData::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Rows in arrow format. This is an experimental feature only selected for
+     * allowlisted customers.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.ArrowData arrow_rows = 5;</code>
+     * @return \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ArrowData|null
+     */
+    public function getArrowRows()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasArrowRows()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Rows in arrow format. This is an experimental feature only selected for
+     * allowlisted customers.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.ArrowData arrow_rows = 5;</code>
+     * @param \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ArrowData $var
+     * @return $this
+     */
+    public function setArrowRows($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ArrowData::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

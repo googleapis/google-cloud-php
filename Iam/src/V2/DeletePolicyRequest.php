@@ -26,7 +26,7 @@ class DeletePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The expected `etag` of the policy to delete. If the value does not match
      * the value that is stored in IAM, the request fails with a `409` error code
@@ -36,7 +36,7 @@ class DeletePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. The resource name of the policy to delete. Format:

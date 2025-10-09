@@ -27,7 +27,7 @@ class RetentionPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 backup_delete_lock_days = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $backup_delete_lock_days = 0;
+    protected $backup_delete_lock_days = 0;
     /**
      * Optional. The default maximum age of a Backup created via this
      * BackupPlan. This field MUST be an integer value >= 0 and <= 365. If
@@ -50,7 +50,7 @@ class RetentionPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 backup_retain_days = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $backup_retain_days = 0;
+    protected $backup_retain_days = 0;
     /**
      * Optional. This flag denotes whether the retention policy of this
      * BackupPlan is locked.  If set to True, no further update is allowed on
@@ -59,7 +59,7 @@ class RetentionPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool locked = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $locked = false;
+    protected $locked = false;
 
     /**
      * Constructor.

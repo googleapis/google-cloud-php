@@ -84,6 +84,14 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes proto_descriptors = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $proto_descriptors = '';
+    /**
+     * Optional. This field is exposed to be used by the Spanner Migration Tool.
+     * For more details, see
+     * [SMT](https://github.com/GoogleCloudPlatform/spanner-migration-tool).
+     *
+     * Generated from protobuf field <code>bool throughput_mode = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $throughput_mode = false;
 
     /**
      * @param string   $database   Required. The database to update. Please see
@@ -146,6 +154,10 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      *           ```
      *           For more details, see protobuffer [self
      *           description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     *     @type bool $throughput_mode
+     *           Optional. This field is exposed to be used by the Spanner Migration Tool.
+     *           For more details, see
+     *           [SMT](https://github.com/GoogleCloudPlatform/spanner-migration-tool).
      * }
      */
     public function __construct($data = NULL) {
@@ -315,6 +327,36 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->proto_descriptors = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field is exposed to be used by the Spanner Migration Tool.
+     * For more details, see
+     * [SMT](https://github.com/GoogleCloudPlatform/spanner-migration-tool).
+     *
+     * Generated from protobuf field <code>bool throughput_mode = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getThroughputMode()
+    {
+        return $this->throughput_mode;
+    }
+
+    /**
+     * Optional. This field is exposed to be used by the Spanner Migration Tool.
+     * For more details, see
+     * [SMT](https://github.com/GoogleCloudPlatform/spanner-migration-tool).
+     *
+     * Generated from protobuf field <code>bool throughput_mode = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setThroughputMode($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->throughput_mode = $var;
 
         return $this;
     }

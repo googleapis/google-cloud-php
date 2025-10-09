@@ -22,19 +22,19 @@ class CreateNotebookRuntimeTemplateRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The NotebookRuntimeTemplate to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookRuntimeTemplate notebook_runtime_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $notebook_runtime_template = null;
+    protected $notebook_runtime_template = null;
     /**
      * Optional. User specified ID for the notebook runtime template.
      *
      * Generated from protobuf field <code>string notebook_runtime_template_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $notebook_runtime_template_id = '';
+    protected $notebook_runtime_template_id = '';
 
     /**
      * @param string                                              $parent                    Required. The resource name of the Location to create the

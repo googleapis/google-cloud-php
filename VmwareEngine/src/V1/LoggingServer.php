@@ -24,51 +24,51 @@ class LoggingServer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Creation time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Last update time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Required. Fully-qualified domain name (FQDN) or IP Address of the logging
      * server.
      *
      * Generated from protobuf field <code>string hostname = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $hostname = '';
+    protected $hostname = '';
     /**
      * Required. Port number at which the logging server receives logs.
      *
      * Generated from protobuf field <code>int32 port = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * Required. Protocol used by vCenter to send logs to a logging server.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.LoggingServer.Protocol protocol = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $protocol = 0;
+    protected $protocol = 0;
     /**
      * Required. The type of component that produces logs that will be forwarded
      * to this logging server.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.LoggingServer.SourceType source_type = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source_type = 0;
+    protected $source_type = 0;
     /**
      * Output only. System-generated unique identifier for the resource.
      *
      * Generated from protobuf field <code>string uid = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
 
     /**
      * Constructor.

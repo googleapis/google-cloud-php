@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Apps\Chat\V1\Client\ChatServiceClient;
 use Google\Apps\Chat\V1\Message;
 use Google\Apps\Chat\V1\UpdateMessageRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a message. There's a difference between the `patch` and `update`
@@ -36,13 +37,21 @@ use Google\Apps\Chat\V1\UpdateMessageRequest;
  * [Update a
  * message](https://developers.google.com/workspace/chat/update-messages).
  *
- * Requires
- * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
- * Supports
- * [app
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+ *
+ * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
- * and [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * with the authorization scope:
+ * - `https://www.googleapis.com/auth/chat.bot`
+ *
+ * - [User
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.messages`
+ * - `https://www.googleapis.com/auth/chat.import` (import mode spaces
+ * only)
+ *
  * When using app authentication, requests can only update messages
  * created by the calling Chat app.
  *
@@ -59,8 +68,10 @@ function update_message_sample(): void
 
     // Prepare the request message.
     $message = new Message();
+    $updateMask = new FieldMask();
     $request = (new UpdateMessageRequest())
-        ->setMessage($message);
+        ->setMessage($message)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

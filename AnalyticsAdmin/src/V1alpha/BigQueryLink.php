@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A link between a GA4 Property and BigQuery project.
+ * A link between a Google Analytics property and BigQuery project.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.BigQueryLink</code>
  */
@@ -22,7 +22,7 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. The linked Google Cloud project. When creating a BigQueryLink,
      * you may provide this resource name using either a project number or project
@@ -33,38 +33,38 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Output only. Time when the link was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * If set true, enables daily data export to the linked Google Cloud project.
      *
      * Generated from protobuf field <code>bool daily_export_enabled = 4;</code>
      */
-    private $daily_export_enabled = false;
+    protected $daily_export_enabled = false;
     /**
      * If set true, enables streaming export to the linked Google Cloud project.
      *
      * Generated from protobuf field <code>bool streaming_export_enabled = 5;</code>
      */
-    private $streaming_export_enabled = false;
+    protected $streaming_export_enabled = false;
     /**
      * If set true, enables fresh daily export to the linked Google Cloud project.
      *
      * Generated from protobuf field <code>bool fresh_daily_export_enabled = 9;</code>
      */
-    private $fresh_daily_export_enabled = false;
+    protected $fresh_daily_export_enabled = false;
     /**
      * If set true, exported data will include advertising identifiers for mobile
      * app streams.
      *
      * Generated from protobuf field <code>bool include_advertising_id = 6;</code>
      */
-    private $include_advertising_id = false;
+    protected $include_advertising_id = false;
     /**
      * The list of streams under the parent property for which data will be
      * exported.
@@ -80,6 +80,14 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string excluded_events = 8;</code>
      */
     private $excluded_events;
+    /**
+     * Required. Immutable. The geographic location where the created BigQuery
+     * dataset should reside. See https://cloud.google.com/bigquery/docs/locations
+     * for supported locations.
+     *
+     * Generated from protobuf field <code>string dataset_location = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
+     */
+    protected $dataset_location = '';
 
     /**
      * Constructor.
@@ -116,6 +124,10 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      *           Example: ['properties/1000/dataStreams/2000']
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_events
      *           The list of event names that will be excluded from exports.
+     *     @type string $dataset_location
+     *           Required. Immutable. The geographic location where the created BigQuery
+     *           dataset should reside. See https://cloud.google.com/bigquery/docs/locations
+     *           for supported locations.
      * }
      */
     public function __construct($data = NULL) {
@@ -385,6 +397,36 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->excluded_events = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Required. Immutable. The geographic location where the created BigQuery
+     * dataset should reside. See https://cloud.google.com/bigquery/docs/locations
+     * for supported locations.
+     *
+     * Generated from protobuf field <code>string dataset_location = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
+     * @return string
+     */
+    public function getDatasetLocation()
+    {
+        return $this->dataset_location;
+    }
+
+    /**
+     * Required. Immutable. The geographic location where the created BigQuery
+     * dataset should reside. See https://cloud.google.com/bigquery/docs/locations
+     * for supported locations.
+     *
+     * Generated from protobuf field <code>string dataset_location = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDatasetLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dataset_location = $var;
 
         return $this;
     }

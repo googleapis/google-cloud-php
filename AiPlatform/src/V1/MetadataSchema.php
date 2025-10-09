@@ -20,7 +20,7 @@ class MetadataSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The version of the MetadataSchema. The version's format must match
      * the following regular expression: `^[0-9]+[.][0-9]+[.][0-9]+$`, which would
@@ -28,7 +28,7 @@ class MetadataSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schema_version = 2;</code>
      */
-    private $schema_version = '';
+    protected $schema_version = '';
     /**
      * Required. The raw YAML string representation of the MetadataSchema. The
      * combination of [MetadataSchema.version] and the schema name given by
@@ -39,26 +39,26 @@ class MetadataSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schema = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $schema = '';
+    protected $schema = '';
     /**
      * The type of the MetadataSchema. This is a property that identifies which
      * metadata types will use the MetadataSchema.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MetadataSchema.MetadataSchemaType schema_type = 4;</code>
      */
-    private $schema_type = 0;
+    protected $schema_type = 0;
     /**
      * Output only. Timestamp when this MetadataSchema was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Description of the Metadata Schema
      *
      * Generated from protobuf field <code>string description = 6;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

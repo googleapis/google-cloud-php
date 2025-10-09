@@ -20,14 +20,14 @@ class ListConversionWorkspacesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of conversion workspaces to return. The service may
      * return fewer than this value. If unspecified, at most 50 sets are returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The nextPageToken value received in the previous call to
      * conversionWorkspaces.list, used in the subsequent request to retrieve the
@@ -37,7 +37,7 @@ class ListConversionWorkspacesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * A filter expression that filters conversion workspaces listed in the
      * response. The expression must specify the field name, a comparison
@@ -51,7 +51,7 @@ class ListConversionWorkspacesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The parent which owns this collection of conversion workspaces. Please see

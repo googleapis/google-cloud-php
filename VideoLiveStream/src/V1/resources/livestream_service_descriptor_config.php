@@ -61,6 +61,44 @@ return [
                     ],
                 ],
             ],
+            'CreateClip' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\Clip',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateDvrSession' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\DvrSession',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateInput' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\Input',
@@ -118,6 +156,44 @@ return [
                     ],
                 ],
             ],
+            'DeleteClip' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDvrSession' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteInput' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -156,7 +232,45 @@ return [
                     ],
                 ],
             ],
+            'StartDistribution' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\ChannelOperationResponse',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'StopChannel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\ChannelOperationResponse',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StopDistribution' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\ChannelOperationResponse',
                     'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
@@ -190,6 +304,26 @@ return [
                         'keyName' => 'channel.name',
                         'fieldAccessors' => [
                             'getChannel',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDvrSession' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\DvrSession',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'dvr_session.name',
+                        'fieldAccessors' => [
+                            'getDvrSession',
                             'getName',
                         ],
                     ],
@@ -283,6 +417,30 @@ return [
                     ],
                 ],
             ],
+            'GetClip' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\Clip',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDvrSession' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\DvrSession',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetEvent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Video\LiveStream\V1\Event',
@@ -359,6 +517,46 @@ return [
                     ],
                 ],
             ],
+            'ListClips' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getClips',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\ListClipsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDvrSessions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDvrSessions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\ListDvrSessionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListEvents' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -395,6 +593,18 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PreviewInput' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\PreviewInputResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -436,6 +646,8 @@ return [
             'templateMap' => [
                 'asset' => 'projects/{project}/locations/{location}/assets/{asset}',
                 'channel' => 'projects/{project}/locations/{location}/channels/{channel}',
+                'clip' => 'projects/{project}/locations/{location}/channels/{channel}/clips/{clip}',
+                'dvrSession' => 'projects/{project}/locations/{location}/channels/{channel}/dvrSessions/{dvr_session}',
                 'event' => 'projects/{project}/locations/{location}/channels/{channel}/events/{event}',
                 'input' => 'projects/{project}/locations/{location}/inputs/{input}',
                 'location' => 'projects/{project}/locations/{location}',

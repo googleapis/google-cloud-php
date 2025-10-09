@@ -17,7 +17,7 @@ class ListServiceBindingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The project and location from which the ServiceBindings should be
-     * listed, specified in the format `projects/&#42;&#47;locations/global`.
+     * listed, specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -38,6 +38,21 @@ class ListServiceBindingsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The project and location from which the ServiceBindings should be
+     *                       listed, specified in the format `projects/&#42;/locations/*`. Please see
+     *                       {@see NetworkServicesClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\ListServiceBindingsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -45,7 +60,7 @@ class ListServiceBindingsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The project and location from which the ServiceBindings should be
-     *           listed, specified in the format `projects/&#42;&#47;locations/global`.
+     *           listed, specified in the format `projects/&#42;&#47;locations/&#42;`.
      *     @type int $page_size
      *           Maximum number of ServiceBindings to return per call.
      *     @type string $page_token
@@ -61,7 +76,7 @@ class ListServiceBindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the ServiceBindings should be
-     * listed, specified in the format `projects/&#42;&#47;locations/global`.
+     * listed, specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,7 +88,7 @@ class ListServiceBindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the ServiceBindings should be
-     * listed, specified in the format `projects/&#42;&#47;locations/global`.
+     * listed, specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

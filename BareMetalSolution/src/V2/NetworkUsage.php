@@ -20,7 +20,7 @@ class NetworkUsage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.Network network = 1;</code>
      */
-    private $network = null;
+    protected $network = null;
     /**
      * All used IP addresses in this network.
      *

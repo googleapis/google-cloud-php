@@ -23,7 +23,7 @@ class WriteTensorboardExperimentDataRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string tensorboard_experiment = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $tensorboard_experiment = '';
+    protected $tensorboard_experiment = '';
     /**
      * Required. Requests containing per-run TensorboardTimeSeries data to write.
      *

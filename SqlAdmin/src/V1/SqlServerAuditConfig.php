@@ -20,25 +20,25 @@ class SqlServerAuditConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The name of the destination bucket (e.g., gs://mybucket).
      *
      * Generated from protobuf field <code>string bucket = 2;</code>
      */
-    private $bucket = '';
+    protected $bucket = '';
     /**
      * How long to keep generated audit files.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration retention_interval = 3;</code>
      */
-    private $retention_interval = null;
+    protected $retention_interval = null;
     /**
      * How often to upload generated audit files.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration upload_interval = 4;</code>
      */
-    private $upload_interval = null;
+    protected $upload_interval = null;
 
     /**
      * Constructor.

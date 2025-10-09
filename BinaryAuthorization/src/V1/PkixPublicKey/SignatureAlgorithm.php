@@ -148,6 +148,4 @@ class SignatureAlgorithm
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SignatureAlgorithm::class, \Google\Cloud\BinaryAuthorization\V1\PkixPublicKey_SignatureAlgorithm::class);
 

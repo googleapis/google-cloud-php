@@ -22,13 +22,13 @@ class CreateTrialRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Trial to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Trial trial = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trial = null;
+    protected $trial = null;
 
     /**
      * @param string                            $parent Required. The resource name of the Study to create the Trial in.

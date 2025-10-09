@@ -18,23 +18,23 @@ class SlsaProvenanceZeroTwo extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.grafeas.v1.SlsaProvenanceZeroTwo.SlsaBuilder builder = 1;</code>
      */
-    private $builder = null;
+    protected $builder = null;
     /**
      * Generated from protobuf field <code>string build_type = 2;</code>
      */
-    private $build_type = '';
+    protected $build_type = '';
     /**
      * Generated from protobuf field <code>.grafeas.v1.SlsaProvenanceZeroTwo.SlsaInvocation invocation = 3;</code>
      */
-    private $invocation = null;
+    protected $invocation = null;
     /**
      * Generated from protobuf field <code>.google.protobuf.Struct build_config = 4;</code>
      */
-    private $build_config = null;
+    protected $build_config = null;
     /**
      * Generated from protobuf field <code>.grafeas.v1.SlsaProvenanceZeroTwo.SlsaMetadata metadata = 5;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.SlsaProvenanceZeroTwo.SlsaMaterial materials = 6;</code>
      */

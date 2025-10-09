@@ -20,7 +20,7 @@ class MemoryHashSignature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string binary_family = 1;</code>
      */
-    private $binary_family = '';
+    protected $binary_family = '';
     /**
      * The list of memory hash detections contributing to the binary family
      * match.
@@ -103,6 +103,4 @@ class MemoryHashSignature extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MemoryHashSignature::class, \Google\Cloud\SecurityCenter\V2\Indicator_ProcessSignature_MemoryHashSignature::class);
 

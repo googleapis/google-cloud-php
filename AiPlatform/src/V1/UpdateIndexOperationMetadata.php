@@ -21,13 +21,13 @@ class UpdateIndexOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenericOperationMetadata generic_metadata = 1;</code>
      */
-    private $generic_metadata = null;
+    protected $generic_metadata = null;
     /**
      * The operation metadata with regard to Matching Engine Index operation.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NearestNeighborSearchOperationMetadata nearest_neighbor_search_operation_metadata = 2;</code>
      */
-    private $nearest_neighbor_search_operation_metadata = null;
+    protected $nearest_neighbor_search_operation_metadata = null;
 
     /**
      * Constructor.

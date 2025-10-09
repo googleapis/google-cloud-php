@@ -34,7 +34,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ crop_hints'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\CropHint">Google\Cloud\Vision\V1\CropHint</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\CropHint">CropHint</xref>&gt;'
           description: 'Crop hint results.'
   -
     uid: '\Google\Cloud\Vision\V1\CropHintsAnnotation::getCropHints()'
@@ -62,7 +62,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\CropHint">Google\Cloud\Vision\V1\CropHint</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\CropHint">CropHint</xref>&gt;'
           description: ''
       returns:
         -

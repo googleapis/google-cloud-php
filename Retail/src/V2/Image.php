@@ -10,9 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * [Product][google.cloud.retail.v2.Product] image. Recommendations AI and
- * Retail Search do not use product images to improve prediction and search
- * results. However, product images can be returned in results, and are shown in
- * prediction or search previews in the console.
+ * Retail Search use product images to improve prediction and search results.
+ * Product images can be returned in results, and are shown in prediction or
+ * search previews in the console. Please try to provide correct product images
+ * and avoid using images with size too small.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.Image</code>
  */
@@ -28,7 +29,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Height of the image in number of pixels.
      * This field must be nonnegative. Otherwise, an INVALID_ARGUMENT error is
@@ -36,7 +37,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 height = 2;</code>
      */
-    private $height = 0;
+    protected $height = 0;
     /**
      * Width of the image in number of pixels.
      * This field must be nonnegative. Otherwise, an INVALID_ARGUMENT error is
@@ -44,7 +45,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 width = 3;</code>
      */
-    private $width = 0;
+    protected $width = 0;
 
     /**
      * Constructor.

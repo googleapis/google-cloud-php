@@ -21,13 +21,13 @@ class CreateUserWorkloadsSecretRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. User workloads Secret to create.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.UserWorkloadsSecret user_workloads_secret = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $user_workloads_secret = null;
+    protected $user_workloads_secret = null;
 
     /**
      * @param string                                                             $parent              Required. The environment name to create a Secret for, in the form:

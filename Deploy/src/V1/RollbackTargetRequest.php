@@ -16,25 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
-     * created. Format should be
+     * Required. The `DeliveryPipeline` for which the rollback `Rollout` must be
+     * created. The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. ID of the `Target` that is being rolled back.
      *
      * Generated from protobuf field <code>string target_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_id = '';
+    protected $target_id = '';
     /**
      * Required. ID of the rollback `Rollout` to create.
      *
      * Generated from protobuf field <code>string rollout_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rollout_id = '';
+    protected $rollout_id = '';
     /**
      * Optional. ID of the `Release` to roll back to. If this isn't specified, the
      * previous successful `Rollout` to the specified target will be used to
@@ -42,31 +42,38 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string release_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $release_id = '';
+    protected $release_id = '';
     /**
      * Optional. If provided, this must be the latest `Rollout` that is on the
      * `Target`.
      *
      * Generated from protobuf field <code>string rollout_to_roll_back = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rollout_to_roll_back = '';
+    protected $rollout_to_roll_back = '';
     /**
      * Optional. Configs for the rollback `Rollout`.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.RollbackTargetConfig rollback_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rollback_config = null;
+    protected $rollback_config = null;
     /**
      * Optional. If set to true, the request is validated and the user is provided
      * with a `RollbackTargetResponse`.
      *
      * Generated from protobuf field <code>bool validate_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
+    /**
+     * Optional. Deploy policies to override. Format is
+     * `projects/{project}/locations/{location}/deployPolicies/{deploy_policy}`.
+     *
+     * Generated from protobuf field <code>repeated string override_deploy_policy = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $override_deploy_policy;
 
     /**
-     * @param string $name      Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
-     *                          created. Format should be
+     * @param string $name      Required. The `DeliveryPipeline` for which the rollback `Rollout` must be
+     *                          created. The format is
      *                          `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
      *                          {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
      * @param string $targetId  Required. ID of the `Target` that is being rolled back.
@@ -91,8 +98,8 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
-     *           created. Format should be
+     *           Required. The `DeliveryPipeline` for which the rollback `Rollout` must be
+     *           created. The format is
      *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *     @type string $target_id
      *           Required. ID of the `Target` that is being rolled back.
@@ -110,6 +117,9 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $validate_only
      *           Optional. If set to true, the request is validated and the user is provided
      *           with a `RollbackTargetResponse`.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $override_deploy_policy
+     *           Optional. Deploy policies to override. Format is
+     *           `projects/{project}/locations/{location}/deployPolicies/{deploy_policy}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,8 +128,8 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
-     * created. Format should be
+     * Required. The `DeliveryPipeline` for which the rollback `Rollout` must be
+     * created. The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -131,8 +141,8 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
-     * created. Format should be
+     * Required. The `DeliveryPipeline` for which the rollback `Rollout` must be
+     * created. The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -317,6 +327,34 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->validate_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Deploy policies to override. Format is
+     * `projects/{project}/locations/{location}/deployPolicies/{deploy_policy}`.
+     *
+     * Generated from protobuf field <code>repeated string override_deploy_policy = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getOverrideDeployPolicy()
+    {
+        return $this->override_deploy_policy;
+    }
+
+    /**
+     * Optional. Deploy policies to override. Format is
+     * `projects/{project}/locations/{location}/deployPolicies/{deploy_policy}`.
+     *
+     * Generated from protobuf field <code>repeated string override_deploy_policy = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setOverrideDeployPolicy($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->override_deploy_policy = $arr;
 
         return $this;
     }

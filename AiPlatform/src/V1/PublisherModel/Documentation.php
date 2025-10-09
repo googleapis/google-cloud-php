@@ -21,13 +21,13 @@ class Documentation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Required. Content of this piece of document (in Markdown format).
      *
      * Generated from protobuf field <code>string content = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $content = '';
+    protected $content = '';
 
     /**
      * Constructor.

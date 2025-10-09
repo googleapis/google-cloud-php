@@ -21,7 +21,7 @@ class BackupRetentionSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.BackupRetentionSettings.RetentionUnit retention_unit = 1;</code>
      */
-    private $retention_unit = 0;
+    protected $retention_unit = 0;
     /**
      * Depending on the value of retention_unit, this is used to determine
      * if a backup needs to be deleted.  If retention_unit is 'COUNT', we will
@@ -29,7 +29,7 @@ class BackupRetentionSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value retained_backups = 2;</code>
      */
-    private $retained_backups = null;
+    protected $retained_backups = null;
 
     /**
      * Constructor.
@@ -109,7 +109,7 @@ class BackupRetentionSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value retained_backups = 2;</code>
      * @return int|null
      */
-    public function getRetainedBackupsValue()
+    public function getRetainedBackupsUnwrapped()
     {
         return $this->readWrapperValue("retained_backups");
     }
@@ -142,7 +142,7 @@ class BackupRetentionSettings extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setRetainedBackupsValue($var)
+    public function setRetainedBackupsUnwrapped($var)
     {
         $this->writeWrapperValue("retained_backups", $var);
         return $this;}

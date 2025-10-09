@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request to fetch list of participant sessions per conference record per
+ * Request to fetch list of participant sessions per conference record, per
  * participant.
  *
  * Generated from protobuf message <code>google.apps.meet.v2beta.ListParticipantSessionsRequest</code>
@@ -39,8 +39,9 @@ class ListParticipantSessionsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_token = '';
     /**
-     * Optional. User specified filtering condition in EBNF format. The following
-     * are the filterable fields:
+     * Optional. User specified filtering condition in [EBNF
+     * format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+     * The following are the filterable fields:
      * * `start_time`
      * * `end_time`
      * For example, `end_time IS NULL` returns active participant sessions in
@@ -82,8 +83,9 @@ class ListParticipantSessionsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. Page token returned from previous List Call.
      *     @type string $filter
-     *           Optional. User specified filtering condition in EBNF format. The following
-     *           are the filterable fields:
+     *           Optional. User specified filtering condition in [EBNF
+     *           format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+     *           The following are the filterable fields:
      *           * `start_time`
      *           * `end_time`
      *           For example, `end_time IS NULL` returns active participant sessions in
@@ -182,8 +184,9 @@ class ListParticipantSessionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User specified filtering condition in EBNF format. The following
-     * are the filterable fields:
+     * Optional. User specified filtering condition in [EBNF
+     * format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+     * The following are the filterable fields:
      * * `start_time`
      * * `end_time`
      * For example, `end_time IS NULL` returns active participant sessions in
@@ -198,8 +201,9 @@ class ListParticipantSessionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User specified filtering condition in EBNF format. The following
-     * are the filterable fields:
+     * Optional. User specified filtering condition in [EBNF
+     * format](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+     * The following are the filterable fields:
      * * `start_time`
      * * `end_time`
      * For example, `end_time IS NULL` returns active participant sessions in

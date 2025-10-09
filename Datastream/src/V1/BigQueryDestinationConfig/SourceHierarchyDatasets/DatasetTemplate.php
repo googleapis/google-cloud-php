@@ -22,7 +22,7 @@ class DatasetTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * If supplied, every created dataset will have its name prefixed by the
      * provided value. The prefix and name will be separated by an underscore.
@@ -30,7 +30,7 @@ class DatasetTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset_id_prefix = 2;</code>
      */
-    private $dataset_id_prefix = '';
+    protected $dataset_id_prefix = '';
     /**
      * Describes the Cloud KMS encryption key that will be used to
      * protect destination BigQuery table. The BigQuery Service Account
@@ -42,7 +42,7 @@ class DatasetTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 3;</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
 
     /**
      * Constructor.

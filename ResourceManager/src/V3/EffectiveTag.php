@@ -24,7 +24,7 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tag_value = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $tag_value = '';
+    protected $tag_value = '';
     /**
      * The namespaced name of the TagValue. Can be in the form
      * `{organization_id}/{tag_key_short_name}/{tag_value_short_name}` or
@@ -33,14 +33,14 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string namespaced_tag_value = 2;</code>
      */
-    private $namespaced_tag_value = '';
+    protected $namespaced_tag_value = '';
     /**
      * The name of the TagKey, in the format `tagKeys/{id}`, such as
      * `tagKeys/123`.
      *
      * Generated from protobuf field <code>string tag_key = 3 [(.google.api.resource_reference) = {</code>
      */
-    private $tag_key = '';
+    protected $tag_key = '';
     /**
      * The namespaced name of the TagKey. Can be in the form
      * `{organization_id}/{tag_key_short_name}` or
@@ -49,7 +49,7 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string namespaced_tag_key = 4;</code>
      */
-    private $namespaced_tag_key = '';
+    protected $namespaced_tag_key = '';
     /**
      * The parent name of the tag key.
      * Must be in the format `organizations/{organization_id}` or
@@ -57,7 +57,7 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tag_key_parent_name = 6;</code>
      */
-    private $tag_key_parent_name = '';
+    protected $tag_key_parent_name = '';
     /**
      * Indicates the inheritance status of a tag value
      * attached to the given resource. If the tag value is inherited from one of
@@ -66,7 +66,7 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool inherited = 5;</code>
      */
-    private $inherited = false;
+    protected $inherited = false;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Google Cloud Storage URI points to a YAML file describing
      * [payload][google.cloud.aiplatform.v1.Annotation.payload]. The schema is
@@ -34,39 +34,39 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string payload_schema_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $payload_schema_uri = '';
+    protected $payload_schema_uri = '';
     /**
      * Required. The schema of the payload can be found in
      * [payload_schema][google.cloud.aiplatform.v1.Annotation.payload_schema_uri].
      *
      * Generated from protobuf field <code>.google.protobuf.Value payload = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $payload = null;
+    protected $payload = null;
     /**
      * Output only. Timestamp when this Annotation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this Annotation was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Used to perform consistent read-modify-write updates. If not set,
      * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. The source of the Annotation.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UserActionReference annotation_source = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $annotation_source = null;
+    protected $annotation_source = null;
     /**
      * Optional. The labels with user-defined metadata to organize your
      * Annotations.

@@ -21,19 +21,19 @@ class AsyncModelConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. Information about the input model.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.InputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * Required. The desired output location information.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.OutputConfig output_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
     /**
      * If this is set, the model will be solved in the checkpoint mode. In this
      * mode, the input model can have a deadline longer than 30 mins without the
@@ -46,7 +46,7 @@ class AsyncModelConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_checkpoints = 4;</code>
      */
-    private $enable_checkpoints = false;
+    protected $enable_checkpoints = false;
 
     /**
      * Constructor.

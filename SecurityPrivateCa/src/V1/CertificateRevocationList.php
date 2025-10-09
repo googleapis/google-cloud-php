@@ -19,20 +19,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class CertificateRevocationList extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
      * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
      *    certificateRevocationLists/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The CRL sequence number that appears in pem_crl.
      *
      * Generated from protobuf field <code>int64 sequence_number = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $sequence_number = 0;
+    protected $sequence_number = 0;
     /**
      * Output only. The revoked serial numbers that appear in pem_crl.
      *
@@ -44,13 +44,13 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pem_crl = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pem_crl = '';
+    protected $pem_crl = '';
     /**
      * Output only. The location where 'pem_crl' can be accessed.
      *
      * Generated from protobuf field <code>string access_url = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $access_url = '';
+    protected $access_url = '';
     /**
      * Output only. The
      * [State][google.cloud.security.privateca.v1.CertificateRevocationList.State]
@@ -59,7 +59,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateRevocationList.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The time at which this
      * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
@@ -67,7 +67,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which this
      * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
@@ -75,7 +75,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The revision ID of this
      * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
@@ -84,7 +84,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision_id = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision_id = '';
+    protected $revision_id = '';
     /**
      * Optional. Labels with user-defined metadata.
      *
@@ -99,7 +99,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for this
+     *           Identifier. The resource name for this
      *           [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
      *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
      *              certificateRevocationLists/&#42;`.
@@ -139,12 +139,12 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
      * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
      *    certificateRevocationLists/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -153,12 +153,12 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
      * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
      *    certificateRevocationLists/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

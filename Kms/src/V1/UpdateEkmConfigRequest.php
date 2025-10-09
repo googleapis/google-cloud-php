@@ -21,13 +21,13 @@ class UpdateEkmConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.EkmConfig ekm_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ekm_config = null;
+    protected $ekm_config = null;
     /**
      * Required. List of fields to be updated in this request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Kms\V1\EkmConfig $ekmConfig  Required. [EkmConfig][google.cloud.kms.v1.EkmConfig] with updated values.

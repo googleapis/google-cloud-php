@@ -19,7 +19,7 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output] A list of usable subnetwork URLs.
      *
@@ -31,25 +31,37 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results. In special cases listUsable may return 0 subnetworks and nextPageToken which still should be used to get the next page of results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
-    private $next_page_token = null;
+    protected $next_page_token = null;
+    /**
+     * [Output Only] Informational warning messages for failures encountered from scopes.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworksScopedWarning scoped_warnings = 215878438;</code>
+     */
+    private $scoped_warnings;
     /**
      * [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
+    /**
+     * [Output Only] Unreachable resources.
+     *
+     * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
+     */
+    private $unreachables;
     /**
      * [Output Only] Informational warning message.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
-    private $warning = null;
+    protected $warning = null;
 
     /**
      * Constructor.
@@ -65,8 +77,12 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
      *           [Output Only] Type of resource. Always compute#usableSubnetworksAggregatedList for aggregated lists of usable subnetworks.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results. In special cases listUsable may return 0 subnetworks and nextPageToken which still should be used to get the next page of results.
+     *     @type array<\Google\Cloud\Compute\V1\SubnetworksScopedWarning>|\Google\Protobuf\Internal\RepeatedField $scoped_warnings
+     *           [Output Only] Informational warning messages for failures encountered from scopes.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for this resource.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
+     *           [Output Only] Unreachable resources.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
      * }
@@ -211,6 +227,32 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [Output Only] Informational warning messages for failures encountered from scopes.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworksScopedWarning scoped_warnings = 215878438;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getScopedWarnings()
+    {
+        return $this->scoped_warnings;
+    }
+
+    /**
+     * [Output Only] Informational warning messages for failures encountered from scopes.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworksScopedWarning scoped_warnings = 215878438;</code>
+     * @param array<\Google\Cloud\Compute\V1\SubnetworksScopedWarning>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setScopedWarnings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\SubnetworksScopedWarning::class);
+        $this->scoped_warnings = $arr;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -242,6 +284,32 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Unreachable resources.
+     *
+     * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUnreachables()
+    {
+        return $this->unreachables;
+    }
+
+    /**
+     * [Output Only] Unreachable resources.
+     *
+     * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUnreachables($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->unreachables = $arr;
 
         return $this;
     }

@@ -21,7 +21,7 @@ class BitbucketDataCenterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $host_uri = '';
+    protected $host_uri = '';
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
      * used to verify webhook events, formatted as
@@ -29,19 +29,19 @@ class BitbucketDataCenterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $webhook_secret_secret_version = '';
+    protected $webhook_secret_secret_version = '';
     /**
      * Required. A http access token with the `REPO_READ` access.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.UserCredential read_authorizer_credential = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $read_authorizer_credential = null;
+    protected $read_authorizer_credential = null;
     /**
      * Required. A http access token with the `REPO_ADMIN` scope access.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.UserCredential authorizer_credential = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $authorizer_credential = null;
+    protected $authorizer_credential = null;
     /**
      * Optional. Configuration for using Service Directory to privately connect to
      * a Bitbucket Data Center. This should only be set if the Bitbucket Data
@@ -51,20 +51,20 @@ class BitbucketDataCenterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.ServiceDirectoryConfig service_directory_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_directory_config = null;
+    protected $service_directory_config = null;
     /**
      * Optional. SSL certificate to use for requests to the Bitbucket Data Center.
      *
      * Generated from protobuf field <code>string ssl_ca = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ssl_ca = '';
+    protected $ssl_ca = '';
     /**
      * Output only. Version of the Bitbucket Data Center running on the
      * `host_uri`.
      *
      * Generated from protobuf field <code>string server_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $server_version = '';
+    protected $server_version = '';
 
     /**
      * Constructor.

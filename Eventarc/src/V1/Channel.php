@@ -25,7 +25,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server assigned unique identifier for the channel. The value
      * is a UUID4 string and guaranteed to remain unchanged until the resource is
@@ -33,19 +33,19 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last-modified time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The name of the event provider (e.g. Eventarc SaaS partner) associated
      * with the channel. This provider will be granted permissions to publish
@@ -54,20 +54,20 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string provider = 7;</code>
      */
-    private $provider = '';
+    protected $provider = '';
     /**
      * Output only. The state of a Channel.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The activation token for the channel. The token must be used
      * by the provider to register the channel for publishing.
      *
      * Generated from protobuf field <code>string activation_token = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $activation_token = '';
+    protected $activation_token = '';
     /**
      * Optional. Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt their event data.
@@ -76,7 +76,20 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string crypto_key_name = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $crypto_key_name = '';
+    protected $crypto_key_name = '';
+    /**
+     * Output only. Whether or not this Channel satisfies the requirements of
+     * physical zone separation
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Optional. Resource labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
     protected $transport;
 
     /**
@@ -116,6 +129,11 @@ class Channel extends \Google\Protobuf\Internal\Message
      *           encrypt/decrypt their event data.
      *           It must match the pattern
      *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *     @type bool $satisfies_pzs
+     *           Output only. Whether or not this Channel satisfies the requirements of
+     *           physical zone separation
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. Resource labels.
      * }
      */
     public function __construct($data = NULL) {
@@ -404,6 +422,60 @@ class Channel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->crypto_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether or not this Channel satisfies the requirements of
+     * physical zone separation
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Whether or not this Channel satisfies the requirements of
+     * physical zone separation
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resource labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. Resource labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

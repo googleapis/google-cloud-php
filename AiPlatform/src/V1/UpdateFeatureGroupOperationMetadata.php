@@ -20,7 +20,7 @@ class UpdateFeatureGroupOperationMetadata extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenericOperationMetadata generic_metadata = 1;</code>
      */
-    private $generic_metadata = null;
+    protected $generic_metadata = null;
 
     /**
      * Constructor.

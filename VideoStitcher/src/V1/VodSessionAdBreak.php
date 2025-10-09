@@ -32,13 +32,13 @@ class VodSessionAdBreak extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration end_time_offset = 3;</code>
      */
-    private $end_time_offset = null;
+    protected $end_time_offset = null;
     /**
      * Ad break start time in seconds relative to the start of the VOD asset.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_time_offset = 4;</code>
      */
-    private $start_time_offset = null;
+    protected $start_time_offset = null;
 
     /**
      * Constructor.

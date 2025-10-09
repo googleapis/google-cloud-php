@@ -21,20 +21,20 @@ class SearchTrialSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CustomJobSpec search_trial_job_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $search_trial_job_spec = null;
+    protected $search_trial_job_spec = null;
     /**
      * Required. The maximum number of Neural Architecture Search (NAS) trials
      * to run.
      *
      * Generated from protobuf field <code>int32 max_trial_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_trial_count = 0;
+    protected $max_trial_count = 0;
     /**
      * Required. The maximum number of trials to run in parallel.
      *
      * Generated from protobuf field <code>int32 max_parallel_trial_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_parallel_trial_count = 0;
+    protected $max_parallel_trial_count = 0;
     /**
      * The number of failed trials that need to be seen before failing
      * the NasJob.
@@ -43,7 +43,7 @@ class SearchTrialSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_failed_trial_count = 4;</code>
      */
-    private $max_failed_trial_count = 0;
+    protected $max_failed_trial_count = 0;
 
     /**
      * Constructor.

@@ -28,7 +28,7 @@ class RaySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image_uri = '';
+    protected $image_uri = '';
     /**
      * Optional. Required if image_uri isn't set. A map of resource_pool_id to
      * prebuild Ray image if user need to use different images for different
@@ -51,13 +51,19 @@ class RaySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string head_node_resource_pool_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $head_node_resource_pool_id = '';
+    protected $head_node_resource_pool_id = '';
     /**
      * Optional. Ray metrics configurations.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RayMetricSpec ray_metric_spec = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ray_metric_spec = null;
+    protected $ray_metric_spec = null;
+    /**
+     * Optional. OSS Ray logging configurations.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RayLogsSpec ray_logs_spec = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ray_logs_spec = null;
 
     /**
      * Constructor.
@@ -89,6 +95,8 @@ class RaySpec extends \Google\Protobuf\Internal\Message
      *           set.
      *     @type \Google\Cloud\AIPlatform\V1\RayMetricSpec $ray_metric_spec
      *           Optional. Ray metrics configurations.
+     *     @type \Google\Cloud\AIPlatform\V1\RayLogsSpec $ray_logs_spec
+     *           Optional. OSS Ray logging configurations.
      * }
      */
     public function __construct($data = NULL) {
@@ -238,6 +246,42 @@ class RaySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RayMetricSpec::class);
         $this->ray_metric_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. OSS Ray logging configurations.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RayLogsSpec ray_logs_spec = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\RayLogsSpec|null
+     */
+    public function getRayLogsSpec()
+    {
+        return $this->ray_logs_spec;
+    }
+
+    public function hasRayLogsSpec()
+    {
+        return isset($this->ray_logs_spec);
+    }
+
+    public function clearRayLogsSpec()
+    {
+        unset($this->ray_logs_spec);
+    }
+
+    /**
+     * Optional. OSS Ray logging configurations.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RayLogsSpec ray_logs_spec = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\RayLogsSpec $var
+     * @return $this
+     */
+    public function setRayLogsSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RayLogsSpec::class);
+        $this->ray_logs_spec = $var;
 
         return $this;
     }

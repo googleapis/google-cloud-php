@@ -29,7 +29,7 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * Immutable. The type of accelerator(s) that may be attached to the machine
      * as per
@@ -37,20 +37,27 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.AcceleratorType accelerator_type = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $accelerator_type = 0;
+    protected $accelerator_type = 0;
     /**
      * The number of accelerators to attach to the machine.
      *
      * Generated from protobuf field <code>int32 accelerator_count = 3;</code>
      */
-    private $accelerator_count = 0;
+    protected $accelerator_count = 0;
     /**
      * Immutable. The topology of the TPUs. Corresponds to the TPU topologies
      * available from GKE. (Example: tpu_topology: "2x2x1").
      *
      * Generated from protobuf field <code>string tpu_topology = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $tpu_topology = '';
+    protected $tpu_topology = '';
+    /**
+     * Optional. Immutable. Configuration controlling how this resource pool
+     * consumes reservation.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReservationAffinity reservation_affinity = 5 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $reservation_affinity = null;
 
     /**
      * Constructor.
@@ -78,6 +85,9 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      *     @type string $tpu_topology
      *           Immutable. The topology of the TPUs. Corresponds to the TPU topologies
      *           available from GKE. (Example: tpu_topology: "2x2x1").
+     *     @type \Google\Cloud\AIPlatform\V1\ReservationAffinity $reservation_affinity
+     *           Optional. Immutable. Configuration controlling how this resource pool
+     *           consumes reservation.
      * }
      */
     public function __construct($data = NULL) {
@@ -209,6 +219,44 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->tpu_topology = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. Configuration controlling how this resource pool
+     * consumes reservation.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReservationAffinity reservation_affinity = 5 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ReservationAffinity|null
+     */
+    public function getReservationAffinity()
+    {
+        return $this->reservation_affinity;
+    }
+
+    public function hasReservationAffinity()
+    {
+        return isset($this->reservation_affinity);
+    }
+
+    public function clearReservationAffinity()
+    {
+        unset($this->reservation_affinity);
+    }
+
+    /**
+     * Optional. Immutable. Configuration controlling how this resource pool
+     * consumes reservation.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReservationAffinity reservation_affinity = 5 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ReservationAffinity $var
+     * @return $this
+     */
+    public function setReservationAffinity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReservationAffinity::class);
+        $this->reservation_affinity = $var;
 
         return $this;
     }

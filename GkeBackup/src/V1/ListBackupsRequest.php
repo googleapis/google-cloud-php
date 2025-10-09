@@ -21,7 +21,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The target number of results to return in a single response.
      * If not specified, a default value will be chosen by the service.
@@ -32,7 +32,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. The value of
      * [next_page_token][google.cloud.gkebackup.v1.ListBackupsResponse.next_page_token]
@@ -43,19 +43,26 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. Field match expression used to filter the results.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. Field by which to sort the results.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
+    /**
+     * Optional. If set to true, the response will return partial results when
+     * some regions are unreachable and the unreachable field will be populated.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $return_partial_success = false;
 
     /**
      * @param string $parent Required. The BackupPlan that contains the Backups to list.
@@ -99,6 +106,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Field match expression used to filter the results.
      *     @type string $order_by
      *           Optional. Field by which to sort the results.
+     *     @type bool $return_partial_success
+     *           Optional. If set to true, the response will return partial results when
+     *           some regions are unreachable and the unreachable field will be populated.
      * }
      */
     public function __construct($data = NULL) {
@@ -254,6 +264,34 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, the response will return partial results when
+     * some regions are unreachable and the unreachable field will be populated.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getReturnPartialSuccess()
+    {
+        return $this->return_partial_success;
+    }
+
+    /**
+     * Optional. If set to true, the response will return partial results when
+     * some regions are unreachable and the unreachable field will be populated.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnPartialSuccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_partial_success = $var;
 
         return $this;
     }

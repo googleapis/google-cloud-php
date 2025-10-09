@@ -25,7 +25,7 @@ class Content extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string role = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $role = '';
+    protected $role = '';
     /**
      * Required. Ordered `Parts` that constitute a single message. Parts may have
      * different IANA MIME types.

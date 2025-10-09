@@ -20,79 +20,79 @@ class CallToAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.ViewRestApi view_rest_api = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $view_rest_api = null;
+    protected $view_rest_api = null;
     /**
      * Optional. Open notebook of the PublisherModel.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences open_notebook = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $open_notebook = null;
+    protected $open_notebook = null;
     /**
      * Optional. Open notebooks of the PublisherModel.
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.PublisherModel.CallToAction.OpenNotebooks open_notebooks = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $open_notebooks = null;
+    protected $open_notebooks = null;
     /**
      * Optional. Create application using the PublisherModel.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences create_application = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $create_application = null;
+    protected $create_application = null;
     /**
      * Optional. Open fine-tuning pipeline of the PublisherModel.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences open_fine_tuning_pipeline = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $open_fine_tuning_pipeline = null;
+    protected $open_fine_tuning_pipeline = null;
     /**
      * Optional. Open fine-tuning pipelines of the PublisherModel.
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.PublisherModel.CallToAction.OpenFineTuningPipelines open_fine_tuning_pipelines = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $open_fine_tuning_pipelines = null;
+    protected $open_fine_tuning_pipelines = null;
     /**
      * Optional. Open prompt-tuning pipeline of the PublisherModel.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences open_prompt_tuning_pipeline = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $open_prompt_tuning_pipeline = null;
+    protected $open_prompt_tuning_pipeline = null;
     /**
      * Optional. Open Genie / Playground.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences open_genie = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $open_genie = null;
+    protected $open_genie = null;
     /**
      * Optional. Deploy the PublisherModel to Vertex Endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.Deploy deploy = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $deploy = null;
+    protected $deploy = null;
     /**
      * Optional. Deploy PublisherModel to Google Kubernetes Engine.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.DeployGke deploy_gke = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $deploy_gke = null;
+    protected $deploy_gke = null;
     /**
      * Optional. Open in Generation AI Studio.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences open_generation_ai_studio = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $open_generation_ai_studio = null;
+    protected $open_generation_ai_studio = null;
     /**
      * Optional. Request for access.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences request_access = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_access = null;
+    protected $request_access = null;
     /**
      * Optional. Open evaluation pipeline of the PublisherModel.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences open_evaluation_pipeline = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $open_evaluation_pipeline = null;
+    protected $open_evaluation_pipeline = null;
 
     /**
      * Constructor.

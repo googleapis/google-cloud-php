@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [PolicyBasedRouting.GetPolicyBasedRoute][] method.
+ * Request for
+ * [PolicyBasedRoutingService.GetPolicyBasedRoute][google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.GetPolicyBasedRoute]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.GetPolicyBasedRouteRequest</code>
  */
@@ -20,7 +22,7 @@ class GetPolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. Name of the PolicyBasedRoute resource to get. Please see

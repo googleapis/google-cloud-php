@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Context about the submission including the type of abuse found on the URI and
  * supporting details.
- * option (google.api.message_visibility).restriction = "TRUSTED_TESTER";
  *
  * Generated from protobuf message <code>google.cloud.webrisk.v1.ThreatInfo</code>
  */
@@ -22,19 +21,19 @@ class ThreatInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatInfo.AbuseType abuse_type = 1;</code>
      */
-    private $abuse_type = 0;
+    protected $abuse_type = 0;
     /**
      * Confidence that the URI is unsafe.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatInfo.Confidence threat_confidence = 2;</code>
      */
-    private $threat_confidence = null;
+    protected $threat_confidence = null;
     /**
      * Context about why the URI is unsafe.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatInfo.ThreatJustification threat_justification = 3;</code>
      */
-    private $threat_justification = null;
+    protected $threat_justification = null;
 
     /**
      * Constructor.

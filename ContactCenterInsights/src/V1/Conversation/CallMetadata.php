@@ -20,13 +20,13 @@ class CallMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 customer_channel = 1;</code>
      */
-    private $customer_channel = 0;
+    protected $customer_channel = 0;
     /**
      * The audio channel that contains the agent.
      *
      * Generated from protobuf field <code>int32 agent_channel = 2;</code>
      */
-    private $agent_channel = 0;
+    protected $agent_channel = 0;
 
     /**
      * Constructor.

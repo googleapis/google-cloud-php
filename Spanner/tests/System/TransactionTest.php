@@ -22,6 +22,9 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
+use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
+use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
 
 /**
  * @group spanner
@@ -39,12 +42,15 @@ class TransactionTest extends SpannerTestCase
     private static $id1;
     private static $isSetup = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$isSetup) {
             return;
         }
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$tableName = uniqid(self::TABLE_NAME);
         self::$id1 = rand(1000, 9999);
@@ -406,6 +412,11 @@ class TransactionTest extends SpannerTestCase
                         'id' => $id,
                         'name' => uniqid(self::TESTING_PREFIX),
                         'birthday' => new Date(new \DateTime)
+                    ],
+                    'transaction' => [
+                        'begin' => [
+                            'isolationLevel' => IsolationLevel::REPEATABLE_READ,
+                        ]
                     ]
                 ]
             );
@@ -445,6 +456,67 @@ class TransactionTest extends SpannerTestCase
         });
 
         $this->assertEquals([1], $res->rowCounts());
+    }
+
+    public function testOrderByOnTransaction()
+    {
+        $db = self::$database;
+        $transaction = $db->transaction();
+        $limit = 10;
+
+        $db->insertBatch(self::TEST_TABLE_NAME, $this->getMultipleRows($limit));
+
+        $options = [
+            'orderBy' => OrderBy::ORDER_BY_PRIMARY_KEY,
+            'limit' => $limit,
+        ];
+
+        $rows = iterator_to_array(
+            $transaction->read(
+                self::TEST_TABLE_NAME,
+                new KeySet([
+                    'all' => true,
+                ]),
+                array_keys(self::$row),
+                $options,
+            )->rows()
+        );
+
+        $this->assertEquals($limit, count($rows));
+        $transaction->rollback();
+
+        for ($i = 0; $i < count($rows) - 1; $i++) {
+            $this->assertLessThanOrEqual(
+                $rows[$i + 1]['id'],
+                $rows[$i]['id'],
+                'The array is not sorted by id in ascending order.'
+            );
+        }
+    }
+
+    public function testLockHintOnTransaction()
+    {
+        $db = self::$database;
+        $transaction = $db->transaction();
+        $limit = 10;
+
+        $db->insertBatch(self::TEST_TABLE_NAME, $this->getMultipleRows($limit));
+
+        $options = [
+            'lockHint' => LockHint::LOCK_HINT_EXCLUSIVE,
+            'limit' => $limit,
+        ];
+
+        $rows = $transaction->read(
+            self::TEST_TABLE_NAME,
+            new KeySet([
+                'all' => true
+            ]),
+            array_keys(self::$row),
+            $options,
+        )->rows();
+
+        $this->assertEquals($limit, count(iterator_to_array($rows)));
     }
 
     public function getDirectedReadOptions()
@@ -499,5 +571,22 @@ class TransactionTest extends SpannerTestCase
         ]);
 
         return $res->rows()->current();
+    }
+
+    private function getMultipleRows(int $total)
+    {
+        $rows = [];
+
+        // Keeping the < total as the setup already inserts one.
+        // if $total is 10, then we will generate 9 rows.
+        for ($i = 0; $i < $total; $i++) {
+            $rows[] = [
+                'id' => rand(1, 346464),
+                'name' => uniqid(self::TESTING_PREFIX),
+                'birthday' => new Date(new \DateTime('2000-01-01'))
+            ];
+        }
+
+        return $rows;
     }
 }

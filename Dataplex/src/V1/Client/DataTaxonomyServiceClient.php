@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ namespace Google\Cloud\Dataplex\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -61,8 +61,10 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: DataTaxonomyService enables attribute-based governance. The resources
@@ -76,26 +78,28 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDataAttributeAsync(CreateDataAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDataAttributeBindingAsync(CreateDataAttributeBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDataTaxonomyAsync(CreateDataTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataAttributeAsync(DeleteDataAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataAttributeBindingAsync(DeleteDataAttributeBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataTaxonomyAsync(DeleteDataTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataAttributeAsync(GetDataAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataAttributeBindingAsync(GetDataAttributeBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataTaxonomyAsync(GetDataTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataAttributeBindingsAsync(ListDataAttributeBindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataAttributesAsync(ListDataAttributesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataTaxonomiesAsync(ListDataTaxonomiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataAttributeAsync(UpdateDataAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataAttributeBindingAsync(UpdateDataAttributeBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataTaxonomyAsync(UpdateDataTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @deprecated This class will be removed in the next major version update.
+ *
+ * @method PromiseInterface<OperationResponse> createDataAttributeAsync(CreateDataAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDataAttributeBindingAsync(CreateDataAttributeBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDataTaxonomyAsync(CreateDataTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDataAttributeAsync(DeleteDataAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDataAttributeBindingAsync(DeleteDataAttributeBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDataTaxonomyAsync(DeleteDataTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataAttribute> getDataAttributeAsync(GetDataAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataAttributeBinding> getDataAttributeBindingAsync(GetDataAttributeBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataTaxonomy> getDataTaxonomyAsync(GetDataTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataAttributeBindingsAsync(ListDataAttributeBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataAttributesAsync(ListDataAttributesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataTaxonomiesAsync(ListDataTaxonomiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDataAttributeAsync(UpdateDataAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDataAttributeBindingAsync(UpdateDataAttributeBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDataTaxonomyAsync(UpdateDataTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class DataTaxonomyServiceClient
 {
@@ -170,10 +174,29 @@ final class DataTaxonomyServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -267,14 +290,14 @@ final class DataTaxonomyServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -282,20 +305,29 @@ final class DataTaxonomyServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dataplex.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Dataplex\V1\DataTaxonomyServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new DataTaxonomyServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -329,11 +361,16 @@ final class DataTaxonomyServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -369,9 +406,11 @@ final class DataTaxonomyServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DataAttribute>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createDataAttribute(CreateDataAttributeRequest $request, array $callOptions = []): OperationResponse
     {
@@ -396,9 +435,11 @@ final class DataTaxonomyServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DataAttributeBinding>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createDataAttributeBinding(CreateDataAttributeBindingRequest $request, array $callOptions = []): OperationResponse
     {
@@ -423,9 +464,11 @@ final class DataTaxonomyServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DataTaxonomy>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createDataTaxonomy(CreateDataTaxonomyRequest $request, array $callOptions = []): OperationResponse
     {
@@ -450,9 +493,11 @@ final class DataTaxonomyServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteDataAttribute(DeleteDataAttributeRequest $request, array $callOptions = []): OperationResponse
     {
@@ -479,9 +524,11 @@ final class DataTaxonomyServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteDataAttributeBinding(DeleteDataAttributeBindingRequest $request, array $callOptions = []): OperationResponse
     {
@@ -507,9 +554,11 @@ final class DataTaxonomyServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteDataTaxonomy(DeleteDataTaxonomyRequest $request, array $callOptions = []): OperationResponse
     {
@@ -536,6 +585,8 @@ final class DataTaxonomyServiceClient
      * @return DataAttribute
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getDataAttribute(GetDataAttributeRequest $request, array $callOptions = []): DataAttribute
     {
@@ -563,6 +614,8 @@ final class DataTaxonomyServiceClient
      * @return DataAttributeBinding
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getDataAttributeBinding(GetDataAttributeBindingRequest $request, array $callOptions = []): DataAttributeBinding
     {
@@ -589,6 +642,8 @@ final class DataTaxonomyServiceClient
      * @return DataTaxonomy
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getDataTaxonomy(GetDataTaxonomyRequest $request, array $callOptions = []): DataTaxonomy
     {
@@ -616,6 +671,8 @@ final class DataTaxonomyServiceClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listDataAttributeBindings(ListDataAttributeBindingsRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -643,6 +700,8 @@ final class DataTaxonomyServiceClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listDataAttributes(ListDataAttributesRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -670,6 +729,8 @@ final class DataTaxonomyServiceClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listDataTaxonomies(ListDataTaxonomiesRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -694,9 +755,11 @@ final class DataTaxonomyServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DataAttribute>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateDataAttribute(UpdateDataAttributeRequest $request, array $callOptions = []): OperationResponse
     {
@@ -721,9 +784,11 @@ final class DataTaxonomyServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DataAttributeBinding>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateDataAttributeBinding(UpdateDataAttributeBindingRequest $request, array $callOptions = []): OperationResponse
     {
@@ -748,9 +813,11 @@ final class DataTaxonomyServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DataTaxonomy>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateDataTaxonomy(UpdateDataTaxonomyRequest $request, array $callOptions = []): OperationResponse
     {

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Message extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the message.
+     * Identifier. Resource name of the message.
      * Format: `spaces/{space}/messages/{message}`
      * Where `{space}` is the ID of the space where the message is posted and
      * `{message}` is a system-assigned ID for the message. For example,
@@ -28,7 +28,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * a
      * message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -68,16 +68,16 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     protected $delete_time = null;
     /**
-     * Plain-text body of the message. The first link to an image, video, or web
-     * page generates a
-     * [preview chip](https://developers.google.com/workspace/chat/preview-links).
-     * You can also [&#64;mention a Google Chat
+     * Optional. Plain-text body of the message. The first link to an image,
+     * video, or web page generates a [preview
+     * chip](https://developers.google.com/workspace/chat/preview-links). You can
+     * also [&#64;mention a Google Chat
      * user](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention),
      * or everyone in the space.
-     * To learn about creating text messages, see [Send a text
-     * message](https://developers.google.com/workspace/chat/create-messages#create-text-messages).
+     * To learn about creating text messages, see [Send a
+     * message](https://developers.google.com/workspace/chat/create-messages).
      *
-     * Generated from protobuf field <code>string text = 4;</code>
+     * Generated from protobuf field <code>string text = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $text = '';
     /**
@@ -115,20 +115,22 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     private $cards;
     /**
-     * An array of
+     * Optional. An array of
      * [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards).
      * Only Chat apps can create cards. If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * the messages can't contain cards.
-     * To learn about cards and how to create them, see [Send card
-     * messages](https://developers.google.com/workspace/chat/create-messages#create).
+     * To learn how to create a message that contains cards, see [Send a
+     * message](https://developers.google.com/workspace/chat/create-messages).
      * [Card builder](https://addons.gsuite.google.com/uikit/builder)
      *
-     * Generated from protobuf field <code>repeated .google.chat.v1.CardWithId cards_v2 = 22;</code>
+     * Generated from protobuf field <code>repeated .google.chat.v1.CardWithId cards_v2 = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $cards_v2;
     /**
-     * Output only. Annotations associated with the `text` in this message.
+     * Output only. Annotations can be associated with the plain-text body of the
+     * message or with chips that link to Google Workspace resources like Google
+     * Docs or Sheets with `start_index` and `length` of 0.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Annotation annotations = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -142,20 +144,20 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     protected $thread = null;
     /**
-     * If your Chat app [authenticates as a
+     * Output only. If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * the output populates the
+     * the output only populates the
      * [space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces)
      * `name`.
      *
-     * Generated from protobuf field <code>.google.chat.v1.Space space = 12;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Space space = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $space = null;
     /**
-     * A plain-text description of the message's cards, used when the actual cards
-     * can't be displayed—for example, mobile notifications.
+     * Optional. A plain-text description of the message's cards, used when the
+     * actual cards can't be displayed—for example, mobile notifications.
      *
-     * Generated from protobuf field <code>string fallback_text = 13;</code>
+     * Generated from protobuf field <code>string fallback_text = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $fallback_text = '';
     /**
@@ -179,9 +181,9 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     protected $slash_command = null;
     /**
-     * User-uploaded attachment.
+     * Optional. User-uploaded attachment.
      *
-     * Generated from protobuf field <code>repeated .google.chat.v1.Attachment attachment = 18;</code>
+     * Generated from protobuf field <code>repeated .google.chat.v1.Attachment attachment = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $attachment;
     /**
@@ -210,7 +212,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * field when you create the message. For details, see [Name a
      * message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
-     * Generated from protobuf field <code>string client_assigned_message_id = 32;</code>
+     * Generated from protobuf field <code>string client_assigned_message_id = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $client_assigned_message_id = '';
     /**
@@ -220,18 +222,19 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     private $emoji_reaction_summaries;
     /**
-     * Immutable. Input for creating a message, otherwise output only. The user
-     * that can view the message. When set, the message is private and only
-     * visible to the specified user and the Chat app. Link previews and
-     * attachments aren't supported for private messages.
-     * Only Chat apps can send private messages. If your Chat app [authenticates
-     * as a
-     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
-     * to send a message, the message can't be private and must omit this field.
-     * For details, see [Send private messages to Google Chat
-     * users](https://developers.google.com/workspace/chat/private-messages).
+     * Optional. Immutable. Input for creating a message, otherwise output only.
+     * The user that can view the message. When set, the message is private and
+     * only visible to the specified user and the Chat app. To include this field
+     * in your request, you must call the Chat API using [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * and omit the following:
+     * * [Attachments](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.attachments)
+     * * [Accessory
+     * widgets](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#Message.AccessoryWidget)
+     * For details, see [Send a message
+     * privately](https://developers.google.com/workspace/chat/create-messages#private).
      *
-     * Generated from protobuf field <code>.google.chat.v1.User private_message_viewer = 36 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.chat.v1.User private_message_viewer = 36 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $private_message_viewer = null;
     /**
@@ -242,10 +245,16 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     protected $deletion_metadata = null;
     /**
-     * Output only. Information about a message that's quoted by a Google Chat
-     * user in a space. Google Chat users can quote a message to reply to it.
+     * Optional. Information about a message that another message quotes.
+     * When you create a message, you can quote messages within the same
+     * thread, or quote a root message to create a new root message.
+     * However, you can't quote a message reply from a different thread.
+     * When you update a message, you can't add or replace the
+     * `quotedMessageMetadata` field, but you can remove it.
+     * For example usage, see [Quote another
+     * message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
      *
-     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata quoted_message_metadata = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata quoted_message_metadata = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $quoted_message_metadata = null;
     /**
@@ -255,16 +264,16 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     private $attached_gifs;
     /**
-     * One or more interactive widgets that appear at the bottom of a message.
-     * You can add accessory widgets to messages that contain text, cards, or both
-     * text and cards. Not supported for messages that contain dialogs. For
-     * details, see [Add interactive widgets at the bottom of a
+     * Optional. One or more interactive widgets that appear at the bottom of a
+     * message. You can add accessory widgets to messages that contain text,
+     * cards, or both text and cards. Not supported for messages that contain
+     * dialogs. For details, see [Add interactive widgets at the bottom of a
      * message](https://developers.google.com/workspace/chat/create-messages#add-accessory-widgets).
      * Creating a message with accessory widgets requires [app
      * authentication]
      * (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *
-     * Generated from protobuf field <code>repeated .google.chat.v1.AccessoryWidget accessory_widgets = 44;</code>
+     * Generated from protobuf field <code>repeated .google.chat.v1.AccessoryWidget accessory_widgets = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $accessory_widgets;
 
@@ -275,7 +284,7 @@ class Message extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name of the message.
+     *           Identifier. Resource name of the message.
      *           Format: `spaces/{space}/messages/{message}`
      *           Where `{space}` is the ID of the space where the message is posted and
      *           `{message}` is a system-assigned ID for the message. For example,
@@ -307,14 +316,14 @@ class Message extends \Google\Protobuf\Internal\Message
      *           Output only. The time at which the message was deleted in
      *           Google Chat. If the message is never deleted, this field is empty.
      *     @type string $text
-     *           Plain-text body of the message. The first link to an image, video, or web
-     *           page generates a
-     *           [preview chip](https://developers.google.com/workspace/chat/preview-links).
-     *           You can also [&#64;mention a Google Chat
+     *           Optional. Plain-text body of the message. The first link to an image,
+     *           video, or web page generates a [preview
+     *           chip](https://developers.google.com/workspace/chat/preview-links). You can
+     *           also [&#64;mention a Google Chat
      *           user](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention),
      *           or everyone in the space.
-     *           To learn about creating text messages, see [Send a text
-     *           message](https://developers.google.com/workspace/chat/create-messages#create-text-messages).
+     *           To learn about creating text messages, see [Send a
+     *           message](https://developers.google.com/workspace/chat/create-messages).
      *     @type string $formatted_text
      *           Output only. Contains the message `text` with markups added to communicate
      *           formatting. This field might not capture all formatting visible in the UI,
@@ -341,29 +350,31 @@ class Message extends \Google\Protobuf\Internal\Message
      *           normally displayed below the plain-text body of the message. `cards` and
      *           `cards_v2` can have a maximum size of 32 KB.
      *     @type array<\Google\Apps\Chat\V1\CardWithId>|\Google\Protobuf\Internal\RepeatedField $cards_v2
-     *           An array of
+     *           Optional. An array of
      *           [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards).
      *           Only Chat apps can create cards. If your Chat app [authenticates as a
      *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      *           the messages can't contain cards.
-     *           To learn about cards and how to create them, see [Send card
-     *           messages](https://developers.google.com/workspace/chat/create-messages#create).
+     *           To learn how to create a message that contains cards, see [Send a
+     *           message](https://developers.google.com/workspace/chat/create-messages).
      *           [Card builder](https://addons.gsuite.google.com/uikit/builder)
      *     @type array<\Google\Apps\Chat\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $annotations
-     *           Output only. Annotations associated with the `text` in this message.
+     *           Output only. Annotations can be associated with the plain-text body of the
+     *           message or with chips that link to Google Workspace resources like Google
+     *           Docs or Sheets with `start_index` and `length` of 0.
      *     @type \Google\Apps\Chat\V1\Thread $thread
      *           The thread the message belongs to. For example usage, see
      *           [Start or reply to a message
      *           thread](https://developers.google.com/workspace/chat/create-messages#create-message-thread).
      *     @type \Google\Apps\Chat\V1\Space $space
-     *           If your Chat app [authenticates as a
+     *           Output only. If your Chat app [authenticates as a
      *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     *           the output populates the
+     *           the output only populates the
      *           [space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces)
      *           `name`.
      *     @type string $fallback_text
-     *           A plain-text description of the message's cards, used when the actual cards
-     *           can't be displayed—for example, mobile notifications.
+     *           Optional. A plain-text description of the message's cards, used when the
+     *           actual cards can't be displayed—for example, mobile notifications.
      *     @type \Google\Apps\Chat\V1\ActionResponse $action_response
      *           Input only. Parameters that a Chat app can use to configure how its
      *           response is posted.
@@ -373,7 +384,7 @@ class Message extends \Google\Protobuf\Internal\Message
      *     @type \Google\Apps\Chat\V1\SlashCommand $slash_command
      *           Output only. Slash command information, if applicable.
      *     @type array<\Google\Apps\Chat\V1\Attachment>|\Google\Protobuf\Internal\RepeatedField $attachment
-     *           User-uploaded attachment.
+     *           Optional. User-uploaded attachment.
      *     @type \Google\Apps\Chat\V1\MatchedUrl $matched_url
      *           Output only. A URL in `spaces.messages.text` that matches a link preview
      *           pattern. For more information, see [Preview
@@ -394,29 +405,36 @@ class Message extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Apps\Chat\V1\EmojiReactionSummary>|\Google\Protobuf\Internal\RepeatedField $emoji_reaction_summaries
      *           Output only. The list of emoji reaction summaries on the message.
      *     @type \Google\Apps\Chat\V1\User $private_message_viewer
-     *           Immutable. Input for creating a message, otherwise output only. The user
-     *           that can view the message. When set, the message is private and only
-     *           visible to the specified user and the Chat app. Link previews and
-     *           attachments aren't supported for private messages.
-     *           Only Chat apps can send private messages. If your Chat app [authenticates
-     *           as a
-     *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
-     *           to send a message, the message can't be private and must omit this field.
-     *           For details, see [Send private messages to Google Chat
-     *           users](https://developers.google.com/workspace/chat/private-messages).
+     *           Optional. Immutable. Input for creating a message, otherwise output only.
+     *           The user that can view the message. When set, the message is private and
+     *           only visible to the specified user and the Chat app. To include this field
+     *           in your request, you must call the Chat API using [app
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     *           and omit the following:
+     *           * [Attachments](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.attachments)
+     *           * [Accessory
+     *           widgets](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#Message.AccessoryWidget)
+     *           For details, see [Send a message
+     *           privately](https://developers.google.com/workspace/chat/create-messages#private).
      *     @type \Google\Apps\Chat\V1\DeletionMetadata $deletion_metadata
      *           Output only. Information about a deleted message. A message is deleted when
      *           `delete_time` is set.
      *     @type \Google\Apps\Chat\V1\QuotedMessageMetadata $quoted_message_metadata
-     *           Output only. Information about a message that's quoted by a Google Chat
-     *           user in a space. Google Chat users can quote a message to reply to it.
+     *           Optional. Information about a message that another message quotes.
+     *           When you create a message, you can quote messages within the same
+     *           thread, or quote a root message to create a new root message.
+     *           However, you can't quote a message reply from a different thread.
+     *           When you update a message, you can't add or replace the
+     *           `quotedMessageMetadata` field, but you can remove it.
+     *           For example usage, see [Quote another
+     *           message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
      *     @type array<\Google\Apps\Chat\V1\AttachedGif>|\Google\Protobuf\Internal\RepeatedField $attached_gifs
      *           Output only. GIF images that are attached to the message.
      *     @type array<\Google\Apps\Chat\V1\AccessoryWidget>|\Google\Protobuf\Internal\RepeatedField $accessory_widgets
-     *           One or more interactive widgets that appear at the bottom of a message.
-     *           You can add accessory widgets to messages that contain text, cards, or both
-     *           text and cards. Not supported for messages that contain dialogs. For
-     *           details, see [Add interactive widgets at the bottom of a
+     *           Optional. One or more interactive widgets that appear at the bottom of a
+     *           message. You can add accessory widgets to messages that contain text,
+     *           cards, or both text and cards. Not supported for messages that contain
+     *           dialogs. For details, see [Add interactive widgets at the bottom of a
      *           message](https://developers.google.com/workspace/chat/create-messages#add-accessory-widgets).
      *           Creating a message with accessory widgets requires [app
      *           authentication]
@@ -429,7 +447,7 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the message.
+     * Identifier. Resource name of the message.
      * Format: `spaces/{space}/messages/{message}`
      * Where `{space}` is the ID of the space where the message is posted and
      * `{message}` is a system-assigned ID for the message. For example,
@@ -441,7 +459,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * a
      * message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -450,7 +468,7 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the message.
+     * Identifier. Resource name of the message.
      * Format: `spaces/{space}/messages/{message}`
      * Where `{space}` is the ID of the space where the message is posted and
      * `{message}` is a system-assigned ID for the message. For example,
@@ -462,7 +480,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * a
      * message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -643,16 +661,16 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Plain-text body of the message. The first link to an image, video, or web
-     * page generates a
-     * [preview chip](https://developers.google.com/workspace/chat/preview-links).
-     * You can also [&#64;mention a Google Chat
+     * Optional. Plain-text body of the message. The first link to an image,
+     * video, or web page generates a [preview
+     * chip](https://developers.google.com/workspace/chat/preview-links). You can
+     * also [&#64;mention a Google Chat
      * user](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention),
      * or everyone in the space.
-     * To learn about creating text messages, see [Send a text
-     * message](https://developers.google.com/workspace/chat/create-messages#create-text-messages).
+     * To learn about creating text messages, see [Send a
+     * message](https://developers.google.com/workspace/chat/create-messages).
      *
-     * Generated from protobuf field <code>string text = 4;</code>
+     * Generated from protobuf field <code>string text = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getText()
@@ -661,16 +679,16 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Plain-text body of the message. The first link to an image, video, or web
-     * page generates a
-     * [preview chip](https://developers.google.com/workspace/chat/preview-links).
-     * You can also [&#64;mention a Google Chat
+     * Optional. Plain-text body of the message. The first link to an image,
+     * video, or web page generates a [preview
+     * chip](https://developers.google.com/workspace/chat/preview-links). You can
+     * also [&#64;mention a Google Chat
      * user](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention),
      * or everyone in the space.
-     * To learn about creating text messages, see [Send a text
-     * message](https://developers.google.com/workspace/chat/create-messages#create-text-messages).
+     * To learn about creating text messages, see [Send a
+     * message](https://developers.google.com/workspace/chat/create-messages).
      *
-     * Generated from protobuf field <code>string text = 4;</code>
+     * Generated from protobuf field <code>string text = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -755,7 +773,9 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function getCards()
     {
-        @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
+        if ($this->cards->count() !== 0) {
+            @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->cards;
     }
 
@@ -773,24 +793,26 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setCards($var)
     {
-        @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Apps\Chat\V1\ContextualAddOnMarkup\Card::class);
+        if (count($arr) !== 0) {
+            @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
+        }
         $this->cards = $arr;
 
         return $this;
     }
 
     /**
-     * An array of
+     * Optional. An array of
      * [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards).
      * Only Chat apps can create cards. If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * the messages can't contain cards.
-     * To learn about cards and how to create them, see [Send card
-     * messages](https://developers.google.com/workspace/chat/create-messages#create).
+     * To learn how to create a message that contains cards, see [Send a
+     * message](https://developers.google.com/workspace/chat/create-messages).
      * [Card builder](https://addons.gsuite.google.com/uikit/builder)
      *
-     * Generated from protobuf field <code>repeated .google.chat.v1.CardWithId cards_v2 = 22;</code>
+     * Generated from protobuf field <code>repeated .google.chat.v1.CardWithId cards_v2 = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getCardsV2()
@@ -799,16 +821,16 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An array of
+     * Optional. An array of
      * [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards).
      * Only Chat apps can create cards. If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * the messages can't contain cards.
-     * To learn about cards and how to create them, see [Send card
-     * messages](https://developers.google.com/workspace/chat/create-messages#create).
+     * To learn how to create a message that contains cards, see [Send a
+     * message](https://developers.google.com/workspace/chat/create-messages).
      * [Card builder](https://addons.gsuite.google.com/uikit/builder)
      *
-     * Generated from protobuf field <code>repeated .google.chat.v1.CardWithId cards_v2 = 22;</code>
+     * Generated from protobuf field <code>repeated .google.chat.v1.CardWithId cards_v2 = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Apps\Chat\V1\CardWithId>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -821,7 +843,9 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Annotations associated with the `text` in this message.
+     * Output only. Annotations can be associated with the plain-text body of the
+     * message or with chips that link to Google Workspace resources like Google
+     * Docs or Sheets with `start_index` and `length` of 0.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Annotation annotations = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -832,7 +856,9 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Annotations associated with the `text` in this message.
+     * Output only. Annotations can be associated with the plain-text body of the
+     * message or with chips that link to Google Workspace resources like Google
+     * Docs or Sheets with `start_index` and `length` of 0.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Annotation annotations = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Apps\Chat\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $var
@@ -887,13 +913,13 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If your Chat app [authenticates as a
+     * Output only. If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * the output populates the
+     * the output only populates the
      * [space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces)
      * `name`.
      *
-     * Generated from protobuf field <code>.google.chat.v1.Space space = 12;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Space space = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Apps\Chat\V1\Space|null
      */
     public function getSpace()
@@ -912,13 +938,13 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If your Chat app [authenticates as a
+     * Output only. If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * the output populates the
+     * the output only populates the
      * [space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces)
      * `name`.
      *
-     * Generated from protobuf field <code>.google.chat.v1.Space space = 12;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Space space = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Apps\Chat\V1\Space $var
      * @return $this
      */
@@ -931,10 +957,10 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A plain-text description of the message's cards, used when the actual cards
-     * can't be displayed—for example, mobile notifications.
+     * Optional. A plain-text description of the message's cards, used when the
+     * actual cards can't be displayed—for example, mobile notifications.
      *
-     * Generated from protobuf field <code>string fallback_text = 13;</code>
+     * Generated from protobuf field <code>string fallback_text = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFallbackText()
@@ -943,10 +969,10 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A plain-text description of the message's cards, used when the actual cards
-     * can't be displayed—for example, mobile notifications.
+     * Optional. A plain-text description of the message's cards, used when the
+     * actual cards can't be displayed—for example, mobile notifications.
      *
-     * Generated from protobuf field <code>string fallback_text = 13;</code>
+     * Generated from protobuf field <code>string fallback_text = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -1061,9 +1087,9 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-uploaded attachment.
+     * Optional. User-uploaded attachment.
      *
-     * Generated from protobuf field <code>repeated .google.chat.v1.Attachment attachment = 18;</code>
+     * Generated from protobuf field <code>repeated .google.chat.v1.Attachment attachment = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAttachment()
@@ -1072,9 +1098,9 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-uploaded attachment.
+     * Optional. User-uploaded attachment.
      *
-     * Generated from protobuf field <code>repeated .google.chat.v1.Attachment attachment = 18;</code>
+     * Generated from protobuf field <code>repeated .google.chat.v1.Attachment attachment = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Apps\Chat\V1\Attachment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -1168,7 +1194,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * field when you create the message. For details, see [Name a
      * message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
-     * Generated from protobuf field <code>string client_assigned_message_id = 32;</code>
+     * Generated from protobuf field <code>string client_assigned_message_id = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getClientAssignedMessageId()
@@ -1184,7 +1210,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * field when you create the message. For details, see [Name a
      * message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
-     * Generated from protobuf field <code>string client_assigned_message_id = 32;</code>
+     * Generated from protobuf field <code>string client_assigned_message_id = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -1223,18 +1249,19 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Input for creating a message, otherwise output only. The user
-     * that can view the message. When set, the message is private and only
-     * visible to the specified user and the Chat app. Link previews and
-     * attachments aren't supported for private messages.
-     * Only Chat apps can send private messages. If your Chat app [authenticates
-     * as a
-     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
-     * to send a message, the message can't be private and must omit this field.
-     * For details, see [Send private messages to Google Chat
-     * users](https://developers.google.com/workspace/chat/private-messages).
+     * Optional. Immutable. Input for creating a message, otherwise output only.
+     * The user that can view the message. When set, the message is private and
+     * only visible to the specified user and the Chat app. To include this field
+     * in your request, you must call the Chat API using [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * and omit the following:
+     * * [Attachments](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.attachments)
+     * * [Accessory
+     * widgets](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#Message.AccessoryWidget)
+     * For details, see [Send a message
+     * privately](https://developers.google.com/workspace/chat/create-messages#private).
      *
-     * Generated from protobuf field <code>.google.chat.v1.User private_message_viewer = 36 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.chat.v1.User private_message_viewer = 36 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\User|null
      */
     public function getPrivateMessageViewer()
@@ -1253,18 +1280,19 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Input for creating a message, otherwise output only. The user
-     * that can view the message. When set, the message is private and only
-     * visible to the specified user and the Chat app. Link previews and
-     * attachments aren't supported for private messages.
-     * Only Chat apps can send private messages. If your Chat app [authenticates
-     * as a
-     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
-     * to send a message, the message can't be private and must omit this field.
-     * For details, see [Send private messages to Google Chat
-     * users](https://developers.google.com/workspace/chat/private-messages).
+     * Optional. Immutable. Input for creating a message, otherwise output only.
+     * The user that can view the message. When set, the message is private and
+     * only visible to the specified user and the Chat app. To include this field
+     * in your request, you must call the Chat API using [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * and omit the following:
+     * * [Attachments](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.attachments)
+     * * [Accessory
+     * widgets](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#Message.AccessoryWidget)
+     * For details, see [Send a message
+     * privately](https://developers.google.com/workspace/chat/create-messages#private).
      *
-     * Generated from protobuf field <code>.google.chat.v1.User private_message_viewer = 36 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.chat.v1.User private_message_viewer = 36 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\User $var
      * @return $this
      */
@@ -1315,10 +1343,16 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about a message that's quoted by a Google Chat
-     * user in a space. Google Chat users can quote a message to reply to it.
+     * Optional. Information about a message that another message quotes.
+     * When you create a message, you can quote messages within the same
+     * thread, or quote a root message to create a new root message.
+     * However, you can't quote a message reply from a different thread.
+     * When you update a message, you can't add or replace the
+     * `quotedMessageMetadata` field, but you can remove it.
+     * For example usage, see [Quote another
+     * message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
      *
-     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata quoted_message_metadata = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata quoted_message_metadata = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\QuotedMessageMetadata|null
      */
     public function getQuotedMessageMetadata()
@@ -1337,10 +1371,16 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about a message that's quoted by a Google Chat
-     * user in a space. Google Chat users can quote a message to reply to it.
+     * Optional. Information about a message that another message quotes.
+     * When you create a message, you can quote messages within the same
+     * thread, or quote a root message to create a new root message.
+     * However, you can't quote a message reply from a different thread.
+     * When you update a message, you can't add or replace the
+     * `quotedMessageMetadata` field, but you can remove it.
+     * For example usage, see [Quote another
+     * message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
      *
-     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata quoted_message_metadata = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata quoted_message_metadata = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\QuotedMessageMetadata $var
      * @return $this
      */
@@ -1379,16 +1419,16 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more interactive widgets that appear at the bottom of a message.
-     * You can add accessory widgets to messages that contain text, cards, or both
-     * text and cards. Not supported for messages that contain dialogs. For
-     * details, see [Add interactive widgets at the bottom of a
+     * Optional. One or more interactive widgets that appear at the bottom of a
+     * message. You can add accessory widgets to messages that contain text,
+     * cards, or both text and cards. Not supported for messages that contain
+     * dialogs. For details, see [Add interactive widgets at the bottom of a
      * message](https://developers.google.com/workspace/chat/create-messages#add-accessory-widgets).
      * Creating a message with accessory widgets requires [app
      * authentication]
      * (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *
-     * Generated from protobuf field <code>repeated .google.chat.v1.AccessoryWidget accessory_widgets = 44;</code>
+     * Generated from protobuf field <code>repeated .google.chat.v1.AccessoryWidget accessory_widgets = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAccessoryWidgets()
@@ -1397,16 +1437,16 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more interactive widgets that appear at the bottom of a message.
-     * You can add accessory widgets to messages that contain text, cards, or both
-     * text and cards. Not supported for messages that contain dialogs. For
-     * details, see [Add interactive widgets at the bottom of a
+     * Optional. One or more interactive widgets that appear at the bottom of a
+     * message. You can add accessory widgets to messages that contain text,
+     * cards, or both text and cards. Not supported for messages that contain
+     * dialogs. For details, see [Add interactive widgets at the bottom of a
      * message](https://developers.google.com/workspace/chat/create-messages#add-accessory-widgets).
      * Creating a message with accessory widgets requires [app
      * authentication]
      * (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *
-     * Generated from protobuf field <code>repeated .google.chat.v1.AccessoryWidget accessory_widgets = 44;</code>
+     * Generated from protobuf field <code>repeated .google.chat.v1.AccessoryWidget accessory_widgets = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Apps\Chat\V1\AccessoryWidget>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

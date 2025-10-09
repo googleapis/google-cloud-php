@@ -20,7 +20,7 @@ class NetworkPerformanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string total_egress_bandwidth_tier = 130109439;</code>
      */
-    private $total_egress_bandwidth_tier = null;
+    protected $total_egress_bandwidth_tier = null;
 
     /**
      * Constructor.

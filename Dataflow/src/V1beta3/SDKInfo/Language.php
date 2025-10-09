@@ -31,11 +31,18 @@ class Language
      * Generated from protobuf enum <code>PYTHON = 2;</code>
      */
     const PYTHON = 2;
+    /**
+     * Go.
+     *
+     * Generated from protobuf enum <code>GO = 3;</code>
+     */
+    const GO = 3;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
         self::JAVA => 'JAVA',
         self::PYTHON => 'PYTHON',
+        self::GO => 'GO',
     ];
 
     public static function name($value)
@@ -59,6 +66,4 @@ class Language
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Language::class, \Google\Cloud\Dataflow\V1beta3\SDKInfo_Language::class);
 

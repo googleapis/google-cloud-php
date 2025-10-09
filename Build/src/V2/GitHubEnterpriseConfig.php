@@ -20,45 +20,45 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $host_uri = '';
+    protected $host_uri = '';
     /**
      * Required. API Key used for authentication of webhook events.
      *
      * Generated from protobuf field <code>string api_key = 12 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api_key = '';
+    protected $api_key = '';
     /**
      * Id of the GitHub App created from the manifest.
      *
      * Generated from protobuf field <code>int64 app_id = 2;</code>
      */
-    private $app_id = 0;
+    protected $app_id = 0;
     /**
      * The URL-friendly name of the GitHub App.
      *
      * Generated from protobuf field <code>string app_slug = 13;</code>
      */
-    private $app_slug = '';
+    protected $app_slug = '';
     /**
      * SecretManager resource containing the private key of the GitHub App,
      * formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      *
      * Generated from protobuf field <code>string private_key_secret_version = 4 [(.google.api.resource_reference) = {</code>
      */
-    private $private_key_secret_version = '';
+    protected $private_key_secret_version = '';
     /**
      * SecretManager resource containing the webhook secret of the GitHub App,
      * formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 5 [(.google.api.resource_reference) = {</code>
      */
-    private $webhook_secret_secret_version = '';
+    protected $webhook_secret_secret_version = '';
     /**
      * ID of the installation of the GitHub App.
      *
      * Generated from protobuf field <code>int64 app_installation_id = 9;</code>
      */
-    private $app_installation_id = 0;
+    protected $app_installation_id = 0;
     /**
      * Configuration for using Service Directory to privately connect to a GitHub
      * Enterprise server. This should only be set if the GitHub Enterprise server
@@ -68,19 +68,19 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.ServiceDirectoryConfig service_directory_config = 10;</code>
      */
-    private $service_directory_config = null;
+    protected $service_directory_config = null;
     /**
      * SSL certificate to use for requests to GitHub Enterprise.
      *
      * Generated from protobuf field <code>string ssl_ca = 11;</code>
      */
-    private $ssl_ca = '';
+    protected $ssl_ca = '';
     /**
      * Output only. GitHub Enterprise version installed at the host_uri.
      *
      * Generated from protobuf field <code>string server_version = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $server_version = '';
+    protected $server_version = '';
 
     /**
      * Constructor.

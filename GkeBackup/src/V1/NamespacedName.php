@@ -20,13 +20,13 @@ class NamespacedName extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string namespace = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $namespace = '';
+    protected $namespace = '';
     /**
      * Optional. The name of the Kubernetes resource.
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.

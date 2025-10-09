@@ -33,11 +33,20 @@ class RouteType
      * Generated from protobuf enum <code>VPC_SECONDARY_SUBNET = 2;</code>
      */
     const VPC_SECONDARY_SUBNET = 2;
+    /**
+     * The route leads to a destination in a dynamic route. Dynamic routes are
+     * derived from Border Gateway Protocol (BGP) advertisements received from an
+     * NCC hybrid spoke.
+     *
+     * Generated from protobuf enum <code>DYNAMIC_ROUTE = 3;</code>
+     */
+    const DYNAMIC_ROUTE = 3;
 
     private static $valueToName = [
         self::ROUTE_TYPE_UNSPECIFIED => 'ROUTE_TYPE_UNSPECIFIED',
         self::VPC_PRIMARY_SUBNET => 'VPC_PRIMARY_SUBNET',
         self::VPC_SECONDARY_SUBNET => 'VPC_SECONDARY_SUBNET',
+        self::DYNAMIC_ROUTE => 'DYNAMIC_ROUTE',
     ];
 
     public static function name($value)

@@ -20,19 +20,19 @@ class AdminUser extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string email = 1;</code>
      */
-    private $email = '';
+    protected $email = '';
     /**
      * Given name of the admin user.
      *
      * Generated from protobuf field <code>string given_name = 2;</code>
      */
-    private $given_name = '';
+    protected $given_name = '';
     /**
      * Family name of the admin user.
      *
      * Generated from protobuf field <code>string family_name = 3;</code>
      */
-    private $family_name = '';
+    protected $family_name = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class UpdateDatasetVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DatasetVersion dataset_version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset_version = null;
+    protected $dataset_version = null;
     /**
      * Required. The update mask applies to the resource.
      * For the `FieldMask` definition, see
@@ -30,7 +30,7 @@ class UpdateDatasetVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\DatasetVersion $datasetVersion Required. The DatasetVersion which replaces the resource on the server.

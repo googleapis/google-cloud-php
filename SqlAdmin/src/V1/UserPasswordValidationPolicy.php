@@ -20,32 +20,32 @@ class UserPasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 allowed_failed_attempts = 1;</code>
      */
-    private $allowed_failed_attempts = 0;
+    protected $allowed_failed_attempts = 0;
     /**
      * Expiration duration after password is updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration password_expiration_duration = 2;</code>
      */
-    private $password_expiration_duration = null;
+    protected $password_expiration_duration = null;
     /**
      * If true, failed login attempts check will be enabled.
      *
      * Generated from protobuf field <code>bool enable_failed_attempts_check = 3;</code>
      */
-    private $enable_failed_attempts_check = false;
+    protected $enable_failed_attempts_check = false;
     /**
      * Output only. Read-only password status.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.PasswordStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * If true, the user must specify the current password before changing the
      * password. This flag is supported only for MySQL.
      *
      * Generated from protobuf field <code>bool enable_password_verification = 5;</code>
      */
-    private $enable_password_verification = false;
+    protected $enable_password_verification = false;
 
     /**
      * Constructor.

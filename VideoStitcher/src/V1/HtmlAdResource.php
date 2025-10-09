@@ -20,7 +20,7 @@ class HtmlAdResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string html_source = 1;</code>
      */
-    private $html_source = '';
+    protected $html_source = '';
 
     /**
      * Constructor.

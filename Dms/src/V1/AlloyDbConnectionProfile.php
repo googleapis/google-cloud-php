@@ -22,13 +22,13 @@ class AlloyDbConnectionProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cluster_id = '';
+    protected $cluster_id = '';
     /**
      * Immutable. Metadata used to create the destination AlloyDB cluster.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.AlloyDbSettings settings = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $settings = null;
+    protected $settings = null;
 
     /**
      * Constructor.

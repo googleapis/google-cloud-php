@@ -21,13 +21,13 @@ class CreateBackupPlanRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The BackupPlan resource object to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan backup_plan = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup_plan = null;
+    protected $backup_plan = null;
     /**
      * Required. The client-provided short name for the BackupPlan resource.
      * This name must:
@@ -39,7 +39,7 @@ class CreateBackupPlanRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup_plan_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup_plan_id = '';
+    protected $backup_plan_id = '';
 
     /**
      * @param string                                $parent       Required. The location within which to create the BackupPlan.

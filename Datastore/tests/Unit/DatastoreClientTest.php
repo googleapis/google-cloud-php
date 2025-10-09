@@ -17,20 +17,20 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+use DateTime;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\Blob;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
-use Google\Cloud\Datastore\Connection\Grpc;
-use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
-use Google\Cloud\Datastore\Query\Aggregation;
+use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
@@ -38,9 +38,27 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\ExplainOptions;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\CommitResponse;
+use Google\Cloud\Datastore\V1\Entity as V1Entity;
+use Google\Cloud\Datastore\V1\EntityResult;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\LookupResponse;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\Datastore\V1\AllocateIdsRequest;
+use Google\Cloud\Datastore\V1\AllocateIdsResponse;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
+use Google\Cloud\Datastore\V1\BeginTransactionResponse;
+use Google\Cloud\Datastore\V1\Key as V1Key;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryResponse;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 
 /**
  * @group datastore
@@ -53,43 +71,22 @@ class DatastoreClientTest extends TestCase
     use ProphecyTrait;
 
     const PROJECT = 'example-project';
+    const DATABASE = 'example-database';
     const TRANSACTION = 'transaction-id';
 
-    private $connection;
     private $client;
+    private $gapicClient;
+    private $operation;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = TestHelpers::stub(DatastoreClient::class, [
-            ['projectId' => self::PROJECT]
-        ], [
-            'operation'
+        $this->gapicClient = $this->prophesize(GapicClient::class);
+        $this->client = new DatastoreClient([
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'projectId' => self::PROJECT,
+            'databaseId' => self::DATABASE,
+            'datastoreClient' => $this->gapicClient->reveal()
         ]);
-    }
-
-    public function testGrpcConnection()
-    {
-        $this->checkAndSkipGrpcTests();
-
-        $client = TestHelpers::stub(DatastoreClient::class, [[
-            'projectId' => self::PROJECT,
-            'transport' => 'grpc',
-        ]]);
-
-        $this->assertInstanceOf(Grpc::class, $client->___getProperty('connection'));
-    }
-
-    public function testRestConnection()
-    {
-        $this->checkAndSkipGrpcTests();
-
-        $client = TestHelpers::stub(DatastoreClient::class, [[
-            'projectId' => self::PROJECT,
-            'transport' => 'rest',
-        ]]);
-
-        $this->assertInstanceOf(Rest::class, $client->___getProperty('connection'));
     }
 
     public function testKeyIncomplete()
@@ -180,317 +177,392 @@ class DatastoreClientTest extends TestCase
         ]);
     }
 
-    /**
-     * @dataProvider allocateIdProvider
-     */
-    public function testAllocateId($method, $batch = false)
+    public function testAllocateId()
     {
-        $key = new Key('foo');
-        $key->pathElement('Person');
-        $id = 12345;
-        $keyWithId = clone $key;
-        $keyWithId->setLastElementIdentifier($id);
+        // 1. Setup keys and expected gRPC request/response
+        $incompleteKey = $this->client->key('Person');
+        $id = 123;
+        $completeKey = $this->client->key('Person', $id);
 
-        $this->connection->allocateIds(Argument::withEntry('keys', [
-            $key->keyObject()
-        ]))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
+        $v1IncompleteKey = new V1Key();
+        $v1IncompleteKey->mergeFromJsonString(json_encode($incompleteKey->keyObject()));
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $v1CompleteKey = new V1Key();
+        $v1CompleteKey->mergeFromJsonString(json_encode($completeKey->keyObject()));
 
-        $res = $batch
-            ? $this->client->$method([$key])[0]
-            : $this->client->$method($key);
+        $request = (new AllocateIdsRequest())
+            ->setProjectId(self::PROJECT)
+            ->setDatabaseId(self::DATABASE)
+            ->setKeys([$v1IncompleteKey]);
 
-        $this->assertInstanceOf(Key::class, $res);
-        $this->assertEquals($id, $res->pathEnd()['id']);
-        $this->assertEquals('Person', $res->pathEnd()['kind']);
+        $response = new AllocateIdsResponse();
+        $response->setKeys([$v1CompleteKey]);
+
+        // 2. Set expectation on the mocked GapicClient
+        $this->gapicClient->allocateIds($request, [])
+            ->shouldBeCalled(1)
+            ->willReturn($response);
+
+        // 5. Call the method under test
+        $responseKey = $this->client->allocateId($incompleteKey);
+
+        // 6. Assert the result
+        $this->assertInstanceOf(Key::class, $responseKey);
+        $this->assertEquals($id, $responseKey->pathEndIdentifier());
+        $this->assertEquals('Person', $responseKey->pathEnd()['kind']);
     }
 
-    public function allocateIdProvider()
+    public function testAllocateIds()
     {
-        return [
-            ['allocateId'],
-            ['allocateIds', true]
+        $incompleteKeys = [$this->client->key('Person'), $this->client->key('Book')];
+        $ids = [123, 456];
+        $completeKeys = [$this->client->key('Person', $ids[0]), $this->client->key('Book', $ids[1])];
+
+        $incompleteKey1 = new V1Key();
+        $incompleteKey1->mergeFromJsonString(json_encode($incompleteKeys[0]->keyObject()));
+        $incompleteKey2 = new V1Key();
+        $incompleteKey2->mergeFromJsonString(json_encode($incompleteKeys[1]->keyObject()));
+
+        $v1IncompleteKeys = [
+            $incompleteKey1,
+            $incompleteKey2
         ];
+        $v1CompleteKey1 = new V1Key();
+        $v1CompleteKey1->mergeFromJsonString(json_encode($completeKeys[0]->keyObject()));
+        $v1CompleteKey2 = new V1Key();
+        $v1CompleteKey2->mergeFromJsonString(json_encode($completeKeys[1]->keyObject()));
+        $v1CompleteKeys = [
+            $v1CompleteKey1,
+            $v1CompleteKey2
+        ];
+
+        $request = (new AllocateIdsRequest())
+            ->setProjectId(self::PROJECT)
+            ->setDatabaseId(self::DATABASE)
+            ->setKeys($v1IncompleteKeys);
+        $response = (new AllocateIdsResponse())
+            ->setKeys($v1CompleteKeys);
+
+        $this->gapicClient->allocateIds($request, [])->shouldBeCalled(1)->willReturn($response);
+
+        $responseKeys = $this->client->allocateIds($incompleteKeys);
+
+        $this->assertCount(2, $responseKeys);
+        $this->assertEquals($ids[0], $responseKeys[0]->pathEndIdentifier());
+        $this->assertEquals($ids[1], $responseKeys[1]->pathEndIdentifier());
     }
 
-    /**
-     * @dataProvider transactionProvider
-     */
-    public function testTransaction($method, $type, $key)
+    public function testTransaction()
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT),
-            // can't do direct comparisons between (object)[].
-            Argument::that(function ($arg) use ($key) {
-                if (!($arg['transactionOptions'][$key] instanceof \stdClass)) {
-                    return false;
-                }
+        $expectedId = 'transactionString';
 
-                if ((array) $arg['transactionOptions'][$key]) {
-                    return false;
-                }
+        $response = new BeginTransactionResponse();
+        $response->setTransaction($expectedId);
 
+        $this->gapicClient->beginTransaction(Argument::that(function (BeginTransactionRequest $request) {
+            $this->assertEquals($request->getProjectId(), self::PROJECT);
+            $this->assertEquals($request->getDatabaseId(), self::DATABASE);
+            $this->assertNotNull($request->getTransactionOptions()->getReadWrite());
+            return true;
+        }), [])
+            ->shouldBeCalled(1)
+            ->willReturn($response);
+
+        $expectedTransaction = new Transaction(
+            $this->getOperationMock(),
+            self::PROJECT,
+            base64_encode($expectedId)
+        );
+
+        $response = $this->client->transaction();
+        $this->assertInstanceOf(Transaction::class, $response);
+        // $this->assertEquals($expectedTransaction, $response);
+    }
+
+    public function testReadOnlyTransaction()
+    {
+        $expectedId = 'transactionString';
+
+        $expectedTransaction = new ReadOnlyTransaction(
+            $this->getOperationMock(),
+            self::PROJECT,
+            base64_encode($expectedId)
+        );
+
+        $response = new BeginTransactionResponse();
+        $response->setTransaction($expectedId);
+
+        $this->gapicClient->beginTransaction(Argument::that(function (BeginTransactionRequest $request) {
+            $this->assertEquals($request->getProjectId(), self::PROJECT);
+            $this->assertEquals($request->getDatabaseId(), self::DATABASE);
+            $this->assertNotNull($request->getTransactionOptions()->getReadOnly());
+            return true;
+        }), [])->shouldBeCalled(1)->willReturn($response);
+
+        $response = $this->client->readOnlyTransaction();
+        $this->assertInstanceOf(ReadOnlyTransaction::class, $response);
+        // $this->assertEquals($expectedTransaction, $response);
+    }
+
+    public function testTransactionWithOptions()
+    {
+        $options = ['previousTransaction' => 'previousId'];
+        $expectedTransaction = new Transaction(
+            $this->getOperationMock(),
+            self::PROJECT,
+            base64_encode(self::TRANSACTION),
+            $options
+        );
+
+        $response = (new BeginTransactionResponse())->setTransaction('transaction-id');
+
+        $this->gapicClient->beginTransaction(Argument::that(function (BeginTransactionRequest $request) {
+            $this->assertEquals($request->getProjectId(), self::PROJECT);
+            $this->assertEquals($request->getDatabaseId(), self::DATABASE);
+            $previousTransaction = $request->getTransactionOptions()
+                ->getReadWrite()
+                ->getPreviousTransaction();
+            $this->assertNotEmpty($previousTransaction);
+            $this->assertEquals(base64_decode('previousId'), $previousTransaction);
+            return true;
+        }), [])->shouldBeCalled(1)->willReturn(
+            $response
+        );
+
+        $res = $this->client->transaction(['transactionOptions' => $options]);
+        $this->assertInstanceOf(Transaction::class, $res);
+        // $this->assertEquals($expectedTransaction, $res);
+    }
+
+    public function testReadOnlyTransactionWithOptions()
+    {
+        $timestamp = new ProtobufTimestamp(['seconds' => time()]);
+        $options = ['readTime' => $timestamp];
+        $expectedTransaction = new ReadOnlyTransaction(
+            $this->getOperationMock(),
+            self::PROJECT,
+            base64_encode(self::TRANSACTION),
+            $options
+        );
+
+        $response = new BeginTransactionResponse();
+        $response->setTransaction(self::TRANSACTION);
+
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) use ($timestamp) {
+                $this->assertEquals($request->getProjectId(), self::PROJECT);
+                $this->assertEquals($request->getDatabaseId(), self::DATABASE);
+                $readTime = $request->getTransactionOptions()
+                    ->getReadOnly()
+                    ->getReadTime();
+                $this->assertNotEmpty($readTime);
+                $this->assertNull($request->getTransactionOptions()->getReadWrite());
                 return true;
-            })
-        ))->shouldBeCalled()->willReturn([
-            'transaction' => self::TRANSACTION
-        ]);
+            }),
+            []
+        )->shouldBeCalled(1)->willReturn(
+            $response
+        );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
-
-        $res = $this->client->$method();
-        $this->assertInstanceOf($type, $res);
+        $res = $this->client->readOnlyTransaction(['transactionOptions' => $options]);
+        $this->assertInstanceOf(ReadOnlyTransaction::class, $res);
     }
 
-    /**
-     * @dataProvider transactionProvider
-     */
-    public function testTransactionWithOptions($method, $type, $key)
+    public function testDatastoreCrudOperations()
     {
-        $options = ['foo' => 'bar'];
+        $key = $this->client->key('Person', 'jeff');
+        $data = ['firstName' => 'Jeff'];
+        $entity = $this->client->entity($key, $data);
 
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT),
-            Argument::withEntry('transactionOptions', [
-                $key => $options
-            ])
-        ))->shouldBeCalled()->willReturn([
-            'transaction' => self::TRANSACTION
-        ]);
+        // Common commit response for mutations
+        $commitResponse = new CommitResponse();
+        $commitResponse->mergeFromJsonString(json_encode($this->commitResponse()));
 
-        // Make sure the correct transaction ID was injected.
-        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([]);
+        // 1. Test Insert
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            switch ($request->getMutations()[0]->getOperation()) {
+                case 'insert':
+                case 'update':
+                case 'upsert':
+                case 'delete':
+                    return true;
+                default:
+                    $this->fail('Unexpected value received to the commit function');
+                    return false;
+            }
+            return true;
+        }), Argument::any())->shouldBeCalledTimes(4)
+            ->willReturn($commitResponse);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->client->insert($entity);
 
-        $res = $this->client->$method(['transactionOptions' => $options]);
-        $this->assertInstanceOf($type, $res);
+        // 2. Test Update
+        $updateData = ['firstName' => 'Jeffrey'];
+        $updateEntity = $this->client->entity($key, $updateData, ['populatedByService' => true]);
 
-        iterator_to_array($res->runQuery($this->client->gqlQuery('SELECT 1=1')));
+        $this->client->update($updateEntity);
+
+        // 3. Test Upsert
+        $upsertData = ['firstName' => 'Geoff'];
+        $upsertEntity = $this->client->entity($key, $upsertData);
+
+        $this->client->upsert($upsertEntity);
+
+        // 4. Test Delete
+        $this->client->delete($key);
     }
 
-    public function transactionProvider()
+    public function testDatastoreBatchCrudOperations()
     {
-        return [
-            ['readOnlyTransaction', ReadOnlyTransaction::class, 'readOnly'],
-            ['transaction', Transaction::class, 'readWrite']
-        ];
+        $key1 = $this->client->key('Person', 'jeff');
+        $key2 = $this->client->key('Person', 'bob');
+        $keys = [$key1, $key2];
+
+        $entity1 = $this->client->entity($key1, ['firstName' => 'Jeff']);
+        $entity2 = $this->client->entity($key2, ['firstName' => 'Bob']);
+        $entities = [$entity1, $entity2];
+
+        // Common commit response for mutations
+        $commitResponse = new CommitResponse();
+        $commitResponse->mergeFromJsonString(json_encode($this->commitResponse()));
+
+        // Set all expectations up front
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $mutations = $request->getMutations();
+            if (count($mutations) !== 2) {
+                return false;
+            }
+            return $mutations[0]->getOperation() == 'insert' && $mutations[1]->getOperation() == 'insert';
+        }), Argument::any())->shouldBeCalledTimes(1)->willReturn($commitResponse);
+
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $mutations = $request->getMutations();
+            if (count($mutations) !== 2) {
+                return false;
+            }
+            return $mutations[0]->getOperation() == 'update' && $mutations[1]->getOperation() == 'update';
+        }), Argument::any())->shouldBeCalledTimes(1)->willReturn($commitResponse);
+
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $mutations = $request->getMutations();
+            if (count($mutations) !== 2) {
+                return false;
+            }
+            return $mutations[0]->getOperation() == 'upsert' && $mutations[1]->getOperation() == 'upsert';
+        }), Argument::any())->shouldBeCalledTimes(1)->willReturn($commitResponse);
+
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $mutations = $request->getMutations();
+            if (count($mutations) !== 2) {
+                return false;
+            }
+            return $mutations[0]->getOperation() == 'delete' && $mutations[1]->getOperation() == 'delete';
+        }), Argument::any())->shouldBeCalledTimes(1)->willReturn($commitResponse);
+
+        // Execute the operations
+        // 1. Test insertBatch
+        $this->client->insertBatch($entities);
+
+        // 2. Test updateBatch
+        $updateEntity1 = $this->client->entity($key1, ['firstName' => 'Jeffrey'], ['populatedByService' => true]);
+        $updateEntity2 = $this->client->entity($key2, ['firstName' => 'Bobby'], ['populatedByService' => true]);
+        $this->client->updateBatch([$updateEntity1, $updateEntity2]);
+
+        // 3. Test upsertBatch
+        $upsertEntity1 = $this->client->entity($key1, ['firstName' => 'Geoff']);
+        $upsertEntity2 = $this->client->entity($key2, ['firstName' => 'Rob']);
+        $this->client->upsertBatch([$upsertEntity1, $upsertEntity2]);
+
+        // 4. Test deleteBatch
+        $this->client->deleteBatch($keys);
     }
 
-    /**
-     * @dataProvider mutationsProvider
-     */
-    public function testEntityMutations($method, $mutation, $key)
+    public function testInsertBatchWithIncompleteKey()
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        [$incompleteEntities, $protoIncompleteKeys, $protoCompleteKeys] = $this->getTestData();
+        $response = new AllocateIdsResponse();
+        $response->setKeys($protoCompleteKeys);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $commitResponse = new CommitResponse();
+        $commitResponse->mergeFromJsonString(json_encode($this->commitResponse()));
 
-        $entity = $this->client->entity($key, ['name' => 'John']);
-        $res = $this->client->$method($entity, ['allowOverwrite' => true]);
+        $this->gapicClient->allocateIds(Argument::type(AllocateIdsRequest::class), [])
+            ->shouldBeCalled(1)
+            ->willReturn($response);
 
-        $this->assertEquals($this->commitResponse()['mutationResults'][0]['version'], $res);
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            if (count($request->getMutations()) !== 2) {
+                return false;
+            }
+
+            return $request->getMutations()[0]->getOperation() == 'insert'
+                && $request->getMutations()[1]->getOperation() == 'insert';
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($commitResponse);
+
+        $this->client->insertBatch($incompleteEntities);
     }
 
-    /**
-     * @dataProvider mutationsProvider
-     */
-    public function testEntityMutationsBatch($method, $mutation, $key)
+    public function testUpsertBatchWithIncompleteKey()
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        [$incompleteEntities, $protoIncompleteKeys, $protoCompleteKeys] = $this->getTestData();
+        $response = new AllocateIdsResponse();
+        $response->setKeys($protoCompleteKeys);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $commitResponse = new CommitResponse();
+        $commitResponse->mergeFromJsonString(json_encode($this->commitResponse()));
 
-        $method .= 'Batch';
+        $this->gapicClient->allocateIds(Argument::type(AllocateIdsRequest::class), [])
+            ->shouldBeCalled(1)
+            ->willReturn($response);
 
-        $entity = $this->client->entity($key, ['name' => 'John']);
-        $res = $this->client->$method([$entity], ['allowOverwrite' => true]);
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            if (count($request->getMutations()) !== 2) {
+                return false;
+            }
 
-        $this->assertEquals($this->commitResponse(), $res);
-    }
+            return $request->getMutations()[0]->getOperation() == 'upsert'
+                && $request->getMutations()[1]->getOperation() == 'upsert';
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($commitResponse);
 
-    public function mutationsProvider()
-    {
-        return $this->mutationsProviderProvider(123245);
-    }
-
-    /**
-     * @dataProvider partialKeyMutationsProvider
-     */
-    public function testMutationsWithPartialKey($method, $mutation, $key, $id)
-    {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $keyWithId = clone $key;
-        $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
-
-        $entity = $this->client->entity($key, ['name' => 'John']);
-        $this->client->$method($entity);
-    }
-
-    /**
-     * @dataProvider partialKeyMutationsProvider
-     */
-    public function testBatchMutationsWithPartialKey($method, $mutation, $key, $id)
-    {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $keyWithId = clone $key;
-        $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
-
-        $method .= 'Batch';
-        $entity = $this->client->entity($key, ['name' => 'John']);
-        $this->client->$method([$entity]);
-    }
-
-    public function partialKeyMutationsProvider()
-    {
-        $res = $this->mutationsProviderProvider(12345, true);
-        return array_filter($res, function ($case) {
-            return $case[0] !== 'update';
-        });
+        $this->client->upsertBatch($incompleteEntities);
     }
 
     public function testSingleMutationConflict()
     {
         $this->expectException(\DomainException::class);
 
-        $this->connection->commit(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'mutationResults' => [
-                    [
-                        'conflictDetected' => true
-                    ]
-                ]
-            ]);
+        $commitResponse = new CommitResponse();
+        $commitResponse->mergeFromJsonString(json_encode($this->conflictCommitResponse()));
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->commit(Argument::type(CommitRequest::class), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($commitResponse);
 
         $entity = $this->client->entity($this->client->key('test', 'test'), ['name' => 'John']);
         $this->client->insert($entity);
-    }
-
-    public function testDelete()
-    {
-        $key = $this->client->key('Person', 'John');
-
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [
-                [
-                    'delete' => $key->keyObject()
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
-
-        $res = $this->client->delete($key);
-
-        $this->assertEquals($this->commitResponse()['mutationResults'][0]['version'], $res);
-    }
-
-    public function testDeleteBatch()
-    {
-        $key = $this->client->key('Person', 'John');
-
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [
-                [
-                    'delete' => $key->keyObject()
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
-
-        $res = $this->client->deleteBatch([$key]);
-
-        $this->assertEquals($this->commitResponse(), $res);
     }
 
     public function testLookup()
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$key->keyObject()])
-        )->shouldBeCalled()->willReturn([
+        $data = [
             'found' => [
                 [
                     'entity' => $this->entityArray($key)
                 ]
             ]
-        ]);
+        ];
+        $response = new LookupResponse();
+        $response->mergeFromJsonString(json_encode($data));
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($response);
 
         $key = $this->client->key('Person', 'John');
         $res = $this->client->lookup($key);
@@ -502,19 +574,19 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$key->keyObject()])
-        )->shouldBeCalled()->willReturn([
+        $data = [
             'missing' => [
                 [
                     'entity' => $this->entityArray($key)
                 ]
             ]
-        ]);
+        ];
+        $response = new LookupResponse();
+        $response->mergeFromJsonString(json_encode($data));
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($response);
 
         $key = $this->client->key('Person', 'John');
         $res = $this->client->lookup($key);
@@ -525,9 +597,7 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$key->keyObject()])
-        )->shouldBeCalled()->willReturn([
+        $data = [
             'found' => [
                 [
                     'entity' => $this->entityArray($key)
@@ -541,14 +611,18 @@ class DatastoreClientTest extends TestCase
             'deferred' => [
                 $key->keyObject()
             ]
-        ]);
+        ];
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $response = new LookupResponse();
+        $response->mergeFromJsonString(json_encode($data));
+
+        $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($response);
 
         $key = $this->client->key('Person', 'John');
         $res = $this->client->lookupBatch([$key]);
+
         $this->assertInstanceOf(Entity::class, $res['found'][0]);
         $this->assertInstanceOf(Key::class, $res['missing'][0]);
         $this->assertInstanceOf(Key::class, $res['deferred'][0]);
@@ -558,20 +632,25 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
         $time = new Timestamp(new \DateTime());
+        $protoTime = new ProtobufTimestamp();
+        $protoTime->mergeFromJsonString(json_encode($time));
 
-        $this->connection->lookup(
-            Argument::withEntry('readTime', $time)
-        )->shouldBeCalled()->willReturn([
+        $data = [
             'found' => [
                 [
                     'entity' => $this->entityArray($key)
                 ]
             ]
-        ]);
+        ];
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $response = new LookupResponse();
+        $response->mergeFromJsonString(json_encode($data));
+
+        $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) use ($protoTime) {
+            return $request->getReadOptions()->getReadTime()->getSeconds() === $protoTime->getSeconds();
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($response);
 
         $res = $this->client->lookupBatch([$key], ['readTime' => $time]);
         $this->assertInstanceOf(Entity::class, $res['found'][0]);
@@ -581,21 +660,25 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
         $time = new Timestamp(new \DateTime());
+        $protoTime = new ProtobufTimestamp();
+        $protoTime->mergeFromJsonString(json_encode($time));
 
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()]),
-            Argument::withEntry('readTime', $time)
-        ))->shouldBeCalled()->willReturn([
+        $data = [
             'found' => [
                 [
                     'entity' => $this->entityArray($key)
                 ]
             ]
-        ]);
+        ];
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $response = new LookupResponse();
+        $response->mergeFromJsonString(json_encode($data));
+
+        $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) use ($protoTime) {
+            return $request->getReadOptions()->getReadTime()->getSeconds() === $protoTime->getSeconds();
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($response);
 
         $res = $this->client->lookup($key, ['readTime' => $time]);
         $this->assertInstanceOf(Entity::class, $res);
@@ -621,10 +704,7 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1'])
-        ))->shouldBeCalled()->willReturn([
+        $data = [
             'batch' => [
                 'entityResults' => [
                     [
@@ -632,15 +712,18 @@ class DatastoreClientTest extends TestCase
                     ]
                 ]
             ]
-        ]);
+        ];
+        $response = new RunQueryResponse();
+        $response->mergeFromJsonString(json_encode($data));
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($response);
 
         $query = $this->prophesize(QueryInterface::class);
         $query->queryKey()->willReturn('gqlQuery');
         $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
+        $query->canPaginate()->willReturn(true);
 
         $res = iterator_to_array($this->client->runQuery($query->reveal()));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
@@ -648,25 +731,28 @@ class DatastoreClientTest extends TestCase
 
     public function testRunAggregationQuery()
     {
-        $this->connection->runAggregationQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', [
-                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
-            ])
-        ))->shouldBeCalled()->willReturn([
+        $time = new Timestamp(new \DateTime());
+
+        $data = [
             'batch' => [
                 'aggregationResults' => [
                     [
-                        'aggregateProperties' => ['property_1' => 1]
+                        'aggregateProperties' => [
+                            'property_1' => [
+                                'integerValue' => 1
+                            ]
+                        ]
                     ]
                 ],
-                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+                'readTime' => $time
             ]
-        ]);
+        ];
+        $response = new RunAggregationQueryResponse();
+        $response->mergeFromJsonString(json_encode($data));
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->runAggregationQuery(Argument::type(RunAggregationQueryRequest::class), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($response);
 
         $query = $this->prophesize(AggregationQuery::class);
         $query->queryObject()->willReturn([
@@ -684,25 +770,23 @@ class DatastoreClientTest extends TestCase
      */
     public function testAggregationQueryWithDifferentReturnTypes($response, $expected)
     {
-        $this->connection->runAggregationQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', [
-                'queryString' => 'foo bar'
-            ])
-        ))->shouldBeCalled()->willReturn([
+        $responseData = [
             'batch' => [
                 'aggregationResults' => [
                     [
                         'aggregateProperties' => ['property_1' => $response]
                     ]
                 ],
-                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+                'readTime' => new Timestamp(new \DateTime())
             ]
-        ]);
+        ];
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $response = new RunAggregationQueryResponse();
+        $response->mergeFromJsonString(json_encode($responseData));
+
+        $this->gapicClient->runAggregationQuery(Argument::type(RunAggregationQueryRequest::class), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($response);
 
         $query = $this->prophesize(AggregationQuery::class);
         $query->queryObject()->willReturn([
@@ -721,11 +805,7 @@ class DatastoreClientTest extends TestCase
         $key = $this->client->key('Person', 'John');
         $time = new Timestamp(new \DateTime());
 
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1']),
-            Argument::withEntry('readTime', $time)
-        ))->shouldBeCalled()->willReturn([
+        $responseData = [
             'batch' => [
                 'entityResults' => [
                     [
@@ -733,18 +813,54 @@ class DatastoreClientTest extends TestCase
                     ]
                 ]
             ]
-        ]);
+        ];
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $response = new RunQueryResponse();
+        $response->mergeFromJsonString(json_encode($responseData));
+
+        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($response);
 
         $query = $this->prophesize(QueryInterface::class);
         $query->queryKey()->willReturn('gqlQuery');
         $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
+        $query->canPaginate()->willReturn(true);
 
         $res = iterator_to_array($this->client->runQuery($query->reveal(), ['readTime' => $time]));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
+    }
+
+    public function testRunQuerySendsExplainOptions()
+    {
+        $key = $this->client->key('Person', 'John');
+        $explainOptions = new ExplainOptions();
+        $explainOptions->setAnalyze(true);
+
+        $responseData = [
+            'batch' => [
+                'entityResults' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
+                ]
+            ]
+        ];
+        $response = new RunQueryResponse();
+        $response->mergeFromJsonString(json_encode($responseData));
+
+        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn($response);
+
+        $query = $this->prophesize(QueryInterface::class);
+        $query->queryKey()->willReturn('gqlQuery');
+        $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
+        $query->canPaginate()->willReturn(true);
+
+        $result = $this->client->runQuery($query->reveal(), ['explainOptions' => $explainOptions]);
+
+        iterator_to_array($result);
     }
 
     public function aggregationReturnTypesCases()
@@ -752,19 +868,10 @@ class DatastoreClientTest extends TestCase
         return [
             [['integerValue' => 1], 1],
             [['doubleValue' => 1.1], 1.1],
-
-            // Returned incase of grpc client
-            [['doubleValue' => INF], INF],
-            [['doubleValue' => -INF], -INF],
-            [['doubleValue' => NAN], NAN],
-
-            // Returned incase of rest client
             [['doubleValue' => 'Infinity'], INF],
             [['doubleValue' => '-Infinity'], -INF],
             [['doubleValue' => 'NaN'], NAN],
-
-
-            [['nullValue' => ''], null],
+            [['nullValue' => null], null],
         ];
     }
 
@@ -774,6 +881,17 @@ class DatastoreClientTest extends TestCase
             'mutationResults' => [
                 [
                     'version' => 1
+                ]
+            ]
+        ];
+    }
+
+    private function conflictCommitResponse()
+    {
+        return [
+            'mutationResults' => [
+                [
+                    'conflictDetected' => true
                 ]
             ]
         ];
@@ -820,5 +938,70 @@ class DatastoreClientTest extends TestCase
             // Used because assertEquals(null, '') doesn't fails
             $this->assertSame($expected, $actual);
         }
+    }
+
+    private function getOperationMock(): Operation
+    {
+        $entityMapper = new EntityMapper(self::PROJECT, true, false);
+        return new Operation(
+            $this->gapicClient->reveal(),
+            self::PROJECT,
+            null, // namespaceId
+            $entityMapper,
+            self::DATABASE
+        );
+    }
+
+    private function getTestData(): array
+    {
+        // Setup keys and entities
+        $incompleteKey1 = $this->client->key('Person');
+        $incompleteKey2 = $this->client->key('Book');
+        $incompleteEntities = [
+            $this->client->entity($incompleteKey1, ['name' => 'John']),
+            $this->client->entity($incompleteKey2, ['title' => 'The Stand'])
+        ];
+        $ids = [123, 456];
+
+        // Setup proto keys
+        $incompleteProtoKey1 = new V1Key();
+        $incompleteProtoKey1->mergeFromJsonString(json_encode($incompleteKey1->keyObject()));
+        $incompleteProtoKey2 = new V1Key();
+        $incompleteProtoKey2->mergeFromJsonString(json_encode($incompleteKey2->keyObject()));
+
+        // Setup complete proto keys
+        $completeProtoKey1 = new V1Key();
+        $completeProtoKey1->mergeFromJsonString(json_encode($this->client->key('Person', $ids[0])->keyObject()));
+        $completeProtoKey2 = new V1Key();
+        $completeProtoKey2->mergeFromJsonString(json_encode($this->client->key('Book', $ids[1])->keyObject()));
+
+        $v1IncompleteKeys = [
+            $incompleteProtoKey1,
+            $incompleteProtoKey2
+        ];
+        $v1CompleteKeys = [
+            $completeProtoKey1,
+            $completeProtoKey2
+        ];
+
+        return [
+            $incompleteEntities,
+            $v1IncompleteKeys,
+            $v1CompleteKeys
+        ];
+    }
+
+    private function getClient(null|GapicClient $client): DatastoreClient
+    {
+        $config = [
+            'databaseId' => self::DATABASE,
+            'projectId' => self::PROJECT
+        ];
+
+        if (!is_null($client)) {
+            $config['client'] = $client;
+        }
+
+        return new DatastoreClient($config);
     }
 }

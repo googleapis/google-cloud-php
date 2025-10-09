@@ -24,19 +24,19 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Human-meaningful name.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * A detailed description.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Immutable. The revision ID of the deployment.
      * A new revision is committed whenever the deployment contents are changed.
@@ -44,25 +44,25 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision_id = 4 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision_id = '';
+    protected $revision_id = '';
     /**
      * Output only. Creation timestamp; when the deployment resource was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Revision creation timestamp; when the represented revision was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revision_create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision_create_time = null;
+    protected $revision_create_time = null;
     /**
      * Output only. Last update timestamp: when the represented revision was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revision_update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision_update_time = null;
+    protected $revision_update_time = null;
     /**
      * The full resource name (including revision ID) of the spec of the API being
      * served by the deployment. Changes to this value will update the revision.
@@ -70,35 +70,35 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string api_spec_revision = 8 [(.google.api.resource_reference) = {</code>
      */
-    private $api_spec_revision = '';
+    protected $api_spec_revision = '';
     /**
      * The address where the deployment is serving. Changes to this value will
      * update the revision.
      *
      * Generated from protobuf field <code>string endpoint_uri = 9;</code>
      */
-    private $endpoint_uri = '';
+    protected $endpoint_uri = '';
     /**
      * The address of the external channel of the API (e.g., the Developer
      * Portal). Changes to this value will not affect the revision.
      *
      * Generated from protobuf field <code>string external_channel_uri = 10;</code>
      */
-    private $external_channel_uri = '';
+    protected $external_channel_uri = '';
     /**
      * Text briefly identifying the intended audience of the API. Changes to this
      * value will not affect the revision.
      *
      * Generated from protobuf field <code>string intended_audience = 11;</code>
      */
-    private $intended_audience = '';
+    protected $intended_audience = '';
     /**
      * Text briefly describing how to access the endpoint. Changes to this value
      * will not affect the revision.
      *
      * Generated from protobuf field <code>string access_guidance = 12;</code>
      */
-    private $access_guidance = '';
+    protected $access_guidance = '';
     /**
      * Labels attach identifying metadata to resources. Identifying metadata can
      * be used to filter list operations.

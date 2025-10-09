@@ -74,12 +74,25 @@ class GitRepositoryLink extends \Google\Protobuf\Internal\Message
      */
     private $annotations;
     /**
-     * Output only. A system-assigned unique identifier for a the
-     * GitRepositoryLink.
+     * Output only. A system-assigned unique identifier for the GitRepositoryLink.
      *
      * Generated from protobuf field <code>string uid = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      */
     protected $uid = '';
+    /**
+     * Output only. External ID of the webhook created for the repository.
+     *
+     * Generated from protobuf field <code>string webhook_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $webhook_id = '';
+    /**
+     * Output only. URI to access the linked repository through the Git Proxy.
+     * This field is only populated if the git proxy is enabled for the
+     * connection.
+     *
+     * Generated from protobuf field <code>string git_proxy_uri = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $git_proxy_uri = '';
 
     /**
      * Constructor.
@@ -110,8 +123,13 @@ class GitRepositoryLink extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Optional. Allows clients to store small amounts of arbitrary data.
      *     @type string $uid
-     *           Output only. A system-assigned unique identifier for a the
-     *           GitRepositoryLink.
+     *           Output only. A system-assigned unique identifier for the GitRepositoryLink.
+     *     @type string $webhook_id
+     *           Output only. External ID of the webhook created for the repository.
+     *     @type string $git_proxy_uri
+     *           Output only. URI to access the linked repository through the Git Proxy.
+     *           This field is only populated if the git proxy is enabled for the
+     *           connection.
      * }
      */
     public function __construct($data = NULL) {
@@ -392,8 +410,7 @@ class GitRepositoryLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A system-assigned unique identifier for a the
-     * GitRepositoryLink.
+     * Output only. A system-assigned unique identifier for the GitRepositoryLink.
      *
      * Generated from protobuf field <code>string uid = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @return string
@@ -404,8 +421,7 @@ class GitRepositoryLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A system-assigned unique identifier for a the
-     * GitRepositoryLink.
+     * Output only. A system-assigned unique identifier for the GitRepositoryLink.
      *
      * Generated from protobuf field <code>string uid = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @param string $var
@@ -415,6 +431,62 @@ class GitRepositoryLink extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. External ID of the webhook created for the repository.
+     *
+     * Generated from protobuf field <code>string webhook_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getWebhookId()
+    {
+        return $this->webhook_id;
+    }
+
+    /**
+     * Output only. External ID of the webhook created for the repository.
+     *
+     * Generated from protobuf field <code>string webhook_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setWebhookId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->webhook_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. URI to access the linked repository through the Git Proxy.
+     * This field is only populated if the git proxy is enabled for the
+     * connection.
+     *
+     * Generated from protobuf field <code>string git_proxy_uri = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getGitProxyUri()
+    {
+        return $this->git_proxy_uri;
+    }
+
+    /**
+     * Output only. URI to access the linked repository through the Git Proxy.
+     * This field is only populated if the git proxy is enabled for the
+     * connection.
+     *
+     * Generated from protobuf field <code>string git_proxy_uri = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGitProxyUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->git_proxy_uri = $var;
 
         return $this;
     }

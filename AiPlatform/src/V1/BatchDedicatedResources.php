@@ -21,7 +21,7 @@ class BatchDedicatedResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MachineSpec machine_spec = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $machine_spec = null;
+    protected $machine_spec = null;
     /**
      * Immutable. The number of machine replicas used at the start of the batch
      * operation. If not set, Vertex AI decides starting number, not greater than
@@ -29,14 +29,14 @@ class BatchDedicatedResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 starting_replica_count = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $starting_replica_count = 0;
+    protected $starting_replica_count = 0;
     /**
      * Immutable. The maximum number of machine replicas the batch operation may
      * be scaled to. The default value is 10.
      *
      * Generated from protobuf field <code>int32 max_replica_count = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $max_replica_count = 0;
+    protected $max_replica_count = 0;
 
     /**
      * Constructor.

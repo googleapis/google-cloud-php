@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Tuning Spec for Supervised Tuning.
+ * Tuning Spec for Supervised Tuning for first party models.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.SupervisedTuningSpec</code>
  */
@@ -21,20 +21,28 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string training_dataset_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $training_dataset_uri = '';
+    protected $training_dataset_uri = '';
     /**
      * Optional. Cloud Storage path to file containing validation dataset for
      * tuning. The dataset must be formatted as a JSONL file.
      *
      * Generated from protobuf field <code>string validation_dataset_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validation_dataset_uri = '';
+    protected $validation_dataset_uri = '';
     /**
      * Optional. Hyperparameters for SFT.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SupervisedHyperParameters hyper_parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $hyper_parameters = null;
+    protected $hyper_parameters = null;
+    /**
+     * Optional. If set to true, disable intermediate checkpoints for SFT and only
+     * the last checkpoint will be exported. Otherwise, enable intermediate
+     * checkpoints for SFT. Default is false.
+     *
+     * Generated from protobuf field <code>bool export_last_checkpoint_only = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $export_last_checkpoint_only = false;
 
     /**
      * Constructor.
@@ -50,6 +58,10 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
      *           tuning. The dataset must be formatted as a JSONL file.
      *     @type \Google\Cloud\AIPlatform\V1\SupervisedHyperParameters $hyper_parameters
      *           Optional. Hyperparameters for SFT.
+     *     @type bool $export_last_checkpoint_only
+     *           Optional. If set to true, disable intermediate checkpoints for SFT and only
+     *           the last checkpoint will be exported. Otherwise, enable intermediate
+     *           checkpoints for SFT. Default is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,6 +157,36 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\SupervisedHyperParameters::class);
         $this->hyper_parameters = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, disable intermediate checkpoints for SFT and only
+     * the last checkpoint will be exported. Otherwise, enable intermediate
+     * checkpoints for SFT. Default is false.
+     *
+     * Generated from protobuf field <code>bool export_last_checkpoint_only = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getExportLastCheckpointOnly()
+    {
+        return $this->export_last_checkpoint_only;
+    }
+
+    /**
+     * Optional. If set to true, disable intermediate checkpoints for SFT and only
+     * the last checkpoint will be exported. Otherwise, enable intermediate
+     * checkpoints for SFT. Default is false.
+     *
+     * Generated from protobuf field <code>bool export_last_checkpoint_only = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExportLastCheckpointOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->export_last_checkpoint_only = $var;
 
         return $this;
     }

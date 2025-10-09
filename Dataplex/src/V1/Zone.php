@@ -24,32 +24,32 @@ class Zone extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. User friendly display name.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. System generated globally unique ID for the zone. This ID will
      * be different if the zone is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The time when the zone was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the zone was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. User defined labels for the zone.
      *
@@ -61,39 +61,39 @@ class Zone extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Current state of the zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Required. Immutable. The type of the zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.Type type = 9 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Optional. Specification of the discovery feature applied to data in this
      * zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.DiscoverySpec discovery_spec = 103 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $discovery_spec = null;
+    protected $discovery_spec = null;
     /**
      * Required. Specification of the resources that are referenced by the assets
      * within this zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.ResourceSpec resource_spec = 104 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource_spec = null;
+    protected $resource_spec = null;
     /**
      * Output only. Aggregated status of the underlying assets of the zone.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AssetStatus asset_status = 105 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $asset_status = null;
+    protected $asset_status = null;
 
     /**
      * Constructor.

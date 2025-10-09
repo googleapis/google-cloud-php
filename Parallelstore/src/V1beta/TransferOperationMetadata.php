@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents the metadata of the long-running operation.
+ * Long-running operation metadata related to a data transfer.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.TransferOperationMetadata</code>
  */
 class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Information about the progress of the transfer operation.
+     * Output only. The progress of the transfer operation.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferCounters counters = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -27,6 +27,13 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferType transfer_type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $transfer_type = 0;
+    /**
+     * Output only. List of files that failed to be transferred. This list will
+     * have a maximum size of 5 elements.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.parallelstore.v1beta.TransferErrorSummary error_summary = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $error_summary;
     protected $source;
     protected $destination;
 
@@ -45,9 +52,12 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Parallelstore\V1beta\DestinationParallelstore $destination_parallelstore
      *           Output only. Parallelstore destination.
      *     @type \Google\Cloud\Parallelstore\V1beta\TransferCounters $counters
-     *           Output only. Information about the progress of the transfer operation.
+     *           Output only. The progress of the transfer operation.
      *     @type int $transfer_type
      *           Output only. The type of transfer occurring.
+     *     @type array<\Google\Cloud\Parallelstore\V1beta\TransferErrorSummary>|\Google\Protobuf\Internal\RepeatedField $error_summary
+     *           Output only. List of files that failed to be transferred. This list will
+     *           have a maximum size of 5 elements.
      * }
      */
     public function __construct($data = NULL) {
@@ -180,7 +190,7 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about the progress of the transfer operation.
+     * Output only. The progress of the transfer operation.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferCounters counters = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Parallelstore\V1beta\TransferCounters|null
@@ -201,7 +211,7 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about the progress of the transfer operation.
+     * Output only. The progress of the transfer operation.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferCounters counters = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Parallelstore\V1beta\TransferCounters $var
@@ -237,6 +247,34 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Parallelstore\V1beta\TransferType::class);
         $this->transfer_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. List of files that failed to be transferred. This list will
+     * have a maximum size of 5 elements.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.parallelstore.v1beta.TransferErrorSummary error_summary = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getErrorSummary()
+    {
+        return $this->error_summary;
+    }
+
+    /**
+     * Output only. List of files that failed to be transferred. This list will
+     * have a maximum size of 5 elements.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.parallelstore.v1beta.TransferErrorSummary error_summary = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Parallelstore\V1beta\TransferErrorSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setErrorSummary($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Parallelstore\V1beta\TransferErrorSummary::class);
+        $this->error_summary = $arr;
 
         return $this;
     }

@@ -22,25 +22,25 @@ class DsRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 key_tag = 1;</code>
      */
-    private $key_tag = 0;
+    protected $key_tag = 0;
     /**
      * The algorithm used to generate the referenced DNSKEY.
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.DnsSettings.DsRecord.Algorithm algorithm = 2;</code>
      */
-    private $algorithm = 0;
+    protected $algorithm = 0;
     /**
      * The hash function used to generate the digest of the referenced DNSKEY.
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.DnsSettings.DsRecord.DigestType digest_type = 3;</code>
      */
-    private $digest_type = 0;
+    protected $digest_type = 0;
     /**
      * The digest generated from the referenced DNSKEY.
      *
      * Generated from protobuf field <code>string digest = 4;</code>
      */
-    private $digest = '';
+    protected $digest = '';
 
     /**
      * Constructor.

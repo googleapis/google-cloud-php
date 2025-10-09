@@ -22,7 +22,7 @@ class AzureDiskTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 size_gib = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $size_gib = 0;
+    protected $size_gib = 0;
 
     /**
      * Constructor.

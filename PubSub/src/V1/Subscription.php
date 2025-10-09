@@ -95,7 +95,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * backlog, from the moment a message is published. If `retain_acked_messages`
      * is true, then this also configures the retention of acknowledged messages,
      * and thus configures how far back in time a `Seek` can be done. Defaults to
-     * 7 days. Cannot be more than 7 days or less than 10 minutes.
+     * 7 days. Cannot be more than 31 days or less than 10 minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -155,8 +155,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * this subscription.
      * If not set, the default retry policy is applied. This generally implies
      * that messages will be retried as soon as possible for healthy subscribers.
-     * RetryPolicy will be triggered on NACKs or acknowledgement deadline
-     * exceeded events for a given message.
+     * RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded
+     * events for a given message.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -176,7 +176,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * delivery of a message with a given value of `message_id` on this
      * subscription:
      * * The message sent to a subscriber is guaranteed not to be resent
-     * before the message's acknowledgement deadline expires.
+     * before the message's acknowledgment deadline expires.
      * * An acknowledged message will not be resent to a subscriber.
      * Note that subscribers may still receive multiple copies of a message
      * when `enable_exactly_once_delivery` is true if the message was published
@@ -204,6 +204,20 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.Subscription.State state = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Output only. Information about the associated Analytics Hub subscription.
+     * Only set if the subscritpion is created by Analytics Hub.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Subscription.AnalyticsHubSubscriptionInfo analytics_hub_subscription_info = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $analytics_hub_subscription_info = null;
+    /**
+     * Optional. Transforms to be applied to messages before they are delivered to
+     * subscribers. Transforms are applied in the order specified.
+     *
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.MessageTransform message_transforms = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $message_transforms;
 
     /**
      * @param string                             $name               Required. The name of the subscription. It must have the format
@@ -308,7 +322,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           backlog, from the moment a message is published. If `retain_acked_messages`
      *           is true, then this also configures the retention of acknowledged messages,
      *           and thus configures how far back in time a `Seek` can be done. Defaults to
-     *           7 days. Cannot be more than 7 days or less than 10 minutes.
+     *           7 days. Cannot be more than 31 days or less than 10 minutes.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. See [Creating and managing
      *           labels](https://cloud.google.com/pubsub/docs/labels).
@@ -344,8 +358,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           this subscription.
      *           If not set, the default retry policy is applied. This generally implies
      *           that messages will be retried as soon as possible for healthy subscribers.
-     *           RetryPolicy will be triggered on NACKs or acknowledgement deadline
-     *           exceeded events for a given message.
+     *           RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded
+     *           events for a given message.
      *     @type bool $detached
      *           Optional. Indicates whether the subscription is detached from its topic.
      *           Detached subscriptions don't receive messages from their topic and don't
@@ -357,7 +371,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           delivery of a message with a given value of `message_id` on this
      *           subscription:
      *           * The message sent to a subscriber is guaranteed not to be resent
-     *           before the message's acknowledgement deadline expires.
+     *           before the message's acknowledgment deadline expires.
      *           * An acknowledged message will not be resent to a subscriber.
      *           Note that subscribers may still receive multiple copies of a message
      *           when `enable_exactly_once_delivery` is true if the message was published
@@ -373,6 +387,12 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. An output-only field indicating whether or not the
      *           subscription can receive messages.
+     *     @type \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo $analytics_hub_subscription_info
+     *           Output only. Information about the associated Analytics Hub subscription.
+     *           Only set if the subscritpion is created by Analytics Hub.
+     *     @type array<\Google\Cloud\PubSub\V1\MessageTransform>|\Google\Protobuf\Internal\RepeatedField $message_transforms
+     *           Optional. Transforms to be applied to messages before they are delivered to
+     *           subscribers. Transforms are applied in the order specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -659,7 +679,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * backlog, from the moment a message is published. If `retain_acked_messages`
      * is true, then this also configures the retention of acknowledged messages,
      * and thus configures how far back in time a `Seek` can be done. Defaults to
-     * 7 days. Cannot be more than 7 days or less than 10 minutes.
+     * 7 days. Cannot be more than 31 days or less than 10 minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -684,7 +704,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * backlog, from the moment a message is published. If `retain_acked_messages`
      * is true, then this also configures the retention of acknowledged messages,
      * and thus configures how far back in time a `Seek` can be done. Defaults to
-     * 7 days. Cannot be more than 7 days or less than 10 minutes.
+     * 7 days. Cannot be more than 31 days or less than 10 minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
@@ -893,8 +913,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * this subscription.
      * If not set, the default retry policy is applied. This generally implies
      * that messages will be retried as soon as possible for healthy subscribers.
-     * RetryPolicy will be triggered on NACKs or acknowledgement deadline
-     * exceeded events for a given message.
+     * RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded
+     * events for a given message.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\RetryPolicy|null
@@ -919,8 +939,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * this subscription.
      * If not set, the default retry policy is applied. This generally implies
      * that messages will be retried as soon as possible for healthy subscribers.
-     * RetryPolicy will be triggered on NACKs or acknowledgement deadline
-     * exceeded events for a given message.
+     * RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded
+     * events for a given message.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\RetryPolicy $var
@@ -973,7 +993,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * delivery of a message with a given value of `message_id` on this
      * subscription:
      * * The message sent to a subscriber is guaranteed not to be resent
-     * before the message's acknowledgement deadline expires.
+     * before the message's acknowledgment deadline expires.
      * * An acknowledged message will not be resent to a subscriber.
      * Note that subscribers may still receive multiple copies of a message
      * when `enable_exactly_once_delivery` is true if the message was published
@@ -993,7 +1013,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * delivery of a message with a given value of `message_id` on this
      * subscription:
      * * The message sent to a subscriber is guaranteed not to be resent
-     * before the message's acknowledgement deadline expires.
+     * before the message's acknowledgment deadline expires.
      * * An acknowledged message will not be resent to a subscriber.
      * Note that subscribers may still receive multiple copies of a message
      * when `enable_exactly_once_delivery` is true if the message was published
@@ -1082,6 +1102,72 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\PubSub\V1\Subscription\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information about the associated Analytics Hub subscription.
+     * Only set if the subscritpion is created by Analytics Hub.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Subscription.AnalyticsHubSubscriptionInfo analytics_hub_subscription_info = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo|null
+     */
+    public function getAnalyticsHubSubscriptionInfo()
+    {
+        return $this->analytics_hub_subscription_info;
+    }
+
+    public function hasAnalyticsHubSubscriptionInfo()
+    {
+        return isset($this->analytics_hub_subscription_info);
+    }
+
+    public function clearAnalyticsHubSubscriptionInfo()
+    {
+        unset($this->analytics_hub_subscription_info);
+    }
+
+    /**
+     * Output only. Information about the associated Analytics Hub subscription.
+     * Only set if the subscritpion is created by Analytics Hub.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Subscription.AnalyticsHubSubscriptionInfo analytics_hub_subscription_info = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo $var
+     * @return $this
+     */
+    public function setAnalyticsHubSubscriptionInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo::class);
+        $this->analytics_hub_subscription_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Transforms to be applied to messages before they are delivered to
+     * subscribers. Transforms are applied in the order specified.
+     *
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.MessageTransform message_transforms = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMessageTransforms()
+    {
+        return $this->message_transforms;
+    }
+
+    /**
+     * Optional. Transforms to be applied to messages before they are delivered to
+     * subscribers. Transforms are applied in the order specified.
+     *
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.MessageTransform message_transforms = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\PubSub\V1\MessageTransform>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMessageTransforms($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\PubSub\V1\MessageTransform::class);
+        $this->message_transforms = $arr;
 
         return $this;
     }

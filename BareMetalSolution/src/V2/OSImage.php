@@ -20,19 +20,19 @@ class OSImage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * OS Image code.
      *
      * Generated from protobuf field <code>string code = 2;</code>
      */
-    private $code = '';
+    protected $code = '';
     /**
      * OS Image description.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Instance types this image is applicable to.
      * [Available

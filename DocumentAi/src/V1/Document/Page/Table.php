@@ -21,7 +21,7 @@ class Table extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
-    private $layout = null;
+    protected $layout = null;
     /**
      * Header rows of the table.
      *
@@ -197,13 +197,17 @@ class Table extends \Google\Protobuf\Internal\Message
      */
     public function getProvenance()
     {
-        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->provenance)) {
+            @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->provenance;
     }
 
     public function hasProvenance()
     {
-        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->provenance)) {
+            @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->provenance);
     }
 

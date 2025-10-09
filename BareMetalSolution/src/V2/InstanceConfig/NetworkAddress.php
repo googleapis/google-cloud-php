@@ -20,19 +20,19 @@ class NetworkAddress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network_id = 1;</code>
      */
-    private $network_id = '';
+    protected $network_id = '';
     /**
      * IPv4 address to be assigned to the server.
      *
      * Generated from protobuf field <code>string address = 2;</code>
      */
-    private $address = '';
+    protected $address = '';
     /**
      * Name of the existing network to use.
      *
      * Generated from protobuf field <code>string existing_network_id = 3;</code>
      */
-    private $existing_network_id = '';
+    protected $existing_network_id = '';
 
     /**
      * Constructor.
@@ -133,6 +133,4 @@ class NetworkAddress extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NetworkAddress::class, \Google\Cloud\BareMetalSolution\V2\InstanceConfig_NetworkAddress::class);
 

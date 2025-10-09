@@ -18,7 +18,7 @@ class RunTaskResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Job job = 1;</code>
      */
-    private $job = null;
+    protected $job = null;
 
     /**
      * Constructor.

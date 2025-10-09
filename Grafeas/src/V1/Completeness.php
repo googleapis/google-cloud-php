@@ -22,21 +22,21 @@ class Completeness extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool arguments = 1;</code>
      */
-    private $arguments = false;
+    protected $arguments = false;
     /**
      * If true, the builder claims that recipe.environment is claimed to be
      * complete.
      *
      * Generated from protobuf field <code>bool environment = 2;</code>
      */
-    private $environment = false;
+    protected $environment = false;
     /**
      * If true, the builder claims that materials are complete, usually through
      * some controls to prevent network access. Sometimes called "hermetic".
      *
      * Generated from protobuf field <code>bool materials = 3;</code>
      */
-    private $materials = false;
+    protected $materials = false;
 
     /**
      * Constructor.

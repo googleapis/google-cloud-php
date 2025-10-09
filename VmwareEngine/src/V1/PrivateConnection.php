@@ -25,31 +25,31 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Creation time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Last update time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. User-provided description for this private connection.
      *
      * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. State of the private connection.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateConnection.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Required. The relative resource name of Legacy VMware Engine network.
      * Specify the name in the following form:
@@ -61,27 +61,27 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vmware_engine_network = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $vmware_engine_network = '';
+    protected $vmware_engine_network = '';
     /**
      * Output only. The canonical name of the VMware Engine network in the form:
      * `projects/{project_number}/locations/{location}/vmwareEngineNetworks/{vmware_engine_network_id}`
      *
      * Generated from protobuf field <code>string vmware_engine_network_canonical = 9 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $vmware_engine_network_canonical = '';
+    protected $vmware_engine_network_canonical = '';
     /**
      * Required. Private connection type.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateConnection.Type type = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Output only. VPC network peering id between given network VPC and
      * VMwareEngineNetwork.
      *
      * Generated from protobuf field <code>string peering_id = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $peering_id = '';
+    protected $peering_id = '';
     /**
      * Optional. Routing Mode.
      * Default value is set to GLOBAL.
@@ -90,13 +90,13 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateConnection.RoutingMode routing_mode = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $routing_mode = 0;
+    protected $routing_mode = 0;
     /**
      * Output only. System-generated unique identifier for the resource.
      *
      * Generated from protobuf field <code>string uid = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Required. Service network to create private connection.
      * Specify the name in the following form:
@@ -113,14 +113,14 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_network = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $service_network = '';
+    protected $service_network = '';
     /**
      * Output only. Peering state between service network and VMware Engine
      * network.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateConnection.PeeringState peering_state = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $peering_state = 0;
+    protected $peering_state = 0;
 
     /**
      * Constructor.

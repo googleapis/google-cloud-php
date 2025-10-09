@@ -22,19 +22,19 @@ class FeatureState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.FeatureState.Code code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * A human-readable description of the current status.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The time this status and any related Feature-specific details were updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

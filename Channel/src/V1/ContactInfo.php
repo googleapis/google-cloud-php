@@ -20,20 +20,20 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string first_name = 1;</code>
      */
-    private $first_name = '';
+    protected $first_name = '';
     /**
      * The customer account contact's last name. Optional for Team customers.
      *
      * Generated from protobuf field <code>string last_name = 2;</code>
      */
-    private $last_name = '';
+    protected $last_name = '';
     /**
      * Output only. The customer account contact's display name, formatted as a
      * combination of the customer's first and last name.
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The customer account's contact email. Required for entitlements that create
      * admin.google.com accounts, and serves as the customer's username for those
@@ -41,19 +41,19 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string email = 5;</code>
      */
-    private $email = '';
+    protected $email = '';
     /**
      * Optional. The customer account contact's job title.
      *
      * Generated from protobuf field <code>string title = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * The customer account's contact phone number.
      *
      * Generated from protobuf field <code>string phone = 7;</code>
      */
-    private $phone = '';
+    protected $phone = '';
 
     /**
      * Constructor.

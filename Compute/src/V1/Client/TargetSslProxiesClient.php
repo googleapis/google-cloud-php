@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -35,7 +36,6 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\DeleteTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\GetTargetSslProxyRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\ListTargetSslProxiesRequest;
 use Google\Cloud\Compute\V1\SetBackendServiceTargetSslProxyRequest;
@@ -45,6 +45,7 @@ use Google\Cloud\Compute\V1\SetSslCertificatesTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\SetSslPolicyTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\TargetSslProxy;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The TargetSslProxies API.
@@ -52,15 +53,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListTargetSslProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setBackendServiceAsync(SetBackendServiceTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setCertificateMapAsync(SetCertificateMapTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setProxyHeaderAsync(SetProxyHeaderTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSslCertificatesAsync(SetSslCertificatesTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSslPolicyAsync(SetSslPolicyTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetSslProxy> getAsync(GetTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListTargetSslProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setBackendServiceAsync(SetBackendServiceTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setCertificateMapAsync(SetCertificateMapTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setProxyHeaderAsync(SetProxyHeaderTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSslCertificatesAsync(SetSslCertificatesTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSslPolicyAsync(SetSslPolicyTargetSslProxyRequest $request, array $optionalArgs = [])
  */
 final class TargetSslProxiesClient
 {
@@ -109,7 +110,6 @@ final class TargetSslProxiesClient
                     'restClientConfigPath' => __DIR__ . '/../resources/target_ssl_proxies_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -122,9 +122,7 @@ final class TargetSslProxiesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -141,9 +139,7 @@ final class TargetSslProxiesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -171,29 +167,57 @@ final class TargetSslProxiesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\TargetSslProxiesClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new TargetSslProxiesClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -224,11 +248,16 @@ final class TargetSslProxiesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -250,6 +279,8 @@ final class TargetSslProxiesClient
      * Deletes the specified TargetSslProxy resource.
      *
      * The async variant is {@see TargetSslProxiesClient::deleteAsync()} .
+     *
+     * @example samples/V1/TargetSslProxiesClient/delete.php
      *
      * @param DeleteTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -275,6 +306,8 @@ final class TargetSslProxiesClient
      *
      * The async variant is {@see TargetSslProxiesClient::getAsync()} .
      *
+     * @example samples/V1/TargetSslProxiesClient/get.php
+     *
      * @param GetTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -298,6 +331,8 @@ final class TargetSslProxiesClient
      * Creates a TargetSslProxy resource in the specified project using the data included in the request.
      *
      * The async variant is {@see TargetSslProxiesClient::insertAsync()} .
+     *
+     * @example samples/V1/TargetSslProxiesClient/insert.php
      *
      * @param InsertTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -323,6 +358,8 @@ final class TargetSslProxiesClient
      *
      * The async variant is {@see TargetSslProxiesClient::listAsync()} .
      *
+     * @example samples/V1/TargetSslProxiesClient/list.php
+     *
      * @param ListTargetSslProxiesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -347,6 +384,8 @@ final class TargetSslProxiesClient
      *
      * The async variant is {@see TargetSslProxiesClient::setBackendServiceAsync()} .
      *
+     * @example samples/V1/TargetSslProxiesClient/set_backend_service.php
+     *
      * @param SetBackendServiceTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -361,8 +400,10 @@ final class TargetSslProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setBackendService(SetBackendServiceTargetSslProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setBackendService(
+        SetBackendServiceTargetSslProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetBackendService', $request, $callOptions)->wait();
     }
 
@@ -370,6 +411,8 @@ final class TargetSslProxiesClient
      * Changes the Certificate Map for TargetSslProxy.
      *
      * The async variant is {@see TargetSslProxiesClient::setCertificateMapAsync()} .
+     *
+     * @example samples/V1/TargetSslProxiesClient/set_certificate_map.php
      *
      * @param SetCertificateMapTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -385,8 +428,10 @@ final class TargetSslProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setCertificateMap(SetCertificateMapTargetSslProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setCertificateMap(
+        SetCertificateMapTargetSslProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetCertificateMap', $request, $callOptions)->wait();
     }
 
@@ -394,6 +439,8 @@ final class TargetSslProxiesClient
      * Changes the ProxyHeaderType for TargetSslProxy.
      *
      * The async variant is {@see TargetSslProxiesClient::setProxyHeaderAsync()} .
+     *
+     * @example samples/V1/TargetSslProxiesClient/set_proxy_header.php
      *
      * @param SetProxyHeaderTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -409,8 +456,10 @@ final class TargetSslProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setProxyHeader(SetProxyHeaderTargetSslProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setProxyHeader(
+        SetProxyHeaderTargetSslProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetProxyHeader', $request, $callOptions)->wait();
     }
 
@@ -418,6 +467,8 @@ final class TargetSslProxiesClient
      * Changes SslCertificates for TargetSslProxy.
      *
      * The async variant is {@see TargetSslProxiesClient::setSslCertificatesAsync()} .
+     *
+     * @example samples/V1/TargetSslProxiesClient/set_ssl_certificates.php
      *
      * @param SetSslCertificatesTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -433,8 +484,10 @@ final class TargetSslProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSslCertificates(SetSslCertificatesTargetSslProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setSslCertificates(
+        SetSslCertificatesTargetSslProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetSslCertificates', $request, $callOptions)->wait();
     }
 
@@ -442,6 +495,8 @@ final class TargetSslProxiesClient
      * Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the load balancer. They do not affect the connection between the load balancer and the backends.
      *
      * The async variant is {@see TargetSslProxiesClient::setSslPolicyAsync()} .
+     *
+     * @example samples/V1/TargetSslProxiesClient/set_ssl_policy.php
      *
      * @param SetSslPolicyTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

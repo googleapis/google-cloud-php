@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START assuredworkloads_v1beta1_generated_AssuredWorkloadsService_UpdateWorkload_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\Client\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\UpdateWorkloadRequest;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload\ComplianceRegime;
 use Google\Protobuf\FieldMask;
@@ -48,16 +49,19 @@ function update_workload_sample(string $workloadDisplayName, int $workloadCompli
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $workload = (new Workload())
         ->setDisplayName($workloadDisplayName)
         ->setComplianceRegime($workloadComplianceRegime);
     $updateMask = new FieldMask();
+    $request = (new UpdateWorkloadRequest())
+        ->setWorkload($workload)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Workload $response */
-        $response = $assuredWorkloadsServiceClient->updateWorkload($workload, $updateMask);
+        $response = $assuredWorkloadsServiceClient->updateWorkload($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

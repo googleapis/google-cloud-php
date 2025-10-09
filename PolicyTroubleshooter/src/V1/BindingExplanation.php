@@ -27,7 +27,7 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessState access = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $access = 0;
+    protected $access = 0;
     /**
      * The role that this binding grants. For example,
      * `roles/compute.serviceAgent`.
@@ -36,21 +36,21 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string role = 2;</code>
      */
-    private $role = '';
+    protected $role = '';
     /**
      * Indicates whether the role granted by this binding contains the specified
      * permission.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.BindingExplanation.RolePermission role_permission = 3;</code>
      */
-    private $role_permission = 0;
+    protected $role_permission = 0;
     /**
      * The relevance of the permission's existence, or nonexistence, in the role
      * to the overall determination for the entire policy.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.HeuristicRelevance role_permission_relevance = 4;</code>
      */
-    private $role_permission_relevance = 0;
+    protected $role_permission_relevance = 0;
     /**
      * Indicates whether each principal in the binding includes the principal
      * specified in the request, either directly or indirectly. Each key
@@ -77,7 +77,7 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.HeuristicRelevance relevance = 6;</code>
      */
-    private $relevance = 0;
+    protected $relevance = 0;
     /**
      * A condition expression that prevents this binding from granting access
      * unless the expression evaluates to `true`.
@@ -86,7 +86,7 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 7;</code>
      */
-    private $condition = null;
+    protected $condition = null;
 
     /**
      * Constructor.

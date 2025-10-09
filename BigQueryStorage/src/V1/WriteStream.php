@@ -21,20 +21,20 @@ class WriteStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. Type of the stream.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.WriteStream.Type type = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Output only. Create time of the stream. For the _default stream, this is
      * the creation_time of the table.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Commit time of the stream.
      * If a stream is of `COMMITTED` type, then it will have a commit_time same as
@@ -43,7 +43,7 @@ class WriteStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $commit_time = null;
+    protected $commit_time = null;
     /**
      * Output only. The schema of the destination table. It is only returned in
      * `CreateWriteStream` response. Caller should generate data that's
@@ -52,13 +52,13 @@ class WriteStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.TableSchema table_schema = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $table_schema = null;
+    protected $table_schema = null;
     /**
      * Immutable. Mode of the stream.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.WriteStream.WriteMode write_mode = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $write_mode = 0;
+    protected $write_mode = 0;
     /**
      * Immutable. The geographic location where the stream's dataset resides. See
      * https://cloud.google.com/bigquery/docs/locations for supported
@@ -66,7 +66,7 @@ class WriteStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

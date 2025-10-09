@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Dataset extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the Dataset.
+     * Output only. Identifier. The resource name of the Dataset.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user-defined name of the Dataset.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -28,13 +28,13 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The description of the Dataset.
      *
      * Generated from protobuf field <code>string description = 16;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Points to a YAML file stored on Google Cloud Storage describing
      * additional information about the Dataset. The schema is defined as an
@@ -43,39 +43,39 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metadata_schema_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metadata_schema_uri = '';
+    protected $metadata_schema_uri = '';
     /**
      * Required. Additional information about the Dataset.
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Output only. The number of DataItems in this Dataset. Only apply for
      * non-structured Dataset.
      *
      * Generated from protobuf field <code>int64 data_item_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $data_item_count = 0;
+    protected $data_item_count = 0;
     /**
      * Output only. Timestamp when this Dataset was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this Dataset was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Used to perform consistent read-modify-write updates. If not set, a blind
      * "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 6;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The labels with user-defined metadata to organize your Datasets.
      * Label keys and values can be no longer than 64 characters
@@ -112,7 +112,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 11;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * Output only. The resource name of the Artifact that was created in
      * MetadataStore when creating the Dataset. The Artifact resource name pattern
@@ -121,14 +121,26 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metadata_artifact = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metadata_artifact = '';
+    protected $metadata_artifact = '';
     /**
      * Optional. Reference to the public base model last used by the dataset. Only
      * set for prompt datasets.
      *
      * Generated from protobuf field <code>string model_reference = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $model_reference = '';
+    protected $model_reference = '';
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -137,7 +149,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the Dataset.
+     *           Output only. Identifier. The resource name of the Dataset.
      *     @type string $display_name
      *           Required. The user-defined name of the Dataset.
      *           The name can be up to 128 characters long and can consist of any UTF-8
@@ -194,6 +206,10 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *     @type string $model_reference
      *           Optional. Reference to the public base model last used by the dataset. Only
      *           set for prompt datasets.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -202,9 +218,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Dataset.
+     * Output only. Identifier. The resource name of the Dataset.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -213,9 +229,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Dataset.
+     * Output only. Identifier. The resource name of the Dataset.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -661,6 +677,58 @@ class Dataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model_reference = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

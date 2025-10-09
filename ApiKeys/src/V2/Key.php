@@ -26,48 +26,48 @@ class Key extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Unique id in UUID4 format.
      *
      * Generated from protobuf field <code>string uid = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Human-readable display name of this key that you can modify.
      * The maximum length is 63 characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. An encrypted and signed value held by this key.
      * This field can be accessed only through the `GetKeyString` method.
      *
      * Generated from protobuf field <code>string key_string = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $key_string = '';
+    protected $key_string = '';
     /**
      * Output only. A timestamp identifying the time this key was originally
      * created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. A timestamp identifying the time this key was last
      * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. A timestamp when this key was deleted. If the resource is not
      * deleted, this must be empty.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Annotations is an unstructured key-value map stored with a policy that
      * may be set by external tools to store and retrieve arbitrary metadata.
@@ -81,7 +81,7 @@ class Key extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.apikeys.v2.Restrictions restrictions = 9;</code>
      */
-    private $restrictions = null;
+    protected $restrictions = null;
     /**
      * Output only. A checksum computed by the server based on the current value
      * of the Key resource. This may be sent on update and delete requests to
@@ -90,7 +90,7 @@ class Key extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

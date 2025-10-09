@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ namespace Google\Cloud\BigQuery\DataTransfer\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -59,6 +60,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: This API allows users to manage their data transfers into BigQuery.
@@ -71,24 +73,24 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface checkValidCredsAsync(CheckValidCredsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTransferConfigAsync(CreateTransferConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTransferConfigAsync(DeleteTransferConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTransferRunAsync(DeleteTransferRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface enrollDataSourcesAsync(EnrollDataSourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataSourceAsync(GetDataSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTransferConfigAsync(GetTransferConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTransferRunAsync(GetTransferRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataSourcesAsync(ListDataSourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTransferConfigsAsync(ListTransferConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTransferLogsAsync(ListTransferLogsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTransferRunsAsync(ListTransferRunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface scheduleTransferRunsAsync(ScheduleTransferRunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startManualTransferRunsAsync(StartManualTransferRunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface unenrollDataSourcesAsync(UnenrollDataSourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTransferConfigAsync(UpdateTransferConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckValidCredsResponse> checkValidCredsAsync(CheckValidCredsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferConfig> createTransferConfigAsync(CreateTransferConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTransferConfigAsync(DeleteTransferConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTransferRunAsync(DeleteTransferRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> enrollDataSourcesAsync(EnrollDataSourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataSource> getDataSourceAsync(GetDataSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferConfig> getTransferConfigAsync(GetTransferConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferRun> getTransferRunAsync(GetTransferRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataSourcesAsync(ListDataSourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTransferConfigsAsync(ListTransferConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTransferLogsAsync(ListTransferLogsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTransferRunsAsync(ListTransferRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScheduleTransferRunsResponse> scheduleTransferRunsAsync(ScheduleTransferRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StartManualTransferRunsResponse> startManualTransferRunsAsync(StartManualTransferRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> unenrollDataSourcesAsync(UnenrollDataSourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferConfig> updateTransferConfigAsync(UpdateTransferConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class DataTransferServiceClient
 {
@@ -357,14 +359,14 @@ final class DataTransferServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -372,20 +374,29 @@ final class DataTransferServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'bigquerydatatransfer.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new DataTransferServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -419,11 +430,16 @@ final class DataTransferServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);

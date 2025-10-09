@@ -20,7 +20,7 @@ class QosPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double bandwidth_gbps = 1;</code>
      */
-    private $bandwidth_gbps = 0.0;
+    protected $bandwidth_gbps = 0.0;
 
     /**
      * Constructor.
@@ -65,6 +65,4 @@ class QosPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(QosPolicy::class, \Google\Cloud\BareMetalSolution\V2\VRF_QosPolicy::class);
 

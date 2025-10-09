@@ -23,13 +23,13 @@ class CreateEntitlementRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The entitlement to create.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Entitlement entitlement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entitlement = null;
+    protected $entitlement = null;
     /**
      * Optional. You can specify an optional unique request ID, and if you need to
      * retry your request, the server will know to ignore the request if it's
@@ -44,7 +44,7 @@ class CreateEntitlementRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * Constructor.

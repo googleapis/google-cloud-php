@@ -26,9 +26,9 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
     protected $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @deprecated
@@ -55,23 +55,23 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string logging_service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $logging_service = '';
+    protected $logging_service = '';
     /**
      * The name (project, location, cluster) of the cluster to set logging.
      * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $projectId      Deprecated. The Google Developers Console [project ID or project
      *                               number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *                               This field has been deprecated and replaced by the name field.
      * @param string $zone           Deprecated. The name of the Google Compute Engine
-     *                               [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *                               cluster resides. This field has been deprecated and replaced by the name
-     *                               field.
+     *                               [zone](https://cloud.google.com/compute/docs/zones#available)
+     *                               in which the cluster resides. This field has been deprecated and replaced
+     *                               by the name field.
      * @param string $clusterId      Deprecated. The name of the cluster to upgrade.
      *                               This field has been deprecated and replaced by the name field.
      * @param string $loggingService Required. The logging service the cluster should use to write logs.
@@ -137,9 +137,9 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           cluster resides. This field has been deprecated and replaced by the name
-     *           field.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the cluster resides. This field has been deprecated and replaced
+     *           by the name field.
      *     @type string $cluster_id
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
@@ -174,7 +174,9 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProjectId()
     {
-        @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->project_id !== '') {
+            @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->project_id;
     }
 
@@ -199,9 +201,9 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
@@ -209,15 +211,17 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        if ($this->zone !== '') {
+            @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->zone;
     }
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
@@ -243,7 +247,9 @@ class SetLoggingServiceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getClusterId()
     {
-        @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->cluster_id !== '') {
+            @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->cluster_id;
     }
 

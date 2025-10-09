@@ -21,7 +21,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool critical = 1;</code>
      */
-    private $critical = false;
+    protected $critical = false;
     /**
      * Contains permitted DNS names. Any DNS name that can be
      * constructed by simply adding zero or more labels to

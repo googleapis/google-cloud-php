@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,6 +43,8 @@ use Google\Cloud\Kms\V1\CreateKeyRingRequest;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKeyVersion;
 use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm;
+use Google\Cloud\Kms\V1\DecapsulateRequest;
+use Google\Cloud\Kms\V1\DecapsulateResponse;
 use Google\Cloud\Kms\V1\DecryptRequest;
 use Google\Cloud\Kms\V1\DecryptResponse;
 use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
@@ -106,7 +108,9 @@ class KeyManagementServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return KeyManagementServiceClient */
@@ -134,11 +138,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setVerifiedCiphertextCrc32c($verifiedCiphertextCrc32c);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
         $ciphertext = '-72';
-        $request = (new AsymmetricDecryptRequest())
-            ->setName($formattedName)
-            ->setCiphertext($ciphertext);
+        $request = (new AsymmetricDecryptRequest())->setName($formattedName)->setCiphertext($ciphertext);
         $response = $gapicClient->asymmetricDecrypt($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -164,19 +172,26 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
         $ciphertext = '-72';
-        $request = (new AsymmetricDecryptRequest())
-            ->setName($formattedName)
-            ->setCiphertext($ciphertext);
+        $request = (new AsymmetricDecryptRequest())->setName($formattedName)->setCiphertext($ciphertext);
         try {
             $gapicClient->asymmetricDecrypt($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -210,11 +225,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setVerifiedDataCrc32c($verifiedDataCrc32c);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
         $digest = new Digest();
-        $request = (new AsymmetricSignRequest())
-            ->setName($formattedName)
-            ->setDigest($digest);
+        $request = (new AsymmetricSignRequest())->setName($formattedName)->setDigest($digest);
         $response = $gapicClient->asymmetricSign($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -240,19 +259,26 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
         $digest = new Digest();
-        $request = (new AsymmetricSignRequest())
-            ->setName($formattedName)
-            ->setDigest($digest);
+        $request = (new AsymmetricSignRequest())->setName($formattedName)->setDigest($digest);
         try {
             $gapicClient->asymmetricSign($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -318,12 +344,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
@@ -400,12 +429,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
@@ -478,12 +510,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
@@ -558,12 +593,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -575,6 +613,93 @@ class KeyManagementServiceClientTest extends GeneratedTest
             ->setKeyRing($keyRing);
         try {
             $gapicClient->createKeyRing($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function decapsulateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $sharedSecret = '-54';
+        $sharedSecretCrc32c = 1482306981;
+        $verifiedCiphertextCrc32c = true;
+        $expectedResponse = new DecapsulateResponse();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setSharedSecret($sharedSecret);
+        $expectedResponse->setSharedSecretCrc32c($sharedSecretCrc32c);
+        $expectedResponse->setVerifiedCiphertextCrc32c($verifiedCiphertextCrc32c);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $ciphertext = '-72';
+        $request = (new DecapsulateRequest())->setName($formattedName)->setCiphertext($ciphertext);
+        $response = $gapicClient->decapsulate($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.kms.v1.KeyManagementService/Decapsulate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getCiphertext();
+        $this->assertProtobufEquals($ciphertext, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function decapsulateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $ciphertext = '-72';
+        $request = (new DecapsulateRequest())->setName($formattedName)->setCiphertext($ciphertext);
+        try {
+            $gapicClient->decapsulate($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -604,9 +729,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
         $ciphertext = '-72';
-        $request = (new DecryptRequest())
-            ->setName($formattedName)
-            ->setCiphertext($ciphertext);
+        $request = (new DecryptRequest())->setName($formattedName)->setCiphertext($ciphertext);
         $response = $gapicClient->decrypt($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -632,19 +755,20 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
         $ciphertext = '-72';
-        $request = (new DecryptRequest())
-            ->setName($formattedName)
-            ->setCiphertext($ciphertext);
+        $request = (new DecryptRequest())->setName($formattedName)->setCiphertext($ciphertext);
         try {
             $gapicClient->decrypt($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -682,9 +806,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-        $request = (new DestroyCryptoKeyVersionRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $request = (new DestroyCryptoKeyVersionRequest())->setName($formattedName);
         $response = $gapicClient->destroyCryptoKeyVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -708,17 +837,25 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-        $request = (new DestroyCryptoKeyVersionRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $request = (new DestroyCryptoKeyVersionRequest())->setName($formattedName);
         try {
             $gapicClient->destroyCryptoKeyVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -754,9 +891,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $plaintext = '-9';
-        $request = (new EncryptRequest())
-            ->setName($name)
-            ->setPlaintext($plaintext);
+        $request = (new EncryptRequest())->setName($name)->setPlaintext($plaintext);
         $response = $gapicClient->encrypt($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -782,19 +917,20 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
         $plaintext = '-9';
-        $request = (new EncryptRequest())
-            ->setName($name)
-            ->setPlaintext($plaintext);
+        $request = (new EncryptRequest())->setName($name)->setPlaintext($plaintext);
         try {
             $gapicClient->encrypt($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -843,12 +979,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GenerateRandomBytesRequest();
         try {
@@ -883,8 +1022,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
-        $request = (new GetCryptoKeyRequest())
-            ->setName($formattedName);
+        $request = (new GetCryptoKeyRequest())->setName($formattedName);
         $response = $gapicClient->getCryptoKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -908,17 +1046,19 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
-        $request = (new GetCryptoKeyRequest())
-            ->setName($formattedName);
+        $request = (new GetCryptoKeyRequest())->setName($formattedName);
         try {
             $gapicClient->getCryptoKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -956,9 +1096,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-        $request = (new GetCryptoKeyVersionRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $request = (new GetCryptoKeyVersionRequest())->setName($formattedName);
         $response = $gapicClient->getCryptoKeyVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -982,17 +1127,25 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-        $request = (new GetCryptoKeyVersionRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $request = (new GetCryptoKeyVersionRequest())->setName($formattedName);
         try {
             $gapicClient->getCryptoKeyVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1021,8 +1174,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[IMPORT_JOB]');
-        $request = (new GetImportJobRequest())
-            ->setName($formattedName);
+        $request = (new GetImportJobRequest())->setName($formattedName);
         $response = $gapicClient->getImportJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1046,17 +1198,19 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[IMPORT_JOB]');
-        $request = (new GetImportJobRequest())
-            ->setName($formattedName);
+        $request = (new GetImportJobRequest())->setName($formattedName);
         try {
             $gapicClient->getImportJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1085,8 +1239,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
-        $request = (new GetKeyRingRequest())
-            ->setName($formattedName);
+        $request = (new GetKeyRingRequest())->setName($formattedName);
         $response = $gapicClient->getKeyRing($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1110,17 +1263,19 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
-        $request = (new GetKeyRingRequest())
-            ->setName($formattedName);
+        $request = (new GetKeyRingRequest())->setName($formattedName);
         try {
             $gapicClient->getKeyRing($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1150,9 +1305,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-        $request = (new GetPublicKeyRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $request = (new GetPublicKeyRequest())->setName($formattedName);
         $response = $gapicClient->getPublicKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1176,17 +1336,25 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-        $request = (new GetPublicKeyRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $request = (new GetPublicKeyRequest())->setName($formattedName);
         try {
             $gapicClient->getPublicKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1258,12 +1426,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
@@ -1298,9 +1469,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $nextPageToken = '';
         $totalSize = 705419236;
         $cryptoKeyVersionsElement = new CryptoKeyVersion();
-        $cryptoKeyVersions = [
-            $cryptoKeyVersionsElement,
-        ];
+        $cryptoKeyVersions = [$cryptoKeyVersionsElement];
         $expectedResponse = new ListCryptoKeyVersionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
@@ -1308,8 +1477,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
-        $request = (new ListCryptoKeyVersionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCryptoKeyVersionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listCryptoKeyVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1336,17 +1504,19 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
-        $request = (new ListCryptoKeyVersionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCryptoKeyVersionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCryptoKeyVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1372,9 +1542,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $nextPageToken = '';
         $totalSize = 705419236;
         $cryptoKeysElement = new CryptoKey();
-        $cryptoKeys = [
-            $cryptoKeysElement,
-        ];
+        $cryptoKeys = [$cryptoKeysElement];
         $expectedResponse = new ListCryptoKeysResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
@@ -1382,8 +1550,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
-        $request = (new ListCryptoKeysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCryptoKeysRequest())->setParent($formattedParent);
         $response = $gapicClient->listCryptoKeys($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1410,17 +1577,19 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
-        $request = (new ListCryptoKeysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCryptoKeysRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCryptoKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1446,9 +1615,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $nextPageToken = '';
         $totalSize = 705419236;
         $importJobsElement = new ImportJob();
-        $importJobs = [
-            $importJobsElement,
-        ];
+        $importJobs = [$importJobsElement];
         $expectedResponse = new ListImportJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
@@ -1456,8 +1623,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
-        $request = (new ListImportJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListImportJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listImportJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1484,17 +1650,19 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
-        $request = (new ListImportJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListImportJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listImportJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1520,9 +1688,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $nextPageToken = '';
         $totalSize = 705419236;
         $keyRingsElement = new KeyRing();
-        $keyRings = [
-            $keyRingsElement,
-        ];
+        $keyRings = [$keyRingsElement];
         $expectedResponse = new ListKeyRingsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
@@ -1530,8 +1696,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListKeyRingsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListKeyRingsRequest())->setParent($formattedParent);
         $response = $gapicClient->listKeyRings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1558,17 +1723,19 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListKeyRingsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListKeyRingsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listKeyRings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1600,11 +1767,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setVerifiedDataCrc32c($verifiedDataCrc32c);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
         $data = '-86';
-        $request = (new MacSignRequest())
-            ->setName($formattedName)
-            ->setData($data);
+        $request = (new MacSignRequest())->setName($formattedName)->setData($data);
         $response = $gapicClient->macSign($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1630,19 +1801,26 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
         $data = '-86';
-        $request = (new MacSignRequest())
-            ->setName($formattedName)
-            ->setData($data);
+        $request = (new MacSignRequest())->setName($formattedName)->setData($data);
         try {
             $gapicClient->macSign($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1678,7 +1856,13 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setVerifiedSuccessIntegrity($verifiedSuccessIntegrity);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
         $data = '-86';
         $mac = '79';
         $request = (new MacVerifyRequest())
@@ -1712,15 +1896,24 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
         $data = '-86';
         $mac = '79';
         $request = (new MacVerifyRequest())
@@ -1794,12 +1987,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
@@ -1850,9 +2046,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $plaintext = '-9';
-        $request = (new RawEncryptRequest())
-            ->setName($name)
-            ->setPlaintext($plaintext);
+        $request = (new RawEncryptRequest())->setName($name)->setPlaintext($plaintext);
         $response = $gapicClient->rawEncrypt($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1878,19 +2072,20 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
         $plaintext = '-9';
-        $request = (new RawEncryptRequest())
-            ->setName($name)
-            ->setPlaintext($plaintext);
+        $request = (new RawEncryptRequest())->setName($name)->setPlaintext($plaintext);
         try {
             $gapicClient->rawEncrypt($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1928,9 +2123,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-        $request = (new RestoreCryptoKeyVersionRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $request = (new RestoreCryptoKeyVersionRequest())->setName($formattedName);
         $response = $gapicClient->restoreCryptoKeyVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1954,17 +2154,25 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-        $request = (new RestoreCryptoKeyVersionRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $request = (new RestoreCryptoKeyVersionRequest())->setName($formattedName);
         try {
             $gapicClient->restoreCryptoKeyVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1998,9 +2206,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock request
         $cryptoKey = new CryptoKey();
         $updateMask = new FieldMask();
-        $request = (new UpdateCryptoKeyRequest())
-            ->setCryptoKey($cryptoKey)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateCryptoKeyRequest())->setCryptoKey($cryptoKey)->setUpdateMask($updateMask);
         $response = $gapicClient->updateCryptoKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2026,19 +2232,20 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $cryptoKey = new CryptoKey();
         $updateMask = new FieldMask();
-        $request = (new UpdateCryptoKeyRequest())
-            ->setCryptoKey($cryptoKey)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateCryptoKeyRequest())->setCryptoKey($cryptoKey)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateCryptoKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2100,12 +2307,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
@@ -2180,12 +2390,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $cryptoKeyVersion = new CryptoKeyVersion();
@@ -2245,12 +2458,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -2277,9 +2493,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -2309,12 +2523,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -2347,8 +2564,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2372,17 +2588,19 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2414,9 +2632,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2442,19 +2658,20 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2482,9 +2699,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2510,19 +2725,20 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2552,11 +2768,15 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setVerifiedCiphertextCrc32c($verifiedCiphertextCrc32c);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
         $ciphertext = '-72';
-        $request = (new AsymmetricDecryptRequest())
-            ->setName($formattedName)
-            ->setCiphertext($ciphertext);
+        $request = (new AsymmetricDecryptRequest())->setName($formattedName)->setCiphertext($ciphertext);
         $response = $gapicClient->asymmetricDecryptAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

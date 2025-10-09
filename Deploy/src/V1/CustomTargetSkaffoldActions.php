@@ -23,13 +23,13 @@ class CustomTargetSkaffoldActions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string render_action = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $render_action = '';
+    protected $render_action = '';
     /**
      * Required. The Skaffold custom action responsible for deploy operations.
      *
      * Generated from protobuf field <code>string deploy_action = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deploy_action = '';
+    protected $deploy_action = '';
     /**
      * Optional. List of Skaffold modules Cloud Deploy will include in the
      * Skaffold Config as required before performing diagnose.

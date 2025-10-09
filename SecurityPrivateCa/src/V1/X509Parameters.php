@@ -24,15 +24,17 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.KeyUsage key_usage = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $key_usage = null;
+    protected $key_usage = null;
     /**
      * Optional. Describes options in this
      * [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] that
-     * are relevant in a CA certificate.
+     * are relevant in a CA certificate. If not specified, a default basic
+     * constraints extension with `is_ca=false` will be added for leaf
+     * certificates.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters.CaOptions ca_options = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ca_options = null;
+    protected $ca_options = null;
     /**
      * Optional. Describes the X.509 certificate policy object identifiers, per
      * https://tools.ietf.org/html/rfc5280#section-4.2.1.4.
@@ -53,7 +55,7 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters.NameConstraints name_constraints = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name_constraints = null;
+    protected $name_constraints = null;
     /**
      * Optional. Describes custom X.509 extensions.
      *
@@ -73,7 +75,9 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Security\PrivateCA\V1\X509Parameters\CaOptions $ca_options
      *           Optional. Describes options in this
      *           [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] that
-     *           are relevant in a CA certificate.
+     *           are relevant in a CA certificate. If not specified, a default basic
+     *           constraints extension with `is_ca=false` will be added for leaf
+     *           certificates.
      *     @type array<\Google\Cloud\Security\PrivateCA\V1\ObjectId>|\Google\Protobuf\Internal\RepeatedField $policy_ids
      *           Optional. Describes the X.509 certificate policy object identifiers, per
      *           https://tools.ietf.org/html/rfc5280#section-4.2.1.4.
@@ -133,7 +137,9 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Describes options in this
      * [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] that
-     * are relevant in a CA certificate.
+     * are relevant in a CA certificate. If not specified, a default basic
+     * constraints extension with `is_ca=false` will be added for leaf
+     * certificates.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters.CaOptions ca_options = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Security\PrivateCA\V1\X509Parameters\CaOptions|null
@@ -156,7 +162,9 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Describes options in this
      * [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] that
-     * are relevant in a CA certificate.
+     * are relevant in a CA certificate. If not specified, a default basic
+     * constraints extension with `is_ca=false` will be added for leaf
+     * certificates.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters.CaOptions ca_options = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\X509Parameters\CaOptions $var

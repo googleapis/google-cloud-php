@@ -25,13 +25,13 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cluster = '';
+    protected $cluster = '';
     /**
      * Output only. The Kubernetes server version of the source cluster.
      *
      * Generated from protobuf field <code>string k8s_version = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $k8s_version = '';
+    protected $k8s_version = '';
     /**
      * Output only. A list of the Backup for GKE CRD versions found in the
      * cluster.

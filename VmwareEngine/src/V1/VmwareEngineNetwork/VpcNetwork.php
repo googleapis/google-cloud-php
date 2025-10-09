@@ -22,7 +22,7 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.VmwareEngineNetwork.VpcNetwork.Type type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Output only. The relative resource name of the service VPC network this
      * VMware Engine network is attached to. For example:
@@ -30,7 +30,7 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $network = '';
+    protected $network = '';
 
     /**
      * Constructor.

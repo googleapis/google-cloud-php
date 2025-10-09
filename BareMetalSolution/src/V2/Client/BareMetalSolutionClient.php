@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ namespace Google\Cloud\BareMetalSolution\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -44,7 +44,9 @@ use Google\Cloud\BareMetalSolution\V2\DeleteSSHKeyRequest;
 use Google\Cloud\BareMetalSolution\V2\DeleteVolumeSnapshotRequest;
 use Google\Cloud\BareMetalSolution\V2\DetachLunRequest;
 use Google\Cloud\BareMetalSolution\V2\DisableInteractiveSerialConsoleRequest;
+use Google\Cloud\BareMetalSolution\V2\DisableInteractiveSerialConsoleResponse;
 use Google\Cloud\BareMetalSolution\V2\EnableInteractiveSerialConsoleRequest;
+use Google\Cloud\BareMetalSolution\V2\EnableInteractiveSerialConsoleResponse;
 use Google\Cloud\BareMetalSolution\V2\EvictLunRequest;
 use Google\Cloud\BareMetalSolution\V2\EvictVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\GetInstanceRequest;
@@ -75,11 +77,14 @@ use Google\Cloud\BareMetalSolution\V2\RenameNetworkRequest;
 use Google\Cloud\BareMetalSolution\V2\RenameNfsShareRequest;
 use Google\Cloud\BareMetalSolution\V2\RenameVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\ResetInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\ResetInstanceResponse;
 use Google\Cloud\BareMetalSolution\V2\ResizeVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\RestoreVolumeSnapshotRequest;
 use Google\Cloud\BareMetalSolution\V2\SSHKey;
 use Google\Cloud\BareMetalSolution\V2\StartInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\StartInstanceResponse;
 use Google\Cloud\BareMetalSolution\V2\StopInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\StopInstanceResponse;
 use Google\Cloud\BareMetalSolution\V2\SubmitProvisioningConfigRequest;
 use Google\Cloud\BareMetalSolution\V2\SubmitProvisioningConfigResponse;
 use Google\Cloud\BareMetalSolution\V2\UpdateInstanceRequest;
@@ -92,8 +97,10 @@ use Google\Cloud\BareMetalSolution\V2\VolumeSnapshot;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Performs management operations on Bare Metal Solution servers.
@@ -113,52 +120,52 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createNfsShareAsync(CreateNfsShareRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createProvisioningConfigAsync(CreateProvisioningConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSSHKeyAsync(CreateSSHKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createVolumeSnapshotAsync(CreateVolumeSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNfsShareAsync(DeleteNfsShareRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSSHKeyAsync(DeleteSSHKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteVolumeSnapshotAsync(DeleteVolumeSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface detachLunAsync(DetachLunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface disableInteractiveSerialConsoleAsync(DisableInteractiveSerialConsoleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface enableInteractiveSerialConsoleAsync(EnableInteractiveSerialConsoleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface evictLunAsync(EvictLunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface evictVolumeAsync(EvictVolumeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLunAsync(GetLunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNetworkAsync(GetNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNfsShareAsync(GetNfsShareRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProvisioningConfigAsync(GetProvisioningConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getVolumeAsync(GetVolumeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getVolumeSnapshotAsync(GetVolumeSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLunsAsync(ListLunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNetworkUsageAsync(ListNetworkUsageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNetworksAsync(ListNetworksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNfsSharesAsync(ListNfsSharesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOSImagesAsync(ListOSImagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProvisioningQuotasAsync(ListProvisioningQuotasRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSSHKeysAsync(ListSSHKeysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listVolumeSnapshotsAsync(ListVolumeSnapshotsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listVolumesAsync(ListVolumesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface renameInstanceAsync(RenameInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface renameNetworkAsync(RenameNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface renameNfsShareAsync(RenameNfsShareRequest $request, array $optionalArgs = [])
- * @method PromiseInterface renameVolumeAsync(RenameVolumeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetInstanceAsync(ResetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resizeVolumeAsync(ResizeVolumeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreVolumeSnapshotAsync(RestoreVolumeSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startInstanceAsync(StartInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopInstanceAsync(StopInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface submitProvisioningConfigAsync(SubmitProvisioningConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNetworkAsync(UpdateNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNfsShareAsync(UpdateNfsShareRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProvisioningConfigAsync(UpdateProvisioningConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateVolumeAsync(UpdateVolumeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createNfsShareAsync(CreateNfsShareRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProvisioningConfig> createProvisioningConfigAsync(CreateProvisioningConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SSHKey> createSSHKeyAsync(CreateSSHKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VolumeSnapshot> createVolumeSnapshotAsync(CreateVolumeSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNfsShareAsync(DeleteNfsShareRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSSHKeyAsync(DeleteSSHKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteVolumeSnapshotAsync(DeleteVolumeSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> detachLunAsync(DetachLunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> disableInteractiveSerialConsoleAsync(DisableInteractiveSerialConsoleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> enableInteractiveSerialConsoleAsync(EnableInteractiveSerialConsoleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> evictLunAsync(EvictLunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> evictVolumeAsync(EvictVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Lun> getLunAsync(GetLunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Network> getNetworkAsync(GetNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NfsShare> getNfsShareAsync(GetNfsShareRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProvisioningConfig> getProvisioningConfigAsync(GetProvisioningConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Volume> getVolumeAsync(GetVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VolumeSnapshot> getVolumeSnapshotAsync(GetVolumeSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLunsAsync(ListLunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListNetworkUsageResponse> listNetworkUsageAsync(ListNetworkUsageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNetworksAsync(ListNetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNfsSharesAsync(ListNfsSharesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOSImagesAsync(ListOSImagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProvisioningQuotasAsync(ListProvisioningQuotasRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSSHKeysAsync(ListSSHKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listVolumeSnapshotsAsync(ListVolumeSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listVolumesAsync(ListVolumesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Instance> renameInstanceAsync(RenameInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Network> renameNetworkAsync(RenameNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NfsShare> renameNfsShareAsync(RenameNfsShareRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Volume> renameVolumeAsync(RenameVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resetInstanceAsync(ResetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resizeVolumeAsync(ResizeVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreVolumeSnapshotAsync(RestoreVolumeSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startInstanceAsync(StartInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopInstanceAsync(StopInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubmitProvisioningConfigResponse> submitProvisioningConfigAsync(SubmitProvisioningConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateNetworkAsync(UpdateNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateNfsShareAsync(UpdateNfsShareRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProvisioningConfig> updateProvisioningConfigAsync(UpdateProvisioningConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateVolumeAsync(UpdateVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class BareMetalSolutionClient
 {
@@ -233,10 +240,29 @@ final class BareMetalSolutionClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -532,14 +558,14 @@ final class BareMetalSolutionClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -547,20 +573,29 @@ final class BareMetalSolutionClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'baremetalsolution.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new BareMetalSolutionClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -594,11 +629,16 @@ final class BareMetalSolutionClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -633,7 +673,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<NfsShare>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -741,7 +781,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -817,7 +857,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Instance>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -844,7 +884,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DisableInteractiveSerialConsoleResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -871,7 +911,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EnableInteractiveSerialConsoleResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -898,7 +938,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -925,7 +965,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1510,7 +1550,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ResetInstanceResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1536,7 +1576,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Volume>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1564,7 +1604,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<VolumeSnapshot>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1590,7 +1630,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<StartInstanceResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1616,7 +1656,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<StopInstanceResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1669,7 +1709,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Instance>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1695,7 +1735,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Network>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1721,7 +1761,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<NfsShare>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1774,7 +1814,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Volume>
      *
      * @throws ApiException Thrown if the API call fails.
      */

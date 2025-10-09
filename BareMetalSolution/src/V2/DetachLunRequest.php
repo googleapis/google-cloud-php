@@ -20,19 +20,19 @@ class DetachLunRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Required. Name of the Lun to detach.
      *
      * Generated from protobuf field <code>string lun = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $lun = '';
+    protected $lun = '';
     /**
      * If true, performs lun unmapping without instance reboot.
      *
      * Generated from protobuf field <code>bool skip_reboot = 3;</code>
      */
-    private $skip_reboot = false;
+    protected $skip_reboot = false;
 
     /**
      * @param string $instance Required. Name of the instance. Please see

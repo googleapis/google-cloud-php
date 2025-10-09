@@ -20,13 +20,13 @@ class MetadataIntegration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.DataCatalogConfig data_catalog_config = 1;</code>
      */
-    private $data_catalog_config = null;
+    protected $data_catalog_config = null;
     /**
      * The integration config for the Dataplex service.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.DataplexConfig dataplex_config = 2;</code>
      */
-    private $dataplex_config = null;
+    protected $dataplex_config = null;
 
     /**
      * Constructor.

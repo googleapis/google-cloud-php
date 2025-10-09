@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,9 @@ class ImageVersionsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ImageVersionsClient */
@@ -72,9 +74,7 @@ class ImageVersionsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $imageVersionsElement = new ImageVersion();
-        $imageVersions = [
-            $imageVersionsElement,
-        ];
+        $imageVersions = [$imageVersionsElement];
         $expectedResponse = new ListImageVersionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setImageVersions($imageVersions);
@@ -89,7 +89,10 @@ class ImageVersionsClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.orchestration.airflow.service.v1.ImageVersions/ListImageVersions', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.orchestration.airflow.service.v1.ImageVersions/ListImageVersions',
+            $actualFuncCall
+        );
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -104,12 +107,15 @@ class ImageVersionsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListImageVersionsRequest();
         try {
@@ -136,9 +142,7 @@ class ImageVersionsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $imageVersionsElement = new ImageVersion();
-        $imageVersions = [
-            $imageVersionsElement,
-        ];
+        $imageVersions = [$imageVersionsElement];
         $expectedResponse = new ListImageVersionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setImageVersions($imageVersions);
@@ -153,7 +157,10 @@ class ImageVersionsClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.orchestration.airflow.service.v1.ImageVersions/ListImageVersions', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.orchestration.airflow.service.v1.ImageVersions/ListImageVersions',
+            $actualFuncCall
+        );
         $this->assertTrue($transport->isExhausted());
     }
 }

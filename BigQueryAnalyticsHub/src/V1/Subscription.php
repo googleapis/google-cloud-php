@@ -19,44 +19,44 @@ class Subscription extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name of the subscription.
-     * e.g. `projects/myproject/locations/US/subscriptions/123`.
+     * e.g. `projects/myproject/locations/us/subscriptions/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Timestamp when the subscription was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp creation_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creation_time = null;
+    protected $creation_time = null;
     /**
      * Output only. Timestamp when the subscription was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_modify_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_modify_time = null;
+    protected $last_modify_time = null;
     /**
      * Output only. Organization of the project this subscription belongs to.
      *
      * Generated from protobuf field <code>string organization_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $organization_id = '';
+    protected $organization_id = '';
     /**
      * Output only. Display name of the project of this subscription.
      *
      * Generated from protobuf field <code>string organization_display_name = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $organization_display_name = '';
+    protected $organization_display_name = '';
     /**
      * Output only. Current state of the subscription.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Subscription.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Map of listing resource names to associated linked resource,
-     * e.g. projects/123/locations/US/dataExchanges/456/listings/789
+     * e.g. projects/123/locations/us/dataExchanges/456/listings/789
      * ->
      * projects/123/datasets/my_dataset
      * For listing-level subscriptions, this is a map of size 1.
@@ -70,7 +70,41 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subscriber_contact = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $subscriber_contact = '';
+    protected $subscriber_contact = '';
+    /**
+     * Output only. Linked resources created in the subscription. Only contains
+     * values if state = STATE_ACTIVE.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Subscription.LinkedResource linked_resources = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $linked_resources;
+    /**
+     * Output only. Listing shared asset type.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharedResourceType resource_type = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $resource_type = 0;
+    /**
+     * Output only. This is set if this is a commercial subscription i.e. if this
+     * subscription was created from subscribing to a commercial listing.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo commercial_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $commercial_info = null;
+    /**
+     * Output only. By default, false.
+     * If true, the Subscriber agreed to the email sharing mandate
+     * that is enabled for DataExchange/Listing.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $log_linked_dataset_query_user_email = null;
+    /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $destination_dataset = null;
     protected $resource_name;
 
     /**
@@ -81,13 +115,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      *     @type string $listing
      *           Output only. Resource name of the source Listing.
-     *           e.g. projects/123/locations/US/dataExchanges/456/listings/789
+     *           e.g. projects/123/locations/us/dataExchanges/456/listings/789
      *     @type string $data_exchange
      *           Output only. Resource name of the source Data Exchange.
-     *           e.g. projects/123/locations/US/dataExchanges/456
+     *           e.g. projects/123/locations/us/dataExchanges/456
      *     @type string $name
      *           Output only. The resource name of the subscription.
-     *           e.g. `projects/myproject/locations/US/subscriptions/123`.
+     *           e.g. `projects/myproject/locations/us/subscriptions/123`.
      *     @type \Google\Protobuf\Timestamp $creation_time
      *           Output only. Timestamp when the subscription was created.
      *     @type \Google\Protobuf\Timestamp $last_modify_time
@@ -100,13 +134,27 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           Output only. Current state of the subscription.
      *     @type array|\Google\Protobuf\Internal\MapField $linked_dataset_map
      *           Output only. Map of listing resource names to associated linked resource,
-     *           e.g. projects/123/locations/US/dataExchanges/456/listings/789
+     *           e.g. projects/123/locations/us/dataExchanges/456/listings/789
      *           ->
      *           projects/123/datasets/my_dataset
      *           For listing-level subscriptions, this is a map of size 1.
      *           Only contains values if state == STATE_ACTIVE.
      *     @type string $subscriber_contact
      *           Output only. Email of the subscriber.
+     *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\LinkedResource>|\Google\Protobuf\Internal\RepeatedField $linked_resources
+     *           Output only. Linked resources created in the subscription. Only contains
+     *           values if state = STATE_ACTIVE.
+     *     @type int $resource_type
+     *           Output only. Listing shared asset type.
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\CommercialInfo $commercial_info
+     *           Output only. This is set if this is a commercial subscription i.e. if this
+     *           subscription was created from subscribing to a commercial listing.
+     *     @type bool $log_linked_dataset_query_user_email
+     *           Output only. By default, false.
+     *           If true, the Subscriber agreed to the email sharing mandate
+     *           that is enabled for DataExchange/Listing.
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset $destination_dataset
+     *           Optional. BigQuery destination dataset to create for the subscriber.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,7 +164,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Resource name of the source Listing.
-     * e.g. projects/123/locations/US/dataExchanges/456/listings/789
+     * e.g. projects/123/locations/us/dataExchanges/456/listings/789
      *
      * Generated from protobuf field <code>string listing = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -133,7 +181,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Resource name of the source Listing.
-     * e.g. projects/123/locations/US/dataExchanges/456/listings/789
+     * e.g. projects/123/locations/us/dataExchanges/456/listings/789
      *
      * Generated from protobuf field <code>string listing = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -149,7 +197,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Resource name of the source Data Exchange.
-     * e.g. projects/123/locations/US/dataExchanges/456
+     * e.g. projects/123/locations/us/dataExchanges/456
      *
      * Generated from protobuf field <code>string data_exchange = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -166,7 +214,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Resource name of the source Data Exchange.
-     * e.g. projects/123/locations/US/dataExchanges/456
+     * e.g. projects/123/locations/us/dataExchanges/456
      *
      * Generated from protobuf field <code>string data_exchange = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -182,7 +230,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the subscription.
-     * e.g. `projects/myproject/locations/US/subscriptions/123`.
+     * e.g. `projects/myproject/locations/us/subscriptions/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -194,7 +242,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the subscription.
-     * e.g. `projects/myproject/locations/US/subscriptions/123`.
+     * e.g. `projects/myproject/locations/us/subscriptions/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -360,7 +408,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Map of listing resource names to associated linked resource,
-     * e.g. projects/123/locations/US/dataExchanges/456/listings/789
+     * e.g. projects/123/locations/us/dataExchanges/456/listings/789
      * ->
      * projects/123/datasets/my_dataset
      * For listing-level subscriptions, this is a map of size 1.
@@ -376,7 +424,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Map of listing resource names to associated linked resource,
-     * e.g. projects/123/locations/US/dataExchanges/456/listings/789
+     * e.g. projects/123/locations/us/dataExchanges/456/listings/789
      * ->
      * projects/123/datasets/my_dataset
      * For listing-level subscriptions, this is a map of size 1.
@@ -416,6 +464,174 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->subscriber_contact = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Linked resources created in the subscription. Only contains
+     * values if state = STATE_ACTIVE.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Subscription.LinkedResource linked_resources = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLinkedResources()
+    {
+        return $this->linked_resources;
+    }
+
+    /**
+     * Output only. Linked resources created in the subscription. Only contains
+     * values if state = STATE_ACTIVE.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Subscription.LinkedResource linked_resources = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\LinkedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLinkedResources($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\LinkedResource::class);
+        $this->linked_resources = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Listing shared asset type.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharedResourceType resource_type = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getResourceType()
+    {
+        return $this->resource_type;
+    }
+
+    /**
+     * Output only. Listing shared asset type.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharedResourceType resource_type = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setResourceType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\SharedResourceType::class);
+        $this->resource_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. This is set if this is a commercial subscription i.e. if this
+     * subscription was created from subscribing to a commercial listing.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo commercial_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\CommercialInfo|null
+     */
+    public function getCommercialInfo()
+    {
+        return $this->commercial_info;
+    }
+
+    public function hasCommercialInfo()
+    {
+        return isset($this->commercial_info);
+    }
+
+    public function clearCommercialInfo()
+    {
+        unset($this->commercial_info);
+    }
+
+    /**
+     * Output only. This is set if this is a commercial subscription i.e. if this
+     * subscription was created from subscribing to a commercial listing.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Subscription.CommercialInfo commercial_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\CommercialInfo $var
+     * @return $this
+     */
+    public function setCommercialInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\CommercialInfo::class);
+        $this->commercial_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. By default, false.
+     * If true, the Subscriber agreed to the email sharing mandate
+     * that is enabled for DataExchange/Listing.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getLogLinkedDatasetQueryUserEmail()
+    {
+        return isset($this->log_linked_dataset_query_user_email) ? $this->log_linked_dataset_query_user_email : false;
+    }
+
+    public function hasLogLinkedDatasetQueryUserEmail()
+    {
+        return isset($this->log_linked_dataset_query_user_email);
+    }
+
+    public function clearLogLinkedDatasetQueryUserEmail()
+    {
+        unset($this->log_linked_dataset_query_user_email);
+    }
+
+    /**
+     * Output only. By default, false.
+     * If true, the Subscriber agreed to the email sharing mandate
+     * that is enabled for DataExchange/Listing.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLogLinkedDatasetQueryUserEmail($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->log_linked_dataset_query_user_email = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset|null
+     */
+    public function getDestinationDataset()
+    {
+        return $this->destination_dataset;
+    }
+
+    public function hasDestinationDataset()
+    {
+        return isset($this->destination_dataset);
+    }
+
+    public function clearDestinationDataset()
+    {
+        unset($this->destination_dataset);
+    }
+
+    /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset $var
+     * @return $this
+     */
+    public function setDestinationDataset($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset::class);
+        $this->destination_dataset = $var;
 
         return $this;
     }

@@ -23,13 +23,13 @@ class DeployIndexRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string index_endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $index_endpoint = '';
+    protected $index_endpoint = '';
     /**
      * Required. The DeployedIndex to be created within the IndexEndpoint.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex deployed_index = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployed_index = null;
+    protected $deployed_index = null;
 
     /**
      * @param string                                    $indexEndpoint Required. The name of the IndexEndpoint resource into which to deploy an

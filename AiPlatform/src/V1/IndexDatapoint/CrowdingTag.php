@@ -26,7 +26,7 @@ class CrowdingTag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string crowding_attribute = 1;</code>
      */
-    private $crowding_attribute = '';
+    protected $crowding_attribute = '';
 
     /**
      * Constructor.

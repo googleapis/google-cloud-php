@@ -76,15 +76,15 @@ items:
           description: 'The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of "tower" is likely higher to an image containing the detected "Eiffel Tower" than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].'
         -
           id: '↳ bounding_poly'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: 'Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features.'
         -
           id: '↳ locations'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\LocationInfo">Google\Cloud\Vision\V1\LocationInfo</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\LocationInfo">LocationInfo</xref>&gt;'
           description: 'The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks.'
         -
           id: '↳ properties'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Property">Google\Cloud\Vision\V1\Property</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Property">Property</xref>&gt;'
           description: 'Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity.'
   -
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getMid()'
@@ -318,7 +318,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::hasBoundingPoly()'
     name: hasBoundingPoly
@@ -350,7 +350,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: ''
       returns:
         -
@@ -393,7 +393,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\LocationInfo">Google\Cloud\Vision\V1\LocationInfo</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\LocationInfo">LocationInfo</xref>&gt;'
           description: ''
       returns:
         -
@@ -428,7 +428,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Property">Google\Cloud\Vision\V1\Property</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Property">Property</xref>&gt;'
           description: ''
       returns:
         -

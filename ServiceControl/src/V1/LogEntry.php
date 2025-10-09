@@ -21,28 +21,28 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 10;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The time the event described by the log entry occurred. If
      * omitted, defaults to operation start time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 11;</code>
      */
-    private $timestamp = null;
+    protected $timestamp = null;
     /**
      * The severity of the log entry. The default value is
      * `LogSeverity.DEFAULT`.
      *
      * Generated from protobuf field <code>.google.logging.type.LogSeverity severity = 12;</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
     /**
      * Optional. Information about the HTTP request associated with this
      * log entry, if applicable.
      *
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.HttpRequest http_request = 14;</code>
      */
-    private $http_request = null;
+    protected $http_request = null;
     /**
      * Optional. Resource name of the trace associated with the log entry, if any.
      * If this field contains a relative resource name, you can assume the name is
@@ -51,14 +51,14 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string trace = 15;</code>
      */
-    private $trace = '';
+    protected $trace = '';
     /**
      * A unique ID for the log entry used for deduplication. If omitted,
      * the implementation will generate one based on operation_id.
      *
      * Generated from protobuf field <code>string insert_id = 4;</code>
      */
-    private $insert_id = '';
+    protected $insert_id = '';
     /**
      * A set of user-defined (key, value) data that provides additional
      * information about the log entry.
@@ -72,14 +72,14 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.LogEntryOperation operation = 16;</code>
      */
-    private $operation = null;
+    protected $operation = null;
     /**
      * Optional. Source code location information associated with the log entry,
      * if any.
      *
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.LogEntrySourceLocation source_location = 17;</code>
      */
-    private $source_location = null;
+    protected $source_location = null;
     protected $payload;
 
     /**

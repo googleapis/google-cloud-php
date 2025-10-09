@@ -21,7 +21,7 @@ class CreateIngressRuleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * A FirewallRule containing the new resource.
      * The user may optionally provide a position at which the new rule will be
@@ -34,7 +34,7 @@ class CreateIngressRuleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.appengine.v1.FirewallRule rule = 2;</code>
      */
-    private $rule = null;
+    protected $rule = null;
 
     /**
      * Constructor.

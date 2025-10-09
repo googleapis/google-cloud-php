@@ -21,7 +21,7 @@ class UpdateNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.NetworkPolicy network_policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network_policy = null;
+    protected $network_policy = null;
     /**
      * Required. Field mask is used to specify the fields to be overwritten in the
      * `NetworkPolicy` resource by the update.
@@ -31,7 +31,7 @@ class UpdateNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -48,7 +48,7 @@ class UpdateNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param \Google\Cloud\VmwareEngine\V1\NetworkPolicy $networkPolicy Required. Network policy description.

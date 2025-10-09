@@ -23,7 +23,7 @@ class UpdateTagKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.TagKey tag_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag_key = null;
+    protected $tag_key = null;
     /**
      * Fields to be updated. The mask may only contain `description` or
      * `etag`. If omitted entirely, both `description` and `etag` are assumed to
@@ -31,14 +31,14 @@ class UpdateTagKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Set as true to perform validations necessary for updating the resource, but
      * not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\ResourceManager\V3\TagKey $tagKey     Required. The new definition of the TagKey. Only the `description` and

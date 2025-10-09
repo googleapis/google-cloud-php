@@ -42,7 +42,7 @@ class IngressFrom extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IdentityType identity_type = 3;</code>
      */
-    private $identity_type = 0;
+    protected $identity_type = 0;
 
     /**
      * Constructor.
@@ -161,6 +161,4 @@ class IngressFrom extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IngressFrom::class, \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig_IngressFrom::class);
 

@@ -21,20 +21,20 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string encoding = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encoding = '';
+    protected $encoding = '';
     /**
      * Optional. The number of rows to interpret as header rows that should be
      * skipped when reading data rows. Defaults to 0.
      *
      * Generated from protobuf field <code>int32 header_rows = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $header_rows = 0;
+    protected $header_rows = 0;
     /**
      * Optional. The delimiter used to separate values. Defaults to ','.
      *
      * Generated from protobuf field <code>string delimiter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $delimiter = '';
+    protected $delimiter = '';
     /**
      * Optional. The character used to quote column values. Accepts '"'
      * (double quotation mark) or ''' (single quotation mark). Defaults to
@@ -42,7 +42,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string quote = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $quote = '';
+    protected $quote = '';
 
     /**
      * Constructor.

@@ -23,13 +23,13 @@ class EvaluatedAnnotationExplanation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string explanation_type = 1;</code>
      */
-    private $explanation_type = '';
+    protected $explanation_type = '';
     /**
      * Explanation attribution response details.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Explanation explanation = 2;</code>
      */
-    private $explanation = null;
+    protected $explanation = null;
 
     /**
      * Constructor.

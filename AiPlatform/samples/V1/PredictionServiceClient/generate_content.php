@@ -33,9 +33,14 @@ use Google\Cloud\AIPlatform\V1\Part;
 /**
  * Generate content with multimodal inputs.
  *
- * @param string $model The name of the publisher model requested to serve the
- *                      prediction. Format:
+ * @param string $model The fully qualified name of the publisher model or tuned model
+ *                      endpoint to use.
+ *
+ *                      Publisher model format:
  *                      `projects/{project}/locations/{location}/publishers/&#42;/models/*`
+ *
+ *                      Tuned model endpoint format:
+ *                      `projects/{project}/locations/{location}/endpoints/{endpoint}`
  */
 function generate_content_sample(string $model): void
 {

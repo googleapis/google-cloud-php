@@ -23,7 +23,7 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The super admin of the resold customer generates this token to
      * authorize a reseller to access their Cloud Identity and purchase
@@ -32,7 +32,7 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string auth_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $auth_token = '';
+    protected $auth_token = '';
     /**
      * Required. Choose to overwrite an existing customer if found.
      * This must be set to true if there is an existing customer with a
@@ -40,7 +40,7 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool overwrite_if_exists = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $overwrite_if_exists = false;
+    protected $overwrite_if_exists = false;
     /**
      * Optional. Cloud Identity ID of a channel partner who will be the direct
      * reseller for the customer's order. This field is required for 2-tier
@@ -49,7 +49,7 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string channel_partner_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $channel_partner_id = '';
+    protected $channel_partner_id = '';
     /**
      * Optional. Specifies the customer that will receive imported Cloud Identity
      * information.
@@ -57,7 +57,7 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string customer = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $customer = '';
+    protected $customer = '';
     protected $customer_identity;
 
     /**
@@ -70,6 +70,8 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
      *           Required. Customer domain.
      *     @type string $cloud_identity_id
      *           Required. Customer's Cloud Identity ID
+     *     @type string $primary_admin_email
+     *           Required. Customer's primary admin email.
      *     @type string $parent
      *           Required. The resource name of the reseller's account.
      *           Parent takes the format: accounts/{account_id} or
@@ -157,6 +159,37 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Required. Customer's primary admin email.
+     *
+     * Generated from protobuf field <code>string primary_admin_email = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return string
+     */
+    public function getPrimaryAdminEmail()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasPrimaryAdminEmail()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Required. Customer's primary admin email.
+     *
+     * Generated from protobuf field <code>string primary_admin_email = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPrimaryAdminEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

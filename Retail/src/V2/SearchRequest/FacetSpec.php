@@ -20,7 +20,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey facet_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $facet_key = null;
+    protected $facet_key = null;
     /**
      * Maximum of facet values that should be returned for this facet. If
      * unspecified, defaults to 50. The maximum allowed value is 300. Values
@@ -29,7 +29,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 limit = 2;</code>
      */
-    private $limit = 0;
+    protected $limit = 0;
     /**
      * List of keys to exclude when faceting.
      * By default,
@@ -83,7 +83,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_dynamic_position = 4;</code>
      */
-    private $enable_dynamic_position = false;
+    protected $enable_dynamic_position = false;
 
     /**
      * Constructor.

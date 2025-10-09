@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1beta_generated_DataprocMetastoreFederation_DeleteFederation_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Metastore\V1beta\DataprocMetastoreFederationClient;
+use Google\Cloud\Metastore\V1beta\Client\DataprocMetastoreFederationClient;
+use Google\Cloud\Metastore\V1beta\DeleteFederationRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function delete_federation_sample(string $formattedName): void
     // Create a client.
     $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
 
+    // Prepare the request message.
+    $request = (new DeleteFederationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreFederationClient->deleteFederation($formattedName);
+        $response = $dataprocMetastoreFederationClient->deleteFederation($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -26,7 +26,7 @@ class OAuthToken extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_email = 1;</code>
      */
-    private $service_account_email = '';
+    protected $service_account_email = '';
     /**
      * OAuth scope to be used for generating OAuth access token.
      * If not specified, "https://www.googleapis.com/auth/cloud-platform"
@@ -34,7 +34,7 @@ class OAuthToken extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string scope = 2;</code>
      */
-    private $scope = '';
+    protected $scope = '';
 
     /**
      * Constructor.

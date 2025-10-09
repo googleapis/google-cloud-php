@@ -78,6 +78,4 @@ class PrimitiveType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PrimitiveType::class, \Google\Cloud\DataCatalog\V1\FieldType_PrimitiveType::class);
 

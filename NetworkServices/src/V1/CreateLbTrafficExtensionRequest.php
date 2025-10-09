@@ -39,11 +39,10 @@ class CreateLbTrafficExtensionRequest extends \Google\Protobuf\Internal\Message
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server can ignore
      * the request if it has already been completed. The server guarantees
-     * that for at least 60 minutes since the first request.
+     * that for 60 minutes since the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request
-     * ID, the server can check if original operation with the same request ID
-     * was received, and if so, ignores the second request. This prevents
+     * ID, the server ignores the second request This prevents
      * clients from accidentally creating duplicate commitments.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
@@ -51,6 +50,26 @@ class CreateLbTrafficExtensionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
+
+    /**
+     * @param string                                              $parent               Required. The parent resource of the `LbTrafficExtension` resource. Must be
+     *                                                                                  in the format `projects/{project}/locations/{location}`. Please see
+     *                                                                                  {@see DepServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\NetworkServices\V1\LbTrafficExtension $lbTrafficExtension   Required. `LbTrafficExtension` resource to be created.
+     * @param string                                              $lbTrafficExtensionId Required. User-provided ID of the `LbTrafficExtension` resource to be
+     *                                                                                  created.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\CreateLbTrafficExtensionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\NetworkServices\V1\LbTrafficExtension $lbTrafficExtension, string $lbTrafficExtensionId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setLbTrafficExtension($lbTrafficExtension)
+            ->setLbTrafficExtensionId($lbTrafficExtensionId);
+    }
 
     /**
      * Constructor.
@@ -70,11 +89,10 @@ class CreateLbTrafficExtensionRequest extends \Google\Protobuf\Internal\Message
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server can ignore
      *           the request if it has already been completed. The server guarantees
-     *           that for at least 60 minutes since the first request.
+     *           that for 60 minutes since the first request.
      *           For example, consider a situation where you make an initial request and the
      *           request times out. If you make the request again with the same request
-     *           ID, the server can check if original operation with the same request ID
-     *           was received, and if so, ignores the second request. This prevents
+     *           ID, the server ignores the second request This prevents
      *           clients from accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
@@ -181,11 +199,10 @@ class CreateLbTrafficExtensionRequest extends \Google\Protobuf\Internal\Message
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server can ignore
      * the request if it has already been completed. The server guarantees
-     * that for at least 60 minutes since the first request.
+     * that for 60 minutes since the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request
-     * ID, the server can check if original operation with the same request ID
-     * was received, and if so, ignores the second request. This prevents
+     * ID, the server ignores the second request This prevents
      * clients from accidentally creating duplicate commitments.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
@@ -202,11 +219,10 @@ class CreateLbTrafficExtensionRequest extends \Google\Protobuf\Internal\Message
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server can ignore
      * the request if it has already been completed. The server guarantees
-     * that for at least 60 minutes since the first request.
+     * that for 60 minutes since the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request
-     * ID, the server can check if original operation with the same request ID
-     * was received, and if so, ignores the second request. This prevents
+     * ID, the server ignores the second request This prevents
      * clients from accidentally creating duplicate commitments.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).

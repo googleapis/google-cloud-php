@@ -96,10 +96,12 @@ class FlowsClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $locked = true;
         $expectedResponse = new Flow();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setLocked($locked);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
@@ -359,10 +361,12 @@ class FlowsClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $locked = true;
         $expectedResponse = new Flow();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setLocked($locked);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
@@ -810,10 +814,12 @@ class FlowsClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $locked = true;
         $expectedResponse = new Flow();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setLocked($locked);
         $transport->addResponse($expectedResponse);
         // Mock request
         $flow = new Flow();
@@ -1076,10 +1082,12 @@ class FlowsClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $locked = true;
         $expectedResponse = new Flow();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setLocked($locked);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');

@@ -24,13 +24,13 @@ class BasicScaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration idle_timeout = 1;</code>
      */
-    private $idle_timeout = null;
+    protected $idle_timeout = null;
     /**
      * Maximum number of instances to create for this version.
      *
      * Generated from protobuf field <code>int32 max_instances = 2;</code>
      */
-    private $max_instances = 0;
+    protected $max_instances = 0;
 
     /**
      * Constructor.

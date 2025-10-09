@@ -86,6 +86,13 @@ class FirewallRuleType
      * Generated from protobuf enum <code>TRACKING_STATE = 101;</code>
      */
     const TRACKING_STATE = 101;
+    /**
+     * Firewall analysis was skipped due to executing Connectivity Test in the
+     * BypassFirewallChecks mode
+     *
+     * Generated from protobuf enum <code>ANALYSIS_SKIPPED = 102;</code>
+     */
+    const ANALYSIS_SKIPPED = 102;
 
     private static $valueToName = [
         self::FIREWALL_RULE_TYPE_UNSPECIFIED => 'FIREWALL_RULE_TYPE_UNSPECIFIED',
@@ -97,6 +104,7 @@ class FirewallRuleType
         self::NETWORK_REGIONAL_FIREWALL_POLICY_RULE => 'NETWORK_REGIONAL_FIREWALL_POLICY_RULE',
         self::UNSUPPORTED_FIREWALL_POLICY_RULE => 'UNSUPPORTED_FIREWALL_POLICY_RULE',
         self::TRACKING_STATE => 'TRACKING_STATE',
+        self::ANALYSIS_SKIPPED => 'ANALYSIS_SKIPPED',
     ];
 
     public static function name($value)

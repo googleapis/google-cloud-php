@@ -20,7 +20,7 @@ class HybridFindingDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Container container_details = 1;</code>
      */
-    private $container_details = null;
+    protected $container_details = null;
     /**
      * Offset in bytes of the line, from the beginning of the file, where the
      * finding  is located. Populate if the item being scanned is only part of a
@@ -29,7 +29,7 @@ class HybridFindingDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 file_offset = 2;</code>
      */
-    private $file_offset = 0;
+    protected $file_offset = 0;
     /**
      * Offset of the row for tables. Populate if the row(s) being scanned are
      * part of a bigger dataset and you want to keep track of their absolute
@@ -37,7 +37,7 @@ class HybridFindingDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 row_offset = 3;</code>
      */
-    private $row_offset = 0;
+    protected $row_offset = 0;
     /**
      * If the container is a table, additional information to make findings
      * meaningful such as the columns that are primary keys. If not known ahead
@@ -47,7 +47,7 @@ class HybridFindingDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TableOptions table_options = 4;</code>
      */
-    private $table_options = null;
+    protected $table_options = null;
     /**
      * Labels to represent user provided metadata about the data being inspected.
      * If configured by the job, some key values may be required.

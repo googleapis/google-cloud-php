@@ -21,14 +21,14 @@ class Detection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string binary = 2;</code>
      */
-    private $binary = '';
+    protected $binary = '';
     /**
      * The percentage of memory page hashes in the signature
      * that were matched.
      *
      * Generated from protobuf field <code>double percent_pages_matched = 3;</code>
      */
-    private $percent_pages_matched = 0.0;
+    protected $percent_pages_matched = 0.0;
 
     /**
      * Constructor.
@@ -107,6 +107,4 @@ class Detection extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Detection::class, \Google\Cloud\SecurityCenter\V1\Indicator_ProcessSignature_MemoryHashSignature_Detection::class);
 

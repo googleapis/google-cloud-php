@@ -24,6 +24,21 @@ class GetTcpRouteRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. A name of the TcpRoute to get. Must be in the format
+     *                     `projects/&#42;/locations/global/tcpRoutes/*`. Please see
+     *                     {@see NetworkServicesClient::tcpRouteName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\GetTcpRouteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

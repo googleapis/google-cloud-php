@@ -21,7 +21,7 @@ class UpdateVodConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.VodConfig vod_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vod_config = null;
+    protected $vod_config = null;
     /**
      * Required. The update mask applies to the resource.
      * For the `FieldMask` definition, see
@@ -29,7 +29,7 @@ class UpdateVodConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Video\Stitcher\V1\VodConfig $vodConfig  Required. The VOD config resource which replaces the resource on the

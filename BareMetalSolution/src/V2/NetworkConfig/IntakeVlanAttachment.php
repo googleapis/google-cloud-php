@@ -20,13 +20,13 @@ class IntakeVlanAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Attachment pairing key.
      *
      * Generated from protobuf field <code>string pairing_key = 2;</code>
      */
-    private $pairing_key = '';
+    protected $pairing_key = '';
 
     /**
      * Constructor.
@@ -99,6 +99,4 @@ class IntakeVlanAttachment extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IntakeVlanAttachment::class, \Google\Cloud\BareMetalSolution\V2\NetworkConfig_IntakeVlanAttachment::class);
 

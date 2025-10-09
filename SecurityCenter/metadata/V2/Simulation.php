@@ -16,18 +16,20 @@ class Simulation
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Cloud\Securitycenter\V2\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Securitycenter\V2\ValuedResource::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ô
-/google/cloud/securitycenter/v2/simulation.protogoogle.cloud.securitycenter.v2google/api/resource.proto4google/cloud/securitycenter/v2/valued_resource.protogoogle/protobuf/timestamp.proto"µ
+≥
+/google/cloud/securitycenter/v2/simulation.protogoogle.cloud.securitycenter.v2google/api/resource.proto-google/cloud/securitycenter/v2/resource.proto4google/cloud/securitycenter/v2/valued_resource.protogoogle/protobuf/timestamp.proto" 
 
 Simulation
 name (	4
 create_time (2.google.protobuf.TimestampB‡Ad
-resource_value_configs_metadata (2;.google.cloud.securitycenter.v2.ResourceValueConfigMetadata:}ÍAz
-(securitycenter.googleapis.com/Simulation5organizations/{organization}/simulations/{simulation}*simulations2
+resource_value_configs_metadata (2;.google.cloud.securitycenter.v2.ResourceValueConfigMetadataE
+cloud_provider (2-.google.cloud.securitycenter.v2.CloudProvider: ÍA∆
+(securitycenter.googleapis.com/Simulation5organizations/{organization}/simulations/{simulation}Jorganizations/{organization}/locations/{location}/simulations/{simluation}*simulations2
 simulationBÈ
 "com.google.cloud.securitycenter.v2BSimulationProtoPZJcloud.google.com/go/securitycenter/apiv2/securitycenterpb;securitycenterpb™Google.Cloud.SecurityCenter.V2 Google\\Cloud\\SecurityCenter\\V2Í!Google::Cloud::SecurityCenter::V2bproto3'
         , true);

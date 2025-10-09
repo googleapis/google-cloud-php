@@ -20,19 +20,19 @@ class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The project ID of the Google Cloud Platform project.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * A system ID for filtering the results of the request.
      *
      * Generated from protobuf field <code>string system_id = 3;</code>
      */
-    private $system_id = '';
+    protected $system_id = '';
 
     /**
      * @param string $name Required. The unique ID for the user in format `users/{user}`. Please see

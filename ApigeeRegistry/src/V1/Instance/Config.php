@@ -20,7 +20,7 @@ class Config extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Required. The Customer Managed Encryption Key (CMEK) used for data encryption.
      * The CMEK name should follow the format of
@@ -29,7 +29,7 @@ class Config extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cmek_key_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cmek_key_name = '';
+    protected $cmek_key_name = '';
 
     /**
      * Constructor.

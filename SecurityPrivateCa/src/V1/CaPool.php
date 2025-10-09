@@ -22,13 +22,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class CaPool extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Immutable. The
      * [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this
@@ -36,7 +36,7 @@ class CaPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.Tier tier = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $tier = 0;
+    protected $tier = 0;
     /**
      * Optional. The
      * [IssuancePolicy][google.cloud.security.privateca.v1.CaPool.IssuancePolicy]
@@ -46,7 +46,7 @@ class CaPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.IssuancePolicy issuance_policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $issuance_policy = null;
+    protected $issuance_policy = null;
     /**
      * Optional. The
      * [PublishingOptions][google.cloud.security.privateca.v1.CaPool.PublishingOptions]
@@ -57,7 +57,7 @@ class CaPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.PublishingOptions publishing_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $publishing_options = null;
+    protected $publishing_options = null;
     /**
      * Optional. Labels with user-defined metadata.
      *
@@ -72,7 +72,7 @@ class CaPool extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for this
+     *           Identifier. The resource name for this
      *           [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *     @type int $tier
@@ -102,11 +102,11 @@ class CaPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -115,11 +115,11 @@ class CaPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

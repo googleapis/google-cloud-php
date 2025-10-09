@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ namespace Google\Cloud\VmwareEngine\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -134,8 +134,10 @@ use Google\Cloud\VmwareEngine\V1\UpdatePrivateConnectionRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateSubnetRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: VMwareEngine manages VMware's private clusters in the Cloud.
@@ -148,85 +150,85 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createExternalAccessRuleAsync(CreateExternalAccessRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createExternalAddressAsync(CreateExternalAddressRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createHcxActivationKeyAsync(CreateHcxActivationKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createLoggingServerAsync(CreateLoggingServerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createManagementDnsZoneBindingAsync(CreateManagementDnsZoneBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNetworkPeeringAsync(CreateNetworkPeeringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNetworkPolicyAsync(CreateNetworkPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPrivateCloudAsync(CreatePrivateCloudRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPrivateConnectionAsync(CreatePrivateConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createVmwareEngineNetworkAsync(CreateVmwareEngineNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteExternalAccessRuleAsync(DeleteExternalAccessRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteExternalAddressAsync(DeleteExternalAddressRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteLoggingServerAsync(DeleteLoggingServerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteManagementDnsZoneBindingAsync(DeleteManagementDnsZoneBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNetworkPeeringAsync(DeleteNetworkPeeringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNetworkPolicyAsync(DeleteNetworkPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePrivateCloudAsync(DeletePrivateCloudRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePrivateConnectionAsync(DeletePrivateConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteVmwareEngineNetworkAsync(DeleteVmwareEngineNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchNetworkPolicyExternalAddressesAsync(FetchNetworkPolicyExternalAddressesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDnsBindPermissionAsync(GetDnsBindPermissionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDnsForwardingAsync(GetDnsForwardingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getExternalAccessRuleAsync(GetExternalAccessRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getExternalAddressAsync(GetExternalAddressRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHcxActivationKeyAsync(GetHcxActivationKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLoggingServerAsync(GetLoggingServerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getManagementDnsZoneBindingAsync(GetManagementDnsZoneBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNetworkPeeringAsync(GetNetworkPeeringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNetworkPolicyAsync(GetNetworkPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNodeAsync(GetNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNodeTypeAsync(GetNodeTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPrivateCloudAsync(GetPrivateCloudRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPrivateConnectionAsync(GetPrivateConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSubnetAsync(GetSubnetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getVmwareEngineNetworkAsync(GetVmwareEngineNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface grantDnsBindPermissionAsync(GrantDnsBindPermissionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listExternalAccessRulesAsync(ListExternalAccessRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listExternalAddressesAsync(ListExternalAddressesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listHcxActivationKeysAsync(ListHcxActivationKeysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLoggingServersAsync(ListLoggingServersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listManagementDnsZoneBindingsAsync(ListManagementDnsZoneBindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNetworkPeeringsAsync(ListNetworkPeeringsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNetworkPoliciesAsync(ListNetworkPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNodeTypesAsync(ListNodeTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNodesAsync(ListNodesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPeeringRoutesAsync(ListPeeringRoutesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPrivateCloudsAsync(ListPrivateCloudsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPrivateConnectionPeeringRoutesAsync(ListPrivateConnectionPeeringRoutesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPrivateConnectionsAsync(ListPrivateConnectionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSubnetsAsync(ListSubnetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listVmwareEngineNetworksAsync(ListVmwareEngineNetworksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface repairManagementDnsZoneBindingAsync(RepairManagementDnsZoneBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetNsxCredentialsAsync(ResetNsxCredentialsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetVcenterCredentialsAsync(ResetVcenterCredentialsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface revokeDnsBindPermissionAsync(RevokeDnsBindPermissionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface showNsxCredentialsAsync(ShowNsxCredentialsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface showVcenterCredentialsAsync(ShowVcenterCredentialsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeletePrivateCloudAsync(UndeletePrivateCloudRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDnsForwardingAsync(UpdateDnsForwardingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateExternalAccessRuleAsync(UpdateExternalAccessRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateExternalAddressAsync(UpdateExternalAddressRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateLoggingServerAsync(UpdateLoggingServerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateManagementDnsZoneBindingAsync(UpdateManagementDnsZoneBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNetworkPeeringAsync(UpdateNetworkPeeringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNetworkPolicyAsync(UpdateNetworkPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePrivateCloudAsync(UpdatePrivateCloudRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePrivateConnectionAsync(UpdatePrivateConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSubnetAsync(UpdateSubnetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateVmwareEngineNetworkAsync(UpdateVmwareEngineNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createExternalAccessRuleAsync(CreateExternalAccessRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createExternalAddressAsync(CreateExternalAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createHcxActivationKeyAsync(CreateHcxActivationKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createLoggingServerAsync(CreateLoggingServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createManagementDnsZoneBindingAsync(CreateManagementDnsZoneBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createNetworkPeeringAsync(CreateNetworkPeeringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createNetworkPolicyAsync(CreateNetworkPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createPrivateCloudAsync(CreatePrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createPrivateConnectionAsync(CreatePrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createVmwareEngineNetworkAsync(CreateVmwareEngineNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteExternalAccessRuleAsync(DeleteExternalAccessRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteExternalAddressAsync(DeleteExternalAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteLoggingServerAsync(DeleteLoggingServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteManagementDnsZoneBindingAsync(DeleteManagementDnsZoneBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNetworkPeeringAsync(DeleteNetworkPeeringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNetworkPolicyAsync(DeleteNetworkPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deletePrivateCloudAsync(DeletePrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deletePrivateConnectionAsync(DeletePrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteVmwareEngineNetworkAsync(DeleteVmwareEngineNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchNetworkPolicyExternalAddressesAsync(FetchNetworkPolicyExternalAddressesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DnsBindPermission> getDnsBindPermissionAsync(GetDnsBindPermissionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DnsForwarding> getDnsForwardingAsync(GetDnsForwardingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExternalAccessRule> getExternalAccessRuleAsync(GetExternalAccessRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExternalAddress> getExternalAddressAsync(GetExternalAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HcxActivationKey> getHcxActivationKeyAsync(GetHcxActivationKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LoggingServer> getLoggingServerAsync(GetLoggingServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ManagementDnsZoneBinding> getManagementDnsZoneBindingAsync(GetManagementDnsZoneBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NetworkPeering> getNetworkPeeringAsync(GetNetworkPeeringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NetworkPolicy> getNetworkPolicyAsync(GetNetworkPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Node> getNodeAsync(GetNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NodeType> getNodeTypeAsync(GetNodeTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PrivateCloud> getPrivateCloudAsync(GetPrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PrivateConnection> getPrivateConnectionAsync(GetPrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Subnet> getSubnetAsync(GetSubnetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VmwareEngineNetwork> getVmwareEngineNetworkAsync(GetVmwareEngineNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> grantDnsBindPermissionAsync(GrantDnsBindPermissionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listExternalAccessRulesAsync(ListExternalAccessRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listExternalAddressesAsync(ListExternalAddressesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listHcxActivationKeysAsync(ListHcxActivationKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLoggingServersAsync(ListLoggingServersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listManagementDnsZoneBindingsAsync(ListManagementDnsZoneBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNetworkPeeringsAsync(ListNetworkPeeringsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNetworkPoliciesAsync(ListNetworkPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNodeTypesAsync(ListNodeTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNodesAsync(ListNodesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPeeringRoutesAsync(ListPeeringRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPrivateCloudsAsync(ListPrivateCloudsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPrivateConnectionPeeringRoutesAsync(ListPrivateConnectionPeeringRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPrivateConnectionsAsync(ListPrivateConnectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSubnetsAsync(ListSubnetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listVmwareEngineNetworksAsync(ListVmwareEngineNetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> repairManagementDnsZoneBindingAsync(RepairManagementDnsZoneBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resetNsxCredentialsAsync(ResetNsxCredentialsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resetVcenterCredentialsAsync(ResetVcenterCredentialsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> revokeDnsBindPermissionAsync(RevokeDnsBindPermissionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Credentials> showNsxCredentialsAsync(ShowNsxCredentialsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Credentials> showVcenterCredentialsAsync(ShowVcenterCredentialsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeletePrivateCloudAsync(UndeletePrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDnsForwardingAsync(UpdateDnsForwardingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateExternalAccessRuleAsync(UpdateExternalAccessRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateExternalAddressAsync(UpdateExternalAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateLoggingServerAsync(UpdateLoggingServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateManagementDnsZoneBindingAsync(UpdateManagementDnsZoneBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateNetworkPeeringAsync(UpdateNetworkPeeringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateNetworkPolicyAsync(UpdateNetworkPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updatePrivateCloudAsync(UpdatePrivateCloudRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updatePrivateConnectionAsync(UpdatePrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateSubnetAsync(UpdateSubnetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateVmwareEngineNetworkAsync(UpdateVmwareEngineNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class VmwareEngineClient
 {
@@ -301,10 +303,29 @@ final class VmwareEngineClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -690,14 +711,14 @@ final class VmwareEngineClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -705,20 +726,29 @@ final class VmwareEngineClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'vmwareengine.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new VmwareEngineClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -752,11 +782,16 @@ final class VmwareEngineClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -794,7 +829,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Cluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -821,7 +856,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExternalAccessRule>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -849,7 +884,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExternalAddress>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -875,7 +910,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<HcxActivationKey>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -901,7 +936,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<LoggingServer>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -934,7 +969,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ManagementDnsZoneBinding>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -962,7 +997,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<NetworkPeering>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -990,7 +1025,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<NetworkPolicy>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1022,7 +1057,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateCloud>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1049,7 +1084,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateConnection>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1076,7 +1111,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<VmwareEngineNetwork>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1105,7 +1140,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1132,7 +1167,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1160,7 +1195,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1186,7 +1221,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1215,7 +1250,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1244,7 +1279,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1272,7 +1307,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1312,7 +1347,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateCloud>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1340,7 +1375,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1370,7 +1405,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1854,7 +1889,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DnsBindPermission>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2305,7 +2340,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ManagementDnsZoneBinding>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2331,7 +2366,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateCloud>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2357,7 +2392,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateCloud>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2385,7 +2420,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DnsBindPermission>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2466,7 +2501,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateCloud>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2498,7 +2533,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Cluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2525,7 +2560,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DnsForwarding>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2553,7 +2588,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExternalAccessRule>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2585,7 +2620,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExternalAddress>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2612,7 +2647,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<LoggingServer>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2640,7 +2675,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ManagementDnsZoneBinding>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2668,7 +2703,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<NetworkPeering>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2705,7 +2740,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<NetworkPolicy>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2738,7 +2773,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateCloud>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2766,7 +2801,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateConnection>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2797,7 +2832,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Subnet>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2826,7 +2861,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<VmwareEngineNetwork>
      *
      * @throws ApiException Thrown if the API call fails.
      */

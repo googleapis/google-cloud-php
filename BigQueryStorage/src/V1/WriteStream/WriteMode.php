@@ -53,6 +53,4 @@ class WriteMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(WriteMode::class, \Google\Cloud\BigQuery\Storage\V1\WriteStream_WriteMode::class);
 

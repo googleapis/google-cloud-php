@@ -21,13 +21,13 @@ class ModelDeploymentMonitoringBigQueryTable extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringBigQueryTable.LogSource log_source = 1;</code>
      */
-    private $log_source = 0;
+    protected $log_source = 0;
     /**
      * The type of log.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringBigQueryTable.LogType log_type = 2;</code>
      */
-    private $log_type = 0;
+    protected $log_type = 0;
     /**
      * The created BigQuery table to store logs. Customer could do their own query
      * & analysis. Format:
@@ -35,14 +35,14 @@ class ModelDeploymentMonitoringBigQueryTable extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string bigquery_table_path = 3;</code>
      */
-    private $bigquery_table_path = '';
+    protected $bigquery_table_path = '';
     /**
      * Output only. The schema version of the request/response logging BigQuery
      * table. Default to v1 if unset.
      *
      * Generated from protobuf field <code>string request_response_logging_schema_version = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $request_response_logging_schema_version = '';
+    protected $request_response_logging_schema_version = '';
 
     /**
      * Constructor.

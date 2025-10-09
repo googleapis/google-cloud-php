@@ -20,13 +20,13 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.ListJobsRequest.Filter filter = 5;</code>
      */
-    private $filter = 0;
+    protected $filter = 0;
     /**
      * The project which owns the jobs.
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Deprecated. ListJobs always returns summaries now.
      * Use GetJob for other JobViews.
@@ -42,14 +42,14 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Set this to the 'next_page_token' field of a previous response
      * to request additional results in a long list.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
@@ -57,7 +57,13 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 17;</code>
      */
-    private $location = '';
+    protected $location = '';
+    /**
+     * Optional. The job name.
+     *
+     * Generated from protobuf field <code>optional string name = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $name = null;
 
     /**
      * Constructor.
@@ -83,6 +89,8 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *           The [regional endpoint]
      *           (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
      *           contains this job.
+     *     @type string $name
+     *           Optional. The job name.
      * }
      */
     public function __construct($data = NULL) {
@@ -152,7 +160,9 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getView()
     {
-        @trigger_error('view is deprecated.', E_USER_DEPRECATED);
+        if ($this->view !== 0) {
+            @trigger_error('view is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->view;
     }
 
@@ -258,6 +268,42 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The job name.
+     *
+     * Generated from protobuf field <code>optional string name = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
+    }
+
+    /**
+     * Optional. The job name.
+     *
+     * Generated from protobuf field <code>optional string name = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }

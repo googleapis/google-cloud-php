@@ -179,6 +179,18 @@ return [
                     ],
                 ],
             ],
+            'CreateBigQueryLink' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\BigQueryLink',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateCalculatedMetric' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\CalculatedMetric',
@@ -202,10 +214,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'CreateConnectedSiteTag' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse',
             ],
             'CreateConversionEvent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -291,6 +299,18 @@ return [
                     ],
                 ],
             ],
+            'CreateEventEditRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\EventEditRule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateExpandedDataSet' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\ExpandedDataSet',
@@ -327,6 +347,18 @@ return [
                     ],
                 ],
             ],
+            'CreateKeyEvent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\KeyEvent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateMeasurementProtocolSecret' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret',
@@ -342,6 +374,18 @@ return [
             'CreateProperty' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\Property',
+            ],
+            'CreateReportingDataAnnotation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ReportingDataAnnotation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'CreateRollupProperty' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -382,10 +426,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'CreateSubproperty' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Admin\V1alpha\CreateSubpropertyResponse',
             ],
             'CreateSubpropertyEventFilter' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -435,6 +475,18 @@ return [
                     ],
                 ],
             ],
+            'DeleteBigQueryLink' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteCalculatedMetric' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
@@ -458,10 +510,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'DeleteConnectedSiteTag' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Protobuf\GPBEmpty',
             ],
             'DeleteConversionEvent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -523,6 +571,18 @@ return [
                     ],
                 ],
             ],
+            'DeleteEventEditRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteExpandedDataSet' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
@@ -559,6 +619,18 @@ return [
                     ],
                 ],
             ],
+            'DeleteKeyEvent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteMeasurementProtocolSecret' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
@@ -574,6 +646,18 @@ return [
             'DeleteProperty' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\Property',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteReportingDataAnnotation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -630,14 +714,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'FetchAutomatedGa4ConfigurationOptOut' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse',
-            ],
-            'FetchConnectedGa4Property' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse',
             ],
             'GetAccessBinding' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -867,6 +943,18 @@ return [
                     ],
                 ],
             ],
+            'GetEventEditRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\EventEditRule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetExpandedDataSet' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\ExpandedDataSet',
@@ -903,6 +991,18 @@ return [
                     ],
                 ],
             ],
+            'GetKeyEvent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\KeyEvent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetMeasurementProtocolSecret' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret',
@@ -918,6 +1018,30 @@ return [
             'GetProperty' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\Property',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetReportingDataAnnotation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ReportingDataAnnotation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetReportingIdentitySettings' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ReportingIdentitySettings',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -966,6 +1090,18 @@ return [
             'GetSubpropertyEventFilter' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\SubpropertyEventFilter',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSubpropertySyncConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\SubpropertySyncConfig',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -1119,10 +1255,6 @@ return [
                     ],
                 ],
             ],
-            'ListConnectedSiteTags' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsResponse',
-            ],
             'ListConversionEvents' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -1263,6 +1395,26 @@ return [
                     ],
                 ],
             ],
+            'ListEventEditRules' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEventEditRules',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ListEventEditRulesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListExpandedDataSets' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -1323,6 +1475,26 @@ return [
                     ],
                 ],
             ],
+            'ListKeyEvents' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getKeyEvents',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ListKeyEventsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMeasurementProtocolSecrets' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -1354,6 +1526,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\ListPropertiesResponse',
+            ],
+            'ListReportingDataAnnotations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getReportingDataAnnotations',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ListReportingDataAnnotationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'ListRollupPropertySourceLinks' => [
                 'pageStreaming' => [
@@ -1435,9 +1627,45 @@ return [
                     ],
                 ],
             ],
+            'ListSubpropertySyncConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSubpropertySyncConfigs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ListSubpropertySyncConfigsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ProvisionAccountTicket' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse',
+            ],
+            'ProvisionSubproperty' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ProvisionSubpropertyResponse',
+            ],
+            'ReorderEventEditRules' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'RunAccessReport' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -1471,9 +1699,17 @@ return [
                     ],
                 ],
             ],
-            'SetAutomatedGa4ConfigurationOptOut' => [
+            'SubmitUserDeletion' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse',
+                'responseType' => 'Google\Analytics\Admin\V1alpha\SubmitUserDeletionResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'UpdateAccessBinding' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -1522,6 +1758,19 @@ return [
                         'keyName' => 'audience.name',
                         'fieldAccessors' => [
                             'getAudience',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateBigQueryLink' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\BigQueryLink',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bigquery_link.name',
+                        'fieldAccessors' => [
+                            'getBigqueryLink',
                             'getName',
                         ],
                     ],
@@ -1670,6 +1919,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateEventEditRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\EventEditRule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'event_edit_rule.name',
+                        'fieldAccessors' => [
+                            'getEventEditRule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateExpandedDataSet' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\ExpandedDataSet',
@@ -1709,6 +1971,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateKeyEvent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\KeyEvent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'key_event.name',
+                        'fieldAccessors' => [
+                            'getKeyEvent',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateMeasurementProtocolSecret' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret',
@@ -1730,6 +2005,19 @@ return [
                         'keyName' => 'property.name',
                         'fieldAccessors' => [
                             'getProperty',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateReportingDataAnnotation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ReportingDataAnnotation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'reporting_data_annotation.name',
+                        'fieldAccessors' => [
+                            'getReportingDataAnnotation',
                             'getName',
                         ],
                     ],
@@ -1774,6 +2062,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateSubpropertySyncConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\SubpropertySyncConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'subproperty_sync_config.name',
+                        'fieldAccessors' => [
+                            'getSubpropertySyncConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'accessBinding' => 'accounts/{account}/accessBindings/{access_binding}',
                 'account' => 'accounts/{account}',
@@ -1795,18 +2096,24 @@ return [
                 'displayVideo360AdvertiserLinkProposal' => 'properties/{property}/displayVideo360AdvertiserLinkProposals/{display_video_360_advertiser_link_proposal}',
                 'enhancedMeasurementSettings' => 'properties/{property}/dataStreams/{data_stream}/enhancedMeasurementSettings',
                 'eventCreateRule' => 'properties/{property}/dataStreams/{data_stream}/eventCreateRules/{event_create_rule}',
+                'eventEditRule' => 'properties/{property}/dataStreams/{data_stream}/eventEditRules/{event_edit_rule}',
                 'expandedDataSet' => 'properties/{property}/expandedDataSets/{expanded_data_set}',
                 'firebaseLink' => 'properties/{property}/firebaseLinks/{firebase_link}',
                 'globalSiteTag' => 'properties/{property}/dataStreams/{data_stream}/globalSiteTag',
                 'googleAdsLink' => 'properties/{property}/googleAdsLinks/{google_ads_link}',
                 'googleSignalsSettings' => 'properties/{property}/googleSignalsSettings',
+                'keyEvent' => 'properties/{property}/keyEvents/{key_event}',
                 'measurementProtocolSecret' => 'properties/{property}/dataStreams/{data_stream}/measurementProtocolSecrets/{measurement_protocol_secret}',
+                'organization' => 'organizations/{organization}',
                 'property' => 'properties/{property}',
                 'propertyAccessBinding' => 'properties/{property}/accessBindings/{access_binding}',
+                'reportingDataAnnotation' => 'properties/{property}/reportingDataAnnotations/{reporting_data_annotation}',
+                'reportingIdentitySettings' => 'properties/{property}/reportingIdentitySettings',
                 'rollupPropertySourceLink' => 'properties/{property}/rollupPropertySourceLinks/{rollup_property_source_link}',
                 'sKAdNetworkConversionValueSchema' => 'properties/{property}/dataStreams/{data_stream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}',
                 'searchAds360Link' => 'properties/{property}/searchAds360Links/{search_ads_360_link}',
                 'subpropertyEventFilter' => 'properties/{property}/subpropertyEventFilters/{sub_property_event_filter}',
+                'subpropertySyncConfig' => 'properties/{property}/subpropertySyncConfigs/{subproperty_sync_config}',
             ],
         ],
     ],

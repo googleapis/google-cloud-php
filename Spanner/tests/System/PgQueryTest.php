@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Interval;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\Timestamp;
@@ -40,9 +41,12 @@ class PgQueryTest extends SpannerPgTestCase
 
     public static $timestampVal;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$database->updateDdl(
             'CREATE TABLE ' . self::TABLE_NAME . ' (
@@ -205,6 +209,8 @@ class PgQueryTest extends SpannerPgTestCase
 
     public function testBindFloat32Parameter()
     {
+        // Emulator as an issue with FLOAT32 for PG.
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $res = $db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE weight = $1', [
@@ -542,8 +548,46 @@ class PgQueryTest extends SpannerPgTestCase
         $this->assertCount($currentCount + 1, iterator_to_array($res));
     }
 
+    public function testBindIntervalParameter()
+    {
+        $db = self::$database;
+
+        $interval = Interval::parse('P1Y2M3DT4H5M6.7S');
+        $res = $db->execute("SELECT $1 AS foo", [
+            'parameters' => [
+                'p1' => $interval
+            ],
+            'types' => [
+                'p1' => Database::TYPE_INTERVAL
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertInstanceOf(Interval::class, $row['foo']);
+        $this->assertEquals($interval->__toString(), $row['foo']->__toString());
+    }
+
+    public function testBindIntervalParameterNull()
+    {
+        $db = self::$database;
+
+        $res = $db->execute("SELECT CAST($1 AS INTERVAL) AS foo", [
+            'parameters' => [
+                'p1' => null
+            ],
+            'types' => [
+                'p1' => Database::TYPE_INTERVAL
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertNull($row['foo']);
+    }
+
     public function testBindPgOidParameter()
     {
+        // Emulator support for PG.OID is pending.
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $res = $db->execute('SELECT $1', [
@@ -559,6 +603,8 @@ class PgQueryTest extends SpannerPgTestCase
 
     public function testBindPgOidParameterNull()
     {
+        // Emulator support for PG.OID is pending.
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $res = $db->execute('SELECT $1', [
@@ -672,13 +718,27 @@ class PgQueryTest extends SpannerPgTestCase
             ],
             // pg_oid
             [[5,4,3,2,1]],
+            // Interval
+            [
+                [
+                    Interval::parse('P1Y'),
+                    Interval::parse('PT1H'),
+                    Interval::parse('P1M')
+                ],
+                [
+                    Interval::parse('P1Y'),
+                    Interval::parse('PT1H'),
+                    Interval::parse('P1M')
+                ],
+                Interval::class,
+            ]
         ];
     }
 
     /**
      * @dataProvider arrayTypesProvider
      */
-    public function testBindArrayOfType($value, $result = null, $resultType = null, callable $filter = null)
+    public function testBindArrayOfType($value, $result = null, $resultType = null, ?callable $filter = null)
     {
         if (!$filter) {
             $filter = function ($val) {
@@ -718,6 +778,7 @@ class PgQueryTest extends SpannerPgTestCase
             [Database::TYPE_PG_NUMERIC],
             [Database::TYPE_PG_JSONB],
             [Database::TYPE_PG_OID],
+            [Database::TYPE_INTERVAL],
         ];
     }
 
@@ -726,6 +787,8 @@ class PgQueryTest extends SpannerPgTestCase
      */
     public function testBindEmptyArrayOfType($type)
     {
+        // Emulator support for PG.OID is pending.
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $res = $db->execute('SELECT $1 as foo', [
@@ -756,6 +819,7 @@ class PgQueryTest extends SpannerPgTestCase
             [Database::TYPE_PG_NUMERIC],
             [Database::TYPE_PG_JSONB],
             [Database::TYPE_PG_OID],
+            [Database::TYPE_INTERVAL],
         ];
     }
 
@@ -764,6 +828,8 @@ class PgQueryTest extends SpannerPgTestCase
      */
     public function testBindNullArrayOfType($type)
     {
+        // Emulator support for PG.OID is pending.
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $res = $db->execute('SELECT $1 as foo', [

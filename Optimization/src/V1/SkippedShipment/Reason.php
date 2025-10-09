@@ -45,21 +45,21 @@ class Reason extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.SkippedShipment.Reason.Code code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * If the reason is related to a shipment-vehicle incompatibility, this
      * field provides the index of one relevant vehicle.
      *
      * Generated from protobuf field <code>optional int32 example_vehicle_index = 2;</code>
      */
-    private $example_vehicle_index = null;
+    protected $example_vehicle_index = null;
     /**
      * If the reason code is `DEMAND_EXCEEDS_VEHICLE_CAPACITY`, documents one
      * capacity type that is exceeded.
      *
      * Generated from protobuf field <code>string example_exceeded_capacity_type = 3;</code>
      */
-    private $example_exceeded_capacity_type = '';
+    protected $example_exceeded_capacity_type = '';
 
     /**
      * Constructor.

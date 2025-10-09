@@ -20,38 +20,38 @@ class AllowedClient extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Output only. The IP address of the share on this network. Assigned
      * automatically during provisioning based on the network's services_cidr.
      *
      * Generated from protobuf field <code>string share_ip = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $share_ip = '';
+    protected $share_ip = '';
     /**
      * The subnet of IP addresses permitted to access the share.
      *
      * Generated from protobuf field <code>string allowed_clients_cidr = 3;</code>
      */
-    private $allowed_clients_cidr = '';
+    protected $allowed_clients_cidr = '';
     /**
      * Mount permissions.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.NfsShare.MountPermissions mount_permissions = 4;</code>
      */
-    private $mount_permissions = 0;
+    protected $mount_permissions = 0;
     /**
      * Allow dev flag.  Which controls whether to allow creation of devices.
      *
      * Generated from protobuf field <code>bool allow_dev = 5;</code>
      */
-    private $allow_dev = false;
+    protected $allow_dev = false;
     /**
      * Allow the setuid flag.
      *
      * Generated from protobuf field <code>bool allow_suid = 6;</code>
      */
-    private $allow_suid = false;
+    protected $allow_suid = false;
     /**
      * Disable root squashing, which is a feature of NFS.
      * Root squash is a special mapping of the remote superuser (root) identity
@@ -59,7 +59,7 @@ class AllowedClient extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool no_root_squash = 7;</code>
      */
-    private $no_root_squash = false;
+    protected $no_root_squash = false;
     /**
      * Output only. The path to access NFS, in format shareIP:/InstanceID
      * InstanceID is the generated ID instead of customer provided name.
@@ -67,7 +67,7 @@ class AllowedClient extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string nfs_path = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $nfs_path = '';
+    protected $nfs_path = '';
 
     /**
      * Constructor.
@@ -323,6 +323,4 @@ class AllowedClient extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AllowedClient::class, \Google\Cloud\BareMetalSolution\V2\NfsShare_AllowedClient::class);
 

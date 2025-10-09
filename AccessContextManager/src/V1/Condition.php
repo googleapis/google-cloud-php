@@ -38,7 +38,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.DevicePolicy device_policy = 2;</code>
      */
-    private $device_policy = null;
+    protected $device_policy = null;
     /**
      * A list of other access levels defined in the same `Policy`, referenced by
      * resource name. Referencing an `AccessLevel` which does not exist is an
@@ -56,7 +56,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool negate = 5;</code>
      */
-    private $negate = false;
+    protected $negate = false;
     /**
      * The request must be made by one of the provided user or service
      * accounts. Groups are not supported.

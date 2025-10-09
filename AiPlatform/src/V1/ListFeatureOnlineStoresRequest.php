@@ -23,7 +23,7 @@ class ListFeatureOnlineStoresRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Lists the FeatureOnlineStores that match the filter expression. The
      * following fields are supported:
@@ -42,7 +42,7 @@ class ListFeatureOnlineStoresRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The maximum number of FeatureOnlineStores to return. The service may return
      * fewer than this value. If unspecified, at most 100 FeatureOnlineStores will
@@ -51,7 +51,7 @@ class ListFeatureOnlineStoresRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous
      * [FeatureOnlineStoreAdminService.ListFeatureOnlineStores][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.ListFeatureOnlineStores]
@@ -62,7 +62,7 @@ class ListFeatureOnlineStoresRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * A comma-separated list of fields to order by, sorted in ascending order.
      * Use "desc" after a field name for descending.
@@ -72,7 +72,7 @@ class ListFeatureOnlineStoresRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. The resource name of the Location to list FeatureOnlineStores.

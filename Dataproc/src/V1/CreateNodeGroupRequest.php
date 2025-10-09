@@ -21,13 +21,13 @@ class CreateNodeGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The node group to create.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.NodeGroup node_group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $node_group = null;
+    protected $node_group = null;
     /**
      * Optional. An optional node group ID. Generated if not specified.
      * The ID must contain only letters (a-z, A-Z), numbers (0-9),
@@ -36,7 +36,7 @@ class CreateNodeGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string node_group_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $node_group_id = '';
+    protected $node_group_id = '';
     /**
      * Optional. A unique ID used to identify the request. If the server receives
      * two
@@ -51,7 +51,7 @@ class CreateNodeGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                              $parent      Required. The parent resource where this node group will be created.

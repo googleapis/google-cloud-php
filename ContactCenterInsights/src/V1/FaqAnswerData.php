@@ -20,7 +20,7 @@ class FaqAnswerData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string answer = 1;</code>
      */
-    private $answer = '';
+    protected $answer = '';
     /**
      * The system's confidence score that this answer is a good match for this
      * conversation, ranging from 0.0 (completely uncertain) to 1.0 (completely
@@ -28,13 +28,13 @@ class FaqAnswerData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence_score = 2;</code>
      */
-    private $confidence_score = 0.0;
+    protected $confidence_score = 0.0;
     /**
      * The corresponding FAQ question.
      *
      * Generated from protobuf field <code>string question = 3;</code>
      */
-    private $question = '';
+    protected $question = '';
     /**
      * Map that contains metadata about the FAQ answer and the document that
      * it originates from.
@@ -49,7 +49,7 @@ class FaqAnswerData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query_record = 5;</code>
      */
-    private $query_record = '';
+    protected $query_record = '';
     /**
      * The knowledge document that this answer was extracted from.
      * Format:
@@ -57,7 +57,7 @@ class FaqAnswerData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source = 6;</code>
      */
-    private $source = '';
+    protected $source = '';
 
     /**
      * Constructor.

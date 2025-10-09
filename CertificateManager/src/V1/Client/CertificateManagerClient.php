@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ namespace Google\Cloud\CertificateManager\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -73,8 +73,10 @@ use Google\Cloud\CertificateManager\V1\UpdateTrustConfigRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: API Overview
@@ -112,37 +114,37 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createCertificateAsync(CreateCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCertificateIssuanceConfigAsync(CreateCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCertificateMapAsync(CreateCertificateMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCertificateMapEntryAsync(CreateCertificateMapEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDnsAuthorizationAsync(CreateDnsAuthorizationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTrustConfigAsync(CreateTrustConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCertificateAsync(DeleteCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCertificateIssuanceConfigAsync(DeleteCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCertificateMapAsync(DeleteCertificateMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCertificateMapEntryAsync(DeleteCertificateMapEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDnsAuthorizationAsync(DeleteDnsAuthorizationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTrustConfigAsync(DeleteTrustConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCertificateAsync(GetCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCertificateIssuanceConfigAsync(GetCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCertificateMapAsync(GetCertificateMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCertificateMapEntryAsync(GetCertificateMapEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDnsAuthorizationAsync(GetDnsAuthorizationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTrustConfigAsync(GetTrustConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCertificateIssuanceConfigsAsync(ListCertificateIssuanceConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCertificateMapEntriesAsync(ListCertificateMapEntriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCertificateMapsAsync(ListCertificateMapsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCertificatesAsync(ListCertificatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDnsAuthorizationsAsync(ListDnsAuthorizationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTrustConfigsAsync(ListTrustConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCertificateAsync(UpdateCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCertificateMapAsync(UpdateCertificateMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCertificateMapEntryAsync(UpdateCertificateMapEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDnsAuthorizationAsync(UpdateDnsAuthorizationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTrustConfigAsync(UpdateTrustConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCertificateAsync(CreateCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCertificateIssuanceConfigAsync(CreateCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCertificateMapAsync(CreateCertificateMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCertificateMapEntryAsync(CreateCertificateMapEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDnsAuthorizationAsync(CreateDnsAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTrustConfigAsync(CreateTrustConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCertificateAsync(DeleteCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCertificateIssuanceConfigAsync(DeleteCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCertificateMapAsync(DeleteCertificateMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCertificateMapEntryAsync(DeleteCertificateMapEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDnsAuthorizationAsync(DeleteDnsAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTrustConfigAsync(DeleteTrustConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Certificate> getCertificateAsync(GetCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CertificateIssuanceConfig> getCertificateIssuanceConfigAsync(GetCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CertificateMap> getCertificateMapAsync(GetCertificateMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CertificateMapEntry> getCertificateMapEntryAsync(GetCertificateMapEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DnsAuthorization> getDnsAuthorizationAsync(GetDnsAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TrustConfig> getTrustConfigAsync(GetTrustConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCertificateIssuanceConfigsAsync(ListCertificateIssuanceConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCertificateMapEntriesAsync(ListCertificateMapEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCertificateMapsAsync(ListCertificateMapsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCertificatesAsync(ListCertificatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDnsAuthorizationsAsync(ListDnsAuthorizationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTrustConfigsAsync(ListTrustConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateCertificateAsync(UpdateCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateCertificateMapAsync(UpdateCertificateMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateCertificateMapEntryAsync(UpdateCertificateMapEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDnsAuthorizationAsync(UpdateDnsAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTrustConfigAsync(UpdateTrustConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class CertificateManagerClient
 {
@@ -169,9 +171,7 @@ final class CertificateManagerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -217,10 +217,29 @@ final class CertificateManagerClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -271,8 +290,11 @@ final class CertificateManagerClient
      *
      * @return string The formatted certificate_issuance_config resource.
      */
-    public static function certificateIssuanceConfigName(string $project, string $location, string $certificateIssuanceConfig): string
-    {
+    public static function certificateIssuanceConfigName(
+        string $project,
+        string $location,
+        string $certificateIssuanceConfig
+    ): string {
         return self::getPathTemplate('certificateIssuanceConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -310,8 +332,12 @@ final class CertificateManagerClient
      *
      * @return string The formatted certificate_map_entry resource.
      */
-    public static function certificateMapEntryName(string $project, string $location, string $certificateMap, string $certificateMapEntry): string
-    {
+    public static function certificateMapEntryName(
+        string $project,
+        string $location,
+        string $certificateMap,
+        string $certificateMapEntry
+    ): string {
         return self::getPathTemplate('certificateMapEntry')->render([
             'project' => $project,
             'location' => $location,
@@ -394,14 +420,14 @@ final class CertificateManagerClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -409,20 +435,29 @@ final class CertificateManagerClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'certificatemanager.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new CertificateManagerClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -456,11 +491,16 @@ final class CertificateManagerClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -495,7 +535,7 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Certificate>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -522,12 +562,14 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CertificateIssuanceConfig>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCertificateIssuanceConfig(CreateCertificateIssuanceConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createCertificateIssuanceConfig(
+        CreateCertificateIssuanceConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateCertificateIssuanceConfig', $request, $callOptions)->wait();
     }
 
@@ -549,12 +591,14 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CertificateMap>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCertificateMap(CreateCertificateMapRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createCertificateMap(
+        CreateCertificateMapRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateCertificateMap', $request, $callOptions)->wait();
     }
 
@@ -576,12 +620,14 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CertificateMapEntry>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCertificateMapEntry(CreateCertificateMapEntryRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createCertificateMapEntry(
+        CreateCertificateMapEntryRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateCertificateMapEntry', $request, $callOptions)->wait();
     }
 
@@ -603,12 +649,14 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DnsAuthorization>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createDnsAuthorization(CreateDnsAuthorizationRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createDnsAuthorization(
+        CreateDnsAuthorizationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateDnsAuthorization', $request, $callOptions)->wait();
     }
 
@@ -629,7 +677,7 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<TrustConfig>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -655,7 +703,7 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -682,12 +730,14 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCertificateIssuanceConfig(DeleteCertificateIssuanceConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteCertificateIssuanceConfig(
+        DeleteCertificateIssuanceConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteCertificateIssuanceConfig', $request, $callOptions)->wait();
     }
 
@@ -711,12 +761,14 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCertificateMap(DeleteCertificateMapRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteCertificateMap(
+        DeleteCertificateMapRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteCertificateMap', $request, $callOptions)->wait();
     }
 
@@ -738,12 +790,14 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCertificateMapEntry(DeleteCertificateMapEntryRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteCertificateMapEntry(
+        DeleteCertificateMapEntryRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteCertificateMapEntry', $request, $callOptions)->wait();
     }
 
@@ -765,12 +819,14 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteDnsAuthorization(DeleteDnsAuthorizationRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteDnsAuthorization(
+        DeleteDnsAuthorizationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteDnsAuthorization', $request, $callOptions)->wait();
     }
 
@@ -791,7 +847,7 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -848,8 +904,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCertificateIssuanceConfig(GetCertificateIssuanceConfigRequest $request, array $callOptions = []): CertificateIssuanceConfig
-    {
+    public function getCertificateIssuanceConfig(
+        GetCertificateIssuanceConfigRequest $request,
+        array $callOptions = []
+    ): CertificateIssuanceConfig {
         return $this->startApiCall('GetCertificateIssuanceConfig', $request, $callOptions)->wait();
     }
 
@@ -901,8 +959,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCertificateMapEntry(GetCertificateMapEntryRequest $request, array $callOptions = []): CertificateMapEntry
-    {
+    public function getCertificateMapEntry(
+        GetCertificateMapEntryRequest $request,
+        array $callOptions = []
+    ): CertificateMapEntry {
         return $this->startApiCall('GetCertificateMapEntry', $request, $callOptions)->wait();
     }
 
@@ -981,8 +1041,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCertificateIssuanceConfigs(ListCertificateIssuanceConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCertificateIssuanceConfigs(
+        ListCertificateIssuanceConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCertificateIssuanceConfigs', $request, $callOptions);
     }
 
@@ -1008,8 +1070,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCertificateMapEntries(ListCertificateMapEntriesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCertificateMapEntries(
+        ListCertificateMapEntriesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCertificateMapEntries', $request, $callOptions);
     }
 
@@ -1088,8 +1152,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDnsAuthorizations(ListDnsAuthorizationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDnsAuthorizations(
+        ListDnsAuthorizationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDnsAuthorizations', $request, $callOptions);
     }
 
@@ -1136,7 +1202,7 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Certificate>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1163,12 +1229,14 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CertificateMap>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCertificateMap(UpdateCertificateMapRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateCertificateMap(
+        UpdateCertificateMapRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateCertificateMap', $request, $callOptions)->wait();
     }
 
@@ -1190,12 +1258,14 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CertificateMapEntry>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCertificateMapEntry(UpdateCertificateMapEntryRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateCertificateMapEntry(
+        UpdateCertificateMapEntryRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateCertificateMapEntry', $request, $callOptions)->wait();
     }
 
@@ -1217,12 +1287,14 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DnsAuthorization>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateDnsAuthorization(UpdateDnsAuthorizationRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateDnsAuthorization(
+        UpdateDnsAuthorizationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateDnsAuthorization', $request, $callOptions)->wait();
     }
 
@@ -1243,7 +1315,7 @@ final class CertificateManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<TrustConfig>
      *
      * @throws ApiException Thrown if the API call fails.
      */

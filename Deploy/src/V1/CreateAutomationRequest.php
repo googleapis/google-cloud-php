@@ -16,25 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateAutomationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent collection in which the `Automation` should be
-     * created. Format should be
+     * Required. The parent collection in which the `Automation` must be created.
+     * The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. ID of the `Automation`.
      *
      * Generated from protobuf field <code>string automation_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $automation_id = '';
+    protected $automation_id = '';
     /**
      * Required. The `Automation` to create.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Automation automation = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $automation = null;
+    protected $automation = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server knows to ignore the
@@ -50,18 +50,18 @@ class CreateAutomationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set to true, the request is validated and the user is provided
      * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
-     * @param string                             $parent       Required. The parent collection in which the `Automation` should be
-     *                                                         created. Format should be
+     * @param string                             $parent       Required. The parent collection in which the `Automation` must be created.
+     *                                                         The format is
      *                                                         `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
      *                                                         {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
      * @param \Google\Cloud\Deploy\V1\Automation $automation   Required. The `Automation` to create.
@@ -86,8 +86,8 @@ class CreateAutomationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent collection in which the `Automation` should be
-     *           created. Format should be
+     *           Required. The parent collection in which the `Automation` must be created.
+     *           The format is
      *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *     @type string $automation_id
      *           Required. ID of the `Automation`.
@@ -116,8 +116,8 @@ class CreateAutomationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which the `Automation` should be
-     * created. Format should be
+     * Required. The parent collection in which the `Automation` must be created.
+     * The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -129,8 +129,8 @@ class CreateAutomationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which the `Automation` should be
-     * created. Format should be
+     * Required. The parent collection in which the `Automation` must be created.
+     * The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

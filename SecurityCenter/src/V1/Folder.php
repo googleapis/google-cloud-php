@@ -22,13 +22,13 @@ class Folder extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_folder = 1;</code>
      */
-    private $resource_folder = '';
+    protected $resource_folder = '';
     /**
      * The user defined display name for this folder.
      *
      * Generated from protobuf field <code>string resource_folder_display_name = 2;</code>
      */
-    private $resource_folder_display_name = '';
+    protected $resource_folder_display_name = '';
 
     /**
      * Constructor.

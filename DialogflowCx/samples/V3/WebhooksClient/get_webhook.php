@@ -32,8 +32,8 @@ use Google\Cloud\Dialogflow\Cx\V3\Webhook;
  * Retrieves the specified webhook.
  *
  * @param string $formattedName The name of the webhook.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/webhooks/<Webhook ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`. Please see
  *                              {@see WebhooksClient::webhookName()} for help formatting this field.
  */
 function get_webhook_sample(string $formattedName): void

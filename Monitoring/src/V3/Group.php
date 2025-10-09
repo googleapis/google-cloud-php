@@ -46,13 +46,13 @@ class Group extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A user-assigned name for this group, used only for display purposes.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The name of the group's parent, if it has one. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
@@ -60,21 +60,21 @@ class Group extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_name = 3;</code>
      */
-    private $parent_name = '';
+    protected $parent_name = '';
     /**
      * The filter used to determine which monitored resources belong to this
      * group.
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * If true, the members of this group are considered to be a cluster.
      * The system can perform additional analysis on groups that are clusters.
      *
      * Generated from protobuf field <code>bool is_cluster = 6;</code>
      */
-    private $is_cluster = false;
+    protected $is_cluster = false;
 
     /**
      * Constructor.

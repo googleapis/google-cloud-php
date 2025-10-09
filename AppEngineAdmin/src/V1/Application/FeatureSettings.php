@@ -26,14 +26,14 @@ class FeatureSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool split_health_checks = 1;</code>
      */
-    private $split_health_checks = false;
+    protected $split_health_checks = false;
     /**
      * If true, use [Container-Optimized OS](https://cloud.google.com/container-optimized-os/)
      * base image for VMs, rather than a base Debian image.
      *
      * Generated from protobuf field <code>bool use_container_optimized_os = 2;</code>
      */
-    private $use_container_optimized_os = false;
+    protected $use_container_optimized_os = false;
 
     /**
      * Constructor.

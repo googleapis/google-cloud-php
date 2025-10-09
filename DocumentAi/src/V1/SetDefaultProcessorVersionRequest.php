@@ -24,7 +24,7 @@ class SetDefaultProcessorVersionRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string processor = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $processor = '';
+    protected $processor = '';
     /**
      * Required. The resource name of child
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as
@@ -33,7 +33,7 @@ class SetDefaultProcessorVersionRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string default_processor_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $default_processor_version = '';
+    protected $default_processor_version = '';
 
     /**
      * Constructor.

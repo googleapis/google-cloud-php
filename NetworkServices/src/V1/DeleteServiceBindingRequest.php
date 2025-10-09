@@ -17,11 +17,26 @@ class DeleteServiceBindingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. A name of the ServiceBinding to delete. Must be in the format
-     * `projects/&#42;&#47;locations/global/serviceBindings/&#42;`.
+     * `projects/&#42;&#47;locations/&#42;&#47;serviceBindings/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+
+    /**
+     * @param string $name Required. A name of the ServiceBinding to delete. Must be in the format
+     *                     `projects/&#42;/locations/&#42;/serviceBindings/*`. Please see
+     *                     {@see NetworkServicesClient::serviceBindingName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\DeleteServiceBindingRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.
@@ -31,7 +46,7 @@ class DeleteServiceBindingRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. A name of the ServiceBinding to delete. Must be in the format
-     *           `projects/&#42;&#47;locations/global/serviceBindings/&#42;`.
+     *           `projects/&#42;&#47;locations/&#42;&#47;serviceBindings/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +56,7 @@ class DeleteServiceBindingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the ServiceBinding to delete. Must be in the format
-     * `projects/&#42;&#47;locations/global/serviceBindings/&#42;`.
+     * `projects/&#42;&#47;locations/&#42;&#47;serviceBindings/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,7 +68,7 @@ class DeleteServiceBindingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the ServiceBinding to delete. Must be in the format
-     * `projects/&#42;&#47;locations/global/serviceBindings/&#42;`.
+     * `projects/&#42;&#47;locations/&#42;&#47;serviceBindings/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

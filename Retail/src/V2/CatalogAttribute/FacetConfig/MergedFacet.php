@@ -29,7 +29,7 @@ class MergedFacet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string merged_facet_key = 1;</code>
      */
-    private $merged_facet_key = '';
+    protected $merged_facet_key = '';
 
     /**
      * Constructor.

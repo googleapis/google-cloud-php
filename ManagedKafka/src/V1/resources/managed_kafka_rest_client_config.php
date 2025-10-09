@@ -47,6 +47,33 @@ return [
             ],
         ],
         'google.cloud.managedkafka.v1.ManagedKafka' => [
+            'AddAclEntry' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{acl=projects/*/locations/*/clusters/*/acls/**}:addAclEntry',
+                'body' => 'acl_entry',
+                'placeholders' => [
+                    'acl' => [
+                        'getters' => [
+                            'getAcl',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAcl' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}/acls',
+                'body' => 'acl',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'acl_id',
+                ],
+            ],
             'CreateCluster' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clusters',
@@ -77,6 +104,17 @@ return [
                     'topic_id',
                 ],
             ],
+            'DeleteAcl' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/acls/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteCluster' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}',
@@ -90,7 +128,7 @@ return [
             ],
             'DeleteConsumerGroup' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/consumerGroups/*}',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/consumerGroups/**}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -102,6 +140,17 @@ return [
             'DeleteTopic' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/topics/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAcl' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/acls/**}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -123,7 +172,7 @@ return [
             ],
             'GetConsumerGroup' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/consumerGroups/*}',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/consumerGroups/**}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -139,6 +188,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAcls' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}/acls',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -176,6 +236,31 @@ return [
                     ],
                 ],
             ],
+            'RemoveAclEntry' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{acl=projects/*/locations/*/clusters/*/acls/**}:removeAclEntry',
+                'body' => 'acl_entry',
+                'placeholders' => [
+                    'acl' => [
+                        'getters' => [
+                            'getAcl',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAcl' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{acl.name=projects/*/locations/*/clusters/*/acls/**}',
+                'body' => 'acl',
+                'placeholders' => [
+                    'acl.name' => [
+                        'getters' => [
+                            'getAcl',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateCluster' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{cluster.name=projects/*/locations/*/clusters/*}',
@@ -194,7 +279,7 @@ return [
             ],
             'UpdateConsumerGroup' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1/{consumer_group.name=projects/*/locations/*/clusters/*/consumerGroups/*}',
+                'uriTemplate' => '/v1/{consumer_group.name=projects/*/locations/*/clusters/*/consumerGroups/**}',
                 'body' => 'consumer_group',
                 'placeholders' => [
                     'consumer_group.name' => [

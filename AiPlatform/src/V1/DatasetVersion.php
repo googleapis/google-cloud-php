@@ -16,36 +16,36 @@ use Google\Protobuf\Internal\GPBUtil;
 class DatasetVersion extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the DatasetVersion.
+     * Output only. Identifier. The resource name of the DatasetVersion.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Timestamp when this DatasetVersion was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this DatasetVersion was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Used to perform consistent read-modify-write updates. If not set, a blind
      * "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 3;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. Name of the associated BigQuery dataset.
      *
      * Generated from protobuf field <code>string big_query_dataset_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $big_query_dataset_name = '';
+    protected $big_query_dataset_name = '';
     /**
      * The user-defined name of the DatasetVersion.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -53,20 +53,32 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 7;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. Output only. Additional information about the DatasetVersion.
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Output only. Reference to the public base model last used by the dataset
      * version. Only set for prompt dataset versions.
      *
      * Generated from protobuf field <code>string model_reference = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $model_reference = '';
+    protected $model_reference = '';
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -75,7 +87,7 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the DatasetVersion.
+     *           Output only. Identifier. The resource name of the DatasetVersion.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this DatasetVersion was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -94,6 +106,10 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
      *     @type string $model_reference
      *           Output only. Reference to the public base model last used by the dataset
      *           version. Only set for prompt dataset versions.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,9 +118,9 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the DatasetVersion.
+     * Output only. Identifier. The resource name of the DatasetVersion.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -113,9 +129,9 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the DatasetVersion.
+     * Output only. Identifier. The resource name of the DatasetVersion.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -343,6 +359,58 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model_reference = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

@@ -20,13 +20,13 @@ class RunResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp scheduled_run_time = 1;</code>
      */
-    private $scheduled_run_time = null;
+    protected $scheduled_run_time = null;
     /**
      * The response of the scheduled run.
      *
      * Generated from protobuf field <code>string run_response = 2;</code>
      */
-    private $run_response = '';
+    protected $run_response = '';
 
     /**
      * Constructor.

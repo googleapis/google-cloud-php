@@ -52,6 +52,4 @@ class Provider
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Provider::class, \Google\Cloud\Container\V1\NetworkPolicy_Provider::class);
 

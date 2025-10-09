@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Autorization for an Aspect Type.
+ * Authorization for an AspectType.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.AspectType.Authorization</code>
  */
 class Authorization extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The IAM permission grantable on the Entry Group to allow
-     * access to instantiate Aspects of Dataplex owned Aspect Types, only
-     * settable for Dataplex owned Types.
+     * Immutable. The IAM permission grantable on the EntryGroup to allow access
+     * to instantiate Aspects of Dataplex Universal Catalog owned AspectTypes,
+     * only settable for Dataplex Universal Catalog owned Types.
      *
      * Generated from protobuf field <code>string alternate_use_permission = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $alternate_use_permission = '';
+    protected $alternate_use_permission = '';
 
     /**
      * Constructor.
@@ -31,9 +31,9 @@ class Authorization extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $alternate_use_permission
-     *           Immutable. The IAM permission grantable on the Entry Group to allow
-     *           access to instantiate Aspects of Dataplex owned Aspect Types, only
-     *           settable for Dataplex owned Types.
+     *           Immutable. The IAM permission grantable on the EntryGroup to allow access
+     *           to instantiate Aspects of Dataplex Universal Catalog owned AspectTypes,
+     *           only settable for Dataplex Universal Catalog owned Types.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,9 +42,9 @@ class Authorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The IAM permission grantable on the Entry Group to allow
-     * access to instantiate Aspects of Dataplex owned Aspect Types, only
-     * settable for Dataplex owned Types.
+     * Immutable. The IAM permission grantable on the EntryGroup to allow access
+     * to instantiate Aspects of Dataplex Universal Catalog owned AspectTypes,
+     * only settable for Dataplex Universal Catalog owned Types.
      *
      * Generated from protobuf field <code>string alternate_use_permission = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -55,9 +55,9 @@ class Authorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The IAM permission grantable on the Entry Group to allow
-     * access to instantiate Aspects of Dataplex owned Aspect Types, only
-     * settable for Dataplex owned Types.
+     * Immutable. The IAM permission grantable on the EntryGroup to allow access
+     * to instantiate Aspects of Dataplex Universal Catalog owned AspectTypes,
+     * only settable for Dataplex Universal Catalog owned Types.
      *
      * Generated from protobuf field <code>string alternate_use_permission = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

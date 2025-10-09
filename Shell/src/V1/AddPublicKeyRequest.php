@@ -22,7 +22,7 @@ class AddPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string environment = 1;</code>
      */
-    private $environment = '';
+    protected $environment = '';
     /**
      * Key that should be added to the environment. Supported formats are
      * `ssh-dss` (see RFC4253), `ssh-rsa` (see RFC4253), `ecdsa-sha2-nistp256`
@@ -33,7 +33,7 @@ class AddPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 2;</code>
      */
-    private $key = '';
+    protected $key = '';
 
     /**
      * Constructor.

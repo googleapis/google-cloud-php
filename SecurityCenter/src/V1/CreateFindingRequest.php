@@ -17,11 +17,11 @@ class CreateFindingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Resource name of the new finding's parent. Its format should be
-     * "organizations/[organization_id]/sources/[source_id]".
+     * `organizations/[organization_id]/sources/[source_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Unique identifier provided by the client within the parent scope.
      * It must be alphanumeric and less than or equal to 32 characters and
@@ -29,18 +29,18 @@ class CreateFindingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string finding_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $finding_id = '';
+    protected $finding_id = '';
     /**
      * Required. The Finding being created. The name and security_marks will be
      * ignored as they are both output only fields on this resource.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding finding = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $finding = null;
+    protected $finding = null;
 
     /**
      * @param string                                  $parent    Required. Resource name of the new finding's parent. Its format should be
-     *                                                           "organizations/[organization_id]/sources/[source_id]". Please see
+     *                                                           `organizations/[organization_id]/sources/[source_id]`. Please see
      *                                                           {@see SecurityCenterClient::sourceName()} for help formatting this field.
      * @param string                                  $findingId Required. Unique identifier provided by the client within the parent scope.
      *                                                           It must be alphanumeric and less than or equal to 32 characters and
@@ -68,7 +68,7 @@ class CreateFindingRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Resource name of the new finding's parent. Its format should be
-     *           "organizations/[organization_id]/sources/[source_id]".
+     *           `organizations/[organization_id]/sources/[source_id]`.
      *     @type string $finding_id
      *           Required. Unique identifier provided by the client within the parent scope.
      *           It must be alphanumeric and less than or equal to 32 characters and
@@ -85,7 +85,7 @@ class CreateFindingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the new finding's parent. Its format should be
-     * "organizations/[organization_id]/sources/[source_id]".
+     * `organizations/[organization_id]/sources/[source_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -97,7 +97,7 @@ class CreateFindingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the new finding's parent. Its format should be
-     * "organizations/[organization_id]/sources/[source_id]".
+     * `organizations/[organization_id]/sources/[source_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

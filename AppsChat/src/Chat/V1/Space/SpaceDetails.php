@@ -20,14 +20,14 @@ class SpaceDetails extends \Google\Protobuf\Internal\Message
      * discussion topic, functional purpose, or participants.
      * Supports up to 150 characters.
      *
-     * Generated from protobuf field <code>string description = 1;</code>
+     * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
      * Optional. The space's rules, expectations, and etiquette.
      * Supports up to 5,000 characters.
      *
-     * Generated from protobuf field <code>string guidelines = 2;</code>
+     * Generated from protobuf field <code>string guidelines = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $guidelines = '';
 
@@ -56,7 +56,7 @@ class SpaceDetails extends \Google\Protobuf\Internal\Message
      * discussion topic, functional purpose, or participants.
      * Supports up to 150 characters.
      *
-     * Generated from protobuf field <code>string description = 1;</code>
+     * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -69,7 +69,7 @@ class SpaceDetails extends \Google\Protobuf\Internal\Message
      * discussion topic, functional purpose, or participants.
      * Supports up to 150 characters.
      *
-     * Generated from protobuf field <code>string description = 1;</code>
+     * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -85,7 +85,7 @@ class SpaceDetails extends \Google\Protobuf\Internal\Message
      * Optional. The space's rules, expectations, and etiquette.
      * Supports up to 5,000 characters.
      *
-     * Generated from protobuf field <code>string guidelines = 2;</code>
+     * Generated from protobuf field <code>string guidelines = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getGuidelines()
@@ -97,7 +97,7 @@ class SpaceDetails extends \Google\Protobuf\Internal\Message
      * Optional. The space's rules, expectations, and etiquette.
      * Supports up to 5,000 characters.
      *
-     * Generated from protobuf field <code>string guidelines = 2;</code>
+     * Generated from protobuf field <code>string guidelines = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

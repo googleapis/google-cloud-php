@@ -20,7 +20,7 @@ class TextClassificationDatasetMetadata extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ClassificationType classification_type = 1;</code>
      */
-    private $classification_type = 0;
+    protected $classification_type = 0;
 
     /**
      * Constructor.

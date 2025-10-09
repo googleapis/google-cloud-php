@@ -21,7 +21,7 @@ class GenerateAccessTokenRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The sequence of service accounts in a delegation chain. Each service
      * account must be granted the `roles/iam.serviceAccountTokenCreator` role
@@ -53,7 +53,7 @@ class GenerateAccessTokenRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 7;</code>
      */
-    private $lifetime = null;
+    protected $lifetime = null;
 
     /**
      * @param string                    $name      Required. The resource name of the service account for which the credentials

@@ -5,6 +5,20 @@
     "protoPackage": "google.cloud.run.v2",
     "libraryPackage": "Google\\Cloud\\Run\\V2",
     "services": {
+        "Builds": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BuildsGapicClient",
+                    "rpcs": {
+                        "SubmitBuild": {
+                            "methods": [
+                                "submitBuild"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Executions": {
             "clients": {
                 "grpc": {
@@ -174,6 +188,55 @@
                         "ListTasks": {
                             "methods": [
                                 "listTasks"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "WorkerPools": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "WorkerPoolsGapicClient",
+                    "rpcs": {
+                        "CreateWorkerPool": {
+                            "methods": [
+                                "createWorkerPool"
+                            ]
+                        },
+                        "DeleteWorkerPool": {
+                            "methods": [
+                                "deleteWorkerPool"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetWorkerPool": {
+                            "methods": [
+                                "getWorkerPool"
+                            ]
+                        },
+                        "ListWorkerPools": {
+                            "methods": [
+                                "listWorkerPools"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateWorkerPool": {
+                            "methods": [
+                                "updateWorkerPool"
                             ]
                         }
                     }

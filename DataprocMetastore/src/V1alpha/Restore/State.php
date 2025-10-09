@@ -73,6 +73,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\Metastore\V1alpha\Restore_State::class);
 

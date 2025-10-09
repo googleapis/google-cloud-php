@@ -23,7 +23,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore featurestore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $featurestore = null;
+    protected $featurestore = null;
     /**
      * Field mask is used to specify the fields to be overwritten in the
      * Featurestore resource by the update.
@@ -40,7 +40,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\Featurestore $featurestore Required. The Featurestore's `name` field is used to identify the

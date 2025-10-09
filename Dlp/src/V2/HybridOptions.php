@@ -22,7 +22,7 @@ class HybridOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * These are labels that each inspection request must include within their
      * 'finding_labels' map. Request may contain others, but any missing one of
@@ -54,7 +54,7 @@ class HybridOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TableOptions table_options = 4;</code>
      */
-    private $table_options = null;
+    protected $table_options = null;
 
     /**
      * Constructor.

@@ -25,12 +25,13 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_DepService_UpdateLbRouteExtension_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkServices\V1\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
 use Google\Cloud\NetworkServices\V1\ExtensionChain;
 use Google\Cloud\NetworkServices\V1\ExtensionChain\Extension;
 use Google\Cloud\NetworkServices\V1\ExtensionChain\MatchCondition;
 use Google\Cloud\NetworkServices\V1\LbRouteExtension;
 use Google\Cloud\NetworkServices\V1\LoadBalancingScheme;
+use Google\Cloud\NetworkServices\V1\UpdateLbRouteExtensionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,8 +41,9 @@ use Google\Rpc\Status;
  *                                                                           following format:
  *                                                                           `projects/{project}/locations/{location}/lbRouteExtensions/{lb_route_extension}`.
  * @param string $lbRouteExtensionForwardingRulesElement                     A list of references to the forwarding rules to which this
- *                                                                           service extension is attached to. At least one forwarding rule is required.
- *                                                                           There can be only one `LbRouteExtension` resource per forwarding rule.
+ *                                                                           service extension is attached. At least one forwarding rule is required.
+ *                                                                           Only one `LbRouteExtension` resource can be associated with a forwarding
+ *                                                                           rule.
  * @param string $lbRouteExtensionExtensionChainsName                        The name for this extension chain.
  *                                                                           The name is logged as part of the HTTP request logs.
  *                                                                           The name must conform with RFC-1034, is restricted to lower-cased letters,
@@ -61,8 +63,6 @@ use Google\Rpc\Status;
  *                                                                           last a letter or a number.
  * @param string $lbRouteExtensionExtensionChainsExtensionsService           The reference to the service that runs the extension.
  *
- *                                                                           Currently only callout extensions are supported here.
- *
  *                                                                           To configure a callout extension, `service` must be a fully-qualified
  *                                                                           reference
  *                                                                           to a [backend
@@ -71,11 +71,23 @@ use Google\Rpc\Status;
  *                                                                           `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`
  *                                                                           or
  *                                                                           `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.
+ *
+ *                                                                           To configure a plugin extension, `service` must be a reference
+ *                                                                           to a [`WasmPlugin`
+ *                                                                           resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins)
+ *                                                                           in the format:
+ *                                                                           `projects/{project}/locations/{location}/wasmPlugins/{plugin}`
+ *                                                                           or
+ *                                                                           `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`.
+ *
+ *                                                                           Plugin extensions are currently supported for the
+ *                                                                           `LbTrafficExtension`, the `LbRouteExtension`, and the `LbEdgeExtension`
+ *                                                                           resources.
  * @param int    $lbRouteExtensionLoadBalancingScheme                        All backend services and forwarding rules referenced by this
  *                                                                           extension must share the same load balancing scheme. Supported values:
  *                                                                           `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
- *                                                                           [Choosing a load
- *                                                                           balancer](https://cloud.google.com/load-balancing/docs/backend-service).
+ *                                                                           [Backend services
+ *                                                                           overview](https://cloud.google.com/load-balancing/docs/backend-service).
  */
 function update_lb_route_extension_sample(
     string $lbRouteExtensionName,
@@ -89,7 +101,7 @@ function update_lb_route_extension_sample(
     // Create a client.
     $depServiceClient = new DepServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $lbRouteExtensionForwardingRules = [$lbRouteExtensionForwardingRulesElement,];
     $lbRouteExtensionExtensionChainsMatchCondition = (new MatchCondition())
         ->setCelExpression($lbRouteExtensionExtensionChainsMatchConditionCelExpression);
@@ -107,11 +119,13 @@ function update_lb_route_extension_sample(
         ->setForwardingRules($lbRouteExtensionForwardingRules)
         ->setExtensionChains($lbRouteExtensionExtensionChains)
         ->setLoadBalancingScheme($lbRouteExtensionLoadBalancingScheme);
+    $request = (new UpdateLbRouteExtensionRequest())
+        ->setLbRouteExtension($lbRouteExtension);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $depServiceClient->updateLbRouteExtension($lbRouteExtension);
+        $response = $depServiceClient->updateLbRouteExtension($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

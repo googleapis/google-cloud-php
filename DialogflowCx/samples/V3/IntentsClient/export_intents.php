@@ -43,12 +43,11 @@ use Google\Rpc\Status;
  * [ExportIntentsResponse][google.cloud.dialogflow.cx.v3.ExportIntentsResponse]
  *
  * @param string $formattedParent The name of the parent agent to export intents.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                                ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                {@see IntentsClient::agentName()} for help formatting this field.
  * @param string $intentsElement  The name of the intents to export.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                                ID>/intents/<Intent ID>`.
+ *                                Format:
+ *                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
  */
 function export_intents_sample(string $formattedParent, string $intentsElement): void
 {

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,11 +26,11 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Compute\V1\Client\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Client\RoutesClient;
 use Google\Cloud\Compute\V1\DeleteRouteRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GetRouteRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertRouteRequest;
 use Google\Cloud\Compute\V1\ListRoutesRequest;
 use Google\Cloud\Compute\V1\Operation;
@@ -56,7 +56,9 @@ class RoutesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return RoutesClient */
@@ -96,9 +98,7 @@ class RoutesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $route = 'route108704329';
-        $request = (new DeleteRouteRequest())
-            ->setProject($project)
-            ->setRoute($route);
+        $request = (new DeleteRouteRequest())->setProject($project)->setRoute($route);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -155,19 +155,20 @@ class RoutesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $route = 'route108704329';
-        $request = (new DeleteRouteRequest())
-            ->setProject($project)
-            ->setRoute($route);
+        $request = (new DeleteRouteRequest())->setProject($project)->setRoute($route);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -208,8 +209,11 @@ class RoutesClientTest extends GeneratedTest
         $nextHopHub = 'nextHopHub-1948804429';
         $nextHopIlb = 'nextHopIlb-1948803747';
         $nextHopInstance = 'nextHopInstance1467250071';
+        $nextHopInterRegionCost = 1586170733;
         $nextHopIp = 'nextHopIp1184061353';
+        $nextHopMed = 1948800118;
         $nextHopNetwork = 'nextHopNetwork1872908524';
+        $nextHopOrigin = 'nextHopOrigin-1561859928';
         $nextHopPeering = 'nextHopPeering-661059074';
         $nextHopVpnTunnel = 'nextHopVpnTunnel-1627639147';
         $priority = 1165461084;
@@ -228,8 +232,11 @@ class RoutesClientTest extends GeneratedTest
         $expectedResponse->setNextHopHub($nextHopHub);
         $expectedResponse->setNextHopIlb($nextHopIlb);
         $expectedResponse->setNextHopInstance($nextHopInstance);
+        $expectedResponse->setNextHopInterRegionCost($nextHopInterRegionCost);
         $expectedResponse->setNextHopIp($nextHopIp);
+        $expectedResponse->setNextHopMed($nextHopMed);
         $expectedResponse->setNextHopNetwork($nextHopNetwork);
+        $expectedResponse->setNextHopOrigin($nextHopOrigin);
         $expectedResponse->setNextHopPeering($nextHopPeering);
         $expectedResponse->setNextHopVpnTunnel($nextHopVpnTunnel);
         $expectedResponse->setPriority($priority);
@@ -240,9 +247,7 @@ class RoutesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $route = 'route108704329';
-        $request = (new GetRouteRequest())
-            ->setProject($project)
-            ->setRoute($route);
+        $request = (new GetRouteRequest())->setProject($project)->setRoute($route);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -268,19 +273,20 @@ class RoutesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $route = 'route108704329';
-        $request = (new GetRouteRequest())
-            ->setProject($project)
-            ->setRoute($route);
+        $request = (new GetRouteRequest())->setProject($project)->setRoute($route);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -322,9 +328,7 @@ class RoutesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $routeResource = new Route();
-        $request = (new InsertRouteRequest())
-            ->setProject($project)
-            ->setRouteResource($routeResource);
+        $request = (new InsertRouteRequest())->setProject($project)->setRouteResource($routeResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -381,19 +385,20 @@ class RoutesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $routeResource = new Route();
-        $request = (new InsertRouteRequest())
-            ->setProject($project)
-            ->setRouteResource($routeResource);
+        $request = (new InsertRouteRequest())->setProject($project)->setRouteResource($routeResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -428,9 +433,7 @@ class RoutesClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new Route();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new RouteList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -440,8 +443,7 @@ class RoutesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListRoutesRequest())
-            ->setProject($project);
+        $request = (new ListRoutesRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -468,17 +470,19 @@ class RoutesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListRoutesRequest())
-            ->setProject($project);
+        $request = (new ListRoutesRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -520,9 +524,7 @@ class RoutesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $route = 'route108704329';
-        $request = (new DeleteRouteRequest())
-            ->setProject($project)
-            ->setRoute($route);
+        $request = (new DeleteRouteRequest())->setProject($project)->setRoute($route);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();

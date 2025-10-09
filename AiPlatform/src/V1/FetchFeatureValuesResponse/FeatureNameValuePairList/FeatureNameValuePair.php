@@ -20,7 +20,7 @@ class FeatureNameValuePair extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     protected $data;
 
     /**

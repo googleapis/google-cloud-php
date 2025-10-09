@@ -23,13 +23,13 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. New renewal settings.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RenewalSettings renewal_settings = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $renewal_settings = null;
+    protected $renewal_settings = null;
     /**
      * Optional. You can specify an optional unique request ID, and if you need to
      * retry your request, the server will know to ignore the request if it's
@@ -44,7 +44,7 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * Constructor.

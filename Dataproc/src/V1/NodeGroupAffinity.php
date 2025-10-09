@@ -29,7 +29,7 @@ class NodeGroupAffinity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string node_group_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $node_group_uri = '';
+    protected $node_group_uri = '';
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class CreateMigrationWorkflowRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The migration workflow to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.MigrationWorkflow migration_workflow = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $migration_workflow = null;
+    protected $migration_workflow = null;
 
     /**
      * @param string                                                $parent            Required. The name of the project to which this migration workflow belongs.

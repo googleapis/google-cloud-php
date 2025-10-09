@@ -20,14 +20,14 @@ class IssueModelLabelStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 analyzed_conversations_count = 1;</code>
      */
-    private $analyzed_conversations_count = 0;
+    protected $analyzed_conversations_count = 0;
     /**
      * Number of analyzed conversations for which no issue was applicable at this
      * point in time.
      *
      * Generated from protobuf field <code>int64 unclassified_conversations_count = 2;</code>
      */
-    private $unclassified_conversations_count = 0;
+    protected $unclassified_conversations_count = 0;
     /**
      * Statistics on each issue. Key is the issue's resource name.
      *

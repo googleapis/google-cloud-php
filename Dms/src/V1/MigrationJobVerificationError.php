@@ -20,20 +20,20 @@ class MigrationJobVerificationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJobVerificationError.ErrorCode error_code = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error_code = 0;
+    protected $error_code = 0;
     /**
      * Output only. A formatted message with further details about the error and a
      * CTA.
      *
      * Generated from protobuf field <code>string error_message = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
     /**
      * Output only. A specific detailed error message, if supplied by the engine.
      *
      * Generated from protobuf field <code>string error_detail_message = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error_detail_message = '';
+    protected $error_detail_message = '';
 
     /**
      * Constructor.

@@ -109,6 +109,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "DeleteFileStoreDataProfile": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "DeleteInspectTemplate": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -155,6 +160,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "GetDlpJob": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetFileStoreDataProfile": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -220,6 +230,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "ListDlpJobs": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListFileStoreDataProfiles": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"

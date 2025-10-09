@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START networkservices_v1_generated_NetworkServices_GetMesh_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\GetMeshRequest;
 use Google\Cloud\NetworkServices\V1\Mesh;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
 
 /**
  * Gets details of a single Mesh.
@@ -39,10 +40,14 @@ function get_mesh_sample(string $formattedName): void
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
+    // Prepare the request message.
+    $request = (new GetMeshRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Mesh $response */
-        $response = $networkServicesClient->getMesh($formattedName);
+        $response = $networkServicesClient->getMesh($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

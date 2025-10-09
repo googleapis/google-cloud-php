@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,9 @@ class IAMCredentialsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return IAMCredentialsClient */
@@ -82,9 +84,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $scope = [];
-        $request = (new GenerateAccessTokenRequest())
-            ->setName($formattedName)
-            ->setScope($scope);
+        $request = (new GenerateAccessTokenRequest())->setName($formattedName)->setScope($scope);
         $response = $gapicClient->generateAccessToken($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -110,19 +110,20 @@ class IAMCredentialsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $scope = [];
-        $request = (new GenerateAccessTokenRequest())
-            ->setName($formattedName)
-            ->setScope($scope);
+        $request = (new GenerateAccessTokenRequest())->setName($formattedName)->setScope($scope);
         try {
             $gapicClient->generateAccessToken($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -152,9 +153,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $audience = 'audience975628804';
-        $request = (new GenerateIdTokenRequest())
-            ->setName($formattedName)
-            ->setAudience($audience);
+        $request = (new GenerateIdTokenRequest())->setName($formattedName)->setAudience($audience);
         $response = $gapicClient->generateIdToken($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -180,19 +179,20 @@ class IAMCredentialsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $audience = 'audience975628804';
-        $request = (new GenerateIdTokenRequest())
-            ->setName($formattedName)
-            ->setAudience($audience);
+        $request = (new GenerateIdTokenRequest())->setName($formattedName)->setAudience($audience);
         try {
             $gapicClient->generateIdToken($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -224,9 +224,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $payload = '-114';
-        $request = (new SignBlobRequest())
-            ->setName($formattedName)
-            ->setPayload($payload);
+        $request = (new SignBlobRequest())->setName($formattedName)->setPayload($payload);
         $response = $gapicClient->signBlob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -252,19 +250,20 @@ class IAMCredentialsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $payload = '-114';
-        $request = (new SignBlobRequest())
-            ->setName($formattedName)
-            ->setPayload($payload);
+        $request = (new SignBlobRequest())->setName($formattedName)->setPayload($payload);
         try {
             $gapicClient->signBlob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -296,9 +295,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $payload = 'payload-786701938';
-        $request = (new SignJwtRequest())
-            ->setName($formattedName)
-            ->setPayload($payload);
+        $request = (new SignJwtRequest())->setName($formattedName)->setPayload($payload);
         $response = $gapicClient->signJwt($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -324,19 +321,20 @@ class IAMCredentialsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $payload = 'payload-786701938';
-        $request = (new SignJwtRequest())
-            ->setName($formattedName)
-            ->setPayload($payload);
+        $request = (new SignJwtRequest())->setName($formattedName)->setPayload($payload);
         try {
             $gapicClient->signJwt($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -366,9 +364,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $scope = [];
-        $request = (new GenerateAccessTokenRequest())
-            ->setName($formattedName)
-            ->setScope($scope);
+        $request = (new GenerateAccessTokenRequest())->setName($formattedName)->setScope($scope);
         $response = $gapicClient->generateAccessTokenAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

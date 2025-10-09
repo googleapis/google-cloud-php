@@ -20,7 +20,7 @@ class RollbackTargetResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.RollbackTargetConfig rollback_config = 1;</code>
      */
-    private $rollback_config = null;
+    protected $rollback_config = null;
 
     /**
      * Constructor.

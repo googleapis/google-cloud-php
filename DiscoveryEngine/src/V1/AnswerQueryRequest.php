@@ -56,6 +56,12 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      */
     protected $related_questions_spec = null;
     /**
+     * Optional. Grounding specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.GroundingSpec grounding_spec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $grounding_spec = null;
+    /**
      * Answer generation specification.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.AnswerGenerationSpec answer_generation_spec = 7;</code>
@@ -74,6 +80,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      */
     protected $query_understanding_spec = null;
     /**
+     * Deprecated: This field is deprecated. Streaming Answer API will be
+     * supported.
      * Asynchronous mode control.
      * If enabled, the response will be returned with answer/session resource
      * name without final answer. The API users need to do the polling to get
@@ -83,7 +91,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
      * method.
      *
-     * Generated from protobuf field <code>bool asynchronous_mode = 10;</code>
+     * Generated from protobuf field <code>bool asynchronous_mode = 10 [deprecated = true];</code>
+     * @deprecated
      */
     protected $asynchronous_mode = false;
     /**
@@ -98,6 +107,32 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string user_pseudo_id = 12;</code>
      */
     protected $user_pseudo_id = '';
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 13;</code>
+     */
+    private $user_labels;
+    /**
+     * Optional. End user specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.EndUserSpec end_user_spec = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $end_user_spec = null;
 
     /**
      * Constructor.
@@ -123,6 +158,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      *           Model specification.
      *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\RelatedQuestionsSpec $related_questions_spec
      *           Related questions specification.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\GroundingSpec $grounding_spec
+     *           Optional. Grounding specification.
      *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\AnswerGenerationSpec $answer_generation_spec
      *           Answer generation specification.
      *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec $search_spec
@@ -130,6 +167,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\QueryUnderstandingSpec $query_understanding_spec
      *           Query understanding specification.
      *     @type bool $asynchronous_mode
+     *           Deprecated: This field is deprecated. Streaming Answer API will be
+     *           supported.
      *           Asynchronous mode control.
      *           If enabled, the response will be returned with answer/session resource
      *           name without final answer. The API users need to do the polling to get
@@ -146,6 +185,24 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      *           This field should NOT have a fixed value such as `unknown_visitor`.
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an  `INVALID_ARGUMENT`  error is returned.
+     *     @type array|\Google\Protobuf\Internal\MapField $user_labels
+     *           The user labels applied to a resource must meet the following requirements:
+     *           * Each resource can have multiple labels, up to a maximum of 64.
+     *           * Each label must be a key-value pair.
+     *           * Keys have a minimum length of 1 character and a maximum length of 63
+     *             characters and cannot be empty. Values can be empty and have a maximum
+     *             length of 63 characters.
+     *           * Keys and values can contain only lowercase letters, numeric characters,
+     *             underscores, and dashes. All characters must use UTF-8 encoding, and
+     *             international characters are allowed.
+     *           * The key portion of a label must be unique. However, you can use the same
+     *             key with multiple resources.
+     *           * Keys must start with a lowercase letter or international character.
+     *           See [Google Cloud
+     *           Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     *           for more details.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\EndUserSpec $end_user_spec
+     *           Optional. End user specification.
      * }
      */
     public function __construct($data = NULL) {
@@ -330,6 +387,42 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Grounding specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.GroundingSpec grounding_spec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\GroundingSpec|null
+     */
+    public function getGroundingSpec()
+    {
+        return $this->grounding_spec;
+    }
+
+    public function hasGroundingSpec()
+    {
+        return isset($this->grounding_spec);
+    }
+
+    public function clearGroundingSpec()
+    {
+        unset($this->grounding_spec);
+    }
+
+    /**
+     * Optional. Grounding specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.GroundingSpec grounding_spec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\GroundingSpec $var
+     * @return $this
+     */
+    public function setGroundingSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\GroundingSpec::class);
+        $this->grounding_spec = $var;
+
+        return $this;
+    }
+
+    /**
      * Answer generation specification.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.AnswerGenerationSpec answer_generation_spec = 7;</code>
@@ -438,6 +531,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated: This field is deprecated. Streaming Answer API will be
+     * supported.
      * Asynchronous mode control.
      * If enabled, the response will be returned with answer/session resource
      * name without final answer. The API users need to do the polling to get
@@ -447,15 +542,21 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
      * method.
      *
-     * Generated from protobuf field <code>bool asynchronous_mode = 10;</code>
+     * Generated from protobuf field <code>bool asynchronous_mode = 10 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getAsynchronousMode()
     {
+        if ($this->asynchronous_mode !== false) {
+            @trigger_error('asynchronous_mode is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->asynchronous_mode;
     }
 
     /**
+     * Deprecated: This field is deprecated. Streaming Answer API will be
+     * supported.
      * Asynchronous mode control.
      * If enabled, the response will be returned with answer/session resource
      * name without final answer. The API users need to do the polling to get
@@ -465,12 +566,14 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
      * method.
      *
-     * Generated from protobuf field <code>bool asynchronous_mode = 10;</code>
+     * Generated from protobuf field <code>bool asynchronous_mode = 10 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setAsynchronousMode($var)
     {
+        @trigger_error('asynchronous_mode is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->asynchronous_mode = $var;
 
@@ -511,6 +614,96 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->user_pseudo_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 13;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getUserLabels()
+    {
+        return $this->user_labels;
+    }
+
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 13;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setUserLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->user_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. End user specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.EndUserSpec end_user_spec = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\EndUserSpec|null
+     */
+    public function getEndUserSpec()
+    {
+        return $this->end_user_spec;
+    }
+
+    public function hasEndUserSpec()
+    {
+        return isset($this->end_user_spec);
+    }
+
+    public function clearEndUserSpec()
+    {
+        unset($this->end_user_spec);
+    }
+
+    /**
+     * Optional. End user specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.EndUserSpec end_user_spec = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\EndUserSpec $var
+     * @return $this
+     */
+    public function setEndUserSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\EndUserSpec::class);
+        $this->end_user_spec = $var;
 
         return $this;
     }

@@ -21,21 +21,21 @@ class UpdateAuthorizedCertificateRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * An `AuthorizedCertificate` containing the updated resource. Only fields set
      * in the field mask will be updated.
      *
      * Generated from protobuf field <code>.google.appengine.v1.AuthorizedCertificate certificate = 2;</code>
      */
-    private $certificate = null;
+    protected $certificate = null;
     /**
      * Standard field mask for the set of fields to be updated. Updates are only
      * supported on the `certificate_raw_data` and `display_name` fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

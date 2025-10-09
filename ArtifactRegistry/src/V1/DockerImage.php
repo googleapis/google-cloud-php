@@ -34,7 +34,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. URL to access the image.
      * Example:
@@ -42,7 +42,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Tags attached to this image.
      *
@@ -56,13 +56,13 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 image_size_bytes = 4;</code>
      */
-    private $image_size_bytes = 0;
+    protected $image_size_bytes = 0;
     /**
      * Time the image was uploaded.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp upload_time = 5;</code>
      */
-    private $upload_time = null;
+    protected $upload_time = null;
     /**
      * Media type of this image, e.g.
      * "application/vnd.docker.distribution.manifest.v2+json".
@@ -71,7 +71,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string media_type = 6;</code>
      */
-    private $media_type = '';
+    protected $media_type = '';
     /**
      * The time this image was built.
      * This field is returned as the 'metadata.buildTime' field in the
@@ -81,13 +81,13 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp build_time = 7;</code>
      */
-    private $build_time = null;
+    protected $build_time = null;
     /**
      * Output only. The time when the docker image was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

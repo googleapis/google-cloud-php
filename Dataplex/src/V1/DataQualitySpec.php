@@ -32,22 +32,30 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float sampling_percent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sampling_percent = 0.0;
+    protected $sampling_percent = 0.0;
     /**
      * Optional. A filter applied to all rows in a single DataScan job.
-     * The filter needs to be a valid SQL expression for a WHERE clause in
-     * BigQuery standard SQL syntax.
+     * The filter needs to be a valid SQL expression for a [WHERE clause in
+     * GoogleSQL
+     * syntax](https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#where_clause).
      * Example: col1 >= 0 AND col2 < 10
      *
      * Generated from protobuf field <code>string row_filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $row_filter = '';
+    protected $row_filter = '';
     /**
      * Optional. Actions to take upon job completion.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions post_scan_actions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $post_scan_actions = null;
+    protected $post_scan_actions = null;
+    /**
+     * Optional. If set, the latest DataScan job result will be published as
+     * Dataplex Universal Catalog metadata.
+     *
+     * Generated from protobuf field <code>bool catalog_publishing_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $catalog_publishing_enabled = false;
 
     /**
      * Constructor.
@@ -67,11 +75,15 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
      *           100.
      *     @type string $row_filter
      *           Optional. A filter applied to all rows in a single DataScan job.
-     *           The filter needs to be a valid SQL expression for a WHERE clause in
-     *           BigQuery standard SQL syntax.
+     *           The filter needs to be a valid SQL expression for a [WHERE clause in
+     *           GoogleSQL
+     *           syntax](https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#where_clause).
      *           Example: col1 >= 0 AND col2 < 10
      *     @type \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions $post_scan_actions
      *           Optional. Actions to take upon job completion.
+     *     @type bool $catalog_publishing_enabled
+     *           Optional. If set, the latest DataScan job result will be published as
+     *           Dataplex Universal Catalog metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,8 +157,9 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A filter applied to all rows in a single DataScan job.
-     * The filter needs to be a valid SQL expression for a WHERE clause in
-     * BigQuery standard SQL syntax.
+     * The filter needs to be a valid SQL expression for a [WHERE clause in
+     * GoogleSQL
+     * syntax](https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#where_clause).
      * Example: col1 >= 0 AND col2 < 10
      *
      * Generated from protobuf field <code>string row_filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -159,8 +172,9 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A filter applied to all rows in a single DataScan job.
-     * The filter needs to be a valid SQL expression for a WHERE clause in
-     * BigQuery standard SQL syntax.
+     * The filter needs to be a valid SQL expression for a [WHERE clause in
+     * GoogleSQL
+     * syntax](https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#where_clause).
      * Example: col1 >= 0 AND col2 < 10
      *
      * Generated from protobuf field <code>string row_filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -207,6 +221,34 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions::class);
         $this->post_scan_actions = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, the latest DataScan job result will be published as
+     * Dataplex Universal Catalog metadata.
+     *
+     * Generated from protobuf field <code>bool catalog_publishing_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getCatalogPublishingEnabled()
+    {
+        return $this->catalog_publishing_enabled;
+    }
+
+    /**
+     * Optional. If set, the latest DataScan job result will be published as
+     * Dataplex Universal Catalog metadata.
+     *
+     * Generated from protobuf field <code>bool catalog_publishing_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCatalogPublishingEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->catalog_publishing_enabled = $var;
 
         return $this;
     }

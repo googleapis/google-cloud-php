@@ -21,7 +21,7 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The timestamp when the migration job resource was created.
      * A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds.
@@ -29,7 +29,7 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The timestamp when the migration job resource was last
      * updated. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds.
@@ -37,7 +37,7 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The resource labels for migration job to use to annotate any related
      * underlying resources such as Compute Engine VMs. An object containing a
@@ -52,25 +52,25 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The current migration job state.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob.State state = 6;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The current migration job phase.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob.Phase phase = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $phase = 0;
+    protected $phase = 0;
     /**
      * Required. The migration job type.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob.Type type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The path to the dump file in Google Cloud Storage,
      * in the format: (gs://[BUCKET_NAME]/[OBJECT_NAME]).
@@ -78,26 +78,26 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dump_path = 9;</code>
      */
-    private $dump_path = '';
+    protected $dump_path = '';
     /**
      * The initial dump flags.
      * This field and the "dump_path" field are mutually exclusive.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob.DumpFlags dump_flags = 17;</code>
      */
-    private $dump_flags = null;
+    protected $dump_flags = null;
     /**
      * Required. The resource name (URI) of the source connection profile.
      *
      * Generated from protobuf field <code>string source = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source = '';
+    protected $source = '';
     /**
      * Required. The resource name (URI) of the destination connection profile.
      *
      * Generated from protobuf field <code>string destination = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination = '';
+    protected $destination = '';
     /**
      * Output only. The duration of the migration job (in seconds). A duration in
      * seconds with up to nine fractional digits, terminated by 's'. Example:
@@ -105,38 +105,38 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * Output only. The error details in case of state FAILED.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * The database engine type and provider of the source.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseType source_database = 14;</code>
      */
-    private $source_database = null;
+    protected $source_database = null;
     /**
      * The database engine type and provider of the destination.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseType destination_database = 15;</code>
      */
-    private $destination_database = null;
+    protected $destination_database = null;
     /**
      * Output only. If the migration job is completed, the time when it was
      * completed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The conversion workspace used by the migration.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.ConversionWorkspaceInfo conversion_workspace = 18;</code>
      */
-    private $conversion_workspace = null;
+    protected $conversion_workspace = null;
     /**
      * This field can be used to select the entities to migrate as part of
      * the migration job. It uses AIP-160 notation to select a subset of the
@@ -146,7 +146,7 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 20;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The CMEK (customer-managed encryption key) fully qualified key name used
      * for the migration job.
@@ -162,14 +162,14 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cmek_key_name = 21;</code>
      */
-    private $cmek_key_name = '';
+    protected $cmek_key_name = '';
     /**
      * Optional. Data dump parallelism settings used by the migration.
      * Currently applicable only for MySQL to Cloud SQL for MySQL migrations only.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob.PerformanceConfig performance_config = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $performance_config = null;
+    protected $performance_config = null;
     protected $connectivity;
 
     /**

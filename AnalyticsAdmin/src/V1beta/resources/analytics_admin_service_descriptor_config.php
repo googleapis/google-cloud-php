@@ -131,6 +131,18 @@ return [
                     ],
                 ],
             ],
+            'CreateKeyEvent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1beta\KeyEvent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateMeasurementProtocolSecret' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1beta\MeasurementProtocolSecret',
@@ -196,6 +208,18 @@ return [
                 ],
             ],
             'DeleteGoogleAdsLink' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteKeyEvent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -306,6 +330,18 @@ return [
             'GetDataStream' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1beta\DataStream',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetKeyEvent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1beta\KeyEvent',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -483,6 +519,26 @@ return [
                     ],
                 ],
             ],
+            'ListKeyEvents' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getKeyEvents',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1beta\ListKeyEventsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMeasurementProtocolSecrets' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -642,6 +698,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateKeyEvent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1beta\KeyEvent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'key_event.name',
+                        'fieldAccessors' => [
+                            'getKeyEvent',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateMeasurementProtocolSecret' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1beta\MeasurementProtocolSecret',
@@ -678,7 +747,9 @@ return [
                 'dataStream' => 'properties/{property}/dataStreams/{data_stream}',
                 'firebaseLink' => 'properties/{property}/firebaseLinks/{firebase_link}',
                 'googleAdsLink' => 'properties/{property}/googleAdsLinks/{google_ads_link}',
+                'keyEvent' => 'properties/{property}/keyEvents/{key_event}',
                 'measurementProtocolSecret' => 'properties/{property}/dataStreams/{data_stream}/measurementProtocolSecrets/{measurement_protocol_secret}',
+                'organization' => 'organizations/{organization}',
                 'property' => 'properties/{property}',
             ],
         ],

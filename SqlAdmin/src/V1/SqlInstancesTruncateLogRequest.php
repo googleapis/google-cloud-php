@@ -20,17 +20,17 @@ class SqlInstancesTruncateLogRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Project ID of the Cloud SQL project.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Generated from protobuf field <code>.google.cloud.sql.v1.InstancesTruncateLogRequest body = 100;</code>
      */
-    private $body = null;
+    protected $body = null;
 
     /**
      * Constructor.

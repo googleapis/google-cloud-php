@@ -24,33 +24,33 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateDescription.SubjectDescription subject_description = 1;</code>
      */
-    private $subject_description = null;
+    protected $subject_description = null;
     /**
      * Describes some of the technical X.509 fields in a certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters x509_description = 2;</code>
      */
-    private $x509_description = null;
+    protected $x509_description = null;
     /**
      * The public key that corresponds to an issued certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.PublicKey public_key = 3;</code>
      */
-    private $public_key = null;
+    protected $public_key = null;
     /**
      * Provides a means of identifiying certificates that contain a particular
      * public key, per https://tools.ietf.org/html/rfc5280#section-4.2.1.2.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateDescription.KeyId subject_key_id = 4;</code>
      */
-    private $subject_key_id = null;
+    protected $subject_key_id = null;
     /**
      * Identifies the subject_key_id of the parent certificate, per
      * https://tools.ietf.org/html/rfc5280#section-4.2.1.1
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateDescription.KeyId authority_key_id = 5;</code>
      */
-    private $authority_key_id = null;
+    protected $authority_key_id = null;
     /**
      * Describes a list of locations to obtain CRL information, i.e.
      * the DistributionPoint.fullName described by
@@ -71,7 +71,16 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateDescription.CertificateFingerprint cert_fingerprint = 8;</code>
      */
-    private $cert_fingerprint = null;
+    protected $cert_fingerprint = null;
+    /**
+     * The hash of the pre-signed certificate, which will be signed by the CA.
+     * Corresponds to the TBS Certificate in
+     * https://tools.ietf.org/html/rfc5280#section-4.1.2. The field will always be
+     * populated.
+     *
+     * Generated from protobuf field <code>string tbs_certificate_digest = 9;</code>
+     */
+    protected $tbs_certificate_digest = '';
 
     /**
      * Constructor.
@@ -101,6 +110,11 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      *           "Authority Information Access" extension in the certificate.
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateDescription\CertificateFingerprint $cert_fingerprint
      *           The hash of the x.509 certificate.
+     *     @type string $tbs_certificate_digest
+     *           The hash of the pre-signed certificate, which will be signed by the CA.
+     *           Corresponds to the TBS Certificate in
+     *           https://tools.ietf.org/html/rfc5280#section-4.1.2. The field will always be
+     *           populated.
      * }
      */
     public function __construct($data = NULL) {
@@ -384,6 +398,38 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Security\PrivateCA\V1\CertificateDescription\CertificateFingerprint::class);
         $this->cert_fingerprint = $var;
+
+        return $this;
+    }
+
+    /**
+     * The hash of the pre-signed certificate, which will be signed by the CA.
+     * Corresponds to the TBS Certificate in
+     * https://tools.ietf.org/html/rfc5280#section-4.1.2. The field will always be
+     * populated.
+     *
+     * Generated from protobuf field <code>string tbs_certificate_digest = 9;</code>
+     * @return string
+     */
+    public function getTbsCertificateDigest()
+    {
+        return $this->tbs_certificate_digest;
+    }
+
+    /**
+     * The hash of the pre-signed certificate, which will be signed by the CA.
+     * Corresponds to the TBS Certificate in
+     * https://tools.ietf.org/html/rfc5280#section-4.1.2. The field will always be
+     * populated.
+     *
+     * Generated from protobuf field <code>string tbs_certificate_digest = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTbsCertificateDigest($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tbs_certificate_digest = $var;
 
         return $this;
     }

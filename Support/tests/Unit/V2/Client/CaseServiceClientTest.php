@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,9 @@ class CaseServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CaseServiceClient */
@@ -100,8 +102,7 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new CloseCaseRequest())
-            ->setName($formattedName);
+        $request = (new CloseCaseRequest())->setName($formattedName);
         $response = $gapicClient->closeCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -125,17 +126,19 @@ class CaseServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new CloseCaseRequest())
-            ->setName($formattedName);
+        $request = (new CloseCaseRequest())->setName($formattedName);
         try {
             $gapicClient->closeCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -179,9 +182,7 @@ class CaseServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $case = new PBCase();
-        $request = (new CreateCaseRequest())
-            ->setParent($formattedParent)
-            ->setCase($case);
+        $request = (new CreateCaseRequest())->setParent($formattedParent)->setCase($case);
         $response = $gapicClient->createCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -207,19 +208,20 @@ class CaseServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $case = new PBCase();
-        $request = (new CreateCaseRequest())
-            ->setParent($formattedParent)
-            ->setCase($case);
+        $request = (new CreateCaseRequest())->setParent($formattedParent)->setCase($case);
         try {
             $gapicClient->createCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -262,8 +264,7 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new EscalateCaseRequest())
-            ->setName($formattedName);
+        $request = (new EscalateCaseRequest())->setName($formattedName);
         $response = $gapicClient->escalateCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -287,17 +288,19 @@ class CaseServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new EscalateCaseRequest())
-            ->setName($formattedName);
+        $request = (new EscalateCaseRequest())->setName($formattedName);
         try {
             $gapicClient->escalateCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -340,8 +343,7 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new GetCaseRequest())
-            ->setName($formattedName);
+        $request = (new GetCaseRequest())->setName($formattedName);
         $response = $gapicClient->getCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -365,17 +367,19 @@ class CaseServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new GetCaseRequest())
-            ->setName($formattedName);
+        $request = (new GetCaseRequest())->setName($formattedName);
         try {
             $gapicClient->getCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -400,17 +404,14 @@ class CaseServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $casesElement = new PBCase();
-        $cases = [
-            $casesElement,
-        ];
+        $cases = [$casesElement];
         $expectedResponse = new ListCasesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCases($cases);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListCasesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCasesRequest())->setParent($formattedParent);
         $response = $gapicClient->listCases($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -437,17 +438,19 @@ class CaseServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListCasesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCasesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCases($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -472,9 +475,7 @@ class CaseServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $caseClassificationsElement = new CaseClassification();
-        $caseClassifications = [
-            $caseClassificationsElement,
-        ];
+        $caseClassifications = [$caseClassificationsElement];
         $expectedResponse = new SearchCaseClassificationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCaseClassifications($caseClassifications);
@@ -504,12 +505,15 @@ class CaseServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new SearchCaseClassificationsRequest();
         try {
@@ -536,9 +540,7 @@ class CaseServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $casesElement = new PBCase();
-        $cases = [
-            $casesElement,
-        ];
+        $cases = [$casesElement];
         $expectedResponse = new SearchCasesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCases($cases);
@@ -568,12 +570,15 @@ class CaseServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new SearchCasesRequest();
         try {
@@ -618,8 +623,7 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $case = new PBCase();
-        $request = (new UpdateCaseRequest())
-            ->setCase($case);
+        $request = (new UpdateCaseRequest())->setCase($case);
         $response = $gapicClient->updateCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -643,17 +647,19 @@ class CaseServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $case = new PBCase();
-        $request = (new UpdateCaseRequest())
-            ->setCase($case);
+        $request = (new UpdateCaseRequest())->setCase($case);
         try {
             $gapicClient->updateCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -696,8 +702,7 @@ class CaseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new CloseCaseRequest())
-            ->setName($formattedName);
+        $request = (new CloseCaseRequest())->setName($formattedName);
         $response = $gapicClient->closeCaseAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

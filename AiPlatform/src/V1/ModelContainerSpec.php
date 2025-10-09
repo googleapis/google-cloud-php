@@ -36,7 +36,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $image_uri = '';
+    protected $image_uri = '';
     /**
      * Immutable. Specifies the command that runs when the container starts. This
      * overrides the container's
@@ -194,7 +194,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string predict_route = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $predict_route = '';
+    protected $predict_route = '';
     /**
      * Immutable. HTTP path on the container to send health checks to. Vertex AI
      * intermittently sends GET requests to this path on the container's IP
@@ -224,7 +224,19 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string health_route = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $health_route = '';
+    protected $health_route = '';
+    /**
+     * Immutable. Invoke route prefix for the custom container. "/&#42;" is the only
+     * supported value right now. By setting this field, any non-root route on
+     * this model will be accessible with invoke http call eg: "/invoke/foo/bar",
+     * however the [PredictionService.Invoke] RPC is not supported yet.
+     * Only one of `predict_route` or `invoke_route_prefix` can be set, and we
+     * default to using `predict_route` if this field is not set. If this field
+     * is set, the Model can only be deployed to dedicated endpoint.
+     *
+     * Generated from protobuf field <code>string invoke_route_prefix = 15 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $invoke_route_prefix = '';
     /**
      * Immutable. List of ports to expose from the container. Vertex AI sends gRPC
      * prediction requests that it receives to the first port on this list. Vertex
@@ -243,26 +255,32 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration deployment_timeout = 10 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $deployment_timeout = null;
+    protected $deployment_timeout = null;
     /**
      * Immutable. The amount of the VM memory to reserve as the shared memory for
      * the model in megabytes.
      *
      * Generated from protobuf field <code>int64 shared_memory_size_mb = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $shared_memory_size_mb = 0;
+    protected $shared_memory_size_mb = 0;
     /**
      * Immutable. Specification for Kubernetes startup probe.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe startup_probe = 12 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $startup_probe = null;
+    protected $startup_probe = null;
     /**
      * Immutable. Specification for Kubernetes readiness probe.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe health_probe = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $health_probe = null;
+    protected $health_probe = null;
+    /**
+     * Immutable. Specification for Kubernetes liveness probe.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe liveness_probe = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $liveness_probe = null;
 
     /**
      * Constructor.
@@ -450,6 +468,14 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *             (Vertex AI makes this value available to your container code as the
      *             [`AIP_DEPLOYED_MODEL_ID` environment
      *             variable](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables).)
+     *     @type string $invoke_route_prefix
+     *           Immutable. Invoke route prefix for the custom container. "/&#42;" is the only
+     *           supported value right now. By setting this field, any non-root route on
+     *           this model will be accessible with invoke http call eg: "/invoke/foo/bar",
+     *           however the [PredictionService.Invoke] RPC is not supported yet.
+     *           Only one of `predict_route` or `invoke_route_prefix` can be set, and we
+     *           default to using `predict_route` if this field is not set. If this field
+     *           is set, the Model can only be deployed to dedicated endpoint.
      *     @type array<\Google\Cloud\AIPlatform\V1\Port>|\Google\Protobuf\Internal\RepeatedField $grpc_ports
      *           Immutable. List of ports to expose from the container. Vertex AI sends gRPC
      *           prediction requests that it receives to the first port on this list. Vertex
@@ -468,6 +494,8 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *           Immutable. Specification for Kubernetes startup probe.
      *     @type \Google\Cloud\AIPlatform\V1\Probe $health_probe
      *           Immutable. Specification for Kubernetes readiness probe.
+     *     @type \Google\Cloud\AIPlatform\V1\Probe $liveness_probe
+     *           Immutable. Specification for Kubernetes liveness probe.
      * }
      */
     public function __construct($data = NULL) {
@@ -990,6 +1018,44 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Immutable. Invoke route prefix for the custom container. "/&#42;" is the only
+     * supported value right now. By setting this field, any non-root route on
+     * this model will be accessible with invoke http call eg: "/invoke/foo/bar",
+     * however the [PredictionService.Invoke] RPC is not supported yet.
+     * Only one of `predict_route` or `invoke_route_prefix` can be set, and we
+     * default to using `predict_route` if this field is not set. If this field
+     * is set, the Model can only be deployed to dedicated endpoint.
+     *
+     * Generated from protobuf field <code>string invoke_route_prefix = 15 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getInvokeRoutePrefix()
+    {
+        return $this->invoke_route_prefix;
+    }
+
+    /**
+     * Immutable. Invoke route prefix for the custom container. "/&#42;" is the only
+     * supported value right now. By setting this field, any non-root route on
+     * this model will be accessible with invoke http call eg: "/invoke/foo/bar",
+     * however the [PredictionService.Invoke] RPC is not supported yet.
+     * Only one of `predict_route` or `invoke_route_prefix` can be set, and we
+     * default to using `predict_route` if this field is not set. If this field
+     * is set, the Model can only be deployed to dedicated endpoint.
+     *
+     * Generated from protobuf field <code>string invoke_route_prefix = 15 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInvokeRoutePrefix($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->invoke_route_prefix = $var;
+
+        return $this;
+    }
+
+    /**
      * Immutable. List of ports to expose from the container. Vertex AI sends gRPC
      * prediction requests that it receives to the first port on this list. Vertex
      * AI also sends liveness and health checks to this port.
@@ -1161,6 +1227,42 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Probe::class);
         $this->health_probe = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Specification for Kubernetes liveness probe.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe liveness_probe = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Probe|null
+     */
+    public function getLivenessProbe()
+    {
+        return $this->liveness_probe;
+    }
+
+    public function hasLivenessProbe()
+    {
+        return isset($this->liveness_probe);
+    }
+
+    public function clearLivenessProbe()
+    {
+        unset($this->liveness_probe);
+    }
+
+    /**
+     * Immutable. Specification for Kubernetes liveness probe.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe liveness_probe = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Probe $var
+     * @return $this
+     */
+    public function setLivenessProbe($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Probe::class);
+        $this->liveness_probe = $var;
 
         return $this;
     }

@@ -176,7 +176,7 @@ class SliceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue all_values = 3;</code>
      * @return bool|null
      */
-    public function getAllValuesValue()
+    public function getAllValuesUnwrapped()
     {
         return $this->readWrapperValue("all_values");
     }
@@ -209,7 +209,7 @@ class SliceConfig extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setAllValuesValue($var)
+    public function setAllValuesUnwrapped($var)
     {
         $this->writeWrapperValue("all_values", $var);
         return $this;}

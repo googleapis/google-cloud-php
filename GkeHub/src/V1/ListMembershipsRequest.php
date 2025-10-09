@@ -22,7 +22,7 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. When requesting a 'page' of resources, `page_size` specifies
      * number of resources to return. If unspecified or set to 0, all resources
@@ -30,7 +30,7 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. Token returned by previous call to `ListMemberships` which
      * specifies the position in the list from where to continue listing the
@@ -38,7 +38,7 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. Lists Memberships that match the filter expression, following the
      * syntax outlined in https://google.aip.dev/160.
@@ -54,14 +54,14 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. One or more fields to compare and use to sort the output.
      * See https://google.aip.dev/132#ordering.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. The parent (project and location) where the Memberships will be

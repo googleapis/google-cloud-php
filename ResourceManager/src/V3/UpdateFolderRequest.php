@@ -27,14 +27,14 @@ class UpdateFolderRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Folder folder = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $folder = null;
+    protected $folder = null;
     /**
      * Required. Fields to be updated.
      * Only the `display_name` can be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\ResourceManager\V3\Folder $folder     Required. The new definition of the Folder. It must include the `name`

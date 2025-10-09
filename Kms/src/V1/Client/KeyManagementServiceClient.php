@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2018 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ namespace Google\Cloud\Kms\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -48,6 +49,8 @@ use Google\Cloud\Kms\V1\CreateImportJobRequest;
 use Google\Cloud\Kms\V1\CreateKeyRingRequest;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKeyVersion;
+use Google\Cloud\Kms\V1\DecapsulateRequest;
+use Google\Cloud\Kms\V1\DecapsulateResponse;
 use Google\Cloud\Kms\V1\DecryptRequest;
 use Google\Cloud\Kms\V1\DecryptResponse;
 use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
@@ -84,6 +87,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Google Cloud Key Management Service
@@ -107,39 +111,40 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface asymmetricDecryptAsync(AsymmetricDecryptRequest $request, array $optionalArgs = [])
- * @method PromiseInterface asymmetricSignAsync(AsymmetricSignRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCryptoKeyAsync(CreateCryptoKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCryptoKeyVersionAsync(CreateCryptoKeyVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createImportJobAsync(CreateImportJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createKeyRingAsync(CreateKeyRingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface decryptAsync(DecryptRequest $request, array $optionalArgs = [])
- * @method PromiseInterface destroyCryptoKeyVersionAsync(DestroyCryptoKeyVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface encryptAsync(EncryptRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateRandomBytesAsync(GenerateRandomBytesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCryptoKeyAsync(GetCryptoKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCryptoKeyVersionAsync(GetCryptoKeyVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getImportJobAsync(GetImportJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getKeyRingAsync(GetKeyRingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPublicKeyAsync(GetPublicKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importCryptoKeyVersionAsync(ImportCryptoKeyVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCryptoKeyVersionsAsync(ListCryptoKeyVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCryptoKeysAsync(ListCryptoKeysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listImportJobsAsync(ListImportJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listKeyRingsAsync(ListKeyRingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface macSignAsync(MacSignRequest $request, array $optionalArgs = [])
- * @method PromiseInterface macVerifyAsync(MacVerifyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rawDecryptAsync(RawDecryptRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rawEncryptAsync(RawEncryptRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreCryptoKeyVersionAsync(RestoreCryptoKeyVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCryptoKeyAsync(UpdateCryptoKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCryptoKeyPrimaryVersionAsync(UpdateCryptoKeyPrimaryVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCryptoKeyVersionAsync(UpdateCryptoKeyVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AsymmetricDecryptResponse> asymmetricDecryptAsync(AsymmetricDecryptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AsymmetricSignResponse> asymmetricSignAsync(AsymmetricSignRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CryptoKey> createCryptoKeyAsync(CreateCryptoKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CryptoKeyVersion> createCryptoKeyVersionAsync(CreateCryptoKeyVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ImportJob> createImportJobAsync(CreateImportJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KeyRing> createKeyRingAsync(CreateKeyRingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DecapsulateResponse> decapsulateAsync(DecapsulateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DecryptResponse> decryptAsync(DecryptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CryptoKeyVersion> destroyCryptoKeyVersionAsync(DestroyCryptoKeyVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EncryptResponse> encryptAsync(EncryptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateRandomBytesResponse> generateRandomBytesAsync(GenerateRandomBytesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CryptoKey> getCryptoKeyAsync(GetCryptoKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CryptoKeyVersion> getCryptoKeyVersionAsync(GetCryptoKeyVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ImportJob> getImportJobAsync(GetImportJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KeyRing> getKeyRingAsync(GetKeyRingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublicKey> getPublicKeyAsync(GetPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CryptoKeyVersion> importCryptoKeyVersionAsync(ImportCryptoKeyVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCryptoKeyVersionsAsync(ListCryptoKeyVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCryptoKeysAsync(ListCryptoKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listImportJobsAsync(ListImportJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listKeyRingsAsync(ListKeyRingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MacSignResponse> macSignAsync(MacSignRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MacVerifyResponse> macVerifyAsync(MacVerifyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RawDecryptResponse> rawDecryptAsync(RawDecryptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RawEncryptResponse> rawEncryptAsync(RawEncryptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CryptoKeyVersion> restoreCryptoKeyVersionAsync(RestoreCryptoKeyVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CryptoKey> updateCryptoKeyAsync(UpdateCryptoKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CryptoKey> updateCryptoKeyPrimaryVersionAsync(UpdateCryptoKeyPrimaryVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CryptoKeyVersion> updateCryptoKeyVersionAsync(UpdateCryptoKeyVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class KeyManagementServiceClient
 {
@@ -307,14 +312,14 @@ final class KeyManagementServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -322,20 +327,29 @@ final class KeyManagementServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudkms.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new KeyManagementServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -369,11 +383,16 @@ final class KeyManagementServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -569,6 +588,36 @@ final class KeyManagementServiceClient
     public function createKeyRing(CreateKeyRingRequest $request, array $callOptions = []): KeyRing
     {
         return $this->startApiCall('CreateKeyRing', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Decapsulates data that was encapsulated with a public key retrieved from
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * corresponding to a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+     * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * KEY_ENCAPSULATION.
+     *
+     * The async variant is {@see KeyManagementServiceClient::decapsulateAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/decapsulate.php
+     *
+     * @param DecapsulateRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DecapsulateResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function decapsulate(DecapsulateRequest $request, array $callOptions = []): DecapsulateResponse
+    {
+        return $this->startApiCall('Decapsulate', $request, $callOptions)->wait();
     }
 
     /**

@@ -21,11 +21,11 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis main_analysis = 1;</code>
      */
-    private $main_analysis = null;
+    protected $main_analysis = null;
     /**
      * The service account impersonation analysis if
-     * [AnalyzeIamPolicyRequest.analyze_service_account_impersonation][] is
-     * enabled.
+     * [IamPolicyAnalysisQuery.Options.analyze_service_account_impersonation][google.cloud.asset.v1.IamPolicyAnalysisQuery.Options.analyze_service_account_impersonation]
+     * is enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis service_account_impersonation_analysis = 2;</code>
      */
@@ -39,7 +39,7 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool fully_explored = 3;</code>
      */
-    private $fully_explored = false;
+    protected $fully_explored = false;
 
     /**
      * Constructor.
@@ -51,8 +51,8 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      *           The main analysis that matches the original request.
      *     @type array<\Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis>|\Google\Protobuf\Internal\RepeatedField $service_account_impersonation_analysis
      *           The service account impersonation analysis if
-     *           [AnalyzeIamPolicyRequest.analyze_service_account_impersonation][] is
-     *           enabled.
+     *           [IamPolicyAnalysisQuery.Options.analyze_service_account_impersonation][google.cloud.asset.v1.IamPolicyAnalysisQuery.Options.analyze_service_account_impersonation]
+     *           is enabled.
      *     @type bool $fully_explored
      *           Represents whether all entries in the
      *           [main_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.main_analysis]
@@ -104,8 +104,8 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The service account impersonation analysis if
-     * [AnalyzeIamPolicyRequest.analyze_service_account_impersonation][] is
-     * enabled.
+     * [IamPolicyAnalysisQuery.Options.analyze_service_account_impersonation][google.cloud.asset.v1.IamPolicyAnalysisQuery.Options.analyze_service_account_impersonation]
+     * is enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis service_account_impersonation_analysis = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -117,8 +117,8 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The service account impersonation analysis if
-     * [AnalyzeIamPolicyRequest.analyze_service_account_impersonation][] is
-     * enabled.
+     * [IamPolicyAnalysisQuery.Options.analyze_service_account_impersonation][google.cloud.asset.v1.IamPolicyAnalysisQuery.Options.analyze_service_account_impersonation]
+     * is enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis service_account_impersonation_analysis = 2;</code>
      * @param array<\Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis>|\Google\Protobuf\Internal\RepeatedField $var

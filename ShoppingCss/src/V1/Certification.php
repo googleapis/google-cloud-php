@@ -9,26 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The certification for the product.
+ * The certification for the product. Use the this attribute to describe
+ * certifications, such as energy efficiency ratings, associated with a product.
  *
  * Generated from protobuf message <code>google.shopping.css.v1.Certification</code>
  */
 class Certification extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the certification.
+     * The name of the certification. At this time, the most common value is
+     * "EPREL", which represents energy efficiency certifications in the EU
+     * European Registry for Energy Labeling (EPREL) database.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     protected $name = '';
     /**
-     * Name of the certification body.
+     * The authority or certification body responsible for issuing the
+     * certification. At this time, the most common value is "EC" or
+     * “European_Commission” for energy labels in the EU.
      *
      * Generated from protobuf field <code>string authority = 2;</code>
      */
     protected $authority = '';
     /**
-     * A unique code to identify the certification.
+     * The code of the certification. For example, for the EPREL certificate with
+     * the link https://eprel.ec.europa.eu/screen/product/dishwashers2019/123456
+     * the code is 123456. The code is required for European Energy Labels.
      *
      * Generated from protobuf field <code>string code = 3;</code>
      */
@@ -41,11 +48,17 @@ class Certification extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the certification.
+     *           The name of the certification. At this time, the most common value is
+     *           "EPREL", which represents energy efficiency certifications in the EU
+     *           European Registry for Energy Labeling (EPREL) database.
      *     @type string $authority
-     *           Name of the certification body.
+     *           The authority or certification body responsible for issuing the
+     *           certification. At this time, the most common value is "EC" or
+     *           “European_Commission” for energy labels in the EU.
      *     @type string $code
-     *           A unique code to identify the certification.
+     *           The code of the certification. For example, for the EPREL certificate with
+     *           the link https://eprel.ec.europa.eu/screen/product/dishwashers2019/123456
+     *           the code is 123456. The code is required for European Energy Labels.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +67,9 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the certification.
+     * The name of the certification. At this time, the most common value is
+     * "EPREL", which represents energy efficiency certifications in the EU
+     * European Registry for Energy Labeling (EPREL) database.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -65,7 +80,9 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the certification.
+     * The name of the certification. At this time, the most common value is
+     * "EPREL", which represents energy efficiency certifications in the EU
+     * European Registry for Energy Labeling (EPREL) database.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -80,7 +97,9 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the certification body.
+     * The authority or certification body responsible for issuing the
+     * certification. At this time, the most common value is "EC" or
+     * “European_Commission” for energy labels in the EU.
      *
      * Generated from protobuf field <code>string authority = 2;</code>
      * @return string
@@ -91,7 +110,9 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the certification body.
+     * The authority or certification body responsible for issuing the
+     * certification. At this time, the most common value is "EC" or
+     * “European_Commission” for energy labels in the EU.
      *
      * Generated from protobuf field <code>string authority = 2;</code>
      * @param string $var
@@ -106,7 +127,9 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique code to identify the certification.
+     * The code of the certification. For example, for the EPREL certificate with
+     * the link https://eprel.ec.europa.eu/screen/product/dishwashers2019/123456
+     * the code is 123456. The code is required for European Energy Labels.
      *
      * Generated from protobuf field <code>string code = 3;</code>
      * @return string
@@ -117,7 +140,9 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique code to identify the certification.
+     * The code of the certification. For example, for the EPREL certificate with
+     * the link https://eprel.ec.europa.eu/screen/product/dishwashers2019/123456
+     * the code is 123456. The code is required for European Energy Labels.
      *
      * Generated from protobuf field <code>string code = 3;</code>
      * @param string $var

@@ -29,7 +29,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cron_schedule = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cron_schedule = '';
+    protected $cron_schedule = '';
     /**
      * Optional. This flag denotes whether automatic Backup creation is paused
      * for this BackupPlan.
@@ -37,7 +37,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool paused = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $paused = false;
+    protected $paused = false;
     /**
      * Optional. Defines the RPO schedule configuration for this BackupPlan.
      * This is mutually exclusive with the
@@ -50,14 +50,14 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RpoConfig rpo_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rpo_config = null;
+    protected $rpo_config = null;
     /**
      * Output only. Start time of next scheduled backup under this BackupPlan by
      * either cron_schedule or rpo config.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_scheduled_backup_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $next_scheduled_backup_time = null;
+    protected $next_scheduled_backup_time = null;
 
     /**
      * Constructor.

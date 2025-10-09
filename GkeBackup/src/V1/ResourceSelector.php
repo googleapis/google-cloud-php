@@ -26,14 +26,14 @@ class ResourceSelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.GroupKind group_kind = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $group_kind = null;
+    protected $group_kind = null;
     /**
      * Optional. Selects resources using their resource names. If specified,
      * only resources with the provided name will be selected.
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Selects resources using their namespaces. This only applies to
      * namespace scoped resources and cannot be used for selecting
@@ -46,7 +46,7 @@ class ResourceSelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string namespace = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $namespace = '';
+    protected $namespace = '';
     /**
      * Optional. Selects resources using Kubernetes
      * [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).

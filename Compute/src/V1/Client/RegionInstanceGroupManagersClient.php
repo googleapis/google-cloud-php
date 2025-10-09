@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -49,12 +50,16 @@ use Google\Cloud\Compute\V1\ListRegionInstanceGroupManagersRequest;
 use Google\Cloud\Compute\V1\PatchPerInstanceConfigsRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\PatchRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\RecreateInstancesRegionInstanceGroupManagerRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\ResizeRegionInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\ResumeInstancesRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SetInstanceTemplateRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SetTargetPoolsRegionInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\StartInstancesRegionInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\StopInstancesRegionInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\SuspendInstancesRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionInstanceGroupManagers API.
@@ -62,25 +67,29 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface abandonInstancesAsync(AbandonInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface applyUpdatesToInstancesAsync(ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createInstancesAsync(CreateInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInstancesAsync(DeleteInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePerInstanceConfigsAsync(DeletePerInstanceConfigsRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionInstanceGroupManagersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listErrorsAsync(ListErrorsRegionInstanceGroupManagersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listManagedInstancesAsync(ListManagedInstancesRegionInstanceGroupManagersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPerInstanceConfigsAsync(ListPerInstanceConfigsRegionInstanceGroupManagersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchPerInstanceConfigsAsync(PatchPerInstanceConfigsRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface recreateInstancesAsync(RecreateInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resizeAsync(ResizeRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setInstanceTemplateAsync(SetInstanceTemplateRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setTargetPoolsAsync(SetTargetPoolsRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePerInstanceConfigsAsync(UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> abandonInstancesAsync(AbandonInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> applyUpdatesToInstancesAsync(ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInstancesAsync(CreateInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteInstancesAsync(DeleteInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deletePerInstanceConfigsAsync(DeletePerInstanceConfigsRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstanceGroupManager> getAsync(GetRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionInstanceGroupManagersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listErrorsAsync(ListErrorsRegionInstanceGroupManagersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listManagedInstancesAsync(ListManagedInstancesRegionInstanceGroupManagersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPerInstanceConfigsAsync(ListPerInstanceConfigsRegionInstanceGroupManagersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchPerInstanceConfigsAsync(PatchPerInstanceConfigsRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> recreateInstancesAsync(RecreateInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resizeAsync(ResizeRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resumeInstancesAsync(ResumeInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setInstanceTemplateAsync(SetInstanceTemplateRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setTargetPoolsAsync(SetTargetPoolsRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startInstancesAsync(StartInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopInstancesAsync(StopInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> suspendInstancesAsync(SuspendInstancesRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updatePerInstanceConfigsAsync(UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest $request, array $optionalArgs = [])
  */
 final class RegionInstanceGroupManagersClient
 {
@@ -126,10 +135,10 @@ final class RegionInstanceGroupManagersClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/region_instance_group_managers_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/region_instance_group_managers_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -142,9 +151,7 @@ final class RegionInstanceGroupManagersClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -161,10 +168,7 @@ final class RegionInstanceGroupManagersClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -192,29 +196,57 @@ final class RegionInstanceGroupManagersClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new RegionInstanceGroupManagersClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -245,11 +277,16 @@ final class RegionInstanceGroupManagersClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -273,6 +310,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::abandonInstancesAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/abandon_instances.php
+     *
      * @param AbandonInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                             $callOptions {
      *     Optional.
@@ -287,8 +326,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function abandonInstances(AbandonInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function abandonInstances(
+        AbandonInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AbandonInstances', $request, $callOptions)->wait();
     }
 
@@ -297,6 +338,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::applyUpdatesToInstancesAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/apply_updates_to_instances.php
      *
      * @param ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                                    $callOptions {
@@ -312,8 +355,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function applyUpdatesToInstances(ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function applyUpdatesToInstances(
+        ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ApplyUpdatesToInstances', $request, $callOptions)->wait();
     }
 
@@ -322,6 +367,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::createInstancesAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/create_instances.php
      *
      * @param CreateInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
@@ -337,8 +384,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createInstances(CreateInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createInstances(
+        CreateInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateInstances', $request, $callOptions)->wait();
     }
 
@@ -346,6 +395,8 @@ final class RegionInstanceGroupManagersClient
      * Deletes the specified managed instance group and all of the instances in that group.
      *
      * The async variant is {@see RegionInstanceGroupManagersClient::deleteAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/delete.php
      *
      * @param DeleteRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -372,6 +423,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::deleteInstancesAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/delete_instances.php
+     *
      * @param DeleteInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -386,8 +439,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteInstances(DeleteInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteInstances(
+        DeleteInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteInstances', $request, $callOptions)->wait();
     }
 
@@ -396,6 +451,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::deletePerInstanceConfigsAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/delete_per_instance_configs.php
      *
      * @param DeletePerInstanceConfigsRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                                     $callOptions {
@@ -411,8 +468,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePerInstanceConfigs(DeletePerInstanceConfigsRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deletePerInstanceConfigs(
+        DeletePerInstanceConfigsRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeletePerInstanceConfigs', $request, $callOptions)->wait();
     }
 
@@ -420,6 +479,8 @@ final class RegionInstanceGroupManagersClient
      * Returns all of the details about the specified managed instance group.
      *
      * The async variant is {@see RegionInstanceGroupManagersClient::getAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/get.php
      *
      * @param GetRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -445,6 +506,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is {@see RegionInstanceGroupManagersClient::insertAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/insert.php
+     *
      * @param InsertRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -468,6 +531,8 @@ final class RegionInstanceGroupManagersClient
      * Retrieves the list of managed instance groups that are contained within the specified region.
      *
      * The async variant is {@see RegionInstanceGroupManagersClient::listAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/list.php
      *
      * @param ListRegionInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -494,6 +559,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is {@see RegionInstanceGroupManagersClient::listErrorsAsync()}
      * .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/list_errors.php
+     *
      * @param ListErrorsRegionInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
      *     Optional.
@@ -508,8 +575,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listErrors(ListErrorsRegionInstanceGroupManagersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listErrors(
+        ListErrorsRegionInstanceGroupManagersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListErrors', $request, $callOptions);
     }
 
@@ -518,6 +587,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::listManagedInstancesAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/list_managed_instances.php
      *
      * @param ListManagedInstancesRegionInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                                                  $callOptions {
@@ -533,8 +604,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listManagedInstances(ListManagedInstancesRegionInstanceGroupManagersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listManagedInstances(
+        ListManagedInstancesRegionInstanceGroupManagersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListManagedInstances', $request, $callOptions);
     }
 
@@ -543,6 +616,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::listPerInstanceConfigsAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/list_per_instance_configs.php
      *
      * @param ListPerInstanceConfigsRegionInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                                                    $callOptions {
@@ -558,8 +633,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPerInstanceConfigs(ListPerInstanceConfigsRegionInstanceGroupManagersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPerInstanceConfigs(
+        ListPerInstanceConfigsRegionInstanceGroupManagersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPerInstanceConfigs', $request, $callOptions);
     }
 
@@ -567,6 +644,8 @@ final class RegionInstanceGroupManagersClient
      * Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. If you update your group to specify a new template or instance configuration, it's possible that your intended specification for each VM in the group is different from the current state of that VM. To learn how to apply an updated configuration to the VMs in a MIG, see Updating instances in a MIG.
      *
      * The async variant is {@see RegionInstanceGroupManagersClient::patchAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/patch.php
      *
      * @param PatchRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -593,6 +672,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::patchPerInstanceConfigsAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/patch_per_instance_configs.php
+     *
      * @param PatchPerInstanceConfigsRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                                    $callOptions {
      *     Optional.
@@ -607,8 +688,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function patchPerInstanceConfigs(PatchPerInstanceConfigsRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function patchPerInstanceConfigs(
+        PatchPerInstanceConfigsRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PatchPerInstanceConfigs', $request, $callOptions)->wait();
     }
 
@@ -617,6 +700,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::recreateInstancesAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/recreate_instances.php
      *
      * @param RecreateInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                              $callOptions {
@@ -632,8 +717,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function recreateInstances(RecreateInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function recreateInstances(
+        RecreateInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RecreateInstances', $request, $callOptions)->wait();
     }
 
@@ -641,6 +728,8 @@ final class RegionInstanceGroupManagersClient
      * Changes the intended size of the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes one or more instances. The resize operation is marked DONE if the resize request is successful. The underlying actions take additional time. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.
      *
      * The async variant is {@see RegionInstanceGroupManagersClient::resizeAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/resize.php
      *
      * @param ResizeRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -662,10 +751,41 @@ final class RegionInstanceGroupManagersClient
     }
 
     /**
+     * Flags the specified instances in the managed instance group to be resumed. This method increases the targetSize and decreases the targetSuspendedSize of the managed instance group by the number of instances that you resume. The resumeInstances operation is marked DONE if the resumeInstances request is successful. The underlying actions take additional time. You must separately verify the status of the RESUMING action with the listmanagedinstances method. In this request, you can only specify instances that are suspended. For example, if an instance was previously suspended using the suspendInstances method, it can be resumed using the resumeInstances method. If a health check is attached to the managed instance group, the specified instances will be verified as healthy after they are resumed. You can specify a maximum of 1000 instances with this method per request.
+     *
+     * The async variant is
+     * {@see RegionInstanceGroupManagersClient::resumeInstancesAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/resume_instances.php
+     *
+     * @param ResumeInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
+     * @param array                                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function resumeInstances(
+        ResumeInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('ResumeInstances', $request, $callOptions)->wait();
+    }
+
+    /**
      * Sets the instance template to use when creating new instances or recreating instances in this group. Existing instances are not affected.
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::setInstanceTemplateAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/set_instance_template.php
      *
      * @param SetInstanceTemplateRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                                $callOptions {
@@ -681,8 +801,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setInstanceTemplate(SetInstanceTemplateRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setInstanceTemplate(
+        SetInstanceTemplateRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetInstanceTemplate', $request, $callOptions)->wait();
     }
 
@@ -691,6 +813,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::setTargetPoolsAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/set_target_pools.php
      *
      * @param SetTargetPoolsRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                           $callOptions {
@@ -706,9 +830,98 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setTargetPools(SetTargetPoolsRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setTargetPools(
+        SetTargetPoolsRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetTargetPools', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Flags the specified instances in the managed instance group to be started. This method increases the targetSize and decreases the targetStoppedSize of the managed instance group by the number of instances that you start. The startInstances operation is marked DONE if the startInstances request is successful. The underlying actions take additional time. You must separately verify the status of the STARTING action with the listmanagedinstances method. In this request, you can only specify instances that are stopped. For example, if an instance was previously stopped using the stopInstances method, it can be started using the startInstances method. If a health check is attached to the managed instance group, the specified instances will be verified as healthy after they are started. You can specify a maximum of 1000 instances with this method per request.
+     *
+     * The async variant is
+     * {@see RegionInstanceGroupManagersClient::startInstancesAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/start_instances.php
+     *
+     * @param StartInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
+     * @param array                                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function startInstances(
+        StartInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('StartInstances', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Flags the specified instances in the managed instance group to be immediately stopped. You can only specify instances that are running in this request. This method reduces the targetSize and increases the targetStoppedSize of the managed instance group by the number of instances that you stop. The stopInstances operation is marked DONE if the stopInstances request is successful. The underlying actions take additional time. You must separately verify the status of the STOPPING action with the listmanagedinstances method. If the standbyPolicy.initialDelaySec field is set, the group delays stopping the instances until initialDelaySec have passed from instance.creationTimestamp (that is, when the instance was created). This delay gives your application time to set itself up and initialize on the instance. If more than initialDelaySec seconds have passed since instance.creationTimestamp when this method is called, there will be zero delay. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is stopped. Stopped instances can be started using the startInstances method. You can specify a maximum of 1000 instances with this method per request.
+     *
+     * The async variant is
+     * {@see RegionInstanceGroupManagersClient::stopInstancesAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/stop_instances.php
+     *
+     * @param StopInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
+     * @param array                                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function stopInstances(
+        StopInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('StopInstances', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Flags the specified instances in the managed instance group to be immediately suspended. You can only specify instances that are running in this request. This method reduces the targetSize and increases the targetSuspendedSize of the managed instance group by the number of instances that you suspend. The suspendInstances operation is marked DONE if the suspendInstances request is successful. The underlying actions take additional time. You must separately verify the status of the SUSPENDING action with the listmanagedinstances method. If the standbyPolicy.initialDelaySec field is set, the group delays suspension of the instances until initialDelaySec have passed from instance.creationTimestamp (that is, when the instance was created). This delay gives your application time to set itself up and initialize on the instance. If more than initialDelaySec seconds have passed since instance.creationTimestamp when this method is called, there will be zero delay. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is suspended. Suspended instances can be resumed using the resumeInstances method. You can specify a maximum of 1000 instances with this method per request.
+     *
+     * The async variant is
+     * {@see RegionInstanceGroupManagersClient::suspendInstancesAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/suspend_instances.php
+     *
+     * @param SuspendInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
+     * @param array                                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function suspendInstances(
+        SuspendInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('SuspendInstances', $request, $callOptions)->wait();
     }
 
     /**
@@ -716,6 +929,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::updatePerInstanceConfigsAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/update_per_instance_configs.php
      *
      * @param UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                                     $callOptions {
@@ -731,8 +946,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updatePerInstanceConfigs(UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updatePerInstanceConfigs(
+        UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdatePerInstanceConfigs', $request, $callOptions)->wait();
     }
 }

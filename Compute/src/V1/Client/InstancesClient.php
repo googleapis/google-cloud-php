@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,18 +28,21 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddAccessConfigInstanceRequest;
+use Google\Cloud\Compute\V1\AddNetworkInterfaceInstanceRequest;
 use Google\Cloud\Compute\V1\AddResourcePoliciesInstanceRequest;
 use Google\Cloud\Compute\V1\AggregatedListInstancesRequest;
 use Google\Cloud\Compute\V1\AttachDiskInstanceRequest;
 use Google\Cloud\Compute\V1\BulkInsertInstanceRequest;
 use Google\Cloud\Compute\V1\DeleteAccessConfigInstanceRequest;
 use Google\Cloud\Compute\V1\DeleteInstanceRequest;
+use Google\Cloud\Compute\V1\DeleteNetworkInterfaceInstanceRequest;
 use Google\Cloud\Compute\V1\DetachDiskInstanceRequest;
 use Google\Cloud\Compute\V1\GetEffectiveFirewallsInstanceRequest;
 use Google\Cloud\Compute\V1\GetGuestAttributesInstanceRequest;
@@ -57,6 +60,7 @@ use Google\Cloud\Compute\V1\ListReferrersInstancesRequest;
 use Google\Cloud\Compute\V1\PerformMaintenanceInstanceRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RemoveResourcePoliciesInstanceRequest;
+use Google\Cloud\Compute\V1\ReportHostAsFaultyInstanceRequest;
 use Google\Cloud\Compute\V1\ResetInstanceRequest;
 use Google\Cloud\Compute\V1\ResumeInstanceRequest;
 use Google\Cloud\Compute\V1\Screenshot;
@@ -90,8 +94,8 @@ use Google\Cloud\Compute\V1\UpdateDisplayDeviceInstanceRequest;
 use Google\Cloud\Compute\V1\UpdateInstanceRequest;
 use Google\Cloud\Compute\V1\UpdateNetworkInterfaceInstanceRequest;
 use Google\Cloud\Compute\V1\UpdateShieldedInstanceConfigInstanceRequest;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Instances API.
@@ -99,54 +103,57 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addAccessConfigAsync(AddAccessConfigInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface addResourcePoliciesAsync(AddResourcePoliciesInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface aggregatedListAsync(AggregatedListInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface attachDiskAsync(AttachDiskInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface bulkInsertAsync(BulkInsertInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccessConfigAsync(DeleteAccessConfigInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface detachDiskAsync(DetachDiskInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEffectiveFirewallsAsync(GetEffectiveFirewallsInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGuestAttributesAsync(GetGuestAttributesInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getScreenshotAsync(GetScreenshotInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSerialPortOutputAsync(GetSerialPortOutputInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getShieldedInstanceIdentityAsync(GetShieldedInstanceIdentityInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReferrersAsync(ListReferrersInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface performMaintenanceAsync(PerformMaintenanceInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeResourcePoliciesAsync(RemoveResourcePoliciesInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetAsync(ResetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeAsync(ResumeInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface sendDiagnosticInterruptAsync(SendDiagnosticInterruptInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setDeletionProtectionAsync(SetDeletionProtectionInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setDiskAutoDeleteAsync(SetDiskAutoDeleteInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setMachineResourcesAsync(SetMachineResourcesInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setMachineTypeAsync(SetMachineTypeInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setMetadataAsync(SetMetadataInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setMinCpuPlatformAsync(SetMinCpuPlatformInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNameAsync(SetNameInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSchedulingAsync(SetSchedulingInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setServiceAccountAsync(SetServiceAccountInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setShieldedInstanceIntegrityPolicyAsync(SetShieldedInstanceIntegrityPolicyInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setTagsAsync(SetTagsInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface simulateMaintenanceEventAsync(SimulateMaintenanceEventInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startAsync(StartInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startWithEncryptionKeyAsync(StartWithEncryptionKeyInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopAsync(StopInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface suspendAsync(SuspendInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccessConfigAsync(UpdateAccessConfigInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDisplayDeviceAsync(UpdateDisplayDeviceInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNetworkInterfaceAsync(UpdateNetworkInterfaceInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateShieldedInstanceConfigAsync(UpdateShieldedInstanceConfigInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addAccessConfigAsync(AddAccessConfigInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addNetworkInterfaceAsync(AddNetworkInterfaceInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addResourcePoliciesAsync(AddResourcePoliciesInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> attachDiskAsync(AttachDiskInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> bulkInsertAsync(BulkInsertInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAccessConfigAsync(DeleteAccessConfigInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNetworkInterfaceAsync(DeleteNetworkInterfaceInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> detachDiskAsync(DetachDiskInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Instance> getAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstancesGetEffectiveFirewallsResponse> getEffectiveFirewallsAsync(GetEffectiveFirewallsInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GuestAttributes> getGuestAttributesAsync(GetGuestAttributesInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Screenshot> getScreenshotAsync(GetScreenshotInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SerialPortOutput> getSerialPortOutputAsync(GetSerialPortOutputInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ShieldedInstanceIdentity> getShieldedInstanceIdentityAsync(GetShieldedInstanceIdentityInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReferrersAsync(ListReferrersInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> performMaintenanceAsync(PerformMaintenanceInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeResourcePoliciesAsync(RemoveResourcePoliciesInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> reportHostAsFaultyAsync(ReportHostAsFaultyInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resetAsync(ResetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resumeAsync(ResumeInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SendDiagnosticInterruptInstanceResponse> sendDiagnosticInterruptAsync(SendDiagnosticInterruptInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setDeletionProtectionAsync(SetDeletionProtectionInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setDiskAutoDeleteAsync(SetDiskAutoDeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setMachineResourcesAsync(SetMachineResourcesInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setMachineTypeAsync(SetMachineTypeInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setMetadataAsync(SetMetadataInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setMinCpuPlatformAsync(SetMinCpuPlatformInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setNameAsync(SetNameInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSchedulingAsync(SetSchedulingInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSecurityPolicyAsync(SetSecurityPolicyInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setServiceAccountAsync(SetServiceAccountInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setShieldedInstanceIntegrityPolicyAsync(SetShieldedInstanceIntegrityPolicyInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setTagsAsync(SetTagsInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> simulateMaintenanceEventAsync(SimulateMaintenanceEventInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startAsync(StartInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startWithEncryptionKeyAsync(StartWithEncryptionKeyInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopAsync(StopInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> suspendAsync(SuspendInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAccessConfigAsync(UpdateAccessConfigInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDisplayDeviceAsync(UpdateDisplayDeviceInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateNetworkInterfaceAsync(UpdateNetworkInterfaceInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateShieldedInstanceConfigAsync(UpdateShieldedInstanceConfigInstanceRequest $request, array $optionalArgs = [])
  */
 final class InstancesClient
 {
@@ -195,7 +202,6 @@ final class InstancesClient
                     'restClientConfigPath' => __DIR__ . '/../resources/instances_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => ZoneOperationsClient::class,
         ];
     }
 
@@ -208,9 +214,7 @@ final class InstancesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -227,10 +231,7 @@ final class InstancesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -258,29 +259,57 @@ final class InstancesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return ZoneOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new ZoneOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\InstancesClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new InstancesClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -311,11 +340,16 @@ final class InstancesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -338,6 +372,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::addAccessConfigAsync()} .
      *
+     * @example samples/V1/InstancesClient/add_access_config.php
+     *
      * @param AddAccessConfigInstanceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -358,9 +394,39 @@ final class InstancesClient
     }
 
     /**
+     * Adds one dynamic network interface to an active instance.
+     *
+     * The async variant is {@see InstancesClient::addNetworkInterfaceAsync()} .
+     *
+     * @example samples/V1/InstancesClient/add_network_interface.php
+     *
+     * @param AddNetworkInterfaceInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addNetworkInterface(
+        AddNetworkInterfaceInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('AddNetworkInterface', $request, $callOptions)->wait();
+    }
+
+    /**
      * Adds existing resource policies to an instance. You can only add one policy right now which will be applied to this instance for scheduling live migrations.
      *
      * The async variant is {@see InstancesClient::addResourcePoliciesAsync()} .
+     *
+     * @example samples/V1/InstancesClient/add_resource_policies.php
      *
      * @param AddResourcePoliciesInstanceRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -376,8 +442,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addResourcePolicies(AddResourcePoliciesInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addResourcePolicies(
+        AddResourcePoliciesInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddResourcePolicies', $request, $callOptions)->wait();
     }
 
@@ -385,6 +453,8 @@ final class InstancesClient
      * Retrieves an aggregated list of all of the instances in your project across all regions and zones. The performance of this method degrades when a filter is specified on a project that has a very large number of instances. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see InstancesClient::aggregatedListAsync()} .
+     *
+     * @example samples/V1/InstancesClient/aggregated_list.php
      *
      * @param AggregatedListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -410,6 +480,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::attachDiskAsync()} .
      *
+     * @example samples/V1/InstancesClient/attach_disk.php
+     *
      * @param AttachDiskInstanceRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -433,6 +505,8 @@ final class InstancesClient
      * Creates multiple instances. Count specifies the number of instances to create. For more information, see About bulk creation of VMs.
      *
      * The async variant is {@see InstancesClient::bulkInsertAsync()} .
+     *
+     * @example samples/V1/InstancesClient/bulk_insert.php
      *
      * @param BulkInsertInstanceRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -458,6 +532,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::deleteAsync()} .
      *
+     * @example samples/V1/InstancesClient/delete.php
+     *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -482,6 +558,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::deleteAccessConfigAsync()} .
      *
+     * @example samples/V1/InstancesClient/delete_access_config.php
+     *
      * @param DeleteAccessConfigInstanceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -496,15 +574,47 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAccessConfig(DeleteAccessConfigInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteAccessConfig(
+        DeleteAccessConfigInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteAccessConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes one dynamic network interface from an active instance. InstancesDeleteNetworkInterfaceRequest indicates: - instance from which to delete, using project+zone+resource_id fields; - dynamic network interface to be deleted, using network_interface_name field;
+     *
+     * The async variant is {@see InstancesClient::deleteNetworkInterfaceAsync()} .
+     *
+     * @example samples/V1/InstancesClient/delete_network_interface.php
+     *
+     * @param DeleteNetworkInterfaceInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteNetworkInterface(
+        DeleteNetworkInterfaceInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteNetworkInterface', $request, $callOptions)->wait();
     }
 
     /**
      * Detaches a disk from an instance.
      *
      * The async variant is {@see InstancesClient::detachDiskAsync()} .
+     *
+     * @example samples/V1/InstancesClient/detach_disk.php
      *
      * @param DetachDiskInstanceRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -530,6 +640,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::getAsync()} .
      *
+     * @example samples/V1/InstancesClient/get.php
+     *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -554,6 +666,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::getEffectiveFirewallsAsync()} .
      *
+     * @example samples/V1/InstancesClient/get_effective_firewalls.php
+     *
      * @param GetEffectiveFirewallsInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -568,8 +682,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getEffectiveFirewalls(GetEffectiveFirewallsInstanceRequest $request, array $callOptions = []): InstancesGetEffectiveFirewallsResponse
-    {
+    public function getEffectiveFirewalls(
+        GetEffectiveFirewallsInstanceRequest $request,
+        array $callOptions = []
+    ): InstancesGetEffectiveFirewallsResponse {
         return $this->startApiCall('GetEffectiveFirewalls', $request, $callOptions)->wait();
     }
 
@@ -577,6 +693,8 @@ final class InstancesClient
      * Returns the specified guest attributes entry.
      *
      * The async variant is {@see InstancesClient::getGuestAttributesAsync()} .
+     *
+     * @example samples/V1/InstancesClient/get_guest_attributes.php
      *
      * @param GetGuestAttributesInstanceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -592,8 +710,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getGuestAttributes(GetGuestAttributesInstanceRequest $request, array $callOptions = []): GuestAttributes
-    {
+    public function getGuestAttributes(
+        GetGuestAttributesInstanceRequest $request,
+        array $callOptions = []
+    ): GuestAttributes {
         return $this->startApiCall('GetGuestAttributes', $request, $callOptions)->wait();
     }
 
@@ -601,6 +721,8 @@ final class InstancesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see InstancesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/InstancesClient/get_iam_policy.php
      *
      * @param GetIamPolicyInstanceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -626,6 +748,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::getScreenshotAsync()} .
      *
+     * @example samples/V1/InstancesClient/get_screenshot.php
+     *
      * @param GetScreenshotInstanceRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -650,6 +774,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::getSerialPortOutputAsync()} .
      *
+     * @example samples/V1/InstancesClient/get_serial_port_output.php
+     *
      * @param GetSerialPortOutputInstanceRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -664,8 +790,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getSerialPortOutput(GetSerialPortOutputInstanceRequest $request, array $callOptions = []): SerialPortOutput
-    {
+    public function getSerialPortOutput(
+        GetSerialPortOutputInstanceRequest $request,
+        array $callOptions = []
+    ): SerialPortOutput {
         return $this->startApiCall('GetSerialPortOutput', $request, $callOptions)->wait();
     }
 
@@ -674,6 +802,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::getShieldedInstanceIdentityAsync()}
      * .
+     *
+     * @example samples/V1/InstancesClient/get_shielded_instance_identity.php
      *
      * @param GetShieldedInstanceIdentityInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
@@ -689,8 +819,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getShieldedInstanceIdentity(GetShieldedInstanceIdentityInstanceRequest $request, array $callOptions = []): ShieldedInstanceIdentity
-    {
+    public function getShieldedInstanceIdentity(
+        GetShieldedInstanceIdentityInstanceRequest $request,
+        array $callOptions = []
+    ): ShieldedInstanceIdentity {
         return $this->startApiCall('GetShieldedInstanceIdentity', $request, $callOptions)->wait();
     }
 
@@ -698,6 +830,8 @@ final class InstancesClient
      * Creates an instance resource in the specified project using the data included in the request.
      *
      * The async variant is {@see InstancesClient::insertAsync()} .
+     *
+     * @example samples/V1/InstancesClient/insert.php
      *
      * @param InsertInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -723,6 +857,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::listAsync()} .
      *
+     * @example samples/V1/InstancesClient/list.php
+     *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -746,6 +882,8 @@ final class InstancesClient
      * Retrieves a list of resources that refer to the VM instance specified in the request. For example, if the VM instance is part of a managed or unmanaged instance group, the referrers list includes the instance group. For more information, read Viewing referrers to VM instances.
      *
      * The async variant is {@see InstancesClient::listReferrersAsync()} .
+     *
+     * @example samples/V1/InstancesClient/list_referrers.php
      *
      * @param ListReferrersInstancesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -771,6 +909,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::performMaintenanceAsync()} .
      *
+     * @example samples/V1/InstancesClient/perform_maintenance.php
+     *
      * @param PerformMaintenanceInstanceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -785,8 +925,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function performMaintenance(PerformMaintenanceInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function performMaintenance(
+        PerformMaintenanceInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PerformMaintenance', $request, $callOptions)->wait();
     }
 
@@ -794,6 +936,8 @@ final class InstancesClient
      * Removes resource policies from an instance.
      *
      * The async variant is {@see InstancesClient::removeResourcePoliciesAsync()} .
+     *
+     * @example samples/V1/InstancesClient/remove_resource_policies.php
      *
      * @param RemoveResourcePoliciesInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -809,15 +953,47 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeResourcePolicies(RemoveResourcePoliciesInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeResourcePolicies(
+        RemoveResourcePoliciesInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveResourcePolicies', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Mark the host as faulty and try to restart the instance on a new host.
+     *
+     * The async variant is {@see InstancesClient::reportHostAsFaultyAsync()} .
+     *
+     * @example samples/V1/InstancesClient/report_host_as_faulty.php
+     *
+     * @param ReportHostAsFaultyInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function reportHostAsFaulty(
+        ReportHostAsFaultyInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('ReportHostAsFaulty', $request, $callOptions)->wait();
     }
 
     /**
      * Performs a reset on the instance. This is a hard reset. The VM does not do a graceful shutdown. For more information, see Resetting an instance.
      *
      * The async variant is {@see InstancesClient::resetAsync()} .
+     *
+     * @example samples/V1/InstancesClient/reset.php
      *
      * @param ResetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -843,6 +1019,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::resumeAsync()} .
      *
+     * @example samples/V1/InstancesClient/resume.php
+     *
      * @param ResumeInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -867,6 +1045,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::sendDiagnosticInterruptAsync()} .
      *
+     * @example samples/V1/InstancesClient/send_diagnostic_interrupt.php
+     *
      * @param SendDiagnosticInterruptInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -881,8 +1061,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function sendDiagnosticInterrupt(SendDiagnosticInterruptInstanceRequest $request, array $callOptions = []): SendDiagnosticInterruptInstanceResponse
-    {
+    public function sendDiagnosticInterrupt(
+        SendDiagnosticInterruptInstanceRequest $request,
+        array $callOptions = []
+    ): SendDiagnosticInterruptInstanceResponse {
         return $this->startApiCall('SendDiagnosticInterrupt', $request, $callOptions)->wait();
     }
 
@@ -890,6 +1072,8 @@ final class InstancesClient
      * Sets deletion protection on the instance.
      *
      * The async variant is {@see InstancesClient::setDeletionProtectionAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_deletion_protection.php
      *
      * @param SetDeletionProtectionInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -905,8 +1089,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setDeletionProtection(SetDeletionProtectionInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setDeletionProtection(
+        SetDeletionProtectionInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetDeletionProtection', $request, $callOptions)->wait();
     }
 
@@ -914,6 +1100,8 @@ final class InstancesClient
      * Sets the auto-delete flag for a disk attached to an instance.
      *
      * The async variant is {@see InstancesClient::setDiskAutoDeleteAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_disk_auto_delete.php
      *
      * @param SetDiskAutoDeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -929,8 +1117,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setDiskAutoDelete(SetDiskAutoDeleteInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setDiskAutoDelete(
+        SetDiskAutoDeleteInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetDiskAutoDelete', $request, $callOptions)->wait();
     }
 
@@ -938,6 +1128,8 @@ final class InstancesClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see InstancesClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_iam_policy.php
      *
      * @param SetIamPolicyInstanceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -963,6 +1155,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::setLabelsAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_labels.php
+     *
      * @param SetLabelsInstanceRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -987,6 +1181,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::setMachineResourcesAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_machine_resources.php
+     *
      * @param SetMachineResourcesInstanceRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -1001,8 +1197,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setMachineResources(SetMachineResourcesInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setMachineResources(
+        SetMachineResourcesInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetMachineResources', $request, $callOptions)->wait();
     }
 
@@ -1010,6 +1208,8 @@ final class InstancesClient
      * Changes the machine type for a stopped instance to the machine type specified in the request.
      *
      * The async variant is {@see InstancesClient::setMachineTypeAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_machine_type.php
      *
      * @param SetMachineTypeInstanceRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -1035,6 +1235,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::setMetadataAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_metadata.php
+     *
      * @param SetMetadataInstanceRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -1059,6 +1261,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::setMinCpuPlatformAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_min_cpu_platform.php
+     *
      * @param SetMinCpuPlatformInstanceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -1073,8 +1277,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setMinCpuPlatform(SetMinCpuPlatformInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setMinCpuPlatform(
+        SetMinCpuPlatformInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetMinCpuPlatform', $request, $callOptions)->wait();
     }
 
@@ -1082,6 +1288,8 @@ final class InstancesClient
      * Sets name of an instance.
      *
      * The async variant is {@see InstancesClient::setNameAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_name.php
      *
      * @param SetNameInstanceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1107,6 +1315,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::setSchedulingAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_scheduling.php
+     *
      * @param SetSchedulingInstanceRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1131,6 +1341,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::setSecurityPolicyAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_security_policy.php
+     *
      * @param SetSecurityPolicyInstanceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -1145,8 +1357,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSecurityPolicy(SetSecurityPolicyInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setSecurityPolicy(
+        SetSecurityPolicyInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
     }
 
@@ -1154,6 +1368,8 @@ final class InstancesClient
      * Sets the service account on the instance. For more information, read Changing the service account and access scopes for an instance.
      *
      * The async variant is {@see InstancesClient::setServiceAccountAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_service_account.php
      *
      * @param SetServiceAccountInstanceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -1169,8 +1385,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setServiceAccount(SetServiceAccountInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setServiceAccount(
+        SetServiceAccountInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetServiceAccount', $request, $callOptions)->wait();
     }
 
@@ -1179,6 +1397,8 @@ final class InstancesClient
      *
      * The async variant is
      * {@see InstancesClient::setShieldedInstanceIntegrityPolicyAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_shielded_instance_integrity_policy.php
      *
      * @param SetShieldedInstanceIntegrityPolicyInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                             $callOptions {
@@ -1194,8 +1414,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setShieldedInstanceIntegrityPolicy(SetShieldedInstanceIntegrityPolicyInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setShieldedInstanceIntegrityPolicy(
+        SetShieldedInstanceIntegrityPolicyInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetShieldedInstanceIntegrityPolicy', $request, $callOptions)->wait();
     }
 
@@ -1203,6 +1425,8 @@ final class InstancesClient
      * Sets network tags for the specified instance to the data included in the request.
      *
      * The async variant is {@see InstancesClient::setTagsAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_tags.php
      *
      * @param SetTagsInstanceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1228,6 +1452,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::simulateMaintenanceEventAsync()} .
      *
+     * @example samples/V1/InstancesClient/simulate_maintenance_event.php
+     *
      * @param SimulateMaintenanceEventInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -1242,8 +1468,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function simulateMaintenanceEvent(SimulateMaintenanceEventInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function simulateMaintenanceEvent(
+        SimulateMaintenanceEventInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SimulateMaintenanceEvent', $request, $callOptions)->wait();
     }
 
@@ -1251,6 +1479,8 @@ final class InstancesClient
      * Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance.
      *
      * The async variant is {@see InstancesClient::startAsync()} .
+     *
+     * @example samples/V1/InstancesClient/start.php
      *
      * @param StartInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1276,6 +1506,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::startWithEncryptionKeyAsync()} .
      *
+     * @example samples/V1/InstancesClient/start_with_encryption_key.php
+     *
      * @param StartWithEncryptionKeyInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -1290,8 +1522,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startWithEncryptionKey(StartWithEncryptionKeyInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function startWithEncryptionKey(
+        StartWithEncryptionKeyInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StartWithEncryptionKey', $request, $callOptions)->wait();
     }
 
@@ -1299,6 +1533,8 @@ final class InstancesClient
      * Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur VM usage charges while they are stopped. However, resources that the VM is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance.
      *
      * The async variant is {@see InstancesClient::stopAsync()} .
+     *
+     * @example samples/V1/InstancesClient/stop.php
      *
      * @param StopInstanceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1324,6 +1560,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::suspendAsync()} .
      *
+     * @example samples/V1/InstancesClient/suspend.php
+     *
      * @param SuspendInstanceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1348,6 +1586,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/InstancesClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsInstanceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -1362,8 +1602,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsInstanceRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsInstanceRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -1371,6 +1613,8 @@ final class InstancesClient
      * Updates an instance only if the necessary resources are available. This method can update only a specific set of instance properties. See Updating a running instance for a list of updatable instance properties.
      *
      * The async variant is {@see InstancesClient::updateAsync()} .
+     *
+     * @example samples/V1/InstancesClient/update.php
      *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -1396,6 +1640,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::updateAccessConfigAsync()} .
      *
+     * @example samples/V1/InstancesClient/update_access_config.php
+     *
      * @param UpdateAccessConfigInstanceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -1410,8 +1656,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAccessConfig(UpdateAccessConfigInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateAccessConfig(
+        UpdateAccessConfigInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateAccessConfig', $request, $callOptions)->wait();
     }
 
@@ -1419,6 +1667,8 @@ final class InstancesClient
      * Updates the Display config for a VM instance. You can only use this method on a stopped VM instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * The async variant is {@see InstancesClient::updateDisplayDeviceAsync()} .
+     *
+     * @example samples/V1/InstancesClient/update_display_device.php
      *
      * @param UpdateDisplayDeviceInstanceRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -1434,8 +1684,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateDisplayDevice(UpdateDisplayDeviceInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateDisplayDevice(
+        UpdateDisplayDeviceInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateDisplayDevice', $request, $callOptions)->wait();
     }
 
@@ -1443,6 +1695,8 @@ final class InstancesClient
      * Updates an instance's network interface. This method can only update an interface's alias IP range and attached network. See Modifying alias IP ranges for an existing instance for instructions on changing alias IP ranges. See Migrating a VM between networks for instructions on migrating an interface. This method follows PATCH semantics.
      *
      * The async variant is {@see InstancesClient::updateNetworkInterfaceAsync()} .
+     *
+     * @example samples/V1/InstancesClient/update_network_interface.php
      *
      * @param UpdateNetworkInterfaceInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -1458,8 +1712,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateNetworkInterface(UpdateNetworkInterfaceInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateNetworkInterface(
+        UpdateNetworkInterfaceInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateNetworkInterface', $request, $callOptions)->wait();
     }
 
@@ -1468,6 +1724,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::updateShieldedInstanceConfigAsync()}
      * .
+     *
+     * @example samples/V1/InstancesClient/update_shielded_instance_config.php
      *
      * @param UpdateShieldedInstanceConfigInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {
@@ -1483,8 +1741,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateShieldedInstanceConfig(UpdateShieldedInstanceConfigInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateShieldedInstanceConfig(
+        UpdateShieldedInstanceConfigInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateShieldedInstanceConfig', $request, $callOptions)->wait();
     }
 }

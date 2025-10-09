@@ -20,20 +20,20 @@ class Plan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.PaymentPlan payment_plan = 1;</code>
      */
-    private $payment_plan = 0;
+    protected $payment_plan = 0;
     /**
      * Specifies when the payment needs to happen.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.PaymentType payment_type = 2;</code>
      */
-    private $payment_type = 0;
+    protected $payment_type = 0;
     /**
      * Describes how frequently the reseller will be billed, such as
      * once per month.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Period payment_cycle = 3;</code>
      */
-    private $payment_cycle = null;
+    protected $payment_cycle = null;
     /**
      * Present for Offers with a trial period.
      * For trial-only Offers, a paid service needs to start before the trial
@@ -44,14 +44,14 @@ class Plan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Period trial_period = 4;</code>
      */
-    private $trial_period = null;
+    protected $trial_period = null;
     /**
      * Reseller Billing account to charge after an offer transaction.
      * Only present for Google Cloud offers.
      *
      * Generated from protobuf field <code>string billing_account = 5;</code>
      */
-    private $billing_account = '';
+    protected $billing_account = '';
 
     /**
      * Constructor.

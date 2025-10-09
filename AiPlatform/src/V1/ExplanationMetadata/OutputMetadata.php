@@ -21,7 +21,7 @@ class OutputMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_tensor_name = 3;</code>
      */
-    private $output_tensor_name = '';
+    protected $output_tensor_name = '';
     protected $display_name_mapping;
 
     /**

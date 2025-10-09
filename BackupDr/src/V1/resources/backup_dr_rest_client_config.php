@@ -23,6 +23,51 @@
 return [
     'interfaces' => [
         'google.cloud.backupdr.v1.BackupDR' => [
+            'CreateBackupPlan' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupPlans',
+                'body' => 'backup_plan',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'backup_plan_id',
+                ],
+            ],
+            'CreateBackupPlanAssociation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupPlanAssociations',
+                'body' => 'backup_plan_association',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'backup_plan_association_id',
+                ],
+            ],
+            'CreateBackupVault' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupVaults',
+                'body' => 'backup_vault',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'backup_vault_id',
+                ],
+            ],
             'CreateManagementServer' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/managementServers',
@@ -38,9 +83,163 @@ return [
                     'management_server_id',
                 ],
             ],
+            'DeleteBackup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*/dataSources/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackupPlan' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupPlans/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackupPlanAssociation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupPlanAssociations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackupVault' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteManagementServer' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/managementServers/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchBackupPlanAssociationsForResourceType' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupPlanAssociations:fetchForResourceType',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchDataSourceReferencesForResourceType' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dataSourceReferences:fetchForResourceType',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchUsableBackupVaults' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupVaults:fetchUsable',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*/dataSources/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupPlan' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupPlans/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupPlanAssociation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupPlanAssociations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupPlanRevision' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupPlans/*/revisions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupVault' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDataSource' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*/dataSources/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDataSourceReference' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/dataSourceReferences/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -60,6 +259,84 @@ return [
                     ],
                 ],
             ],
+            'InitializeService' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/serviceConfig}:initialize',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupPlanAssociations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupPlanAssociations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupPlanRevisions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/backupPlans/*}/revisions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupPlans' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupPlans',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupVaults' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupVaults',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/backupVaults/*/dataSources/*}/backups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDataSources' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/backupVaults/*}/dataSources',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListManagementServers' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/managementServers',
@@ -69,6 +346,110 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'RestoreBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*/dataSources/*/backups/*}:restore',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'TriggerBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupPlanAssociations/*}:triggerBackup',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateBackup' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup.name=projects/*/locations/*/backupVaults/*/dataSources/*/backups/*}',
+                'body' => 'backup',
+                'placeholders' => [
+                    'backup.name' => [
+                        'getters' => [
+                            'getBackup',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateBackupPlan' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup_plan.name=projects/*/locations/*/backupPlans/*}',
+                'body' => 'backup_plan',
+                'placeholders' => [
+                    'backup_plan.name' => [
+                        'getters' => [
+                            'getBackupPlan',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateBackupPlanAssociation' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup_plan_association.name=projects/*/locations/*/backupPlanAssociations/*}',
+                'body' => 'backup_plan_association',
+                'placeholders' => [
+                    'backup_plan_association.name' => [
+                        'getters' => [
+                            'getBackupPlanAssociation',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateBackupVault' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup_vault.name=projects/*/locations/*/backupVaults/*}',
+                'body' => 'backup_vault',
+                'placeholders' => [
+                    'backup_vault.name' => [
+                        'getters' => [
+                            'getBackupVault',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateDataSource' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{data_source.name=projects/*/locations/*/backupVaults/*/dataSources/*}',
+                'body' => 'data_source',
+                'placeholders' => [
+                    'data_source.name' => [
+                        'getters' => [
+                            'getDataSource',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],
@@ -124,13 +505,6 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/managementServers/*}:testIamPermissions',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/backupVaults/*}:testIamPermissions',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [

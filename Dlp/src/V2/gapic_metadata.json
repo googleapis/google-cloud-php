@@ -80,6 +80,11 @@
                                 "deleteDlpJob"
                             ]
                         },
+                        "DeleteFileStoreDataProfile": {
+                            "methods": [
+                                "deleteFileStoreDataProfile"
+                            ]
+                        },
                         "DeleteInspectTemplate": {
                             "methods": [
                                 "deleteInspectTemplate"
@@ -128,6 +133,11 @@
                         "GetDlpJob": {
                             "methods": [
                                 "getDlpJob"
+                            ]
+                        },
+                        "GetFileStoreDataProfile": {
+                            "methods": [
+                                "getFileStoreDataProfile"
                             ]
                         },
                         "GetInspectTemplate": {
@@ -193,6 +203,11 @@
                         "ListDlpJobs": {
                             "methods": [
                                 "listDlpJobs"
+                            ]
+                        },
+                        "ListFileStoreDataProfiles": {
+                            "methods": [
+                                "listFileStoreDataProfiles"
                             ]
                         },
                         "ListInfoTypes": {

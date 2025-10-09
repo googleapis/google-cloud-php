@@ -20,7 +20,7 @@ class BuildOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.BuildProvenance provenance = 1;</code>
      */
-    private $provenance = null;
+    protected $provenance = null;
     /**
      * Serialized JSON representation of the provenance, used in generating the
      * build signature in the corresponding build note. After verifying the
@@ -35,14 +35,14 @@ class BuildOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string provenance_bytes = 2;</code>
      */
-    private $provenance_bytes = '';
+    protected $provenance_bytes = '';
     /**
      * Deprecated. See InTotoStatement for the replacement.
      * In-toto Provenance representation as defined in spec.
      *
      * Generated from protobuf field <code>.grafeas.v1.InTotoProvenance intoto_provenance = 3;</code>
      */
-    private $intoto_provenance = null;
+    protected $intoto_provenance = null;
     /**
      * In-toto Statement representation as defined in spec.
      * The intoto_statement can contain any type of provenance. The serialized
@@ -51,7 +51,7 @@ class BuildOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.InTotoStatement intoto_statement = 4;</code>
      */
-    private $intoto_statement = null;
+    protected $intoto_statement = null;
     /**
      * In-Toto Slsa Provenance V1 represents a slsa provenance meeting the slsa
      * spec, wrapped in an in-toto statement. This allows for direct
@@ -60,7 +60,7 @@ class BuildOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.InTotoSlsaProvenanceV1 in_toto_slsa_provenance_v1 = 5;</code>
      */
-    private $in_toto_slsa_provenance_v1 = null;
+    protected $in_toto_slsa_provenance_v1 = null;
 
     /**
      * Constructor.

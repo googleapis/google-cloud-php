@@ -22,7 +22,7 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.apikeys.v2.Key key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = null;
+    protected $key = null;
     /**
      * The field mask specifies which fields to be updated as part of this
      * request. All other fields are ignored.
@@ -34,7 +34,7 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\ApiKeys\V2\Key $key        Required. Set the `name` field to the resource name of the API key to be

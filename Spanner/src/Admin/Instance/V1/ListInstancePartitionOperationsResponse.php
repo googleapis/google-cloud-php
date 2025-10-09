@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListInstancePartitionOperationsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of matching instance partition [long-running
-     * operations][google.longrunning.Operation]. Each operation's name will be
+     * The list of matching instance partition long-running operations. Each
+     * operation's name will be
      * prefixed by the instance partition's name. The operation's
-     * [metadata][google.longrunning.Operation.metadata] field type
+     * metadata field type
      * `metadata.type_url` describes the type of the metadata.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
@@ -51,10 +51,10 @@ class ListInstancePartitionOperationsResponse extends \Google\Protobuf\Internal\
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
-     *           The list of matching instance partition [long-running
-     *           operations][google.longrunning.Operation]. Each operation's name will be
+     *           The list of matching instance partition long-running operations. Each
+     *           operation's name will be
      *           prefixed by the instance partition's name. The operation's
-     *           [metadata][google.longrunning.Operation.metadata] field type
+     *           metadata field type
      *           `metadata.type_url` describes the type of the metadata.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
@@ -73,10 +73,10 @@ class ListInstancePartitionOperationsResponse extends \Google\Protobuf\Internal\
     }
 
     /**
-     * The list of matching instance partition [long-running
-     * operations][google.longrunning.Operation]. Each operation's name will be
+     * The list of matching instance partition long-running operations. Each
+     * operation's name will be
      * prefixed by the instance partition's name. The operation's
-     * [metadata][google.longrunning.Operation.metadata] field type
+     * metadata field type
      * `metadata.type_url` describes the type of the metadata.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
@@ -88,10 +88,10 @@ class ListInstancePartitionOperationsResponse extends \Google\Protobuf\Internal\
     }
 
     /**
-     * The list of matching instance partition [long-running
-     * operations][google.longrunning.Operation]. Each operation's name will be
+     * The list of matching instance partition long-running operations. Each
+     * operation's name will be
      * prefixed by the instance partition's name. The operation's
-     * [metadata][google.longrunning.Operation.metadata] field type
+     * metadata field type
      * `metadata.type_url` describes the type of the metadata.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>

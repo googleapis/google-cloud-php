@@ -20,25 +20,25 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the security policy to update.
      *
      * Generated from protobuf field <code>string security_policy = 171082513 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $security_policy = '';
+    protected $security_policy = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 402693443 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $security_policy_rule_resource = null;
+    protected $security_policy_rule_resource = null;
     /**
      * If true, the request will not be committed.
      *
      * Generated from protobuf field <code>optional bool validate_only = 242744629;</code>
      */
-    private $validate_only = null;
+    protected $validate_only = null;
 
     /**
      * @param string                                      $project                    Project ID for this request.

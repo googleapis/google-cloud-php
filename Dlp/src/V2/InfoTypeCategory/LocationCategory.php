@@ -34,17 +34,35 @@ class LocationCategory
      */
     const ARGENTINA = 2;
     /**
+     * The infoType is typically used in Armenia.
+     *
+     * Generated from protobuf enum <code>ARMENIA = 51;</code>
+     */
+    const ARMENIA = 51;
+    /**
      * The infoType is typically used in Australia.
      *
      * Generated from protobuf enum <code>AUSTRALIA = 3;</code>
      */
     const AUSTRALIA = 3;
     /**
+     * The infoType is typically used in Austria.
+     *
+     * Generated from protobuf enum <code>AUSTRIA = 53;</code>
+     */
+    const AUSTRIA = 53;
+    /**
      * The infoType is typically used in Azerbaijan.
      *
      * Generated from protobuf enum <code>AZERBAIJAN = 48;</code>
      */
     const AZERBAIJAN = 48;
+    /**
+     * The infoType is typically used in Belarus.
+     *
+     * Generated from protobuf enum <code>BELARUS = 50;</code>
+     */
+    const BELARUS = 50;
     /**
      * The infoType is typically used in Belgium.
      *
@@ -87,6 +105,12 @@ class LocationCategory
      * Generated from protobuf enum <code>CROATIA = 42;</code>
      */
     const CROATIA = 42;
+    /**
+     * The infoType is typically used in Czechia.
+     *
+     * Generated from protobuf enum <code>CZECHIA = 52;</code>
+     */
+    const CZECHIA = 52;
     /**
      * The infoType is typically used in Denmark.
      *
@@ -314,8 +338,11 @@ class LocationCategory
         self::LOCATION_UNSPECIFIED => 'LOCATION_UNSPECIFIED',
         self::PBGLOBAL => 'GLOBAL',
         self::ARGENTINA => 'ARGENTINA',
+        self::ARMENIA => 'ARMENIA',
         self::AUSTRALIA => 'AUSTRALIA',
+        self::AUSTRIA => 'AUSTRIA',
         self::AZERBAIJAN => 'AZERBAIJAN',
+        self::BELARUS => 'BELARUS',
         self::BELGIUM => 'BELGIUM',
         self::BRAZIL => 'BRAZIL',
         self::CANADA => 'CANADA',
@@ -323,6 +350,7 @@ class LocationCategory
         self::CHINA => 'CHINA',
         self::COLOMBIA => 'COLOMBIA',
         self::CROATIA => 'CROATIA',
+        self::CZECHIA => 'CZECHIA',
         self::DENMARK => 'DENMARK',
         self::FRANCE => 'FRANCE',
         self::FINLAND => 'FINLAND',
@@ -387,6 +415,4 @@ class LocationCategory
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LocationCategory::class, \Google\Cloud\Dlp\V2\InfoTypeCategory_LocationCategory::class);
 

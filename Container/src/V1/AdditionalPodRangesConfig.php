@@ -23,7 +23,7 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
      */
     private $pod_range_names;
     /**
-     * Output only. [Output only] Information for additional pod range.
+     * Output only. Information for additional pod range.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.RangeInfo pod_range_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -38,7 +38,7 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pod_range_names
      *           Name for pod secondary ipv4 range which has the actual range defined ahead.
      *     @type array<\Google\Cloud\Container\V1\RangeInfo>|\Google\Protobuf\Internal\RepeatedField $pod_range_info
-     *           Output only. [Output only] Information for additional pod range.
+     *           Output only. Information for additional pod range.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +73,7 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] Information for additional pod range.
+     * Output only. Information for additional pod range.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.RangeInfo pod_range_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -84,7 +84,7 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] Information for additional pod range.
+     * Output only. Information for additional pod range.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.RangeInfo pod_range_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Container\V1\RangeInfo>|\Google\Protobuf\Internal\RepeatedField $var

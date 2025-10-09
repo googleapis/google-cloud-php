@@ -24,7 +24,7 @@ class AdmissionWhitelistPattern extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name_pattern = 1;</code>
      */
-    private $name_pattern = '';
+    protected $name_pattern = '';
 
     /**
      * Constructor.

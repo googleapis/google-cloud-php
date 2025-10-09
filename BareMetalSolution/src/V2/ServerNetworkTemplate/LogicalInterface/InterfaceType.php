@@ -59,6 +59,4 @@ class InterfaceType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InterfaceType::class, \Google\Cloud\BareMetalSolution\V2\ServerNetworkTemplate_LogicalInterface_InterfaceType::class);
 

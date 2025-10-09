@@ -48,16 +48,3 @@ s.replace(
     + "\n",
     '')
 
-# format generated clients
-subprocess.run([
-    'npm',
-    'exec',
-    '--yes',
-    '--package=@prettier/plugin-php@^0.16',
-    '--',
-    'prettier',
-    '**/BaseClient/*',
-    '--write',
-    '--parser=php',
-    '--single-quote',
-    '--print-width=80'])

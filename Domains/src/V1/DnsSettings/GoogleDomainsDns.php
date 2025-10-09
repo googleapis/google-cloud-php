@@ -33,7 +33,7 @@ class GoogleDomainsDns extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.DnsSettings.DsState ds_state = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ds_state = 0;
+    protected $ds_state = 0;
     /**
      * Output only. The list of DS records published for this domain. The list is
      * automatically populated when `ds_state` is `DS_RECORDS_PUBLISHED`,

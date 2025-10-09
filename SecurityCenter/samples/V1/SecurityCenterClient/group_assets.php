@@ -34,8 +34,8 @@ use Google\Cloud\SecurityCenter\V1\GroupResult;
  * properties.
  *
  * @param string $formattedParent The name of the parent to group the assets by. Its format is
- *                                "organizations/[organization_id]", "folders/[folder_id]", or
- *                                "projects/[project_id]". Please see
+ *                                `organizations/[organization_id]`, `folders/[folder_id]`, or
+ *                                `projects/[project_id]`. Please see
  *                                {@see SecurityCenterClient::projectName()} for help formatting this field.
  * @param string $groupBy         Expression that defines what assets fields to use for grouping.
  *                                The string value should follow SQL syntax: comma separated list of fields.

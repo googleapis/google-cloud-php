@@ -32,8 +32,8 @@ use Google\Cloud\Dialogflow\Cx\V3\GetGeneratorRequest;
  * Retrieves the specified generator.
  *
  * @param string $formattedName The name of the generator.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/generators/<Generator ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`. Please see
  *                              {@see GeneratorsClient::generatorName()} for help formatting this field.
  */
 function get_generator_sample(string $formattedName): void

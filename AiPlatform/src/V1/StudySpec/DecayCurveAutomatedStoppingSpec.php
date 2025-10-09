@@ -28,7 +28,7 @@ class DecayCurveAutomatedStoppingSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_elapsed_duration = 1;</code>
      */
-    private $use_elapsed_duration = false;
+    protected $use_elapsed_duration = false;
 
     /**
      * Constructor.

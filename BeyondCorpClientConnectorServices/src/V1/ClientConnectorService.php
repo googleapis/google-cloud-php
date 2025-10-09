@@ -20,19 +20,19 @@ class ClientConnectorService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. [Output only] Create time stamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. [Output only] Update time stamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. User-provided name.
      * The display name should follow certain format.
@@ -42,25 +42,25 @@ class ClientConnectorService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. The details of the ingress settings.
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService.Ingress ingress = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ingress = null;
+    protected $ingress = null;
     /**
      * Required. The details of the egress settings.
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService.Egress egress = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $egress = null;
+    protected $egress = null;
     /**
      * Output only. The operational state of the ClientConnectorService.
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

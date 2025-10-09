@@ -20,25 +20,25 @@ class NetworkMountPoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Logical interface to detach from.
      *
      * Generated from protobuf field <code>string logical_interface = 2;</code>
      */
-    private $logical_interface = '';
+    protected $logical_interface = '';
     /**
      * Network should be a default gateway.
      *
      * Generated from protobuf field <code>bool default_gateway = 3;</code>
      */
-    private $default_gateway = false;
+    protected $default_gateway = false;
     /**
      * Ip address of the server.
      *
      * Generated from protobuf field <code>string ip_address = 4;</code>
      */
-    private $ip_address = '';
+    protected $ip_address = '';
 
     /**
      * Constructor.

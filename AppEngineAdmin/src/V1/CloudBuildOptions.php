@@ -26,14 +26,14 @@ class CloudBuildOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string app_yaml_path = 1;</code>
      */
-    private $app_yaml_path = '';
+    protected $app_yaml_path = '';
     /**
      * The Cloud Build timeout used as part of any dependent builds performed by
      * version creation. Defaults to 10 minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration cloud_build_timeout = 2;</code>
      */
-    private $cloud_build_timeout = null;
+    protected $cloud_build_timeout = null;
 
     /**
      * Constructor.

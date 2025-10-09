@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Azure credentials
  * For information on our data retention policy for user credentials, see
- * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
+ * [User credentials](/storage-transfer/docs/data-retention#user-credentials).
  *
  * Generated from protobuf message <code>google.storagetransfer.v1.AzureCredentials</code>
  */
@@ -26,7 +26,7 @@ class AzureCredentials extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sas_token = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sas_token = '';
+    protected $sas_token = '';
 
     /**
      * Constructor.

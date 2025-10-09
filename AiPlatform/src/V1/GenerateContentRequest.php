@@ -16,13 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class GenerateContentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the publisher model requested to serve the
-     * prediction. Format:
+     * Required. The fully qualified name of the publisher model or tuned model
+     * endpoint to use.
+     * Publisher model format:
      * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * Tuned model endpoint format:
+     * `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *
      * Generated from protobuf field <code>string model = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Required. The content of the current conversation with the model.
      * For single-turn queries, this is a single instance. For multi-turn queries,
@@ -39,7 +42,17 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content system_instruction = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $system_instruction = null;
+    protected $system_instruction = null;
+    /**
+     * Optional. The name of the cached content used as context to serve the
+     * prediction. Note: only used in explicit caching, where users can have
+     * control over caching (e.g. what content to cache) and enjoy guaranteed cost
+     * savings. Format:
+     * `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
+     *
+     * Generated from protobuf field <code>string cached_content = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $cached_content = '';
     /**
      * Optional. A list of `Tools` the model may use to generate the next
      * response.
@@ -56,7 +69,18 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ToolConfig tool_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $tool_config = null;
+    protected $tool_config = null;
+    /**
+     * Optional. The labels with user-defined metadata for the request. It is used
+     * for billing and reporting only.
+     * Label keys and values can be no longer than 63 characters
+     * (Unicode codepoints) and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. International characters are allowed.
+     * Label values are optional. Label keys must start with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
     /**
      * Optional. Per request settings for blocking unsafe content.
      * Enforced on GenerateContentResponse.candidates.
@@ -65,16 +89,28 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $safety_settings;
     /**
+     * Optional. Settings for prompt and response sanitization using the Model
+     * Armor service. If supplied, safety_settings must not be supplied.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelArmorConfig model_armor_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $model_armor_config = null;
+    /**
      * Optional. Generation config.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig generation_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $generation_config = null;
+    protected $generation_config = null;
 
     /**
-     * @param string                                $model    Required. The name of the publisher model requested to serve the
-     *                                                        prediction. Format:
+     * @param string                                $model    Required. The fully qualified name of the publisher model or tuned model
+     *                                                        endpoint to use.
+     *
+     *                                                        Publisher model format:
      *                                                        `projects/{project}/locations/{location}/publishers/&#42;/models/*`
+     *
+     *                                                        Tuned model endpoint format:
+     *                                                        `projects/{project}/locations/{location}/endpoints/{endpoint}`
      * @param \Google\Cloud\AIPlatform\V1\Content[] $contents Required. The content of the current conversation with the model.
      *
      *                                                        For single-turn queries, this is a single instance. For multi-turn queries,
@@ -99,9 +135,12 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $model
-     *           Required. The name of the publisher model requested to serve the
-     *           prediction. Format:
+     *           Required. The fully qualified name of the publisher model or tuned model
+     *           endpoint to use.
+     *           Publisher model format:
      *           `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     *           Tuned model endpoint format:
+     *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $contents
      *           Required. The content of the current conversation with the model.
      *           For single-turn queries, this is a single instance. For multi-turn queries,
@@ -111,6 +150,12 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The user provided system instructions for the model.
      *           Note: only text should be used in parts and content in each part will be in
      *           a separate paragraph.
+     *     @type string $cached_content
+     *           Optional. The name of the cached content used as context to serve the
+     *           prediction. Note: only used in explicit caching, where users can have
+     *           control over caching (e.g. what content to cache) and enjoy guaranteed cost
+     *           savings. Format:
+     *           `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
      *     @type array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $tools
      *           Optional. A list of `Tools` the model may use to generate the next
      *           response.
@@ -120,9 +165,19 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\ToolConfig $tool_config
      *           Optional. Tool config. This config is shared for all tools provided in the
      *           request.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. The labels with user-defined metadata for the request. It is used
+     *           for billing and reporting only.
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints) and can only contain lowercase letters, numeric
+     *           characters, underscores, and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      *     @type array<\Google\Cloud\AIPlatform\V1\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $safety_settings
      *           Optional. Per request settings for blocking unsafe content.
      *           Enforced on GenerateContentResponse.candidates.
+     *     @type \Google\Cloud\AIPlatform\V1\ModelArmorConfig $model_armor_config
+     *           Optional. Settings for prompt and response sanitization using the Model
+     *           Armor service. If supplied, safety_settings must not be supplied.
      *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig $generation_config
      *           Optional. Generation config.
      * }
@@ -133,9 +188,12 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the publisher model requested to serve the
-     * prediction. Format:
+     * Required. The fully qualified name of the publisher model or tuned model
+     * endpoint to use.
+     * Publisher model format:
      * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * Tuned model endpoint format:
+     * `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *
      * Generated from protobuf field <code>string model = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -146,9 +204,12 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the publisher model requested to serve the
-     * prediction. Format:
+     * Required. The fully qualified name of the publisher model or tuned model
+     * endpoint to use.
+     * Publisher model format:
      * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * Tuned model endpoint format:
+     * `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *
      * Generated from protobuf field <code>string model = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -235,6 +296,40 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The name of the cached content used as context to serve the
+     * prediction. Note: only used in explicit caching, where users can have
+     * control over caching (e.g. what content to cache) and enjoy guaranteed cost
+     * savings. Format:
+     * `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
+     *
+     * Generated from protobuf field <code>string cached_content = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCachedContent()
+    {
+        return $this->cached_content;
+    }
+
+    /**
+     * Optional. The name of the cached content used as context to serve the
+     * prediction. Note: only used in explicit caching, where users can have
+     * control over caching (e.g. what content to cache) and enjoy guaranteed cost
+     * savings. Format:
+     * `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
+     *
+     * Generated from protobuf field <code>string cached_content = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCachedContent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cached_content = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. A list of `Tools` the model may use to generate the next
      * response.
      * A `Tool` is a piece of code that enables the system to interact with
@@ -307,6 +402,42 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The labels with user-defined metadata for the request. It is used
+     * for billing and reporting only.
+     * Label keys and values can be no longer than 63 characters
+     * (Unicode codepoints) and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. International characters are allowed.
+     * Label values are optional. Label keys must start with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. The labels with user-defined metadata for the request. It is used
+     * for billing and reporting only.
+     * Label keys and values can be no longer than 63 characters
+     * (Unicode codepoints) and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. International characters are allowed.
+     * Label values are optional. Label keys must start with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
      * Optional. Per request settings for blocking unsafe content.
      * Enforced on GenerateContentResponse.candidates.
      *
@@ -330,6 +461,44 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\SafetySetting::class);
         $this->safety_settings = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Settings for prompt and response sanitization using the Model
+     * Armor service. If supplied, safety_settings must not be supplied.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelArmorConfig model_armor_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ModelArmorConfig|null
+     */
+    public function getModelArmorConfig()
+    {
+        return $this->model_armor_config;
+    }
+
+    public function hasModelArmorConfig()
+    {
+        return isset($this->model_armor_config);
+    }
+
+    public function clearModelArmorConfig()
+    {
+        unset($this->model_armor_config);
+    }
+
+    /**
+     * Optional. Settings for prompt and response sanitization using the Model
+     * Armor service. If supplied, safety_settings must not be supplied.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelArmorConfig model_armor_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ModelArmorConfig $var
+     * @return $this
+     */
+    public function setModelArmorConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ModelArmorConfig::class);
+        $this->model_armor_config = $var;
 
         return $this;
     }

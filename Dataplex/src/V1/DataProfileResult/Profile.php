@@ -16,9 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Profile extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of fields with structural and profile information for each field.
+     * Output only. List of fields with structural and profile information for
+     * each field.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field fields = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field fields = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $fields;
 
@@ -29,7 +30,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field>|\Google\Protobuf\Internal\RepeatedField $fields
-     *           List of fields with structural and profile information for each field.
+     *           Output only. List of fields with structural and profile information for
+     *           each field.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +40,10 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of fields with structural and profile information for each field.
+     * Output only. List of fields with structural and profile information for
+     * each field.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field fields = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field fields = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFields()
@@ -49,9 +52,10 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of fields with structural and profile information for each field.
+     * Output only. List of fields with structural and profile information for
+     * each field.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field fields = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field fields = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

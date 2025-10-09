@@ -21,7 +21,7 @@ class ReadTensorboardTimeSeriesDataResponse extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TimeSeriesData time_series_data = 1;</code>
      */
-    private $time_series_data = null;
+    protected $time_series_data = null;
 
     /**
      * Constructor.

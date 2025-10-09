@@ -20,19 +20,19 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.AbortInfo.Cause cause = 1;</code>
      */
-    private $cause = 0;
+    protected $cause = 0;
     /**
      * URI of the resource that caused the abort.
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      */
-    private $resource_uri = '';
+    protected $resource_uri = '';
     /**
      * IP address that caused the abort.
      *
      * Generated from protobuf field <code>string ip_address = 4 [(.google.api.field_info) = {</code>
      */
-    private $ip_address = '';
+    protected $ip_address = '';
     /**
      * List of project IDs the user specified in the request but lacks access to.
      * In this case, analysis is aborted with the PERMISSION_DENIED cause.

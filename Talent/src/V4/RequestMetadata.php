@@ -34,7 +34,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string domain = 1;</code>
      */
-    private $domain = '';
+    protected $domain = '';
     /**
      * Required if
      * [allow_missing_ids][google.cloud.talent.v4.RequestMetadata.allow_missing_ids]
@@ -50,7 +50,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session_id = 2;</code>
      */
-    private $session_id = '';
+    protected $session_id = '';
     /**
      * Required if
      * [allow_missing_ids][google.cloud.talent.v4.RequestMetadata.allow_missing_ids]
@@ -66,7 +66,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_id = 3;</code>
      */
-    private $user_id = '';
+    protected $user_id = '';
     /**
      * Only set when any of
      * [domain][google.cloud.talent.v4.RequestMetadata.domain],
@@ -80,14 +80,14 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_missing_ids = 4;</code>
      */
-    private $allow_missing_ids = false;
+    protected $allow_missing_ids = false;
     /**
      * The type of device used by the job seeker at the time of the call to the
      * service.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.DeviceInfo device_info = 5;</code>
      */
-    private $device_info = null;
+    protected $device_info = null;
 
     /**
      * Constructor.

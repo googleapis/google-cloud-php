@@ -21,13 +21,13 @@ class CreateMigrationJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the instance to create.
      *
      * Generated from protobuf field <code>string migration_job_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $migration_job_id = '';
+    protected $migration_job_id = '';
     /**
      * Required. Represents a [migration
      * job](https://cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.migrationJobs)
@@ -35,7 +35,7 @@ class CreateMigrationJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob migration_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $migration_job = null;
+    protected $migration_job = null;
     /**
      * Optional. A unique ID used to identify the request. If the server receives
      * two requests with the same ID, then the second request is ignored.
@@ -45,7 +45,7 @@ class CreateMigrationJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                 $parent         Required. The parent which owns this collection of migration jobs. Please see

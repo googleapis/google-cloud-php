@@ -20,7 +20,7 @@ class Property extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The CEL expression for the custom output. A resource property can be
      * specified to return the value of the property or a text string enclosed
@@ -28,7 +28,7 @@ class Property extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Expr value_expression = 2;</code>
      */
-    private $value_expression = null;
+    protected $value_expression = null;
 
     /**
      * Constructor.
@@ -117,6 +117,4 @@ class Property extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Property::class, \Google\Cloud\SecurityCenter\V1\CustomConfig_CustomOutputSpec_Property::class);
 

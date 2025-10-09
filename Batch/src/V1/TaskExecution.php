@@ -29,7 +29,7 @@ class TaskExecution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 exit_code = 1;</code>
      */
-    private $exit_code = 0;
+    protected $exit_code = 0;
 
     /**
      * Constructor.

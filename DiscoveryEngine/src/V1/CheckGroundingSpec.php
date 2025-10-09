@@ -25,6 +25,12 @@ class CheckGroundingSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional double citation_threshold = 1;</code>
      */
     protected $citation_threshold = null;
+    /**
+     * The control flag that enables claim-level grounding score in the response.
+     *
+     * Generated from protobuf field <code>optional bool enable_claim_level_score = 4;</code>
+     */
+    protected $enable_claim_level_score = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class CheckGroundingSpec extends \Google\Protobuf\Internal\Message
      *           will lead to fewer but very strong citations, while choosing a lower
      *           threshold may lead to more but somewhat weaker citations. If unset, the
      *           threshold will default to 0.6.
+     *     @type bool $enable_claim_level_score
+     *           The control flag that enables claim-level grounding score in the response.
      * }
      */
     public function __construct($data = NULL) {
@@ -85,6 +93,42 @@ class CheckGroundingSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->citation_threshold = $var;
+
+        return $this;
+    }
+
+    /**
+     * The control flag that enables claim-level grounding score in the response.
+     *
+     * Generated from protobuf field <code>optional bool enable_claim_level_score = 4;</code>
+     * @return bool
+     */
+    public function getEnableClaimLevelScore()
+    {
+        return isset($this->enable_claim_level_score) ? $this->enable_claim_level_score : false;
+    }
+
+    public function hasEnableClaimLevelScore()
+    {
+        return isset($this->enable_claim_level_score);
+    }
+
+    public function clearEnableClaimLevelScore()
+    {
+        unset($this->enable_claim_level_score);
+    }
+
+    /**
+     * The control flag that enables claim-level grounding score in the response.
+     *
+     * Generated from protobuf field <code>optional bool enable_claim_level_score = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableClaimLevelScore($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_claim_level_score = $var;
 
         return $this;
     }

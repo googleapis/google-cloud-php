@@ -21,7 +21,7 @@ class SafetyMetricConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double safety_threshold = 1;</code>
      */
-    private $safety_threshold = 0.0;
+    protected $safety_threshold = 0.0;
     /**
      * Desired minimum fraction of safe trials (over total number of trials)
      * that should be targeted by the algorithm at any time during the
@@ -32,7 +32,7 @@ class SafetyMetricConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double desired_min_safe_trials_fraction = 2;</code>
      */
-    private $desired_min_safe_trials_fraction = null;
+    protected $desired_min_safe_trials_fraction = null;
 
     /**
      * Constructor.

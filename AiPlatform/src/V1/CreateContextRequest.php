@@ -23,13 +23,13 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Context to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Context context = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $context = null;
+    protected $context = null;
     /**
      * The {context} portion of the resource name with the format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`.
@@ -41,7 +41,7 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string context_id = 3;</code>
      */
-    private $context_id = '';
+    protected $context_id = '';
 
     /**
      * @param string                              $parent    Required. The resource name of the MetadataStore where the Context should

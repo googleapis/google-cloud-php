@@ -26,45 +26,45 @@ class Access extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string principal_email = 1;</code>
      */
-    private $principal_email = '';
+    protected $principal_email = '';
     /**
      * Caller's IP address, such as "1.1.1.1".
      *
      * Generated from protobuf field <code>string caller_ip = 2;</code>
      */
-    private $caller_ip = '';
+    protected $caller_ip = '';
     /**
      * The caller IP's geolocation, which identifies where the call came from.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Geolocation caller_ip_geo = 3;</code>
      */
-    private $caller_ip_geo = null;
+    protected $caller_ip_geo = null;
     /**
      * Type of user agent associated with the finding. For example, an operating
      * system shell or an embedded or standalone application.
      *
      * Generated from protobuf field <code>string user_agent_family = 4;</code>
      */
-    private $user_agent_family = '';
+    protected $user_agent_family = '';
     /**
      * The caller's user agent string associated with the finding.
      *
      * Generated from protobuf field <code>string user_agent = 12;</code>
      */
-    private $user_agent = '';
+    protected $user_agent = '';
     /**
      * This is the API service that the service account made a call to, e.g.
      * "iam.googleapis.com"
      *
      * Generated from protobuf field <code>string service_name = 5;</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * The method that the service account called, e.g. "SetIamPolicy".
      *
      * Generated from protobuf field <code>string method_name = 6;</code>
      */
-    private $method_name = '';
+    protected $method_name = '';
     /**
      * A string that represents the principal_subject that is associated with the
      * identity. Unlike `principal_email`, `principal_subject` supports principals
@@ -77,7 +77,7 @@ class Access extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string principal_subject = 7;</code>
      */
-    private $principal_subject = '';
+    protected $principal_subject = '';
     /**
      * The name of the service account key that was used to create or exchange
      * credentials when authenticating the service account that made the request.
@@ -86,7 +86,7 @@ class Access extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_key_name = 8;</code>
      */
-    private $service_account_key_name = '';
+    protected $service_account_key_name = '';
     /**
      * The identity delegation history of an authenticated service account that
      * made the request. The `serviceAccountDelegationInfo[]` object contains
@@ -106,7 +106,7 @@ class Access extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_name = 11;</code>
      */
-    private $user_name = '';
+    protected $user_name = '';
 
     /**
      * Constructor.

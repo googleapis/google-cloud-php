@@ -33,13 +33,26 @@ use Google\Apps\Chat\V1\Membership;
  * [Get details about a user's or Google Chat app's
  * membership](https://developers.google.com/workspace/chat/get-members).
  *
- * Requires
- * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
- * Supports
- * [app
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+ *
+ * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
- * and [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.bot`
+ * - `https://www.googleapis.com/auth/chat.app.memberships` (requires
+ * [administrator approval](https://support.google.com/a?p=chat-app-auth))
+ *
+ * - [User
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.memberships.readonly`
+ * - `https://www.googleapis.com/auth/chat.memberships`
+ * - User authentication grants administrator privileges when an
+ * administrator account authenticates, `use_admin_access` is `true`, and
+ * one of the following authorization scopes is used:
+ * - `https://www.googleapis.com/auth/chat.admin.memberships.readonly`
+ * - `https://www.googleapis.com/auth/chat.admin.memberships`
  *
  * @param string $formattedName Resource name of the membership to retrieve.
  *
@@ -49,9 +62,7 @@ use Google\Apps\Chat\V1\Membership;
  *
  *                              Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
  *
- *                              When [authenticated as a
- *                              user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
- *                              you can use the user's email as an alias for `{member}`. For example,
+ *                              You can use the user's email as an alias for `{member}`. For example,
  *                              `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
  *                              email of the Google Chat user. Please see
  *                              {@see ChatServiceClient::membershipName()} for help formatting this field.

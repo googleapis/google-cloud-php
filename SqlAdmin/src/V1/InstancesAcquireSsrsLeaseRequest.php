@@ -20,7 +20,7 @@ class InstancesAcquireSsrsLeaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.AcquireSsrsLeaseContext acquire_ssrs_lease_context = 1;</code>
      */
-    private $acquire_ssrs_lease_context = null;
+    protected $acquire_ssrs_lease_context = null;
 
     /**
      * Constructor.

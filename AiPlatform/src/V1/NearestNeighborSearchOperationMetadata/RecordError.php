@@ -18,7 +18,7 @@ class RecordError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NearestNeighborSearchOperationMetadata.RecordError.RecordErrorType error_type = 1;</code>
      */
-    private $error_type = 0;
+    protected $error_type = 0;
     /**
      * A human-readable message that is shown to the user to help them fix the
      * error. Note that this message may change from time to time, your code
@@ -26,25 +26,25 @@ class RecordError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string error_message = 2;</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
     /**
      * Cloud Storage URI pointing to the original file in user's bucket.
      *
      * Generated from protobuf field <code>string source_gcs_uri = 3;</code>
      */
-    private $source_gcs_uri = '';
+    protected $source_gcs_uri = '';
     /**
      * Empty if the embedding id is failed to parse.
      *
      * Generated from protobuf field <code>string embedding_id = 4;</code>
      */
-    private $embedding_id = '';
+    protected $embedding_id = '';
     /**
      * The original content of this record.
      *
      * Generated from protobuf field <code>string raw_record = 5;</code>
      */
-    private $raw_record = '';
+    protected $raw_record = '';
 
     /**
      * Constructor.

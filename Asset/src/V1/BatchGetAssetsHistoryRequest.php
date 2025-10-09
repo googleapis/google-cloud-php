@@ -22,7 +22,7 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * A list of the full names of the assets.
      * See: https://cloud.google.com/asset-inventory/docs/resource-name-format
@@ -39,7 +39,7 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.ContentType content_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $content_type = 0;
+    protected $content_type = 0;
     /**
      * Optional. The time window for the asset history. Both start_time and
      * end_time are optional and if set, it must be after the current time minus
@@ -50,7 +50,7 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.TimeWindow read_time_window = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $read_time_window = null;
+    protected $read_time_window = null;
     /**
      * Optional. A list of relationship types to output, for example:
      * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if

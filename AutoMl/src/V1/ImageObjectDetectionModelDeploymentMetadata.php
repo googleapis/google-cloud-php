@@ -24,7 +24,7 @@ class ImageObjectDetectionModelDeploymentMetadata extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>int64 node_count = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $node_count = 0;
+    protected $node_count = 0;
 
     /**
      * Constructor.

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ModuleSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The intended state of enablement for the module at its level of
+     * Optional. The intended enablement state for the module at its level of
      * the resource hierarchy.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SecurityCenterService.EnablementState intended_enablement_state = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -24,11 +24,10 @@ class ModuleSettings extends \Google\Protobuf\Internal\Message
     protected $intended_enablement_state = 0;
     /**
      * Output only. The effective enablement state for the module at its level
-     * of the resource hierarchy. If the intended state is set to INHERITED, the
-     * effective state will be inherited from the enablement state of an
-     * ancestor. This state may
-     * differ from the intended enablement state due to billing eligibility or
-     * onboarding status.
+     * of the resource hierarchy. If the intended state is set to `INHERITED`,
+     * the effective state will be inherited from the enablement state of an
+     * ancestor. This state may differ from the intended enablement state due to
+     * billing eligibility or onboarding status.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SecurityCenterService.EnablementState effective_enablement_state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -41,15 +40,14 @@ class ModuleSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $intended_enablement_state
-     *           Optional. The intended state of enablement for the module at its level of
+     *           Optional. The intended enablement state for the module at its level of
      *           the resource hierarchy.
      *     @type int $effective_enablement_state
      *           Output only. The effective enablement state for the module at its level
-     *           of the resource hierarchy. If the intended state is set to INHERITED, the
-     *           effective state will be inherited from the enablement state of an
-     *           ancestor. This state may
-     *           differ from the intended enablement state due to billing eligibility or
-     *           onboarding status.
+     *           of the resource hierarchy. If the intended state is set to `INHERITED`,
+     *           the effective state will be inherited from the enablement state of an
+     *           ancestor. This state may differ from the intended enablement state due to
+     *           billing eligibility or onboarding status.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +56,7 @@ class ModuleSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The intended state of enablement for the module at its level of
+     * Optional. The intended enablement state for the module at its level of
      * the resource hierarchy.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SecurityCenterService.EnablementState intended_enablement_state = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -70,7 +68,7 @@ class ModuleSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The intended state of enablement for the module at its level of
+     * Optional. The intended enablement state for the module at its level of
      * the resource hierarchy.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SecurityCenterService.EnablementState intended_enablement_state = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -87,11 +85,10 @@ class ModuleSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The effective enablement state for the module at its level
-     * of the resource hierarchy. If the intended state is set to INHERITED, the
-     * effective state will be inherited from the enablement state of an
-     * ancestor. This state may
-     * differ from the intended enablement state due to billing eligibility or
-     * onboarding status.
+     * of the resource hierarchy. If the intended state is set to `INHERITED`,
+     * the effective state will be inherited from the enablement state of an
+     * ancestor. This state may differ from the intended enablement state due to
+     * billing eligibility or onboarding status.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SecurityCenterService.EnablementState effective_enablement_state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -103,11 +100,10 @@ class ModuleSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The effective enablement state for the module at its level
-     * of the resource hierarchy. If the intended state is set to INHERITED, the
-     * effective state will be inherited from the enablement state of an
-     * ancestor. This state may
-     * differ from the intended enablement state due to billing eligibility or
-     * onboarding status.
+     * of the resource hierarchy. If the intended state is set to `INHERITED`,
+     * the effective state will be inherited from the enablement state of an
+     * ancestor. This state may differ from the intended enablement state due to
+     * billing eligibility or onboarding status.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SecurityCenterService.EnablementState effective_enablement_state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

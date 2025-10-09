@@ -20,13 +20,13 @@ class HierarchyControllerDeploymentState extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState hnc = 1;</code>
      */
-    private $hnc = 0;
+    protected $hnc = 0;
     /**
      * The deployment state for Hierarchy Controller extension (e.g. v0.7.0-hc.1)
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState extension = 2;</code>
      */
-    private $extension = 0;
+    protected $extension = 0;
 
     /**
      * Constructor.

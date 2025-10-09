@@ -30,8 +30,8 @@ use Google\Apps\Meet\V2beta\ListRecordingsRequest;
 use Google\Apps\Meet\V2beta\Recording;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
- * Lists the recording resources from the conference record.
+ * Lists the recording resources from the conference record. By default,
+ * ordered by start time and in ascending order.
  *
  * @param string $formattedParent Format: `conferenceRecords/{conference_record}`
  *                                Please see {@see ConferenceRecordsServiceClient::conferenceRecordName()} for help formatting this field.

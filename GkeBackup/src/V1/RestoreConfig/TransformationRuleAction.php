@@ -21,28 +21,28 @@ class TransformationRuleAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.TransformationRuleAction.Op op = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $op = 0;
+    protected $op = 0;
     /**
      * Optional. A string containing a JSON Pointer value that references the
      * location in the target document to move the value from.
      *
      * Generated from protobuf field <code>string from_path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $from_path = '';
+    protected $from_path = '';
     /**
      * Optional. A string containing a JSON-Pointer value that references a
      * location within the target document where the operation is performed.
      *
      * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Optional. A string that specifies the desired value in string format to
      * use for transformation.
      *
      * Generated from protobuf field <code>string value = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.

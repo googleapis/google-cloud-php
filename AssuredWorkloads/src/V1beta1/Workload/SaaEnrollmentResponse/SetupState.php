@@ -59,6 +59,4 @@ class SetupState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SetupState::class, \Google\Cloud\AssuredWorkloads\V1beta1\Workload_SaaEnrollmentResponse_SetupState::class);
 

@@ -19,15 +19,27 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      */
-    private $display_name = null;
+    protected $display_name = null;
     /**
      * [Output Only] The name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
-     * The rules that apply to the network.
+     * [Output only] The packet mirroring rules that apply to the network.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
+     */
+    private $packet_mirroring_rules;
+    /**
+     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     */
+    protected $priority = null;
+    /**
+     * [Output only] The rules that apply to the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
      */
@@ -38,7 +50,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.
@@ -50,8 +62,12 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      *           [Output Only] The display name of the firewall policy.
      *     @type string $name
      *           [Output Only] The name of the firewall policy.
+     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $packet_mirroring_rules
+     *           [Output only] The packet mirroring rules that apply to the network.
+     *     @type int $priority
+     *           [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
-     *           The rules that apply to the network.
+     *           [Output only] The rules that apply to the network.
      *     @type string $type
      *           [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      *           Check the Type enum for the list of possible values.
@@ -135,7 +151,69 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * The rules that apply to the network.
+     * [Output only] The packet mirroring rules that apply to the network.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPacketMirroringRules()
+    {
+        return $this->packet_mirroring_rules;
+    }
+
+    /**
+     * [Output only] The packet mirroring rules that apply to the network.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
+     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPacketMirroringRules($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\FirewallPolicyRule::class);
+        $this->packet_mirroring_rules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * @return int
+     */
+    public function getPriority()
+    {
+        return isset($this->priority) ? $this->priority : 0;
+    }
+
+    public function hasPriority()
+    {
+        return isset($this->priority);
+    }
+
+    public function clearPriority()
+    {
+        unset($this->priority);
+    }
+
+    /**
+     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPriority($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] The rules that apply to the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -146,7 +224,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * The rules that apply to the network.
+     * [Output only] The rules that apply to the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
      * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var

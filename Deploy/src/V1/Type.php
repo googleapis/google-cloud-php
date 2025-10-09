@@ -56,6 +56,12 @@ class Type
      */
     const TYPE_ROLLOUT_UPDATE = 7;
     /**
+     * Deploy Policy evaluation.
+     *
+     * Generated from protobuf enum <code>TYPE_DEPLOY_POLICY_EVALUATION = 8;</code>
+     */
+    const TYPE_DEPLOY_POLICY_EVALUATION = 8;
+    /**
      * Deprecated: This field is never used. Use release_render log type instead.
      *
      * Generated from protobuf enum <code>TYPE_RENDER_STATUES_CHANGE = 2 [deprecated = true];</code>
@@ -70,6 +76,7 @@ class Type
         self::TYPE_RESTRICTION_VIOLATED => 'TYPE_RESTRICTION_VIOLATED',
         self::TYPE_RESOURCE_DELETED => 'TYPE_RESOURCE_DELETED',
         self::TYPE_ROLLOUT_UPDATE => 'TYPE_ROLLOUT_UPDATE',
+        self::TYPE_DEPLOY_POLICY_EVALUATION => 'TYPE_DEPLOY_POLICY_EVALUATION',
         self::TYPE_RENDER_STATUES_CHANGE => 'TYPE_RENDER_STATUES_CHANGE',
     ];
 

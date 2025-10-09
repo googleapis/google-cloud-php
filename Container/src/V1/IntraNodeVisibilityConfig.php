@@ -21,7 +21,7 @@ class IntraNodeVisibilityConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
 
     /**
      * Constructor.

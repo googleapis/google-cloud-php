@@ -16,11 +16,11 @@ class RunDetails extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.grafeas.v1.InTotoSlsaProvenanceV1.ProvenanceBuilder builder = 1;</code>
      */
-    private $builder = null;
+    protected $builder = null;
     /**
      * Generated from protobuf field <code>.grafeas.v1.InTotoSlsaProvenanceV1.BuildMetadata metadata = 2;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.InTotoSlsaProvenanceV1.ResourceDescriptor byproducts = 3;</code>
      */

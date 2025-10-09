@@ -29,6 +29,7 @@ namespace Google\Cloud\SecretManager\V1beta2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -59,6 +60,7 @@ use Google\Cloud\SecretManager\V1beta2\Secret;
 use Google\Cloud\SecretManager\V1beta2\SecretVersion;
 use Google\Cloud\SecretManager\V1beta2\UpdateSecretRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Secret Manager Service
@@ -79,23 +81,23 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface accessSecretVersionAsync(AccessSecretVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface addSecretVersionAsync(AddSecretVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSecretAsync(CreateSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSecretAsync(DeleteSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface destroySecretVersionAsync(DestroySecretVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface disableSecretVersionAsync(DisableSecretVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface enableSecretVersionAsync(EnableSecretVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSecretAsync(GetSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSecretVersionAsync(GetSecretVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSecretVersionsAsync(ListSecretVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSecretsAsync(ListSecretsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSecretAsync(UpdateSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessSecretVersionResponse> accessSecretVersionAsync(AccessSecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecretVersion> addSecretVersionAsync(AddSecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Secret> createSecretAsync(CreateSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSecretAsync(DeleteSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecretVersion> destroySecretVersionAsync(DestroySecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecretVersion> disableSecretVersionAsync(DisableSecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecretVersion> enableSecretVersionAsync(EnableSecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Secret> getSecretAsync(GetSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecretVersion> getSecretVersionAsync(GetSecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSecretVersionsAsync(ListSecretVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSecretsAsync(ListSecretsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Secret> updateSecretAsync(UpdateSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class SecretManagerServiceClient
 {
@@ -344,8 +346,8 @@ final class SecretManagerServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -353,7 +355,7 @@ final class SecretManagerServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -361,20 +363,29 @@ final class SecretManagerServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'secretmanager.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\SecretManager\V1beta2\SecretManagerServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new SecretManagerServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -408,13 +419,18 @@ final class SecretManagerServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);

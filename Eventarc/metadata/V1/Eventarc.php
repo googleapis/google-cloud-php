@@ -21,15 +21,19 @@ class Eventarc
         \GPBMetadata\Google\Cloud\Eventarc\V1\Channel::initOnce();
         \GPBMetadata\Google\Cloud\Eventarc\V1\ChannelConnection::initOnce();
         \GPBMetadata\Google\Cloud\Eventarc\V1\Discovery::initOnce();
+        \GPBMetadata\Google\Cloud\Eventarc\V1\Enrollment::initOnce();
+        \GPBMetadata\Google\Cloud\Eventarc\V1\GoogleApiSource::initOnce();
         \GPBMetadata\Google\Cloud\Eventarc\V1\GoogleChannelConfig::initOnce();
+        \GPBMetadata\Google\Cloud\Eventarc\V1\MessageBus::initOnce();
+        \GPBMetadata\Google\Cloud\Eventarc\V1\Pipeline::initOnce();
         \GPBMetadata\Google\Cloud\Eventarc\V1\Trigger::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∞<
-\'google/cloud/eventarc/v1/eventarc.protogoogle.cloud.eventarc.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/eventarc/v1/channel.proto1google/cloud/eventarc/v1/channel_connection.proto(google/cloud/eventarc/v1/discovery.proto4google/cloud/eventarc/v1/google_channel_config.proto&google/cloud/eventarc/v1/trigger.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"J
+”Å
+\'google/cloud/eventarc/v1/eventarc.protogoogle.cloud.eventarc.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/eventarc/v1/channel.proto1google/cloud/eventarc/v1/channel_connection.proto(google/cloud/eventarc/v1/discovery.proto)google/cloud/eventarc/v1/enrollment.proto0google/cloud/eventarc/v1/google_api_source.proto4google/cloud/eventarc/v1/google_channel_config.proto*google/cloud/eventarc/v1/message_bus.proto\'google/cloud/eventarc/v1/pipeline.proto&google/cloud/eventarc/v1/trigger.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"J
 GetTriggerRequest5
 name (	B\'‡A˙A!
 eventarc.googleapis.com/Trigger"ó
@@ -49,18 +53,18 @@ page_token (	
 trigger (2!.google.cloud.eventarc.v1.TriggerB‡A
 
 trigger_id (	B‡A
-validate_only (B‡A"Æ
+validate_only (B‡A"Æ
 UpdateTriggerRequest2
 trigger (2!.google.cloud.eventarc.v1.Trigger/
 update_mask (2.google.protobuf.FieldMask
 allow_missing (
-validate_only (B‡A"é
+validate_only (B‡A"é
 DeleteTriggerRequest5
 name (	B\'‡A˙A!
 eventarc.googleapis.com/Trigger
 etag (	
 allow_missing (
-validate_only (B‡A"J
+validate_only (B‡A"J
 GetChannelRequest5
 name (	B\'‡A˙A!
 eventarc.googleapis.com/Channel"á
@@ -79,15 +83,15 @@ page_token (	
 channel (2!.google.cloud.eventarc.v1.ChannelB‡A
 
 channel_id (	B‡A
-validate_only (B‡A"ó
+validate_only (B‡A"ó
 UpdateChannelRequest2
 channel (2!.google.cloud.eventarc.v1.Channel/
 update_mask (2.google.protobuf.FieldMask
-validate_only (B‡A"i
+validate_only (B‡A"i
 DeleteChannelRequest5
 name (	B\'‡A˙A!
 eventarc.googleapis.com/Channel
-validate_only (B‡A"L
+validate_only (B‡A"L
 GetProviderRequest6
 name (	B(‡A˙A"
  eventarc.googleapis.com/Provider"ô
@@ -126,7 +130,139 @@ page_token (	"ò
 update_mask (2.google.protobuf.FieldMask"b
 GetGoogleChannelConfigRequestA
 name (	B3‡A˙A-
-+eventarc.googleapis.com/GoogleChannelConfig"Ä
++eventarc.googleapis.com/GoogleChannelConfig"P
+GetMessageBusRequest8
+name (	B*‡A˙A$
+"eventarc.googleapis.com/MessageBus"≤
+ListMessageBusesRequest:
+parent (	B*‡A˙A$"eventarc.googleapis.com/MessageBus
+	page_size (B‡A
+
+page_token (	B‡A
+order_by (	B‡A
+filter (	B‡A"Ö
+ListMessageBusesResponse;
+message_buses (2$.google.cloud.eventarc.v1.MessageBus
+next_page_token (	
+unreachable (	"è
+ ListMessageBusEnrollmentsRequest:
+parent (	B*‡A˙A$
+"eventarc.googleapis.com/MessageBus
+	page_size (B‡A
+
+page_token (	B‡A"f
+!ListMessageBusEnrollmentsResponse
+enrollments (	
+next_page_token (	
+unreachable (	"Œ
+CreateMessageBusRequest:
+parent (	B*‡A˙A$"eventarc.googleapis.com/MessageBus>
+message_bus (2$.google.cloud.eventarc.v1.MessageBusB‡A
+message_bus_id (	B‡A
+validate_only (B‡A"«
+UpdateMessageBusRequest>
+message_bus (2$.google.cloud.eventarc.v1.MessageBusB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A
+allow_missing (B‡A
+validate_only (B‡A"û
+DeleteMessageBusRequest8
+name (	B*‡A˙A$
+"eventarc.googleapis.com/MessageBus
+etag (	B‡A
+allow_missing (B‡A
+validate_only (B‡A"P
+GetEnrollmentRequest8
+name (	B*‡A˙A$
+"eventarc.googleapis.com/Enrollment"±
+ListEnrollmentsRequest:
+parent (	B*‡A˙A$"eventarc.googleapis.com/Enrollment
+	page_size (B‡A
+
+page_token (	B‡A
+order_by (	B‡A
+filter (	B‡A"Ç
+ListEnrollmentsResponse9
+enrollments (2$.google.cloud.eventarc.v1.Enrollment
+next_page_token (	
+unreachable (	"Ã
+CreateEnrollmentRequest:
+parent (	B*‡A˙A$"eventarc.googleapis.com/Enrollment=
+
+enrollment (2$.google.cloud.eventarc.v1.EnrollmentB‡A
+enrollment_id (	B‡A
+validate_only (B‡A"∆
+UpdateEnrollmentRequest=
+
+enrollment (2$.google.cloud.eventarc.v1.EnrollmentB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A
+allow_missing (B‡A
+validate_only (B‡A"û
+DeleteEnrollmentRequest8
+name (	B*‡A˙A$
+"eventarc.googleapis.com/Enrollment
+etag (	B‡A
+allow_missing (B‡A
+validate_only (B‡A"L
+GetPipelineRequest6
+name (	B(‡A˙A"
+ eventarc.googleapis.com/Pipeline"≠
+ListPipelinesRequest8
+parent (	B(‡A˙A" eventarc.googleapis.com/Pipeline
+	page_size (B‡A
+
+page_token (	B‡A
+order_by (	B‡A
+filter (	B‡A"|
+ListPipelinesResponse5
+	pipelines (2".google.cloud.eventarc.v1.Pipeline
+next_page_token (	
+unreachable (	"¬
+CreatePipelineRequest8
+parent (	B(‡A˙A" eventarc.googleapis.com/Pipeline9
+pipeline (2".google.cloud.eventarc.v1.PipelineB‡A
+pipeline_id (	B‡A
+validate_only (B‡A"¿
+UpdatePipelineRequest9
+pipeline (2".google.cloud.eventarc.v1.PipelineB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A
+allow_missing (B‡A
+validate_only (B‡A"ö
+DeletePipelineRequest6
+name (	B(‡A˙A"
+ eventarc.googleapis.com/Pipeline
+etag (	B‡A
+allow_missing (B‡A
+validate_only (B‡A"Z
+GetGoogleApiSourceRequest=
+name (	B/‡A˙A)
+\'eventarc.googleapis.com/GoogleApiSource"ª
+ListGoogleApiSourcesRequest?
+parent (	B/‡A˙A)\'eventarc.googleapis.com/GoogleApiSource
+	page_size (B‡A
+
+page_token (	B‡A
+order_by (	B‡A
+filter (	B‡A"ì
+ListGoogleApiSourcesResponseE
+google_api_sources (2).google.cloud.eventarc.v1.GoogleApiSource
+next_page_token (	
+unreachable (	"È
+CreateGoogleApiSourceRequest?
+parent (	B/‡A˙A)\'eventarc.googleapis.com/GoogleApiSourceI
+google_api_source (2).google.cloud.eventarc.v1.GoogleApiSourceB‡A!
+google_api_source_id (	B‡A
+validate_only (B‡A"◊
+UpdateGoogleApiSourceRequestI
+google_api_source (2).google.cloud.eventarc.v1.GoogleApiSourceB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A
+allow_missing (B‡A
+validate_only (B‡A"®
+DeleteGoogleApiSourceRequest=
+name (	B/‡A˙A)
+\'eventarc.googleapis.com/GoogleApiSource
+etag (	B‡A
+allow_missing (B‡A
+validate_only (B‡A"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
 end_time (2.google.protobuf.TimestampB‡A
@@ -134,7 +270,7 @@ page_token (	"ò
 verb (	B‡A
 status_message (	B‡A#
 requested_cancellation (B‡A
-api_version (	B‡A2œ
+api_version (	B‡A2ı@
 Eventarcô
 
 GetTrigger+.google.cloud.eventarc.v1.GetTriggerRequest!.google.cloud.eventarc.v1.Trigger";⁄AnameÇ”‰ì.,/v1/{name=projects/*/locations/*/triggers/*}¨
@@ -163,7 +299,48 @@ GetChannel+.google.cloud.eventarc.v1.GetChannelRequest!.google.cloud.eventarc.
 DeleteChannelConnection8.google.cloud.eventarc.v1.DeleteChannelConnectionRequest.google.longrunning.Operation"n A&
 ChannelConnectionOperationMetadata⁄AnameÇ”‰ì8*6/v1/{name=projects/*/locations/*/channelConnections/*}∆
 GetGoogleChannelConfig7.google.cloud.eventarc.v1.GetGoogleChannelConfigRequest-.google.cloud.eventarc.v1.GoogleChannelConfig"D⁄AnameÇ”‰ì75/v1/{name=projects/*/locations/*/googleChannelConfig}ó
-UpdateGoogleChannelConfig:.google.cloud.eventarc.v1.UpdateGoogleChannelConfigRequest-.google.cloud.eventarc.v1.GoogleChannelConfig"é⁄A!google_channel_config,update_maskÇ”‰ìd2K/v1/{google_channel_config.name=projects/*/locations/*/googleChannelConfig}:google_channel_configK Aeventarc.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBΩ
+UpdateGoogleChannelConfig:.google.cloud.eventarc.v1.UpdateGoogleChannelConfigRequest-.google.cloud.eventarc.v1.GoogleChannelConfig"é⁄A!google_channel_config,update_maskÇ”‰ìd2K/v1/{google_channel_config.name=projects/*/locations/*/googleChannelConfig}:google_channel_config¶
+GetMessageBus..google.cloud.eventarc.v1.GetMessageBusRequest$.google.cloud.eventarc.v1.MessageBus"?⁄AnameÇ”‰ì20/v1/{name=projects/*/locations/*/messageBuses/*}º
+ListMessageBuses1.google.cloud.eventarc.v1.ListMessageBusesRequest2.google.cloud.eventarc.v1.ListMessageBusesResponse"A⁄AparentÇ”‰ì20/v1/{parent=projects/*/locations/*}/messageBusesÈ
+ListMessageBusEnrollments:.google.cloud.eventarc.v1.ListMessageBusEnrollmentsRequest;.google.cloud.eventarc.v1.ListMessageBusEnrollmentsResponse"S⁄AparentÇ”‰ìDB/v1/{parent=projects/*/locations/*/messageBuses/*}:listEnrollmentsÚ
+CreateMessageBus1.google.cloud.eventarc.v1.CreateMessageBusRequest.google.longrunning.Operation"ã A
+
+MessageBusOperationMetadata⁄A!parent,message_bus,message_bus_idÇ”‰ì?"0/v1/{parent=projects/*/locations/*}/messageBuses:message_busÙ
+UpdateMessageBus1.google.cloud.eventarc.v1.UpdateMessageBusRequest.google.longrunning.Operation"ç A
+
+MessageBusOperationMetadata⁄Amessage_bus,update_maskÇ”‰ìK2</v1/{message_bus.name=projects/*/locations/*/messageBuses/*}:message_busÃ
+DeleteMessageBus1.google.cloud.eventarc.v1.DeleteMessageBusRequest.google.longrunning.Operation"f A
+
+MessageBusOperationMetadata⁄A	name,etagÇ”‰ì2*0/v1/{name=projects/*/locations/*/messageBuses/*}•
+GetEnrollment..google.cloud.eventarc.v1.GetEnrollmentRequest$.google.cloud.eventarc.v1.Enrollment">⁄AnameÇ”‰ì1//v1/{name=projects/*/locations/*/enrollments/*}∏
+ListEnrollments0.google.cloud.eventarc.v1.ListEnrollmentsRequest1.google.cloud.eventarc.v1.ListEnrollmentsResponse"@⁄AparentÇ”‰ì1//v1/{parent=projects/*/locations/*}/enrollmentsÓ
+CreateEnrollment1.google.cloud.eventarc.v1.CreateEnrollmentRequest.google.longrunning.Operation"á A
+
+EnrollmentOperationMetadata⁄Aparent,enrollment,enrollment_idÇ”‰ì="//v1/{parent=projects/*/locations/*}/enrollments:
+enrollment
+UpdateEnrollment1.google.cloud.eventarc.v1.UpdateEnrollmentRequest.google.longrunning.Operation"â A
+
+EnrollmentOperationMetadata⁄Aenrollment,update_maskÇ”‰ìH2:/v1/{enrollment.name=projects/*/locations/*/enrollments/*}:
+enrollmentÀ
+DeleteEnrollment1.google.cloud.eventarc.v1.DeleteEnrollmentRequest.google.longrunning.Operation"e A
+
+EnrollmentOperationMetadata⁄A	name,etagÇ”‰ì1*//v1/{name=projects/*/locations/*/enrollments/*}ù
+GetPipeline,.google.cloud.eventarc.v1.GetPipelineRequest".google.cloud.eventarc.v1.Pipeline"<⁄AnameÇ”‰ì/-/v1/{name=projects/*/locations/*/pipelines/*}∞
+ListPipelines..google.cloud.eventarc.v1.ListPipelinesRequest/.google.cloud.eventarc.v1.ListPipelinesResponse">⁄AparentÇ”‰ì/-/v1/{parent=projects/*/locations/*}/pipelinesﬂ
+CreatePipeline/.google.cloud.eventarc.v1.CreatePipelineRequest.google.longrunning.Operation"} A
+PipelineOperationMetadata⁄Aparent,pipeline,pipeline_idÇ”‰ì9"-/v1/{parent=projects/*/locations/*}/pipelines:pipeline·
+UpdatePipeline/.google.cloud.eventarc.v1.UpdatePipelineRequest.google.longrunning.Operation" A
+PipelineOperationMetadata⁄Apipeline,update_maskÇ”‰ìB26/v1/{pipeline.name=projects/*/locations/*/pipelines/*}:pipeline√
+DeletePipeline/.google.cloud.eventarc.v1.DeletePipelineRequest.google.longrunning.Operation"a A
+PipelineOperationMetadata⁄A	name,etagÇ”‰ì/*-/v1/{name=projects/*/locations/*/pipelines/*}π
+GetGoogleApiSource3.google.cloud.eventarc.v1.GetGoogleApiSourceRequest).google.cloud.eventarc.v1.GoogleApiSource"C⁄AnameÇ”‰ì64/v1/{name=projects/*/locations/*/googleApiSources/*}Ã
+ListGoogleApiSources5.google.cloud.eventarc.v1.ListGoogleApiSourcesRequest6.google.cloud.eventarc.v1.ListGoogleApiSourcesResponse"E⁄AparentÇ”‰ì64/v1/{parent=projects/*/locations/*}/googleApiSourcesó
+CreateGoogleApiSource6.google.cloud.eventarc.v1.CreateGoogleApiSourceRequest.google.longrunning.Operation"¶ A$
+GoogleApiSourceOperationMetadata⁄A-parent,google_api_source,google_api_source_idÇ”‰ìI"4/v1/{parent=projects/*/locations/*}/googleApiSources:google_api_sourceô
+UpdateGoogleApiSource6.google.cloud.eventarc.v1.UpdateGoogleApiSourceRequest.google.longrunning.Operation"® A$
+GoogleApiSourceOperationMetadata⁄Agoogle_api_source,update_maskÇ”‰ì[2F/v1/{google_api_source.name=projects/*/locations/*/googleApiSources/*}:google_api_sourceﬂ
+DeleteGoogleApiSource6.google.cloud.eventarc.v1.DeleteGoogleApiSourceRequest.google.longrunning.Operation"o A$
+GoogleApiSourceOperationMetadata⁄A	name,etagÇ”‰ì6*4/v1/{name=projects/*/locations/*/googleApiSources/*}K Aeventarc.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBΩ
 com.google.cloud.eventarc.v1BEventarcProtoPZ8cloud.google.com/go/eventarc/apiv1/eventarcpb;eventarcpb™Google.Cloud.Eventarc.V1 Google\\Cloud\\Eventarc\\V1ÍGoogle::Cloud::Eventarc::V1bproto3'
         , true);
 

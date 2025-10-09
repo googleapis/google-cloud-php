@@ -26,6 +26,12 @@ return [
             'DeleteEvents' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta1/{project_name=projects/*}/events',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1beta1/{project_name=projects/*/locations/*}/events',
+                    ],
+                ],
                 'placeholders' => [
                     'project_name' => [
                         'getters' => [
@@ -37,6 +43,15 @@ return [
             'ListEvents' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{project_name=projects/*}/events',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta1/{project_name=projects/*/locations/*}/events',
+                        'queryParams' => [
+                            'group_id',
+                        ],
+                    ],
+                ],
                 'placeholders' => [
                     'project_name' => [
                         'getters' => [
@@ -51,6 +66,12 @@ return [
             'ListGroupStats' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{project_name=projects/*}/groupStats',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta1/{project_name=projects/*/locations/*}/groupStats',
+                    ],
+                ],
                 'placeholders' => [
                     'project_name' => [
                         'getters' => [

@@ -31,6 +31,11 @@ use Google\Cloud\Dataform\V1beta1\UpdateReleaseConfigRequest;
 /**
  * Updates a single ReleaseConfig.
  *
+ * **Note:** *This method does not fully implement
+ * [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+ * as a bad request, and when the `field_mask` is omitted, the request is
+ * treated as a full update on all modifiable fields.*
+ *
  * @param string $releaseConfigGitCommitish Git commit/tag/branch name at which the repository should be
  *                                          compiled. Must exist in the remote repository. Examples:
  *                                          - a commit SHA: `12ade345`

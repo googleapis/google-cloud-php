@@ -28,13 +28,13 @@ class ExportAnalyticsMetricsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ExportErrorsConfig errors_config = 2;</code>
      */
-    private $errors_config = null;
+    protected $errors_config = null;
     /**
      * Output result indicating where the data were exported to.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.OutputResult output_result = 3;</code>
      */
-    private $output_result = null;
+    protected $output_result = null;
 
     /**
      * Constructor.

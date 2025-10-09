@@ -27,7 +27,7 @@ class StreamingPredictResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tensor parameters = 2;</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
 
     /**
      * Constructor.

@@ -16,25 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class Standard extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether to verify a deployment.
+     * Optional. Whether to verify a deployment via `skaffold verify`.
      *
-     * Generated from protobuf field <code>bool verify = 1;</code>
+     * Generated from protobuf field <code>bool verify = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $verify = false;
+    protected $verify = false;
     /**
      * Optional. Configuration for the predeploy job. If this is not configured,
-     * predeploy job will not be present.
+     * the predeploy job will not be present.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $predeploy = null;
+    protected $predeploy = null;
     /**
      * Optional. Configuration for the postdeploy job. If this is not configured,
-     * postdeploy job will not be present.
+     * the postdeploy job will not be present.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $postdeploy = null;
+    protected $postdeploy = null;
 
     /**
      * Constructor.
@@ -43,13 +43,13 @@ class Standard extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $verify
-     *           Whether to verify a deployment.
+     *           Optional. Whether to verify a deployment via `skaffold verify`.
      *     @type \Google\Cloud\Deploy\V1\Predeploy $predeploy
      *           Optional. Configuration for the predeploy job. If this is not configured,
-     *           predeploy job will not be present.
+     *           the predeploy job will not be present.
      *     @type \Google\Cloud\Deploy\V1\Postdeploy $postdeploy
      *           Optional. Configuration for the postdeploy job. If this is not configured,
-     *           postdeploy job will not be present.
+     *           the postdeploy job will not be present.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,9 +58,9 @@ class Standard extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to verify a deployment.
+     * Optional. Whether to verify a deployment via `skaffold verify`.
      *
-     * Generated from protobuf field <code>bool verify = 1;</code>
+     * Generated from protobuf field <code>bool verify = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getVerify()
@@ -69,9 +69,9 @@ class Standard extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to verify a deployment.
+     * Optional. Whether to verify a deployment via `skaffold verify`.
      *
-     * Generated from protobuf field <code>bool verify = 1;</code>
+     * Generated from protobuf field <code>bool verify = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -85,7 +85,7 @@ class Standard extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for the predeploy job. If this is not configured,
-     * predeploy job will not be present.
+     * the predeploy job will not be present.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\Predeploy|null
@@ -107,7 +107,7 @@ class Standard extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for the predeploy job. If this is not configured,
-     * predeploy job will not be present.
+     * the predeploy job will not be present.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\Predeploy $var
@@ -123,7 +123,7 @@ class Standard extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for the postdeploy job. If this is not configured,
-     * postdeploy job will not be present.
+     * the postdeploy job will not be present.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\Postdeploy|null
@@ -145,7 +145,7 @@ class Standard extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for the postdeploy job. If this is not configured,
-     * postdeploy job will not be present.
+     * the postdeploy job will not be present.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\Postdeploy $var

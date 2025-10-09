@@ -21,19 +21,19 @@ class CreateSpokeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Unique id for the spoke to create.
      *
      * Generated from protobuf field <code>string spoke_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $spoke_id = '';
+    protected $spoke_id = '';
     /**
      * Required. The initial values for a new spoke.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.Spoke spoke = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $spoke = null;
+    protected $spoke = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID so
      * that if you must retry your request, the server knows to ignore the request
@@ -50,7 +50,7 @@ class CreateSpokeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                     $parent  Required. The parent resource. Please see

@@ -30,11 +30,12 @@ use Google\Cloud\CloudControlsPartner\V1beta\Client\CloudControlsPartnerCoreClie
 use Google\Cloud\CloudControlsPartner\V1beta\ListAccessApprovalRequestsRequest;
 
 /**
- * Lists access requests associated with a workload
+ * Deprecated: Only returns access approval requests directly associated with
+ * an assured workload folder.
  *
  * @param string $formattedParent Parent resource
  *                                Format:
- *                                organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+ *                                `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
  *                                Please see {@see CloudControlsPartnerCoreClient::workloadName()} for help formatting this field.
  */
 function list_access_approval_requests_sample(string $formattedParent): void

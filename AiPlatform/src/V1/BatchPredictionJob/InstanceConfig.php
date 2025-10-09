@@ -57,7 +57,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_type = 1;</code>
      */
-    private $instance_type = '';
+    protected $instance_type = '';
     /**
      * The name of the field that is considered as a key.
      * The values identified by the key field is not included in the transformed
@@ -76,7 +76,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_field = 2;</code>
      */
-    private $key_field = '';
+    protected $key_field = '';
     /**
      * Fields that will be included in the prediction instance that is
      * sent to the Model.

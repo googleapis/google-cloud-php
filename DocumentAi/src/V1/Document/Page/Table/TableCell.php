@@ -21,19 +21,19 @@ class TableCell extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
-    private $layout = null;
+    protected $layout = null;
     /**
      * How many rows this cell spans.
      *
      * Generated from protobuf field <code>int32 row_span = 2;</code>
      */
-    private $row_span = 0;
+    protected $row_span = 0;
     /**
      * How many columns this cell spans.
      *
      * Generated from protobuf field <code>int32 col_span = 3;</code>
      */
-    private $col_span = 0;
+    protected $col_span = 0;
     /**
      * A list of detected languages together with confidence.
      *

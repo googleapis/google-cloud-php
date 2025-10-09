@@ -42,7 +42,8 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      * List of all the validation errors that we were able to detect
      * independently. See the "MULTIPLE ERRORS" explanation for the
      * [OptimizeToursValidationError][google.maps.routeoptimization.v1.OptimizeToursValidationError]
-     * message.
+     * message. Instead of errors, this will include warnings in the case
+     * `solving_mode` is `DEFAULT_SOLVE`.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.OptimizeToursValidationError validation_errors = 5;</code>
      */
@@ -73,7 +74,8 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      *           List of all the validation errors that we were able to detect
      *           independently. See the "MULTIPLE ERRORS" explanation for the
      *           [OptimizeToursValidationError][google.maps.routeoptimization.v1.OptimizeToursValidationError]
-     *           message.
+     *           message. Instead of errors, this will include warnings in the case
+     *           `solving_mode` is `DEFAULT_SOLVE`.
      *     @type \Google\Maps\RouteOptimization\V1\OptimizeToursResponse\Metrics $metrics
      *           Duration, distance and usage metrics for this solution.
      * }
@@ -171,7 +173,8 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      * List of all the validation errors that we were able to detect
      * independently. See the "MULTIPLE ERRORS" explanation for the
      * [OptimizeToursValidationError][google.maps.routeoptimization.v1.OptimizeToursValidationError]
-     * message.
+     * message. Instead of errors, this will include warnings in the case
+     * `solving_mode` is `DEFAULT_SOLVE`.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.OptimizeToursValidationError validation_errors = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -185,7 +188,8 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      * List of all the validation errors that we were able to detect
      * independently. See the "MULTIPLE ERRORS" explanation for the
      * [OptimizeToursValidationError][google.maps.routeoptimization.v1.OptimizeToursValidationError]
-     * message.
+     * message. Instead of errors, this will include warnings in the case
+     * `solving_mode` is `DEFAULT_SOLVE`.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.OptimizeToursValidationError validation_errors = 5;</code>
      * @param array<\Google\Maps\RouteOptimization\V1\OptimizeToursValidationError>|\Google\Protobuf\Internal\RepeatedField $var

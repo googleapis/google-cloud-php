@@ -29,13 +29,13 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.appengine.v1.ContainerInfo container = 2;</code>
      */
-    private $container = null;
+    protected $container = null;
     /**
      * The zip file for this deployment, if this is a zip deployment.
      *
      * Generated from protobuf field <code>.google.appengine.v1.ZipInfo zip = 3;</code>
      */
-    private $zip = null;
+    protected $zip = null;
     /**
      * Options for any Google Cloud Build builds created as a part of this
      * deployment.
@@ -44,7 +44,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.appengine.v1.CloudBuildOptions cloud_build_options = 6;</code>
      */
-    private $cloud_build_options = null;
+    protected $cloud_build_options = null;
 
     /**
      * Constructor.

@@ -20,19 +20,19 @@ class GetAcceleratorTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string accelerator_type = 138031246 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $accelerator_type = '';
+    protected $accelerator_type = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The name of the zone for this request.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project         Project ID for this request.

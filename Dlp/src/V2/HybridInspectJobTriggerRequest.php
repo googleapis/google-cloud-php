@@ -21,13 +21,13 @@ class HybridInspectJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The item to inspect.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridContentItem hybrid_item = 3;</code>
      */
-    private $hybrid_item = null;
+    protected $hybrid_item = null;
 
     /**
      * @param string $name Required. Resource name of the trigger to execute a hybrid inspect on, for

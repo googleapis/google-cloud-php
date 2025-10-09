@@ -22,7 +22,7 @@ class NotebookEucConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool euc_disabled = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $euc_disabled = false;
+    protected $euc_disabled = false;
     /**
      * Output only. Whether ActAs check is bypassed for service account attached
      * to the VM. If false, we need ActAs check for the default Compute Engine
@@ -34,7 +34,7 @@ class NotebookEucConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool bypass_actas_check = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $bypass_actas_check = false;
+    protected $bypass_actas_check = false;
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class ZypperSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool with_optional = 1;</code>
      */
-    private $with_optional = false;
+    protected $with_optional = false;
     /**
      * Adds the `--with-update` flag, to `zypper patch`.
      *
      * Generated from protobuf field <code>bool with_update = 2;</code>
      */
-    private $with_update = false;
+    protected $with_update = false;
     /**
      * Install only patches with these categories.
      * Common categories include security, recommended, and feature.

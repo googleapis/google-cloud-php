@@ -10,8 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The top-level message sent by the client to the
- * [Sessions.StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]
- * method.
+ * [StreamingDetectIntent][] method.
  * Multiple request messages should be sent in order:
  * 1.  The first message must contain
  * [session][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.session],
@@ -62,13 +61,13 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * The parameters of this query.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2;</code>
      */
-    private $query_params = null;
+    protected $query_params = null;
     /**
      * Required. The input specification. It can be set to:
      * 1. an audio config which instructs the speech recognizer how to process
@@ -78,7 +77,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query_input = null;
+    protected $query_input = null;
     /**
      * Please use
      * [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance]
@@ -101,7 +100,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 5;</code>
      */
-    private $output_audio_config = null;
+    protected $output_audio_config = null;
     /**
      * Mask for
      * [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config]
@@ -113,7 +112,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
      */
-    private $output_audio_config_mask = null;
+    protected $output_audio_config_mask = null;
     /**
      * The input audio content to be recognized. Must be sent if
      * `query_input` was set to a streaming input audio config. The complete audio
@@ -121,13 +120,13 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes input_audio = 6;</code>
      */
-    private $input_audio = '';
+    protected $input_audio = '';
     /**
      * if true, `StreamingDetectIntentResponse.debugging_info` will get populated.
      *
      * Generated from protobuf field <code>bool enable_debugging_info = 8;</code>
      */
-    private $enable_debugging_info = false;
+    protected $enable_debugging_info = false;
 
     /**
      * Constructor.
@@ -345,7 +344,9 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSingleUtterance()
     {
-        @trigger_error('single_utterance is deprecated.', E_USER_DEPRECATED);
+        if ($this->single_utterance !== false) {
+            @trigger_error('single_utterance is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->single_utterance;
     }
 

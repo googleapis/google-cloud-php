@@ -34,7 +34,8 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
     protected $label = '';
     /**
      * A list of reasons that explain why the shipment was skipped. See comment
-     * above `Reason`.
+     * above `Reason`. If we are unable to understand why a shipment was skipped,
+     * reasons will not be set.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.SkippedShipment.Reason reasons = 3;</code>
      */
@@ -55,7 +56,8 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
      *           specified in the `Shipment`.
      *     @type array<\Google\Maps\RouteOptimization\V1\SkippedShipment\Reason>|\Google\Protobuf\Internal\RepeatedField $reasons
      *           A list of reasons that explain why the shipment was skipped. See comment
-     *           above `Reason`.
+     *           above `Reason`. If we are unable to understand why a shipment was skipped,
+     *           reasons will not be set.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,7 +125,8 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of reasons that explain why the shipment was skipped. See comment
-     * above `Reason`.
+     * above `Reason`. If we are unable to understand why a shipment was skipped,
+     * reasons will not be set.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.SkippedShipment.Reason reasons = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -135,7 +138,8 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of reasons that explain why the shipment was skipped. See comment
-     * above `Reason`.
+     * above `Reason`. If we are unable to understand why a shipment was skipped,
+     * reasons will not be set.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.SkippedShipment.Reason reasons = 3;</code>
      * @param array<\Google\Maps\RouteOptimization\V1\SkippedShipment\Reason>|\Google\Protobuf\Internal\RepeatedField $var

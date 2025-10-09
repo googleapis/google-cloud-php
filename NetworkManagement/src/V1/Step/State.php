@@ -65,6 +65,20 @@ class State
      */
     const START_FROM_CLOUD_SQL_INSTANCE = 22;
     /**
+     * Initial state: packet originating from a Redis instance.
+     * A RedisInstanceInfo is populated with starting instance information.
+     *
+     * Generated from protobuf enum <code>START_FROM_REDIS_INSTANCE = 32;</code>
+     */
+    const START_FROM_REDIS_INSTANCE = 32;
+    /**
+     * Initial state: packet originating from a Redis Cluster.
+     * A RedisClusterInfo is populated with starting Cluster information.
+     *
+     * Generated from protobuf enum <code>START_FROM_REDIS_CLUSTER = 33;</code>
+     */
+    const START_FROM_REDIS_CLUSTER = 33;
+    /**
      * Initial state: packet originating from a Cloud Function.
      * A CloudFunctionInfo is populated with starting function information.
      *
@@ -100,6 +114,14 @@ class State
      * Generated from protobuf enum <code>START_FROM_PSC_PUBLISHED_SERVICE = 30;</code>
      */
     const START_FROM_PSC_PUBLISHED_SERVICE = 30;
+    /**
+     * Initial state: packet originating from a serverless network endpoint
+     * group backend. Used only for return traces.
+     * The serverless_neg information is populated.
+     *
+     * Generated from protobuf enum <code>START_FROM_SERVERLESS_NEG = 31;</code>
+     */
+    const START_FROM_SERVERLESS_NEG = 31;
     /**
      * Config checking state: verify ingress firewall rule.
      *
@@ -145,12 +167,16 @@ class State
     const ARRIVE_AT_INSTANCE = 9;
     /**
      * Forwarding state: arriving at a Compute Engine internal load balancer.
+     * Deprecated in favor of the `ANALYZE_LOAD_BALANCER_BACKEND` state, not
+     * used in new tests.
      *
      * Generated from protobuf enum <code>ARRIVE_AT_INTERNAL_LOAD_BALANCER = 10 [deprecated = true];</code>
      */
     const ARRIVE_AT_INTERNAL_LOAD_BALANCER = 10;
     /**
      * Forwarding state: arriving at a Compute Engine external load balancer.
+     * Deprecated in favor of the `ANALYZE_LOAD_BALANCER_BACKEND` state, not
+     * used in new tests.
      *
      * Generated from protobuf enum <code>ARRIVE_AT_EXTERNAL_LOAD_BALANCER = 11 [deprecated = true];</code>
      */
@@ -173,6 +199,20 @@ class State
      * Generated from protobuf enum <code>ARRIVE_AT_VPC_CONNECTOR = 24;</code>
      */
     const ARRIVE_AT_VPC_CONNECTOR = 24;
+    /**
+     * Forwarding state: for packets originating from a serverless endpoint
+     * forwarded through Direct VPC egress.
+     *
+     * Generated from protobuf enum <code>DIRECT_VPC_EGRESS_CONNECTION = 35;</code>
+     */
+    const DIRECT_VPC_EGRESS_CONNECTION = 35;
+    /**
+     * Forwarding state: for packets originating from a serverless endpoint
+     * forwarded through public (external) connectivity.
+     *
+     * Generated from protobuf enum <code>SERVERLESS_EXTERNAL_CONNECTION = 36;</code>
+     */
+    const SERVERLESS_EXTERNAL_CONNECTION = 36;
     /**
      * Transition state: packet header translated.
      *
@@ -227,11 +267,14 @@ class State
         self::START_FROM_PRIVATE_NETWORK => 'START_FROM_PRIVATE_NETWORK',
         self::START_FROM_GKE_MASTER => 'START_FROM_GKE_MASTER',
         self::START_FROM_CLOUD_SQL_INSTANCE => 'START_FROM_CLOUD_SQL_INSTANCE',
+        self::START_FROM_REDIS_INSTANCE => 'START_FROM_REDIS_INSTANCE',
+        self::START_FROM_REDIS_CLUSTER => 'START_FROM_REDIS_CLUSTER',
         self::START_FROM_CLOUD_FUNCTION => 'START_FROM_CLOUD_FUNCTION',
         self::START_FROM_APP_ENGINE_VERSION => 'START_FROM_APP_ENGINE_VERSION',
         self::START_FROM_CLOUD_RUN_REVISION => 'START_FROM_CLOUD_RUN_REVISION',
         self::START_FROM_STORAGE_BUCKET => 'START_FROM_STORAGE_BUCKET',
         self::START_FROM_PSC_PUBLISHED_SERVICE => 'START_FROM_PSC_PUBLISHED_SERVICE',
+        self::START_FROM_SERVERLESS_NEG => 'START_FROM_SERVERLESS_NEG',
         self::APPLY_INGRESS_FIREWALL_RULE => 'APPLY_INGRESS_FIREWALL_RULE',
         self::APPLY_EGRESS_FIREWALL_RULE => 'APPLY_EGRESS_FIREWALL_RULE',
         self::APPLY_ROUTE => 'APPLY_ROUTE',
@@ -244,6 +287,8 @@ class State
         self::ARRIVE_AT_VPN_GATEWAY => 'ARRIVE_AT_VPN_GATEWAY',
         self::ARRIVE_AT_VPN_TUNNEL => 'ARRIVE_AT_VPN_TUNNEL',
         self::ARRIVE_AT_VPC_CONNECTOR => 'ARRIVE_AT_VPC_CONNECTOR',
+        self::DIRECT_VPC_EGRESS_CONNECTION => 'DIRECT_VPC_EGRESS_CONNECTION',
+        self::SERVERLESS_EXTERNAL_CONNECTION => 'SERVERLESS_EXTERNAL_CONNECTION',
         self::NAT => 'NAT',
         self::PROXY_CONNECTION => 'PROXY_CONNECTION',
         self::DELIVER => 'DELIVER',

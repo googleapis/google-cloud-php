@@ -21,20 +21,20 @@ class PartitionDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string partition = 1;</code>
      */
-    private $partition = '';
+    protected $partition = '';
     /**
      * The name to the containing entity resource.
      * The name is the fully-qualified resource name.
      *
      * Generated from protobuf field <code>string entity = 2;</code>
      */
-    private $entity = '';
+    protected $entity = '';
     /**
      * The type of the containing entity resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DiscoveryEvent.EntityType type = 3;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The locations of the data items (e.g., a Cloud Storage objects) sampled
      * for metadata inference.

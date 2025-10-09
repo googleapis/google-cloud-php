@@ -20,14 +20,14 @@ class IndexedProperty extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The indexed property's direction.  Must not be
      * DIRECTION_UNSPECIFIED.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Index.Direction direction = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $direction = 0;
+    protected $direction = 0;
 
     /**
      * Constructor.
@@ -103,6 +103,4 @@ class IndexedProperty extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IndexedProperty::class, \Google\Cloud\Datastore\Admin\V1\Index_IndexedProperty::class);
 

@@ -26,7 +26,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string peered_network = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $peered_network = '';
+    protected $peered_network = '';
 
     /**
      * Constructor.

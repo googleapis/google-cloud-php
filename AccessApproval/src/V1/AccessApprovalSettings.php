@@ -23,7 +23,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A list of email addresses to which notifications relating to approval
      * requests should be sent. Notifications relating to a resource will be sent
@@ -57,7 +57,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enrolled_ancestor = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $enrolled_ancestor = false;
+    protected $enrolled_ancestor = false;
     /**
      * The asymmetric crypto key version to use for signing approval requests.
      * Empty active_key_version indicates that a Google-managed key should be used
@@ -66,7 +66,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string active_key_version = 6;</code>
      */
-    private $active_key_version = '';
+    protected $active_key_version = '';
     /**
      * Output only. This field is read only (not settable via UpdateAccessApprovalSettings
      * method). If the field is true, that indicates that an ancestor of this
@@ -75,7 +75,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool ancestor_has_active_key_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $ancestor_has_active_key_version = false;
+    protected $ancestor_has_active_key_version = false;
     /**
      * Output only. This field is read only (not settable via UpdateAccessApprovalSettings
      * method). If the field is true, that indicates that there is some
@@ -87,7 +87,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool invalid_key_version = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $invalid_key_version = false;
+    protected $invalid_key_version = false;
 
     /**
      * Constructor.

@@ -25,7 +25,7 @@ class PythonPackageSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string executor_image_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $executor_image_uri = '';
+    protected $executor_image_uri = '';
     /**
      * Required. The Google Cloud Storage location of the Python package files
      * which are the training program and its dependent packages. The maximum
@@ -39,7 +39,7 @@ class PythonPackageSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string python_module = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $python_module = '';
+    protected $python_module = '';
     /**
      * Command line arguments to be passed to the Python task.
      *

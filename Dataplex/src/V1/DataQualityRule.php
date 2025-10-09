@@ -20,7 +20,7 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string column = 500 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $column = '';
+    protected $column = '';
     /**
      * Optional. Rows with `null` values will automatically fail a rule, unless
      * `ignore_null` is `true`. In that case, such `null` rows are trivially
@@ -33,15 +33,15 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool ignore_null = 501 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ignore_null = false;
+    protected $ignore_null = false;
     /**
      * Required. The dimension a rule belongs to. Results are also aggregated at
-     * the dimension level. Supported dimensions are **["COMPLETENESS",
-     * "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]**
+     * the dimension level. Custom dimension name is supported with all uppercase
+     * letters and maximum length of 30 characters.
      *
      * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dimension = '';
+    protected $dimension = '';
     /**
      * Optional. The minimum ratio of **passing_rows / total_rows** required to
      * pass this rule, with a range of [0.0, 1.0].
@@ -50,7 +50,7 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double threshold = 503 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $threshold = 0.0;
+    protected $threshold = 0.0;
     /**
      * Optional. A mutable name for the rule.
      * * The name must contain only letters (a-z, A-Z), numbers (0-9), or
@@ -61,14 +61,21 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 504 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Description of the rule.
      * * The maximum length is 1,024 characters.
      *
      * Generated from protobuf field <code>string description = 505 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
+    /**
+     * Optional. Whether the Rule is active or suspended.
+     * Default is false.
+     *
+     * Generated from protobuf field <code>bool suspended = 506 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $suspended = false;
     protected $rule_type;
 
     /**
@@ -101,7 +108,7 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *           for a table.
      *     @type \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion $sql_assertion
      *           Aggregate rule which evaluates the number of rows returned for the
-     *           provided statement.
+     *           provided statement. If any rows are returned, this rule fails.
      *     @type string $column
      *           Optional. The unnested column which this rule is evaluated against.
      *     @type bool $ignore_null
@@ -115,8 +122,8 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *           * UniquenessExpectation
      *     @type string $dimension
      *           Required. The dimension a rule belongs to. Results are also aggregated at
-     *           the dimension level. Supported dimensions are **["COMPLETENESS",
-     *           "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]**
+     *           the dimension level. Custom dimension name is supported with all uppercase
+     *           letters and maximum length of 30 characters.
      *     @type float $threshold
      *           Optional. The minimum ratio of **passing_rows / total_rows** required to
      *           pass this rule, with a range of [0.0, 1.0].
@@ -132,6 +139,9 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. Description of the rule.
      *           * The maximum length is 1,024 characters.
+     *     @type bool $suspended
+     *           Optional. Whether the Rule is active or suspended.
+     *           Default is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -401,7 +411,7 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Aggregate rule which evaluates the number of rows returned for the
-     * provided statement.
+     * provided statement. If any rows are returned, this rule fails.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.SqlAssertion sql_assertion = 202;</code>
      * @return \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion|null
@@ -418,7 +428,7 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Aggregate rule which evaluates the number of rows returned for the
-     * provided statement.
+     * provided statement. If any rows are returned, this rule fails.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.SqlAssertion sql_assertion = 202;</code>
      * @param \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion $var
@@ -500,8 +510,8 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The dimension a rule belongs to. Results are also aggregated at
-     * the dimension level. Supported dimensions are **["COMPLETENESS",
-     * "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]**
+     * the dimension level. Custom dimension name is supported with all uppercase
+     * letters and maximum length of 30 characters.
      *
      * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -513,8 +523,8 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The dimension a rule belongs to. Results are also aggregated at
-     * the dimension level. Supported dimensions are **["COMPLETENESS",
-     * "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"]**
+     * the dimension level. Custom dimension name is supported with all uppercase
+     * letters and maximum length of 30 characters.
      *
      * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -620,6 +630,34 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether the Rule is active or suspended.
+     * Default is false.
+     *
+     * Generated from protobuf field <code>bool suspended = 506 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSuspended()
+    {
+        return $this->suspended;
+    }
+
+    /**
+     * Optional. Whether the Rule is active or suspended.
+     * Default is false.
+     *
+     * Generated from protobuf field <code>bool suspended = 506 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSuspended($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->suspended = $var;
 
         return $this;
     }

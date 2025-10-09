@@ -25,7 +25,7 @@ class MysqlExportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value master_data = 1;</code>
      */
-    private $master_data = null;
+    protected $master_data = null;
 
     /**
      * Constructor.
@@ -86,7 +86,7 @@ class MysqlExportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value master_data = 1;</code>
      * @return int|null
      */
-    public function getMasterDataValue()
+    public function getMasterDataUnwrapped()
     {
         return $this->readWrapperValue("master_data");
     }
@@ -125,7 +125,7 @@ class MysqlExportOptions extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setMasterDataValue($var)
+    public function setMasterDataUnwrapped($var)
     {
         $this->writeWrapperValue("master_data", $var);
         return $this;}

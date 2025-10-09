@@ -20,13 +20,13 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.Connection connection = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $connection = null;
+    protected $connection = null;
     /**
      * The list of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * If set to true, and the connection is not found a new connection
      * will be created. In this situation `update_mask` is ignored.
@@ -36,7 +36,7 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
     /**
      * The current etag of the connection.
      * If an etag is provided and does not match the current etag of the
@@ -44,7 +44,7 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 4;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param \Google\Cloud\Build\V2\Connection $connection Required. The Connection to update.

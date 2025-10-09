@@ -20,19 +20,19 @@ class EntityMappingLogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rule_id = 1;</code>
      */
-    private $rule_id = '';
+    protected $rule_id = '';
     /**
      * Rule revision ID.
      *
      * Generated from protobuf field <code>string rule_revision_id = 2;</code>
      */
-    private $rule_revision_id = '';
+    protected $rule_revision_id = '';
     /**
      * Comment.
      *
      * Generated from protobuf field <code>string mapping_comment = 3;</code>
      */
-    private $mapping_comment = '';
+    protected $mapping_comment = '';
 
     /**
      * Constructor.

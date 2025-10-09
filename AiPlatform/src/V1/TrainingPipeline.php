@@ -24,13 +24,13 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user-defined name of this TrainingPipeline.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Specifies Vertex AI owned input data that may be used for training the
      * Model. The TrainingPipeline's
@@ -44,7 +44,7 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.InputDataConfig input_data_config = 3;</code>
      */
-    private $input_data_config = null;
+    protected $input_data_config = null;
     /**
      * Required. A Google Cloud Storage path to the YAML file that defines the
      * training task which is responsible for producing the model artifact, and
@@ -57,7 +57,7 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string training_task_definition = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $training_task_definition = '';
+    protected $training_task_definition = '';
     /**
      * Required. The training task's parameter(s), as specified in the
      * [training_task_definition][google.cloud.aiplatform.v1.TrainingPipeline.training_task_definition]'s
@@ -65,7 +65,7 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value training_task_inputs = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $training_task_inputs = null;
+    protected $training_task_inputs = null;
     /**
      * Output only. The metadata information as specified in the
      * [training_task_definition][google.cloud.aiplatform.v1.TrainingPipeline.training_task_definition]'s
@@ -78,7 +78,7 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value training_task_metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $training_task_metadata = null;
+    protected $training_task_metadata = null;
     /**
      * Describes the Model that may be uploaded (via
      * [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel])
@@ -99,7 +99,7 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model model_to_upload = 7;</code>
      */
-    private $model_to_upload = null;
+    protected $model_to_upload = null;
     /**
      * Optional. The ID to use for the uploaded Model, which will become the final
      * component of the model resource name.
@@ -108,7 +108,7 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model_id = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $model_id = '';
+    protected $model_id = '';
     /**
      * Optional. When specify this field, the `model_to_upload` will not be
      * uploaded as a new model, instead, it will become a new version of this
@@ -116,33 +116,33 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_model = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $parent_model = '';
+    protected $parent_model = '';
     /**
      * Output only. The detailed state of the pipeline.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineState state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Only populated when the pipeline's state is
      * `PIPELINE_STATE_FAILED` or `PIPELINE_STATE_CANCELLED`.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Output only. Time when the TrainingPipeline was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time when the TrainingPipeline for the first time entered the
      * `PIPELINE_STATE_RUNNING` state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Time when the TrainingPipeline entered any of the following
      * states: `PIPELINE_STATE_SUCCEEDED`, `PIPELINE_STATE_FAILED`,
@@ -150,13 +150,13 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. Time when the TrainingPipeline was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The labels with user-defined metadata to organize TrainingPipelines.
      * Label keys and values can be no longer than 64 characters
@@ -176,7 +176,7 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 18;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
 
     /**
      * Constructor.

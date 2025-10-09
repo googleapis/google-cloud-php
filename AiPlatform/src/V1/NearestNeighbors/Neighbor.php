@@ -20,13 +20,13 @@ class Neighbor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_id = 1;</code>
      */
-    private $entity_id = '';
+    protected $entity_id = '';
     /**
      * The distance between the neighbor and the query vector.
      *
      * Generated from protobuf field <code>double distance = 2;</code>
      */
-    private $distance = 0.0;
+    protected $distance = 0.0;
     /**
      * The attributes of the neighbor, e.g. filters, crowding and metadata
      * Note that full entities are returned only when "return_full_entity"
@@ -35,7 +35,7 @@ class Neighbor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FetchFeatureValuesResponse entity_key_values = 3;</code>
      */
-    private $entity_key_values = null;
+    protected $entity_key_values = null;
 
     /**
      * Constructor.

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A link between a GA4 Property and an AdSense for Content ad client.
+ * A link between a Google Analytics property and an AdSense for Content ad
+ * client.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.AdSenseLink</code>
  */
@@ -22,14 +23,14 @@ class AdSenseLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
-     * Immutable. The AdSense ad client code that the GA4 property is linked to.
-     * Example format: "ca-pub-1234567890"
+     * Immutable. The AdSense ad client code that the Google Analytics property is
+     * linked to. Example format: "ca-pub-1234567890"
      *
      * Generated from protobuf field <code>string ad_client_code = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $ad_client_code = '';
+    protected $ad_client_code = '';
 
     /**
      * Constructor.
@@ -42,8 +43,8 @@ class AdSenseLink extends \Google\Protobuf\Internal\Message
      *           Format: properties/{propertyId}/adSenseLinks/{linkId}
      *           Example: properties/1234/adSenseLinks/6789
      *     @type string $ad_client_code
-     *           Immutable. The AdSense ad client code that the GA4 property is linked to.
-     *           Example format: "ca-pub-1234567890"
+     *           Immutable. The AdSense ad client code that the Google Analytics property is
+     *           linked to. Example format: "ca-pub-1234567890"
      * }
      */
     public function __construct($data = NULL) {
@@ -82,8 +83,8 @@ class AdSenseLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The AdSense ad client code that the GA4 property is linked to.
-     * Example format: "ca-pub-1234567890"
+     * Immutable. The AdSense ad client code that the Google Analytics property is
+     * linked to. Example format: "ca-pub-1234567890"
      *
      * Generated from protobuf field <code>string ad_client_code = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -94,8 +95,8 @@ class AdSenseLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The AdSense ad client code that the GA4 property is linked to.
-     * Example format: "ca-pub-1234567890"
+     * Immutable. The AdSense ad client code that the Google Analytics property is
+     * linked to. Example format: "ca-pub-1234567890"
      *
      * Generated from protobuf field <code>string ad_client_code = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

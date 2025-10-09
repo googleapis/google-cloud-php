@@ -21,25 +21,25 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string artifact = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $artifact = '';
+    protected $artifact = '';
     /**
      * Output only. The relative resource name of the Execution in the Event.
      *
      * Generated from protobuf field <code>string execution = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $execution = '';
+    protected $execution = '';
     /**
      * Output only. Time the Event occurred.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $event_time = null;
+    protected $event_time = null;
     /**
      * Required. The type of the Event.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Event.Type type = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The labels with user-defined metadata to annotate Events.
      * Label keys and values can be no longer than 64 characters

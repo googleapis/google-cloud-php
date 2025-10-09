@@ -29,7 +29,7 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_uri = 2;</code>
      */
-    private $gcs_uri = '';
+    protected $gcs_uri = '';
     /**
      * The name of the source database.
      *
@@ -43,7 +43,7 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.DatabaseDumpSpec.Type type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.
@@ -77,7 +77,9 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
      */
     public function getDatabaseType()
     {
-        @trigger_error('database_type is deprecated.', E_USER_DEPRECATED);
+        if ($this->database_type !== 0) {
+            @trigger_error('database_type is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->database_type;
     }
 
@@ -135,7 +137,9 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
      */
     public function getSourceDatabase()
     {
-        @trigger_error('source_database is deprecated.', E_USER_DEPRECATED);
+        if ($this->source_database !== '') {
+            @trigger_error('source_database is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->source_database;
     }
 
@@ -186,6 +190,4 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DatabaseDump::class, \Google\Cloud\Metastore\V1\MetadataImport_DatabaseDump::class);
 

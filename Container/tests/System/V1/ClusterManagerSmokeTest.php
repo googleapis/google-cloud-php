@@ -22,7 +22,8 @@
 
 namespace Google\Cloud\Container\Tests\System\V1;
 
-use Google\Cloud\Container\V1\ClusterManagerClient;
+use Google\Cloud\Container\V1\Client\ClusterManagerClient;
+use Google\Cloud\Container\V1\ListClustersRequest;
 use Google\ApiCore\Testing\GeneratedTest;
 
 /**
@@ -42,8 +43,8 @@ class ClusterManagerSmokeTest extends GeneratedTest
         }
 
         $clusterManagerClient = new ClusterManagerClient();
-        $projectId2 = $projectId;
         $zone = 'us-central1-a';
-        $clusterManagerClient->listClusters(['projectId' => $projectId2, 'zone' => $zone]);
+        $request = ListClustersRequest::build($projectId, $zone);
+        $clusterManagerClient->listClusters($request);
     }
 }

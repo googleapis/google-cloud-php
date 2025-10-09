@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode as ReadLockMode;
 
 /**
  * Configure transaction selection for read, executeSql, rollback and commit.
@@ -44,13 +45,12 @@ trait TransactionConfigurationTrait
             'transactionType' => SessionPoolInterface::CONTEXT_READ,
         ];
 
-        $res = $this->transactionOptions($options, $previous);
+        [$transactionOptions, $type, $context] = $this->transactionOptions($options, $previous);
 
         // TransactionSelector uses a different key name for singleUseTransaction
         // and transactionId than transactionOptions, so we'll rewrite those here
         // so transactionOptions works as expected for commitRequest.
 
-        $type = $res[1];
         if ($type === 'singleUseTransaction') {
             $type = 'singleUse';
         } elseif ($type === 'transactionId') {
@@ -58,8 +58,8 @@ trait TransactionConfigurationTrait
         }
 
         return [
-            [$type => $res[0]],
-            $res[2]
+            [$type => $transactionOptions],
+            $context
         ];
     }
 
@@ -82,7 +82,7 @@ trait TransactionConfigurationTrait
         if (isset($requestOptions['transaction']['singleUse']) || (
             isset($requestOptions['transactionContext']) &&
             $requestOptions['transactionContext'] == SessionPoolInterface::CONTEXT_READ
-            ) || isset($requestOptions['transactionOptions']['readOnly'])
+        ) || isset($requestOptions['transactionOptions']['readOnly'])
         ) {
             if (isset($clientOptions['includeReplicas'])) {
                 return ['includeReplicas' => $clientOptions['includeReplicas']];
@@ -130,7 +130,9 @@ trait TransactionConfigurationTrait
         } elseif ($context === SessionPoolInterface::CONTEXT_READ) {
             $transactionOptions = $this->configureSnapshotOptions($options, $previous);
         } elseif ($context === SessionPoolInterface::CONTEXT_READWRITE) {
-            $transactionOptions = $this->configureTransactionOptions();
+            $transactionOptions = $this->configureTransactionOptions(
+                $type == 'begin' && is_array($begin) ? $begin : []
+            );
         } else {
             throw new \BadMethodCallException(sprintf(
                 'Invalid transaction context %s',
@@ -141,11 +143,30 @@ trait TransactionConfigurationTrait
         return [$transactionOptions, $type, $context];
     }
 
-    private function configureTransactionOptions()
+    private function configureTransactionOptions(array $options = [])
     {
-        return [
+        $transactionOptions = [
             'readWrite' => []
         ];
+
+        if (isset($options['excludeTxnFromChangeStreams'])) {
+            $transactionOptions['excludeTxnFromChangeStreams'] = $options['excludeTxnFromChangeStreams'];
+        }
+
+        if (isset($options['isolationLevel'])) {
+            $transactionOptions['isolationLevel'] = $options['isolationLevel'];
+        }
+
+        // Allow for proper configuring of the `readLockMode` if it's set as a base or nested option
+        if (isset($options['readLockMode'])) {
+            $transactionOptions['readWrite']['readLockMode'] = $options['readLockMode'];
+        }
+
+        if (isset($options['readWrite']['readLockMode'])) {
+            $transactionOptions['readWrite']['readLockMode'] = $options['readWrite']['readLockMode'];
+        }
+
+        return $transactionOptions;
     }
 
     /**

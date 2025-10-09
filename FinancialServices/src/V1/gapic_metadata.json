@@ -1,0 +1,218 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.financialservices.v1",
+    "libraryPackage": "Google\\Cloud\\FinancialServices\\V1",
+    "services": {
+        "AML": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AMLGapicClient",
+                    "rpcs": {
+                        "CreateBacktestResult": {
+                            "methods": [
+                                "createBacktestResult"
+                            ]
+                        },
+                        "CreateDataset": {
+                            "methods": [
+                                "createDataset"
+                            ]
+                        },
+                        "CreateEngineConfig": {
+                            "methods": [
+                                "createEngineConfig"
+                            ]
+                        },
+                        "CreateInstance": {
+                            "methods": [
+                                "createInstance"
+                            ]
+                        },
+                        "CreateModel": {
+                            "methods": [
+                                "createModel"
+                            ]
+                        },
+                        "CreatePredictionResult": {
+                            "methods": [
+                                "createPredictionResult"
+                            ]
+                        },
+                        "DeleteBacktestResult": {
+                            "methods": [
+                                "deleteBacktestResult"
+                            ]
+                        },
+                        "DeleteDataset": {
+                            "methods": [
+                                "deleteDataset"
+                            ]
+                        },
+                        "DeleteEngineConfig": {
+                            "methods": [
+                                "deleteEngineConfig"
+                            ]
+                        },
+                        "DeleteInstance": {
+                            "methods": [
+                                "deleteInstance"
+                            ]
+                        },
+                        "DeleteModel": {
+                            "methods": [
+                                "deleteModel"
+                            ]
+                        },
+                        "DeletePredictionResult": {
+                            "methods": [
+                                "deletePredictionResult"
+                            ]
+                        },
+                        "ExportBacktestResultMetadata": {
+                            "methods": [
+                                "exportBacktestResultMetadata"
+                            ]
+                        },
+                        "ExportEngineConfigMetadata": {
+                            "methods": [
+                                "exportEngineConfigMetadata"
+                            ]
+                        },
+                        "ExportModelMetadata": {
+                            "methods": [
+                                "exportModelMetadata"
+                            ]
+                        },
+                        "ExportPredictionResultMetadata": {
+                            "methods": [
+                                "exportPredictionResultMetadata"
+                            ]
+                        },
+                        "ExportRegisteredParties": {
+                            "methods": [
+                                "exportRegisteredParties"
+                            ]
+                        },
+                        "GetBacktestResult": {
+                            "methods": [
+                                "getBacktestResult"
+                            ]
+                        },
+                        "GetDataset": {
+                            "methods": [
+                                "getDataset"
+                            ]
+                        },
+                        "GetEngineConfig": {
+                            "methods": [
+                                "getEngineConfig"
+                            ]
+                        },
+                        "GetEngineVersion": {
+                            "methods": [
+                                "getEngineVersion"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "GetModel": {
+                            "methods": [
+                                "getModel"
+                            ]
+                        },
+                        "GetPredictionResult": {
+                            "methods": [
+                                "getPredictionResult"
+                            ]
+                        },
+                        "ImportRegisteredParties": {
+                            "methods": [
+                                "importRegisteredParties"
+                            ]
+                        },
+                        "ListBacktestResults": {
+                            "methods": [
+                                "listBacktestResults"
+                            ]
+                        },
+                        "ListDatasets": {
+                            "methods": [
+                                "listDatasets"
+                            ]
+                        },
+                        "ListEngineConfigs": {
+                            "methods": [
+                                "listEngineConfigs"
+                            ]
+                        },
+                        "ListEngineVersions": {
+                            "methods": [
+                                "listEngineVersions"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "ListModels": {
+                            "methods": [
+                                "listModels"
+                            ]
+                        },
+                        "ListPredictionResults": {
+                            "methods": [
+                                "listPredictionResults"
+                            ]
+                        },
+                        "UpdateBacktestResult": {
+                            "methods": [
+                                "updateBacktestResult"
+                            ]
+                        },
+                        "UpdateDataset": {
+                            "methods": [
+                                "updateDataset"
+                            ]
+                        },
+                        "UpdateEngineConfig": {
+                            "methods": [
+                                "updateEngineConfig"
+                            ]
+                        },
+                        "UpdateInstance": {
+                            "methods": [
+                                "updateInstance"
+                            ]
+                        },
+                        "UpdateModel": {
+                            "methods": [
+                                "updateModel"
+                            ]
+                        },
+                        "UpdatePredictionResult": {
+                            "methods": [
+                                "updatePredictionResult"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

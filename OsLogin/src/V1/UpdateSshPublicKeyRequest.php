@@ -22,19 +22,19 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The SSH public key and expiration time.
      *
      * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ssh_public_key = null;
+    protected $ssh_public_key = null;
     /**
      * Mask to control which fields get updated. Updates all if not present.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                                    $name         Required. The fingerprint of the public key to update. Public keys are

@@ -27,7 +27,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * The type of the resource associated with this IAM policy. Example:
      * `compute.googleapis.com/Disk`.
@@ -36,19 +36,19 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset_type = 5;</code>
      */
-    private $asset_type = '';
+    protected $asset_type = '';
     /**
      * The project that the associated Google Cloud resource belongs to, in the
      * form of projects/{PROJECT_NUMBER}. If an IAM policy is set on a resource
      * (like VM instance, Cloud Storage bucket), the project field will indicate
      * the project that contains the resource. If an IAM policy is set on a folder
-     * or orgnization, this field will be empty.
+     * or organization, this field will be empty.
      * To search against the `project`:
      * * specify the `scope` field as this project in your search request.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The folder(s) that the IAM policy belongs to, in the form of
      * folders/{FOLDER_NUMBER}. This field is available when the IAM policy
@@ -72,7 +72,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string organization = 7;</code>
      */
-    private $organization = '';
+    protected $organization = '';
     /**
      * The IAM policy directly set on the given resource. Note that the original
      * IAM policy can contain multiple bindings. This only contains the bindings
@@ -89,14 +89,14 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy policy = 3;</code>
      */
-    private $policy = null;
+    protected $policy = null;
     /**
      * Explanation about the IAM policy search result. It contains additional
      * information to explain why the search result matches the query.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicySearchResult.Explanation explanation = 4;</code>
      */
-    private $explanation = null;
+    protected $explanation = null;
 
     /**
      * Constructor.
@@ -123,7 +123,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      *           form of projects/{PROJECT_NUMBER}. If an IAM policy is set on a resource
      *           (like VM instance, Cloud Storage bucket), the project field will indicate
      *           the project that contains the resource. If an IAM policy is set on a folder
-     *           or orgnization, this field will be empty.
+     *           or organization, this field will be empty.
      *           To search against the `project`:
      *           * specify the `scope` field as this project in your search request.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $folders
@@ -242,7 +242,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * form of projects/{PROJECT_NUMBER}. If an IAM policy is set on a resource
      * (like VM instance, Cloud Storage bucket), the project field will indicate
      * the project that contains the resource. If an IAM policy is set on a folder
-     * or orgnization, this field will be empty.
+     * or organization, this field will be empty.
      * To search against the `project`:
      * * specify the `scope` field as this project in your search request.
      *
@@ -259,7 +259,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * form of projects/{PROJECT_NUMBER}. If an IAM policy is set on a resource
      * (like VM instance, Cloud Storage bucket), the project field will indicate
      * the project that contains the resource. If an IAM policy is set on a folder
-     * or orgnization, this field will be empty.
+     * or organization, this field will be empty.
      * To search against the `project`:
      * * specify the `scope` field as this project in your search request.
      *

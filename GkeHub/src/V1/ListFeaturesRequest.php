@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent (project and location) where the Features will be listed.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Features will be
+     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * When requesting a 'page' of resources, `page_size` specifies number of
      * resources to return. If unspecified or set to 0, all resources will
@@ -29,7 +29,7 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Token returned by previous call to `ListFeatures` which
      * specifies the position in the list from where to continue listing the
@@ -37,7 +37,7 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Lists Features that match the filter expression, following the syntax
      * outlined in https://google.aip.dev/160.
@@ -51,18 +51,18 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * One or more fields to compare and use to sort the output.
      * See https://google.aip.dev/132#ordering.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
-     * @param string $parent Required. The parent (project and location) where the Features will be listed.
-     *                       Specified in the format `projects/&#42;/locations/*`.
+     * @param string $parent Required. The parent (project and location) where the Features will be
+     *                       listed. Specified in the format `projects/&#42;/locations/*`.
      *
      * @return \Google\Cloud\GkeHub\V1\ListFeaturesRequest
      *
@@ -81,8 +81,8 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent (project and location) where the Features will be listed.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           Required. The parent (project and location) where the Features will be
+     *           listed. Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *     @type int $page_size
      *           When requesting a 'page' of resources, `page_size` specifies number of
      *           resources to return. If unspecified or set to 0, all resources will
@@ -112,8 +112,8 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project and location) where the Features will be listed.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Features will be
+     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -124,8 +124,8 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project and location) where the Features will be listed.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Features will be
+     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

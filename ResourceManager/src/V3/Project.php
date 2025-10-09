@@ -24,14 +24,14 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. A reference to a parent Resource. eg., `organizations/123` or
      * `folders/876`.
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Immutable. The unique, user-assigned id of the project.
      * It must be 6 to 30 lowercase ASCII letters, digits, or hyphens.
@@ -41,13 +41,13 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Output only. The project lifecycle state.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Project.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Optional. A user-assigned display name of the project.
      * When present it must be between 4 to 30 characters.
@@ -57,25 +57,25 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The most recent time this resource was modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The time at which this resource was requested for deletion.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. A checksum computed by the server based on the current value
      * of the Project resource. This may be sent on update and delete requests to
@@ -83,7 +83,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. The labels associated with this project.
      * Label keys must be between 1 and 63 characters long and must conform

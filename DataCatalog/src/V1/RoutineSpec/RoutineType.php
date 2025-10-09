@@ -59,6 +59,4 @@ class RoutineType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RoutineType::class, \Google\Cloud\DataCatalog\V1\RoutineSpec_RoutineType::class);
 

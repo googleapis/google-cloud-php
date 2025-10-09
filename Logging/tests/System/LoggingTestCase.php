@@ -37,7 +37,7 @@ class LoggingTestCase extends SystemTestCase
 
     public function clientProvider()
     {
-        self::setUpBeforeClass();
+        self::setUpTestFixtures();
 
         return [
             [self::$restClient],
@@ -45,7 +45,10 @@ class LoggingTestCase extends SystemTestCase
         ];
     }
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetUp) {
             return;

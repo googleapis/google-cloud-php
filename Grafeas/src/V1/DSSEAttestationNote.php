@@ -18,7 +18,7 @@ class DSSEAttestationNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.DSSEAttestationNote.DSSEHint hint = 1;</code>
      */
-    private $hint = null;
+    protected $hint = null;
 
     /**
      * Constructor.

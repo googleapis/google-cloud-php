@@ -27,13 +27,13 @@ class CreatePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The policy to create.
      *
      * Generated from protobuf field <code>.google.iam.v2.Policy policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $policy = null;
+    protected $policy = null;
     /**
      * The ID to use for this policy, which will become the final component of
      * the policy's resource name. The ID must contain 3 to 63 characters. It can
@@ -42,7 +42,7 @@ class CreatePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string policy_id = 3;</code>
      */
-    private $policy_id = '';
+    protected $policy_id = '';
 
     /**
      * @param string                      $parent   Required. The resource that the policy is attached to, along with the kind of policy

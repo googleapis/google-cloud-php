@@ -73,6 +73,4 @@ class Bandwidth
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Bandwidth::class, \Google\Cloud\BareMetalSolution\V2\NetworkConfig_Bandwidth::class);
 

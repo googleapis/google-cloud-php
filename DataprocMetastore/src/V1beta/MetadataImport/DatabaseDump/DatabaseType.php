@@ -52,6 +52,4 @@ class DatabaseType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DatabaseType::class, \Google\Cloud\Metastore\V1beta\MetadataImport_DatabaseDump_DatabaseType::class);
 

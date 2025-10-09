@@ -18,14 +18,14 @@ class RankRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the rank service config, such as
-     * `projects/{project_num}/locations/{location_id}/rankingConfigs/default_ranking_config`.
+     * `projects/{project_num}/locations/{location}/rankingConfigs/default_ranking_config`.
      *
      * Generated from protobuf field <code>string ranking_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $ranking_config = '';
     /**
      * The identifier of the model to use. It is one of:
-     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maxiumn input
+     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maximum input
      * token size 512.
      * It is set to `semantic-ranker-512&#64;latest` by default if unspecified.
      *
@@ -87,10 +87,10 @@ class RankRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $ranking_config
      *           Required. The resource name of the rank service config, such as
-     *           `projects/{project_num}/locations/{location_id}/rankingConfigs/default_ranking_config`.
+     *           `projects/{project_num}/locations/{location}/rankingConfigs/default_ranking_config`.
      *     @type string $model
      *           The identifier of the model to use. It is one of:
-     *           * `semantic-ranker-512&#64;latest`: Semantic ranking model with maxiumn input
+     *           * `semantic-ranker-512&#64;latest`: Semantic ranking model with maximum input
      *           token size 512.
      *           It is set to `semantic-ranker-512&#64;latest` by default if unspecified.
      *     @type int $top_n
@@ -128,7 +128,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the rank service config, such as
-     * `projects/{project_num}/locations/{location_id}/rankingConfigs/default_ranking_config`.
+     * `projects/{project_num}/locations/{location}/rankingConfigs/default_ranking_config`.
      *
      * Generated from protobuf field <code>string ranking_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -140,7 +140,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the rank service config, such as
-     * `projects/{project_num}/locations/{location_id}/rankingConfigs/default_ranking_config`.
+     * `projects/{project_num}/locations/{location}/rankingConfigs/default_ranking_config`.
      *
      * Generated from protobuf field <code>string ranking_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -156,7 +156,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The identifier of the model to use. It is one of:
-     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maxiumn input
+     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maximum input
      * token size 512.
      * It is set to `semantic-ranker-512&#64;latest` by default if unspecified.
      *
@@ -170,7 +170,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The identifier of the model to use. It is one of:
-     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maxiumn input
+     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maximum input
      * token size 512.
      * It is set to `semantic-ranker-512&#64;latest` by default if unspecified.
      *

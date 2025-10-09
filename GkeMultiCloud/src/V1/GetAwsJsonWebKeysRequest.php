@@ -25,7 +25,7 @@ class GetAwsJsonWebKeysRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string aws_cluster = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $aws_cluster = '';
+    protected $aws_cluster = '';
 
     /**
      * Constructor.

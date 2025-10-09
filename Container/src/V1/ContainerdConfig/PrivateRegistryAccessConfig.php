@@ -21,7 +21,7 @@ class PrivateRegistryAccessConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Private registry access configuration.
      *
@@ -100,6 +100,4 @@ class PrivateRegistryAccessConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PrivateRegistryAccessConfig::class, \Google\Cloud\Container\V1\ContainerdConfig_PrivateRegistryAccessConfig::class);
 

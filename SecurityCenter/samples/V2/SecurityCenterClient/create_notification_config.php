@@ -32,9 +32,9 @@ use Google\Cloud\SecurityCenter\V2\NotificationConfig;
  * Creates a notification config.
  *
  * @param string $formattedParent Resource name of the new notification config's parent. Its format
- *                                is "organizations/[organization_id]/locations/[location_id]",
- *                                "folders/[folder_id]/locations/[location_id]", or
- *                                "projects/[project_id]/locations/[location_id]". Please see
+ *                                is `organizations/[organization_id]/locations/[location_id]`,
+ *                                `folders/[folder_id]/locations/[location_id]`, or
+ *                                `projects/[project_id]/locations/[location_id]`. Please see
  *                                {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
  * @param string $configId        Required.
  *                                Unique identifier provided by the client within the parent scope.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,16 +51,18 @@ use Google\Analytics\Data\V1beta\RunReportResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Google Analytics reporting data service.
@@ -75,17 +77,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface batchRunPivotReportsAsync(BatchRunPivotReportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchRunReportsAsync(BatchRunReportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface checkCompatibilityAsync(CheckCompatibilityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAudienceExportAsync(CreateAudienceExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAudienceExportAsync(GetAudienceExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMetadataAsync(GetMetadataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAudienceExportsAsync(ListAudienceExportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryAudienceExportAsync(QueryAudienceExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runPivotReportAsync(RunPivotReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runRealtimeReportAsync(RunRealtimeReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runReportAsync(RunReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchRunPivotReportsResponse> batchRunPivotReportsAsync(BatchRunPivotReportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchRunReportsResponse> batchRunReportsAsync(BatchRunReportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckCompatibilityResponse> checkCompatibilityAsync(CheckCompatibilityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAudienceExportAsync(CreateAudienceExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AudienceExport> getAudienceExportAsync(GetAudienceExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Metadata> getMetadataAsync(GetMetadataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAudienceExportsAsync(ListAudienceExportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryAudienceExportResponse> queryAudienceExportAsync(QueryAudienceExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunPivotReportResponse> runPivotReportAsync(RunPivotReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunRealtimeReportResponse> runRealtimeReportAsync(RunRealtimeReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunReportResponse> runReportAsync(RunReportRequest $request, array $optionalArgs = [])
  */
 final class BetaAnalyticsDataClient
 {
@@ -165,10 +167,29 @@ final class BetaAnalyticsDataClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -238,8 +259,8 @@ final class BetaAnalyticsDataClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -247,7 +268,7 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -255,20 +276,29 @@ final class BetaAnalyticsDataClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'analyticsdata.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new BetaAnalyticsDataClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -302,13 +332,18 @@ final class BetaAnalyticsDataClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -328,7 +363,7 @@ final class BetaAnalyticsDataClient
 
     /**
      * Returns multiple pivot reports in a batch. All reports must be for the same
-     * GA4 Property.
+     * Google Analytics property.
      *
      * The async variant is {@see BetaAnalyticsDataClient::batchRunPivotReportsAsync()}
      * .
@@ -358,7 +393,7 @@ final class BetaAnalyticsDataClient
 
     /**
      * Returns multiple reports in a batch. All reports must be for the same
-     * GA4 Property.
+     * Google Analytics property.
      *
      * The async variant is {@see BetaAnalyticsDataClient::batchRunReportsAsync()} .
      *
@@ -464,7 +499,7 @@ final class BetaAnalyticsDataClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AudienceExport>
      *
      * @throws ApiException Thrown if the API call fails.
      *
@@ -517,7 +552,7 @@ final class BetaAnalyticsDataClient
     /**
      * Returns metadata for dimensions and metrics available in reporting methods.
      * Used to explore the dimensions and metrics. In this method, a Google
-     * Analytics GA4 Property Identifier is specified in the request, and
+     * Analytics property identifier is specified in the request, and
      * the metadata response includes Custom dimensions and metrics as well as
      * Universal metadata.
      *

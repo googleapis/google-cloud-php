@@ -25,14 +25,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_ListServiceBindings_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\ListServiceBindingsRequest;
 use Google\Cloud\NetworkServices\V1\ServiceBinding;
 
 /**
  * Lists ServiceBinding in a given project and location.
  *
  * @param string $formattedParent The project and location from which the ServiceBindings should be
- *                                listed, specified in the format `projects/&#42;/locations/global`. Please see
+ *                                listed, specified in the format `projects/&#42;/locations/*`. Please see
  *                                {@see NetworkServicesClient::locationName()} for help formatting this field.
  */
 function list_service_bindings_sample(string $formattedParent): void
@@ -40,10 +41,14 @@ function list_service_bindings_sample(string $formattedParent): void
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
+    // Prepare the request message.
+    $request = (new ListServiceBindingsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $networkServicesClient->listServiceBindings($formattedParent);
+        $response = $networkServicesClient->listServiceBindings($request);
 
         /** @var ServiceBinding $element */
         foreach ($response as $element) {

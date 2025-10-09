@@ -24,7 +24,7 @@ class ResourceSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_id = 1;</code>
      */
-    private $resource_id = '';
+    protected $resource_id = '';
     /**
      * Indicates the type of resource. This field should be specified to
      * correspond the id to the right project type (CONSUMER_PROJECT or
@@ -32,7 +32,7 @@ class ResourceSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.ResourceInfo.ResourceType resource_type = 2;</code>
      */
-    private $resource_type = 0;
+    protected $resource_type = 0;
     /**
      * User-assigned resource display name.
      * If not empty it will be used to create a resource with the specified
@@ -40,7 +40,7 @@ class ResourceSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.
@@ -165,6 +165,4 @@ class ResourceSettings extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResourceSettings::class, \Google\Cloud\AssuredWorkloads\V1beta1\Workload_ResourceSettings::class);
 

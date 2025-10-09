@@ -20,7 +20,7 @@ class UpdateRepositoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository repository = 1;</code>
      */
-    private $repository = null;
+    protected $repository = null;
     /**
      * The update mask applies to the resource. For the `FieldMask` definition,
      * see
@@ -28,7 +28,7 @@ class UpdateRepositoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\ArtifactRegistry\V1\Repository $repository The repository that replaces the resource on the server.

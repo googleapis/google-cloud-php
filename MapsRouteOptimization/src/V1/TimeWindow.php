@@ -26,8 +26,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * [ShipmentModel.global_end_time][google.maps.routeoptimization.v1.ShipmentModel.global_end_time])
  * and should respect:
  * ```
- *   0 <= `start_time` <= `soft_start_time` <= `end_time` and
- *   0 <= `start_time` <= `soft_end_time` <= `end_time`.
+ *   0 <= `start_time` <= `end_time` and
+ *   0 <= `start_time` <= `soft_start_time` and
+ *   0 <= `soft_end_time` <= `end_time`.
  * ```
  *
  * Generated from protobuf message <code>google.maps.routeoptimization.v1.TimeWindow</code>

@@ -20,19 +20,19 @@ class BinLogCoordinates extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bin_log_file_name = 1;</code>
      */
-    private $bin_log_file_name = '';
+    protected $bin_log_file_name = '';
     /**
      * Position (offset) within the binary log file.
      *
      * Generated from protobuf field <code>int64 bin_log_position = 2;</code>
      */
-    private $bin_log_position = 0;
+    protected $bin_log_position = 0;
     /**
      * This is always `sql#binLogCoordinates`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.

@@ -23,13 +23,13 @@ class FetchFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string feature_view = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $feature_view = '';
+    protected $feature_view = '';
     /**
      * Optional. The request key to fetch feature values for.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureViewDataKey data_key = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_key = null;
+    protected $data_key = null;
     /**
      * Optional. Response data format. If not set,
      * [FeatureViewDataFormat.KEY_VALUE][google.cloud.aiplatform.v1.FeatureViewDataFormat.KEY_VALUE]
@@ -37,7 +37,7 @@ class FetchFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureViewDataFormat data_format = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_format = 0;
+    protected $data_format = 0;
 
     /**
      * @param string                                         $featureView Required. FeatureView resource format

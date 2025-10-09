@@ -22,20 +22,20 @@ class UnmanagedContainerModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string artifact_uri = 1;</code>
      */
-    private $artifact_uri = '';
+    protected $artifact_uri = '';
     /**
      * Contains the schemata used in Model's predictions and explanations
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PredictSchemata predict_schemata = 2;</code>
      */
-    private $predict_schemata = null;
+    protected $predict_schemata = null;
     /**
      * Input only. The specification of the container that is to be used when
      * deploying this Model.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelContainerSpec container_spec = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $container_spec = null;
+    protected $container_spec = null;
 
     /**
      * Constructor.

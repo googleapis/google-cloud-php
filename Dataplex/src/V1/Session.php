@@ -21,25 +21,25 @@ class Session extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Email of user running the session.
      *
      * Generated from protobuf field <code>string user_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $user_id = '';
+    protected $user_id = '';
     /**
      * Output only. Session start time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. State of Session
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

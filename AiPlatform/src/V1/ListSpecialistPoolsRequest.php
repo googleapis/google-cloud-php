@@ -22,13 +22,13 @@ class ListSpecialistPoolsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The standard list page size.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The standard list page token.
      * Typically obtained by
@@ -39,13 +39,13 @@ class ListSpecialistPoolsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Mask specifying which fields to read. FieldMask represents a set of
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 4;</code>
      */
-    private $read_mask = null;
+    protected $read_mask = null;
 
     /**
      * @param string $parent Required. The name of the SpecialistPool's parent resource.

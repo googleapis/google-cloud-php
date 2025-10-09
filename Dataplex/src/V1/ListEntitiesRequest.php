@@ -21,13 +21,13 @@ class ListEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Specify the entity view to make a partial list request.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.ListEntitiesRequest.EntityView view = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $view = 0;
+    protected $view = 0;
     /**
      * Optional. Maximum number of entities to return. The service may return
      * fewer than this value. If unspecified, 100 entities will be returned by
@@ -36,7 +36,7 @@ class ListEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. Page token received from a previous `ListEntities` call. Provide
      * this to retrieve the subsequent page. When paginating, all other parameters
@@ -45,7 +45,7 @@ class ListEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. The following filter parameters can be added to the URL to limit
      * the entities returned by the API:
@@ -57,7 +57,7 @@ class ListEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The resource name of the parent zone:

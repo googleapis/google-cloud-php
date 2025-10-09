@@ -77,6 +77,36 @@ return [
                     'channel_id',
                 ],
             ],
+            'CreateClip' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/channels/*}/clips',
+                'body' => 'clip',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'clip_id',
+                ],
+            ],
+            'CreateDvrSession' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/channels/*}/dvrSessions',
+                'body' => 'dvr_session',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'dvr_session_id',
+                ],
+            ],
             'CreateEvent' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/channels/*}/events',
@@ -129,6 +159,28 @@ return [
                     ],
                 ],
             ],
+            'DeleteClip' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*/clips/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDvrSession' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*/dvrSessions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteEvent' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*/events/*}',
@@ -165,6 +217,28 @@ return [
             'GetChannel' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetClip' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*/clips/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDvrSession' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*/dvrSessions/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -228,6 +302,28 @@ return [
                     ],
                 ],
             ],
+            'ListClips' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/channels/*}/clips',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDvrSessions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/channels/*}/dvrSessions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListEvents' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/channels/*}/events',
@@ -250,9 +346,33 @@ return [
                     ],
                 ],
             ],
+            'PreviewInput' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/inputs/*}:preview',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'StartChannel' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*}:start',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StartDistribution' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*}:startdistribution',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -274,6 +394,18 @@ return [
                     ],
                 ],
             ],
+            'StopDistribution' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*}:stopdistribution',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateChannel' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{channel.name=projects/*/locations/*/channels/*}',
@@ -285,6 +417,22 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+            ],
+            'UpdateDvrSession' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{dvr_session.name=projects/*/locations/*/channels/*/dvrSessions/*}',
+                'body' => 'dvr_session',
+                'placeholders' => [
+                    'dvr_session.name' => [
+                        'getters' => [
+                            'getDvrSession',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateInput' => [
