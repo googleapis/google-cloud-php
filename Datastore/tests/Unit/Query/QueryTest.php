@@ -21,6 +21,8 @@ use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Query\Filter;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
+use Google\Cloud\Datastore\V1\PropertyFilter\Operator;
+use Google\Cloud\Datastore\V1\PropertyOrder\Direction;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
@@ -194,7 +196,7 @@ class QueryTest extends TestCase
 
     public function testOrder()
     {
-        $direction = 'DESCENDING';
+        $direction = Direction::DESCENDING;
         $self = $this->query->order('propname', Query::ORDER_DESCENDING);
         $this->assertInstanceOf(Query::class, $self);
 
@@ -210,7 +212,7 @@ class QueryTest extends TestCase
 
     public function testOrderWithDefaultDireciton()
     {
-        $direction = 'ASCENDING';
+        $direction = Direction::ASCENDING;
         $self = $this->query->order('propname');
         $this->assertInstanceOf(Query::class, $self);
 
@@ -316,30 +318,30 @@ class QueryTest extends TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['limit'], 2);
+        $this->assertEquals($res['limit']['value'], 2);
     }
 
     public function getOperatorCases()
     {
         return [
-            ['=', 'EQUAL'],
-            [Query::OP_EQUALS, 'EQUAL'],
-            [Query::OP_DEFAULT, 'EQUAL'],
-            ['<', 'LESS_THAN'],
-            [Query::OP_LESS_THAN, 'LESS_THAN'],
-            ['<=', 'LESS_THAN_OR_EQUAL'],
-            [Query::OP_LESS_THAN_OR_EQUAL, 'LESS_THAN_OR_EQUAL'],
-            ['>', 'GREATER_THAN'],
-            [Query::OP_GREATER_THAN, 'GREATER_THAN'],
-            ['>=', 'GREATER_THAN_OR_EQUAL'],
-            [Query::OP_GREATER_THAN_OR_EQUAL, 'GREATER_THAN_OR_EQUAL'],
-            ['IN', 'IN'],
-            [Query::OP_IN, 'IN'],
-            ['NOT IN', 'NOT_IN'],
-            [Query::OP_NOT_IN, 'NOT_IN'],
-            ['!=', 'NOT_EQUAL'],
-            [Query::OP_NOT_EQUALS, 'NOT_EQUAL'],
-            [Query::OP_HAS_ANCESTOR, 'HAS_ANCESTOR']
+            ['=', Operator::EQUAL],
+            [Query::OP_EQUALS, Operator::EQUAL],
+            [Query::OP_DEFAULT, Operator::EQUAL],
+            ['<', Operator::LESS_THAN],
+            [Query::OP_LESS_THAN, Operator::LESS_THAN],
+            ['<=', Operator::LESS_THAN_OR_EQUAL],
+            [Query::OP_LESS_THAN_OR_EQUAL, Operator::LESS_THAN_OR_EQUAL],
+            ['>', Operator::GREATER_THAN],
+            [Query::OP_GREATER_THAN, Operator::GREATER_THAN],
+            ['>=', Operator::GREATER_THAN_OR_EQUAL],
+            [Query::OP_GREATER_THAN_OR_EQUAL, Operator::GREATER_THAN_OR_EQUAL],
+            ['IN', Operator::IN],
+            [Query::OP_IN, Operator::IN],
+            ['NOT IN', Operator::NOT_IN],
+            [Query::OP_NOT_IN, Operator::NOT_IN],
+            ['!=', Operator::NOT_EQUAL],
+            [Query::OP_NOT_EQUALS, Operator::NOT_EQUAL],
+            [Query::OP_HAS_ANCESTOR, Operator::HAS_ANCESTOR]
         ];
     }
 }

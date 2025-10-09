@@ -61,6 +61,4 @@ class Mode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Mode::class, \Google\Cloud\Datastore\V1\CommitRequest_Mode::class);
 

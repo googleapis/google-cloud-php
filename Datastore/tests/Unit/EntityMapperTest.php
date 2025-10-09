@@ -23,6 +23,7 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
+use Google\Protobuf\NullValue;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -109,11 +110,22 @@ class EntityMapperTest extends TestCase
 
     public function testResponseToPropertiesTimestampValue()
     {
-        $date = new \DateTimeImmutable;
+        $seconds = 1678886400;
+        $nanos = 123456789;
+        $microseconds = floor($nanos / 1000);
+        $date = \DateTimeImmutable::createFromFormat(
+            'U.u',
+            sprintf('%d.%06d', $seconds, $microseconds)
+        );
 
         $data = [
             'foo' => [
-                'timestampValue' => $date->format(self::DATE_FORMAT)
+                // This data is after a Proto has been transformed
+                // by the serializer class
+                'timestampValue' => [
+                    'seconds' => $seconds,
+                    'nanos' => $nanos
+                ]
             ]
         ];
 
@@ -676,26 +688,6 @@ class EntityMapperTest extends TestCase
         $this->assertEquals(1, $int['integerValue']);
     }
 
-    /**
-     * @dataProvider valueObjectDoubleCases
-     */
-    public function testValueObjectDoubleForGrpcClient($input, $expected)
-    {
-        $double = $this->mapper->valueObject($input);
-
-        $this->compareResult($expected, $double['doubleValue']);
-    }
-
-    /**
-     * @dataProvider valueObjectDoubleForRestCases
-     */
-    public function testValueObjectDoubleForRestClient($input, $expected)
-    {
-        $mapper = new EntityMapper('foo', true, false, 'rest');
-        $double = $mapper->valueObject($input);
-        $this->compareResult($expected, $double['doubleValue']);
-    }
-
     public function testValueObjectString()
     {
         $string = $this->mapper->valueObject('foo');
@@ -741,7 +733,7 @@ class EntityMapperTest extends TestCase
     {
         $null = $this->mapper->valueObject(null);
 
-        $this->assertNull($null['nullValue']);
+        $this->assertEquals(NullValue::NULL_VALUE, $null['nullValue']);
     }
 
     public function testValueObjectNestedArrays()
@@ -922,16 +914,9 @@ class EntityMapperTest extends TestCase
     {
         return [
             [1.1, 1.1],
-
-            // Happens when using rest client
             ['Infinity', INF],
             ['-Infinity', -INF],
             ['NaN', NAN],
-
-            // Happens when using grpc client
-            [INF, INF],
-            [-INF, -INF],
-            [NAN, NAN]
         ];
     }
 
@@ -942,16 +927,6 @@ class EntityMapperTest extends TestCase
             [1.1, 1.1],
             [-INF, -INF],
             [NAN, NAN]
-        ];
-    }
-
-    public function valueObjectDoubleForRestCases()
-    {
-        return [
-            [INF, 'Infinity'],
-            [1.1, 1.1],
-            [-INF, '-Infinity'],
-            [NAN, 'NaN']
         ];
     }
 

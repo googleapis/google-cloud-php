@@ -18,19 +18,22 @@
 namespace Google\Cloud\Datastore;
 
 use DomainException;
+use Google\ApiCore\ClientOptionsTrait;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\Options\ClientOptions;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
+use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Int64;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
-use Google\Cloud\Datastore\Connection\Grpc;
-use Google\Cloud\Datastore\Connection\Rest;
+use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use Psr\Cache\CacheItemPoolInterface;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use InvalidArgumentException;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -87,19 +90,16 @@ use Psr\Http\Message\StreamInterface;
  */
 class DatastoreClient
 {
-    use ArrayTrait;
-    use ClientTrait;
+    use DetectProjectIdTrait;
     use DatastoreTrait;
+    use TimestampTrait;
+    use ApiHelperTrait;
+    use ClientOptionsTrait;
+    use EmulatorTrait;
 
     const VERSION = '1.34.2';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
-
-    /**
-     * @deprecated
-     * @var ConnectionInterface
-     */
-    protected $connection;
 
     /**
      * @var Operation
@@ -112,89 +112,92 @@ class DatastoreClient
     private $entityMapper;
 
     /**
+     * @var GapicDatastoreClient
+     */
+    private GapicDatastoreClient $gapicClient;
+
+    /**
      * Create a Datastore client.
      *
      * @param array $config [optional] {
      *     Configuration Options.
+     *     Some of this options details on {@see ClientOptions}.
      *
-     *     @type string $apiEndpoint A hostname with optional port to use in
-     *           place of the service's default endpoint.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
-     *     @type CacheItemPoolInterface $authCache A cache for storing access
-     *           tokens. **Defaults to** a simple in memory implementation.
-     *     @type array $authCacheOptions Cache configuration options.
-     *     @type callable $authHttpHandler A handler used to deliver Psr7
-     *           requests specifically for authentication.
-     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
-     *           fetcher instance.
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *           Only valid for requests sent over REST.
-     *     @type array $keyFile [DEPRECATED]
-     *           @deprecated This option is being deprecated because of a potential security risk.
-     *           This option does not validate the credential configuration. The security
-     *           risk occurs when a credential configuration is accepted from a source
-     *           that is not under your control and used without validation on your side.
-     *           If you know that you will be loading credential configurations of a
-     *           specific type, it is recommended to create the credentials directly and
-     *           configure them using the `credentialsFetcher` option instead.
-     *           ```
-     *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
-     *           $creds = new DatastoreClient(['credentialsFetcher' => $creds]);
-     *           ```
-     *           This will ensure that an unexpected credential type with potential for
-     *           malicious intent is not loaded unintentionally. You might still have to do
-     *           validation for certain credential types.
-     *           If you are loading your credential configuration from an untrusted source and have
-     *           not mitigated the risks (e.g. by validating the configuration yourself), make
-     *           these changes as soon as possible to prevent security risks to your environment.
-     *           Regardless of the method used, it is always your responsibility to validate
-     *           configurations received from external sources.
-     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
-    *     @type string $keyFilePath [DEPRECATED]
-     *           @deprecated This option is being deprecated because of a potential security risk.
-     *           This option does not validate the credential configuration. The security
-     *           risk occurs when a credential configuration is accepted from a source
-     *           that is not under your control and used without validation on your side.
-     *           If you know that you will be loading credential configurations of a
-     *           specific type, it is recommended to create the credentials directly and
-     *           configure them using the `credentialsFetcher` option instead.
-     *           ```
-     *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
-     *           $creds = new DatastoreClient(['credentialsFetcher' => $creds]);
-     *           ```
-     *           This will ensure that an unexpected credential type with potential for
-     *           malicious intent is not loaded unintentionally. You might still have to do
-     *           validation for certain credential types.
-     *           If you are loading your credential configuration from an untrusted source and have
-     *           not mitigated the risks (e.g. by validating the configuration yourself), make
-     *           these changes as soon as possible to prevent security risks to your environment.
-     *           Regardless of the method used, it is always your responsibility to validate
-     *           configurations received from external sources.
-     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
-     *     @type float $requestTimeout Seconds to wait before timing out the
-     *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     *     @type int $retries Number of retries for a failed request. **Defaults
-     *           to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
-     *     @type string $quotaProject Specifies a user project to bill for
-     *           access charges associated with the request.
      *     @type string $namespaceId Partitions data under a namespace. Useful for
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
      *     @type string $databaseId ID of the database to which the entities belong.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type GapicDatastoreClient $datastoreClient A client that is of
+     *           type {@see GapicDatastoreClient}
+     *     @type string $apiEndpoint
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'datastore.googleapis.com:443'.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Datastore\V1\DatastoreClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new DatastoreClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the
+     *           client. For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()} .
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either
+     *           a path to a JSON file, or a PHP array containing the decoded JSON data. By
+     *           default this settings points to the default client config file, which is
+     *           provided in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string
+     *           `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already
+     *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
+     *           that when this object is provided, any settings in $transportConfig, and any
+     *           $apiEndpoint setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...],
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      * @throws \InvalidArgumentException
      */
     public function __construct(array $config = [])
     {
         $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
-
-        $connectionType = $this->getConnectionType($config);
+        $this->validateConfigurationOptions($config);
 
         $config += [
             'namespaceId' => null,
@@ -203,24 +206,46 @@ class DatastoreClient
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost
+            'emulatorHost' => $emulatorHost,
         ];
 
-        $config = $this->configureAuthentication($config);
-        $this->connection = $connectionType === 'grpc'
-            ? new Grpc($config)
-            : new Rest($config);
+        $gapicOptions = $this->buildClientOptions($config);
+
+        if (isset($gapicOptions['credentialsConfig']['scopes'])) {
+            $options['credentialsConfig']['scopes'] = array_merge(
+                $gapicOptions['credentialsConfig']['scopes'],
+                $config['scopes']
+            );
+        } else {
+            $options['credentialsConfig']['scopes'] = $config['scopes'];
+        }
+
+        if ($emulatorHost) {
+            $emulatorConfig = $this->emulatorGapicConfig($emulatorHost);
+            $gapicOptions = array_merge(
+                $gapicOptions,
+                $emulatorConfig
+            );
+        } else {
+            $gapicOptions['credentials'] = $this->createCredentialsWrapper(
+                $gapicOptions['credentials'],
+                $gapicOptions['credentialsConfig'],
+                $gapicOptions['universeDomain']
+            );
+        }
+
+        $this->projectId = $this->detectProjectId($gapicOptions);
+        $this->gapicClient = $this->getGapicClient($gapicOptions);
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
         $this->entityMapper = new EntityMapper(
             $this->projectId,
             true,
-            $config['returnInt64AsObject'],
-            $connectionType
+            $config['returnInt64AsObject']
         );
         $this->operation = new Operation(
-            $this->connection,
+            $this->gapicClient,
             $this->projectId,
             $config['namespaceId'],
             $this->entityMapper,
@@ -562,7 +587,11 @@ class DatastoreClient
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/allocateIds allocateIds
      *
      * @param Key[] $keys The incomplete keys.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *      Configuration Options.
+     *
+     *      string $databaseId The ID of the database against which to make the request.
+     * }.
      * @return Key[]
      */
     public function allocateIds(array $keys, array $options = [])
@@ -584,7 +613,6 @@ class DatastoreClient
      * @codingStandardsIgnoreStart
      * @param array $options {
      *     Configuration options.
-     *
      *     @type array $transactionOptions Transaction configuration. See
      *           [ReadWrite](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadWrite).
      *     @type string $databaseId ID of the database to which the entities belong.
@@ -596,7 +624,7 @@ class DatastoreClient
     {
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
-            'readWrite' => $this->pluck('transactionOptions', $options, false) ?: (object) []
+            'readWrite' => $this->pluck('transactionOptions', $options, false) ?: []
         ], $options);
 
         return new Transaction(
@@ -635,7 +663,7 @@ class DatastoreClient
     {
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
-            'readOnly' => $this->pluck('transactionOptions', $options, false) ?: (object) []
+            'readOnly' => $this->pluck('transactionOptions', $options, false) ?: []
         ], $options);
 
         return new ReadOnlyTransaction(
@@ -792,7 +820,7 @@ class DatastoreClient
             'allowOverwrite' => false
         ];
 
-        $this->operation->checkOverwrite($entities, $options['allowOverwrite']);
+        $this->operation->checkOverwrite($entities, $this->pluck('allowOverwrite', $options));
         $mutations = [];
         foreach ($entities as $entity) {
             $mutations[] = $this->operation->mutation('update', $entity, Entity::class);
@@ -956,7 +984,8 @@ class DatastoreClient
 
         $mutations = [];
         foreach ($keys as $key) {
-            $mutations[] = $this->operation->mutation('delete', $key, Key::class, $options['baseVersion']);
+            $mutations[] = $this->operation
+                ->mutation('delete', $key, Key::class, $this->pluck('baseVersion', $options, false));
         }
 
         return $this->operation->commit($mutations, $options);
@@ -1292,5 +1321,39 @@ class DatastoreClient
 
         // cast to string for conformance between REST and gRPC.
         return (string) $mutationResult['version'];
+    }
+
+    private function getGapicClient(array $config): GapicDatastoreClient
+    {
+        if (isset($config['datastoreClient']) && (!$config['datastoreClient'] instanceof GapicDatastoreClient)) {
+            throw new InvalidArgumentException(
+                'The client configuration option must be an instance of ' . GapicDatastoreClient::class
+            );
+        }
+
+        return $config['datastoreClient'] ?? new GapicDatastoreClient($config);
+    }
+
+    private function validateConfigurationOptions(array $config): void
+    {
+        $availableOptions = [
+            'projectId',
+            'namespaceId',
+            'databaseId',
+            'returnInt64AsObject',
+            'datastoreClient',
+            'apiEndpoint',
+            'credentials',
+            'credentialsConfig',
+            'disableRetries',
+            'clientConfig',
+            'transport',
+            'transportConfig',
+            'clientCertSource',
+            'logger',
+            'universeDomain'
+        ];
+
+        $this->validateOptions($config, $availableOptions);
     }
 }
