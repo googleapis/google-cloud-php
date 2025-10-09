@@ -24,6 +24,12 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $advanced_options_config = null;
     /**
+     * A list of associations that belong to this policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAssociation associations = 508736530;</code>
+     */
+    private $associations;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -98,6 +104,12 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
+     * User-provided name of the organization security policy. The name should be unique in the organization in which the security policy is created. This should only be used when SecurityPolicyType is CLOUD_ARMOR. The name must be 1-63 characters long, and comply with https://www.ietf.org/rfc/rfc1035.txt. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *
+     * Generated from protobuf field <code>optional string short_name = 492051566;</code>
+     */
+    protected $short_name = null;
+    /**
      * The type indicates the intended use of the security policy. - CLOUD_ARMOR: Cloud Armor backend security policies can be configured to filter incoming HTTP requests targeting backend services. They filter requests before they hit the origin servers. - CLOUD_ARMOR_EDGE: Cloud Armor edge security policies can be configured to filter incoming HTTP requests targeting backend services (including Cloud CDN-enabled) as well as backend buckets (Cloud Storage). They filter requests before the request is served from Google's cache. - CLOUD_ARMOR_INTERNAL_SERVICE (preview only): Cloud Armor internal service policies can be configured to filter HTTP requests targeting services managed by Traffic Director in a service mesh. They filter requests before the request is served from the application. - CLOUD_ARMOR_NETWORK: Cloud Armor network policies can be configured to filter packets targeting network load balancing resources such as backend services, target pools, target instances, and instances with external IPs. They filter requests before the request is served from the application. This field can be set only at resource creation time.
      * Check the Type enum for the list of possible values.
      *
@@ -119,6 +131,8 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfig $adaptive_protection_config
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyAdvancedOptionsConfig $advanced_options_config
+     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $associations
+     *           A list of associations that belong to this policy.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyDdosProtectionConfig $ddos_protection_config
@@ -143,6 +157,8 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *           A list of rules that belong to this policy. There must always be a default rule which is a rule with priority 2147483647 and match all condition (for the match condition this means match "*" for srcIpRanges and for the networkMatch condition every field must be either match "*" or not set). If no rules are provided when creating a security policy, a default rule with action "allow" will be added.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type string $short_name
+     *           User-provided name of the organization security policy. The name should be unique in the organization in which the security policy is created. This should only be used when SecurityPolicyType is CLOUD_ARMOR. The name must be 1-63 characters long, and comply with https://www.ietf.org/rfc/rfc1035.txt. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $type
      *           The type indicates the intended use of the security policy. - CLOUD_ARMOR: Cloud Armor backend security policies can be configured to filter incoming HTTP requests targeting backend services. They filter requests before they hit the origin servers. - CLOUD_ARMOR_EDGE: Cloud Armor edge security policies can be configured to filter incoming HTTP requests targeting backend services (including Cloud CDN-enabled) as well as backend buckets (Cloud Storage). They filter requests before the request is served from Google's cache. - CLOUD_ARMOR_INTERNAL_SERVICE (preview only): Cloud Armor internal service policies can be configured to filter HTTP requests targeting services managed by Traffic Director in a service mesh. They filter requests before the request is served from the application. - CLOUD_ARMOR_NETWORK: Cloud Armor network policies can be configured to filter packets targeting network load balancing resources such as backend services, target pools, target instances, and instances with external IPs. They filter requests before the request is served from the application. This field can be set only at resource creation time.
      *           Check the Type enum for the list of possible values.
@@ -215,6 +231,32 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SecurityPolicyAdvancedOptionsConfig::class);
         $this->advanced_options_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of associations that belong to this policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAssociation associations = 508736530;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAssociations()
+    {
+        return $this->associations;
+    }
+
+    /**
+     * A list of associations that belong to this policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAssociation associations = 508736530;</code>
+     * @param array<\Google\Cloud\Compute\V1\SecurityPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAssociations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\SecurityPolicyAssociation::class);
+        $this->associations = $arr;
 
         return $this;
     }
@@ -655,6 +697,42 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * User-provided name of the organization security policy. The name should be unique in the organization in which the security policy is created. This should only be used when SecurityPolicyType is CLOUD_ARMOR. The name must be 1-63 characters long, and comply with https://www.ietf.org/rfc/rfc1035.txt. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *
+     * Generated from protobuf field <code>optional string short_name = 492051566;</code>
+     * @return string
+     */
+    public function getShortName()
+    {
+        return isset($this->short_name) ? $this->short_name : '';
+    }
+
+    public function hasShortName()
+    {
+        return isset($this->short_name);
+    }
+
+    public function clearShortName()
+    {
+        unset($this->short_name);
+    }
+
+    /**
+     * User-provided name of the organization security policy. The name should be unique in the organization in which the security policy is created. This should only be used when SecurityPolicyType is CLOUD_ARMOR. The name must be 1-63 characters long, and comply with https://www.ietf.org/rfc/rfc1035.txt. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *
+     * Generated from protobuf field <code>optional string short_name = 492051566;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setShortName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->short_name = $var;
 
         return $this;
     }

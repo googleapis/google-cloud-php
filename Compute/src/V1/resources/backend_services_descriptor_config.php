@@ -327,6 +327,24 @@ return [
                     ],
                 ],
             ],
+            'GetEffectiveSecurityPolicies' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\GetEffectiveSecurityPoliciesBackendServiceResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'backend_service',
+                        'fieldAccessors' => [
+                            'getBackendService',
+                        ],
+                    ],
+                ],
+            ],
             'GetHealth' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Compute\V1\BackendServiceGroupHealth',

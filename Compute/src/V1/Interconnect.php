@@ -219,6 +219,13 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
     protected $state = null;
+    /**
+     * Specific subzone in the InterconnectLocation that represents where this connection is to be provisioned.
+     * Check the Subzone enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string subzone = 280084972;</code>
+     */
+    protected $subzone = null;
 
     /**
      * Constructor.
@@ -298,6 +305,9 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type string $state
      *           [Output Only] The current state of Interconnect functionality, which can take one of the following values: - ACTIVE: The Interconnect is valid, turned up and ready to use. Attachments may be provisioned on this Interconnect. - UNPROVISIONED: The Interconnect has not completed turnup. No attachments may be provisioned on this Interconnect. - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
      *           Check the State enum for the list of possible values.
+     *     @type string $subzone
+     *           Specific subzone in the InterconnectLocation that represents where this connection is to be provisioned.
+     *           Check the Subzone enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -1431,6 +1441,44 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specific subzone in the InterconnectLocation that represents where this connection is to be provisioned.
+     * Check the Subzone enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string subzone = 280084972;</code>
+     * @return string
+     */
+    public function getSubzone()
+    {
+        return isset($this->subzone) ? $this->subzone : '';
+    }
+
+    public function hasSubzone()
+    {
+        return isset($this->subzone);
+    }
+
+    public function clearSubzone()
+    {
+        unset($this->subzone);
+    }
+
+    /**
+     * Specific subzone in the InterconnectLocation that represents where this connection is to be provisioned.
+     * Check the Subzone enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string subzone = 280084972;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSubzone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->subzone = $var;
 
         return $this;
     }

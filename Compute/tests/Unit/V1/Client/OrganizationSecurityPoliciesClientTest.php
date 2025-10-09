@@ -26,42 +26,33 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Compute\V1\AddSignedUrlKeyBackendServiceRequest;
-use Google\Cloud\Compute\V1\AggregatedListBackendServicesRequest;
-use Google\Cloud\Compute\V1\BackendService;
-use Google\Cloud\Compute\V1\BackendServiceAggregatedList;
-use Google\Cloud\Compute\V1\BackendServiceGroupHealth;
-use Google\Cloud\Compute\V1\BackendServiceList;
-use Google\Cloud\Compute\V1\BackendServiceListUsable;
-use Google\Cloud\Compute\V1\BackendServicesScopedList;
-use Google\Cloud\Compute\V1\Client\BackendServicesClient;
-use Google\Cloud\Compute\V1\Client\GlobalOperationsClient;
-use Google\Cloud\Compute\V1\DeleteBackendServiceRequest;
-use Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendServiceRequest;
-use Google\Cloud\Compute\V1\GetBackendServiceRequest;
-use Google\Cloud\Compute\V1\GetEffectiveSecurityPoliciesBackendServiceRequest;
-use Google\Cloud\Compute\V1\GetEffectiveSecurityPoliciesBackendServiceResponse;
-use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
-use Google\Cloud\Compute\V1\GetHealthBackendServiceRequest;
-use Google\Cloud\Compute\V1\GetIamPolicyBackendServiceRequest;
-use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
-use Google\Cloud\Compute\V1\InsertBackendServiceRequest;
-use Google\Cloud\Compute\V1\ListBackendServicesRequest;
-use Google\Cloud\Compute\V1\ListUsableBackendServicesRequest;
+use Google\Cloud\Compute\V1\AddAssociationOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\AddRuleOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\Client\GlobalOrganizationOperationsClient;
+use Google\Cloud\Compute\V1\Client\OrganizationSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\CopyRulesOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\DeleteOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\GetAssociationOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\GetGlobalOrganizationOperationRequest;
+use Google\Cloud\Compute\V1\GetOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\GetRuleOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\InsertOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\ListAssociationsOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\ListOrganizationSecurityPoliciesRequest;
+use Google\Cloud\Compute\V1\ListPreconfiguredExpressionSetsOrganizationSecurityPoliciesRequest;
+use Google\Cloud\Compute\V1\MoveOrganizationSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
-use Google\Cloud\Compute\V1\PatchBackendServiceRequest;
-use Google\Cloud\Compute\V1\Policy;
-use Google\Cloud\Compute\V1\ResourceGroupReference;
-use Google\Cloud\Compute\V1\SecurityPolicyReference;
-use Google\Cloud\Compute\V1\SetEdgeSecurityPolicyBackendServiceRequest;
-use Google\Cloud\Compute\V1\SetIamPolicyBackendServiceRequest;
-use Google\Cloud\Compute\V1\SetSecurityPolicyBackendServiceRequest;
-use Google\Cloud\Compute\V1\SignedUrlKey;
-use Google\Cloud\Compute\V1\TestIamPermissionsBackendServiceRequest;
-use Google\Cloud\Compute\V1\TestPermissionsRequest;
-use Google\Cloud\Compute\V1\TestPermissionsResponse;
-use Google\Cloud\Compute\V1\UpdateBackendServiceRequest;
+use Google\Cloud\Compute\V1\OrganizationSecurityPoliciesListAssociationsResponse;
+use Google\Cloud\Compute\V1\PatchOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\PatchRuleOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\RemoveAssociationOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\RemoveRuleOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\SecurityPoliciesListPreconfiguredExpressionSetsResponse;
+use Google\Cloud\Compute\V1\SecurityPolicy;
+use Google\Cloud\Compute\V1\SecurityPolicyAssociation;
+use Google\Cloud\Compute\V1\SecurityPolicyList;
+use Google\Cloud\Compute\V1\SecurityPolicyRule;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -70,7 +61,7 @@ use stdClass;
  *
  * @group gapic
  */
-class BackendServicesClientTest extends GeneratedTest
+class OrganizationSecurityPoliciesClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -86,20 +77,20 @@ class BackendServicesClientTest extends GeneratedTest
             ->getMock();
     }
 
-    /** @return BackendServicesClient */
+    /** @return OrganizationSecurityPoliciesClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new BackendServicesClient($options);
+        return new OrganizationSecurityPoliciesClient($options);
     }
 
     /** @test */
-    public function addSignedUrlKeyTest()
+    public function addAssociationTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -113,22 +104,20 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/addSignedUrlKeyTest');
+        $incompleteOperation->setName('customOperations/addAssociationTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $completeOperation = new Operation();
-        $completeOperation->setName('customOperations/addSignedUrlKeyTest');
+        $completeOperation->setName('customOperations/addAssociationTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $signedUrlKeyResource = new SignedUrlKey();
-        $request = (new AddSignedUrlKeyBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setSignedUrlKeyResource($signedUrlKeyResource);
-        $response = $gapicClient->addSignedUrlKey($request);
+        $securityPolicy = 'securityPolicy1781695249';
+        $securityPolicyAssociationResource = new SecurityPolicyAssociation();
+        $request = (new AddAssociationOrganizationSecurityPolicyRequest())
+            ->setSecurityPolicy($securityPolicy)
+            ->setSecurityPolicyAssociationResource($securityPolicyAssociationResource);
+        $response = $gapicClient->addAssociation($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -136,16 +125,13 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/AddSignedUrlKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSignedUrlKeyResource();
-        $this->assertProtobufEquals($signedUrlKeyResource, $actualValue);
-        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/AddAssociation', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityPolicyAssociationResource();
+        $this->assertProtobufEquals($securityPolicyAssociationResource, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -156,17 +142,17 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
-    public function addSignedUrlKeyExceptionTest()
+    public function addAssociationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -180,7 +166,7 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/addSignedUrlKeyExceptionTest');
+        $incompleteOperation->setName('customOperations/addAssociationExceptionTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
@@ -197,14 +183,12 @@ class BackendServicesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $signedUrlKeyResource = new SignedUrlKey();
-        $request = (new AddSignedUrlKeyBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setSignedUrlKeyResource($signedUrlKeyResource);
-        $response = $gapicClient->addSignedUrlKey($request);
+        $securityPolicy = 'securityPolicy1781695249';
+        $securityPolicyAssociationResource = new SecurityPolicyAssociation();
+        $request = (new AddAssociationOrganizationSecurityPolicyRequest())
+            ->setSecurityPolicy($securityPolicy)
+            ->setSecurityPolicyAssociationResource($securityPolicyAssociationResource);
+        $response = $gapicClient->addAssociation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -225,56 +209,88 @@ class BackendServicesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function aggregatedListTest()
+    public function addRuleTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOrganizationOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $id = 'id3355';
-        $kind = 'kind3292052';
-        $nextPageToken = '';
-        $selfLink = 'selfLink-1691268851';
-        $items = [
-            'itemsKey' => new BackendServicesScopedList(),
-        ];
-        $expectedResponse = new BackendServiceAggregatedList();
-        $expectedResponse->setId($id);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setItems($items);
-        $transport->addResponse($expectedResponse);
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/addRuleTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/addRuleTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListBackendServicesRequest())->setProject($project);
-        $response = $gapicClient->aggregatedList($request);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
-        $this->assertArrayHasKey('itemsKey', $resources);
-        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
+        $securityPolicy = 'securityPolicy1781695249';
+        $securityPolicyRuleResource = new SecurityPolicyRule();
+        $request = (new AddRuleOrganizationSecurityPolicyRequest())
+            ->setSecurityPolicy($securityPolicy)
+            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $response = $gapicClient->addRule($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/AddRule', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityPolicyRuleResource();
+        $this->assertProtobufEquals($securityPolicyRuleResource, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
-    public function aggregatedListExceptionTest()
+    public function addRuleExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOrganizationOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/addRuleExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
@@ -287,28 +303,152 @@ class BackendServicesClientTest extends GeneratedTest
             ],
             JSON_PRETTY_PRINT
         );
-        $transport->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
         // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListBackendServicesRequest())->setProject($project);
+        $securityPolicy = 'securityPolicy1781695249';
+        $securityPolicyRuleResource = new SecurityPolicyRule();
+        $request = (new AddRuleOrganizationSecurityPolicyRequest())
+            ->setSecurityPolicy($securityPolicy)
+            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $response = $gapicClient->addRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
         try {
-            $gapicClient->aggregatedList($request);
-            // If the $gapicClient method call did not throw, fail the test
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-        // Call popReceivedCalls to ensure the stub is exhausted
+        // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function copyRulesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOrganizationOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/copyRulesTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/copyRulesTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new CopyRulesOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
+        $response = $gapicClient->copyRules($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/CopyRules', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function copyRulesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOrganizationOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/copyRulesExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new CopyRulesOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
+        $response = $gapicClient->copyRules($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -330,9 +470,8 @@ class BackendServicesClientTest extends GeneratedTest
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $request = (new DeleteBackendServiceRequest())->setBackendService($backendService)->setProject($project);
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new DeleteOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -341,14 +480,11 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -359,7 +495,7 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
@@ -369,7 +505,7 @@ class BackendServicesClientTest extends GeneratedTest
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -400,139 +536,9 @@ class BackendServicesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $request = (new DeleteBackendServiceRequest())->setBackendService($backendService)->setProject($project);
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new DeleteOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
         $response = $gapicClient->delete($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stubs are exhausted
-        $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function deleteSignedUrlKeyTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/deleteSignedUrlKeyTest');
-        $incompleteOperation->setStatus(Status::RUNNING);
-        $transport->addResponse($incompleteOperation);
-        $completeOperation = new Operation();
-        $completeOperation->setName('customOperations/deleteSignedUrlKeyTest');
-        $completeOperation->setStatus(Status::DONE);
-        $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $keyName = 'keyName500938859';
-        $project = 'project-309310695';
-        $request = (new DeleteSignedUrlKeyBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setKeyName($keyName)
-            ->setProject($project);
-        $response = $gapicClient->deleteSignedUrlKey($request);
-        $this->assertFalse($response->isDone());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/DeleteSignedUrlKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getKeyName();
-        $this->assertProtobufEquals($keyName, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
-        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function deleteSignedUrlKeyExceptionTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/deleteSignedUrlKeyExceptionTest');
-        $incompleteOperation->setStatus(Status::RUNNING);
-        $transport->addResponse($incompleteOperation);
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $keyName = 'keyName500938859';
-        $project = 'project-309310695';
-        $request = (new DeleteSignedUrlKeyBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setKeyName($keyName)
-            ->setProject($project);
-        $response = $gapicClient->deleteSignedUrlKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -561,73 +567,42 @@ class BackendServicesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $affinityCookieTtlSec = 1777486694;
-        $compressionMode = 'compressionMode-2051962660';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
-        $edgeSecurityPolicy = 'edgeSecurityPolicy-1032704881';
-        $enableCDN = false;
-        $externalManagedMigrationState = 'externalManagedMigrationState-469923892';
-        $externalManagedMigrationTestingPercentage = 3747041;
         $fingerprint = 'fingerprint-1375934236';
         $id = 3355;
-        $ipAddressSelectionPolicy = 'ipAddressSelectionPolicy614471752';
         $kind = 'kind3292052';
-        $loadBalancingScheme = 'loadBalancingScheme1974502980';
-        $localityLbPolicy = 'localityLbPolicy-2016052161';
+        $labelFingerprint = 'labelFingerprint714995737';
         $name = 'name3373707';
-        $network = 'network1843485230';
-        $port = 3446913;
-        $portName = 'portName1115276169';
-        $protocol = 'protocol-989163880';
         $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
         $selfLink = 'selfLink-1691268851';
-        $serviceLbPolicy = 'serviceLbPolicy1168590609';
-        $sessionAffinity = 'sessionAffinity1000759473';
-        $timeoutSec = 2067488653;
-        $expectedResponse = new BackendService();
-        $expectedResponse->setAffinityCookieTtlSec($affinityCookieTtlSec);
-        $expectedResponse->setCompressionMode($compressionMode);
+        $shortName = 'shortName1565793390';
+        $type = 'type3575610';
+        $expectedResponse = new SecurityPolicy();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
-        $expectedResponse->setEdgeSecurityPolicy($edgeSecurityPolicy);
-        $expectedResponse->setEnableCDN($enableCDN);
-        $expectedResponse->setExternalManagedMigrationState($externalManagedMigrationState);
-        $expectedResponse->setExternalManagedMigrationTestingPercentage($externalManagedMigrationTestingPercentage);
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);
-        $expectedResponse->setIpAddressSelectionPolicy($ipAddressSelectionPolicy);
         $expectedResponse->setKind($kind);
-        $expectedResponse->setLoadBalancingScheme($loadBalancingScheme);
-        $expectedResponse->setLocalityLbPolicy($localityLbPolicy);
+        $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setName($name);
-        $expectedResponse->setNetwork($network);
-        $expectedResponse->setPort($port);
-        $expectedResponse->setPortName($portName);
-        $expectedResponse->setProtocol($protocol);
         $expectedResponse->setRegion($region);
-        $expectedResponse->setSecurityPolicy($securityPolicy);
         $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setServiceLbPolicy($serviceLbPolicy);
-        $expectedResponse->setSessionAffinity($sessionAffinity);
-        $expectedResponse->setTimeoutSec($timeoutSec);
+        $expectedResponse->setShortName($shortName);
+        $expectedResponse->setType($type);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $request = (new GetBackendServiceRequest())->setBackendService($backendService)->setProject($project);
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new GetOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -653,9 +628,8 @@ class BackendServicesClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $request = (new GetBackendServiceRequest())->setBackendService($backendService)->setProject($project);
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new GetOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -670,7 +644,7 @@ class BackendServicesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getEffectiveSecurityPoliciesTest()
+    public function getAssociationTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -678,30 +652,35 @@ class BackendServicesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GetEffectiveSecurityPoliciesBackendServiceResponse();
+        $attachmentId = 'attachmentId-1506844233';
+        $displayName = 'displayName1615086568';
+        $name2 = 'name2-1052831874';
+        $securityPolicyId = 'securityPolicyId1277413641';
+        $shortName = 'shortName1565793390';
+        $expectedResponse = new SecurityPolicyAssociation();
+        $expectedResponse->setAttachmentId($attachmentId);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setName($name2);
+        $expectedResponse->setSecurityPolicyId($securityPolicyId);
+        $expectedResponse->setShortName($shortName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $request = (new GetEffectiveSecurityPoliciesBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project);
-        $response = $gapicClient->getEffectiveSecurityPolicies($request);
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new GetAssociationOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
+        $response = $gapicClient->getAssociation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/GetEffectiveSecurityPolicies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/GetAssociation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function getEffectiveSecurityPoliciesExceptionTest()
+    public function getAssociationExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -722,13 +701,10 @@ class BackendServicesClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $request = (new GetEffectiveSecurityPoliciesBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project);
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new GetAssociationOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
         try {
-            $gapicClient->getEffectiveSecurityPolicies($request);
+            $gapicClient->getAssociation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -741,7 +717,7 @@ class BackendServicesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getHealthTest()
+    public function getRuleTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -749,36 +725,35 @@ class BackendServicesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $action = 'action-1422950858';
+        $description = 'description-1724546052';
         $kind = 'kind3292052';
-        $expectedResponse = new BackendServiceGroupHealth();
+        $preview = true;
+        $priority2 = 978365527;
+        $expectedResponse = new SecurityPolicyRule();
+        $expectedResponse->setAction($action);
+        $expectedResponse->setDescription($description);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setPreview($preview);
+        $expectedResponse->setPriority($priority2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $resourceGroupReferenceResource = new ResourceGroupReference();
-        $request = (new GetHealthBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setResourceGroupReferenceResource($resourceGroupReferenceResource);
-        $response = $gapicClient->getHealth($request);
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new GetRuleOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
+        $response = $gapicClient->getRule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/GetHealth', $actualFuncCall);
-        $actualValue = $actualRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResourceGroupReferenceResource();
-        $this->assertProtobufEquals($resourceGroupReferenceResource, $actualValue);
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/GetRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function getHealthExceptionTest()
+    public function getRuleExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -799,88 +774,10 @@ class BackendServicesClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $resourceGroupReferenceResource = new ResourceGroupReference();
-        $request = (new GetHealthBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setResourceGroupReferenceResource($resourceGroupReferenceResource);
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new GetRuleOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
         try {
-            $gapicClient->getHealth($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getIamPolicyTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $etag = 'etag3123477';
-        $iamOwned = false;
-        $version = 351608024;
-        $expectedResponse = new Policy();
-        $expectedResponse->setEtag($etag);
-        $expectedResponse->setIamOwned($iamOwned);
-        $expectedResponse->setVersion($version);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyBackendServiceRequest())->setProject($project)->setResource($resource);
-        $response = $gapicClient->getIamPolicy($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getIamPolicyExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyBackendServiceRequest())->setProject($project)->setResource($resource);
-        try {
-            $gapicClient->getIamPolicy($request);
+            $gapicClient->getRule($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -896,7 +793,7 @@ class BackendServicesClientTest extends GeneratedTest
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -918,11 +815,8 @@ class BackendServicesClientTest extends GeneratedTest
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $backendServiceResource = new BackendService();
-        $project = 'project-309310695';
-        $request = (new InsertBackendServiceRequest())
-            ->setBackendServiceResource($backendServiceResource)
-            ->setProject($project);
+        $securityPolicyResource = new SecurityPolicy();
+        $request = (new InsertOrganizationSecurityPolicyRequest())->setSecurityPolicyResource($securityPolicyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -931,14 +825,11 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendServiceResource();
-        $this->assertProtobufEquals($backendServiceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getSecurityPolicyResource();
+        $this->assertProtobufEquals($securityPolicyResource, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -949,7 +840,7 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
@@ -959,7 +850,7 @@ class BackendServicesClientTest extends GeneratedTest
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -990,11 +881,8 @@ class BackendServicesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $backendServiceResource = new BackendService();
-        $project = 'project-309310695';
-        $request = (new InsertBackendServiceRequest())
-            ->setBackendServiceResource($backendServiceResource)
-            ->setProject($project);
+        $securityPolicyResource = new SecurityPolicy();
+        $request = (new InsertOrganizationSecurityPolicyRequest())->setSecurityPolicyResource($securityPolicyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1027,19 +915,15 @@ class BackendServicesClientTest extends GeneratedTest
         $id = 'id3355';
         $kind = 'kind3292052';
         $nextPageToken = '';
-        $selfLink = 'selfLink-1691268851';
-        $itemsElement = new BackendService();
+        $itemsElement = new SecurityPolicy();
         $items = [$itemsElement];
-        $expectedResponse = new BackendServiceList();
+        $expectedResponse = new SecurityPolicyList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListBackendServicesRequest())->setProject($project);
+        $request = new ListOrganizationSecurityPoliciesRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1049,9 +933,7 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/List', $actualFuncCall);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1076,9 +958,7 @@ class BackendServicesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListBackendServicesRequest())->setProject($project);
+        $request = new ListOrganizationSecurityPoliciesRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1093,7 +973,7 @@ class BackendServicesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listUsableTest()
+    public function listAssociationsTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1101,39 +981,23 @@ class BackendServicesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $id = 'id3355';
         $kind = 'kind3292052';
-        $nextPageToken = '';
-        $selfLink = 'selfLink-1691268851';
-        $itemsElement = new BackendService();
-        $items = [$itemsElement];
-        $expectedResponse = new BackendServiceListUsable();
-        $expectedResponse->setId($id);
+        $expectedResponse = new OrganizationSecurityPoliciesListAssociationsResponse();
         $expectedResponse->setKind($kind);
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListUsableBackendServicesRequest())->setProject($project);
-        $response = $gapicClient->listUsable($request);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $request = new ListAssociationsOrganizationSecurityPolicyRequest();
+        $response = $gapicClient->listAssociations($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/ListUsable', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/ListAssociations', $actualFuncCall);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function listUsableExceptionTest()
+    public function listAssociationsExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1153,11 +1017,9 @@ class BackendServicesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListUsableBackendServicesRequest())->setProject($project);
+        $request = new ListAssociationsOrganizationSecurityPolicyRequest();
         try {
-            $gapicClient->listUsable($request);
+            $gapicClient->listAssociations($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1170,10 +1032,184 @@ class BackendServicesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listPreconfiguredExpressionSetsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new SecurityPoliciesListPreconfiguredExpressionSetsResponse();
+        $transport->addResponse($expectedResponse);
+        $request = new ListPreconfiguredExpressionSetsOrganizationSecurityPoliciesRequest();
+        $response = $gapicClient->listPreconfiguredExpressionSets($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.compute.v1.OrganizationSecurityPolicies/ListPreconfiguredExpressionSets',
+            $actualFuncCall
+        );
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listPreconfiguredExpressionSetsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        $request = new ListPreconfiguredExpressionSetsOrganizationSecurityPoliciesRequest();
+        try {
+            $gapicClient->listPreconfiguredExpressionSets($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function moveTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOrganizationOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/moveTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/moveTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new MoveOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
+        $response = $gapicClient->move($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/Move', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function moveExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOrganizationOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/moveExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new MoveOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
+        $response = $gapicClient->move($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -1195,13 +1231,11 @@ class BackendServicesClientTest extends GeneratedTest
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $backendService = 'backendService306946058';
-        $backendServiceResource = new BackendService();
-        $project = 'project-309310695';
-        $request = (new PatchBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setBackendServiceResource($backendServiceResource)
-            ->setProject($project);
+        $securityPolicy = 'securityPolicy1781695249';
+        $securityPolicyResource = new SecurityPolicy();
+        $request = (new PatchOrganizationSecurityPolicyRequest())
+            ->setSecurityPolicy($securityPolicy)
+            ->setSecurityPolicyResource($securityPolicyResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1210,16 +1244,13 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackendServiceResource();
-        $this->assertProtobufEquals($backendServiceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityPolicyResource();
+        $this->assertProtobufEquals($securityPolicyResource, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1230,7 +1261,7 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
@@ -1240,7 +1271,7 @@ class BackendServicesClientTest extends GeneratedTest
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -1271,13 +1302,11 @@ class BackendServicesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $backendService = 'backendService306946058';
-        $backendServiceResource = new BackendService();
-        $project = 'project-309310695';
-        $request = (new PatchBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setBackendServiceResource($backendServiceResource)
-            ->setProject($project);
+        $securityPolicy = 'securityPolicy1781695249';
+        $securityPolicyResource = new SecurityPolicy();
+        $request = (new PatchOrganizationSecurityPolicyRequest())
+            ->setSecurityPolicy($securityPolicy)
+            ->setSecurityPolicyResource($securityPolicyResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1299,10 +1328,10 @@ class BackendServicesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function setEdgeSecurityPolicyTest()
+    public function patchRuleTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -1316,22 +1345,20 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/setEdgeSecurityPolicyTest');
+        $incompleteOperation->setName('customOperations/patchRuleTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $completeOperation = new Operation();
-        $completeOperation->setName('customOperations/setEdgeSecurityPolicyTest');
+        $completeOperation->setName('customOperations/patchRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $request = (new SetEdgeSecurityPolicyBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource);
-        $response = $gapicClient->setEdgeSecurityPolicy($request);
+        $securityPolicy = 'securityPolicy1781695249';
+        $securityPolicyRuleResource = new SecurityPolicyRule();
+        $request = (new PatchRuleOrganizationSecurityPolicyRequest())
+            ->setSecurityPolicy($securityPolicy)
+            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $response = $gapicClient->patchRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1339,16 +1366,13 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/SetEdgeSecurityPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyReferenceResource();
-        $this->assertProtobufEquals($securityPolicyReferenceResource, $actualValue);
-        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/PatchRule', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityPolicyRuleResource();
+        $this->assertProtobufEquals($securityPolicyRuleResource, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1359,17 +1383,17 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
-    public function setEdgeSecurityPolicyExceptionTest()
+    public function patchRuleExceptionTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -1383,7 +1407,7 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/setEdgeSecurityPolicyExceptionTest');
+        $incompleteOperation->setName('customOperations/patchRuleExceptionTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
@@ -1400,14 +1424,12 @@ class BackendServicesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $request = (new SetEdgeSecurityPolicyBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource);
-        $response = $gapicClient->setEdgeSecurityPolicy($request);
+        $securityPolicy = 'securityPolicy1781695249';
+        $securityPolicyRuleResource = new SecurityPolicyRule();
+        $request = (new PatchRuleOrganizationSecurityPolicyRequest())
+            ->setSecurityPolicy($securityPolicy)
+            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $response = $gapicClient->patchRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1428,93 +1450,10 @@ class BackendServicesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function setIamPolicyTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $etag = 'etag3123477';
-        $iamOwned = false;
-        $version = 351608024;
-        $expectedResponse = new Policy();
-        $expectedResponse->setEtag($etag);
-        $expectedResponse->setIamOwned($iamOwned);
-        $expectedResponse->setVersion($version);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $request = (new SetIamPolicyBackendServiceRequest())
-            ->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource)
-            ->setProject($project)
-            ->setResource($resource);
-        $response = $gapicClient->setIamPolicy($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getGlobalSetPolicyRequestResource();
-        $this->assertProtobufEquals($globalSetPolicyRequestResource, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function setIamPolicyExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $request = (new SetIamPolicyBackendServiceRequest())
-            ->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource)
-            ->setProject($project)
-            ->setResource($resource);
-        try {
-            $gapicClient->setIamPolicy($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function setSecurityPolicyTest()
+    public function removeAssociationTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -1528,22 +1467,17 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/setSecurityPolicyTest');
+        $incompleteOperation->setName('customOperations/removeAssociationTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $completeOperation = new Operation();
-        $completeOperation->setName('customOperations/setSecurityPolicyTest');
+        $completeOperation->setName('customOperations/removeAssociationTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $request = (new SetSecurityPolicyBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource);
-        $response = $gapicClient->setSecurityPolicy($request);
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new RemoveAssociationOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
+        $response = $gapicClient->removeAssociation($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1551,16 +1485,14 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/SetSecurityPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyReferenceResource();
-        $this->assertProtobufEquals($securityPolicyReferenceResource, $actualValue);
-        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $this->assertSame(
+            '/google.cloud.compute.v1.OrganizationSecurityPolicies/RemoveAssociation',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1571,17 +1503,17 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
-    public function setSecurityPolicyExceptionTest()
+    public function removeAssociationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -1595,7 +1527,7 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/setSecurityPolicyExceptionTest');
+        $incompleteOperation->setName('customOperations/removeAssociationExceptionTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
@@ -1612,14 +1544,9 @@ class BackendServicesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $request = (new SetSecurityPolicyBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource);
-        $response = $gapicClient->setSecurityPolicy($request);
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new RemoveAssociationOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
+        $response = $gapicClient->removeAssociation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1640,87 +1567,10 @@ class BackendServicesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function testIamPermissionsTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new TestPermissionsResponse();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $request = (new TestIamPermissionsBackendServiceRequest())
-            ->setProject($project)
-            ->setResource($resource)
-            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
-        $response = $gapicClient->testIamPermissions($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
-        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function testIamPermissionsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $request = (new TestIamPermissionsBackendServiceRequest())
-            ->setProject($project)
-            ->setResource($resource)
-            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
-        try {
-            $gapicClient->testIamPermissions($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function updateTest()
+    public function removeRuleTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -1734,22 +1584,17 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/updateTest');
+        $incompleteOperation->setName('customOperations/removeRuleTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $completeOperation = new Operation();
-        $completeOperation->setName('customOperations/updateTest');
+        $completeOperation->setName('customOperations/removeRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $backendService = 'backendService306946058';
-        $backendServiceResource = new BackendService();
-        $project = 'project-309310695';
-        $request = (new UpdateBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setBackendServiceResource($backendServiceResource)
-            ->setProject($project);
-        $response = $gapicClient->update($request);
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new RemoveRuleOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
+        $response = $gapicClient->removeRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1757,16 +1602,11 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/Update', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackendServiceResource();
-        $this->assertProtobufEquals($backendServiceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/RemoveRule', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1777,17 +1617,17 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
-    public function updateExceptionTest()
+    public function removeRuleExceptionTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -1801,7 +1641,7 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/updateExceptionTest');
+        $incompleteOperation->setName('customOperations/removeRuleExceptionTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
@@ -1818,14 +1658,9 @@ class BackendServicesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $backendService = 'backendService306946058';
-        $backendServiceResource = new BackendService();
-        $project = 'project-309310695';
-        $request = (new UpdateBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setBackendServiceResource($backendServiceResource)
-            ->setProject($project);
-        $response = $gapicClient->update($request);
+        $securityPolicy = 'securityPolicy1781695249';
+        $request = (new RemoveRuleOrganizationSecurityPolicyRequest())->setSecurityPolicy($securityPolicy);
+        $response = $gapicClient->removeRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1846,10 +1681,10 @@ class BackendServicesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function addSignedUrlKeyAsyncTest()
+    public function addAssociationAsyncTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new GlobalOperationsClient([
+        $operationsClient = new GlobalOrganizationOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -1863,22 +1698,20 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/addSignedUrlKeyAsyncTest');
+        $incompleteOperation->setName('customOperations/addAssociationAsyncTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $completeOperation = new Operation();
-        $completeOperation->setName('customOperations/addSignedUrlKeyAsyncTest');
+        $completeOperation->setName('customOperations/addAssociationAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $signedUrlKeyResource = new SignedUrlKey();
-        $request = (new AddSignedUrlKeyBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setSignedUrlKeyResource($signedUrlKeyResource);
-        $response = $gapicClient->addSignedUrlKey($request);
+        $securityPolicy = 'securityPolicy1781695249';
+        $securityPolicyAssociationResource = new SecurityPolicyAssociation();
+        $request = (new AddAssociationOrganizationSecurityPolicyRequest())
+            ->setSecurityPolicy($securityPolicy)
+            ->setSecurityPolicyAssociationResource($securityPolicyAssociationResource);
+        $response = $gapicClient->addAssociation($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1886,16 +1719,13 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.BackendServices/AddSignedUrlKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSignedUrlKeyResource();
-        $this->assertProtobufEquals($signedUrlKeyResource, $actualValue);
-        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $this->assertSame('/google.cloud.compute.v1.OrganizationSecurityPolicies/AddAssociation', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getSecurityPolicy();
+        $this->assertProtobufEquals($securityPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityPolicyAssociationResource();
+        $this->assertProtobufEquals($securityPolicyAssociationResource, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1906,7 +1736,7 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
