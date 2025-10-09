@@ -102,6 +102,22 @@ return [
                     ],
                 ],
             ],
+            'GetEffectiveSecurityPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/backendServices/{backend_service}/getEffectiveSecurityPolicies',
+                'placeholders' => [
+                    'backend_service' => [
+                        'getters' => [
+                            'getBackendService',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'GetHealth' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/backendServices/{backend_service}/getHealth',

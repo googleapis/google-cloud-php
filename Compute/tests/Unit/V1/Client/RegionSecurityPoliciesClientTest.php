@@ -362,6 +362,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $name = 'name3373707';
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
+        $shortName = 'shortName1565793390';
         $type = 'type3575610';
         $expectedResponse = new SecurityPolicy();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
@@ -373,6 +374,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setShortName($shortName);
         $expectedResponse->setType($type);
         $transport->addResponse($expectedResponse);
         // Mock request

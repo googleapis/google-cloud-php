@@ -34,31 +34,29 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Compute\V1\GetReservationSubBlockRequest;
-use Google\Cloud\Compute\V1\ListReservationSubBlocksRequest;
-use Google\Cloud\Compute\V1\PerformMaintenanceReservationSubBlockRequest;
-use Google\Cloud\Compute\V1\ReportFaultyReservationSubBlockRequest;
-use Google\Cloud\Compute\V1\ReservationSubBlocksGetResponse;
+use Google\Cloud\Compute\V1\GetPreviewFeatureRequest;
+use Google\Cloud\Compute\V1\ListPreviewFeaturesRequest;
+use Google\Cloud\Compute\V1\PreviewFeature;
+use Google\Cloud\Compute\V1\UpdatePreviewFeatureRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The ReservationSubBlocks API.
+ * Service Description: The PreviewFeatures API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface<ReservationSubBlocksGetResponse> getAsync(GetReservationSubBlockRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listAsync(ListReservationSubBlocksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> performMaintenanceAsync(PerformMaintenanceReservationSubBlockRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> reportFaultyAsync(ReportFaultyReservationSubBlockRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PreviewFeature> getAsync(GetPreviewFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListPreviewFeaturesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdatePreviewFeatureRequest $request, array $optionalArgs = [])
  */
-final class ReservationSubBlocksClient
+final class PreviewFeaturesClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.compute.v1.ReservationSubBlocks';
+    private const SERVICE_NAME = 'google.cloud.compute.v1.PreviewFeatures';
 
     /**
      * The default address of the service.
@@ -89,15 +87,15 @@ final class ReservationSubBlocksClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/reservation_sub_blocks_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/reservation_sub_blocks_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/../resources/preview_features_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/preview_features_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/reservation_sub_blocks_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/preview_features_rest_client_config.php',
                 ],
             ],
         ];
@@ -116,9 +114,9 @@ final class ReservationSubBlocksClient
     }
 
     /**
-     * Return an ZoneOperationsClient object with the same endpoint as $this.
+     * Return an GlobalOperationsClient object with the same endpoint as $this.
      *
-     * @return ZoneOperationsClient
+     * @return GlobalOperationsClient
      */
     public function getOperationsClient()
     {
@@ -129,7 +127,7 @@ final class ReservationSubBlocksClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => ['getProject', 'getZone'],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -138,9 +136,9 @@ final class ReservationSubBlocksClient
             'operationNameMethod' => 'getName',
             'operationStatusMethod' => 'getStatus',
             'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetZoneOperationRequest',
+            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetGlobalOperationRequest',
             'cancelOperationRequest' => null,
-            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteZoneOperationRequest',
+            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteGlobalOperationRequest',
         ];
     }
 
@@ -168,7 +166,7 @@ final class ReservationSubBlocksClient
      *
      * @param array $options ClientOptions for the client.
      *
-     * @return ZoneOperationsClient
+     * @return GlobalOperationsClient
      */
     private function createOperationsClient(array $options)
     {
@@ -179,7 +177,7 @@ final class ReservationSubBlocksClient
             return $options['operationsClient'];
         }
 
-        return new ZoneOperationsClient($options);
+        return new GlobalOperationsClient($options);
     }
 
     /**
@@ -202,9 +200,9 @@ final class ReservationSubBlocksClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Compute\V1\ReservationSubBlocksClient;
+     *           use Google\Cloud\Compute\V1\PreviewFeaturesClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new ReservationSubBlocksClient(['credentials' => $creds]);
+     *           $options = new PreviewFeaturesClient(['credentials' => $creds]);
      *           ```
      *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
@@ -266,14 +264,14 @@ final class ReservationSubBlocksClient
     }
 
     /**
-     * Retrieves information about the specified reservation subBlock.
+     * Returns the details of the given PreviewFeature.
      *
-     * The async variant is {@see ReservationSubBlocksClient::getAsync()} .
+     * The async variant is {@see PreviewFeaturesClient::getAsync()} .
      *
-     * @example samples/V1/ReservationSubBlocksClient/get.php
+     * @example samples/V1/PreviewFeaturesClient/get.php
      *
-     * @param GetReservationSubBlockRequest $request     A request to house fields associated with the call.
-     * @param array                         $callOptions {
+     * @param GetPreviewFeatureRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -282,26 +280,24 @@ final class ReservationSubBlocksClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return ReservationSubBlocksGetResponse
+     * @return PreviewFeature
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function get(
-        GetReservationSubBlockRequest $request,
-        array $callOptions = []
-    ): ReservationSubBlocksGetResponse {
+    public function get(GetPreviewFeatureRequest $request, array $callOptions = []): PreviewFeature
+    {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 
     /**
-     * Retrieves a list of reservation subBlocks under a single reservation.
+     * Returns the details of the given PreviewFeature.
      *
-     * The async variant is {@see ReservationSubBlocksClient::listAsync()} .
+     * The async variant is {@see PreviewFeaturesClient::listAsync()} .
      *
-     * @example samples/V1/ReservationSubBlocksClient/list.php
+     * @example samples/V1/PreviewFeaturesClient/list.php
      *
-     * @param ListReservationSubBlocksRequest $request     A request to house fields associated with the call.
-     * @param array                           $callOptions {
+     * @param ListPreviewFeaturesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -314,21 +310,20 @@ final class ReservationSubBlocksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListReservationSubBlocksRequest $request, array $callOptions = []): PagedListResponse
+    public function list(ListPreviewFeaturesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
     }
 
     /**
-     * Allows customers to perform maintenance on a reservation subBlock
+     * Patches the given PreviewFeature. This method is used to enable or disable a PreviewFeature.
      *
-     * The async variant is
-     * {@see ReservationSubBlocksClient::performMaintenanceAsync()} .
+     * The async variant is {@see PreviewFeaturesClient::updateAsync()} .
      *
-     * @example samples/V1/ReservationSubBlocksClient/perform_maintenance.php
+     * @example samples/V1/PreviewFeaturesClient/update.php
      *
-     * @param PerformMaintenanceReservationSubBlockRequest $request     A request to house fields associated with the call.
-     * @param array                                        $callOptions {
+     * @param UpdatePreviewFeatureRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -341,38 +336,8 @@ final class ReservationSubBlocksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function performMaintenance(
-        PerformMaintenanceReservationSubBlockRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall('PerformMaintenance', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Allows customers to report a faulty subBlock.
-     *
-     * The async variant is {@see ReservationSubBlocksClient::reportFaultyAsync()} .
-     *
-     * @example samples/V1/ReservationSubBlocksClient/report_faulty.php
-     *
-     * @param ReportFaultyReservationSubBlockRequest $request     A request to house fields associated with the call.
-     * @param array                                  $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function reportFaulty(
-        ReportFaultyReservationSubBlockRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall('ReportFaulty', $request, $callOptions)->wait();
+    public function update(UpdatePreviewFeatureRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Update', $request, $callOptions)->wait();
     }
 }

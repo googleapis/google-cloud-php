@@ -34,61 +34,59 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Compute\V1\AddSignedUrlKeyBackendServiceRequest;
-use Google\Cloud\Compute\V1\AggregatedListBackendServicesRequest;
-use Google\Cloud\Compute\V1\BackendService;
-use Google\Cloud\Compute\V1\BackendServiceGroupHealth;
-use Google\Cloud\Compute\V1\DeleteBackendServiceRequest;
-use Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendServiceRequest;
-use Google\Cloud\Compute\V1\GetBackendServiceRequest;
-use Google\Cloud\Compute\V1\GetEffectiveSecurityPoliciesBackendServiceRequest;
-use Google\Cloud\Compute\V1\GetEffectiveSecurityPoliciesBackendServiceResponse;
-use Google\Cloud\Compute\V1\GetHealthBackendServiceRequest;
-use Google\Cloud\Compute\V1\GetIamPolicyBackendServiceRequest;
-use Google\Cloud\Compute\V1\InsertBackendServiceRequest;
-use Google\Cloud\Compute\V1\ListBackendServicesRequest;
-use Google\Cloud\Compute\V1\ListUsableBackendServicesRequest;
-use Google\Cloud\Compute\V1\PatchBackendServiceRequest;
-use Google\Cloud\Compute\V1\Policy;
-use Google\Cloud\Compute\V1\SetEdgeSecurityPolicyBackendServiceRequest;
-use Google\Cloud\Compute\V1\SetIamPolicyBackendServiceRequest;
-use Google\Cloud\Compute\V1\SetSecurityPolicyBackendServiceRequest;
-use Google\Cloud\Compute\V1\TestIamPermissionsBackendServiceRequest;
-use Google\Cloud\Compute\V1\TestPermissionsResponse;
-use Google\Cloud\Compute\V1\UpdateBackendServiceRequest;
+use Google\Cloud\Compute\V1\AddAssociationOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\AddRuleOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\CopyRulesOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\DeleteOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\GetAssociationOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\GetOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\GetRuleOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\InsertOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\ListAssociationsOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\ListOrganizationSecurityPoliciesRequest;
+use Google\Cloud\Compute\V1\ListPreconfiguredExpressionSetsOrganizationSecurityPoliciesRequest;
+use Google\Cloud\Compute\V1\MoveOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\OrganizationSecurityPoliciesListAssociationsResponse;
+use Google\Cloud\Compute\V1\PatchOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\PatchRuleOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\RemoveAssociationOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\RemoveRuleOrganizationSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\SecurityPoliciesListPreconfiguredExpressionSetsResponse;
+use Google\Cloud\Compute\V1\SecurityPolicy;
+use Google\Cloud\Compute\V1\SecurityPolicyAssociation;
+use Google\Cloud\Compute\V1\SecurityPolicyRule;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The BackendServices API.
+ * Service Description: The OrganizationSecurityPolicies API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface<OperationResponse> addSignedUrlKeyAsync(AddSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> deleteAsync(DeleteBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<BackendService> getAsync(GetBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<GetEffectiveSecurityPoliciesBackendServiceResponse> getEffectiveSecurityPoliciesAsync(GetEffectiveSecurityPoliciesBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<BackendServiceGroupHealth> getHealthAsync(GetHealthBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> insertAsync(InsertBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listAsync(ListBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listUsableAsync(ListUsableBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> patchAsync(PatchBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> setSecurityPolicyAsync(SetSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> updateAsync(UpdateBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addAssociationAsync(AddAssociationOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addRuleAsync(AddRuleOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> copyRulesAsync(CopyRulesOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityPolicy> getAsync(GetOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityPolicyAssociation> getAssociationAsync(GetAssociationOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityPolicyRule> getRuleAsync(GetRuleOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListOrganizationSecurityPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OrganizationSecurityPoliciesListAssociationsResponse> listAssociationsAsync(ListAssociationsOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityPoliciesListPreconfiguredExpressionSetsResponse> listPreconfiguredExpressionSetsAsync(ListPreconfiguredExpressionSetsOrganizationSecurityPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveAsync(MoveOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchRuleAsync(PatchRuleOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeAssociationAsync(RemoveAssociationOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeRuleAsync(RemoveRuleOrganizationSecurityPolicyRequest $request, array $optionalArgs = [])
  */
-final class BackendServicesClient
+final class OrganizationSecurityPoliciesClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.compute.v1.BackendServices';
+    private const SERVICE_NAME = 'google.cloud.compute.v1.OrganizationSecurityPolicies';
 
     /**
      * The default address of the service.
@@ -119,15 +117,16 @@ final class BackendServicesClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/backend_services_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/backend_services_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/../resources/organization_security_policies_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/organization_security_policies_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/backend_services_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/organization_security_policies_rest_client_config.php',
                 ],
             ],
         ];
@@ -146,9 +145,10 @@ final class BackendServicesClient
     }
 
     /**
-     * Return an GlobalOperationsClient object with the same endpoint as $this.
+     * Return an GlobalOrganizationOperationsClient object with the same endpoint as
+     * $this.
      *
-     * @return GlobalOperationsClient
+     * @return GlobalOrganizationOperationsClient
      */
     public function getOperationsClient()
     {
@@ -159,7 +159,7 @@ final class BackendServicesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => ['getProject'],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -168,9 +168,9 @@ final class BackendServicesClient
             'operationNameMethod' => 'getName',
             'operationStatusMethod' => 'getStatus',
             'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetGlobalOperationRequest',
+            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetGlobalOrganizationOperationRequest',
             'cancelOperationRequest' => null,
-            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteGlobalOperationRequest',
+            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteGlobalOrganizationOperationRequest',
         ];
     }
 
@@ -198,7 +198,7 @@ final class BackendServicesClient
      *
      * @param array $options ClientOptions for the client.
      *
-     * @return GlobalOperationsClient
+     * @return GlobalOrganizationOperationsClient
      */
     private function createOperationsClient(array $options)
     {
@@ -209,7 +209,7 @@ final class BackendServicesClient
             return $options['operationsClient'];
         }
 
-        return new GlobalOperationsClient($options);
+        return new GlobalOrganizationOperationsClient($options);
     }
 
     /**
@@ -232,9 +232,9 @@ final class BackendServicesClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Compute\V1\BackendServicesClient;
+     *           use Google\Cloud\Compute\V1\OrganizationSecurityPoliciesClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new BackendServicesClient(['credentials' => $creds]);
+     *           $options = new OrganizationSecurityPoliciesClient(['credentials' => $creds]);
      *           ```
      *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
@@ -296,233 +296,15 @@ final class BackendServicesClient
     }
 
     /**
-     * Adds a key for validating requests with signed URLs for this backend service.
-     *
-     * The async variant is {@see BackendServicesClient::addSignedUrlKeyAsync()} .
-     *
-     * @example samples/V1/BackendServicesClient/add_signed_url_key.php
-     *
-     * @param AddSignedUrlKeyBackendServiceRequest $request     A request to house fields associated with the call.
-     * @param array                                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function addSignedUrlKey(
-        AddSignedUrlKeyBackendServiceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall('AddSignedUrlKey', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Retrieves the list of all BackendService resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
-     *
-     * The async variant is {@see BackendServicesClient::aggregatedListAsync()} .
-     *
-     * @example samples/V1/BackendServicesClient/aggregated_list.php
-     *
-     * @param AggregatedListBackendServicesRequest $request     A request to house fields associated with the call.
-     * @param array                                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function aggregatedList(
-        AggregatedListBackendServicesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
-        return $this->startApiCall('AggregatedList', $request, $callOptions);
-    }
-
-    /**
-     * Deletes the specified BackendService resource.
-     *
-     * The async variant is {@see BackendServicesClient::deleteAsync()} .
-     *
-     * @example samples/V1/BackendServicesClient/delete.php
-     *
-     * @param DeleteBackendServiceRequest $request     A request to house fields associated with the call.
-     * @param array                       $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function delete(DeleteBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Delete', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Deletes a key for validating requests with signed URLs for this backend service.
-     *
-     * The async variant is {@see BackendServicesClient::deleteSignedUrlKeyAsync()} .
-     *
-     * @example samples/V1/BackendServicesClient/delete_signed_url_key.php
-     *
-     * @param DeleteSignedUrlKeyBackendServiceRequest $request     A request to house fields associated with the call.
-     * @param array                                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function deleteSignedUrlKey(
-        DeleteSignedUrlKeyBackendServiceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall('DeleteSignedUrlKey', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Returns the specified BackendService resource.
-     *
-     * The async variant is {@see BackendServicesClient::getAsync()} .
-     *
-     * @example samples/V1/BackendServicesClient/get.php
-     *
-     * @param GetBackendServiceRequest $request     A request to house fields associated with the call.
-     * @param array                    $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return BackendService
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function get(GetBackendServiceRequest $request, array $callOptions = []): BackendService
-    {
-        return $this->startApiCall('Get', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Returns effective security policies applied to this backend service.
+     * Inserts an association for the specified security policy. This has billing implications. Projects in the hierarchy with effective hierarchical security policies will be automatically enrolled into Cloud Armor Enterprise if not already enrolled. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.addAssociation instead if possible.
      *
      * The async variant is
-     * {@see BackendServicesClient::getEffectiveSecurityPoliciesAsync()} .
+     * {@see OrganizationSecurityPoliciesClient::addAssociationAsync()} .
      *
-     * @example samples/V1/BackendServicesClient/get_effective_security_policies.php
+     * @example samples/V1/OrganizationSecurityPoliciesClient/add_association.php
      *
-     * @param GetEffectiveSecurityPoliciesBackendServiceRequest $request     A request to house fields associated with the call.
-     * @param array                                             $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return GetEffectiveSecurityPoliciesBackendServiceResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getEffectiveSecurityPolicies(
-        GetEffectiveSecurityPoliciesBackendServiceRequest $request,
-        array $callOptions = []
-    ): GetEffectiveSecurityPoliciesBackendServiceResponse {
-        return $this->startApiCall('GetEffectiveSecurityPolicies', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets the most recent health check results for this BackendService. Example request body: { "group": "/zones/us-east1-b/instanceGroups/lb-backend-example" }
-     *
-     * The async variant is {@see BackendServicesClient::getHealthAsync()} .
-     *
-     * @example samples/V1/BackendServicesClient/get_health.php
-     *
-     * @param GetHealthBackendServiceRequest $request     A request to house fields associated with the call.
-     * @param array                          $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return BackendServiceGroupHealth
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getHealth(
-        GetHealthBackendServiceRequest $request,
-        array $callOptions = []
-    ): BackendServiceGroupHealth {
-        return $this->startApiCall('GetHealth', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
-     *
-     * The async variant is {@see BackendServicesClient::getIamPolicyAsync()} .
-     *
-     * @example samples/V1/BackendServicesClient/get_iam_policy.php
-     *
-     * @param GetIamPolicyBackendServiceRequest $request     A request to house fields associated with the call.
-     * @param array                             $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Policy
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getIamPolicy(GetIamPolicyBackendServiceRequest $request, array $callOptions = []): Policy
-    {
-        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Creates a BackendService resource in the specified project using the data included in the request. For more information, see Backend services overview .
-     *
-     * The async variant is {@see BackendServicesClient::insertAsync()} .
-     *
-     * @example samples/V1/BackendServicesClient/insert.php
-     *
-     * @param InsertBackendServiceRequest $request     A request to house fields associated with the call.
-     * @param array                       $callOptions {
+     * @param AddAssociationOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                           $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -535,72 +317,22 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insert(InsertBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Insert', $request, $callOptions)->wait();
+    public function addAssociation(
+        AddAssociationOrganizationSecurityPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('AddAssociation', $request, $callOptions)->wait();
     }
 
     /**
-     * Retrieves the list of BackendService resources available to the specified project.
+     * Inserts a rule into a security policy.
      *
-     * The async variant is {@see BackendServicesClient::listAsync()} .
+     * The async variant is {@see OrganizationSecurityPoliciesClient::addRuleAsync()} .
      *
-     * @example samples/V1/BackendServicesClient/list.php
+     * @example samples/V1/OrganizationSecurityPoliciesClient/add_rule.php
      *
-     * @param ListBackendServicesRequest $request     A request to house fields associated with the call.
-     * @param array                      $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function list(ListBackendServicesRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('List', $request, $callOptions);
-    }
-
-    /**
-     * Retrieves a list of all usable backend services in the specified project.
-     *
-     * The async variant is {@see BackendServicesClient::listUsableAsync()} .
-     *
-     * @example samples/V1/BackendServicesClient/list_usable.php
-     *
-     * @param ListUsableBackendServicesRequest $request     A request to house fields associated with the call.
-     * @param array                            $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listUsable(ListUsableBackendServicesRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('ListUsable', $request, $callOptions);
-    }
-
-    /**
-     * Patches the specified BackendService resource with the data included in the request. For more information, see Backend services overview. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
-     *
-     * The async variant is {@see BackendServicesClient::patchAsync()} .
-     *
-     * @example samples/V1/BackendServicesClient/patch.php
-     *
-     * @param PatchBackendServiceRequest $request     A request to house fields associated with the call.
-     * @param array                      $callOptions {
+     * @param AddRuleOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -613,20 +345,22 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function patch(PatchBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    public function addRule(
+        AddRuleOrganizationSecurityPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('AddRule', $request, $callOptions)->wait();
     }
 
     /**
-     * Sets the edge security policy for the specified backend service.
+     * Copies rules to the specified security policy. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.copyRules instead.
      *
-     * The async variant is {@see BackendServicesClient::setEdgeSecurityPolicyAsync()}
+     * The async variant is {@see OrganizationSecurityPoliciesClient::copyRulesAsync()}
      * .
      *
-     * @example samples/V1/BackendServicesClient/set_edge_security_policy.php
+     * @example samples/V1/OrganizationSecurityPoliciesClient/copy_rules.php
      *
-     * @param SetEdgeSecurityPolicyBackendServiceRequest $request     A request to house fields associated with the call.
+     * @param CopyRulesOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
      *
@@ -640,22 +374,22 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setEdgeSecurityPolicy(
-        SetEdgeSecurityPolicyBackendServiceRequest $request,
+    public function copyRules(
+        CopyRulesOrganizationSecurityPolicyRequest $request,
         array $callOptions = []
     ): OperationResponse {
-        return $this->startApiCall('SetEdgeSecurityPolicy', $request, $callOptions)->wait();
+        return $this->startApiCall('CopyRules', $request, $callOptions)->wait();
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Deletes the specified policy. Use of this API to remove firewall policies is deprecated. Use firewallPolicies.delete instead.
      *
-     * The async variant is {@see BackendServicesClient::setIamPolicyAsync()} .
+     * The async variant is {@see OrganizationSecurityPoliciesClient::deleteAsync()} .
      *
-     * @example samples/V1/BackendServicesClient/set_iam_policy.php
+     * @example samples/V1/OrganizationSecurityPoliciesClient/delete.php
      *
-     * @param SetIamPolicyBackendServiceRequest $request     A request to house fields associated with the call.
-     * @param array                             $callOptions {
+     * @param DeleteOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -664,23 +398,243 @@ final class BackendServicesClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return Policy
+     * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setIamPolicy(SetIamPolicyBackendServiceRequest $request, array $callOptions = []): Policy
+    public function delete(DeleteOrganizationSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
     {
-        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+        return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 
     /**
-     * Sets the Google Cloud Armor security policy for the specified backend service. For more information, see Google Cloud Armor Overview
+     * List all of the ordered rules present in a single specified policy. Use of this API to read firewall policies is deprecated. Use firewallPolicies.get instead.
      *
-     * The async variant is {@see BackendServicesClient::setSecurityPolicyAsync()} .
+     * The async variant is {@see OrganizationSecurityPoliciesClient::getAsync()} .
      *
-     * @example samples/V1/BackendServicesClient/set_security_policy.php
+     * @example samples/V1/OrganizationSecurityPoliciesClient/get.php
      *
-     * @param SetSecurityPolicyBackendServiceRequest $request     A request to house fields associated with the call.
+     * @param GetOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SecurityPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function get(GetOrganizationSecurityPolicyRequest $request, array $callOptions = []): SecurityPolicy
+    {
+        return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets an association with the specified name. Use of this API to read firewall policies is deprecated. Use firewallPolicies.getAssociation instead if possible.
+     *
+     * The async variant is
+     * {@see OrganizationSecurityPoliciesClient::getAssociationAsync()} .
+     *
+     * @example samples/V1/OrganizationSecurityPoliciesClient/get_association.php
+     *
+     * @param GetAssociationOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SecurityPolicyAssociation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAssociation(
+        GetAssociationOrganizationSecurityPolicyRequest $request,
+        array $callOptions = []
+    ): SecurityPolicyAssociation {
+        return $this->startApiCall('GetAssociation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a rule at the specified priority. Use of this API to read firewall policies is deprecated. Use firewallPolicies.getRule instead.
+     *
+     * The async variant is {@see OrganizationSecurityPoliciesClient::getRuleAsync()} .
+     *
+     * @example samples/V1/OrganizationSecurityPoliciesClient/get_rule.php
+     *
+     * @param GetRuleOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SecurityPolicyRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRule(
+        GetRuleOrganizationSecurityPolicyRequest $request,
+        array $callOptions = []
+    ): SecurityPolicyRule {
+        return $this->startApiCall('GetRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new policy in the specified project using the data included in the request. Use of this API to insert firewall policies is deprecated. Use firewallPolicies.insert instead.
+     *
+     * The async variant is {@see OrganizationSecurityPoliciesClient::insertAsync()} .
+     *
+     * @example samples/V1/OrganizationSecurityPoliciesClient/insert.php
+     *
+     * @param InsertOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function insert(InsertOrganizationSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Insert', $request, $callOptions)->wait();
+    }
+
+    /**
+     * List all the policies that have been configured for the specified project. Use of this API to read firewall policies is deprecated. Use firewallPolicies.list instead.
+     *
+     * The async variant is {@see OrganizationSecurityPoliciesClient::listAsync()} .
+     *
+     * @example samples/V1/OrganizationSecurityPoliciesClient/list.php
+     *
+     * @param ListOrganizationSecurityPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function list(ListOrganizationSecurityPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Lists associations of a specified target, i.e., organization or folder. Use of this API to read firewall policies is deprecated. Use firewallPolicies.listAssociations instead if possible.
+     *
+     * The async variant is
+     * {@see OrganizationSecurityPoliciesClient::listAssociationsAsync()} .
+     *
+     * @example samples/V1/OrganizationSecurityPoliciesClient/list_associations.php
+     *
+     * @param ListAssociationsOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OrganizationSecurityPoliciesListAssociationsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAssociations(
+        ListAssociationsOrganizationSecurityPolicyRequest $request,
+        array $callOptions = []
+    ): OrganizationSecurityPoliciesListAssociationsResponse {
+        return $this->startApiCall('ListAssociations', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the current list of preconfigured Web Application Firewall (WAF) expressions.
+     *
+     * The async variant is
+     * {@see OrganizationSecurityPoliciesClient::listPreconfiguredExpressionSetsAsync()}
+     * .
+     *
+     * @example samples/V1/OrganizationSecurityPoliciesClient/list_preconfigured_expression_sets.php
+     *
+     * @param ListPreconfiguredExpressionSetsOrganizationSecurityPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                                                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SecurityPoliciesListPreconfiguredExpressionSetsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPreconfiguredExpressionSets(
+        ListPreconfiguredExpressionSetsOrganizationSecurityPoliciesRequest $request,
+        array $callOptions = []
+    ): SecurityPoliciesListPreconfiguredExpressionSetsResponse {
+        return $this->startApiCall('ListPreconfiguredExpressionSets', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Moves the specified security policy. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.move instead.
+     *
+     * The async variant is {@see OrganizationSecurityPoliciesClient::moveAsync()} .
+     *
+     * @example samples/V1/OrganizationSecurityPoliciesClient/move.php
+     *
+     * @param MoveOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function move(MoveOrganizationSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Move', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Patches the specified policy with the data included in the request. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.patch instead.
+     *
+     * The async variant is {@see OrganizationSecurityPoliciesClient::patchAsync()} .
+     *
+     * @example samples/V1/OrganizationSecurityPoliciesClient/patch.php
+     *
+     * @param PatchOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
      *
@@ -694,50 +648,21 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSecurityPolicy(
-        SetSecurityPolicyBackendServiceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
+    public function patch(PatchOrganizationSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Patch', $request, $callOptions)->wait();
     }
 
     /**
-     * Returns permissions that a caller has on the specified resource.
+     * Patches a rule at the specified priority. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.patchRule instead.
      *
-     * The async variant is {@see BackendServicesClient::testIamPermissionsAsync()} .
+     * The async variant is {@see OrganizationSecurityPoliciesClient::patchRuleAsync()}
+     * .
      *
-     * @example samples/V1/BackendServicesClient/test_iam_permissions.php
+     * @example samples/V1/OrganizationSecurityPoliciesClient/patch_rule.php
      *
-     * @param TestIamPermissionsBackendServiceRequest $request     A request to house fields associated with the call.
-     * @param array                                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return TestPermissionsResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function testIamPermissions(
-        TestIamPermissionsBackendServiceRequest $request,
-        array $callOptions = []
-    ): TestPermissionsResponse {
-        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Updates the specified BackendService resource with the data included in the request. For more information, see Backend services overview.
-     *
-     * The async variant is {@see BackendServicesClient::updateAsync()} .
-     *
-     * @example samples/V1/BackendServicesClient/update.php
-     *
-     * @param UpdateBackendServiceRequest $request     A request to house fields associated with the call.
-     * @param array                       $callOptions {
+     * @param PatchRuleOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                      $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -750,8 +675,68 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function update(UpdateBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Update', $request, $callOptions)->wait();
+    public function patchRule(
+        PatchRuleOrganizationSecurityPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('PatchRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Removes an association for the specified security policy. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.removeAssociation instead if possible.
+     *
+     * The async variant is
+     * {@see OrganizationSecurityPoliciesClient::removeAssociationAsync()} .
+     *
+     * @example samples/V1/OrganizationSecurityPoliciesClient/remove_association.php
+     *
+     * @param RemoveAssociationOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function removeAssociation(
+        RemoveAssociationOrganizationSecurityPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('RemoveAssociation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a rule at the specified priority.
+     *
+     * The async variant is
+     * {@see OrganizationSecurityPoliciesClient::removeRuleAsync()} .
+     *
+     * @example samples/V1/OrganizationSecurityPoliciesClient/remove_rule.php
+     *
+     * @param RemoveRuleOrganizationSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function removeRule(
+        RemoveRuleOrganizationSecurityPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('RemoveRule', $request, $callOptions)->wait();
     }
 }

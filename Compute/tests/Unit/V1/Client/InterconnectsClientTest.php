@@ -229,6 +229,7 @@ class InterconnectsClientTest extends GeneratedTest
         $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $state = 'state109757585';
+        $subzone = 'subzone-1867398676';
         $expectedResponse = new Interconnect();
         $expectedResponse->setAaiEnabled($aaiEnabled);
         $expectedResponse->setAdminEnabled($adminEnabled);
@@ -254,6 +255,7 @@ class InterconnectsClientTest extends GeneratedTest
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setState($state);
+        $expectedResponse->setSubzone($subzone);
         $transport->addResponse($expectedResponse);
         // Mock request
         $interconnect = 'interconnect-849140594';
