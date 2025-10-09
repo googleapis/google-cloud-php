@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomDocumentExtractionOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Training method to use for CDE training.
+     * Optional. Training method to use for CDE training.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod training_method = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod training_method = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $training_method = 0;
 
@@ -30,7 +30,7 @@ class CustomDocumentExtractionOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $training_method
-     *           Training method to use for CDE training.
+     *           Optional. Training method to use for CDE training.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,9 +39,9 @@ class CustomDocumentExtractionOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Training method to use for CDE training.
+     * Optional. Training method to use for CDE training.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod training_method = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod training_method = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getTrainingMethod()
@@ -50,9 +50,9 @@ class CustomDocumentExtractionOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Training method to use for CDE training.
+     * Optional. Training method to use for CDE training.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod training_method = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod training_method = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

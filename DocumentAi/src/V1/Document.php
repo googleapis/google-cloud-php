@@ -105,6 +105,31 @@ class Document extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.ChunkedDocument chunked_document = 18;</code>
      */
     protected $chunked_document = null;
+    /**
+     * The entity validation output for the document. This is the validation
+     * output for `document.entities` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.EntityValidationOutput entity_validation_output = 21;</code>
+     */
+    protected $entity_validation_output = null;
+    /**
+     * A list of entity revisions. The entity revisions are appended to the
+     * document in the processing order. This field can be used for comparing the
+     * entity extraction results at different stages of the processing.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntitiesRevision entities_revisions = 22;</code>
+     */
+    private $entities_revisions;
+    /**
+     * The entity revision id that `document.entities` field is based on.
+     * If this field is set and `entities_revisions` is not empty, the entities in
+     * `document.entities` field are the entities in the entity revision with this
+     * id and `document.entity_validation_output` field is the
+     * `entity_validation_output` field in this entity revision.
+     *
+     * Generated from protobuf field <code>string entities_revision_id = 23;</code>
+     */
+    protected $entities_revision_id = '';
     protected $source;
 
     /**
@@ -156,6 +181,19 @@ class Document extends \Google\Protobuf\Internal\Message
      *           Parsed layout of the document.
      *     @type \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument $chunked_document
      *           Document chunked based on chunking config.
+     *     @type \Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput $entity_validation_output
+     *           The entity validation output for the document. This is the validation
+     *           output for `document.entities` field.
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\EntitiesRevision>|\Google\Protobuf\Internal\RepeatedField $entities_revisions
+     *           A list of entity revisions. The entity revisions are appended to the
+     *           document in the processing order. This field can be used for comparing the
+     *           entity extraction results at different stages of the processing.
+     *     @type string $entities_revision_id
+     *           The entity revision id that `document.entities` field is based on.
+     *           If this field is set and `entities_revisions` is not empty, the entities in
+     *           `document.entities` field are the entities in the entity revision with this
+     *           id and `document.entity_validation_output` field is the
+     *           `entity_validation_output` field in this entity revision.
      * }
      */
     public function __construct($data = NULL) {
@@ -633,6 +671,108 @@ class Document extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument::class);
         $this->chunked_document = $var;
+
+        return $this;
+    }
+
+    /**
+     * The entity validation output for the document. This is the validation
+     * output for `document.entities` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.EntityValidationOutput entity_validation_output = 21;</code>
+     * @return \Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput|null
+     */
+    public function getEntityValidationOutput()
+    {
+        return $this->entity_validation_output;
+    }
+
+    public function hasEntityValidationOutput()
+    {
+        return isset($this->entity_validation_output);
+    }
+
+    public function clearEntityValidationOutput()
+    {
+        unset($this->entity_validation_output);
+    }
+
+    /**
+     * The entity validation output for the document. This is the validation
+     * output for `document.entities` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.EntityValidationOutput entity_validation_output = 21;</code>
+     * @param \Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput $var
+     * @return $this
+     */
+    public function setEntityValidationOutput($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput::class);
+        $this->entity_validation_output = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of entity revisions. The entity revisions are appended to the
+     * document in the processing order. This field can be used for comparing the
+     * entity extraction results at different stages of the processing.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntitiesRevision entities_revisions = 22;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEntitiesRevisions()
+    {
+        return $this->entities_revisions;
+    }
+
+    /**
+     * A list of entity revisions. The entity revisions are appended to the
+     * document in the processing order. This field can be used for comparing the
+     * entity extraction results at different stages of the processing.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntitiesRevision entities_revisions = 22;</code>
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\EntitiesRevision>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEntitiesRevisions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\EntitiesRevision::class);
+        $this->entities_revisions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The entity revision id that `document.entities` field is based on.
+     * If this field is set and `entities_revisions` is not empty, the entities in
+     * `document.entities` field are the entities in the entity revision with this
+     * id and `document.entity_validation_output` field is the
+     * `entity_validation_output` field in this entity revision.
+     *
+     * Generated from protobuf field <code>string entities_revision_id = 23;</code>
+     * @return string
+     */
+    public function getEntitiesRevisionId()
+    {
+        return $this->entities_revision_id;
+    }
+
+    /**
+     * The entity revision id that `document.entities` field is based on.
+     * If this field is set and `entities_revisions` is not empty, the entities in
+     * `document.entities` field are the entities in the entity revision with this
+     * id and `document.entity_validation_output` field is the
+     * `entity_validation_output` field in this entity revision.
+     *
+     * Generated from protobuf field <code>string entities_revision_id = 23;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEntitiesRevisionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->entities_revision_id = $var;
 
         return $this;
     }
