@@ -36,9 +36,8 @@ any classes implementing this interface will need to be updated to match the new
 
 ### Client Options changes
 
-The following client options are removed/replaced with other options present in
-[`ClientOptions`][ClientOptions]. This was done to ensure client options are consistent across all
-Google Cloud clients.
+The following [`ClientOptions`][ClientOptions] have been reorganized. This was
+done to ensure client options are consistent across all Google Cloud clients.
 
 - `authCache` -> Moved to `credentialsConfig.authCache`
 - `authCacheOptions` -> Moved to `credentialsConfig.authCacheOptions`
@@ -51,12 +50,12 @@ Google Cloud clients.
 - `quotaProject` -> Moved to `credentialsConfig.quotaProject`
 - `httpHandler` -> Moved to `transportConfig.rest.httpHandler`
 - `authHttpHandler` -> Moved to `credentialsConfig.authHttpHandler`
-- `asyncHttpHandler` -> Removed in favour of a single httpHandler option.
+- `asyncHttpHandler` -> Removed in favor of a single httpHandler option.
 - `restOptions` -> Moved to `transportConfig.rest`
 - `grpcOptions` -> Moved to `transportConfig.grpc`
-- `accessToken` -> Removed
-- `shouldSignRequest` -> Removed
-- `preferNumericProjectId` -> Removed
+- `accessToken` -> Removed - This option is no longer supported. Use the `$credentialsFetcher` option instead.
+- `shouldSignRequest` -> Removed - obsolete
+- `preferNumericProjectId` -> Removed - obsolete
 
 ### Retry Options changes
 
@@ -82,7 +81,7 @@ changes have been released in a major version.
 ### Types for properties, parameters, and return types.
 
 Types have been added for all properties, parameters and return types. This means that any classes
-implementing interfaces in this library (speficially, `EntityInterface` as mentioned above),
+implementing interfaces in this library (specifically, `EntityInterface` as mentioned above),
 will need to be updated to match the new method signatures. Typing constraints may have other effects
 where the incorrect types had been previously applied.
 
@@ -105,8 +104,11 @@ GAPIC client `Google\Cloud\Datastore\V1\Client\DatastoreClient`:
  - `Google\Cloud\Datastore\Connection\Rest` is removed
  - `Google\Cloud\Datastore\Connection\Grpc` is removed
 
-Additionally, the previously generated GAPIC client (`Google\Cloud\Datastore\V1\DatastoreClient`)
-has been removed. For more information, see [Migrating to V2][migrating-to-v2].
+Additionally, the previously generated GAPIC client
+(`Google\Cloud\Datastore\V1\DatastoreClient`, which has a similar name to
+`Google\Cloud\Datastore\V1\Client\DatastoreClient`, but without the `Client`
+namespace) has been removed. For more information, see
+[Migrating to V2][migrating-to-v2].
 
 [migrating-to-v2]: https://cloud.google.com/php/docs/reference/help/migrating
 
