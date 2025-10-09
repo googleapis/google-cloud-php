@@ -83,7 +83,7 @@ trait EntityTrait
      * }
      * @throws \InvalidArgumentException
      */
-    public static function build(?Key $key = null, array $entity = [], array $options = []): static
+    public static function build(?Key $key = null, array $entity = [], array $options = []): EntityInterface
     {
         return new static($key, $entity, $options);
     }
