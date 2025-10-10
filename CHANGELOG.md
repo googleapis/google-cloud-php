@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.306.0
+
+<details><summary>google/cloud-spanner 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Gencode for Spanner V2 ([#7840](https://github.com/googleapis/google-cloud-php/issues/7840))
+
+### Chores
+
+* Gencode for Spanner V2 ([#7840](https://github.com/googleapis/google-cloud-php/issues/7840)) ([e7e65fc](https://github.com/googleapis/google-cloud-php/commit/e7e65fc80a5ffbdf31a78b663208def4bbf3f6de))
+
+</details>
+
 ## 0.305.0
 
 <details><summary>google/cloud-compute 2.2.0</summary>
