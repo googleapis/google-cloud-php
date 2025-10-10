@@ -26,6 +26,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup\State;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsResponse;
@@ -264,7 +265,7 @@ class InstanceTest extends TestCase
         $this->assertEquals(Instance::STATE_READY, $this->instance->state());
     }
 
-    public function testStateIsNull()
+    public function testStateIsUnspecified()
     {
         $this->instanceAdminClient->getInstance(
             Argument::that(function ($request) {
@@ -277,7 +278,7 @@ class InstanceTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn(new InstanceProto());
 
-        $this->assertNull($this->instance->state());
+        $this->assertEquals(State::STATE_UNSPECIFIED, $this->instance->state());
     }
 
     public function testUpdate()

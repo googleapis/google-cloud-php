@@ -332,16 +332,13 @@ class Instance
      * ```
      *
      * @param array $options [optional] Configuration options.
-     * @return int|null
+     * @return int
      */
-    public function state(array $options = []): int|null
+    public function state(array $options = []): int
     {
         $info = $this->info($options);
 
-        // @TODO investigate why state is now 0 but in v1 it was unset
-        return (isset($info['state']) && $info['state'] !== 0)
-            ? $info['state']
-            : null;
+        return $info['state'] ?? State::STATE_UNSPECIFIED;
     }
 
     /**
