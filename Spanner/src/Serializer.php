@@ -100,18 +100,18 @@ class Serializer extends ApiCoreSerializer
             },
             'google.protobuf.Value' => function ($v) {
                 if (!is_array($v) || (
-                  !isset($v['nullValue']) &&
-                  !isset($v['null_value']) &&
-                  !isset($v['numberValue']) &&
-                  !isset($v['number_value']) &&
-                  !isset($v['stringValue']) &&
-                  !isset($v['string_value']) &&
-                  !isset($v['boolValue']) &&
-                  !isset($v['bool_value']) &&
-                  !isset($v['structValue']) &&
-                  !isset($v['struct_value']) &&
-                  !isset($v['listValue']) &&
-                  !isset($v['list_value'])
+                    !isset($v['nullValue']) &&
+                    !isset($v['null_value']) &&
+                    !isset($v['numberValue']) &&
+                    !isset($v['number_value']) &&
+                    !isset($v['stringValue']) &&
+                    !isset($v['string_value']) &&
+                    !isset($v['boolValue']) &&
+                    !isset($v['bool_value']) &&
+                    !isset($v['structValue']) &&
+                    !isset($v['struct_value']) &&
+                    !isset($v['listValue']) &&
+                    !isset($v['list_value'])
                 )) {
                     return $this->formatValueForApi($v);
                 }
