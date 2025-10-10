@@ -34,21 +34,6 @@ class EntityMapper
     const DATE_FORMAT_NO_MS = 'Y-m-d\TH:i:sP';
 
     /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
-     * @var bool
-     */
-    private $encode;
-
-    /**
-     * @var bool
-     */
-    private $returnInt64AsObject;
-
-    /**
      * Create an Entity Mapper
      *
      * @param string $projectId The datastore project ID
@@ -58,13 +43,10 @@ class EntityMapper
      *        platform compatibility.
      */
     public function __construct(
-        $projectId,
-        $encode,
-        $returnInt64AsObject
+        private string $projectId,
+        private bool $encode,
+        private bool $returnInt64AsObject
     ) {
-        $this->projectId = $projectId;
-        $this->encode = $encode;
-        $this->returnInt64AsObject = $returnInt64AsObject;
     }
 
     /**

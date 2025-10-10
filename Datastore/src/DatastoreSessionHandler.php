@@ -121,12 +121,6 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     const NAMESPACE_ALLOWED_PATTERN = '/^[A-Za-z\d\.\-_]{0,100}$/';
     const NAMESPACE_RESERVED_PATTERN = '/^__.*__$/';
 
-    /* @var int */
-    private $gcLimit;
-
-    /* @var DatastoreClient */
-    private $datastore;
-
     /* @var string */
     private $kind;
 
@@ -138,9 +132,6 @@ class DatastoreSessionHandler implements SessionHandlerInterface
 
     /* @var Transaction */
     private $transaction;
-
-    /* @var array */
-    private $options;
 
     /**
      * Create a custom session handler backed by Cloud Datastore.
@@ -159,18 +150,14 @@ class DatastoreSessionHandler implements SessionHandlerInterface
      * }
      */
     public function __construct(
-        DatastoreClient $datastore,
-        $gcLimit = self::DEFAULT_GC_LIMIT,
-        array $options = []
+        private DatastoreClient $datastore,
+        private int $gcLimit = self::DEFAULT_GC_LIMIT,
+        private array $options = []
     ) {
-        $this->datastore = $datastore;
         // Cut down to 1000
         $this->gcLimit = min($gcLimit, 1000);
 
-        $options += [
-            'databaseId' => '',
-        ];
-        $this->databaseId = $options['databaseId'];
+        $this->databaseId = $options['databaseId'] ?? '';
         if (!isset($options['entityOptions'])) {
             $options['entityOptions'] = [
                 'excludeFromIndexes' => ['data']
@@ -184,7 +171,6 @@ class DatastoreSessionHandler implements SessionHandlerInterface
                     : gettype($options['entityOptions']))
             );
         }
-
         $this->options = $options;
     }
 
@@ -325,7 +311,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     public function gc($maxlifetime)
     {
         if ($this->gcLimit === 0) {
-            return true;
+            return 0;
         }
         try {
             $query = $this->datastore->query()
@@ -356,6 +342,6 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             );
             return false;
         }
-        return true;
+        return count($keys);
     }
 }

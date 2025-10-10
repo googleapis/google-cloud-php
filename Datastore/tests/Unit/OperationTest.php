@@ -49,6 +49,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use TypeError;
 
 /**
  * @group datastore
@@ -894,9 +895,9 @@ class OperationTest extends TestCase
 
     public function testMutateInvalidType()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(TypeError::class);
 
-        $this->operation->mutation('foo', (object) [], \stdClass::class);
+        $this->operation->mutation('foo', new \stdClass(), \stdClass::class);
     }
 
     public function testCheckOverwrite()
@@ -921,7 +922,7 @@ class OperationTest extends TestCase
 
         $e = $this->prophesize(Entity::class);
         $e->populatedByService()->willReturn(false);
-        $e->key()->willReturn('foo');
+        $e->key()->willReturn(new Key('foo'));
 
         $this->operation->checkOverwrite([$e->reveal()]);
     }

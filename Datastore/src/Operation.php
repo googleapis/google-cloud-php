@@ -43,6 +43,7 @@ use Google\Cloud\Datastore\V1\RollbackRequest;
 use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\TransactionOptions;
+use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\PrintOptions;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
@@ -66,32 +67,6 @@ class Operation
     use ApiHelperTrait;
 
     /**
-     * @var DatastoreClient
-     * @internal
-     */
-    protected DatastoreClient $gapicClient;
-
-    /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
-     * @var string
-     */
-    private $namespaceId;
-
-    /**
-     * @var string
-     */
-    private $databaseId;
-
-    /**
-     * @var EntityMapper
-     */
-    private $entityMapper;
-
-    /**
      * @var Serializer
      */
     private Serializer $serializer;
@@ -111,17 +86,12 @@ class Operation
      * @param string $databaseId ID of the database to which the entities belong.
      */
     public function __construct(
-        DatastoreClient $gapicClient,
-        $projectId,
-        $namespaceId,
-        EntityMapper $entityMapper,
-        $databaseId = ''
+        private DatastoreClient $gapicClient,
+        private string $projectId,
+        private ?string $namespaceId,
+        private EntityMapper $entityMapper,
+        private string $databaseId = '',
     ) {
-        $this->gapicClient = $gapicClient;
-        $this->projectId = $projectId;
-        $this->namespaceId = $namespaceId;
-        $this->databaseId = $databaseId;
-        $this->entityMapper = $entityMapper;
         $this->serializer = new Serializer();
         $this->optionsValidator = new OptionsValidator($this->serializer);
     }
@@ -132,7 +102,7 @@ class Operation
      * @see https://cloud.google.com/datastore/reference/rest/v1/Key Key
      * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
-     * @param string $kind The kind.
+     * @param string|RepeatedField $kind The kind.
      * @param string|int $identifier [optional] The ID or name.
      * @param array $options [optional] {
      *     Configuration Options
@@ -146,7 +116,7 @@ class Operation
      * }
      * @return Key
      */
-    public function key($kind, $identifier = null, array $options = [])
+    public function key(string|RepeatedField $kind, $identifier = null, array $options = []): Key
     {
         $options += [
             'namespaceId' => $this->namespaceId,
@@ -185,7 +155,7 @@ class Operation
      * @return Key[]
      * @throws \InvalidArgumentException If the number of keys is less than 1.
      */
-    public function keys($kind, array $options = [])
+    public function keys(string $kind, array $options = []): array
     {
         $options += [
             'number' => 1,
@@ -262,7 +232,7 @@ class Operation
      * @return EntityInterface
      * @throws \InvalidArgumentException
      */
-    public function entity($key = null, array $entity = [], array $options = [])
+    public function entity($key = null, array $entity = [], array $options = []): EntityInterface
     {
         $options += [
             'className' => null,
@@ -303,9 +273,9 @@ class Operation
      *
      *      string $databaseId The ID of the database against which to make the request.
      * }
-     * @return string
+     * @return string The base64-encoded transaction ID.
      */
-    public function beginTransaction($transactionOptions, array $options = [])
+    public function beginTransaction(array $transactionOptions, array $options = []): string
     {
         $requestOptions = [
             'databaseId' => $options['databaseId'] ?? $this->databaseId,
@@ -429,7 +399,7 @@ class Operation
      *         `deferred` will be instance of {@see \Google\Cloud\Datastore\Key}.
      * @throws \InvalidArgumentException
      */
-    public function lookup(array $keys, array $options = [])
+    public function lookup(array $keys, array $options = []): array
     {
         $className = $this->pluck('className', $options, false) ?? Entity::class;
         $sort = $this->pluck('sort', $options, false) ?? false;
@@ -454,13 +424,8 @@ class Operation
         $options['keys'] = $serviceKeys;
 
         $readOptions = $this->createReadOptions($this->pluckArray(
-            [
-                'readConsistency',
-                'transaction',
-                'readTime'
-            ],
+            ['readConsistency', 'transaction', 'readTime'],
             $options,
-            false
         ));
 
         /**
@@ -539,9 +504,9 @@ class Operation
      * @return EntityIterator<EntityInterface>
      * @throws InvalidArgumentException
      */
-    public function runQuery(QueryInterface $query, array $options = [])
+    public function runQuery(QueryInterface $query, array $options = []): EntityIterator
     {
-        $className = $this->pluck('className', $options, false) ??  Entity::class;
+        $className = $this->pluck('className', $options, false) ?? Entity::class;
         $options += [
             'namespaceId' => $this->namespaceId,
             'databaseId' => $this->databaseId,
@@ -586,11 +551,7 @@ class Operation
             }
 
             $readOptions = $this->createReadOptions($this->pluckArray(
-                [
-                    'readConsistency',
-                    'transaction',
-                    'readTime'
-                ],
+                ['readConsistency', 'transaction', 'readTime'],
                 $options
             ));
 
@@ -671,7 +632,7 @@ class Operation
     /**
      * Run an aggregation query and return aggregated results.
      *
-     * @param AggregationQuery $query The Aggregation Query object.
+     * @param AggregationQuery $runQueryObj The Aggregation Query object.
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -686,7 +647,7 @@ class Operation
      * }
      * @return AggregationQueryResult
      */
-    public function runAggregationQuery(AggregationQuery $runQueryObj, array $options = [])
+    public function runAggregationQuery(AggregationQuery $runQueryObj, array $options = []): AggregationQueryResult
     {
         $options += [
             'projectId' => $this->projectId,
@@ -699,11 +660,7 @@ class Operation
         ] + $runQueryObj->queryObject();
 
         $pluckedReadOptions = $this->pluckArray(
-            [
-                'readConsistency',
-                'transaction',
-                'readTime'
-            ],
+            ['readConsistency', 'transaction', 'readTime'],
             $options
         );
 
@@ -799,7 +756,7 @@ class Operation
      * @param EntityInterface[] $entities A list of entities
      * @return EntityInterface[]
      */
-    public function allocateIdsToEntities(array $entities)
+    public function allocateIdsToEntities(array $entities): array
     {
         $this->validateBatch($entities, EntityInterface::class);
 
@@ -841,11 +798,11 @@ class Operation
      * @throws \InvalidArgumentException
      */
     public function mutation(
-        $operation,
-        $input,
-        $type,
-        $baseVersion = null
-    ) {
+        string $operation,
+        EntityInterface|Key $input,
+        string $type,
+        ?string $baseVersion = null
+    ): array {
         // If the given element is an EntityInterface, it will use that baseVersion.
         if ($input instanceof EntityInterface) {
             $baseVersion = $input->baseVersion();
@@ -856,11 +813,6 @@ class Operation
             }
         } elseif ($input instanceof Key) {
             $data = $input->keyObject();
-        } else {
-            throw new \InvalidArgumentException(sprintf(
-                'Input must be a Key or Entity, %s given',
-                get_class($input)
-            ));
         }
 
         return array_filter([
@@ -875,7 +827,7 @@ class Operation
      * @param string $transactionId The transaction to roll back
      * @return void
      */
-    public function rollback($transactionId)
+    public function rollback(string $transactionId): void
     {
         $rollbackRequest = (new RollbackRequest())
             ->setProjectId($this->projectId)
@@ -894,7 +846,7 @@ class Operation
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function checkOverwrite(array $entities, $allowOverwrite = false)
+    public function checkOverwrite(array $entities, bool $allowOverwrite = false): void
     {
         $this->validateBatch($entities, EntityInterface::class);
 
@@ -925,7 +877,7 @@ class Operation
      *        {@see \Google\Cloud\Datastore\EntityInterface}.
      * @return EntityInterface
      */
-    private function mapEntityResult(array $result, $class)
+    private function mapEntityResult(array $result, string|array $class): EntityInterface
     {
         $entity = $result['entity'];
 
@@ -989,7 +941,7 @@ class Operation
      * @param Key[] $keys
      * @return EntityInterface[]
      */
-    private function sortEntities(array $entities, array $keys)
+    private function sortEntities(array $entities, array $keys): array
     {
         $map = [];
         foreach ($entities as $entity) {

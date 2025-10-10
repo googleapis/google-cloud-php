@@ -63,24 +63,15 @@ use UnexpectedValueException;
 class AggregationQuery
 {
     /**
-     * @var QueryInterface|null
-     */
-    private $query;
-
-    /**
-     * @var array
-     */
-    private array $aggregates = [];
-
-    /**
      * Create an aggregation query.
      *
      * @param QueryInterface|null $query
+     * @param array $aggregates
      */
-    public function __construct($query = null, $aggregates = [])
-    {
-        $this->query = $query;
-        $this->aggregates = $aggregates;
+    public function __construct(
+        private ?QueryInterface $query = null,
+        private array $aggregates = []
+    ) {
     }
 
     /**
@@ -101,7 +92,7 @@ class AggregationQuery
      * @param Aggregation $aggregation The Aggregation to be included.
      * @return AggregationQuery
      */
-    public function addAggregation($aggregation)
+    public function addAggregation(Aggregation $aggregation): AggregationQuery
     {
         $this->aggregates[] = $aggregation->getProps();
         return $this;
@@ -127,7 +118,7 @@ class AggregationQuery
      * @param QueryInterface $query The query whose properties to include.
      * @return AggregationQuery
      */
-    public function over($query)
+    public function over(QueryInterface $query): AggregationQuery
     {
         $this->query = $query;
         return $this;
@@ -139,7 +130,7 @@ class AggregationQuery
      * @return array
      * @throws UnexpectedValueException If the query is not supported.
      */
-    public function queryObject()
+    public function queryObject(): array
     {
         if ($this->query instanceof Query) {
             return [

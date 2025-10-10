@@ -46,7 +46,7 @@ trait EntityOptionsTrait
      *
      * @return string|null
      */
-    public function cursor()
+    public function cursor(): ?string
     {
         return isset($this->options['cursor'])
             ? $this->options['cursor']
@@ -68,7 +68,7 @@ trait EntityOptionsTrait
      *
      * @return string|null
      */
-    public function baseVersion()
+    public function baseVersion(): ?string
     {
         return isset($this->options['baseVersion'])
             ? $this->options['baseVersion']
@@ -85,7 +85,7 @@ trait EntityOptionsTrait
      *
      * @return bool
      */
-    public function populatedByService()
+    public function populatedByService(): bool
     {
         return isset($this->options['populatedByService'])
             ? $this->options['populatedByService']
@@ -106,7 +106,7 @@ trait EntityOptionsTrait
      * @param array $properties A list of properties to exclude from indexes.
      * @return void
      */
-    public function setExcludeFromIndexes(array $properties)
+    public function setExcludeFromIndexes(array $properties): void
     {
         $this->options['excludeFromIndexes'] = $properties;
     }
@@ -121,7 +121,7 @@ trait EntityOptionsTrait
      *
      * @return array
      */
-    public function excludedProperties()
+    public function excludedProperties(): array
     {
         return isset($this->options['excludeFromIndexes'])
             ? $this->options['excludeFromIndexes']
@@ -138,7 +138,7 @@ trait EntityOptionsTrait
      *
      * @return array
      */
-    public function meanings()
+    public function meanings(): array
     {
         return isset($this->options['meanings'])
             ? $this->options['meanings']

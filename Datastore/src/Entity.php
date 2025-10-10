@@ -73,7 +73,7 @@ use InvalidArgumentException;
  * {
  *     use EntityTrait;
  *
- *     public static function mappings()
+ *     public static function mappings(): array
  *     {
  *         return [
  *             'parent' => Business::class
@@ -113,8 +113,7 @@ class Entity implements ArrayAccess, EntityInterface
      * @return void
      * @access private
      */
-    #[\ReturnTypeWillChange]
-    public function offsetSet($key, $val)
+    public function offsetSet($key, $val): void
     {
         $this->entity[$key] = $val;
     }
@@ -124,8 +123,7 @@ class Entity implements ArrayAccess, EntityInterface
      * @return bool
      * @access private
      */
-    #[\ReturnTypeWillChange]
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         return isset($this->entity[$key]);
     }
@@ -135,8 +133,7 @@ class Entity implements ArrayAccess, EntityInterface
      * @return void
      * @access private
      */
-    #[\ReturnTypeWillChange]
-    public function offsetUnset($key)
+    public function offsetUnset($key): void
     {
         unset($this->entity[$key]);
     }
@@ -146,8 +143,7 @@ class Entity implements ArrayAccess, EntityInterface
      * @return mixed
      * @access private
      */
-    #[\ReturnTypeWillChange]
-    public function offsetGet($key)
+    public function offsetGet($key): mixed
     {
         return isset($this->entity[$key])
             ? $this->entity[$key]
@@ -159,7 +155,7 @@ class Entity implements ArrayAccess, EntityInterface
      * @return mixed
      * @access private
      */
-    public function __get($property)
+    public function __get(string $property)
     {
         return $this->offsetGet($property);
     }
@@ -170,7 +166,7 @@ class Entity implements ArrayAccess, EntityInterface
      * @return void
      * @access private
      */
-    public function __set($property, $value)
+    public function __set(string $property, $value): void
     {
         $this->offsetSet($property, $value);
     }
@@ -180,7 +176,7 @@ class Entity implements ArrayAccess, EntityInterface
      * @return void
      * @access private
      */
-    public function __unset($property)
+    public function __unset(string $property): void
     {
         if ($this->offsetExists($property)) {
             $this->offsetUnset($property);
@@ -192,7 +188,7 @@ class Entity implements ArrayAccess, EntityInterface
      * @return bool
      * @access private
      */
-    public function __isset($property)
+    public function __isset(string $property): bool
     {
         return $this->offsetExists($property) && $this->offsetGet($property) !== null;
     }

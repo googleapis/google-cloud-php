@@ -41,7 +41,7 @@ class EntityIterator implements \Iterator
      *
      * @return string|null
      */
-    public function moreResultsType()
+    public function moreResultsType(): ?string
     {
         return method_exists($this->pageIterator, 'moreResultsType')
             ? $this->pageIterator->moreResultsType()
@@ -121,7 +121,9 @@ class EntityIterator implements \Iterator
         $this->pageIterator->current();
 
         while (is_null($metrics)) {
-            $metrics = $this->pageIterator->getExplainMetrics();
+            $metrics = method_exists($this->pageIterator, 'getExplainMetrics')
+                ? $this->pageIterator->getExplainMetrics()
+                : null;
 
             if (!$this->nextResultToken()) {
                 break;

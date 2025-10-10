@@ -55,7 +55,7 @@ interface EntityInterface
      *           created as the result of a service request.
      * }
      */
-    public static function build(?Key $key = null, array $entity = [], array $options = []);
+    public static function build(?Key $key = null, array $entity = [], array $options = []): EntityInterface;
 
     /**
      * Defines embedded entity mappings.
@@ -70,14 +70,14 @@ interface EntityInterface
      *         and the value is the fully-qualified name of a PHP class
      *         implementing {@see \Google\Cloud\Datastore\EntityInterface}.
      */
-    public static function mappings();
+    public static function mappings(): array;
 
     /**
      * Return all entity data as an array.
      *
      * @return array
      */
-    public function get();
+    public function get(): array;
 
     /**
      * Set the entity body.
@@ -85,14 +85,14 @@ interface EntityInterface
      * @param array $entity The new entity body.
      * @return void
      */
-    public function set(array $entity);
+    public function set(array $entity): void;
 
     /**
      * Return the Datastore key, or null if no key is present.
      *
      * @return Key|null
      */
-    public function key();
+    public function key(): ?Key;
 
     /**
      * Fetch the cursor
@@ -102,7 +102,7 @@ interface EntityInterface
      *
      * @return string|null
      */
-    public function cursor();
+    public function cursor(): ?string;
 
     /**
      * Fetch the baseVersion
@@ -112,14 +112,14 @@ interface EntityInterface
      *
      * @return string|null
      */
-    public function baseVersion();
+    public function baseVersion(): ?string;
 
     /**
      * Indicate whether the entity was created as the result of an API call.
      *
      * @return bool
      */
-    public function populatedByService();
+    public function populatedByService(): bool;
 
     /**
      * A list of entity properties to exclude from datastore indexes.
@@ -127,19 +127,19 @@ interface EntityInterface
      * @param array $properties A list of properties to exclude from indexes.
      * @return void
      */
-    public function setExcludeFromIndexes(array $properties);
+    public function setExcludeFromIndexes(array $properties): void;
 
     /**
      * Return a list of properties excluded from datastore indexes.
      *
      * @return array
      */
-    public function excludedProperties();
+    public function excludedProperties(): array;
 
     /**
      * Return a list of meaning values.
      *
      * @return array
      */
-    public function meanings();
+    public function meanings(): array;
 }

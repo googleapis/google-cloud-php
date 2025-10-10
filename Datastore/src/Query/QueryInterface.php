@@ -33,7 +33,7 @@ interface QueryInterface extends JsonSerializable
      *
      * @return array
      */
-    public function queryObject();
+    public function queryObject(): array;
 
     /**
      * The key used to represent a query in the query_type union field.
@@ -42,14 +42,14 @@ interface QueryInterface extends JsonSerializable
      *
      * @return string
      */
-    public function queryKey();
+    public function queryKey(): string;
 
     /**
      * Indicate whether the query type supports automatic pagination
      *
      * @return bool
      */
-    public function canPaginate();
+    public function canPaginate(): bool;
 
     /**
      * Set the starting cursor.
@@ -57,5 +57,5 @@ interface QueryInterface extends JsonSerializable
      * @param string $cursor
      * @return void
      */
-    public function start($cursor);
+    public function start(string $cursor): mixed;
 }
