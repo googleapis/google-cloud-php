@@ -97,7 +97,7 @@ class DatastoreClient
     use ClientOptionsTrait;
     use EmulatorTrait;
 
-    const VERSION = '1.34.2';
+    const VERSION = '2.0.0-RC1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
