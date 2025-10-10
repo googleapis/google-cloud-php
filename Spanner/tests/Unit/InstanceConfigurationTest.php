@@ -332,8 +332,12 @@ class InstanceConfigurationTest extends TestCase
             self::NAME
         );
 
+        $baseConfig = $this->prophesize(InstanceConfiguration::class);
+        $baseConfig->info()->willReturn([]);
+        $baseConfig->name()->willReturn('baseConfigName');
+
         $operation = $instanceConfig->create(
-            $this->prophesize(InstanceConfiguration::class)->reveal(),
+            $baseConfig->reveal(),
             [],  // Add some replicas if needed for a valid request
             ['displayName' => self::NAME]
         );

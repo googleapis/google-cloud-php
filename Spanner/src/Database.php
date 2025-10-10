@@ -84,7 +84,6 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class Database
 {
-    use TransactionConfigurationTrait;
     use RequestTrait;
 
     public const CONTEXT_READ = 'r';
@@ -123,6 +122,7 @@ class Database
     private bool $returnInt64AsObject;
     private CacheItemPoolInterface $cacheItemPool;
     private array $info;
+    private TransactionOptionsBuilder $transactionOptionsBuilder;
 
     private const MUTATION_SETTERS = [
         'insert' => 'setInsert',
@@ -186,6 +186,7 @@ class Database
         );
 
         $this->optionsValidator = new OptionsValidator($serializer);
+        $this->transactionOptionsBuilder = new TransactionOptionsBuilder();
         $this->directedReadOptions = $instance->directedReadOptions();
     }
 
@@ -745,25 +746,14 @@ class Database
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        $options += [
-            'singleUse' => false
+        $snapshotOptions = [
+            'singleUse' => $options['singleUse'] ?? false
         ];
 
-        $options['transactionOptions'] = $this->configureReadOnlyTransactionOptions($options);
+        $snapshotOptions['transactionOptions'] = $this->transactionOptionsBuilder
+            ->configureReadOnlyTransactionOptions($options);
 
-        // For backwards compatibility - remove all PBReadOnly fields
-        // This was previously being done in configureReadOnlyTransactionOptions
-        // @TODO: clean this up
-        unset(
-            $options['returnReadTimestamp'],
-            $options['strong'],
-            $options['readTimestamp'],
-            $options['exactStaleness'],
-            $options['minReadTimestamp'],
-            $options['maxStaleness'],
-        );
-
-        return $this->operation->snapshot($this->session, $options);
+        return $this->operation->snapshot($this->session, $snapshotOptions);
     }
 
     /**
@@ -813,7 +803,7 @@ class Database
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        $options['transactionOptions'] = $this->initReadWriteTransactionOptions();
+        $options['transactionOptions'] = ['readWrite' => []];
 
         return $this->operation->transaction($this->session, $options);
     }
@@ -916,7 +906,7 @@ class Database
             : $retrySettings['maxRetries'];
 
         // Configure necessary readWrite nested and base options
-        $options['transactionOptions'] = $this->configureReadWriteTransactionOptions(
+        $options['transactionOptions'] = $this->transactionOptionsBuilder->configureReadWriteTransactionOptions(
             $options['transactionOptions'] ?? []
         );
 
@@ -1656,24 +1646,22 @@ class Database
      */
     public function execute($sql, array $options = []): Result
     {
-        unset($options['requestOptions']['transactionTag']);
-        $session = $this->pluck('session', $options, false)
-            ?: $this->session;
-
-        list(
-            $options['transaction'],
-            $options['transactionContext']
-        ) = $this->transactionSelector($options);
-
-        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
-            $options,
+        $executeOptions = $this->pluckArray(
+            ['parameters', 'types'],
+            $options
+        );
+        [$transactionOptions, $transactionContext] = $this->transactionOptionsBuilder->transactionSelector($options);
+        $directedReadOptions = $this->transactionOptionsBuilder->configureDirectedReadOptions(
+            ['transaction' => $transactionOptions] + $options,
             $this->directedReadOptions
         );
 
-        // Unset the internal flag.
-        unset($options['singleUse']);
-        return $this->operation->execute($session, $sql, $options + [
-            'route-to-leader' => $options['transactionContext'] === Database::CONTEXT_READWRITE
+        $session = $options['session'] ?? $this->session;
+        return $this->operation->execute($session, $sql, $executeOptions + [
+            'transaction' => $transactionOptions,
+            'transactionContext' => $transactionContext,
+            'directedReadOptions' => $directedReadOptions,
+            'route-to-leader' => $transactionContext === Database::CONTEXT_READWRITE
         ]);
     }
 
@@ -2034,20 +2022,20 @@ class Database
      */
     public function read($table, KeySet $keySet, array $columns, array $options = []): Result
     {
-        unset($options['requestOptions']['transactionTag']);
+        [$transactionOptions, $context] = $this->transactionOptionsBuilder->transactionSelector($options);
 
-        list($transactionOptions, $context) = $this->transactionSelector($options);
-        $options['transaction'] = $transactionOptions;
-        $options['transactionContext'] = $context;
-
-        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
-            $options,
+        $readOptions = $this->pluckArray(
+            ['index', 'limit', 'orderBy', 'lockHint', 'directedReadOptions'],
+            $options
+        );
+        $readOptions['transactionContext'] = $context;
+        $readOptions['directedReadOptions'] = $this->transactionOptionsBuilder->configureDirectedReadOptions(
+            ['transaction' => $transactionOptions] + $readOptions,
             $this->directedReadOptions
         );
+        $readOptions['transaction'] = $transactionOptions;
 
-        // Unset the internal flag.
-        unset($options['singleUse']);
-        return $this->operation->read($this->session, $table, $keySet, $columns, $options + [
+        return $this->operation->read($this->session, $table, $keySet, $columns, $readOptions + [
             'route-to-leader' => $context === Database::CONTEXT_READ
         ]);
     }
