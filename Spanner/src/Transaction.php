@@ -455,11 +455,11 @@ class Transaction implements TransactionalReadInterface
             $commitOptions['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        [$transactionOptions, $transactionType] = $this->transactionOptionsBuilder->transactionOptions(
+        [$transactionOptions, $selector] = $this->transactionOptionsBuilder->transactionOptions(
             ['transactionId' => $this->transactionId] + $options
         );
 
-        $commitOptions[$transactionType] = $transactionOptions;
+        $commitOptions[$selector] = $transactionOptions;
 
         $response = $this->operation->commit(
             $this->session,

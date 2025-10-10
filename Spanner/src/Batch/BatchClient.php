@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Spanner\Batch;
 
-use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Timestamp;
