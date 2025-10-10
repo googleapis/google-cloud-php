@@ -109,6 +109,7 @@ class TransactionTest extends TestCase
     public function testSingleUseTagError()
     {
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Cannot set a transaction tag on a single-use transaction.');
 
         new Transaction(
             $this->operation,
@@ -669,18 +670,22 @@ class TransactionTest extends TestCase
     public function testExecuteUpdateWithIsolationLevel()
     {
         $sql = 'UPDATE foo SET bar = @bar';
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('transaction', [
-                'begin' => [
-                    'readWrite' => [],
-                    'isolationLevel' => IsolationLevel::REPEATABLE_READ
-                ]
-            ]),
-            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
-        ))->shouldBeCalled()->willReturn($this->resultGenerator(true));
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) use ($sql) {
+                $this->assertEquals($sql, $request->getSql());
+                $this->assertEquals(
+                    IsolationLevel::REPEATABLE_READ,
+                    $request->getTransaction()->getBegin()->getIsolationLevel()
+                );
+                $this->assertNotNull(
+                    $request->getTransaction()->getBegin()->getReadWrite()
+                );
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalled()
+            ->willReturn($this->resultGeneratorStream(null, new ResultSetStats(['row_count_exact' => 1])));
 
         // Transaction without an ID to be able to use `begin`
         $transaction = new Transaction(
@@ -704,10 +709,12 @@ class TransactionTest extends TestCase
     public function testSingleUseWithIsolationLevelThrowsAnExceptionOnReadOnly()
     {
         $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage(
+            'The isolation level can only be applied to read/write transactions. '
+            . 'Single use transactions are not read/write'
+        );
 
         $sql = 'UPDATE foo SET bar = @bar';
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $options = [
             'transaction' => [
@@ -718,11 +725,12 @@ class TransactionTest extends TestCase
             ]
         ];
 
-        $res = $this->singleUseTransaction->executeUpdate($sql, $options);
-
-        $this->assertEquals(1, $res);
+        $singleUseTransaction = new Transaction(
+            $this->operation,
+            $this->session,
+        );
+        $singleUseTransaction->executeUpdate($sql, $options);
     }
-
 
     // *******
     // Helpers

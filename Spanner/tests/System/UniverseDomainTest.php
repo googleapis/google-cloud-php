@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\SpannerClient;
 
 class UniverseDomainTest extends SystemTestCase
 {

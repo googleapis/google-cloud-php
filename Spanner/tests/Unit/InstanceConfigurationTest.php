@@ -29,7 +29,6 @@ use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Serializer;
 use Google\LongRunning\Client\OperationsClient;
-use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Rpc\Code;

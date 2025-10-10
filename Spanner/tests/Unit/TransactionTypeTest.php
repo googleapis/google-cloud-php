@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\TimeTrait;
@@ -46,7 +45,6 @@ use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\TransactionOptions;
-use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Protobuf\Duration;
@@ -952,4 +950,3 @@ class TransactionTypeTest extends TestCase
         return $this->database($this->spannerClient->reveal());
     }
 }
-

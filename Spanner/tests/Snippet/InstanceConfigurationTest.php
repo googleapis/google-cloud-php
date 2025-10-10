@@ -18,9 +18,9 @@
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;

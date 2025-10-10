@@ -22,9 +22,9 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
-use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
 use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 
 /**
  * @group spanner
@@ -410,7 +410,7 @@ class TransactionTest extends SpannerTestCase
                     'parameters' => [
                         'id' => $id,
                         'name' => uniqid(self::TESTING_PREFIX),
-                        'birthday' => new Date(new \DateTime)
+                        'birthday' => new Date(new \DateTime())
                     ],
                     'transaction' => [
                         'begin' => [

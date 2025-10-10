@@ -5,8 +5,6 @@
 
 namespace Testing\Data;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
@@ -43,7 +41,8 @@ class User extends \Google\Protobuf\Internal\Message
      *     @type \Testing\Data\User\Address $address
      * }
      */
-    public function __construct($data = NULL) {
+    public function __construct($data = null)
+    {
         \GPBMetadata\Data\User::initOnce();
         parent::__construct($data);
     }
@@ -86,7 +85,7 @@ class User extends \Google\Protobuf\Internal\Message
      */
     public function setName($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkString($var, true);
         $this->name = $var;
 
         return $this;
@@ -147,4 +146,3 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
 }
-

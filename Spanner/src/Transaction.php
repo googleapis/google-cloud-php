@@ -21,6 +21,9 @@ use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\RequestOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Protobuf\Duration;
 
 /**
  * Manages interaction with Cloud Spanner inside a Transaction.
@@ -47,7 +50,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  *
@@ -68,69 +71,58 @@ class Transaction implements TransactionalReadInterface
     use MutationTrait;
     use TransactionalReadTrait;
 
-    /**
-     * @var CommitStats
-     */
-    private $commitStats = [];
-
-    /**
-     * @var array
-     */
-    private $mutations = [];
-
-    /**
-     * @var bool
-     */
-    private $isRetry = false;
-
-    private ValueMapper $mapper;
+    private array $commitStats = [];
+    private array $mutations = [];
+    private bool $isRetry;
+    private array|RequestOptions $requestOptions;
 
     /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
-     * @param string $transactionId [optional] The Transaction ID. If no ID is
-     *        provided, the Transaction will be a Single-Use Transaction.
-     * @param bool $isRetry Whether the transaction will automatically retry or not.
-     * @param string $tag A transaction tag. Requests made using this transaction will
-     *        use this as the transaction tag.
-     * @param array $options [optional] {
+     * @param string $transactionId The Transaction ID. If no ID is provided, the Transaction will
+     *        be a Single-Use Transaction.
+     * @param array $options {
      *     Configuration Options.
      *
-     *     @type array $begin The begin Transaction options.
-     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
-     *     @type int $isolationLevel level of Isolation for this transaction instance
-     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
+     *     @type bool $isRetry Whether the transaction will automatically retry or not.
+     *     @type string $tag A transaction tag. Requests made using this transaction will
+     *           use this as the transaction tag.
+     *     @type array $begin The begin Transaction options, for using inline begin transactions.
+     *           See {@see V1\TransactionOptions}.
+     *     @type array $singleUse The singleUse Transaction options. See {@see V1\TransactionOptions}.
+     *     @type array $requestOptions See {@see V1\RequestOptions}.
+     *     @type array $transactionOptions See {@see V1\TransactionOptions}.
      * }
      * @param ValueMapper $mapper Consumed internally for properly map mutation data.
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
      */
     public function __construct(
-        Operation $operation,
-        Session $session,
-        $transactionId = null,
-        $isRetry = false,
-        $tag = null,
-        $options = [],
-        $mapper = null
+        private Operation $operation,
+        private Session $session,
+        private string|null $transactionId = null,
+        array $options = [],
+        private ValueMapper|null $mapper = null
     ) {
-        $this->operation = $operation;
-        $this->session = $session;
-        $this->transactionId = $transactionId;
-        $this->isRetry = $isRetry;
-
         $this->type = ($transactionId || isset($options['begin']))
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;
 
-        if ($this->type == self::TYPE_SINGLE_USE && isset($tag)) {
+        if ($this->type == self::TYPE_SINGLE_USE && isset($options['tag'])) {
             throw new \InvalidArgumentException(
                 'Cannot set a transaction tag on a single-use transaction.'
             );
         }
-        $this->tag = $tag;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
-        $this->options = $options;
+        $this->tag = $options['tag'] ?? null;
+        $this->isRetry = $options['isRetry'] ?? false;
+        $this->transactionSelector = array_intersect_key(
+            (array) $options,
+            array_flip(['singleUse', 'begin'])
+        );
+        $this->requestOptions = $options['requestOptions'] ?? [];
+        $this->transactionOptions = $options['transactionOptions'] ?? new TransactionOptions();
+
         if (!is_null($mapper)) {
             $this->mapper = $mapper;
         }
@@ -149,7 +141,7 @@ class Transaction implements TransactionalReadInterface
      *
      * @return array The commit stats
      */
-    public function getCommitStats()
+    public function getCommitStats(): array
     {
         return $this->commitStats;
     }
@@ -244,7 +236,7 @@ class Transaction implements TransactionalReadInterface
      * @return int The number of rows modified.
      * @throws ValidationException
      */
-    public function executeUpdate($sql, array $options = [])
+    public function executeUpdate(string $sql, array $options = []): int
     {
         if (isset($options['transaction']['begin']['excludeTxnFromChangeStreams'])) {
             throw new ValidationException(
@@ -257,7 +249,7 @@ class Transaction implements TransactionalReadInterface
             if (isset($options['transaction']['begin']['readOnly'])) {
                 // isolationLevel can only be used with read/write transactions
                 throw new ValidationException(
-                    'The isolation level can only be applied to read/write transactions.' .
+                    'The isolation level can only be applied to read/write transactions. ' .
                     'Single use transactions are not read/write',
                 );
             }
@@ -354,7 +346,7 @@ class Transaction implements TransactionalReadInterface
      * @return BatchDmlResult
      * @throws \InvalidArgumentException If any statement is missing the `sql` key.
      */
-    public function executeUpdateBatch(array $statements, array $options = [])
+    public function executeUpdateBatch(array $statements, array $options = []): BatchDmlResult
     {
         $options = $this->buildUpdateOptions($options);
         return $this->operation
@@ -385,7 +377,7 @@ class Transaction implements TransactionalReadInterface
      * @param array $options [optional] Configuration Options.
      * @return void
      */
-    public function rollback(array $options = [])
+    public function rollback(array $options = []): void
     {
         if ($this->state !== self::STATE_ACTIVE) {
             throw new \BadMethodCallException('The transaction cannot be rolled back because it is not active');
@@ -432,28 +424,27 @@ class Transaction implements TransactionalReadInterface
      *         Please note, the `requestTag` setting will be ignored as it is not supported for commit requests.
      * }
      * @return Timestamp The commit timestamp.
-     * @throws \BadMethodCall If the transaction is not active or already used.
+     * @throws \BadMethodCallException If the transaction is not active or already used.
      * @throws AbortedException If the commit is aborted for any reason.
      */
-    public function commit(array $options = [])
+    public function commit(array $options = []): Timestamp
     {
         if ($this->state !== self::STATE_ACTIVE) {
             throw new \BadMethodCallException('The transaction cannot be committed because it is not active');
         }
 
         // For commit, A transaction ID is mandatory for non-single-use transactions,
-        // and the `begin` option is not supported.
-        if (empty($this->transactionId) && isset($this->options['begin'])) {
-            // Since the begin option is not supported in commit, unset it.
-            unset($this->options['begin']);
-
-            // A transaction ID is mandatory for non-single-use transactions.
-            if ($this->type !== self::TYPE_SINGLE_USE) {
-                // Execute the beginTransaction RPC.
-                $transaction = $this->operation->transaction($this->session, $this->options);
-                // Set the transaction ID of the current transaction.
-                $this->transactionId = $transaction->id();
-            }
+        // and the `begin` option is not supported (because `begin` is only used in "inline begin transactions")
+        if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
+            $operationTransactionOptions = array_filter([
+                'requestOptions' => $this->requestOptions,
+                'transactionOptions' => $this->transactionOptions,
+                'singleUse' => $this->transactionSelector['singleUse'] ?? null,
+            ]);
+            // Execute the beginTransaction RPC.
+            $transaction = $this->operation->transaction($this->session, $operationTransactionOptions);
+            // Set the transaction ID of the current transaction.
+            $this->transactionId = $transaction->id();
         }
 
         if (!$this->singleUseState()) {
@@ -476,6 +467,7 @@ class Transaction implements TransactionalReadInterface
 
         $t = $this->transactionOptions($options);
 
+        // @TODO find out what this is and clean it up
         $options[$t[1]] = $t[0];
 
         $res = $this->operation->commitWithResponse($this->session, $this->pluck('mutations', $options), $options);
@@ -499,7 +491,7 @@ class Transaction implements TransactionalReadInterface
      *
      * @return int
      */
-    public function state()
+    public function state(): int
     {
         return $this->state;
     }
@@ -522,7 +514,7 @@ class Transaction implements TransactionalReadInterface
      *
      * @return bool
      */
-    public function isRetry()
+    public function isRetry(): bool
     {
         return $this->isRetry;
     }
@@ -548,14 +540,17 @@ class Transaction implements TransactionalReadInterface
         $this->seqno++;
 
         $options['transactionType'] = $this->context;
-        if (empty($this->transactionId) && isset($this->options['begin'])) {
-            $options['begin'] = $this->options['begin'];
+        if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
+            $options['begin'] = $this->transactionSelector['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
         }
+
         $selector = $this->transactionSelector($options);
         $options['transaction'] = $selector[0];
 
-        return $this->addLarHeader($options);
+        $options['headers']['spanner-route-to-leader'] = ['true'];
+
+        return $options;
     }
 }

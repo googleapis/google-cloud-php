@@ -6,7 +6,7 @@
     "require": {
         "php": "^8.1",
         "ext-grpc": "*",
-        "google/cloud-core": "^1.66",
+        "google/cloud-core": "^1.68",
         "google/gax": "^1.38.0"
     },
     "require-dev": {

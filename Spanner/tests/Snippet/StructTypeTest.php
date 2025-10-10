@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -31,12 +30,6 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\PartialResultSet;
-use Google\Cloud\Spanner\V1\ResultSetMetadata;
-use Google\Cloud\Spanner\V1\Type;
-use Google\Cloud\Spanner\V1\StructType as StructTypeProto;
-use Google\Cloud\Spanner\V1\StructType\Field;
-use Google\Protobuf\Value;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 

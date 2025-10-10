@@ -22,9 +22,9 @@ use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
@@ -47,8 +47,8 @@ use Google\Cloud\Spanner\PgOid;
 use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Protobuf\Duration;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -542,7 +542,8 @@ class SpannerClientTest extends TestCase
         $client = new SpannerClient([
             'projectId' => self::PROJECT,
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
-            'isolationLevel' => IsolationLevel::REPEATABLE_READ
+            'isolationLevel' => IsolationLevel::REPEATABLE_READ,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
         ]);
 
         $reflectedClient = new ReflectionClass($client);
@@ -578,7 +579,8 @@ class SpannerClientTest extends TestCase
         $client = new SpannerClient([
             'projectId' => self::PROJECT,
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
-            'isolationLevel' => IsolationLevel::REPEATABLE_READ
+            'isolationLevel' => IsolationLevel::REPEATABLE_READ,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
         ]);
 
         $reflectedClient = new ReflectionClass($client);

@@ -23,11 +23,11 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Interval;
 use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\Interval;
 use Google\Cloud\Spanner\V1\RequestOptions\Priority;
 
 /**
@@ -553,7 +553,7 @@ class PgQueryTest extends SpannerPgTestCase
         $db = self::$database;
 
         $interval = Interval::parse('P1Y2M3DT4H5M6.7S');
-        $res = $db->execute("SELECT $1 AS foo", [
+        $res = $db->execute('SELECT $1 AS foo', [
             'parameters' => [
                 'p1' => $interval
             ],
@@ -571,7 +571,7 @@ class PgQueryTest extends SpannerPgTestCase
     {
         $db = self::$database;
 
-        $res = $db->execute("SELECT CAST($1 AS INTERVAL) AS foo", [
+        $res = $db->execute('SELECT CAST($1 AS INTERVAL) AS foo', [
             'parameters' => [
                 'p1' => null
             ],

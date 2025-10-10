@@ -384,7 +384,7 @@ class QueryTest extends SpannerTestCase
         $db = self::$database;
 
         $interval = Interval::parse('P1Y2M3DT4H5M6.7S');
-        $res = $db->execute("SELECT @param as foo", [
+        $res = $db->execute('SELECT @param as foo', [
             'parameters' => [
                 'param' => $interval
             ],

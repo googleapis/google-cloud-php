@@ -27,12 +27,11 @@ use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
@@ -76,22 +75,20 @@ use Google\Cloud\Spanner\V1\Session as SessionProto;
 use Google\Cloud\Spanner\V1\StructType;
 use Google\Cloud\Spanner\V1\StructType\Field;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
-use Google\Cloud\Spanner\V1\TransactionOptions;
-use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode as ReadLockMode;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type as TypeProto;
+use Google\LongRunning\Client\OperationsClient;
 use Google\Protobuf\Duration;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Timestamp as TimestampProto;
 use Google\Protobuf\Value;
-use Google\LongRunning\Client\OperationsClient;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
-use InvalidArgumentException;
 
 /**
  * @group spanner
@@ -1026,32 +1023,23 @@ class DatabaseTest extends TestCase
 
     public function testTransactionWithIsolationLevel()
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            ),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG,
-            ]),
-            Argument::withEntry('transactionOptions', [
-                'readWrite' => [],
-                'isolationLevel' => IsolationLevel::REPEATABLE_READ,
-            ])
-        ))
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertNotNull($txnOptions = $request->getOptions());
+                $this->assertEquals(
+                    IsolationLevel::REPEATABLE_READ,
+                    $txnOptions->getIsolationLevel()
+                );
+                return true;
+            }),
+            Argument::type('array')
+        )
             ->shouldBeCalled()
-            ->willReturn(['id' => self::TRANSACTION]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
 
         $t = $this->database->transaction([
             'tag' => self::TRANSACTION_TAG,
-            'isolationLevel' => IsolationLevel::REPEATABLE_READ
+            'transactionOptions' => ['isolationLevel' => IsolationLevel::REPEATABLE_READ],
         ]);
         $this->assertInstanceOf(Transaction::class, $t);
     }
@@ -1399,18 +1387,21 @@ class DatabaseTest extends TestCase
     {
         $sql = 'SELECT * FROM Table';
 
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']]),
-            Argument::withEntry('transaction', [
-                'begin' => [
-                    'readWrite' => [],
-                    'isolationLevel' => IsolationLevel::REPEATABLE_READ
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->resultGenerator());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) use ($sql) {
+                $this->assertEquals($sql, $request->getSql());
+                $this->assertNotNull($txnOptions = $request->getTransaction()->getBegin());
+                $this->assertEquals(IsolationLevel::REPEATABLE_READ, $txnOptions->getIsolationLevel());
+                return true;
+            }),
+            Argument::that(function ($callOptions) {
+                $this->assertArrayHasKey('route-to-leader', $callOptions);
+                $this->assertEquals(true, $callOptions['route-to-leader']);
+                return true;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream());
 
         $res = $this->database->execute($sql, [
             'transactionType' => SessionPoolInterface::CONTEXT_READWRITE,
@@ -1519,7 +1510,6 @@ class DatabaseTest extends TestCase
     {
         $sql = 'UPDATE foo SET bar = @bar';
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
         $this->expectException(ValidationException::class);
 
         $res = $this->database->executePartitionedUpdate($sql, [
@@ -1563,7 +1553,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
-    public function testSetOrderByReachesTheRequest()
+    public function testSetOrderBy()
     {
         $table = 'Table';
         $opts = ['foo' => 'bar'];
@@ -1593,7 +1583,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
-    public function testSetLockHintReachesTheRequest()
+    public function testSetLockHint()
     {
         $table = 'Table';
         $opts = ['foo' => 'bar'];
@@ -2485,36 +2475,25 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionIsolationLevel()
     {
-        $gapic = $this->prophesize(SpannerClient::class);
-
-        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
-        $session = new SessionProto(['name' => $sessName]);
-        $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])]);
-        $gapic->createSession(Argument::cetera())->shouldBeCalled()->willReturn($session);
-        $gapic->deleteSession(Argument::cetera())->shouldBeCalled();
-
         $sql = 'SELECT example FROM sql_query';
         $stream = $this->prophesize(ServerStream::class);
-        $stream->readAll()->shouldBeCalledOnce()->willReturn([$resultSet]);
-        $gapic->executeStreamingSql($sessName, $sql, Argument::that(function (array $options) {
-            $this->assertArrayHasKey('transaction', $options);
-            $this->assertNotNull($transactionOptions = $options['transaction']->getBegin());
-            $this->assertEquals(IsolationLevel::REPEATABLE_READ, $transactionOptions->getIsolationLevel());
-            return true;
-        }))
+        $stream->readAll()
+            ->shouldBeCalledOnce()
+            ->willReturn([new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])])]);
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $txnOptions = $request->getTransaction()->getBegin();
+                $this->assertNotNull($txnOptions);
+                $this->assertEquals(IsolationLevel::REPEATABLE_READ, $txnOptions->getIsolationLevel());
+                return true;
+            }),
+            Argument::type('array')
+        )
             ->shouldBeCalledOnce()
             ->willReturn($stream->reveal());
 
-        $database = new Database(
-            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
-            $this->instance,
-            $this->lro->reveal(),
-            $this->lroCallables,
-            self::PROJECT,
-            self::DATABASE
-        );
-
-        $database->runTransaction(
+        $this->database->runTransaction(
             function (Transaction $t) use ($sql) {
                 // Run a fake query
                 $t->executeUpdate($sql);
@@ -2530,50 +2509,29 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithReadLockMode()
     {
-        $expectedReadLockMode = ReadLockMode::OPTIMISTIC;
-
-        $gapic = $this->prophesize(SpannerClient::class);
-
-        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
-        $session = new SessionProto(['name' => $sessName]);
-        $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])]);
-        $gapic->createSession(Argument::cetera())->shouldBeCalled()->willReturn($session);
-        $gapic->deleteSession(Argument::cetera())->shouldBeCalled();
-
         $sql = 'SELECT example FROM sql_query';
         $stream = $this->prophesize(ServerStream::class);
-        $stream->readAll()->shouldBeCalledOnce()->willReturn([$resultSet]);
-        $gapic->executeStreamingSql(
-            $sessName,
-            $sql,
-            Argument::that(function (array $options) use ($expectedReadLockMode) {
-                $this->assertArrayHasKey('transaction', $options);
-                $this->assertNotNull($transactionOptions = $options['transaction']->getBegin());
-                $this->assertNotNull($readWriteTxnOptions = $transactionOptions->getReadWrite());
-                $this->assertNotNull($readLockModeOption = $readWriteTxnOptions->getReadLockMode());
-                $this->assertEquals(
-                    $expectedReadLockMode,
-                    $readLockModeOption
-                );
+        $stream->readAll()
+            ->shouldBeCalledOnce()
+            ->willReturn([new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])])]);
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $txnOptions = $request->getTransaction()->getBegin();
+                $this->assertNotNull($txnOptions);
+                $this->assertNotNull($readWriteTxnOptions = $txnOptions->getReadWrite());
+                $this->assertEquals(ReadLockMode::OPTIMISTIC, $readWriteTxnOptions->getReadLockMode());
                 return true;
-            })
+            }),
+            Argument::type('array')
         )
             ->shouldBeCalledOnce()
             ->willReturn($stream->reveal());
 
-        $database = new Database(
-            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
-            $this->instance,
-            $this->lro->reveal(),
-            $this->lroCallables,
-            self::PROJECT,
-            self::DATABASE
-        );
-
         // Test TransactionOption array format with base level property set for readLockMode
         // This helps test proper formating by the library to the format expected by Spanner backend
         // (i.e. readLockMode should be inside readWrite)
-        $database->runTransaction(
+        $this->database->runTransaction(
             function (Transaction $t) use ($sql) {
                 // Run a fake query
                 $t->executeUpdate($sql);
@@ -2583,32 +2541,27 @@ class DatabaseTest extends TestCase
                 $prop->setAccessible(true);
                 $prop->setValue($t, Transaction::STATE_COMMITTED);
             },
-            ['transactionOptions' => ['readLockMode' => $expectedReadLockMode, ] ]
+            ['transactionOptions' => ['readLockMode' => ReadLockMode::OPTIMISTIC]]
         );
     }
 
     public function testTransactionWithReadLockMode()
     {
-        $expectedReadLockMode = ReadLockMode::OPTIMISTIC;
-
-        $this->connection->beginTransaction(
-            Argument::that(function (array $args) use ($expectedReadLockMode) {
-                $this->assertArrayHasKey('transactionOptions', $args);
-                $this->assertArrayHasKey('readWrite', $args['transactionOptions']);
-                $this->assertArrayHasKey('readLockMode', $args['transactionOptions']['readWrite']);
-                $this->assertEquals(
-                    $expectedReadLockMode,
-                    $args['transactionOptions']['readWrite']['readLockMode'],
-                    "The read lock mode received was {$args['transactionOptions']['readWrite']['readLockMode']} " .
-                    "does not match expected {$expectedReadLockMode}"
-                );
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertNotNull($txnOptions = $request->getOptions());
+                $this->assertNotNull($readWrite = $txnOptions->getReadWrite());
+                $this->assertEquals(ReadLockMode::OPTIMISTIC, $readWrite->getReadLockMode());
                 return true;
-            })
+            }),
+            Argument::type('array')
         )
             ->shouldBeCalled()
-            ->willReturn(['id' => self::TRANSACTION]);
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
 
-        $t = $this->database->transaction(['transactionOptions' => ['readLockMode' => $expectedReadLockMode, ]]);
+        $t = $this->database->transaction([
+            'transactionOptions' => ['readLockMode' => ReadLockMode::OPTIMISTIC]
+        ]);
         $this->assertInstanceOf(Transaction::class, $t);
     }
 

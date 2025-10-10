@@ -104,9 +104,7 @@ final class PublisherClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -260,8 +258,10 @@ final class PublisherClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function publishChannelConnectionEvents(PublishChannelConnectionEventsRequest $request, array $callOptions = []): PublishChannelConnectionEventsResponse
-    {
+    public function publishChannelConnectionEvents(
+        PublishChannelConnectionEventsRequest $request,
+        array $callOptions = []
+    ): PublishChannelConnectionEventsResponse {
         return $this->startApiCall('PublishChannelConnectionEvents', $request, $callOptions)->wait();
     }
 

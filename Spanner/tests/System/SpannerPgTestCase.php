@@ -87,7 +87,7 @@ abstract class SpannerPgTestCase extends SystemTestCase
 
         // Currently, the emulator doesn't support setting roles for the PG
         // dialect.
-        if (!getenv("SPANNER_EMULATOR_HOST")) {
+        if (!getenv('SPANNER_EMULATOR_HOST')) {
             $db->updateDdlBatch(
                 [
                     'CREATE ROLE ' . self::DATABASE_ROLE,

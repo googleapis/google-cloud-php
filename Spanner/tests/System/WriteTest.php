@@ -27,8 +27,8 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Rpc\Code;
 use Google\Protobuf\Internal\Message;
+use Google\Rpc\Code;
 use Testing\Data\User;
 
 /**

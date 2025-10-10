@@ -61,7 +61,6 @@ use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction;
-use Google\LongRunning\Client\OperationsClient;
 use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;

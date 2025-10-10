@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use DateInterval;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\ArrayType;
@@ -38,7 +37,6 @@ use Google\Cloud\Spanner\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Testing\Data\Book;
 use Testing\Data\User;
-use RuntimeException;
 
 /**
  * @group spanner

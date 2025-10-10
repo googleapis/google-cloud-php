@@ -17,7 +17,6 @@
  */
 namespace Google\Cloud\Core;
 
-use Exception;
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Options\CallOptions;
 use Google\Protobuf\Internal\Message;

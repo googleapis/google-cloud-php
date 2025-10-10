@@ -18,12 +18,11 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
-use Google\Cloud\Spanner\Date;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
 use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
+use Google\Protobuf\Duration;
 
 /**
  * @group spanner
