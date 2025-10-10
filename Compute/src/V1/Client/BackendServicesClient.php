@@ -41,6 +41,8 @@ use Google\Cloud\Compute\V1\BackendServiceGroupHealth;
 use Google\Cloud\Compute\V1\DeleteBackendServiceRequest;
 use Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendServiceRequest;
 use Google\Cloud\Compute\V1\GetBackendServiceRequest;
+use Google\Cloud\Compute\V1\GetEffectiveSecurityPoliciesBackendServiceRequest;
+use Google\Cloud\Compute\V1\GetEffectiveSecurityPoliciesBackendServiceResponse;
 use Google\Cloud\Compute\V1\GetHealthBackendServiceRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyBackendServiceRequest;
 use Google\Cloud\Compute\V1\InsertBackendServiceRequest;
@@ -68,6 +70,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackendService> getAsync(GetBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetEffectiveSecurityPoliciesBackendServiceResponse> getEffectiveSecurityPoliciesAsync(GetEffectiveSecurityPoliciesBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackendServiceGroupHealth> getHealthAsync(GetHealthBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertBackendServiceRequest $request, array $optionalArgs = [])
@@ -426,6 +429,35 @@ final class BackendServicesClient
     public function get(GetBackendServiceRequest $request, array $callOptions = []): BackendService
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns effective security policies applied to this backend service.
+     *
+     * The async variant is
+     * {@see BackendServicesClient::getEffectiveSecurityPoliciesAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/get_effective_security_policies.php
+     *
+     * @param GetEffectiveSecurityPoliciesBackendServiceRequest $request     A request to house fields associated with the call.
+     * @param array                                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GetEffectiveSecurityPoliciesBackendServiceResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getEffectiveSecurityPolicies(
+        GetEffectiveSecurityPoliciesBackendServiceRequest $request,
+        array $callOptions = []
+    ): GetEffectiveSecurityPoliciesBackendServiceResponse {
+        return $this->startApiCall('GetEffectiveSecurityPolicies', $request, $callOptions)->wait();
     }
 
     /**

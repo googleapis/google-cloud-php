@@ -96,6 +96,33 @@ return [
                     ],
                 ],
             ],
+            'ReportFaulty' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name}/reservationSubBlocks/{reservation_sub_block}/reportFaulty',
+                'body' => 'reservation_sub_blocks_report_faulty_request_resource',
+                'placeholders' => [
+                    'parent_name' => [
+                        'getters' => [
+                            'getParentName',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'reservation_sub_block' => [
+                        'getters' => [
+                            'getReservationSubBlock',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.ZoneOperations' => [
             'Delete' => [
