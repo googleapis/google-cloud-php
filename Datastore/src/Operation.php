@@ -58,6 +58,8 @@ use InvalidArgumentException;
  * Examples are omitted for brevity. Detailed usage examples can be found in
  * {@see \Google\Cloud\Datastore\DatastoreClient} and
  * {@see \Google\Cloud\Datastore\Transaction}.
+ *
+ * @internal
  */
 class Operation
 {
