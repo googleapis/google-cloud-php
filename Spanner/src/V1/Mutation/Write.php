@@ -23,7 +23,7 @@ class Write extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * The names of the columns in
      * [table][google.spanner.v1.Mutation.Write.table] to be written.
@@ -188,6 +188,4 @@ class Write extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Write::class, \Google\Cloud\Spanner\V1\Mutation_Write::class);
 

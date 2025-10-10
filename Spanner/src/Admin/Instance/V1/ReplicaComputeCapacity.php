@@ -22,7 +22,7 @@ class ReplicaComputeCapacity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.ReplicaSelection replica_selection = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $replica_selection = null;
+    protected $replica_selection = null;
     protected $compute_capacity;
 
     /**

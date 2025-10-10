@@ -29,7 +29,7 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
-    private $commit_timestamp = null;
+    protected $commit_timestamp = null;
     /**
      * Record sequence numbers are unique and monotonically increasing (but not
      * necessarily contiguous) for a specific timestamp across record
@@ -47,7 +47,7 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string record_sequence = 2;</code>
      */
-    private $record_sequence = '';
+    protected $record_sequence = '';
     /**
      * Provides a globally unique string that represents the transaction in
      * which the change was committed. Multiple transactions can have the same
@@ -56,7 +56,7 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string server_transaction_id = 3;</code>
      */
-    private $server_transaction_id = '';
+    protected $server_transaction_id = '';
     /**
      * Indicates whether this is the last record for a transaction in the
      *  current partition. Clients can use this field to determine when all
@@ -64,13 +64,13 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_last_record_in_transaction_in_partition = 4;</code>
      */
-    private $is_last_record_in_transaction_in_partition = false;
+    protected $is_last_record_in_transaction_in_partition = false;
     /**
      * Name of the table affected by the change.
      *
      * Generated from protobuf field <code>string table = 5;</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * Provides metadata describing the columns associated with the
      * [mods][google.spanner.v1.ChangeStreamRecord.DataChangeRecord.mods] listed
@@ -90,14 +90,14 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ModType mod_type = 8;</code>
      */
-    private $mod_type = 0;
+    protected $mod_type = 0;
     /**
      * Describes the value capture type that was specified in the change stream
      * configuration when this change was captured.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ValueCaptureType value_capture_type = 9;</code>
      */
-    private $value_capture_type = 0;
+    protected $value_capture_type = 0;
     /**
      * Indicates the number of data change records that are part of this
      * transaction across all change stream partitions. This value can be used
@@ -105,7 +105,7 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 number_of_records_in_transaction = 10;</code>
      */
-    private $number_of_records_in_transaction = 0;
+    protected $number_of_records_in_transaction = 0;
     /**
      * Indicates the number of partitions that return data change records for
      * this transaction. This value can be helpful in assembling all records
@@ -113,13 +113,13 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 number_of_partitions_in_transaction = 11;</code>
      */
-    private $number_of_partitions_in_transaction = 0;
+    protected $number_of_partitions_in_transaction = 0;
     /**
      * Indicates the transaction tag associated with this transaction.
      *
      * Generated from protobuf field <code>string transaction_tag = 12;</code>
      */
-    private $transaction_tag = '';
+    protected $transaction_tag = '';
     /**
      * Indicates whether the transaction is a system transaction. System
      * transactions include those issued by time-to-live (TTL), column backfill,
@@ -127,7 +127,7 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_system_transaction = 13;</code>
      */
-    private $is_system_transaction = false;
+    protected $is_system_transaction = false;
 
     /**
      * Constructor.
@@ -611,6 +611,4 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DataChangeRecord::class, \Google\Cloud\Spanner\V1\ChangeStreamRecord_DataChangeRecord::class);
 

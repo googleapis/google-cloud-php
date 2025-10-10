@@ -34,13 +34,13 @@ class ReplicaSelection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 1;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * The type of replica.
      *
      * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions.ReplicaSelection.Type type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.
@@ -113,6 +113,4 @@ class ReplicaSelection extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReplicaSelection::class, \Google\Cloud\Spanner\V1\DirectedReadOptions_ReplicaSelection::class);
 

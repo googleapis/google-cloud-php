@@ -24,26 +24,26 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The current database state.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. If exists, the time at which the database creation started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Applicable only for restored databases. Contains information
      * about the restore source.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreInfo restore_info = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $restore_info = null;
+    protected $restore_info = null;
     /**
      * Output only. For databases that are using customer managed encryption, this
      * field contains the encryption configuration for the database.
@@ -52,7 +52,7 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionConfig encryption_config = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $encryption_config = null;
+    protected $encryption_config = null;
     /**
      * Output only. For databases that are using customer managed encryption, this
      * field contains the encryption information for the database, such as
@@ -75,7 +75,7 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version_retention_period = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $version_retention_period = '';
+    protected $version_retention_period = '';
     /**
      * Output only. Earliest timestamp at which older versions of the data can be
      * read. This value is continuously updated by Cloud Spanner and becomes stale
@@ -85,7 +85,7 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_version_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $earliest_version_time = null;
+    protected $earliest_version_time = null;
     /**
      * Output only. The read-write region which contains the database's leader
      * replicas.
@@ -95,13 +95,13 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_leader = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $default_leader = '';
+    protected $default_leader = '';
     /**
      * Output only. The dialect of the Cloud Spanner Database.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $database_dialect = 0;
+    protected $database_dialect = 0;
     /**
      * Whether drop protection is enabled for this database. Defaults to false,
      * if not set. For more details, please see how to [prevent accidental
@@ -110,14 +110,14 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_drop_protection = 11;</code>
      */
-    private $enable_drop_protection = false;
+    protected $enable_drop_protection = false;
     /**
      * Output only. If true, the database is being updated. If false, there are no
      * ongoing update operations for the database.
      *
      * Generated from protobuf field <code>bool reconciling = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
 
     /**
      * Constructor.

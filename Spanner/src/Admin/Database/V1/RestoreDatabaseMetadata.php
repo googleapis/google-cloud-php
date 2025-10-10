@@ -21,13 +21,13 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The type of the restore source.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreSourceType source_type = 2;</code>
      */
-    private $source_type = 0;
+    protected $source_type = 0;
     /**
      * The progress of the
      * [RestoreDatabase][google.spanner.admin.database.v1.DatabaseAdmin.RestoreDatabase]
@@ -35,7 +35,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 4;</code>
      */
-    private $progress = null;
+    protected $progress = null;
     /**
      * The time at which cancellation of this operation was received.
      * [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]
@@ -52,7 +52,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 5;</code>
      */
-    private $cancel_time = null;
+    protected $cancel_time = null;
     /**
      * If exists, the name of the long-running operation that will be used to
      * track the post-restore optimization process to optimize the performance of
@@ -68,7 +68,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string optimize_database_operation_name = 6;</code>
      */
-    private $optimize_database_operation_name = '';
+    protected $optimize_database_operation_name = '';
     protected $source_info;
 
     /**

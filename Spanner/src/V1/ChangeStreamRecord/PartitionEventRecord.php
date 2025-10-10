@@ -40,7 +40,7 @@ class PartitionEventRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
-    private $commit_timestamp = null;
+    protected $commit_timestamp = null;
     /**
      * Record sequence numbers are unique and monotonically increasing (but not
      * necessarily contiguous) for a specific timestamp across record
@@ -50,7 +50,7 @@ class PartitionEventRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string record_sequence = 2;</code>
      */
-    private $record_sequence = '';
+    protected $record_sequence = '';
     /**
      * Unique partition identifier describing the partition this event
      * occurred on.
@@ -60,7 +60,7 @@ class PartitionEventRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string partition_token = 3;</code>
      */
-    private $partition_token = '';
+    protected $partition_token = '';
     /**
      * Set when one or more key ranges are moved into the change stream
      * partition identified by
@@ -526,6 +526,4 @@ class PartitionEventRecord extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PartitionEventRecord::class, \Google\Cloud\Spanner\V1\ChangeStreamRecord_PartitionEventRecord::class);
 

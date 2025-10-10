@@ -24,7 +24,7 @@ class AutoscalingConfigOverrides extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingLimits autoscaling_limits = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $autoscaling_limits = null;
+    protected $autoscaling_limits = null;
     /**
      * Optional. If specified, overrides the autoscaling target
      * high_priority_cpu_utilization_percent in the top-level autoscaling
@@ -32,7 +32,7 @@ class AutoscalingConfigOverrides extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 autoscaling_target_high_priority_cpu_utilization_percent = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $autoscaling_target_high_priority_cpu_utilization_percent = 0;
+    protected $autoscaling_target_high_priority_cpu_utilization_percent = 0;
 
     /**
      * Constructor.

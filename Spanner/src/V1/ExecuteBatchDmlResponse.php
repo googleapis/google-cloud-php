@@ -58,7 +58,7 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Optional. A precommit token is included if the read-write transaction
      * is on a multiplexed session. Pass the precommit token with the highest
@@ -67,7 +67,7 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $precommit_token = null;
+    protected $precommit_token = null;
 
     /**
      * Constructor.
