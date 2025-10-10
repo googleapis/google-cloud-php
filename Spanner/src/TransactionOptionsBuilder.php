@@ -49,24 +49,21 @@ class TransactionOptionsBuilder
      */
     public function transactionSelector(array $options, ?PBReadOnly $txnLevelReadOnlyOptions = null): array
     {
-        $options += [
-            'transactionType' => Database::CONTEXT_READ,
-        ];
-
-        [$transactionOptions, $selector, $context] = $this->transactionOptions($options, $txnLevelReadOnlyOptions);
+        [$transactionOptions, $selector, $context] = $this->transactionOptions(
+            $options + ['transactionType' => Database::CONTEXT_READ],
+            $txnLevelReadOnlyOptions
+        );
 
         // TransactionSelector uses a different key name for singleUseTransaction
         // and transactionId than CommitRequest, so we'll rewrite those here
         // so transactionOptions works as expected for commitRequest.
-
-        $transactionSelector = match ($selector) {
-            self::TYPE_ID => ['id' => $transactionOptions],
-            self::TYPE_SINGLE_USE => ['singleUse' => $transactionOptions],
-            self::TYPE_ILB => ['begin' => $transactionOptions],
+        $commitSelector = match ($selector) {
+            self::TYPE_ID => 'id',
+            self::TYPE_SINGLE_USE => 'singleUse',
+            self::TYPE_ILB => 'begin',
         };
-
         return [
-            $transactionSelector,
+            [$commitSelector => $transactionOptions],
             $context
         ];
     }
@@ -90,7 +87,7 @@ class TransactionOptionsBuilder
             $options['transactionType'] ?? Database::CONTEXT_READWRITE,
         ];
 
-        $selector = match($id !== null) {
+        $selector = match ($id !== null) {
             true => self::TYPE_ID,
             false => !empty($begin) ? self::TYPE_ILB : self::TYPE_SINGLE_USE,
         };
