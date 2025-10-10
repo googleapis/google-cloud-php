@@ -1,5 +1,52 @@
 # Changelog
 
+## 0.305.0
+
+<details><summary>google/cloud-compute 2.2.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20250916 ([#1107](https://github.com/googleapis/google-cloud-php/issues/1107)) ([#8652](https://github.com/googleapis/google-cloud-php/issues/8652)) ([10c85c9](https://github.com/googleapis/google-cloud-php/commit/10c85c9d6da7677d2798983ab43b257f7269fbd2))
+
+</details>
+
+<details><summary>google/cloud-core 1.67.0</summary>
+
+
+
+### Features
+
+* Datastore V2 ([#8609](https://github.com/googleapis/google-cloud-php/issues/8609)) ([95b34bb](https://github.com/googleapis/google-cloud-php/commit/95b34bb7b69788d2776bcbf4fe280a3d221b125e))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.0.0-RC1</summary>
+
+
+
+### Features
+
+* Datastore V2 ([#8609](https://github.com/googleapis/google-cloud-php/issues/8609)) ([95b34bb](https://github.com/googleapis/google-cloud-php/commit/95b34bb7b69788d2776bcbf4fe280a3d221b125e))
+
+
+### Documentation
+
+* **Datastore:** Add MIGRATING.md ([#8651](https://github.com/googleapis/google-cloud-php/issues/8651)) ([00cb3be](https://github.com/googleapis/google-cloud-php/commit/00cb3be56f725f8fb08530dfa65bf0be08079dd7))
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.5.0</summary>
+
+
+
+### Features
+
+* [DocumentAi] Added new messages `EntityValidationOutput` and `EntitiesRevision` ([#8649](https://github.com/googleapis/google-cloud-php/issues/8649)) ([6952d41](https://github.com/googleapis/google-cloud-php/commit/6952d416ee5f6fa3f54956690e38bf278faca81b))
+
+</details>
+
 ## 0.304.0
 
 <details><summary>google/cloud-access-approval 2.1.1</summary>
