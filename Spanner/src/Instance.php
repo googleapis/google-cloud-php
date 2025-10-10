@@ -183,6 +183,11 @@ class Instance
                     'name' => $this->name,
                     'fieldMask' => ['paths' => ['name']],
                 ];
+
+                /**
+                 * @var GetInstanceRequest $getInstanceRequest
+                 * @var array $callOptions
+                 */
                 [$getInstanceRequest, $callOptions] = $this->validateOptions(
                     $options,
                     new GetInstanceRequest(),
@@ -225,6 +230,10 @@ class Instance
      */
     public function reload(array $options = []): array
     {
+        /**
+         * @var array $data
+         * @var array $calloptions
+         */
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'name' => $this->name
@@ -277,7 +286,11 @@ class Instance
      */
     public function create(InstanceConfiguration $config, array $options = []): LongRunningOperation
     {
-        list($instance, $callOptions) = $this->splitOptionalArgs($options);
+        /**
+         * @var array $instance
+         * @var array $calloptions
+         */
+        [$instance, $callOptions] = $this->splitOptionalArgs($options);
         $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
         if (isset($instance['nodeCount']) && isset($instance['processingUnits'])) {
             throw new \InvalidArgumentException('Must only set either `nodeCount` or `processingUnits`');
@@ -362,7 +375,11 @@ class Instance
      */
     public function update(array $options = []): LongRunningOperation
     {
-        list($instance, $callOptions) = $this->splitOptionalArgs($options);
+        /**
+         * @var array $instance
+         * @var array $calloptions
+         */
+        [$instance, $callOptions] = $this->splitOptionalArgs($options);
 
         if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
             throw new \InvalidArgumentException('Must only set either `nodeCount` or `processingUnits`');
@@ -399,6 +416,10 @@ class Instance
      */
     public function delete(array $options = []): void
     {
+        /**
+         * @var DeleteInstanceRequest $deleteInstancesRequest
+         * @var array $callOptions
+         */
         [$deleteInstancesRequest, $callOptions] = $this->validateOptions(
             $options,
             new DeleteInstanceRequest(),
@@ -544,6 +565,10 @@ class Instance
      */
     public function databases(array $options = []): ItemIterator
     {
+        /**
+         * @var ListDatabasesRequest $listDatabasesRequest
+         * @var array $callOptions
+         */
         [$listDatabasesRequest, $callOptions] = $this->validateOptions(
             $options,
             new ListDatabasesRequest(),
@@ -620,6 +645,10 @@ class Instance
      */
     public function backups(array $options = []): ItemIterator
     {
+        /**
+         * @var ListBackupsRequest $listBackupsRequest
+         * @var array $callOptions
+         */
         [$listBackupsRequest, $callOptions] = $this->validateOptions(
             $options,
             new ListBackupsRequest(),
@@ -857,6 +886,10 @@ class Instance
      */
     public function longRunningOperations(array $options = []): ItemIterator
     {
+        /**
+         * @var ListOperationsRequest $listOperationsRequest
+         * @var array $callOptions
+         */
         [$listOperationsRequest, $callOptions] = $this->validateOptions(
             $options,
             new ListOperationsRequest(),

@@ -27,8 +27,9 @@ class OptionsValidator
 {
     use ArrayTrait;
 
-    public function __construct(private ?Serializer $serializer = null)
-    {
+    public function __construct(
+        private ?Serializer $serializer = null
+    ) {
     }
 
     /**
@@ -61,6 +62,8 @@ class OptionsValidator
                     $optionType->mergeFromJsonString(json_encode($messageOptions, JSON_FORCE_OBJECT));
                 }
                 $splitOptions[] = $optionType;
+            } elseif (is_string($optionType)) {
+                $splitOptions[] = $this->pluck($optionType, $options, false);
             } else {
                 throw new LogicException(sprintf('Invalid option type: %s', $optionType));
             }

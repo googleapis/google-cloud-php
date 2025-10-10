@@ -24,6 +24,7 @@ use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Protobuf\Internal\DescriptorPool;
 use Google\Protobuf\Internal\Message;
+use InvalidArgumentException;
 
 /**
  * Manage value mappings between Google Cloud PHP and Cloud Spanner
@@ -203,7 +204,7 @@ class ValueMapper
      * @param array $row The row data.
      * @param string $format The format in which to return the rows.
      * @return array The decoded row data.
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function decodeValues(array $columns, array $row, string $format): array
     {
@@ -236,7 +237,7 @@ class ValueMapper
 
                 return $row;
             default:
-                throw new \InvalidArgumentException('Invalid format provided.');
+                throw new InvalidArgumentException('Invalid format provided.');
         }
     }
 
@@ -470,9 +471,9 @@ class ValueMapper
             case 'array':
                 if ($givenType === Database::TYPE_STRUCT) {
                     if (!($definition instanceof StructType)) {
-                        throw new \InvalidArgumentException(
+                        throw new InvalidArgumentException(
                             'Struct parameter types must be declared explicitly, and must ' .
-                            'be an instance of Google\Cloud\Spanner\StructType.'
+                            'be an instance of `' . StructType::class . '`.'
                         );
                     }
 
@@ -481,21 +482,21 @@ class ValueMapper
                     }
 
                     if (!($value instanceof StructValue) && !is_array($value) && $value !== null) {
-                        throw new \InvalidArgumentException(
-                            'Struct value must be an array an instance of `Google\Cloud\Spanner\StructValue` or null.'
+                        throw new InvalidArgumentException(
+                            'Struct value must be an array an instance of `' . StructValue::class . '` or null.'
                         );
                     }
 
                     list($value, $type) = $this->structParam($value, $definition);
                 } else {
                     if (!($definition instanceof ArrayType)) {
-                        throw new \InvalidArgumentException(
-                            'Array parameter types must be an instance of Google\Cloud\Spanner\ArrayType.'
+                        throw new InvalidArgumentException(
+                            'Array parameter types must be an instance of `' . ArrayType::class . '`.'
                         );
                     }
 
                     if (!is_array($value) && $value !== null) {
-                        throw new \InvalidArgumentException('Array value must be an array or null.');
+                        throw new InvalidArgumentException('Array value must be an array or null.');
                     }
 
                     list($value, $type) = $this->arrayParam($value, $definition, $allowMixedArrayType);
@@ -509,7 +510,7 @@ class ValueMapper
                 break;
 
             default:
-                throw new \InvalidArgumentException(sprintf(
+                throw new InvalidArgumentException(sprintf(
                     'Unrecognized value type %s. ' .
                     'Please ensure you are using the latest version of google/cloud or google/cloud-spanner.',
                     get_class($value)
@@ -711,7 +712,7 @@ class ValueMapper
         }
 
         if (!$allowMixedArrayType && count($uniqueTypes) > 1) {
-            throw new \InvalidArgumentException('Array values may not be of mixed type');
+            throw new InvalidArgumentException('Array values may not be of mixed type');
         }
 
         // get typeCode either from the array type or the first element's inferred type
@@ -725,7 +726,7 @@ class ValueMapper
             : null;
 
         if ($this->arrayDataMismatch($value, $typeCode, $typeAnnotationCode, $inferredTypes)) {
-            throw new \InvalidArgumentException('Array data does not match given array parameter type.');
+            throw new InvalidArgumentException('Array data does not match given array parameter type.');
         }
 
         if (is_null($typeCode) && count($inferredTypes) > 0 && isset($inferredTypes[0]['code'])) {
@@ -769,7 +770,7 @@ class ValueMapper
     private function objectParam(mixed $value): array
     {
         if ($value instanceof \stdClass) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Values of type `\stdClass` are interpreted as structs and must define their types.'
             );
         }
@@ -816,7 +817,7 @@ class ValueMapper
             ];
         }
 
-        throw new \InvalidArgumentException(sprintf(
+        throw new InvalidArgumentException(sprintf(
             'Unrecognized value type %s. ' .
             'Please ensure you are using the latest version of google/cloud or google/cloud-spanner.',
             get_class($value)

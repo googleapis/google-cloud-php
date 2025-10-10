@@ -100,7 +100,7 @@ class Serializer extends ApiCoreSerializer
             },
             'google.protobuf.Value' => function ($v) {
                 if (!is_array($v) || (
-                    !isset($v['nullValue']) &&
+                  !isset($v['nullValue']) &&
                   !isset($v['null_value']) &&
                   !isset($v['numberValue']) &&
                   !isset($v['number_value']) &&

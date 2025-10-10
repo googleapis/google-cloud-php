@@ -405,7 +405,7 @@ class ValueMapperTest extends TestCase
     public function testFormatParamsForExecuteSqlArrayInvalidDefinition()
     {
         $this->expectException('InvalidArgumentException');
-        $this->expectExceptionMessage('Array parameter types must be an instance of Google\Cloud\Spanner\ArrayType.');
+        $this->expectExceptionMessage('Array parameter types must be an instance of `Google\Cloud\Spanner\ArrayType`.');
 
         $params = [
             'foo' => ['bar']
@@ -559,7 +559,7 @@ class ValueMapperTest extends TestCase
         $this->expectException('InvalidArgumentException');
         $this->expectExceptionMessage(
             'Struct parameter types must be declared explicitly, and must be an '
-            . 'instance of Google\Cloud\Spanner\StructType.'
+            . 'instance of `Google\Cloud\Spanner\StructType`.'
         );
         $params = [
             'foo' => [

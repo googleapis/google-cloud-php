@@ -113,7 +113,7 @@ class SpannerClient
     use EmulatorTrait;
     use RequestTrait;
 
-    const VERSION = '1.104.0';
+    const VERSION = '1.105.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -395,6 +395,10 @@ class SpannerClient
      */
     public function instanceConfigurations(array $options = []): ItemIterator
     {
+        /**
+         * @var ListInstanceConfigsRequest $listInstanceConfigs
+         * @var array $callOptions
+         */
         [$listInstanceConfigs, $callOptions] = $this->validateOptions(
             $options,
             new ListInstanceConfigsRequest(),
@@ -475,6 +479,10 @@ class SpannerClient
      */
     public function instanceConfigOperations(array $options = []): ItemIterator
     {
+        /**
+         * @var ListInstanceConfigOperationsRequest $listInstanceConfigOperations
+         * @var array $callOptions
+         */
         [$listInstanceConfigOperations, $callOptions] = $this->validateOptions(
             $options,
             new ListInstanceConfigOperationsRequest(),
@@ -598,6 +606,10 @@ class SpannerClient
             'filter' => '',
             'parent' => $this->projectName
         ];
+        /**
+         * @var ListInstancesRequest $listInstances
+         * @var array $callOptions
+         */
         [$listInstances, $callOptions] = $this->validateOptions(
             $options,
             new ListInstancesRequest(),

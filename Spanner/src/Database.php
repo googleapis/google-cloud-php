@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use DateTimeInterface;
+use Generator;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\RetrySettings;
@@ -337,6 +338,10 @@ class Database
      */
     public function reload(array $options = []): array
     {
+        /**
+         * @var GetDatabaseRequest $getDatabase
+         * @var array $callOptions
+         */
         [$getDatabase, $callOptions] = $this->validateOptions(
             $options,
             new GetDatabaseRequest(),
@@ -410,6 +415,10 @@ class Database
             'extraStatements' => $this->pluck('statements', $options, false) ?: []
         ];
 
+        /**
+         * @var CreateDatabaseRequest $createDatabase
+         * @var array $callOptions
+         */
         [$createDatabase, $callOptions] = $this->validateOptions(
             $options,
             new CreateDatabaseRequest(),
@@ -478,6 +487,10 @@ class Database
             ]
         ];
 
+        /**
+         * @var UpdateDatabaseRequest $updateDatabase
+         * @var array $callOptions
+         */
         [$updateDatabase, $callOptions] = $this->validateOptions(
             $options,
             new UpdateDatabaseRequest(),
@@ -547,7 +560,8 @@ class Database
      * @codingStandardsIgnoreEnd
      *
      * @param string[] $statements A list of DDL statements to run against a database.
-     * @param array $options [optional] Configuration options.
+     * @param array $options Configuration options. Supports setting the fields
+     *        of {@see UpdateDatabaseDdlRequest} and {@see CallOptions}.
      * @return LongRunningOperation<void>
      */
     public function updateDdlBatch(array $statements, array $options = []): LongRunningOperation
@@ -556,6 +570,11 @@ class Database
             'database' => $this->name,
             'statements' => $statements
         ];
+
+        /**
+         * @var UpdateDatabaseDdlRequest $updateDatabaseDdl
+         * @var array $callOptions
+         */
         [$updateDatabaseDdl, $callOptions] = $this->validateOptions(
             $options,
             new UpdateDatabaseDdlRequest(),
@@ -588,11 +607,16 @@ class Database
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#google.spanner.admin.database.v1.DropDatabaseRequest DropDatabaseRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options Configuration options. Supports setting the fields
+     *        of {@see DropDatabaseRequest} and {@see CallOptions}.
      * @return void
      */
     public function drop(array $options = []): void
     {
+        /**
+         * @var DropDatabaseRequest $dropDatabase
+         * @var array $callOptions
+         */
         [$dropDatabase, $callOptions] = $this->validateOptions(
             $options,
             new DropDatabaseRequest(),
@@ -628,11 +652,16 @@ class Database
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#getdatabaseddlrequest GetDatabaseDdlRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options Configuration options. Supports setting the fields
+     *        of {@see GetDatabaseDdlRequest} and {@see CallOptions}.
      * @return array
      */
     public function ddl(array $options = []): array
     {
+        /**
+         * @var GetDatabaseDdlRequest $getDatabaseDdl
+         * @var array $callOptions
+         */
         [$getDatabaseDdl, $callOptions] = $this->validateOptions(
             $options,
             new GetDatabaseDdlRequest(),
@@ -1689,7 +1718,7 @@ class Database
      * @codingStandardsIgnoreEnd
      * @return Result
      */
-    public function execute($sql, array $options = []): Result
+    public function execute(string $sql, array $options = []): Result
     {
         unset($options['requestOptions']['transactionTag']);
         $session = $this->pluck('session', $options, false)
@@ -1771,11 +1800,11 @@ class Database
      *           transactions.
      * }
      *
-     * @return \Generator {@see \Google\Cloud\Spanner\V1\BatchWriteResponse}
+     * @return Generator {@see \Google\Cloud\Spanner\V1\BatchWriteResponse}
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchWrite(array $mutationGroups, array $options = []): \Generator
+    public function batchWrite(array $mutationGroups, array $options = []): Generator
     {
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
@@ -1799,6 +1828,11 @@ class Database
                 'session' => $session->name(),
                 'mutationGroups' => $mutationGroups
             ];
+
+            /**
+             * @var BatchWriteRequest $batchWrite
+             * @var array $callOptions
+             */
             [$batchWrite, $callOptions] = $this->validateOptions(
                 $options,
                 new BatchWriteRequest(),
@@ -2282,6 +2316,10 @@ class Database
      */
     public function backupOperations(array $options = []): ItemIterator
     {
+        /**
+         * @var ListBackupOperationsRequest $listBackupOperations
+         * @var array $callOptions
+         */
         [$listBackupOperations, $callOptions] = $this->validateOptions(
             $options,
             new ListBackupOperationsRequest(),
@@ -2315,6 +2353,10 @@ class Database
             'databaseId' => $this->databaseIdOnly($name),
             'backup' => $backup instanceof Backup ? $backup->name() : $backup
         ];
+        /**
+         * @var RestoreDatabaseRequest $restoreDatabase
+         * @var array $callOptions
+         */
         [$restoreDatabase, $callOptions] = $this->validateOptions(
             $options,
             new RestoreDatabaseRequest(),
@@ -2351,6 +2393,10 @@ class Database
      */
     public function databaseOperations(array $options = []): ItemIterator
     {
+        /**
+         * @var ListDatabaseOperationsRequest $listDatabaseOperations
+         * @var array $callOptions
+         */
         [$listDatabaseOperations, $callOptions] = $this->validateOptions(
             $options,
             new ListDatabaseOperationsRequest(),
@@ -2420,6 +2466,10 @@ class Database
      */
     public function longRunningOperations(array $options = []): ItemIterator
     {
+        /**
+         * @var ListOperationsRequest $listOperationsRequest
+         * @var array $callOptions
+         */
         [$listOperationsRequest, $callOptions] = $this->validateOptions(
             $options,
             new ListOperationsRequest(),

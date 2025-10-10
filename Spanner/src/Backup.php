@@ -133,6 +133,10 @@ class Backup
             $options['backup']['versionTime'] = $this->formatTimeAsArray($versionTime);
         }
 
+        /**
+         * @var CreateBackupRequest $createBackup
+         * @var array $callOptions
+         */
         [$createBackup, $callOptions] = $this->validateOptions(
             $options,
             new CreateBackupRequest(),
@@ -180,6 +184,11 @@ class Backup
             'sourceBackup' => $this->fullyQualifiedBackupName($this->name),
             'expireTime' => $this->formatTimeAsArray($expireTime)
         ];
+
+        /**
+         * @var CopyBackupRequest $copyBackup
+         * @var array $callOptions
+         */
         [$copyBackup, $callOptions] = $this->validateOptions(
             $options,
             new CopyBackupRequest(),
@@ -208,6 +217,11 @@ class Backup
         $options += [
             'name' => $this->name
         ];
+
+        /**
+         * @var DeleteBackupRequest $deleteBackup
+         * @var array $callOptions
+         */
         [$deleteBackup, $callOptions] = $this->validateOptions(
             $options,
             new DeleteBackupRequest(),
@@ -296,6 +310,10 @@ class Backup
             'name' => $this->name
         ];
 
+        /**
+         * @var GetBackupRequest $getBackup
+         * @var array $callOptions
+         */
         [$getBackup, $callOptions] = $this->validateOptions(
             $options,
             new GetBackupRequest(),
@@ -364,6 +382,10 @@ class Backup
             ]
         ];
 
+        /**
+         * @var UpdateBackupRequest $updateBackup
+         * @var array $callOptions
+         */
         [$updateBackup, $callOptions] = $this->validateOptions(
             $options,
             new UpdateBackupRequest(),
@@ -427,6 +449,10 @@ class Backup
      */
     public function longRunningOperations(array $options = []): ItemIterator
     {
+        /**
+         * @var ListOperationsRequest $listOperations
+         * @var array $callOptions
+         */
         [$listOperations, $callOptions] = $this->validateOptions(
             $options,
             new ListOperationsRequest(),

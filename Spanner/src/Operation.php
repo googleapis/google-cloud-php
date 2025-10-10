@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Generator;
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\OptionsValidator;
@@ -89,6 +90,7 @@ class Operation
         private Serializer $serializer,
         array $options = []
     ) {
+        /** @var array $options */
         $options = $this->validateOptions(
             $options,
             ['returnInt64AsObject', 'routeToLeader', 'defaultQueryOptions']
@@ -159,10 +161,17 @@ class Operation
             'session' => $session->name(),
             'mutations' => $this->serializeMutations($mutations),
         ];
-        [$commitRequest, $singleUse, $callOptions] = $this->validateOptions(
+        /**
+         * @TODO: Find out why singleUse is being passed in and if we can remove it.
+         *
+         * @var CommitRequest $commitRequest
+         * @var bool|null $_singleUse
+         * @var array $callOptions
+         */
+        [$commitRequest, $_singleUse, $callOptions] = $this->validateOptions(
             $options,
             new CommitRequest(),
-            ['singleUse'], // Internal flag, need to unset before passing to serializer
+            'singleUse', // Internal flag, need to unset before passing to serializer
             CallOptions::class
         );
 
@@ -210,10 +219,16 @@ class Operation
             throw new InvalidArgumentException('Rollback failed: Transaction not initiated.');
         }
 
-        [$callOptions, $unusedOptions] = $this->validateOptions(
+        /**
+         * @TODO: find out why "transactionOptions" are being passed in by are unused.
+         *
+         * @var array $callOptions
+         * @var array|null $_transactionOptions
+         */
+        [$callOptions, $_transactionOptions] = $this->validateOptions(
             $options,
             CallOptions::class,
-            ['transactionOptions']
+            'transactionOptions'
         );
         $rollbackRequest = (new RollbackRequest())
             ->setSession($session->name())
@@ -259,6 +274,12 @@ class Operation
         $options['transaction'] = $this->createTransactionSelector($options);
         $options['queryOptions'] = $this->createQueryOptions($options);
 
+        /**
+         * @var ExecuteSqlRequest $executeSqlRequest
+         * @var array $callOptions
+         * @var array $miscOptions
+         * @var array $rtl
+         */
         [$executeSqlRequest, $callOptions, $miscOptions, $rtl] = $this->validateOptions(
             $options,
             new ExecuteSqlRequest(),
@@ -401,6 +422,10 @@ class Operation
         ];
         $options['transaction'] = $this->createTransactionSelector($options, $transaction->id());
 
+        /**
+         * @var ExecuteBatchDmlRequest $dmlRequest
+         * @var array $callOptions
+         */
         [$dmlRequest, $callOptions] = $this->validateOptions(
             $options,
             new ExecuteBatchDmlRequest(),
@@ -467,11 +492,17 @@ class Operation
         $options['transaction'] = $this->createTransactionSelector($options);
         $options['keySet'] = $this->flattenKeySet($keySet);
 
+        /**
+         * @var ReadRequest $readRequest
+         * @var array $callOptions
+         * @var string|null $context
+         * @var array $rtl
+         */
         [$readRequest, $callOptions, $context, $rtl] = $this->validateOptions(
             $options,
             new ReadRequest(),
             CallOptions::class,
-            ['transactionContext'],
+            'transactionContext',
             ['route-to-leader']
         );
 
@@ -505,7 +536,7 @@ class Operation
             );
         };
 
-        return new Result($this, $session, $call, $context['transactionContext'] ?? null, $this->mapper);
+        return new Result($this, $session, $call, $context, $this->mapper);
     }
 
     /**
@@ -534,6 +565,12 @@ class Operation
      */
     public function transaction(Session $session, array $options = []): Transaction
     {
+        /**
+         * @var array $options
+         * @var BeginTransactionRequest $beginTransaction
+         * @var TransactionSelector $transactionSelector
+         * @var array $callOptions
+         */
         [$options, $beginTransaction, $transactionSelector, $callOptions] = $this->validateOptions(
             $options,
             ['tag', 'isRetry', 'transactionOptions', 'singleUse'], // "singleUse" is an internal flag
@@ -611,6 +648,11 @@ class Operation
      */
     public function snapshot(Session $session, array $options = []): TransactionalReadInterface
     {
+        /**
+         * @var BeginTransactionRequest $beginTransaction
+         * @var array $callOptions
+         * @var array $misc
+         */
         [$beginTransaction, $callOptions, $misc] = $this->validateOptions(
             $options,
             new BeginTransactionRequest(),
@@ -669,6 +711,10 @@ class Operation
      */
     public function createSession(string $databaseName, array $options = []): Session
     {
+        /**
+         * @var array $options
+         * @var array $callOptions
+         */
         [$options, $callOptions] = $this->validateOptions(
             $options,
             ['labels', 'creator_role'],
@@ -767,6 +813,13 @@ class Operation
         $options['transaction'] = $this->createTransactionSelector($options, $transactionId);
 
         // Split all the options into their respective categories
+        /**
+         * @var array $_paramsAndTypes
+         * @var PartitionOptions $partitionOptions
+         * @var PartitionQueryRequest $partitionQuery
+         * @var ExecuteSqlRequest $_executeSql
+         * @var array $callOptions
+         */
         [$_paramsAndTypes, $partitionOptions, $partitionQuery, $_executeSql, $callOptions] = $this->validateOptions(
             $options,
             ['parameters', 'types'], // handled above, but define them here as well (so they're validated)
@@ -839,6 +892,12 @@ class Operation
         // Split all the options into their respective categories.
         // $readRequest is unused, but the options are valid because they're passed in to the
         // constructor of ReadPartition.
+        /**
+         * @var PartitionOptions $partitionOptions
+         * @var PartitionReadRequest $partitionRead
+         * @var ReadRequest $_readRequest
+         * @var array $callOptions
+         */
         [$partitionOptions, $partitionRead, $_readRequest, $callOptions] = $this->validateOptions(
             $options,
             new PartitionOptions(),
@@ -949,9 +1008,7 @@ class Operation
 
                 switch ($type) {
                     case Operation::OP_DELETE:
-                        // if (isset($data['keySet'])) {
-                        //     $data['keySet'] = $this->formatKeySet($data['keySet']);
-                        // }
+                        // nothing to do
                         break;
                     default:
                         $modifiedData = array_map([$this, 'formatValueForApi'], $data['values']);
@@ -1088,9 +1145,9 @@ class Operation
      * @param string $databaseName
      * @param ExecuteSqlRequest $executeSqlRequest
      * @param array $callOptions
-     * @return \Generator
+     * @return Generator
      */
-    private function executeStreamingSql(string $databaseName, ExecuteSqlRequest $executeSqlRequest, array $callOptions): \Generator
+    private function executeStreamingSql(string $databaseName, ExecuteSqlRequest $executeSqlRequest, array $callOptions): Generator
     {
         if (!$this->routeToLeader) {
             unset($callOptions['route-to-leader']);
@@ -1107,9 +1164,9 @@ class Operation
      * @param string $databaseName
      * @param ReadRequest $readRequest
      * @param array $callOptions
-     * @return \Generator
+     * @return Generator
      */
-    private function streamingRead(string $databaseName, ReadRequest $readRequest, array $callOptions): \Generator
+    private function streamingRead(string $databaseName, ReadRequest $readRequest, array $callOptions): Generator
     {
         if (!$this->routeToLeader) {
             unset($callOptions['route-to-leader']);

@@ -77,14 +77,14 @@ trait TimeTrait
             $dateTime = clone $dateTime;
         }
         $dateTime = $dateTime->setTimeZone(new \DateTimeZone('UTC'));
-        if (is_null($ns)) {
+        if ($ns === null) {
             return $dateTime->format(Timestamp::FORMAT);
-        } else {
-            return sprintf(
-                $dateTime->format(Timestamp::FORMAT_INTERPOLATE),
-                $this->convertNanoSecondsToFraction($ns)
-            );
         }
+
+        return sprintf(
+            $dateTime->format(Timestamp::FORMAT_INTERPOLATE),
+            $this->convertNanoSecondsToFraction($ns)
+        );
     }
 
     /**

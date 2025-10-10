@@ -173,6 +173,10 @@ class InstanceConfiguration
     public function reload(array $options = [])
     {
         $options += ['name' => $this->name];
+        /**
+         * @var GetInstanceConfigRequest $getInstanceConfig
+         * @var array $callOptions
+         */
         [$getInstanceConfig, $callOptions] = $this->validateOptions(
             $options,
             new GetInstanceConfigRequest(),
@@ -319,6 +323,11 @@ class InstanceConfiguration
     public function delete(array $options = [])
     {
         $options += ['name' => $this->name];
+
+        /**
+         * @var DeleteInstanceConfigRequest $deleteInstanceConfigs
+         * @var array $callOptions
+         */
         [$deleteInstanceConfigs, $callOptions] = $this->validateOptions(
             $options,
             new DeleteInstanceConfigRequest(),

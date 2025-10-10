@@ -34,15 +34,16 @@ class LongRunningClientConnection implements LongRunningConnectionInterface
     use RequestProcessorTrait;
 
     public function __construct(
-        private $gapicClient,
+        private object $gapicClient,
         private Serializer $serializer
     ) {
     }
 
     /**
      * @param array $args
+     * @return array
      */
-    public function get(array $args)
+    public function get(array $args): array
     {
         $operationResponse = $this->gapicClient->resumeOperation($args['name']);
 
@@ -51,8 +52,9 @@ class LongRunningClientConnection implements LongRunningConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
-    public function cancel(array $args)
+    public function cancel(array $args): array
     {
         $operationResponse = $this->gapicClient->resumeOperation(
             $args['name'],
@@ -65,8 +67,9 @@ class LongRunningClientConnection implements LongRunningConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
-    public function delete(array $args)
+    public function delete(array $args): array
     {
         $operationResponse = $this->gapicClient->resumeOperation(
             $args['name'],
@@ -79,8 +82,9 @@ class LongRunningClientConnection implements LongRunningConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
-    public function operations(array $args)
+    public function operations(array $args): array
     {
         $request = ListOperationsRequest::build($args['name'], $args['filter'] ?? null);
         $response = $this->gapicClient->getOperationsClient()->listOperations($request);
@@ -88,7 +92,7 @@ class LongRunningClientConnection implements LongRunningConnectionInterface
         return $this->handleResponse($response);
     }
 
-    private function operationResponseToArray(OperationResponse $operationResponse)
+    private function operationResponseToArray(OperationResponse $operationResponse): array
     {
         $response = $this->handleResponse($operationResponse->getLastProtoResponse());
         $metaType = $response['metadata']['typeUrl'];
