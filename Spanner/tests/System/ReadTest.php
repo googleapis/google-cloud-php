@@ -43,7 +43,7 @@ class ReadTest extends SpannerTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$readTableName = uniqid(self::TESTING_PREFIX);
         self::$rangeTableName = uniqid(self::TESTING_PREFIX);
@@ -405,7 +405,7 @@ class ReadTest extends SpannerTestCase
         };
 
         $limitCount = count(iterator_to_array($res(10)));
-        $unlimitCount = count(iterator_to_array($res(null)));
+        $unlimitCount = count(iterator_to_array($res(0)));
 
         $this->assertEquals(10, $limitCount);
         $this->assertNotEquals($limitCount, $unlimitCount);
@@ -427,7 +427,7 @@ class ReadTest extends SpannerTestCase
         };
 
         $limitCount = count(iterator_to_array($res(10)));
-        $unlimitCount = count(iterator_to_array($res(null)));
+        $unlimitCount = count(iterator_to_array($res(0)));
 
         $this->assertEquals(10, $limitCount);
         $this->assertNotEquals($limitCount, $unlimitCount);

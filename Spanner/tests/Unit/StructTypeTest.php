@@ -54,7 +54,7 @@ class StructTypeTest extends TestCase
 
     public function testChainableAdd()
     {
-        $type = new StructType;
+        $type = new StructType();
         $type->add($this->definition[0]['name'], $this->definition[0]['type'])
             ->add($this->definition[1]['name'], $this->definition[1]['child']);
 
@@ -64,7 +64,7 @@ class StructTypeTest extends TestCase
 
     public function testAddUnnamed()
     {
-        $type = new StructType;
+        $type = new StructType();
         $type->addUnnamed(Database::TYPE_STRING);
         $this->assertEquals($type->fields(), [
             [
@@ -80,7 +80,7 @@ class StructTypeTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Field type `foo` is not valid.');
 
-        (new StructType)->add('name', 'foo');
+        (new StructType())->add('name', 'foo');
     }
 
     /**
@@ -90,7 +90,7 @@ class StructTypeTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        (new StructType)->add('foo', $type);
+        (new StructType())->add('foo', $type);
     }
 
     public function definitionTypes()
@@ -103,8 +103,8 @@ class StructTypeTest extends TestCase
 
     public function testAddChildStruct()
     {
-        $str = new StructType;
-        $str->add('foo', new StructType);
+        $str = new StructType();
+        $str->add('foo', new StructType());
 
         $fields = $str->fields();
         $this->assertEquals(Database::TYPE_STRUCT, $fields[0]['type']);
@@ -113,7 +113,7 @@ class StructTypeTest extends TestCase
 
     public function testAddChildArray()
     {
-        $str = new StructType;
+        $str = new StructType();
         $str->add('foo', new ArrayType(null));
 
         $fields = $str->fields();

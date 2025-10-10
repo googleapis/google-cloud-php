@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\LongRunning;
 
 /**
  * Represent and interact with a Long Running Operation.
+ * @template T
  */
 class LongRunningOperation
 {
@@ -180,7 +181,7 @@ class LongRunningOperation
      * ```
      *
      * @param array $options [optional] Configuration options.
-     * @return mixed|null
+     * @return T|mixed|null
      */
     public function result(array $options = [])
     {
@@ -252,12 +253,11 @@ class LongRunningOperation
 
         $this->result = null;
         $this->error = null;
-        if (isset($res['done']) && $res['done']) {
+
+        if ($res['done'] ?? false && isset($res['metadata']['typeUrl'])) {
             $type = $res['metadata']['typeUrl'];
             $this->result = $this->executeDoneCallback($type, $res['response']);
-            $this->error = (isset($res['error']))
-                ? $res['error']
-                : null;
+            $this->error = $res['error'] ?? null;
         }
 
         return $this->info = $res;
