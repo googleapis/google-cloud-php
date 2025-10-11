@@ -50,6 +50,17 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
      *           metric and quasi-identifiers. Risk jobs that analyze the same table but
      *           compute a different privacy metric, or use different sets of
      *           quasi-identifiers, cannot store their results in the same table.
+     *     @type \Google\Cloud\Dlp\V2\CloudStoragePath $storage_path
+     *           Store findings in an existing Cloud Storage bucket. Files will be
+     *           generated with the job ID and file part number as the filename and will
+     *           contain findings in textproto format as
+     *           [SaveToGcsFindingsOutput][google.privacy.dlp.v2.SaveToGcsFindingsOutput].
+     *           The filename will follow the naming convention `<job_id>-<shard_number>`.
+     *           Example: `my-job-id-2`.
+     *           Supported for [Inspect jobs][google.privacy.dlp.v2.InspectJobConfig]. The
+     *           bucket must not be the same as the bucket being inspected. If storing
+     *           findings to Cloud Storage, the output schema field should not be set. If
+     *           set, it will be ignored.
      *     @type int $output_schema
      *           Schema used for writing the findings for Inspect jobs. This field is only
      *           used for Inspect and must be unspecified for Risk jobs. Columns are derived
@@ -116,6 +127,55 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\BigQueryTable::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Store findings in an existing Cloud Storage bucket. Files will be
+     * generated with the job ID and file part number as the filename and will
+     * contain findings in textproto format as
+     * [SaveToGcsFindingsOutput][google.privacy.dlp.v2.SaveToGcsFindingsOutput].
+     * The filename will follow the naming convention `<job_id>-<shard_number>`.
+     * Example: `my-job-id-2`.
+     * Supported for [Inspect jobs][google.privacy.dlp.v2.InspectJobConfig]. The
+     * bucket must not be the same as the bucket being inspected. If storing
+     * findings to Cloud Storage, the output schema field should not be set. If
+     * set, it will be ignored.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStoragePath storage_path = 5;</code>
+     * @return \Google\Cloud\Dlp\V2\CloudStoragePath|null
+     */
+    public function getStoragePath()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasStoragePath()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Store findings in an existing Cloud Storage bucket. Files will be
+     * generated with the job ID and file part number as the filename and will
+     * contain findings in textproto format as
+     * [SaveToGcsFindingsOutput][google.privacy.dlp.v2.SaveToGcsFindingsOutput].
+     * The filename will follow the naming convention `<job_id>-<shard_number>`.
+     * Example: `my-job-id-2`.
+     * Supported for [Inspect jobs][google.privacy.dlp.v2.InspectJobConfig]. The
+     * bucket must not be the same as the bucket being inspected. If storing
+     * findings to Cloud Storage, the output schema field should not be set. If
+     * set, it will be ignored.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStoragePath storage_path = 5;</code>
+     * @param \Google\Cloud\Dlp\V2\CloudStoragePath $var
+     * @return $this
+     */
+    public function setStoragePath($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CloudStoragePath::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

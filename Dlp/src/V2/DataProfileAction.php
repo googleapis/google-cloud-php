@@ -37,8 +37,8 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\DataProfileAction\TagResources $tag_resources
      *           Tags the profiled resources with the specified tag values.
      *     @type \Google\Cloud\Dlp\V2\DataProfileAction\PublishToDataplexCatalog $publish_to_dataplex_catalog
-     *           Publishes a portion of each profile to Dataplex Catalog with the aspect
-     *           type Sensitive Data Protection Profile.
+     *           Publishes a portion of each profile to Dataplex Universal Catalog with
+     *           the aspect type Sensitive Data Protection Profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -208,8 +208,8 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Publishes a portion of each profile to Dataplex Catalog with the aspect
-     * type Sensitive Data Protection Profile.
+     * Publishes a portion of each profile to Dataplex Universal Catalog with
+     * the aspect type Sensitive Data Protection Profile.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog publish_to_dataplex_catalog = 9;</code>
      * @return \Google\Cloud\Dlp\V2\DataProfileAction\PublishToDataplexCatalog|null
@@ -225,8 +225,8 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Publishes a portion of each profile to Dataplex Catalog with the aspect
-     * type Sensitive Data Protection Profile.
+     * Publishes a portion of each profile to Dataplex Universal Catalog with
+     * the aspect type Sensitive Data Protection Profile.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog publish_to_dataplex_catalog = 9;</code>
      * @param \Google\Cloud\Dlp\V2\DataProfileAction\PublishToDataplexCatalog $var
