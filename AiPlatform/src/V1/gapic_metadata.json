@@ -518,6 +518,11 @@
                                 "fetchFeatureValues"
                             ]
                         },
+                        "GenerateFetchAccessToken": {
+                            "methods": [
+                                "generateFetchAccessToken"
+                            ]
+                        },
                         "SearchNearestEntities": {
                             "methods": [
                                 "searchNearestEntities"
