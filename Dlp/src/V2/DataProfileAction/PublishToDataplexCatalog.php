@@ -9,20 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Create Dataplex Catalog aspects for profiled resources with the aspect type
- * Sensitive Data Protection Profile. To learn more about aspects, see
- * https://cloud.google.com/sensitive-data-protection/docs/add-aspects.
+ * Create Dataplex Universal Catalog aspects for profiled resources with the
+ * aspect type Sensitive Data Protection Profile. To learn more about aspects,
+ * see https://cloud.google.com/sensitive-data-protection/docs/add-aspects.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog</code>
  */
 class PublishToDataplexCatalog extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether creating a Dataplex Catalog aspect for a profiled resource should
-     * lower the risk of the profile for that resource. This also lowers the
-     * data risk of resources at the lower levels of the resource hierarchy. For
-     * example, reducing the data risk of a table data profile also reduces the
-     * data risk of the constituent column data profiles.
+     * Whether creating a Dataplex Universal Catalog aspect for a profiled
+     * resource should lower the risk of the profile for that resource. This
+     * also lowers the data risk of resources at the lower levels of the
+     * resource hierarchy. For example, reducing the data risk of a table data
+     * profile also reduces the data risk of the constituent column data
+     * profiles.
      *
      * Generated from protobuf field <code>bool lower_data_risk_to_low = 1;</code>
      */
@@ -35,11 +36,12 @@ class PublishToDataplexCatalog extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $lower_data_risk_to_low
-     *           Whether creating a Dataplex Catalog aspect for a profiled resource should
-     *           lower the risk of the profile for that resource. This also lowers the
-     *           data risk of resources at the lower levels of the resource hierarchy. For
-     *           example, reducing the data risk of a table data profile also reduces the
-     *           data risk of the constituent column data profiles.
+     *           Whether creating a Dataplex Universal Catalog aspect for a profiled
+     *           resource should lower the risk of the profile for that resource. This
+     *           also lowers the data risk of resources at the lower levels of the
+     *           resource hierarchy. For example, reducing the data risk of a table data
+     *           profile also reduces the data risk of the constituent column data
+     *           profiles.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,11 +50,12 @@ class PublishToDataplexCatalog extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether creating a Dataplex Catalog aspect for a profiled resource should
-     * lower the risk of the profile for that resource. This also lowers the
-     * data risk of resources at the lower levels of the resource hierarchy. For
-     * example, reducing the data risk of a table data profile also reduces the
-     * data risk of the constituent column data profiles.
+     * Whether creating a Dataplex Universal Catalog aspect for a profiled
+     * resource should lower the risk of the profile for that resource. This
+     * also lowers the data risk of resources at the lower levels of the
+     * resource hierarchy. For example, reducing the data risk of a table data
+     * profile also reduces the data risk of the constituent column data
+     * profiles.
      *
      * Generated from protobuf field <code>bool lower_data_risk_to_low = 1;</code>
      * @return bool
@@ -63,11 +66,12 @@ class PublishToDataplexCatalog extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether creating a Dataplex Catalog aspect for a profiled resource should
-     * lower the risk of the profile for that resource. This also lowers the
-     * data risk of resources at the lower levels of the resource hierarchy. For
-     * example, reducing the data risk of a table data profile also reduces the
-     * data risk of the constituent column data profiles.
+     * Whether creating a Dataplex Universal Catalog aspect for a profiled
+     * resource should lower the risk of the profile for that resource. This
+     * also lowers the data risk of resources at the lower levels of the
+     * resource hierarchy. For example, reducing the data risk of a table data
+     * profile also reduces the data risk of the constituent column data
+     * profiles.
      *
      * Generated from protobuf field <code>bool lower_data_risk_to_low = 1;</code>
      * @param bool $var

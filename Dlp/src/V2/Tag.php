@@ -18,8 +18,9 @@ class Tag extends \Google\Protobuf\Internal\Message
     /**
      * The namespaced name for the tag value to attach to Google Cloud resources.
      * Must be in the format `{parent_id}/{tag_key_short_name}/{short_name}`, for
-     * example, "123456/environment/prod". This is only set for Google Cloud
-     * resources.
+     * example, "123456/environment/prod" for an organization parent, or
+     * "my-project/environment/prod" for a project parent. This is only set for
+     * Google Cloud resources.
      *
      * Generated from protobuf field <code>string namespaced_tag_value = 1;</code>
      */
@@ -48,8 +49,9 @@ class Tag extends \Google\Protobuf\Internal\Message
      *     @type string $namespaced_tag_value
      *           The namespaced name for the tag value to attach to Google Cloud resources.
      *           Must be in the format `{parent_id}/{tag_key_short_name}/{short_name}`, for
-     *           example, "123456/environment/prod". This is only set for Google Cloud
-     *           resources.
+     *           example, "123456/environment/prod" for an organization parent, or
+     *           "my-project/environment/prod" for a project parent. This is only set for
+     *           Google Cloud resources.
      *     @type string $key
      *           The key of a tag key-value pair. For Google Cloud resources, this is the
      *           resource name of the key, for example, "tagKeys/123456".
@@ -66,8 +68,9 @@ class Tag extends \Google\Protobuf\Internal\Message
     /**
      * The namespaced name for the tag value to attach to Google Cloud resources.
      * Must be in the format `{parent_id}/{tag_key_short_name}/{short_name}`, for
-     * example, "123456/environment/prod". This is only set for Google Cloud
-     * resources.
+     * example, "123456/environment/prod" for an organization parent, or
+     * "my-project/environment/prod" for a project parent. This is only set for
+     * Google Cloud resources.
      *
      * Generated from protobuf field <code>string namespaced_tag_value = 1;</code>
      * @return string
@@ -80,8 +83,9 @@ class Tag extends \Google\Protobuf\Internal\Message
     /**
      * The namespaced name for the tag value to attach to Google Cloud resources.
      * Must be in the format `{parent_id}/{tag_key_short_name}/{short_name}`, for
-     * example, "123456/environment/prod". This is only set for Google Cloud
-     * resources.
+     * example, "123456/environment/prod" for an organization parent, or
+     * "my-project/environment/prod" for a project parent. This is only set for
+     * Google Cloud resources.
      *
      * Generated from protobuf field <code>string namespaced_tag_value = 1;</code>
      * @param string $var

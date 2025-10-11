@@ -33,6 +33,8 @@ class Action extends \Google\Protobuf\Internal\Message
      *           Publish summary to Cloud Security Command Center (Alpha).
      *     @type \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog $publish_findings_to_cloud_data_catalog
      *           Publish findings to Cloud Datahub.
+     *     @type \Google\Cloud\Dlp\V2\Action\PublishFindingsToDataplexCatalog $publish_findings_to_dataplex_catalog
+     *           Publish findings as an aspect to Dataplex Universal Catalog.
      *     @type \Google\Cloud\Dlp\V2\Action\Deidentify $deidentify
      *           Create a de-identified copy of the input data.
      *     @type \Google\Cloud\Dlp\V2\Action\JobNotificationEmails $job_notification_emails
@@ -168,6 +170,37 @@ class Action extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Publish findings as an aspect to Dataplex Universal Catalog.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishFindingsToDataplexCatalog publish_findings_to_dataplex_catalog = 10;</code>
+     * @return \Google\Cloud\Dlp\V2\Action\PublishFindingsToDataplexCatalog|null
+     */
+    public function getPublishFindingsToDataplexCatalog()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasPublishFindingsToDataplexCatalog()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Publish findings as an aspect to Dataplex Universal Catalog.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishFindingsToDataplexCatalog publish_findings_to_dataplex_catalog = 10;</code>
+     * @param \Google\Cloud\Dlp\V2\Action\PublishFindingsToDataplexCatalog $var
+     * @return $this
+     */
+    public function setPublishFindingsToDataplexCatalog($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action\PublishFindingsToDataplexCatalog::class);
+        $this->writeOneof(10, $var);
 
         return $this;
     }

@@ -67,20 +67,25 @@ class ListTableDataProfilesRequest extends \Google\Protobuf\Internal\Message
      * * Restrictions can be combined by `AND` or `OR` logical operators. A
      * sequence of restrictions implicitly uses `AND`.
      * * A restriction has the form of `{field} {operator} {value}`.
-     * * Supported fields/values:
-     *     - `project_id` - The Google Cloud project ID.
-     *     - `dataset_id` - The BigQuery dataset ID.
-     *     - `table_id` - The ID of the BigQuery table.
-     *     - `sensitivity_level` - HIGH|MODERATE|LOW
-     *     - `data_risk_level` - HIGH|MODERATE|LOW
+     * * Supported fields:
+     *     - `project_id`: The Google Cloud project ID
+     *     - `dataset_id`: The BigQuery dataset ID
+     *     - `table_id`: The ID of the BigQuery table
+     *     - `sensitivity_level`: HIGH|MODERATE|LOW
+     *     - `data_risk_level`: HIGH|MODERATE|LOW
      *     - `resource_visibility`: PUBLIC|RESTRICTED
-     *     - `status_code` - an RPC status code as defined in
+     *     - `status_code`: an RPC status code as defined in
      *     https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
-     * * The operator must be `=` or `!=`.
+     *     - `profile_last_generated`: Date and time the profile was last
+     *       generated
+     * * The operator must be `=` or `!=`. The `profile_last_generated` filter
+     *   also supports `<` and `>`.
+     * The syntax is based on https://google.aip.dev/160.
      * Examples:
      * * `project_id = 12345 AND status_code = 1`
      * * `project_id = 12345 AND sensitivity_level = HIGH`
      * * `project_id = 12345 AND resource_visibility = PUBLIC`
+     * * `profile_last_generated < "2025-01-01T00:00:00.000Z"`
      * The length of this field should be no more than 500 characters.
      *
      * Generated from protobuf field <code>string filter = 5;</code>
@@ -145,20 +150,25 @@ class ListTableDataProfilesRequest extends \Google\Protobuf\Internal\Message
      *           * Restrictions can be combined by `AND` or `OR` logical operators. A
      *           sequence of restrictions implicitly uses `AND`.
      *           * A restriction has the form of `{field} {operator} {value}`.
-     *           * Supported fields/values:
-     *               - `project_id` - The Google Cloud project ID.
-     *               - `dataset_id` - The BigQuery dataset ID.
-     *               - `table_id` - The ID of the BigQuery table.
-     *               - `sensitivity_level` - HIGH|MODERATE|LOW
-     *               - `data_risk_level` - HIGH|MODERATE|LOW
+     *           * Supported fields:
+     *               - `project_id`: The Google Cloud project ID
+     *               - `dataset_id`: The BigQuery dataset ID
+     *               - `table_id`: The ID of the BigQuery table
+     *               - `sensitivity_level`: HIGH|MODERATE|LOW
+     *               - `data_risk_level`: HIGH|MODERATE|LOW
      *               - `resource_visibility`: PUBLIC|RESTRICTED
-     *               - `status_code` - an RPC status code as defined in
+     *               - `status_code`: an RPC status code as defined in
      *               https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
-     *           * The operator must be `=` or `!=`.
+     *               - `profile_last_generated`: Date and time the profile was last
+     *                 generated
+     *           * The operator must be `=` or `!=`. The `profile_last_generated` filter
+     *             also supports `<` and `>`.
+     *           The syntax is based on https://google.aip.dev/160.
      *           Examples:
      *           * `project_id = 12345 AND status_code = 1`
      *           * `project_id = 12345 AND sensitivity_level = HIGH`
      *           * `project_id = 12345 AND resource_visibility = PUBLIC`
+     *           * `profile_last_generated < "2025-01-01T00:00:00.000Z"`
      *           The length of this field should be no more than 500 characters.
      * }
      */
@@ -320,20 +330,25 @@ class ListTableDataProfilesRequest extends \Google\Protobuf\Internal\Message
      * * Restrictions can be combined by `AND` or `OR` logical operators. A
      * sequence of restrictions implicitly uses `AND`.
      * * A restriction has the form of `{field} {operator} {value}`.
-     * * Supported fields/values:
-     *     - `project_id` - The Google Cloud project ID.
-     *     - `dataset_id` - The BigQuery dataset ID.
-     *     - `table_id` - The ID of the BigQuery table.
-     *     - `sensitivity_level` - HIGH|MODERATE|LOW
-     *     - `data_risk_level` - HIGH|MODERATE|LOW
+     * * Supported fields:
+     *     - `project_id`: The Google Cloud project ID
+     *     - `dataset_id`: The BigQuery dataset ID
+     *     - `table_id`: The ID of the BigQuery table
+     *     - `sensitivity_level`: HIGH|MODERATE|LOW
+     *     - `data_risk_level`: HIGH|MODERATE|LOW
      *     - `resource_visibility`: PUBLIC|RESTRICTED
-     *     - `status_code` - an RPC status code as defined in
+     *     - `status_code`: an RPC status code as defined in
      *     https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
-     * * The operator must be `=` or `!=`.
+     *     - `profile_last_generated`: Date and time the profile was last
+     *       generated
+     * * The operator must be `=` or `!=`. The `profile_last_generated` filter
+     *   also supports `<` and `>`.
+     * The syntax is based on https://google.aip.dev/160.
      * Examples:
      * * `project_id = 12345 AND status_code = 1`
      * * `project_id = 12345 AND sensitivity_level = HIGH`
      * * `project_id = 12345 AND resource_visibility = PUBLIC`
+     * * `profile_last_generated < "2025-01-01T00:00:00.000Z"`
      * The length of this field should be no more than 500 characters.
      *
      * Generated from protobuf field <code>string filter = 5;</code>
@@ -351,20 +366,25 @@ class ListTableDataProfilesRequest extends \Google\Protobuf\Internal\Message
      * * Restrictions can be combined by `AND` or `OR` logical operators. A
      * sequence of restrictions implicitly uses `AND`.
      * * A restriction has the form of `{field} {operator} {value}`.
-     * * Supported fields/values:
-     *     - `project_id` - The Google Cloud project ID.
-     *     - `dataset_id` - The BigQuery dataset ID.
-     *     - `table_id` - The ID of the BigQuery table.
-     *     - `sensitivity_level` - HIGH|MODERATE|LOW
-     *     - `data_risk_level` - HIGH|MODERATE|LOW
+     * * Supported fields:
+     *     - `project_id`: The Google Cloud project ID
+     *     - `dataset_id`: The BigQuery dataset ID
+     *     - `table_id`: The ID of the BigQuery table
+     *     - `sensitivity_level`: HIGH|MODERATE|LOW
+     *     - `data_risk_level`: HIGH|MODERATE|LOW
      *     - `resource_visibility`: PUBLIC|RESTRICTED
-     *     - `status_code` - an RPC status code as defined in
+     *     - `status_code`: an RPC status code as defined in
      *     https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
-     * * The operator must be `=` or `!=`.
+     *     - `profile_last_generated`: Date and time the profile was last
+     *       generated
+     * * The operator must be `=` or `!=`. The `profile_last_generated` filter
+     *   also supports `<` and `>`.
+     * The syntax is based on https://google.aip.dev/160.
      * Examples:
      * * `project_id = 12345 AND status_code = 1`
      * * `project_id = 12345 AND sensitivity_level = HIGH`
      * * `project_id = 12345 AND resource_visibility = PUBLIC`
+     * * `profile_last_generated < "2025-01-01T00:00:00.000Z"`
      * The length of this field should be no more than 500 characters.
      *
      * Generated from protobuf field <code>string filter = 5;</code>

@@ -15,6 +15,19 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class FileStoreCollection extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. To be included in the collection, a resource must meet all of the
+     * following requirements:
+     *  - If tag filters are provided, match all provided tag filters.
+     *  - If one or more patterns are specified, match at least one pattern.
+     * For a resource to match the tag filters, the resource must have all of the
+     * provided tags attached. Tags refer to Resource Manager tags bound to the
+     * resource or its ancestors. For more information, see [Manage
+     * schedules](https://cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.TagFilters include_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $include_tags = null;
     protected $pattern;
 
     /**
@@ -26,6 +39,15 @@ class FileStoreCollection extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\FileStoreRegexes $include_regexes
      *           Optional. A collection of regular expressions to match a file store
      *           against.
+     *     @type \Google\Cloud\Dlp\V2\TagFilters $include_tags
+     *           Optional. To be included in the collection, a resource must meet all of the
+     *           following requirements:
+     *            - If tag filters are provided, match all provided tag filters.
+     *            - If one or more patterns are specified, match at least one pattern.
+     *           For a resource to match the tag filters, the resource must have all of the
+     *           provided tags attached. Tags refer to Resource Manager tags bound to the
+     *           resource or its ancestors. For more information, see [Manage
+     *           schedules](https://cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
      * }
      */
     public function __construct($data = NULL) {
@@ -62,6 +84,56 @@ class FileStoreCollection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\FileStoreRegexes::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. To be included in the collection, a resource must meet all of the
+     * following requirements:
+     *  - If tag filters are provided, match all provided tag filters.
+     *  - If one or more patterns are specified, match at least one pattern.
+     * For a resource to match the tag filters, the resource must have all of the
+     * provided tags attached. Tags refer to Resource Manager tags bound to the
+     * resource or its ancestors. For more information, see [Manage
+     * schedules](https://cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.TagFilters include_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dlp\V2\TagFilters|null
+     */
+    public function getIncludeTags()
+    {
+        return $this->include_tags;
+    }
+
+    public function hasIncludeTags()
+    {
+        return isset($this->include_tags);
+    }
+
+    public function clearIncludeTags()
+    {
+        unset($this->include_tags);
+    }
+
+    /**
+     * Optional. To be included in the collection, a resource must meet all of the
+     * following requirements:
+     *  - If tag filters are provided, match all provided tag filters.
+     *  - If one or more patterns are specified, match at least one pattern.
+     * For a resource to match the tag filters, the resource must have all of the
+     * provided tags attached. Tags refer to Resource Manager tags bound to the
+     * resource or its ancestors. For more information, see [Manage
+     * schedules](https://cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.TagFilters include_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dlp\V2\TagFilters $var
+     * @return $this
+     */
+    public function setIncludeTags($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\TagFilters::class);
+        $this->include_tags = $var;
 
         return $this;
     }
