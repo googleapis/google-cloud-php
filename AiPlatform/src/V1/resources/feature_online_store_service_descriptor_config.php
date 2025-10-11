@@ -50,6 +50,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateFetchAccessToken' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\GenerateFetchAccessTokenResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'feature_view',
+                        'fieldAccessors' => [
+                            'getFeatureView',
+                        ],
+                    ],
+                ],
+            ],
             'SearchNearestEntities' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\SearchNearestEntitiesResponse',

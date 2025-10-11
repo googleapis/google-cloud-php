@@ -37,6 +37,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\FetchFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse;
+use Google\Cloud\AIPlatform\V1\GenerateFetchAccessTokenRequest;
+use Google\Cloud\AIPlatform\V1\GenerateFetchAccessTokenResponse;
 use Google\Cloud\AIPlatform\V1\SearchNearestEntitiesRequest;
 use Google\Cloud\AIPlatform\V1\SearchNearestEntitiesResponse;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -62,6 +64,7 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<FetchFeatureValuesResponse> fetchFeatureValuesAsync(FetchFeatureValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateFetchAccessTokenResponse> generateFetchAccessTokenAsync(GenerateFetchAccessTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SearchNearestEntitiesResponse> searchNearestEntitiesAsync(SearchNearestEntitiesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -300,6 +303,36 @@ final class FeatureOnlineStoreServiceClient
         array $callOptions = []
     ): FetchFeatureValuesResponse {
         return $this->startApiCall('FetchFeatureValues', $request, $callOptions)->wait();
+    }
+
+    /**
+     * RPC to generate an access token for the given feature view. FeatureViews
+     * under the same FeatureOnlineStore share the same access token.
+     *
+     * The async variant is
+     * {@see FeatureOnlineStoreServiceClient::generateFetchAccessTokenAsync()} .
+     *
+     * @example samples/V1/FeatureOnlineStoreServiceClient/generate_fetch_access_token.php
+     *
+     * @param GenerateFetchAccessTokenRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateFetchAccessTokenResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateFetchAccessToken(
+        GenerateFetchAccessTokenRequest $request,
+        array $callOptions = []
+    ): GenerateFetchAccessTokenResponse {
+        return $this->startApiCall('GenerateFetchAccessToken', $request, $callOptions)->wait();
     }
 
     /**

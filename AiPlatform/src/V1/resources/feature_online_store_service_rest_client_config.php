@@ -35,6 +35,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateFetchAccessToken' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{feature_view=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:generateFetchAccessToken',
+                'body' => '*',
+                'placeholders' => [
+                    'feature_view' => [
+                        'getters' => [
+                            'getFeatureView',
+                        ],
+                    ],
+                ],
+            ],
             'SearchNearestEntities' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{feature_view=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:searchNearestEntities',
