@@ -691,6 +691,10 @@ class StorageObject
      */
     public function downloadToFile($path, array $options = [])
     {
+        if (strpos($path, '..') !== false) {
+            throw new \RuntimeException('Path traversal is not allowed. File path is outside the designated directory.');
+        }
+
         $source = $this->downloadAsStream($options);
         $destination = Utils::streamFor(fopen($path, 'w'));
 
