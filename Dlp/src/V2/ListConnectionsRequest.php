@@ -38,6 +38,7 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
     /**
      * Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR
+     * The syntax is based on https://google.aip.dev/160.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -76,6 +77,7 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
      *           results. If set, all other request fields must match the original request.
      *     @type string $filter
      *           Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR
+     *           The syntax is based on https://google.aip.dev/160.
      * }
      */
     public function __construct($data = NULL) {
@@ -169,6 +171,7 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR
+     * The syntax is based on https://google.aip.dev/160.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -180,6 +183,7 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR
+     * The syntax is based on https://google.aip.dev/160.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
