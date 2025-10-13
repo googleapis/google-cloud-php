@@ -457,6 +457,20 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertFileDoesNotExist($downloadFilePath);
     }
 
+    public function testDownloadsToFileShouldTraversalBlocked()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage(
+            'Path traversal is not allowed. File path is outside the designated directory.'
+        );
+
+        $objectName = uniqid(self::TESTING_PREFIX);
+        $testObject = self::$bucket->object($objectName);
+        $downloadFilePath = __DIR__ . '/../../' . $objectName;
+
+        $testObject->downloadToFile($downloadFilePath);
+    }
+
     public function testDownloadsPublicFileWithUnauthenticatedClient()
     {
         $objectName = uniqid(self::TESTING_PREFIX);
