@@ -691,7 +691,9 @@ class StorageObject
      */
     public function downloadToFile($path, array $options = [])
     {
-        if (strpos($path, '..') !== false) {
+        $pathSegments = explode('/', str_replace('\\', '/', $path));
+
+        if (in_array('..', $pathSegments, true)) {
             throw new \RuntimeException(
                 'Path traversal is not allowed. File path is outside the designated directory.'
             );
