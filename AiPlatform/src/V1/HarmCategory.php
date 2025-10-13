@@ -50,6 +50,12 @@ class HarmCategory
      * Generated from protobuf enum <code>HARM_CATEGORY_CIVIC_INTEGRITY = 5 [deprecated = true];</code>
      */
     const HARM_CATEGORY_CIVIC_INTEGRITY = 5;
+    /**
+     * The harm category is for jailbreak prompts.
+     *
+     * Generated from protobuf enum <code>HARM_CATEGORY_JAILBREAK = 6;</code>
+     */
+    const HARM_CATEGORY_JAILBREAK = 6;
 
     private static $valueToName = [
         self::HARM_CATEGORY_UNSPECIFIED => 'HARM_CATEGORY_UNSPECIFIED',
@@ -58,6 +64,7 @@ class HarmCategory
         self::HARM_CATEGORY_HARASSMENT => 'HARM_CATEGORY_HARASSMENT',
         self::HARM_CATEGORY_SEXUALLY_EXPLICIT => 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
         self::HARM_CATEGORY_CIVIC_INTEGRITY => 'HARM_CATEGORY_CIVIC_INTEGRITY',
+        self::HARM_CATEGORY_JAILBREAK => 'HARM_CATEGORY_JAILBREAK',
     ];
 
     public static function name($value)

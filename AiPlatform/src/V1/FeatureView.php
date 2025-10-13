@@ -111,6 +111,12 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzi = false;
+    /**
+     * Metadata containing information about the Cloud Bigtable.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.BigtableMetadata bigtable_metadata = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $bigtable_metadata = null;
     protected $source;
 
     /**
@@ -174,6 +180,8 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureView\BigtableMetadata $bigtable_metadata
+     *           Metadata containing information about the Cloud Bigtable.
      * }
      */
     public function __construct($data = NULL) {
@@ -682,6 +690,42 @@ class FeatureView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Metadata containing information about the Cloud Bigtable.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.BigtableMetadata bigtable_metadata = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\FeatureView\BigtableMetadata|null
+     */
+    public function getBigtableMetadata()
+    {
+        return $this->bigtable_metadata;
+    }
+
+    public function hasBigtableMetadata()
+    {
+        return isset($this->bigtable_metadata);
+    }
+
+    public function clearBigtableMetadata()
+    {
+        unset($this->bigtable_metadata);
+    }
+
+    /**
+     * Metadata containing information about the Cloud Bigtable.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.BigtableMetadata bigtable_metadata = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\FeatureView\BigtableMetadata $var
+     * @return $this
+     */
+    public function setBigtableMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureView\BigtableMetadata::class);
+        $this->bigtable_metadata = $var;
 
         return $this;
     }
