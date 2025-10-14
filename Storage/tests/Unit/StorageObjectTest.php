@@ -540,7 +540,7 @@ class StorageObjectTest extends TestCase
         $this->connection->downloadObject(Argument::any())
             ->willThrow(new NotFoundException($exceptionString));
         $object = 'non_existent_object.txt';
-        $downloadFilePath = 'php://temp';
+        $downloadFilePath = 'storage_test_downloads_to_file.txt';
         $object = new StorageObject($this->connection->reveal(), $object, self::BUCKET);
         $throws = false;
         try {

@@ -443,7 +443,7 @@ class ManageObjectsTest extends StorageTestCase
         $objectName = uniqid(self::TESTING_PREFIX);
         $testObject = self::$bucket->object($objectName);
         $exceptionString = 'No such object';
-        $downloadFilePath = 'php://temp/' . $objectName;
+        $downloadFilePath = $objectName;
 
         $throws = false;
         try {

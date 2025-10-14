@@ -694,8 +694,7 @@ class StorageObject
         $normalizedPath = str_replace('\\', '/', $path);
         $pathSegments = explode('/', $normalizedPath);
 
-        if (
-            in_array('..', $pathSegments, true) ||
+        if (in_array('..', $pathSegments, true) ||
             strpos($normalizedPath, '/') === 0 ||
             preg_match('/^[a-zA-Z]:\//', $normalizedPath)
         ) {
