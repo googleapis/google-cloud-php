@@ -443,7 +443,7 @@ class ManageObjectsTest extends StorageTestCase
         $objectName = uniqid(self::TESTING_PREFIX);
         $testObject = self::$bucket->object($objectName);
         $exceptionString = 'No such object';
-        $downloadFilePath = __DIR__ . '/' . $objectName;
+        $downloadFilePath = 'php://temp/' . $objectName;
 
         $throws = false;
         try {
@@ -457,7 +457,21 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertFileDoesNotExist($downloadFilePath);
     }
 
-    public function testDownloadsToFileShouldTraversalBlocked()
+    public function testDownloadsToFileShouldBlockRelativeTraversal()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage(
+            'Path traversal is not allowed. File path is outside the designated directory.'
+        );
+
+        $objectName = uniqid(self::TESTING_PREFIX);
+        $testObject = self::$bucket->object($objectName);
+        $downloadFilePath = 'storage/../../' . $objectName;
+
+        $testObject->downloadToFile($downloadFilePath);
+    }
+
+    public function testDownloadsToFileShouldBlockAbsolutePath()
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage(

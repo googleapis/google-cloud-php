@@ -540,7 +540,7 @@ class StorageObjectTest extends TestCase
         $this->connection->downloadObject(Argument::any())
             ->willThrow(new NotFoundException($exceptionString));
         $object = 'non_existent_object.txt';
-        $downloadFilePath = __DIR__ . '/storage_test_downloads_to_file.txt';
+        $downloadFilePath = 'php://temp';
         $object = new StorageObject($this->connection->reveal(), $object, self::BUCKET);
         $throws = false;
         try {
@@ -552,6 +552,38 @@ class StorageObjectTest extends TestCase
 
         $this->assertTrue($throws);
         $this->assertFileDoesNotExist($downloadFilePath);
+    }
+
+    public function testDownloadsToFileShouldBlockRelativeTraversal()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage(
+            'Path traversal is not allowed. File path is outside the designated directory.'
+        );
+        $stream = Utils::streamFor('mock content');
+        $this->connection->downloadObject(Argument::any())
+            ->willReturn($stream);
+        $object = 'storage_test_downloads_to_file.txt';
+        $downloadFilePath = 'storage/test/../../storage_test_downloads_to_file.txt';
+        $object = new StorageObject($this->connection->reveal(), $object, self::BUCKET);
+
+        $object->downloadToFile($downloadFilePath);
+    }
+
+    public function testDownloadsToFileShouldBlockAbsolutePath()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage(
+            'Path traversal is not allowed. File path is outside the designated directory.'
+        );
+        $stream = Utils::streamFor('mock content');
+        $this->connection->downloadObject(Argument::any())
+            ->willReturn($stream);
+        $object = 'storage_test_downloads_to_file.txt';
+        $downloadFilePath = __DIR__ . '/storage_test_downloads_to_file.txt';
+        $object = new StorageObject($this->connection->reveal(), $object, self::BUCKET);
+
+        $object->downloadToFile($downloadFilePath);
     }
 
     public function testDownloadAsStreamWithoutExtraOptions()
@@ -725,22 +757,6 @@ class StorageObjectTest extends TestCase
 
         // assert the resulting stream looks like we'd expect
         $this->assertInstanceOf(StreamInterface::class, $stream);
-    }
-
-    public function testDownloadsToFileShouldTraversalBlocked()
-    {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage(
-            'Path traversal is not allowed. File path is outside the designated directory.'
-        );
-        $stream = Utils::streamFor('mock content');
-        $this->connection->downloadObject(Argument::any())
-            ->willReturn($stream);
-        $object = 'storage_test_downloads_to_file.txt';
-        $downloadFilePath = __DIR__ . '/..\../storage_test_downloads_to_file.txt';
-        $object = new StorageObject($this->connection->reveal(), $object, self::BUCKET);
-
-        $object->downloadToFile($downloadFilePath);
     }
 
     public function testGetsInfo()
