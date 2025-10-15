@@ -38,6 +38,14 @@ use Google\Cloud\Spanner\V1\RequestOptions\Priority;
 class QueryTest extends SpannerTestCase
 {
     /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
+    {
+        self::setUpTestDatabase();
+    }
+
+    /**
      * covers 19
      */
     public function testSelect1()
@@ -84,7 +92,7 @@ class QueryTest extends SpannerTestCase
 
         $res = $db->execute('SELECT ARRAY(SELECT STRUCT(1, 2))');
         $row = $res->rows()->current();
-        $this->assertEquals($row[0][0], [1,2]);
+        $this->assertEquals($row[0][0], [1, 2]);
     }
 
     /**
@@ -251,7 +259,7 @@ class QueryTest extends SpannerTestCase
         $row = $res->rows()->current();
         $this->assertInstanceOf(Numeric::class, $row['foo']);
         $this->assertEquals($str, $numeric->formatAsString());
-        $this->assertEquals($str, (string)$numeric->get());
+        $this->assertEquals($str, (string) $numeric->get());
     }
 
     public function testBindNumericParameterNull()
@@ -290,7 +298,7 @@ class QueryTest extends SpannerTestCase
         $row = $res->rows()->current();
         $this->assertInstanceOf(Bytes::class, $row['foo']);
         $this->assertEquals($str, base64_decode($bytes->formatAsString()));
-        $this->assertEquals($str, (string)$bytes->get());
+        $this->assertEquals($str, (string) $bytes->get());
     }
 
     /**
@@ -320,7 +328,7 @@ class QueryTest extends SpannerTestCase
     {
         $db = self::$database;
 
-        $ts = new Date(new \DateTimeImmutable);
+        $ts = new Date(new \DateTimeImmutable());
 
         $res = $db->execute('SELECT @param as foo', [
             'parameters' => [
@@ -376,7 +384,7 @@ class QueryTest extends SpannerTestCase
         $db = self::$database;
 
         $interval = Interval::parse('P1Y2M3DT4H5M6.7S');
-        $res = $db->execute("SELECT @param as foo", [
+        $res = $db->execute('SELECT @param as foo', [
             'parameters' => [
                 'param' => $interval
             ],
@@ -648,16 +656,16 @@ class QueryTest extends SpannerTestCase
     {
         return [
             // boolean (covers 37)
-            [[true,true,false]],
+            [[true, true, false]],
 
             // int64 (covers 40)
-            [[5,4,3,2,1]],
+            [[5, 4, 3, 2, 1]],
 
             // float64 (covers 43)
             [[3.14, 4.13, 1.43]],
 
             // string (covers 46)
-            [['hello','world','google','cloud']],
+            [['hello', 'world', 'google', 'cloud']],
 
             // bytes (covers 49)
             [
@@ -807,7 +815,7 @@ class QueryTest extends SpannerTestCase
                 'p4' => 10
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add('userf', Database::TYPE_STRING)
                     ->add('threadf', Database::TYPE_INT64)
             ]
@@ -831,7 +839,7 @@ class QueryTest extends SpannerTestCase
                 'structParam' => null
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add('userf', Database::TYPE_STRING)
                     ->add('threadf', Database::TYPE_INT64)
             ]
@@ -857,10 +865,10 @@ class QueryTest extends SpannerTestCase
                 ]
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add(
                         'structf',
-                        (new StructType)->add('nestedf', Database::TYPE_STRING)
+                        (new StructType())->add('nestedf', Database::TYPE_STRING)
                     )
             ]
         ]);
@@ -881,10 +889,10 @@ class QueryTest extends SpannerTestCase
                 'structParam' => null
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add(
                         'structf',
-                        (new StructType)->add('nestedf', Database::TYPE_STRING)
+                        (new StructType())->add('nestedf', Database::TYPE_STRING)
                     )
             ]
         ]);
@@ -904,7 +912,7 @@ class QueryTest extends SpannerTestCase
                 'structParam' => []
             ],
             'types' => [
-                'structParam' => new StructType
+                'structParam' => new StructType()
             ]
         ]);
 
@@ -924,7 +932,7 @@ class QueryTest extends SpannerTestCase
                 'structParam' => null
             ],
             'types' => [
-                'structParam' => new StructType
+                'structParam' => new StructType()
             ]
         ]);
 
@@ -946,7 +954,7 @@ class QueryTest extends SpannerTestCase
                 ]
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add('f1', Database::TYPE_INT64)
             ]
         ]);
@@ -969,7 +977,7 @@ class QueryTest extends SpannerTestCase
                 ]
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add('threadf', Database::TYPE_INT64)
                     ->add('userf', Database::TYPE_STRING)
             ]
@@ -993,7 +1001,7 @@ class QueryTest extends SpannerTestCase
                 ]
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add('userf', Database::TYPE_STRING)
                     ->add('threadf', Database::TYPE_INT64)
             ]
@@ -1021,9 +1029,9 @@ class QueryTest extends SpannerTestCase
                 ],
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add('arraysf', new ArrayType(
-                        (new StructType)->add('threadid', Database::TYPE_INT64)
+                        (new StructType())->add('threadid', Database::TYPE_INT64)
                     ))
             ]
         ]);
@@ -1046,9 +1054,9 @@ class QueryTest extends SpannerTestCase
                 ],
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add('arraysf', new ArrayType(
-                        (new StructType)->add('threadid', Database::TYPE_INT64)
+                        (new StructType())->add('threadid', Database::TYPE_INT64)
                     ))
             ]
         ]);
@@ -1068,9 +1076,9 @@ class QueryTest extends SpannerTestCase
                 'structParam' => null
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add('arraysf', new ArrayType(
-                        (new StructType)->add('threadid', Database::TYPE_INT64)
+                        (new StructType())->add('threadid', Database::TYPE_INT64)
                     ))
             ]
         ]);
@@ -1087,13 +1095,13 @@ class QueryTest extends SpannerTestCase
         $db = self::$database;
         $res = $db->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
             'parameters' => [
-                'structParam' => (new StructValue)
+                'structParam' => (new StructValue())
                     ->add('hello', 'world')
                     ->add('foo', 'bar')
                     ->add('foo', 2)
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add('hello', Database::TYPE_STRING)
                     ->add('foo', Database::TYPE_STRING)
                     ->add('foo', Database::TYPE_INT64)
@@ -1124,15 +1132,15 @@ class QueryTest extends SpannerTestCase
         $db = self::$database;
         $res = $db->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
             'parameters' => [
-                'structParam' => (new StructValue)
+                'structParam' => (new StructValue())
                     ->addUnnamed(1)
                     ->add('f1', 2)
                     ->addUnnamed([
-                        'a','b','c'
+                        'a', 'b', 'c'
                     ])
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->addUnnamed(Database::TYPE_INT64)
                     ->add('f1', Database::TYPE_INT64)
                     ->addUnnamed(new ArrayType(Database::TYPE_STRING))
@@ -1142,7 +1150,7 @@ class QueryTest extends SpannerTestCase
         $this->assertEquals(1, $res[0]);
         $this->assertEquals(2, $res['f1']);
         $this->assertEquals([
-            'a','b','c'
+            'a', 'b', 'c'
         ], $res[2]);
     }
 
@@ -1154,16 +1162,16 @@ class QueryTest extends SpannerTestCase
         $db = self::$database;
         $res = $db->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
             'parameters' => [
-                'structParam' => (new StructValue)
+                'structParam' => (new StructValue())
                     ->addUnnamed(1)
                     ->addUnnamed('field')
                     ->addUnnamed([
-                        'a','b','c'
+                        'a', 'b', 'c'
                     ])
                     ->addUnnamed(false)
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->addUnnamed(Database::TYPE_INT64)
                     ->addUnnamed(Database::TYPE_STRING)
                     ->addUnnamed(new ArrayType(Database::TYPE_STRING))
@@ -1174,7 +1182,7 @@ class QueryTest extends SpannerTestCase
         $this->assertEquals(1, $res[0]);
         $this->assertEquals('field', $res[1]);
         $this->assertEquals([
-            'a','b','c'
+            'a', 'b', 'c'
         ], $res[2]);
         $this->assertFalse($res[3]);
     }
@@ -1193,7 +1201,7 @@ class QueryTest extends SpannerTestCase
                 'structParam' => $values
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add('str', Database::TYPE_STRING)
             ]
         ])->rows()->current();
@@ -1212,14 +1220,14 @@ class QueryTest extends SpannerTestCase
         $db = self::$database;
         $res = $db->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
             'parameters' => [
-                'structParam' => (new StructValue)
+                'structParam' => (new StructValue())
                     ->add('arr', ['a', 'b'])
                     ->addUnnamed('hello')
                     ->addUnnamed(10)
                     ->add('str', 'world')
             ],
             'types' => [
-                'structParam' => (new StructType)
+                'structParam' => (new StructType())
                     ->add('str', Database::TYPE_STRING)
             ]
         ])->rows(Result::RETURN_NAME_VALUE_PAIR)->current();

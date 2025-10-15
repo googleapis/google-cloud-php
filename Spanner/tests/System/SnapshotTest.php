@@ -18,12 +18,11 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
-use Google\Cloud\Spanner\Date;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
 use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
+use Google\Protobuf\Duration;
 
 /**
  * @group spanner
@@ -40,7 +39,7 @@ class SnapshotTest extends SpannerTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$tableName = uniqid(self::TABLE_NAME);
 
@@ -95,7 +94,7 @@ class SnapshotTest extends SpannerTestCase
 
         $db->insert(self::$tableName, $row);
         sleep(1);
-        $ts = new Timestamp(new \DateTimeImmutable);
+        $ts = new Timestamp(new \DateTimeImmutable());
         sleep(1);
 
         $newRow = $row;
@@ -160,14 +159,14 @@ class SnapshotTest extends SpannerTestCase
 
         $db->insert(self::$tableName, $row);
         sleep(1);
-        $ts = new Timestamp(new \DateTimeImmutable);
+        $ts = new Timestamp(new \DateTimeImmutable());
         sleep(1);
 
         $newRow = $row;
         $newRow['number'] = 2;
         $db->replace(self::$tableName, $newRow);
 
-        $duration = new Duration(1);
+        $duration = new Duration(['seconds' => 1, 'nanos' => 0]);
 
         $snapshot = $db->snapshot([
             'exactStaleness' => $duration,
@@ -195,14 +194,14 @@ class SnapshotTest extends SpannerTestCase
 
         $db->insert(self::$tableName, $row);
         sleep(1);
-        $ts = new Timestamp(new \DateTimeImmutable);
+        $ts = new Timestamp(new \DateTimeImmutable());
         sleep(1);
 
         $newRow = $row;
         $newRow['number'] = 2;
         $db->replace(self::$tableName, $newRow);
 
-        $duration = new Duration(1);
+        $duration = new Duration(['seconds' => 1, 'nanos' => 0]);
 
         $snapshot = $db->snapshot([
             'maxStaleness' => $duration,
@@ -224,7 +223,7 @@ class SnapshotTest extends SpannerTestCase
         $db = self::$database;
 
         $db->snapshot([
-            'minReadTimestamp' => new Timestamp(new \DateTimeImmutable)
+            'minReadTimestamp' => new Timestamp(new \DateTimeImmutable())
         ]);
     }
 
@@ -238,7 +237,7 @@ class SnapshotTest extends SpannerTestCase
         $db = self::$database;
 
         $db->snapshot([
-            'maxStaleness' => new Duration(1)
+            'maxStaleness' => new Duration(['seconds' => 1, 'nanos' => 0])
         ]);
     }
 

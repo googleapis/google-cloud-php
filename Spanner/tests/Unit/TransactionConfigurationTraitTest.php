@@ -19,10 +19,10 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
+use Google\Protobuf\Duration;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -46,9 +46,9 @@ class TransactionConfigurationTraitTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->impl = new TransactionConfigurationTraitImplementation;
-        $this->duration = new Duration(10, 1);
-        $this->dur = ['seconds' => 10, 'nanos' => 1];
+        $this->impl = new TransactionConfigurationTraitImplementation();
+        $this->duration = new Duration(['seconds' => 10, 'nanos' => 1]);
+        $this->dur = new Duration(['seconds' => 10, 'nanos' => 1]);
         $this->directedReadOptionsIncludeReplicas = [
             'includeReplicas' => [
                 'replicaSelections' => [
@@ -61,7 +61,7 @@ class TransactionConfigurationTraitTest extends TestCase
     public function testTransactionSelectorBasicSnapshot()
     {
         $args = [];
-        $res = $this->impl->proxyTransactionSelector($args);
+        $res = $this->impl->transactionSelector($args);
         $this->assertEquals(SessionPoolInterface::CONTEXT_READ, $res[1]);
         $this->assertEquals($res[0]['singleUse']['readOnly'], ['strong' => true]);
     }
@@ -69,7 +69,7 @@ class TransactionConfigurationTraitTest extends TestCase
     public function testTransactionSelectorExistingId()
     {
         $args = ['transactionId' => self::TRANSACTION];
-        $res = $this->impl->proxyTransactionSelector($args);
+        $res = $this->impl->transactionSelector($args);
         $this->assertEquals(SessionPoolInterface::CONTEXT_READ, $res[1]);
         $this->assertEquals(self::TRANSACTION, $res[0]['id']);
     }
@@ -77,75 +77,75 @@ class TransactionConfigurationTraitTest extends TestCase
     public function testTransactionSelectorReadWrite()
     {
         $args = ['transactionType' => SessionPoolInterface::CONTEXT_READWRITE];
-        $res = $this->impl->proxyTransactionSelector($args);
+        $res = $this->impl->transactionSelector($args);
         $this->assertEquals(SessionPoolInterface::CONTEXT_READWRITE, $res[1]);
-        $this->assertEquals($this->impl->proxyConfigureTransactionOptions(), $res[0]['singleUse']);
+        $this->assertEquals($this->impl->configureReadWriteTransactionOptions([]), $res[0]['singleUse']);
     }
 
     public function testTransactionSelectorReadOnly()
     {
         $args = ['transactionType' => SessionPoolInterface::CONTEXT_READ];
-        $res = $this->impl->proxyTransactionSelector($args);
+        $res = $this->impl->transactionSelector($args);
         $this->assertEquals(SessionPoolInterface::CONTEXT_READ, $res[1]);
     }
 
     public function testBegin()
     {
         $args = ['begin' => true];
-        $res = $this->impl->proxyTransactionSelector($args);
+        $res = $this->impl->transactionSelector($args);
         $this->assertEquals(SessionPoolInterface::CONTEXT_READ, $res[1]);
         $this->assertEquals($res[0]['begin']['readOnly'], ['strong' => true]);
     }
 
-    public function testConfigureSnapshotOptionsReturnReadTimestamp()
+    public function testConfigureReadOnlyTransactionOptionsReturnReadTimestamp()
     {
         $args = ['returnReadTimestamp' => true];
-        $res = $this->impl->proxyConfigureSnapshotOptions($args);
+        $res = $this->impl->configureReadOnlyTransactionOptions($args);
         $this->assertTrue($res['readOnly']['returnReadTimestamp']);
     }
 
-    public function testConfigureSnapshotOptionsStrong()
+    public function testConfigureReadOnlyTransactionOptionsStrong()
     {
         $args = ['strong' => true];
-        $res = $this->impl->proxyConfigureSnapshotOptions($args);
+        $res = $this->impl->configureReadOnlyTransactionOptions($args);
         $this->assertTrue($res['readOnly']['strong']);
     }
 
     /**
      * @dataProvider timestamps
      */
-    public function testConfigureSnapshotOptionsMinReadTimestamp($timestamp, $expected = null)
+    public function testConfigureReadOnlyTransactionOptionsMinReadTimestamp($timestamp, $expected = null)
     {
         $time = $this->parseTimeString($timestamp);
         $ts = new Timestamp($time[0], $time[1]);
         $args = ['minReadTimestamp' => $ts, 'singleUse' => true];
-        $res = $this->impl->proxyConfigureSnapshotOptions($args);
+        $res = $this->impl->configureReadOnlyTransactionOptions($args);
         $this->assertEquals($expected ?: $timestamp, $res['readOnly']['minReadTimestamp']);
     }
 
     /**
      * @dataProvider timestamps
      */
-    public function testConfigureSnapshotOptionsReadTimestamp($timestamp)
+    public function testConfigureReadOnlyTransactionOptionsReadTimestamp($timestamp)
     {
         $time = $this->parseTimeString($timestamp);
         $ts = new Timestamp($time[0], $time[1]);
         $args = ['readTimestamp' => $ts];
-        $res = $this->impl->proxyConfigureSnapshotOptions($args);
+        $res = $this->impl->configureReadOnlyTransactionOptions($args);
         $this->assertEquals($timestamp, $res['readOnly']['readTimestamp']);
     }
 
-    public function testConfigureSnapshotOptionsMaxStaleness()
+    public function testConfigureReadOnlyTransactionOptionsMaxStaleness()
     {
         $args = ['maxStaleness' => $this->duration, 'singleUse' => true];
-        $res = $this->impl->proxyConfigureSnapshotOptions($args);
+        $res = $this->impl->configureReadOnlyTransactionOptions($args);
         $this->assertEquals($this->dur, $res['readOnly']['maxStaleness']);
     }
 
-    public function testConfigureSnapshotOptionsExactStaleness()
+    public function testConfigureReadOnlyTransactionOptionsExactStaleness()
     {
         $args = ['exactStaleness' => $this->duration];
-        $res = $this->impl->proxyConfigureSnapshotOptions($args);
+        $res = $this->impl->configureReadOnlyTransactionOptions($args);
         $this->assertEquals($this->dur, $res['readOnly']['exactStaleness']);
     }
 
@@ -154,39 +154,39 @@ class TransactionConfigurationTraitTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
 
         $args = ['transactionType' => 'foo'];
-        $this->impl->proxyTransactionSelector($args);
+        $this->impl->transactionSelector($args);
     }
 
-    public function testConfigureSnapshotOptionsInvalidExactStaleness()
+    public function testConfigureReadOnlyTransactionOptionsInvalidExactStaleness()
     {
         $this->expectException(\BadMethodCallException::class);
 
         $args = ['exactStaleness' => 'foo'];
-        $this->impl->proxyConfigureSnapshotOptions($args);
+        $this->impl->configureReadOnlyTransactionOptions($args);
     }
 
-    public function testConfigureSnapshotOptionsInvalidMaxStaleness()
+    public function testConfigureReadOnlyTransactionOptionsInvalidMaxStaleness()
     {
         $this->expectException(\BadMethodCallException::class);
 
         $args = ['maxStaleness' => 'foo'];
-        $this->impl->proxyConfigureSnapshotOptions($args);
+        $this->impl->configureReadOnlyTransactionOptions($args);
     }
 
-    public function testConfigureSnapshotOptionsInvalidMinReadTimestamp()
+    public function testConfigureReadOnlyTransactionOptionsInvalidMinReadTimestamp()
     {
         $this->expectException(\BadMethodCallException::class);
 
         $args = ['minReadTimestamp' => 'foo'];
-        $this->impl->proxyConfigureSnapshotOptions($args);
+        $this->impl->configureReadOnlyTransactionOptions($args);
     }
 
-    public function testConfigureSnapshotOptionsInvalidReadTimestamp()
+    public function testConfigureReadOnlyTransactionOptionsInvalidReadTimestamp()
     {
         $this->expectException(\BadMethodCallException::class);
 
         $args = ['readTimestamp' => 'foo'];
-        $this->impl->proxyConfigureSnapshotOptions($args);
+        $this->impl->configureReadOnlyTransactionOptions($args);
     }
 
     public function testRequestLevelConfigureDirectedReadOptions()
@@ -196,7 +196,7 @@ class TransactionConfigurationTraitTest extends TestCase
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas
         ];
         $clientOptions = [];
-        $res = $this->impl->proxyConfigureDirectedReadOptions($requestOptions, $clientOptions);
+        $res = $this->impl->configureDirectedReadOptions($requestOptions, $clientOptions);
         $this->assertEquals($res, $requestOptions['directedReadOptions']);
     }
 
@@ -204,7 +204,7 @@ class TransactionConfigurationTraitTest extends TestCase
     {
         $requestOptions = ['transaction' => ['singleUse' => true]];
         $clientOptions = $this->directedReadOptionsIncludeReplicas;
-        $res = $this->impl->proxyConfigureDirectedReadOptions($requestOptions, $clientOptions);
+        $res = $this->impl->configureDirectedReadOptions($requestOptions, $clientOptions);
         $this->assertEquals($res, $clientOptions);
     }
 
@@ -221,7 +221,7 @@ class TransactionConfigurationTraitTest extends TestCase
                 ]
             ]
         ];
-        $res = $this->impl->proxyConfigureDirectedReadOptions($requestOptions, $clientOptions);
+        $res = $this->impl->configureDirectedReadOptions($requestOptions, $clientOptions);
         $this->assertEquals($res, $requestOptions['directedReadOptions']);
     }
 
@@ -237,26 +237,11 @@ class TransactionConfigurationTraitTest extends TestCase
 //@codingStandardsIgnoreStart
 class TransactionConfigurationTraitImplementation
 {
-    use TransactionConfigurationTrait;
-
-    public function proxyTransactionSelector(array &$options)
-    {
-        return $this->transactionSelector($options);
-    }
-
-    public function proxyConfigureTransactionOptions()
-    {
-        return $this->configureTransactionOptions();
-    }
-
-    public function proxyConfigureSnapshotOptions(array &$options)
-    {
-        return $this->configureSnapshotOptions($options);
-    }
-
-    public function proxyConfigureDirectedReadOptions(array $args1, array $args2)
-    {
-        return $this->configureDirectedReadOptions($args1, $args2);
+    use TransactionConfigurationTrait {
+        transactionSelector as public;
+        configureReadWriteTransactionOptions as public;
+        configureReadOnlyTransactionOptions as public;
+        configureDirectedReadOptions as public;
     }
 }
 //@codingStandardsIgnoreEnd

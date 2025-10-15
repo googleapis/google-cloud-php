@@ -21,6 +21,7 @@ use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Options\CallOptions;
 use Google\Protobuf\Internal\Message;
 use Google\Protobuf\NullValue;
+use LogicException;
 
 /**
  * @internal
@@ -276,6 +277,8 @@ trait ApiHelperTrait
      * $optionTypes can be an array of string keys, a protobuf Message classname, or a
      * the CallOptions classname. Parameters are split and returned in the order
      * that the options types are provided.
+     *
+     * @throws LogicException
      */
     private function validateOptions(array $options, array|Message|string ...$optionTypes): array
     {

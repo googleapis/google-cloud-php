@@ -15,6 +15,20 @@
 
 set -e
 
+# USAGE:
+#
+#     run-package-tests.sh [DIRECTORY] [PREFER_LOWEST]
+#
+# DIRECTORY:     Optionally pass in a component directory and only run the script
+#.               for that component.
+#
+# PREFER_LOWEST: can be "--prefer-lowest" or "--prefer-lowest-strict". When the
+#                "--prefer-lowest-strict" flag is set, local package dependencies
+#                are  installed according to their version number in
+#                `[Component]/VERSION`. This flag is set on the release PRs to
+#.               ensure the dependencies for the upcoming release will be
+#                configured correctly.
+
 DIRS=$(find * -maxdepth 0 -type d -name '[A-Z]*')
 PREFER_LOWEST=""
 if [ "$#" -eq 1 ]; then

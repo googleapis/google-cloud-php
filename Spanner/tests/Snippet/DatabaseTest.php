@@ -17,30 +17,54 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\Cloud\Core\Iam\Iam;
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Page;
+use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
+use Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CommitRequest;
+use Google\Cloud\Spanner\V1\CommitResponse;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\ResultSetStats;
+use Google\Cloud\Spanner\V1\RollbackRequest;
+use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\ListOperationsResponse;
+use Google\LongRunning\Operation;
+use Google\Protobuf\Timestamp as TimestampProto;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -51,10 +75,8 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class DatabaseTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use OperationRefreshTrait;
     use ProphecyTrait;
     use ResultGeneratorTrait;
-    use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -62,13 +84,23 @@ class DatabaseTest extends SnippetTestCase
     const TRANSACTION = 'my-transaction';
     const BACKUP = 'my-backup';
 
-    private $connection;
+    private $spannerClient;
+    private $databaseAdminClient;
+    private $instanceAdminClient;
+    private $operationResponse;
+    private $serializer;
     private $database;
     private $instance;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
+
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
+        $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
+        $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
+        $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->serializer = new Serializer();
 
         $session = $this->prophesize(Session::class);
         $session->info()
@@ -77,8 +109,7 @@ class DatabaseTest extends SnippetTestCase
             ]);
         $session->name()
             ->willReturn('database');
-        $session->setExpiration(Argument::any())
-            ->willReturn(100);
+        $session->setExpiration(Argument::any());
 
         $sessionPool = $this->prophesize(SessionPoolInterface::class);
         $sessionPool->acquire(Argument::any())
@@ -87,24 +118,24 @@ class DatabaseTest extends SnippetTestCase
             ->willReturn(null);
         $sessionPool->clear()->willReturn(null);
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->instance = TestHelpers::stub(Instance::class, [
-            $this->connection->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
+        $this->instance = new Instance(
+            $this->spannerClient->reveal(),
+            $this->instanceAdminClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
             self::PROJECT,
             self::INSTANCE
-        ], ['connection', 'lroConnection']);
+        );
 
-        $this->database = TestHelpers::stub(Database::class, [
-            $this->connection->reveal(),
+        $this->database = new Database(
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
             $this->instance,
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
             self::PROJECT,
             self::DATABASE,
-            $sessionPool->reveal()
-        ], ['connection', 'operation', 'lroConnection']);
+            ['sessionPool' => $sessionPool->reveal()]
+        );
     }
 
     public function testClass()
@@ -136,11 +167,12 @@ class DatabaseTest extends SnippetTestCase
         $snippet->addLocal('database', $this->database);
         $snippet->addUse(Database::class);
 
-        $this->connection->getDatabase(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->WillReturn(['state' => Database::STATE_READY]);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->getDatabase(
+            Argument::type(GetDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new DatabaseProto(['state' => Database::STATE_READY]));
 
         $res = $snippet->invoke();
         $this->assertEquals('Database is ready!', $res->output());
@@ -154,17 +186,25 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'backups');
         $snippet->addLocal('database', $this->database);
 
-        $this->connection->listBackups(Argument::any())
-            ->shouldBeCalled()
-            ->WillReturn([
-                'backups' => [
-                    [
-                        'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP)
-                    ]
-                ]
-            ]);
+        $backup = new BackupProto([
+            'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP)
+        ]);
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn(new ListBackupsResponse(['backups' => [$backup]]));
+        $page->getNextPageToken()
+            ->willReturn(null);
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->willReturn($page->reveal());
+
+        $this->databaseAdminClient->listBackups(
+            Argument::type(ListBackupsRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($pagedListResponse->reveal());
 
         $res = $snippet->invoke('backups');
 
@@ -180,11 +220,13 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'createBackup');
         $snippet->addLocal('database', $this->database);
 
-        $this->connection->createBackup(Argument::any(), Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['name' => 'my-operations']);
+        $this->databaseAdminClient->createBackup(
+            Argument::type(CreateBackupRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
@@ -205,11 +247,12 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'exists');
         $snippet->addLocal('database', $this->database);
 
-        $this->connection->getDatabase(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['statements' => []]);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->getDatabase(
+            Argument::type(GetDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new DatabaseProto(['name' => 'foo']));
 
         $res = $snippet->invoke();
         $this->assertEquals('Database exists!', $res->output());
@@ -220,19 +263,18 @@ class DatabaseTest extends SnippetTestCase
      */
     public function testInfo()
     {
-        $db = ['name' => 'foo'];
-
         $snippet = $this->snippetFromMethod(Database::class, 'info');
         $snippet->addLocal('database', $this->database);
 
-        $this->connection->getDatabase(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn($db);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->getDatabase(
+            Argument::type(GetDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new DatabaseProto(['name' => 'foo']));
 
         $res = $snippet->invoke('info');
-        $this->assertEquals($db, $res->returnVal());
+        $this->assertEquals('foo', $res->returnVal()['name']);
         $snippet->invoke();
     }
 
@@ -241,19 +283,18 @@ class DatabaseTest extends SnippetTestCase
      */
     public function testReload()
     {
-        $db = ['name' => 'foo'];
-
         $snippet = $this->snippetFromMethod(Database::class, 'reload');
         $snippet->addLocal('database', $this->database);
 
-        $this->connection->getDatabase(Argument::any())
+        $this->databaseAdminClient->getDatabase(
+            Argument::type(GetDatabaseRequest::class),
+            Argument::type('array')
+        )
             ->shouldBeCalledTimes(2)
-            ->willReturn($db);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
+            ->willReturn(new DatabaseProto(['name' => 'foo']));
 
         $res = $snippet->invoke('info');
-        $this->assertEquals($db, $res->returnVal());
+        $this->assertEquals('foo', $res->returnVal()['name']);
         $snippet->invoke();
     }
 
@@ -265,13 +306,12 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'create');
         $snippet->addLocal('database', $this->database);
 
-        $this->connection->createDatabase(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->createDatabase(
+            Argument::type(CreateDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
@@ -287,13 +327,12 @@ class DatabaseTest extends SnippetTestCase
         $snippet->addLocal('database', $this->database);
         $snippet->addLocal('backup', $backup);
 
-        $this->connection->restoreDatabase(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->restoreDatabase(
+            Argument::type(RestoreDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
@@ -307,13 +346,12 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'updateDdl');
         $snippet->addLocal('database', $this->database);
 
-        $this->connection->updateDatabaseDdl(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->updateDatabaseDdl(
+            Argument::type(UpdateDatabaseDdlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
         $snippet->invoke();
     }
@@ -326,13 +364,12 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'updateDdlBatch');
         $snippet->addLocal('database', $this->database);
 
-        $this->connection->updateDatabaseDdl(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->updateDatabaseDdl(
+            Argument::type(UpdateDatabaseDdlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
         $snippet->invoke();
     }
@@ -345,10 +382,11 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'drop');
         $snippet->addLocal('database', $this->database);
 
-        $this->connection->dropDatabase(Argument::any())
-            ->shouldBeCalled();
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->dropDatabase(
+            Argument::type(DropDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
 
         $snippet->invoke();
     }
@@ -366,13 +404,12 @@ class DatabaseTest extends SnippetTestCase
             'CREATE TABLE TestCases'
         ];
 
-        $this->connection->getDatabaseDDL(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'statements' => $stmts
-            ]);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->getDatabaseDdl(
+            Argument::type(GetDatabaseDdlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new GetDatabaseDdlResponse(['statements' => $stmts]));
 
         $res = $snippet->invoke('statements');
         $this->assertEquals($stmts, $res->returnVal());
@@ -380,13 +417,11 @@ class DatabaseTest extends SnippetTestCase
 
     public function testSnapshot()
     {
-        $this->connection->beginTransaction(Argument::any(), Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION
-            ]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'snapshot');
         $snippet->addLocal('database', $this->database);
@@ -397,14 +432,14 @@ class DatabaseTest extends SnippetTestCase
 
     public function testSnapshotReadTimestamp()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new TransactionProto([
                 'id' => self::TRANSACTION,
-                'readTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
-            ]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+                'read_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'snapshot', 1);
         $snippet->addLocal('database', $this->database);
@@ -415,24 +450,25 @@ class DatabaseTest extends SnippetTestCase
 
     public function testRunTransaction()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION
-            ]);
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
 
-        $this->connection->commit(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
-            ]);
+        $this->spannerClient->commit(
+            Argument::type(CommitRequest::class),
+            Argument::type('array')
+        )->willReturn(new CommitResponse([
+            'commit_timestamp' => new TimestampProto(['seconds' => time()])
+        ]));
 
-        $this->connection->rollback(Argument::any())
-            ->shouldNotBeCalled();
-
-        $this->connection->executeStreamingSql(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->yieldRows([
+        $this->spannerClient->executeStreamingSql(
+            Argument::type(ExecuteSqlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([
                 [
                     'name' => 'loginCount',
                     'type' => Database::TYPE_INT64,
@@ -440,7 +476,7 @@ class DatabaseTest extends SnippetTestCase
                 ]
             ]));
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->rollback(Argument::cetera())->shouldNotBeCalled();
 
         $snippet = $this->snippetFromMethod(Database::class, 'runTransaction');
         $snippet->addUse(Transaction::class);
@@ -453,43 +489,47 @@ class DatabaseTest extends SnippetTestCase
 
     public function testRunTransactionRollback()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotBeCalled();
+        $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
 
-        $this->connection->commit(Argument::any())
-            ->shouldNotBeCalled();
+        $this->spannerClient->commit(Argument::cetera())->shouldNotBeCalled();
 
-        $this->connection->rollback(Argument::any())
-            ->shouldBeCalled();
-
-        $this->connection->executeStreamingSql(
-            Argument::withEntry('transaction', [
-                'begin' => [
-                    'readWrite' => [],
-                    'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
-                ]
-            ])
+        $this->spannerClient->rollback(
+            Argument::type(RollbackRequest::class),
+            Argument::type('array')
         )
-            ->shouldBeCalled()
-            ->willReturn($this->resultGeneratorData([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'timestamp',
-                                'type' => [
-                                    'code' => Database::TYPE_TIMESTAMP
+            ->shouldBeCalledOnce();
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function ($request) {
+                $this->assertEquals(
+                    $this->serializer->encodeMessage($request)['transaction']['begin']['readWrite'],
+                    ['readLockMode' => 0, 'multiplexedSessionPreviousTransactionId' => '']
+                );
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => [
+                                [
+                                    'name' => 'timestamp',
+                                    'type' => [
+                                        'code' => Database::TYPE_TIMESTAMP
+                                    ]
                                 ]
                             ]
+                        ],
+                        'transaction' => [
+                            'id' => self::TRANSACTION
                         ]
-                    ],
-                    'transaction' => [
-                        'id' => self::TRANSACTION
                     ]
                 ]
-            ]));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+            )]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'runTransaction');
         $snippet->addUse(Transaction::class);
@@ -502,13 +542,11 @@ class DatabaseTest extends SnippetTestCase
 
     public function testTransaction()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION
-            ]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'transaction');
         $snippet->addLocal('database', $this->database);
@@ -518,37 +556,37 @@ class DatabaseTest extends SnippetTestCase
 
     public function testInsert()
     {
-        $this->connection->commit(Argument::that(function ($args) {
-            return isset($args['mutations'][0]['insert']);
-        }))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
-        ]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->commit(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return isset($message['mutations'][0]['insert']);
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'insert');
         $snippet->addLocal('database', $this->database);
         $res = $snippet->invoke();
     }
 
-
     public function testInsertBatch()
     {
-        $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['insert'])) {
-                return false;
-            }
-
-            if (!isset($args['mutations'][1]['insert'])) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
-        ]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->commit(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return isset($message['mutations'][0]['insert'])
+                    && isset($message['mutations'][1]['insert']);
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'insertBatch');
         $snippet->addLocal('database', $this->database);
@@ -557,37 +595,37 @@ class DatabaseTest extends SnippetTestCase
 
     public function testUpdate()
     {
-        $this->connection->commit(Argument::that(function ($args) {
-            return isset($args['mutations'][0]['update']);
-        }))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
-        ]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->commit(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return isset($message['mutations'][0]['update']);
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'update');
         $snippet->addLocal('database', $this->database);
         $res = $snippet->invoke();
     }
 
-
     public function testUpdateBatch()
     {
-        $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['update'])) {
-                return false;
-            }
-
-            if (!isset($args['mutations'][1]['update'])) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
-        ]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->commit(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return isset($message['mutations'][0]['update'])
+                    && isset($message['mutations'][1]['update']);
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'updateBatch');
         $snippet->addLocal('database', $this->database);
@@ -596,37 +634,37 @@ class DatabaseTest extends SnippetTestCase
 
     public function testInsertOrUpdate()
     {
-        $this->connection->commit(Argument::that(function ($args) {
-            return isset($args['mutations'][0]['insertOrUpdate']);
-        }))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
-        ]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->commit(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return isset($message['mutations'][0]['insertOrUpdate']);
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'insertOrUpdate');
         $snippet->addLocal('database', $this->database);
         $res = $snippet->invoke();
     }
 
-
     public function testInsertOrUpdateBatch()
     {
-        $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['insertOrUpdate'])) {
-                return false;
-            }
-
-            if (!isset($args['mutations'][1]['insertOrUpdate'])) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
-        ]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->commit(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return isset($message['mutations'][0]['insertOrUpdate'])
+                    && isset($message['mutations'][1]['insertOrUpdate']);
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'insertOrUpdateBatch');
         $snippet->addLocal('database', $this->database);
@@ -635,37 +673,37 @@ class DatabaseTest extends SnippetTestCase
 
     public function testReplace()
     {
-        $this->connection->commit(Argument::that(function ($args) {
-            return isset($args['mutations'][0]['replace']);
-        }))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
-        ]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->commit(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return isset($message['mutations'][0]['replace']);
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'replace');
         $snippet->addLocal('database', $this->database);
         $res = $snippet->invoke();
     }
 
-
     public function testReplaceBatch()
     {
-        $this->connection->commit(Argument::that(function ($args) {
-            if (!isset($args['mutations'][0]['replace'])) {
-                return false;
-            }
-
-            if (!isset($args['mutations'][1]['replace'])) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
-        ]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->commit(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return isset($message['mutations'][0]['replace'])
+                    && isset($message['mutations'][1]['replace']);
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'replaceBatch');
         $snippet->addLocal('database', $this->database);
@@ -674,13 +712,17 @@ class DatabaseTest extends SnippetTestCase
 
     public function testDelete()
     {
-        $this->connection->commit(Argument::that(function ($args) {
-            return isset($args['mutations'][0]['delete']);
-        }))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
-        ]);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->commit(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return isset($message['mutations'][0]['delete']);
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'delete');
         $snippet->addUse(KeySet::class);
@@ -690,11 +732,12 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecute()
     {
-        $this->connection->executeStreamingSql(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->executeStreamingSql(
+            Argument::type(ExecuteSqlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream());
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute');
         $snippet->addLocal('database', $this->database);
@@ -705,37 +748,57 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecuteWithParameterType()
     {
-        $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if (!isset($arg['params'])) {
-                return false;
-            }
-
-            if (!isset($arg['paramTypes'])) {
-                return false;
-            }
-
-            if ($arg['paramTypes']['timestamp']['code'] !== Database::TYPE_TIMESTAMP) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->resultGeneratorData([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'timestamp',
-                            'type' => [
-                                'code' => Database::TYPE_TIMESTAMP
+        $message = $this->serializer->decodeMessage(
+            new PartialResultSet(),
+            [
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'timestamp',
+                                'type' => [
+                                    'code' => Database::TYPE_TIMESTAMP
+                                ]
                             ]
                         ]
                     ]
+                ],
+                'values' => [
+                    ['nullValue' => 0]
                 ]
-            ],
-            'values' => [null]
-        ]));
+            ]
+        );
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return isset($message['params'])
+                    && isset($message['paramTypes'])
+                    && $message['paramTypes']['timestamp']['code'] === Database::TYPE_TIMESTAMP;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => [
+                                [
+                                    'name' => 'timestamp',
+                                    'type' => [
+                                        'code' => Database::TYPE_TIMESTAMP
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    'values' => [
+                        ['nullValue' => 0]
+                    ]
+                ]
+            )]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 1);
         $snippet->addLocal('database', $this->database);
@@ -746,44 +809,41 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecuteWithEmptyArray()
     {
-        $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if (!isset($arg['params'])) {
-                return false;
-            }
-
-            if (!isset($arg['paramTypes'])) {
-                return false;
-            }
-
-            if ($arg['paramTypes']['emptyArrayOfIntegers']['code'] !== Database::TYPE_ARRAY) {
-                return false;
-            }
-
-            if ($arg['paramTypes']['emptyArrayOfIntegers']['arrayElementType']['code'] !== Database::TYPE_INT64) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->resultGeneratorData([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'numbers',
-                            'type' => [
-                                'code' => Database::TYPE_ARRAY,
-                                'arrayElementType' => [
-                                    'code' => Database::TYPE_INT64
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return isset($message['params'])
+                    && isset($message['paramTypes'])
+                    && $message['paramTypes']['emptyArrayOfIntegers']['code'] === Database::TYPE_ARRAY
+                    && $message['paramTypes']['emptyArrayOfIntegers']['arrayElementType']['code']
+                        === Database::TYPE_INT64;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => [
+                                [
+                                    'name' => 'numbers',
+                                    'type' => [
+                                        'code' => Database::TYPE_ARRAY,
+                                        'arrayElementType' => [
+                                            'code' => Database::TYPE_INT64
+                                        ]
+                                    ]
                                 ]
                             ]
                         ]
+                    ],
+                    'values' => [
+                        ['listValue' => []]
                     ]
                 ]
-            ],
-            'values' => [[]]
-        ]));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+            )]));
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 2);
         $snippet->addLocal('database', $this->database);
@@ -794,11 +854,12 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecuteBeginSnapshot()
     {
-        $this->connection->executeStreamingSql(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator(false, self::TRANSACTION));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->executeStreamingSql(
+            Argument::type(ExecuteSqlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([], null, self::TRANSACTION));
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 5);
         $snippet->addLocal('database', $this->database);
@@ -810,11 +871,12 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecuteBeginTransaction()
     {
-        $this->connection->executeStreamingSql(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator(false, self::TRANSACTION));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->executeStreamingSql(
+            Argument::type(ExecuteSqlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([], null, self::TRANSACTION));
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 6);
         $snippet->addLocal('database', $this->database);
@@ -826,17 +888,19 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecutePartitionedUpdate()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION
-            ]);
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
 
-        $this->connection->executeStreamingSql(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator(true));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $stats = new ResultSetStats(['row_count_lower_bound' => 1]);
+        $this->spannerClient->executeStreamingSql(
+            Argument::type(ExecuteSqlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([], $stats));
 
         $snippet = $this->snippetFromMethod(Database::class, 'executePartitionedUpdate');
         $snippet->addLocal('database', $this->database);
@@ -847,11 +911,10 @@ class DatabaseTest extends SnippetTestCase
 
     public function testRead()
     {
-        $this->connection->streamingRead(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->streamingRead(
+            Argument::type(ReadRequest::class),
+            Argument::type('array')
+        )->willReturn($this->resultGeneratorStream());
 
         $snippet = $this->snippetFromMethod(Database::class, 'read');
         $snippet->addLocal('database', $this->database);
@@ -862,11 +925,10 @@ class DatabaseTest extends SnippetTestCase
 
     public function testReadWithSnapshot()
     {
-        $this->connection->streamingRead(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator(false, self::TRANSACTION));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->streamingRead(
+            Argument::type(ReadRequest::class),
+            Argument::type('array')
+        )->willReturn($this->resultGeneratorStream([], null, self::TRANSACTION));
 
         $snippet = $this->snippetFromMethod(Database::class, 'read', 1);
         $snippet->addLocal('database', $this->database);
@@ -878,11 +940,10 @@ class DatabaseTest extends SnippetTestCase
 
     public function testReadWithTransaction()
     {
-        $this->connection->streamingRead(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator(false, self::TRANSACTION));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->spannerClient->streamingRead(
+            Argument::type(ReadRequest::class),
+            Argument::type('array')
+        )->willReturn($this->resultGeneratorStream([], null, self::TRANSACTION));
 
         $snippet = $this->snippetFromMethod(Database::class, 'read', 2);
         $snippet->addLocal('database', $this->database);
@@ -907,6 +968,7 @@ class DatabaseTest extends SnippetTestCase
         $snippet->addLocal('database', $this->database);
 
         $res = $snippet->invoke();
+        $this->assertNull($res->returnVal());
     }
 
     public function testIam()
@@ -915,12 +977,12 @@ class DatabaseTest extends SnippetTestCase
         $snippet->addLocal('database', $this->database);
 
         $res = $snippet->invoke('iam');
-        $this->assertInstanceOf(Iam::class, $res->returnVal());
+        $this->assertInstanceOf(IamManager::class, $res->returnVal());
     }
 
     public function testResumeOperation()
     {
-        $snippet = $this->snippetFromMagicMethod(Database::class, 'resumeOperation');
+        $snippet = $this->snippetFromMethod(Database::class, 'resumeOperation');
         $snippet->addLocal('database', $this->database);
         $snippet->addLocal('operationName', 'foo');
 
@@ -934,18 +996,23 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'longRunningOperations');
         $snippet->addLocal('database', $this->database);
 
-        $lroConnection = $this->prophesize(LongRunningConnectionInterface::class);
-        $lroConnection->operations(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'operations' => [
-                    [
-                        'name' => 'foo'
-                    ]
-                ]
-            ]);
+        $operation = new Operation();
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn(new ListOperationsResponse(['operations' => [$operation]]));
+        $page->getNextPageToken()
+            ->willReturn(null);
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->willReturn($page->reveal());
 
-        $this->database->___setProperty('lroConnection', $lroConnection->reveal());
+        $operationsClient = $this->prophesize(OperationsClient::class);
+        $operationsClient->listOperations(Argument::cetera())
+            ->willReturn($pagedListResponse->reveal());
+
+        $this->databaseAdminClient->getOperationsClient()
+            ->shouldBeCalledOnce()
+            ->willReturn($operationsClient->reveal());
 
         $res = $snippet->invoke('operations');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());

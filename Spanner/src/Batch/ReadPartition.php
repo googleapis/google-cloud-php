@@ -36,7 +36,7 @@ use Google\Cloud\Spanner\KeySet;
  * use Google\Cloud\Spanner\KeySet;
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $batch = $spanner->batch('instance-id', 'database-id');
  * $snapshot = $batch->snapshot();
  *
@@ -118,7 +118,7 @@ class ReadPartition implements PartitionInterface
      *
      * @return string
      */
-    public function table()
+    public function table(): string
     {
         return $this->table;
     }
@@ -133,7 +133,7 @@ class ReadPartition implements PartitionInterface
      *
      * @return KeySet
      */
-    public function keySet()
+    public function keySet(): KeySet
     {
         return $this->keySet;
     }
@@ -148,7 +148,7 @@ class ReadPartition implements PartitionInterface
      *
      * @return array
      */
-    public function columns()
+    public function columns(): array
     {
         return $this->columns;
     }
@@ -163,7 +163,7 @@ class ReadPartition implements PartitionInterface
      *
      * @return string
      */
-    public function serialize()
+    public function serialize(): string
     {
         $vars = get_object_vars($this);
         $vars['keySet'] = $vars['keySet']->keySetObject();
@@ -180,7 +180,7 @@ class ReadPartition implements PartitionInterface
      * @return ReadPartition
      * @access private
      */
-    public static function hydrate(array $data)
+    public static function hydrate(array $data): self
     {
         return new self(
             $data['token'],

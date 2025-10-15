@@ -19,10 +19,9 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\FailedPreconditionException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -33,6 +32,14 @@ use Google\Cloud\Spanner\InstanceConfiguration;
  */
 class AdminTest extends SpannerTestCase
 {
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
+    {
+        self::setUpTestDatabase();
+    }
+
     /**
      * covers 121
      */
@@ -79,7 +86,11 @@ class AdminTest extends SpannerTestCase
             'nodeCount' => 0,
             'processingUnits' => 0,
             'state' => Instance::STATE_READY,
-            'config' => ''
+            'config' => '',
+            'replicaComputeCapacity' => [],
+            'edition' => 0,
+            'defaultBackupScheduleType' => 0,
+            'instanceType' => 0,
         ];
         $info = $instance->reload(['fieldMask' => $requestedFieldNames]);
         $this->assertEquals($expectedInfo, $info);
@@ -96,7 +107,8 @@ class AdminTest extends SpannerTestCase
         $op = $instance->createDatabase($dbName);
 
         $this->assertInstanceOf(LongRunningOperation::class, $op);
-        $db = $op->pollUntilComplete();
+        $op->pollUntilComplete();
+        $db = $op->result();
         $this->assertInstanceOf(Database::class, $db);
 
         self::$deletionQueue->add(function () use ($db) {
@@ -114,7 +126,7 @@ class AdminTest extends SpannerTestCase
         $expectedDatabaseDialect = DatabaseDialect::GOOGLE_STANDARD_SQL;
 
         // TODO: Remove this, when the emulator supports PGSQL
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+        if ((bool) getenv('SPANNER_EMULATOR_HOST')) {
             $expectedDatabaseDialect = DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
         }
 
@@ -122,7 +134,7 @@ class AdminTest extends SpannerTestCase
 
         $stmt = "CREATE TABLE Ids (\n" .
             "  id INT64 NOT NULL,\n" .
-            ") PRIMARY KEY(id)";
+            ') PRIMARY KEY(id)';
 
         $op = $db->updateDdl($stmt);
         $op->pollUntilComplete();
@@ -139,7 +151,8 @@ class AdminTest extends SpannerTestCase
         $op = $instance->createDatabase($dbName);
 
         $this->assertInstanceOf(LongRunningOperation::class, $op);
-        $db = $op->pollUntilComplete();
+        $op->pollUntilComplete();
+        $db = $op->result();
         $this->assertInstanceOf(Database::class, $db);
 
         $info = $db->reload();

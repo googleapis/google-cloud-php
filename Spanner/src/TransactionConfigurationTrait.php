@@ -17,12 +17,16 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Core\ArrayTrait;
+use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode as ReadLockMode;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
+use Google\Protobuf\Duration;
 
 /**
  * Configure transaction selection for read, executeSql, rollback and commit.
+ *
+ * @internal
  */
 trait TransactionConfigurationTrait
 {
@@ -34,21 +38,23 @@ trait TransactionConfigurationTrait
      * Depending on given options, can be singleUse or begin, and can be read
      * or read/write.
      *
+     * @see V1\TransactionSelector
+     *
      * @param array $options call options.
-     * @param array $previous Previously given call options (for single-use snapshots).
+     * @param PBReadOnly $transactionLevelReadOnlyOptions Previously given call options (for single-use snapshots).
      * @return array [(array) transaction selector, (string) context]
      */
-    private function transactionSelector(array &$options, array $previous = [])
+    private function transactionSelector(array &$options, ?PBReadOnly $transactionLevelReadOnlyOptions = null): array
     {
         $options += [
             'begin' => false,
             'transactionType' => SessionPoolInterface::CONTEXT_READ,
         ];
 
-        [$transactionOptions, $type, $context] = $this->transactionOptions($options, $previous);
+        [$transactionOptions, $type, $context] = $this->transactionOptions($options, $transactionLevelReadOnlyOptions);
 
         // TransactionSelector uses a different key name for singleUseTransaction
-        // and transactionId than transactionOptions, so we'll rewrite those here
+        // and transactionId than CommitRequest, so we'll rewrite those here
         // so transactionOptions works as expected for commitRequest.
 
         if ($type === 'singleUseTransaction') {
@@ -64,57 +70,24 @@ trait TransactionConfigurationTrait
     }
 
     /**
-     * Configure the DirectedReadOptions.
-     *
-     * Request level DirectedReadOptions takes precedence over client level DirectedReadOptions.
-     * Client level DirectedReadOptions apply only to read-only and single-use transactions.
-     *
-     * @param array $requestOptions Request level options.
-     * @param array $clientOptions Client level Directed Read Options.
-     * @return array
-     */
-    private function configureDirectedReadOptions(array $requestOptions, array $clientOptions)
-    {
-        if (isset($requestOptions['directedReadOptions'])) {
-            return $requestOptions['directedReadOptions'];
-        }
-
-        if (isset($requestOptions['transaction']['singleUse']) || (
-            isset($requestOptions['transactionContext']) &&
-            $requestOptions['transactionContext'] == SessionPoolInterface::CONTEXT_READ
-        ) || isset($requestOptions['transactionOptions']['readOnly'])
-        ) {
-            if (isset($clientOptions['includeReplicas'])) {
-                return ['includeReplicas' => $clientOptions['includeReplicas']];
-            } elseif (isset($clientOptions['excludeReplicas'])) {
-                return ['excludeReplicas' => $clientOptions['excludeReplicas']];
-            }
-        }
-
-        return [];
-    }
-
-    /**
      * Return transaction options based on given configuration options.
      *
-     * @param array $options call options.
-     * @param array $previous Previously given call options (for single-use snapshots).
+     * @see V1\TransactionOptions
+     *
+     * @param array $options call options
+     *
+     * @param PBReadOnly $transactionLevelReadOnlyOptions Previously given call options (for single-use snapshots).
      * @return array [(array) transaction options, (string) transaction type, (string) context]
      */
-    private function transactionOptions(array &$options, array $previous = [])
+    private function transactionOptions(array &$options, ?PBReadOnly $transactionLevelReadOnlyOptions = null): array
     {
-        $options += [
-            'begin' => false,
-            'transactionType' => SessionPoolInterface::CONTEXT_READWRITE,
-            'transactionId' => null,
-        ];
+        // @TODO: Remove $options being passed by reference
 
         $type = null;
+        $begin = $options['begin'] ?? [];
+        $context = $options['transactionType'] ?? SessionPoolInterface::CONTEXT_READWRITE;
+        $id = $options['transactionId'] ?? null;
 
-        $context = $this->pluck('transactionType', $options);
-        $id = $this->pluck('transactionId', $options);
-
-        $begin = $this->pluck('begin', $options);
         if ($id === null) {
             if ($begin) {
                 $type = 'begin';
@@ -128,10 +101,15 @@ trait TransactionConfigurationTrait
             $type = 'transactionId';
             $transactionOptions = $id;
         } elseif ($context === SessionPoolInterface::CONTEXT_READ) {
-            $transactionOptions = $this->configureSnapshotOptions($options, $previous);
+            $options += ['singleUse' => null];
+            $transactionOptions = $this->configureReadOnlyTransactionOptions(
+                $options,
+                $transactionLevelReadOnlyOptions
+            );
         } elseif ($context === SessionPoolInterface::CONTEXT_READWRITE) {
-            $transactionOptions = $this->configureTransactionOptions(
-                $type == 'begin' && is_array($begin) ? $begin : []
+            $transactionOptions = $this->configureReadWriteTransactionOptions(
+                // TODO: Find out when $begin is a bool and fix it
+                $type == 'begin' && !is_bool($begin) ? $begin : []
             );
         } else {
             throw new \BadMethodCallException(sprintf(
@@ -140,118 +118,181 @@ trait TransactionConfigurationTrait
             ));
         }
 
+        // @TODO: Remove this once $options is no longer passed by reference
+        unset(
+            $options['begin'],
+            $options['transactionType'],
+            $options['transactionId'],
+        );
+
+        // For backwards compatibility - remove all PBReadOnly fields
+        // This was previously being done in configureReadOnlyTransactionOptions
+        // @TODO: Remove this once $options is no longer passed by reference
+        unset(
+            $options['returnReadTimestamp'],
+            $options['strong'],
+            $options['readTimestamp'],
+            $options['exactStaleness'],
+            $options['minReadTimestamp'],
+            $options['maxStaleness'],
+        );
+
         return [$transactionOptions, $type, $context];
     }
 
-    private function configureTransactionOptions(array $options = [])
+    // Init readWrite options array with any necessary defaults for its nested options
+    private function initReadWriteTransactionOptions(): array
     {
-        $transactionOptions = [
-            'readWrite' => []
-        ];
+        return ['readWrite' => []];
+    }
 
-        if (isset($options['excludeTxnFromChangeStreams'])) {
-            $transactionOptions['excludeTxnFromChangeStreams'] = $options['excludeTxnFromChangeStreams'];
-        }
-
-        if (isset($options['isolationLevel'])) {
-            $transactionOptions['isolationLevel'] = $options['isolationLevel'];
-        }
-
-        // Allow for proper configuring of the `readLockMode` if it's set as a base or nested option
-        if (isset($options['readLockMode'])) {
-            $transactionOptions['readWrite']['readLockMode'] = $options['readLockMode'];
-        }
-
-        if (isset($options['readWrite']['readLockMode'])) {
-            $transactionOptions['readWrite']['readLockMode'] = $options['readWrite']['readLockMode'];
-        }
-
-        return $transactionOptions;
+    private function configureReadWriteTransactionOptions(array|TransactionOptions $options): array
+    {
+        $excludeTxn = $options instanceof TransactionOptions
+            ? $options->getExcludeTxnFromChangeStreams()
+            : $options['excludeTxnFromChangeStreams'] ?? null;
+        $isolationLevel = $options instanceof TransactionOptions
+            ? $options->getIsolationLevel()
+            : $options['isolationLevel'] ?? null;
+        $readLockMode = $options instanceof TransactionOptions
+            ? $options->getReadWrite()->getReadLockMode()
+            : $options['readLockMode'] ?? $options['readWrite']['readLockMode'] ?? null;
+        return array_filter([
+            'excludeTxnFromChangeStreams' => $excludeTxn,
+            'isolationLevel' => $isolationLevel,
+            'readWrite' => array_filter(['readLockMode' => $readLockMode]),
+        ]) + $this->initReadWriteTransactionOptions();
     }
 
     /**
      * Configure a Read-Only transaction.
      *
-     * @param array $options Configuration Options.
-     * @param array $previous Previously given call options (for single-use snapshots).
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     See [ReadOnly](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions.ReadOnly)
+     *     for detailed description of available options.
+     *
+     *     Please note that only one of `$strong`, `$readTimestamp` or
+     *     `$exactStaleness` may be set in a request.
+     *
+     *     @type bool $returnReadTimestamp If true, the Cloud Spanner-selected
+     *           read timestamp is included in the Transaction message that
+     *           describes the transaction.
+     *     @type bool $strong Read at a timestamp where all previously committed
+     *           transactions are visible.
+     *     @type Timestamp $readTimestamp Executes all reads at the given
+     *           timestamp.
+     *     @type Duration $exactStaleness Represents a number of seconds. Executes
+     *           all reads at a timestamp that is $exactStaleness old.
+     *     @type Timestamp $minReadTimestamp Executes all reads at a
+     *           timestamp >= min_read_timestamp. Only available when
+     *           `$options.singleUse` is true.
+     *     @type Duration $maxStaleness Read data at a timestamp >= NOW - max_staleness
+     *           seconds. Guarantees that all writes that have committed more
+     *           than the specified number of seconds ago are visible. Only
+     *           available when `$options.singleUse` is true.
+     *     @type bool $singleUse If true, a Transaction ID will not be allocated
+     *           up front. Instead, the transaction will be considered
+     *           "single-use", and may be used for only a single operation.
+     *           **Defaults to** `false`.
+     * }
+     * @param PBReadOnly $transactionLevelReadOnlyOptions Previously given call options (for single-use snapshots).
      * @return array
      */
-    private function configureSnapshotOptions(array &$options, array $previous = [])
-    {
-        $options += [
-            'singleUse' => false,
-            'returnReadTimestamp' => null,
-            'strong' => null,
-            'readTimestamp' => null,
-            'exactStaleness' => null,
-            'minReadTimestamp' => null,
-            'maxStaleness' => null,
-        ];
+    private function configureReadOnlyTransactionOptions(
+        array $options,
+        ?PBReadOnly $transactionLevelReadOnlyOptions = null
+    ): array {
+        // select only the PBReadOnly fields from $options
+        $readOnly = array_intersect_key($options, array_flip([
+            'minReadTimestamp',
+            'readTimestamp',
+            'returnReadTimestamp',
+            'exactStaleness',
+            'maxStaleness',
+            'strong'
+        ]));
 
-        $previousOptions = $previous['transactionOptions']['readOnly'] ?? [];
+        // Validate options types
+        if ($this->validateOptionType($readOnly, 'minReadTimestamp', Timestamp::class)) {
+            $readOnly['minReadTimestamp'] = $readOnly['minReadTimestamp']->formatAsString();
+        }
+
+        if ($this->validateOptionType($readOnly, 'readTimestamp', Timestamp::class)) {
+            $readOnly['readTimestamp'] = $readOnly['readTimestamp']->formatAsString();
+        }
+
+        $this->validateOptionType($readOnly, 'exactStaleness', Duration::class);
+        $this->validateOptionType($readOnly, 'maxStaleness', Duration::class);
 
         // These are only available in single-use transactions.
-        if (!$options['singleUse'] && ($options['maxStaleness'] || $options['minReadTimestamp'])) {
+        if (!($options['singleUse'] ?? false)
+            && (!empty($readOnly['maxStaleness']) || !empty($readOnly['minReadTimestamp']))
+        ) {
             throw new \BadMethodCallException(
                 'maxStaleness and minReadTimestamp are only available in single-use transactions.'
             );
         }
 
-        $transactionOptions = [
-            'readOnly' => $this->arrayFilterRemoveNull([
-                'returnReadTimestamp' => $this->pluck('returnReadTimestamp', $options),
-                'strong' => $this->pluck('strong', $options),
-                'minReadTimestamp' => $this->pluck('minReadTimestamp', $options),
-                'maxStaleness' => $this->pluck('maxStaleness', $options),
-                'readTimestamp' => $this->pluck('readTimestamp', $options),
-                'exactStaleness' => $this->pluck('exactStaleness', $options),
-            ]) + $previousOptions
-        ];
-
-        if (empty($transactionOptions['readOnly'])) {
-            $transactionOptions['readOnly']['strong'] = true;
+        if ($transactionLevelReadOnlyOptions && empty($readOnly)) {
+            $readOnly = $transactionLevelReadOnlyOptions;
         }
 
-        $timestampFields = [
-            'minReadTimestamp',
-            'readTimestamp'
-        ];
+        if (empty($readOnly)) {
+            $readOnly['strong'] = true;
+        }
 
-        $durationFields = [
-            'exactStaleness',
-            'maxStaleness'
-        ];
+        return ['readOnly' => $readOnly];
+    }
 
-        foreach ($timestampFields as $tsf) {
-            if (isset($transactionOptions['readOnly'][$tsf]) && !isset($previousOptions[$tsf])) {
-                $field = $transactionOptions['readOnly'][$tsf];
-                if (!($field instanceof Timestamp)) {
-                    throw new \BadMethodCallException(sprintf(
-                        'Read Only Transaction Configuration Field %s must be an instance of `%s`.',
-                        $tsf,
-                        Timestamp::class
-                    ));
-                }
+    /**
+     * Configure the DirectedReadOptions.
+     *
+     * Request level DirectedReadOptions takes precedence over client level DirectedReadOptions.
+     * Client level DirectedReadOptions apply only to read-only and single-use transactions.
+     *
+     * @param array $requestOptions Request level options.
+     * @param array $clientOptions Client level Directed Read Options.
+     * @return array
+     */
+    private function configureDirectedReadOptions(array $requestOptions, array $clientOptions): array
+    {
+        if (isset($requestOptions['directedReadOptions'])) {
+            return $requestOptions['directedReadOptions'];
+        }
 
-                $transactionOptions['readOnly'][$tsf] = $field->formatAsString();
+        if (isset($requestOptions['transaction']['singleUse']) || (
+            ($requestOptions['transactionContext'] ?? null) == SessionPoolInterface::CONTEXT_READ
+        ) || isset($requestOptions['transactionOptions']['readOnly'])
+        ) {
+            if (isset($clientOptions['includeReplicas'])) {
+                return ['includeReplicas' => $clientOptions['includeReplicas']];
+            } elseif (isset($clientOptions['excludeReplicas'])) {
+                return ['excludeReplicas' => $clientOptions['excludeReplicas']];
             }
         }
 
-        foreach ($durationFields as $df) {
-            if (isset($transactionOptions['readOnly'][$df]) && !isset($previousOptions[$df])) {
-                $field = $transactionOptions['readOnly'][$df];
-                if (!($field instanceof Duration)) {
-                    throw new \BadMethodCallException(sprintf(
-                        'Read Only Transaction Configuration Field %s must be an instance of `%s`.',
-                        $df,
-                        Duration::class
-                    ));
-                }
+        return [];
+    }
 
-                $transactionOptions['readOnly'][$df] = $field->get();
-            }
+    /**
+     * @throws \BadMethodCallException
+     */
+    private function validateOptionType(array $options, string $field, string $type): bool
+    {
+        if (!isset($options[$field])) {
+            return false;
         }
 
-        return $transactionOptions;
+        if (!$options[$field] instanceof $type) {
+            throw new \BadMethodCallException(sprintf(
+                'Read Only Transaction Configuration Field %s must be an instance of `%s`.',
+                $field,
+                $type
+            ));
+        }
+
+        return true;
     }
 }

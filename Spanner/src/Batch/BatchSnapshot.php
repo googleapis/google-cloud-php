@@ -41,7 +41,7 @@ use Google\Cloud\Spanner\TransactionalReadInterface;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $batch = $spanner->batch('instance-id', 'database-id');
  * $snapshot = $batch->snapshot();
  * ```
@@ -92,7 +92,7 @@ class BatchSnapshot implements TransactionalReadInterface
      * @param array $options [optional] Configuration Options
      * @return void
      */
-    public function close(array $options = [])
+    public function close(array $options = []): void
     {
         $this->session->delete($options);
     }
@@ -131,7 +131,7 @@ class BatchSnapshot implements TransactionalReadInterface
      * }
      * @return ReadPartition[]
      */
-    public function partitionRead($table, KeySet $keySet, array $columns, array $options = [])
+    public function partitionRead($table, KeySet $keySet, array $columns, array $options = []): array
     {
         return $this->operation->partitionRead(
             $this->session,
@@ -194,7 +194,7 @@ class BatchSnapshot implements TransactionalReadInterface
      * }
      * @return QueryPartition[]
      */
-    public function partitionQuery($sql, array $options = [])
+    public function partitionQuery($sql, array $options = []): array
     {
         return $this->operation->partitionQuery(
             $this->session,
@@ -218,11 +218,10 @@ class BatchSnapshot implements TransactionalReadInterface
      * ```
      *
      * @param PartitionInterface $partition The partition to read.
-     * @param array $options Configuration Options.
      * @return Result
      * @throws \BadMethodCallException If an invalid partition type is given.
      */
-    public function executePartition(PartitionInterface $partition, array $options = [])
+    public function executePartition(PartitionInterface $partition): Result
     {
         if ($partition instanceof QueryPartition) {
             return $this->executeQuery($partition);
@@ -243,7 +242,7 @@ class BatchSnapshot implements TransactionalReadInterface
      *
      * @return string
      */
-    public function serialize()
+    public function serialize(): string
     {
         return base64_encode(json_encode([
             'sessionName' => $this->session->name(),
@@ -269,7 +268,7 @@ class BatchSnapshot implements TransactionalReadInterface
      * @param QueryPartition $partition The partition.
      * @return Result
      */
-    private function executeQuery(QueryPartition $partition)
+    private function executeQuery(QueryPartition $partition): Result
     {
         return $this->execute($partition->sql(), [
             'partitionToken' => $partition->token()
@@ -282,7 +281,7 @@ class BatchSnapshot implements TransactionalReadInterface
      * @param ReadPartition $partition The partition.
      * @return Result
      */
-    private function executeRead(ReadPartition $partition)
+    private function executeRead(ReadPartition $partition): Result
     {
         return $this->read($partition->table(), $partition->keySet(), $partition->columns(), [
             'partitionToken' => $partition->token()

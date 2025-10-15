@@ -28,7 +28,7 @@ use Psr\Http\Message\StreamInterface;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $bytes = $spanner->bytes('hello world');
  * ```
@@ -43,12 +43,12 @@ class Bytes implements ValueInterface
     /**
      * @var string|resource|StreamInterface
      */
-    private $value;
+    private mixed $value;
 
     /**
      * @param string|resource|StreamInterface $value The bytes value.
      */
-    public function __construct($value)
+    public function __construct(mixed $value)
     {
         $this->value = Utils::streamFor($value);
     }
@@ -63,7 +63,7 @@ class Bytes implements ValueInterface
      *
      * @return StreamInterface
      */
-    public function get()
+    public function get(): StreamInterface
     {
         return $this->value;
     }
@@ -78,7 +78,7 @@ class Bytes implements ValueInterface
      *
      * @return int
      */
-    public function type()
+    public function type(): int
     {
         return Database::TYPE_BYTES;
     }
@@ -93,7 +93,7 @@ class Bytes implements ValueInterface
      *
      * @return string
      */
-    public function formatAsString()
+    public function formatAsString(): string
     {
         return base64_encode((string) $this->value);
     }

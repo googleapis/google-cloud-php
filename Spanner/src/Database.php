@@ -17,30 +17,55 @@
 
 namespace Google\Cloud\Spanner;
 
+use Closure;
+use DateTimeInterface;
+use Generator;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LROTrait;
+use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Spanner\Connection\IamDatabase;
+use Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
+use Google\Cloud\Spanner\V1\BatchWriteRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\Mutation\Delete;
+use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\LongRunning\ListOperationsRequest;
+use Google\LongRunning\Operation as OperationProto;
+use Google\Protobuf\Duration;
+use Google\Protobuf\ListValue;
+use Google\Protobuf\Struct;
+use Google\Protobuf\Value;
 use Google\Rpc\Code;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Represents a Cloud Spanner Database.
@@ -49,7 +74,7 @@ use Google\Rpc\Code;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  * ```
@@ -58,52 +83,16 @@ use Google\Rpc\Code;
  * // Databases can also be connected to via an Instance.
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $instance = $spanner->instance('my-instance');
  * $database = $instance->database('my-database');
  * ```
- *
- * @method resumeOperation() {
- *     Resume a Long Running Operation
- *
- *     Example:
- *     ```
- *     $operation = $database->resumeOperation($operationName);
- *     ```
- *
- *     @param string $operationName The Long Running Operation name.
- *     @param array $info [optional] The operation data.
- *     @return LongRunningOperation
- * }
- * @method longRunningOperations() {
- *     List long running operations.
- *
- *     Example:
- *     ```
- *     $operations = $database->longRunningOperations();
- *     ```
- *
- *     @param array $options [optional] {
- *         Configuration Options.
- *
- *         @type string $name The name of the operation collection.
- *         @type string $filter The standard list filter.
- *         @type int $pageSize Maximum number of results to return per
- *               request.
- *         @type int $resultLimit Limit the number of results returned in total.
- *               **Defaults to** `0` (return all results).
- *         @type string $pageToken A previously-returned page token used to
- *               resume the loading of results from a specific point.
- *     }
- *     @return ItemIterator<InstanceConfiguration>
- * }
  */
 class Database
 {
-    use LROTrait;
     use TransactionConfigurationTrait;
-    use RequestHeaderTrait;
+    use RequestTrait;
 
     const STATE_CREATING = State::CREATING;
     const STATE_READY = State::READY;
@@ -128,71 +117,25 @@ class Database
     const TYPE_PG_OID = 'pgOid';
     const TYPE_INTERVAL = TypeCode::INTERVAL;
 
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
+    private Operation $operation;
+    private IamManager|null $iam = null;
+    private Session|null $session = null;
+    private bool $isRunningTransaction = false;
+    private array $directedReadOptions;
+    private bool $routeToLeader;
+    private array $defaultQueryOptions;
+    private string $databaseRole;
+    private bool $returnInt64AsObject;
+    private SessionPoolInterface|null $sessionPool;
+    private array $info;
 
-    /**
-     * @var Instance
-     */
-    private $instance;
-
-    /**
-     * @var Operation
-     */
-    private $operation;
-
-    /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var array
-     */
-    private $info;
-
-    /**
-     * @var Iam|null
-     */
-    private $iam;
-
-    /**
-     * @var Session|null
-     */
-    private $session;
-
-    /**
-     * @var SessionPoolInterface|null
-     */
-    private $sessionPool;
-
-    /**
-     * @var bool
-     */
-    private $isRunningTransaction = false;
-
-    /**
-     * @var string|null
-     */
-    private $databaseRole;
-
-    /**
-     * @var array
-     */
-    private $directedReadOptions;
-
-    /**
-     * @var bool
-     */
-    private $returnInt64AsObject;
+    private const MUTATION_SETTERS = [
+        'insert' => 'setInsert',
+        'update' => 'setUpdate',
+        'insertOrUpdate' => 'setInsertOrUpdate',
+        'replace' => 'setReplace',
+        'delete' => 'setDelete'
+    ];
 
     /**
      * @var int
@@ -202,54 +145,65 @@ class Database
     /**
      * Create an object representing a Database.
      *
-     * @param ConnectionInterface $connection The connection to the
-     *        Cloud Spanner Admin API. This object is created by SpannerClient,
-     *        and should not be instantiated outside of this client.
+     * @internal Database is constructed by the {@see Instance} class.
+     *
+     * @param SpannerClient $spannerClient The Spanner client used to interact with the API.
+     * @param DatabaseAdminClient $databaseAdminClient The database admin client used to interact with the API.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param Instance $instance The instance in which the database exists.
-     * @param LongRunningConnectionInterface $lroConnection An implementation
-     *        mapping to methods which handle LRO resolution in the service.
-     * @param array $lroCallables
      * @param string $projectId The project ID.
      * @param string $name The database name or ID.
-     * @param SessionPoolInterface $sessionPool [optional] The session pool
-     *        implementation.
-     * @param bool $returnInt64AsObject [optional If true, 64 bit integers will
-     *        be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
-     *        platform compatibility. **Defaults to** false.
-     * @param string $databaseRole The user created database role which creates the session.
-     * @param int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     * @param array $options [Optional] {
+     *     Database options.
+     *
+     *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
+     *         **Defaults to** `true` (enabled).
+     *     @type array $defaultQueryOptions
+     *     @type SessionPoolInterface $sessionPool The session pool
+     *         implementation.
+     *     @type bool $returnInt64AsObject If true, 64 bit integers will
+     *         be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
+     *         platform compatibility. **Defaults to** false.
+     *     @type string $databaseRole The user created database role which
+     *         creates the session.
+     *     @type array $database The database info.
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
      *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
+     * }
      */
     public function __construct(
-        ConnectionInterface $connection,
-        Instance $instance,
-        LongRunningConnectionInterface $lroConnection,
-        array $lroCallables,
-        $projectId,
-        $name,
-        ?SessionPoolInterface $sessionPool = null,
-        $returnInt64AsObject = false,
-        array $info = [],
-        $databaseRole = '',
-        $isolationLevel = IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
+        private SpannerClient $spannerClient,
+        private DatabaseAdminClient $databaseAdminClient,
+        private Serializer $serializer,
+        private Instance $instance,
+        private string $projectId,
+        private string $name,
+        array $options = [],
     ) {
-        $this->connection = $connection;
-        $this->instance = $instance;
-        $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedDatabaseName($name);
-        $this->sessionPool = $sessionPool;
-        $this->operation = new Operation($connection, $returnInt64AsObject);
-        $this->info = $info;
+        $this->routeToLeader = $options['routeToLeader'] ?? true;
+        $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
+        $this->databaseRole = $options['databaseRole'] ?? '';
+        $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
+        $this->sessionPool = $options['sessionPool'] ?? null;
+        $this->info = $options['database'] ?? [];
+        $this->isolationLevel = $options['isolationLevel'] ?? IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
+        $this->operation = new Operation(
+            $this->spannerClient,
+            $serializer,
+            [
+                'routeToLeader' => $this->routeToLeader,
+                'defaultQueryOptions' => $this->defaultQueryOptions,
+                'returnInt64AsObject' => $this->returnInt64AsObject,
+            ]
+        );
 
         if ($this->sessionPool) {
             $this->sessionPool->setDatabase($this);
         }
 
-        $this->setLroProperties($lroConnection, $lroCallables, $this->name);
-        $this->databaseRole = $databaseRole;
+        $this->optionsValidator = new OptionsValidator($serializer);
         $this->directedReadOptions = $instance->directedReadOptions();
-        $this->returnInt64AsObject = $returnInt64AsObject;
-        $this->isolationLevel = $isolationLevel;
     }
 
     /**
@@ -271,7 +225,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return int|null
      */
-    public function state(array $options = [])
+    public function state(array $options = []): int|null
     {
         $info = $this->info($options);
 
@@ -303,7 +257,7 @@ class Database
      *
      * @return ItemIterator<Backup>
      */
-    public function backups(array $options = [])
+    public function backups(array $options = []): ItemIterator
     {
         $filter = 'database:' . $this->name();
 
@@ -325,7 +279,7 @@ class Database
      * ```
      *
      * @param string $name The backup name.
-     * @param \DateTimeInterface $expireTime ​The expiration time of the backup,
+     * @param DateTimeInterface $expireTime ​The expiration time of the backup,
      *        with microseconds granularity that must be at least 6 hours and
      *        at most 366 days. Once the expireTime has passed, the backup is
      *        eligible to be automatically deleted by Cloud Spanner.
@@ -333,8 +287,11 @@ class Database
      *
      * @return LongRunningOperation<Backup>
      */
-    public function createBackup($name, \DateTimeInterface $expireTime, array $options = [])
-    {
+    public function createBackup(
+        string $name,
+        DateTimeInterface $expireTime,
+        array $options = []
+    ): LongRunningOperation {
         $backup = $this->instance->backup($name);
         return $backup->create($this->name(), $expireTime, $options);
     }
@@ -349,7 +306,7 @@ class Database
      *
      * @return string
      */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
@@ -369,7 +326,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return array
      */
-    public function info(array $options = [])
+    public function info(array $options = []): array
     {
         return $this->info ?: $this->reload($options);
     }
@@ -389,11 +346,23 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return array
      */
-    public function reload(array $options = [])
+    public function reload(array $options = []): array
     {
-        return $this->info = $this->connection->getDatabase([
-            'name' => $this->name
-        ] + $options);
+        /**
+         * @var GetDatabaseRequest $getDatabase
+         * @var array $callOptions
+         */
+        [$getDatabase, $callOptions] = $this->validateOptions(
+            $options,
+            new GetDatabaseRequest(),
+            CallOptions::class
+        );
+        $getDatabase->setName($this->name);
+
+        $response = $this->databaseAdminClient->getDatabase($getDatabase, $callOptions + [
+            'resource-prefix' => $this->name,
+        ]);
+        return $this->info = $this->handleResponse($response);
     }
 
     /**
@@ -413,7 +382,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return bool
      */
-    public function exists(array $options = [])
+    public function exists(array $options = []): bool
     {
         try {
             $this->reload($options);
@@ -447,20 +416,29 @@ class Database
      * }
      * @return LongRunningOperation<Database>
      */
-    public function create(array $options = [])
+    public function create(array $options = []): LongRunningOperation
     {
-        $statements = $this->pluck('statements', $options, false) ?: [];
-        $dialect = $options['databaseDialect'] ?? null;
+        $dialect = $options['databaseDialect'] ?? DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
+        $options += [
+            'parent' => $this->instance->name(),
+            'createStatement' => $this->getCreateDbStatement($dialect),
+            'extraStatements' => $this->pluck('statements', $options, false) ?: []
+        ];
 
-        $createStatement = $this->getCreateDbStatement($dialect);
+        /**
+         * @var CreateDatabaseRequest $createDatabase
+         * @var array $callOptions
+         */
+        [$createDatabase, $callOptions] = $this->validateOptions(
+            $options,
+            new CreateDatabaseRequest(),
+            CallOptions::class,
+        );
 
-        $operation = $this->connection->createDatabase([
-            'instance' => $this->instance->name(),
-            'createStatement' => $createStatement,
-            'extraStatements' => $statements
-        ] + $options);
-
-        return $this->resumeOperation($operation['name'], $operation);
+        $operation = $this->databaseAdminClient->createDatabase($createDatabase, $callOptions + [
+            'resource-prefix' => $this->instance->name(),
+        ]);
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -479,7 +457,7 @@ class Database
      *
      * @return LongRunningOperation<Database>
      */
-    public function restore($backup, array $options = [])
+    public function restore(Backup|string $backup, array $options = []): LongRunningOperation
     {
         return $this->instance->createDatabaseFromBackup($this->name, $backup, $options);
     }
@@ -504,21 +482,35 @@ class Database
      * }
      * @return LongRunningOperation<Database>
      */
-    public function updateDatabase(array $options = [])
+    public function updateDatabase(array $options = []): LongRunningOperation
     {
         $fieldMask = [];
         if (isset($options['enableDropProtection'])) {
             $fieldMask[] = 'enable_drop_protection';
         }
-        return $this->connection->updateDatabase([
+        $options += [
+            'updateMask' => ['paths' => $fieldMask],
             'database' => [
                 'name' => $this->name,
-                'enableDropProtection' => $options['enableDropProtection'] ?? false,
-            ],
-            'updateMask' => [
-                'paths' => $fieldMask
+                'enableDropProtection' =>
+                    $this->pluck('enableDropProtection', $options, false) ?: false
             ]
-        ] + $options);
+        ];
+
+        /**
+         * @var UpdateDatabaseRequest $updateDatabase
+         * @var array $callOptions
+         */
+        [$updateDatabase, $callOptions] = $this->validateOptions(
+            $options,
+            new UpdateDatabaseRequest(),
+            CallOptions::class
+        );
+
+        $operation = $this->databaseAdminClient->updateDatabase($updateDatabase, $callOptions + [
+            'resource-prefix' => $this->name,
+        ]);
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -544,9 +536,9 @@ class Database
      *
      * @param string $statement A DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return LongRunningOperation
+     * @return LongRunningOperation<void>
      */
-    public function updateDdl($statement, array $options = [])
+    public function updateDdl(string $statement, array $options = []): LongRunningOperation
     {
         return $this->updateDdlBatch([$statement], $options);
     }
@@ -578,17 +570,32 @@ class Database
      * @codingStandardsIgnoreEnd
      *
      * @param string[] $statements A list of DDL statements to run against a database.
-     * @param array $options [optional] Configuration options.
-     * @return LongRunningOperation
+     * @param array $options Configuration options. Supports setting the fields
+     *        of {@see UpdateDatabaseDdlRequest} and {@see CallOptions}.
+     * @return LongRunningOperation<void>
      */
-    public function updateDdlBatch(array $statements, array $options = [])
+    public function updateDdlBatch(array $statements, array $options = []): LongRunningOperation
     {
-        $operation = $this->connection->updateDatabaseDdl($options + [
-            'name' => $this->name,
-            'statements' => $statements,
+        $options += [
+            'database' => $this->name,
+            'statements' => $statements
+        ];
+
+        /**
+         * @var UpdateDatabaseDdlRequest $updateDatabaseDdl
+         * @var array $callOptions
+         */
+        [$updateDatabaseDdl, $callOptions] = $this->validateOptions(
+            $options,
+            new UpdateDatabaseDdlRequest(),
+            CallOptions::class,
+        );
+
+        $operation = $this->databaseAdminClient->updateDatabaseDdl($updateDatabaseDdl, $callOptions + [
+            'resource-prefix' => $this->name
         ]);
 
-        return $this->resumeOperation($operation['name'], $operation);
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -610,13 +617,25 @@ class Database
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#google.spanner.admin.database.v1.DropDatabaseRequest DropDatabaseRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options Configuration options. Supports setting the fields
+     *        of {@see DropDatabaseRequest} and {@see CallOptions}.
      * @return void
      */
-    public function drop(array $options = [])
+    public function drop(array $options = []): void
     {
-        $this->connection->dropDatabase($options + [
-            'name' => $this->name
+        /**
+         * @var DropDatabaseRequest $dropDatabase
+         * @var array $callOptions
+         */
+        [$dropDatabase, $callOptions] = $this->validateOptions(
+            $options,
+            new DropDatabaseRequest(),
+            CallOptions::class,
+        );
+        $dropDatabase->setDatabase($this->name);
+
+        $this->databaseAdminClient->dropDatabase($dropDatabase, $callOptions + [
+            'resource-prefix' => $this->name
         ]);
 
         if ($this->sessionPool) {
@@ -643,14 +662,27 @@ class Database
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#getdatabaseddlrequest GetDatabaseDdlRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options Configuration options. Supports setting the fields
+     *        of {@see GetDatabaseDdlRequest} and {@see CallOptions}.
      * @return array
      */
-    public function ddl(array $options = [])
+    public function ddl(array $options = []): array
     {
-        $ddl = $this->connection->getDatabaseDDL($options + [
-            'name' => $this->name
+        /**
+         * @var GetDatabaseDdlRequest $getDatabaseDdl
+         * @var array $callOptions
+         */
+        [$getDatabaseDdl, $callOptions] = $this->validateOptions(
+            $options,
+            new GetDatabaseDdlRequest(),
+            CallOptions::class,
+        );
+        $getDatabaseDdl->setDatabase($this->name);
+
+        $response = $this->databaseAdminClient->getDatabaseDdl($getDatabaseDdl, $callOptions + [
+            'resource-prefix' => $this->name
         ]);
+        $ddl = $this->handleResponse($response);
 
         if (isset($ddl['statements'])) {
             return $ddl['statements'];
@@ -667,13 +699,15 @@ class Database
      * $iam = $database->iam();
      * ```
      *
-     * @return Iam
+     * @return IamManager
      */
-    public function iam()
+    public function iam(): IamManager
     {
         if (!$this->iam) {
-            $this->iam = new Iam(
-                new IamDatabase($this->connection),
+            $this->iam = new IamManager(
+                new RequestHandler($this->serializer, [$this->databaseAdminClient]),
+                $this->serializer,
+                DatabaseAdminClient::class,
                 $this->name
             );
         }
@@ -738,17 +772,13 @@ class Database
      *           **Defaults to** `false`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
-     *     @type array $directedReadOptions Directed read options.
-     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
-     *           If using the `replicaSelection::type` setting, utilize the constants available in
-     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
-     * @return Snapshot
+     * @return TransactionalReadInterface
      * @throws \BadMethodCallException If attempting to call this method within
      *         an existing transaction.
      * @codingStandardsIgnoreEnd
      */
-    public function snapshot(array $options = [])
+    public function snapshot(array $options = []): TransactionalReadInterface
     {
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
@@ -758,10 +788,18 @@ class Database
             'singleUse' => false
         ];
 
-        $options['transactionOptions'] = $this->configureSnapshotOptions($options);
-        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
-            $options,
-            $this->directedReadOptions ?? []
+        $options['transactionOptions'] = $this->configureReadOnlyTransactionOptions($options);
+
+        // For backwards compatibility - remove all PBReadOnly fields
+        // This was previously being done in configureReadOnlyTransactionOptions
+        // @TODO: clean this up
+        unset(
+            $options['returnReadTimestamp'],
+            $options['strong'],
+            $options['readTimestamp'],
+            $options['exactStaleness'],
+            $options['minReadTimestamp'],
+            $options['maxStaleness'],
         );
 
         $session = $this->selectSession(
@@ -810,23 +848,21 @@ class Database
      *           Session labels may be applied using the `labels` key.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
-     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
-     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      * @return Transaction
      * @throws \BadMethodCallException If attempting to call this method within
      *         an existing transaction.
      */
-    public function transaction(array $options = [])
+    public function transaction(array $options = []): Transaction
     {
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
         // Configure readWrite options here. Any nested options for readWrite should be added to this call
-        $options['transactionOptions'] = $this->configureTransactionOptions($options['transactionOptions'] ?? [
-            'isolationLevel' => $options['isolationLevel'] ?? $this->isolationLevel
-        ]);
+        $options['transactionOptions'] = $this->configureReadWriteTransactionOptions(
+            ($options['transactionOptions'] ?? []) + ['isolationLevel' => $this->isolationLevel]
+        );
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -903,8 +939,12 @@ class Database
      * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type int $maxRetries The number of times to attempt to apply the
-     *           operation before failing. **Defaults to ** `10`.
+     *     @type RetrySettings|array $retrySettings {
+     *           Retry configuration options. Currently, only the `maxRetries` option is supported.
+     *
+     *           @type int $maxRetries The maximum number of retry attempts before the operation fails.
+     *                 Defaults to 10.
+     *     }
      *     @type bool $singleUse If true, a Transaction ID will not be allocated
      *           up front. Instead, the transaction will be considered
      *           "single-use", and may be used for only a single operation. Note
@@ -924,21 +964,25 @@ class Database
      * @throws \BadMethodCallException If attempting to call this method within
      *         an existing transaction.
      */
-    public function runTransaction(callable $operation, array $options = [])
+    public function runTransaction(callable $operation, array $options = []): mixed
     {
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
+        $options += ['retrySettings' => ['maxRetries' => self::MAX_RETRIES]];
 
-        $options += [
-            'maxRetries' => self::MAX_RETRIES,
-        ];
+        $retrySettings = $this->pluck('retrySettings', $options);
+        if ($retrySettings instanceof RetrySettings) {
+            $maxRetries = $retrySettings->getMaxRetries();
+        } else {
+            $maxRetries = $retrySettings['maxRetries'];
+        }
 
-        $transactionOptions = (isset($options['transactionOptions'])) ? $options['transactionOptions'] : [];
-
-        $options['transactionOptions'] = $this->configureTransactionOptions([
-            'isolationLevel' => $options['transactionOptions']['isolationLevel'] ?? $this->isolationLevel
-        ] + $transactionOptions);
+        // Configure necessary readWrite nested and base options
+        $transactionOptions = $options['transactionOptions'] ?? [];
+        $options['transactionOptions'] = $this->configureReadWriteTransactionOptions(
+            $transactionOptions + ['isolationLevel' => $this->isolationLevel]
+        );
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -947,7 +991,6 @@ class Database
 
         $attempt = 0;
         $startTransactionFn = function ($session, $options) use (&$attempt) {
-
             // Initial attempt requires to set `begin` options (ILB).
             if ($attempt === 0) {
                 if (!isset($options['transactionOptions']['isolationLevel'])) {
@@ -1005,7 +1048,7 @@ class Database
             return $res;
         };
 
-        $retry = new Retry($options['maxRetries'], $delayFn);
+        $retry = new Retry($maxRetries, $delayFn);
 
         try {
             return $retry->execute($transactionFn, [$operation, $session, $options]);
@@ -1052,7 +1095,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function insert($table, array $data, array $options = [])
+    public function insert(string $table, array $data, array $options = []): Timestamp
     {
         return $this->insertBatch($table, [$data], $options);
     }
@@ -1101,7 +1144,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function insertBatch($table, array $dataSet, array $options = [])
+    public function insertBatch(string $table, array $dataSet, array $options = []): Timestamp
     {
         $mutations = [];
         foreach ($dataSet as $data) {
@@ -1147,7 +1190,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function update($table, array $data, array $options = [])
+    public function update(string $table, array $data, array $options = []): Timestamp
     {
         return $this->updateBatch($table, [$data], $options);
     }
@@ -1193,7 +1236,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function updateBatch($table, array $dataSet, array $options = [])
+    public function updateBatch(string $table, array $dataSet, array $options = []): Timestamp
     {
         $mutations = [];
         foreach ($dataSet as $data) {
@@ -1240,7 +1283,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function insertOrUpdate($table, array $data, array $options = [])
+    public function insertOrUpdate(string $table, array $data, array $options = []): Timestamp
     {
         return $this->insertOrUpdateBatch($table, [$data], $options);
     }
@@ -1288,7 +1331,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function insertOrUpdateBatch($table, array $dataSet, array $options = [])
+    public function insertOrUpdateBatch(string $table, array $dataSet, array $options = []): Timestamp
     {
         $mutations = [];
         foreach ($dataSet as $data) {
@@ -1335,7 +1378,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function replace($table, array $data, array $options = [])
+    public function replace(string $table, array $data, array $options = []): Timestamp
     {
         return $this->replaceBatch($table, [$data], $options);
     }
@@ -1383,7 +1426,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function replaceBatch($table, array $dataSet, array $options = [])
+    public function replaceBatch(string $table, array $dataSet, array $options = []): Timestamp
     {
         $mutations = [];
         foreach ($dataSet as $data) {
@@ -1433,7 +1476,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function delete($table, KeySet $keySet, array $options = [])
+    public function delete(string $table, KeySet $keySet, array $options = []): Timestamp
     {
         $mutations = [$this->operation->deleteMutation($table, $keySet)];
 
@@ -1693,7 +1736,7 @@ class Database
      * @codingStandardsIgnoreEnd
      * @return Result
      */
-    public function execute($sql, array $options = [])
+    public function execute(string $sql, array $options = []): Result
     {
         unset($options['requestOptions']['transactionTag']);
         $session = $this->pluck('session', $options, false)
@@ -1706,7 +1749,6 @@ class Database
             $options['transaction'],
             $options['transactionContext']
         ) = $this->transactionSelector($options);
-        $options = $this->addLarHeader($options, true, $options['transactionContext']);
 
         if (isset($options['transaction']['readWrite'])) {
             $options['transaction']['begin']['isolationLevel'] ??= $this->isolationLevel;
@@ -1714,11 +1756,15 @@ class Database
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
-            $this->directedReadOptions ?? []
+            $this->directedReadOptions
         );
 
         try {
-            return $this->operation->execute($session, $sql, $options);
+            // Unset the internal flag.
+            unset($options['singleUse']);
+            return $this->operation->execute($session, $sql, $options + [
+                'route-to-leader' => $options['transactionContext'] === SessionPoolInterface::CONTEXT_READWRITE
+            ]);
         } finally {
             $session->setExpiration();
         }
@@ -1729,7 +1775,7 @@ class Database
      *
      * @return MutationGroup
      */
-    public function mutationGroup()
+    public function mutationGroup(): MutationGroup
     {
         return new MutationGroup($this->returnInt64AsObject);
     }
@@ -1776,11 +1822,11 @@ class Database
      *           transactions.
      * }
      *
-     * @return \Generator {@see \Google\Cloud\Spanner\V1\BatchWriteResponse}
+     * @return Generator {@see \Google\Cloud\Spanner\V1\BatchWriteResponse}
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchWrite(array $mutationGroups, array $options = [])
+    public function batchWrite(array $mutationGroups, array $options = []): Generator
     {
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
@@ -1794,12 +1840,32 @@ class Database
 
         $mutationGroups = array_map(fn ($x) => $x->toArray(), $mutationGroups);
 
+        array_walk(
+            $mutationGroups,
+            fn (&$x) => $x['mutations'] = $this->parseMutations($x['mutations'])
+        );
+
         try {
-            return $this->connection->batchWrite([
-                'database' => $this->name(),
+            $options += [
                 'session' => $session->name(),
                 'mutationGroups' => $mutationGroups
-            ] + $options);
+            ];
+
+            /**
+             * @var BatchWriteRequest $batchWrite
+             * @var array $callOptions
+             */
+            [$batchWrite, $callOptions] = $this->validateOptions(
+                $options,
+                new BatchWriteRequest(),
+                CallOptions::class
+            );
+
+            $response = $this->spannerClient->batchWrite($batchWrite, $callOptions + [
+                'resource-prefix' => $this->name,
+                'route-to-leader' => $this->routeToLeader,
+            ]);
+            return $this->handleResponse($response);
         } finally {
             $this->isRunningTransaction = false;
             $session->setExpiration();
@@ -1926,7 +1992,7 @@ class Database
      * @return int The number of rows modified.
      * @throws ValidationException
      */
-    public function executePartitionedUpdate($statement, array $options = [])
+    public function executePartitionedUpdate($statement, array $options = []): int
     {
         unset($options['requestOptions']['transactionTag']);
 
@@ -1945,15 +2011,15 @@ class Database
         if (isset($options['transactionOptions']['excludeTxnFromChangeStreams'])) {
             $beginTransactionOptions['transactionOptions']['excludeTxnFromChangeStreams'] =
                 $options['transactionOptions']['excludeTxnFromChangeStreams'];
+            unset($options['transactionOptions']);
         }
 
         $transaction = $this->operation->transaction($session, $beginTransactionOptions);
 
-        $options = $this->addLarHeader($options);
-
         try {
             return $this->operation->executeUpdate($session, $transaction, $statement, [
-                'statsItem' => 'rowCountLowerBound'
+                'statsItem' => 'rowCountLowerBound',
+                'route-to-leader' => true,
             ] + $options);
         } finally {
             $session->setExpiration();
@@ -2083,7 +2149,7 @@ class Database
      * @codingStandardsIgnoreEnd
      * @return Result
      */
-    public function read($table, KeySet $keySet, array $columns, array $options = [])
+    public function read($table, KeySet $keySet, array $columns, array $options = []): Result
     {
         unset($options['requestOptions']['transactionTag']);
         $session = $this->selectSession(
@@ -2097,13 +2163,15 @@ class Database
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
-            $this->directedReadOptions ?? []
+            $this->directedReadOptions
         );
 
-        $options = $this->addLarHeader($options, true, $context);
-
         try {
-            return $this->operation->read($session, $table, $keySet, $columns, $options);
+            // Unset the internal flag.
+            unset($options['singleUse']);
+            return $this->operation->read($session, $table, $keySet, $columns, $options + [
+                'route-to-leader' => $context === SessionPoolInterface::CONTEXT_READ
+            ]);
         } finally {
             $session->setExpiration();
         }
@@ -2119,7 +2187,7 @@ class Database
      *
      * @return SessionPoolInterface|null
      */
-    public function sessionPool()
+    public function sessionPool(): ?SessionPoolInterface
     {
         return $this->sessionPool;
     }
@@ -2137,7 +2205,7 @@ class Database
      * $database->close();
      * ```
      */
-    public function close()
+    public function close(): void
     {
         if ($this->session) {
             if ($this->sessionPool) {
@@ -2175,7 +2243,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return Session
      */
-    public function createSession(array $options = [])
+    public function createSession(array $options = []): Session
     {
         return $this->operation->createSession($this->name, $options);
     }
@@ -2192,7 +2260,7 @@ class Database
      * @param string $sessionName The session's name.
      * @return Session
      */
-    public function session($sessionName)
+    public function session(string $sessionName): Session
     {
         return $this->operation->session($sessionName);
     }
@@ -2203,7 +2271,7 @@ class Database
      * @access private
      * @return array
      */
-    public function identity()
+    public function identity(): array
     {
         $databaseParts = explode('/', $this->name);
         $instanceParts = explode('/', $this->instance->name());
@@ -2216,33 +2284,236 @@ class Database
     }
 
     /**
-     * Returns the underlying connection.
+     * Creates a batch of sessions.
      *
-     * @access private
-     * @return ConnectionInterface
-     * @experimental
+     * @param array $options {
+     *     @type array $sessionTemplate
+     *     @type int $sessionCount
+     * }
      */
-    public function connection()
+    public function batchCreateSessions(array $options): array
     {
-        return $this->connection;
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $data['database'] = $this->name;
+
+        $request = $this->serializer->decodeMessage(new BatchCreateSessionsRequest(), $data);
+        $response = $this->spannerClient->batchCreateSessions($request, $callOptions + [
+            'resource-prefix' => $this->name,
+            'route-to-leader' => $this->routeToLeader
+        ]);
+        return $this->handleResponse($response);
     }
 
     /**
-     * Represent the class in a more readable and digestable fashion.
+     * Delete session asynchronously.
      *
      * @access private
-     * @codeCoverageIgnore
+     * @param array $options {
+     *     @type name The session name to be deleted
+     * }
+     * @return PromiseInterface
+     * @experimental
      */
-    public function __debugInfo()
+    public function deleteSessionAsync(array $options): PromiseInterface
     {
-        return [
-            'connection' => get_class($this->connection),
-            'projectId' => $this->projectId,
-            'name' => $this->name,
-            'instance' => $this->instance,
-            'sessionPool' => $this->sessionPool,
-            'session' => $this->session,
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+
+        $request = $this->serializer->decodeMessage(new DeleteSessionRequest(), $data);
+        return $this->spannerClient->deleteSessionAsync($request, $callOptions + [
+            'resource-prefix' => $this->name
+        ]);
+    }
+
+    /**
+     * Lists backup operations.
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     * }
+     *
+     * @return ItemIterator<LongRunningOperation>
+     */
+    public function backupOperations(array $options = []): ItemIterator
+    {
+        /**
+         * @var ListBackupOperationsRequest $listBackupOperations
+         * @var array $callOptions
+         */
+        [$listBackupOperations, $callOptions] = $this->validateOptions(
+            $options,
+            new ListBackupOperationsRequest(),
+            CallOptions::class
+        );
+        $listBackupOperations->setParent($this->instance->name());
+
+        return $this->buildLongRunningIterator(
+            [$this->databaseAdminClient, 'listBackupOperations'],
+            $listBackupOperations,
+            $callOptions +  ['resource-prefix' => $this->name],
+            $this->getResultMapper()
+        );
+    }
+
+    /**
+     * Create a database from a backup.
+     *
+     * @param string $name The database name.
+     * @param Backup|string $backup The backup to restore, given
+     *        as a Backup instance or a string of the form
+     *        `projects/<project>/instances/<instance>/backups/<backup>`.
+     * @param array $options [optional] Configuration options.
+     *
+     * @return LongRunningOperation
+     */
+    public function createDatabaseFromBackup($name, $backup, array $options = []): LongRunningOperation
+    {
+        $options += [
+            'parent' => $this->instance->name(),
+            'databaseId' => $this->databaseIdOnly($name),
+            'backup' => $backup instanceof Backup ? $backup->name() : $backup
         ];
+        /**
+         * @var RestoreDatabaseRequest $restoreDatabase
+         * @var array $callOptions
+         */
+        [$restoreDatabase, $callOptions] = $this->validateOptions(
+            $options,
+            new RestoreDatabaseRequest(),
+            CallOptions::class
+        );
+
+        $operation = $this->databaseAdminClient->restoreDatabase($restoreDatabase, $callOptions + [
+            'resource-prefix' => $this->name
+        ]);
+
+        return $this->operationFromOperationResponse($operation);
+    }
+
+    /**
+     * Lists database operations.
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     * }
+     *
+     * @return ItemIterator<LongRunningOperation>
+     */
+    public function databaseOperations(array $options = []): ItemIterator
+    {
+        /**
+         * @var ListDatabaseOperationsRequest $listDatabaseOperations
+         * @var array $callOptions
+         */
+        [$listDatabaseOperations, $callOptions] = $this->validateOptions(
+            $options,
+            new ListDatabaseOperationsRequest(),
+            CallOptions::class
+        );
+        $listDatabaseOperations->setParent($this->instance->name());
+
+        return $this->buildLongRunningIterator(
+            [$this->databaseAdminClient, 'listDatabaseOperations'],
+            $listDatabaseOperations,
+            $callOptions + ['resource-prefix' => $this->name],
+            $this->getResultMapper()
+        );
+    }
+
+    /**
+     * Resume a Long Running Operation
+     *
+     * Example:
+     * ```
+     * $operation = $database->resumeOperation($operationName);
+     * ```
+     *
+     * @param string $operationName The Long Running Operation name.
+     * @return LongRunningOperation
+     */
+    public function resumeOperation(string $operationName, array $options = []): LongRunningOperation
+    {
+        return new LongRunningOperation(
+            new LongRunningClientConnection($this->databaseAdminClient, $this->serializer),
+            $operationName,
+            [
+                [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
+                    'callable' => $this->databaseResultFunction(),
+                ],
+                [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata',
+                    'callable' => $this->databaseResultFunction(),
+                ]
+            ],
+            $options
+        );
+    }
+
+    /**
+     * List long running operations.
+     *
+     * Example:
+     * ```
+     * $operations = $database->longRunningOperations();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $name The name of the operation collection.
+     *     @type string $filter The standard list filter.
+     *     @type int $pageSize Maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return ItemIterator<LongRunningOperation>
+     */
+    public function longRunningOperations(array $options = []): ItemIterator
+    {
+        /**
+         * @var ListOperationsRequest $listOperationsRequest
+         * @var array $callOptions
+         */
+        [$listOperationsRequest, $callOptions] = $this->validateOptions(
+            $options,
+            new ListOperationsRequest(),
+            CallOptions::class
+        );
+        $listOperationsRequest->setName($this->name . '/operations');
+
+        return $this->buildLongRunningIterator(
+            [$this->databaseAdminClient->getOperationsClient(), 'listOperations'],
+            $listOperationsRequest,
+            $callOptions,
+            $this->getResultMapper()
+        );
     }
 
     /**
@@ -2255,8 +2526,10 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return Session
      */
-    private function selectSession($context = SessionPoolInterface::CONTEXT_READ, array $options = [])
-    {
+    private function selectSession(
+        $context = SessionPoolInterface::CONTEXT_READ,
+        array $options = []
+    ): Session {
         if ($this->session) {
             return $this->session;
         }
@@ -2288,7 +2561,7 @@ class Database
      * }
      * @return Timestamp The commit timestamp.
      */
-    private function commitInSingleUseTransaction(array $mutations, array $options = [])
+    private function commitInSingleUseTransaction(array $mutations, array $options = []): Timestamp
     {
         unset($options['requestOptions']['transactionTag']);
         $options['mutations'] = $mutations;
@@ -2305,12 +2578,12 @@ class Database
      *
      * @return string
      */
-    private function fullyQualifiedDatabaseName($name)
+    private function fullyQualifiedDatabaseName($name): string
     {
-        $instance = InstanceAdminClient::parseName($this->instance->name())['instance'];
+        $instance = DatabaseAdminClient::parseName($this->instance->name())['instance'];
 
         try {
-            return GapicSpannerClient::databaseName(
+            return SpannerClient::databaseName(
                 $this->projectId,
                 $instance,
                 $name
@@ -2325,10 +2598,10 @@ class Database
     /**
      * Returns the 'CREATE DATABASE' statement as per the given database dialect
      *
-     * @param string $dialect The dialect of the database to be created
+     * @param int $dialect The dialect of the database to be created
      * @return string The specific 'CREATE DATABASE' statement
      */
-    private function getCreateDbStatement($dialect)
+    private function getCreateDbStatement(int $dialect): string
     {
         $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
 
@@ -2337,5 +2610,159 @@ class Database
         }
 
         return sprintf('CREATE DATABASE `%s`', $databaseId);
+    }
+
+    /**
+     * Extracts a database id from fully qualified name.
+     *
+     * @param string $name The database name or id.
+     * @return string
+     */
+    private function databaseIdOnly(string $name): string
+    {
+        try {
+            return DatabaseAdminClient::parseName($name)['database'];
+        } catch (ValidationException $e) {
+            return $name;
+        }
+    }
+
+    private function parseMutations(array $rawMutations): array
+    {
+        if (!is_array($rawMutations)) {
+            return [];
+        }
+
+        $mutations = [];
+        foreach ($rawMutations as $mutation) {
+            $type = array_keys($mutation)[0];
+            $data = $mutation[$type];
+
+            switch ($type) {
+                case Operation::OP_DELETE:
+                    $operation = $this->serializer->decodeMessage(
+                        new Delete(),
+                        $data
+                    );
+                    break;
+                default:
+                    $operation = new Write();
+                    $operation->setTable($data['table']);
+                    $operation->setColumns($data['columns']);
+
+                    $modifiedData = [];
+                    foreach ($data['values'] as $key => $param) {
+                        $modifiedData[$key] = $this->fieldValue($param);
+                    }
+
+                    $list = new ListValue();
+                    $list->setValues($modifiedData);
+                    $values = [$list];
+                    $operation->setValues($values);
+
+                    break;
+            }
+
+            $setterName = self::MUTATION_SETTERS[$type];
+            $mutation = new Mutation();
+            $mutation->$setterName($operation);
+            $mutations[] = $mutation;
+        }
+        return $mutations;
+    }
+
+    /**
+     * @param mixed $param
+     * @return Value
+     */
+    private function fieldValue($param): Value
+    {
+        $field = new Value();
+        $value = $this->formatValueForApi($param);
+
+        $setter = null;
+        switch (array_keys($value)[0]) {
+            case 'string_value':
+                $setter = 'setStringValue';
+                break;
+            case 'number_value':
+                $setter = 'setNumberValue';
+                break;
+            case 'bool_value':
+                $setter = 'setBoolValue';
+                break;
+            case 'null_value':
+                $setter = 'setNullValue';
+                break;
+            case 'struct_value':
+                $setter = 'setStructValue';
+                $modifiedParams = [];
+                foreach ($param as $key => $value) {
+                    $modifiedParams[$key] = $this->fieldValue($value);
+                }
+                $value = new Struct();
+                $value->setFields($modifiedParams);
+
+                break;
+            case 'list_value':
+                $setter = 'setListValue';
+                $modifiedParams = [];
+                foreach ($param as $item) {
+                    $modifiedParams[] = $this->fieldValue($item);
+                }
+                $list = new ListValue();
+                $list->setValues($modifiedParams);
+                $value = $list;
+
+                break;
+        }
+
+        $value = is_array($value) ? current($value) : $value;
+        if ($setter) {
+            $field->$setter($value);
+        }
+
+        return $field;
+    }
+
+    private function databaseResultFunction(): Closure
+    {
+        return function (array $database): self {
+            $name = DatabaseAdminClient::parseName($database['name']);
+            return $this->instance->database($name['database'], [
+                'sessionPool' => $this->sessionPool,
+                'database' => $database,
+                'databaseRole' => $this->databaseRole,
+            ]);
+        };
+    }
+
+    private function getResultMapper()
+    {
+        return function (OperationProto $operation) {
+            return $this->resumeOperation(
+                $operation->getName(),
+                $this->handleResponse($operation)
+            );
+        };
+    }
+
+    /**
+     * Represent the class in a more readable and digestable fashion.
+     *
+     * @access private
+     * @codeCoverageIgnore
+     */
+    public function __debugInfo()
+    {
+        return [
+            'spannerClient' => get_class($this->spannerClient),
+            'databaseAdminClient' => get_class($this->databaseAdminClient),
+            'projectId' => $this->projectId,
+            'name' => $this->name,
+            'instance' => $this->instance,
+            'sessionPool' => $this->sessionPool,
+            'session' => $this->session,
+        ];
     }
 }

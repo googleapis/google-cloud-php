@@ -29,7 +29,7 @@ namespace Google\Cloud\Spanner;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $numeric = $spanner->numeric('99999999999999999999999999999999999999.999999999');
  * ```
@@ -67,7 +67,7 @@ class Numeric implements ValueInterface
      *
      * @return string
      */
-    public function get()
+    public function get(): string
     {
         return $this->value;
     }
@@ -75,9 +75,9 @@ class Numeric implements ValueInterface
     /**
      * Get the type.
      *
-     * @return string
+     * @return int
      */
-    public function type()
+    public function type(): int
     {
         return ValueMapper::TYPE_NUMERIC;
     }
@@ -87,7 +87,7 @@ class Numeric implements ValueInterface
      *
      * @return string
      */
-    public function formatAsString()
+    public function formatAsString(): string
     {
         return $this->value;
     }

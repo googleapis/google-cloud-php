@@ -6,7 +6,7 @@
     "require": {
         "php": "^8.1",
         "ext-grpc": "*",
-        "google/cloud-core": "^1.57",
+        "google/cloud-core": "^1.68",
         "google/gax": "^1.38.0"
     },
     "require-dev": {
@@ -16,7 +16,9 @@
         "phpdocumentor/reflection": "^5.3.3||^6.0",
         "phpdocumentor/reflection-docblock": "^5.3",
         "erusev/parsedown": "^1.6",
-        "google/cloud-pubsub": "^2.0"
+        "google/cloud-pubsub": "^2.0",
+        "dg/bypass-finals": "^1.7",
+        "dms/phpunit-arraysubset-asserts": "^0.5.0"
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions.",

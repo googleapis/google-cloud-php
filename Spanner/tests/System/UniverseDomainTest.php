@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\SpannerClient;
 
 class UniverseDomainTest extends SystemTestCase
 {
@@ -46,7 +46,7 @@ class UniverseDomainTest extends SystemTestCase
         }
 
         self::$client = new SpannerClient([
-            'keyFilePath' => $keyFilePath,
+            'credentials' => $keyFilePath,
             'projectId' => $credentials['project_id'] ?? null,
             'universeDomain' => $credentials['universe_domain'] ?? null
         ]);
@@ -74,7 +74,7 @@ class UniverseDomainTest extends SystemTestCase
         ]);
         $op->pollUntilComplete();
 
-        $this->assertEquals(LongRunningOperation::STATE_SUCCESS, $op->state());
+        $this->assertEquals(LongRunningOperation::STATE_SUCCESS, $op->state(), json_encode($op->error()));
 
         self::$instance = self::$client->instance(self::$instanceId);
         $info = self::$instance->info();

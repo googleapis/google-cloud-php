@@ -17,14 +17,18 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\Cloud\Spanner\InstanceConfiguration;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\Serializer;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -36,31 +40,36 @@ class InstanceConfigurationTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
     const CONFIG = 'regional-europe-west';
 
-    private $connection;
+    private $instanceAdminClient;
+    private $operationResponse;
+    private $serializer;
     private $config;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
-        $this->config = TestHelpers::stub(InstanceConfiguration::class, [
-            $this->connection->reveal(),
+        $this->serializer = new Serializer();
+        $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
+        $this->operationResponse = $this->prophesize(OperationResponse::class);
+
+        $this->config = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
             self::PROJECT,
             self::CONFIG,
-            [],
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-        ], ['connection', 'lroConnection']);
+        );
     }
 
     public function testClass()
     {
         $snippet = $this->snippetFromClass(InstanceConfiguration::class);
+        $snippet->addLocal('projectId', self::PROJECT);
+
         $res = $snippet->invoke('configuration');
 
         $this->assertInstanceOf(InstanceConfiguration::class, $res->returnVal());
@@ -73,18 +82,19 @@ class InstanceConfigurationTest extends SnippetTestCase
     public function testCreate()
     {
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'create');
-        $this->connection->createInstanceConfig(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['name' => 'operations/foo']);
-        $dummyConnection = $this->connection->reveal();
+        $this->instanceAdminClient->createInstanceConfig(
+            Argument::type(CreateInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
+
         $baseConfig = new InstanceConfiguration(
-            $dummyConnection,
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
             self::PROJECT,
             self::CONFIG,
-            [],
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal()
         );
-        $this->config->___setProperty('connection', $dummyConnection);
         $snippet->addLocal('baseConfig', $baseConfig);
         $snippet->addLocal('options', []);
         $snippet->addLocal('instanceConfig', $this->config);
@@ -98,13 +108,13 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'update');
         $snippet->addLocal('instanceConfig', $this->config);
 
-        $this->connection->updateInstanceConfig(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
+        $this->instanceAdminClient->updateInstanceConfig(
+            Argument::type(UpdateInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
-        $this->config->___setProperty('connection', $this->connection->reveal());
         $snippet->invoke();
     }
 
@@ -113,10 +123,12 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'delete');
         $snippet->addLocal('instanceConfig', $this->config);
 
-        $this->connection->deleteInstanceConfig(Argument::any())
-            ->shouldBeCalled();
+        $this->instanceAdminClient->deleteInstanceConfig(
+            Argument::type(DeleteInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
 
-        $this->config->___setProperty('connection', $this->connection->reveal());
         $snippet->invoke();
     }
 
@@ -139,14 +151,19 @@ class InstanceConfigurationTest extends SnippetTestCase
             'displayName' => self::CONFIG
         ];
 
-        $this->connection->getInstanceConfig(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($info);
-
-        $this->config->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->getInstanceConfig(
+            Argument::type(GetInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceConfig([
+                'name' => $info['name'],
+                'display_name' => $info['displayName']
+            ]));
 
         $res = $snippet->invoke('info');
-        $this->assertEquals($info, $res->returnVal());
+        $this->assertEquals($info['name'], $res->returnVal()['name']);
+        $this->assertEquals($info['displayName'], $res->returnVal()['displayName']);
     }
 
     public function testExists()
@@ -154,14 +171,15 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'exists');
         $snippet->addLocal('configuration', $this->config);
 
-        $this->connection->getInstanceConfig(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->instanceAdminClient->getInstanceConfig(
+            Argument::type(GetInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceConfig([
                 'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
-                'displayName' => self::CONFIG
-            ]);
-
-        $this->config->___setProperty('connection', $this->connection->reveal());
+                'display_name' => self::CONFIG
+            ]));
 
         $res = $snippet->invoke();
         $this->assertEquals('Configuration exists!', $res->output());
@@ -177,13 +195,18 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'reload');
         $snippet->addLocal('configuration', $this->config);
 
-        $this->connection->getInstanceConfig(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($info);
-
-        $this->config->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->getInstanceConfig(
+            Argument::type(GetInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceConfig([
+                'name' => $info['name'],
+                'display_name' => $info['displayName']
+            ]));
 
         $res = $snippet->invoke('info');
-        $this->assertEquals($info, $res->returnVal());
+        $this->assertEquals($info['name'], $res->returnVal()['name']);
+        $this->assertEquals($info['displayName'], $res->returnVal()['displayName']);
     }
 }

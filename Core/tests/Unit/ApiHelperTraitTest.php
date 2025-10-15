@@ -366,6 +366,20 @@ class ApiHelperTraitTest extends TestCase
                     (new MockRequest())->setPageToken('foo1'),
                 ]
             ],
+            [
+                [
+                    'baz' => 'bat',
+                    'pageToken' => 'foo1',
+                ],
+                [
+                    'baz',
+                    new MockRequest(),
+                ],
+                [
+                    'bat',
+                    (new MockRequest())->setPageToken('foo1'),
+                ]
+            ],
         ];
     }
 
@@ -380,25 +394,5 @@ class ApiHelperTraitTest extends TestCase
         ];
 
         $this->implementation->validateOptions($options, ['foo']);
-    }
-
-    public function testValidateOptionsWithClassnameThrowsException()
-    {
-        $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('Invalid option type: ' . Blob::class);
-
-        $options = [
-            'foo' => 'bar',
-            'bar' => 'baz',
-        ];
-
-        [$blob, $validated] = $this->implementation->validateOptions(
-            $options,
-            Blob::class,
-            ['foo', 'bar']
-        );
-
-        $this->assertEquals([], $blob);
-        $this->assertEquals($options, $validated);
     }
 }
