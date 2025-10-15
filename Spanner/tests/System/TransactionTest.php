@@ -21,10 +21,13 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
 use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
 use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
-use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
+use Grpc\BaseStub;
+use Grpc\Channel;
+use ReflectionClass;
 
 /**
  * @group spanner
@@ -109,6 +112,10 @@ class TransactionTest extends SpannerTestCase
      */
     public function testConcurrentTransactionsIncrementValueWithRead()
     {
+        if (!ini_get('grpc.enable_fork_support')) {
+            $this->markTestSkipped('This test requires grpc.enable_fork_support=1 in php.ini');
+        }
+
         $db = self::$database;
 
         $id = $this->randId();
@@ -164,6 +171,10 @@ class TransactionTest extends SpannerTestCase
      */
     public function testAbortedErrorCausesRetry()
     {
+        if (!ini_get('grpc.enable_fork_support')) {
+            $this->markTestSkipped('This test requires grpc.enable_fork_support=1 in php.ini');
+        }
+
         $db = self::$database;
         $db2 = self::$database2;
 
@@ -200,6 +211,10 @@ class TransactionTest extends SpannerTestCase
      */
     public function testConcurrentTransactionsIncrementValueWithExecute()
     {
+        if (!ini_get('grpc.enable_fork_support')) {
+            $this->markTestSkipped('This test requires grpc.enable_fork_support=1 in php.ini');
+        }
+
         $db = self::$database;
 
         $id = $this->randId();
@@ -411,11 +426,6 @@ class TransactionTest extends SpannerTestCase
                         'id' => $id,
                         'name' => uniqid(self::TESTING_PREFIX),
                         'birthday' => new Date(new \DateTime())
-                    ],
-                    'transaction' => [
-                        'begin' => [
-                            'isolationLevel' => IsolationLevel::REPEATABLE_READ,
-                        ]
                     ]
                 ]
             );
@@ -428,14 +438,27 @@ class TransactionTest extends SpannerTestCase
                 ]
             ]);
             $this->assertEquals($res->rows()->current()['id'], $id);
-            // No new transaction created.
-            $this->assertNull($res->transaction());
+            // For Multiplexed Sessions, a transaction is returned on READ
+            // The emulator doesn't support this
+            if (!$this->isEmulatorUsed()) {
+                $this->assertNotNull($res->transaction());
+                $this->assertEquals($res->transaction()->id(), $t->id());
+            } else {
+                usleep(1000000);
+            }
             $this->assertEquals($t->id(), $transactionId);
 
             $keyset = new KeySet(['keys' => [$id]]);
             $res = $t->read(self::TEST_TABLE_NAME, $keyset, ['id']);
             $this->assertEquals($res->rows()->current()['id'], $id);
-            $this->assertNull($res->transaction());
+            // For Multiplexed Sessions, a transaction is returned on READ
+            // The emulator doesn't support this
+            if (!$this->isEmulatorUsed()) {
+                $this->assertNotNull($res->transaction());
+                $this->assertEquals($res->transaction()->id(), $t->id());
+            } else {
+                usleep(1000000);
+            }
             $this->assertEquals($t->id(), $transactionId);
 
             $res = $t->executeUpdateBatch([
@@ -450,6 +473,83 @@ class TransactionTest extends SpannerTestCase
             $this->assertEquals($t->id(), $transactionId);
 
             $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1], $res->rowCounts());
+    }
+
+    public function testTransactionToChannelAffinity()
+    {
+        $db = self::$database;
+
+        $getChannel = function (Transaction $t): Channel {
+            $op = (new ReflectionClass($t))->getProperty('operation')->getValue($t);
+            $spanner = (new ReflectionClass($op))->getProperty('spannerClient')->getValue($op);
+            $grpc = (new ReflectionClass($spanner))->getProperty('transport')->getValue($spanner);
+            return (new ReflectionClass(BaseStub::class))->getProperty('channel')->getValue($grpc);
+        };
+
+        $res = $db->runTransaction(function ($t) use ($getChannel) {
+            $id = rand(1, 346464);
+            $row = [
+                'id' => $id,
+                'name' => uniqid(self::TESTING_PREFIX),
+                'birthday' => new Date(new \DateTime())
+            ];
+            // Representative of all mutations
+            $t->insert(self::TEST_TABLE_NAME, $row);
+            $this->assertNull($t->id());
+
+            $id = rand(1, 346464);
+            $t->executeUpdate(
+                'INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)',
+                [
+                    'parameters' => [
+                        'id' => $id,
+                        'name' => uniqid(self::TESTING_PREFIX),
+                        'birthday' => new Date(new \DateTime())
+                    ]
+                ]
+            );
+            $channel1 = $getChannel($t);
+            $transactionId = $t->id();
+            $this->assertNotEmpty($t->id());
+
+            $res = $t->execute('SELECT * FROM ' . self::TEST_TABLE_NAME . ' WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id
+                ]
+            ]);
+            $channel2 = $getChannel($t);
+
+            $this->assertEquals($res->rows()->current()['id'], $id);
+
+            $keyset = new KeySet(['keys' => [$id]]);
+            $res = $t->read(self::TEST_TABLE_NAME, $keyset, ['id']);
+            $channel3 = $getChannel($t);
+            $this->assertEquals($res->rows()->current()['id'], $id);
+
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'UPDATE ' . self::TEST_TABLE_NAME . ' SET name = @name WHERE id = @id',
+                    'parameters' => [
+                        'id' => $id,
+                        'name' => uniqid(self::TESTING_PREFIX)
+                    ]
+                ]
+            ]);
+            $channel4 = $getChannel($t);
+            $this->assertEquals($t->id(), $transactionId);
+
+            $t->commit();
+            $channel5 = $getChannel($t);
+
+            $this->assertEquals($channel1, $channel2);
+            $this->assertEquals($channel1, $channel3);
+            $this->assertEquals($channel1, $channel4);
+            $this->assertEquals($channel1, $channel5);
 
             return $res;
         });

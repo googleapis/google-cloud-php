@@ -21,6 +21,7 @@ use Closure;
 use DateTimeInterface;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
@@ -51,6 +52,7 @@ use Google\LongRunning\Operation as OperationProto;
 class Backup
 {
     use RequestTrait;
+    use ApiHelperTrait;
 
     const STATE_READY = State::READY;
     const STATE_CREATING = State::CREATING;
@@ -372,22 +374,17 @@ class Backup
      */
     public function updateExpireTime(DateTimeInterface $newTimestamp, array $options = []): array
     {
-        $options += [
-            'backup' => [
-                'name' => $this->name(),
-                'expireTime' => $this->formatTimeAsArray($newTimestamp),
-            ],
-            'updateMask' => [
-                'paths' => ['expire_time']
-            ]
-        ];
+        $options['expireTime'] = $this->formatTimeAsArray($newTimestamp);
 
         /**
          * @var UpdateBackupRequest $updateBackup
          * @var array $callOptions
          */
         [$updateBackup, $callOptions] = $this->validateOptions(
-            $options,
+            [
+                'backup' => $options + ['name' => $this->name()],
+                'updateMask' => $this->fieldMask($options),
+            ],
             new UpdateBackupRequest(),
             CallOptions::class,
         );

@@ -26,7 +26,7 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -65,12 +65,8 @@ class BatchSnapshotTest extends TestCase
     public function setUp(): void
     {
         $sessData = SpannerClient::parseName(self::SESSION, 'session');
-        $this->session = $this->prophesize(Session::class);
+        $this->session = $this->prophesize(SessionCache::class);
         $this->session->name()->willReturn(self::SESSION);
-        $this->session->info()->willReturn($sessData + [
-            'name' => self::SESSION,
-            'databaseName' => self::DATABASE
-        ]);
 
         $this->timestamp = new Timestamp(new \DateTime());
 
@@ -103,19 +99,6 @@ class BatchSnapshotTest extends TestCase
             $this->session->reveal(),
             ['id' => self::TRANSACTION, 'readTimestamp' => $this->timestamp]
         );
-    }
-
-    public function testClose()
-    {
-        $session = $this->prophesize(Session::class);
-        $session->delete([])->shouldBeCalledOnce();
-
-        $this->snapshot = new BatchSnapshot(
-            $this->prophesize(Operation::class)->reveal(),
-            $session->reveal()
-        );
-
-        $this->snapshot->close();
     }
 
     public function testPartitionRead()

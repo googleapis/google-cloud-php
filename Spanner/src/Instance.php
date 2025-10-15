@@ -19,27 +19,35 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\ValidationException;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
+use InvalidArgumentException;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Represents a Cloud Spanner instance
@@ -55,6 +63,7 @@ use Google\LongRunning\Operation as OperationProto;
  */
 class Instance
 {
+    use ApiHelperTrait;
     use RequestTrait;
 
     const STATE_READY = State::READY;
@@ -69,11 +78,8 @@ class Instance
     private string $projectName;
     private bool $returnInt64AsObject;
     private array $info;
-
-    /**
-     * @var int
-     */
-    private $isolationLevel;
+    private int $isolationLevel;
+    private CacheItemPoolInterface|null $cacheItemPool;
 
     /**
      * Create an object representing a Cloud Spanner instance.
@@ -100,6 +106,7 @@ class Instance
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit platform
      *           compatibility. **Defaults to** false.
+     *     @type CacheItemPool $cacheItemPool
      *     @type array $instance An array representation of the instance object.
      * }
      */
@@ -118,6 +125,7 @@ class Instance
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
         $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
+        $this->cacheItemPool = $options['cacheItemPool'] ?? null;
         $this->info = $options['instance'] ?? [];
         $this->projectName = InstanceAdminClient::projectName($projectId);
         $this->optionsValidator = new OptionsValidator($serializer);
@@ -239,28 +247,16 @@ class Instance
      */
     public function reload(array $options = []): array
     {
+        $options['name'] ??= $this->name;
         /**
          * @var array $data
          * @var array $calloptions
          */
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data += [
-            'name' => $this->name
-        ];
-
-        if (isset($data['fieldMask'])) {
-            $fieldMask = [];
-            if (is_array($data['fieldMask'])) {
-                foreach (array_values($data['fieldMask']) as $field) {
-                    $fieldMask[] = $this->serializer::toSnakeCase($field);
-                }
-            } else {
-                $fieldMask[] = $this->serializer::toSnakeCase($data['fieldMask']);
-            }
-            $data['fieldMask'] = ['paths' => $fieldMask];
-        }
-
-        $request = $this->serializer->decodeMessage(new GetInstanceRequest(), $data);
+        [$request, $callOptions] = $this->validateOptions(
+            $options,
+            new GetInstanceRequest(),
+            CallOptions::class
+        );
 
         $response = $this->instanceAdminClient->getInstance($request, $callOptions + [
             'resource-prefix' => $this->projectName
@@ -290,33 +286,40 @@ class Instance
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * }
      * @return LongRunningOperation
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @codingStandardsIgnoreEnd
      */
     public function create(InstanceConfiguration $config, array $options = []): LongRunningOperation
     {
         /**
          * @var array $instance
-         * @var array $calloptions
+         * @var array $callOptions
          */
-        [$instance, $callOptions] = $this->splitOptionalArgs($options);
+        [$instance, $callOptions] = $this->validateOptions(
+            $options,
+            new InstanceProto(),
+            CallOptions::class
+        );
+
         $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
-        if (isset($instance['nodeCount']) && isset($instance['processingUnits'])) {
-            throw new \InvalidArgumentException('Must only set either `nodeCount` or `processingUnits`');
+        if ($instance->getNodeCount() !== 0 && $instance->getProcessingUnits() !== 0) {
+            throw new InvalidArgumentException('Must only set either `nodeCount` or `processingUnits`');
         }
-        if (empty($instance['nodeCount']) && empty($instance['processingUnits'])) {
-            $instance['nodeCount'] = self::DEFAULT_NODE_COUNT;
+        if ($instance->getNodeCount() === 0 && $instance->getProcessingUnits() === 0) {
+            $instance->setNodeCount(self::DEFAULT_NODE_COUNT);
         }
 
-        $data = [
-            'parent' => InstanceAdminClient::projectName(
-                $this->projectId
-            ),
-            'instanceId' => $instanceId,
-            'instance' => $this->createInstanceArray($instance, $config)
-        ];
+        $instance->setName($this->name);
+        $instance->setConfig($config->name());
+        if (!$instance->getDisplayName()) {
+            $instance->setDisplayName($instanceId);
+        }
 
-        $request = $this->serializer->decodeMessage(new CreateInstanceRequest(), $data);
+        $request = new CreateInstanceRequest([
+            'parent' => InstanceAdminClient::projectName($this->projectId),
+            'instance_id' => $instanceId,
+            'instance' => $instance
+        ]);
 
         $operation = $this->instanceAdminClient->createInstance($request, $callOptions + [
             'resource-prefix' => $this->name
@@ -377,27 +380,26 @@ class Instance
      *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
      * }
      * @return LongRunningOperation
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function update(array $options = []): LongRunningOperation
     {
-        /**
-         * @var array $instance
-         * @var array $calloptions
-         */
-        [$instance, $callOptions] = $this->splitOptionalArgs($options);
-
         if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
-            throw new \InvalidArgumentException('Must only set either `nodeCount` or `processingUnits`');
+            throw new InvalidArgumentException('Must only set either `nodeCount` or `processingUnits`');
         }
 
-        $fieldMask = $this->fieldMask($instance);
-        $data = [
-            'fieldMask' => $fieldMask,
-            'instance' => $this->createInstanceArray($instance)
-        ];
-
-        $request = $this->serializer->decodeMessage(new UpdateInstanceRequest(), $data);
+        /**
+         * @var UpdateInstanceRequest $request
+         * @var array $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            [
+                'instance' => $options + ['name' => $this->name],
+                'fieldMask' => $this->fieldMask($options)
+            ],
+            new UpdateInstanceRequest(),
+            CallOptions::class
+        );
 
         $operation = $this->instanceAdminClient->updateInstance($request, $callOptions + [
             'resource-prefix' => $this->name
@@ -517,14 +519,14 @@ class Instance
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *         **Defaults to** `true` (enabled).
      *     @type array $defaultQueryOptions
-     *     @type SessionPoolInterface $sessionPool The session pool
-     *         implementation.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will
      *         be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *         platform compatibility. **Defaults to** false.
      *     @type string $databaseRole The user created database role which
      *         creates the session.
      *     @type array $database The database info.
+      *    @type SessionCache $session
+     *     @type LockInterface $lock
      *     @type int $isolationLevel The IsolationLevel set for the transaction.
      *           Check {@see IsolationLevel} for more details.
      * }
@@ -532,6 +534,41 @@ class Instance
      */
     public function database(string $name, array $options = []): Database
     {
+        [$options] = $this->validateOptions($options, [
+            'routeToLeader',
+            'defaultQueryOptions',
+            'returnint64AsObject',
+            'databaseRole',
+            'database',
+            'session',
+            'lock',
+            'isolationLevel',
+        ]);
+
+        try {
+            $instance = DatabaseAdminClient::parseName($this->name())['instance'];
+            $databaseName = GapicSpannerClient::databaseName(
+                $this->projectId,
+                $instance,
+                $name
+            );
+        } catch (ValidationException $e) {
+            $databaseName = $name;
+        }
+
+        if (!$session = $options['session'] ?? null) {
+            $session = new SessionCache(
+                $this->spannerClient,
+                $databaseName,
+                [
+                    'databaseRole' => $options['databaseRole'] ?? '',
+                    'lock' => $options['lock'] ?? null,
+                    'routeToLeader' => $this->routeToLeader,
+                    'cacheItemPool' => $this->cacheItemPool,
+                ]
+            );
+        }
+
         return new Database(
             $this->spannerClient,
             $this->databaseAdminClient,
@@ -539,6 +576,7 @@ class Instance
             $this,
             $this->projectId,
             $name,
+            $session,
             $options + [
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
@@ -705,7 +743,23 @@ class Instance
      */
     public function backupOperations(array $options = []): ItemIterator
     {
-        return $this->database($this->name)->backupOperations($options);
+        /**
+         * @var ListBackupOperationsRequest $listBackupOperations
+         * @var array $callOptions
+         */
+        [$listBackupOperations, $callOptions] = $this->validateOptions(
+            $options,
+            new ListBackupOperationsRequest(),
+            CallOptions::class
+        );
+        $listBackupOperations->setParent($this->name);
+
+        return $this->buildLongRunningIterator(
+            [$this->databaseAdminClient, 'listBackupOperations'],
+            $listBackupOperations,
+            $callOptions +  ['resource-prefix' => $this->name],
+            $this->getResultMapper()
+        );
     }
 
     /**
@@ -736,7 +790,23 @@ class Instance
      */
     public function databaseOperations(array $options = []): ItemIterator
     {
-        return $this->database($this->name)->databaseOperations($options);
+        /**
+         * @var ListDatabaseOperationsRequest $listDatabaseOperations
+         * @var array $callOptions
+         */
+        [$listDatabaseOperations, $callOptions] = $this->validateOptions(
+            $options,
+            new ListDatabaseOperationsRequest(),
+            CallOptions::class
+        );
+        $listDatabaseOperations->setParent($this->name);
+
+        return $this->buildLongRunningIterator(
+            [$this->databaseAdminClient, 'listDatabaseOperations'],
+            $listDatabaseOperations,
+            $callOptions + ['resource-prefix' => $this->name],
+            $this->getResultMapper()
+        );
     }
 
     /**
@@ -779,24 +849,6 @@ class Instance
     }
 
     /**
-     * Represent the class in a more readable and digestable fashion.
-     *
-     * @access private
-     * @codeCoverageIgnore
-     */
-    public function __debugInfo()
-    {
-        return [
-            'spannerClient' => get_class($this->spannerClient),
-            'databaseAdminClient' => get_class($this->databaseAdminClient),
-            'instanceAdminClient' => get_class($this->instanceAdminClient),
-            'projectId' => $this->projectId,
-            'name' => $this->name,
-            'info' => $this->info
-        ];
-    }
-
-    /**
      * Return the directed read options.
      *
      * Example:
@@ -809,36 +861,6 @@ class Instance
     public function directedReadOptions(): array
     {
         return $this->directedReadOptions;
-    }
-
-    /**
-     * @param array $instanceArray
-     * @return array
-     */
-    private function fieldMask(array $instanceArray): array
-    {
-        $mask = [];
-        foreach (array_keys($instanceArray) as $key) {
-            $mask[] = $this->serializer::toSnakeCase($key);
-        }
-        return ['paths' => $mask];
-    }
-
-    /**
-     * @param array $instanceArray
-     * @param InstanceConfiguration $config
-     * @return array
-     */
-    public function createInstanceArray(
-        array $instanceArray,
-        InstanceConfiguration|null $config = null
-    ): array {
-        return $instanceArray + [
-            'name' => $this->name,
-            'displayName' => InstanceAdminClient::parseName($this->name)['instance'],
-            'labels' => [],
-            'config' => $config ? $config->name() : ''
-        ];
     }
 
     /**
@@ -910,12 +932,7 @@ class Instance
             [$this->instanceAdminClient->getOperationsClient(), 'listOperations'],
             $listOperationsRequest,
             $callOptions,
-            function (OperationProto $operation) {
-                return $this->resumeOperation(
-                    $operation->getName(),
-                    $this->handleResponse($operation)
-                );
-            }
+            $this->getResultMapper(),
         );
     }
 
@@ -939,5 +956,34 @@ class Instance
                 ],
             );
         };
+    }
+
+    private function getResultMapper()
+    {
+        return function (OperationProto $operation) {
+            return $this->resumeOperation(
+                $operation->getName(),
+                $this->handleResponse($operation)
+            );
+        };
+    }
+
+    /**
+     * Represent the class in a more readable and digestable fashion.
+     *
+     * @access private
+     * @codeCoverageIgnore
+     */
+    public function __debugInfo()
+    {
+        return [
+            'spannerClient' => get_class($this->spannerClient),
+            'databaseAdminClient' => get_class($this->databaseAdminClient),
+            'instanceAdminClient' => get_class($this->instanceAdminClient),
+            'projectId' => $this->projectId,
+            'name' => $this->name,
+            'info' => $this->info,
+            'cacheItemPool' => $this->cacheItemPool,
+        ];
     }
 }

@@ -19,8 +19,9 @@ namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
+use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Protobuf\Duration;
@@ -71,14 +72,15 @@ class Transaction implements TransactionalReadInterface
     use MutationTrait;
     use TransactionalReadTrait;
 
-    private array $commitStats = [];
+    private CommitStats|null $commitStats = null;
     private array $mutations = [];
     private bool $isRetry;
     private array|RequestOptions $requestOptions;
+    private MultiplexedSessionPrecommitToken|null $precommitToken = null;
 
     /**
      * @param Operation $operation The Operation instance.
-     * @param Session $session The session to use for spanner interactions.
+     * @param SessionCache $session The session to use for spanner interactions.
      * @param string $transactionId The Transaction ID. If no ID is provided, the Transaction will
      *        be a Single-Use Transaction.
      * @param array $options {
@@ -98,10 +100,10 @@ class Transaction implements TransactionalReadInterface
      */
     public function __construct(
         private Operation $operation,
-        private Session $session,
+        private SessionCache $session,
         private string|null $transactionId = null,
         array $options = [],
-        private ValueMapper|null $mapper = null
+        private ValueMapper|null $mapper = null,
     ) {
         $this->type = ($transactionId || isset($options['begin']))
             ? self::TYPE_PRE_ALLOCATED
@@ -113,7 +115,7 @@ class Transaction implements TransactionalReadInterface
             );
         }
 
-        $this->context = SessionPoolInterface::CONTEXT_READWRITE;
+        $this->context = Database::CONTEXT_READWRITE;
         $this->tag = $options['tag'] ?? null;
         $this->isRetry = $options['isRetry'] ?? false;
         $this->transactionSelector = array_intersect_key(
@@ -139,9 +141,9 @@ class Transaction implements TransactionalReadInterface
      * $commitStats = $transaction->getCommitStats();
      * ```
      *
-     * @return array The commit stats
+     * @return CommitStats|null The commit stats
      */
-    public function getCommitStats(): array
+    public function getCommitStats(): CommitStats|null
     {
         return $this->commitStats;
     }
@@ -349,13 +351,12 @@ class Transaction implements TransactionalReadInterface
     public function executeUpdateBatch(array $statements, array $options = []): BatchDmlResult
     {
         $options = $this->buildUpdateOptions($options);
-        return $this->operation
-            ->executeUpdateBatch(
-                $this->session,
-                $this,
-                $statements,
-                $options
-            );
+        return $this->operation->executeUpdateBatch(
+            $this->session,
+            $this,
+            $statements,
+            $options
+        );
     }
 
     /**
@@ -433,14 +434,32 @@ class Transaction implements TransactionalReadInterface
             throw new \BadMethodCallException('The transaction cannot be committed because it is not active');
         }
 
+        // set mutations, transactionId, and precommit token in the request
+        $options['mutations'] = ($options['mutations'] ?? []) + $this->getMutations();
+
+        // Set the latest received precommit token from the last request from within this transaction.
+        if ($this->precommitToken) {
+            $options['precommitToken'] = $this->precommitToken;
+        }
+        // set the transaction tag if it exists
+        unset($options['requestOptions']['requestTag']);
+        if (isset($this->tag)) {
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
+
         // For commit, A transaction ID is mandatory for non-single-use transactions,
-        // and the `begin` option is not supported (because `begin` is only used in "inline begin transactions")
+        // and the `begin` option is not supported (because `begin` is only used by ILBs)
         if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
             $operationTransactionOptions = array_filter([
                 'requestOptions' => $this->requestOptions,
                 'transactionOptions' => $this->transactionOptions,
                 'singleUse' => $this->transactionSelector['singleUse'] ?? null,
             ]);
+            if (!empty($options['mutations'])) {
+                // Set the mutation key if we have mutations but do not have a precommit token
+                $mutationKey = $options['mutations'][array_rand($options['mutations'])];
+                $operationTransactionOptions['mutationKey'] = $mutationKey;
+            }
             // Execute the beginTransaction RPC.
             $transaction = $this->operation->transaction($this->session, $operationTransactionOptions);
             // Set the transaction ID of the current transaction.
@@ -451,31 +470,33 @@ class Transaction implements TransactionalReadInterface
             $this->state = self::STATE_COMMITTED;
         }
 
-        $options += [
-            'mutations' => [],
-            'requestOptions' => []
-        ];
-
-        $options['mutations'] += $this->getMutations();
-
+        // set transactionId in the request
         $options['transactionId'] = $this->transactionId;
-
-        unset($options['requestOptions']['requestTag']);
-        if (isset($this->tag)) {
-            $options['requestOptions']['transactionTag'] = $this->tag;
-        }
 
         $t = $this->transactionOptions($options);
 
         // @TODO find out what this is and clean it up
         $options[$t[1]] = $t[0];
 
-        $res = $this->operation->commitWithResponse($this->session, $this->pluck('mutations', $options), $options);
-        if (isset($res[1]['commitStats'])) {
-            $this->commitStats = $res[1]['commitStats'];
-        }
+        $response = $this->operation->commit(
+            $this->session,
+            $this->pluck('mutations', $options, false) ?? [],
+            $options
+        );
 
-        return $res[0];
+        // Update commitStats
+        $this->commitStats = $response->getCommitStats();
+        // Unset the precommitToken, as this transaction has finished.
+        $this->precommitToken = null;
+
+        // Return the commit timestamp as a Core Timestamp
+        $timestamp = $response->getCommitTimestamp();
+        $dateTime = \DateTimeImmutable::createFromFormat(
+            'U',
+            (int) $timestamp?->getSeconds(),
+            new \DateTimeZone('UTC')
+        );
+        return new Timestamp($dateTime, $timestamp?->getNanos());
     }
 
     /**
@@ -519,6 +540,16 @@ class Transaction implements TransactionalReadInterface
         return $this->isRetry;
     }
 
+    public function setPrecommitToken(MultiplexedSessionPrecommitToken $precommitToken): void
+    {
+        if (isset($this->precommitToken)
+            && $this->precommitToken->getSeqNum() > $precommitToken->getSeqNum()
+        ) {
+            return;
+        }
+        $this->precommitToken = $precommitToken;
+    }
+
     /**
      * Build the update options.
      *
@@ -552,5 +583,19 @@ class Transaction implements TransactionalReadInterface
         $options['headers']['spanner-route-to-leader'] = ['true'];
 
         return $options;
+    }
+
+    public function updateFromResult(?Transaction $transaction = null): void
+    {
+        if (is_null($transaction)) {
+            return;
+        }
+
+        if (empty($this->transactionId)) {
+            $this->transactionId = $transaction->id();
+        }
+        if (isset($transaction->precommitToken)) {
+            $this->setPrecommitToken($transaction->precommitToken);
+        }
     }
 }

@@ -17,6 +17,11 @@ $columns = ['id', 'number'];
 $callable = function ($dbName, KeySet $keyset, array $columns, $tableName) use ($tmpFile) {
     $iterations = 0;
     $db = SpannerTestCase::getDatabaseInstance($dbName);
+    if (getenv('SPANNER_EMULATOR_HOST')) {
+        // the emulator requires us to manually request a new session
+        // presumably because multiplexed sessions aren't properly supported
+        $db->session()->refresh();
+    }
     $db->runTransaction(function ($transaction) use ($keyset, $columns, $tableName, &$iterations) {
         $iterations++;
         $row = $transaction->read($tableName, $keyset, $columns)->rows()->current();
@@ -31,7 +36,7 @@ $callable = function ($dbName, KeySet $keyset, array $columns, $tableName) use (
 };
 
 $delay = 2000;
-$retryLimit = 3;
+$retryLimit = 100;
 if ($childPID1 = pcntl_fork()) {
     usleep($delay);
 

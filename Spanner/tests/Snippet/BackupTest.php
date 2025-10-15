@@ -51,13 +51,12 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class BackupTest extends SnippetTestCase
 {
+    const DATABASE = 'my-database';
+    const INSTANCE = 'my-instance';
+    const BACKUP = 'my-backup';
+
     use GrpcTestTrait;
     use ProphecyTrait;
-
-    const PROJECT = 'my-awesome-project';
-    const INSTANCE = 'my-instance';
-    const DATABASE = 'my-database';
-    const BACKUP = 'my-backup';
 
     private $serializer;
     private $operationResponse;

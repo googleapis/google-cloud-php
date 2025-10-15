@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
@@ -41,13 +42,12 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class QueryPartitionTest extends SnippetTestCase
 {
+    const TRANSACTION = 'my-transaction';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
+
     use ProphecyTrait;
     use GrpcTestTrait;
     use PartitionSharedSnippetTestTrait;
-
-    const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
-    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
-    const TRANSACTION = 'transaction-id';
 
     private $spannerClient;
     private $serializer;
@@ -89,9 +89,11 @@ class QueryPartitionTest extends SnippetTestCase
                 ]
             ]));
 
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
         $client = new BatchClient(
             new Operation($this->spannerClient->reveal(), $this->serializer),
-            self::DATABASE
+            $session->reveal()
         );
 
         $snippet = $this->snippetFromClass(QueryPartition::class);

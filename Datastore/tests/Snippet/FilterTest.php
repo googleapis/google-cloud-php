@@ -24,7 +24,7 @@ class FilterTest extends SnippetTestCase
     use ProphecyTrait;
     use ProtoEncodeTrait;
 
-    private const PROJECT = 'alpha-project';
+    const PROJECT = 'alpha-project';
     private $gapicClient;
     private $datastore;
     private $operation;

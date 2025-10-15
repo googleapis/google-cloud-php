@@ -25,8 +25,7 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -43,9 +42,9 @@ class StructTypeTest extends SnippetTestCase
     use ProphecyTrait;
     use ResultGeneratorTrait;
 
-    const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
     const INSTANCE = 'my-instance';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
     private $spannerClient;
     private $serializer;
@@ -62,20 +61,8 @@ class StructTypeTest extends SnippetTestCase
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
         $instance->directedReadOptions()->willReturn([]);
 
-        $session = $this->prophesize(Session::class);
-        $session->info()
-            ->willReturn([
-                'databaseName' => 'database'
-            ]);
-        $session->name()
-            ->willReturn('database');
-        $session->setExpiration(Argument::any());
-
-        $sessionPool = $this->prophesize(SessionPoolInterface::class);
-        $sessionPool->acquire(Argument::any())
-            ->willReturn($session->reveal());
-        $sessionPool->setDatabase(Argument::any())
-            ->willReturn(null);
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
 
         $this->serializer = new Serializer();
         $this->database = new Database(
@@ -85,7 +72,7 @@ class StructTypeTest extends SnippetTestCase
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
-            ['sessionPool' => $sessionPool->reveal()]
+            $session->reveal(),
         );
 
         $this->type = new StructType();
