@@ -81,6 +81,4 @@ class Type
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Type::class, \Google\Maps\RouteOptimization\V1\ShipmentModel_Objective_Type::class);
 

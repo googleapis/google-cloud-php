@@ -242,6 +242,4 @@ class LoadCost extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LoadCost::class, \Google\Maps\RouteOptimization\V1\Vehicle_LoadLimit_LoadCost::class);
 

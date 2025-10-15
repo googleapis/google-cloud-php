@@ -132,6 +132,4 @@ class Objective extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Objective::class, \Google\Maps\RouteOptimization\V1\ShipmentModel_Objective::class);
 

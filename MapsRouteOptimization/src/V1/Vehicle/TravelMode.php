@@ -8,9 +8,12 @@ use UnexpectedValueException;
 
 /**
  * Travel modes which can be used by vehicles.
- * These should be a subset of the Google Maps Platform Routes Preferred API
- * travel modes, see:
- * https://developers.google.com/maps/documentation/routes_preferred/reference/rest/Shared.Types/RouteTravelMode.
+ * These should be a subset of the Google Maps Platform Routes API travel
+ * modes, see:
+ * https://developers.google.com/maps/documentation/routes/reference/rest/v2/RouteTravelMode
+ * Note: `WALKING` routes are in beta and might sometimes be missing clear
+ * sidewalks or pedestrian paths. You must display this warning to the user
+ * for all walking routes that you display in your app.
  *
  * Protobuf type <code>google.maps.routeoptimization.v1.Vehicle.TravelMode</code>
  */

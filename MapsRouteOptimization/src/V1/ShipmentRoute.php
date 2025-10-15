@@ -183,6 +183,18 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     protected $metrics = null;
     /**
+     * [VehicleFullness][google.maps.routeoptimization.v1.VehicleFullness] field
+     * for computing how close the capped metrics are to their respective vehicle
+     * limits. Its fields are ratios between a capped metric field (e.g.
+     * [AggregatedMetrics.travel_distance_meters][google.maps.routeoptimization.v1.AggregatedMetrics.travel_distance_meters])
+     * and the related vehicle limit (e.g.
+     * [Vehicle.route_distance_limit][google.maps.routeoptimization.v1.Vehicle.route_distance_limit]).
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>.google.maps.routeoptimization.v1.VehicleFullness vehicle_fullness = 20;</code>
+     */
+    protected $vehicle_fullness = null;
+    /**
      * Cost of the route, broken down by cost-related request fields.
      * The keys are proto paths, relative to the input OptimizeToursRequest, e.g.
      * "model.shipments.pickups.cost", and the values are the total cost
@@ -258,6 +270,14 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      *           or
      *           [ShipmentRoute.visits][google.maps.routeoptimization.v1.ShipmentRoute.visits],
      *           depending on the context.
+     *     @type \Google\Maps\RouteOptimization\V1\VehicleFullness $vehicle_fullness
+     *           [VehicleFullness][google.maps.routeoptimization.v1.VehicleFullness] field
+     *           for computing how close the capped metrics are to their respective vehicle
+     *           limits. Its fields are ratios between a capped metric field (e.g.
+     *           [AggregatedMetrics.travel_distance_meters][google.maps.routeoptimization.v1.AggregatedMetrics.travel_distance_meters])
+     *           and the related vehicle limit (e.g.
+     *           [Vehicle.route_distance_limit][google.maps.routeoptimization.v1.Vehicle.route_distance_limit]).
+     *           Experimental: This field's behavior or existence may change in future.
      *     @type array|\Google\Protobuf\Internal\MapField $route_costs
      *           Cost of the route, broken down by cost-related request fields.
      *           The keys are proto paths, relative to the input OptimizeToursRequest, e.g.
@@ -632,6 +652,54 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Maps\RouteOptimization\V1\AggregatedMetrics::class);
         $this->metrics = $var;
+
+        return $this;
+    }
+
+    /**
+     * [VehicleFullness][google.maps.routeoptimization.v1.VehicleFullness] field
+     * for computing how close the capped metrics are to their respective vehicle
+     * limits. Its fields are ratios between a capped metric field (e.g.
+     * [AggregatedMetrics.travel_distance_meters][google.maps.routeoptimization.v1.AggregatedMetrics.travel_distance_meters])
+     * and the related vehicle limit (e.g.
+     * [Vehicle.route_distance_limit][google.maps.routeoptimization.v1.Vehicle.route_distance_limit]).
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>.google.maps.routeoptimization.v1.VehicleFullness vehicle_fullness = 20;</code>
+     * @return \Google\Maps\RouteOptimization\V1\VehicleFullness|null
+     */
+    public function getVehicleFullness()
+    {
+        return $this->vehicle_fullness;
+    }
+
+    public function hasVehicleFullness()
+    {
+        return isset($this->vehicle_fullness);
+    }
+
+    public function clearVehicleFullness()
+    {
+        unset($this->vehicle_fullness);
+    }
+
+    /**
+     * [VehicleFullness][google.maps.routeoptimization.v1.VehicleFullness] field
+     * for computing how close the capped metrics are to their respective vehicle
+     * limits. Its fields are ratios between a capped metric field (e.g.
+     * [AggregatedMetrics.travel_distance_meters][google.maps.routeoptimization.v1.AggregatedMetrics.travel_distance_meters])
+     * and the related vehicle limit (e.g.
+     * [Vehicle.route_distance_limit][google.maps.routeoptimization.v1.Vehicle.route_distance_limit]).
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>.google.maps.routeoptimization.v1.VehicleFullness vehicle_fullness = 20;</code>
+     * @param \Google\Maps\RouteOptimization\V1\VehicleFullness $var
+     * @return $this
+     */
+    public function setVehicleFullness($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Maps\RouteOptimization\V1\VehicleFullness::class);
+        $this->vehicle_fullness = $var;
 
         return $this;
     }
