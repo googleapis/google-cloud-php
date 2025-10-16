@@ -13,7 +13,7 @@ use UnexpectedValueException;
  * platform capabilities, and the value selected might be ignored if the
  * client doesn't support it. `FULL_SIZE` is supported by all clients.
  * [Google Workspace
- * Add-ons](https://developers.google.com/workspace/add-ons):
+ * add-ons](https://developers.google.com/workspace/add-ons):
  *
  * Protobuf type <code>google.apps.card.v1.OpenLink.OpenAs</code>
  */

@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * and
  * [custom](https://developers.google.com/workspace/chat/format-messages#customicons)
  * icons.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.Icon</code>

@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A section contains a collection of widgets that are rendered
  * vertically in the order that they're specified.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.Card.Section</code>
@@ -27,7 +27,7 @@ class Section extends \Google\Protobuf\Internal\Message
      * and
      * [Formatting
      * text in Google Workspace
-     * Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     * add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      *
      * Generated from protobuf field <code>string header = 1;</code>
      */
@@ -62,6 +62,14 @@ class Section extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 uncollapsible_widgets_count = 6;</code>
      */
     protected $uncollapsible_widgets_count = 0;
+    /**
+     * Optional. Define the expand and collapse button of the section.
+     * This button will be shown only if the section is collapsible.
+     * If this field isn't set, the default button is used.
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.CollapseControl collapse_control = 8;</code>
+     */
+    protected $collapse_control = null;
 
     /**
      * Constructor.
@@ -78,7 +86,7 @@ class Section extends \Google\Protobuf\Internal\Message
      *           and
      *           [Formatting
      *           text in Google Workspace
-     *           Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     *           add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      *     @type array<\Google\Apps\Card\V1\Widget>|\Google\Protobuf\Internal\RepeatedField $widgets
      *           All the widgets in the section.
      *           Must contain at least one widget.
@@ -97,6 +105,10 @@ class Section extends \Google\Protobuf\Internal\Message
      *           the first two widgets are always shown and the last three are collapsed
      *           by default. The `uncollapsibleWidgetsCount` is taken into account only
      *           when `collapsible` is `true`.
+     *     @type \Google\Apps\Card\V1\CollapseControl $collapse_control
+     *           Optional. Define the expand and collapse button of the section.
+     *           This button will be shown only if the section is collapsible.
+     *           If this field isn't set, the default button is used.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,7 +125,7 @@ class Section extends \Google\Protobuf\Internal\Message
      * and
      * [Formatting
      * text in Google Workspace
-     * Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     * add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      *
      * Generated from protobuf field <code>string header = 1;</code>
      * @return string
@@ -132,7 +144,7 @@ class Section extends \Google\Protobuf\Internal\Message
      * and
      * [Formatting
      * text in Google Workspace
-     * Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     * add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      *
      * Generated from protobuf field <code>string header = 1;</code>
      * @param string $var
@@ -244,6 +256,46 @@ class Section extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->uncollapsible_widgets_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Define the expand and collapse button of the section.
+     * This button will be shown only if the section is collapsible.
+     * If this field isn't set, the default button is used.
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.CollapseControl collapse_control = 8;</code>
+     * @return \Google\Apps\Card\V1\CollapseControl|null
+     */
+    public function getCollapseControl()
+    {
+        return $this->collapse_control;
+    }
+
+    public function hasCollapseControl()
+    {
+        return isset($this->collapse_control);
+    }
+
+    public function clearCollapseControl()
+    {
+        unset($this->collapse_control);
+    }
+
+    /**
+     * Optional. Define the expand and collapse button of the section.
+     * This button will be shown only if the section is collapsible.
+     * If this field isn't set, the default button is used.
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.CollapseControl collapse_control = 8;</code>
+     * @param \Google\Apps\Card\V1\CollapseControl $var
+     * @return $this
+     */
+    public function setCollapseControl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Card\V1\CollapseControl::class);
+        $this->collapse_control = $var;
 
         return $this;
     }
