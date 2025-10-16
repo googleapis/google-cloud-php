@@ -66,6 +66,7 @@ trait ResultGeneratorTrait
         if (!$rows) {
             $fields = [];
             $values = [];
+            $precommitToken = null;
             foreach ($chunks as $row) {
                 $fields[] = new Field([
                     'name' => $row['name'],
@@ -73,6 +74,7 @@ trait ResultGeneratorTrait
                 ]);
 
                 $values[] = new Value(['string_value' => (string) $row['value']]);
+                $precommitToken ??= $row['precommitToken'] ?? null;
             }
 
             $result = [
@@ -97,6 +99,10 @@ trait ResultGeneratorTrait
             }
 
             $rows[] = new PartialResultSet($result);
+
+            if ($precommitToken) {
+                $rows[0]->setPrecommitToken($precommitToken);
+            }
         }
 
         $stream->readAll()

@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
+use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
@@ -48,6 +49,7 @@ use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Protobuf\Duration;
 use Google\Protobuf\Timestamp as TimestampProto;
@@ -95,11 +97,20 @@ class SpannerClientTest extends TestCase
         ];
 
         $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
+        $this->gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+        $this->gapicSpannerClient->addMiddleware(Argument::cetera());
+        $this->gapicSpannerClient->createSession(Argument::cetera())->willReturn(new Session([
+            'name' => self::SESSION,
+            'multiplexed' => true,
+            'create_time' => new TimestampProto(['seconds' => time()]),
+        ]));
         $this->spannerClient = new SpannerClient([
             'projectId' => self::PROJECT,
             'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
-            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal()
+            'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
+            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
+            'cacheItemPool' => new MemoryCacheItemPool(),
         ]);
 
         $this->operationResponse = $this->prophesize(OperationResponse::class);
@@ -111,16 +122,12 @@ class SpannerClientTest extends TestCase
         $this->assertInstanceOf(BatchClient::class, $batch);
 
         $ref = new ReflectionClass($batch);
-        $prop = $ref->getProperty('databaseName');
+        $prop = $ref->getProperty('session');
         $prop->setAccessible(true);
 
         $this->assertEquals(
-            GapicSpannerClient::databaseName(
-                self::PROJECT,
-                'foo',
-                'bar'
-            ),
-            $prop->getValue($batch)
+            self::SESSION,
+            $prop->getValue($batch)->name()
         );
     }
 

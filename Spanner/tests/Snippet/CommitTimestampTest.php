@@ -25,12 +25,12 @@ use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
-use Google\Cloud\Spanner\V1\CreateSessionRequest;
-use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Protobuf\Timestamp as TimestampProto;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Cache\CacheItemInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * @group spanner
@@ -38,10 +38,10 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class CommitTimestampTest extends SnippetTestCase
 {
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
+
     use ProphecyTrait;
     use GrpcTestTrait;
-
-    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
     private $spannerClient;
     private $serializer;
@@ -57,19 +57,21 @@ class CommitTimestampTest extends SnippetTestCase
     {
         $id = 'abc';
 
-        $this->spannerClient->createSession(
-            Argument::type(CreateSessionRequest::class),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new Session(['name' => self::SESSION]));
-        $this->spannerClient->deleteSession(
-            Argument::type(DeleteSessionRequest::class),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce();
         $this->spannerClient->addMiddleware(Argument::type('callable'))
             ->shouldBeCalledOnce();
+
+        // ensure cache hit
+        $cacheItem = $this->prophesize(CacheItemInterface::class);
+        $cacheItem->isHit()->shouldBeCalled()->willReturn(true);
+        $cacheItem->get()->shouldBeCalled()->willReturn((new Session([
+            'name' => self::SESSION,
+            'multiplexed' => true,
+            'create_time' => new TimestampProto(['seconds' => time()]),
+        ]))->serializeToString());
+        $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
+        $cacheItemPool->getItem(Argument::type('string'))
+            ->shouldBeCalledOnce()
+            ->willReturn($cacheItem->reveal());
 
         $mutation = [
             'insert' => [
@@ -91,7 +93,8 @@ class CommitTimestampTest extends SnippetTestCase
 
         $client = new SpannerClient([
             'projectId' => 'my-project',
-            'gapicSpannerClient' => $this->spannerClient->reveal()
+            'gapicSpannerClient' => $this->spannerClient->reveal(),
+            'cacheItemPool' => $cacheItemPool->reveal(),
         ]);
 
         $snippet = $this->snippetFromClass(CommitTimestamp::class);

@@ -27,7 +27,7 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
@@ -51,13 +51,12 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class BatchSnapshotTest extends SnippetTestCase
 {
+    const TRANSACTION = 'my-transaction';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
+
     use GrpcTestTrait;
     use ProphecyTrait;
     use ResultGeneratorTrait;
-
-    const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
-    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
-    const TRANSACTION = 'transaction-id';
 
     private $spannerClient;
     private $serializer;
@@ -72,13 +71,8 @@ class BatchSnapshotTest extends SnippetTestCase
         $this->serializer = new Serializer();
         $this->spannerClient = $this->prophesize(SpannerClient::class);
 
-        $sessData = SpannerClient::parseName(self::SESSION, 'session');
-        $this->session = $this->prophesize(Session::class);
+        $this->session = $this->prophesize(SessionCache::class);
         $this->session->name()->willReturn(self::SESSION);
-        $this->session->info()->willReturn($sessData + [
-            'name' => self::SESSION,
-            'databaseName' => self::DATABASE
-        ]);
 
         $this->time = time();
         $this->snapshot = new BatchSnapshot(
@@ -111,7 +105,7 @@ class BatchSnapshotTest extends SnippetTestCase
 
         $client = new BatchClient(
             new Operation($this->spannerClient->reveal(), $this->serializer),
-            self::DATABASE
+            $this->session->reveal()
         );
 
         $snippet = $this->snippetFromClass(BatchSnapshot::class);
@@ -137,17 +131,6 @@ class BatchSnapshotTest extends SnippetTestCase
     public function provideSerializeIndex()
     {
         return [[1], [2]];
-    }
-
-    public function testClose()
-    {
-        $this->session->delete([])
-            ->shouldBeCalled();
-
-        $snippet = $this->snippetFromMethod(BatchSnapshot::class, 'close');
-        $snippet->addLocal('snapshot', $this->snapshot);
-
-        $res = $snippet->invoke();
     }
 
     public function testPartitionRead()

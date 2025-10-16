@@ -13,6 +13,11 @@ setupIterationTracker($tmpFile);
 $callable = function ($dbName, $tableName, $id) use ($tmpFile) {
     $iterations = 0;
     $db = SpannerTestCase::getDatabaseInstance($dbName);
+    if (getenv('SPANNER_EMULATOR_HOST')) {
+        // the emulator requires us to manually request a new session
+        // presumably because multiplexed sessions aren't properly supported
+        $db->session()->refresh();
+    }
     $db->runTransaction(function ($transaction) use ($id, $tableName, &$iterations) {
         $iterations++;
 
@@ -32,7 +37,7 @@ $callable = function ($dbName, $tableName, $id) use ($tmpFile) {
 };
 
 $delay = 2000;
-$retryLimit = 3;
+$retryLimit = 100;
 if ($childPID1 = pcntl_fork()) {
     usleep($delay);
 

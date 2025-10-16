@@ -44,7 +44,7 @@ jobs:
           php-version: '8.1'
           ini-values: grpc.enable_fork_support=1
           tools: pecl
-          extensions: bcmath, grpc
+          extensions: bcmath, grpc, pcntl
 
       - name: Install dependencies
         run: |

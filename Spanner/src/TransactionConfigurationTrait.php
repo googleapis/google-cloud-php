@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ArrayTrait;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Protobuf\Duration;
@@ -48,7 +47,7 @@ trait TransactionConfigurationTrait
     {
         $options += [
             'begin' => false,
-            'transactionType' => SessionPoolInterface::CONTEXT_READ,
+            'transactionType' => Database::CONTEXT_READ,
         ];
 
         [$transactionOptions, $type, $context] = $this->transactionOptions($options, $transactionLevelReadOnlyOptions);
@@ -85,7 +84,7 @@ trait TransactionConfigurationTrait
 
         $type = null;
         $begin = $options['begin'] ?? [];
-        $context = $options['transactionType'] ?? SessionPoolInterface::CONTEXT_READWRITE;
+        $context = $options['transactionType'] ?? Database::CONTEXT_READWRITE;
         $id = $options['transactionId'] ?? null;
 
         if ($id === null) {
@@ -100,13 +99,13 @@ trait TransactionConfigurationTrait
         if ($id !== null) {
             $type = 'transactionId';
             $transactionOptions = $id;
-        } elseif ($context === SessionPoolInterface::CONTEXT_READ) {
+        } elseif ($context === Database::CONTEXT_READ) {
             $options += ['singleUse' => null];
             $transactionOptions = $this->configureReadOnlyTransactionOptions(
                 $options,
                 $transactionLevelReadOnlyOptions
             );
-        } elseif ($context === SessionPoolInterface::CONTEXT_READWRITE) {
+        } elseif ($context === Database::CONTEXT_READWRITE) {
             $transactionOptions = $this->configureReadWriteTransactionOptions(
                 // TODO: Find out when $begin is a bool and fix it
                 $type == 'begin' && !is_bool($begin) ? $begin : []
@@ -263,7 +262,7 @@ trait TransactionConfigurationTrait
         }
 
         if (isset($requestOptions['transaction']['singleUse']) || (
-            ($requestOptions['transactionContext'] ?? null) == SessionPoolInterface::CONTEXT_READ
+            ($requestOptions['transactionContext'] ?? null) == Database::CONTEXT_READ
         ) || isset($requestOptions['transactionOptions']['readOnly'])
         ) {
             if (isset($clientOptions['includeReplicas'])) {

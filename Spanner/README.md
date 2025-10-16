@@ -34,29 +34,138 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-use Google\ApiCore\ApiException;
-use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\GetSessionRequest;
-use Google\Cloud\Spanner\V1\Session;
+use Google\Cloud\Spanner\SpannerClient;
 
 // Create a client.
 $spannerClient = new SpannerClient();
 
-// Prepare the request message.
-$request = (new GetSessionRequest())
-    ->setName($formattedName);
+$db = $spanner->connect('my-instance', 'my-database');
 
-// Call the API and handle any network failures.
-try {
-    /** @var Session $response */
-    $response = $spannerClient->getSession($request);
-    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-} catch (ApiException $ex) {
-    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-}
+$userQuery = $db->execute('SELECT * FROM Users WHERE id = @id', [
+    'parameters' => [
+        'id' => $userId
+    ]
+]);
+
+$user = $userQuery->rows()->current();
+
+echo 'Hello ' . $user['firstName'];
 ```
 
-By using a cache implementation like `SysVCacheItemPool`, you can share the cached sessions among multiple processes, so that for example, you can warmup the session upon the server startup, then all the other PHP processes will benefit from the warmed up sessions.
+### Multiplexed Sessions
+
+The V2 version of the Spanner Client Library for PHP uses [Multiplexed Sessions][mux-sessions]. Multiplexed Sessions
+allow your application to create a large number of concurrent requests on a single session. Some advantages include
+reduced backend resource consumption due to a more straightforward session management protocol, and less management
+as sessions no longer require cleanup after use or keep-alive requests when idle.
+
+#### Session Caching
+
+The session cache is configured with a default cache which uses the PSR-6 compatible [`SysvCacheItemPool`][sysv-cache]
+when the [`sysvshm`][sysvshm] extension is enabled, and [`FileSystemCacheItemPool`][file-cache] when `sysvshm` is not
+available. This ensures that your processes share a single multiplex session for each database and creator role.
+
+To change the default cache pool, use the option `cacheItemPool` when instantiating your Spanner client:
+
+```php
+use Google\Cloud\Spanner\SpannerClient;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+// available by running `composer install symfony/cache`
+$fileCacheItemPool = new FilesystemAdapter();
+// configure through SpannerClient constructor
+$spanner = new SpannerClient(['cacheItemPool' => $fileCacheItemPool]);
+$database = $spanner->instance($instanceId)->database($databaseId);
+```
+
+This can also be passed in as an option to the `instance` or `database` methods:
+```php
+$spanner = new SpannerClient();
+// configure through instance method
+$database = $spanner
+    ->instance($instanceId, ['cacheItemPool' => $fileCacheItemPool])
+    ->database($databaseId);
+// configure through database method
+$database = $spanner
+    ->instance($instanceId)
+    ->database($databaseId, ['cacheItemPool' => $fileCacheItemPool]);
+```
+
+[sysvshm]: https://www.php.net/manual/en/book.sem.php
+[file-cache]: https://github.com/googleapis/google-auth-library-php/blob/main/src/Cache/FileSystemCacheItemPool.php
+[sysv-cache]: https://github.com/googleapis/google-auth-library-php/blob/main/src/Cache/SysVCacheItemPool.php
+
+#### Refreshing Sessions
+
+Sessions will refresh synchronously every 7 days. You can use this script to refresh the session asynchronously, in
+to avoid latency in your application (recommended every ~24 hours):
+
+```php
+// If you are using a custom PSR-6 cache via the "cacheItemPool" client option in your
+// application, you will need to supply a cache with the same configuration here in
+// order to properly refresh the session.
+$spanner = new SpannerClient();
+
+$sessionCache = $spanner
+    ->instance($instanceId)
+    ->database($databaseId)
+    ->session();
+
+// this will force-refresh the session
+$sessionCache->refresh();
+```
+
+[mux-sessions]: https://cloud.google.com/spanner/docs/sessions#multiplexed_sessions
+
+#### Session Locking
+
+Locking occurs when a new session is created, and ensures no race conditions occur when a session expires.
+Locking uses a [`Semaphore`][sem-lock] lock when `sysvmsg`, `sysvsem`, and `sysvshm` extensions are enabled, and a
+[`Flock`][flock-lock] lock otherwise. To configure a custom lock, supply a class implementing
+[`LockInterface`][lock-interface] when calling `Instance::database`. Here's an example which encorporates the
+[Symfony Lock component][symfony-lock]:
+
+```php
+use Google\Cloud\Core\Lock\LockInterface;
+use Google\Cloud\Spanner\SpannerClient;
+use Symfony\Component\Lock\LockFactory;
+use Symfony\Component\Lock\SharedLockInterface;
+use Symfony\Component\Lock\Store\SemaphoreStore;
+
+// Available by running `composer install symfony/lock`
+$store = new SemaphoreStore();
+$factory = new LockFactory($store);
+
+// Create an adapter for Symfony's SharedLockInterface and Google's LockInterface
+$lock = new class ($factory->createLock($databaseId)) implements LockInterface {
+    public function __construct(private SharedLockInterface $lock) {
+    }
+
+    public function acquire(array $options = []) {
+        return $this->lock->acquire()
+    }
+
+    public function release() {
+        return $this->lock->acquire()
+    }
+
+    public function synchronize(callable $func, array $options = []) {
+        if ($this->lock->acquire($options['blocking'] ?? true)) {
+            return $func();
+        }
+    }
+}
+
+// Configure our custom lock on our database using the "lock" option
+$spanner = new SpannerClient();
+$database = $spanner
+    ->instance($instanceId)
+    ->database($databaseId, ['lock' => $lock]);
+```
+
+[sem-lock]: https://github.com/googleapis/google-cloud-php/blob/main/Core/src/Lock/SemaphoreLock.php
+[flock-lock]: https://github.com/googleapis/google-cloud-php/blob/main/Core/src/Lock/FlockLock.php
+[lock-interface]: https://github.com/googleapis/google-cloud-php/blob/main/Core/src/Lock/LockInterface.php
+[symfony-lock]: https://symfony.com/doc/current/components/lock.html
 
 ### Debugging
 

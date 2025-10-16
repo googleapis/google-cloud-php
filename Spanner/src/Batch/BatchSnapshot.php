@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner\Batch;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\SnapshotTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionalReadInterface;
@@ -30,12 +30,6 @@ use Google\Cloud\Spanner\TransactionalReadInterface;
  *
  * Batch Snapshots can be shared with other servers or processes by casting the
  * object to a string, or by calling {@see \Google\Cloud\Spanner\Batch\BatchSnapshot::serialize()}.
- *
- * Please note that it is important that Snapshots are closed when they are no
- * longer needed. Closing a snapshot is accomplished by calling
- * {@see \Google\Cloud\Spanner\Batch\BatchSnapshot::close()}. Snapshots should be
- * closed only after all workers have finished processing. Closing a snapshot
- * before all workers have processed will result in call failures.
  *
  * Example:
  * ```
@@ -62,7 +56,7 @@ class BatchSnapshot implements TransactionalReadInterface
 
     /**
      * @param Operation $operation The Operation instance.
-     * @param Session $session The session to use for spanner interactions.
+     * @param SessionCache $session The session to use for spanner interactions.
      * @param array $options [optional] {
      *     Configuration Options.
      *
@@ -70,31 +64,9 @@ class BatchSnapshot implements TransactionalReadInterface
      *     @type Timestamp $readTimestamp The read timestamp.
      * }
      */
-    public function __construct(Operation $operation, Session $session, array $options = [])
+    public function __construct(Operation $operation, SessionCache $session, array $options = [])
     {
         $this->initialize($operation, $session, $options);
-    }
-
-    /**
-     * Closes all open resources.
-     *
-     * When the snapshot is no longer needed, it is important to call this method
-     * to free up resources allocated by the Batch Client.
-     *
-     * Methods on this instance which make service calls will fail if the snapshot
-     * has been closed.
-     *
-     * Example:
-     * ```
-     * $snapshot->close();
-     * ```
-     *
-     * @param array $options [optional] Configuration Options
-     * @return void
-     */
-    public function close(array $options = []): void
-    {
-        $this->session->delete($options);
     }
 
     /**
