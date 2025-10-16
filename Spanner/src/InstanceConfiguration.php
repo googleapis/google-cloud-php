@@ -226,8 +226,11 @@ class InstanceConfiguration
      * @throws ValidationException
      * @codingStandardsIgnoreEnd
      */
-    public function create(InstanceConfiguration $baseConfig, array $replicas, array $options = []): LongRunningOperation
-    {
+    public function create(
+        InstanceConfiguration $baseConfig,
+        array $replicas,
+        array $options = []
+    ): LongRunningOperation {
         $leaderOptions = $baseConfig->info()['leaderOptions'] ?? [];
         $options['leaderOptions'] = $leaderOptions;
         $options['replicas'] = $replicas;
