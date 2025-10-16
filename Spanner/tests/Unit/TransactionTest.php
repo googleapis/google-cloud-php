@@ -566,7 +566,7 @@ class TransactionTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn([
                 $this->prophesize(Timestamp::class)->reveal(),
-                $this->prophesize(CommitResponse::class)->reveal(),
+                new CommitResponse(),
             ]);
 
         $transaction = new Transaction(
@@ -606,7 +606,7 @@ class TransactionTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn([
                 $this->prophesize(Timestamp::class)->reveal(),
-                $this->prophesize(CommitResponse::class)->reveal(),
+                new CommitResponse(),
             ]);
 
         $transaction = new Transaction(
@@ -635,7 +635,7 @@ class TransactionTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn([
                 $this->prophesize(Timestamp::class)->reveal(),
-                $this->prophesize(CommitResponse::class)->reveal(),
+                new CommitResponse(),
             ]);
 
         $transaction = new Transaction(

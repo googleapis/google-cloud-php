@@ -160,6 +160,13 @@ abstract class SpannerTestCase extends SystemTestCase
 
     public static function skipEmulatorTests()
     {
+        if (self::isEmulatorUsed()) {
+            self::markTestSkipped('This test is not supported by the emulator.');
+        }
+    }
+
+    public static function emulatorOnly()
+    {
         if (!self::isEmulatorUsed()) {
             self::markTestSkipped('This test is only supported by the emulator.');
         }
