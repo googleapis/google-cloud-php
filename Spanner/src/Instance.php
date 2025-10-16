@@ -964,7 +964,6 @@ class Instance
             'projectId' => $this->projectId,
             'name' => $this->name,
             'info' => $this->info,
-            'cacheItemPool' => $this->cacheItemPool,
         ];
     }
 }
