@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -187,7 +188,7 @@ class OperationTest extends TestCase
         $this->assertEquals([
             'commitTimestamp' => self::TIMESTAMP,
             'commitStats' => ['mutationCount' => 1]
-        ], $res[1]);
+        ], $this->serializer->encodeMessage($res[1]));
     }
 
     public function testCommitWithMaxCommitDelay()
@@ -222,7 +223,7 @@ class OperationTest extends TestCase
         $this->assertInstanceOf(Timestamp::class, $res[0]);
         $this->assertEquals([
             'commitTimestamp' => self::TIMESTAMP,
-        ], $res[1]);
+        ], $this->serializer->encodeMessage($res[1]));
     }
 
     public function testCommitWithExistingTransaction()
@@ -419,54 +420,6 @@ class OperationTest extends TestCase
         $this->assertEquals(self::TRANSACTION, $t->id());
     }
 
-    public function testTransactionWithExcludeTxnFromChangeStreams()
-    {
-        $this->spannerClient->beginTransaction(
-            Argument::that(function (BeginTransactionRequest $request) {
-                $this->assertTrue($request->getOptions()->getExcludeTxnFromChangeStreams());
-                return true;
-            }),
-            Argument::type('array')
-        )
-            ->shouldBeCalled()
-            ->willReturn(new TransactionProto(['id' => 'foo']));
-
-        $transaction = $this->operation->transaction($this->session, [
-           'transactionOptions' => ['excludeTxnFromChangeStreams' => true]
-        ]);
-
-        $this->assertEquals('foo', $transaction->id());
-    }
-
-    public function testExecuteAndExecuteUpdateWithExcludeTxnFromChangeStreams()
-    {
-        $sql = 'SELECT example FROM sql_query';
-
-        $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])]);
-        $stream = $this->prophesize(ServerStream::class);
-        $stream->readAll()->shouldBeCalledTimes(2)->willReturn([$resultSet]);
-
-        $this->spannerClient->executeStreamingSql(
-            Argument::that(function (ExecuteSqlRequest $request) {
-                $this->assertTrue($request->getTransaction()->getBegin()->getExcludeTxnFromChangeStreams());
-                return true;
-            }),
-            Argument::type('array')
-        )
-            ->shouldBeCalledTimes(2)
-            ->willReturn($stream->reveal());
-
-        $this->operation->execute($this->session, $sql, [
-           'transaction' => ['begin' => ['excludeTxnFromChangeStreams' => true]]
-        ]);
-
-        $transaction = $this->prophesize(Transaction::class)->reveal();
-
-        $this->operation->executeUpdate($this->session, $transaction, $sql, [
-           'transaction' => ['begin' => ['excludeTxnFromChangeStreams' => true]]
-        ]);
-    }
-
     public function testTransactionWithReadLockMode()
     {
         $this->spannerClient->beginTransaction(
@@ -522,6 +475,54 @@ class OperationTest extends TestCase
 
         $transaction = $this->prophesize(Transaction::class)->reveal();
         $this->operation->executeUpdate($this->session, $transaction, $sql, $lockModeOptions);
+    }
+
+    public function testTransactionWithExcludeTxnFromChangeStreams()
+    {
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertTrue($request->getOptions()->getExcludeTxnFromChangeStreams());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalled()
+            ->willReturn(new TransactionProto(['id' => 'foo']));
+
+        $transaction = $this->operation->transaction($this->session, [
+           'transactionOptions' => ['excludeTxnFromChangeStreams' => true]
+        ]);
+
+        $this->assertEquals('foo', $transaction->id());
+    }
+
+    public function testExecuteAndExecuteUpdateWithExcludeTxnFromChangeStreams()
+    {
+        $sql = 'SELECT example FROM sql_query';
+
+        $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])]);
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->shouldBeCalledTimes(2)->willReturn([$resultSet]);
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $this->assertTrue($request->getTransaction()->getBegin()->getExcludeTxnFromChangeStreams());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledTimes(2)
+            ->willReturn($stream->reveal());
+
+        $this->operation->execute($this->session, $sql, [
+           'transaction' => ['begin' => ['excludeTxnFromChangeStreams' => true]]
+        ]);
+
+        $transaction = $this->prophesize(Transaction::class)->reveal();
+
+        $this->operation->executeUpdate($this->session, $transaction, $sql, [
+           'transaction' => ['begin' => ['excludeTxnFromChangeStreams' => true]]
+        ]);
     }
 
     public function testSnapshot()

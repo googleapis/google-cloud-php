@@ -25,7 +25,6 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
@@ -72,9 +71,9 @@ class TransactionTypeTest extends TestCase
     const SESSION = 'my-session';
 
     private $spannerClient;
-    private $serializer;
     private $timestamp;
     private $protoTimestamp;
+    private $database;
 
     public function setUp(): void
     {
@@ -86,25 +85,10 @@ class TransactionTypeTest extends TestCase
         $this->protoTimestamp = new TimestampProto(['seconds' => $time->format('U'), 'nanos' => $nanos]);
 
         $this->spannerClient = $this->prophesize(SpannerClient::class);
-        $this->serializer = $this->prophesize(Serializer::class);
 
-        // mock serializer responses for sessions (used for streaming tests)
-        $this->serializer = $this->prophesize(Serializer::class);
-        $this->serializer->decodeMessage(
-            Argument::type(CreateSessionRequest::class),
-            Argument::type('array')
-        )
-            ->willReturn(new CreateSessionRequest([
-                'database' => SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
-            ]));
-        $this->serializer->encodeMessage(Argument::type(Session::class))
-            ->willReturn(['name' => $this->getFullyQualifiedSessionName()]);
-
-        $this->serializer->decodeMessage(
-            Argument::type(DeleteSessionRequest::class),
-            Argument::type('array')
-        )
-            ->willReturn(new DeleteSessionRequest());
+        $instance = $this->prophesize(Instance::class);
+        $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
+        $instance->directedReadOptions()->willReturn([]);
 
         $this->spannerClient->createSession(
             Argument::that(function (CreateSessionRequest $request) {
@@ -118,8 +102,14 @@ class TransactionTypeTest extends TestCase
         )
             ->willReturn(new Session(['name' => $this->getFullyQualifiedSessionName()]));
 
-        $this->spannerClient->deleteSession(Argument::cetera())
-            ->shouldBeCalledOnce();
+        $this->database = new Database(
+            $this->spannerClient->reveal(),
+            $this->prophesize(DatabaseAdminClient::class)->reveal(),
+            new Serializer(),
+            $instance->reveal(),
+            self::PROJECT,
+            self::DATABASE,
+        );
     }
 
     public function testDatabaseRunTransactionPreAllocate()
@@ -142,11 +132,9 @@ class TransactionTypeTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse(['commit_timestamp' => $this->protoTimestamp]));
+            ->willReturn(new CommitResponse());
 
-        $database = $this->database($this->spannerClient->reveal());
-
-        $database->runTransaction(function ($t) {
+        $this->database->runTransaction(function ($t) {
             // Transaction gets created at the commit operation
             $t->commit();
         });
@@ -167,11 +155,9 @@ class TransactionTypeTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse(['commit_timestamp' => $this->protoTimestamp]));
+            ->willReturn(new CommitResponse());
 
-        $database = $this->database($this->spannerClient->reveal());
-
-        $database->runTransaction(function ($t) {
+        $this->database->runTransaction(function ($t) {
             $this->assertNull($t->id());
 
             $t->commit();
@@ -190,8 +176,7 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
 
-        $database = $this->database($this->spannerClient->reveal());
-        $transaction = $database->transaction();
+        $transaction = $this->database->transaction();
 
         $this->assertInstanceOf(Transaction::class, $transaction);
         $this->assertEquals($transaction->id(), self::TRANSACTION);
@@ -201,9 +186,7 @@ class TransactionTypeTest extends TestCase
     {
         $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
 
-        $database = $this->database($this->spannerClient->reveal());
-
-        $transaction = $database->transaction(['singleUse' => true]);
+        $transaction = $this->database->transaction(['singleUse' => true]);
 
         $this->assertInstanceOf(Transaction::class, $transaction);
         $this->assertNull($transaction->id());
@@ -224,11 +207,7 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
 
-        $database = $database = $this->database(
-            $this->spannerClient->reveal(),
-        );
-
-        $snapshot = $database->snapshot();
+        $snapshot = $this->database->snapshot();
 
         $this->assertInstanceOf(Snapshot::class, $snapshot);
         $this->assertEquals($snapshot->id(), self::TRANSACTION);
@@ -238,11 +217,7 @@ class TransactionTypeTest extends TestCase
     {
         $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
 
-        $database = $database = $this->database(
-            $this->spannerClient->reveal(),
-        );
-
-        $snapshot = $database->snapshot(['singleUse' => true]);
+        $snapshot = $this->database->snapshot(['singleUse' => true]);
 
         $this->assertInstanceOf(Snapshot::class, $snapshot);
         $this->assertNull($snapshot->id());
@@ -271,8 +246,7 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
-        $database = $this->database($this->spannerClient->reveal());
-        $snapshot = $database->snapshot([
+        $snapshot = $this->database->snapshot([
             'singleUse' => true,
             'minReadTimestamp' => $this->timestamp,
             'maxStaleness' => $duration
@@ -289,9 +263,7 @@ class TransactionTypeTest extends TestCase
         $this->spannerClient->executeStreamingSql(Argument::cetera())->shouldNotBeCalled();
         $this->spannerClient->deleteSession(Argument::cetera())->shouldNotBeCalled();
 
-        $database = $this->database($this->spannerClient->reveal());
-
-        $database->snapshot([
+        $this->database->snapshot([
             'minReadTimestamp' => $this->timestamp,
         ]);
     }
@@ -308,9 +280,7 @@ class TransactionTypeTest extends TestCase
         $this->spannerClient->executeStreamingSql(Argument::cetera())->shouldNotBeCalled();
         $this->spannerClient->deleteSession(Argument::cetera())->shouldNotBeCalled();
 
-        $database = $this->database($this->spannerClient->reveal());
-
-        $database->snapshot([
+        $this->database->snapshot([
             'maxStaleness' => $duration
         ]);
     }
@@ -338,9 +308,7 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
-        $database = $this->database($this->spannerClient->reveal());
-
-        $snapshot = $database->snapshot([
+        $snapshot = $this->database->snapshot([
             'singleUse' => true,
             'readTimestamp' => $this->timestamp,
             'exactStaleness' => $duration
@@ -379,8 +347,7 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
-        $database = $this->database($this->spannerClient->reveal());
-        $snapshot = $database->snapshot([
+        $snapshot = $this->database->snapshot([
             'readTimestamp' => $this->timestamp,
             'exactStaleness' => $duration
         ]);
@@ -404,9 +371,7 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
-        $database = $this->database($this->spannerClient->reveal());
-
-        $snapshot = $database->snapshot([
+        $snapshot = $this->database->snapshot([
             'singleUse' => true,
             'strong' => true
         ]);
@@ -437,9 +402,7 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
-        $database = $this->database($this->spannerClient->reveal());
-
-        $snapshot = $database->snapshot([
+        $snapshot = $this->database->snapshot([
             'strong' => true
         ]);
 
@@ -462,9 +425,7 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
-        $database = $this->database($this->spannerClient->reveal());
-
-        $snapshot = $database->snapshot([
+        $snapshot = $this->database->snapshot([
             'singleUse' => true,
         ]);
 
@@ -494,10 +455,7 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
-        $database = $this->database($this->spannerClient->reveal());
-
-        $snapshot = $database->snapshot();
-
+        $snapshot = $this->database->snapshot();
         $snapshot->execute('SELECT * FROM Table')->rows()->current();
     }
 
@@ -524,9 +482,7 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
-        $database = $this->database($this->spannerClient->reveal());
-
-        $snapshot = $database->snapshot([
+        $snapshot = $this->database->snapshot([
             'returnReadTimestamp' => true
         ]);
 
@@ -546,83 +502,81 @@ class TransactionTypeTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse(['commit_timestamp' => $this->protoTimestamp]));
+            ->willReturn(new CommitResponse());
 
-        $database = $this->database($this->spannerClient->reveal());
-
-        $database->insert('Table', [
+        $this->database->insert('Table', [
             'column' => 'value'
         ]);
     }
 
     public function testDatabaseInsertBatchSingleUseReadWrite()
     {
-        $database = $this->createMockedCommitDatabase();
+        $this->createMockedCommitDatabase();
 
-        $database->insertBatch('Table', [[
+        $this->database->insertBatch('Table', [[
             'column' => 'value'
         ]]);
     }
 
     public function testDatabaseUpdateSingleUseReadWrite()
     {
-        $database = $this->createMockedCommitDatabase();
+        $this->createMockedCommitDatabase();
 
-        $database->update('Table', [
+        $this->database->update('Table', [
             'column' => 'value'
         ]);
     }
 
     public function testDatabaseUpdateBatchSingleUseReadWrite()
     {
-        $database = $this->createMockedCommitDatabase();
+        $this->createMockedCommitDatabase();
 
-        $database->updateBatch('Table', [[
+        $this->database->updateBatch('Table', [[
             'column' => 'value'
         ]]);
     }
 
     public function testDatabaseInsertOrUpdateSingleUseReadWrite()
     {
-        $database = $this->createMockedCommitDatabase();
+        $this->createMockedCommitDatabase();
 
-        $database->insertOrUpdate('Table', [
+        $this->database->insertOrUpdate('Table', [
             'column' => 'value'
         ]);
     }
 
     public function testDatabaseInsertOrUpdateBatchSingleUseReadWrite()
     {
-        $database = $this->createMockedCommitDatabase();
+        $this->createMockedCommitDatabase();
 
-        $database->insertOrUpdateBatch('Table', [[
+        $this->database->insertOrUpdateBatch('Table', [[
             'column' => 'value'
         ]]);
     }
 
     public function testDatabaseReplaceSingleUseReadWrite()
     {
-        $database = $this->createMockedCommitDatabase();
+        $this->createMockedCommitDatabase();
 
-        $database->replace('Table', [
+        $this->database->replace('Table', [
             'column' => 'value'
         ]);
     }
 
     public function testDatabaseReplaceBatchSingleUseReadWrite()
     {
-        $database = $this->createMockedCommitDatabase();
+        $this->createMockedCommitDatabase();
 
-        $database->replaceBatch('Table', [[
+        $this->database->replaceBatch('Table', [[
             'column' => 'value'
         ]]);
     }
 
     public function testDatabaseDeleteSingleUseReadWrite()
     {
-        $database = $this->createMockedCommitDatabase();
+        $this->createMockedCommitDatabase();
 
-        $database->delete('Table', new KeySet());
+        $this->database->delete('Table', new KeySet());
     }
 
     /**
@@ -645,8 +599,14 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
+        $this->spannerClient->deleteSession(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
+
         $serializer = $this->serializerForStreamingSql($chunks, $transaction);
-        $database = $this->database($this->spannerClient->reveal(), $serializer);
+        $database = $this->database($serializer);
         $database->execute('SELECT * FROM Table')->rows()->current();
     }
 
@@ -672,8 +632,14 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
+        $this->spannerClient->deleteSession(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
+
         $serializer = $this->serializerForStreamingSql($chunks, $transaction);
-        $database = $this->database($this->spannerClient->reveal(), $serializer);
+        $database = $this->database($serializer);
         $database->execute('SELECT * FROM Table', [
             'begin' => true
         ])->rows()->current();
@@ -697,8 +663,14 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
+        $this->spannerClient->deleteSession(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
+
         $serializer = $this->serializerForStreamingSql($chunks, $transaction);
-        $database = $this->database($this->spannerClient->reveal(), $serializer);
+        $database = $this->database($serializer);
         $database->execute('SELECT * FROM Table', [
             'begin' => true,
             'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
@@ -725,8 +697,14 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
+        $this->spannerClient->deleteSession(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
+
         $serializer = $this->serializerForStreamingRead($chunks, $transaction);
-        $database = $this->database($this->spannerClient->reveal(), $serializer);
+        $database = $this->database($serializer);
         $database->read('Table', new KeySet(), [])->rows()->current();
     }
 
@@ -751,8 +729,14 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
+        $this->spannerClient->deleteSession(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
+
         $serializer = $this->serializerForStreamingRead($chunks, $transaction);
-        $database = $this->database($this->spannerClient->reveal(), $serializer);
+        $database = $this->database($serializer);
         $database->read('Table', new KeySet(), [], [
             'begin' => true
         ])->rows()->current();
@@ -776,8 +760,14 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
+        $this->spannerClient->deleteSession(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
+
         $serializer = $this->serializerForStreamingRead($chunks, $transaction);
-        $database = $this->database($this->spannerClient->reveal(), $serializer);
+        $database = $this->database($serializer);
         $database->read('Table', new KeySet(), [], [
             'begin' => true,
             'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
@@ -813,8 +803,7 @@ class TransactionTypeTest extends TestCase
         )
             ->shouldBeCalledOnce();
 
-        $database = $this->database($this->spannerClient->reveal());
-        $t = $database->transaction();
+        $t = $this->database->transaction();
         $t->rollback();
     }
 
@@ -825,33 +814,32 @@ class TransactionTypeTest extends TestCase
         $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
         $this->spannerClient->rollback(Argument::cetera())->shouldNotBeCalled();
 
-        $database = $this->database($this->spannerClient->reveal());
-        $t = $database->transaction(['singleUse' => true]);
+        $t = $this->database->transaction(['singleUse' => true]);
         $t->rollback();
     }
 
-    private function database(SpannerClient $spannerClient, ?Serializer $serializer = null)
+    private function database(?Serializer $serializer = null)
     {
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
         $instance->directedReadOptions()->willReturn([]);
 
-        $database = new Database(
-            $spannerClient,
+        return new Database(
+            $this->spannerClient->reveal(),
             $this->prophesize(DatabaseAdminClient::class)->reveal(),
             $serializer ?: new Serializer(),
             $instance->reveal(),
             self::PROJECT,
-            self::DATABASE
+            self::DATABASE,
         );
-
-        return $database;
     }
 
     private function serializerForStreamingRead(array $chunks, array $expectedTransaction): Serializer
     {
+        $serializer = $this->prophesize(Serializer::class);
+
         // mock serializer responses for streaming read
-        $this->serializer->decodeMessage(
+        $serializer->decodeMessage(
             Argument::type(ReadRequest::class),
             Argument::that(function ($data) use ($expectedTransaction) {
                 $this->assertEquals($data['transaction'], $expectedTransaction);
@@ -861,21 +849,44 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn(new ReadRequest());
 
+        $serializer->decodeMessage(
+            Argument::type(CreateSessionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new CreateSessionRequest([
+                'database' => SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
+            ]));
+
+        $serializer->encodeMessage(
+            Argument::type(Session::class)
+        )
+            ->willReturn([
+                'name' => SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION),
+            ]);
+
+        $serializer->decodeMessage(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new DeleteSessionRequest());
+
         foreach ($chunks as $chunk) {
             $result = new PartialResultSet();
             $result->mergeFromJsonString($chunk);
-            $this->serializer->encodeMessage($result)
+            $serializer->encodeMessage($result)
                 ->shouldBeCalledOnce()
                 ->willReturn(json_decode($chunk, true));
         }
 
-        return $this->serializer->reveal();
+        return $serializer->reveal();
     }
 
     private function serializerForStreamingSql(array $chunks, array $expectedTransaction): Serializer
     {
+        $serializer = $this->prophesize(Serializer::class);
+
         // mock serializer responses for streaming read
-        $this->serializer->decodeMessage(
+        $serializer->decodeMessage(
             Argument::type(ExecuteSqlRequest::class),
             Argument::that(function ($data) use ($expectedTransaction) {
                 $this->assertEquals($expectedTransaction, $data['transaction']);
@@ -885,21 +896,42 @@ class TransactionTypeTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn(new ExecuteSqlRequest());
 
-        $this->serializer->decodeMessage(
+        $serializer->decodeMessage(
             Argument::type(BeginTransactionRequest::class),
             Argument::type('array')
         )
             ->willReturn(new BeginTransactionRequest());
 
+        $serializer->decodeMessage(
+            Argument::type(CreateSessionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new CreateSessionRequest([
+                'database' => SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
+            ]));
+
+        $serializer->encodeMessage(
+            Argument::type(Session::class)
+        )
+            ->willReturn([
+                'name' => SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION),
+            ]);
+
+        $serializer->decodeMessage(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new DeleteSessionRequest());
+
         foreach ($chunks as $chunk) {
             $result = new PartialResultSet();
             $result->mergeFromJsonString($chunk);
-            $this->serializer->encodeMessage($result)
+            $serializer->encodeMessage($result)
                 ->shouldBeCalledOnce()
                 ->willReturn(json_decode($chunk, true));
         }
 
-        return $this->serializer->reveal();
+        return $serializer->reveal();
     }
 
     private function getFullyQualifiedSessionName()
@@ -945,8 +977,8 @@ class TransactionTypeTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse(['commit_timestamp' => $this->protoTimestamp]));
-
-        return $this->database($this->spannerClient->reveal());
+            ->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
     }
 }

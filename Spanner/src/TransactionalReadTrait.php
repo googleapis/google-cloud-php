@@ -264,15 +264,12 @@ trait TransactionalReadTrait
 
         unset($executeSqlOptions['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
-            $executeSqlOptions += [
-                'requestOptions' => []
-            ];
             $executeSqlOptions['requestOptions']['transactionTag'] = $this->tag;
         }
 
         $executeSqlOptions['directedReadOptions'] = $this->configureDirectedReadOptions(
             $executeSqlOptions,
-            $this->directedReadOptions ?? []
+            $this->directedReadOptions
         );
 
         // Unsetting the internal flag

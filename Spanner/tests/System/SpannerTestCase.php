@@ -160,9 +160,14 @@ abstract class SpannerTestCase extends SystemTestCase
 
     public static function skipEmulatorTests()
     {
-        if ((bool) getenv('SPANNER_EMULATOR_HOST')) {
-            self::markTestSkipped('This test is not supported by the emulator.');
+        if (!self::isEmulatorUsed()) {
+            self::markTestSkipped('This test is only supported by the emulator.');
         }
+    }
+
+    public static function isEmulatorUsed(): bool
+    {
+        return (bool) getenv('SPANNER_EMULATOR_HOST');
     }
 
     public static function getDbWithReaderRole()

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use BadMethodCallException;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
@@ -41,6 +42,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
@@ -86,6 +88,7 @@ use Google\Protobuf\Timestamp as TimestampProto;
 use Google\Protobuf\Value;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -110,7 +113,7 @@ class DatabaseTest extends TestCase
     const TRANSACTION_TAG = 'my-transaction-tag';
     const TEST_TABLE_NAME = 'Users';
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
-    const BEGIN_RW_OPTIONS = ['begin' => ['readWrite' => [], 'isolationLevel' => 0]];
+    const BEGIN_RW_OPTIONS = ['begin' => ['readWrite' => []]];
 
     private const DIRECTED_READ_OPTIONS_INCLUDE_REPLICAS = [
         'includeReplicas' => [
@@ -863,7 +866,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionNoCommit()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
 
@@ -874,7 +877,7 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionNestedTransaction()
     {
-        $this->expectException(\BadMethodCallException::class);
+        $this->expectException(BadMethodCallException::class);
 
         $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
 
@@ -1328,20 +1331,12 @@ class DatabaseTest extends TestCase
 
         $this->spannerClient->commit(
             Argument::that(function ($request) use ($table, $keys) {
-                $request = $this->serializer->encodeMessage($request);
-
-                if ($request['mutations'][0][Operation::OP_DELETE]['table'] !== $table) {
-                    return false;
-                }
-
-                if ($request['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][0][0] !== (string) $keys[0]) {
-                    return false;
-                }
-
-                if ($request['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][1][0] !== $keys[1]) {
-                    return false;
-                }
-
+                $mutation = $request->getMutations()[0]->getDelete();
+                $this->assertNotNull($mutation);
+                $this->assertEquals($table, $mutation->getTable());
+                $keySet = $this->serializer->encodeMessage($mutation->getKeySet());
+                $this->assertEquals($keys[0], $keySet['keys'][0][0]);
+                $this->assertEquals($keys[1], $keySet['keys'][1][0]);
                 return true;
             }),
             Argument::type('array')
@@ -1573,10 +1568,10 @@ class DatabaseTest extends TestCase
         ];
 
         $res = $this->database->read(
-            $table,
+            'Table',
             new KeySet(['all' => true]),
             ['ID'],
-            $options
+            ['orderBy' => OrderBy::ORDER_BY_PRIMARY_KEY],
         );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());

@@ -459,9 +459,7 @@ class DatabaseTest extends SnippetTestCase
         $this->spannerClient->commit(
             Argument::type(CommitRequest::class),
             Argument::type('array')
-        )->willReturn(new CommitResponse([
-            'commit_timestamp' => new TimestampProto(['seconds' => time()])
-        ]));
+        )->willReturn(new CommitResponse());
 
         $this->spannerClient->executeStreamingSql(
             Argument::type(ExecuteSqlRequest::class),
@@ -564,9 +562,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'insert');
         $snippet->addLocal('database', $this->database);
@@ -584,9 +580,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'insertBatch');
         $snippet->addLocal('database', $this->database);
@@ -603,9 +597,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'update');
         $snippet->addLocal('database', $this->database);
@@ -623,9 +615,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'updateBatch');
         $snippet->addLocal('database', $this->database);
@@ -642,9 +632,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'insertOrUpdate');
         $snippet->addLocal('database', $this->database);
@@ -662,9 +650,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'insertOrUpdateBatch');
         $snippet->addLocal('database', $this->database);
@@ -681,9 +667,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'replace');
         $snippet->addLocal('database', $this->database);
@@ -701,9 +685,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'replaceBatch');
         $snippet->addLocal('database', $this->database);
@@ -720,9 +702,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'delete');
         $snippet->addUse(KeySet::class);

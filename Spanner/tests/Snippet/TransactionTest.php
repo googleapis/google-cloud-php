@@ -40,7 +40,6 @@ use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ResultSetStats;
 use Google\Cloud\Spanner\V1\RollbackRequest;
-use Google\Protobuf\Timestamp as TimestampProto;
 use Google\Rpc\Status;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -392,9 +391,7 @@ class TransactionTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'commit');
         $snippet->addLocal('transaction', $this->transaction);
@@ -409,7 +406,6 @@ class TransactionTest extends SnippetTestCase
             Argument::type(CommitRequest::class),
             Argument::type('array')
         )->willReturn(new CommitResponse([
-            'commit_timestamp' => new TimestampProto(['seconds' => time()]),
             'commit_stats' => $expectedCommitStats,
         ]));
 
@@ -417,7 +413,8 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
 
         $res = $snippet->invoke('commitStats');
-        $this->assertEquals(['mutationCount' => 4], $res->returnVal());
+        $this->assertInstanceOf(CommitStats::class, $res->returnVal());
+        $this->assertEquals(4, $res->returnVal()->getMutationCount());
     }
 
     public function testState()

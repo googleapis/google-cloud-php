@@ -25,6 +25,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group core
  * @group lock
+ * @runTestsInSeparateProcesses
  */
 class FlockLockTest extends TestCase
 {
