@@ -244,8 +244,8 @@ class Instance
     {
         $options['name'] ??= $this->name;
         /**
-         * @var array $data
-         * @var array $calloptions
+         * @var GetInstanceRequest $request
+         * @var array $callOptions
          */
         [$request, $callOptions] = $this->validateOptions(
             $options,
@@ -287,7 +287,7 @@ class Instance
     public function create(InstanceConfiguration $config, array $options = []): LongRunningOperation
     {
         /**
-         * @var array $instance
+         * @var InstanceProto $instance
          * @var array $callOptions
          */
         [$instance, $callOptions] = $this->validateOptions(

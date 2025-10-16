@@ -672,7 +672,8 @@ class Operation
         /**
          * @var BeginTransactionRequest $beginTransaction
          * @var array $callOptions
-         * @var array $misc
+         * @var bool $singleUse
+         * @var string $className
          */
         [$beginTransaction, $callOptions, $singleUse, $className] = $this->validateOptions(
             $options,
@@ -1140,9 +1141,6 @@ class Operation
     {
         try {
             foreach ($response->readAll() as $count => $result) {
-                if ($transaction && $precommitToken = $result->getPrecommitToken()) {
-                    $transaction->setPrecommitToken($precommitToken);
-                }
                 $res = $this->serializer->encodeMessage($result);
                 yield $res;
             }
