@@ -18,7 +18,7 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The names of the snapshots that match the request.
      *
-     * Generated from protobuf field <code>repeated string snapshots = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated string snapshots = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $snapshots;
     /**
@@ -52,7 +52,7 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The names of the snapshots that match the request.
      *
-     * Generated from protobuf field <code>repeated string snapshots = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated string snapshots = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSnapshots()
@@ -63,7 +63,7 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The names of the snapshots that match the request.
      *
-     * Generated from protobuf field <code>repeated string snapshots = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated string snapshots = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

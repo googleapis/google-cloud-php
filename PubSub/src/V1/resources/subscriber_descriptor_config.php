@@ -269,6 +269,7 @@ return [
             ],
             'templateMap' => [
                 'deletedTopic' => '_deleted-topic_',
+                'listing' => 'projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}',
                 'project' => 'projects/{project}',
                 'projectTopic' => 'projects/{project}/topics/{topic}',
                 'snapshot' => 'projects/{project}/snapshots/{snapshot}',

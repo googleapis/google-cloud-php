@@ -33,7 +33,7 @@ class AwsMsk extends \Google\Protobuf\Internal\Message
      * Required. The name of the topic in the Amazon MSK cluster that Pub/Sub
      * will import from.
      *
-     * Generated from protobuf field <code>string topic = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string topic = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $topic = '';
     /**
@@ -145,7 +145,7 @@ class AwsMsk extends \Google\Protobuf\Internal\Message
      * Required. The name of the topic in the Amazon MSK cluster that Pub/Sub
      * will import from.
      *
-     * Generated from protobuf field <code>string topic = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string topic = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTopic()
@@ -157,7 +157,7 @@ class AwsMsk extends \Google\Protobuf\Internal\Message
      * Required. The name of the topic in the Amazon MSK cluster that Pub/Sub
      * will import from.
      *
-     * Generated from protobuf field <code>string topic = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string topic = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
