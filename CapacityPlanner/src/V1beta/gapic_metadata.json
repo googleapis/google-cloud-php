@@ -1,0 +1,48 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.capacityplanner.v1beta",
+    "libraryPackage": "Google\\Cloud\\CapacityPlanner\\V1beta",
+    "services": {
+        "UsageService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UsageServiceGapicClient",
+                    "rpcs": {
+                        "ExportForecasts": {
+                            "methods": [
+                                "exportForecasts"
+                            ]
+                        },
+                        "ExportReservationsUsage": {
+                            "methods": [
+                                "exportReservationsUsage"
+                            ]
+                        },
+                        "ExportUsageHistories": {
+                            "methods": [
+                                "exportUsageHistories"
+                            ]
+                        },
+                        "QueryForecasts": {
+                            "methods": [
+                                "queryForecasts"
+                            ]
+                        },
+                        "QueryReservations": {
+                            "methods": [
+                                "queryReservations"
+                            ]
+                        },
+                        "QueryUsageHistories": {
+                            "methods": [
+                                "queryUsageHistories"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
