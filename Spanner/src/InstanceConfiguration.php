@@ -95,7 +95,7 @@ class InstanceConfiguration
      *
      * @return string
      */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
@@ -117,7 +117,7 @@ class InstanceConfiguration
      * @return array [InstanceConfig](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig)
      * @codingStandardsIgnoreEnd
      */
-    public function info(array $options = [])
+    public function info(array $options = []): array
     {
         if (!$this->info) {
             $this->reload($options);
@@ -143,10 +143,10 @@ class InstanceConfiguration
      * @param array $options [optional] Configuration options.
      * @return bool
      */
-    public function exists(array $options = [])
+    public function exists(array $options = []): bool
     {
         try {
-            $this->reload($options = []);
+            $this->reload($options);
         } catch (ApiException $e) {
             if ($e->getCode() === Code::NOT_FOUND) {
                 return false;
@@ -172,7 +172,7 @@ class InstanceConfiguration
      * @return array [InstanceConfig](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig)
      * @codingStandardsIgnoreEnd
      */
-    public function reload(array $options = [])
+    public function reload(array $options = []): array
     {
         $options += ['name' => $this->name];
         /**
@@ -226,7 +226,7 @@ class InstanceConfiguration
      * @throws ValidationException
      * @codingStandardsIgnoreEnd
      */
-    public function create(InstanceConfiguration $baseConfig, array $replicas, array $options = [])
+    public function create(InstanceConfiguration $baseConfig, array $replicas, array $options = []): LongRunningOperation
     {
         $leaderOptions = $baseConfig->info()['leaderOptions'] ?? [];
         $options['leaderOptions'] = $leaderOptions;
@@ -287,7 +287,7 @@ class InstanceConfiguration
      * @return LongRunningOperation
      * @throws \InvalidArgumentException
      */
-    public function update(array $options = [])
+    public function update(array $options = []): LongRunningOperation
     {
         $validateOnly = $options['validateOnly'] ?? false;
         unset($options['validateOnly']);
@@ -326,7 +326,7 @@ class InstanceConfiguration
      * @param array $options [optional] Configuration options.
      * @return void
      */
-    public function delete(array $options = [])
+    public function delete(array $options = []): void
     {
         $options += ['name' => $this->name];
 
@@ -356,7 +356,7 @@ class InstanceConfiguration
      * @param string $operationName The Long Running Operation name.
      * @return LongRunningOperation
      */
-    public function resumeOperation(string $operationName, array $options = [])
+    public function resumeOperation(string $operationName, array $options = []): LongRunningOperation
     {
         return new LongRunningOperation(
             new LongRunningClientConnection($this->instanceAdminClient, $this->serializer),
@@ -382,7 +382,7 @@ class InstanceConfiguration
      * @param string $projectId The project ID.
      * @return string
      */
-    private function fullyQualifiedConfigName($name, $projectId)
+    private function fullyQualifiedConfigName($name, $projectId): string
     {
         try {
             return InstanceAdminClient::instanceConfigName(

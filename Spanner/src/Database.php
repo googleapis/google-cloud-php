@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use BadMethodCallException;
 use Closure;
 use DateTimeInterface;
 use Generator;
@@ -754,14 +755,14 @@ class Database
      *           Session labels may be applied using the `labels` key.
      * }
      * @return TransactionalReadInterface
-     * @throws \BadMethodCallException If attempting to call this method within
+     * @throws BadMethodCallException If attempting to call this method within
      *         an existing transaction.
      * @codingStandardsIgnoreEnd
      */
     public function snapshot(array $options = []): TransactionalReadInterface
     {
         if ($this->isRunningTransaction) {
-            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+            throw new BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
         $options += [
@@ -830,13 +831,13 @@ class Database
      *           use this as the transaction tag.
      * }
      * @return Transaction
-     * @throws \BadMethodCallException If attempting to call this method within
+     * @throws BadMethodCallException If attempting to call this method within
      *         an existing transaction.
      */
     public function transaction(array $options = []): Transaction
     {
         if ($this->isRunningTransaction) {
-            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+            throw new BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
         // Configure readWrite options here. Any nested options for readWrite should be added to this call
@@ -941,13 +942,13 @@ class Database
      * }
      * @return mixed The return value of `$operation`.
      * @throws \RuntimeException If a transaction is not committed or rolled back.
-     * @throws \BadMethodCallException If attempting to call this method within
+     * @throws BadMethodCallException If attempting to call this method within
      *         an existing transaction.
      */
     public function runTransaction(callable $operation, array $options = []): mixed
     {
         if ($this->isRunningTransaction) {
-            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+            throw new BadMethodCallException('Nested transactions are not supported by this client.');
         }
         $retrySettings = $options['retrySettings'] ?? ['maxRetries' => self::MAX_RETRIES];
         $maxRetries = $retrySettings instanceof RetrySettings
@@ -1805,7 +1806,7 @@ class Database
     public function batchWrite(array $mutationGroups, array $options = []): Generator
     {
         if ($this->isRunningTransaction) {
-            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+            throw new BadMethodCallException('Nested transactions are not supported by this client.');
         }
         // Prevent nested transactions.
         $this->isRunningTransaction = true;

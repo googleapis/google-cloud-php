@@ -939,7 +939,7 @@ class Instance
         };
     }
 
-    private function getResultMapper()
+    private function getResultMapper(): callable
     {
         return function (OperationProto $operation) {
             return $this->resumeOperation(
