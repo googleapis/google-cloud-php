@@ -688,9 +688,12 @@ class StorageObject
      *           If provided one must also include an `encryptionKey`.
      * }
      * @return StreamInterface
+     * @throws \RuntimeException
      */
     public function downloadToFile($path, array $options = [])
     {
+        // throws an exception in the case of `..` segments, paths
+        // starting with `/`, and Windows drive letters (e.g., `C:`).
         $normalizedPath = str_replace('\\', '/', $path);
         $pathSegments = explode('/', $normalizedPath);
 

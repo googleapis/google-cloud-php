@@ -457,7 +457,10 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertFileDoesNotExist($downloadFilePath);
     }
 
-    public function testDownloadsToFileShouldBlockRelativeTraversal()
+    /**
+     * @dataProvider provideInvalidFilePaths
+     */
+    public function testDownloadsToFileShouldBlockPathTraversal(string $invalidFilePath)
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage(
@@ -466,23 +469,17 @@ class ManageObjectsTest extends StorageTestCase
 
         $objectName = uniqid(self::TESTING_PREFIX);
         $testObject = self::$bucket->object($objectName);
-        $downloadFilePath = 'storage/../../' . $objectName;
 
-        $testObject->downloadToFile($downloadFilePath);
+        $testObject->downloadToFile($invalidFilePath . $objectName);
     }
 
-    public function testDownloadsToFileShouldBlockAbsolutePath()
+    public function provideInvalidFilePaths()
     {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage(
-            'Path traversal is not allowed. File path is outside the designated directory.'
-        );
-
-        $objectName = uniqid(self::TESTING_PREFIX);
-        $testObject = self::$bucket->object($objectName);
-        $downloadFilePath = __DIR__ . '/../../' . $objectName;
-
-        $testObject->downloadToFile($downloadFilePath);
+        return [
+            ['storage/../..'], // relative traversal
+            ['/storage/'], // absolute filepath
+            ['C:/storage/'], // windows drive letters
+        ];
     }
 
     public function testDownloadsPublicFileWithUnauthenticatedClient()

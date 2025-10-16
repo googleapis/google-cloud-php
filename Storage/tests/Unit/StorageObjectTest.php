@@ -554,7 +554,10 @@ class StorageObjectTest extends TestCase
         $this->assertFileDoesNotExist($downloadFilePath);
     }
 
-    public function testDownloadsToFileShouldBlockRelativeTraversal()
+    /**
+     * @dataProvider provideInvalidFilePaths
+     */
+    public function testDownloadsToFileShouldBlockPathTraversal(string $invalidFilePath)
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage(
@@ -563,27 +566,19 @@ class StorageObjectTest extends TestCase
         $stream = Utils::streamFor('mock content');
         $this->connection->downloadObject(Argument::any())
             ->willReturn($stream);
-        $object = 'storage_test_downloads_to_file.txt';
-        $downloadFilePath = 'storage/test/../../storage_test_downloads_to_file.txt';
-        $object = new StorageObject($this->connection->reveal(), $object, self::BUCKET);
+        $objectName = 'storage_test_downloads_to_file.txt';
+        $object = new StorageObject($this->connection->reveal(), $objectName, self::BUCKET);
 
-        $object->downloadToFile($downloadFilePath);
+        $object->downloadToFile($invalidFilePath . $objectName);
     }
 
-    public function testDownloadsToFileShouldBlockAbsolutePath()
+    public function provideInvalidFilePaths()
     {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage(
-            'Path traversal is not allowed. File path is outside the designated directory.'
-        );
-        $stream = Utils::streamFor('mock content');
-        $this->connection->downloadObject(Argument::any())
-            ->willReturn($stream);
-        $object = 'storage_test_downloads_to_file.txt';
-        $downloadFilePath = __DIR__ . '/storage_test_downloads_to_file.txt';
-        $object = new StorageObject($this->connection->reveal(), $object, self::BUCKET);
-
-        $object->downloadToFile($downloadFilePath);
+        return [
+            ['storage/../..'], // relative traversal
+            ['/storage/'], // absolute filepath
+            ['C:/storage/'], // windows drive letters
+        ];
     }
 
     public function testDownloadAsStreamWithoutExtraOptions()
