@@ -540,7 +540,7 @@ class StorageObjectTest extends TestCase
         $this->connection->downloadObject(Argument::any())
             ->willThrow(new NotFoundException($exceptionString));
         $object = 'non_existent_object.txt';
-        $downloadFilePath = __DIR__ . '/storage_test_downloads_to_file.txt';
+        $downloadFilePath = 'storage_test_downloads_to_file.txt';
         $object = new StorageObject($this->connection->reveal(), $object, self::BUCKET);
         $throws = false;
         try {
@@ -552,6 +552,33 @@ class StorageObjectTest extends TestCase
 
         $this->assertTrue($throws);
         $this->assertFileDoesNotExist($downloadFilePath);
+    }
+
+    /**
+     * @dataProvider provideInvalidFilePaths
+     */
+    public function testDownloadsToFileShouldBlockPathTraversal(string $invalidFilePath)
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage(
+            'Path traversal is not allowed. File path is outside the designated directory.'
+        );
+        $stream = Utils::streamFor('mock content');
+        $this->connection->downloadObject(Argument::any())
+            ->willReturn($stream);
+        $objectName = 'storage_test_downloads_to_file.txt';
+        $object = new StorageObject($this->connection->reveal(), $objectName, self::BUCKET);
+
+        $object->downloadToFile($invalidFilePath . $objectName);
+    }
+
+    public function provideInvalidFilePaths()
+    {
+        return [
+            ['storage/../..'], // relative traversal
+            ['/storage/'], // absolute filepath
+            ['C:/storage/'], // windows drive letters
+        ];
     }
 
     public function testDownloadAsStreamWithoutExtraOptions()
