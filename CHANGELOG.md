@@ -1,5 +1,87 @@
 # Changelog
 
+## 0.306.0
+
+<details><summary>google/cloud-ai-platform 1.41.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add additional proto fields and GenerateFetchAccessToken API ([#8655](https://github.com/googleapis/google-cloud-php/issues/8655)) ([1010b2f](https://github.com/googleapis/google-cloud-php/commit/1010b2feef4f7734ae42cf730294d6f12e53e79e))
+* [AiPlatform] add aspect_ratio and image_config for v1 version ([#8660](https://github.com/googleapis/google-cloud-php/issues/8660)) ([1237077](https://github.com/googleapis/google-cloud-php/commit/123707732c4c369099dbf9593dbe60e5a35ea884))
+
+</details>
+
+<details><summary>google/cloud-core 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Spanner V2 ([#7841](https://github.com/googleapis/google-cloud-php/issues/7841))
+
+### Features
+
+* Spanner V2 ([#7841](https://github.com/googleapis/google-cloud-php/issues/7841)) ([bfc0dd6](https://github.com/googleapis/google-cloud-php/commit/bfc0dd65242facf28968297cdedf5fa32776c126))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.0.1-RC1
+</summary>
+
+](https://github.com/googleapis/google-cloud-php/compare/v0.305.0...v0.306.0) (2025-10-17)
+
+</details>
+
+<details><summary>google/cloud-dlp 2.9.0</summary>
+
+
+
+### Features
+
+* [Dlp] inspect and deid templates in RedactImage ([#8656](https://github.com/googleapis/google-cloud-php/issues/8656)) ([42f8e11](https://github.com/googleapis/google-cloud-php/commit/42f8e11b77f6d2d0599fd6345a8900c01bfe99b6))
+
+</details>
+
+<details><summary>google/maps-routeoptimization 0.6.0</summary>
+
+
+
+### Features
+
+* [MapsRouteOptimization] add experimental Load Costs feature ([#8662](https://github.com/googleapis/google-cloud-php/issues/8662)) ([680bcbb](https://github.com/googleapis/google-cloud-php/commit/680bcbb03ef078485e56c0cff9d9c0ea2cbe5f54))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.15.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Spanner V2 ([#7841](https://github.com/googleapis/google-cloud-php/issues/7841))
+* **php:** Migrate admin services to new LRO client ([#8637](https://github.com/googleapis/google-cloud-php/issues/8637))
+* Gencode for Spanner V2 ([#7840](https://github.com/googleapis/google-cloud-php/issues/7840))
+
+### Features
+
+* Spanner V2 ([#7841](https://github.com/googleapis/google-cloud-php/issues/7841)) ([bfc0dd6](https://github.com/googleapis/google-cloud-php/commit/bfc0dd65242facf28968297cdedf5fa32776c126))
+
+
+### Chores
+
+* Gencode for Spanner V2 ([#7840](https://github.com/googleapis/google-cloud-php/issues/7840)) ([e7e65fc](https://github.com/googleapis/google-cloud-php/commit/e7e65fc80a5ffbdf31a78b663208def4bbf3f6de))
+* **php:** Migrate admin services to new LRO client ([#8637](https://github.com/googleapis/google-cloud-php/issues/8637)) ([670112d](https://github.com/googleapis/google-cloud-php/commit/670112d9da057177cb3ec0d867ccb4255a2ea3a3))
+
+</details>
+
 ## 0.305.0
 
 <details><summary>google/cloud-compute 2.2.0</summary>
