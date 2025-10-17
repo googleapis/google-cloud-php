@@ -82,9 +82,7 @@ final class UserLicenseServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -327,8 +325,10 @@ final class UserLicenseServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchUpdateUserLicenses(BatchUpdateUserLicensesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchUpdateUserLicenses(
+        BatchUpdateUserLicensesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchUpdateUserLicenses', $request, $callOptions)->wait();
     }
 

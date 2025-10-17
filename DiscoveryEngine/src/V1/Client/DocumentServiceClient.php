@@ -98,9 +98,7 @@ final class DocumentServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -204,8 +202,13 @@ final class DocumentServiceClient
      *
      * @return string The formatted document resource.
      */
-    public static function documentName(string $project, string $location, string $dataStore, string $branch, string $document): string
-    {
+    public static function documentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
         return self::getPathTemplate('document')->render([
             'project' => $project,
             'location' => $location,
@@ -228,8 +231,14 @@ final class DocumentServiceClient
      *
      * @return string The formatted fhir_resource resource.
      */
-    public static function fhirResourceName(string $project, string $location, string $dataset, string $fhirStore, string $resourceType, string $fhirResourceId): string
-    {
+    public static function fhirResourceName(
+        string $project,
+        string $location,
+        string $dataset,
+        string $fhirStore,
+        string $resourceType,
+        string $fhirResourceId
+    ): string {
         return self::getPathTemplate('fhirResource')->render([
             'project' => $project,
             'location' => $location,
@@ -273,8 +282,13 @@ final class DocumentServiceClient
      *
      * @return string The formatted project_location_collection_data_store_branch resource.
      */
-    public static function projectLocationCollectionDataStoreBranchName(string $project, string $location, string $collection, string $dataStore, string $branch): string
-    {
+    public static function projectLocationCollectionDataStoreBranchName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $branch
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreBranch')->render([
             'project' => $project,
             'location' => $location,
@@ -297,8 +311,14 @@ final class DocumentServiceClient
      *
      * @return string The formatted project_location_collection_data_store_branch_document resource.
      */
-    public static function projectLocationCollectionDataStoreBranchDocumentName(string $project, string $location, string $collection, string $dataStore, string $branch, string $document): string
-    {
+    public static function projectLocationCollectionDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreBranchDocument')->render([
             'project' => $project,
             'location' => $location,
@@ -320,8 +340,12 @@ final class DocumentServiceClient
      *
      * @return string The formatted project_location_data_store_branch resource.
      */
-    public static function projectLocationDataStoreBranchName(string $project, string $location, string $dataStore, string $branch): string
-    {
+    public static function projectLocationDataStoreBranchName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreBranch')->render([
             'project' => $project,
             'location' => $location,
@@ -342,8 +366,13 @@ final class DocumentServiceClient
      *
      * @return string The formatted project_location_data_store_branch_document resource.
      */
-    public static function projectLocationDataStoreBranchDocumentName(string $project, string $location, string $dataStore, string $branch, string $document): string
-    {
+    public static function projectLocationDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreBranchDocument')->render([
             'project' => $project,
             'location' => $location,
@@ -494,8 +523,10 @@ final class DocumentServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchGetDocumentsMetadata(BatchGetDocumentsMetadataRequest $request, array $callOptions = []): BatchGetDocumentsMetadataResponse
-    {
+    public function batchGetDocumentsMetadata(
+        BatchGetDocumentsMetadataRequest $request,
+        array $callOptions = []
+    ): BatchGetDocumentsMetadataResponse {
         return $this->startApiCall('BatchGetDocumentsMetadata', $request, $callOptions)->wait();
     }
 

@@ -94,6 +94,7 @@ return [
             ],
             'templateMap' => [
                 'answer' => 'projects/{project}/locations/{location}/dataStores/{data_store}/sessions/{session}/answers/{answer}',
+                'assistAnswer' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/assistAnswers/{assist_answer}',
                 'chunk' => 'projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}/chunks/{chunk}',
                 'dataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',
                 'document' => 'projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}',

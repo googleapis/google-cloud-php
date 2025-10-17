@@ -49,6 +49,13 @@ class Session extends \Google\Protobuf\Internal\Message
      */
     private $turns;
     /**
+     * Optional. The labels for the session.
+     * Can be set as filter in ListSessionsRequest.
+     *
+     * Generated from protobuf field <code>repeated string labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
+    /**
      * Output only. The time the session started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -87,6 +94,9 @@ class Session extends \Google\Protobuf\Internal\Message
      *           A unique identifier for tracking users.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\Session\Turn>|\Google\Protobuf\Internal\RepeatedField $turns
      *           Turns.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $labels
+     *           Optional. The labels for the session.
+     *           Can be set as filter in ListSessionsRequest.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. The time the session started.
      *     @type \Google\Protobuf\Timestamp $end_time
@@ -233,6 +243,34 @@ class Session extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\Session\Turn::class);
         $this->turns = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The labels for the session.
+     * Can be set as filter in ListSessionsRequest.
+     *
+     * Generated from protobuf field <code>repeated string labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. The labels for the session.
+     * Can be set as filter in ListSessionsRequest.
+     *
+     * Generated from protobuf field <code>repeated string labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

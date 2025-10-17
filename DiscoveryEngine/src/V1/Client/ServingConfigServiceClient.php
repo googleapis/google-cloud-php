@@ -77,9 +77,7 @@ final class ServingConfigServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -112,8 +110,13 @@ final class ServingConfigServiceClient
      *
      * @return string The formatted project_location_collection_data_store_serving_config resource.
      */
-    public static function projectLocationCollectionDataStoreServingConfigName(string $project, string $location, string $collection, string $dataStore, string $servingConfig): string
-    {
+    public static function projectLocationCollectionDataStoreServingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreServingConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -135,8 +138,13 @@ final class ServingConfigServiceClient
      *
      * @return string The formatted project_location_collection_engine_serving_config resource.
      */
-    public static function projectLocationCollectionEngineServingConfigName(string $project, string $location, string $collection, string $engine, string $servingConfig): string
-    {
+    public static function projectLocationCollectionEngineServingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('projectLocationCollectionEngineServingConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -157,8 +165,12 @@ final class ServingConfigServiceClient
      *
      * @return string The formatted project_location_data_store_serving_config resource.
      */
-    public static function projectLocationDataStoreServingConfigName(string $project, string $location, string $dataStore, string $servingConfig): string
-    {
+    public static function projectLocationDataStoreServingConfigName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreServingConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -178,8 +190,12 @@ final class ServingConfigServiceClient
      *
      * @return string The formatted serving_config resource.
      */
-    public static function servingConfigName(string $project, string $location, string $dataStore, string $servingConfig): string
-    {
+    public static function servingConfigName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('servingConfig')->render([
             'project' => $project,
             'location' => $location,
