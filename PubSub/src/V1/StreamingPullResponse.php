@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class StreamingPullResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Received Pub/Sub messages. This will not be empty.
+     * Optional. Received Pub/Sub messages.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -50,7 +50,7 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\PubSub\V1\ReceivedMessage>|\Google\Protobuf\Internal\RepeatedField $received_messages
-     *           Optional. Received Pub/Sub messages. This will not be empty.
+     *           Optional. Received Pub/Sub messages.
      *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation $acknowledge_confirmation
      *           Optional. This field will only be set if `enable_exactly_once_delivery` is
      *           set to `true` and is not guaranteed to be populated.
@@ -67,7 +67,7 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Received Pub/Sub messages. This will not be empty.
+     * Optional. Received Pub/Sub messages.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -78,7 +78,7 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Received Pub/Sub messages. This will not be empty.
+     * Optional. Received Pub/Sub messages.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\PubSub\V1\ReceivedMessage>|\Google\Protobuf\Internal\RepeatedField $var

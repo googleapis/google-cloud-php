@@ -52,6 +52,10 @@ class AwsKinesisFailureReason extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\MessageTransformationFailureReason $message_transformation_failure_reason
      *           Optional. Failure encountered when applying a message transformation to
      *           the Pub/Sub message.
+     *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\ApiViolationReason $api_violation_reason
+     *           Optional. The message failed to be published due to an API violation.
+     *           This is only set when the size of the data field of the Kinesis record
+     *           is zero.
      * }
      */
     public function __construct($data = NULL) {
@@ -197,6 +201,41 @@ class AwsKinesisFailureReason extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\MessageTransformationFailureReason::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The message failed to be published due to an API violation.
+     * This is only set when the size of the data field of the Kinesis record
+     * is zero.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.ApiViolationReason api_violation_reason = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\IngestionFailureEvent\ApiViolationReason|null
+     */
+    public function getApiViolationReason()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasApiViolationReason()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. The message failed to be published due to an API violation.
+     * This is only set when the size of the data field of the Kinesis record
+     * is zero.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.ApiViolationReason api_violation_reason = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\IngestionFailureEvent\ApiViolationReason $var
+     * @return $this
+     */
+    public function setApiViolationReason($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\ApiViolationReason::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

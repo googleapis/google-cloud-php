@@ -21,7 +21,7 @@ class AnalyticsHubSubscriptionInfo extends \Google\Protobuf\Internal\Message
      * Pattern:
      * "projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}"
      *
-     * Generated from protobuf field <code>string listing = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string listing = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $listing = '';
     /**
@@ -59,7 +59,7 @@ class AnalyticsHubSubscriptionInfo extends \Google\Protobuf\Internal\Message
      * Pattern:
      * "projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}"
      *
-     * Generated from protobuf field <code>string listing = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string listing = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getListing()
@@ -72,7 +72,7 @@ class AnalyticsHubSubscriptionInfo extends \Google\Protobuf\Internal\Message
      * Pattern:
      * "projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}"
      *
-     * Generated from protobuf field <code>string listing = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string listing = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

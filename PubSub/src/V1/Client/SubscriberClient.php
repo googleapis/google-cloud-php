@@ -156,6 +156,27 @@ final class SubscriberClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a listing
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataExchange
+     * @param string $listing
+     *
+     * @return string The formatted listing resource.
+     */
+    public static function listingName(string $project, string $location, string $dataExchange, string $listing): string
+    {
+        return self::getPathTemplate('listing')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_exchange' => $dataExchange,
+            'listing' => $listing,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -243,6 +264,7 @@ final class SubscriberClient
      * The following name formats are supported:
      * Template: Pattern
      * - deletedTopic: _deleted-topic_
+     * - listing: projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}
      * - project: projects/{project}
      * - projectTopic: projects/{project}/topics/{topic}
      * - snapshot: projects/{project}/snapshots/{snapshot}
