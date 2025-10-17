@@ -37,8 +37,12 @@ use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Google\Maps\RouteOptimization\V1\BatchOptimizeToursRequest;
 use Google\Maps\RouteOptimization\V1\BatchOptimizeToursResponse;
+use Google\Maps\RouteOptimization\V1\OptimizeToursLongRunningMetadata;
 use Google\Maps\RouteOptimization\V1\OptimizeToursRequest;
 use Google\Maps\RouteOptimization\V1\OptimizeToursResponse;
+use Google\Maps\RouteOptimization\V1\OptimizeToursUriMetadata;
+use Google\Maps\RouteOptimization\V1\OptimizeToursUriRequest;
+use Google\Maps\RouteOptimization\V1\OptimizeToursUriResponse;
 use Google\Maps\RouteOptimization\V1\ShipmentRoute;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -68,6 +72,8 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<OperationResponse> batchOptimizeToursAsync(BatchOptimizeToursRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OptimizeToursResponse> optimizeToursAsync(OptimizeToursRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> optimizeToursLongRunningAsync(OptimizeToursRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> optimizeToursUriAsync(OptimizeToursUriRequest $request, array $optionalArgs = [])
  */
 final class RouteOptimizationClient
 {
@@ -334,5 +340,104 @@ final class RouteOptimizationClient
     public function optimizeTours(OptimizeToursRequest $request, array $callOptions = []): OptimizeToursResponse
     {
         return $this->startApiCall('OptimizeTours', $request, $callOptions)->wait();
+    }
+
+    /**
+     * This is a variant of the
+     * [OptimizeTours][google.maps.routeoptimization.v1.RouteOptimization.OptimizeTours]
+     * method designed for
+     * optimizations with large timeout values. It should be preferred over the
+     * `OptimizeTours` method for optimizations that take longer than
+     * a few minutes.
+     *
+     * The returned [long-running operation][google.longrunning.Operation] (LRO)
+     * will have a name of the format
+     * `<parent>/operations/<operation_id>` and can be used to track
+     * progress of the computation. The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [OptimizeToursLongRunningMetadata][google.maps.routeoptimization.v1.OptimizeToursLongRunningMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [OptimizeToursResponse][google.maps.routeoptimization.v1.OptimizeToursResponse],
+     * if successful.
+     *
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/otlr/make-request
+     * for more details.
+     *
+     *
+     * The async variant is
+     * {@see RouteOptimizationClient::optimizeToursLongRunningAsync()} .
+     *
+     * @example samples/V1/RouteOptimizationClient/optimize_tours_long_running.php
+     *
+     * @param OptimizeToursRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<OptimizeToursResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function optimizeToursLongRunning(OptimizeToursRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('OptimizeToursLongRunning', $request, $callOptions)->wait();
+    }
+
+    /**
+     * This is a variant of the
+     * [OptimizeToursLongRunning][google.maps.routeoptimization.v1.RouteOptimization.OptimizeToursLongRunning]
+     * method designed for optimizations with large timeout values and large
+     * input/output sizes.
+     *
+     * The client specifies the URI of the `OptimizeToursRequest` stored
+     * in Google Cloud Storage and the server writes the `OptimizeToursResponse`
+     * to a client-specified Google Cloud Storage URI.
+     *
+     * This method should be preferred over the `OptimizeTours` method for
+     * optimizations that take longer than a few minutes and input/output sizes
+     * that are larger than 8MB, though it can be used for shorter and smaller
+     * optimizations as well.
+     *
+     * The returned [long-running operation][google.longrunning.Operation] (LRO)
+     * will have a name of the format
+     * `<parent>/operations/<operation_id>` and can be used to track
+     * progress of the computation. The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [OptimizeToursLongRunningMetadata][google.maps.routeoptimization.v1.OptimizeToursUriMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [OptimizeToursUriResponse][google.maps.routeoptimization.v1.OptimizeToursUriResponse],
+     * if successful.
+     *
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/otlr/make-request
+     * for more details.
+     *
+     * The async variant is {@see RouteOptimizationClient::optimizeToursUriAsync()} .
+     *
+     * @example samples/V1/RouteOptimizationClient/optimize_tours_uri.php
+     *
+     * @param OptimizeToursUriRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<OptimizeToursUriResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function optimizeToursUri(OptimizeToursUriRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('OptimizeToursUri', $request, $callOptions)->wait();
     }
 }

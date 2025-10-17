@@ -49,6 +49,17 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      */
     private $validation_errors;
     /**
+     * In some cases we modify the incoming request before solving it, i.e. adding
+     * costs. If solving_mode == TRANSFORM_AND_RETURN_REQUEST, the
+     * modified request is returned here.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/objectives/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>.google.maps.routeoptimization.v1.OptimizeToursRequest processed_request = 21;</code>
+     */
+    protected $processed_request = null;
+    /**
      * Duration, distance and usage metrics for this solution.
      *
      * Generated from protobuf field <code>.google.maps.routeoptimization.v1.OptimizeToursResponse.Metrics metrics = 6;</code>
@@ -76,6 +87,13 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      *           [OptimizeToursValidationError][google.maps.routeoptimization.v1.OptimizeToursValidationError]
      *           message. Instead of errors, this will include warnings in the case
      *           `solving_mode` is `DEFAULT_SOLVE`.
+     *     @type \Google\Maps\RouteOptimization\V1\OptimizeToursRequest $processed_request
+     *           In some cases we modify the incoming request before solving it, i.e. adding
+     *           costs. If solving_mode == TRANSFORM_AND_RETURN_REQUEST, the
+     *           modified request is returned here.
+     *           Experimental: See
+     *           https://developers.google.com/maps/tt/route-optimization/experimental/objectives/make-request
+     *           for more details.
      *     @type \Google\Maps\RouteOptimization\V1\OptimizeToursResponse\Metrics $metrics
      *           Duration, distance and usage metrics for this solution.
      * }
@@ -199,6 +217,52 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Maps\RouteOptimization\V1\OptimizeToursValidationError::class);
         $this->validation_errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * In some cases we modify the incoming request before solving it, i.e. adding
+     * costs. If solving_mode == TRANSFORM_AND_RETURN_REQUEST, the
+     * modified request is returned here.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/objectives/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>.google.maps.routeoptimization.v1.OptimizeToursRequest processed_request = 21;</code>
+     * @return \Google\Maps\RouteOptimization\V1\OptimizeToursRequest|null
+     */
+    public function getProcessedRequest()
+    {
+        return $this->processed_request;
+    }
+
+    public function hasProcessedRequest()
+    {
+        return isset($this->processed_request);
+    }
+
+    public function clearProcessedRequest()
+    {
+        unset($this->processed_request);
+    }
+
+    /**
+     * In some cases we modify the incoming request before solving it, i.e. adding
+     * costs. If solving_mode == TRANSFORM_AND_RETURN_REQUEST, the
+     * modified request is returned here.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/objectives/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>.google.maps.routeoptimization.v1.OptimizeToursRequest processed_request = 21;</code>
+     * @param \Google\Maps\RouteOptimization\V1\OptimizeToursRequest $var
+     * @return $this
+     */
+    public function setProcessedRequest($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Maps\RouteOptimization\V1\OptimizeToursRequest::class);
+        $this->processed_request = $var;
 
         return $this;
     }

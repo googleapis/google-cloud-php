@@ -33,6 +33,19 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      */
     private $vehicles;
     /**
+     * The set of objectives for this model, that we will transform into costs.
+     * If not empty, the input model has to be costless.
+     * To obtain the modified request, please use `solving_mode` =
+     * TRANSFORM_AND_RETURN_REQUEST. Note that the request will not
+     * be solved in this case. See corresponding documentation.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/objectives/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.Objective objectives = 17;</code>
+     */
+    private $objectives;
+    /**
      * Constrains the maximum number of active vehicles. A vehicle is active if
      * its route performs at least one shipment. This can be used to limit the
      * number of routes in the case where there are fewer drivers than
@@ -219,6 +232,9 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
     private $shipment_type_requirements;
     /**
      * Set of precedence rules which must be enforced in the model.
+     * *IMPORTANT*: Use of precedence rules limits the size of problem that can be
+     * optimized. Requests using precedence rules that include many shipments may
+     * be rejected.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.PrecedenceRule precedence_rules = 14;</code>
      */
@@ -234,6 +250,15 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *           Set of shipments which must be performed in the model.
      *     @type array<\Google\Maps\RouteOptimization\V1\Vehicle>|\Google\Protobuf\Internal\RepeatedField $vehicles
      *           Set of vehicles which can be used to perform visits.
+     *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentModel\Objective>|\Google\Protobuf\Internal\RepeatedField $objectives
+     *           The set of objectives for this model, that we will transform into costs.
+     *           If not empty, the input model has to be costless.
+     *           To obtain the modified request, please use `solving_mode` =
+     *           TRANSFORM_AND_RETURN_REQUEST. Note that the request will not
+     *           be solved in this case. See corresponding documentation.
+     *           Experimental: See
+     *           https://developers.google.com/maps/tt/route-optimization/experimental/objectives/make-request
+     *           for more details.
      *     @type int $max_active_vehicles
      *           Constrains the maximum number of active vehicles. A vehicle is active if
      *           its route performs at least one shipment. This can be used to limit the
@@ -381,6 +406,9 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *           Sets of `shipment_type` requirements (see `ShipmentTypeRequirement`).
      *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentModel\PrecedenceRule>|\Google\Protobuf\Internal\RepeatedField $precedence_rules
      *           Set of precedence rules which must be enforced in the model.
+     *           *IMPORTANT*: Use of precedence rules limits the size of problem that can be
+     *           optimized. Requests using precedence rules that include many shipments may
+     *           be rejected.
      * }
      */
     public function __construct($data = NULL) {
@@ -436,6 +464,46 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Maps\RouteOptimization\V1\Vehicle::class);
         $this->vehicles = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The set of objectives for this model, that we will transform into costs.
+     * If not empty, the input model has to be costless.
+     * To obtain the modified request, please use `solving_mode` =
+     * TRANSFORM_AND_RETURN_REQUEST. Note that the request will not
+     * be solved in this case. See corresponding documentation.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/objectives/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.Objective objectives = 17;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getObjectives()
+    {
+        return $this->objectives;
+    }
+
+    /**
+     * The set of objectives for this model, that we will transform into costs.
+     * If not empty, the input model has to be costless.
+     * To obtain the modified request, please use `solving_mode` =
+     * TRANSFORM_AND_RETURN_REQUEST. Note that the request will not
+     * be solved in this case. See corresponding documentation.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/objectives/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.Objective objectives = 17;</code>
+     * @param array<\Google\Maps\RouteOptimization\V1\ShipmentModel\Objective>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setObjectives($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Maps\RouteOptimization\V1\ShipmentModel\Objective::class);
+        $this->objectives = $arr;
 
         return $this;
     }
@@ -982,6 +1050,9 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
 
     /**
      * Set of precedence rules which must be enforced in the model.
+     * *IMPORTANT*: Use of precedence rules limits the size of problem that can be
+     * optimized. Requests using precedence rules that include many shipments may
+     * be rejected.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.PrecedenceRule precedence_rules = 14;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -993,6 +1064,9 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
 
     /**
      * Set of precedence rules which must be enforced in the model.
+     * *IMPORTANT*: Use of precedence rules limits the size of problem that can be
+     * optimized. Requests using precedence rules that include many shipments may
+     * be rejected.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.PrecedenceRule precedence_rules = 14;</code>
      * @param array<\Google\Maps\RouteOptimization\V1\ShipmentModel\PrecedenceRule>|\Google\Protobuf\Internal\RepeatedField $var

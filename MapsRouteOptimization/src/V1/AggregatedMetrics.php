@@ -30,6 +30,22 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      */
     protected $performed_shipment_count = 0;
     /**
+     * Number of mandatory shipments performed.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>optional int32 performed_mandatory_shipment_count = 12;</code>
+     */
+    protected $performed_mandatory_shipment_count = null;
+    /**
+     * The sum of the
+     * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost]
+     * of the performed shipments.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>optional double performed_shipment_penalty_cost_sum = 13;</code>
+     */
+    protected $performed_shipment_penalty_cost_sum = null;
+    /**
      * Total travel duration for a route or a solution.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 2;</code>
@@ -98,6 +114,14 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      *     @type int $performed_shipment_count
      *           Number of shipments performed. Note that a pickup and delivery pair only
      *           counts once.
+     *     @type int $performed_mandatory_shipment_count
+     *           Number of mandatory shipments performed.
+     *           Experimental: This field's behavior or existence may change in future.
+     *     @type float $performed_shipment_penalty_cost_sum
+     *           The sum of the
+     *           [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost]
+     *           of the performed shipments.
+     *           Experimental: This field's behavior or existence may change in future.
      *     @type \Google\Protobuf\Duration $travel_duration
      *           Total travel duration for a route or a solution.
      *     @type \Google\Protobuf\Duration $wait_duration
@@ -156,6 +180,86 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->performed_shipment_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Number of mandatory shipments performed.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>optional int32 performed_mandatory_shipment_count = 12;</code>
+     * @return int
+     */
+    public function getPerformedMandatoryShipmentCount()
+    {
+        return isset($this->performed_mandatory_shipment_count) ? $this->performed_mandatory_shipment_count : 0;
+    }
+
+    public function hasPerformedMandatoryShipmentCount()
+    {
+        return isset($this->performed_mandatory_shipment_count);
+    }
+
+    public function clearPerformedMandatoryShipmentCount()
+    {
+        unset($this->performed_mandatory_shipment_count);
+    }
+
+    /**
+     * Number of mandatory shipments performed.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>optional int32 performed_mandatory_shipment_count = 12;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPerformedMandatoryShipmentCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->performed_mandatory_shipment_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * The sum of the
+     * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost]
+     * of the performed shipments.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>optional double performed_shipment_penalty_cost_sum = 13;</code>
+     * @return float
+     */
+    public function getPerformedShipmentPenaltyCostSum()
+    {
+        return isset($this->performed_shipment_penalty_cost_sum) ? $this->performed_shipment_penalty_cost_sum : 0.0;
+    }
+
+    public function hasPerformedShipmentPenaltyCostSum()
+    {
+        return isset($this->performed_shipment_penalty_cost_sum);
+    }
+
+    public function clearPerformedShipmentPenaltyCostSum()
+    {
+        unset($this->performed_shipment_penalty_cost_sum);
+    }
+
+    /**
+     * The sum of the
+     * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost]
+     * of the performed shipments.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>optional double performed_shipment_penalty_cost_sum = 13;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setPerformedShipmentPenaltyCostSum($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->performed_shipment_penalty_cost_sum = $var;
 
         return $this;
     }

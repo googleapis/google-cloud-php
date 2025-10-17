@@ -77,6 +77,44 @@ class Code
      * Generated from protobuf enum <code>VEHICLE_NOT_ALLOWED = 7;</code>
      */
     const VEHICLE_NOT_ALLOWED = 7;
+    /**
+     * The vehicle's `ignore` field is true.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf enum <code>VEHICLE_IGNORED = 8;</code>
+     */
+    const VEHICLE_IGNORED = 8;
+    /**
+     * The shipment's `ignore` field is true.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf enum <code>SHIPMENT_IGNORED = 9;</code>
+     */
+    const SHIPMENT_IGNORED = 9;
+    /**
+     * The shipment is skipped in the `injected_solution_constraint`.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf enum <code>SKIPPED_IN_INJECTED_SOLUTION_CONSTRAINT = 10;</code>
+     */
+    const SKIPPED_IN_INJECTED_SOLUTION_CONSTRAINT = 10;
+    /**
+     * The vehicle route relaxation specified in the
+     * `injected_solution_constraint` doesn't permit any visit to be inserted.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf enum <code>VEHICLE_ROUTE_IS_FULLY_SEQUENCE_CONSTRAINED = 11;</code>
+     */
+    const VEHICLE_ROUTE_IS_FULLY_SEQUENCE_CONSTRAINED = 11;
+    /**
+     * The shipment has a zero penalty cost. While this can be useful as an
+     * advanced modelling choice, it may also explain after the fact why a
+     * shipment was skipped.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf enum <code>ZERO_PENALTY_COST = 13;</code>
+     */
+    const ZERO_PENALTY_COST = 13;
 
     private static $valueToName = [
         self::CODE_UNSPECIFIED => 'CODE_UNSPECIFIED',
@@ -87,6 +125,11 @@ class Code
         self::CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TRAVEL_DURATION_LIMIT => 'CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TRAVEL_DURATION_LIMIT',
         self::CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TIME_WINDOWS => 'CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TIME_WINDOWS',
         self::VEHICLE_NOT_ALLOWED => 'VEHICLE_NOT_ALLOWED',
+        self::VEHICLE_IGNORED => 'VEHICLE_IGNORED',
+        self::SHIPMENT_IGNORED => 'SHIPMENT_IGNORED',
+        self::SKIPPED_IN_INJECTED_SOLUTION_CONSTRAINT => 'SKIPPED_IN_INJECTED_SOLUTION_CONSTRAINT',
+        self::VEHICLE_ROUTE_IS_FULLY_SEQUENCE_CONSTRAINED => 'VEHICLE_ROUTE_IS_FULLY_SEQUENCE_CONSTRAINED',
+        self::ZERO_PENALTY_COST => 'ZERO_PENALTY_COST',
     ];
 
     public static function name($value)

@@ -33,6 +33,24 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
      */
     protected $label = '';
     /**
+     * This is a copy of the
+     * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost],
+     * included here to make it easier to see the severity of a skipped shipment.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>optional double penalty_cost = 6;</code>
+     */
+    protected $penalty_cost = null;
+    /**
+     * Estimated ratio of vehicles that cannot perform this shipment for at least
+     * one of the reasons below.
+     * Note: this is only filled when reasons involve a vehicle.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>optional double estimated_incompatible_vehicle_ratio = 5;</code>
+     */
+    protected $estimated_incompatible_vehicle_ratio = null;
+    /**
      * A list of reasons that explain why the shipment was skipped. See comment
      * above `Reason`. If we are unable to understand why a shipment was skipped,
      * reasons will not be set.
@@ -54,6 +72,16 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
      *           Copy of the corresponding
      *           [Shipment.label][google.maps.routeoptimization.v1.Shipment.label], if
      *           specified in the `Shipment`.
+     *     @type float $penalty_cost
+     *           This is a copy of the
+     *           [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost],
+     *           included here to make it easier to see the severity of a skipped shipment.
+     *           Experimental: This field's behavior or existence may change in future.
+     *     @type float $estimated_incompatible_vehicle_ratio
+     *           Estimated ratio of vehicles that cannot perform this shipment for at least
+     *           one of the reasons below.
+     *           Note: this is only filled when reasons involve a vehicle.
+     *           Experimental: This field's behavior or existence may change in future.
      *     @type array<\Google\Maps\RouteOptimization\V1\SkippedShipment\Reason>|\Google\Protobuf\Internal\RepeatedField $reasons
      *           A list of reasons that explain why the shipment was skipped. See comment
      *           above `Reason`. If we are unable to understand why a shipment was skipped,
@@ -119,6 +147,90 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->label = $var;
+
+        return $this;
+    }
+
+    /**
+     * This is a copy of the
+     * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost],
+     * included here to make it easier to see the severity of a skipped shipment.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>optional double penalty_cost = 6;</code>
+     * @return float
+     */
+    public function getPenaltyCost()
+    {
+        return isset($this->penalty_cost) ? $this->penalty_cost : 0.0;
+    }
+
+    public function hasPenaltyCost()
+    {
+        return isset($this->penalty_cost);
+    }
+
+    public function clearPenaltyCost()
+    {
+        unset($this->penalty_cost);
+    }
+
+    /**
+     * This is a copy of the
+     * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost],
+     * included here to make it easier to see the severity of a skipped shipment.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>optional double penalty_cost = 6;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setPenaltyCost($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->penalty_cost = $var;
+
+        return $this;
+    }
+
+    /**
+     * Estimated ratio of vehicles that cannot perform this shipment for at least
+     * one of the reasons below.
+     * Note: this is only filled when reasons involve a vehicle.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>optional double estimated_incompatible_vehicle_ratio = 5;</code>
+     * @return float
+     */
+    public function getEstimatedIncompatibleVehicleRatio()
+    {
+        return isset($this->estimated_incompatible_vehicle_ratio) ? $this->estimated_incompatible_vehicle_ratio : 0.0;
+    }
+
+    public function hasEstimatedIncompatibleVehicleRatio()
+    {
+        return isset($this->estimated_incompatible_vehicle_ratio);
+    }
+
+    public function clearEstimatedIncompatibleVehicleRatio()
+    {
+        unset($this->estimated_incompatible_vehicle_ratio);
+    }
+
+    /**
+     * Estimated ratio of vehicles that cannot perform this shipment for at least
+     * one of the reasons below.
+     * Note: this is only filled when reasons involve a vehicle.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>optional double estimated_incompatible_vehicle_ratio = 5;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setEstimatedIncompatibleVehicleRatio($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->estimated_incompatible_vehicle_ratio = $var;
 
         return $this;
     }

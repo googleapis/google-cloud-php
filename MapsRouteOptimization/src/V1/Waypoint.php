@@ -27,6 +27,15 @@ class Waypoint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool side_of_road = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $side_of_road = false;
+    /**
+     * Indicates that the waypoint is meant for vehicles to stop at, where the
+     * intention is to either pick up or drop off. This option works only for the
+     * 'DRIVING' travel mode, and when the 'location_type' is 'location'.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>bool vehicle_stopover = 4;</code>
+     */
+    protected $vehicle_stopover = false;
     protected $location_type;
 
     /**
@@ -39,7 +48,12 @@ class Waypoint extends \Google\Protobuf\Internal\Message
      *           A point specified using geographic coordinates, including an optional
      *           heading.
      *     @type string $place_id
-     *           The POI Place ID associated with the waypoint.
+     *           The POI place ID associated with the waypoint.
+     *           When using a place ID to specify arrival or departure location of a
+     *           VisitRequest, use a place ID that is specific enough to determine a
+     *           LatLng location for navigation to the place.
+     *           For example, a place ID representing a building is suitable, but a place
+     *           ID representing a road is discouraged.
      *     @type bool $side_of_road
      *           Optional. Indicates that the location of this waypoint is meant to have a
      *           preference for the vehicle to stop at a particular side of road. When you
@@ -47,6 +61,11 @@ class Waypoint extends \Google\Protobuf\Internal\Message
      *           vehicle can stop at the side of road that the location is biased towards
      *           from the center of the road. This option doesn't work for the 'WALKING'
      *           travel mode.
+     *     @type bool $vehicle_stopover
+     *           Indicates that the waypoint is meant for vehicles to stop at, where the
+     *           intention is to either pick up or drop off. This option works only for the
+     *           'DRIVING' travel mode, and when the 'location_type' is 'location'.
+     *           Experimental: This field's behavior or existence may change in future.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +107,12 @@ class Waypoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The POI Place ID associated with the waypoint.
+     * The POI place ID associated with the waypoint.
+     * When using a place ID to specify arrival or departure location of a
+     * VisitRequest, use a place ID that is specific enough to determine a
+     * LatLng location for navigation to the place.
+     * For example, a place ID representing a building is suitable, but a place
+     * ID representing a road is discouraged.
      *
      * Generated from protobuf field <code>string place_id = 2;</code>
      * @return string
@@ -104,7 +128,12 @@ class Waypoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The POI Place ID associated with the waypoint.
+     * The POI place ID associated with the waypoint.
+     * When using a place ID to specify arrival or departure location of a
+     * VisitRequest, use a place ID that is specific enough to determine a
+     * LatLng location for navigation to the place.
+     * For example, a place ID representing a building is suitable, but a place
+     * ID representing a road is discouraged.
      *
      * Generated from protobuf field <code>string place_id = 2;</code>
      * @param string $var
@@ -150,6 +179,38 @@ class Waypoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->side_of_road = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates that the waypoint is meant for vehicles to stop at, where the
+     * intention is to either pick up or drop off. This option works only for the
+     * 'DRIVING' travel mode, and when the 'location_type' is 'location'.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>bool vehicle_stopover = 4;</code>
+     * @return bool
+     */
+    public function getVehicleStopover()
+    {
+        return $this->vehicle_stopover;
+    }
+
+    /**
+     * Indicates that the waypoint is meant for vehicles to stop at, where the
+     * intention is to either pick up or drop off. This option works only for the
+     * 'DRIVING' travel mode, and when the 'location_type' is 'location'.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>bool vehicle_stopover = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setVehicleStopover($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->vehicle_stopover = $var;
 
         return $this;
     }
