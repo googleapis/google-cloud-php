@@ -10,16 +10,19 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A widget that creates one or more UI items that users can select.
- * For example, a dropdown menu or checkboxes. You can use this widget to
- * collect data that can be predicted or enumerated. For an example in Google
- * Chat apps, see [Add selectable UI
+ * Supports form submission validation for `dropdown` and `multiselect` menus
+ * only. When `Action.all_widgets_are_required` is set to `true` or this widget
+ * is specified in `Action.required_widgets`, the submission action is blocked
+ * unless a value is selected. For example, a dropdown menu or checkboxes. You
+ * can use this widget to collect data that can be predicted or enumerated. For
+ * an example in Google Chat apps, see [Add selectable UI
  * elements](/workspace/chat/design-interactive-card-dialog#add_selectable_ui_elements).
  * Chat apps can process the value of items that users select or input. For
  * details about working with form inputs, see [Receive form
  * data](https://developers.google.com/workspace/chat/read-form-data).
  * To collect undefined or abstract data from users, use
  * the [TextInput][google.apps.card.v1.TextInput] widget.
- * [Google Workspace Add-ons
+ * [Google Workspace add-ons
  * and Chat apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.SelectionInput</code>
@@ -27,7 +30,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SelectionInput extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name that identifies the selection input in a form input event.
+     * Required. The name that identifies the selection input in a form input
+     * event.
      * For details about working with form inputs, see [Receive form
      * data](https://developers.google.com/workspace/chat/read-form-data).
      *
@@ -73,15 +77,18 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
      * For multiselect menus, the maximum number of items that a user can select.
      * Minimum value is 1 item. If unspecified, defaults to 3 items.
      *
-     * Generated from protobuf field <code>int32 multi_select_max_selected_items = 6;</code>
+     * Generated from protobuf field <code>optional int32 multi_select_max_selected_items = 6;</code>
      */
-    protected $multi_select_max_selected_items = 0;
+    protected $multi_select_max_selected_items = null;
     /**
      * For multiselect menus, the number of text characters that a user inputs
-     * before the app queries autocomplete and displays suggested items
-     * in the menu.
-     * If unspecified, defaults to 0 characters for static data sources and 3
-     * characters for external data sources.
+     * before the menu returns suggested selection items.
+     * If unset, the multiselect menu uses the following default values:
+     * * If the menu uses a static array of `SelectionInput` items, defaults to
+     *   0 characters and immediately populates items from the array.
+     * * If the menu uses a dynamic data source (`multi_select_data_source`),
+     *  defaults to 3 characters before querying the data source to return
+     *  suggested items.
      *
      * Generated from protobuf field <code>int32 multi_select_min_query_length = 7;</code>
      */
@@ -95,7 +102,8 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name that identifies the selection input in a form input event.
+     *           Required. The name that identifies the selection input in a form input
+     *           event.
      *           For details about working with form inputs, see [Receive form
      *           data](https://developers.google.com/workspace/chat/read-form-data).
      *     @type string $label
@@ -122,12 +130,15 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
      *           Minimum value is 1 item. If unspecified, defaults to 3 items.
      *     @type int $multi_select_min_query_length
      *           For multiselect menus, the number of text characters that a user inputs
-     *           before the app queries autocomplete and displays suggested items
-     *           in the menu.
-     *           If unspecified, defaults to 0 characters for static data sources and 3
-     *           characters for external data sources.
+     *           before the menu returns suggested selection items.
+     *           If unset, the multiselect menu uses the following default values:
+     *           * If the menu uses a static array of `SelectionInput` items, defaults to
+     *             0 characters and immediately populates items from the array.
+     *           * If the menu uses a dynamic data source (`multi_select_data_source`),
+     *            defaults to 3 characters before querying the data source to return
+     *            suggested items.
      *     @type \Google\Apps\Card\V1\Action $external_data_source
-     *           An external data source, such as a relational data base.
+     *           An external data source, such as a relational database.
      *     @type \Google\Apps\Card\V1\SelectionInput\PlatformDataSource $platform_data_source
      *           A data source from Google Workspace.
      * }
@@ -138,7 +149,8 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name that identifies the selection input in a form input event.
+     * Required. The name that identifies the selection input in a form input
+     * event.
      * For details about working with form inputs, see [Receive form
      * data](https://developers.google.com/workspace/chat/read-form-data).
      *
@@ -151,7 +163,8 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name that identifies the selection input in a form input event.
+     * Required. The name that identifies the selection input in a form input
+     * event.
      * For details about working with form inputs, see [Receive form
      * data](https://developers.google.com/workspace/chat/read-form-data).
      *
@@ -307,19 +320,29 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
      * For multiselect menus, the maximum number of items that a user can select.
      * Minimum value is 1 item. If unspecified, defaults to 3 items.
      *
-     * Generated from protobuf field <code>int32 multi_select_max_selected_items = 6;</code>
+     * Generated from protobuf field <code>optional int32 multi_select_max_selected_items = 6;</code>
      * @return int
      */
     public function getMultiSelectMaxSelectedItems()
     {
-        return $this->multi_select_max_selected_items;
+        return isset($this->multi_select_max_selected_items) ? $this->multi_select_max_selected_items : 0;
+    }
+
+    public function hasMultiSelectMaxSelectedItems()
+    {
+        return isset($this->multi_select_max_selected_items);
+    }
+
+    public function clearMultiSelectMaxSelectedItems()
+    {
+        unset($this->multi_select_max_selected_items);
     }
 
     /**
      * For multiselect menus, the maximum number of items that a user can select.
      * Minimum value is 1 item. If unspecified, defaults to 3 items.
      *
-     * Generated from protobuf field <code>int32 multi_select_max_selected_items = 6;</code>
+     * Generated from protobuf field <code>optional int32 multi_select_max_selected_items = 6;</code>
      * @param int $var
      * @return $this
      */
@@ -333,10 +356,13 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
 
     /**
      * For multiselect menus, the number of text characters that a user inputs
-     * before the app queries autocomplete and displays suggested items
-     * in the menu.
-     * If unspecified, defaults to 0 characters for static data sources and 3
-     * characters for external data sources.
+     * before the menu returns suggested selection items.
+     * If unset, the multiselect menu uses the following default values:
+     * * If the menu uses a static array of `SelectionInput` items, defaults to
+     *   0 characters and immediately populates items from the array.
+     * * If the menu uses a dynamic data source (`multi_select_data_source`),
+     *  defaults to 3 characters before querying the data source to return
+     *  suggested items.
      *
      * Generated from protobuf field <code>int32 multi_select_min_query_length = 7;</code>
      * @return int
@@ -348,10 +374,13 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
 
     /**
      * For multiselect menus, the number of text characters that a user inputs
-     * before the app queries autocomplete and displays suggested items
-     * in the menu.
-     * If unspecified, defaults to 0 characters for static data sources and 3
-     * characters for external data sources.
+     * before the menu returns suggested selection items.
+     * If unset, the multiselect menu uses the following default values:
+     * * If the menu uses a static array of `SelectionInput` items, defaults to
+     *   0 characters and immediately populates items from the array.
+     * * If the menu uses a dynamic data source (`multi_select_data_source`),
+     *  defaults to 3 characters before querying the data source to return
+     *  suggested items.
      *
      * Generated from protobuf field <code>int32 multi_select_min_query_length = 7;</code>
      * @param int $var
@@ -366,7 +395,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An external data source, such as a relational data base.
+     * An external data source, such as a relational database.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action external_data_source = 8;</code>
      * @return \Google\Apps\Card\V1\Action|null
@@ -382,7 +411,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An external data source, such as a relational data base.
+     * An external data source, such as a relational database.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action external_data_source = 8;</code>
      * @param \Google\Apps\Card\V1\Action $var

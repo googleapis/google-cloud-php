@@ -10,10 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A column.
- * [Google Workspace Add-ons and Chat
- * apps](https://developers.google.com/workspace/extend):
- * Columns for Google Workspace Add-ons are in
- * Developer Preview.
+ * [Google Workspace add-ons and Chat
+ * apps](https://developers.google.com/workspace/extend)
  *
  * Generated from protobuf message <code>google.apps.card.v1.Columns.Column</code>
  */

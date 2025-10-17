@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * How the switch appears in the user interface.
- * [Google Workspace Add-ons
+ * [Google Workspace add-ons
  * and Chat apps](https://developers.google.com/workspace/extend):
  *
  * Protobuf type <code>google.apps.card.v1.DecoratedText.SwitchControl.ControlType</code>

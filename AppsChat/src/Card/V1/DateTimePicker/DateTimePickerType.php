@@ -9,7 +9,7 @@ use UnexpectedValueException;
 /**
  * The format for the date and time in the `DateTimePicker` widget.
  * Determines whether users can input a date, a time, or both a date and time.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Protobuf type <code>google.apps.card.v1.DateTimePicker.DateTimePickerType</code>

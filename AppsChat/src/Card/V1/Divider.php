@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Google Chat apps, see
  * [Add a horizontal divider between
  * widgets](https://developers.google.com/workspace/chat/format-structure-card-dialog#add_a_horizontal_divider_between_widgets).
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  * For example, the following JSON creates a divider:
  * ```

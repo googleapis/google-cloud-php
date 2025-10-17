@@ -19,8 +19,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * and
  * [Formatting
  * text in Google Workspace
- * Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
- * [Google Workspace Add-ons and
+ * add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+ * [Google Workspace add-ons and
  * Chat apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.TextParagraph</code>
@@ -33,6 +33,25 @@ class TextParagraph extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string text = 1;</code>
      */
     protected $text = '';
+    /**
+     * The maximum number of lines of text that are displayed in the widget. If
+     * the text exceeds the specified maximum number of lines, the excess
+     * content is concealed behind a **show more** button. If the text is equal or
+     * shorter than the specified maximum number of lines, a **show more** button
+     * isn't displayed.
+     * The default value is 0, in which case
+     * all context is displayed. Negative values are ignored.
+     *
+     * Generated from protobuf field <code>int32 max_lines = 2;</code>
+     */
+    protected $max_lines = 0;
+    /**
+     * The syntax of the text. If not set, the text is rendered as HTML.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.TextParagraph.TextSyntax text_syntax = 4;</code>
+     */
+    protected $text_syntax = 0;
 
     /**
      * Constructor.
@@ -42,6 +61,17 @@ class TextParagraph extends \Google\Protobuf\Internal\Message
      *
      *     @type string $text
      *           The text that's shown in the widget.
+     *     @type int $max_lines
+     *           The maximum number of lines of text that are displayed in the widget. If
+     *           the text exceeds the specified maximum number of lines, the excess
+     *           content is concealed behind a **show more** button. If the text is equal or
+     *           shorter than the specified maximum number of lines, a **show more** button
+     *           isn't displayed.
+     *           The default value is 0, in which case
+     *           all context is displayed. Negative values are ignored.
+     *     @type int $text_syntax
+     *           The syntax of the text. If not set, the text is rendered as HTML.
+     *           [Google Chat apps](https://developers.google.com/workspace/chat):
      * }
      */
     public function __construct($data = NULL) {
@@ -71,6 +101,72 @@ class TextParagraph extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->text = $var;
+
+        return $this;
+    }
+
+    /**
+     * The maximum number of lines of text that are displayed in the widget. If
+     * the text exceeds the specified maximum number of lines, the excess
+     * content is concealed behind a **show more** button. If the text is equal or
+     * shorter than the specified maximum number of lines, a **show more** button
+     * isn't displayed.
+     * The default value is 0, in which case
+     * all context is displayed. Negative values are ignored.
+     *
+     * Generated from protobuf field <code>int32 max_lines = 2;</code>
+     * @return int
+     */
+    public function getMaxLines()
+    {
+        return $this->max_lines;
+    }
+
+    /**
+     * The maximum number of lines of text that are displayed in the widget. If
+     * the text exceeds the specified maximum number of lines, the excess
+     * content is concealed behind a **show more** button. If the text is equal or
+     * shorter than the specified maximum number of lines, a **show more** button
+     * isn't displayed.
+     * The default value is 0, in which case
+     * all context is displayed. Negative values are ignored.
+     *
+     * Generated from protobuf field <code>int32 max_lines = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxLines($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_lines = $var;
+
+        return $this;
+    }
+
+    /**
+     * The syntax of the text. If not set, the text is rendered as HTML.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.TextParagraph.TextSyntax text_syntax = 4;</code>
+     * @return int
+     */
+    public function getTextSyntax()
+    {
+        return $this->text_syntax;
+    }
+
+    /**
+     * The syntax of the text. If not set, the text is rendered as HTML.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.TextParagraph.TextSyntax text_syntax = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTextSyntax($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Apps\Card\V1\TextParagraph\TextSyntax::class);
+        $this->text_syntax = $var;
 
         return $this;
     }

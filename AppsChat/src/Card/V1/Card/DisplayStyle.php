@@ -7,10 +7,10 @@ namespace Google\Apps\Card\V1\Card;
 use UnexpectedValueException;
 
 /**
- * In Google Workspace Add-ons,
+ * In Google Workspace add-ons,
  * determines how a card is displayed.
  * [Google Workspace
- * Add-ons](https://developers.google.com/workspace/add-ons):
+ * add-ons](https://developers.google.com/workspace/add-ons):
  *
  * Protobuf type <code>google.apps.card.v1.Card.DisplayStyle</code>
  */

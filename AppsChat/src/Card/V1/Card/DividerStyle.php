@@ -9,7 +9,7 @@ use UnexpectedValueException;
 /**
  * The divider style of a card. Currently only used for dividers betweens card
  * sections.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Protobuf type <code>google.apps.card.v1.Card.DividerStyle</code>
@@ -23,13 +23,14 @@ class DividerStyle
      */
     const DIVIDER_STYLE_UNSPECIFIED = 0;
     /**
-     * Default option. Render a solid divider between sections.
+     * Default option. Render a solid divider.
      *
      * Generated from protobuf enum <code>SOLID_DIVIDER = 1;</code>
      */
     const SOLID_DIVIDER = 1;
     /**
-     * If set, no divider is rendered between sections.
+     * If set, no divider is rendered. This style completely removes the divider
+     * from the layout. The result is equivalent to not adding a divider at all.
      *
      * Generated from protobuf enum <code>NO_DIVIDER = 2;</code>
      */

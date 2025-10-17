@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Represents the border types applied to widgets.
- * [Google Workspace Add-ons
+ * [Google Workspace add-ons
  * and Chat apps](https://developers.google.com/workspace/extend):
  *
  * Protobuf type <code>google.apps.card.v1.BorderStyle.BorderType</code>
@@ -22,13 +22,13 @@ class BorderType
      */
     const BORDER_TYPE_UNSPECIFIED = 0;
     /**
-     * Default value. No border.
+     * No border.
      *
      * Generated from protobuf enum <code>NO_BORDER = 1;</code>
      */
     const NO_BORDER = 1;
     /**
-     * Outline.
+     * Default value. Outline.
      *
      * Generated from protobuf enum <code>STROKE = 2;</code>
      */

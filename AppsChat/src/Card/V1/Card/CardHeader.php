@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Represents a card header. For an example in Google Chat apps, see [Add a
  * header](https://developers.google.com/workspace/chat/design-components-card-dialog#add_a_header).
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.Card.CardHeader</code>
@@ -36,7 +36,7 @@ class CardHeader extends \Google\Protobuf\Internal\Message
     protected $subtitle = '';
     /**
      * The shape used to crop the image.
-     * [Google Workspace Add-ons and Chat
+     * [Google Workspace add-ons and Chat
      * apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Widget.ImageType image_type = 3;</code>
@@ -71,7 +71,7 @@ class CardHeader extends \Google\Protobuf\Internal\Message
      *           below the `title`.
      *     @type int $image_type
      *           The shape used to crop the image.
-     *           [Google Workspace Add-ons and Chat
+     *           [Google Workspace add-ons and Chat
      *           apps](https://developers.google.com/workspace/extend):
      *     @type string $image_url
      *           The HTTPS URL of the image in the card header.
@@ -146,7 +146,7 @@ class CardHeader extends \Google\Protobuf\Internal\Message
 
     /**
      * The shape used to crop the image.
-     * [Google Workspace Add-ons and Chat
+     * [Google Workspace add-ons and Chat
      * apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Widget.ImageType image_type = 3;</code>
@@ -159,7 +159,7 @@ class CardHeader extends \Google\Protobuf\Internal\Message
 
     /**
      * The shape used to crop the image.
-     * [Google Workspace Add-ons and Chat
+     * [Google Workspace add-ons and Chat
      * apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Widget.ImageType image_type = 3;</code>

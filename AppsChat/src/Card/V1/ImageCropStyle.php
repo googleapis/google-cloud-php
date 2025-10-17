@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents the crop style applied to an image.
- * [Google Workspace Add-ons and
+ * [Google Workspace add-ons and
  * Chat apps](https://developers.google.com/workspace/extend):
  * For example, here's how to apply a 16:9 aspect ratio:
  * ```

@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents an `onClick` event that opens a hyperlink.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.OpenLink</code>
@@ -26,7 +26,7 @@ class OpenLink extends \Google\Protobuf\Internal\Message
     /**
      * How to open a link.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.OpenLink.OpenAs open_as = 2;</code>
      */
@@ -35,7 +35,7 @@ class OpenLink extends \Google\Protobuf\Internal\Message
      * Whether the client forgets about a link after opening it, or observes it
      * until the window closes.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.OpenLink.OnClose on_close = 3;</code>
      */
@@ -52,12 +52,12 @@ class OpenLink extends \Google\Protobuf\Internal\Message
      *     @type int $open_as
      *           How to open a link.
      *           [Google Workspace
-     *           Add-ons](https://developers.google.com/workspace/add-ons):
+     *           add-ons](https://developers.google.com/workspace/add-ons):
      *     @type int $on_close
      *           Whether the client forgets about a link after opening it, or observes it
      *           until the window closes.
      *           [Google Workspace
-     *           Add-ons](https://developers.google.com/workspace/add-ons):
+     *           add-ons](https://developers.google.com/workspace/add-ons):
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +94,7 @@ class OpenLink extends \Google\Protobuf\Internal\Message
     /**
      * How to open a link.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.OpenLink.OpenAs open_as = 2;</code>
      * @return int
@@ -107,7 +107,7 @@ class OpenLink extends \Google\Protobuf\Internal\Message
     /**
      * How to open a link.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.OpenLink.OpenAs open_as = 2;</code>
      * @param int $var
@@ -125,7 +125,7 @@ class OpenLink extends \Google\Protobuf\Internal\Message
      * Whether the client forgets about a link after opening it, or observes it
      * until the window closes.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.OpenLink.OnClose on_close = 3;</code>
      * @return int
@@ -139,7 +139,7 @@ class OpenLink extends \Google\Protobuf\Internal\Message
      * Whether the client forgets about a link after opening it, or observes it
      * until the window closes.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.OpenLink.OnClose on_close = 3;</code>
      * @param int $var

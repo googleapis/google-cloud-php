@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Either a toggle-style switch or a checkbox inside a `decoratedText` widget.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  * Only supported in the `decoratedText` widget.
  *
@@ -49,7 +49,7 @@ class SwitchControl extends \Google\Protobuf\Internal\Message
     protected $on_change_action = null;
     /**
      * How the switch appears in the user interface.
-     * [Google Workspace Add-ons
+     * [Google Workspace add-ons
      * and Chat apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.DecoratedText.SwitchControl.ControlType control_type = 5;</code>
@@ -77,7 +77,7 @@ class SwitchControl extends \Google\Protobuf\Internal\Message
      *            function to run.
      *     @type int $control_type
      *           How the switch appears in the user interface.
-     *           [Google Workspace Add-ons
+     *           [Google Workspace add-ons
      *           and Chat apps](https://developers.google.com/workspace/extend):
      * }
      */
@@ -212,7 +212,7 @@ class SwitchControl extends \Google\Protobuf\Internal\Message
 
     /**
      * How the switch appears in the user interface.
-     * [Google Workspace Add-ons
+     * [Google Workspace add-ons
      * and Chat apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.DecoratedText.SwitchControl.ControlType control_type = 5;</code>
@@ -225,7 +225,7 @@ class SwitchControl extends \Google\Protobuf\Internal\Message
 
     /**
      * How the switch appears in the user interface.
-     * [Google Workspace Add-ons
+     * [Google Workspace add-ons
      * and Chat apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.DecoratedText.SwitchControl.ControlType control_type = 5;</code>

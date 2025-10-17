@@ -13,7 +13,7 @@ use UnexpectedValueException;
  * If both `OnOpen` and `OnClose` handlers are set, and the client platform
  * can't support both values, `OnClose` takes precedence.
  * [Google Workspace
- * Add-ons](https://developers.google.com/workspace/add-ons):
+ * add-ons](https://developers.google.com/workspace/add-ons):
  *
  * Protobuf type <code>google.apps.card.v1.OpenLink.OnClose</code>
  */

@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A card interface displayed in a Google Chat message or Google Workspace
- * Add-on.
+ * add-on.
  * Cards support a defined layout, interactive UI elements like buttons, and
  * rich media like images. Use cards to present detailed information,
  * gather information from users, and guide users to take a next step.
@@ -19,8 +19,11 @@ use Google\Protobuf\Internal\GPBUtil;
  * to build cards, see the following documentation:
  * * For Google Chat apps, see [Design the components of a card or
  *   dialog](https://developers.google.com/workspace/chat/design-components-card-dialog).
- * * For Google Workspace Add-ons, see [Card-based
+ * * For Google Workspace add-ons, see [Card-based
  * interfaces](https://developers.google.com/apps-script/add-ons/concepts/cards).
+ * Note: You can add up to 100 widgets per card. Any widgets beyond this
+ * limit are ignored. This limit applies to both card messages and dialogs
+ * in Google Chat apps, and to cards in Google Workspace add-ons.
  * **Example: Card message for a Google Chat app**
  * ![Example contact
  * card](https://developers.google.com/workspace/chat/images/card_api_reference.png)
@@ -127,7 +130,7 @@ class Card extends \Google\Protobuf\Internal\Message
      */
     private $sections;
     /**
-     * The divider style between sections.
+     * The divider style between the header, sections and footer.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card.DividerStyle section_divider_style = 9;</code>
      */
@@ -135,7 +138,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * The card's actions. Actions are added to the card's toolbar menu.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      * For example, the following JSON constructs a card action menu with
      * `Settings` and `Send Feedback` options:
      * ```
@@ -172,7 +175,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Name of the card. Used as a card identifier in card navigation.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>string name = 4;</code>
      */
@@ -185,17 +188,17 @@ class Card extends \Google\Protobuf\Internal\Message
      * [dialogs](https://developers.google.com/workspace/chat/dialogs), but not
      * [card
      * messages](https://developers.google.com/workspace/chat/create-messages#create).
-     * [Google Workspace Add-ons and Chat
+     * [Google Workspace add-ons and Chat
      * apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card.CardFixedFooter fixed_footer = 5;</code>
      */
     protected $fixed_footer = null;
     /**
-     * In Google Workspace Add-ons, sets the display properties of the
+     * In Google Workspace add-ons, sets the display properties of the
      * `peekCardHeader`.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card.DisplayStyle display_style = 6;</code>
      */
@@ -205,7 +208,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * placeholder so that the user can navigate forward between the homepage
      * cards and the contextual cards.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card.CardHeader peek_card_header = 7;</code>
      */
@@ -226,11 +229,11 @@ class Card extends \Google\Protobuf\Internal\Message
      *           in Google Chat apps, see [Define a section of a
      *           card](https://developers.google.com/workspace/chat/design-components-card-dialog#define_a_section_of_a_card).
      *     @type int $section_divider_style
-     *           The divider style between sections.
+     *           The divider style between the header, sections and footer.
      *     @type array<\Google\Apps\Card\V1\Card\CardAction>|\Google\Protobuf\Internal\RepeatedField $card_actions
      *           The card's actions. Actions are added to the card's toolbar menu.
      *           [Google Workspace
-     *           Add-ons](https://developers.google.com/workspace/add-ons):
+     *           add-ons](https://developers.google.com/workspace/add-ons):
      *           For example, the following JSON constructs a card action menu with
      *           `Settings` and `Send Feedback` options:
      *           ```
@@ -263,7 +266,7 @@ class Card extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the card. Used as a card identifier in card navigation.
      *           [Google Workspace
-     *           Add-ons](https://developers.google.com/workspace/add-ons):
+     *           add-ons](https://developers.google.com/workspace/add-ons):
      *     @type \Google\Apps\Card\V1\Card\CardFixedFooter $fixed_footer
      *           The fixed footer shown at the bottom of this card.
      *           Setting `fixedFooter` without specifying a `primaryButton` or a
@@ -272,19 +275,19 @@ class Card extends \Google\Protobuf\Internal\Message
      *           [dialogs](https://developers.google.com/workspace/chat/dialogs), but not
      *           [card
      *           messages](https://developers.google.com/workspace/chat/create-messages#create).
-     *           [Google Workspace Add-ons and Chat
+     *           [Google Workspace add-ons and Chat
      *           apps](https://developers.google.com/workspace/extend):
      *     @type int $display_style
-     *           In Google Workspace Add-ons, sets the display properties of the
+     *           In Google Workspace add-ons, sets the display properties of the
      *           `peekCardHeader`.
      *           [Google Workspace
-     *           Add-ons](https://developers.google.com/workspace/add-ons):
+     *           add-ons](https://developers.google.com/workspace/add-ons):
      *     @type \Google\Apps\Card\V1\Card\CardHeader $peek_card_header
      *           When displaying contextual content, the peek card header acts as a
      *           placeholder so that the user can navigate forward between the homepage
      *           cards and the contextual cards.
      *           [Google Workspace
-     *           Add-ons](https://developers.google.com/workspace/add-ons):
+     *           add-ons](https://developers.google.com/workspace/add-ons):
      * }
      */
     public function __construct($data = NULL) {
@@ -363,7 +366,7 @@ class Card extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The divider style between sections.
+     * The divider style between the header, sections and footer.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card.DividerStyle section_divider_style = 9;</code>
      * @return int
@@ -374,7 +377,7 @@ class Card extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The divider style between sections.
+     * The divider style between the header, sections and footer.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card.DividerStyle section_divider_style = 9;</code>
      * @param int $var
@@ -391,7 +394,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * The card's actions. Actions are added to the card's toolbar menu.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      * For example, the following JSON constructs a card action menu with
      * `Settings` and `Send Feedback` options:
      * ```
@@ -433,7 +436,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * The card's actions. Actions are added to the card's toolbar menu.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      * For example, the following JSON constructs a card action menu with
      * `Settings` and `Send Feedback` options:
      * ```
@@ -479,7 +482,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Name of the card. Used as a card identifier in card navigation.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @return string
@@ -492,7 +495,7 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Name of the card. Used as a card identifier in card navigation.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @param string $var
@@ -514,7 +517,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * [dialogs](https://developers.google.com/workspace/chat/dialogs), but not
      * [card
      * messages](https://developers.google.com/workspace/chat/create-messages#create).
-     * [Google Workspace Add-ons and Chat
+     * [Google Workspace add-ons and Chat
      * apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card.CardFixedFooter fixed_footer = 5;</code>
@@ -543,7 +546,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * [dialogs](https://developers.google.com/workspace/chat/dialogs), but not
      * [card
      * messages](https://developers.google.com/workspace/chat/create-messages#create).
-     * [Google Workspace Add-ons and Chat
+     * [Google Workspace add-ons and Chat
      * apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card.CardFixedFooter fixed_footer = 5;</code>
@@ -559,10 +562,10 @@ class Card extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * In Google Workspace Add-ons, sets the display properties of the
+     * In Google Workspace add-ons, sets the display properties of the
      * `peekCardHeader`.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card.DisplayStyle display_style = 6;</code>
      * @return int
@@ -573,10 +576,10 @@ class Card extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * In Google Workspace Add-ons, sets the display properties of the
+     * In Google Workspace add-ons, sets the display properties of the
      * `peekCardHeader`.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card.DisplayStyle display_style = 6;</code>
      * @param int $var
@@ -595,7 +598,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * placeholder so that the user can navigate forward between the homepage
      * cards and the contextual cards.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card.CardHeader peek_card_header = 7;</code>
      * @return \Google\Apps\Card\V1\Card\CardHeader|null
@@ -620,7 +623,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * placeholder so that the user can navigate forward between the homepage
      * cards and the contextual cards.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card.CardHeader peek_card_header = 7;</code>
      * @param \Google\Apps\Card\V1\Card\CardHeader $var

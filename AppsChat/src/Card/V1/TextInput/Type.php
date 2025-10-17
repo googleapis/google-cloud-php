@@ -11,7 +11,7 @@ use UnexpectedValueException;
  * whether it's a single line input field, or a multi-line input. If
  * `initialSuggestions` is specified, `type` is always `SINGLE_LINE`,
  * even if it's set to `MULTIPLE_LINE`.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Protobuf type <code>google.apps.card.v1.TextInput.Type</code>

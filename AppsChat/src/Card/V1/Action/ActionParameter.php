@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * snooze type and snooze time in the list of string parameters.
  * To learn more, see
  * [`CommonEventObject`](https://developers.google.com/workspace/chat/api/reference/rest/v1/Event#commoneventobject).
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.Action.ActionParameter</code>

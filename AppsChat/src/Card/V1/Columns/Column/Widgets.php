@@ -10,10 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The supported widgets that you can include in a column.
- * [Google Workspace Add-ons and Chat
- * apps](https://developers.google.com/workspace/extend):
- * Columns for Google Workspace Add-ons are in
- * Developer Preview.
+ * [Google Workspace add-ons and Chat
+ * apps](https://developers.google.com/workspace/extend)
  *
  * Generated from protobuf message <code>google.apps.card.v1.Columns.Column.Widgets</code>
  */
@@ -41,6 +39,8 @@ class Widgets extends \Google\Protobuf\Internal\Message
      *           [SelectionInput][google.apps.card.v1.SelectionInput] widget.
      *     @type \Google\Apps\Card\V1\DateTimePicker $date_time_picker
      *           [DateTimePicker][google.apps.card.v1.DateTimePicker] widget.
+     *     @type \Google\Apps\Card\V1\ChipList $chip_list
+     *           [ChipList][google.apps.card.v1.ChipList] widget.
      * }
      */
     public function __construct($data = NULL) {
@@ -261,6 +261,37 @@ class Widgets extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Card\V1\DateTimePicker::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * [ChipList][google.apps.card.v1.ChipList] widget.
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.ChipList chip_list = 8;</code>
+     * @return \Google\Apps\Card\V1\ChipList|null
+     */
+    public function getChipList()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasChipList()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * [ChipList][google.apps.card.v1.ChipList] widget.
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.ChipList chip_list = 8;</code>
+     * @param \Google\Apps\Card\V1\ChipList $var
+     * @return $this
+     */
+    public function setChipList($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Card\V1\ChipList::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

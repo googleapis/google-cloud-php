@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * an invoice card might include actions such as delete invoice, email
  * invoice, or open the invoice in a browser.
  * [Google Workspace
- * Add-ons](https://developers.google.com/workspace/add-ons):
+ * add-ons](https://developers.google.com/workspace/add-ons):
  *
  * Generated from protobuf message <code>google.apps.card.v1.Card.CardAction</code>
  */
