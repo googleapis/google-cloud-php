@@ -22,9 +22,9 @@ use Google\ApiCore\RetrySettings;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Grpc;
 
 /**
@@ -72,7 +72,7 @@ class Result implements \IteratorAggregate
 
     /**
      * @param Operation $operation Runs operations against Google Cloud Spanner.
-     * @param Session $session The session used for any operations executed.
+     * @param SessionCache $session The session used for any operations executed.
      * @param callable $call A callable, yielding a generator filled with results.
      * @param string $transactionContext The transaction's context.
      * @param ValueMapper $mapper Maps values.
@@ -86,7 +86,7 @@ class Result implements \IteratorAggregate
      */
     public function __construct(
         private Operation $operation,
-        private Session $session,
+        private SessionCache $session,
         callable $call,
         private string|null $transactionContext,
         private ValueMapper $mapper,
@@ -243,9 +243,9 @@ class Result implements \IteratorAggregate
      * $session = $result->session();
      * ```
      *
-     * @return Session
+     * @return SessionCache
      */
-    public function session(): Session
+    public function session(): SessionCache
     {
         return $this->session;
     }
@@ -500,7 +500,7 @@ class Result implements \IteratorAggregate
     {
         if (!empty($result['metadata']['transaction']['id'])) {
             $res = $result['metadata']['transaction'];
-            if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
+            if ($this->transactionContext === Database::CONTEXT_READ) {
                 if (isset($res['readTimestamp'])) {
                     if (!($res['readTimestamp'] instanceof Timestamp)) {
                         $time = $this->parseTimeString($res['readTimestamp']);
@@ -520,6 +520,14 @@ class Result implements \IteratorAggregate
                     [],
                     $this->mapper
                 );
+                if (isset($result['precommitToken'])) {
+                    // @TODO: Can we move this logic to the serializer or value mapper?
+                    $this->transaction->setPrecommitToken(
+                        (new MultiplexedSessionPrecommitToken())
+                            ->setPrecommitToken(base64_decode($result['precommitToken']['precommitToken']))
+                            ->setSeqNum($result['precommitToken']['seqNum'] ?? 0)
+                    );
+                }
             }
         }
     }

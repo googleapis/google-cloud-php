@@ -118,3 +118,19 @@ $lro->delete();
 
  - `Operation::createTransaction` => use `Operation::transaction` instead
  - `Operation::createSnapshot` => use `Operation::snapshot` instead
+ - `Database::close` => obsolete
+ - `Database::sessionPool` => obsolete
+ - `Database::batchCreateSessions` => obsolete
+ - `Database::deleteSessionAsync` => obsolete
+ - `BatchSnapshot::close` => obsolete
+ - `Operation::session` => obsolete
+ - `Operation::createSession` => (obsolete)
+ - `Operation::commitWithResponse`  (obsolete) => use `Operation::commit` instead
+
+### Removed Classes
+
+ - `Session\Session` => removed in favor of `SessionCache`
+ - `Session\CacheSessionPool` => removed in favor of `SessionCache`
+ - `Session\SessionPoolInterface` => removed in favor of `SessionCache`
+ - `Operation` - this class is marked `@internal`, and should not be used directly.
+

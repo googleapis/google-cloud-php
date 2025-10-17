@@ -29,16 +29,17 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\Partition;
 use Google\Cloud\Spanner\V1\PartitionResponse;
@@ -67,7 +68,7 @@ class OperationTest extends TestCase
     use ProphecyTrait;
     use ApiHelperTrait;
 
-    const SESSION = 'my-session-id';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'my-transaction-id';
     const TRANSACTION_TAG = 'my-transaction-tag';
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
@@ -90,9 +91,8 @@ class OperationTest extends TestCase
             $this->serializer,
         );
 
-        $session = $this->prophesize(Session::class);
+        $session = $this->prophesize(SessionCache::class);
         $session->name()->willReturn(self::SESSION);
-        $session->info()->willReturn(['databaseName' => self::DATABASE]);
         $this->session = $session->reveal();
     }
 
@@ -154,11 +154,11 @@ class OperationTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->commitResponse());
 
-        $res = $this->operation->commit($this->session, [$mutation], [
+        $response = $this->operation->commit($this->session, [$mutation], [
             'transactionId' => self::TRANSACTION
         ]);
 
-        $this->assertInstanceOf(Timestamp::class, $res);
+        $this->assertInstanceOf(CommitResponse::class, $response);
     }
 
     public function testCommitWithReturnCommitStats()
@@ -179,16 +179,13 @@ class OperationTest extends TestCase
                 'commit_stats' => new CommitStats(['mutation_count' => 1])
             ]));
 
-        $res = $this->operation->commitWithResponse($this->session, [$mutation], [
+        $response = $this->operation->commit($this->session, [$mutation], [
             'transactionId' => 'foo',
             'returnCommitStats' => true
         ]);
 
-        $this->assertInstanceOf(Timestamp::class, $res[0]);
-        $this->assertEquals([
-            'commitTimestamp' => self::TIMESTAMP,
-            'commitStats' => ['mutationCount' => 1]
-        ], $this->serializer->encodeMessage($res[1]));
+        $this->assertEquals(strtotime(self::TIMESTAMP), $response->getCommitTimestamp()->getSeconds());
+        $this->assertEquals(1, $response->getCommitStats()->getMutationCount());
     }
 
     public function testCommitWithMaxCommitDelay()
@@ -215,15 +212,12 @@ class OperationTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->commitResponse());
 
-        $res = $this->operation->commitWithResponse($this->session, [$mutation], [
+        $response = $this->operation->commit($this->session, [$mutation], [
             'transactionId' => 'foo',
             'maxCommitDelay' => $duration,
         ]);
 
-        $this->assertInstanceOf(Timestamp::class, $res[0]);
-        $this->assertEquals([
-            'commitTimestamp' => self::TIMESTAMP,
-        ], $this->serializer->encodeMessage($res[1]));
+        $this->assertEquals(strtotime(self::TIMESTAMP), $response->getCommitTimestamp()->getSeconds());
     }
 
     public function testCommitWithExistingTransaction()
@@ -241,11 +235,11 @@ class OperationTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->commitResponse());
 
-        $res = $this->operation->commit($this->session, [$mutation], [
+        $response = $this->operation->commit($this->session, [$mutation], [
             'transactionId' => self::TRANSACTION
         ]);
 
-        $this->assertInstanceOf(Timestamp::class, $res);
+        $this->assertInstanceOf(CommitResponse::class, $response);
     }
 
     public function testRollback()
@@ -330,7 +324,7 @@ class OperationTest extends TestCase
             ->willReturn($this->executeAndReadResponseStream(self::TRANSACTION));
 
         $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo'], [
-            'transactionContext' => SessionPoolInterface::CONTEXT_READWRITE
+            'transactionContext' => Database::CONTEXT_READWRITE
         ]);
 
         $res->rows()->next();
@@ -355,7 +349,7 @@ class OperationTest extends TestCase
             ->willReturn($this->executeAndReadResponseStream(self::TRANSACTION));
 
         $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo'], [
-            'transactionContext' => SessionPoolInterface::CONTEXT_READ
+            'transactionContext' => Database::CONTEXT_READ
         ]);
         $res->rows()->next();
 
@@ -651,6 +645,51 @@ class OperationTest extends TestCase
         $this->assertCount(2, $res);
         $this->assertEquals($partitionToken1, $res[0]->token());
         $this->assertEquals($partitionToken2, $res[1]->token());
+    }
+
+    public function testCommitWithPrecommitTokenOnRetry()
+    {
+        $failureResponse = (new CommitResponse())
+            ->setPrecommitToken(new MultiplexedSessionPrecommitToken([
+                'precommit_token' => '123',
+            ]));
+        $this->spannerClient->commit(
+            Argument::type(CommitRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledTimes(2)
+            ->willReturn(
+                $failureResponse,
+                $this->commitResponse()
+            );
+
+        $mutation = $this->operation->mutation(Operation::OP_INSERT, 'Posts', ['foo' => 'bar']);
+        $response = $this->operation->commit($this->session, [$mutation]);
+        $this->assertInstanceOf(CommitResponse::class, $response);
+    }
+
+    public function testCommitWithPrecommitTokenOnRetryOnlyRetriesOnce()
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('Commit has not submitted');
+
+        $failureResponse = (new CommitResponse())
+            ->setPrecommitToken(new MultiplexedSessionPrecommitToken([
+                'precommit_token' => '123',
+            ]));
+        $this->spannerClient->commit(
+            Argument::type(CommitRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledTimes(2)
+            ->willReturn(
+                $failureResponse,
+                $failureResponse,
+            );
+
+        $mutation = $this->operation->mutation(Operation::OP_INSERT, 'Posts', ['foo' => 'bar']);
+        $response = $this->operation->commit($this->session, [$mutation]);
+        $this->assertInstanceOf(CommitResponse::class, $response);
     }
 
     private function executeAndReadResponseStream(?string $transactionId = null)

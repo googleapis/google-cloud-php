@@ -17,11 +17,9 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
-use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\SpannerClient;
 
 /**
@@ -107,7 +105,8 @@ abstract class SpannerTestCase extends SystemTestCase
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
 
         $clientConfig = [
-            'keyFilePath' => $keyFilePath
+            'keyFilePath' => $keyFilePath,
+            'cacheItemPool' => self::getCacheItemPool(),
         ];
 
         $serviceAddress = getenv('SPANNER_SERVICE_ADDRESS');
@@ -139,23 +138,6 @@ abstract class SpannerTestCase extends SystemTestCase
     {
         $instance = self::$client->instance($instance);
         return $instance->database($dbName, $options);
-    }
-
-    public static function getDatabaseWithSessionPool($dbName, $options = [])
-    {
-        $sessionCache = new MemoryCacheItemPool();
-        $sessionPool = new CacheSessionPool(
-            $sessionCache,
-            $options
-        );
-
-        return self::$client->connect(
-            self::INSTANCE_NAME,
-            $dbName,
-            [
-                'sessionPool' => $sessionPool
-            ]
-        );
     }
 
     public static function skipEmulatorTests()
@@ -192,14 +174,6 @@ abstract class SpannerTestCase extends SystemTestCase
             self::INSTANCE_NAME,
             self::$dbName,
             ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
-        );
-    }
-
-    public static function getDbWithSessionPoolRestrictiveRole()
-    {
-        return self::getDatabaseWithSessionPool(
-            self::$dbName,
-            ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
         );
     }
 }

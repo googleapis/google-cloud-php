@@ -39,7 +39,6 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\LongRunning\Operation as OperationProto;
@@ -131,6 +130,7 @@ class SpannerClient
     private bool $routeToLeader;
     private array $defaultQueryOptions;
     private int $isolationLevel;
+    private CacheItemPoolInterface|null $cacheItemPool;
 
     /**
      * Create a Spanner client. Please note that this client requires
@@ -182,6 +182,7 @@ class SpannerClient
      *            "googleapis.com"
      *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
      *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
+     *     @type CacheItemPoolInterface $cacheItemPool
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -200,6 +201,7 @@ class SpannerClient
             'directedReadOptions' => [],
             'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,
             'routeToLeader' => true,
+            'cacheItemPool' => null,
         ];
 
         $this->returnInt64AsObject = $options['returnInt64AsObject'];
@@ -258,6 +260,7 @@ class SpannerClient
         $this->databaseAdminClient->addMiddleware($middleware);
 
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
+        $this->cacheItemPool = $options['cacheItemPool'];
     }
 
     /**
@@ -298,14 +301,11 @@ class SpannerClient
             ]
         );
 
+        $database = $this->instance($instanceId)->database($databaseId, $options);
+
         return new BatchClient(
             $operation,
-            GapicSpannerClient::databaseName(
-                $this->projectId,
-                $instanceId,
-                $databaseId
-            ),
-            $options
+            $database->session(),
         );
     }
 
@@ -576,6 +576,7 @@ class SpannerClient
                 'defaultQueryOptions' => $this->defaultQueryOptions,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
                 'isolationLevel' => $this->isolationLevel,
+                'cacheItemPool' => $this->cacheItemPool,
                 'instance' => $instance,
             ],
         );
@@ -657,8 +658,6 @@ class SpannerClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type SessionPoolInterface $sessionPool A pool used to manage
-     *           sessions.
      *     @type string $databaseRole The user created database role which creates the session.
      * }
      * @return Database

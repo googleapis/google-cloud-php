@@ -29,7 +29,7 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -38,6 +38,7 @@ use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ResultSetStats;
@@ -68,7 +69,7 @@ class TransactionTest extends TestCase
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
     const INSTANCE = 'my-instance';
-    const SESSION = 'my-session';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'my-transaction';
     const TRANSACTION_TAG = 'my-transaction-tag';
     const REQUEST_TAG = 'my-request-tag';
@@ -94,18 +95,12 @@ class TransactionTest extends TestCase
             $this->serializer,
         );
 
-        $this->session = new Session(
-            $this->spannerClient->reveal(),
-            $this->serializer,
-            self::PROJECT,
-            self::INSTANCE,
-            self::DATABASE,
-            self::SESSION
-        );
+        $this->session = $this->prophesize(SessionCache::class);
+        $this->session->name()->willReturn(self::SESSION);
 
         $this->transaction = new Transaction(
             $this->operation,
-            $this->session,
+            $this->session->reveal(),
             self::TRANSACTION,
             ['tag' => self::TRANSACTION_TAG]
         );
@@ -118,7 +113,7 @@ class TransactionTest extends TestCase
 
         new Transaction(
             $this->operation,
-            $this->session,
+            $this->session->reveal(),
             null,
             ['tag' => self::TRANSACTION_TAG]
         );
@@ -301,7 +296,7 @@ class TransactionTest extends TestCase
 
         $this->spannerClient->executeBatchDml(
             Argument::that(function (ExecuteBatchDmlRequest $request) {
-                $this->assertEquals($request->getSession(), $this->session->name());
+                $this->assertEquals($request->getSession(), self::SESSION);
                 $this->assertEquals(
                     $request->getRequestOptions()->getRequestTag(),
                     self::REQUEST_TAG
@@ -449,8 +444,8 @@ class TransactionTest extends TestCase
     public function testCommit()
     {
         $operation = $this->prophesize(Operation::class);
-        $operation->commitWithResponse(
-            $this->session,
+        $operation->commit(
+            $this->session->reveal(),
             Argument::that(function ($mutations) {
                 $this->assertEquals(1, count($mutations));
                 $this->assertEquals('Posts', $mutations[0]['insert']['table']);
@@ -470,7 +465,7 @@ class TransactionTest extends TestCase
 
         $transaction = new Transaction(
             $operation->reveal(),
-            $this->session,
+            $this->session->reveal(),
             self::TRANSACTION,
             ['tag' => self::TRANSACTION_TAG]
         );
@@ -482,8 +477,8 @@ class TransactionTest extends TestCase
     public function testCommitWithReturnCommitStats()
     {
         $operation = $this->prophesize(Operation::class);
-        $operation->commitWithResponse(
-            $this->session,
+        $operation->commit(
+            $this->session->reveal(),
             Argument::that(function ($mutations) {
                 $this->assertEquals(1, count($mutations));
                 $this->assertEquals('Posts', $mutations[0]['insert']['table']);
@@ -504,7 +499,7 @@ class TransactionTest extends TestCase
 
         $transaction = new Transaction(
             $operation->reveal(),
-            $this->session,
+            $this->session->reveal(),
             self::TRANSACTION,
             ['tag' => self::TRANSACTION_TAG]
         );
@@ -520,8 +515,8 @@ class TransactionTest extends TestCase
         $duration = new Duration(['seconds' => 0, 'nanos' => 100000000]);
 
         $operation = $this->prophesize(Operation::class);
-        $operation->commitWithResponse(
-            $this->session,
+        $operation->commit(
+            $this->session->reveal(),
             Argument::that(function ($mutations) {
                 $this->assertEquals(1, count($mutations));
                 $this->assertEquals('Posts', $mutations[0]['insert']['table']);
@@ -544,7 +539,7 @@ class TransactionTest extends TestCase
 
         $transaction = new Transaction(
             $operation->reveal(),
-            $this->session,
+            $this->session->reveal(),
             self::TRANSACTION,
             ['tag' => self::TRANSACTION_TAG]
         );
@@ -562,16 +557,13 @@ class TransactionTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
 
         $operation = $this->prophesize(Operation::class);
-        $operation->commitWithResponse(Argument::cetera())
+        $operation->commit(Argument::cetera())
             ->shouldBeCalledOnce()
-            ->willReturn([
-                $this->prophesize(Timestamp::class)->reveal(),
-                new CommitResponse(),
-            ]);
+            ->willReturn(new CommitResponse());
 
         $transaction = new Transaction(
             $operation->reveal(),
-            $this->session,
+            $this->session->reveal(),
             self::TRANSACTION,
             ['tag' => self::TRANSACTION_TAG]
         );
@@ -587,7 +579,7 @@ class TransactionTest extends TestCase
     {
         $this->spannerClient->rollback(
             Argument::that(function (RollbackRequest $request) {
-                $this->assertEquals($request->getSession(), $this->session->name());
+                $this->assertEquals($request->getSession(), self::SESSION);
                 return true;
             }),
             Argument::type('array')
@@ -602,16 +594,13 @@ class TransactionTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
 
         $operation = $this->prophesize(Operation::class);
-        $operation->commitWithResponse(Argument::cetera())
+        $operation->commit(Argument::cetera())
             ->shouldBeCalledOnce()
-            ->willReturn([
-                $this->prophesize(Timestamp::class)->reveal(),
-                new CommitResponse(),
-            ]);
+            ->willReturn(new CommitResponse());
 
         $transaction = new Transaction(
             $operation->reveal(),
-            $this->session,
+            $this->session->reveal(),
             self::TRANSACTION,
             ['tag' => self::TRANSACTION_TAG]
         );
@@ -631,16 +620,13 @@ class TransactionTest extends TestCase
     public function testState()
     {
         $operation = $this->prophesize(Operation::class);
-        $operation->commitWithResponse(Argument::cetera())
+        $operation->commit(Argument::cetera())
             ->shouldBeCalledOnce()
-            ->willReturn([
-                $this->prophesize(Timestamp::class)->reveal(),
-                new CommitResponse(),
-            ]);
+            ->willReturn(new CommitResponse());
 
         $transaction = new Transaction(
             $operation->reveal(),
-            $this->session,
+            $this->session->reveal(),
             self::TRANSACTION,
             ['tag' => self::TRANSACTION_TAG]
         );
@@ -659,7 +645,7 @@ class TransactionTest extends TestCase
 
         $singleUseTransaction = new Transaction(
             $this->operation,
-            $this->session,
+            $this->session->reveal(),
         );
         $singleUseTransaction->execute('foo');
     }
@@ -673,7 +659,7 @@ class TransactionTest extends TestCase
     {
         $transaction = new Transaction(
             $this->operation,
-            $this->session,
+            $this->session->reveal(),
             self::TRANSACTION,
             ['isRetry' => true]
         );
@@ -681,69 +667,116 @@ class TransactionTest extends TestCase
         $this->assertTrue($transaction->isRetry());
     }
 
-    public function testExecuteUpdateWithIsolationLevel()
+    public function testPrecommitTokenIsSentInCommitRequestForExecuteUpdate()
     {
-        $sql = 'UPDATE foo SET bar = @bar';
+        $precommitToken = (new MultiplexedSessionPrecommitToken())
+            ->setPrecommitToken('abc');
+
         $this->spannerClient->executeStreamingSql(
-            Argument::that(function (ExecuteSqlRequest $request) use ($sql) {
-                $this->assertEquals($sql, $request->getSql());
-                $this->assertEquals(
-                    IsolationLevel::REPEATABLE_READ,
-                    $request->getTransaction()->getBegin()->getIsolationLevel()
-                );
-                $this->assertNotNull(
-                    $request->getTransaction()->getBegin()->getReadWrite()
-                );
+            Argument::type(ExecuteSqlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream(
+                [
+                    [
+                        'name' => 'foo',
+                        'type' => 1,
+                        'value' => 'bar',
+                        'precommitToken' => $precommitToken
+                    ],
+                ],
+                new ResultSetStats(['row_count_exact' => 1]),
+                'transaction-id'
+            ));
+        $this->spannerClient->commit(
+            Argument::that(function ($commitRequest) use ($precommitToken) {
+                $this->assertEquals($commitRequest->getPrecommitToken(), $precommitToken);
                 return true;
             }),
             Argument::type('array')
         )
-            ->shouldBeCalled()
-            ->willReturn($this->resultGeneratorStream(null, new ResultSetStats(['row_count_exact' => 1])));
+            ->shouldBeCalledOnce()
+            ->willReturn($this->commitResponseWithCommitStats());
 
-        // Transaction without an ID to be able to use `begin`
         $transaction = new Transaction(
             $this->operation,
-            $this->session
+            $this->session->reveal(),
+            self::TRANSACTION,
         );
 
-        $options = [
-            'transaction' => [
-                'begin' => [
-                    'isolationLevel' => IsolationLevel::REPEATABLE_READ
-                ]
-            ]
-        ];
-
-        $res = $transaction->executeUpdate($sql, $options);
-
-        $this->assertEquals(1, $res);
+        $transaction->executeUpdate('SELECT *');
+        $transaction->commit();
     }
 
-    public function testSingleUseWithIsolationLevelThrowsAnExceptionOnReadOnly()
+    public function testPrecommitTokenIsSentInCommitRequestForExecuteUpdateBatch()
     {
-        $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage(
-            'The isolation level can only be applied to read/write transactions. '
-            . 'Single use transactions are not read/write'
+        $precommitToken = (new MultiplexedSessionPrecommitToken())
+            ->setPrecommitToken('abc');
+
+        $this->spannerClient->executeBatchDml(
+            Argument::type(ExecuteBatchDmlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new ExecuteBatchDmlResponse([
+                'precommit_token' => $precommitToken,
+            ]));
+        $this->spannerClient->commit(
+            Argument::that(function ($commitRequest) use ($precommitToken) {
+                $this->assertEquals($commitRequest->getPrecommitToken(), $precommitToken);
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->commitResponseWithCommitStats());
+
+        $transaction = new Transaction(
+            $this->operation,
+            $this->session->reveal(),
+            self::TRANSACTION,
         );
-
-        $sql = 'UPDATE foo SET bar = @bar';
-
-        $options = [
-            'transaction' => [
-                'begin' => [
-                    'isolationLevel' => IsolationLevel::REPEATABLE_READ,
-                    'readOnly' => []
+        $transaction->executeUpdateBatch([
+            [
+                'sql' => 'UPDATE posts SET author = @author WHERE id = @id',
+                'params' => [
+                    'author' => 'John',
+                    'id' => 1
                 ]
             ]
-        ];
+        ]);
+        $transaction->commit();
+    }
 
-        $singleUseTransaction = new Transaction(
+    public function testSavePrecommitTokenWithHighestSequenceNum()
+    {
+        $transaction = new Transaction(
             $this->operation,
-            $this->session,
+            $this->session->reveal(),
+            self::TRANSACTION,
         );
-        $singleUseTransaction->executeUpdate($sql, $options);
+
+        $precommitToken1 = (new MultiplexedSessionPrecommitToken())
+            ->setSeqNum(1)
+            ->setPrecommitToken('abc');
+        $precommitToken2 = (new MultiplexedSessionPrecommitToken())
+            ->setSeqNum(2)
+            ->setPrecommitToken('def');
+        $precommitToken3 = (new MultiplexedSessionPrecommitToken())
+            ->setSeqNum(0)
+            ->setPrecommitToken('ghi');
+
+        $precommitTokenProp = (new ReflectionClass($transaction))->getProperty('precommitToken');
+
+        $transaction->setPrecommitToken($precommitToken1);
+        $this->assertEquals($precommitToken1, $precommitTokenProp->getValue($transaction));
+        // setting a precommit token with a higher sequence number updates the token
+        $transaction->setPrecommitToken($precommitToken2);
+        $this->assertEquals($precommitToken2, $precommitTokenProp->getValue($transaction));
+        // setting a precommit token with a lower sequence number does not update the token
+        $transaction->setPrecommitToken($precommitToken3);
+        $this->assertEquals($precommitToken2, $precommitTokenProp->getValue($transaction));
     }
 
     // *******
@@ -751,12 +784,9 @@ class TransactionTest extends TestCase
 
     private function commitResponseWithCommitStats()
     {
-        return [
-            new Timestamp(new \DateTimeImmutable()),
-            new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => strtotime(self::TIMESTAMP)]),
-                'commit_stats' => new CommitStats(['mutation_count' => 1])
-            ])
-        ];
+        return new CommitResponse([
+            'commit_timestamp' => new TimestampProto(['seconds' => strtotime(self::TIMESTAMP)]),
+            'commit_stats' => new CommitStats(['mutation_count' => 1])
+        ]);
     }
 }

@@ -48,12 +48,9 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
@@ -64,7 +61,7 @@ use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Google\Rpc\Code;
-use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Represents a Cloud Spanner Database.
@@ -122,14 +119,13 @@ class Database
 
     private Operation $operation;
     private IamManager|null $iam = null;
-    private Session|null $session = null;
     private bool $isRunningTransaction = false;
     private array $directedReadOptions;
     private bool $routeToLeader;
     private array $defaultQueryOptions;
     private string $databaseRole;
     private bool $returnInt64AsObject;
-    private SessionPoolInterface|null $sessionPool;
+    private CacheItemPoolInterface $cacheItemPool;
     private array $info;
     private int $isolationLevel;
 
@@ -144,14 +140,13 @@ class Database
      * @param Instance $instance The instance in which the database exists.
      * @param string $projectId The project ID.
      * @param string $name The database name or ID.
+     * @param SessionCache $session the current Session
      * @param array $options [Optional] {
      *     Database options.
      *
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *         **Defaults to** `true` (enabled).
      *     @type array $defaultQueryOptions
-     *     @type SessionPoolInterface $sessionPool The session pool
-     *         implementation.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will
      *         be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *         platform compatibility. **Defaults to** false.
@@ -169,6 +164,7 @@ class Database
         private Instance $instance,
         private string $projectId,
         private string $name,
+        private SessionCache $session,
         array $options = [],
     ) {
         $this->name = $this->fullyQualifiedDatabaseName($name);
@@ -176,7 +172,6 @@ class Database
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
         $this->databaseRole = $options['databaseRole'] ?? '';
         $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
-        $this->sessionPool = $options['sessionPool'] ?? null;
         $this->info = $options['database'] ?? [];
         $this->isolationLevel = $options['isolationLevel'] ?? IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
         $this->operation = new Operation(
@@ -188,10 +183,6 @@ class Database
                 'returnInt64AsObject' => $this->returnInt64AsObject,
             ]
         );
-
-        if ($this->sessionPool) {
-            $this->sessionPool->setDatabase($this);
-        }
 
         $this->optionsValidator = new OptionsValidator($serializer);
         $this->directedReadOptions = $instance->directedReadOptions();
@@ -618,15 +609,6 @@ class Database
         $this->databaseAdminClient->dropDatabase($dropDatabase, $callOptions + [
             'resource-prefix' => $this->name
         ]);
-
-        if ($this->sessionPool) {
-            $this->sessionPool->clear();
-        }
-
-        if ($this->session) {
-            $this->session->delete($options);
-            $this->session = null;
-        }
     }
 
     /**
@@ -783,16 +765,7 @@ class Database
             $options['maxStaleness'],
         );
 
-        $session = $this->selectSession(
-            SessionPoolInterface::CONTEXT_READ,
-            $this->pluck('sessionOptions', $options, false) ?: []
-        );
-
-        try {
-            return $this->operation->snapshot($session, $options);
-        } finally {
-            $session->setExpiration();
-        }
+        return $this->operation->snapshot($this->session, $options);
     }
 
     /**
@@ -845,16 +818,7 @@ class Database
             ($options['transactionOptions'] ?? []) + ['isolationLevel' => $this->isolationLevel]
         );
 
-        $session = $this->selectSession(
-            SessionPoolInterface::CONTEXT_READWRITE,
-            $this->pluck('sessionOptions', $options, false) ?: []
-        );
-
-        try {
-            return $this->operation->transaction($session, $options);
-        } finally {
-            $session->setExpiration();
-        }
+        return $this->operation->transaction($this->session, $options);
     }
 
     /**
@@ -961,13 +925,8 @@ class Database
             $transactionOptions + ['isolationLevel' => $this->isolationLevel]
         );
 
-        $session = $this->selectSession(
-            SessionPoolInterface::CONTEXT_READWRITE,
-            $this->pluck('sessionOptions', $options, false) ?: []
-        );
-
         $attempt = 0;
-        $startTransactionFn = function ($session, $options) use (&$attempt) {
+        $startTransactionFn = function ($options) use (&$attempt) {
             // Initial attempt requires to set `begin` options (ILB).
             if ($attempt === 0) {
                 if (!isset($options['transactionOptions']['isolationLevel'])) {
@@ -982,7 +941,7 @@ class Database
                 $options['isRetry'] = true;
             }
 
-            $transaction = $this->operation->transaction($session, $options);
+            $transaction = $this->operation->transaction($this->session, $options);
 
             $attempt++;
             return $transaction;
@@ -1001,11 +960,8 @@ class Database
             throw $e;
         };
 
-        $transactionFn = function ($operation, $session, $options) use ($startTransactionFn) {
-            $transaction = call_user_func_array($startTransactionFn, [
-                $session,
-                $options
-            ]);
+        $transactionFn = function ($operation, $options) use ($startTransactionFn) {
+            $transaction = $startTransactionFn($options);
 
             // Prevent nested transactions.
             $this->isRunningTransaction = true;
@@ -1026,12 +982,7 @@ class Database
         };
 
         $retry = new Retry($maxRetries, $delayFn);
-
-        try {
-            return $retry->execute($transactionFn, [$operation, $session, $options]);
-        } finally {
-            $session->setExpiration();
-        }
+        return $retry->execute($transactionFn, [$operation, $options]);
     }
 
     /**
@@ -1598,14 +1549,14 @@ class Database
      *
      * ```
      * // Execute a read and return a new Snapshot for further reads.
-     * use Google\Cloud\Spanner\Session\SessionPoolInterface;
+     * use Google\Cloud\Spanner\Database;
      *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
      *     'parameters' => [
      *         'postId' => 1337
      *     ],
      *     'begin' => true,
-     *     'transactionType' => SessionPoolInterface::CONTEXT_READ
+     *     'transactionType' => Database::CONTEXT_READ
      * ]);
      *
      * $result->rows()->current();
@@ -1615,14 +1566,14 @@ class Database
      *
      * ```
      * // Execute a read and return a new Transaction for further reads and writes.
-     * use Google\Cloud\Spanner\Session\SessionPoolInterface;
+     * use Google\Cloud\Spanner\Database;
      *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
      *     'parameters' => [
      *         'postId' => 1337
      *     ],
      *     'begin' => true,
-     *     'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
+     *     'transactionType' => Database::CONTEXT_READWRITE
      * ]);
      *
      * $result->rows()->current();
@@ -1676,13 +1627,13 @@ class Database
      *           read/write transaction is desired, set the value of
      *           $transactionType. If a transaction or snapshot is created, it
      *           will be returned as `$result->transaction()` or
-     *           `$result->snapshot()`. **Defaults to** `false`.
-     *           If $begin is an array {@see TransactionOptions}
-     *     @type string $transactionType One of `SessionPoolInterface::CONTEXT_READ`
-     *           or `SessionPoolInterface::CONTEXT_READWRITE`. If read/write is
+     *           `$result->snapshot()`. If $begin is an array,
+     *           see {@see TransactionOptions}. **Defaults to** `false`.
+     *     @type string $transactionType One of `Database::CONTEXT_READ`
+     *           or `Database::CONTEXT_READWRITE`. If read/write is
      *           chosen, any snapshot options will be disregarded. If `$begin`
-     *           is false, transaction type MUST be `SessionPoolInterface::CONTEXT_READ`.
-     *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
+     *           is false, transaction type MUST be `Database::CONTEXT_READ`.
+     *           **Defaults to** `Database::CONTEXT_READ`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
      *     @type array $queryOptions Query optimizer configuration.
@@ -1713,14 +1664,11 @@ class Database
      * @codingStandardsIgnoreEnd
      * @return Result
      */
-    public function execute(string $sql, array $options = []): Result
+    public function execute($sql, array $options = []): Result
     {
         unset($options['requestOptions']['transactionTag']);
         $session = $this->pluck('session', $options, false)
-            ?: $this->selectSession(
-                SessionPoolInterface::CONTEXT_READ,
-                $this->pluck('sessionOptions', $options, false) ?: []
-            );
+            ?: $this->session;
 
         list(
             $options['transaction'],
@@ -1736,15 +1684,11 @@ class Database
             $this->directedReadOptions
         );
 
-        try {
-            // Unset the internal flag.
-            unset($options['singleUse']);
-            return $this->operation->execute($session, $sql, $options + [
-                'route-to-leader' => $options['transactionContext'] === SessionPoolInterface::CONTEXT_READWRITE
-            ]);
-        } finally {
-            $session->setExpiration();
-        }
+        // Unset the internal flag.
+        unset($options['singleUse']);
+        return $this->operation->execute($session, $sql, $options + [
+            'route-to-leader' => $options['transactionContext'] === Database::CONTEXT_READWRITE
+        ]);
     }
 
     /**
@@ -1810,14 +1754,10 @@ class Database
         }
         // Prevent nested transactions.
         $this->isRunningTransaction = true;
-        $session = $this->selectSession(
-            SessionPoolInterface::CONTEXT_READWRITE,
-            $this->pluck('sessionOptions', $options, false) ?: []
-        );
 
         try {
             $options += [
-                'session' => $session->name(),
+                'session' => $this->session->name(),
                 'mutationGroups' => $mutationGroups
             ];
 
@@ -1838,7 +1778,6 @@ class Database
             return $this->handleResponse($response);
         } finally {
             $this->isRunningTransaction = false;
-            $session->setExpiration();
         }
     }
 
@@ -1970,8 +1909,6 @@ class Database
             throw new ValidationException('Partitioned DML cannot be configured with an isolation level');
         }
 
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
-
         $beginTransactionOptions = [
             'transactionOptions' => [
                 'partitionedDml' => [],
@@ -1983,17 +1920,12 @@ class Database
                 $options['transactionOptions']['excludeTxnFromChangeStreams'];
             unset($options['transactionOptions']);
         }
+        $transaction = $this->operation->transaction($this->session, $beginTransactionOptions);
 
-        $transaction = $this->operation->transaction($session, $beginTransactionOptions);
-
-        try {
-            return $this->operation->executeUpdate($session, $transaction, $statement, [
-                'statsItem' => 'rowCountLowerBound',
-                'route-to-leader' => true,
-            ] + $options);
-        } finally {
-            $session->setExpiration();
-        }
+        return $this->operation->executeUpdate($this->session, $transaction, $statement, [
+            'statsItem' => 'rowCountLowerBound',
+            'route-to-leader' => true,
+        ] + $options);
     }
 
     /**
@@ -2016,8 +1948,8 @@ class Database
      *
      * ```
      * // Execute a read and return a new Snapshot for further reads.
+     * use Google\Cloud\Spanner\Database;
      * use Google\Cloud\Spanner\KeySet;
-     * use Google\Cloud\Spanner\Session\SessionPoolInterface;
      *
      * $keySet = new KeySet([
      *     'keys' => [1337]
@@ -2027,7 +1959,7 @@ class Database
      *
      * $result = $database->read('Posts', $keySet, $columns, [
      *     'begin' => true,
-     *     'transactionType' => SessionPoolInterface::CONTEXT_READ
+     *     'transactionType' => Database::CONTEXT_READ
      * ]);
      *
      * $result->rows()->current();
@@ -2037,8 +1969,8 @@ class Database
      *
      * ```
      * // Execute a read and return a new Transaction for further reads and writes.
+     * use Google\Cloud\Spanner\Database;
      * use Google\Cloud\Spanner\KeySet;
-     * use Google\Cloud\Spanner\Session\SessionPoolInterface;
      *
      * $keySet = new KeySet([
      *     'keys' => [1337]
@@ -2048,7 +1980,7 @@ class Database
      *
      * $result = $database->read('Posts', $keySet, $columns, [
      *     'begin' => true,
-     *     'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
+     *     'transactionType' => Database::CONTEXT_READWRITE
      * ]);
      *
      * $result->rows()->current();
@@ -2092,11 +2024,11 @@ class Database
      *           $transactionType. If a transaction or snapshot is created, it
      *           will be returned as `$result->transaction()` or
      *           `$result->snapshot()`. **Defaults to** `false`.
-     *     @type string $transactionType One of `SessionPoolInterface::CONTEXT_READ`
-     *           or `SessionPoolInterface::CONTEXT_READWRITE`. If read/write is
+     *     @type string $transactionType One of `Database::CONTEXT_READ`
+     *           or `Database::CONTEXT_READWRITE`. If read/write is
      *           chosen, any snapshot options will be disregarded. If `$begin`
-     *           is false, transaction type MUST be `SessionPoolInterface::CONTEXT_READ`.
-     *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
+     *           is false, transaction type MUST be `Database::CONTEXT_READ`.
+     *           **Defaults to** `Database::CONTEXT_READ`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
      *     @type array $requestOptions Request options.
@@ -2122,10 +2054,6 @@ class Database
     public function read($table, KeySet $keySet, array $columns, array $options = []): Result
     {
         unset($options['requestOptions']['transactionTag']);
-        $session = $this->selectSession(
-            SessionPoolInterface::CONTEXT_READ,
-            $this->pluck('sessionOptions', $options, false) ?: []
-        );
 
         list($transactionOptions, $context) = $this->transactionSelector($options);
         $options['transaction'] = $transactionOptions;
@@ -2136,103 +2064,11 @@ class Database
             $this->directedReadOptions
         );
 
-        try {
-            // Unset the internal flag.
-            unset($options['singleUse']);
-            return $this->operation->read($session, $table, $keySet, $columns, $options + [
-                'route-to-leader' => $context === SessionPoolInterface::CONTEXT_READ
-            ]);
-        } finally {
-            $session->setExpiration();
-        }
-    }
-
-    /**
-     * Get the underlying session pool implementation.
-     *
-     * Example:
-     * ```
-     * $pool = $database->sessionPool();
-     * ```
-     *
-     * @return SessionPoolInterface|null
-     */
-    public function sessionPool(): ?SessionPoolInterface
-    {
-        return $this->sessionPool;
-    }
-
-    /**
-     * Closes the database connection by returning the active session back to
-     * the session pool queue or by deleting the session if there is no pool
-     * associated.
-     *
-     * It is highly important to ensure this is called as it is not always safe
-     * to rely soley on {@see \Google\Cloud\Spanner\Database::__destruct()}.
-     *
-     * Example:
-     * ```
-     * $database->close();
-     * ```
-     */
-    public function close(): void
-    {
-        if ($this->session) {
-            if ($this->sessionPool) {
-                $this->sessionPool->release($this->session);
-            } else {
-                $this->session->delete();
-            }
-
-            $this->session = null;
-        }
-    }
-
-    /**
-     * Closes the database connection.
-     */
-    public function __destruct()
-    {
-        try {
-            $this->close();
-            //@codingStandardsIgnoreStart
-            //@codeCoverageIgnoreStart
-        } catch (\Exception $ex) {
-        }
-        //@codeCoverageIgnoreEnd
-        //@codingStandardsIgnoreStart
-    }
-
-    /**
-     * Create a new session.
-     *
-     * Sessions are handled behind the scenes and this method does not need to
-     * be called directly.
-     *
-     * @access private
-     * @param array $options [optional] Configuration options.
-     * @return Session
-     */
-    public function createSession(array $options = []): Session
-    {
-        return $this->operation->createSession($this->name, $options);
-    }
-
-    /**
-     * Lazily instantiates a session. There are no network requests made at this
-     * point. To see the operations that can be performed on a session please
-     * see {@see \Google\Cloud\Spanner\Session\Session}.
-     *
-     * Sessions are handled behind the scenes and this method does not need to
-     * be called directly.
-     *
-     * @access private
-     * @param string $sessionName The session's name.
-     * @return Session
-     */
-    public function session(string $sessionName): Session
-    {
-        return $this->operation->session($sessionName);
+        // Unset the internal flag.
+        unset($options['singleUse']);
+        return $this->operation->read($this->session, $table, $keySet, $columns, $options + [
+            'route-to-leader' => $context === Database::CONTEXT_READ
+        ]);
     }
 
     /**
@@ -2251,47 +2087,6 @@ class Database
             'database' => end($databaseParts),
             'instance' => end($instanceParts),
         ];
-    }
-
-    /**
-     * Creates a batch of sessions.
-     *
-     * @param array $options {
-     *     @type array $sessionTemplate
-     *     @type int $sessionCount
-     * }
-     */
-    public function batchCreateSessions(array $options): array
-    {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data['database'] = $this->name;
-
-        $request = $this->serializer->decodeMessage(new BatchCreateSessionsRequest(), $data);
-        $response = $this->spannerClient->batchCreateSessions($request, $callOptions + [
-            'resource-prefix' => $this->name,
-            'route-to-leader' => $this->routeToLeader
-        ]);
-        return $this->handleResponse($response);
-    }
-
-    /**
-     * Delete session asynchronously.
-     *
-     * @access private
-     * @param array $options {
-     *     @type name The session name to be deleted
-     * }
-     * @return PromiseInterface
-     * @experimental
-     */
-    public function deleteSessionAsync(array $options): PromiseInterface
-    {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-
-        $request = $this->serializer->decodeMessage(new DeleteSessionRequest(), $data);
-        return $this->spannerClient->deleteSessionAsync($request, $callOptions + [
-            'resource-prefix' => $this->name
-        ]);
     }
 
     /**
@@ -2487,32 +2282,16 @@ class Database
     }
 
     /**
-     * If no session is already associated with the database use the session
-     * pool implementation to retrieve a session one - otherwise create on
-     * demand.
+     * Get the current multiplex session or create a new one.
      *
-     * @param string $context [optional] The session context. **Defaults to**
-     *        `r` (READ).
-     * @param array $options [optional] Configuration options.
-     * @return Session
+     * @internal
+     * @return SessionCache
      */
-    private function selectSession(
-        $context = SessionPoolInterface::CONTEXT_READ,
-        array $options = []
-    ): Session {
-        if ($this->session) {
-            return $this->session;
-        }
-
-        if ($this->sessionPool) {
-            return $this->session = $this->sessionPool->acquire($context);
-        }
-
-        if ($this->databaseRole !== null) {
-            $options['creator_role'] = $this->databaseRole;
-        }
-
-        return $this->session = $this->operation->createSession($this->name, $options);
+    public function session(): SessionCache
+    {
+        // Sessions are used by BatchClient to create a BatchSnapshot, so
+        // this method must be public.
+        return $this->session;
     }
 
     /**
@@ -2603,7 +2382,7 @@ class Database
         return function (array $database): self {
             $name = DatabaseAdminClient::parseName($database['name']);
             return $this->instance->database($name['database'], [
-                'sessionPool' => $this->sessionPool,
+                'session' => $this->session,
                 'database' => $database,
                 'databaseRole' => $this->databaseRole,
             ]);
@@ -2634,7 +2413,6 @@ class Database
             'projectId' => $this->projectId,
             'name' => $this->name,
             'instance' => $this->instance,
-            'sessionPool' => $this->sessionPool,
             'session' => $this->session,
         ];
     }

@@ -29,12 +29,12 @@ use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
-use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\Partition;
@@ -52,13 +52,12 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class BatchClientTest extends SnippetTestCase
 {
+    const TRANSACTION = 'my-transaction';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
+
     use ProphecyTrait;
     use GrpcTestTrait;
     use ResultGeneratorTrait;
-
-    const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
-    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
-    const TRANSACTION = 'transaction-id';
 
     private $spannerClient;
     private $serializer;
@@ -70,9 +69,12 @@ class BatchClientTest extends SnippetTestCase
 
         $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->serializer = new Serializer();
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
+
         $this->client = new BatchClient(
             new Operation($this->spannerClient->reveal(), $this->serializer),
-            self::DATABASE
+            $session->reveal(),
         );
     }
 
@@ -199,12 +201,6 @@ class BatchClientTest extends SnippetTestCase
                 'id' => self::TRANSACTION,
                 'read_timestamp' => new TimestampProto(['seconds' => $time])
             ]));
-
-        $this->spannerClient->deleteSession(
-            Argument::type(DeleteSessionRequest::class),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce();
 
         // inject clients
         $publisher->addLocal('batch', $this->client);

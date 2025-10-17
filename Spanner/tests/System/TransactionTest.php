@@ -480,6 +480,83 @@ class TransactionTest extends SpannerTestCase
         $this->assertEquals([1], $res->rowCounts());
     }
 
+    public function testTransactionToChannelAffinity()
+    {
+        $db = self::$database;
+
+        $getChannel = function (Transaction $t): Channel {
+            $op = (new ReflectionClass($t))->getProperty('operation')->getValue($t);
+            $spanner = (new ReflectionClass($op))->getProperty('spannerClient')->getValue($op);
+            $grpc = (new ReflectionClass($spanner))->getProperty('transport')->getValue($spanner);
+            return (new ReflectionClass(BaseStub::class))->getProperty('channel')->getValue($grpc);
+        };
+
+        $res = $db->runTransaction(function ($t) use ($getChannel) {
+            $id = rand(1, 346464);
+            $row = [
+                'id' => $id,
+                'name' => uniqid(self::TESTING_PREFIX),
+                'birthday' => new Date(new \DateTime())
+            ];
+            // Representative of all mutations
+            $t->insert(self::TEST_TABLE_NAME, $row);
+            $this->assertNull($t->id());
+
+            $id = rand(1, 346464);
+            $t->executeUpdate(
+                'INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)',
+                [
+                    'parameters' => [
+                        'id' => $id,
+                        'name' => uniqid(self::TESTING_PREFIX),
+                        'birthday' => new Date(new \DateTime())
+                    ]
+                ]
+            );
+            $channel1 = $getChannel($t);
+            $transactionId = $t->id();
+            $this->assertNotEmpty($t->id());
+
+            $res = $t->execute('SELECT * FROM ' . self::TEST_TABLE_NAME . ' WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id
+                ]
+            ]);
+            $channel2 = $getChannel($t);
+
+            $this->assertEquals($res->rows()->current()['id'], $id);
+
+            $keyset = new KeySet(['keys' => [$id]]);
+            $res = $t->read(self::TEST_TABLE_NAME, $keyset, ['id']);
+            $channel3 = $getChannel($t);
+            $this->assertEquals($res->rows()->current()['id'], $id);
+
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'UPDATE ' . self::TEST_TABLE_NAME . ' SET name = @name WHERE id = @id',
+                    'parameters' => [
+                        'id' => $id,
+                        'name' => uniqid(self::TESTING_PREFIX)
+                    ]
+                ]
+            ]);
+            $channel4 = $getChannel($t);
+            $this->assertEquals($t->id(), $transactionId);
+
+            $t->commit();
+            $channel5 = $getChannel($t);
+
+            $this->assertEquals($channel1, $channel2);
+            $this->assertEquals($channel1, $channel3);
+            $this->assertEquals($channel1, $channel4);
+            $this->assertEquals($channel1, $channel5);
+
+            return $res;
+        });
+
+        $this->assertEquals([1], $res->rowCounts());
+    }
+
     public function testOrderByOnTransaction()
     {
         $db = self::$database;

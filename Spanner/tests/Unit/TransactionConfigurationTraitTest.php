@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
 use Google\Protobuf\Duration;
@@ -62,7 +62,7 @@ class TransactionConfigurationTraitTest extends TestCase
     {
         $args = [];
         $res = $this->impl->transactionSelector($args);
-        $this->assertEquals(SessionPoolInterface::CONTEXT_READ, $res[1]);
+        $this->assertEquals(Database::CONTEXT_READ, $res[1]);
         $this->assertEquals($res[0]['singleUse']['readOnly'], ['strong' => true]);
     }
 
@@ -70,30 +70,30 @@ class TransactionConfigurationTraitTest extends TestCase
     {
         $args = ['transactionId' => self::TRANSACTION];
         $res = $this->impl->transactionSelector($args);
-        $this->assertEquals(SessionPoolInterface::CONTEXT_READ, $res[1]);
+        $this->assertEquals(Database::CONTEXT_READ, $res[1]);
         $this->assertEquals(self::TRANSACTION, $res[0]['id']);
     }
 
     public function testTransactionSelectorReadWrite()
     {
-        $args = ['transactionType' => SessionPoolInterface::CONTEXT_READWRITE];
+        $args = ['transactionType' => Database::CONTEXT_READWRITE];
         $res = $this->impl->transactionSelector($args);
-        $this->assertEquals(SessionPoolInterface::CONTEXT_READWRITE, $res[1]);
+        $this->assertEquals(Database::CONTEXT_READWRITE, $res[1]);
         $this->assertEquals($this->impl->configureReadWriteTransactionOptions([]), $res[0]['singleUse']);
     }
 
     public function testTransactionSelectorReadOnly()
     {
-        $args = ['transactionType' => SessionPoolInterface::CONTEXT_READ];
+        $args = ['transactionType' => Database::CONTEXT_READ];
         $res = $this->impl->transactionSelector($args);
-        $this->assertEquals(SessionPoolInterface::CONTEXT_READ, $res[1]);
+        $this->assertEquals(Database::CONTEXT_READ, $res[1]);
     }
 
     public function testBegin()
     {
         $args = ['begin' => true];
         $res = $this->impl->transactionSelector($args);
-        $this->assertEquals(SessionPoolInterface::CONTEXT_READ, $res[1]);
+        $this->assertEquals(Database::CONTEXT_READ, $res[1]);
         $this->assertEquals($res[0]['begin']['readOnly'], ['strong' => true]);
     }
 

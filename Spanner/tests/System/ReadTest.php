@@ -21,9 +21,9 @@ use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\DeadlineExceededException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
 use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
 
@@ -251,7 +251,7 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
             'begin' => true,
-            'transactionType' => SessionPoolInterface::CONTEXT_READWRITE,
+            'transactionType' => Database::CONTEXT_READWRITE,
             'lockHint' => LockHint::LOCK_HINT_EXCLUSIVE,
             'limit' => $limit,
         ]);

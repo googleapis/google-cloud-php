@@ -18,7 +18,9 @@
         "erusev/parsedown": "^1.6",
         "google/cloud-pubsub": "^2.0",
         "dg/bypass-finals": "^1.7",
-        "dms/phpunit-arraysubset-asserts": "^0.5.0"
+        "dms/phpunit-arraysubset-asserts": "^0.5.0",
+        "symfony/cache": "^6.4",
+        "symfony/process": "^6.4"
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions.",
@@ -44,5 +46,22 @@
             "Testing\\Data\\": "tests/data/generated/Testing/Data",
             "GPBMetadata\\Data\\": "tests/data/generated/GPBMetadata/Data"
         }
+    },
+    "scripts": {
+        "test-unit": [
+            "vendor/bin/phpunit --testdox --stop-on-failure"
+        ],
+        "test-snippets": [
+            "vendor/bin/phpunit -c phpunit-snippets.xml.dist --testdox --stop-on-failure"
+        ],
+        "test-system": [
+            "Composer\\Config::disableProcessTimeout",
+            "vendor/bin/phpunit -c phpunit-system.xml.dist --testdox --stop-on-failure"
+        ],
+        "test-all": [
+            "@test-unit",
+            "@test-snippets",
+            "@test-system"
+        ]
     }
 }
