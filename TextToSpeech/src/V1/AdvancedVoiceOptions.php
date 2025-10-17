@@ -22,6 +22,15 @@ class AdvancedVoiceOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool low_latency_journey_synthesis = 1;</code>
      */
     protected $low_latency_journey_synthesis = null;
+    /**
+     * Optional. Input only. If true, relaxes safety filters for Gemini TTS. Only
+     * supported for accounts linked to Invoiced (Offline) Cloud billing accounts.
+     * Otherwise, will return result
+     * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
+     *
+     * Generated from protobuf field <code>bool relax_safety_filters = 8 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $relax_safety_filters = false;
 
     /**
      * Constructor.
@@ -32,6 +41,11 @@ class AdvancedVoiceOptions extends \Google\Protobuf\Internal\Message
      *     @type bool $low_latency_journey_synthesis
      *           Only for Journey voices. If false, the synthesis is context aware
      *           and has a higher latency.
+     *     @type bool $relax_safety_filters
+     *           Optional. Input only. If true, relaxes safety filters for Gemini TTS. Only
+     *           supported for accounts linked to Invoiced (Offline) Cloud billing accounts.
+     *           Otherwise, will return result
+     *           [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      * }
      */
     public function __construct($data = NULL) {
@@ -73,6 +87,38 @@ class AdvancedVoiceOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->low_latency_journey_synthesis = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. If true, relaxes safety filters for Gemini TTS. Only
+     * supported for accounts linked to Invoiced (Offline) Cloud billing accounts.
+     * Otherwise, will return result
+     * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
+     *
+     * Generated from protobuf field <code>bool relax_safety_filters = 8 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getRelaxSafetyFilters()
+    {
+        return $this->relax_safety_filters;
+    }
+
+    /**
+     * Optional. Input only. If true, relaxes safety filters for Gemini TTS. Only
+     * supported for accounts linked to Invoiced (Offline) Cloud billing accounts.
+     * Otherwise, will return result
+     * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
+     *
+     * Generated from protobuf field <code>bool relax_safety_filters = 8 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRelaxSafetyFilters($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->relax_safety_filters = $var;
 
         return $this;
     }
