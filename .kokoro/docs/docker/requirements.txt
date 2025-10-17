@@ -4,9 +4,9 @@
 #
 #    pip-compile --generate-hashes requirements.in
 #
-cachetools==6.2.0 \
-    --hash=sha256:1c76a8960c0041fcc21097e357f882197c79da0dbff766e7317890a65d7d8ba6 \
-    --hash=sha256:38b328c0889450f05f5e120f56ab68c8abaf424e1275522b138ffc93253f7e32
+cachetools==6.2.1 \
+    --hash=sha256:09868944b6dde876dfd44e1d47e18484541eaf12f26f29b7af91b26cc892d701 \
+    --hash=sha256:3f391e4bd8f8bf0931169baf7456cc822705f4e2a31f840d218f445b9a854201
     # via google-auth
 certifi==2025.10.5 \
     --hash=sha256:0f212c2744a9bb6de0c56639a6f68afe01ecd92d91f14ae897c4fe7bbeeef0de \
@@ -20,17 +20,17 @@ click==8.3.0 \
     --hash=sha256:9b9f285302c6e3064f4330c05f05b81945b2a39544279343e6e7c5f27a9baddc \
     --hash=sha256:e7b8232224eba16f4ebe410c25ced9f7875cb5f3263ffc93cc3e8da705e229c4
     # via gcp-docuploader
-colorlog==6.9.0 \
-    --hash=sha256:5906e71acd67cb07a71e779c47c4bcb45fb8c2993eebe9e5adcd6a6f1b283eff \
-    --hash=sha256:bfba54a1b93b94f54e1f4fe48395725a3d92fd2a4af702f6bd70946bdc0c6ac2
+colorlog==6.10.1 \
+    --hash=sha256:2d7e8348291948af66122cff006c9f8da6255d224e7cf8e37d8de2df3bad8c9c \
+    --hash=sha256:eb4ae5cb65fe7fec7773c2306061a8e63e02efc2c72eba9d27b0fa23c94f1321
     # via gcp-docuploader
 gcp-docuploader==0.7.2 \
     --hash=sha256:3916d2b46239a2d86ba9427a7f21e3762f21c1e1d34e4f066317a9765e43c90c \
     --hash=sha256:aaa7ef9d2ecc3cd03fa284977a68772e03ca4b0cbd8ae3cc85a745dc57fad25e
     # via -r requirements.in
-google-api-core==2.25.2 \
-    --hash=sha256:1c63aa6af0d0d5e37966f157a77f9396d820fba59f9e43e9415bc3dc5baff300 \
-    --hash=sha256:e9a8f62d363dc8424a8497f4c2a47d6bcda6c16514c935629c257ab5d10210e7
+google-api-core==2.26.0 \
+    --hash=sha256:2b204bd0da2c81f918e3582c48458e24c11771f987f6258e6e227212af78f3ed \
+    --hash=sha256:e6e6d78bd6cf757f4aee41dcc85b07f485fbb069d5daa3afb126defba1e91a62
     # via
     #   google-cloud-core
     #   google-cloud-storage
@@ -95,9 +95,9 @@ googleapis-common-protos==1.70.0 \
     --hash=sha256:0e1b44e0ea153e6594f9f394fef15193a68aaaea2d843f83e2742717ca753257 \
     --hash=sha256:b8bfcca8c25a2bb253e0e0b0adaf8c00773e5e6af6fd92397576680b807e0fd8
     # via google-api-core
-idna==3.10 \
-    --hash=sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9 \
-    --hash=sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3
+idna==3.11 \
+    --hash=sha256:771a87f49d9defaf64091e6e6fe9c18d4833f140bd19464795bc32d966ca37ea \
+    --hash=sha256:795dafcc9c04ed0c1fb032c2aa73654d8e8c5023a7df64a53f39190ada629902
     # via requests
 proto-plus==1.26.1 \
     --hash=sha256:13285478c2dcf2abb829db158e1047e2f1e8d63a077d94263c2b88b043c75a66 \
@@ -105,16 +105,17 @@ proto-plus==1.26.1 \
     # via
     #   -r requirements.in
     #   google-api-core
-protobuf==6.32.1 \
-    --hash=sha256:2601b779fc7d32a866c6b4404f9d42a3f67c5b9f3f15b4db3cccabe06b95c346 \
-    --hash=sha256:2f5b80a49e1eb7b86d85fcd23fe92df154b9730a725c3b38c4e43b9d77018bf4 \
-    --hash=sha256:68ff170bac18c8178f130d1ccb94700cf72852298e016a2443bdb9502279e5f1 \
-    --hash=sha256:a8a32a84bc9f2aad712041b8b366190f71dde248926da517bde9e832e4412085 \
-    --hash=sha256:b00a7d8c25fa471f16bc8153d0e53d6c9e827f0953f3c09aaa4331c718cae5e1 \
-    --hash=sha256:b1864818300c297265c83a4982fd3169f97122c299f56a56e2445c3698d34710 \
-    --hash=sha256:d0975d0b2f3e6957111aa3935d08a0eb7e006b1505d825f862a1fffc8348e122 \
-    --hash=sha256:d8c7e6eb619ffdf105ee4ab76af5a68b60a9d0f66da3ea12d1640e6d8dab7281 \
-    --hash=sha256:ee2469e4a021474ab9baafea6cd070e5bf27c7d29433504ddea1a4ee5850f68d
+protobuf==6.33.0 \
+    --hash=sha256:140303d5c8d2037730c548f8c7b93b20bb1dc301be280c378b82b8894589c954 \
+    --hash=sha256:25c9e1963c6734448ea2d308cfa610e692b801304ba0908d7bfa564ac5132995 \
+    --hash=sha256:35be49fd3f4fefa4e6e2aacc35e8b837d6703c37a2168a55ac21e9b1bc7559ef \
+    --hash=sha256:905b07a65f1a4b72412314082c7dbfae91a9e8b68a0cc1577515f8df58ecf455 \
+    --hash=sha256:9a031d10f703f03768f2743a1c403af050b6ae1f3480e9c140f39c45f81b13ee \
+    --hash=sha256:c963e86c3655af3a917962c9619e1a6b9670540351d7af9439d06064e3317cc9 \
+    --hash=sha256:cd33a8e38ea3e39df66e1bbc462b076d6e5ba3a4ebbde58219d777223a7873d3 \
+    --hash=sha256:d6101ded078042a8f17959eccd9236fb7a9ca20d3b0098bbcb91533a5680d035 \
+    --hash=sha256:e0697ece353e6239b90ee43a9231318302ad8353c70e6e45499fa52396debf90 \
+    --hash=sha256:e0a1715e4f27355afd9570f3ea369735afc853a6c3951a6afe1f80d8569ad298
     # via
     #   gcp-docuploader
     #   google-api-core
