@@ -91,9 +91,7 @@ final class CompletionServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -194,8 +192,12 @@ final class CompletionServiceClient
      *
      * @return string The formatted project_location_collection_data_store resource.
      */
-    public static function projectLocationCollectionDataStoreName(string $project, string $location, string $collection, string $dataStore): string
-    {
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStore')->render([
             'project' => $project,
             'location' => $location,
@@ -385,8 +387,10 @@ final class CompletionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importCompletionSuggestions(ImportCompletionSuggestionsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function importCompletionSuggestions(
+        ImportCompletionSuggestionsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ImportCompletionSuggestions', $request, $callOptions)->wait();
     }
 
@@ -414,8 +418,10 @@ final class CompletionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importSuggestionDenyListEntries(ImportSuggestionDenyListEntriesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function importSuggestionDenyListEntries(
+        ImportSuggestionDenyListEntriesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ImportSuggestionDenyListEntries', $request, $callOptions)->wait();
     }
 
@@ -443,8 +449,10 @@ final class CompletionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function purgeCompletionSuggestions(PurgeCompletionSuggestionsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function purgeCompletionSuggestions(
+        PurgeCompletionSuggestionsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PurgeCompletionSuggestions', $request, $callOptions)->wait();
     }
 
@@ -472,8 +480,10 @@ final class CompletionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function purgeSuggestionDenyListEntries(PurgeSuggestionDenyListEntriesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function purgeSuggestionDenyListEntries(
+        PurgeSuggestionDenyListEntriesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PurgeSuggestionDenyListEntries', $request, $callOptions)->wait();
     }
 }

@@ -88,9 +88,7 @@ final class SchemaServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -191,8 +189,12 @@ final class SchemaServiceClient
      *
      * @return string The formatted project_location_collection_data_store resource.
      */
-    public static function projectLocationCollectionDataStoreName(string $project, string $location, string $collection, string $dataStore): string
-    {
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStore')->render([
             'project' => $project,
             'location' => $location,
@@ -213,8 +215,13 @@ final class SchemaServiceClient
      *
      * @return string The formatted project_location_collection_data_store_schema resource.
      */
-    public static function projectLocationCollectionDataStoreSchemaName(string $project, string $location, string $collection, string $dataStore, string $schema): string
-    {
+    public static function projectLocationCollectionDataStoreSchemaName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $schema
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreSchema')->render([
             'project' => $project,
             'location' => $location,
@@ -254,8 +261,12 @@ final class SchemaServiceClient
      *
      * @return string The formatted project_location_data_store_schema resource.
      */
-    public static function projectLocationDataStoreSchemaName(string $project, string $location, string $dataStore, string $schema): string
-    {
+    public static function projectLocationDataStoreSchemaName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $schema
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreSchema')->render([
             'project' => $project,
             'location' => $location,
