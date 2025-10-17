@@ -43,7 +43,7 @@ class PubSubClientTest extends SnippetTestCase
 {
     use ProphecyTrait;
 
-    private const PROJECT_ID = 'my-awesome-project';
+    const PROJECT_ID = 'my-awesome-project';
     private const TOPIC = 'projects/my-awesome-project/topics/my-new-topic';
     private const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
     private const SNAPSHOT = 'projects/my-awesome-project/snapshots/my-snapshot';

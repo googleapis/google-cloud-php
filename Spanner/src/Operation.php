@@ -17,9 +17,12 @@
 
 namespace Google\Cloud\Spanner;
 
+use DateTimeImmutable;
 use Generator;
 use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
@@ -31,18 +34,20 @@ use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\Partition;
 use Google\Cloud\Spanner\V1\PartitionOptions;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\RollbackRequest;
+use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
+use Google\Protobuf\RepeatedField;
 use Google\Rpc\Code;
-use GPBMetadata\Google\Protobuf\Struct;
 use InvalidArgumentException;
 
 /**
@@ -54,6 +59,8 @@ use InvalidArgumentException;
  * Usage examples may be found in classes making use of this class:
  * * {@see \Google\Cloud\Spanner\Database}
  * * {@see \Google\Cloud\Spanner\Transaction}
+ *
+ * @internal
  */
 class Operation
 {
@@ -159,11 +166,10 @@ class Operation
     {
         $options += [
             'session' => $session->name(),
-            'mutations' => $this->serializeMutations($mutations),
+            'mutations' => $mutations,
         ];
+
         /**
-         * @TODO: Find out why singleUse is being passed in and if we can remove it.
-         *
          * @var CommitRequest $commitRequest
          * @var bool|null $_singleUse
          * @var array $callOptions
@@ -192,10 +198,10 @@ class Operation
 
         return [
             new Timestamp(
-                $this->createDateTimeFromSeconds($timestamp->getSeconds()),
-                $timestamp->getNanos()
+                $this->createDateTimeFromSeconds($timestamp?->getSeconds()) ?: new DateTimeImmutable(),
+                $timestamp?->getNanos()
             ),
-            $this->handleResponse($response)
+            $response,
         ];
     }
 
@@ -220,8 +226,6 @@ class Operation
         }
 
         /**
-         * @TODO: find out why "transactionOptions" are being passed in by are unused.
-         *
          * @var array $callOptions
          * @var array|null $_transactionOptions
          */
@@ -230,6 +234,7 @@ class Operation
             CallOptions::class,
             'transactionOptions'
         );
+
         $rollbackRequest = (new RollbackRequest())
             ->setSession($session->name())
             ->setTransactionId($transactionId);
@@ -284,7 +289,7 @@ class Operation
             $options,
             new ExecuteSqlRequest(),
             CallOptions::class,
-            ['parameters', 'types', 'transactionContext'],
+            ['parameters', 'types', 'transactionContext', 'singleUse'],
             ['route-to-leader']
         );
         $executeSqlRequest->setSql($sql);
@@ -299,7 +304,6 @@ class Operation
         // transaction will be passed to this callable by the Result class.
         $call = function ($resumeToken = null, $transaction = null) use (
             $session,
-            $sql,
             $executeSqlRequest,
             $callOptions
         ) {
@@ -310,8 +314,15 @@ class Operation
                 $executeSqlRequest->setResumeToken($resumeToken);
             }
 
-            $databaseName = $this->getDatabaseNameFromSession($session);
-            return $this->executeStreamingSql($databaseName, $executeSqlRequest, $callOptions);
+            if (!$this->routeToLeader) {
+                unset($callOptions['route-to-leader']);
+            }
+
+            $stream = $this->spannerClient->executeStreamingSql($executeSqlRequest, $callOptions + [
+                'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            ]);
+
+            return $this->handleResultSetStream($stream, $transaction);
         };
         return new Result($this, $session, $call, $miscOptions['transactionContext'] ?? null, $this->mapper);
     }
@@ -351,9 +362,7 @@ class Operation
 
         $res = $this->execute($session, $sql, $options);
 
-        if (empty($transaction->id()) && $res->transaction()) {
-            $transaction->setId($res->transaction()->id());
-        }
+        $transaction->updateFromResult($res->transaction());
 
         // Iterate through the result to ensure we have query statistics available.
         iterator_to_array($res->rows());
@@ -527,12 +536,16 @@ class Operation
                 ->setSession($session->name())
                 ->setColumns($columns);
 
+            if (!$this->routeToLeader) {
+                unset($callOptions['route-to-leader']);
+            }
+
+            $stream = $this->spannerClient->streamingRead($readRequest, $callOptions + [
+                'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            ]);
+
             // return the generator
-            return $this->streamingRead(
-                $this->getDatabaseNameFromSession($session),
-                $readRequest,
-                $callOptions
-            );
+            return $this->handleResultSetStream($stream, $transaction);
         };
 
         return new Result($this, $session, $call, $context, $this->mapper);
@@ -564,6 +577,10 @@ class Operation
      */
     public function transaction(Session $session, array $options = []): Transaction
     {
+        if (isset($options['transactionOptions'])) {
+            $options['options'] = $options['transactionOptions'];
+        }
+
         /**
          * @var array $options
          * @var BeginTransactionRequest $beginTransaction
@@ -577,20 +594,15 @@ class Operation
             new TransactionSelector(),
             CallOptions::class,
         );
+        $id = null;
+        $precommitToken = null;
         $transactionTag = $options['tag'] ?? null;
         $isRetry = $options['isRetry'] ?? false;
+
         // transaction options may be passed in as a message or array
         // TODO: only allow messages
-        $transactionOptions = null;
-        if (isset($options['transactionOptions'])) {
-            $transactionOptions = is_array($options['transactionOptions'])
-                ? $this->serializer->decodeMessage(
-                    new TransactionOptions(),
-                    $this->formatTransactionOptions($options['transactionOptions'])
-                )
-                : $options['transactionOptions'];
-        }
-        $res = [];
+        $transactionOptions = $beginTransaction->getOptions();
+
         if (empty($options['singleUse']) && (
             !$transactionSelector->hasBegin()
             || $transactionOptions?->hasPartitionedDml()
@@ -605,7 +617,10 @@ class Operation
                 $beginTransaction->setOptions($transactionOptions);
             }
 
-            $res = $this->beginTransaction($session, $beginTransaction, $callOptions);
+            // Execute the beginTransaction RPC
+            $transactionProto = $this->beginTransaction($session, $beginTransaction, $callOptions);
+            $id = $transactionProto->getId();
+            $precommitToken = $transactionProto->getPrecommitToken();
         }
 
         $options = array_filter([
@@ -619,7 +634,7 @@ class Operation
         return new Transaction(
             $this,
             $session,
-            $res['id'] ?? null,
+            $id,
             $options,
             $this->mapper
         );
@@ -647,42 +662,56 @@ class Operation
      */
     public function snapshot(Session $session, array $options = []): TransactionalReadInterface
     {
+        // We allow the setting of "options" under the keyword "transactionOptions"
+        // @TODO: get rid of this? This seems like a poor naming choice.
+        if (isset($options['transactionOptions'])) {
+            $options['options'] = $options['transactionOptions'];
+            unset($options['transactionOptions']);
+        }
+
         /**
          * @var BeginTransactionRequest $beginTransaction
          * @var array $callOptions
-         * @var array $misc
+         * @var bool $singleUse
+         * @var string $className
          */
-        [$beginTransaction, $callOptions, $misc] = $this->validateOptions(
+        [$beginTransaction, $callOptions, $singleUse, $className] = $this->validateOptions(
             $options,
             new BeginTransactionRequest(),
             CallOptions::class,
-            ['singleUse', 'className', 'transactionOptions']
+            'singleUse',
+            'className',
         );
-        if (isset($misc['transactionOptions'])) {
-            $transactionOptions = is_array($misc['transactionOptions'])
-                ? $this->serializer->decodeMessage(
-                    new TransactionOptions(),
-                    $this->formatTransactionOptions($misc['transactionOptions'])
-                )
-                : $misc['transactionOptions'];
-            $beginTransaction->setOptions($transactionOptions);
-            $options['transactionOptions'] = $transactionOptions;
-        }
 
-        $res = [];
-        if (false === ($misc['singleUse'] ?? false)) {
-            $res = $this->beginTransaction($session, $beginTransaction, $callOptions);
-        }
+        $className ??= Snapshot::class;
+        $transactionId = null;
+        $readTimestamp = null;
+        if (!$singleUse) {
+            $transactionProto = $this->beginTransaction($session, $beginTransaction, $callOptions);
+            $transactionId = $transactionProto->getId();
+            if ($timestamp = $transactionProto->getReadTimestamp()) {
+                // Convert nanoseconds to microseconds (1 microsecond = 1000 nanoseconds)
+                $microseconds = (int) ($timestamp->getNanos() / 1000);
 
-        $snapshotClass = $misc['className'] ?? Snapshot::class;
-        if (isset($res['readTimestamp'])) {
-            if (!($res['readTimestamp'] instanceof Timestamp)) {
-                $time = $this->parseTimeString($res['readTimestamp']);
-                $res['readTimestamp'] = new Timestamp($time[0], $time[1]);
+                // Combine the seconds and microseconds into a floating-point timestamp
+                $timestampFloat = (float) $timestamp->getSeconds() + ($microseconds / 1000000);
+
+                // Create a DateTimeImmutable object from the floating-point timestamp
+                $datetime = DateTimeImmutable::createFromFormat('U.u', sprintf('%.6f', $timestampFloat));
+                $readTimestamp = new Timestamp($datetime, $timestamp->getNanos());
             }
         }
 
-        return new $snapshotClass($this, $session, $res + $options);
+        return new $className($this, $session, [
+            'id' => $transactionId,
+            'readTimestamp' => $readTimestamp,
+            'singleUse' => $singleUse,
+            'directedReadOptions' => $options['directedReadOptions'] ?? null,
+            'transactionOptions' => $beginTransaction->getOptions(),
+        ]);
+        $res = $this->handleResponse($response);
+
+        return $this->session($res['name']);
     }
 
     /**
@@ -811,20 +840,19 @@ class Operation
         ]);
         $options['transaction'] = $this->createTransactionSelector($options, $transactionId);
 
-        // Split all the options into their respective categories
         /**
-         * @var array $_paramsAndTypes
          * @var PartitionOptions $partitionOptions
          * @var PartitionQueryRequest $partitionQuery
          * @var ExecuteSqlRequest $_executeSql
+         * @var array $_paramsAndTypes
          * @var array $callOptions
          */
-        [$_paramsAndTypes, $partitionOptions, $partitionQuery, $_executeSql, $callOptions] = $this->validateOptions(
+        [$partitionOptions, $partitionQuery, $_executeSql, $_paramsAndTypes, $callOptions] = $this->validateOptions(
             $options,
-            ['parameters', 'types'], // handled above, but define them here as well (so they're validated)
             new PartitionOptions(),
             new PartitionQueryRequest(),
             new ExecuteSqlRequest(), // these options are unused in this method, but are passed to QueryPartition
+            ['parameters', 'types'], // handled above, but define them here as well (so they're validated)
             CallOptions::class
         );
 
@@ -837,13 +865,15 @@ class Operation
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
             'route-to-leader' => $this->routeToLeader
         ]);
-        $res = $this->handleResponse($response);
 
         $partitions = [];
         $queryPartitionOptions = $this->pluckArray(['parameters', 'types', 'maxPartitions', 'partitionSizeBytes'], $options);
-        foreach ($res['partitions'] as $partition) {
+
+        /** @var RepeatedField<Partition> $protoPartitions */
+        $protoPartitions = $response->getPartitions();
+        foreach ($protoPartitions as $partition) {
             $partitions[] = new QueryPartition(
-                $partition['partitionToken'],
+                $partition->getPartitionToken(),
                 $sql,
                 $queryPartitionOptions
             );
@@ -913,13 +943,15 @@ class Operation
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
             'route-to-leader' => $this->routeToLeader
         ]);
-        $res = $this->handleResponse($response);
 
         $partitions = [];
         $readPartitionOptions = $this->pluckArray(['index', 'maxPartitions', 'partitionSizeBytes'], $options);
-        foreach ($res['partitions'] as $partition) {
+
+        /** @var RepeatedField<Partition> $protoPartitions */
+        $protoPartitions = $response->getPartitions();
+        foreach ($protoPartitions as $partition) {
             $partitions[] = new ReadPartition(
-                $partition['partitionToken'],
+                $partition->getPartitionToken(),
                 $table,
                 $keySet,
                 $columns,
@@ -939,9 +971,9 @@ class Operation
      * @param BeginTransactionRequest $beginTransaction
      * @param array $callOptions
      *
-     * @return array
+     * @return TransactionProto
      */
-    private function beginTransaction(Session $session, BeginTransactionRequest $beginTransaction, array $callOptions): array
+    private function beginTransaction(Session $session, BeginTransactionRequest $beginTransaction, array $callOptions): TransactionProto
     {
         $routeToLeader = $this->routeToLeader && (
             $beginTransaction->getOptions()?->hasReadWrite()
@@ -952,38 +984,10 @@ class Operation
             $beginTransaction->setSession($session->name());
         }
 
-        $response = $this->spannerClient->beginTransaction($beginTransaction, $callOptions + [
+        return $this->spannerClient->beginTransaction($beginTransaction, $callOptions + [
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
             'route-to-leader' => $routeToLeader,
         ]);
-        return $this->handleResponse($response);
-    }
-
-    /**
-     * Convert a KeySet object to an API-ready array.
-     *
-     * @param KeySet $keySet The keySet object.
-     * @return array [KeySet](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#keyset)
-     */
-    private function flattenKeySet(KeySet $keySet): array
-    {
-        $keys = $keySet->keySetObject();
-
-        if (!empty($keys['ranges'])) {
-            foreach ($keys['ranges'] as $index => $range) {
-                foreach ($range as $type => $rangeKeys) {
-                    $range[$type] = $this->mapper->encodeValuesAsSimpleType($rangeKeys);
-                }
-
-                $keys['ranges'][$index] = $range;
-            }
-        }
-
-        if (!empty($keys['keys'])) {
-            $keys['keys'] = $this->mapper->encodeValuesAsSimpleType($keys['keys'], true);
-        }
-
-        return $this->arrayFilterRemoveNull($keys);
     }
 
     private function getDatabaseNameFromSession(Session $session): string
@@ -1002,25 +1006,31 @@ class Operation
         $serializedMutations = [];
         if (is_array($mutations)) {
             foreach ($mutations as $mutation) {
-                $type = array_keys($mutation)[0];
-                $data = $mutation[$type];
-
-                switch ($type) {
-                    case Operation::OP_DELETE:
-                        // nothing to do
-                        break;
-                    default:
-                        $modifiedData = array_map([$this, 'formatValueForApi'], $data['values']);
-                        $data['values'] = [['values' => $modifiedData]];
-
-                        break;
-                }
-
-                $serializedMutations[] = [$type => $data];
+                $serializedMutations[] = $this->serializeMutation($mutation);
             }
         }
 
         return $serializedMutations;
+    }
+
+    private function serializeMutation(array $mutation): array
+    {
+        if (!$mutation) {
+            return [];
+        }
+        $type = array_keys($mutation)[0];
+        $data = $mutation[$type];
+        switch ($type) {
+            case Operation::OP_DELETE:
+                // no-op
+                break;
+            default:
+                $modifiedData = array_map([$this, 'formatValueForApi'], $data['values']);
+                $data['values'] = [['values' => $modifiedData]];
+                break;
+        }
+
+        return [$type => $data];
     }
 
     /**
@@ -1074,18 +1084,7 @@ class Operation
         string|null $transactionId = null
     ): array {
         if (isset($args['transaction'])) {
-            $transactionSelector = $args['transaction'];
-
-            if (isset($transactionSelector['singleUse'])) {
-                $transactionSelector['singleUse'] =
-                    $this->formatTransactionOptions($transactionSelector['singleUse']);
-            }
-
-            if (isset($transactionSelector['begin'])) {
-                $transactionSelector['begin'] =
-                    $this->formatTransactionOptions($transactionSelector['begin']);
-            }
-            return $transactionSelector;
+            return $args['transaction'];
         }
 
         if ($transactionId) {
@@ -1115,6 +1114,39 @@ class Operation
         $queryOptions += $this->defaultQueryOptions ?: [];
 
         return $queryOptions;
+    }
+
+    /**
+     * @param array $args
+     *
+     * @return array{params: array, paramTypes: array}
+     */
+    private function formatPartitionQueryOptions(array $args): array
+    {
+        $parameters = $args['parameters'] ?? [];
+        $types = $args['types'] ?? [];
+
+        $paramsAndParamTypes = $this->mapper->formatParamsForExecuteSql($parameters, $types);
+        return $this->formatSqlParams($paramsAndParamTypes);
+    }
+
+    /**
+     * Handles a streaming response.
+     *
+     * @param ServerStream $response
+     * @return \Generator<array>
+     * @throws ServiceException
+     */
+    private function handleResultSetStream(ServerStream $response, ?Transaction $transaction)
+    {
+        try {
+            foreach ($response->readAll() as $count => $result) {
+                $res = $this->serializer->encodeMessage($result);
+                yield $res;
+            }
+        } catch (\Exception $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
     }
 
     /**
@@ -1176,20 +1208,6 @@ class Operation
         ]);
 
         return $this->handleResponse($response);
-    }
-
-    /**
-     * @param array $args
-     *
-     * @return array{params: array, paramTypes: array}
-     */
-    private function formatPartitionQueryOptions(array $args): array
-    {
-        $parameters = $args['parameters'] ?? [];
-        $types = $args['types'] ?? [];
-
-        $paramsAndParamTypes = $this->mapper->formatParamsForExecuteSql($parameters, $types);
-        return $this->formatSqlParams($paramsAndParamTypes);
     }
 
     /**

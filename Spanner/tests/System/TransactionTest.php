@@ -21,10 +21,13 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
 use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
 use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
-use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
+use Grpc\BaseStub;
+use Grpc\Channel;
+use ReflectionClass;
 
 /**
  * @group spanner
@@ -109,6 +112,10 @@ class TransactionTest extends SpannerTestCase
      */
     public function testConcurrentTransactionsIncrementValueWithRead()
     {
+        if (!ini_get('grpc.enable_fork_support')) {
+            $this->markTestSkipped('This test requires grpc.enable_fork_support=1 in php.ini');
+        }
+
         $db = self::$database;
 
         $id = $this->randId();
@@ -164,6 +171,10 @@ class TransactionTest extends SpannerTestCase
      */
     public function testAbortedErrorCausesRetry()
     {
+        if (!ini_get('grpc.enable_fork_support')) {
+            $this->markTestSkipped('This test requires grpc.enable_fork_support=1 in php.ini');
+        }
+
         $db = self::$database;
         $db2 = self::$database2;
 
@@ -200,6 +211,10 @@ class TransactionTest extends SpannerTestCase
      */
     public function testConcurrentTransactionsIncrementValueWithExecute()
     {
+        if (!ini_get('grpc.enable_fork_support')) {
+            $this->markTestSkipped('This test requires grpc.enable_fork_support=1 in php.ini');
+        }
+
         $db = self::$database;
 
         $id = $this->randId();
@@ -411,11 +426,6 @@ class TransactionTest extends SpannerTestCase
                         'id' => $id,
                         'name' => uniqid(self::TESTING_PREFIX),
                         'birthday' => new Date(new \DateTime())
-                    ],
-                    'transaction' => [
-                        'begin' => [
-                            'isolationLevel' => IsolationLevel::REPEATABLE_READ,
-                        ]
                     ]
                 ]
             );
@@ -428,14 +438,27 @@ class TransactionTest extends SpannerTestCase
                 ]
             ]);
             $this->assertEquals($res->rows()->current()['id'], $id);
-            // No new transaction created.
-            $this->assertNull($res->transaction());
+            // For Multiplexed Sessions, a transaction is returned on READ
+            // The emulator doesn't support this
+            if (!$this->isEmulatorUsed()) {
+                $this->assertNotNull($res->transaction());
+                $this->assertEquals($res->transaction()->id(), $t->id());
+            } else {
+                usleep(1000000);
+            }
             $this->assertEquals($t->id(), $transactionId);
 
             $keyset = new KeySet(['keys' => [$id]]);
             $res = $t->read(self::TEST_TABLE_NAME, $keyset, ['id']);
             $this->assertEquals($res->rows()->current()['id'], $id);
-            $this->assertNull($res->transaction());
+            // For Multiplexed Sessions, a transaction is returned on READ
+            // The emulator doesn't support this
+            if (!$this->isEmulatorUsed()) {
+                $this->assertNotNull($res->transaction());
+                $this->assertEquals($res->transaction()->id(), $t->id());
+            } else {
+                usleep(1000000);
+            }
             $this->assertEquals($t->id(), $transactionId);
 
             $res = $t->executeUpdateBatch([

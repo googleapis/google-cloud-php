@@ -50,6 +50,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Protobuf\Duration;
+use Google\Protobuf\Timestamp as TimestampProto;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -68,10 +69,12 @@ class SpannerClientTest extends TestCase
     const INSTANCE = 'inst';
     const DATABASE = 'db';
     const CONFIG = 'conf';
+    const SESSION = 'sess';
 
     private $serializer;
     private SpannerClient $spannerClient;
     private $instanceAdminClient;
+    private $gapicSpannerClient;
     private $directedReadOptionsIncludeReplicas;
     private $operationResponse;
 
@@ -107,7 +110,7 @@ class SpannerClientTest extends TestCase
         $batch = $this->spannerClient->batch('foo', 'bar');
         $this->assertInstanceOf(BatchClient::class, $batch);
 
-        $ref = new \ReflectionObject($batch);
+        $ref = new ReflectionClass($batch);
         $prop = $ref->getProperty('databaseName');
         $prop->setAccessible(true);
 
@@ -523,7 +526,7 @@ class SpannerClientTest extends TestCase
     public function testSpannerClientDatabaseRole()
     {
         $instance = $this->prophesize(Instance::class);
-        $instance->database(Argument::any(), ['databaseRole' => 'Reader'])->shouldBeCalled();
+        $instance->database(Argument::any(), Argument::withEntry('databaseRole', 'Reader'))->shouldBeCalled();
         $this->spannerClient->connect($instance->reveal(), self::DATABASE, ['databaseRole' => 'Reader']);
     }
 

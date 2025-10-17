@@ -190,7 +190,7 @@ class Session
     public function __debugInfo()
     {
         return [
-            'spannerClient' => isset($this->spannerClient) ? get_class($this->spannerClient) : '<not set>',
+            'spannerClient' => get_class($this->spannerClient),
             'projectId' => $this->projectId,
             'instance' => $this->instance,
             'database' => $this->database,

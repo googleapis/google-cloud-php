@@ -18,8 +18,8 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
@@ -33,7 +33,7 @@ use Google\Protobuf\Internal\Message;
  */
 trait RequestTrait
 {
-    use ApiHelperTrait;
+    use ArrayTrait;
     use RequestProcessorTrait;
 
     /**
@@ -123,5 +123,18 @@ trait RequestTrait
             (string) $operation->getName(),
             $this->handleResponse($operation->getLastProtoResponse()) ?? []
         );
+    }
+
+    /**
+     * @param array $instanceArray
+     * @return array
+     */
+    private function fieldMask(array $instanceArray): array
+    {
+        $mask = [];
+        foreach (array_keys($instanceArray) as $key) {
+            $mask[] = $this->serializer::toSnakeCase($key);
+        }
+        return ['paths' => $mask];
     }
 }

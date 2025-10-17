@@ -34,9 +34,13 @@ namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\Serializer as ApiCoreSerializer;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\Mutation\Delete;
+use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\Type;
 use Google\Protobuf\Internal\RepeatedField as DeprecatedRepeatedField;
+use Google\Protobuf\ListValue;
 use Google\Protobuf\RepeatedField;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
@@ -49,6 +53,14 @@ use Google\Protobuf\Value;
 class Serializer extends ApiCoreSerializer
 {
     use ApiHelperTrait;
+
+    private const MUTATION_SETTERS = [
+        'insert' => 'setInsert',
+        'update' => 'setUpdate',
+        'insertOrUpdate' => 'setInsertOrUpdate',
+        'replace' => 'setReplace',
+        'delete' => 'setDelete'
+    ];
 
     private Serializer $serializer; // Self reference for ApiHelperTrait
 
@@ -92,6 +104,19 @@ class Serializer extends ApiCoreSerializer
 
                 return $keySet;
             },
+            'google.spanner.v1.Mutation' => function ($v) {
+                return $this->formatMutation($v);
+            },
+            'google.spanner.v1.BatchWriteRequest.MutationGroup' => function ($mutationGroup) {
+                if ($mutationGroup instanceof MutationGroup) {
+                    $mutationGroup = $mutationGroup->toArray();
+                }
+                $mutationGroup['mutations'] = $this->parseMutations($mutationGroup['mutations']);
+                return $mutationGroup;
+            },
+            'google.spanner.v1.TransactionOptions' => function ($v) {
+                return $this->formatTransactionOptions($v);
+            },
             'google.protobuf.Struct' => function ($v) {
                 if (!isset($v['fields'])) {
                     return ['fields' => $v];
@@ -117,6 +142,20 @@ class Serializer extends ApiCoreSerializer
                 }
                 return $v;
             },
+            'google.protobuf.FieldMask' => function ($v) {
+                if (isset($v['paths'])) {
+                    return $v;
+                }
+                $fieldMask = [];
+                if (is_array($v)) {
+                    foreach (array_values($v) as $field) {
+                        $fieldMask[] = $this->serializer::toSnakeCase($field);
+                    }
+                } else {
+                    $fieldMask[] = $this->serializer::toSnakeCase($v);
+                }
+                return ['paths' => $fieldMask];
+            }
         ];
         $customEncoders = [
             // A custom encoder that short-circuits the encodeMessage in Serializer class,
@@ -228,5 +267,148 @@ class Serializer extends ApiCoreSerializer
         }
 
         return $data;
+    }
+
+    private function formatMutation(array $mutation): array
+    {
+        if (!$mutation) {
+            return [];
+        }
+        $type = array_keys($mutation)[0];
+        $data = $mutation[$type];
+        switch ($type) {
+            case Operation::OP_DELETE:
+                // no-op
+                break;
+            default:
+                $modifiedData = array_map([$this, 'formatValueForApi'], $data['values']);
+                $data['values'] = [['values' => $modifiedData]];
+                break;
+        }
+
+        return [$type => $data];
+    }
+
+    /**
+     * @param array $transactionOptions
+     * @return array
+     */
+    private function formatTransactionOptions(array $transactionOptions): array
+    {
+        // sometimes readOnly is a PBReadOnly message instance
+        if (isset($transactionOptions['readOnly']) && is_array($transactionOptions['readOnly'])) {
+            $ro = $transactionOptions['readOnly'];
+            if (isset($ro['minReadTimestamp'])) {
+                $ro['minReadTimestamp'] =
+                    $this->formatTimestampForApi($ro['minReadTimestamp']);
+            }
+
+            if (isset($ro['readTimestamp'])) {
+                $ro['readTimestamp'] =
+                    $this->formatTimestampForApi($ro['readTimestamp']);
+            }
+
+            $transactionOptions['readOnly'] = $ro;
+        }
+
+        return $transactionOptions;
+    }
+
+    private function parseMutations(array $rawMutations): array
+    {
+        if (!is_array($rawMutations)) {
+            return [];
+        }
+
+        $mutations = [];
+        foreach ($rawMutations as $mutation) {
+            $type = array_keys($mutation)[0];
+            $data = $mutation[$type];
+
+            switch ($type) {
+                case Operation::OP_DELETE:
+                    $operation = $this->serializer->decodeMessage(
+                        new Delete(),
+                        $data
+                    );
+                    break;
+                default:
+                    $operation = new Write();
+                    $operation->setTable($data['table']);
+                    $operation->setColumns($data['columns']);
+
+                    $modifiedData = [];
+                    foreach ($data['values'] as $key => $param) {
+                        $modifiedData[$key] = $this->fieldValue($param);
+                    }
+
+                    $list = new ListValue();
+                    $list->setValues($modifiedData);
+                    $values = [$list];
+                    $operation->setValues($values);
+
+                    break;
+            }
+
+            $setterName = self::MUTATION_SETTERS[$type];
+            $mutation = new Mutation();
+            $mutation->$setterName($operation);
+            $mutations[] = $mutation;
+        }
+        return $mutations;
+    }
+
+    /**
+     * @param mixed $param
+     * @return Value
+     */
+    private function fieldValue($param): Value
+    {
+        $field = new Value();
+        $value = $this->formatValueForApi($param);
+
+        $setter = null;
+        switch (array_keys($value)[0]) {
+            case 'string_value':
+                $setter = 'setStringValue';
+                break;
+            case 'number_value':
+                $setter = 'setNumberValue';
+                break;
+            case 'bool_value':
+                $setter = 'setBoolValue';
+                break;
+            case 'null_value':
+                $setter = 'setNullValue';
+                break;
+            case 'struct_value':
+                $setter = 'setStructValue';
+                $modifiedParams = [];
+                foreach ($param as $key => $value) {
+                    $modifiedParams[$key] = $this->fieldValue($value);
+                }
+                $value = new Struct();
+                $value->setFields($modifiedParams);
+
+                break;
+            case 'list_value':
+                $setter = 'setListValue';
+                $modifiedParams = [];
+                foreach ($param as $item) {
+                    $modifiedParams[] = $this->fieldValue($item);
+                }
+                $list = new ListValue();
+                $list->setValues($modifiedParams);
+                $value = $list;
+
+                break;
+        }
+
+        $value = is_array($value) ? current($value) : $value;
+        if ($setter) {
+            $field->$setter($value);
+        }
+
+        return $field;
     }
 }

@@ -60,9 +60,10 @@ class Result implements \IteratorAggregate
     private array|null $metadata;
     private int $retries;
     private string|null $resumeToken = null;
-    private TransactionalReadInterface|null $snapshot;
+    private TransactionalReadInterface $snapshot;
+    private Transaction $transaction;
     private array|bool|null $stats;
-    private Transaction|null $transaction = null;
+
     /**
      * @var callable
      */
@@ -297,7 +298,7 @@ class Result implements \IteratorAggregate
      */
     public function snapshot(): TransactionalReadInterface|null
     {
-        return $this->snapshot;
+        return $this->snapshot ?? null;
     }
 
     /**
@@ -314,7 +315,7 @@ class Result implements \IteratorAggregate
      */
     public function transaction(): Transaction|null
     {
-        return $this->transaction;
+        return $this->transaction ?? null;
     }
 
     /**

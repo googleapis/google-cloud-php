@@ -81,7 +81,7 @@ trait ResultGeneratorTrait
                         'fields' => $fields
                     ])
                 ]),
-                'values' => $values
+                'values' => $values,
             ];
 
             if ($stats) {

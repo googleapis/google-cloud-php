@@ -87,9 +87,7 @@ class CommitTimestampTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $client = new SpannerClient([
             'projectId' => 'my-project',

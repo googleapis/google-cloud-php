@@ -21,6 +21,7 @@ use Closure;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\OptionsValidator;
@@ -52,6 +53,7 @@ use Google\Rpc\Code;
  */
 class InstanceConfiguration
 {
+    use ApiHelperTrait;
     use RequestTrait;
 
     private array $info;
@@ -93,7 +95,7 @@ class InstanceConfiguration
      *
      * @return string
      */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
@@ -115,7 +117,7 @@ class InstanceConfiguration
      * @return array [InstanceConfig](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig)
      * @codingStandardsIgnoreEnd
      */
-    public function info(array $options = [])
+    public function info(array $options = []): array
     {
         if (!$this->info) {
             $this->reload($options);
@@ -141,10 +143,10 @@ class InstanceConfiguration
      * @param array $options [optional] Configuration options.
      * @return bool
      */
-    public function exists(array $options = [])
+    public function exists(array $options = []): bool
     {
         try {
-            $this->reload($options = []);
+            $this->reload($options);
         } catch (ApiException $e) {
             if ($e->getCode() === Code::NOT_FOUND) {
                 return false;
@@ -170,7 +172,7 @@ class InstanceConfiguration
      * @return array [InstanceConfig](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig)
      * @codingStandardsIgnoreEnd
      */
-    public function reload(array $options = [])
+    public function reload(array $options = []): array
     {
         $options += ['name' => $this->name];
         /**
@@ -224,30 +226,34 @@ class InstanceConfiguration
      * @throws ValidationException
      * @codingStandardsIgnoreEnd
      */
-    public function create(InstanceConfiguration $baseConfig, array $replicas, array $options = [])
-    {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
+    public function create(
+        InstanceConfiguration $baseConfig,
+        array $replicas,
+        array $options = []
+    ): LongRunningOperation {
+        $leaderOptions = $baseConfig->info()['leaderOptions'] ?? [];
+        $options['leaderOptions'] = $leaderOptions;
+        $options['replicas'] = $replicas;
+        $options['baseConfig'] = $baseConfig->name();
 
-        $leaderOptions = $baseConfig->__debugInfo()['info']['leaderOptions'] ?? [];
-        $validateOnly = $data['validateOnly'] ?? false;
-        unset($data['validateOnly']);
-        $data += [
-            'replicas' => $replicas,
-            'baseConfig' => $baseConfig->name(),
-            'leaderOptions' => $leaderOptions
-        ];
-        $instanceConfig = $this->instanceConfigArray($data);
-        $requestArray = [
-            'parent' => InstanceAdminClient::projectName($this->projectId),
-            'instanceConfigId' => InstanceAdminClient::parseName($this->name)['instance_config'],
-            'instanceConfig' => $instanceConfig,
-            'validateOnly' => $validateOnly
-        ];
-
-        $request = $this->serializer->decodeMessage(
-            new CreateInstanceConfigRequest(),
-            $requestArray
+        [$instanceConfig, $callOptions] = $this->validateOptions(
+            $options,
+            new InstanceConfig(),
+            CallOptions::class
         );
+
+        $instanceConfig->setName($this->name);
+        if (!$instanceConfig->getDisplayName()) {
+            $instanceConfig->setDisplayName(InstanceAdminClient::parseName($this->name)['instance_config']);
+        }
+        $instanceConfig->setConfigType(InstanceConfig\Type::USER_MANAGED);
+
+        $request = new CreateInstanceConfigRequest([
+            'parent' => InstanceAdminClient::projectName($this->projectId),
+            'instance_config_id' => InstanceAdminClient::parseName($this->name)['instance_config'],
+            'instance_config' => $instanceConfig,
+            'validate_only' => $options['validateOnly'] ?? false
+        ]);
 
         $operation = $this->instanceAdminClient->createInstanceConfig(
             $request,
@@ -284,17 +290,20 @@ class InstanceConfiguration
      * @return LongRunningOperation
      * @throws \InvalidArgumentException
      */
-    public function update(array $options = [])
+    public function update(array $options = []): LongRunningOperation
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $validateOnly = $data['validateOnly'] ?? false;
-        unset($data['validateOnly']);
+        $validateOnly = $options['validateOnly'] ?? false;
+        unset($options['validateOnly']);
 
-        $request = $this->serializer->decodeMessage(new UpdateInstanceConfigRequest(), [
-            'instanceConfig' => $data + ['name' => $this->name],
-            'updateMask' => $this->fieldMask($data),
-            'validateOnly' => $validateOnly
-        ]);
+        [$request, $callOptions] = $this->validateOptions(
+            [
+                'instanceConfig' => $options + ['name' => $this->name],
+                'updateMask' => $this->fieldMask($options),
+                'validateOnly' => $validateOnly,
+            ],
+            new UpdateInstanceConfigRequest(),
+            CallOptions::class
+        );
 
         $operation = $this->instanceAdminClient->updateInstanceConfig(
             $request,
@@ -320,7 +329,7 @@ class InstanceConfiguration
      * @param array $options [optional] Configuration options.
      * @return void
      */
-    public function delete(array $options = [])
+    public function delete(array $options = []): void
     {
         $options += ['name' => $this->name];
 
@@ -350,7 +359,7 @@ class InstanceConfiguration
      * @param string $operationName The Long Running Operation name.
      * @return LongRunningOperation
      */
-    public function resumeOperation(string $operationName, array $options = [])
+    public function resumeOperation(string $operationName, array $options = []): LongRunningOperation
     {
         return new LongRunningOperation(
             new LongRunningClientConnection($this->instanceAdminClient, $this->serializer),
@@ -376,7 +385,7 @@ class InstanceConfiguration
      * @param string $projectId The project ID.
      * @return string
      */
-    private function fullyQualifiedConfigName($name, $projectId)
+    private function fullyQualifiedConfigName($name, $projectId): string
     {
         try {
             return InstanceAdminClient::instanceConfigName(
@@ -386,35 +395,6 @@ class InstanceConfiguration
         } catch (ValidationException $e) {
             return $name;
         }
-    }
-
-    /**
-     * @param array $args
-     *
-     * @return array
-     */
-    private function instanceConfigArray(array $args)
-    {
-        $configId = InstanceAdminClient::parseName($this->name)['instance_config'];
-
-        return $args += [
-            'name' => $this->name,
-            'displayName' => $configId,
-            'configType' => Type::USER_MANAGED
-        ];
-    }
-
-    /**
-     * @param array $instanceArray
-     * @return array
-     */
-    private function fieldMask(array $instanceArray)
-    {
-        $mask = [];
-        foreach (array_keys($instanceArray) as $key) {
-            $mask[] = $this->serializer::toSnakeCase($key);
-        }
-        return ['paths' => $mask];
     }
 
     private function instanceConfigResultFunction(): Closure

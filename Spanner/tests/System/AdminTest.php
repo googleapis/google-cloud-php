@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\InstanceConfiguration;
 
 /**
  * @group spanner
+ * @group admin
  */
 class AdminTest extends SpannerTestCase
 {

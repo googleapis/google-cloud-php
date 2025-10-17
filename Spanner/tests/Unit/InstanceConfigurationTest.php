@@ -21,6 +21,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
@@ -285,5 +286,65 @@ class InstanceConfigurationTest extends TestCase
     private function getDefaultInstance()
     {
         return json_decode(file_get_contents(Fixtures::INSTANCE_CONFIG_FIXTURE()), true);
+    }
+
+    public function testCreate()
+    {
+        $expectedInstanceConfig = new InstanceConfig([
+            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, 'foo'),
+            'display_name' => 'bar2'
+        ]);
+        $result = new Any();
+        $result->pack($expectedInstanceConfig);
+        $metadata = new Any();
+        $metadata->pack(new UpdateInstanceConfigMetadata());
+        $operationProto = new Operation([
+            'response' => $result,
+            'metadata' => $metadata,
+            'done' => true
+        ]);
+
+        $operationResponse = new OperationResponse(
+            'operation-name',
+            $this->operationsClient->reveal(),
+            [
+                'operationReturnType' => InstanceConfig::class,
+                'lastProtoResponse' => $operationProto,
+            ]
+        );
+
+        $this->instanceAdminClient->resumeOperation($operationResponse->getName())
+            ->shouldBeCalledOnce()
+            ->willReturn($operationResponse);
+
+        $this->instanceAdminClient->createInstanceConfig(
+            Argument::type(CreateInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($operationResponse);
+
+        $instanceConfig = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
+            self::PROJECT_ID,
+            self::NAME
+        );
+
+        $baseConfig = $this->prophesize(InstanceConfiguration::class);
+        $baseConfig->name()->willReturn('base-config');
+        $baseConfig->info()->willReturn([]);
+
+        $operation = $instanceConfig->create(
+            $baseConfig->reveal(),
+            [],  // Add some replicas if needed for a valid request
+            ['displayName' => self::NAME]
+        );
+        $operation->pollUntilComplete();
+        $createdInstanceConfig = $operation->result();
+
+        $this->assertInstanceOf(InstanceConfiguration::class, $createdInstanceConfig);
+        $this->assertEquals($expectedInstanceConfig->getName(), $createdInstanceConfig->name());
+        $this->assertEquals($expectedInstanceConfig->getDisplayName(), $createdInstanceConfig->info()['displayName']);
     }
 }

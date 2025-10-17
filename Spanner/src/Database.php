@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use BadMethodCallException;
 use Closure;
 use DateTimeInterface;
 use Generator;
@@ -24,6 +25,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
@@ -55,13 +57,10 @@ use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
-use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
-use Google\Protobuf\Duration;
-use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Google\Rpc\Code;
@@ -91,31 +90,35 @@ use GuzzleHttp\Promise\PromiseInterface;
  */
 class Database
 {
+    use ApiHelperTrait;
     use TransactionConfigurationTrait;
     use RequestTrait;
 
-    const STATE_CREATING = State::CREATING;
-    const STATE_READY = State::READY;
-    const STATE_READY_OPTIMIZING = State::READY_OPTIMIZING;
-    const MAX_RETRIES = 10;
+    public const CONTEXT_READ = 'r';
+    public const CONTEXT_READWRITE = 'rw';
 
-    const TYPE_BOOL = TypeCode::BOOL;
-    const TYPE_INT64 = TypeCode::INT64;
-    const TYPE_FLOAT32 = TypeCode::FLOAT32;
-    const TYPE_FLOAT64 = TypeCode::FLOAT64;
-    const TYPE_TIMESTAMP = TypeCode::TIMESTAMP;
-    const TYPE_DATE = TypeCode::DATE;
-    const TYPE_STRING = TypeCode::STRING;
-    const TYPE_BYTES = TypeCode::BYTES;
-    const TYPE_ARRAY = TypeCode::PBARRAY;
-    const TYPE_STRUCT = TypeCode::STRUCT;
-    const TYPE_NUMERIC = TypeCode::NUMERIC;
-    const TYPE_PROTO = TypeCode::PROTO;
-    const TYPE_PG_NUMERIC = 'pgNumeric';
-    const TYPE_PG_JSONB = 'pgJsonb';
-    const TYPE_JSON = TypeCode::JSON;
-    const TYPE_PG_OID = 'pgOid';
-    const TYPE_INTERVAL = TypeCode::INTERVAL;
+    public const STATE_CREATING = State::CREATING;
+    public const STATE_READY = State::READY;
+    public const STATE_READY_OPTIMIZING = State::READY_OPTIMIZING;
+    public const MAX_RETRIES = 10;
+
+    public const TYPE_BOOL = TypeCode::BOOL;
+    public const TYPE_INT64 = TypeCode::INT64;
+    public const TYPE_FLOAT32 = TypeCode::FLOAT32;
+    public const TYPE_FLOAT64 = TypeCode::FLOAT64;
+    public const TYPE_TIMESTAMP = TypeCode::TIMESTAMP;
+    public const TYPE_DATE = TypeCode::DATE;
+    public const TYPE_STRING = TypeCode::STRING;
+    public const TYPE_BYTES = TypeCode::BYTES;
+    public const TYPE_ARRAY = TypeCode::PBARRAY;
+    public const TYPE_STRUCT = TypeCode::STRUCT;
+    public const TYPE_NUMERIC = TypeCode::NUMERIC;
+    public const TYPE_PROTO = TypeCode::PROTO;
+    public const TYPE_PG_NUMERIC = 'pgNumeric';
+    public const TYPE_PG_JSONB = 'pgJsonb';
+    public const TYPE_JSON = TypeCode::JSON;
+    public const TYPE_PG_OID = 'pgOid';
+    public const TYPE_INTERVAL = TypeCode::INTERVAL;
 
     private Operation $operation;
     private IamManager|null $iam = null;
@@ -128,18 +131,6 @@ class Database
     private bool $returnInt64AsObject;
     private SessionPoolInterface|null $sessionPool;
     private array $info;
-
-    private const MUTATION_SETTERS = [
-        'insert' => 'setInsert',
-        'update' => 'setUpdate',
-        'insertOrUpdate' => 'setInsertOrUpdate',
-        'replace' => 'setReplace',
-        'delete' => 'setDelete'
-    ];
-
-    /**
-     * @var int
-     */
     private int $isolationLevel;
 
     /**
@@ -484,25 +475,15 @@ class Database
      */
     public function updateDatabase(array $options = []): LongRunningOperation
     {
-        $fieldMask = [];
-        if (isset($options['enableDropProtection'])) {
-            $fieldMask[] = 'enable_drop_protection';
-        }
-        $options += [
-            'updateMask' => ['paths' => $fieldMask],
-            'database' => [
-                'name' => $this->name,
-                'enableDropProtection' =>
-                    $this->pluck('enableDropProtection', $options, false) ?: false
-            ]
-        ];
-
         /**
          * @var UpdateDatabaseRequest $updateDatabase
          * @var array $callOptions
          */
         [$updateDatabase, $callOptions] = $this->validateOptions(
-            $options,
+            [
+                'database' => $options + ['name' => $this->name],
+                'updateMask' => $this->fieldMask($options),
+            ],
             new UpdateDatabaseRequest(),
             CallOptions::class
         );
@@ -774,14 +755,14 @@ class Database
      *           Session labels may be applied using the `labels` key.
      * }
      * @return TransactionalReadInterface
-     * @throws \BadMethodCallException If attempting to call this method within
+     * @throws BadMethodCallException If attempting to call this method within
      *         an existing transaction.
      * @codingStandardsIgnoreEnd
      */
     public function snapshot(array $options = []): TransactionalReadInterface
     {
         if ($this->isRunningTransaction) {
-            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+            throw new BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
         $options += [
@@ -850,13 +831,13 @@ class Database
      *           use this as the transaction tag.
      * }
      * @return Transaction
-     * @throws \BadMethodCallException If attempting to call this method within
+     * @throws BadMethodCallException If attempting to call this method within
      *         an existing transaction.
      */
     public function transaction(array $options = []): Transaction
     {
         if ($this->isRunningTransaction) {
-            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+            throw new BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
         // Configure readWrite options here. Any nested options for readWrite should be added to this call
@@ -961,22 +942,18 @@ class Database
      * }
      * @return mixed The return value of `$operation`.
      * @throws \RuntimeException If a transaction is not committed or rolled back.
-     * @throws \BadMethodCallException If attempting to call this method within
+     * @throws BadMethodCallException If attempting to call this method within
      *         an existing transaction.
      */
     public function runTransaction(callable $operation, array $options = []): mixed
     {
         if ($this->isRunningTransaction) {
-            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+            throw new BadMethodCallException('Nested transactions are not supported by this client.');
         }
-        $options += ['retrySettings' => ['maxRetries' => self::MAX_RETRIES]];
-
-        $retrySettings = $this->pluck('retrySettings', $options);
-        if ($retrySettings instanceof RetrySettings) {
-            $maxRetries = $retrySettings->getMaxRetries();
-        } else {
-            $maxRetries = $retrySettings['maxRetries'];
-        }
+        $retrySettings = $options['retrySettings'] ?? ['maxRetries' => self::MAX_RETRIES];
+        $maxRetries = $retrySettings instanceof RetrySettings
+            ? $retrySettings->getMaxRetries()
+            : $retrySettings['maxRetries'];
 
         // Configure necessary readWrite nested and base options
         $transactionOptions = $options['transactionOptions'] ?? [];
@@ -1829,20 +1806,13 @@ class Database
     public function batchWrite(array $mutationGroups, array $options = []): Generator
     {
         if ($this->isRunningTransaction) {
-            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+            throw new BadMethodCallException('Nested transactions are not supported by this client.');
         }
         // Prevent nested transactions.
         $this->isRunningTransaction = true;
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
             $this->pluck('sessionOptions', $options, false) ?: []
-        );
-
-        $mutationGroups = array_map(fn ($x) => $x->toArray(), $mutationGroups);
-
-        array_walk(
-            $mutationGroups,
-            fn (&$x) => $x['mutations'] = $this->parseMutations($x['mutations'])
         );
 
         try {
@@ -2557,7 +2527,8 @@ class Database
      *         [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for
+     *         single-use transactions.
      * }
      * @return Timestamp The commit timestamp.
      */
@@ -2625,104 +2596,6 @@ class Database
         } catch (ValidationException $e) {
             return $name;
         }
-    }
-
-    private function parseMutations(array $rawMutations): array
-    {
-        if (!is_array($rawMutations)) {
-            return [];
-        }
-
-        $mutations = [];
-        foreach ($rawMutations as $mutation) {
-            $type = array_keys($mutation)[0];
-            $data = $mutation[$type];
-
-            switch ($type) {
-                case Operation::OP_DELETE:
-                    $operation = $this->serializer->decodeMessage(
-                        new Delete(),
-                        $data
-                    );
-                    break;
-                default:
-                    $operation = new Write();
-                    $operation->setTable($data['table']);
-                    $operation->setColumns($data['columns']);
-
-                    $modifiedData = [];
-                    foreach ($data['values'] as $key => $param) {
-                        $modifiedData[$key] = $this->fieldValue($param);
-                    }
-
-                    $list = new ListValue();
-                    $list->setValues($modifiedData);
-                    $values = [$list];
-                    $operation->setValues($values);
-
-                    break;
-            }
-
-            $setterName = self::MUTATION_SETTERS[$type];
-            $mutation = new Mutation();
-            $mutation->$setterName($operation);
-            $mutations[] = $mutation;
-        }
-        return $mutations;
-    }
-
-    /**
-     * @param mixed $param
-     * @return Value
-     */
-    private function fieldValue($param): Value
-    {
-        $field = new Value();
-        $value = $this->formatValueForApi($param);
-
-        $setter = null;
-        switch (array_keys($value)[0]) {
-            case 'string_value':
-                $setter = 'setStringValue';
-                break;
-            case 'number_value':
-                $setter = 'setNumberValue';
-                break;
-            case 'bool_value':
-                $setter = 'setBoolValue';
-                break;
-            case 'null_value':
-                $setter = 'setNullValue';
-                break;
-            case 'struct_value':
-                $setter = 'setStructValue';
-                $modifiedParams = [];
-                foreach ($param as $key => $value) {
-                    $modifiedParams[$key] = $this->fieldValue($value);
-                }
-                $value = new Struct();
-                $value->setFields($modifiedParams);
-
-                break;
-            case 'list_value':
-                $setter = 'setListValue';
-                $modifiedParams = [];
-                foreach ($param as $item) {
-                    $modifiedParams[] = $this->fieldValue($item);
-                }
-                $list = new ListValue();
-                $list->setValues($modifiedParams);
-                $value = $list;
-
-                break;
-        }
-
-        $value = is_array($value) ? current($value) : $value;
-        if ($setter) {
-            $field->$setter($value);
-        }
-
-        return $field;
     }
 
     private function databaseResultFunction(): Closure
