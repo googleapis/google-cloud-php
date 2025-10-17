@@ -155,6 +155,12 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig thinking_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $thinking_config = null;
+    /**
+     * Optional. Config for image generation features.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.ImageConfig image_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $image_config = null;
 
     /**
      * Constructor.
@@ -238,6 +244,8 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Config for thinking features.
      *           An error will be returned if this field is set for models that don't
      *           support thinking.
+     *     @type \Google\Cloud\AIPlatform\V1\ImageConfig $image_config
+     *           Optional. Config for image generation features.
      * }
      */
     public function __construct($data = NULL) {
@@ -885,6 +893,42 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig::class);
         $this->thinking_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Config for image generation features.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.ImageConfig image_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ImageConfig|null
+     */
+    public function getImageConfig()
+    {
+        return $this->image_config;
+    }
+
+    public function hasImageConfig()
+    {
+        return isset($this->image_config);
+    }
+
+    public function clearImageConfig()
+    {
+        unset($this->image_config);
+    }
+
+    /**
+     * Optional. Config for image generation features.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.ImageConfig image_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ImageConfig $var
+     * @return $this
+     */
+    public function setImageConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ImageConfig::class);
+        $this->image_config = $var;
 
         return $this;
     }

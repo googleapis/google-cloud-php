@@ -69,6 +69,12 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 11;</code>
      */
     protected $encryption_spec = null;
+    /**
+     * Labels for the ReasoningEngine.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 17;</code>
+     */
+    private $labels;
 
     /**
      * Constructor.
@@ -97,6 +103,8 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
      *           Customer-managed encryption key spec for a ReasoningEngine. If set, this
      *           ReasoningEngine and all sub-resources of this ReasoningEngine will be
      *           secured by this key.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Labels for the ReasoningEngine.
      * }
      */
     public function __construct($data = NULL) {
@@ -358,6 +366,32 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
         $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Labels for the ReasoningEngine.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 17;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Labels for the ReasoningEngine.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 17;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }
