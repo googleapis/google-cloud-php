@@ -45,8 +45,7 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
@@ -83,6 +82,7 @@ class DatabaseTest extends SnippetTestCase
     const INSTANCE = 'my-instance';
     const TRANSACTION = 'my-transaction';
     const BACKUP = 'my-backup';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
     private $spannerClient;
     private $databaseAdminClient;
@@ -102,21 +102,8 @@ class DatabaseTest extends SnippetTestCase
         $this->operationResponse = $this->prophesize(OperationResponse::class);
         $this->serializer = new Serializer();
 
-        $session = $this->prophesize(Session::class);
-        $session->info()
-            ->willReturn([
-                'databaseName' => 'database'
-            ]);
-        $session->name()
-            ->willReturn('database');
-        $session->setExpiration(Argument::any());
-
-        $sessionPool = $this->prophesize(SessionPoolInterface::class);
-        $sessionPool->acquire(Argument::any())
-            ->willReturn($session->reveal());
-        $sessionPool->setDatabase(Argument::any())
-            ->willReturn(null);
-        $sessionPool->clear()->willReturn(null);
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
 
         $this->instance = new Instance(
             $this->spannerClient->reveal(),
@@ -134,7 +121,7 @@ class DatabaseTest extends SnippetTestCase
             $this->instance,
             self::PROJECT,
             self::DATABASE,
-            ['sessionPool' => $sessionPool->reveal()]
+            $session->reveal(),
         );
     }
 
@@ -931,24 +918,6 @@ class DatabaseTest extends SnippetTestCase
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(Result::class, $res->returnVal());
         $this->assertInstanceOf(Transaction::class, $res->returnVal()->transaction());
-    }
-
-    public function testSessionPool()
-    {
-        $snippet = $this->snippetFromMethod(Database::class, 'sessionPool');
-        $snippet->addLocal('database', $this->database);
-
-        $res = $snippet->invoke('pool');
-        $this->assertInstanceOf(SessionPoolInterface::class, $res->returnVal());
-    }
-
-    public function testClose()
-    {
-        $snippet = $this->snippetFromMethod(Database::class, 'close');
-        $snippet->addLocal('database', $this->database);
-
-        $res = $snippet->invoke();
-        $this->assertNull($res->returnVal());
     }
 
     public function testIam()

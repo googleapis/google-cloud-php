@@ -22,7 +22,7 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -47,7 +47,7 @@ class SnapshotTest extends SnippetTestCase
 
         $this->serializer = new Serializer();
         $operation = $this->prophesize(Operation::class);
-        $session = $this->prophesize(Session::class);
+        $session = $this->prophesize(SessionCache::class);
 
         $this->snapshot = new Snapshot(
             $operation->reveal(),

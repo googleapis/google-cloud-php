@@ -24,13 +24,14 @@ use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\Partition;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
-use Google\Cloud\Spanner\V1\Session as SessionProto;
+use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction;
 use Google\Protobuf\Timestamp as TimestampProto;
 use Prophecy\Argument;
@@ -42,15 +43,14 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class ReadPartitionTest extends SnippetTestCase
 {
+    const TRANSACTION = 'my-transaction';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
+
     use ProphecyTrait;
     use GrpcTestTrait;
     use PartitionSharedSnippetTestTrait {
         provideGetters as private getters;
     }
-
-    const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
-    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
-    const TRANSACTION = 'transaction-id';
 
     private $spannerClient;
     private $serializer;
@@ -78,7 +78,7 @@ class ReadPartitionTest extends SnippetTestCase
         $this->spannerClient->createSession(
             Argument::type(CreateSessionRequest::class),
             Argument::type('array')
-        )->willReturn(new SessionProto(['name' => self::SESSION]));
+        )->willReturn(new Session(['name' => self::SESSION]));
 
         $this->spannerClient->beginTransaction(
             Argument::type(BeginTransactionRequest::class),
@@ -96,10 +96,12 @@ class ReadPartitionTest extends SnippetTestCase
                     new Partition(['partition_token' => 'foo'])
                 ]
             ]));
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
 
         $client = new BatchClient(
             new Operation($this->spannerClient->reveal(), $this->serializer),
-            self::DATABASE
+            $session->reveal(),
         );
 
         $snippet = $this->snippetFromClass(ReadPartition::class);

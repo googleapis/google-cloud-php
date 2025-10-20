@@ -24,6 +24,7 @@ use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\OptionsValidator;
@@ -40,12 +41,13 @@ use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
 use InvalidArgumentException;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Represents a Cloud Spanner instance
@@ -77,6 +79,7 @@ class Instance
     private bool $returnInt64AsObject;
     private array $info;
     private int $isolationLevel;
+    private CacheItemPoolInterface|null $cacheItemPool;
 
     /**
      * Create an object representing a Cloud Spanner instance.
@@ -103,6 +106,7 @@ class Instance
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit platform
      *           compatibility. **Defaults to** false.
+     *     @type CacheItemPool $cacheItemPool
      *     @type array $instance An array representation of the instance object.
      * }
      */
@@ -121,6 +125,7 @@ class Instance
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
         $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
+        $this->cacheItemPool = $options['cacheItemPool'] ?? null;
         $this->info = $options['instance'] ?? [];
         $this->projectName = InstanceAdminClient::projectName($projectId);
         $this->optionsValidator = new OptionsValidator($serializer);
@@ -514,14 +519,14 @@ class Instance
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *         **Defaults to** `true` (enabled).
      *     @type array $defaultQueryOptions
-     *     @type SessionPoolInterface $sessionPool The session pool
-     *         implementation.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will
      *         be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *         platform compatibility. **Defaults to** false.
      *     @type string $databaseRole The user created database role which
      *         creates the session.
      *     @type array $database The database info.
+      *    @type SessionCache $session
+     *     @type LockInterface $lock
      *     @type int $isolationLevel The IsolationLevel set for the transaction.
      *           Check {@see IsolationLevel} for more details.
      * }
@@ -535,7 +540,7 @@ class Instance
             'returnint64AsObject',
             'databaseRole',
             'database',
-            'sessionPool',
+            'session',
             'lock',
             'isolationLevel',
         ]);
@@ -551,6 +556,19 @@ class Instance
             $databaseName = $name;
         }
 
+        if (!$session = $options['session'] ?? null) {
+            $session = new SessionCache(
+                $this->spannerClient,
+                $databaseName,
+                [
+                    'databaseRole' => $options['databaseRole'] ?? '',
+                    'lock' => $options['lock'] ?? null,
+                    'routeToLeader' => $this->routeToLeader,
+                    'cacheItemPool' => $this->cacheItemPool,
+                ]
+            );
+        }
+
         return new Database(
             $this->spannerClient,
             $this->databaseAdminClient,
@@ -558,6 +576,7 @@ class Instance
             $this,
             $this->projectId,
             $name,
+            $session,
             $options + [
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,

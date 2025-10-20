@@ -26,8 +26,7 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -41,14 +40,14 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class ArrayTypeTest extends SnippetTestCase
 {
+    const DATABASE = 'my-database';
+    const INSTANCE = 'my-instance';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
+
     use GrpcTestTrait;
     use ProphecyTrait;
     use ApiHelperTrait;
     use ResultGeneratorTrait;
-
-    const PROJECT = 'my-awesome-project';
-    const DATABASE = 'my-database';
-    const INSTANCE = 'my-instance';
 
     private $database;
     private $spannerClient;
@@ -62,23 +61,10 @@ class ArrayTypeTest extends SnippetTestCase
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
         $instance->directedReadOptions()->willReturn([]);
 
-        $session = $this->prophesize(Session::class);
-        $session->info()
-            ->willReturn([
-                'databaseName' => 'database'
-            ]);
-        $session->name()
-            ->willReturn('database');
-        $session->setExpiration(Argument::any());
-
-        $sessionPool = $this->prophesize(SessionPoolInterface::class);
-        $sessionPool->acquire(Argument::any())
-            ->willReturn($session->reveal());
-        $sessionPool->setDatabase(Argument::any())
-            ->willReturn(null);
-
         $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->serializer = new Serializer();
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
 
         $this->database = new Database(
             $this->spannerClient->reveal(),
@@ -87,7 +73,7 @@ class ArrayTypeTest extends SnippetTestCase
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
-            ['sessionPool' => $sessionPool->reveal()],
+            $session->reveal(),
         );
     }
 

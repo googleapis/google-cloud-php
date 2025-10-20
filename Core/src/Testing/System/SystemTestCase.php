@@ -28,6 +28,7 @@ use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Testing\System\DeletionQueue;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 /**
  * SystemTestCase can be extended to implement system tests
@@ -285,5 +286,12 @@ abstract class SystemTestCase extends TestCase
         if (self::isEmulatorUsed()) {
             self::markTestSkipped($reason ?: 'This test is not supported by the emulator.');
         }
+    }
+
+    protected static function getCacheItemPool()
+    {
+        return new FilesystemAdapter(
+            directory: __DIR__ . '/../../../../.cache'
+        );
     }
 }
