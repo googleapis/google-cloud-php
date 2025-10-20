@@ -103,13 +103,11 @@ class ComponentPackage
                 if ($nestedNs = str_replace('.', '\\', substr($matches[2], 0, strrpos($matches[2], '.')))) {
                     $nestedNsPos = strrpos($protoNs, $nestedNs);
                     if (false === $nestedNsPos) {
+                        // this should only occur for "keywords" in PHP needing to be prefixed by "PB" (e.g. `PBString`)
                         if (false === strpos($protoNs, '\\PB')) {
-                            // this should only occur due to the "keywords" in PHP needing to be prefixed by "PB",
-                            // for example `PBString`.
-                            throw new \Exception('Unexpected namespace found: ' . $protoNs);
+                            throw new \Exception(sprintf('Unexpected namespace found in %s: %s', $protoNs, $nestedNs));
                         }
-                        // skip this classs - use the others in the component instead
-                        continue;
+                        continue; // skip this classs - use the others in the component instead
                     }
                     $protoNs = substr_replace($protoNs, '', $nestedNsPos, strlen($nestedNs));
                     if (isset($protoPackages[$matches[1]]) && $protoPackages[$matches[1]] !== $protoNs) {
