@@ -25,6 +25,11 @@ class Fixtures
         return __DIR__ . '/fixtures/json-key-fixture.json';
     }
 
+    public static function SERVICE_ACCOUNT_FIXTURE()
+    {
+        return __DIR__ . '/fixtures/service-account-fixture.json';
+    }
+
     public static function SERVICE_FIXTURE()
     {
         return __DIR__ . '/fixtures/service-fixture.json';
