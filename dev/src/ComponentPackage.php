@@ -98,15 +98,34 @@ class ComponentPackage
                 $contents,
                 $matches
             ) && preg_match('/namespace (.*);/', $contents, $nsMatches)) {
-                // remove namespace (in case it's nested)
-                $protoPackages[$matches[1]] = str_replace(
-                    str_replace('.', '\\', substr($matches[2], 0, strrpos($matches[2], '.'))),
-                    '',
-                    $nsMatches[1]
-                );
+                $protoNs = $nsMatches[1];
+                // remove nested namespaces
+                if ($nestedNs = str_replace('.', '\\', substr($matches[2], 0, strrpos($matches[2], '.')))) {
+                    $nestedNsPos = strrpos($protoNs, $nestedNs);
+                    if (false === $nestedNsPos) {
+                        if (false === strpos($protoNs, '\\PB')) {
+                            // this should only occur due to the "keywords" in PHP needing to be prefixed by "PB",
+                            // for example `PBString`.
+                            throw new \Exception('Unexpected namespace found: ' . $protoNs);
+                        }
+                        // skip this classs - use the others in the component instead
+                        continue;
+                    }
+                    $protoNs = substr_replace($protoNs, '', $nestedNsPos, strlen($nestedNs));
+                    if (isset($protoPackages[$matches[1]]) && $protoPackages[$matches[1]] !== $protoNs) {
+                        throw new \Exception(sprintf(
+                            'Differing namespaces for "%s": %s and %s',
+                            $matches[1],
+                            $protoPackages[$matches[1]],
+                            $protoNs
+                        ));
+                    }
+                }
+                $protoPackages[$matches[1]] = $protoNs;
             }
         }
-        return array_unique($protoPackages);
+
+        return $protoPackages;
     }
 
     public function getBaseUri(): string
