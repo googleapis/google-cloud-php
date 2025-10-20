@@ -25,7 +25,10 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The display name of the
      * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to 128
-     * characters long and can consist of any UTF-8 characters.
+     * characters long and can consist of any UTF-8 characters. For continuous
+     * tuning, tuned_model_display_name will by default use the same display name
+     * as the pre-tuned model. If a new display name is provided, the tuning job
+     * will create a new model instead of a new version.
      *
      * Generated from protobuf field <code>string tuned_model_display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -146,6 +149,8 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *     @type string $base_model
      *           The base model that is being tuned. See [Supported
      *           models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/tuning#supported_models).
+     *     @type \Google\Cloud\AIPlatform\V1\PreTunedModel $pre_tuned_model
+     *           The pre-tuned model for continuous tuning.
      *     @type \Google\Cloud\AIPlatform\V1\SupervisedTuningSpec $supervised_tuning_spec
      *           Tuning Spec for Supervised Fine Tuning.
      *     @type string $name
@@ -154,7 +159,10 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *     @type string $tuned_model_display_name
      *           Optional. The display name of the
      *           [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to 128
-     *           characters long and can consist of any UTF-8 characters.
+     *           characters long and can consist of any UTF-8 characters. For continuous
+     *           tuning, tuned_model_display_name will by default use the same display name
+     *           as the pre-tuned model. If a new display name is provided, the tuning job
+     *           will create a new model instead of a new version.
      *     @type string $description
      *           Optional. The description of the
      *           [TuningJob][google.cloud.aiplatform.v1.TuningJob].
@@ -248,6 +256,37 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The pre-tuned model for continuous tuning.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PreTunedModel pre_tuned_model = 31;</code>
+     * @return \Google\Cloud\AIPlatform\V1\PreTunedModel|null
+     */
+    public function getPreTunedModel()
+    {
+        return $this->readOneof(31);
+    }
+
+    public function hasPreTunedModel()
+    {
+        return $this->hasOneof(31);
+    }
+
+    /**
+     * The pre-tuned model for continuous tuning.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PreTunedModel pre_tuned_model = 31;</code>
+     * @param \Google\Cloud\AIPlatform\V1\PreTunedModel $var
+     * @return $this
+     */
+    public function setPreTunedModel($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PreTunedModel::class);
+        $this->writeOneof(31, $var);
+
+        return $this;
+    }
+
+    /**
      * Tuning Spec for Supervised Fine Tuning.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SupervisedTuningSpec supervised_tuning_spec = 5;</code>
@@ -309,7 +348,10 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The display name of the
      * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to 128
-     * characters long and can consist of any UTF-8 characters.
+     * characters long and can consist of any UTF-8 characters. For continuous
+     * tuning, tuned_model_display_name will by default use the same display name
+     * as the pre-tuned model. If a new display name is provided, the tuning job
+     * will create a new model instead of a new version.
      *
      * Generated from protobuf field <code>string tuned_model_display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -322,7 +364,10 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The display name of the
      * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to 128
-     * characters long and can consist of any UTF-8 characters.
+     * characters long and can consist of any UTF-8 characters. For continuous
+     * tuning, tuned_model_display_name will by default use the same display name
+     * as the pre-tuned model. If a new display name is provided, the tuning job
+     * will create a new model instead of a new version.
      *
      * Generated from protobuf field <code>string tuned_model_display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
