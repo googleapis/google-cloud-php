@@ -288,11 +288,15 @@ class Component
     {
         $protoNamespaces = [];
         $componentPackages = $this->getComponentPackages();
+        echo ($this->getName()) . ":" . PHP_EOL;
         foreach ($this->namespaces as $namespace => $dir) {
             $componentPackages = $dir === 'src'
                 ? $this->getComponentPackages()
                 : [new ComponentPackage($this, str_replace('src/', '', $dir))];
-
+            var_dump(array_map(
+                fn($componentPackage) => $componentPackage->getName(),
+                $componentPackages,
+            ));
             $protoNamespaces = array_reduce(
                 $componentPackages,
                 fn($protoNamespaces, $pkg) => array_merge($protoNamespaces, $pkg->getProtoNamespaces()),

@@ -79,6 +79,7 @@ class ComponentTest extends TestCase
     {
         // ensure there are no conflicts - this would throw an exception
         $allProtoNamespaces = Component::getProtoPackageToNamespaceMap();
+        var_dump($allProtoNamespaces);
 
         // verify a few are as expected
         $this->assertEquals('Google\Cloud\Bigtable\V2', $allProtoNamespaces['google.bigtable.v2']);
