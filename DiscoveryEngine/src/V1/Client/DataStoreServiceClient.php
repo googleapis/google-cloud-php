@@ -89,9 +89,7 @@ final class DataStoreServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -210,8 +208,13 @@ final class DataStoreServiceClient
      *
      * @return string The formatted crypto_key_versions resource.
      */
-    public static function cryptoKeyVersionsName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
-    {
+    public static function cryptoKeyVersionsName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
         return self::getPathTemplate('cryptoKeyVersions')->render([
             'project' => $project,
             'location' => $location,
@@ -290,8 +293,11 @@ final class DataStoreServiceClient
      *
      * @return string The formatted identity_mapping_store resource.
      */
-    public static function identityMappingStoreName(string $project, string $location, string $identityMappingStore): string
-    {
+    public static function identityMappingStoreName(
+        string $project,
+        string $location,
+        string $identityMappingStore
+    ): string {
         return self::getPathTemplate('identityMappingStore')->render([
             'project' => $project,
             'location' => $location,
@@ -327,8 +333,12 @@ final class DataStoreServiceClient
      *
      * @return string The formatted project_location_collection_data_store resource.
      */
-    public static function projectLocationCollectionDataStoreName(string $project, string $location, string $collection, string $dataStore): string
-    {
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStore')->render([
             'project' => $project,
             'location' => $location,
@@ -348,8 +358,12 @@ final class DataStoreServiceClient
      *
      * @return string The formatted project_location_collection_data_store_documentProcessingConfig resource.
      */
-    public static function projectLocationCollectionDataStoreDocumentProcessingConfigName(string $project, string $location, string $collection, string $dataStore): string
-    {
+    public static function projectLocationCollectionDataStoreDocumentProcessingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreDocumentProcessingConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -370,8 +384,13 @@ final class DataStoreServiceClient
      *
      * @return string The formatted project_location_collection_data_store_schema resource.
      */
-    public static function projectLocationCollectionDataStoreSchemaName(string $project, string $location, string $collection, string $dataStore, string $schema): string
-    {
+    public static function projectLocationCollectionDataStoreSchemaName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $schema
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreSchema')->render([
             'project' => $project,
             'location' => $location,
@@ -410,8 +429,11 @@ final class DataStoreServiceClient
      *
      * @return string The formatted project_location_data_store_documentProcessingConfig resource.
      */
-    public static function projectLocationDataStoreDocumentProcessingConfigName(string $project, string $location, string $dataStore): string
-    {
+    public static function projectLocationDataStoreDocumentProcessingConfigName(
+        string $project,
+        string $location,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreDocumentProcessingConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -430,8 +452,12 @@ final class DataStoreServiceClient
      *
      * @return string The formatted project_location_data_store_schema resource.
      */
-    public static function projectLocationDataStoreSchemaName(string $project, string $location, string $dataStore, string $schema): string
-    {
+    public static function projectLocationDataStoreSchemaName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $schema
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreSchema')->render([
             'project' => $project,
             'location' => $location,

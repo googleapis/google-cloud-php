@@ -85,9 +85,7 @@ final class SessionServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -120,14 +118,50 @@ final class SessionServiceClient
      *
      * @return string The formatted answer resource.
      */
-    public static function answerName(string $project, string $location, string $dataStore, string $session, string $answer): string
-    {
+    public static function answerName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $session,
+        string $answer
+    ): string {
         return self::getPathTemplate('answer')->render([
             'project' => $project,
             'location' => $location,
             'data_store' => $dataStore,
             'session' => $session,
             'answer' => $answer,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * assist_answer resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $session
+     * @param string $assistAnswer
+     *
+     * @return string The formatted assist_answer resource.
+     */
+    public static function assistAnswerName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $session,
+        string $assistAnswer
+    ): string {
+        return self::getPathTemplate('assistAnswer')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'session' => $session,
+            'assist_answer' => $assistAnswer,
         ]);
     }
 
@@ -144,8 +178,14 @@ final class SessionServiceClient
      *
      * @return string The formatted chunk resource.
      */
-    public static function chunkName(string $project, string $location, string $dataStore, string $branch, string $document, string $chunk): string
-    {
+    public static function chunkName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document,
+        string $chunk
+    ): string {
         return self::getPathTemplate('chunk')->render([
             'project' => $project,
             'location' => $location,
@@ -187,8 +227,13 @@ final class SessionServiceClient
      *
      * @return string The formatted document resource.
      */
-    public static function documentName(string $project, string $location, string $dataStore, string $branch, string $document): string
-    {
+    public static function documentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
         return self::getPathTemplate('document')->render([
             'project' => $project,
             'location' => $location,
@@ -209,8 +254,12 @@ final class SessionServiceClient
      *
      * @return string The formatted project_location_collection_data_store resource.
      */
-    public static function projectLocationCollectionDataStoreName(string $project, string $location, string $collection, string $dataStore): string
-    {
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStore')->render([
             'project' => $project,
             'location' => $location,
@@ -232,8 +281,14 @@ final class SessionServiceClient
      *
      * @return string The formatted project_location_collection_data_store_branch_document resource.
      */
-    public static function projectLocationCollectionDataStoreBranchDocumentName(string $project, string $location, string $collection, string $dataStore, string $branch, string $document): string
-    {
+    public static function projectLocationCollectionDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreBranchDocument')->render([
             'project' => $project,
             'location' => $location,
@@ -258,8 +313,15 @@ final class SessionServiceClient
      *
      * @return string The formatted project_location_collection_data_store_branch_document_chunk resource.
      */
-    public static function projectLocationCollectionDataStoreBranchDocumentChunkName(string $project, string $location, string $collection, string $dataStore, string $branch, string $document, string $chunk): string
-    {
+    public static function projectLocationCollectionDataStoreBranchDocumentChunkName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $branch,
+        string $document,
+        string $chunk
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreBranchDocumentChunk')->render([
             'project' => $project,
             'location' => $location,
@@ -283,8 +345,13 @@ final class SessionServiceClient
      *
      * @return string The formatted project_location_collection_data_store_session resource.
      */
-    public static function projectLocationCollectionDataStoreSessionName(string $project, string $location, string $collection, string $dataStore, string $session): string
-    {
+    public static function projectLocationCollectionDataStoreSessionName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $session
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreSession')->render([
             'project' => $project,
             'location' => $location,
@@ -307,8 +374,14 @@ final class SessionServiceClient
      *
      * @return string The formatted project_location_collection_data_store_session_answer resource.
      */
-    public static function projectLocationCollectionDataStoreSessionAnswerName(string $project, string $location, string $collection, string $dataStore, string $session, string $answer): string
-    {
+    public static function projectLocationCollectionDataStoreSessionAnswerName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $session,
+        string $answer
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreSessionAnswer')->render([
             'project' => $project,
             'location' => $location,
@@ -331,8 +404,13 @@ final class SessionServiceClient
      *
      * @return string The formatted project_location_collection_engine_session resource.
      */
-    public static function projectLocationCollectionEngineSessionName(string $project, string $location, string $collection, string $engine, string $session): string
-    {
+    public static function projectLocationCollectionEngineSessionName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $session
+    ): string {
         return self::getPathTemplate('projectLocationCollectionEngineSession')->render([
             'project' => $project,
             'location' => $location,
@@ -355,8 +433,14 @@ final class SessionServiceClient
      *
      * @return string The formatted project_location_collection_engine_session_answer resource.
      */
-    public static function projectLocationCollectionEngineSessionAnswerName(string $project, string $location, string $collection, string $engine, string $session, string $answer): string
-    {
+    public static function projectLocationCollectionEngineSessionAnswerName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $session,
+        string $answer
+    ): string {
         return self::getPathTemplate('projectLocationCollectionEngineSessionAnswer')->render([
             'project' => $project,
             'location' => $location,
@@ -398,8 +482,13 @@ final class SessionServiceClient
      *
      * @return string The formatted project_location_data_store_branch_document resource.
      */
-    public static function projectLocationDataStoreBranchDocumentName(string $project, string $location, string $dataStore, string $branch, string $document): string
-    {
+    public static function projectLocationDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreBranchDocument')->render([
             'project' => $project,
             'location' => $location,
@@ -422,8 +511,14 @@ final class SessionServiceClient
      *
      * @return string The formatted project_location_data_store_branch_document_chunk resource.
      */
-    public static function projectLocationDataStoreBranchDocumentChunkName(string $project, string $location, string $dataStore, string $branch, string $document, string $chunk): string
-    {
+    public static function projectLocationDataStoreBranchDocumentChunkName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document,
+        string $chunk
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreBranchDocumentChunk')->render([
             'project' => $project,
             'location' => $location,
@@ -445,8 +540,12 @@ final class SessionServiceClient
      *
      * @return string The formatted project_location_data_store_session resource.
      */
-    public static function projectLocationDataStoreSessionName(string $project, string $location, string $dataStore, string $session): string
-    {
+    public static function projectLocationDataStoreSessionName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $session
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreSession')->render([
             'project' => $project,
             'location' => $location,
@@ -467,8 +566,13 @@ final class SessionServiceClient
      *
      * @return string The formatted project_location_data_store_session_answer resource.
      */
-    public static function projectLocationDataStoreSessionAnswerName(string $project, string $location, string $dataStore, string $session, string $answer): string
-    {
+    public static function projectLocationDataStoreSessionAnswerName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $session,
+        string $answer
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreSessionAnswer')->render([
             'project' => $project,
             'location' => $location,
@@ -504,6 +608,7 @@ final class SessionServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - answer: projects/{project}/locations/{location}/dataStores/{data_store}/sessions/{session}/answers/{answer}
+     * - assistAnswer: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/assistAnswers/{assist_answer}
      * - chunk: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}/chunks/{chunk}
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - document: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}

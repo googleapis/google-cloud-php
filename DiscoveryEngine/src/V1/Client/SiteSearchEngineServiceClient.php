@@ -116,9 +116,7 @@ final class SiteSearchEngineServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -135,7 +133,8 @@ final class SiteSearchEngineServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/site_search_engine_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/site_search_engine_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -200,8 +199,12 @@ final class SiteSearchEngineServiceClient
      *
      * @return string The formatted project_location_collection_data_store_siteSearchEngine resource.
      */
-    public static function projectLocationCollectionDataStoreSiteSearchEngineName(string $project, string $location, string $collection, string $dataStore): string
-    {
+    public static function projectLocationCollectionDataStoreSiteSearchEngineName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreSiteSearchEngine')->render([
             'project' => $project,
             'location' => $location,
@@ -222,8 +225,13 @@ final class SiteSearchEngineServiceClient
      *
      * @return string The formatted project_location_collection_data_store_sitemap resource.
      */
-    public static function projectLocationCollectionDataStoreSitemapName(string $project, string $location, string $collection, string $dataStore, string $sitemap): string
-    {
+    public static function projectLocationCollectionDataStoreSitemapName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $sitemap
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreSitemap')->render([
             'project' => $project,
             'location' => $location,
@@ -245,8 +253,13 @@ final class SiteSearchEngineServiceClient
      *
      * @return string The formatted project_location_collection_data_store_target_site resource.
      */
-    public static function projectLocationCollectionDataStoreTargetSiteName(string $project, string $location, string $collection, string $dataStore, string $targetSite): string
-    {
+    public static function projectLocationCollectionDataStoreTargetSiteName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $targetSite
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreTargetSite')->render([
             'project' => $project,
             'location' => $location,
@@ -266,8 +279,11 @@ final class SiteSearchEngineServiceClient
      *
      * @return string The formatted project_location_data_store_siteSearchEngine resource.
      */
-    public static function projectLocationDataStoreSiteSearchEngineName(string $project, string $location, string $dataStore): string
-    {
+    public static function projectLocationDataStoreSiteSearchEngineName(
+        string $project,
+        string $location,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreSiteSearchEngine')->render([
             'project' => $project,
             'location' => $location,
@@ -286,8 +302,12 @@ final class SiteSearchEngineServiceClient
      *
      * @return string The formatted project_location_data_store_sitemap resource.
      */
-    public static function projectLocationDataStoreSitemapName(string $project, string $location, string $dataStore, string $sitemap): string
-    {
+    public static function projectLocationDataStoreSitemapName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $sitemap
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreSitemap')->render([
             'project' => $project,
             'location' => $location,
@@ -307,8 +327,12 @@ final class SiteSearchEngineServiceClient
      *
      * @return string The formatted project_location_data_store_target_site resource.
      */
-    public static function projectLocationDataStoreTargetSiteName(string $project, string $location, string $dataStore, string $targetSite): string
-    {
+    public static function projectLocationDataStoreTargetSiteName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $targetSite
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreTargetSite')->render([
             'project' => $project,
             'location' => $location,
@@ -368,8 +392,12 @@ final class SiteSearchEngineServiceClient
      *
      * @return string The formatted target_site resource.
      */
-    public static function targetSiteName(string $project, string $location, string $dataStore, string $targetSite): string
-    {
+    public static function targetSiteName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $targetSite
+    ): string {
         return self::getPathTemplate('targetSite')->render([
             'project' => $project,
             'location' => $location,
@@ -519,8 +547,10 @@ final class SiteSearchEngineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateTargetSites(BatchCreateTargetSitesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchCreateTargetSites(
+        BatchCreateTargetSitesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchCreateTargetSites', $request, $callOptions)->wait();
     }
 
@@ -548,8 +578,10 @@ final class SiteSearchEngineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchVerifyTargetSites(BatchVerifyTargetSitesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchVerifyTargetSites(
+        BatchVerifyTargetSitesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchVerifyTargetSites', $request, $callOptions)->wait();
     }
 
@@ -683,8 +715,10 @@ final class SiteSearchEngineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function disableAdvancedSiteSearch(DisableAdvancedSiteSearchRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function disableAdvancedSiteSearch(
+        DisableAdvancedSiteSearchRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DisableAdvancedSiteSearch', $request, $callOptions)->wait();
     }
 
@@ -710,8 +744,10 @@ final class SiteSearchEngineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function enableAdvancedSiteSearch(EnableAdvancedSiteSearchRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function enableAdvancedSiteSearch(
+        EnableAdvancedSiteSearchRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('EnableAdvancedSiteSearch', $request, $callOptions)->wait();
     }
 
@@ -739,8 +775,10 @@ final class SiteSearchEngineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function fetchDomainVerificationStatus(FetchDomainVerificationStatusRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function fetchDomainVerificationStatus(
+        FetchDomainVerificationStatusRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('FetchDomainVerificationStatus', $request, $callOptions);
     }
 
