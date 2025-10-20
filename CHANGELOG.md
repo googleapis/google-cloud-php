@@ -1,5 +1,138 @@
 # Changelog
 
+## 0.306.0
+
+<details><summary>google/cloud-ai-platform 1.41.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add additional proto fields and GenerateFetchAccessToken API ([#8655](https://github.com/googleapis/google-cloud-php/issues/8655)) ([1010b2f](https://github.com/googleapis/google-cloud-php/commit/1010b2feef4f7734ae42cf730294d6f12e53e79e))
+* [AiPlatform] add aspect_ratio and image_config for v1 version ([#8660](https://github.com/googleapis/google-cloud-php/issues/8660)) ([1237077](https://github.com/googleapis/google-cloud-php/commit/123707732c4c369099dbf9593dbe60e5a35ea884))
+* [AiPlatform] Continuous Tuning ([#8669](https://github.com/googleapis/google-cloud-php/issues/8669)) ([a0c2a2b](https://github.com/googleapis/google-cloud-php/commit/a0c2a2b3cea13b1a6506fec4e892b9ac9218cca9))
+
+</details>
+
+<details><summary>google/apps-chat 0.14.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Add `Carousel` widget ([#8664](https://github.com/googleapis/google-cloud-php/issues/8664)) ([4385e0c](https://github.com/googleapis/google-cloud-php/commit/4385e0c126448ec19df9310767867a006c551d5b))
+
+</details>
+
+<details><summary>google/cloud-capacityplanner 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce CapacityPlanner ([#8659](https://github.com/googleapis/google-cloud-php/issues/8659)) ([3ad3766](https://github.com/googleapis/google-cloud-php/commit/3ad37661f7e9e60912dc95e586129ef05bca69e7))
+
+</details>
+
+<details><summary>google/cloud-core 1.68.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Spanner V2 ([#7841](https://github.com/googleapis/google-cloud-php/issues/7841))
+
+### Features
+
+* Spanner V2 ([#7841](https://github.com/googleapis/google-cloud-php/issues/7841)) ([bfc0dd6](https://github.com/googleapis/google-cloud-php/commit/bfc0dd65242facf28968297cdedf5fa32776c126))
+* **Spanner:** Multiplexed sessions ([#8666](https://github.com/googleapis/google-cloud-php/issues/8666)) ([9e5f26a](https://github.com/googleapis/google-cloud-php/commit/9e5f26aa30b7fa3df030e3ad49582b5e6865e5a4))
+
+
+### Bug Fixes
+
+* Don't set `keyFile` when `credentialsFetcher` is given ([#8657](https://github.com/googleapis/google-cloud-php/issues/8657)) ([4675170](https://github.com/googleapis/google-cloud-php/commit/4675170e3b12994f0328a7147d2cef4cadae4b4e))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.0.0-RC1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.10.0</summary>
+
+
+
+### Features
+
+* [DiscoveryEngine] Include AssistAnswer as a part of the Session ([#8668](https://github.com/googleapis/google-cloud-php/issues/8668)) ([b607f92](https://github.com/googleapis/google-cloud-php/commit/b607f920bbdb8c1adc0b6722022026c144cc36f9))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.9.0</summary>
+
+
+
+### Features
+
+* [Dlp] inspect and deid templates in RedactImage ([#8656](https://github.com/googleapis/google-cloud-php/issues/8656)) ([42f8e11](https://github.com/googleapis/google-cloud-php/commit/42f8e11b77f6d2d0599fd6345a8900c01bfe99b6))
+
+</details>
+
+<details><summary>google/maps-routeoptimization 0.6.0</summary>
+
+
+
+### Features
+
+* [MapsRouteOptimization] add experimental Load Costs feature ([#8662](https://github.com/googleapis/google-cloud-php/issues/8662)) ([680bcbb](https://github.com/googleapis/google-cloud-php/commit/680bcbb03ef078485e56c0cff9d9c0ea2cbe5f54))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.16.0</summary>
+
+
+
+### Features
+
+* [PubSub] Annotate some resource fields with their corresponding API types ([#8663](https://github.com/googleapis/google-cloud-php/issues/8663)) ([ef9c9d1](https://github.com/googleapis/google-cloud-php/commit/ef9c9d198aebda89d447b72d0dabfa0c493f0a1f))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Spanner V2 ([#7841](https://github.com/googleapis/google-cloud-php/issues/7841))
+* **php:** Migrate admin services to new LRO client ([#8637](https://github.com/googleapis/google-cloud-php/issues/8637))
+* Gencode for Spanner V2 ([#7840](https://github.com/googleapis/google-cloud-php/issues/7840))
+
+### Features
+
+* Spanner V2 ([#7841](https://github.com/googleapis/google-cloud-php/issues/7841)) ([bfc0dd6](https://github.com/googleapis/google-cloud-php/commit/bfc0dd65242facf28968297cdedf5fa32776c126))
+* **Spanner:** Multiplexed sessions ([#8666](https://github.com/googleapis/google-cloud-php/issues/8666)) ([9e5f26a](https://github.com/googleapis/google-cloud-php/commit/9e5f26aa30b7fa3df030e3ad49582b5e6865e5a4))
+
+
+### Chores
+
+* Gencode for Spanner V2 ([#7840](https://github.com/googleapis/google-cloud-php/issues/7840)) ([e7e65fc](https://github.com/googleapis/google-cloud-php/commit/e7e65fc80a5ffbdf31a78b663208def4bbf3f6de))
+* **php:** Migrate admin services to new LRO client ([#8637](https://github.com/googleapis/google-cloud-php/issues/8637)) ([670112d](https://github.com/googleapis/google-cloud-php/commit/670112d9da057177cb3ec0d867ccb4255a2ea3a3))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.6.0</summary>
+
+
+
+### Features
+
+* [TextToSpeech] add `relax_safety_filters` proto field for Gemini TTS ([#8667](https://github.com/googleapis/google-cloud-php/issues/8667)) ([b67a2c3](https://github.com/googleapis/google-cloud-php/commit/b67a2c323001bca3a108a972eea9a0c0d34f82e5))
+
+</details>
+
 ## 0.305.0
 
 <details><summary>google/cloud-compute 2.2.0</summary>
