@@ -20,7 +20,7 @@ class IngestionFailureEvent extends \Google\Protobuf\Internal\Message
      * Required. Name of the import topic. Format is:
      * projects/{project_name}/topics/{topic_name}.
      *
-     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $topic = '';
     /**
@@ -63,7 +63,7 @@ class IngestionFailureEvent extends \Google\Protobuf\Internal\Message
      * Required. Name of the import topic. Format is:
      * projects/{project_name}/topics/{topic_name}.
      *
-     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTopic()
@@ -75,7 +75,7 @@ class IngestionFailureEvent extends \Google\Protobuf\Internal\Message
      * Required. Name of the import topic. Format is:
      * projects/{project_name}/topics/{topic_name}.
      *
-     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

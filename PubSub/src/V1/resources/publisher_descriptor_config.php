@@ -196,6 +196,7 @@ return [
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'templateMap' => [
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'deletedTopic' => '_deleted-topic_',
                 'project' => 'projects/{project}',
                 'projectTopic' => 'projects/{project}/topics/{topic}',
