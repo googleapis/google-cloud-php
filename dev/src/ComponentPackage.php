@@ -98,6 +98,11 @@ class ComponentPackage
                 $contents,
                 $matches
             ) && preg_match('/namespace (.*);/', $contents, $nsMatches)) {
+                if ($this->getName() === 'Executions/V1') {
+                    var_dump($matches, $nsMatches);
+                    var_dump(strrpos($matches[2], '.'));
+                    var_dump(substr($matches[2], 0, strrpos($matches[2], '.')));
+                }
                 // remove namespace (in case it's nested)
                 $protoPackages[$matches[1]] = str_replace(
                     str_replace('.', '\\', substr($matches[2], 0, strrpos($matches[2], '.'))),
