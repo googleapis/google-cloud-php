@@ -18,7 +18,14 @@ class TunedModel extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name of the TunedModel. Format:
-     * `projects/{project}/locations/{location}/models/{model}`.
+     * `projects/{project}/locations/{location}/models/{model}&#64;{version_id}`
+     * When tuning from a base model, the version ID will be 1.
+     * For continuous tuning, if the provided tuned_model_display_name is set and
+     * different from parent model's display name, the tuned model will have a new
+     * parent model with version 1. Otherwise the version id will be incremented
+     * by 1 from the last version ID in the parent model. E.g.,
+     * `projects/{project}/locations/{location}/models/{model}&#64;{last_version_id +
+     * 1}`
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -47,7 +54,14 @@ class TunedModel extends \Google\Protobuf\Internal\Message
      *
      *     @type string $model
      *           Output only. The resource name of the TunedModel. Format:
-     *           `projects/{project}/locations/{location}/models/{model}`.
+     *           `projects/{project}/locations/{location}/models/{model}&#64;{version_id}`
+     *           When tuning from a base model, the version ID will be 1.
+     *           For continuous tuning, if the provided tuned_model_display_name is set and
+     *           different from parent model's display name, the tuned model will have a new
+     *           parent model with version 1. Otherwise the version id will be incremented
+     *           by 1 from the last version ID in the parent model. E.g.,
+     *           `projects/{project}/locations/{location}/models/{model}&#64;{last_version_id +
+     *           1}`
      *     @type string $endpoint
      *           Output only. A resource name of an Endpoint. Format:
      *           `projects/{project}/locations/{location}/endpoints/{endpoint}`.
@@ -64,7 +78,14 @@ class TunedModel extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the TunedModel. Format:
-     * `projects/{project}/locations/{location}/models/{model}`.
+     * `projects/{project}/locations/{location}/models/{model}&#64;{version_id}`
+     * When tuning from a base model, the version ID will be 1.
+     * For continuous tuning, if the provided tuned_model_display_name is set and
+     * different from parent model's display name, the tuned model will have a new
+     * parent model with version 1. Otherwise the version id will be incremented
+     * by 1 from the last version ID in the parent model. E.g.,
+     * `projects/{project}/locations/{location}/models/{model}&#64;{last_version_id +
+     * 1}`
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -76,7 +97,14 @@ class TunedModel extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the TunedModel. Format:
-     * `projects/{project}/locations/{location}/models/{model}`.
+     * `projects/{project}/locations/{location}/models/{model}&#64;{version_id}`
+     * When tuning from a base model, the version ID will be 1.
+     * For continuous tuning, if the provided tuned_model_display_name is set and
+     * different from parent model's display name, the tuned model will have a new
+     * parent model with version 1. Otherwise the version id will be incremented
+     * by 1 from the last version ID in the parent model. E.g.,
+     * `projects/{project}/locations/{location}/models/{model}&#64;{last_version_id +
+     * 1}`
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
