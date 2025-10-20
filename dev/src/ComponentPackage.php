@@ -106,7 +106,9 @@ class ComponentPackage
                 );
             }
         }
-        return array_unique($protoPackages);
+        var_dump($protoPackages);
+        return $protoPackages;
+        // return array_unique($protoPackages);
     }
 
     public function getBaseUri(): string
