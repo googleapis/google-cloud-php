@@ -82,9 +82,7 @@ final class SearchTuningServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -185,8 +183,12 @@ final class SearchTuningServiceClient
      *
      * @return string The formatted project_location_collection_data_store resource.
      */
-    public static function projectLocationCollectionDataStoreName(string $project, string $location, string $collection, string $dataStore): string
-    {
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStore')->render([
             'project' => $project,
             'location' => $location,
@@ -347,8 +349,10 @@ final class SearchTuningServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCustomModels(ListCustomModelsRequest $request, array $callOptions = []): ListCustomModelsResponse
-    {
+    public function listCustomModels(
+        ListCustomModelsRequest $request,
+        array $callOptions = []
+    ): ListCustomModelsResponse {
         return $this->startApiCall('ListCustomModels', $request, $callOptions)->wait();
     }
 

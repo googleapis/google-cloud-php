@@ -73,9 +73,7 @@ final class AssistantServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -108,8 +106,13 @@ final class AssistantServiceClient
      *
      * @return string The formatted assistant resource.
      */
-    public static function assistantName(string $project, string $location, string $collection, string $engine, string $assistant): string
-    {
+    public static function assistantName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $assistant
+    ): string {
         return self::getPathTemplate('assistant')->render([
             'project' => $project,
             'location' => $location,
@@ -149,8 +152,12 @@ final class AssistantServiceClient
      *
      * @return string The formatted project_location_collection_data_store resource.
      */
-    public static function projectLocationCollectionDataStoreName(string $project, string $location, string $collection, string $dataStore): string
-    {
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStore')->render([
             'project' => $project,
             'location' => $location,
@@ -171,8 +178,13 @@ final class AssistantServiceClient
      *
      * @return string The formatted project_location_collection_data_store_session resource.
      */
-    public static function projectLocationCollectionDataStoreSessionName(string $project, string $location, string $collection, string $dataStore, string $session): string
-    {
+    public static function projectLocationCollectionDataStoreSessionName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $session
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreSession')->render([
             'project' => $project,
             'location' => $location,
@@ -194,8 +206,13 @@ final class AssistantServiceClient
      *
      * @return string The formatted project_location_collection_engine_session resource.
      */
-    public static function projectLocationCollectionEngineSessionName(string $project, string $location, string $collection, string $engine, string $session): string
-    {
+    public static function projectLocationCollectionEngineSessionName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $session
+    ): string {
         return self::getPathTemplate('projectLocationCollectionEngineSession')->render([
             'project' => $project,
             'location' => $location,
@@ -235,8 +252,12 @@ final class AssistantServiceClient
      *
      * @return string The formatted project_location_data_store_session resource.
      */
-    public static function projectLocationDataStoreSessionName(string $project, string $location, string $dataStore, string $session): string
-    {
+    public static function projectLocationDataStoreSessionName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $session
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreSession')->render([
             'project' => $project,
             'location' => $location,

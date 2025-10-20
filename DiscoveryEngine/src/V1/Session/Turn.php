@@ -43,6 +43,17 @@ class Turn extends \Google\Protobuf\Internal\Message
      */
     protected $detailed_answer = null;
     /**
+     * Output only. In
+     * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
+     * API, if
+     * [GetSessionRequest.include_answer_details][google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details]
+     * is set to true, this field will be populated when getting assistant
+     * session.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer detailed_assist_answer = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $detailed_assist_answer = null;
+    /**
      * Optional. Represents metadata related to the query config, for example
      * LLM model and version used, model parameters (temperature, grounding
      * parameters, etc.). The prefix "google." is reserved for Google-developed
@@ -71,6 +82,13 @@ class Turn extends \Google\Protobuf\Internal\Message
      *           API, if
      *           [GetSessionRequest.include_answer_details][google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details]
      *           is set to true, this field will be populated when getting answer query
+     *           session.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AssistAnswer $detailed_assist_answer
+     *           Output only. In
+     *           [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
+     *           API, if
+     *           [GetSessionRequest.include_answer_details][google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details]
+     *           is set to true, this field will be populated when getting assistant
      *           session.
      *     @type array|\Google\Protobuf\Internal\MapField $query_config
      *           Optional. Represents metadata related to the query config, for example
@@ -194,6 +212,52 @@ class Turn extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Answer::class);
         $this->detailed_answer = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. In
+     * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
+     * API, if
+     * [GetSessionRequest.include_answer_details][google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details]
+     * is set to true, this field will be populated when getting assistant
+     * session.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer detailed_assist_answer = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\AssistAnswer|null
+     */
+    public function getDetailedAssistAnswer()
+    {
+        return $this->detailed_assist_answer;
+    }
+
+    public function hasDetailedAssistAnswer()
+    {
+        return isset($this->detailed_assist_answer);
+    }
+
+    public function clearDetailedAssistAnswer()
+    {
+        unset($this->detailed_assist_answer);
+    }
+
+    /**
+     * Output only. In
+     * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
+     * API, if
+     * [GetSessionRequest.include_answer_details][google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details]
+     * is set to true, this field will be populated when getting assistant
+     * session.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer detailed_assist_answer = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AssistAnswer $var
+     * @return $this
+     */
+    public function setDetailedAssistAnswer($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AssistAnswer::class);
+        $this->detailed_assist_answer = $var;
 
         return $this;
     }
