@@ -286,8 +286,11 @@ final class ChatServiceClient
      *
      * @return string The formatted quoted_message_metadata resource.
      */
-    public static function quotedMessageMetadataName(string $space, string $message, string $quotedMessageMetadata): string
-    {
+    public static function quotedMessageMetadataName(
+        string $space,
+        string $message,
+        string $quotedMessageMetadata
+    ): string {
         return self::getPathTemplate('quotedMessageMetadata')->render([
             'space' => $space,
             'message' => $message,
@@ -570,8 +573,10 @@ final class ChatServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function completeImportSpace(CompleteImportSpaceRequest $request, array $callOptions = []): CompleteImportSpaceResponse
-    {
+    public function completeImportSpace(
+        CompleteImportSpaceRequest $request,
+        array $callOptions = []
+    ): CompleteImportSpaceResponse {
         return $this->startApiCall('CompleteImportSpace', $request, $callOptions)->wait();
     }
 
@@ -1457,8 +1462,10 @@ final class ChatServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getSpaceNotificationSetting(GetSpaceNotificationSettingRequest $request, array $callOptions = []): SpaceNotificationSetting
-    {
+    public function getSpaceNotificationSetting(
+        GetSpaceNotificationSettingRequest $request,
+        array $callOptions = []
+    ): SpaceNotificationSetting {
         return $this->startApiCall('GetSpaceNotificationSetting', $request, $callOptions)->wait();
     }
 
@@ -2122,8 +2129,10 @@ final class ChatServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateSpaceNotificationSetting(UpdateSpaceNotificationSettingRequest $request, array $callOptions = []): SpaceNotificationSetting
-    {
+    public function updateSpaceNotificationSetting(
+        UpdateSpaceNotificationSettingRequest $request,
+        array $callOptions = []
+    ): SpaceNotificationSetting {
         return $this->startApiCall('UpdateSpaceNotificationSetting', $request, $callOptions)->wait();
     }
 
@@ -2198,8 +2207,10 @@ final class ChatServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function uploadAttachment(UploadAttachmentRequest $request, array $callOptions = []): UploadAttachmentResponse
-    {
+    public function uploadAttachment(
+        UploadAttachmentRequest $request,
+        array $callOptions = []
+    ): UploadAttachmentResponse {
         return $this->startApiCall('UploadAttachment', $request, $callOptions)->wait();
     }
 }

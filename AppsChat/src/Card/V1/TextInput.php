@@ -10,8 +10,11 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A field in which users can enter text. Supports suggestions and on-change
- * actions. For an example in Google Chat apps, see [Add a field in which a user
- * can enter
+ * actions.
+ * Supports form submission validation. When `Action.all_widgets_are_required`
+ * is set to `true` or this widget is specified in `Action.required_widgets`,
+ * the submission action is blocked unless a value is entered. For an example in
+ * Google Chat apps, see [Add a field in which a user can enter
  * text](https://developers.google.com/workspace/chat/design-interactive-card-dialog#add_a_field_in_which_a_user_can_enter_text).
  * Chat apps receive and can process the value of entered text during form input
  * events. For details about working with form inputs, see [Receive form
@@ -19,7 +22,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * When you need to collect undefined or abstract data from users,
  * use a text input. To collect defined or enumerated data from users, use the
  * [SelectionInput][google.apps.card.v1.SelectionInput] widget.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.TextInput</code>
@@ -91,7 +94,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set
      * to `MULTIPLE_LINE`.
      * [Google Workspace
-     * Add-ons and Chat apps](https://developers.google.com/workspace/extend):
+     * add-ons and Chat apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Suggestions initial_suggestions = 7;</code>
      */
@@ -104,11 +107,19 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * If specified, the app takes the action specified here, such as running
      * a custom function.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action auto_complete_action = 8;</code>
      */
     protected $auto_complete_action = null;
+    /**
+     * Specify the input format validation necessary for this text field.
+     * [Google Workspace add-ons and Chat
+     * apps](https://developers.google.com/workspace/extend):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.Validation validation = 11;</code>
+     */
+    protected $validation = null;
     /**
      * Text that appears in the text input field when the field is empty.
      * Use this text to prompt users to enter a value. For example, `Enter a
@@ -166,7 +177,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      *           When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set
      *           to `MULTIPLE_LINE`.
      *           [Google Workspace
-     *           Add-ons and Chat apps](https://developers.google.com/workspace/extend):
+     *           add-ons and Chat apps](https://developers.google.com/workspace/extend):
      *     @type \Google\Apps\Card\V1\Action $auto_complete_action
      *           Optional. Specify what action to take when the text input field provides
      *           suggestions to users who interact with it.
@@ -175,7 +186,11 @@ class TextInput extends \Google\Protobuf\Internal\Message
      *           If specified, the app takes the action specified here, such as running
      *           a custom function.
      *           [Google Workspace
-     *           Add-ons](https://developers.google.com/workspace/add-ons):
+     *           add-ons](https://developers.google.com/workspace/add-ons):
+     *     @type \Google\Apps\Card\V1\Validation $validation
+     *           Specify the input format validation necessary for this text field.
+     *           [Google Workspace add-ons and Chat
+     *           apps](https://developers.google.com/workspace/extend):
      *     @type string $placeholder_text
      *           Text that appears in the text input field when the field is empty.
      *           Use this text to prompt users to enter a value. For example, `Enter a
@@ -398,7 +413,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set
      * to `MULTIPLE_LINE`.
      * [Google Workspace
-     * Add-ons and Chat apps](https://developers.google.com/workspace/extend):
+     * add-ons and Chat apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Suggestions initial_suggestions = 7;</code>
      * @return \Google\Apps\Card\V1\Suggestions|null
@@ -432,7 +447,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set
      * to `MULTIPLE_LINE`.
      * [Google Workspace
-     * Add-ons and Chat apps](https://developers.google.com/workspace/extend):
+     * add-ons and Chat apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Suggestions initial_suggestions = 7;</code>
      * @param \Google\Apps\Card\V1\Suggestions $var
@@ -454,7 +469,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * If specified, the app takes the action specified here, such as running
      * a custom function.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action auto_complete_action = 8;</code>
      * @return \Google\Apps\Card\V1\Action|null
@@ -482,7 +497,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * If specified, the app takes the action specified here, such as running
      * a custom function.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action auto_complete_action = 8;</code>
      * @param \Google\Apps\Card\V1\Action $var
@@ -492,6 +507,46 @@ class TextInput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Card\V1\Action::class);
         $this->auto_complete_action = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specify the input format validation necessary for this text field.
+     * [Google Workspace add-ons and Chat
+     * apps](https://developers.google.com/workspace/extend):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.Validation validation = 11;</code>
+     * @return \Google\Apps\Card\V1\Validation|null
+     */
+    public function getValidation()
+    {
+        return $this->validation;
+    }
+
+    public function hasValidation()
+    {
+        return isset($this->validation);
+    }
+
+    public function clearValidation()
+    {
+        unset($this->validation);
+    }
+
+    /**
+     * Specify the input format validation necessary for this text field.
+     * [Google Workspace add-ons and Chat
+     * apps](https://developers.google.com/workspace/extend):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.Validation validation = 11;</code>
+     * @param \Google\Apps\Card\V1\Validation $var
+     * @return $this
+     */
+    public function setValidation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Card\V1\Validation::class);
+        $this->validation = $var;
 
         return $this;
     }

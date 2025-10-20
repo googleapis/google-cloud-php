@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * messages](https://developers.google.com/workspace/chat/create-messages#create).
  * For an example in Google Chat apps, see [Add a persistent
  * footer](https://developers.google.com/workspace/chat/design-components-card-dialog#add_a_persistent_footer).
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.Card.CardFixedFooter</code>

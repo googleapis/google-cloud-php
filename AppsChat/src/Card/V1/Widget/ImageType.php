@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * The shape used to crop the image.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Protobuf type <code>google.apps.card.v1.Widget.ImageType</code>

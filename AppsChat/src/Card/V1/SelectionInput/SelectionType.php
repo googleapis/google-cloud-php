@@ -12,7 +12,7 @@ use UnexpectedValueException;
  * checkboxes, but can only select one item from a dropdown menu.
  * Each selection input supports one type of selection. Mixing checkboxes
  * and switches, for example, isn't supported.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Protobuf type <code>google.apps.card.v1.SelectionInput.SelectionType</code>
@@ -44,25 +44,23 @@ class SelectionType
      */
     const DROPDOWN = 3;
     /**
-     * A multiselect menu for static or dynamic data. From the menu bar,
-     * users select one or more items. Users can also input values to populate
-     * dynamic data. For example, users can start typing the name of a Google
-     * Chat space and the widget autosuggests the space.
-     * To populate items for a multiselect menu, you can use one of the
-     * following types of data sources:
-     *  * Static data: Items are specified as `SelectionItem` objects in the
-     *    widget. Up to 100 items.
+     * A menu with a text box. Users can type and select one or more items.
+     * For Google Workspace add-ons, you must populate items using a static
+     * array of `SelectionItem` objects.
+     * For Google Chat apps, you can also populate items using a dynamic data
+     * source and autosuggest items as users type in the menu. For example,
+     * users can start typing the name of a Google Chat space and the widget
+     * autosuggests the space. To dynamically populate items for a multiselect
+     * menu, use one of the following types of data sources:
      *  * Google Workspace data: Items are populated using data from Google
      *    Workspace, such as Google Workspace users or Google Chat spaces.
      *  * External data: Items are populated from an external data
      *    source outside of Google Workspace.
-     * For examples of how to implement multiselect menus, see
+     * For examples of how to implement multiselect menus for Chat apps, see
      * [Add a multiselect
      * menu](https://developers.google.com/workspace/chat/design-interactive-card-dialog#multiselect-menu).
-     * [Google Workspace Add-ons and Chat
+     * [Google Workspace add-ons and Chat
      * apps](https://developers.google.com/workspace/extend):
-     * Multiselect for Google Workspace Add-ons are in
-     * Developer Preview.
      *
      * Generated from protobuf enum <code>MULTI_SELECT = 4;</code>
      */
