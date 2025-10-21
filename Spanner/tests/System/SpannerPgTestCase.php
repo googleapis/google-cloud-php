@@ -87,7 +87,7 @@ abstract class SpannerPgTestCase extends SystemTestCase
 
         // Currently, the emulator doesn't support setting roles for the PG
         // dialect.
-        if (!getenv('SPANNER_EMULATOR_HOST')) {
+        if (!self::isEmulatorUsed()) {
             $db->updateDdlBatch(
                 [
                     'CREATE ROLE ' . self::DATABASE_ROLE,
@@ -129,13 +129,6 @@ abstract class SpannerPgTestCase extends SystemTestCase
     public static function getDatabaseInstance($dbName)
     {
         return self::$client->connect(self::INSTANCE_NAME, $dbName);
-    }
-
-    public static function skipEmulatorTests()
-    {
-        if ((bool) getenv('SPANNER_EMULATOR_HOST')) {
-            self::markTestSkipped('This test is not supported by the emulator.');
-        }
     }
 
     public static function getDbWithReaderRole()

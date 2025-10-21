@@ -66,13 +66,13 @@ class PgBatchTest extends SpannerPgTestCase
                     self::$tableName,
                     self::$restrictiveDbRole
                 );
-            }
+                $statements[] = sprintf(
+                    'GRANT SELECT ON TABLE %s TO %s',
+                    self::$tableName,
+                    self::$dbRole
+                );
 
-            $statements[] = sprintf(
-                'GRANT SELECT ON TABLE %s TO %s',
-                self::$tableName,
-                self::$dbRole
-            );
+            }
 
             self::$database->updateDdlBatch($statements)->pollUntilComplete();
 	}

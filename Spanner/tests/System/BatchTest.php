@@ -55,27 +55,27 @@ class BatchTest extends SpannerTestCase
             self::$tableName
         ))->pollUntilComplete();
 
-        if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
-            self::$database->updateDdlBatch([
-                sprintf(
-                    'CREATE ROLE %s',
-                    self::$dbRole
-                ),
-                sprintf(
-                    'CREATE ROLE %s',
-                    self::$restrictiveDbRole
-                ),
-                sprintf(
-                    'GRANT SELECT(id) ON TABLE %s TO ROLE %s',
+        if (self::$database->info()['databaseDialect'] == DatabaseDialect::POSTGRESQL) {
+            $statements = [
+                sprintf('CREATE ROLE %s', self::$dbRole),
+                sprintf('CREATE ROLE %s', self::$restrictiveDbRole),
+            ];
+
+            if (!self::isEmulatorUsed()) {
+                $statements[] = sprintf(
+                    'GRANT SELECT(id) ON TABLE %s TO %s',
                     self::$tableName,
                     self::$restrictiveDbRole
-                ),
-                sprintf(
-                    'GRANT SELECT ON TABLE %s TO ROLE %s',
-                    self::$tableName,
-                    self::$dbRole
-                )
-            ])->pollUntilComplete();
+                );
+            }
+
+            $statements[] = sprintf(
+                'GRANT SELECT ON TABLE %s TO %s',
+                self::$tableName,
+                self::$dbRole
+            );
+
+            self::$database->updateDdlBatch($statements)->pollUntilComplete();
         }
 
         self::seedTable();

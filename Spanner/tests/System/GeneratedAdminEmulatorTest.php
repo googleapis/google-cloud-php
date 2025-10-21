@@ -42,9 +42,7 @@ class GeneratedAdminEmulatorTest extends SpannerTestCase
 
     public function testAdminClientEmulatorSupport()
     {
-        if (!getenv('SPANNER_EMULATOR_HOST')) {
-            self::markTestSkipped('This test is required to run only in the emulator.');
-        }
+        self::emulatorOnly();
 
         $instanceId = uniqid(self::INSTANCE_NAME);
         $databaseId = uniqid(self::TESTING_PREFIX);

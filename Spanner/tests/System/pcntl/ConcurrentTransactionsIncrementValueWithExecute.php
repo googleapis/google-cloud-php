@@ -13,7 +13,7 @@ setupIterationTracker($tmpFile);
 $callable = function ($dbName, $tableName, $id) use ($tmpFile) {
     $iterations = 0;
     $db = SpannerTestCase::getDatabaseInstance($dbName);
-    if (getenv('SPANNER_EMULATOR_HOST')) {
+    if (SpannerTestCase::isEmulatorUsed()) {
         // the emulator requires us to manually request a new session
         // presumably because multiplexed sessions aren't properly supported
         $db->session()->refresh();
