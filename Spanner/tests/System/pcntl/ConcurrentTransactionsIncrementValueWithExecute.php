@@ -46,9 +46,9 @@ $concurrentExecute = new class($dbName, $tableName, $id, $tmpFile) {
             $transaction->commit();
         });
 
-	updateIterationTracker($this->tmpFile, $iterations);
+        updateIterationTracker($this->tmpFile, $iterations);
 
-	return 0;
+        return 0;
     }
 };
 
@@ -71,4 +71,3 @@ if ($childPID1 = pcntl_fork()) {
 
     exit($concurrentExecute->run());
 }
-

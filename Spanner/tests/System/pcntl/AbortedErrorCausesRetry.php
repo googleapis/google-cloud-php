@@ -18,7 +18,7 @@ $abortedErrorRetry = new class($dbName, $tableName, $id, $delay) {
         private int $id,
         private int $delay,
     ) {
-	self::$dbName = $dbName;
+        self::$dbName = $dbName;
     }
 
     public function run(): int
@@ -62,11 +62,10 @@ $abortedErrorRetry = new class($dbName, $tableName, $id, $delay) {
                 $t->update($this->tableName, $row);
                 $t->commit();
             });
-	}
+        }
 
         return 0;
     }
 };
 
 exit($abortedErrorRetry->run());
-

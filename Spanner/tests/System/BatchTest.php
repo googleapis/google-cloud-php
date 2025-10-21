@@ -57,7 +57,7 @@ class BatchTest extends SystemTestCase
             self::$tableName
         ))->pollUntilComplete();
 
-        if (self::$database->info()['databaseDialect'] == DatabaseDialect::POSTGRESQL) {
+        if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
             $statements = [
                 sprintf('CREATE ROLE %s', self::$dbRole),
                 sprintf('CREATE ROLE %s', self::$restrictiveDbRole),

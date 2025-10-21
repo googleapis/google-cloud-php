@@ -19,10 +19,10 @@ $concurrentRead = new class($dbName, $keyset, $columns, $tableName, $tmpFile) {
 
     public function __construct(
         string $dbName,
-	private KeySet $keyset,
-	private array $columns,
-	private string $tableName,
-	private string $tmpFile
+        private KeySet $keyset,
+        private array $columns,
+        private string $tableName,
+        private string $tmpFile
     ) {
         self::$dbName = $dbName;
     }
@@ -46,9 +46,9 @@ $concurrentRead = new class($dbName, $keyset, $columns, $tableName, $tmpFile) {
             $transaction->commit();
         });
 
-	updateIterationTracker($this->tmpFile, $iterations);
+        updateIterationTracker($this->tmpFile, $iterations);
 
-	return 0;
+        return 0;
     }
 };
 
