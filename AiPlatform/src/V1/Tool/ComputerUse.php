@@ -21,6 +21,17 @@ class ComputerUse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.ComputerUse.Environment environment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $environment = 0;
+    /**
+     * Optional. By default, [predefined
+     * functions](https://cloud.google.com/vertex-ai/generative-ai/docs/computer-use#supported-actions)
+     * are included in the final model call. Some of them can be explicitly
+     * excluded from being automatically included. This can serve two purposes:
+     * 1. Using a more restricted / different action space.
+     * 2. Improving the definitions / instructions of predefined functions.
+     *
+     * Generated from protobuf field <code>repeated string excluded_predefined_functions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $excluded_predefined_functions;
 
     /**
      * Constructor.
@@ -30,6 +41,13 @@ class ComputerUse extends \Google\Protobuf\Internal\Message
      *
      *     @type int $environment
      *           Required. The environment being operated.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_predefined_functions
+     *           Optional. By default, [predefined
+     *           functions](https://cloud.google.com/vertex-ai/generative-ai/docs/computer-use#supported-actions)
+     *           are included in the final model call. Some of them can be explicitly
+     *           excluded from being automatically included. This can serve two purposes:
+     *           1. Using a more restricted / different action space.
+     *           2. Improving the definitions / instructions of predefined functions.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +77,42 @@ class ComputerUse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\Tool\ComputerUse\Environment::class);
         $this->environment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. By default, [predefined
+     * functions](https://cloud.google.com/vertex-ai/generative-ai/docs/computer-use#supported-actions)
+     * are included in the final model call. Some of them can be explicitly
+     * excluded from being automatically included. This can serve two purposes:
+     * 1. Using a more restricted / different action space.
+     * 2. Improving the definitions / instructions of predefined functions.
+     *
+     * Generated from protobuf field <code>repeated string excluded_predefined_functions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExcludedPredefinedFunctions()
+    {
+        return $this->excluded_predefined_functions;
+    }
+
+    /**
+     * Optional. By default, [predefined
+     * functions](https://cloud.google.com/vertex-ai/generative-ai/docs/computer-use#supported-actions)
+     * are included in the final model call. Some of them can be explicitly
+     * excluded from being automatically included. This can serve two purposes:
+     * 1. Using a more restricted / different action space.
+     * 2. Improving the definitions / instructions of predefined functions.
+     *
+     * Generated from protobuf field <code>repeated string excluded_predefined_functions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExcludedPredefinedFunctions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->excluded_predefined_functions = $arr;
 
         return $this;
     }
