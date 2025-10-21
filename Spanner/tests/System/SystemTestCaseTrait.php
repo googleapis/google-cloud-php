@@ -27,9 +27,9 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 trait SystemTestCaseTrait
 {
-    protected const TESTING_PREFIX = 'gcloud_testing_';
-    protected const INSTANCE_NAME = 'google-cloud-php-system-tests';
+    public const INSTANCE_NAME = 'google-cloud-php-system-tests';
 
+    protected const TESTING_PREFIX = 'gcloud_testing_';
     protected const TEST_TABLE_NAME = 'Users';
     protected const TEST_INDEX_NAME = 'uniqueIndex';
 
