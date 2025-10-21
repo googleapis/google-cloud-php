@@ -1,5 +1,48 @@
 # Changelog
 
+## 0.307.0
+
+<details><summary>google/cloud-ai-platform 1.42.0</summary>
+
+
+
+### Features
+
+* Add FunctionResponsePart and excluded_predefined_functions in ComputerUse ([#8673](https://github.com/googleapis/google-cloud-php/issues/8673)) ([19b2982](https://github.com/googleapis/google-cloud-php/commit/19b29825798f68aeb437136e126f57b90d25240f))
+
+</details>
+
+<details><summary>google/cloud-core 1.68.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.8.0</summary>
+
+
+
+### Features
+
+* Expand Oracle Database v1 API to add support for Exadata Exascale (`ExadbVmCluster`, `ExascaleDbStorageVault`), Base Database (`DbSystem`, `Database`, `PluggableDatabase`), and Networking (`OdbNetwork`, `OdbSubnet`). Adds enhance... ([#8674](https://github.com/googleapis/google-cloud-php/issues/8674)) ([06c19d3](https://github.com/googleapis/google-cloud-php/commit/06c19d3f3cc551009317eda6448e5bf6ff38bd3b))
+
+
+### Documentation
+
+* Updated comments for clarity and fixed typos ([06c19d3](https://github.com/googleapis/google-cloud-php/commit/06c19d3f3cc551009317eda6448e5bf6ff38bd3b))
+
+</details>
+
+<details><summary>google/cloud-storage 1.48.5</summary>
+
+
+
+### Bug Fixes
+
+* **Storage:** Implement path containment to prevent traversal attacks ([#8658](https://github.com/googleapis/google-cloud-php/issues/8658)) ([81a39cc](https://github.com/googleapis/google-cloud-php/commit/81a39cc71757e837798c8969ee93a6851ca9ed38))
+
+</details>
+
 ## 0.306.0
 
 <details><summary>google/cloud-ai-platform 1.41.0</summary>
