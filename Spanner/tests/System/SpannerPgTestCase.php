@@ -17,24 +17,24 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Spanner;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 
 /**
  * @group spanner
  * @group spanner-postgres
  */
-abstract class SpannerPgTestCase extends SpannerTestCase
+abstract class SpannerPgTestCase extends SystemTestCase
 {
+    use SystemTestCaseTrait;
+
     protected static function setUpTestDatabase(): void
     {
         if (self::$hasSetUp) {
             return;
         }
 
-        self::getClient();
-
-        self::$instance = self::$client->instance(self::INSTANCE_NAME);
+        self::$instance = self::getClient()->instance(self::INSTANCE_NAME);
 
         self::$dbName = uniqid(self::TESTING_PREFIX);
 
@@ -80,38 +80,5 @@ abstract class SpannerPgTestCase extends SpannerTestCase
         }
 
         self::$hasSetUp = true;
-    }
-
-    protected static function getClient()
-    {
-        if (self::$client) {
-            return self::$client;
-        }
-
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-
-        $clientConfig = [
-            'keyFilePath' => $keyFilePath,
-            'cacheItemPool' => self::getCacheItemPool(),
-        ];
-
-        $serviceAddress = getenv('SPANNER_SERVICE_ADDRESS');
-        if ($serviceAddress) {
-            $gapicConfig = [
-                'serviceAddress' => $serviceAddress
-            ];
-
-            $clientConfig['gapicSpannerClient'] = new Spanner\V1\SpannerClient($gapicConfig);
-            $clientConfig['gapicSpannerDatabaseAdminClient'] =
-                new Spanner\Admin\Database\V1\DatabaseAdminClient($gapicConfig);
-            $clientConfig['gapicSpannerInstanceAdminClient'] =
-                new Spanner\Admin\Instance\V1\InstanceAdminClient($gapicConfig);
-
-            echo 'Using Service Address: ' . $serviceAddress . PHP_EOL;
-        }
-
-        self::$client = new SpannerClient($clientConfig);
-
-        return self::$client;
     }
 }

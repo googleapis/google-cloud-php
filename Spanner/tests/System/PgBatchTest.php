@@ -32,14 +32,19 @@ class PgBatchTest extends SpannerPgTestCase
     use DatabaseRoleTrait;
 
     private static $tableName;
-    private static $isSetup = false;
+    private static $hasSetupBatch = false;
 
     /**
      * @beforeClass
      */
     public static function setUpTestFixtures(): void
     {
-        if (self::$isSetup) {
+        // skip setting up fixutres for the emulator as there's only one test which does not
+        // suppport the emulator.
+        // NOTE: remove this if emulator tests are adde
+        self::skipEmulatorTests();
+
+        if (self::$hasSetupBatch) {
             return;
         }
         self::setUpTestDatabase();
@@ -77,7 +82,7 @@ class PgBatchTest extends SpannerPgTestCase
         }
 
         self::seedTable();
-        self::$isSetup = true;
+        self::$hasSetupBatch = true;
     }
 
     /**
