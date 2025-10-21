@@ -520,7 +520,7 @@ class Result implements \IteratorAggregate
                     [],
                     $this->mapper
                 );
-                if (isset($result['precommitToken'])) {
+                if (isset($result['precommitToken']['precommitToken'])) {
                     // @TODO: Can we move this logic to the serializer or value mapper?
                     $this->transaction->setPrecommitToken(
                         (new MultiplexedSessionPrecommitToken())

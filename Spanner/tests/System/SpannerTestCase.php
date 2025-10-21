@@ -78,7 +78,10 @@ abstract class SpannerTestCase extends SystemTestCase
             );
             $op->pollUntilComplete();
 
-            if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
+            if (
+                self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL
+                && !self::isEmulatorUsed()
+            ) {
                 self::$database->updateDdlBatch(
                     [
                         'CREATE ROLE ' . self::DATABASE_ROLE,
