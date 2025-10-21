@@ -47,7 +47,7 @@ class BackupTest extends SpannerTestCase
 
     protected static $project;
 
-    private static $hasSetUp = false;
+    private static $hasSetUpBackup = false;
 
     /**
      * @beforeClass
@@ -59,7 +59,7 @@ class BackupTest extends SpannerTestCase
         self::emulatorOnly();
 
         self::setUpTestDatabase();
-        if (self::$hasSetUp) {
+        if (self::$hasSetUpBackup) {
             return;
         }
 
@@ -112,7 +112,7 @@ class BackupTest extends SpannerTestCase
         self::$backupId1 = uniqid(self::BACKUP_PREFIX);
         self::$backupId2 = uniqid('users-');
         self::$copyBackupId = uniqid('copy-');
-        self::$hasSetUp = true;
+        self::$hasSetUpBackup = true;
     }
 
     public function testCreateBackup()

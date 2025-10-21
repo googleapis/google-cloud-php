@@ -41,8 +41,7 @@ abstract class SpannerTestCase extends SystemTestCase
     protected static $database;
     protected static $database2;
     protected static $dbName;
-
-    private static $hasSetUp = false;
+    protected static $hasSetUp = false;
 
     protected static function setUpTestDatabase(): void
     {
@@ -98,7 +97,7 @@ abstract class SpannerTestCase extends SystemTestCase
         self::$hasSetUp = true;
     }
 
-    private static function getClient()
+    protected static function getClient()
     {
         if (self::$client) {
             return self::$client;

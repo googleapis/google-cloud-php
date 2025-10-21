@@ -26,8 +26,6 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
  */
 abstract class SpannerPgTestCase extends SpannerTestCase
 {
-    private static $hasSetUp = false;
-
     protected static function setUpTestDatabase(): void
     {
         if (self::$hasSetUp) {
@@ -84,7 +82,7 @@ abstract class SpannerPgTestCase extends SpannerTestCase
         self::$hasSetUp = true;
     }
 
-    private static function getClient()
+    protected static function getClient()
     {
         if (self::$client) {
             return self::$client;
