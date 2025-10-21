@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as SpannerGapicClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 trait SystemTestCaseTrait
 {
@@ -77,7 +78,7 @@ trait SystemTestCaseTrait
     {
         if (self::$hasSetUp) {
             return;
-	}
+        }
 
         self::$instance = self::getClient()->instance(self::INSTANCE_NAME);
 
@@ -172,4 +173,10 @@ trait SystemTestCaseTrait
         return $instance->database($dbName, $options);
     }
 
+    protected static function getCacheItemPool()
+    {
+        return new FilesystemAdapter(
+            directory: __DIR__ . '/../../../.cache'
+        );
+    }
 }
