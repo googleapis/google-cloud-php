@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
@@ -35,8 +36,10 @@ use Google\Cloud\Spanner\V1\RequestOptions\Priority;
  * @group spanner-query
  * @group spanner-postgres
  */
-class PgQueryTest extends SpannerPgTestCase
+class PgQueryTest extends SystemTestCase
 {
+    use PgSystemTestCaseTrait;
+
     const TABLE_NAME = 'test';
 
     public static $timestampVal;

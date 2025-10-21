@@ -17,26 +17,30 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Spanner;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\V1\Client\SpannerClient as SpannerGapicClient;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 
 trait SystemTestCaseTrait
 {
-    const TESTING_PREFIX = 'gcloud_testing_';
-    const INSTANCE_NAME = 'google-cloud-php-system-tests';
+    protected const TESTING_PREFIX = 'gcloud_testing_';
+    protected const INSTANCE_NAME = 'google-cloud-php-system-tests';
 
-    const TEST_TABLE_NAME = 'Users';
-    const TEST_INDEX_NAME = 'uniqueIndex';
+    protected const TEST_TABLE_NAME = 'Users';
+    protected const TEST_INDEX_NAME = 'uniqueIndex';
 
-    const DATABASE_ROLE = 'Reader';
-    const RESTRICTIVE_DATABASE_ROLE = 'RestrictiveReader';
+    private const DATABASE_ROLE = 'Reader';
+    private const RESTRICTIVE_DATABASE_ROLE = 'RestrictiveReader';
 
     protected static $client;
     protected static $instance;
     protected static $database;
-    protected static $database2;
     protected static $dbName;
-    protected static $hasSetUp = false;
+
+    private static $hasSetUp = false;
 
     protected static function getClient()
     {
@@ -57,11 +61,11 @@ trait SystemTestCaseTrait
                 'serviceAddress' => $serviceAddress
             ];
 
-            $clientConfig['gapicSpannerClient'] = new Spanner\V1\Client\SpannerClient($gapicConfig);
+            $clientConfig['gapicSpannerClient'] = new SpannerGapicClient($gapicConfig);
             $clientConfig['gapicSpannerDatabaseAdminClient'] =
-                new Spanner\Admin\Database\V1\Client\DatabaseAdminClient($gapicConfig);
+                new DatabaseAdminClient($gapicConfig);
             $clientConfig['gapicSpannerInstanceAdminClient'] =
-                new Spanner\Admin\Instance\V1\Client\InstanceAdminClient($gapicConfig);
+                new InstanceAdminClient($gapicConfig);
 
             echo 'Using Service Address: ' . $serviceAddress . PHP_EOL;
         }
@@ -69,15 +73,60 @@ trait SystemTestCaseTrait
         return self::$client = new SpannerClient($clientConfig);
     }
 
+    protected static function setUpTestDatabase(): void
+    {
+        if (self::$hasSetUp) {
+            return;
+	}
+
+        self::$instance = self::getClient()->instance(self::INSTANCE_NAME);
+
+        if (!self::$dbName = getenv('GOOGLE_CLOUD_SPANNER_TEST_DATABASE')) {
+            self::$dbName = uniqid(self::TESTING_PREFIX);
+            self::$deletionQueue->add(function () {
+                self::getDatabaseInstance(self::$dbName)->drop();
+            });
+        }
+        self::$database = self::getDatabaseInstance(self::$dbName);
+
+        if (!self::$database->exists()) {
+            $op = self::$instance->createDatabase(self::$dbName);
+            $op->pollUntilComplete();
+            $op = self::$database->updateDdlBatch(
+                [
+                    'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
+                    id INT64 NOT NULL,
+                    name STRING(MAX) NOT NULL,
+                    birthday DATE
+                    ) PRIMARY KEY (id)',
+                    'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
+                    ON ' . self::TEST_TABLE_NAME . ' (name)',
+                ]
+            );
+            $op->pollUntilComplete();
+
+            if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL
+                && !self::isEmulatorUsed()
+            ) {
+                self::$database->updateDdlBatch(
+                    [
+                        'CREATE ROLE ' . self::DATABASE_ROLE,
+                        'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                        'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
+                        ' TO ROLE ' . self::DATABASE_ROLE,
+                        'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
+                        . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    ]
+                )->pollUntilComplete();
+            }
+        }
+
+        self::$hasSetUp = true;
+    }
+
     public static function getDatabaseInstance($dbName, $options = [])
     {
         return self::getClient()->connect(self::INSTANCE_NAME, $dbName, $options);
-    }
-
-    public static function getDatabaseFromInstance($instance, $dbName, $options = [])
-    {
-        $instance = self::getClient()->instance($instance);
-        return $instance->database($dbName, $options);
     }
 
     public static function skipEmulatorTests()
@@ -116,4 +165,11 @@ trait SystemTestCaseTrait
             ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
         );
     }
+
+    private static function getDatabaseFromInstance($instance, $dbName, $options = [])
+    {
+        $instance = self::getClient()->instance($instance);
+        return $instance->database($dbName, $options);
+    }
+
 }

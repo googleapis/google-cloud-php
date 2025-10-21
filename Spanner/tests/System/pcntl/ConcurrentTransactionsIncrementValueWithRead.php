@@ -4,7 +4,7 @@ include __DIR__ . '/../../../vendor/autoload.php';
 include __DIR__ . '/forked-process-test.php';
 
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
+use Google\Cloud\Spanner\Tests\System\SystemTestCaseTrait;
 
 list($dbName, $tableName, $id) = getInputArgs();
 
@@ -16,8 +16,8 @@ $columns = ['id', 'number'];
 
 $callable = function ($dbName, KeySet $keyset, array $columns, $tableName) use ($tmpFile) {
     $iterations = 0;
-    $db = SpannerTestCase::getDatabaseInstance($dbName);
-    if (SpannerTestCase::isEmulatorUsed()) {
+    $db = SystemTestCaseTrait::getDatabaseInstance($dbName);
+    if (SystemTestCaseTrait::isEmulatorUsed()) {
         // the emulator requires us to manually request a new session
         // presumably because multiplexed sessions aren't properly supported
         $db->session()->refresh();

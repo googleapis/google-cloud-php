@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
@@ -28,8 +29,9 @@ use Google\Cloud\Spanner\KeySet;
  * @group spanner
  * @group spanner-batch
  */
-class BatchTest extends SpannerTestCase
+class BatchTest extends SystemTestCase
 {
+    use SystemTestCaseTrait;
     use DatabaseRoleTrait;
 
     private static $tableName;

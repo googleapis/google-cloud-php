@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\KeySet;
 
@@ -24,8 +25,10 @@ use Google\Cloud\Spanner\KeySet;
  * @group spanner
  * @group spanner-large-read
  */
-class LargeReadTest extends SpannerTestCase
+class LargeReadTest extends SystemTestCase
 {
+    use SystemTestCaseTrait;
+
     private static $tableName;
     private static $row = [];
 

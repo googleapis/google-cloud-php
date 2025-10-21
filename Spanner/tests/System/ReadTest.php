@@ -21,6 +21,7 @@ use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\DeadlineExceededException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
@@ -31,8 +32,10 @@ use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
  * @group spanner
  * @group spanner-read
  */
-class ReadTest extends SpannerTestCase
+class ReadTest extends SystemTestCase
 {
+    use SystemTestCaseTrait;
+
     private static $readTableName;
     private static $rangeTableName;
     private static $indexes = [];

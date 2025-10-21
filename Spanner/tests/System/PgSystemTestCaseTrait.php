@@ -17,14 +17,13 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 
 /**
  * @group spanner
  * @group spanner-postgres
  */
-abstract class SpannerPgTestCase extends SystemTestCase
+trait PgSystemTestCaseTrait
 {
     use SystemTestCaseTrait;
 
@@ -52,7 +51,6 @@ abstract class SpannerPgTestCase extends SystemTestCase
         });
 
         self::$database = $db;
-        self::$database2 = self::getDatabaseInstance(self::$dbName);
 
         $db->updateDdlBatch(
             [

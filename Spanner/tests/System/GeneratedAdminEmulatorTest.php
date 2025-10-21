@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
@@ -28,8 +29,10 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 /**
  * @group spanner
  */
-class GeneratedAdminEmulatorTest extends SpannerTestCase
+class GeneratedAdminEmulatorTest extends SystemTestCase
 {
+    use SystemTestCaseTrait;
+
     private static $projectId;
 
     /**

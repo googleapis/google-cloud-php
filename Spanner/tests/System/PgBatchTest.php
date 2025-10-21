@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
@@ -27,8 +28,9 @@ use Google\Cloud\Spanner\Batch\BatchSnapshot;
  * @group spanner-batch
  * @group spanner-postgres
  */
-class PgBatchTest extends SpannerPgTestCase
+class PgBatchTest extends SystemTestCase
 {
+    use PgSystemTestCaseTrait;
     use DatabaseRoleTrait;
 
     private static $tableName;

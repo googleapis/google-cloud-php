@@ -41,7 +41,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.4'
           ini-values: grpc.enable_fork_support=1
           tools: pecl
           extensions: bcmath, grpc, pcntl

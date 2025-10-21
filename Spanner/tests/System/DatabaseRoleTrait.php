@@ -46,7 +46,7 @@ trait DatabaseRoleTrait
                 self::getDbWithRestrictiveRole(),
                 [
                     'id' => rand(1, 346464),
-                    'name' => uniqid(SpannerTestCase::TESTING_PREFIX),
+                    'name' => uniqid(self::TESTING_PREFIX),
                     'birthday' => new Date(new \DateTime('2000-01-01'))
                 ],
                 'PERMISSION_DENIED'
@@ -55,7 +55,7 @@ trait DatabaseRoleTrait
                 self::getDbWithRestrictiveRole(),
                 [
                     'id' => rand(1, 346464),
-                    'name' => uniqid(SpannerTestCase::TESTING_PREFIX)
+                    'name' => uniqid(self::TESTING_PREFIX)
                 ],
                 null
             ]

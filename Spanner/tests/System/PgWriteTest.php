@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\FailedPreconditionException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
@@ -35,8 +36,9 @@ use Google\Rpc\Code;
  * @group spanner-write
  * @group spanner-postgres
  */
-class PgWriteTest extends SpannerPgTestCase
+class PgWriteTest extends SystemTestCase
 {
+    use PgSystemTestCaseTrait;
     use TimeTrait;
 
     const TABLE_NAME = 'Writes';
