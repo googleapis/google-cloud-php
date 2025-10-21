@@ -27,23 +27,20 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 trait SystemTestCaseTrait
 {
-    public const INSTANCE_NAME = 'google-cloud-php-system-tests';
-
-    protected const TESTING_PREFIX = 'gcloud_testing_';
-    protected const TEST_TABLE_NAME = 'Users';
-    protected const TEST_INDEX_NAME = 'uniqueIndex';
-
+    private const TESTING_PREFIX = 'gcloud_testing_';
+    private const INSTANCE_NAME = 'google-cloud-php-system-tests';
+    private const TEST_TABLE_NAME = 'Users';
+    private const TEST_INDEX_NAME = 'uniqueIndex';
     private const DATABASE_ROLE = 'Reader';
     private const RESTRICTIVE_DATABASE_ROLE = 'RestrictiveReader';
 
-    protected static $client;
-    protected static $instance;
-    protected static $database;
-    protected static $dbName;
-
+    private static $client;
+    private static $instance;
+    private static $database;
+    private static $dbName;
     private static $hasSetUp = false;
 
-    protected static function getClient()
+    private static function getClient()
     {
         if (self::$client) {
             return self::$client;
@@ -74,7 +71,7 @@ trait SystemTestCaseTrait
         return self::$client = new SpannerClient($clientConfig);
     }
 
-    protected static function setUpTestDatabase(): void
+    private static function setUpTestDatabase(): void
     {
         if (self::$hasSetUp) {
             return;
@@ -125,12 +122,12 @@ trait SystemTestCaseTrait
         self::$hasSetUp = true;
     }
 
-    public static function getDatabaseInstance($dbName, $options = [])
+    private static function getDatabaseInstance($dbName, $options = [])
     {
-        return self::getClient()->connect(SystemTestCaseTrait::INSTANCE_NAME, $dbName, $options);
+        return self::getClient()->connect(self::INSTANCE_NAME, $dbName, $options);
     }
 
-    public static function skipEmulatorTests()
+    private static function skipEmulatorTests()
     {
         if (self::isEmulatorUsed()) {
             self::markTestSkipped('This test is not supported by the emulator.');
@@ -149,7 +146,7 @@ trait SystemTestCaseTrait
         return (bool) getenv('SPANNER_EMULATOR_HOST');
     }
 
-    public static function getDbWithReaderRole()
+    private static function getDbWithReaderRole()
     {
         return self::getDatabaseFromInstance(
             self::INSTANCE_NAME,
@@ -158,7 +155,7 @@ trait SystemTestCaseTrait
         );
     }
 
-    public static function getDbWithRestrictiveRole()
+    private static function getDbWithRestrictiveRole()
     {
         return self::getDatabaseFromInstance(
             self::INSTANCE_NAME,
@@ -173,7 +170,7 @@ trait SystemTestCaseTrait
         return $instance->database($dbName, $options);
     }
 
-    protected static function getCacheItemPool()
+    private static function getCacheItemPool()
     {
         return new FilesystemAdapter(
             directory: __DIR__ . '/../../../.cache'
