@@ -24,17 +24,14 @@ use Google\Cloud\Spanner\Date;
  */
 trait DatabaseRoleTrait
 {
-    private static $restrictiveDbRole = 'restrictiveReaderRole';
-    private static $dbRole = 'readerRole';
-
     abstract public static function setUpBeforeClass();
 
     public function dbProvider()
     {
         self::setUpTestFixtures();
         return [
-            [self::$restrictiveDbRole, 'PERMISSION_DENIED'],
-            [self::$dbRole, null]
+            [self::RESTRICTIVE_DATABASE_ROLE, 'PERMISSION_DENIED'],
+            [self::DATABASE_ROLE, null]
         ];
     }
 

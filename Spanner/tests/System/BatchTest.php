@@ -31,8 +31,8 @@ use Google\Cloud\Spanner\KeySet;
  */
 class BatchTest extends SystemTestCase
 {
-    use SystemTestCaseTrait;
     use DatabaseRoleTrait;
+    use SystemTestCaseTrait;
 
     private static $tableName;
     private static $isSetup = false;
@@ -59,22 +59,22 @@ class BatchTest extends SystemTestCase
 
         if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
             $statements = [
-                sprintf('CREATE ROLE %s', self::$dbRole),
-                sprintf('CREATE ROLE %s', self::$restrictiveDbRole),
+                sprintf('CREATE ROLE %s', self::DATABASE_ROLE),
+                sprintf('CREATE ROLE %s', self::RESTRICTIVE_DATABASE_ROLE),
             ];
 
             if (!self::isEmulatorUsed()) {
                 $statements[] = sprintf(
-                    'GRANT SELECT(id) ON TABLE %s TO %s',
+                    'GRANT SELECT(id) ON TABLE %s TO ROLE %s',
                     self::$tableName,
-                    self::$restrictiveDbRole
+                    self::RESTRICTIVE_DATABASE_ROLE
                 );
             }
 
             $statements[] = sprintf(
-                'GRANT SELECT ON TABLE %s TO %s',
+                'GRANT SELECT ON TABLE %s TO ROLE %s',
                 self::$tableName,
-                self::$dbRole
+                self::DATABASE_ROLE
             );
 
             self::$database->updateDdlBatch($statements)->pollUntilComplete();

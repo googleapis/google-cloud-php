@@ -30,8 +30,8 @@ use Google\Cloud\Spanner\Batch\BatchSnapshot;
  */
 class PgBatchTest extends SystemTestCase
 {
-    use PgSystemTestCaseTrait;
     use DatabaseRoleTrait;
+    use PgSystemTestCaseTrait;
 
     private static $tableName;
     private static $hasSetupBatch = false;
@@ -63,20 +63,20 @@ class PgBatchTest extends SystemTestCase
 
         if (self::$database->info()['databaseDialect'] == DatabaseDialect::POSTGRESQL) {
             $statements = [
-                sprintf('CREATE ROLE %s', self::$dbRole),
-                sprintf('CREATE ROLE %s', self::$restrictiveDbRole),
+                sprintf('CREATE ROLE %s', self::DATABASE_ROLE),
+                sprintf('CREATE ROLE %s', self::RESTRICTIVE_DATABASE_ROLE),
             ];
 
             if (!self::isEmulatorUsed()) {
                 $statements[] = sprintf(
                     'GRANT SELECT(id) ON TABLE %s TO %s',
                     self::$tableName,
-                    self::$restrictiveDbRole
+                    self::RESTRICTIVE_DATABASE_ROLE
                 );
                 $statements[] = sprintf(
                     'GRANT SELECT ON TABLE %s TO %s',
                     self::$tableName,
-                    self::$dbRole
+                    self::DATABASE_ROLE
                 );
             }
 
