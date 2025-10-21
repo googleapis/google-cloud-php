@@ -17,34 +17,14 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Auth\Cache\MemoryCacheItemPool;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
-use Google\Cloud\Spanner\Session\CacheSessionPool;
-use Google\Cloud\Spanner\SpannerClient;
 
 /**
  * @group spanner
  * @group spanner-postgres
  */
-abstract class SpannerPgTestCase extends SystemTestCase
+abstract class SpannerPgTestCase extends SpannerTestCase
 {
-    const TESTING_PREFIX = 'gcloud_testing_';
-    const INSTANCE_NAME = 'google-cloud-php-system-tests';
-
-    const TEST_TABLE_NAME = 'Users';
-    const TEST_INDEX_NAME = 'uniqueIndex';
-
-    const DATABASE_ROLE = 'Reader';
-    const RESTRICTIVE_DATABASE_ROLE = 'RestrictiveReader';
-
-    protected static $client;
-    protected static $instance;
-    protected static $database;
-    protected static $database2;
-    protected static $dbName;
-
     private static $hasSetUp = false;
 
     protected static function setUpTestDatabase(): void
@@ -101,60 +81,6 @@ abstract class SpannerPgTestCase extends SystemTestCase
         }
 
         self::$hasSetUp = true;
-    }
-
-    public static function getDatabaseFromInstance($instance, $dbName, $options = [])
-    {
-        $instance = self::$client->instance($instance);
-        return $instance->database($dbName, $options);
-    }
-
-    public static function getDatabaseWithSessionPool($dbName, $options = [])
-    {
-        $sessionCache = new MemoryCacheItemPool();
-        $sessionPool = new CacheSessionPool(
-            $sessionCache,
-            $options
-        );
-
-        return self::$client->connect(
-            self::INSTANCE_NAME,
-            $dbName,
-            [
-                'sessionPool' => $sessionPool
-            ]
-        );
-    }
-
-    public static function getDatabaseInstance($dbName)
-    {
-        return self::$client->connect(self::INSTANCE_NAME, $dbName);
-    }
-
-    public static function getDbWithReaderRole()
-    {
-        return self::getDatabaseFromInstance(
-            self::INSTANCE_NAME,
-            self::$dbName,
-            ['databaseRole' => self::DATABASE_ROLE]
-        );
-    }
-
-    public static function getDbWithRestrictiveRole()
-    {
-        return self::getDatabaseFromInstance(
-            self::INSTANCE_NAME,
-            self::$dbName,
-            ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
-        );
-    }
-
-    public static function getDbWithSessionPoolRestrictiveRole()
-    {
-        return self::getDatabaseWithSessionPool(
-            self::$dbName,
-            ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
-        );
     }
 
     private static function getClient()
