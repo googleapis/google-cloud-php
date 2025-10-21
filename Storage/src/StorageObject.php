@@ -688,9 +688,24 @@ class StorageObject
      *           If provided one must also include an `encryptionKey`.
      * }
      * @return StreamInterface
+     * @throws \RuntimeException
      */
     public function downloadToFile($path, array $options = [])
     {
+        // throws an exception in the case of `..` segments, paths
+        // starting with `/`, and Windows drive letters (e.g., `C:`).
+        $normalizedPath = str_replace('\\', '/', $path);
+        $pathSegments = explode('/', $normalizedPath);
+
+        if (in_array('..', $pathSegments, true) ||
+            strpos($normalizedPath, '/') === 0 ||
+            preg_match('/^[a-zA-Z]:\//', $normalizedPath)
+        ) {
+            throw new \RuntimeException(
+                'Path traversal is not allowed. File path is outside the designated directory.'
+            );
+        }
+
         $source = $this->downloadAsStream($options);
         $destination = Utils::streamFor(fopen($path, 'w'));
 
