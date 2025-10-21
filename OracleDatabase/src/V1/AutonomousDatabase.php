@@ -72,17 +72,57 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      */
     protected $network = '';
     /**
-     * Optional. The subnet CIDR range for the Autonmous Database.
+     * Optional. The subnet CIDR range for the Autonomous Database.
      *
      * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $cidr = '';
+    /**
+     * Optional. The name of the OdbNetwork associated with the Autonomous
+     * Database. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
+     * optional but if specified, this should match the parent ODBNetwork of the
+     * OdbSubnet.
+     *
+     * Generated from protobuf field <code>string odb_network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $odb_network = '';
+    /**
+     * Optional. The name of the OdbSubnet associated with the Autonomous
+     * Database. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *
+     * Generated from protobuf field <code>string odb_subnet = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $odb_subnet = '';
+    /**
+     * Optional. The source Autonomous Database configuration for the standby
+     * Autonomous Database. The source Autonomous Database is configured while
+     * creating the Peer Autonomous Database and can't be updated after creation.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig source_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $source_config = null;
+    /**
+     * Output only. The peer Autonomous Database names of the given Autonomous
+     * Database.
+     *
+     * Generated from protobuf field <code>repeated string peer_autonomous_databases = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $peer_autonomous_databases;
     /**
      * Output only. The date and time that the Autonomous Database was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
+    /**
+     * Output only. List of supported GCP region to clone the Autonomous Database
+     * for disaster recovery. Format: `project/{project}/locations/{location}`.
+     *
+     * Generated from protobuf field <code>repeated string disaster_recovery_supported_locations = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $disaster_recovery_supported_locations;
 
     /**
      * Constructor.
@@ -114,9 +154,29 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      *           Optional. The name of the VPC network used by the Autonomous Database in
      *           the following format: projects/{project}/global/networks/{network}
      *     @type string $cidr
-     *           Optional. The subnet CIDR range for the Autonmous Database.
+     *           Optional. The subnet CIDR range for the Autonomous Database.
+     *     @type string $odb_network
+     *           Optional. The name of the OdbNetwork associated with the Autonomous
+     *           Database. Format:
+     *           projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
+     *           optional but if specified, this should match the parent ODBNetwork of the
+     *           OdbSubnet.
+     *     @type string $odb_subnet
+     *           Optional. The name of the OdbSubnet associated with the Autonomous
+     *           Database. Format:
+     *           projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *     @type \Google\Cloud\OracleDatabase\V1\SourceConfig $source_config
+     *           Optional. The source Autonomous Database configuration for the standby
+     *           Autonomous Database. The source Autonomous Database is configured while
+     *           creating the Peer Autonomous Database and can't be updated after creation.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $peer_autonomous_databases
+     *           Output only. The peer Autonomous Database names of the given Autonomous
+     *           Database.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The date and time that the Autonomous Database was created.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $disaster_recovery_supported_locations
+     *           Output only. List of supported GCP region to clone the Autonomous Database
+     *           for disaster recovery. Format: `project/{project}/locations/{location}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -357,7 +417,7 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The subnet CIDR range for the Autonmous Database.
+     * Optional. The subnet CIDR range for the Autonomous Database.
      *
      * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -368,7 +428,7 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The subnet CIDR range for the Autonmous Database.
+     * Optional. The subnet CIDR range for the Autonomous Database.
      *
      * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -378,6 +438,138 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cidr = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the OdbNetwork associated with the Autonomous
+     * Database. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
+     * optional but if specified, this should match the parent ODBNetwork of the
+     * OdbSubnet.
+     *
+     * Generated from protobuf field <code>string odb_network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getOdbNetwork()
+    {
+        return $this->odb_network;
+    }
+
+    /**
+     * Optional. The name of the OdbNetwork associated with the Autonomous
+     * Database. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
+     * optional but if specified, this should match the parent ODBNetwork of the
+     * OdbSubnet.
+     *
+     * Generated from protobuf field <code>string odb_network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOdbNetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->odb_network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the OdbSubnet associated with the Autonomous
+     * Database. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *
+     * Generated from protobuf field <code>string odb_subnet = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getOdbSubnet()
+    {
+        return $this->odb_subnet;
+    }
+
+    /**
+     * Optional. The name of the OdbSubnet associated with the Autonomous
+     * Database. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *
+     * Generated from protobuf field <code>string odb_subnet = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOdbSubnet($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->odb_subnet = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The source Autonomous Database configuration for the standby
+     * Autonomous Database. The source Autonomous Database is configured while
+     * creating the Peer Autonomous Database and can't be updated after creation.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig source_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\OracleDatabase\V1\SourceConfig|null
+     */
+    public function getSourceConfig()
+    {
+        return $this->source_config;
+    }
+
+    public function hasSourceConfig()
+    {
+        return isset($this->source_config);
+    }
+
+    public function clearSourceConfig()
+    {
+        unset($this->source_config);
+    }
+
+    /**
+     * Optional. The source Autonomous Database configuration for the standby
+     * Autonomous Database. The source Autonomous Database is configured while
+     * creating the Peer Autonomous Database and can't be updated after creation.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig source_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\OracleDatabase\V1\SourceConfig $var
+     * @return $this
+     */
+    public function setSourceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\OracleDatabase\V1\SourceConfig::class);
+        $this->source_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The peer Autonomous Database names of the given Autonomous
+     * Database.
+     *
+     * Generated from protobuf field <code>repeated string peer_autonomous_databases = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPeerAutonomousDatabases()
+    {
+        return $this->peer_autonomous_databases;
+    }
+
+    /**
+     * Output only. The peer Autonomous Database names of the given Autonomous
+     * Database.
+     *
+     * Generated from protobuf field <code>repeated string peer_autonomous_databases = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPeerAutonomousDatabases($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->peer_autonomous_databases = $arr;
 
         return $this;
     }
@@ -414,6 +606,34 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. List of supported GCP region to clone the Autonomous Database
+     * for disaster recovery. Format: `project/{project}/locations/{location}`.
+     *
+     * Generated from protobuf field <code>repeated string disaster_recovery_supported_locations = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDisasterRecoverySupportedLocations()
+    {
+        return $this->disaster_recovery_supported_locations;
+    }
+
+    /**
+     * Output only. List of supported GCP region to clone the Autonomous Database
+     * for disaster recovery. Format: `project/{project}/locations/{location}`.
+     *
+     * Generated from protobuf field <code>repeated string disaster_recovery_supported_locations = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDisasterRecoverySupportedLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->disaster_recovery_supported_locations = $arr;
 
         return $this;
     }

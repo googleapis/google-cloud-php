@@ -44,29 +44,69 @@ use Google\Cloud\OracleDatabase\V1\CloudVmCluster;
 use Google\Cloud\OracleDatabase\V1\CreateAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\CreateCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\CreateCloudVmClusterRequest;
+use Google\Cloud\OracleDatabase\V1\CreateDbSystemRequest;
+use Google\Cloud\OracleDatabase\V1\CreateExadbVmClusterRequest;
+use Google\Cloud\OracleDatabase\V1\CreateExascaleDbStorageVaultRequest;
+use Google\Cloud\OracleDatabase\V1\CreateOdbNetworkRequest;
+use Google\Cloud\OracleDatabase\V1\CreateOdbSubnetRequest;
+use Google\Cloud\OracleDatabase\V1\Database;
+use Google\Cloud\OracleDatabase\V1\DbSystem;
 use Google\Cloud\OracleDatabase\V1\DeleteAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\DeleteCloudVmClusterRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteDbSystemRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteExadbVmClusterRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteExascaleDbStorageVaultRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteOdbNetworkRequest;
+use Google\Cloud\OracleDatabase\V1\DeleteOdbSubnetRequest;
+use Google\Cloud\OracleDatabase\V1\ExadbVmCluster;
+use Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVault;
+use Google\Cloud\OracleDatabase\V1\FailoverAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GenerateAutonomousDatabaseWalletRequest;
 use Google\Cloud\OracleDatabase\V1\GenerateAutonomousDatabaseWalletResponse;
 use Google\Cloud\OracleDatabase\V1\GetAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GetCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\GetCloudVmClusterRequest;
+use Google\Cloud\OracleDatabase\V1\GetDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\GetDbSystemRequest;
+use Google\Cloud\OracleDatabase\V1\GetExadbVmClusterRequest;
+use Google\Cloud\OracleDatabase\V1\GetExascaleDbStorageVaultRequest;
+use Google\Cloud\OracleDatabase\V1\GetOdbNetworkRequest;
+use Google\Cloud\OracleDatabase\V1\GetOdbSubnetRequest;
+use Google\Cloud\OracleDatabase\V1\GetPluggableDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabaseBackupsRequest;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabaseCharacterSetsRequest;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabasesRequest;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDbVersionsRequest;
 use Google\Cloud\OracleDatabase\V1\ListCloudExadataInfrastructuresRequest;
 use Google\Cloud\OracleDatabase\V1\ListCloudVmClustersRequest;
+use Google\Cloud\OracleDatabase\V1\ListDatabaseCharacterSetsRequest;
+use Google\Cloud\OracleDatabase\V1\ListDatabasesRequest;
 use Google\Cloud\OracleDatabase\V1\ListDbNodesRequest;
 use Google\Cloud\OracleDatabase\V1\ListDbServersRequest;
+use Google\Cloud\OracleDatabase\V1\ListDbSystemInitialStorageSizesRequest;
 use Google\Cloud\OracleDatabase\V1\ListDbSystemShapesRequest;
+use Google\Cloud\OracleDatabase\V1\ListDbSystemsRequest;
+use Google\Cloud\OracleDatabase\V1\ListDbVersionsRequest;
 use Google\Cloud\OracleDatabase\V1\ListEntitlementsRequest;
+use Google\Cloud\OracleDatabase\V1\ListExadbVmClustersRequest;
+use Google\Cloud\OracleDatabase\V1\ListExascaleDbStorageVaultsRequest;
 use Google\Cloud\OracleDatabase\V1\ListGiVersionsRequest;
+use Google\Cloud\OracleDatabase\V1\ListMinorVersionsRequest;
+use Google\Cloud\OracleDatabase\V1\ListOdbNetworksRequest;
+use Google\Cloud\OracleDatabase\V1\ListOdbSubnetsRequest;
+use Google\Cloud\OracleDatabase\V1\ListPluggableDatabasesRequest;
+use Google\Cloud\OracleDatabase\V1\OdbNetwork;
+use Google\Cloud\OracleDatabase\V1\OdbSubnet;
+use Google\Cloud\OracleDatabase\V1\PluggableDatabase;
+use Google\Cloud\OracleDatabase\V1\RemoveVirtualMachineExadbVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\RestartAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\RestoreAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\StartAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\StopAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\SwitchoverAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\UpdateAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\UpdateExadbVmClusterRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -86,28 +126,61 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> createAutonomousDatabaseAsync(CreateAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createCloudExadataInfrastructureAsync(CreateCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createCloudVmClusterAsync(CreateCloudVmClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDbSystemAsync(CreateDbSystemRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createExadbVmClusterAsync(CreateExadbVmClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createExascaleDbStorageVaultAsync(CreateExascaleDbStorageVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createOdbNetworkAsync(CreateOdbNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createOdbSubnetAsync(CreateOdbSubnetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAutonomousDatabaseAsync(DeleteAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteCloudExadataInfrastructureAsync(DeleteCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteCloudVmClusterAsync(DeleteCloudVmClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDbSystemAsync(DeleteDbSystemRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteExadbVmClusterAsync(DeleteExadbVmClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteExascaleDbStorageVaultAsync(DeleteExascaleDbStorageVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteOdbNetworkAsync(DeleteOdbNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteOdbSubnetAsync(DeleteOdbSubnetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> failoverAutonomousDatabaseAsync(FailoverAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateAutonomousDatabaseWalletResponse> generateAutonomousDatabaseWalletAsync(GenerateAutonomousDatabaseWalletRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AutonomousDatabase> getAutonomousDatabaseAsync(GetAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CloudExadataInfrastructure> getCloudExadataInfrastructureAsync(GetCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CloudVmCluster> getCloudVmClusterAsync(GetCloudVmClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Database> getDatabaseAsync(GetDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DbSystem> getDbSystemAsync(GetDbSystemRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExadbVmCluster> getExadbVmClusterAsync(GetExadbVmClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExascaleDbStorageVault> getExascaleDbStorageVaultAsync(GetExascaleDbStorageVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OdbNetwork> getOdbNetworkAsync(GetOdbNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OdbSubnet> getOdbSubnetAsync(GetOdbSubnetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PluggableDatabase> getPluggableDatabaseAsync(GetPluggableDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAutonomousDatabaseBackupsAsync(ListAutonomousDatabaseBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAutonomousDatabaseCharacterSetsAsync(ListAutonomousDatabaseCharacterSetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAutonomousDatabasesAsync(ListAutonomousDatabasesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAutonomousDbVersionsAsync(ListAutonomousDbVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCloudExadataInfrastructuresAsync(ListCloudExadataInfrastructuresRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCloudVmClustersAsync(ListCloudVmClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatabaseCharacterSetsAsync(ListDatabaseCharacterSetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatabasesAsync(ListDatabasesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDbNodesAsync(ListDbNodesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDbServersAsync(ListDbServersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDbSystemInitialStorageSizesAsync(ListDbSystemInitialStorageSizesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDbSystemShapesAsync(ListDbSystemShapesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDbSystemsAsync(ListDbSystemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDbVersionsAsync(ListDbVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listEntitlementsAsync(ListEntitlementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listExadbVmClustersAsync(ListExadbVmClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listExascaleDbStorageVaultsAsync(ListExascaleDbStorageVaultsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGiVersionsAsync(ListGiVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMinorVersionsAsync(ListMinorVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOdbNetworksAsync(ListOdbNetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOdbSubnetsAsync(ListOdbSubnetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPluggableDatabasesAsync(ListPluggableDatabasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeVirtualMachineExadbVmClusterAsync(RemoveVirtualMachineExadbVmClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> restartAutonomousDatabaseAsync(RestartAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> restoreAutonomousDatabaseAsync(RestoreAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> startAutonomousDatabaseAsync(StartAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> stopAutonomousDatabaseAsync(StopAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> switchoverAutonomousDatabaseAsync(SwitchoverAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAutonomousDatabaseAsync(UpdateAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateExadbVmClusterAsync(UpdateExadbVmClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -136,9 +209,7 @@ final class OracleDatabaseClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -238,8 +309,11 @@ final class OracleDatabaseClient
      *
      * @return string The formatted cloud_exadata_infrastructure resource.
      */
-    public static function cloudExadataInfrastructureName(string $project, string $location, string $cloudExadataInfrastructure): string
-    {
+    public static function cloudExadataInfrastructureName(
+        string $project,
+        string $location,
+        string $cloudExadataInfrastructure
+    ): string {
         return self::getPathTemplate('cloudExadataInfrastructure')->render([
             'project' => $project,
             'location' => $location,
@@ -263,6 +337,125 @@ final class OracleDatabaseClient
             'project' => $project,
             'location' => $location,
             'cloud_vm_cluster' => $cloudVmCluster,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a database
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $database
+     *
+     * @return string The formatted database resource.
+     */
+    public static function databaseName(string $project, string $location, string $database): string
+    {
+        return self::getPathTemplate('database')->render([
+            'project' => $project,
+            'location' => $location,
+            'database' => $database,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a db_system
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dbSystem
+     *
+     * @return string The formatted db_system resource.
+     */
+    public static function dbSystemName(string $project, string $location, string $dbSystem): string
+    {
+        return self::getPathTemplate('dbSystem')->render([
+            'project' => $project,
+            'location' => $location,
+            'db_system' => $dbSystem,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * exadb_vm_cluster resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $exadbVmCluster
+     *
+     * @return string The formatted exadb_vm_cluster resource.
+     */
+    public static function exadbVmClusterName(string $project, string $location, string $exadbVmCluster): string
+    {
+        return self::getPathTemplate('exadbVmCluster')->render([
+            'project' => $project,
+            'location' => $location,
+            'exadb_vm_cluster' => $exadbVmCluster,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * exascale_db_storage_vault resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $exascaleDbStorageVault
+     *
+     * @return string The formatted exascale_db_storage_vault resource.
+     */
+    public static function exascaleDbStorageVaultName(
+        string $project,
+        string $location,
+        string $exascaleDbStorageVault
+    ): string {
+        return self::getPathTemplate('exascaleDbStorageVault')->render([
+            'project' => $project,
+            'location' => $location,
+            'exascale_db_storage_vault' => $exascaleDbStorageVault,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a gi_version
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $giVersion
+     *
+     * @return string The formatted gi_version resource.
+     */
+    public static function giVersionName(string $project, string $location, string $giVersion): string
+    {
+        return self::getPathTemplate('giVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'gi_version' => $giVersion,
         ]);
     }
 
@@ -301,14 +494,86 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a odb_network
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $odbNetwork
+     *
+     * @return string The formatted odb_network resource.
+     */
+    public static function odbNetworkName(string $project, string $location, string $odbNetwork): string
+    {
+        return self::getPathTemplate('odbNetwork')->render([
+            'project' => $project,
+            'location' => $location,
+            'odb_network' => $odbNetwork,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a odb_subnet
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $odbNetwork
+     * @param string $odbSubnet
+     *
+     * @return string The formatted odb_subnet resource.
+     */
+    public static function odbSubnetName(
+        string $project,
+        string $location,
+        string $odbNetwork,
+        string $odbSubnet
+    ): string {
+        return self::getPathTemplate('odbSubnet')->render([
+            'project' => $project,
+            'location' => $location,
+            'odb_network' => $odbNetwork,
+            'odb_subnet' => $odbSubnet,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * pluggable_database resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $pluggableDatabase
+     *
+     * @return string The formatted pluggable_database resource.
+     */
+    public static function pluggableDatabaseName(string $project, string $location, string $pluggableDatabase): string
+    {
+        return self::getPathTemplate('pluggableDatabase')->render([
+            'project' => $project,
+            'location' => $location,
+            'pluggable_database' => $pluggableDatabase,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - autonomousDatabase: projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}
      * - cloudExadataInfrastructure: projects/{project}/locations/{location}/cloudExadataInfrastructures/{cloud_exadata_infrastructure}
      * - cloudVmCluster: projects/{project}/locations/{location}/cloudVmClusters/{cloud_vm_cluster}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - database: projects/{project}/locations/{location}/databases/{database}
+     * - dbSystem: projects/{project}/locations/{location}/dbSystems/{db_system}
+     * - exadbVmCluster: projects/{project}/locations/{location}/exadbVmClusters/{exadb_vm_cluster}
+     * - exascaleDbStorageVault: projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
+     * - giVersion: projects/{project}/locations/{location}/giVersions/{gi_version}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - odbNetwork: projects/{project}/locations/{location}/odbNetworks/{odb_network}
+     * - odbSubnet: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     * - pluggableDatabase: projects/{project}/locations/{location}/pluggableDatabases/{pluggable_database}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -436,8 +701,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAutonomousDatabase(CreateAutonomousDatabaseRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createAutonomousDatabase(
+        CreateAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateAutonomousDatabase', $request, $callOptions)->wait();
     }
 
@@ -463,8 +730,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCloudExadataInfrastructure(CreateCloudExadataInfrastructureRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createCloudExadataInfrastructure(
+        CreateCloudExadataInfrastructureRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateCloudExadataInfrastructure', $request, $callOptions)->wait();
     }
 
@@ -489,9 +758,146 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCloudVmCluster(CreateCloudVmClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createCloudVmCluster(
+        CreateCloudVmClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateCloudVmCluster', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new DbSystem in a given project and location.
+     *
+     * The async variant is {@see OracleDatabaseClient::createDbSystemAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/create_db_system.php
+     *
+     * @param CreateDbSystemRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DbSystem>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createDbSystem(CreateDbSystemRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateDbSystem', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new Exadb (Exascale) VM Cluster resource.
+     *
+     * The async variant is {@see OracleDatabaseClient::createExadbVmClusterAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/create_exadb_vm_cluster.php
+     *
+     * @param CreateExadbVmClusterRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<ExadbVmCluster>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createExadbVmCluster(
+        CreateExadbVmClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateExadbVmCluster', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new ExascaleDB Storage Vault resource.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::createExascaleDbStorageVaultAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/create_exascale_db_storage_vault.php
+     *
+     * @param CreateExascaleDbStorageVaultRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<ExascaleDbStorageVault>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createExascaleDbStorageVault(
+        CreateExascaleDbStorageVaultRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateExascaleDbStorageVault', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new ODB Network in a given project and location.
+     *
+     * The async variant is {@see OracleDatabaseClient::createOdbNetworkAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/create_odb_network.php
+     *
+     * @param CreateOdbNetworkRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<OdbNetwork>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createOdbNetwork(CreateOdbNetworkRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateOdbNetwork', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new ODB Subnet in a given ODB Network.
+     *
+     * The async variant is {@see OracleDatabaseClient::createOdbSubnetAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/create_odb_subnet.php
+     *
+     * @param CreateOdbSubnetRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<OdbSubnet>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createOdbSubnet(CreateOdbSubnetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateOdbSubnet', $request, $callOptions)->wait();
     }
 
     /**
@@ -516,8 +922,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAutonomousDatabase(DeleteAutonomousDatabaseRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteAutonomousDatabase(
+        DeleteAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteAutonomousDatabase', $request, $callOptions)->wait();
     }
 
@@ -543,8 +951,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCloudExadataInfrastructure(DeleteCloudExadataInfrastructureRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteCloudExadataInfrastructure(
+        DeleteCloudExadataInfrastructureRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteCloudExadataInfrastructure', $request, $callOptions)->wait();
     }
 
@@ -569,9 +979,176 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCloudVmCluster(DeleteCloudVmClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteCloudVmCluster(
+        DeleteCloudVmClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteCloudVmCluster', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single DbSystem.
+     *
+     * The async variant is {@see OracleDatabaseClient::deleteDbSystemAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/delete_db_system.php
+     *
+     * @param DeleteDbSystemRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDbSystem(DeleteDbSystemRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteDbSystem', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single Exadb (Exascale) VM Cluster.
+     *
+     * The async variant is {@see OracleDatabaseClient::deleteExadbVmClusterAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/delete_exadb_vm_cluster.php
+     *
+     * @param DeleteExadbVmClusterRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteExadbVmCluster(
+        DeleteExadbVmClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteExadbVmCluster', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single ExascaleDB Storage Vault.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::deleteExascaleDbStorageVaultAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/delete_exascale_db_storage_vault.php
+     *
+     * @param DeleteExascaleDbStorageVaultRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteExascaleDbStorageVault(
+        DeleteExascaleDbStorageVaultRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteExascaleDbStorageVault', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single ODB Network.
+     *
+     * The async variant is {@see OracleDatabaseClient::deleteOdbNetworkAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/delete_odb_network.php
+     *
+     * @param DeleteOdbNetworkRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteOdbNetwork(DeleteOdbNetworkRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteOdbNetwork', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single ODB Subnet.
+     *
+     * The async variant is {@see OracleDatabaseClient::deleteOdbSubnetAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/delete_odb_subnet.php
+     *
+     * @param DeleteOdbSubnetRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteOdbSubnet(DeleteOdbSubnetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteOdbSubnet', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Initiates a failover to target autonomous database from the associated
+     * primary database.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::failoverAutonomousDatabaseAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/failover_autonomous_database.php
+     *
+     * @param FailoverAutonomousDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AutonomousDatabase>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function failoverAutonomousDatabase(
+        FailoverAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('FailoverAutonomousDatabase', $request, $callOptions)->wait();
     }
 
     /**
@@ -596,8 +1173,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAutonomousDatabaseWallet(GenerateAutonomousDatabaseWalletRequest $request, array $callOptions = []): GenerateAutonomousDatabaseWalletResponse
-    {
+    public function generateAutonomousDatabaseWallet(
+        GenerateAutonomousDatabaseWalletRequest $request,
+        array $callOptions = []
+    ): GenerateAutonomousDatabaseWalletResponse {
         return $this->startApiCall('GenerateAutonomousDatabaseWallet', $request, $callOptions)->wait();
     }
 
@@ -622,8 +1201,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAutonomousDatabase(GetAutonomousDatabaseRequest $request, array $callOptions = []): AutonomousDatabase
-    {
+    public function getAutonomousDatabase(
+        GetAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): AutonomousDatabase {
         return $this->startApiCall('GetAutonomousDatabase', $request, $callOptions)->wait();
     }
 
@@ -649,8 +1230,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCloudExadataInfrastructure(GetCloudExadataInfrastructureRequest $request, array $callOptions = []): CloudExadataInfrastructure
-    {
+    public function getCloudExadataInfrastructure(
+        GetCloudExadataInfrastructureRequest $request,
+        array $callOptions = []
+    ): CloudExadataInfrastructure {
         return $this->startApiCall('GetCloudExadataInfrastructure', $request, $callOptions)->wait();
     }
 
@@ -681,6 +1264,193 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Gets details of a single Database.
+     *
+     * The async variant is {@see OracleDatabaseClient::getDatabaseAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_database.php
+     *
+     * @param GetDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Database
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDatabase(GetDatabaseRequest $request, array $callOptions = []): Database
+    {
+        return $this->startApiCall('GetDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single DbSystem.
+     *
+     * The async variant is {@see OracleDatabaseClient::getDbSystemAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_db_system.php
+     *
+     * @param GetDbSystemRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DbSystem
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDbSystem(GetDbSystemRequest $request, array $callOptions = []): DbSystem
+    {
+        return $this->startApiCall('GetDbSystem', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single Exadb (Exascale) VM Cluster.
+     *
+     * The async variant is {@see OracleDatabaseClient::getExadbVmClusterAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_exadb_vm_cluster.php
+     *
+     * @param GetExadbVmClusterRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExadbVmCluster
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getExadbVmCluster(GetExadbVmClusterRequest $request, array $callOptions = []): ExadbVmCluster
+    {
+        return $this->startApiCall('GetExadbVmCluster', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single ExascaleDB Storage Vault.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::getExascaleDbStorageVaultAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_exascale_db_storage_vault.php
+     *
+     * @param GetExascaleDbStorageVaultRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExascaleDbStorageVault
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getExascaleDbStorageVault(
+        GetExascaleDbStorageVaultRequest $request,
+        array $callOptions = []
+    ): ExascaleDbStorageVault {
+        return $this->startApiCall('GetExascaleDbStorageVault', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single ODB Network.
+     *
+     * The async variant is {@see OracleDatabaseClient::getOdbNetworkAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_odb_network.php
+     *
+     * @param GetOdbNetworkRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OdbNetwork
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getOdbNetwork(GetOdbNetworkRequest $request, array $callOptions = []): OdbNetwork
+    {
+        return $this->startApiCall('GetOdbNetwork', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single ODB Subnet.
+     *
+     * The async variant is {@see OracleDatabaseClient::getOdbSubnetAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_odb_subnet.php
+     *
+     * @param GetOdbSubnetRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OdbSubnet
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getOdbSubnet(GetOdbSubnetRequest $request, array $callOptions = []): OdbSubnet
+    {
+        return $this->startApiCall('GetOdbSubnet', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single PluggableDatabase.
+     *
+     * The async variant is {@see OracleDatabaseClient::getPluggableDatabaseAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_pluggable_database.php
+     *
+     * @param GetPluggableDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PluggableDatabase
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getPluggableDatabase(
+        GetPluggableDatabaseRequest $request,
+        array $callOptions = []
+    ): PluggableDatabase {
+        return $this->startApiCall('GetPluggableDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lists the long-term and automatic backups of an Autonomous Database.
      *
      * The async variant is
@@ -702,8 +1472,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAutonomousDatabaseBackups(ListAutonomousDatabaseBackupsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAutonomousDatabaseBackups(
+        ListAutonomousDatabaseBackupsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAutonomousDatabaseBackups', $request, $callOptions);
     }
 
@@ -729,8 +1501,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAutonomousDatabaseCharacterSets(ListAutonomousDatabaseCharacterSetsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAutonomousDatabaseCharacterSets(
+        ListAutonomousDatabaseCharacterSetsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAutonomousDatabaseCharacterSets', $request, $callOptions);
     }
 
@@ -756,8 +1530,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAutonomousDatabases(ListAutonomousDatabasesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAutonomousDatabases(
+        ListAutonomousDatabasesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAutonomousDatabases', $request, $callOptions);
     }
 
@@ -784,8 +1560,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAutonomousDbVersions(ListAutonomousDbVersionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAutonomousDbVersions(
+        ListAutonomousDbVersionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAutonomousDbVersions', $request, $callOptions);
     }
 
@@ -811,8 +1589,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCloudExadataInfrastructures(ListCloudExadataInfrastructuresRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCloudExadataInfrastructures(
+        ListCloudExadataInfrastructuresRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCloudExadataInfrastructures', $request, $callOptions);
     }
 
@@ -840,6 +1620,61 @@ final class OracleDatabaseClient
     public function listCloudVmClusters(ListCloudVmClustersRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListCloudVmClusters', $request, $callOptions);
+    }
+
+    /**
+     * List DatabaseCharacterSets for the given project and location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::listDatabaseCharacterSetsAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_database_character_sets.php
+     *
+     * @param ListDatabaseCharacterSetsRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDatabaseCharacterSets(
+        ListDatabaseCharacterSetsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListDatabaseCharacterSets', $request, $callOptions);
+    }
+
+    /**
+     * Lists all the Databases for the given project, location and DbSystem.
+     *
+     * The async variant is {@see OracleDatabaseClient::listDatabasesAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_databases.php
+     *
+     * @param ListDatabasesRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDatabases(ListDatabasesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListDatabases', $request, $callOptions);
     }
 
     /**
@@ -895,6 +1730,36 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Lists all the DbSystemInitialStorageSizes for the given project and
+     * location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::listDbSystemInitialStorageSizesAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_db_system_initial_storage_sizes.php
+     *
+     * @param ListDbSystemInitialStorageSizesRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDbSystemInitialStorageSizes(
+        ListDbSystemInitialStorageSizesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListDbSystemInitialStorageSizes', $request, $callOptions);
+    }
+
+    /**
      * Lists the database system shapes available for the project and location.
      *
      * The async variant is {@see OracleDatabaseClient::listDbSystemShapesAsync()} .
@@ -921,6 +1786,58 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Lists all the DbSystems for the given project and location.
+     *
+     * The async variant is {@see OracleDatabaseClient::listDbSystemsAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_db_systems.php
+     *
+     * @param ListDbSystemsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDbSystems(ListDbSystemsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListDbSystems', $request, $callOptions);
+    }
+
+    /**
+     * List DbVersions for the given project and location.
+     *
+     * The async variant is {@see OracleDatabaseClient::listDbVersionsAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_db_versions.php
+     *
+     * @param ListDbVersionsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDbVersions(ListDbVersionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListDbVersions', $request, $callOptions);
+    }
+
+    /**
      * Lists the entitlements in a given project.
      *
      * The async variant is {@see OracleDatabaseClient::listEntitlementsAsync()} .
@@ -944,6 +1861,63 @@ final class OracleDatabaseClient
     public function listEntitlements(ListEntitlementsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListEntitlements', $request, $callOptions);
+    }
+
+    /**
+     * Lists all the Exadb (Exascale) VM Clusters for the given project and
+     * location.
+     *
+     * The async variant is {@see OracleDatabaseClient::listExadbVmClustersAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_exadb_vm_clusters.php
+     *
+     * @param ListExadbVmClustersRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listExadbVmClusters(ListExadbVmClustersRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListExadbVmClusters', $request, $callOptions);
+    }
+
+    /**
+     * Lists all the ExascaleDB Storage Vaults for the given project and
+     * location.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::listExascaleDbStorageVaultsAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_exascale_db_storage_vaults.php
+     *
+     * @param ListExascaleDbStorageVaultsRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listExascaleDbStorageVaults(
+        ListExascaleDbStorageVaultsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListExascaleDbStorageVaults', $request, $callOptions);
     }
 
     /**
@@ -974,6 +1948,144 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Lists all the valid minor versions for the given
+     * project, location, gi version and shape family.
+     *
+     * The async variant is {@see OracleDatabaseClient::listMinorVersionsAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_minor_versions.php
+     *
+     * @param ListMinorVersionsRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMinorVersions(ListMinorVersionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListMinorVersions', $request, $callOptions);
+    }
+
+    /**
+     * Lists the ODB Networks in a given project and location.
+     *
+     * The async variant is {@see OracleDatabaseClient::listOdbNetworksAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_odb_networks.php
+     *
+     * @param ListOdbNetworksRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listOdbNetworks(ListOdbNetworksRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListOdbNetworks', $request, $callOptions);
+    }
+
+    /**
+     * Lists all the ODB Subnets in a given ODB Network.
+     *
+     * The async variant is {@see OracleDatabaseClient::listOdbSubnetsAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_odb_subnets.php
+     *
+     * @param ListOdbSubnetsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listOdbSubnets(ListOdbSubnetsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListOdbSubnets', $request, $callOptions);
+    }
+
+    /**
+     * Lists all the PluggableDatabases for the given project, location and
+     * Container Database.
+     *
+     * The async variant is {@see OracleDatabaseClient::listPluggableDatabasesAsync()}
+     * .
+     *
+     * @example samples/V1/OracleDatabaseClient/list_pluggable_databases.php
+     *
+     * @param ListPluggableDatabasesRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPluggableDatabases(
+        ListPluggableDatabasesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListPluggableDatabases', $request, $callOptions);
+    }
+
+    /**
+     * Removes virtual machines from an existing exadb vm cluster.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::removeVirtualMachineExadbVmClusterAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/remove_virtual_machine_exadb_vm_cluster.php
+     *
+     * @param RemoveVirtualMachineExadbVmClusterRequest $request     A request to house fields associated with the call.
+     * @param array                                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<ExadbVmCluster>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function removeVirtualMachineExadbVmCluster(
+        RemoveVirtualMachineExadbVmClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('RemoveVirtualMachineExadbVmCluster', $request, $callOptions)->wait();
+    }
+
+    /**
      * Restarts an Autonomous Database.
      *
      * The async variant is
@@ -995,8 +2107,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restartAutonomousDatabase(RestartAutonomousDatabaseRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function restartAutonomousDatabase(
+        RestartAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RestartAutonomousDatabase', $request, $callOptions)->wait();
     }
 
@@ -1022,8 +2136,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restoreAutonomousDatabase(RestoreAutonomousDatabaseRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function restoreAutonomousDatabase(
+        RestoreAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RestoreAutonomousDatabase', $request, $callOptions)->wait();
     }
 
@@ -1049,8 +2165,10 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startAutonomousDatabase(StartAutonomousDatabaseRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function startAutonomousDatabase(
+        StartAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StartAutonomousDatabase', $request, $callOptions)->wait();
     }
 
@@ -1076,9 +2194,99 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopAutonomousDatabase(StopAutonomousDatabaseRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function stopAutonomousDatabase(
+        StopAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StopAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Initiates a switchover of specified autonomous database to the associated
+     * peer database.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::switchoverAutonomousDatabaseAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/switchover_autonomous_database.php
+     *
+     * @param SwitchoverAutonomousDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AutonomousDatabase>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function switchoverAutonomousDatabase(
+        SwitchoverAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('SwitchoverAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single Autonomous Database.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::updateAutonomousDatabaseAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/update_autonomous_database.php
+     *
+     * @param UpdateAutonomousDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AutonomousDatabase>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAutonomousDatabase(
+        UpdateAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a single Exadb (Exascale) VM Cluster. To add virtual machines to
+     * existing exadb vm cluster, only pass the node count.
+     *
+     * The async variant is {@see OracleDatabaseClient::updateExadbVmClusterAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/update_exadb_vm_cluster.php
+     *
+     * @param UpdateExadbVmClusterRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<ExadbVmCluster>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateExadbVmCluster(
+        UpdateExadbVmClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateExadbVmCluster', $request, $callOptions)->wait();
     }
 
     /**

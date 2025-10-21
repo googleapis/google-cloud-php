@@ -31,7 +31,9 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * Optional. Google Cloud Platform location where Oracle Exadata is hosted.
+     * Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is
+     * hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+     * zone based on availability.
      *
      * Generated from protobuf field <code>string gcp_oracle_zone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -75,7 +77,9 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Optional. User friendly name for this resource.
      *     @type string $gcp_oracle_zone
-     *           Optional. Google Cloud Platform location where Oracle Exadata is hosted.
+     *           Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is
+     *           hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+     *           zone based on availability.
      *     @type string $entitlement_id
      *           Output only. Entitlement ID of the private offer against which this
      *           infrastructure resource is provisioned.
@@ -149,7 +153,9 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Google Cloud Platform location where Oracle Exadata is hosted.
+     * Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is
+     * hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+     * zone based on availability.
      *
      * Generated from protobuf field <code>string gcp_oracle_zone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -160,7 +166,9 @@ class CloudExadataInfrastructure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Google Cloud Platform location where Oracle Exadata is hosted.
+     * Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is
+     * hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+     * zone based on availability.
      *
      * Generated from protobuf field <code>string gcp_oracle_zone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

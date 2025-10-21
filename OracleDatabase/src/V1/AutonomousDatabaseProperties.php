@@ -380,6 +380,20 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      */
     protected $next_long_term_backup_time = null;
     /**
+     * Output only. The date and time the Autonomous Data Guard role was changed
+     * for the standby Autonomous Database.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp data_guard_role_changed_time = 61 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $data_guard_role_changed_time = null;
+    /**
+     * Output only. The date and time the Disaster Recovery role was changed for
+     * the standby Autonomous Database.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp disaster_recovery_role_changed_time = 62 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $disaster_recovery_role_changed_time = null;
+    /**
      * Output only. The date and time when maintenance will begin.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp maintenance_begin_time = 65 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -391,6 +405,34 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp maintenance_end_time = 66 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $maintenance_end_time = null;
+    /**
+     * Optional. The list of allowlisted IP addresses for the Autonomous Database.
+     *
+     * Generated from protobuf field <code>repeated string allowlisted_ips = 67 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $allowlisted_ips;
+    /**
+     * Optional. The encryption key used to encrypt the Autonomous Database.
+     * Updating this field will add a new entry in the
+     * `encryption_key_history_entries` field with the former version.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.EncryptionKey encryption_key = 68 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $encryption_key = null;
+    /**
+     * Output only. The history of the encryption keys used to encrypt the
+     * Autonomous Database.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.EncryptionKeyHistoryEntry encryption_key_history_entries = 69 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $encryption_key_history_entries;
+    /**
+     * Output only. An Oracle-managed Google Cloud service account on which
+     * customers can grant roles to access resources in the customer project.
+     *
+     * Generated from protobuf field <code>string service_agent_email = 70 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $service_agent_email = '';
 
     /**
      * Constructor.
@@ -542,10 +584,28 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      *           Database, in gigabytes.
      *     @type \Google\Protobuf\Timestamp $next_long_term_backup_time
      *           Output only. The long term backup schedule of the Autonomous Database.
+     *     @type \Google\Protobuf\Timestamp $data_guard_role_changed_time
+     *           Output only. The date and time the Autonomous Data Guard role was changed
+     *           for the standby Autonomous Database.
+     *     @type \Google\Protobuf\Timestamp $disaster_recovery_role_changed_time
+     *           Output only. The date and time the Disaster Recovery role was changed for
+     *           the standby Autonomous Database.
      *     @type \Google\Protobuf\Timestamp $maintenance_begin_time
      *           Output only. The date and time when maintenance will begin.
      *     @type \Google\Protobuf\Timestamp $maintenance_end_time
      *           Output only. The date and time when maintenance will end.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowlisted_ips
+     *           Optional. The list of allowlisted IP addresses for the Autonomous Database.
+     *     @type \Google\Cloud\OracleDatabase\V1\EncryptionKey $encryption_key
+     *           Optional. The encryption key used to encrypt the Autonomous Database.
+     *           Updating this field will add a new entry in the
+     *           `encryption_key_history_entries` field with the former version.
+     *     @type array<\Google\Cloud\OracleDatabase\V1\EncryptionKeyHistoryEntry>|\Google\Protobuf\Internal\RepeatedField $encryption_key_history_entries
+     *           Output only. The history of the encryption keys used to encrypt the
+     *           Autonomous Database.
+     *     @type string $service_agent_email
+     *           Output only. An Oracle-managed Google Cloud service account on which
+     *           customers can grant roles to access resources in the customer project.
      * }
      */
     public function __construct($data = NULL) {
@@ -2122,6 +2182,82 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The date and time the Autonomous Data Guard role was changed
+     * for the standby Autonomous Database.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp data_guard_role_changed_time = 61 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getDataGuardRoleChangedTime()
+    {
+        return $this->data_guard_role_changed_time;
+    }
+
+    public function hasDataGuardRoleChangedTime()
+    {
+        return isset($this->data_guard_role_changed_time);
+    }
+
+    public function clearDataGuardRoleChangedTime()
+    {
+        unset($this->data_guard_role_changed_time);
+    }
+
+    /**
+     * Output only. The date and time the Autonomous Data Guard role was changed
+     * for the standby Autonomous Database.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp data_guard_role_changed_time = 61 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setDataGuardRoleChangedTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->data_guard_role_changed_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The date and time the Disaster Recovery role was changed for
+     * the standby Autonomous Database.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp disaster_recovery_role_changed_time = 62 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getDisasterRecoveryRoleChangedTime()
+    {
+        return $this->disaster_recovery_role_changed_time;
+    }
+
+    public function hasDisasterRecoveryRoleChangedTime()
+    {
+        return isset($this->disaster_recovery_role_changed_time);
+    }
+
+    public function clearDisasterRecoveryRoleChangedTime()
+    {
+        unset($this->disaster_recovery_role_changed_time);
+    }
+
+    /**
+     * Output only. The date and time the Disaster Recovery role was changed for
+     * the standby Autonomous Database.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp disaster_recovery_role_changed_time = 62 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setDisasterRecoveryRoleChangedTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->disaster_recovery_role_changed_time = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The date and time when maintenance will begin.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp maintenance_begin_time = 65 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -2189,6 +2325,128 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->maintenance_end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The list of allowlisted IP addresses for the Autonomous Database.
+     *
+     * Generated from protobuf field <code>repeated string allowlisted_ips = 67 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAllowlistedIps()
+    {
+        return $this->allowlisted_ips;
+    }
+
+    /**
+     * Optional. The list of allowlisted IP addresses for the Autonomous Database.
+     *
+     * Generated from protobuf field <code>repeated string allowlisted_ips = 67 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAllowlistedIps($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->allowlisted_ips = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The encryption key used to encrypt the Autonomous Database.
+     * Updating this field will add a new entry in the
+     * `encryption_key_history_entries` field with the former version.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.EncryptionKey encryption_key = 68 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\OracleDatabase\V1\EncryptionKey|null
+     */
+    public function getEncryptionKey()
+    {
+        return $this->encryption_key;
+    }
+
+    public function hasEncryptionKey()
+    {
+        return isset($this->encryption_key);
+    }
+
+    public function clearEncryptionKey()
+    {
+        unset($this->encryption_key);
+    }
+
+    /**
+     * Optional. The encryption key used to encrypt the Autonomous Database.
+     * Updating this field will add a new entry in the
+     * `encryption_key_history_entries` field with the former version.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.EncryptionKey encryption_key = 68 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\OracleDatabase\V1\EncryptionKey $var
+     * @return $this
+     */
+    public function setEncryptionKey($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\OracleDatabase\V1\EncryptionKey::class);
+        $this->encryption_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The history of the encryption keys used to encrypt the
+     * Autonomous Database.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.EncryptionKeyHistoryEntry encryption_key_history_entries = 69 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEncryptionKeyHistoryEntries()
+    {
+        return $this->encryption_key_history_entries;
+    }
+
+    /**
+     * Output only. The history of the encryption keys used to encrypt the
+     * Autonomous Database.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.EncryptionKeyHistoryEntry encryption_key_history_entries = 69 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\OracleDatabase\V1\EncryptionKeyHistoryEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEncryptionKeyHistoryEntries($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\OracleDatabase\V1\EncryptionKeyHistoryEntry::class);
+        $this->encryption_key_history_entries = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. An Oracle-managed Google Cloud service account on which
+     * customers can grant roles to access resources in the customer project.
+     *
+     * Generated from protobuf field <code>string service_agent_email = 70 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getServiceAgentEmail()
+    {
+        return $this->service_agent_email;
+    }
+
+    /**
+     * Output only. An Oracle-managed Google Cloud service account on which
+     * customers can grant roles to access resources in the customer project.
+     *
+     * Generated from protobuf field <code>string service_agent_email = 70 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAgentEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_agent_email = $var;
 
         return $this;
     }

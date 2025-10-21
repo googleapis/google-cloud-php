@@ -188,6 +188,24 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
      * Generated from protobuf field <code>string monthly_db_server_version = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $monthly_db_server_version = '';
+    /**
+     * Output only. The compute model of the Exadata Infrastructure.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ComputeModel compute_model = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $compute_model = 0;
+    /**
+     * Output only. The database server type of the Exadata Infrastructure.
+     *
+     * Generated from protobuf field <code>string database_server_type = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $database_server_type = '';
+    /**
+     * Output only. The storage server type of the Exadata Infrastructure.
+     *
+     * Generated from protobuf field <code>string storage_server_type = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $storage_server_type = '';
 
     /**
      * Constructor.
@@ -260,6 +278,12 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
      *     @type string $monthly_db_server_version
      *           Output only. The monthly software version of the database servers (dom0)
      *           in the Exadata Infrastructure. Example: 20.1.15
+     *     @type int $compute_model
+     *           Output only. The compute model of the Exadata Infrastructure.
+     *     @type string $database_server_type
+     *           Output only. The database server type of the Exadata Infrastructure.
+     *     @type string $storage_server_type
+     *           Output only. The storage server type of the Exadata Infrastructure.
      * }
      */
     public function __construct($data = NULL) {
@@ -1017,6 +1041,84 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
     {
         GPBUtil::checkString($var, True);
         $this->monthly_db_server_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The compute model of the Exadata Infrastructure.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ComputeModel compute_model = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getComputeModel()
+    {
+        return $this->compute_model;
+    }
+
+    /**
+     * Output only. The compute model of the Exadata Infrastructure.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ComputeModel compute_model = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setComputeModel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\ComputeModel::class);
+        $this->compute_model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The database server type of the Exadata Infrastructure.
+     *
+     * Generated from protobuf field <code>string database_server_type = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getDatabaseServerType()
+    {
+        return $this->database_server_type;
+    }
+
+    /**
+     * Output only. The database server type of the Exadata Infrastructure.
+     *
+     * Generated from protobuf field <code>string database_server_type = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDatabaseServerType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->database_server_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The storage server type of the Exadata Infrastructure.
+     *
+     * Generated from protobuf field <code>string storage_server_type = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getStorageServerType()
+    {
+        return $this->storage_server_type;
+    }
+
+    /**
+     * Output only. The storage server type of the Exadata Infrastructure.
+     *
+     * Generated from protobuf field <code>string storage_server_type = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStorageServerType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->storage_server_type = $var;
 
         return $this;
     }

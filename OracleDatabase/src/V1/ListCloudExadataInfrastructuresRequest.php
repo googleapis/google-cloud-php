@@ -36,6 +36,18 @@ class ListCloudExadataInfrastructuresRequest extends \Google\Protobuf\Internal\M
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
+    /**
+     * Optional. An expression for filtering the results of the request.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $filter = '';
+    /**
+     * Optional. An expression for ordering the results of the request.
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. The parent value for CloudExadataInfrastructure in the following
@@ -67,6 +79,10 @@ class ListCloudExadataInfrastructuresRequest extends \Google\Protobuf\Internal\M
      *           The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
      *           Optional. A token identifying a page of results the server should return.
+     *     @type string $filter
+     *           Optional. An expression for filtering the results of the request.
+     *     @type string $order_by
+     *           Optional. An expression for ordering the results of the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -154,6 +170,58 @@ class ListCloudExadataInfrastructuresRequest extends \Google\Protobuf\Internal\M
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An expression for filtering the results of the request.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. An expression for filtering the results of the request.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An expression for ordering the results of the request.
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * Optional. An expression for ordering the results of the request.
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
 
         return $this;
     }
