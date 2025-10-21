@@ -71,11 +71,10 @@ class PgBatchTest extends SpannerPgTestCase
                     self::$tableName,
                     self::$dbRole
                 );
-
             }
 
             self::$database->updateDdlBatch($statements)->pollUntilComplete();
-	}
+        }
 
         self::seedTable();
         self::$isSetup = true;
