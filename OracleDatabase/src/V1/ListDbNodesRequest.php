@@ -18,6 +18,7 @@ class ListDbNodesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent value for database node in the following format:
      * projects/{project}/locations/{location}/cloudVmClusters/{cloudVmCluster}.
+     * .
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -39,8 +40,9 @@ class ListDbNodesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent value for database node in the following format:
-     *                       projects/{project}/locations/{location}/cloudVmClusters/{cloudVmCluster}. Please see
-     *                       {@see OracleDatabaseClient::cloudVmClusterName()} for help formatting this field.
+     *                       projects/{project}/locations/{location}/cloudVmClusters/{cloudVmCluster}.
+     *                       . Please see
+     *                       {@see OracleDatabaseClient::exadbVmClusterName()} for help formatting this field.
      *
      * @return \Google\Cloud\OracleDatabase\V1\ListDbNodesRequest
      *
@@ -61,6 +63,7 @@ class ListDbNodesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent value for database node in the following format:
      *           projects/{project}/locations/{location}/cloudVmClusters/{cloudVmCluster}.
+     *           .
      *     @type int $page_size
      *           Optional. The maximum number of items to return.
      *           If unspecified, at most 50 db nodes will be returned.
@@ -77,6 +80,7 @@ class ListDbNodesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent value for database node in the following format:
      * projects/{project}/locations/{location}/cloudVmClusters/{cloudVmCluster}.
+     * .
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -89,6 +93,7 @@ class ListDbNodesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent value for database node in the following format:
      * projects/{project}/locations/{location}/cloudVmClusters/{cloudVmCluster}.
+     * .
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

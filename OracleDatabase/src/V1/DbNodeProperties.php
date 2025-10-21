@@ -63,6 +63,12 @@ class DbNodeProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 total_cpu_core_count = 10;</code>
      */
     protected $total_cpu_core_count = 0;
+    /**
+     * Output only. The date and time that the database node was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $create_time = null;
 
     /**
      * Constructor.
@@ -86,6 +92,8 @@ class DbNodeProperties extends \Google\Protobuf\Internal\Message
      *           Output only. State of the database node.
      *     @type int $total_cpu_core_count
      *           Total CPU core count of the database node.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The date and time that the database node was created.
      * }
      */
     public function __construct($data = NULL) {
@@ -297,6 +305,42 @@ class DbNodeProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->total_cpu_core_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The date and time that the database node was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. The date and time that the database node was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
 
         return $this;
     }

@@ -25,6 +25,31 @@
                                 "createCloudVmCluster"
                             ]
                         },
+                        "CreateDbSystem": {
+                            "methods": [
+                                "createDbSystem"
+                            ]
+                        },
+                        "CreateExadbVmCluster": {
+                            "methods": [
+                                "createExadbVmCluster"
+                            ]
+                        },
+                        "CreateExascaleDbStorageVault": {
+                            "methods": [
+                                "createExascaleDbStorageVault"
+                            ]
+                        },
+                        "CreateOdbNetwork": {
+                            "methods": [
+                                "createOdbNetwork"
+                            ]
+                        },
+                        "CreateOdbSubnet": {
+                            "methods": [
+                                "createOdbSubnet"
+                            ]
+                        },
                         "DeleteAutonomousDatabase": {
                             "methods": [
                                 "deleteAutonomousDatabase"
@@ -38,6 +63,36 @@
                         "DeleteCloudVmCluster": {
                             "methods": [
                                 "deleteCloudVmCluster"
+                            ]
+                        },
+                        "DeleteDbSystem": {
+                            "methods": [
+                                "deleteDbSystem"
+                            ]
+                        },
+                        "DeleteExadbVmCluster": {
+                            "methods": [
+                                "deleteExadbVmCluster"
+                            ]
+                        },
+                        "DeleteExascaleDbStorageVault": {
+                            "methods": [
+                                "deleteExascaleDbStorageVault"
+                            ]
+                        },
+                        "DeleteOdbNetwork": {
+                            "methods": [
+                                "deleteOdbNetwork"
+                            ]
+                        },
+                        "DeleteOdbSubnet": {
+                            "methods": [
+                                "deleteOdbSubnet"
+                            ]
+                        },
+                        "FailoverAutonomousDatabase": {
+                            "methods": [
+                                "failoverAutonomousDatabase"
                             ]
                         },
                         "GenerateAutonomousDatabaseWallet": {
@@ -58,6 +113,41 @@
                         "GetCloudVmCluster": {
                             "methods": [
                                 "getCloudVmCluster"
+                            ]
+                        },
+                        "GetDatabase": {
+                            "methods": [
+                                "getDatabase"
+                            ]
+                        },
+                        "GetDbSystem": {
+                            "methods": [
+                                "getDbSystem"
+                            ]
+                        },
+                        "GetExadbVmCluster": {
+                            "methods": [
+                                "getExadbVmCluster"
+                            ]
+                        },
+                        "GetExascaleDbStorageVault": {
+                            "methods": [
+                                "getExascaleDbStorageVault"
+                            ]
+                        },
+                        "GetOdbNetwork": {
+                            "methods": [
+                                "getOdbNetwork"
+                            ]
+                        },
+                        "GetOdbSubnet": {
+                            "methods": [
+                                "getOdbSubnet"
+                            ]
+                        },
+                        "GetPluggableDatabase": {
+                            "methods": [
+                                "getPluggableDatabase"
                             ]
                         },
                         "ListAutonomousDatabaseBackups": {
@@ -90,6 +180,16 @@
                                 "listCloudVmClusters"
                             ]
                         },
+                        "ListDatabaseCharacterSets": {
+                            "methods": [
+                                "listDatabaseCharacterSets"
+                            ]
+                        },
+                        "ListDatabases": {
+                            "methods": [
+                                "listDatabases"
+                            ]
+                        },
                         "ListDbNodes": {
                             "methods": [
                                 "listDbNodes"
@@ -100,9 +200,24 @@
                                 "listDbServers"
                             ]
                         },
+                        "ListDbSystemInitialStorageSizes": {
+                            "methods": [
+                                "listDbSystemInitialStorageSizes"
+                            ]
+                        },
                         "ListDbSystemShapes": {
                             "methods": [
                                 "listDbSystemShapes"
+                            ]
+                        },
+                        "ListDbSystems": {
+                            "methods": [
+                                "listDbSystems"
+                            ]
+                        },
+                        "ListDbVersions": {
+                            "methods": [
+                                "listDbVersions"
                             ]
                         },
                         "ListEntitlements": {
@@ -110,9 +225,44 @@
                                 "listEntitlements"
                             ]
                         },
+                        "ListExadbVmClusters": {
+                            "methods": [
+                                "listExadbVmClusters"
+                            ]
+                        },
+                        "ListExascaleDbStorageVaults": {
+                            "methods": [
+                                "listExascaleDbStorageVaults"
+                            ]
+                        },
                         "ListGiVersions": {
                             "methods": [
                                 "listGiVersions"
+                            ]
+                        },
+                        "ListMinorVersions": {
+                            "methods": [
+                                "listMinorVersions"
+                            ]
+                        },
+                        "ListOdbNetworks": {
+                            "methods": [
+                                "listOdbNetworks"
+                            ]
+                        },
+                        "ListOdbSubnets": {
+                            "methods": [
+                                "listOdbSubnets"
+                            ]
+                        },
+                        "ListPluggableDatabases": {
+                            "methods": [
+                                "listPluggableDatabases"
+                            ]
+                        },
+                        "RemoveVirtualMachineExadbVmCluster": {
+                            "methods": [
+                                "removeVirtualMachineExadbVmCluster"
                             ]
                         },
                         "RestartAutonomousDatabase": {
@@ -133,6 +283,21 @@
                         "StopAutonomousDatabase": {
                             "methods": [
                                 "stopAutonomousDatabase"
+                            ]
+                        },
+                        "SwitchoverAutonomousDatabase": {
+                            "methods": [
+                                "switchoverAutonomousDatabase"
+                            ]
+                        },
+                        "UpdateAutonomousDatabase": {
+                            "methods": [
+                                "updateAutonomousDatabase"
+                            ]
+                        },
+                        "UpdateExadbVmCluster": {
+                            "methods": [
+                                "updateExadbVmCluster"
                             ]
                         },
                         "GetLocation": {

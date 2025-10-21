@@ -211,6 +211,12 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cluster_name = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $cluster_name = '';
+    /**
+     * Output only. The compute model of the VM Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ComputeModel compute_model = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $compute_model = 0;
 
     /**
      * Constructor.
@@ -286,6 +292,8 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      *           Output only. DNS listener IP.
      *     @type string $cluster_name
      *           Optional. OCI Cluster name.
+     *     @type int $compute_model
+     *           Output only. The compute model of the VM Cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -1149,6 +1157,32 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cluster_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The compute model of the VM Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ComputeModel compute_model = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getComputeModel()
+    {
+        return $this->compute_model;
+    }
+
+    /**
+     * Output only. The compute model of the VM Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ComputeModel compute_model = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setComputeModel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\ComputeModel::class);
+        $this->compute_model = $var;
 
         return $this;
     }

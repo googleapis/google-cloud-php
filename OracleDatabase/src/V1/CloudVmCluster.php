@@ -38,13 +38,6 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * Output only. Google Cloud Platform location where Oracle Exadata is hosted.
-     * It is same as Google Cloud Platform Oracle zone of Exadata infrastructure.
-     *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    protected $gcp_oracle_zone = '';
-    /**
      * Optional. Various properties of the VM Cluster.
      *
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties properties = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -63,24 +56,65 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      */
     protected $create_time = null;
     /**
-     * Required. Network settings. CIDR to use for cluster IP allocation.
+     * Optional. Network settings. CIDR to use for cluster IP allocation.
      *
-     * Generated from protobuf field <code>string cidr = 9 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cidr = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $cidr = '';
     /**
-     * Required. CIDR range of the backup subnet.
+     * Optional. CIDR range of the backup subnet.
      *
-     * Generated from protobuf field <code>string backup_subnet_cidr = 10 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string backup_subnet_cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $backup_subnet_cidr = '';
     /**
-     * Required. The name of the VPC network.
+     * Optional. The name of the VPC network.
      * Format: projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $network = '';
+    /**
+     * Output only. The GCP Oracle zone where Oracle CloudVmCluster is hosted.
+     * This will be the same as the gcp_oracle_zone of the
+     * CloudExadataInfrastructure. Example: us-east4-b-r2.
+     *
+     * Generated from protobuf field <code>string gcp_oracle_zone = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $gcp_oracle_zone = '';
+    /**
+     * Optional. The name of the OdbNetwork associated with the VM Cluster.
+     * Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}
+     * It is optional but if specified, this should match the parent ODBNetwork of
+     * the odb_subnet and backup_odb_subnet.
+     *
+     * Generated from protobuf field <code>string odb_network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $odb_network = '';
+    /**
+     * Optional. The name of the OdbSubnet associated with the VM Cluster for
+     * IP allocation. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *
+     * Generated from protobuf field <code>string odb_subnet = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $odb_subnet = '';
+    /**
+     * Optional. The name of the backup OdbSubnet associated with the VM Cluster.
+     * Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *
+     * Generated from protobuf field <code>string backup_odb_subnet = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $backup_odb_subnet = '';
+    /**
+     * Output only. The identity connector details which will allow OCI to
+     * securely access the resources in the customer project.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.IdentityConnector identity_connector = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $identity_connector = null;
 
     /**
      * Constructor.
@@ -97,9 +131,6 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      *           projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
      *     @type string $display_name
      *           Optional. User friendly name for this resource.
-     *     @type string $gcp_oracle_zone
-     *           Output only. Google Cloud Platform location where Oracle Exadata is hosted.
-     *           It is same as Google Cloud Platform Oracle zone of Exadata infrastructure.
      *     @type \Google\Cloud\OracleDatabase\V1\CloudVmClusterProperties $properties
      *           Optional. Various properties of the VM Cluster.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -107,12 +138,33 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The date and time that the VM cluster was created.
      *     @type string $cidr
-     *           Required. Network settings. CIDR to use for cluster IP allocation.
+     *           Optional. Network settings. CIDR to use for cluster IP allocation.
      *     @type string $backup_subnet_cidr
-     *           Required. CIDR range of the backup subnet.
+     *           Optional. CIDR range of the backup subnet.
      *     @type string $network
-     *           Required. The name of the VPC network.
+     *           Optional. The name of the VPC network.
      *           Format: projects/{project}/global/networks/{network}
+     *     @type string $gcp_oracle_zone
+     *           Output only. The GCP Oracle zone where Oracle CloudVmCluster is hosted.
+     *           This will be the same as the gcp_oracle_zone of the
+     *           CloudExadataInfrastructure. Example: us-east4-b-r2.
+     *     @type string $odb_network
+     *           Optional. The name of the OdbNetwork associated with the VM Cluster.
+     *           Format:
+     *           projects/{project}/locations/{location}/odbNetworks/{odb_network}
+     *           It is optional but if specified, this should match the parent ODBNetwork of
+     *           the odb_subnet and backup_odb_subnet.
+     *     @type string $odb_subnet
+     *           Optional. The name of the OdbSubnet associated with the VM Cluster for
+     *           IP allocation. Format:
+     *           projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *     @type string $backup_odb_subnet
+     *           Optional. The name of the backup OdbSubnet associated with the VM Cluster.
+     *           Format:
+     *           projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *     @type \Google\Cloud\OracleDatabase\V1\IdentityConnector $identity_connector
+     *           Output only. The identity connector details which will allow OCI to
+     *           securely access the resources in the customer project.
      * }
      */
     public function __construct($data = NULL) {
@@ -200,34 +252,6 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
-
-        return $this;
-    }
-
-    /**
-     * Output only. Google Cloud Platform location where Oracle Exadata is hosted.
-     * It is same as Google Cloud Platform Oracle zone of Exadata infrastructure.
-     *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return string
-     */
-    public function getGcpOracleZone()
-    {
-        return $this->gcp_oracle_zone;
-    }
-
-    /**
-     * Output only. Google Cloud Platform location where Oracle Exadata is hosted.
-     * It is same as Google Cloud Platform Oracle zone of Exadata infrastructure.
-     *
-     * Generated from protobuf field <code>string gcp_oracle_zone = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setGcpOracleZone($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->gcp_oracle_zone = $var;
 
         return $this;
     }
@@ -331,9 +355,9 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Network settings. CIDR to use for cluster IP allocation.
+     * Optional. Network settings. CIDR to use for cluster IP allocation.
      *
-     * Generated from protobuf field <code>string cidr = 9 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cidr = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getCidr()
@@ -342,9 +366,9 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Network settings. CIDR to use for cluster IP allocation.
+     * Optional. Network settings. CIDR to use for cluster IP allocation.
      *
-     * Generated from protobuf field <code>string cidr = 9 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cidr = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -357,9 +381,9 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. CIDR range of the backup subnet.
+     * Optional. CIDR range of the backup subnet.
      *
-     * Generated from protobuf field <code>string backup_subnet_cidr = 10 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string backup_subnet_cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getBackupSubnetCidr()
@@ -368,9 +392,9 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. CIDR range of the backup subnet.
+     * Optional. CIDR range of the backup subnet.
      *
-     * Generated from protobuf field <code>string backup_subnet_cidr = 10 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string backup_subnet_cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -383,10 +407,10 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the VPC network.
+     * Optional. The name of the VPC network.
      * Format: projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getNetwork()
@@ -395,10 +419,10 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the VPC network.
+     * Optional. The name of the VPC network.
      * Format: projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -406,6 +430,168 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The GCP Oracle zone where Oracle CloudVmCluster is hosted.
+     * This will be the same as the gcp_oracle_zone of the
+     * CloudExadataInfrastructure. Example: us-east4-b-r2.
+     *
+     * Generated from protobuf field <code>string gcp_oracle_zone = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getGcpOracleZone()
+    {
+        return $this->gcp_oracle_zone;
+    }
+
+    /**
+     * Output only. The GCP Oracle zone where Oracle CloudVmCluster is hosted.
+     * This will be the same as the gcp_oracle_zone of the
+     * CloudExadataInfrastructure. Example: us-east4-b-r2.
+     *
+     * Generated from protobuf field <code>string gcp_oracle_zone = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGcpOracleZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->gcp_oracle_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the OdbNetwork associated with the VM Cluster.
+     * Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}
+     * It is optional but if specified, this should match the parent ODBNetwork of
+     * the odb_subnet and backup_odb_subnet.
+     *
+     * Generated from protobuf field <code>string odb_network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getOdbNetwork()
+    {
+        return $this->odb_network;
+    }
+
+    /**
+     * Optional. The name of the OdbNetwork associated with the VM Cluster.
+     * Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}
+     * It is optional but if specified, this should match the parent ODBNetwork of
+     * the odb_subnet and backup_odb_subnet.
+     *
+     * Generated from protobuf field <code>string odb_network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOdbNetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->odb_network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the OdbSubnet associated with the VM Cluster for
+     * IP allocation. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *
+     * Generated from protobuf field <code>string odb_subnet = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getOdbSubnet()
+    {
+        return $this->odb_subnet;
+    }
+
+    /**
+     * Optional. The name of the OdbSubnet associated with the VM Cluster for
+     * IP allocation. Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *
+     * Generated from protobuf field <code>string odb_subnet = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOdbSubnet($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->odb_subnet = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the backup OdbSubnet associated with the VM Cluster.
+     * Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *
+     * Generated from protobuf field <code>string backup_odb_subnet = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getBackupOdbSubnet()
+    {
+        return $this->backup_odb_subnet;
+    }
+
+    /**
+     * Optional. The name of the backup OdbSubnet associated with the VM Cluster.
+     * Format:
+     * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
+     *
+     * Generated from protobuf field <code>string backup_odb_subnet = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupOdbSubnet($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backup_odb_subnet = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The identity connector details which will allow OCI to
+     * securely access the resources in the customer project.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.IdentityConnector identity_connector = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\OracleDatabase\V1\IdentityConnector|null
+     */
+    public function getIdentityConnector()
+    {
+        return $this->identity_connector;
+    }
+
+    public function hasIdentityConnector()
+    {
+        return isset($this->identity_connector);
+    }
+
+    public function clearIdentityConnector()
+    {
+        unset($this->identity_connector);
+    }
+
+    /**
+     * Output only. The identity connector details which will allow OCI to
+     * securely access the resources in the customer project.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.IdentityConnector identity_connector = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\OracleDatabase\V1\IdentityConnector $var
+     * @return $this
+     */
+    public function setIdentityConnector($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\OracleDatabase\V1\IdentityConnector::class);
+        $this->identity_connector = $var;
 
         return $this;
     }
