@@ -41,9 +41,8 @@ class PgBatchTest extends SystemTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        // skip setting up fixutres for the emulator as there's only one test which does not
-        // suppport the emulator.
-        // NOTE: remove this if emulator tests are adde
+        // Skip setting up fixutres for the emulator as there's only one test which does not suppport the emulator.
+        // NOTE: remove this if new tests tests are added which support the emulator.
         self::skipEmulatorTests();
 
         if (self::$hasSetupBatch) {
