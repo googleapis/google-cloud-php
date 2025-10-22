@@ -168,10 +168,7 @@ class ClientTraitTest extends TestCase
 
     public function testIgnoreKeyFileWhenUsingCredentialsFetcher()
     {
-        $keyFilePath = Fixtures::SERVICE_ACCOUNT_FIXTURE();
-        $key = json_decode(file_get_contents($keyFilePath), true);
-        $key['private_key'] = 'xxx';
-
+        $key = Fixtures::SERVICE_ACCOUNT_FIXTURE();
         $credentials = new ServiceAccountCredentials([], $key);
 
         $conf = $this->impl->call('configureAuthentication', [[
@@ -183,10 +180,7 @@ class ClientTraitTest extends TestCase
 
     public function testGetProjectIdFromCredentialsFetcher()
     {
-        $keyFilePath = Fixtures::SERVICE_ACCOUNT_FIXTURE();
-        $key = json_decode(file_get_contents($keyFilePath), true);
-        $key['private_key'] = 'xxx';
-
+        $key = Fixtures::SERVICE_ACCOUNT_FIXTURE();
         $credentials = new ServiceAccountCredentials([], $key);
 
         $this->impl->call('configureAuthentication', [[
