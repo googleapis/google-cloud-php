@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration for the use of Kubernetes Service Accounts in GCP IAM
- * policies.
+ * Configuration for the use of Kubernetes Service Accounts in IAM policies.
  *
  * Generated from protobuf message <code>google.container.v1.WorkloadIdentityConfig</code>
  */

@@ -22,6 +22,12 @@ class MaintenanceExclusionOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.MaintenanceExclusionOptions.Scope scope = 1;</code>
      */
     protected $scope = 0;
+    /**
+     * EndTimeBehavior specifies the behavior of the exclusion end time.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MaintenanceExclusionOptions.EndTimeBehavior end_time_behavior = 2;</code>
+     */
+    protected $end_time_behavior = 0;
 
     /**
      * Constructor.
@@ -32,6 +38,8 @@ class MaintenanceExclusionOptions extends \Google\Protobuf\Internal\Message
      *     @type int $scope
      *           Scope specifies the upgrade scope which upgrades are blocked by the
      *           exclusion.
+     *     @type int $end_time_behavior
+     *           EndTimeBehavior specifies the behavior of the exclusion end time.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +71,32 @@ class MaintenanceExclusionOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\MaintenanceExclusionOptions\Scope::class);
         $this->scope = $var;
+
+        return $this;
+    }
+
+    /**
+     * EndTimeBehavior specifies the behavior of the exclusion end time.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MaintenanceExclusionOptions.EndTimeBehavior end_time_behavior = 2;</code>
+     * @return int
+     */
+    public function getEndTimeBehavior()
+    {
+        return $this->end_time_behavior;
+    }
+
+    /**
+     * EndTimeBehavior specifies the behavior of the exclusion end time.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MaintenanceExclusionOptions.EndTimeBehavior end_time_behavior = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEndTimeBehavior($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\MaintenanceExclusionOptions\EndTimeBehavior::class);
+        $this->end_time_behavior = $var;
 
         return $this;
     }

@@ -95,6 +95,14 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.TransparentHugepageDefrag transparent_hugepage_defrag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $transparent_hugepage_defrag = 0;
+    /**
+     * Optional. Configuration for kernel module loading on nodes.
+     * When enabled, the node pool will be provisioned with a Container-Optimized
+     * OS image that enforces kernel module signature verification.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.NodeKernelModuleLoading node_kernel_module_loading = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $node_kernel_module_loading = null;
 
     /**
      * Constructor.
@@ -162,6 +170,10 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           immediate allocation only.
      *           See https://docs.kernel.org/admin-guide/mm/transhuge.html
      *           for more details.
+     *     @type \Google\Cloud\Container\V1\LinuxNodeConfig\NodeKernelModuleLoading $node_kernel_module_loading
+     *           Optional. Configuration for kernel module loading on nodes.
+     *           When enabled, the node pool will be provisioned with a Container-Optimized
+     *           OS image that enforces kernel module signature verification.
      * }
      */
     public function __construct($data = NULL) {
@@ -405,6 +417,46 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\LinuxNodeConfig\TransparentHugepageDefrag::class);
         $this->transparent_hugepage_defrag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for kernel module loading on nodes.
+     * When enabled, the node pool will be provisioned with a Container-Optimized
+     * OS image that enforces kernel module signature verification.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.NodeKernelModuleLoading node_kernel_module_loading = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\LinuxNodeConfig\NodeKernelModuleLoading|null
+     */
+    public function getNodeKernelModuleLoading()
+    {
+        return $this->node_kernel_module_loading;
+    }
+
+    public function hasNodeKernelModuleLoading()
+    {
+        return isset($this->node_kernel_module_loading);
+    }
+
+    public function clearNodeKernelModuleLoading()
+    {
+        unset($this->node_kernel_module_loading);
+    }
+
+    /**
+     * Optional. Configuration for kernel module loading on nodes.
+     * When enabled, the node pool will be provisioned with a Container-Optimized
+     * OS image that enforces kernel module signature verification.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.NodeKernelModuleLoading node_kernel_module_loading = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\LinuxNodeConfig\NodeKernelModuleLoading $var
+     * @return $this
+     */
+    public function setNodeKernelModuleLoading($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LinuxNodeConfig\NodeKernelModuleLoading::class);
+        $this->node_kernel_module_loading = $var;
 
         return $this;
     }

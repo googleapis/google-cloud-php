@@ -10,7 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * DesiredEnterpriseConfig is a wrapper used for updating enterprise_config.
+ * Deprecated: GKE Enterprise features are now available without an Enterprise
+ * tier.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.container.v1.DesiredEnterpriseConfig</code>
  */
 class DesiredEnterpriseConfig extends \Google\Protobuf\Internal\Message
