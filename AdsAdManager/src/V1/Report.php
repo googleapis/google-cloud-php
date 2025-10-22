@@ -61,7 +61,7 @@ class Report extends \Google\Protobuf\Internal\Message
     protected $create_time = null;
     /**
      * Output only. The locale of this report. Locale is set from the user's
-     * locale at the time of the request. Locale can not be modified.
+     * locale at the time of the request. Locale can't be modified.
      *
      * Generated from protobuf field <code>string locale = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -97,7 +97,7 @@ class Report extends \Google\Protobuf\Internal\Message
      *           Output only. The instant this report was created.
      *     @type string $locale
      *           Output only. The locale of this report. Locale is set from the user's
-     *           locale at the time of the request. Locale can not be modified.
+     *           locale at the time of the request. Locale can't be modified.
      *     @type \Google\Ads\AdManager\V1\ScheduleOptions $schedule_options
      *           Optional. The schedule options of this report.
      * }
@@ -325,7 +325,7 @@ class Report extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The locale of this report. Locale is set from the user's
-     * locale at the time of the request. Locale can not be modified.
+     * locale at the time of the request. Locale can't be modified.
      *
      * Generated from protobuf field <code>string locale = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -337,7 +337,7 @@ class Report extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The locale of this report. Locale is set from the user's
-     * locale at the time of the request. Locale can not be modified.
+     * locale at the time of the request. Locale can't be modified.
      *
      * Generated from protobuf field <code>string locale = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

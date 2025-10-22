@@ -25,72 +25,72 @@ class Company extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `Company` ID.
      *
-     * Generated from protobuf field <code>int64 company_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 company_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $company_id = 0;
+    protected $company_id = null;
     /**
      * Required. The display name of the `Company`.
      * This value has a maximum length of 127 characters.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $display_name = '';
+    protected $display_name = null;
     /**
      * Required. The type of the `Company`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CompanyTypeEnum.CompanyType type = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyTypeEnum.CompanyType type = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $type = 0;
+    protected $type = null;
     /**
      * Optional. The address for the `Company`.
      * This value has a maximum length of 1024 characters.
      *
-     * Generated from protobuf field <code>string address = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string address = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $address = '';
+    protected $address = null;
     /**
      * Optional. The email for the `Company`.
      * This value has a maximum length of 128 characters.
      *
-     * Generated from protobuf field <code>string email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $email = '';
+    protected $email = null;
     /**
      * Optional. The fax number for the `Company`.
      * This value has a maximum length of 63 characters.
      *
-     * Generated from protobuf field <code>string fax = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string fax = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $fax = '';
+    protected $fax = null;
     /**
      * Optional. The phone number for the `Company`.
      * This value has a maximum length of 63 characters.
      *
-     * Generated from protobuf field <code>string phone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string phone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $phone = '';
+    protected $phone = null;
     /**
      * Optional. The external ID for the `Company`.
      * This value has a maximum length of 255 characters.
      *
-     * Generated from protobuf field <code>string external_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string external_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $external_id = '';
+    protected $external_id = null;
     /**
      * Optional. Comments about the `Company`.
      * This value has a maximum length of 1024 characters.
      *
-     * Generated from protobuf field <code>string comment = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string comment = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $comment = '';
+    protected $comment = null;
     /**
      * Optional. The credit status of the `Company`.
      * This attribute defaults to `ACTIVE` if basic settings are enabled and
      * `ON_HOLD` if advance settings are enabled.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus credit_status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus credit_status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $credit_status = 0;
+    protected $credit_status = null;
     /**
      * Optional. The labels that are directly applied to the `Company`.
      *
@@ -115,13 +115,13 @@ class Company extends \Google\Protobuf\Internal\Message
      * Optional. The ID of the Google-recognized canonicalized form of the
      * `Company`.
      *
-     * Generated from protobuf field <code>int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $third_party_company_id = 0;
+    protected $third_party_company_id = null;
     /**
      * Output only. The time the `Company` was last modified.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
 
@@ -214,18 +214,28 @@ class Company extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `Company` ID.
      *
-     * Generated from protobuf field <code>int64 company_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 company_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getCompanyId()
     {
-        return $this->company_id;
+        return isset($this->company_id) ? $this->company_id : 0;
+    }
+
+    public function hasCompanyId()
+    {
+        return isset($this->company_id);
+    }
+
+    public function clearCompanyId()
+    {
+        unset($this->company_id);
     }
 
     /**
      * Output only. `Company` ID.
      *
-     * Generated from protobuf field <code>int64 company_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 company_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -241,19 +251,29 @@ class Company extends \Google\Protobuf\Internal\Message
      * Required. The display name of the `Company`.
      * This value has a maximum length of 127 characters.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
      * Required. The display name of the `Company`.
      * This value has a maximum length of 127 characters.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -268,18 +288,28 @@ class Company extends \Google\Protobuf\Internal\Message
     /**
      * Required. The type of the `Company`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CompanyTypeEnum.CompanyType type = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyTypeEnum.CompanyType type = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : 0;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**
      * Required. The type of the `Company`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CompanyTypeEnum.CompanyType type = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyTypeEnum.CompanyType type = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -295,19 +325,29 @@ class Company extends \Google\Protobuf\Internal\Message
      * Optional. The address for the `Company`.
      * This value has a maximum length of 1024 characters.
      *
-     * Generated from protobuf field <code>string address = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string address = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAddress()
     {
-        return $this->address;
+        return isset($this->address) ? $this->address : '';
+    }
+
+    public function hasAddress()
+    {
+        return isset($this->address);
+    }
+
+    public function clearAddress()
+    {
+        unset($this->address);
     }
 
     /**
      * Optional. The address for the `Company`.
      * This value has a maximum length of 1024 characters.
      *
-     * Generated from protobuf field <code>string address = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string address = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -323,19 +363,29 @@ class Company extends \Google\Protobuf\Internal\Message
      * Optional. The email for the `Company`.
      * This value has a maximum length of 128 characters.
      *
-     * Generated from protobuf field <code>string email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEmail()
     {
-        return $this->email;
+        return isset($this->email) ? $this->email : '';
+    }
+
+    public function hasEmail()
+    {
+        return isset($this->email);
+    }
+
+    public function clearEmail()
+    {
+        unset($this->email);
     }
 
     /**
      * Optional. The email for the `Company`.
      * This value has a maximum length of 128 characters.
      *
-     * Generated from protobuf field <code>string email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -351,19 +401,29 @@ class Company extends \Google\Protobuf\Internal\Message
      * Optional. The fax number for the `Company`.
      * This value has a maximum length of 63 characters.
      *
-     * Generated from protobuf field <code>string fax = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string fax = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFax()
     {
-        return $this->fax;
+        return isset($this->fax) ? $this->fax : '';
+    }
+
+    public function hasFax()
+    {
+        return isset($this->fax);
+    }
+
+    public function clearFax()
+    {
+        unset($this->fax);
     }
 
     /**
      * Optional. The fax number for the `Company`.
      * This value has a maximum length of 63 characters.
      *
-     * Generated from protobuf field <code>string fax = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string fax = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -379,19 +439,29 @@ class Company extends \Google\Protobuf\Internal\Message
      * Optional. The phone number for the `Company`.
      * This value has a maximum length of 63 characters.
      *
-     * Generated from protobuf field <code>string phone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string phone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPhone()
     {
-        return $this->phone;
+        return isset($this->phone) ? $this->phone : '';
+    }
+
+    public function hasPhone()
+    {
+        return isset($this->phone);
+    }
+
+    public function clearPhone()
+    {
+        unset($this->phone);
     }
 
     /**
      * Optional. The phone number for the `Company`.
      * This value has a maximum length of 63 characters.
      *
-     * Generated from protobuf field <code>string phone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string phone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -407,19 +477,29 @@ class Company extends \Google\Protobuf\Internal\Message
      * Optional. The external ID for the `Company`.
      * This value has a maximum length of 255 characters.
      *
-     * Generated from protobuf field <code>string external_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string external_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getExternalId()
     {
-        return $this->external_id;
+        return isset($this->external_id) ? $this->external_id : '';
+    }
+
+    public function hasExternalId()
+    {
+        return isset($this->external_id);
+    }
+
+    public function clearExternalId()
+    {
+        unset($this->external_id);
     }
 
     /**
      * Optional. The external ID for the `Company`.
      * This value has a maximum length of 255 characters.
      *
-     * Generated from protobuf field <code>string external_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string external_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -435,19 +515,29 @@ class Company extends \Google\Protobuf\Internal\Message
      * Optional. Comments about the `Company`.
      * This value has a maximum length of 1024 characters.
      *
-     * Generated from protobuf field <code>string comment = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string comment = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getComment()
     {
-        return $this->comment;
+        return isset($this->comment) ? $this->comment : '';
+    }
+
+    public function hasComment()
+    {
+        return isset($this->comment);
+    }
+
+    public function clearComment()
+    {
+        unset($this->comment);
     }
 
     /**
      * Optional. Comments about the `Company`.
      * This value has a maximum length of 1024 characters.
      *
-     * Generated from protobuf field <code>string comment = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string comment = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -464,12 +554,22 @@ class Company extends \Google\Protobuf\Internal\Message
      * This attribute defaults to `ACTIVE` if basic settings are enabled and
      * `ON_HOLD` if advance settings are enabled.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus credit_status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus credit_status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getCreditStatus()
     {
-        return $this->credit_status;
+        return isset($this->credit_status) ? $this->credit_status : 0;
+    }
+
+    public function hasCreditStatus()
+    {
+        return isset($this->credit_status);
+    }
+
+    public function clearCreditStatus()
+    {
+        unset($this->credit_status);
     }
 
     /**
@@ -477,7 +577,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * This attribute defaults to `ACTIVE` if basic settings are enabled and
      * `ON_HOLD` if advance settings are enabled.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus credit_status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus credit_status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -585,19 +685,29 @@ class Company extends \Google\Protobuf\Internal\Message
      * Optional. The ID of the Google-recognized canonicalized form of the
      * `Company`.
      *
-     * Generated from protobuf field <code>int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getThirdPartyCompanyId()
     {
-        return $this->third_party_company_id;
+        return isset($this->third_party_company_id) ? $this->third_party_company_id : 0;
+    }
+
+    public function hasThirdPartyCompanyId()
+    {
+        return isset($this->third_party_company_id);
+    }
+
+    public function clearThirdPartyCompanyId()
+    {
+        unset($this->third_party_company_id);
     }
 
     /**
      * Optional. The ID of the Google-recognized canonicalized form of the
      * `Company`.
      *
-     * Generated from protobuf field <code>int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */
@@ -612,7 +722,7 @@ class Company extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time the `Company` was last modified.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
@@ -633,7 +743,7 @@ class Company extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time the `Company` was last modified.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

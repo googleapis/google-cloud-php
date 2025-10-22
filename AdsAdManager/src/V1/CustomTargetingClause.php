@@ -21,6 +21,18 @@ class CustomTargetingClause extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomTargetingLiteral custom_targeting_literals = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $custom_targeting_literals;
+    /**
+     * Optional. Leaf targeting expressions for audience segments.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AudienceSegmentTargeting audience_segment_targetings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $audience_segment_targetings;
+    /**
+     * Optional. Leaf targeting expressions for cms metadata.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CmsMetadataTargeting cms_metadata_targetings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $cms_metadata_targetings;
 
     /**
      * Constructor.
@@ -30,6 +42,10 @@ class CustomTargetingClause extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Ads\AdManager\V1\CustomTargetingLiteral>|\Google\Protobuf\Internal\RepeatedField $custom_targeting_literals
      *           Optional. Leaf targeting expressions for custom key/values.
+     *     @type array<\Google\Ads\AdManager\V1\AudienceSegmentTargeting>|\Google\Protobuf\Internal\RepeatedField $audience_segment_targetings
+     *           Optional. Leaf targeting expressions for audience segments.
+     *     @type array<\Google\Ads\AdManager\V1\CmsMetadataTargeting>|\Google\Protobuf\Internal\RepeatedField $cms_metadata_targetings
+     *           Optional. Leaf targeting expressions for cms metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +75,58 @@ class CustomTargetingClause extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\CustomTargetingLiteral::class);
         $this->custom_targeting_literals = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Leaf targeting expressions for audience segments.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AudienceSegmentTargeting audience_segment_targetings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAudienceSegmentTargetings()
+    {
+        return $this->audience_segment_targetings;
+    }
+
+    /**
+     * Optional. Leaf targeting expressions for audience segments.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AudienceSegmentTargeting audience_segment_targetings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Ads\AdManager\V1\AudienceSegmentTargeting>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAudienceSegmentTargetings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\AudienceSegmentTargeting::class);
+        $this->audience_segment_targetings = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Leaf targeting expressions for cms metadata.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CmsMetadataTargeting cms_metadata_targetings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCmsMetadataTargetings()
+    {
+        return $this->cms_metadata_targetings;
+    }
+
+    /**
+     * Optional. Leaf targeting expressions for cms metadata.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CmsMetadataTargeting cms_metadata_targetings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Ads\AdManager\V1\CmsMetadataTargeting>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCmsMetadataTargetings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\CmsMetadataTargeting::class);
+        $this->cms_metadata_targetings = $arr;
 
         return $this;
     }

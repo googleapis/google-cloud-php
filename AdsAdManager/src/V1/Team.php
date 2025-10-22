@@ -22,6 +22,49 @@ class Team extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
+    /**
+     * Required. The name of the Team. This value has a maximum length of 127
+     * characters.
+     *
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    protected $display_name = null;
+    /**
+     * Optional. The description of the Team. This value has a maximum length of
+     * 255 characters.
+     *
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $description = null;
+    /**
+     * Output only. The status of the Team. This value determines the visibility
+     * of the team in the UI.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TeamStatusEnum.TeamStatus status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $status = null;
+    /**
+     * Optional. Whether or not users on this team have access to all companies.
+     * If this value is true, then an error will be thrown if an attempt is made
+     * to associate this team with a Company.
+     *
+     * Generated from protobuf field <code>optional bool all_companies_access = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $all_companies_access = null;
+    /**
+     * Optional. Whether or not users on this team have access to all inventory.
+     * If this value is true, then an error will be thrown if an attempt is made
+     * to associate this team with an AdUnit.
+     *
+     * Generated from protobuf field <code>optional bool all_inventory_access = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $all_inventory_access = null;
+    /**
+     * Optional. The default access to orders for users on this team.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TeamAccessTypeEnum.TeamAccessType access_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $access_type = null;
 
     /**
      * Constructor.
@@ -32,6 +75,25 @@ class Team extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name of the `Team`.
      *           Format: `networks/{network_code}/teams/{team_id}`
+     *     @type string $display_name
+     *           Required. The name of the Team. This value has a maximum length of 127
+     *           characters.
+     *     @type string $description
+     *           Optional. The description of the Team. This value has a maximum length of
+     *           255 characters.
+     *     @type int $status
+     *           Output only. The status of the Team. This value determines the visibility
+     *           of the team in the UI.
+     *     @type bool $all_companies_access
+     *           Optional. Whether or not users on this team have access to all companies.
+     *           If this value is true, then an error will be thrown if an attempt is made
+     *           to associate this team with a Company.
+     *     @type bool $all_inventory_access
+     *           Optional. Whether or not users on this team have access to all inventory.
+     *           If this value is true, then an error will be thrown if an attempt is made
+     *           to associate this team with an AdUnit.
+     *     @type int $access_type
+     *           Optional. The default access to orders for users on this team.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +125,236 @@ class Team extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. The name of the Team. This value has a maximum length of 127
+     * characters.
+     *
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
+    }
+
+    /**
+     * Required. The name of the Team. This value has a maximum length of 127
+     * characters.
+     *
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The description of the Team. This value has a maximum length of
+     * 255 characters.
+     *
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDescription()
+    {
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
+    }
+
+    /**
+     * Optional. The description of the Team. This value has a maximum length of
+     * 255 characters.
+     *
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The status of the Team. This value determines the visibility
+     * of the team in the UI.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TeamStatusEnum.TeamStatus status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getStatus()
+    {
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
+    }
+
+    /**
+     * Output only. The status of the Team. This value determines the visibility
+     * of the team in the UI.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TeamStatusEnum.TeamStatus status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\TeamStatusEnum\TeamStatus::class);
+        $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether or not users on this team have access to all companies.
+     * If this value is true, then an error will be thrown if an attempt is made
+     * to associate this team with a Company.
+     *
+     * Generated from protobuf field <code>optional bool all_companies_access = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAllCompaniesAccess()
+    {
+        return isset($this->all_companies_access) ? $this->all_companies_access : false;
+    }
+
+    public function hasAllCompaniesAccess()
+    {
+        return isset($this->all_companies_access);
+    }
+
+    public function clearAllCompaniesAccess()
+    {
+        unset($this->all_companies_access);
+    }
+
+    /**
+     * Optional. Whether or not users on this team have access to all companies.
+     * If this value is true, then an error will be thrown if an attempt is made
+     * to associate this team with a Company.
+     *
+     * Generated from protobuf field <code>optional bool all_companies_access = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllCompaniesAccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->all_companies_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether or not users on this team have access to all inventory.
+     * If this value is true, then an error will be thrown if an attempt is made
+     * to associate this team with an AdUnit.
+     *
+     * Generated from protobuf field <code>optional bool all_inventory_access = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAllInventoryAccess()
+    {
+        return isset($this->all_inventory_access) ? $this->all_inventory_access : false;
+    }
+
+    public function hasAllInventoryAccess()
+    {
+        return isset($this->all_inventory_access);
+    }
+
+    public function clearAllInventoryAccess()
+    {
+        unset($this->all_inventory_access);
+    }
+
+    /**
+     * Optional. Whether or not users on this team have access to all inventory.
+     * If this value is true, then an error will be thrown if an attempt is made
+     * to associate this team with an AdUnit.
+     *
+     * Generated from protobuf field <code>optional bool all_inventory_access = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllInventoryAccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->all_inventory_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The default access to orders for users on this team.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TeamAccessTypeEnum.TeamAccessType access_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getAccessType()
+    {
+        return isset($this->access_type) ? $this->access_type : 0;
+    }
+
+    public function hasAccessType()
+    {
+        return isset($this->access_type);
+    }
+
+    public function clearAccessType()
+    {
+        unset($this->access_type);
+    }
+
+    /**
+     * Optional. The default access to orders for users on this team.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TeamAccessTypeEnum.TeamAccessType access_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAccessType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\TeamAccessTypeEnum\TeamAccessType::class);
+        $this->access_type = $var;
 
         return $this;
     }
