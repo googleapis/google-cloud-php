@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
@@ -33,9 +34,11 @@ use ReflectionClass;
  * @group spanner
  * @group spanner-transaction
  */
-class TransactionTest extends SpannerTestCase
+class TransactionTest extends SystemTestCase
 {
     use DatabaseRoleTrait;
+    use SystemTestCaseTrait;
+
 
     const TABLE_NAME = 'Transactions';
 
@@ -176,7 +179,6 @@ class TransactionTest extends SpannerTestCase
         }
 
         $db = self::$database;
-        $db2 = self::$database2;
 
         $id = $this->randId();
         $db->insert(self::$tableName, [

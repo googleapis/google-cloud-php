@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Timestamp;
@@ -24,9 +25,10 @@ use Google\Cloud\Spanner\Timestamp;
 /**
  * @group spanner
  */
-class OperationsTest extends SpannerTestCase
+class OperationsTest extends SystemTestCase
 {
     use DatabaseRoleTrait;
+    use SystemTestCaseTrait;
 
     private static $id1;
     private static $id2;

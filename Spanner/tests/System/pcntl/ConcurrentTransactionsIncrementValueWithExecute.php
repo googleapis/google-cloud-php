@@ -3,37 +3,53 @@
 include __DIR__ . '/../../../vendor/autoload.php';
 include __DIR__ . '/forked-process-test.php';
 
-use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
+use Google\Cloud\Spanner\Tests\System\SystemTestCaseTrait;
 
 list($dbName, $tableName, $id) = getInputArgs();
 
 $tmpFile = sys_get_temp_dir() . '/ConcurrentTransactionsIncremementValueWithExecute.txt';
 setupIterationTracker($tmpFile);
 
-$callable = function ($dbName, $tableName, $id) use ($tmpFile) {
-    $iterations = 0;
-    $db = SpannerTestCase::getDatabaseInstance($dbName);
-    if (getenv('SPANNER_EMULATOR_HOST')) {
-        // the emulator requires us to manually request a new session
-        // presumably because multiplexed sessions aren't properly supported
-        $db->session()->refresh();
+$concurrentExecute = new class($dbName, $tableName, $id, $tmpFile) {
+    use SystemTestCaseTrait;
+
+    public function __construct(
+        string $dbName,
+        private string $tableName,
+        private int $id,
+        private string $tmpFile,
+    ) {
+        self::$dbName = $dbName;
     }
-    $db->runTransaction(function ($transaction) use ($id, $tableName, &$iterations) {
-        $iterations++;
 
-        $row = $transaction->execute('SELECT * FROM ' . $tableName . ' WHERE id = @id', [
-            'parameters' => [
-                'id' => (int) $id
-            ]
-        ])->rows()->current();
+    public function run(): int
+    {
+        $iterations = 0;
+        $db = self::getDatabaseInstance(self::$dbName);
+        if (self::isEmulatorUsed()) {
+            // the emulator requires us to manually request a new session
+            // presumably because multiplexed sessions aren't properly supported
+            $db->session()->refresh();
+        }
+        $db->runTransaction(function ($transaction) use (&$iterations) {
+            $iterations++;
 
-        $row['number'] += 1;
+            $row = $transaction->execute('SELECT * FROM ' . $this->tableName . ' WHERE id = @id', [
+                'parameters' => [
+                    'id' => $this->id,
+                ]
+            ])->rows()->current();
 
-        $transaction->update($tableName, $row);
-        $transaction->commit();
-    });
+            $row['number'] += 1;
 
-    updateIterationTracker($tmpFile, $iterations);
+            $transaction->update($this->tableName, $row);
+            $transaction->commit();
+        });
+
+        updateIterationTracker($this->tmpFile, $iterations);
+
+        return 0;
+    }
 };
 
 $delay = 2000;
@@ -41,20 +57,17 @@ $retryLimit = 100;
 if ($childPID1 = pcntl_fork()) {
     usleep($delay);
 
-    $callable($dbName, $tableName, $id);
+    $status = $concurrentExecute->run();
 
     while (pcntl_waitpid($childPID1, $status1, WNOHANG) == 0 && $retryLimit) {
         usleep(2 * $delay);
         $retryLimit--;
     }
+
+    echo file_get_contents($tmpFile);
+    exit($status);
 } else {
     usleep(2 * $delay);
 
-    $callable($dbName, $tableName, $id);
-
-    exit(0);
+    exit($concurrentExecute->run());
 }
-
-echo file_get_contents($tmpFile);
-
-exit(0);

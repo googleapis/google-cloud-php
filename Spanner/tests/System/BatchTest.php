@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
@@ -28,8 +29,9 @@ use Google\Cloud\Spanner\KeySet;
  * @group spanner
  * @group spanner-batch
  */
-class BatchTest extends SpannerTestCase
+class BatchTest extends SystemTestCase
 {
+    use SystemTestCaseTrait;
     use DatabaseRoleTrait;
 
     private static $tableName;
@@ -56,26 +58,26 @@ class BatchTest extends SpannerTestCase
         ))->pollUntilComplete();
 
         if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
-            self::$database->updateDdlBatch([
-                sprintf(
-                    'CREATE ROLE %s',
-                    self::$dbRole
-                ),
-                sprintf(
-                    'CREATE ROLE %s',
-                    self::$restrictiveDbRole
-                ),
-                sprintf(
+            $statements = [
+                sprintf('CREATE ROLE %s', self::$dbRole),
+                sprintf('CREATE ROLE %s', self::$restrictiveDbRole),
+            ];
+
+            if (!self::isEmulatorUsed()) {
+                $statements[] = sprintf(
                     'GRANT SELECT(id) ON TABLE %s TO ROLE %s',
                     self::$tableName,
                     self::$restrictiveDbRole
-                ),
-                sprintf(
-                    'GRANT SELECT ON TABLE %s TO ROLE %s',
-                    self::$tableName,
-                    self::$dbRole
-                )
-            ])->pollUntilComplete();
+                );
+            }
+
+            $statements[] = sprintf(
+                'GRANT SELECT ON TABLE %s TO ROLE %s',
+                self::$tableName,
+                self::$dbRole
+            );
+
+            self::$database->updateDdlBatch($statements)->pollUntilComplete();
         }
 
         self::seedTable();

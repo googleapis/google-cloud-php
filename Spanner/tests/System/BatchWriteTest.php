@@ -18,12 +18,15 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Rpc\Code;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 /**
  * @group spanner
  */
-class BatchWriteTest extends SpannerTestCase
+class BatchWriteTest extends SystemTestCase
 {
+    use SystemTestCaseTrait;
+
     const TABLE_NAME = 'BatchWrites';
     /**
      * @beforeClass

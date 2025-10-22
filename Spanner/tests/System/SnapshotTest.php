@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
@@ -28,8 +29,10 @@ use Google\Protobuf\Duration;
  * @group spanner
  * @group spanner-snapshot
  */
-class SnapshotTest extends SpannerTestCase
+class SnapshotTest extends SystemTestCase
 {
+    use SystemTestCaseTrait;
+
     const TABLE_NAME = 'Snapshots';
 
     private static $tableName;

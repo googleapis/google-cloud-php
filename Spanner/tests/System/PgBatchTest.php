@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
@@ -27,19 +28,24 @@ use Google\Cloud\Spanner\Batch\BatchSnapshot;
  * @group spanner-batch
  * @group spanner-postgres
  */
-class PgBatchTest extends SpannerPgTestCase
+class PgBatchTest extends SystemTestCase
 {
+    use PgSystemTestCaseTrait;
     use DatabaseRoleTrait;
 
     private static $tableName;
-    private static $isSetup = false;
+    private static $hasSetupBatch = false;
 
     /**
      * @beforeClass
      */
     public static function setUpTestFixtures(): void
     {
-        if (self::$isSetup) {
+        // Skip setting up fixutres for the emulator as there's only one test which does not suppport the emulator.
+        // NOTE: remove this if new tests tests are added which support the emulator.
+        self::skipEmulatorTests();
+
+        if (self::$hasSetupBatch) {
             return;
         }
         self::setUpTestDatabase();
@@ -55,30 +61,29 @@ class PgBatchTest extends SpannerPgTestCase
         ))->pollUntilComplete();
 
         if (self::$database->info()['databaseDialect'] == DatabaseDialect::POSTGRESQL) {
-            self::$database->updateDdlBatch([
-                sprintf(
-                    'CREATE ROLE %s',
-                    self::$dbRole
-                ),
-                sprintf(
-                    'CREATE ROLE %s',
-                    self::$restrictiveDbRole
-                ),
-                sprintf(
+            $statements = [
+                sprintf('CREATE ROLE %s', self::$dbRole),
+                sprintf('CREATE ROLE %s', self::$restrictiveDbRole),
+            ];
+
+            if (!self::isEmulatorUsed()) {
+                $statements[] = sprintf(
                     'GRANT SELECT(id) ON TABLE %s TO %s',
                     self::$tableName,
                     self::$restrictiveDbRole
-                ),
-                sprintf(
+                );
+                $statements[] = sprintf(
                     'GRANT SELECT ON TABLE %s TO %s',
                     self::$tableName,
                     self::$dbRole
-                )
-            ])->pollUntilComplete();
+                );
+            }
+
+            self::$database->updateDdlBatch($statements)->pollUntilComplete();
         }
 
         self::seedTable();
-        self::$isSetup = true;
+        self::$hasSetupBatch = true;
     }
 
     /**

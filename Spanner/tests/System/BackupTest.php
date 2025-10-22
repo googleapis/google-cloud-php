@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo\Type;
@@ -30,8 +31,10 @@ use Google\Cloud\Spanner\Date;
 /**
  * @group spanner
  */
-class BackupTest extends SpannerTestCase
+class BackupTest extends SystemTestCase
 {
+    use SystemTestCaseTrait;
+
     const BACKUP_PREFIX = 'spanner_backup_';
 
     protected static $backupId1;
@@ -47,7 +50,7 @@ class BackupTest extends SpannerTestCase
 
     protected static $project;
 
-    private static $hasSetUp = false;
+    private static $hasSetUpBackup = false;
 
     /**
      * @beforeClass
@@ -59,7 +62,7 @@ class BackupTest extends SpannerTestCase
         self::emulatorOnly();
 
         self::setUpTestDatabase();
-        if (self::$hasSetUp) {
+        if (self::$hasSetUpBackup) {
             return;
         }
 
@@ -112,7 +115,7 @@ class BackupTest extends SpannerTestCase
         self::$backupId1 = uniqid(self::BACKUP_PREFIX);
         self::$backupId2 = uniqid('users-');
         self::$copyBackupId = uniqid('copy-');
-        self::$hasSetUp = true;
+        self::$hasSetUpBackup = true;
     }
 
     public function testCreateBackup()

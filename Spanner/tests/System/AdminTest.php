@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\FailedPreconditionException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
@@ -31,8 +32,10 @@ use Google\Cloud\Spanner\InstanceConfiguration;
  * @group spanner
  * @group admin
  */
-class AdminTest extends SpannerTestCase
+class AdminTest extends SystemTestCase
 {
+    use SystemTestCaseTrait;
+
     /**
      * @beforeClass
      */
@@ -123,15 +126,7 @@ class AdminTest extends SpannerTestCase
 
         $this->assertInstanceOf(Database::class, current($database));
         $this->assertTrue($db->exists());
-
-        $expectedDatabaseDialect = DatabaseDialect::GOOGLE_STANDARD_SQL;
-
-        // TODO: Remove this, when the emulator supports PGSQL
-        if ((bool) getenv('SPANNER_EMULATOR_HOST')) {
-            $expectedDatabaseDialect = DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
-        }
-
-        $this->assertEquals($db->info()['databaseDialect'], $expectedDatabaseDialect);
+        $this->assertEquals($db->info()['databaseDialect'], DatabaseDialect::GOOGLE_STANDARD_SQL);
 
         $stmt = "CREATE TABLE Ids (\n" .
             "  id INT64 NOT NULL,\n" .
