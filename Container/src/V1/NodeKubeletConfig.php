@@ -62,7 +62,7 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      * The string must be a sequence of decimal numbers, each with optional
      * fraction and a unit suffix, such as "300ms".
      * Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
-     * The value must be a positive duration.
+     * The value must be a positive duration between 1ms and 1 second, inclusive.
      *
      * Generated from protobuf field <code>string cpu_cfs_quota_period = 3;</code>
      */
@@ -264,7 +264,7 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *           The string must be a sequence of decimal numbers, each with optional
      *           fraction and a unit suffix, such as "300ms".
      *           Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
-     *           The value must be a positive duration.
+     *           The value must be a positive duration between 1ms and 1 second, inclusive.
      *     @type int|string $pod_pids_limit
      *           Set the Pod PID limits. See
      *           https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits
@@ -587,7 +587,7 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      * The string must be a sequence of decimal numbers, each with optional
      * fraction and a unit suffix, such as "300ms".
      * Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
-     * The value must be a positive duration.
+     * The value must be a positive duration between 1ms and 1 second, inclusive.
      *
      * Generated from protobuf field <code>string cpu_cfs_quota_period = 3;</code>
      * @return string
@@ -602,7 +602,7 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      * The string must be a sequence of decimal numbers, each with optional
      * fraction and a unit suffix, such as "300ms".
      * Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
-     * The value must be a positive duration.
+     * The value must be a positive duration between 1ms and 1 second, inclusive.
      *
      * Generated from protobuf field <code>string cpu_cfs_quota_period = 3;</code>
      * @param string $var

@@ -65,7 +65,8 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     protected $dns_cache_config = null;
     /**
      * Configuration for the ConfigConnector add-on, a Kubernetes
-     * extension to manage hosted GCP services through the Kubernetes API
+     * extension to manage hosted Google Cloud services through the Kubernetes
+     * API.
      *
      * Generated from protobuf field <code>.google.container.v1.ConfigConnectorConfig config_connector_config = 10;</code>
      */
@@ -77,7 +78,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     protected $gce_persistent_disk_csi_driver_config = null;
     /**
-     * Configuration for the GCP Filestore CSI driver.
+     * Configuration for the Filestore CSI driver.
      *
      * Generated from protobuf field <code>.google.container.v1.GcpFilestoreCsiDriverConfig gcp_filestore_csi_driver_config = 14;</code>
      */
@@ -155,11 +156,12 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *           Configuration for NodeLocalDNS, a dns cache running on cluster nodes
      *     @type \Google\Cloud\Container\V1\ConfigConnectorConfig $config_connector_config
      *           Configuration for the ConfigConnector add-on, a Kubernetes
-     *           extension to manage hosted GCP services through the Kubernetes API
+     *           extension to manage hosted Google Cloud services through the Kubernetes
+     *           API.
      *     @type \Google\Cloud\Container\V1\GcePersistentDiskCsiDriverConfig $gce_persistent_disk_csi_driver_config
      *           Configuration for the Compute Engine Persistent Disk CSI driver.
      *     @type \Google\Cloud\Container\V1\GcpFilestoreCsiDriverConfig $gcp_filestore_csi_driver_config
-     *           Configuration for the GCP Filestore CSI driver.
+     *           Configuration for the Filestore CSI driver.
      *     @type \Google\Cloud\Container\V1\GkeBackupAgentConfig $gke_backup_agent_config
      *           Configuration for the Backup for GKE agent addon.
      *     @type \Google\Cloud\Container\V1\GcsFuseCsiDriverConfig $gcs_fuse_csi_driver_config
@@ -429,7 +431,8 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration for the ConfigConnector add-on, a Kubernetes
-     * extension to manage hosted GCP services through the Kubernetes API
+     * extension to manage hosted Google Cloud services through the Kubernetes
+     * API.
      *
      * Generated from protobuf field <code>.google.container.v1.ConfigConnectorConfig config_connector_config = 10;</code>
      * @return \Google\Cloud\Container\V1\ConfigConnectorConfig|null
@@ -451,7 +454,8 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration for the ConfigConnector add-on, a Kubernetes
-     * extension to manage hosted GCP services through the Kubernetes API
+     * extension to manage hosted Google Cloud services through the Kubernetes
+     * API.
      *
      * Generated from protobuf field <code>.google.container.v1.ConfigConnectorConfig config_connector_config = 10;</code>
      * @param \Google\Cloud\Container\V1\ConfigConnectorConfig $var
@@ -502,7 +506,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for the GCP Filestore CSI driver.
+     * Configuration for the Filestore CSI driver.
      *
      * Generated from protobuf field <code>.google.container.v1.GcpFilestoreCsiDriverConfig gcp_filestore_csi_driver_config = 14;</code>
      * @return \Google\Cloud\Container\V1\GcpFilestoreCsiDriverConfig|null
@@ -523,7 +527,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for the GCP Filestore CSI driver.
+     * Configuration for the Filestore CSI driver.
      *
      * Generated from protobuf field <code>.google.container.v1.GcpFilestoreCsiDriverConfig gcp_filestore_csi_driver_config = 14;</code>
      * @param \Google\Cloud\Container\V1\GcpFilestoreCsiDriverConfig $var

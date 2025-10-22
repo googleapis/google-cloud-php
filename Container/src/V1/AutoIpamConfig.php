@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class AutoIpamConfig extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * The flag that enables Auto IPAM on this cluster
+     *
+     * Generated from protobuf field <code>optional bool enabled = 1;</code>
+     */
+    protected $enabled = null;
 
     /**
      * Constructor.
@@ -22,11 +28,49 @@ class AutoIpamConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $enabled
+     *           The flag that enables Auto IPAM on this cluster
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The flag that enables Auto IPAM on this cluster
+     *
+     * Generated from protobuf field <code>optional bool enabled = 1;</code>
+     * @return bool
+     */
+    public function getEnabled()
+    {
+        return isset($this->enabled) ? $this->enabled : false;
+    }
+
+    public function hasEnabled()
+    {
+        return isset($this->enabled);
+    }
+
+    public function clearEnabled()
+    {
+        unset($this->enabled);
+    }
+
+    /**
+     * The flag that enables Auto IPAM on this cluster
+     *
+     * Generated from protobuf field <code>optional bool enabled = 1;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enabled = $var;
+
+        return $this;
     }
 
 }

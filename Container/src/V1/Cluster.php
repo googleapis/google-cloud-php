@@ -297,8 +297,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $release_channel = null;
     /**
-     * Configuration for the use of Kubernetes Service Accounts in GCP IAM
-     * policies.
+     * Configuration for the use of Kubernetes Service Accounts in IAM policies.
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig workload_identity_config = 43;</code>
      */
@@ -571,8 +570,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     protected $enable_k8s_beta_apis = null;
     /**
      * GKE Enterprise Configuration.
+     * Deprecated: GKE Enterprise features are now available without an Enterprise
+     * tier.
      *
-     * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig enterprise_config = 149;</code>
+     * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig enterprise_config = 149 [deprecated = true];</code>
+     * @deprecated
      */
     protected $enterprise_config = null;
     /**
@@ -779,8 +781,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           configuration and no version is specified, the cluster is enrolled in the
      *           REGULAR channel with its default version.
      *     @type \Google\Cloud\Container\V1\WorkloadIdentityConfig $workload_identity_config
-     *           Configuration for the use of Kubernetes Service Accounts in GCP IAM
-     *           policies.
+     *           Configuration for the use of Kubernetes Service Accounts in IAM policies.
      *     @type \Google\Cloud\Container\V1\MeshCertificates $mesh_certificates
      *           Configuration for issuance of mTLS keys and certificates to Kubernetes
      *           pods.
@@ -902,6 +903,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Beta APIs Config
      *     @type \Google\Cloud\Container\V1\EnterpriseConfig $enterprise_config
      *           GKE Enterprise Configuration.
+     *           Deprecated: GKE Enterprise features are now available without an Enterprise
+     *           tier.
      *     @type \Google\Cloud\Container\V1\SecretManagerConfig $secret_manager_config
      *           Secret CSI driver configuration.
      *     @type \Google\Cloud\Container\V1\CompliancePostureConfig $compliance_posture_config
@@ -2162,8 +2165,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for the use of Kubernetes Service Accounts in GCP IAM
-     * policies.
+     * Configuration for the use of Kubernetes Service Accounts in IAM policies.
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig workload_identity_config = 43;</code>
      * @return \Google\Cloud\Container\V1\WorkloadIdentityConfig|null
@@ -2184,8 +2186,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for the use of Kubernetes Service Accounts in GCP IAM
-     * policies.
+     * Configuration for the use of Kubernetes Service Accounts in IAM policies.
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig workload_identity_config = 43;</code>
      * @param \Google\Cloud\Container\V1\WorkloadIdentityConfig $var
@@ -3403,34 +3404,48 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * GKE Enterprise Configuration.
+     * Deprecated: GKE Enterprise features are now available without an Enterprise
+     * tier.
      *
-     * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig enterprise_config = 149;</code>
+     * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig enterprise_config = 149 [deprecated = true];</code>
      * @return \Google\Cloud\Container\V1\EnterpriseConfig|null
+     * @deprecated
      */
     public function getEnterpriseConfig()
     {
+        if (isset($this->enterprise_config)) {
+            @trigger_error('enterprise_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enterprise_config;
     }
 
     public function hasEnterpriseConfig()
     {
+        if (isset($this->enterprise_config)) {
+            @trigger_error('enterprise_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->enterprise_config);
     }
 
     public function clearEnterpriseConfig()
     {
+        @trigger_error('enterprise_config is deprecated.', E_USER_DEPRECATED);
         unset($this->enterprise_config);
     }
 
     /**
      * GKE Enterprise Configuration.
+     * Deprecated: GKE Enterprise features are now available without an Enterprise
+     * tier.
      *
-     * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig enterprise_config = 149;</code>
+     * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig enterprise_config = 149 [deprecated = true];</code>
      * @param \Google\Cloud\Container\V1\EnterpriseConfig $var
      * @return $this
+     * @deprecated
      */
     public function setEnterpriseConfig($var)
     {
+        @trigger_error('enterprise_config is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\EnterpriseConfig::class);
         $this->enterprise_config = $var;
 

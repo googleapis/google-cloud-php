@@ -22,6 +22,13 @@ class ContainerdConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig private_registry_access_config = 1;</code>
      */
     protected $private_registry_access_config = null;
+    /**
+     * Optional. WritableCgroups defines writable cgroups configuration for the
+     * node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig.WritableCgroups writable_cgroups = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $writable_cgroups = null;
 
     /**
      * Constructor.
@@ -32,6 +39,9 @@ class ContainerdConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ContainerdConfig\PrivateRegistryAccessConfig $private_registry_access_config
      *           PrivateRegistryAccessConfig is used to configure access configuration
      *           for private container registries.
+     *     @type \Google\Cloud\Container\V1\ContainerdConfig\WritableCgroups $writable_cgroups
+     *           Optional. WritableCgroups defines writable cgroups configuration for the
+     *           node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,6 +83,44 @@ class ContainerdConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ContainerdConfig\PrivateRegistryAccessConfig::class);
         $this->private_registry_access_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. WritableCgroups defines writable cgroups configuration for the
+     * node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig.WritableCgroups writable_cgroups = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\ContainerdConfig\WritableCgroups|null
+     */
+    public function getWritableCgroups()
+    {
+        return $this->writable_cgroups;
+    }
+
+    public function hasWritableCgroups()
+    {
+        return isset($this->writable_cgroups);
+    }
+
+    public function clearWritableCgroups()
+    {
+        unset($this->writable_cgroups);
+    }
+
+    /**
+     * Optional. WritableCgroups defines writable cgroups configuration for the
+     * node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig.WritableCgroups writable_cgroups = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\ContainerdConfig\WritableCgroups $var
+     * @return $this
+     */
+    public function setWritableCgroups($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ContainerdConfig\WritableCgroups::class);
+        $this->writable_cgroups = $var;
 
         return $this;
     }

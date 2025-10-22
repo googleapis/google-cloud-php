@@ -229,6 +229,14 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.AutoIpamConfig auto_ipam_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $auto_ipam_config = null;
+    /**
+     * Cluster-level network tier configuration is used to determine the default
+     * network tier for external IP addresses on cluster resources, such as node
+     * pools and load balancers.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTierConfig network_tier_config = 31;</code>
+     */
+    protected $network_tier_config = null;
 
     /**
      * Constructor.
@@ -358,6 +366,10 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *           Once a range is removed it will not show up in IPAllocationPolicy.
      *     @type \Google\Cloud\Container\V1\AutoIpamConfig $auto_ipam_config
      *           Optional. AutoIpamConfig contains all information related to Auto IPAM
+     *     @type \Google\Cloud\Container\V1\NetworkTierConfig $network_tier_config
+     *           Cluster-level network tier configuration is used to determine the default
+     *           network tier for external IP addresses on cluster resources, such as node
+     *           pools and load balancers.
      * }
      */
     public function __construct($data = NULL) {
@@ -1143,6 +1155,46 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AutoIpamConfig::class);
         $this->auto_ipam_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Cluster-level network tier configuration is used to determine the default
+     * network tier for external IP addresses on cluster resources, such as node
+     * pools and load balancers.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTierConfig network_tier_config = 31;</code>
+     * @return \Google\Cloud\Container\V1\NetworkTierConfig|null
+     */
+    public function getNetworkTierConfig()
+    {
+        return $this->network_tier_config;
+    }
+
+    public function hasNetworkTierConfig()
+    {
+        return isset($this->network_tier_config);
+    }
+
+    public function clearNetworkTierConfig()
+    {
+        unset($this->network_tier_config);
+    }
+
+    /**
+     * Cluster-level network tier configuration is used to determine the default
+     * network tier for external IP addresses on cluster resources, such as node
+     * pools and load balancers.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTierConfig network_tier_config = 31;</code>
+     * @param \Google\Cloud\Container\V1\NetworkTierConfig $var
+     * @return $this
+     */
+    public function setNetworkTierConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkTierConfig::class);
+        $this->network_tier_config = $var;
 
         return $this;
     }

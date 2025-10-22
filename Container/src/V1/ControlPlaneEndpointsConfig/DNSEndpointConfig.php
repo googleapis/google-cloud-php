@@ -27,11 +27,23 @@ class DNSEndpointConfig extends \Google\Protobuf\Internal\Message
     protected $endpoint = '';
     /**
      * Controls whether user traffic is allowed over this endpoint. Note that
-     * GCP-managed services may still use the endpoint even if this is false.
+     * Google-managed services may still use the endpoint even if this is false.
      *
      * Generated from protobuf field <code>optional bool allow_external_traffic = 3;</code>
      */
     protected $allow_external_traffic = null;
+    /**
+     * Controls whether the k8s token auth is allowed via DNS.
+     *
+     * Generated from protobuf field <code>optional bool enable_k8s_tokens_via_dns = 5;</code>
+     */
+    protected $enable_k8s_tokens_via_dns = null;
+    /**
+     * Controls whether the k8s certs auth is allowed via DNS.
+     *
+     * Generated from protobuf field <code>optional bool enable_k8s_certs_via_dns = 6;</code>
+     */
+    protected $enable_k8s_certs_via_dns = null;
 
     /**
      * Constructor.
@@ -47,7 +59,11 @@ class DNSEndpointConfig extends \Google\Protobuf\Internal\Message
      *           [DNSEndpointConfig.allow_external_traffic][google.container.v1.ControlPlaneEndpointsConfig.DNSEndpointConfig.allow_external_traffic].
      *     @type bool $allow_external_traffic
      *           Controls whether user traffic is allowed over this endpoint. Note that
-     *           GCP-managed services may still use the endpoint even if this is false.
+     *           Google-managed services may still use the endpoint even if this is false.
+     *     @type bool $enable_k8s_tokens_via_dns
+     *           Controls whether the k8s token auth is allowed via DNS.
+     *     @type bool $enable_k8s_certs_via_dns
+     *           Controls whether the k8s certs auth is allowed via DNS.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,7 +107,7 @@ class DNSEndpointConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Controls whether user traffic is allowed over this endpoint. Note that
-     * GCP-managed services may still use the endpoint even if this is false.
+     * Google-managed services may still use the endpoint even if this is false.
      *
      * Generated from protobuf field <code>optional bool allow_external_traffic = 3;</code>
      * @return bool
@@ -113,7 +129,7 @@ class DNSEndpointConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Controls whether user traffic is allowed over this endpoint. Note that
-     * GCP-managed services may still use the endpoint even if this is false.
+     * Google-managed services may still use the endpoint even if this is false.
      *
      * Generated from protobuf field <code>optional bool allow_external_traffic = 3;</code>
      * @param bool $var
@@ -123,6 +139,78 @@ class DNSEndpointConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->allow_external_traffic = $var;
+
+        return $this;
+    }
+
+    /**
+     * Controls whether the k8s token auth is allowed via DNS.
+     *
+     * Generated from protobuf field <code>optional bool enable_k8s_tokens_via_dns = 5;</code>
+     * @return bool
+     */
+    public function getEnableK8STokensViaDns()
+    {
+        return isset($this->enable_k8s_tokens_via_dns) ? $this->enable_k8s_tokens_via_dns : false;
+    }
+
+    public function hasEnableK8STokensViaDns()
+    {
+        return isset($this->enable_k8s_tokens_via_dns);
+    }
+
+    public function clearEnableK8STokensViaDns()
+    {
+        unset($this->enable_k8s_tokens_via_dns);
+    }
+
+    /**
+     * Controls whether the k8s token auth is allowed via DNS.
+     *
+     * Generated from protobuf field <code>optional bool enable_k8s_tokens_via_dns = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableK8STokensViaDns($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_k8s_tokens_via_dns = $var;
+
+        return $this;
+    }
+
+    /**
+     * Controls whether the k8s certs auth is allowed via DNS.
+     *
+     * Generated from protobuf field <code>optional bool enable_k8s_certs_via_dns = 6;</code>
+     * @return bool
+     */
+    public function getEnableK8SCertsViaDns()
+    {
+        return isset($this->enable_k8s_certs_via_dns) ? $this->enable_k8s_certs_via_dns : false;
+    }
+
+    public function hasEnableK8SCertsViaDns()
+    {
+        return isset($this->enable_k8s_certs_via_dns);
+    }
+
+    public function clearEnableK8SCertsViaDns()
+    {
+        unset($this->enable_k8s_certs_via_dns);
+    }
+
+    /**
+     * Controls whether the k8s certs auth is allowed via DNS.
+     *
+     * Generated from protobuf field <code>optional bool enable_k8s_certs_via_dns = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableK8SCertsViaDns($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_k8s_certs_via_dns = $var;
 
         return $this;
     }

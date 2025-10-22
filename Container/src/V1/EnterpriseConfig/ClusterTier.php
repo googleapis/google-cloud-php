@@ -7,7 +7,10 @@ namespace Google\Cloud\Container\V1\EnterpriseConfig;
 use UnexpectedValueException;
 
 /**
+ * @deprecated
  * Premium tiers for GKE Cluster.
+ * Deprecated: GKE Enterprise features are now available without an Enterprise
+ * tier.
  *
  * Protobuf type <code>google.container.v1.EnterpriseConfig.ClusterTier</code>
  */

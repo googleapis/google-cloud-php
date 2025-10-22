@@ -30,7 +30,7 @@ class TransparentHugepageDefrag
     /**
      * It means that an application will wake kswapd in the background to
      * reclaim pages and wake kcompactd to compact memory so that THP is
-     * available in the near future. It’s the responsibility of khugepaged to
+     * available in the near future. It's the responsibility of khugepaged to
      * then install the THP pages later.
      *
      * Generated from protobuf enum <code>TRANSPARENT_HUGEPAGE_DEFRAG_DEFER = 2;</code>

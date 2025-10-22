@@ -21,6 +21,12 @@ class SecretManagerConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool enabled = 1;</code>
      */
     protected $enabled = null;
+    /**
+     * Rotation config for secret manager.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.SecretManagerConfig.RotationConfig rotation_config = 2;</code>
+     */
+    protected $rotation_config = null;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class SecretManagerConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enabled
      *           Enable/Disable Secret Manager Config.
+     *     @type \Google\Cloud\Container\V1\SecretManagerConfig\RotationConfig $rotation_config
+     *           Rotation config for secret manager.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +77,42 @@ class SecretManagerConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Rotation config for secret manager.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.SecretManagerConfig.RotationConfig rotation_config = 2;</code>
+     * @return \Google\Cloud\Container\V1\SecretManagerConfig\RotationConfig|null
+     */
+    public function getRotationConfig()
+    {
+        return $this->rotation_config;
+    }
+
+    public function hasRotationConfig()
+    {
+        return isset($this->rotation_config);
+    }
+
+    public function clearRotationConfig()
+    {
+        unset($this->rotation_config);
+    }
+
+    /**
+     * Rotation config for secret manager.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.SecretManagerConfig.RotationConfig rotation_config = 2;</code>
+     * @param \Google\Cloud\Container\V1\SecretManagerConfig\RotationConfig $var
+     * @return $this
+     */
+    public function setRotationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecretManagerConfig\RotationConfig::class);
+        $this->rotation_config = $var;
 
         return $this;
     }

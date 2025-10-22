@@ -32,6 +32,8 @@ class BlueGreenSettings extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Container\V1\BlueGreenSettings\StandardRolloutPolicy $standard_rollout_policy
      *           Standard policy for the blue-green upgrade.
+     *     @type \Google\Cloud\Container\V1\BlueGreenSettings\AutoscaledRolloutPolicy $autoscaled_rollout_policy
+     *           Autoscaled policy for cluster autoscaler enabled blue-green upgrade.
      *     @type \Google\Protobuf\Duration $node_pool_soak_duration
      *           Time needed after draining entire blue pool. After this period, blue pool
      *           will be cleaned up.
@@ -69,6 +71,37 @@ class BlueGreenSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\BlueGreenSettings\StandardRolloutPolicy::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Autoscaled policy for cluster autoscaler enabled blue-green upgrade.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BlueGreenSettings.AutoscaledRolloutPolicy autoscaled_rollout_policy = 3;</code>
+     * @return \Google\Cloud\Container\V1\BlueGreenSettings\AutoscaledRolloutPolicy|null
+     */
+    public function getAutoscaledRolloutPolicy()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasAutoscaledRolloutPolicy()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Autoscaled policy for cluster autoscaler enabled blue-green upgrade.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BlueGreenSettings.AutoscaledRolloutPolicy autoscaled_rollout_policy = 3;</code>
+     * @param \Google\Cloud\Container\V1\BlueGreenSettings\AutoscaledRolloutPolicy $var
+     * @return $this
+     */
+    public function setAutoscaledRolloutPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\BlueGreenSettings\AutoscaledRolloutPolicy::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }
