@@ -1664,7 +1664,7 @@ class Database
      */
     public function execute($sql, array $options = []): Result
     {
-	$executeOptions = $this->pluckArray(
+        $executeOptions = $this->pluckArray(
             ['parameters', 'types'],
             $options
         );

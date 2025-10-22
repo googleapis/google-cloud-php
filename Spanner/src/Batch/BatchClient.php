@@ -22,7 +22,6 @@ use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\TransactionConfigurationTrait;
 use Google\Cloud\Spanner\TransactionOptionsBuilder;
 
 /**
