@@ -255,12 +255,12 @@ trait TransactionalReadTrait
             $options['transactionId'] = $this->transactionId;
         }
         $options['transactionType'] = $this->context;
-        [$transactionOptions] = $this->transactionOptionsBuilder->transactionSelector(
+        [$txnOptions] = $this->transactionOptionsBuilder->transactionSelector(
             $options,
             $this->transactionOptions->getReadOnly()
         );
         $directedReadOptions = $this->transactionOptionsBuilder->configureDirectedReadOptions(
-            ['transaction' => $transactionOptions] + $options,
+            ['transaction' => $txnOptions] + $options,
             $this->directedReadOptions
         );
 
@@ -269,7 +269,7 @@ trait TransactionalReadTrait
             $options
         );
         $executeSqlOptions['seqno'] = $this->seqno++;
-        $executeSqlOptions['transaction'] = $transactionOptions;
+        $executeSqlOptions['transaction'] = $txnOptions;
         $executeSqlOptions['directedReadOptions'] = $directedReadOptions;
         if ($this->tag) {
             $executeSqlOptions['requestOptions']['transactionTag'] = $this->tag;
@@ -351,9 +351,9 @@ trait TransactionalReadTrait
             $options['transactionId'] = $this->transactionId;
         }
 
-        [$transactionOptions] = $this->transactionOptionsBuilder
+        [$txnOptions] = $this->transactionOptionsBuilder
             ->transactionSelector($options, $this->transactionOptions->getReadOnly());
-        $readOptions['transaction'] = $transactionOptions;
+        $readOptions['transaction'] = $txnOptions;
 
         if (isset($this->tag)) {
             $readOptions['requestOptions']['transactionTag'] = $this->tag;

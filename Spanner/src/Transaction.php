@@ -474,11 +474,10 @@ class Transaction implements TransactionalReadInterface
             $commitOptions['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        [$transactionOptions, $selector] = $this->transactionOptionsBuilder->transactionOptions(
+        [$txnOptions, $selector] = $this->transactionOptionsBuilder->transactionOptions(
             ['transactionId' => $this->transactionId] + $options
         );
-
-        $commitOptions[$selector] = $transactionOptions;
+        $commitOptions[$selector] = $txnOptions;
 
         $response = $this->operation->commit(
             $this->session,
@@ -566,12 +565,12 @@ class Transaction implements TransactionalReadInterface
         } else {
             $options['transactionId'] = $this->transactionId;
         }
-        [$transactionOptions] = $this->transactionOptionsBuilder->transactionSelector($options);
+        [$txnOptions] = $this->transactionOptionsBuilder->transactionSelector($options);
 
         $updateOptions = $this->pluckArray(['parameters', 'types'], $options);
         $updateOptions += [
             'seqno' => $this->seqno++,
-            'transaction' => $transactionOptions,
+            'transaction' => $txnOptions,
             'headers' => ['spanner-route-to-leader' => ['true']]
         ];
 

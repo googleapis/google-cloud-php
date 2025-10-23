@@ -757,11 +757,10 @@ class Database
         }
 
         $snapshotOptions = [
-            'singleUse' => $options['singleUse'] ?? false
+            'singleUse' => $options['singleUse'] ?? false,
+            'transactionOptions' => $this->transactionOptionsBuilder
+                ->configureReadOnlyTransactionOptions($options),
         ];
-
-        $snapshotOptions['transactionOptions'] = $this->transactionOptionsBuilder
-            ->configureReadOnlyTransactionOptions($options);
 
         return $this->operation->snapshot($this->session, $snapshotOptions);
     }
@@ -812,9 +811,11 @@ class Database
         }
 
         // Configure readWrite options here. Any nested options for readWrite should be added to this call
-        $options['transactionOptions'] = $this->transactionOptionsBuilder->configureReadWriteTransactionOptions(
-            ($options['transactionOptions'] ?? []) + ['isolationLevel' => $this->isolationLevel]
-        );
+        $txnOptions = $options['transactionOptions'] ?? [];
+        $options['transactionOptions'] = $this->transactionOptionsBuilder
+            ->configureReadWriteTransactionOptions($txnOptions + [
+                'isolationLevel' => $this->isolationLevel
+            ]);
 
         return $this->operation->transaction($this->session, $options);
     }
@@ -918,10 +919,11 @@ class Database
             : $retrySettings['maxRetries'];
 
         // Configure necessary readWrite nested and base options
-        $transactionOptions = $options['transactionOptions'] ?? [];
-        $options['transactionOptions'] = $this->transactionOptionsBuilder->configureReadWriteTransactionOptions(
-            $transactionOptions + ['isolationLevel' => $this->isolationLevel]
-        );
+        $txnOptions = $options['transactionOptions'] ?? [];
+        $options['transactionOptions'] = $this->transactionOptionsBuilder
+            ->configureReadWriteTransactionOptions($txnOptions + [
+                'isolationLevel' => $this->isolationLevel
+            ]);
 
         $attempt = 0;
         $startTransactionFn = function ($options) use (&$attempt) {
@@ -1664,27 +1666,23 @@ class Database
      */
     public function execute($sql, array $options = []): Result
     {
-        $executeOptions = $this->pluckArray(
-            ['parameters', 'types'],
-            $options
-        );
-
         if (isset($options['transaction']['readWrite'])) {
             $options['transaction']['begin']['isolationLevel'] ??= $this->isolationLevel;
         }
 
-        [$transactionOptions, $transactionContext] = $this->transactionOptionsBuilder->transactionSelector($options);
+        [$txnOptions, $txnContext] = $this->transactionOptionsBuilder->transactionSelector($options);
         $directedReadOptions = $this->transactionOptionsBuilder->configureDirectedReadOptions(
-            ['transaction' => $transactionOptions] + $options,
-            $this->directedReadOptions
+            ['transaction' => $txnOptions] + $options,
+            $this->directedReadOptions,
         );
 
         $session = $options['session'] ?? $this->session;
+        $executeOptions = $this->pluckArray(['parameters', 'types'], $options);
         return $this->operation->execute($session, $sql, $executeOptions + [
-            'transaction' => $transactionOptions,
-            'transactionContext' => $transactionContext,
+            'transaction' => $txnOptions,
+            'transactionContext' => $txnContext,
             'directedReadOptions' => $directedReadOptions,
-            'route-to-leader' => $transactionContext === Database::CONTEXT_READWRITE
+            'route-to-leader' => $txnContext === Database::CONTEXT_READWRITE
         ]);
     }
 
@@ -1900,8 +1898,6 @@ class Database
      */
     public function executePartitionedUpdate($statement, array $options = []): int
     {
-        unset($options['requestOptions']['transactionTag']);
-
         if (isset($options['transactionOptions']['isolationLevel'])) {
             throw new ValidationException('Partitioned DML cannot be configured with an isolation level');
         }
@@ -1912,11 +1908,13 @@ class Database
             ]
         ];
 
+        unset($options['requestOptions']['transactionTag']);
         if (isset($options['transactionOptions']['excludeTxnFromChangeStreams'])) {
             $beginTransactionOptions['transactionOptions']['excludeTxnFromChangeStreams'] =
                 $options['transactionOptions']['excludeTxnFromChangeStreams'];
             unset($options['transactionOptions']);
         }
+
         $transaction = $this->operation->transaction($this->session, $beginTransactionOptions);
 
         return $this->operation->executeUpdate($this->session, $transaction, $statement, [
@@ -2050,21 +2048,23 @@ class Database
      */
     public function read($table, KeySet $keySet, array $columns, array $options = []): Result
     {
-        [$transactionOptions, $context] = $this->transactionOptionsBuilder->transactionSelector($options);
+        [$txnOptions, $txnContext] = $this->transactionOptionsBuilder->transactionSelector($options);
 
         $readOptions = $this->pluckArray(
             ['index', 'limit', 'orderBy', 'lockHint', 'directedReadOptions'],
             $options
         );
-        $readOptions['transactionContext'] = $context;
-        $readOptions['directedReadOptions'] = $this->transactionOptionsBuilder->configureDirectedReadOptions(
-            ['transaction' => $transactionOptions] + $readOptions,
-            $this->directedReadOptions
-        );
-        $readOptions['transaction'] = $transactionOptions;
+        $readOptions += [
+            'transactionContext' => $txnContext,
+            'directedReadOptions' => $this->transactionOptionsBuilder->configureDirectedReadOptions(
+                ['transaction' => $txnOptions] + $readOptions,
+                $this->directedReadOptions
+            ),
+            'transaction' => $txnOptions,
+        ];
 
         return $this->operation->read($this->session, $table, $keySet, $columns, $readOptions + [
-            'route-to-leader' => $context === Database::CONTEXT_READ
+            'route-to-leader' => $txnContext === Database::CONTEXT_READ
         ]);
     }
 
@@ -2143,7 +2143,7 @@ class Database
     {
         $options += [
             'parent' => $this->instance->name(),
-            'databaseId' => $this->databaseIdOnly($name),
+            'databaseId' => $this->databaseId($name),
             'backup' => $backup instanceof Backup ? $backup->name() : $backup
         ];
         /**
@@ -2365,7 +2365,7 @@ class Database
      * @param string $name The database name or id.
      * @return string
      */
-    private function databaseIdOnly(string $name): string
+    private function databaseId(string $name): string
     {
         try {
             return DatabaseAdminClient::parseName($name)['database'];

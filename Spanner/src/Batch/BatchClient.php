@@ -149,13 +149,13 @@ class BatchClient
         $options['transactionOptions']['singleUse'] = false;
         $options['transactionOptions']['returnReadTimestamp'] = true;
 
-        $transactionOptions = (new TransactionOptionsBuilder())
+        $txnOptions = (new TransactionOptionsBuilder())
             ->configureReadOnlyTransactionOptions($options['transactionOptions']);
 
         /** @var BatchSnapshot */
         return $this->operation->snapshot($this->session, [
             'className' => BatchSnapshot::class,
-            'transactionOptions' => $transactionOptions
+            'transactionOptions' => $txnOptions
         ] + $options);
     }
 

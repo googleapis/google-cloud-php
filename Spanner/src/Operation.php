@@ -258,7 +258,7 @@ class Operation
         );
 
         $options = $this->formatSqlParams($options);
-        $options['transaction'] = $this->createTransactionSelector($options);
+        $options['transaction'] = $options['transaction'] ?? [];
         $options['queryOptions'] = $this->createQueryOptions($options);
 
         /**
@@ -482,7 +482,7 @@ class Operation
         array $columns,
         array $options = []
     ): Result {
-        $options['transaction'] = $this->createTransactionSelector($options);
+        $options['transaction'] = $options['transaction'] ?? [];
         $options['keySet'] = $this->flattenKeySet($keySet);
 
         /**
@@ -590,11 +590,11 @@ class Operation
 
         // transaction options may be passed in as a message or array
         // TODO: only allow messages
-        $transactionOptions = $beginTransaction->getOptions();
+        $txnOptions = $beginTransaction->getOptions();
 
         if (empty($options['singleUse']) && (
             !$transactionSelector->hasBegin()
-            || $transactionOptions?->hasPartitionedDml()
+            || $txnOptions?->hasPartitionedDml()
         )) {
             if (!$beginTransaction->hasRequestOptions()) {
                 $beginTransaction->setRequestOptions(new RequestOptions());
@@ -602,8 +602,8 @@ class Operation
             if ($transactionTag) {
                 $beginTransaction->getRequestOptions()->setTransactionTag($transactionTag);
             }
-            if ($transactionOptions) {
-                $beginTransaction->setOptions($transactionOptions);
+            if ($txnOptions) {
+                $beginTransaction->setOptions($txnOptions);
             }
 
             // Execute the beginTransaction RPC
@@ -618,7 +618,7 @@ class Operation
             'begin' => $transactionSelector->getBegin(),
             'singleUse' => $options['singleUse'] ?? null,
             'requestOptions' => $beginTransaction->getRequestOptions(),
-            'transactionOptions' => $transactionOptions,
+            'transactionOptions' => $txnOptions,
         ]);
         return new Transaction(
             $this,
@@ -862,7 +862,6 @@ class Operation
 
         $partitions = [];
         $readPartitionOptions = $this->pluckArray(['index', 'maxPartitions', 'partitionSizeBytes'], $options);
-
         /** @var RepeatedField<Partition> $protoPartitions */
         $protoPartitions = $response->getPartitions();
         foreach ($protoPartitions as $partition) {
@@ -914,44 +913,6 @@ class Operation
     }
 
     /**
-     * Serialize the mutations.
-     *
-     * @param array $mutations
-     * @return array
-     */
-    private function serializeMutations(array $mutations): array
-    {
-        $serializedMutations = [];
-        if (is_array($mutations)) {
-            foreach ($mutations as $mutation) {
-                $serializedMutations[] = $this->serializeMutation($mutation);
-            }
-        }
-
-        return $serializedMutations;
-    }
-
-    private function serializeMutation(array $mutation): array
-    {
-        if (!$mutation) {
-            return [];
-        }
-        $type = array_keys($mutation)[0];
-        $data = $mutation[$type];
-        switch ($type) {
-            case Operation::OP_DELETE:
-                // no-op
-                break;
-            default:
-                $modifiedData = array_map([$this, 'formatValueForApi'], $data['values']);
-                $data['values'] = [['values' => $modifiedData]];
-                break;
-        }
-
-        return [$type => $data];
-    }
-
-    /**
      * Format statements.
      *
      * @param array $statements
@@ -999,7 +960,7 @@ class Operation
      */
     private function createTransactionSelector(
         array $args,
-        string|null $transactionId = null
+        string|null $transactionId
     ): array {
         if (isset($args['transaction'])) {
             return $args['transaction'];
@@ -1068,29 +1029,6 @@ class Operation
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);
         }
-    }
-
-    /**
-     * @param array $transactionOptions
-     * @return array
-     */
-    private function formatTransactionOptions(array $transactionOptions): array
-    {
-        // sometimes readOnly is a PBReadOnly message instance
-        if (isset($transactionOptions['readOnly']) && is_array($transactionOptions['readOnly'])) {
-            $ro = $transactionOptions['readOnly'];
-            if (isset($ro['minReadTimestamp'])) {
-                $ro['minReadTimestamp'] = $this->formatTimestampForApi($ro['minReadTimestamp']);
-            }
-
-            if (isset($ro['readTimestamp'])) {
-                $ro['readTimestamp'] = $this->formatTimestampForApi($ro['readTimestamp']);
-            }
-
-            $transactionOptions['readOnly'] = $ro;
-        }
-
-        return $transactionOptions;
     }
 
     /**

@@ -49,7 +49,7 @@ class TransactionOptionsBuilder
      */
     public function transactionSelector(array $options, ?PBReadOnly $txnLevelReadOnlyOptions = null): array
     {
-        [$transactionOptions, $selector, $context] = $this->transactionOptions(
+        [$txnOptions, $selector, $context] = $this->transactionOptions(
             $options + ['transactionType' => Database::CONTEXT_READ],
             $txnLevelReadOnlyOptions
         );
@@ -63,7 +63,7 @@ class TransactionOptionsBuilder
             self::TYPE_ILB => 'begin',
         };
         return [
-            [$commitSelector => $transactionOptions],
+            [$commitSelector => $txnOptions],
             $context
         ];
     }
@@ -100,19 +100,19 @@ class TransactionOptionsBuilder
             if ($selector === self::TYPE_SINGLE_USE) {
                 $options['singleUse'] = true;
             }
-            $transactionOptions = $this->configureReadOnlyTransactionOptions(
+            $txnOptions = $this->configureReadOnlyTransactionOptions(
                 $options,
                 $txnLevelReadOnlyOptions
             );
 
-            return [$transactionOptions, $selector, $context];
+            return [$txnOptions, $selector, $context];
         }
 
         if ($context === Database::CONTEXT_READWRITE) {
             $beginOptions = $selector === self::TYPE_ILB && $begin !== true ? $begin : [];
-            $transactionOptions = $this->configureReadWriteTransactionOptions($beginOptions);
+            $txnOptions = $this->configureReadWriteTransactionOptions($beginOptions);
 
-            return [$transactionOptions, $selector, $context];
+            return [$txnOptions, $selector, $context];
         }
 
         throw new \BadMethodCallException(sprintf(
