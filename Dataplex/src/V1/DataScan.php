@@ -23,6 +23,10 @@ use Google\Protobuf\Internal\GPBUtil;
  * * Data discovery: scans data in Cloud Storage buckets to extract and then
  *   catalog metadata. For more information, see [Discover and catalog Cloud
  *   Storage data](https://cloud.google.com/bigquery/docs/automatic-discovery).
+ * * Data documentation: analyzes the table details and generates insights
+ * including descriptions and sample SQL queries for the table. For more
+ * information, see [Generate data insights in
+ * BigQuery](https://cloud.google.com/bigquery/docs/data-insights).
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataScan</code>
  */
@@ -153,12 +157,16 @@ class DataScan extends \Google\Protobuf\Internal\Message
      *           Settings for a data profile scan.
      *     @type \Google\Cloud\Dataplex\V1\DataDiscoverySpec $data_discovery_spec
      *           Settings for a data discovery scan.
+     *     @type \Google\Cloud\Dataplex\V1\DataDocumentationSpec $data_documentation_spec
+     *           Settings for a data documentation scan.
      *     @type \Google\Cloud\Dataplex\V1\DataQualityResult $data_quality_result
      *           Output only. The result of a data quality scan.
      *     @type \Google\Cloud\Dataplex\V1\DataProfileResult $data_profile_result
      *           Output only. The result of a data profile scan.
      *     @type \Google\Cloud\Dataplex\V1\DataDiscoveryResult $data_discovery_result
      *           Output only. The result of a data discovery scan.
+     *     @type \Google\Cloud\Dataplex\V1\DataDocumentationResult $data_documentation_result
+     *           Output only. The result of a data documentation scan.
      * }
      */
     public function __construct($data = NULL) {
@@ -636,6 +644,37 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Settings for a data documentation scan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDocumentationSpec data_documentation_spec = 103;</code>
+     * @return \Google\Cloud\Dataplex\V1\DataDocumentationSpec|null
+     */
+    public function getDataDocumentationSpec()
+    {
+        return $this->readOneof(103);
+    }
+
+    public function hasDataDocumentationSpec()
+    {
+        return $this->hasOneof(103);
+    }
+
+    /**
+     * Settings for a data documentation scan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDocumentationSpec data_documentation_spec = 103;</code>
+     * @param \Google\Cloud\Dataplex\V1\DataDocumentationSpec $var
+     * @return $this
+     */
+    public function setDataDocumentationSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDocumentationSpec::class);
+        $this->writeOneof(103, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. The result of a data quality scan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityResult data_quality_result = 200 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -724,6 +763,37 @@ class DataScan extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDiscoveryResult::class);
         $this->writeOneof(202, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The result of a data documentation scan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDocumentationResult data_documentation_result = 203 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataDocumentationResult|null
+     */
+    public function getDataDocumentationResult()
+    {
+        return $this->readOneof(203);
+    }
+
+    public function hasDataDocumentationResult()
+    {
+        return $this->hasOneof(203);
+    }
+
+    /**
+     * Output only. The result of a data documentation scan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDocumentationResult data_documentation_result = 203 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataDocumentationResult $var
+     * @return $this
+     */
+    public function setDataDocumentationResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDocumentationResult::class);
+        $this->writeOneof(203, $var);
 
         return $this;
     }
