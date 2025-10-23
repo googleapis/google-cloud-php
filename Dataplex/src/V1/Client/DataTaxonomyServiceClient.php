@@ -126,9 +126,7 @@ final class DataTaxonomyServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -210,8 +208,12 @@ final class DataTaxonomyServiceClient
      *
      * @return string The formatted data_attribute resource.
      */
-    public static function dataAttributeName(string $project, string $location, string $dataTaxonomy, string $dataAttributeId): string
-    {
+    public static function dataAttributeName(
+        string $project,
+        string $location,
+        string $dataTaxonomy,
+        string $dataAttributeId
+    ): string {
         return self::getPathTemplate('dataAttribute')->render([
             'project' => $project,
             'location' => $location,
@@ -230,8 +232,11 @@ final class DataTaxonomyServiceClient
      *
      * @return string The formatted data_attribute_binding resource.
      */
-    public static function dataAttributeBindingName(string $project, string $location, string $dataAttributeBindingId): string
-    {
+    public static function dataAttributeBindingName(
+        string $project,
+        string $location,
+        string $dataAttributeBindingId
+    ): string {
         return self::getPathTemplate('dataAttributeBinding')->render([
             'project' => $project,
             'location' => $location,
@@ -441,8 +446,10 @@ final class DataTaxonomyServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function createDataAttributeBinding(CreateDataAttributeBindingRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createDataAttributeBinding(
+        CreateDataAttributeBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateDataAttributeBinding', $request, $callOptions)->wait();
     }
 
@@ -530,8 +537,10 @@ final class DataTaxonomyServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function deleteDataAttributeBinding(DeleteDataAttributeBindingRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteDataAttributeBinding(
+        DeleteDataAttributeBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteDataAttributeBinding', $request, $callOptions)->wait();
     }
 
@@ -617,8 +626,10 @@ final class DataTaxonomyServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function getDataAttributeBinding(GetDataAttributeBindingRequest $request, array $callOptions = []): DataAttributeBinding
-    {
+    public function getDataAttributeBinding(
+        GetDataAttributeBindingRequest $request,
+        array $callOptions = []
+    ): DataAttributeBinding {
         return $this->startApiCall('GetDataAttributeBinding', $request, $callOptions)->wait();
     }
 
@@ -674,8 +685,10 @@ final class DataTaxonomyServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function listDataAttributeBindings(ListDataAttributeBindingsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDataAttributeBindings(
+        ListDataAttributeBindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDataAttributeBindings', $request, $callOptions);
     }
 
@@ -790,8 +803,10 @@ final class DataTaxonomyServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function updateDataAttributeBinding(UpdateDataAttributeBindingRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateDataAttributeBinding(
+        UpdateDataAttributeBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateDataAttributeBinding', $request, $callOptions)->wait();
     }
 
@@ -909,8 +924,10 @@ final class DataTaxonomyServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

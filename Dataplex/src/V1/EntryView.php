@@ -40,9 +40,6 @@ class EntryView
      */
     const CUSTOM = 3;
     /**
-     * Returns all aspects. If the number of aspects exceeds 100, the first
-     * 100 will be returned.
-     *
      * Generated from protobuf enum <code>ALL = 4;</code>
      */
     const ALL = 4;

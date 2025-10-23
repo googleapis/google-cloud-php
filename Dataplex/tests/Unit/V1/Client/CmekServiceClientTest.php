@@ -105,10 +105,12 @@ class CmekServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $key = 'key106079';
         $etag = 'etag3123477';
+        $enableMetastoreEncryption = true;
         $expectedResponse = new EncryptionConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setKey($key);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setEnableMetastoreEncryption($enableMetastoreEncryption);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -357,10 +359,12 @@ class CmekServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $key = 'key106079';
         $etag = 'etag3123477';
+        $enableMetastoreEncryption = true;
         $expectedResponse = new EncryptionConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setKey($key);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setEnableMetastoreEncryption($enableMetastoreEncryption);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->encryptionConfigName('[ORGANIZATION]', '[LOCATION]', '[ENCRYPTION_CONFIG]');
@@ -509,10 +513,12 @@ class CmekServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $key = 'key106079';
         $etag = 'etag3123477';
+        $enableMetastoreEncryption = true;
         $expectedResponse = new EncryptionConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setKey($key);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setEnableMetastoreEncryption($enableMetastoreEncryption);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -970,10 +976,12 @@ class CmekServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $key = 'key106079';
         $etag = 'etag3123477';
+        $enableMetastoreEncryption = true;
         $expectedResponse = new EncryptionConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setKey($key);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setEnableMetastoreEncryption($enableMetastoreEncryption);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
