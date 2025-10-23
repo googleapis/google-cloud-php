@@ -129,14 +129,6 @@ class Database
     private int $isolationLevel;
     private TransactionOptionsBuilder $transactionOptionsBuilder;
 
-    private const MUTATION_SETTERS = [
-        'insert' => 'setInsert',
-        'update' => 'setUpdate',
-        'insertOrUpdate' => 'setInsertOrUpdate',
-        'replace' => 'setReplace',
-        'delete' => 'setDelete'
-    ];
-
     /**
      * Create an object representing a Database.
      *

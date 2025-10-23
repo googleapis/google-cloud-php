@@ -55,7 +55,7 @@ class Serializer extends ApiCoreSerializer
 {
     use ApiHelperTrait;
 
-    private const MUTATION_SETTERS = [
+    private array $mutationSetters = [
         'insert' => 'setInsert',
         'update' => 'setUpdate',
         'insertOrUpdate' => 'setInsertOrUpdate',
@@ -351,7 +351,7 @@ class Serializer extends ApiCoreSerializer
                     break;
             }
 
-            $setterName = self::MUTATION_SETTERS[$type];
+            $setterName = $this->mutationSetters[$type];
             $mutation = new Mutation();
             $mutation->$setterName($operation);
             $mutations[] = $mutation;

@@ -137,13 +137,15 @@ class TransactionOptionsBuilder
             return $requestOptions['directedReadOptions'];
         }
 
-        if (isset($requestOptions['transaction']['singleUse']) || (
-            ($requestOptions['transactionContext'] ?? null) == Database::CONTEXT_READ
-        ) || isset($requestOptions['transactionOptions']['readOnly'])
+        if (isset($requestOptions['transaction']['singleUse'])
+            || isset($requestOptions['transactionOptions']['readOnly'])
+            || ($requestOptions['transactionContext'] ?? null) == Database::CONTEXT_READ
         ) {
             if (isset($clientOptions['includeReplicas'])) {
                 return ['includeReplicas' => $clientOptions['includeReplicas']];
-            } elseif (isset($clientOptions['excludeReplicas'])) {
+            }
+
+            if (isset($clientOptions['excludeReplicas'])) {
                 return ['excludeReplicas' => $clientOptions['excludeReplicas']];
             }
         }
