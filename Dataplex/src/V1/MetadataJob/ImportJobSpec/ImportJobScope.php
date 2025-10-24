@@ -16,13 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImportJobScope extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The entry group that is in scope for the import job,
-     * specified as a relative resource name in the format
+     * Required. The entry groups that are in scope for the import job,
+     * specified as relative resource names in the format
      * `projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}`.
-     * Only entries and aspects that belong to the specified entry group are
+     * Only entries and aspects that belong to the specified entry groups are
      * affected by the job.
-     * Must contain exactly one element. The entry group and the job
-     * must be in the same location.
+     * The entry groups and the job must be in the same location.
      *
      * Generated from protobuf field <code>repeated string entry_groups = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -105,13 +104,12 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entry_groups
-     *           Required. The entry group that is in scope for the import job,
-     *           specified as a relative resource name in the format
+     *           Required. The entry groups that are in scope for the import job,
+     *           specified as relative resource names in the format
      *           `projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}`.
-     *           Only entries and aspects that belong to the specified entry group are
+     *           Only entries and aspects that belong to the specified entry groups are
      *           affected by the job.
-     *           Must contain exactly one element. The entry group and the job
-     *           must be in the same location.
+     *           The entry groups and the job must be in the same location.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entry_types
      *           Required. The entry types that are in scope for the import job,
      *           specified as relative resource names in the format
@@ -170,13 +168,12 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The entry group that is in scope for the import job,
-     * specified as a relative resource name in the format
+     * Required. The entry groups that are in scope for the import job,
+     * specified as relative resource names in the format
      * `projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}`.
-     * Only entries and aspects that belong to the specified entry group are
+     * Only entries and aspects that belong to the specified entry groups are
      * affected by the job.
-     * Must contain exactly one element. The entry group and the job
-     * must be in the same location.
+     * The entry groups and the job must be in the same location.
      *
      * Generated from protobuf field <code>repeated string entry_groups = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -187,13 +184,12 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The entry group that is in scope for the import job,
-     * specified as a relative resource name in the format
+     * Required. The entry groups that are in scope for the import job,
+     * specified as relative resource names in the format
      * `projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}`.
-     * Only entries and aspects that belong to the specified entry group are
+     * Only entries and aspects that belong to the specified entry groups are
      * affected by the job.
-     * Must contain exactly one element. The entry group and the job
-     * must be in the same location.
+     * The entry groups and the job must be in the same location.
      *
      * Generated from protobuf field <code>repeated string entry_groups = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

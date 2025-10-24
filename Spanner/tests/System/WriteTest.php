@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\FailedPreconditionException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
@@ -36,9 +37,10 @@ use Testing\Data\User;
  * @group spanner
  * @group spanner-write
  */
-class WriteTest extends SpannerTestCase
+class WriteTest extends SystemTestCase
 {
     use TimeTrait;
+    use SystemTestCaseTrait;
 
     const TABLE_NAME = 'Writes';
     const COMMIT_TIMESTAMP_TABLE_NAME = 'CommitTimestamps';

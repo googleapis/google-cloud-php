@@ -75,6 +75,12 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus catalog_publishing_status = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $catalog_publishing_status = null;
+    /**
+     * Output only. The generated assets for anomaly detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityResult.AnomalyDetectionGeneratedAssets anomaly_detection_generated_assets = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $anomaly_detection_generated_assets = null;
 
     /**
      * Constructor.
@@ -106,6 +112,8 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus $catalog_publishing_status
      *           Output only. The status of publishing the data scan as Dataplex Universal
      *           Catalog metadata.
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityResult\AnomalyDetectionGeneratedAssets $anomaly_detection_generated_assets
+     *           Output only. The generated assets for anomaly detection.
      * }
      */
     public function __construct($data = NULL) {
@@ -395,6 +403,42 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus::class);
         $this->catalog_publishing_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The generated assets for anomaly detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityResult.AnomalyDetectionGeneratedAssets anomaly_detection_generated_assets = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataQualityResult\AnomalyDetectionGeneratedAssets|null
+     */
+    public function getAnomalyDetectionGeneratedAssets()
+    {
+        return $this->anomaly_detection_generated_assets;
+    }
+
+    public function hasAnomalyDetectionGeneratedAssets()
+    {
+        return isset($this->anomaly_detection_generated_assets);
+    }
+
+    public function clearAnomalyDetectionGeneratedAssets()
+    {
+        unset($this->anomaly_detection_generated_assets);
+    }
+
+    /**
+     * Output only. The generated assets for anomaly detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityResult.AnomalyDetectionGeneratedAssets anomaly_detection_generated_assets = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataQualityResult\AnomalyDetectionGeneratedAssets $var
+     * @return $this
+     */
+    public function setAnomalyDetectionGeneratedAssets($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualityResult\AnomalyDetectionGeneratedAssets::class);
+        $this->anomaly_detection_generated_assets = $var;
 
         return $this;
     }

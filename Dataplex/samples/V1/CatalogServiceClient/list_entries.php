@@ -31,6 +31,11 @@ use Google\Cloud\Dataplex\V1\ListEntriesRequest;
 
 /**
  * Lists Entries within an EntryGroup.
+ * Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc
+ * Metastore metadata that is stored in Dataplex Universal Catalog is
+ * changing. For more information, see [Changes to metadata stored in
+ * Dataplex Universal
+ * Catalog](https://cloud.google.com/dataplex/docs/metadata-changes).
  *
  * @param string $formattedParent The resource name of the parent Entry Group:
  *                                `projects/{project}/locations/{location}/entryGroups/{entry_group}`. Please see

@@ -18,7 +18,7 @@ jobs:
     runs-on: 'ubuntu-24.04'
     services:
       emulator:
-        image: gcr.io/cloud-spanner-emulator/emulator:1.5.34
+        image: gcr.io/cloud-spanner-emulator/emulator:1.5.42
         ports:
           - 9010:9010
           - 9020:9020
@@ -41,7 +41,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.4'
           ini-values: grpc.enable_fork_support=1
           tools: pecl
           extensions: bcmath, grpc, pcntl

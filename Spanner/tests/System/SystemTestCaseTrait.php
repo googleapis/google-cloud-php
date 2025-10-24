@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc.
+ * Copyright 2025 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,41 +18,66 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Testing\System\SystemTestCase;
-use Google\Cloud\Spanner;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\V1\Client\SpannerClient as SpannerGapicClient;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
-/**
- * @group spanner
- */
-abstract class SpannerTestCase extends SystemTestCase
+trait SystemTestCaseTrait
 {
-    const TESTING_PREFIX = 'gcloud_testing_';
-    const INSTANCE_NAME = 'google-cloud-php-system-tests';
+    private const TESTING_PREFIX = 'gcloud_testing_';
+    private const INSTANCE_NAME = 'google-cloud-php-system-tests';
+    private const TEST_TABLE_NAME = 'Users';
+    private const TEST_INDEX_NAME = 'uniqueIndex';
+    private const DATABASE_ROLE = 'Reader';
+    private const RESTRICTIVE_DATABASE_ROLE = 'RestrictiveReader';
 
-    const TEST_TABLE_NAME = 'Users';
-    const TEST_INDEX_NAME = 'uniqueIndex';
-
-    const DATABASE_ROLE = 'Reader';
-    const RESTRICTIVE_DATABASE_ROLE = 'RestrictiveReader';
-
-    protected static $client;
-    protected static $instance;
-    protected static $database;
-    protected static $database2;
-    protected static $dbName;
-
+    private static $client;
+    private static $instance;
+    private static $database;
+    private static $dbName;
     private static $hasSetUp = false;
 
-    protected static function setUpTestDatabase(): void
+    private static function getClient()
+    {
+        if (self::$client) {
+            return self::$client;
+        }
+
+        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+
+        $clientConfig = [
+            'keyFilePath' => $keyFilePath,
+            'cacheItemPool' => self::getCacheItemPool(),
+        ];
+
+        $serviceAddress = getenv('SPANNER_SERVICE_ADDRESS');
+        if ($serviceAddress) {
+            $gapicConfig = [
+                'serviceAddress' => $serviceAddress
+            ];
+
+            $clientConfig['gapicSpannerClient'] = new SpannerGapicClient($gapicConfig);
+            $clientConfig['gapicSpannerDatabaseAdminClient'] =
+                new DatabaseAdminClient($gapicConfig);
+            $clientConfig['gapicSpannerInstanceAdminClient'] =
+                new InstanceAdminClient($gapicConfig);
+
+            echo 'Using Service Address: ' . $serviceAddress . PHP_EOL;
+        }
+
+        return self::$client = new SpannerClient($clientConfig);
+    }
+
+    private static function setUpTestDatabase(): void
     {
         if (self::$hasSetUp) {
             return;
         }
 
-        self::getClient();
-
-        self::$instance = self::$client->instance(self::INSTANCE_NAME);
+        self::$instance = self::getClient()->instance(self::INSTANCE_NAME);
 
         if (!self::$dbName = getenv('GOOGLE_CLOUD_SPANNER_TEST_DATABASE')) {
             self::$dbName = uniqid(self::TESTING_PREFIX);
@@ -78,7 +103,9 @@ abstract class SpannerTestCase extends SystemTestCase
             );
             $op->pollUntilComplete();
 
-            if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
+            if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL
+                && !self::isEmulatorUsed()
+            ) {
                 self::$database->updateDdlBatch(
                     [
                         'CREATE ROLE ' . self::DATABASE_ROLE,
@@ -92,55 +119,15 @@ abstract class SpannerTestCase extends SystemTestCase
             }
         }
 
-        self::$database2 = self::getDatabaseInstance(self::$dbName);
         self::$hasSetUp = true;
     }
 
-    private static function getClient()
-    {
-        if (self::$client) {
-            return self::$client;
-        }
-
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-
-        $clientConfig = [
-            'keyFilePath' => $keyFilePath,
-            'cacheItemPool' => self::getCacheItemPool(),
-        ];
-
-        $serviceAddress = getenv('SPANNER_SERVICE_ADDRESS');
-        if ($serviceAddress) {
-            $gapicConfig = [
-                'serviceAddress' => $serviceAddress
-            ];
-
-            $clientConfig['gapicSpannerClient'] = new Spanner\V1\Client\SpannerClient($gapicConfig);
-            $clientConfig['gapicSpannerDatabaseAdminClient'] =
-                new Spanner\Admin\Database\V1\Client\DatabaseAdminClient($gapicConfig);
-            $clientConfig['gapicSpannerInstanceAdminClient'] =
-                new Spanner\Admin\Instance\V1\Client\InstanceAdminClient($gapicConfig);
-
-            echo 'Using Service Address: ' . $serviceAddress . PHP_EOL;
-        }
-
-        self::$client = new SpannerClient($clientConfig);
-
-        return self::$client;
-    }
-
-    public static function getDatabaseInstance($dbName, $options = [])
+    private static function getDatabaseInstance($dbName, $options = [])
     {
         return self::getClient()->connect(self::INSTANCE_NAME, $dbName, $options);
     }
 
-    public static function getDatabaseFromInstance($instance, $dbName, $options = [])
-    {
-        $instance = self::$client->instance($instance);
-        return $instance->database($dbName, $options);
-    }
-
-    public static function skipEmulatorTests()
+    private static function skipEmulatorTests()
     {
         if (self::isEmulatorUsed()) {
             self::markTestSkipped('This test is not supported by the emulator.');
@@ -159,7 +146,7 @@ abstract class SpannerTestCase extends SystemTestCase
         return (bool) getenv('SPANNER_EMULATOR_HOST');
     }
 
-    public static function getDbWithReaderRole()
+    private static function getDbWithReaderRole()
     {
         return self::getDatabaseFromInstance(
             self::INSTANCE_NAME,
@@ -168,12 +155,25 @@ abstract class SpannerTestCase extends SystemTestCase
         );
     }
 
-    public static function getDbWithRestrictiveRole()
+    private static function getDbWithRestrictiveRole()
     {
         return self::getDatabaseFromInstance(
             self::INSTANCE_NAME,
             self::$dbName,
             ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+        );
+    }
+
+    private static function getDatabaseFromInstance($instance, $dbName, $options = [])
+    {
+        $instance = self::getClient()->instance($instance);
+        return $instance->database($dbName, $options);
+    }
+
+    private static function getCacheItemPool()
+    {
+        return new FilesystemAdapter(
+            directory: __DIR__ . '/../../../.cache'
         );
     }
 }

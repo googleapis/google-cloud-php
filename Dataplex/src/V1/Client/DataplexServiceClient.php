@@ -167,9 +167,7 @@ final class DataplexServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -252,8 +250,13 @@ final class DataplexServiceClient
      *
      * @return string The formatted asset resource.
      */
-    public static function assetName(string $project, string $location, string $lake, string $zone, string $asset): string
-    {
+    public static function assetName(
+        string $project,
+        string $location,
+        string $lake,
+        string $zone,
+        string $asset
+    ): string {
         return self::getPathTemplate('asset')->render([
             'project' => $project,
             'location' => $location,
@@ -1445,8 +1448,10 @@ final class DataplexServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

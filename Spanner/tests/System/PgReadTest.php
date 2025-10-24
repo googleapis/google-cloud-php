@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\DeadlineExceededException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 
@@ -27,8 +28,10 @@ use Google\Cloud\Spanner\KeySet;
  * @group spanner-read
  * @group spanner-postgres
  */
-class PgReadTest extends SpannerPgTestCase
+class PgReadTest extends SystemTestCase
 {
+    use PgSystemTestCaseTrait;
+
     private static $readTableName;
     private static $rangeTableName;
     private static $indexes = [];

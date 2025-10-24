@@ -17,14 +17,17 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Rpc\Code;
 
 /**
  * @group spanner
  * @group spanner-postgres
  */
-class PgBatchWriteTest extends SpannerPgTestCase
+class PgBatchWriteTest extends SystemTestCase
 {
+    use PgSystemTestCaseTrait;
+
     const TABLE_NAME = 'BatchWrites';
     /**
      * @beforeClass

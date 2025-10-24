@@ -37,12 +37,19 @@ class DataScanType
      * Generated from protobuf enum <code>DATA_DISCOVERY = 3;</code>
      */
     const DATA_DISCOVERY = 3;
+    /**
+     * Data documentation scan.
+     *
+     * Generated from protobuf enum <code>DATA_DOCUMENTATION = 4;</code>
+     */
+    const DATA_DOCUMENTATION = 4;
 
     private static $valueToName = [
         self::DATA_SCAN_TYPE_UNSPECIFIED => 'DATA_SCAN_TYPE_UNSPECIFIED',
         self::DATA_QUALITY => 'DATA_QUALITY',
         self::DATA_PROFILE => 'DATA_PROFILE',
         self::DATA_DISCOVERY => 'DATA_DISCOVERY',
+        self::DATA_DOCUMENTATION => 'DATA_DOCUMENTATION',
     ];
 
     public static function name($value)

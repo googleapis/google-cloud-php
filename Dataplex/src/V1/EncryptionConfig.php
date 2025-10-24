@@ -63,6 +63,12 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EncryptionConfig.FailureDetails failure_details = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $failure_details = null;
+    /**
+     * Optional. Represent the state of CMEK opt-in for metastore.
+     *
+     * Generated from protobuf field <code>bool enable_metastore_encryption = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_metastore_encryption = false;
 
     /**
      * Constructor.
@@ -89,6 +95,8 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      *           Etag of the EncryptionConfig. This is a strong etag.
      *     @type \Google\Cloud\Dataplex\V1\EncryptionConfig\FailureDetails $failure_details
      *           Output only. Details of the failure if anything related to Cmek db fails.
+     *     @type bool $enable_metastore_encryption
+     *           Optional. Represent the state of CMEK opt-in for metastore.
      * }
      */
     public function __construct($data = NULL) {
@@ -314,6 +322,32 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\EncryptionConfig\FailureDetails::class);
         $this->failure_details = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Represent the state of CMEK opt-in for metastore.
+     *
+     * Generated from protobuf field <code>bool enable_metastore_encryption = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableMetastoreEncryption()
+    {
+        return $this->enable_metastore_encryption;
+    }
+
+    /**
+     * Optional. Represent the state of CMEK opt-in for metastore.
+     *
+     * Generated from protobuf field <code>bool enable_metastore_encryption = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableMetastoreEncryption($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_metastore_encryption = $var;
 
         return $this;
     }

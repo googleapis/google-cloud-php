@@ -101,9 +101,7 @@ final class CmekServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -184,8 +182,11 @@ final class CmekServiceClient
      *
      * @return string The formatted encryption_config resource.
      */
-    public static function encryptionConfigName(string $organization, string $location, string $encryptionConfig): string
-    {
+    public static function encryptionConfigName(
+        string $organization,
+        string $location,
+        string $encryptionConfig
+    ): string {
         return self::getPathTemplate('encryptionConfig')->render([
             'organization' => $organization,
             'location' => $location,
@@ -342,8 +343,10 @@ final class CmekServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createEncryptionConfig(CreateEncryptionConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createEncryptionConfig(
+        CreateEncryptionConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateEncryptionConfig', $request, $callOptions)->wait();
     }
 
@@ -368,8 +371,10 @@ final class CmekServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteEncryptionConfig(DeleteEncryptionConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteEncryptionConfig(
+        DeleteEncryptionConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteEncryptionConfig', $request, $callOptions)->wait();
     }
 
@@ -420,8 +425,10 @@ final class CmekServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listEncryptionConfigs(ListEncryptionConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listEncryptionConfigs(
+        ListEncryptionConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListEncryptionConfigs', $request, $callOptions);
     }
 
@@ -446,8 +453,10 @@ final class CmekServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateEncryptionConfig(UpdateEncryptionConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateEncryptionConfig(
+        UpdateEncryptionConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateEncryptionConfig', $request, $callOptions)->wait();
     }
 
@@ -535,8 +544,10 @@ final class CmekServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

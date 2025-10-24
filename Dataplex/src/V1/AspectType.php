@@ -69,6 +69,12 @@ class AspectType extends \Google\Protobuf\Internal\Message
      */
     protected $etag = '';
     /**
+     * Optional. Immutable. Stores data classification of the aspect.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.DataClassification data_classification = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $data_classification = 0;
+    /**
      * Immutable. Defines the Authorization for this type.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.Authorization authorization = 52 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -114,6 +120,8 @@ class AspectType extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *           The service computes this checksum. The client may send it on update and
      *           delete requests to ensure it has an up-to-date value before proceeding.
+     *     @type int $data_classification
+     *           Optional. Immutable. Stores data classification of the aspect.
      *     @type \Google\Cloud\Dataplex\V1\AspectType\Authorization $authorization
      *           Immutable. Defines the Authorization for this type.
      *     @type \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate $metadata_template
@@ -360,6 +368,32 @@ class AspectType extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. Stores data classification of the aspect.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.DataClassification data_classification = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getDataClassification()
+    {
+        return $this->data_classification;
+    }
+
+    /**
+     * Optional. Immutable. Stores data classification of the aspect.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.DataClassification data_classification = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDataClassification($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataplex\V1\AspectType\DataClassification::class);
+        $this->data_classification = $var;
 
         return $this;
     }

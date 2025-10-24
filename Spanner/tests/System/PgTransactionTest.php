@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
@@ -28,9 +29,10 @@ use InvalidArgumentException;
  * @group spanner-transaction
  * @group spanner-postgres
  */
-class PgTransactionTest extends SpannerPgTestCase
+class PgTransactionTest extends SystemTestCase
 {
     use DatabaseRoleTrait;
+    use PgSystemTestCaseTrait;
 
     private static $row = [];
 

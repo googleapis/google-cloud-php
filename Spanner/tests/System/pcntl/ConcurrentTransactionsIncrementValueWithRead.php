@@ -4,7 +4,7 @@ include __DIR__ . '/../../../vendor/autoload.php';
 include __DIR__ . '/forked-process-test.php';
 
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
+use Google\Cloud\Spanner\Tests\System\SystemTestCaseTrait;
 
 list($dbName, $tableName, $id) = getInputArgs();
 
@@ -14,25 +14,42 @@ setupIterationTracker($tmpFile);
 $keyset = new KeySet(['keys' => [$id]]);
 $columns = ['id', 'number'];
 
-$callable = function ($dbName, KeySet $keyset, array $columns, $tableName) use ($tmpFile) {
-    $iterations = 0;
-    $db = SpannerTestCase::getDatabaseInstance($dbName);
-    if (getenv('SPANNER_EMULATOR_HOST')) {
-        // the emulator requires us to manually request a new session
-        // presumably because multiplexed sessions aren't properly supported
-        $db->session()->refresh();
+$concurrentRead = new class($dbName, $keyset, $columns, $tableName, $tmpFile) {
+    use SystemTestCaseTrait;
+
+    public function __construct(
+        string $dbName,
+        private KeySet $keyset,
+        private array $columns,
+        private string $tableName,
+        private string $tmpFile
+    ) {
+        self::$dbName = $dbName;
     }
-    $db->runTransaction(function ($transaction) use ($keyset, $columns, $tableName, &$iterations) {
-        $iterations++;
-        $row = $transaction->read($tableName, $keyset, $columns)->rows()->current();
 
-        $row['number'] += 1;
+    public function run(): int
+    {
+        $iterations = 0;
+        $db = self::getDatabaseInstance(self::$dbName);
+        if (self::isEmulatorUsed()) {
+            // the emulator requires us to manually request a new session
+            // presumably because multiplexed sessions aren't properly supported
+            $db->session()->refresh();
+        }
+        $db->runTransaction(function ($transaction) use (&$iterations) {
+            $iterations++;
+            $row = $transaction->read($this->tableName, $this->keyset, $this->columns)->rows()->current();
 
-        $transaction->update($tableName, $row);
-        $transaction->commit();
-    });
+            $row['number'] += 1;
 
-    updateIterationTracker($tmpFile, $iterations);
+            $transaction->update($this->tableName, $row);
+            $transaction->commit();
+        });
+
+        updateIterationTracker($this->tmpFile, $iterations);
+
+        return 0;
+    }
 };
 
 $delay = 2000;
@@ -40,20 +57,17 @@ $retryLimit = 100;
 if ($childPID1 = pcntl_fork()) {
     usleep($delay);
 
-    $callable($dbName, $keyset, $columns, $tableName);
+    $status = $concurrentRead->run();
 
     while (pcntl_waitpid($childPID1, $status1, WNOHANG) == 0 && $retryLimit) {
         usleep(2 * $delay);
         $retryLimit--;
     }
+
+    echo file_get_contents($tmpFile);
+    exit($status);
 } else {
     usleep(2 * $delay);
 
-    $callable($dbName, $keyset, $columns, $tableName);
-
-    exit(0);
+    exit($concurrentRead->run());
 }
-
-echo file_get_contents($tmpFile);
-
-exit(0);

@@ -128,9 +128,7 @@ final class BusinessGlossaryServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -147,7 +145,8 @@ final class BusinessGlossaryServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/business_glossary_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/business_glossary_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -231,8 +230,12 @@ final class BusinessGlossaryServiceClient
      *
      * @return string The formatted glossary_category resource.
      */
-    public static function glossaryCategoryName(string $project, string $location, string $glossary, string $glossaryCategory): string
-    {
+    public static function glossaryCategoryName(
+        string $project,
+        string $location,
+        string $glossary,
+        string $glossaryCategory
+    ): string {
         return self::getPathTemplate('glossaryCategory')->render([
             'project' => $project,
             'location' => $location,
@@ -252,8 +255,12 @@ final class BusinessGlossaryServiceClient
      *
      * @return string The formatted glossary_term resource.
      */
-    public static function glossaryTermName(string $project, string $location, string $glossary, string $glossaryTerm): string
-    {
+    public static function glossaryTermName(
+        string $project,
+        string $location,
+        string $glossary,
+        string $glossaryTerm
+    ): string {
         return self::getPathTemplate('glossaryTerm')->render([
             'project' => $project,
             'location' => $location,
@@ -441,8 +448,10 @@ final class BusinessGlossaryServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createGlossaryCategory(CreateGlossaryCategoryRequest $request, array $callOptions = []): GlossaryCategory
-    {
+    public function createGlossaryCategory(
+        CreateGlossaryCategoryRequest $request,
+        array $callOptions = []
+    ): GlossaryCategory {
         return $this->startApiCall('CreateGlossaryCategory', $request, $callOptions)->wait();
     }
 
@@ -682,8 +691,10 @@ final class BusinessGlossaryServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listGlossaryCategories(ListGlossaryCategoriesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listGlossaryCategories(
+        ListGlossaryCategoriesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListGlossaryCategories', $request, $callOptions);
     }
 
@@ -763,8 +774,10 @@ final class BusinessGlossaryServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateGlossaryCategory(UpdateGlossaryCategoryRequest $request, array $callOptions = []): GlossaryCategory
-    {
+    public function updateGlossaryCategory(
+        UpdateGlossaryCategoryRequest $request,
+        array $callOptions = []
+    ): GlossaryCategory {
         return $this->startApiCall('UpdateGlossaryCategory', $request, $callOptions)->wait();
     }
 
@@ -880,8 +893,10 @@ final class BusinessGlossaryServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

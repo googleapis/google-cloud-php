@@ -158,9 +158,7 @@ final class CatalogServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -301,8 +299,12 @@ final class CatalogServiceClient
      *
      * @return string The formatted entry_link resource.
      */
-    public static function entryLinkName(string $project, string $location, string $entryGroup, string $entryLink): string
-    {
+    public static function entryLinkName(
+        string $project,
+        string $location,
+        string $entryGroup,
+        string $entryLink
+    ): string {
         return self::getPathTemplate('entryLink')->render([
             'project' => $project,
             'location' => $location,
@@ -862,6 +864,11 @@ final class CatalogServiceClient
 
     /**
      * Gets an Entry.
+     * Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc
+     * Metastore metadata that is stored in Dataplex Universal Catalog is
+     * changing. For more information, see [Changes to metadata stored in
+     * Dataplex Universal
+     * Catalog](https://cloud.google.com/dataplex/docs/metadata-changes).
      *
      * The async variant is {@see CatalogServiceClient::getEntryAsync()} .
      *
@@ -1018,6 +1025,11 @@ final class CatalogServiceClient
 
     /**
      * Lists Entries within an EntryGroup.
+     * Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc
+     * Metastore metadata that is stored in Dataplex Universal Catalog is
+     * changing. For more information, see [Changes to metadata stored in
+     * Dataplex Universal
+     * Catalog](https://cloud.google.com/dataplex/docs/metadata-changes).
      *
      * The async variant is {@see CatalogServiceClient::listEntriesAsync()} .
      *
@@ -1122,6 +1134,11 @@ final class CatalogServiceClient
 
     /**
      * Looks up an entry by name using the permission on the source system.
+     * Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc
+     * Metastore metadata that is stored in Dataplex Universal Catalog is
+     * changing. For more information, see [Changes to metadata stored in
+     * Dataplex Universal
+     * Catalog](https://cloud.google.com/dataplex/docs/metadata-changes).
      *
      * The async variant is {@see CatalogServiceClient::lookupEntryAsync()} .
      *
@@ -1360,8 +1377,10 @@ final class CatalogServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
