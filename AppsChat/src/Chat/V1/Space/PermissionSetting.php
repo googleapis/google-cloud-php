@@ -16,13 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class PermissionSetting extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Whether spaces managers have this permission.
+     * Optional. Whether space owners
+     * ([`ROLE_MANAGER`][google.chat.v1.Membership.MembershipRole.ROLE_MANAGER])
+     * have this permission.
      *
      * Generated from protobuf field <code>bool managers_allowed = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $managers_allowed = false;
     /**
-     * Optional. Whether non-manager members have this permission.
+     * Optional. Whether space managers
+     * [`ROLE_ASSISTANT_MANAGER`][google.chat.v1.Membership.MembershipRole.ROLE_ASSISTANT_MANAGER])
+     * have this permission.
+     *
+     * Generated from protobuf field <code>optional bool assistant_managers_allowed = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $assistant_managers_allowed = null;
+    /**
+     * Optional. Whether basic space members
+     * ([`ROLE_MEMBER`][google.chat.v1.Membership.MembershipRole.ROLE_MEMBER])
+     * have this permission.
      *
      * Generated from protobuf field <code>bool members_allowed = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -35,9 +47,17 @@ class PermissionSetting extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $managers_allowed
-     *           Optional. Whether spaces managers have this permission.
+     *           Optional. Whether space owners
+     *           ([`ROLE_MANAGER`][google.chat.v1.Membership.MembershipRole.ROLE_MANAGER])
+     *           have this permission.
+     *     @type bool $assistant_managers_allowed
+     *           Optional. Whether space managers
+     *           [`ROLE_ASSISTANT_MANAGER`][google.chat.v1.Membership.MembershipRole.ROLE_ASSISTANT_MANAGER])
+     *           have this permission.
      *     @type bool $members_allowed
-     *           Optional. Whether non-manager members have this permission.
+     *           Optional. Whether basic space members
+     *           ([`ROLE_MEMBER`][google.chat.v1.Membership.MembershipRole.ROLE_MEMBER])
+     *           have this permission.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +66,9 @@ class PermissionSetting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether spaces managers have this permission.
+     * Optional. Whether space owners
+     * ([`ROLE_MANAGER`][google.chat.v1.Membership.MembershipRole.ROLE_MANAGER])
+     * have this permission.
      *
      * Generated from protobuf field <code>bool managers_allowed = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -57,7 +79,9 @@ class PermissionSetting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether spaces managers have this permission.
+     * Optional. Whether space owners
+     * ([`ROLE_MANAGER`][google.chat.v1.Membership.MembershipRole.ROLE_MANAGER])
+     * have this permission.
      *
      * Generated from protobuf field <code>bool managers_allowed = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -72,7 +96,49 @@ class PermissionSetting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether non-manager members have this permission.
+     * Optional. Whether space managers
+     * [`ROLE_ASSISTANT_MANAGER`][google.chat.v1.Membership.MembershipRole.ROLE_ASSISTANT_MANAGER])
+     * have this permission.
+     *
+     * Generated from protobuf field <code>optional bool assistant_managers_allowed = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAssistantManagersAllowed()
+    {
+        return isset($this->assistant_managers_allowed) ? $this->assistant_managers_allowed : false;
+    }
+
+    public function hasAssistantManagersAllowed()
+    {
+        return isset($this->assistant_managers_allowed);
+    }
+
+    public function clearAssistantManagersAllowed()
+    {
+        unset($this->assistant_managers_allowed);
+    }
+
+    /**
+     * Optional. Whether space managers
+     * [`ROLE_ASSISTANT_MANAGER`][google.chat.v1.Membership.MembershipRole.ROLE_ASSISTANT_MANAGER])
+     * have this permission.
+     *
+     * Generated from protobuf field <code>optional bool assistant_managers_allowed = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAssistantManagersAllowed($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->assistant_managers_allowed = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether basic space members
+     * ([`ROLE_MEMBER`][google.chat.v1.Membership.MembershipRole.ROLE_MEMBER])
+     * have this permission.
      *
      * Generated from protobuf field <code>bool members_allowed = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -83,7 +149,9 @@ class PermissionSetting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether non-manager members have this permission.
+     * Optional. Whether basic space members
+     * ([`ROLE_MEMBER`][google.chat.v1.Membership.MembershipRole.ROLE_MEMBER])
+     * have this permission.
      *
      * Generated from protobuf field <code>bool members_allowed = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

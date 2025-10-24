@@ -29,7 +29,7 @@ class DeletionType
      */
     const CREATOR = 1;
     /**
-     * A space manager deleted the message.
+     * An owner or manager deleted the message.
      *
      * Generated from protobuf enum <code>SPACE_OWNER = 2;</code>
      */
