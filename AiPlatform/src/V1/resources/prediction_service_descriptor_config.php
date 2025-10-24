@@ -47,6 +47,18 @@ return [
                     ],
                 ],
             ],
+            'EmbedContent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\EmbedContentResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'model',
+                        'fieldAccessors' => [
+                            'getModel',
+                        ],
+                    ],
+                ],
+            ],
             'Explain' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\ExplainResponse',

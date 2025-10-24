@@ -47,6 +47,18 @@ return [
                     ],
                 ],
             ],
+            'EmbedContent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{model=projects/*/locations/*/publishers/*/models/*}:embedContent',
+                'body' => '*',
+                'placeholders' => [
+                    'model' => [
+                        'getters' => [
+                            'getModel',
+                        ],
+                    ],
+                ],
+            ],
             'Explain' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:explain',
