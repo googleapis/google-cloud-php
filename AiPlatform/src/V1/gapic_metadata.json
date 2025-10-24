@@ -1270,6 +1270,11 @@
                                 "directRawPredict"
                             ]
                         },
+                        "EmbedContent": {
+                            "methods": [
+                                "embedContent"
+                            ]
+                        },
                         "Explain": {
                             "methods": [
                                 "explain"

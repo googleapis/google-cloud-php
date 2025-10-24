@@ -42,6 +42,8 @@ use Google\Cloud\AIPlatform\V1\DirectPredictRequest;
 use Google\Cloud\AIPlatform\V1\DirectPredictResponse;
 use Google\Cloud\AIPlatform\V1\DirectRawPredictRequest;
 use Google\Cloud\AIPlatform\V1\DirectRawPredictResponse;
+use Google\Cloud\AIPlatform\V1\EmbedContentRequest;
+use Google\Cloud\AIPlatform\V1\EmbedContentResponse;
 use Google\Cloud\AIPlatform\V1\ExplainRequest;
 use Google\Cloud\AIPlatform\V1\ExplainResponse;
 use Google\Cloud\AIPlatform\V1\GenerateContentRequest;
@@ -76,6 +78,7 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<DirectPredictResponse> directPredictAsync(DirectPredictRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DirectRawPredictResponse> directRawPredictAsync(DirectRawPredictRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EmbedContentResponse> embedContentAsync(EmbedContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ExplainResponse> explainAsync(ExplainRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateContentResponse> generateContentAsync(GenerateContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PredictResponse> predictAsync(PredictRequest $request, array $optionalArgs = [])
@@ -423,6 +426,32 @@ final class PredictionServiceClient
         array $callOptions = []
     ): DirectRawPredictResponse {
         return $this->startApiCall('DirectRawPredict', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Embed content with multimodal inputs.
+     *
+     * The async variant is {@see PredictionServiceClient::embedContentAsync()} .
+     *
+     * @example samples/V1/PredictionServiceClient/embed_content.php
+     *
+     * @param EmbedContentRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EmbedContentResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function embedContent(EmbedContentRequest $request, array $callOptions = []): EmbedContentResponse
+    {
+        return $this->startApiCall('EmbedContent', $request, $callOptions)->wait();
     }
 
     /**
