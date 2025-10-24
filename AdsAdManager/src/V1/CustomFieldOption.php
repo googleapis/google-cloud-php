@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomFieldOption extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. `CustomFieldOption` ID.
+     * Optional. Non-empty default. `CustomFieldOption` ID.
      *
-     * Generated from protobuf field <code>int64 custom_field_option_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 custom_field_option_id = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
      */
     protected $custom_field_option_id = 0;
     /**
@@ -36,7 +36,7 @@ class CustomFieldOption extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $custom_field_option_id
-     *           Output only. `CustomFieldOption` ID.
+     *           Optional. Non-empty default. `CustomFieldOption` ID.
      *     @type string $display_name
      *           Required. The display name of the `CustomFieldOption`.
      *           This value has a maximum length of 127 characters.
@@ -48,9 +48,9 @@ class CustomFieldOption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `CustomFieldOption` ID.
+     * Optional. Non-empty default. `CustomFieldOption` ID.
      *
-     * Generated from protobuf field <code>int64 custom_field_option_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 custom_field_option_id = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
      * @return int|string
      */
     public function getCustomFieldOptionId()
@@ -59,9 +59,9 @@ class CustomFieldOption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `CustomFieldOption` ID.
+     * Optional. Non-empty default. `CustomFieldOption` ID.
      *
-     * Generated from protobuf field <code>int64 custom_field_option_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 custom_field_option_id = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
      * @param int|string $var
      * @return $this
      */

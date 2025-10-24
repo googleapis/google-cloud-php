@@ -32,7 +32,7 @@ use Google\Rpc\Status;
 
 /**
  * Initiates the execution of an existing report asynchronously. Users can
- * get the report by polling this operation via
+ * get the report by polling this operation using
  * `OperationsService.GetOperation`.
  * Poll every 5 seconds initially, with an exponential
  * backoff. Once a report is complete, the operation will contain a

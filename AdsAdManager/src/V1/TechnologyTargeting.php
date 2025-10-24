@@ -23,11 +23,41 @@ class TechnologyTargeting extends \Google\Protobuf\Internal\Message
      */
     protected $bandwidth_targeting = null;
     /**
+     * Optional. Browser targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.BrowserTargeting browser_targeting = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $browser_targeting = null;
+    /**
+     * Optional. Browser language targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.BrowserLanguageTargeting browser_language_targeting = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $browser_language_targeting = null;
+    /**
+     * Optional. Device capability targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.DeviceCapabilityTargeting device_capability_targeting = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $device_capability_targeting = null;
+    /**
      * Optional. Device category targeting dimension.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.DeviceCategoryTargeting device_category_targeting = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $device_category_targeting = null;
+    /**
+     * Optional. Device manufacturer targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.DeviceManufacturerTargeting device_manufacturer_targeting = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $device_manufacturer_targeting = null;
+    /**
+     * Optional. Mobile carrier targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.MobileCarrierTargeting mobile_carrier_targeting = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $mobile_carrier_targeting = null;
     /**
      * Optional. Operating system targeting dimension.
      *
@@ -43,8 +73,18 @@ class TechnologyTargeting extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Ads\AdManager\V1\BandwidthTargeting $bandwidth_targeting
      *           Optional. Bandwidth targeting dimension.
+     *     @type \Google\Ads\AdManager\V1\BrowserTargeting $browser_targeting
+     *           Optional. Browser targeting dimension.
+     *     @type \Google\Ads\AdManager\V1\BrowserLanguageTargeting $browser_language_targeting
+     *           Optional. Browser language targeting dimension.
+     *     @type \Google\Ads\AdManager\V1\DeviceCapabilityTargeting $device_capability_targeting
+     *           Optional. Device capability targeting dimension.
      *     @type \Google\Ads\AdManager\V1\DeviceCategoryTargeting $device_category_targeting
      *           Optional. Device category targeting dimension.
+     *     @type \Google\Ads\AdManager\V1\DeviceManufacturerTargeting $device_manufacturer_targeting
+     *           Optional. Device manufacturer targeting dimension.
+     *     @type \Google\Ads\AdManager\V1\MobileCarrierTargeting $mobile_carrier_targeting
+     *           Optional. Mobile carrier targeting dimension.
      *     @type \Google\Ads\AdManager\V1\OperatingSystemTargeting $operating_system_targeting
      *           Optional. Operating system targeting dimension.
      * }
@@ -91,6 +131,114 @@ class TechnologyTargeting extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Browser targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.BrowserTargeting browser_targeting = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\BrowserTargeting|null
+     */
+    public function getBrowserTargeting()
+    {
+        return $this->browser_targeting;
+    }
+
+    public function hasBrowserTargeting()
+    {
+        return isset($this->browser_targeting);
+    }
+
+    public function clearBrowserTargeting()
+    {
+        unset($this->browser_targeting);
+    }
+
+    /**
+     * Optional. Browser targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.BrowserTargeting browser_targeting = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\BrowserTargeting $var
+     * @return $this
+     */
+    public function setBrowserTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\BrowserTargeting::class);
+        $this->browser_targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Browser language targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.BrowserLanguageTargeting browser_language_targeting = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\BrowserLanguageTargeting|null
+     */
+    public function getBrowserLanguageTargeting()
+    {
+        return $this->browser_language_targeting;
+    }
+
+    public function hasBrowserLanguageTargeting()
+    {
+        return isset($this->browser_language_targeting);
+    }
+
+    public function clearBrowserLanguageTargeting()
+    {
+        unset($this->browser_language_targeting);
+    }
+
+    /**
+     * Optional. Browser language targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.BrowserLanguageTargeting browser_language_targeting = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\BrowserLanguageTargeting $var
+     * @return $this
+     */
+    public function setBrowserLanguageTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\BrowserLanguageTargeting::class);
+        $this->browser_language_targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Device capability targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.DeviceCapabilityTargeting device_capability_targeting = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\DeviceCapabilityTargeting|null
+     */
+    public function getDeviceCapabilityTargeting()
+    {
+        return $this->device_capability_targeting;
+    }
+
+    public function hasDeviceCapabilityTargeting()
+    {
+        return isset($this->device_capability_targeting);
+    }
+
+    public function clearDeviceCapabilityTargeting()
+    {
+        unset($this->device_capability_targeting);
+    }
+
+    /**
+     * Optional. Device capability targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.DeviceCapabilityTargeting device_capability_targeting = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\DeviceCapabilityTargeting $var
+     * @return $this
+     */
+    public function setDeviceCapabilityTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\DeviceCapabilityTargeting::class);
+        $this->device_capability_targeting = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Device category targeting dimension.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.DeviceCategoryTargeting device_category_targeting = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -122,6 +270,78 @@ class TechnologyTargeting extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\DeviceCategoryTargeting::class);
         $this->device_category_targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Device manufacturer targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.DeviceManufacturerTargeting device_manufacturer_targeting = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\DeviceManufacturerTargeting|null
+     */
+    public function getDeviceManufacturerTargeting()
+    {
+        return $this->device_manufacturer_targeting;
+    }
+
+    public function hasDeviceManufacturerTargeting()
+    {
+        return isset($this->device_manufacturer_targeting);
+    }
+
+    public function clearDeviceManufacturerTargeting()
+    {
+        unset($this->device_manufacturer_targeting);
+    }
+
+    /**
+     * Optional. Device manufacturer targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.DeviceManufacturerTargeting device_manufacturer_targeting = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\DeviceManufacturerTargeting $var
+     * @return $this
+     */
+    public function setDeviceManufacturerTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\DeviceManufacturerTargeting::class);
+        $this->device_manufacturer_targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Mobile carrier targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.MobileCarrierTargeting mobile_carrier_targeting = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\MobileCarrierTargeting|null
+     */
+    public function getMobileCarrierTargeting()
+    {
+        return $this->mobile_carrier_targeting;
+    }
+
+    public function hasMobileCarrierTargeting()
+    {
+        return isset($this->mobile_carrier_targeting);
+    }
+
+    public function clearMobileCarrierTargeting()
+    {
+        unset($this->mobile_carrier_targeting);
+    }
+
+    /**
+     * Optional. Mobile carrier targeting dimension.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.MobileCarrierTargeting mobile_carrier_targeting = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\MobileCarrierTargeting $var
+     * @return $this
+     */
+    public function setMobileCarrierTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\MobileCarrierTargeting::class);
+        $this->mobile_carrier_targeting = $var;
 
         return $this;
     }
