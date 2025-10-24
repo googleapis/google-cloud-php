@@ -38,6 +38,7 @@ use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Cloud\Spanner\V1\Type;
 use Google\Protobuf\Internal\RepeatedField as DeprecatedRepeatedField;
 use Google\Protobuf\ListValue;
@@ -54,7 +55,7 @@ class Serializer extends ApiCoreSerializer
 {
     use ApiHelperTrait;
 
-    private const MUTATION_SETTERS = [
+    private array $mutationSetters = [
         'insert' => 'setInsert',
         'update' => 'setUpdate',
         'insertOrUpdate' => 'setInsertOrUpdate',
@@ -115,7 +116,10 @@ class Serializer extends ApiCoreSerializer
                 return $mutationGroup;
             },
             'google.spanner.v1.TransactionOptions' => function ($v) {
-                return $this->formatTransactionOptions($v);
+                if (isset($v['readOnly'])) {
+                    $v['readOnly'] = $this->formatReadOnlyTransactionOptions($v['readOnly']);
+                }
+                return $v;
             },
             'google.protobuf.Struct' => function ($v) {
                 if (!isset($v['fields'])) {
@@ -290,28 +294,25 @@ class Serializer extends ApiCoreSerializer
     }
 
     /**
-     * @param array $transactionOptions
+     * @param array|PBReadOnly $txnReadOnly
      * @return array
      */
-    private function formatTransactionOptions(array $transactionOptions): array
+    private function formatReadOnlyTransactionOptions(array|PBReadOnly $txnReadOnly): array|PBReadOnly
     {
         // sometimes readOnly is a PBReadOnly message instance
-        if (isset($transactionOptions['readOnly']) && is_array($transactionOptions['readOnly'])) {
-            $ro = $transactionOptions['readOnly'];
-            if (isset($ro['minReadTimestamp'])) {
-                $ro['minReadTimestamp'] =
-                    $this->formatTimestampForApi($ro['minReadTimestamp']);
+        if (is_array($txnReadOnly)) {
+            if (isset($txnReadOnly['minReadTimestamp'])) {
+                $txnReadOnly['minReadTimestamp'] =
+                    $this->formatTimestampForApi($txnReadOnly['minReadTimestamp']);
             }
 
-            if (isset($ro['readTimestamp'])) {
-                $ro['readTimestamp'] =
-                    $this->formatTimestampForApi($ro['readTimestamp']);
+            if (isset($txnReadOnly['readTimestamp'])) {
+                $txnReadOnly['readTimestamp'] =
+                    $this->formatTimestampForApi($txnReadOnly['readTimestamp']);
             }
-
-            $transactionOptions['readOnly'] = $ro;
         }
 
-        return $transactionOptions;
+        return $txnReadOnly;
     }
 
     private function parseMutations(array $rawMutations): array
@@ -350,7 +351,7 @@ class Serializer extends ApiCoreSerializer
                     break;
             }
 
-            $setterName = self::MUTATION_SETTERS[$type];
+            $setterName = $this->mutationSetters[$type];
             $mutation = new Mutation();
             $mutation->$setterName($operation);
             $mutations[] = $mutation;

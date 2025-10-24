@@ -65,11 +65,12 @@ trait SnapshotTrait
 
         $this->context = Database::CONTEXT_READ;
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
-        $this->transactionSelector = array_intersect_key(
-            (array) $options,
-            array_flip(['singleUse', 'begin'])
+        $this->transactionSelector = $this->pluckArray(
+            ['singleUse', 'begin'],
+            $options,
         );
         $this->transactionOptions = $options['transactionOptions'] ?? new TransactionOptions();
+        $this->transactionOptionsBuilder = new TransactionOptionsBuilder();
     }
 
     /**

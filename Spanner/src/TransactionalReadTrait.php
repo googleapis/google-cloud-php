@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 
@@ -27,7 +28,7 @@ use Google\Cloud\Spanner\V1\TransactionOptions;
  */
 trait TransactionalReadTrait
 {
-    use TransactionConfigurationTrait;
+    use ArrayTrait;
 
     private Operation $operation;
     private SessionCache $session;
@@ -43,6 +44,7 @@ trait TransactionalReadTrait
      * @see V1\TransactionOptions
      */
     private TransactionOptions $transactionOptions;
+    private TransactionOptionsBuilder $transactionOptionsBuilder;
     private int $seqno = 1;
     private string|null $tag = null;
     private array $directedReadOptions = [];
@@ -237,6 +239,7 @@ trait TransactionalReadTrait
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type string $partitionToken
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -246,33 +249,31 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        $executeSqlOptions = $options;
         if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
-            $executeSqlOptions['begin'] = $this->transactionSelector['begin'];
+            $options['begin'] = $this->transactionSelector['begin'];
         } else {
-            $executeSqlOptions['transactionId'] = $this->transactionId;
+            $options['transactionId'] = $this->transactionId;
         }
-        $executeSqlOptions['transactionType'] = $this->context;
-        $executeSqlOptions['seqno'] = $this->seqno;
-        $this->seqno++;
-
-        $readOnly = $this->transactionOptions->getReadOnly();
-        $selector = $this->transactionSelector($executeSqlOptions, $readOnly);
-
-        $executeSqlOptions['transaction'] = $selector[0];
-
-        unset($executeSqlOptions['requestOptions']['transactionTag']);
-        if (isset($this->tag)) {
-            $executeSqlOptions['requestOptions']['transactionTag'] = $this->tag;
-        }
-
-        $executeSqlOptions['directedReadOptions'] = $this->configureDirectedReadOptions(
-            $executeSqlOptions,
+        $options['transactionType'] = $this->context;
+        [$txnOptions] = $this->transactionOptionsBuilder->transactionSelector(
+            $options,
+            $this->transactionOptions->getReadOnly()
+        );
+        $directedReadOptions = $this->transactionOptionsBuilder->configureDirectedReadOptions(
+            ['transaction' => $txnOptions] + $options,
             $this->directedReadOptions
         );
 
-        // Unsetting the internal flag
-        unset($executeSqlOptions['singleUse']);
+        $executeSqlOptions = $this->pluckArray(
+            ['partitionToken', 'parameters', 'types', ],
+            $options
+        );
+        $executeSqlOptions['seqno'] = $this->seqno++;
+        $executeSqlOptions['transaction'] = $txnOptions;
+        $executeSqlOptions['directedReadOptions'] = $directedReadOptions;
+        if ($this->tag) {
+            $executeSqlOptions['requestOptions']['transactionTag'] = $this->tag;
+        }
 
         $result = $this->operation->execute($this->session, $sql, $executeSqlOptions + [
             'route-to-leader' => $this->context === Database::CONTEXT_READWRITE
@@ -312,6 +313,7 @@ trait TransactionalReadTrait
      *
      *     @type string $index The name of an index on the table.
      *     @type int $limit The number of results to return.
+     *     @type string $partitionToken
      *     @type array $requestOptions Request options.
      *           For more information on available options, please see
      *           [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
@@ -338,37 +340,36 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
+        $readOptions = $this->pluckArray(
+            ['index', 'limit', 'partitionToken', 'requestOptions', 'directedReadOptions'],
+            $options,
+        );
+        $options['transactionType'] = $this->context;
         if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
             $options['begin'] = $this->transactionSelector['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
         }
 
-        $options['transactionType'] = $this->context;
-        $readOnly = $this->transactionOptions->getReadOnly();
-        $selector = $this->transactionSelector($options, $readOnly);
+        [$txnOptions] = $this->transactionOptionsBuilder
+            ->transactionSelector($options, $this->transactionOptions->getReadOnly());
+        $readOptions['transaction'] = $txnOptions;
 
-        $options['transaction'] = $selector[0];
-
-        unset($options['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
-            $options += [
-                'requestOptions' => []
-            ];
-            $options['requestOptions']['transactionTag'] = $this->tag;
+            $readOptions['requestOptions']['transactionTag'] = $this->tag;
         }
-
-        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
-            $options,
+        $readOptions['directedReadOptions'] = $this->transactionOptionsBuilder->configureDirectedReadOptions(
+            $readOptions,
             $this->directedReadOptions ?? []
         );
-
-        $result = $this->operation->read($this->session, $table, $keySet, $columns, $options + [
+        $result = $this->operation->read($this->session, $table, $keySet, $columns, $readOptions + [
             'route-to-leader' => $this->context === Database::CONTEXT_READWRITE
         ]);
+
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
         }
+
         return $result;
     }
 

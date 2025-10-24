@@ -119,7 +119,7 @@ class Instance
         private string $name,
         array $options = [],
     ) {
-        $this->name = $this->fullyQualifiedInstanceName($name, $projectId);
+        $this->name = $this->fullyQualifiedInstanceName($name);
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
         $this->isolationLevel = $options['isolationLevel'] ?? IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
         $this->routeToLeader = $options['routeToLeader'] ?? true;
@@ -545,21 +545,10 @@ class Instance
             'isolationLevel',
         ]);
 
-        try {
-            $instance = DatabaseAdminClient::parseName($this->name())['instance'];
-            $databaseName = GapicSpannerClient::databaseName(
-                $this->projectId,
-                $instance,
-                $name
-            );
-        } catch (ValidationException $e) {
-            $databaseName = $name;
-        }
-
         if (!$session = $options['session'] ?? null) {
             $session = new SessionCache(
                 $this->spannerClient,
-                $databaseName,
+                $this->fullyQualifiedDatabaseName($name),
                 [
                     'databaseRole' => $options['databaseRole'] ?? '',
                     'lock' => $options['lock'] ?? null,
@@ -837,15 +826,34 @@ class Instance
      * Convert the simple instance name to a fully qualified name.
      *
      * @param string $name The instance name.
-     * @param string $project The project ID.
      * @return string
      */
-    private function fullyQualifiedInstanceName(string $name, string $project): string
+    private function fullyQualifiedInstanceName(string $name): string
     {
         return InstanceAdminClient::instanceName(
-            $project,
+            $this->projectId,
             $name
         );
+    }
+
+    /**
+     * Convert the simple database name to a fully qualified name.
+     *
+     * @param string $databaseName The database name.
+     * @return string
+     */
+    private function fullyQualifiedDatabaseName(string $databaseName): string
+    {
+        try {
+            $instance = DatabaseAdminClient::parseName($this->name())['instance'];
+            return GapicSpannerClient::databaseName(
+                $this->projectId,
+                $instance,
+                $databaseName
+            );
+        } catch (ValidationException $e) {
+            return $databaseName;
+        }
     }
 
     /**

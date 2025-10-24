@@ -402,6 +402,7 @@ class TransactionTest extends SystemTestCase
         } catch (ServiceException $e) {
             $exception = $e;
         }
+        $this->assertNotNull($exception);
         $this->assertEquals($exception->getServiceException()->getBasicMessage(), $expected);
     }
 
