@@ -839,7 +839,7 @@ class Instance
     /**
      * Convert the simple database name to a fully qualified name.
      *
-     * @param string $datbaseName The database name.
+     * @param string $databaseName The database name.
      * @return string
      */
     private function fullyQualifiedDatabaseName(string $databaseName): string
