@@ -1,5 +1,66 @@
 # Changelog
 
+## 0.308.0
+
+<details><summary>google/cloud-ai-platform 1.43.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Add EmbedContent method v1 ([#8688](https://github.com/googleapis/google-cloud-php/issues/8688)) ([4f8b308](https://github.com/googleapis/google-cloud-php/commit/4f8b30841f11a6c86ab9bcc6d3c4bbdc355e37fc))
+
+</details>
+
+<details><summary>google/apps-chat 0.15.0</summary>
+
+
+
+### Features
+
+* [AppsChat] add ROLE_ASSISTANT_MANAGER to the MembershipRole enum in the Membership proto and assistant_managers_allowed to the PermissionSetting ([#8687](https://github.com/googleapis/google-cloud-php/issues/8687)) ([8fab9a5](https://github.com/googleapis/google-cloud-php/commit/8fab9a57e1e1e966a004b127990eebf7c41e79ea))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.34.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 2.7.0</summary>
+
+
+
+### Features
+
+* [Container] add node_kernel_module_loading field to LinuxNodeConfig ([#8678](https://github.com/googleapis/google-cloud-php/issues/8678)) ([92b3077](https://github.com/googleapis/google-cloud-php/commit/92b3077733e57b53c201ec2940298ceaf5887c06))
+
+</details>
+
+<details><summary>google/cloud-core 1.68.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.10.0</summary>
+
+
+
+### Features
+
+* [Dataplex] A new message `DataDocumentationSpec` is added representing Data Documentation Spec ([#8686](https://github.com/googleapis/google-cloud-php/issues/8686)) ([704809e](https://github.com/googleapis/google-cloud-php/commit/704809e635501b5356c6a358abf63f0779a29f94))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.0.1-RC1
+</summary>
+
+](https://github.com/googleapis/google-cloud-php/compare/v0.307.0...v0.308.0) (2025-10-24)
+
+</details>
+
 ## 0.307.0
 
 <details><summary>google/cloud-ai-platform 1.42.0</summary>
