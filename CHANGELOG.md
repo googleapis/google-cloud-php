@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.308.1
+
+<details><summary>google/cloud-storage 1.48.6</summary>
+
+
+
+### Bug Fixes
+
+* **Storage:** Revert "Implement path containment to prevent traversal attacks" ([#8692](https://github.com/googleapis/google-cloud-php/issues/8692)) ([6c19eaf](https://github.com/googleapis/google-cloud-php/commit/6c19eafbbeed2c386c3268bebe23876cf92b355d))
+
+</details>
+
 ## 0.308.0
 
 <details><summary>google/cloud-ai-platform 1.43.0</summary>
