@@ -114,7 +114,7 @@ class FeatureView extends \Google\Protobuf\Internal\Message
     /**
      * Metadata containing information about the Cloud Bigtable.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.BigtableMetadata bigtable_metadata = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.BigtableMetadata bigtable_metadata = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $bigtable_metadata = null;
     protected $source;
@@ -697,7 +697,7 @@ class FeatureView extends \Google\Protobuf\Internal\Message
     /**
      * Metadata containing information about the Cloud Bigtable.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.BigtableMetadata bigtable_metadata = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.BigtableMetadata bigtable_metadata = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\AIPlatform\V1\FeatureView\BigtableMetadata|null
      */
     public function getBigtableMetadata()
@@ -718,7 +718,7 @@ class FeatureView extends \Google\Protobuf\Internal\Message
     /**
      * Metadata containing information about the Cloud Bigtable.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.BigtableMetadata bigtable_metadata = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.BigtableMetadata bigtable_metadata = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AIPlatform\V1\FeatureView\BigtableMetadata $var
      * @return $this
      */

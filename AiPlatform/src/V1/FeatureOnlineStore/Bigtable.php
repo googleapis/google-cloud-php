@@ -20,15 +20,16 @@ class Bigtable extends \Google\Protobuf\Internal\Message
      */
     protected $auto_scaling = null;
     /**
-     * Optional. Whether direct access to the Bigtable instance is enabled or not.
+     * Optional. Whether direct access to the Bigtable instance is enabled or
+     * not.
      *
-     * Generated from protobuf field <code>bool enable_direct_bigtable_access = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_direct_bigtable_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enable_direct_bigtable_access = false;
     /**
      * Output only. Metadata of the Bigtable instance. Output only.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.BigtableMetadata bigtable_metadata = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.BigtableMetadata bigtable_metadata = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $bigtable_metadata = null;
 
@@ -41,7 +42,8 @@ class Bigtable extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable\AutoScaling $auto_scaling
      *           Required. Autoscaling config applied to Bigtable Instance.
      *     @type bool $enable_direct_bigtable_access
-     *           Optional. Whether direct access to the Bigtable instance is enabled or not.
+     *           Optional. Whether direct access to the Bigtable instance is enabled or
+     *           not.
      *     @type \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable\BigtableMetadata $bigtable_metadata
      *           Output only. Metadata of the Bigtable instance. Output only.
      * }
@@ -88,9 +90,10 @@ class Bigtable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether direct access to the Bigtable instance is enabled or not.
+     * Optional. Whether direct access to the Bigtable instance is enabled or
+     * not.
      *
-     * Generated from protobuf field <code>bool enable_direct_bigtable_access = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_direct_bigtable_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnableDirectBigtableAccess()
@@ -99,9 +102,10 @@ class Bigtable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether direct access to the Bigtable instance is enabled or not.
+     * Optional. Whether direct access to the Bigtable instance is enabled or
+     * not.
      *
-     * Generated from protobuf field <code>bool enable_direct_bigtable_access = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_direct_bigtable_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -116,7 +120,7 @@ class Bigtable extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Metadata of the Bigtable instance. Output only.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.BigtableMetadata bigtable_metadata = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.BigtableMetadata bigtable_metadata = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable\BigtableMetadata|null
      */
     public function getBigtableMetadata()
@@ -137,7 +141,7 @@ class Bigtable extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Metadata of the Bigtable instance. Output only.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.BigtableMetadata bigtable_metadata = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.BigtableMetadata bigtable_metadata = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable\BigtableMetadata $var
      * @return $this
      */
