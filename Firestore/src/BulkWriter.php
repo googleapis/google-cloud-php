@@ -17,8 +17,11 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Options\CallOptions;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
@@ -52,7 +55,7 @@ use function PHPUnit\Framework\isEmpty;
  */
 class BulkWriter
 {
-    use ArrayTrait;
+    use ApiHelperTrait;
     use DebugInfoTrait;
     use TimeTrait;
     use ValidateTrait;
@@ -120,52 +123,17 @@ class BulkWriter
         'RATE_LIMITER_MULTIPLIER_MILLIS' => 1000,
     ];
 
-    /**
-     * @var FirestoreClient
-     */
     private FirestoreClient $gapicClient;
-
-    /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-
-    /**
-     * @var string
-     */
-    private $database;
-
-    /**
-     * @var string|null
-     */
-    private $transaction;
-
-    /**
-     * @var bool
-     */
-    private $isLegacyWriteBatch;
-
-    /**
-     * @var int
-     */
-    private $maxBatchSize;
-
-    /**
-     * @var array
-     */
-    private $writes = [];
-
-    /**
-     * @var array
-     */
-    private $finalResponse = [];
-
-    /**
-     * Rate limiter used to throttle requests as per the 500/50/5 rule.
-     *
-     * @var RateLimiter
-     */
-    private $rateLimiter;
+    private ValueMapper $valueMapper;
+    private string $database;
+    private string|null $transaction;
+    private bool $isLegacyWriteBatch;
+    private int $maxBatchSize;
+    private array $writes = [];
+    private array $finalResponse = [];
+    private RateLimiter $rateLimiter;
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
      * @var array {
@@ -185,30 +153,16 @@ class BulkWriter
      * be attempted to retry.
      */
     private $isRetryable;
-
-    /**
-     * @var array All unique documents added to mutate.
-     */
-    private $uniqueDocuments = [];
-
-    /**
-     * @var bool Whether this BulkWriter instance is closed.
-     * Once closed, it cannot be opened again.
-     */
-    private $closed;
+    private array $uniqueDocuments = [];
+    private bool $closed;
 
     /**
      * @var bool Whether BulkWriter greedily sends operations via
      * [https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#batchwriterequest](BatchWriteRequest)
      * as soon  as sufficient number of operations are enqueued.
      */
-    private $greedilySend;
-
-    /**
-     * @var int The maximum delay time in millis for rescheduling a failed
-     * mutation or awaiting a batch creation.
-     */
-    private $maxDelayTime;
+    private bool $greedilySend;
+    private int $maxDelayTime;
 
     /**
      * @param FirestoreClient $gapicClient A FirestoreClient instance.
@@ -242,6 +196,7 @@ class BulkWriter
      */
     public function __construct(FirestoreClient $gapicClient, $valueMapper, $database, $options = null)
     {
+        $this->optionsValidator = new OptionsValidator();
         $this->gapicClient = $gapicClient;
         $this->valueMapper = $valueMapper;
         $this->database = $database;
@@ -319,6 +274,9 @@ class BulkWriter
                 $maxRate
             );
         }
+
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
     }
 
     /**
@@ -713,22 +671,31 @@ class BulkWriter
     {
         unset($options['merge'], $options['precondition']);
 
-        $request = new CommitRequest();
-        $request->setDatabase($this->database);
-        $request->setWrites($this->writes);
-        $request->setTransaction($this->transaction);
+        /**
+         * @var CommitRequest $request,
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            [
+                'database' => $this->database,
+                'writes' => $this->writes,
+                'transaction' => $this->transaction
+            ] + $options,
+            new CommitRequest(),
+            CallOptions::class
+        );
 
-        $response = $this->gapicClient->commit($request, $options);
+        $response = $this->gapicClient->commit($request, $callOptions);
 
-        $responseArray = json_decode($response->serializeToJsonString(), true);
+        $responseArray = $this->serializer->encodeMessage($response);
 
         if (!is_null($response->getCommitTime())) {
-            $time = $this->parseTimeString($responseArray['comitTime']);
-            $response['commitTime'] = new Timestamp($time[0], $time[1]);
+            $time = $this->parseTimeString($responseArray['commitTime']);
+            $responseArray['commitTime'] = new Timestamp($time[0], $time[1]);
         }
 
         if (!is_null($response->getWriteResults())) {
-            foreach ($response['writeResults'] as &$result) {
+            foreach ($responseArray['writeResults'] as &$result) {
                 if (isset($result['updateTime'])) {
                     $time = $this->parseTimeString($result['updateTime']);
                     $result['updateTime'] = new Timestamp($time[0], $time[1]);
@@ -760,11 +727,20 @@ class BulkWriter
             throw new \RuntimeException('Cannot rollback because no transaction id was provided.');
         }
 
-        $request = new RollbackRequest();
-        $request->setDatabase($this->database);
-        $request->setTransaction($this->transaction);
+        /**
+         * @var RollbackRequest $request
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            [
+                'database' => $this->database,
+                'transaction' => $this->transaction
+            ] + $options,
+            new RollbackRequest(),
+            CallOptions::class
+        );
 
-        $this->gapicClient->rollback($request, $options);
+        $this->gapicClient->rollback($request, $callOptions);
     }
 
     /**
@@ -961,12 +937,22 @@ class BulkWriter
 
         unset($options['merge'], $options['precondition']);
         $options += ['labels' => []];
+        $options += [
+            'database' => $this->database,
+            'writes' => $this->writes
+        ];
 
-        $request = new BatchWriteRequest();
-        $request->setDatabase($this->database);
-        $request->setWrites($writes);
+        /**
+         * @var BatchWriteRequest $request
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            $options,
+            new BatchWriteRequest(),
+            CallOptions::class,
+        );
 
-        $response = $this->gapicClient->batchWrite($request, $options);
+        $response = $this->gapicClient->batchWrite($request, $callOptions);
 
         $responseArray = json_decode($response->serializeToJsonString(), true);
 
