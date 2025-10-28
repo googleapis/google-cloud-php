@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for creating a Framework
+ * The request message for [CreateFramework][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.CreateFrameworkRequest</code>
  */
@@ -18,20 +18,20 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource name, in the format
      * `organizations/{organization}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Required. ID of the framework.
-     * This is not the full name of the framework.
-     * This is the last part of the full name of the framework.
+     * Required. The identifier (ID) of the framework. The ID is not the full name
+     * of the framework; it's the last part of the full name of the framework.
      *
      * Generated from protobuf field <code>string framework_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $framework_id = '';
     /**
-     * Required. The resource being created
+     * Required. The resource being created.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Framework framework = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,12 +39,12 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                             $parent      Required. The parent resource name, in the format
-     *                                                                        `organizations/{organization}/locations/{location}`. Please see
+     *                                                                        `organizations/{organization}/locations/{location}`.
+     *                                                                        The only supported location is `global`. Please see
      *                                                                        {@see ConfigClient::organizationLocationName()} for help formatting this field.
-     * @param \Google\Cloud\CloudSecurityCompliance\V1\Framework $framework   Required. The resource being created
-     * @param string                                             $frameworkId Required. ID of the framework.
-     *                                                                        This is not the full name of the framework.
-     *                                                                        This is the last part of the full name of the framework.
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\Framework $framework   Required. The resource being created.
+     * @param string                                             $frameworkId Required. The identifier (ID) of the framework. The ID is not the full name
+     *                                                                        of the framework; it's the last part of the full name of the framework.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\CreateFrameworkRequest
      *
@@ -67,12 +67,12 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource name, in the format
      *           `organizations/{organization}/locations/{location}`.
+     *           The only supported location is `global`.
      *     @type string $framework_id
-     *           Required. ID of the framework.
-     *           This is not the full name of the framework.
-     *           This is the last part of the full name of the framework.
+     *           Required. The identifier (ID) of the framework. The ID is not the full name
+     *           of the framework; it's the last part of the full name of the framework.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\Framework $framework
-     *           Required. The resource being created
+     *           Required. The resource being created.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,6 +83,7 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource name, in the format
      * `organizations/{organization}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -95,6 +96,7 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource name, in the format
      * `organizations/{organization}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -109,9 +111,8 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the framework.
-     * This is not the full name of the framework.
-     * This is the last part of the full name of the framework.
+     * Required. The identifier (ID) of the framework. The ID is not the full name
+     * of the framework; it's the last part of the full name of the framework.
      *
      * Generated from protobuf field <code>string framework_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -122,9 +123,8 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the framework.
-     * This is not the full name of the framework.
-     * This is the last part of the full name of the framework.
+     * Required. The identifier (ID) of the framework. The ID is not the full name
+     * of the framework; it's the last part of the full name of the framework.
      *
      * Generated from protobuf field <code>string framework_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -139,7 +139,7 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource being created
+     * Required. The resource being created.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Framework framework = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\Framework|null
@@ -160,7 +160,7 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource being created
+     * Required. The resource being created.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Framework framework = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\Framework $var

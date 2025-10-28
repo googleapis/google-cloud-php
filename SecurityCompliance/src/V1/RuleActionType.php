@@ -20,19 +20,19 @@ class RuleActionType
      */
     const RULE_ACTION_TYPE_UNSPECIFIED = 0;
     /**
-     * Preventative action type.
+     * The rule is intended to prevent non-compliance.
      *
      * Generated from protobuf enum <code>RULE_ACTION_TYPE_PREVENTIVE = 1;</code>
      */
     const RULE_ACTION_TYPE_PREVENTIVE = 1;
     /**
-     * Detective action type.
+     * The rule is intended to detect non-compliance.
      *
      * Generated from protobuf enum <code>RULE_ACTION_TYPE_DETECTIVE = 2;</code>
      */
     const RULE_ACTION_TYPE_DETECTIVE = 2;
     /**
-     * Audit action type.
+     * The rule is intended to audit non-compliance.
      *
      * Generated from protobuf enum <code>RULE_ACTION_TYPE_AUDIT = 3;</code>
      */

@@ -29,17 +29,18 @@ use Google\Cloud\CloudSecurityCompliance\V1\CloudControl;
 use Google\Cloud\CloudSecurityCompliance\V1\GetCloudControlRequest;
 
 /**
- * Gets details of a single CloudControl.
- * This method retrieves a CloudControl resource, which can be either Built-in
- * or Custom, identified by its name.
+ * Gets details about a cloud control.
+ * This method retrieves the latest major version of a cloud control that
+ * you identify by name.
  *
- * By default, the latest major version of the CloudControl is returned.
- * A specific major version can be retrieved by specifying the
- * `major_revision_id` in the request.
+ * By default, the latest major version of the cloud control is returned.
+ * To retrieve a specific major version, include `major_revision_id` in
+ * the request.
  *
- * @param string $formattedName The name of the cloudcontrol to retrieve in the format:
- *                              organizations/{organization}/locations/{location}/cloudControls/{cloud_control}
- *                              Please see {@see ConfigClient::cloudControlName()} for help formatting this field.
+ * @param string $formattedName The name of the cloud control to retrieve, in the format
+ *                              `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`.
+ *                              The only supported location is `global`. Please see
+ *                              {@see ConfigClient::cloudControlName()} for help formatting this field.
  */
 function get_cloud_control_sample(string $formattedName): void
 {

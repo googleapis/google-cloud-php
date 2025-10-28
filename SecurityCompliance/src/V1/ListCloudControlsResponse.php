@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for ListCloudControls.
+ * The response message for [ListCloudControls][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.ListCloudControlsResponse</code>
  */

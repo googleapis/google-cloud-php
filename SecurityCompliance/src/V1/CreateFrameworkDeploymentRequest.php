@@ -9,43 +9,43 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for CreateFrameworkDeployment API.
+ * The request message for [CreateFrameworkDeployment][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.CreateFrameworkDeploymentRequest</code>
  */
 class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource of the FrameworkDeployment in the format:
-     * organizations/{organization}/locations/{location}
-     * Only global location is supported.
+     * Required. The parent resource of the framework deployment in the format
+     * `organizations/{organization}/locations/{location}`.
+     * Only the global location is supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Optional. User provided identifier. It should be unique in scope of a
-     * parent. This is optional and if not provided, a random UUID will be
+     * Optional. An identifier for the framework deployment that's unique in scope
+     * of the parent. If you don't specify a value, then a random UUID is
      * generated.
      *
      * Generated from protobuf field <code>string framework_deployment_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $framework_deployment_id = '';
     /**
-     * Required. The FrameworkDeployment to be created.
+     * Required. The framework deployment that you're creating.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FrameworkDeployment framework_deployment = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $framework_deployment = null;
 
     /**
-     * @param string                                                       $parent                Required. The parent resource of the FrameworkDeployment in the format:
-     *                                                                                            organizations/{organization}/locations/{location}
-     *                                                                                            Only global location is supported. Please see
+     * @param string                                                       $parent                Required. The parent resource of the framework deployment in the format
+     *                                                                                            `organizations/{organization}/locations/{location}`.
+     *                                                                                            Only the global location is supported. Please see
      *                                                                                            {@see DeploymentClient::organizationLocationName()} for help formatting this field.
-     * @param \Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeployment $frameworkDeployment   Required. The FrameworkDeployment to be created.
-     * @param string                                                       $frameworkDeploymentId Optional. User provided identifier. It should be unique in scope of a
-     *                                                                                            parent. This is optional and if not provided, a random UUID will be
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeployment $frameworkDeployment   Required. The framework deployment that you're creating.
+     * @param string                                                       $frameworkDeploymentId Optional. An identifier for the framework deployment that's unique in scope
+     *                                                                                            of the parent. If you don't specify a value, then a random UUID is
      *                                                                                            generated.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\CreateFrameworkDeploymentRequest
@@ -67,15 +67,15 @@ class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource of the FrameworkDeployment in the format:
-     *           organizations/{organization}/locations/{location}
-     *           Only global location is supported.
+     *           Required. The parent resource of the framework deployment in the format
+     *           `organizations/{organization}/locations/{location}`.
+     *           Only the global location is supported.
      *     @type string $framework_deployment_id
-     *           Optional. User provided identifier. It should be unique in scope of a
-     *           parent. This is optional and if not provided, a random UUID will be
+     *           Optional. An identifier for the framework deployment that's unique in scope
+     *           of the parent. If you don't specify a value, then a random UUID is
      *           generated.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeployment $framework_deployment
-     *           Required. The FrameworkDeployment to be created.
+     *           Required. The framework deployment that you're creating.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,9 +84,9 @@ class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource of the FrameworkDeployment in the format:
-     * organizations/{organization}/locations/{location}
-     * Only global location is supported.
+     * Required. The parent resource of the framework deployment in the format
+     * `organizations/{organization}/locations/{location}`.
+     * Only the global location is supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -97,9 +97,9 @@ class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource of the FrameworkDeployment in the format:
-     * organizations/{organization}/locations/{location}
-     * Only global location is supported.
+     * Required. The parent resource of the framework deployment in the format
+     * `organizations/{organization}/locations/{location}`.
+     * Only the global location is supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -114,8 +114,8 @@ class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User provided identifier. It should be unique in scope of a
-     * parent. This is optional and if not provided, a random UUID will be
+     * Optional. An identifier for the framework deployment that's unique in scope
+     * of the parent. If you don't specify a value, then a random UUID is
      * generated.
      *
      * Generated from protobuf field <code>string framework_deployment_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -127,8 +127,8 @@ class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User provided identifier. It should be unique in scope of a
-     * parent. This is optional and if not provided, a random UUID will be
+     * Optional. An identifier for the framework deployment that's unique in scope
+     * of the parent. If you don't specify a value, then a random UUID is
      * generated.
      *
      * Generated from protobuf field <code>string framework_deployment_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -144,7 +144,7 @@ class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The FrameworkDeployment to be created.
+     * Required. The framework deployment that you're creating.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FrameworkDeployment framework_deployment = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeployment|null
@@ -165,7 +165,7 @@ class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The FrameworkDeployment to be created.
+     * Required. The framework deployment that you're creating.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FrameworkDeployment framework_deployment = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeployment $var

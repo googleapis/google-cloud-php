@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Validation of the parameter.
+ * The validation of the parameter.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.Validation</code>
  */
@@ -24,11 +24,11 @@ class Validation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\AllowedValues $allowed_values
-     *           Allowed set of values for the parameter.
+     *           The permitted set of values for the parameter.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\IntRange $int_range
-     *           Allowed range for numeric parameters.
+     *           The permitted range for numeric parameters.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\RegexpPattern $regexp_pattern
-     *           Regular expression for string parameters.
+     *           The regular expression for string parameters.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class Validation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allowed set of values for the parameter.
+     * The permitted set of values for the parameter.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.AllowedValues allowed_values = 1;</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\AllowedValues|null
@@ -53,7 +53,7 @@ class Validation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allowed set of values for the parameter.
+     * The permitted set of values for the parameter.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.AllowedValues allowed_values = 1;</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\AllowedValues $var
@@ -68,7 +68,7 @@ class Validation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allowed range for numeric parameters.
+     * The permitted range for numeric parameters.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.IntRange int_range = 2;</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\IntRange|null
@@ -84,7 +84,7 @@ class Validation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allowed range for numeric parameters.
+     * The permitted range for numeric parameters.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.IntRange int_range = 2;</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\IntRange $var
@@ -99,7 +99,7 @@ class Validation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Regular expression for string parameters.
+     * The regular expression for string parameters.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.RegexpPattern regexp_pattern = 3;</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\RegexpPattern|null
@@ -115,7 +115,7 @@ class Validation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Regular expression for string parameters.
+     * The regular expression for string parameters.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.RegexpPattern regexp_pattern = 3;</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\RegexpPattern $var

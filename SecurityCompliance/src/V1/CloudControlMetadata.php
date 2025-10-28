@@ -9,21 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * CloudControlMetadata contains the enforcement mode and parameters of a Cloud
- * Control Deployment.
+ * The enforcement mode and parameters of a cloud
+ * control deployment.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.CloudControlMetadata</code>
  */
 class CloudControlMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Cloud control name and parameters.
+     * Required. The cloud control name and parameters.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControlDetails cloud_control_details = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $cloud_control_details = null;
     /**
-     * Required. Enforcement mode of the cloud control
+     * Required. The enforcement mode of the cloud control.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.EnforcementMode enforcement_mode = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,9 +36,9 @@ class CloudControlMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControlDetails $cloud_control_details
-     *           Required. Cloud control name and parameters.
+     *           Required. The cloud control name and parameters.
      *     @type int $enforcement_mode
-     *           Required. Enforcement mode of the cloud control
+     *           Required. The enforcement mode of the cloud control.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +47,7 @@ class CloudControlMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Cloud control name and parameters.
+     * Required. The cloud control name and parameters.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControlDetails cloud_control_details = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\CloudControlDetails|null
@@ -68,7 +68,7 @@ class CloudControlMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Cloud control name and parameters.
+     * Required. The cloud control name and parameters.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControlDetails cloud_control_details = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControlDetails $var
@@ -83,7 +83,7 @@ class CloudControlMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Enforcement mode of the cloud control
+     * Required. The enforcement mode of the cloud control.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.EnforcementMode enforcement_mode = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -94,7 +94,7 @@ class CloudControlMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Enforcement mode of the cloud control
+     * Required. The enforcement mode of the cloud control.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.EnforcementMode enforcement_mode = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

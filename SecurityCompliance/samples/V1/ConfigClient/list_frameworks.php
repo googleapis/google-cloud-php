@@ -30,13 +30,14 @@ use Google\Cloud\CloudSecurityCompliance\V1\Framework;
 use Google\Cloud\CloudSecurityCompliance\V1\ListFrameworksRequest;
 
 /**
- * Lists all Frameworks (both Built-in and Custom) available within a given
- * parent resource. This method supports pagination.
- * The latest major version of each Framework is returned.
+ * Lists the frameworks (both built-in and custom) that are available within
+ * the parent resource. The latest major version of each framework is
+ * returned.
+ * This method supports pagination.
  *
  * @param string $formattedParent The parent resource name, in the format
  *                                `organizations/{organization}/locations/{location}`.
- *                                Only global location is supported. Please see
+ *                                The only supported location is `global`. Please see
  *                                {@see ConfigClient::organizationLocationName()} for help formatting this field.
  */
 function list_frameworks_sample(string $formattedParent): void

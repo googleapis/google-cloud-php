@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * TargetResourceConfig contains either the name of the target_resource or
- * contains the config to create a new target_resource.
+ * The name of the target resource or the configuration that's required to
+ * create a new target resource.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.TargetResourceConfig</code>
  */
@@ -25,11 +25,13 @@ class TargetResourceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $existing_target_resource
-     *           Optional. CRM node in format organizations/{organization},
-     *           folders/{folder}, or projects/{project}
+     *           Optional. The resource hierarchy node, in one of the following formats:
+     *           - `organizations/{organizationID}`
+     *           - `folders/{folderID}`
+     *           - `projects/{projectID}`
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceCreationConfig $target_resource_creation_config
-     *           Optional. Config to create a new resource and use that as the
-     *           target_resource for deployment.
+     *           Optional. The details that are required to create a resource and use
+     *           that resource as the target resource for deployment.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,8 +40,10 @@ class TargetResourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. CRM node in format organizations/{organization},
-     * folders/{folder}, or projects/{project}
+     * Optional. The resource hierarchy node, in one of the following formats:
+     * - `organizations/{organizationID}`
+     * - `folders/{folderID}`
+     * - `projects/{projectID}`
      *
      * Generated from protobuf field <code>string existing_target_resource = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -55,8 +59,10 @@ class TargetResourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. CRM node in format organizations/{organization},
-     * folders/{folder}, or projects/{project}
+     * Optional. The resource hierarchy node, in one of the following formats:
+     * - `organizations/{organizationID}`
+     * - `folders/{folderID}`
+     * - `projects/{projectID}`
      *
      * Generated from protobuf field <code>string existing_target_resource = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -71,8 +77,8 @@ class TargetResourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Config to create a new resource and use that as the
-     * target_resource for deployment.
+     * Optional. The details that are required to create a resource and use
+     * that resource as the target resource for deployment.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.TargetResourceCreationConfig target_resource_creation_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceCreationConfig|null
@@ -88,8 +94,8 @@ class TargetResourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Config to create a new resource and use that as the
-     * target_resource for deployment.
+     * Optional. The details that are required to create a resource and use
+     * that resource as the target resource for deployment.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.TargetResourceCreationConfig target_resource_creation_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceCreationConfig $var

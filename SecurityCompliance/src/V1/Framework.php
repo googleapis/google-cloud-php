@@ -9,33 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Framework is a collection of CloudControls to address security and
- * compliance requirements. Frameworks can be used for prevention, detection,
- * and auditing. They can be either built-in, industry-standard frameworks
- * provided by GCP/AZURE/AWS (e.g., NIST, FedRAMP) or custom frameworks created
- * by users.
+ * A framework is a collection of cloud controls and regulatory controls
+ * that represent security best practices or industry-defined standards such as
+ * FedRAMP or NIST.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.Framework</code>
  */
 class Framework extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Identifier. The name of the framework.
-     * Format:
-     * organizations/{organization}/locations/{location}/frameworks/{framework_id}
+     * Required. Identifier. The name of the framework, in the format
+     * `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Output only. Major revision of the framework incremented in ascending
-     * order.
+     * Output only. The major version of the framework, which is incremented in
+     * ascending order.
      *
      * Generated from protobuf field <code>int64 major_revision_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $major_revision_id = 0;
     /**
-     * Optional. Display name of the framework. The maximum length is 200
+     * Optional. The friendly name of the framework. The maximum length is 200
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -49,13 +47,13 @@ class Framework extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
-     * Output only. The type of the framework. The default is TYPE_CUSTOM.
+     * Output only. The type of framework.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Framework.FrameworkType type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $type = 0;
     /**
-     * Optional. The details of the cloud controls directly added without any
+     * Optional. The cloud control details that are directly added without any
      * grouping in the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDetails cloud_control_details = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -68,13 +66,13 @@ class Framework extends \Google\Protobuf\Internal\Message
      */
     private $category;
     /**
-     * Output only. cloud providers supported
+     * Output only. The cloud providers that are supported by the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudProvider supported_cloud_providers = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $supported_cloud_providers;
     /**
-     * Output only. target resource types supported by the Framework.
+     * Output only. The target resource types that are supported by the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.TargetResourceType supported_target_resource_types = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -93,29 +91,29 @@ class Framework extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Identifier. The name of the framework.
-     *           Format:
-     *           organizations/{organization}/locations/{location}/frameworks/{framework_id}
+     *           Required. Identifier. The name of the framework, in the format
+     *           `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.
+     *           The only supported location is `global`.
      *     @type int|string $major_revision_id
-     *           Output only. Major revision of the framework incremented in ascending
-     *           order.
+     *           Output only. The major version of the framework, which is incremented in
+     *           ascending order.
      *     @type string $display_name
-     *           Optional. Display name of the framework. The maximum length is 200
+     *           Optional. The friendly name of the framework. The maximum length is 200
      *           characters.
      *     @type string $description
      *           Optional. The description of the framework. The maximum length is 2000
      *           characters.
      *     @type int $type
-     *           Output only. The type of the framework. The default is TYPE_CUSTOM.
+     *           Output only. The type of framework.
      *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlDetails>|\Google\Protobuf\Internal\RepeatedField $cloud_control_details
-     *           Optional. The details of the cloud controls directly added without any
+     *           Optional. The cloud control details that are directly added without any
      *           grouping in the framework.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $category
      *           Optional. The category of the framework.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_cloud_providers
-     *           Output only. cloud providers supported
+     *           Output only. The cloud providers that are supported by the framework.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_target_resource_types
-     *           Output only. target resource types supported by the Framework.
+     *           Output only. The target resource types that are supported by the framework.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_enforcement_modes
      *           Output only. The supported enforcement modes of the framework.
      * }
@@ -126,9 +124,9 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier. The name of the framework.
-     * Format:
-     * organizations/{organization}/locations/{location}/frameworks/{framework_id}
+     * Required. Identifier. The name of the framework, in the format
+     * `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -139,9 +137,9 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier. The name of the framework.
-     * Format:
-     * organizations/{organization}/locations/{location}/frameworks/{framework_id}
+     * Required. Identifier. The name of the framework, in the format
+     * `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -156,8 +154,8 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Major revision of the framework incremented in ascending
-     * order.
+     * Output only. The major version of the framework, which is incremented in
+     * ascending order.
      *
      * Generated from protobuf field <code>int64 major_revision_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -168,8 +166,8 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Major revision of the framework incremented in ascending
-     * order.
+     * Output only. The major version of the framework, which is incremented in
+     * ascending order.
      *
      * Generated from protobuf field <code>int64 major_revision_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -184,7 +182,7 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Display name of the framework. The maximum length is 200
+     * Optional. The friendly name of the framework. The maximum length is 200
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -196,7 +194,7 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Display name of the framework. The maximum length is 200
+     * Optional. The friendly name of the framework. The maximum length is 200
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -240,7 +238,7 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The type of the framework. The default is TYPE_CUSTOM.
+     * Output only. The type of framework.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Framework.FrameworkType type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -251,7 +249,7 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The type of the framework. The default is TYPE_CUSTOM.
+     * Output only. The type of framework.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Framework.FrameworkType type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -266,7 +264,7 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The details of the cloud controls directly added without any
+     * Optional. The cloud control details that are directly added without any
      * grouping in the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDetails cloud_control_details = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -278,7 +276,7 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The details of the cloud controls directly added without any
+     * Optional. The cloud control details that are directly added without any
      * grouping in the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDetails cloud_control_details = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -320,7 +318,7 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. cloud providers supported
+     * Output only. The cloud providers that are supported by the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudProvider supported_cloud_providers = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -331,7 +329,7 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. cloud providers supported
+     * Output only. The cloud providers that are supported by the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudProvider supported_cloud_providers = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -346,7 +344,7 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. target resource types supported by the Framework.
+     * Output only. The target resource types that are supported by the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.TargetResourceType supported_target_resource_types = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -357,7 +355,7 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. target resource types supported by the Framework.
+     * Output only. The target resource types that are supported by the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.TargetResourceType supported_target_resource_types = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var

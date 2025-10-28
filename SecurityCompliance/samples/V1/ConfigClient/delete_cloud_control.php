@@ -28,17 +28,18 @@ use Google\Cloud\CloudSecurityCompliance\V1\Client\ConfigClient;
 use Google\Cloud\CloudSecurityCompliance\V1\DeleteCloudControlRequest;
 
 /**
- * Deletes a single Custom CloudControl, including all its
- * major and minor revisions.
+ * Deletes a custom cloud control, including all its
+ * major and minor revisions. Consider the following:
  *
- * - This operation can only be performed on CloudControls with type `CUSTOM`.
- * Built-in CloudControls cannot be deleted.
- * - The CloudControl cannot be deleted if any of its revisions are currently
- * referenced by any Framework.
- * - This action is permanent and cannot be undone.
+ * - You can't delete built-in cloud controls. You can only delete cloud
+ * controls with type `CUSTOM`.
+ * - You can't delete cloud controls if any of the versions are referenced
+ * by a framework.
+ * - You can't restore a deleted cloud control. This action is permanent.
  *
- * @param string $formattedName Name of the resource, in the format
- *                              `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`. Please see
+ * @param string $formattedName The name of the cloud control to delete, in the format
+ *                              `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`.
+ *                              The only supported location is `global`. Please see
  *                              {@see ConfigClient::cloudControlName()} for help formatting this field.
  */
 function delete_cloud_control_sample(string $formattedName): void

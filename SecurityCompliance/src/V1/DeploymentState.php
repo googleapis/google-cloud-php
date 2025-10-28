@@ -7,14 +7,14 @@ namespace Google\Cloud\CloudSecurityCompliance\V1;
 use UnexpectedValueException;
 
 /**
- * DeploymentState represents the state of the Deployment resource.
+ * The state of the deployment resource.
  *
  * Protobuf type <code>google.cloud.cloudsecuritycompliance.v1.DeploymentState</code>
  */
 class DeploymentState
 {
     /**
-     * Unspecified. Invalid state.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>DEPLOYMENT_STATE_UNSPECIFIED = 0;</code>
      */
@@ -26,21 +26,21 @@ class DeploymentState
      */
     const DEPLOYMENT_STATE_VALIDATING = 1;
     /**
-     * Deployment is in CREATING state.
+     * Deployment is being created.
      *
      * Generated from protobuf enum <code>DEPLOYMENT_STATE_CREATING = 2;</code>
      */
     const DEPLOYMENT_STATE_CREATING = 2;
     /**
-     * Deployment is in DELETING state.
+     * Deployment is being deleted.
      *
      * Generated from protobuf enum <code>DEPLOYMENT_STATE_DELETING = 3;</code>
      */
     const DEPLOYMENT_STATE_DELETING = 3;
     /**
-     * Deployment has failed. All the changes made by the deployment have been
-     * successfully rolled back. A deployment in the FAILED state can be retried
-     * or deleted.
+     * Deployment has failed. All the changes made by the deployment were
+     * successfully rolled back. You can retry or delete a deployment that's
+     * in this state.
      *
      * Generated from protobuf enum <code>DEPLOYMENT_STATE_FAILED = 4;</code>
      */
@@ -52,16 +52,16 @@ class DeploymentState
      */
     const DEPLOYMENT_STATE_READY = 5;
     /**
-     * Deployment is partially deployed. All the Cloud Controls were not deployed
-     * successfully. Retrying the operation will resume from the first failed
+     * Deployment is partially deployed. All the cloud controls weren't deployed
+     * successfully. Retrying the operation resumes from the first failed
      * step.
      *
      * Generated from protobuf enum <code>DEPLOYMENT_STATE_PARTIALLY_DEPLOYED = 6;</code>
      */
     const DEPLOYMENT_STATE_PARTIALLY_DEPLOYED = 6;
     /**
-     * Deployment is partially deleted. All the Cloud Control Deployments were not
-     * deleted successfully. Retrying the operation will resume from the first
+     * Deployment is partially deleted. All the cloud control deployments weren't
+     * deleted successfully. Retrying the operation resumes from the first
      * failed step.
      *
      * Generated from protobuf enum <code>DEPLOYMENT_STATE_PARTIALLY_DELETED = 7;</code>

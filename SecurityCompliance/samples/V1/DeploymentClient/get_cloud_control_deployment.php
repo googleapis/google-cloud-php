@@ -29,11 +29,12 @@ use Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeployment;
 use Google\Cloud\CloudSecurityCompliance\V1\GetCloudControlDeploymentRequest;
 
 /**
- * Gets details of a single CloudControlDeployment.
+ * Gets details about a cloud control deployment.
  *
- * @param string $formattedName CloudControlDeployment name in the following format:
- *                              organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}
- *                              Please see {@see DeploymentClient::cloudControlDeploymentName()} for help formatting this field.
+ * @param string $formattedName The name for the cloud control deployment, in the format
+ *                              `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+ *                              The only supported location is `global`. Please see
+ *                              {@see DeploymentClient::cloudControlDeploymentName()} for help formatting this field.
  */
 function get_cloud_control_deployment_sample(string $formattedName): void
 {

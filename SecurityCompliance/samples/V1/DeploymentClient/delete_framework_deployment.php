@@ -30,12 +30,13 @@ use Google\Cloud\CloudSecurityCompliance\V1\DeleteFrameworkDeploymentRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes a single FrameworkDeployment.
+ * Deletes a framework deployment.
  *
- * @param string $formattedName name of the FrameworkDeployment to be deleted in the following
- *                              format:
- *                              organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}
- *                              Please see {@see DeploymentClient::frameworkDeploymentName()} for help formatting this field.
+ * @param string $formattedName The name of the framework deployment that you want to delete,
+ *                              in the format
+ *                              `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+ *                              The only supported location is `global`. Please see
+ *                              {@see DeploymentClient::frameworkDeploymentName()} for help formatting this field.
  */
 function delete_framework_deployment_sample(string $formattedName): void
 {

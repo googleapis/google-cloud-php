@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Possible parameter value types.
+ * The possible parameter value types.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.ParamValue</code>
  */
@@ -24,15 +24,15 @@ class ParamValue extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $string_value
-     *           Represents a string value.
+     *           A string value.
      *     @type bool $bool_value
-     *           Represents a boolean value.
+     *           A boolean value.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\StringList $string_list_value
-     *           Represents a repeated string.
+     *           A repeated string.
      *     @type float $number_value
-     *           Represents a double value.
+     *           A double value.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\Parameter $oneof_value
-     *           Represents sub-parameter values.
+     *           Sub-parameter values.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +41,7 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents a string value.
+     * A string value.
      *
      * Generated from protobuf field <code>string string_value = 3;</code>
      * @return string
@@ -57,7 +57,7 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents a string value.
+     * A string value.
      *
      * Generated from protobuf field <code>string string_value = 3;</code>
      * @param string $var
@@ -72,7 +72,7 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents a boolean value.
+     * A boolean value.
      *
      * Generated from protobuf field <code>bool bool_value = 4;</code>
      * @return bool
@@ -88,7 +88,7 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents a boolean value.
+     * A boolean value.
      *
      * Generated from protobuf field <code>bool bool_value = 4;</code>
      * @param bool $var
@@ -103,7 +103,7 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents a repeated string.
+     * A repeated string.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.StringList string_list_value = 5;</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\StringList|null
@@ -119,7 +119,7 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents a repeated string.
+     * A repeated string.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.StringList string_list_value = 5;</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\StringList $var
@@ -134,7 +134,7 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents a double value.
+     * A double value.
      *
      * Generated from protobuf field <code>double number_value = 6;</code>
      * @return float
@@ -150,7 +150,7 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents a double value.
+     * A double value.
      *
      * Generated from protobuf field <code>double number_value = 6;</code>
      * @param float $var
@@ -165,7 +165,7 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents sub-parameter values.
+     * Sub-parameter values.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Parameter oneof_value = 7;</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\Parameter|null
@@ -181,7 +181,7 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents sub-parameter values.
+     * Sub-parameter values.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Parameter oneof_value = 7;</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\Parameter $var

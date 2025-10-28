@@ -9,25 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for updating a Framework.
+ * The request message for [UpdateFramework][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.UpdateFrameworkRequest</code>
  */
 class UpdateFrameworkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the
-     * Framework resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields present in the request will be
-     * overwritten.
+     * Optional. A field mask is used to specify the fields to be overwritten in
+     * the framework resource by the update. The fields specified in the
+     * `update_mask` are relative to the resource, not the full request. A field
+     * is overwritten if it is in the mask. If you don't provide a mask then all
+     * fields present in the request will be overwritten.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
     /**
-     * Required. The resource being updated
+     * Required. The resource that is being updated.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Framework framework = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -40,13 +39,12 @@ class UpdateFrameworkRequest extends \Google\Protobuf\Internal\Message
     protected $major_revision_id = 0;
 
     /**
-     * @param \Google\Cloud\CloudSecurityCompliance\V1\Framework $framework  Required. The resource being updated
-     * @param \Google\Protobuf\FieldMask                         $updateMask Optional. Field mask is used to specify the fields to be overwritten in the
-     *                                                                       Framework resource by the update.
-     *                                                                       The fields specified in the update_mask are relative to the resource, not
-     *                                                                       the full request. A field will be overwritten if it is in the mask. If the
-     *                                                                       user does not provide a mask then all fields present in the request will be
-     *                                                                       overwritten.
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\Framework $framework  Required. The resource that is being updated.
+     * @param \Google\Protobuf\FieldMask                         $updateMask Optional. A field mask is used to specify the fields to be overwritten in
+     *                                                                       the framework resource by the update. The fields specified in the
+     *                                                                       `update_mask` are relative to the resource, not the full request. A field
+     *                                                                       is overwritten if it is in the mask. If you don't provide a mask then all
+     *                                                                       fields present in the request will be overwritten.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\UpdateFrameworkRequest
      *
@@ -66,14 +64,13 @@ class UpdateFrameworkRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional. Field mask is used to specify the fields to be overwritten in the
-     *           Framework resource by the update.
-     *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request. A field will be overwritten if it is in the mask. If the
-     *           user does not provide a mask then all fields present in the request will be
-     *           overwritten.
+     *           Optional. A field mask is used to specify the fields to be overwritten in
+     *           the framework resource by the update. The fields specified in the
+     *           `update_mask` are relative to the resource, not the full request. A field
+     *           is overwritten if it is in the mask. If you don't provide a mask then all
+     *           fields present in the request will be overwritten.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\Framework $framework
-     *           Required. The resource being updated
+     *           Required. The resource that is being updated.
      *     @type int|string $major_revision_id
      *           Optional. The major version ID of the framework to update.
      * }
@@ -84,12 +81,11 @@ class UpdateFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the
-     * Framework resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields present in the request will be
-     * overwritten.
+     * Optional. A field mask is used to specify the fields to be overwritten in
+     * the framework resource by the update. The fields specified in the
+     * `update_mask` are relative to the resource, not the full request. A field
+     * is overwritten if it is in the mask. If you don't provide a mask then all
+     * fields present in the request will be overwritten.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -110,12 +106,11 @@ class UpdateFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the
-     * Framework resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields present in the request will be
-     * overwritten.
+     * Optional. A field mask is used to specify the fields to be overwritten in
+     * the framework resource by the update. The fields specified in the
+     * `update_mask` are relative to the resource, not the full request. A field
+     * is overwritten if it is in the mask. If you don't provide a mask then all
+     * fields present in the request will be overwritten.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -130,7 +125,7 @@ class UpdateFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource being updated
+     * Required. The resource that is being updated.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Framework framework = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\Framework|null
@@ -151,7 +146,7 @@ class UpdateFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource being updated
+     * Required. The resource that is being updated.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Framework framework = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\Framework $var

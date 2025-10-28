@@ -9,59 +9,60 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * FrameworkDeployment represents deployment of a Framework on a target
- * resource. Supported target resources are organizations/{organization},
- * folders/{folder}, and projects/{project}.
+ * Framework deployments represent the assignment of a framework to a target
+ * resource. Supported target resources are organizations, folders, and
+ * projects.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.FrameworkDeployment</code>
  */
 class FrameworkDeployment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. FrameworkDeployment name in the following format:
-     * organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}
+     * Identifier. The name of the framework deployment, in the format
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Required. The details of the target resource on which the Framework is to
-     * be deployed. It can either be an existing target resource or a new target
-     * resource to be created.
+     * Required. The details of the target resource that you want to deploy the
+     * framework to. You can specify an existing resource, or create a new one.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.TargetResourceConfig target_resource_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $target_resource_config = null;
     /**
-     * Output only. The resource on which the Framework is deployed based on the
-     * provided TargetResourceConfig in the following format:
-     * organizations/{organization}, folders/{folder} or projects/{project}
+     * Output only. The target resource to deploy the framework to, in one  the
+     * following formats:
+     * - `organizations/{organizationID}`
+     * - `folders/{folderID}`
+     * - `projects/{projectID}`
      *
      * Generated from protobuf field <code>string computed_target_resource = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $computed_target_resource = '';
     /**
-     * Required. Reference to the framework to be deployed.
+     * Required. A reference to the framework that you're deploying.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FrameworkReference framework = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $framework = null;
     /**
-     * Optional. User provided description of the Framework deployment
+     * Optional. A user-provided description of the framework deployment.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
-     * Required. Deployment mode and parameters for each of the Cloud Controls in
-     * the framework. Every Cloud Control in the framework must have a
-     * CloudControlMetadata.
+     * Required. The deployment mode and parameters for each of the cloud controls
+     * in the framework. Every cloud control in the framework includes metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlMetadata cloud_control_metadata = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cloud_control_metadata;
     /**
-     * Output only. State of the Framework Deployment
+     * Output only. The state for the framework deployment.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.DeploymentState deployment_state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -80,10 +81,10 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     protected $update_time = null;
     /**
      * Optional. To prevent concurrent updates from overwriting each other, always
-     * provide the `etag` when you update a FrameworkDeployment. You can also
-     * provide the `etag` when you delete a FrameworkDeployment, to help
+     * provide the `etag` when you update a framework deployment. You can also
+     * provide the `etag` when you delete a framework deployment, to help
      * ensure that you're deleting the intended version of the
-     * FrameworkDeployment.
+     * framework deployment.
      *
      * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -95,11 +96,13 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      */
     protected $target_resource_display_name = '';
     /**
-     * Output only. The references to the cloud control deployments. It has all
-     * the CloudControlDeployments which are either directly added in the
-     * framework or through a CloudControlGroup. Example: If a framework
-     * deployment deploys two cloud controls, cc-deployment-1 and cc-deployment-2,
-     * then the cloud_control_deployment_references will be:
+     * Output only. The references to the cloud control deployments. The reference
+     * includes all the cloud control deployments that are in the framework or in
+     * a cloud control group.
+     * For example, if a framework deployment deploys two
+     * cloud controls, `cc-deployment-1` and `cc-deployment-2`, then the
+     * references are:
+     * ```
      * {
      *  cloud_control_deployment_reference: {
      *    cloud_control_deployment:
@@ -109,6 +112,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      *   cloud_control_deployment:
      *   "organizations/{organization}/locations/{location}/cloudControlDeployments/cc-deployment-2"
      *  }
+     * ```
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDeploymentReference cloud_control_deployment_references = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -121,44 +125,47 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. FrameworkDeployment name in the following format:
-     *           organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}
+     *           Identifier. The name of the framework deployment, in the format
+     *           `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     *           The only supported location is `global`.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceConfig $target_resource_config
-     *           Required. The details of the target resource on which the Framework is to
-     *           be deployed. It can either be an existing target resource or a new target
-     *           resource to be created.
+     *           Required. The details of the target resource that you want to deploy the
+     *           framework to. You can specify an existing resource, or create a new one.
      *     @type string $computed_target_resource
-     *           Output only. The resource on which the Framework is deployed based on the
-     *           provided TargetResourceConfig in the following format:
-     *           organizations/{organization}, folders/{folder} or projects/{project}
+     *           Output only. The target resource to deploy the framework to, in one  the
+     *           following formats:
+     *           - `organizations/{organizationID}`
+     *           - `folders/{folderID}`
+     *           - `projects/{projectID}`
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\FrameworkReference $framework
-     *           Required. Reference to the framework to be deployed.
+     *           Required. A reference to the framework that you're deploying.
      *     @type string $description
-     *           Optional. User provided description of the Framework deployment
+     *           Optional. A user-provided description of the framework deployment.
      *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlMetadata>|\Google\Protobuf\Internal\RepeatedField $cloud_control_metadata
-     *           Required. Deployment mode and parameters for each of the Cloud Controls in
-     *           the framework. Every Cloud Control in the framework must have a
-     *           CloudControlMetadata.
+     *           Required. The deployment mode and parameters for each of the cloud controls
+     *           in the framework. Every cloud control in the framework includes metadata.
      *     @type int $deployment_state
-     *           Output only. State of the Framework Deployment
+     *           Output only. The state for the framework deployment.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which the resource was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time at which the resource last updated.
      *     @type string $etag
      *           Optional. To prevent concurrent updates from overwriting each other, always
-     *           provide the `etag` when you update a FrameworkDeployment. You can also
-     *           provide the `etag` when you delete a FrameworkDeployment, to help
+     *           provide the `etag` when you update a framework deployment. You can also
+     *           provide the `etag` when you delete a framework deployment, to help
      *           ensure that you're deleting the intended version of the
-     *           FrameworkDeployment.
+     *           framework deployment.
      *     @type string $target_resource_display_name
      *           Output only. The display name of the target resource.
      *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeploymentReference>|\Google\Protobuf\Internal\RepeatedField $cloud_control_deployment_references
-     *           Output only. The references to the cloud control deployments. It has all
-     *           the CloudControlDeployments which are either directly added in the
-     *           framework or through a CloudControlGroup. Example: If a framework
-     *           deployment deploys two cloud controls, cc-deployment-1 and cc-deployment-2,
-     *           then the cloud_control_deployment_references will be:
+     *           Output only. The references to the cloud control deployments. The reference
+     *           includes all the cloud control deployments that are in the framework or in
+     *           a cloud control group.
+     *           For example, if a framework deployment deploys two
+     *           cloud controls, `cc-deployment-1` and `cc-deployment-2`, then the
+     *           references are:
+     *           ```
      *           {
      *            cloud_control_deployment_reference: {
      *              cloud_control_deployment:
@@ -168,6 +175,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      *             cloud_control_deployment:
      *             "organizations/{organization}/locations/{location}/cloudControlDeployments/cc-deployment-2"
      *            }
+     *           ```
      * }
      */
     public function __construct($data = NULL) {
@@ -176,8 +184,9 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. FrameworkDeployment name in the following format:
-     * organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}
+     * Identifier. The name of the framework deployment, in the format
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -188,8 +197,9 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. FrameworkDeployment name in the following format:
-     * organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}
+     * Identifier. The name of the framework deployment, in the format
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -204,9 +214,8 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The details of the target resource on which the Framework is to
-     * be deployed. It can either be an existing target resource or a new target
-     * resource to be created.
+     * Required. The details of the target resource that you want to deploy the
+     * framework to. You can specify an existing resource, or create a new one.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.TargetResourceConfig target_resource_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceConfig|null
@@ -227,9 +236,8 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The details of the target resource on which the Framework is to
-     * be deployed. It can either be an existing target resource or a new target
-     * resource to be created.
+     * Required. The details of the target resource that you want to deploy the
+     * framework to. You can specify an existing resource, or create a new one.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.TargetResourceConfig target_resource_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceConfig $var
@@ -244,9 +252,11 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource on which the Framework is deployed based on the
-     * provided TargetResourceConfig in the following format:
-     * organizations/{organization}, folders/{folder} or projects/{project}
+     * Output only. The target resource to deploy the framework to, in one  the
+     * following formats:
+     * - `organizations/{organizationID}`
+     * - `folders/{folderID}`
+     * - `projects/{projectID}`
      *
      * Generated from protobuf field <code>string computed_target_resource = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -257,9 +267,11 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource on which the Framework is deployed based on the
-     * provided TargetResourceConfig in the following format:
-     * organizations/{organization}, folders/{folder} or projects/{project}
+     * Output only. The target resource to deploy the framework to, in one  the
+     * following formats:
+     * - `organizations/{organizationID}`
+     * - `folders/{folderID}`
+     * - `projects/{projectID}`
      *
      * Generated from protobuf field <code>string computed_target_resource = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -274,7 +286,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Reference to the framework to be deployed.
+     * Required. A reference to the framework that you're deploying.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FrameworkReference framework = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\FrameworkReference|null
@@ -295,7 +307,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Reference to the framework to be deployed.
+     * Required. A reference to the framework that you're deploying.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FrameworkReference framework = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\FrameworkReference $var
@@ -310,7 +322,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User provided description of the Framework deployment
+     * Optional. A user-provided description of the framework deployment.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -321,7 +333,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User provided description of the Framework deployment
+     * Optional. A user-provided description of the framework deployment.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -336,9 +348,8 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deployment mode and parameters for each of the Cloud Controls in
-     * the framework. Every Cloud Control in the framework must have a
-     * CloudControlMetadata.
+     * Required. The deployment mode and parameters for each of the cloud controls
+     * in the framework. Every cloud control in the framework includes metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlMetadata cloud_control_metadata = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -349,9 +360,8 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deployment mode and parameters for each of the Cloud Controls in
-     * the framework. Every Cloud Control in the framework must have a
-     * CloudControlMetadata.
+     * Required. The deployment mode and parameters for each of the cloud controls
+     * in the framework. Every cloud control in the framework includes metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlMetadata cloud_control_metadata = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlMetadata>|\Google\Protobuf\Internal\RepeatedField $var
@@ -366,7 +376,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. State of the Framework Deployment
+     * Output only. The state for the framework deployment.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.DeploymentState deployment_state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -377,7 +387,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. State of the Framework Deployment
+     * Output only. The state for the framework deployment.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.DeploymentState deployment_state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -465,10 +475,10 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. To prevent concurrent updates from overwriting each other, always
-     * provide the `etag` when you update a FrameworkDeployment. You can also
-     * provide the `etag` when you delete a FrameworkDeployment, to help
+     * provide the `etag` when you update a framework deployment. You can also
+     * provide the `etag` when you delete a framework deployment, to help
      * ensure that you're deleting the intended version of the
-     * FrameworkDeployment.
+     * framework deployment.
      *
      * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -480,10 +490,10 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. To prevent concurrent updates from overwriting each other, always
-     * provide the `etag` when you update a FrameworkDeployment. You can also
-     * provide the `etag` when you delete a FrameworkDeployment, to help
+     * provide the `etag` when you update a framework deployment. You can also
+     * provide the `etag` when you delete a framework deployment, to help
      * ensure that you're deleting the intended version of the
-     * FrameworkDeployment.
+     * framework deployment.
      *
      * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -524,11 +534,13 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The references to the cloud control deployments. It has all
-     * the CloudControlDeployments which are either directly added in the
-     * framework or through a CloudControlGroup. Example: If a framework
-     * deployment deploys two cloud controls, cc-deployment-1 and cc-deployment-2,
-     * then the cloud_control_deployment_references will be:
+     * Output only. The references to the cloud control deployments. The reference
+     * includes all the cloud control deployments that are in the framework or in
+     * a cloud control group.
+     * For example, if a framework deployment deploys two
+     * cloud controls, `cc-deployment-1` and `cc-deployment-2`, then the
+     * references are:
+     * ```
      * {
      *  cloud_control_deployment_reference: {
      *    cloud_control_deployment:
@@ -538,6 +550,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      *   cloud_control_deployment:
      *   "organizations/{organization}/locations/{location}/cloudControlDeployments/cc-deployment-2"
      *  }
+     * ```
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDeploymentReference cloud_control_deployment_references = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -548,11 +561,13 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The references to the cloud control deployments. It has all
-     * the CloudControlDeployments which are either directly added in the
-     * framework or through a CloudControlGroup. Example: If a framework
-     * deployment deploys two cloud controls, cc-deployment-1 and cc-deployment-2,
-     * then the cloud_control_deployment_references will be:
+     * Output only. The references to the cloud control deployments. The reference
+     * includes all the cloud control deployments that are in the framework or in
+     * a cloud control group.
+     * For example, if a framework deployment deploys two
+     * cloud controls, `cc-deployment-1` and `cc-deployment-2`, then the
+     * references are:
+     * ```
      * {
      *  cloud_control_deployment_reference: {
      *    cloud_control_deployment:
@@ -562,6 +577,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      *   cloud_control_deployment:
      *   "organizations/{organization}/locations/{location}/cloudControlDeployments/cc-deployment-2"
      *  }
+     * ```
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDeploymentReference cloud_control_deployment_references = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeploymentReference>|\Google\Protobuf\Internal\RepeatedField $var

@@ -9,22 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * FolderCreationConfig contains the config to create a new folder to be used
- * as the target_resource of a deployment.
+ * The configuration that's required to create a folder to be used
+ * as the target resource for a deployment.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.FolderCreationConfig</code>
  */
 class FolderCreationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent of the folder to be created. It can be an
-     * organizations/{org} or folders/{folder}
+     * Required. The parent of the folder, in the format
+     * `organizations/{organizationID}` or `folders/{folderID}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $parent = '';
     /**
-     * Required. Display name of the folder to be created
+     * Required. The display name of the folder.
      *
      * Generated from protobuf field <code>string folder_display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,10 +37,10 @@ class FolderCreationConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent of the folder to be created. It can be an
-     *           organizations/{org} or folders/{folder}
+     *           Required. The parent of the folder, in the format
+     *           `organizations/{organizationID}` or `folders/{folderID}`.
      *     @type string $folder_display_name
-     *           Required. Display name of the folder to be created
+     *           Required. The display name of the folder.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,8 +49,8 @@ class FolderCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent of the folder to be created. It can be an
-     * organizations/{org} or folders/{folder}
+     * Required. The parent of the folder, in the format
+     * `organizations/{organizationID}` or `folders/{folderID}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -61,8 +61,8 @@ class FolderCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent of the folder to be created. It can be an
-     * organizations/{org} or folders/{folder}
+     * Required. The parent of the folder, in the format
+     * `organizations/{organizationID}` or `folders/{folderID}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -77,7 +77,7 @@ class FolderCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Display name of the folder to be created
+     * Required. The display name of the folder.
      *
      * Generated from protobuf field <code>string folder_display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -88,7 +88,7 @@ class FolderCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Display name of the folder to be created
+     * Required. The display name of the folder.
      *
      * Generated from protobuf field <code>string folder_display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

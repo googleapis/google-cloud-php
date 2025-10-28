@@ -9,51 +9,57 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for ListFrameworkDeployments.
+ * The request message for [ListFrameworkDeployments][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.ListFrameworkDeploymentsRequest</code>
  */
 class ListFrameworkDeploymentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. parent resource of the FrameworkDeployment in the format:
-     * organizations/{organization}/locations/{location}
-     * Only global location is supported.
+     * Required. The parent resource of the framework deployment, in the format
+     * `organizations/{organization}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, server will pick an appropriate default.
+     * Optional. The requested page size. The server might return fewer items than
+     * requested.
+     * If unspecified, the server picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A token that identifies a page of results the server should
+     * return.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
-     * Optional. Filter to be applied on the resource, defined by EBNF grammar
-     * https://google.aip.dev/assets/misc/ebnf-filtering.txt.
+     * Optional. The filter to be applied on the resource, as defined by
+     * [AIP-160: Filtering](https://google.aip.dev/160).
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
     /**
-     * Optional. Sort results. Supported are "name", "name desc" or "" (unsorted).
+     * Optional. The sort order for the results. The following values are
+     * supported:
+     * * `name`
+     * * `name desc`
+     * If you do not specify a value, then the results are not sorted.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $order_by = '';
 
     /**
-     * @param string $parent Required. parent resource of the FrameworkDeployment in the format:
-     *                       organizations/{organization}/locations/{location}
-     *                       Only global location is supported. Please see
+     * @param string $parent Required. The parent resource of the framework deployment, in the format
+     *                       `organizations/{organization}/locations/{location}`.
+     *                       The only supported location is `global`. Please see
      *                       {@see DeploymentClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\ListFrameworkDeploymentsRequest
@@ -73,19 +79,25 @@ class ListFrameworkDeploymentsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. parent resource of the FrameworkDeployment in the format:
-     *           organizations/{organization}/locations/{location}
-     *           Only global location is supported.
+     *           Required. The parent resource of the framework deployment, in the format
+     *           `organizations/{organization}/locations/{location}`.
+     *           The only supported location is `global`.
      *     @type int $page_size
-     *           Optional. Requested page size. Server may return fewer items than
-     *           requested. If unspecified, server will pick an appropriate default.
+     *           Optional. The requested page size. The server might return fewer items than
+     *           requested.
+     *           If unspecified, the server picks an appropriate default.
      *     @type string $page_token
-     *           Optional. A token identifying a page of results the server should return.
+     *           Optional. A token that identifies a page of results the server should
+     *           return.
      *     @type string $filter
-     *           Optional. Filter to be applied on the resource, defined by EBNF grammar
-     *           https://google.aip.dev/assets/misc/ebnf-filtering.txt.
+     *           Optional. The filter to be applied on the resource, as defined by
+     *           [AIP-160: Filtering](https://google.aip.dev/160).
      *     @type string $order_by
-     *           Optional. Sort results. Supported are "name", "name desc" or "" (unsorted).
+     *           Optional. The sort order for the results. The following values are
+     *           supported:
+     *           * `name`
+     *           * `name desc`
+     *           If you do not specify a value, then the results are not sorted.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,9 +106,9 @@ class ListFrameworkDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. parent resource of the FrameworkDeployment in the format:
-     * organizations/{organization}/locations/{location}
-     * Only global location is supported.
+     * Required. The parent resource of the framework deployment, in the format
+     * `organizations/{organization}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -107,9 +119,9 @@ class ListFrameworkDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. parent resource of the FrameworkDeployment in the format:
-     * organizations/{organization}/locations/{location}
-     * Only global location is supported.
+     * Required. The parent resource of the framework deployment, in the format
+     * `organizations/{organization}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -124,8 +136,9 @@ class ListFrameworkDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, server will pick an appropriate default.
+     * Optional. The requested page size. The server might return fewer items than
+     * requested.
+     * If unspecified, the server picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -136,8 +149,9 @@ class ListFrameworkDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, server will pick an appropriate default.
+     * Optional. The requested page size. The server might return fewer items than
+     * requested.
+     * If unspecified, the server picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -152,7 +166,8 @@ class ListFrameworkDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A token that identifies a page of results the server should
+     * return.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -163,7 +178,8 @@ class ListFrameworkDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A token that identifies a page of results the server should
+     * return.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -178,8 +194,8 @@ class ListFrameworkDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filter to be applied on the resource, defined by EBNF grammar
-     * https://google.aip.dev/assets/misc/ebnf-filtering.txt.
+     * Optional. The filter to be applied on the resource, as defined by
+     * [AIP-160: Filtering](https://google.aip.dev/160).
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -190,8 +206,8 @@ class ListFrameworkDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filter to be applied on the resource, defined by EBNF grammar
-     * https://google.aip.dev/assets/misc/ebnf-filtering.txt.
+     * Optional. The filter to be applied on the resource, as defined by
+     * [AIP-160: Filtering](https://google.aip.dev/160).
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -206,7 +222,11 @@ class ListFrameworkDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Sort results. Supported are "name", "name desc" or "" (unsorted).
+     * Optional. The sort order for the results. The following values are
+     * supported:
+     * * `name`
+     * * `name desc`
+     * If you do not specify a value, then the results are not sorted.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -217,7 +237,11 @@ class ListFrameworkDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Sort results. Supported are "name", "name desc" or "" (unsorted).
+     * Optional. The sort order for the results. The following values are
+     * supported:
+     * * `name`
+     * * `name desc`
+     * If you do not specify a value, then the results are not sorted.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

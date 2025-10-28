@@ -23,7 +23,7 @@ class Config
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-è$
+‰%
 4google/cloud/cloudsecuritycompliance/v1/config.proto\'google.cloud.cloudsecuritycompliance.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto4google/cloud/cloudsecuritycompliance/v1/common.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"’
 ListFrameworksRequestH
 parent (	B8àAúA20cloudsecuritycompliance.googleapis.com/Framework
@@ -56,10 +56,11 @@ frameworks (22.google.cloud.cloudsecuritycompliance.v1.Framework
 page_token (	BàA"ƒ
 ListCloudControlsResponseM
 cloud_controls (25.google.cloud.cloudsecuritycompliance.v1.CloudControl
-next_page_token (	"c
+next_page_token (	"ƒ
 GetCloudControlRequestI
 name (	B;àAúA5
-3cloudsecuritycompliance.googleapis.com/CloudControl"Ú
+3cloudsecuritycompliance.googleapis.com/CloudControl
+major_revision_id (BàA"Ú
 CreateCloudControlRequestK
 parent (	B;àAúA53cloudsecuritycompliance.googleapis.com/CloudControl
 cloud_control_id (	BàAQ

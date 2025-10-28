@@ -7,7 +7,7 @@ namespace Google\Cloud\CloudSecurityCompliance\V1;
 use UnexpectedValueException;
 
 /**
- * The cloud platform.
+ * The cloud provider that's associated with the cloud control.
  *
  * Protobuf type <code>google.cloud.cloudsecuritycompliance.v1.CloudProvider</code>
  */

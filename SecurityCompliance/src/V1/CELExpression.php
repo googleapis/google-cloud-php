@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [CEL
- * expression](https://cloud.google.com/certificate-authority-service/docs/using-cel).
+ * A Common Expression Language (CEL) expression that's used to create a rule.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.CELExpression</code>
  */
 class CELExpression extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Logic expression in CEL language.
-     * The max length of the condition is 1000 characters.
+     * Required. The logical expression in CEL. The maximum length of the
+     * condition is 1000 characters. For more information, see [CEL
+     * expression](https://cloud.google.com/security-command-center/docs/compliance-manager-write-cel-expressions).
      *
      * Generated from protobuf field <code>string expression = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -33,11 +33,12 @@ class CELExpression extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\StringList $resource_types_values
      *           The resource instance types on which this expression is defined.
-     *           Format will be of the form : `<canonical service name>/<type>`
-     *           Example: `compute.googleapis.com/Instance`.
+     *           The format is `<SERVICE_NAME>/<type>`.
+     *           For example: `compute.googleapis.com/Instance`
      *     @type string $expression
-     *           Required. Logic expression in CEL language.
-     *           The max length of the condition is 1000 characters.
+     *           Required. The logical expression in CEL. The maximum length of the
+     *           condition is 1000 characters. For more information, see [CEL
+     *           expression](https://cloud.google.com/security-command-center/docs/compliance-manager-write-cel-expressions).
      * }
      */
     public function __construct($data = NULL) {
@@ -47,8 +48,8 @@ class CELExpression extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource instance types on which this expression is defined.
-     * Format will be of the form : `<canonical service name>/<type>`
-     * Example: `compute.googleapis.com/Instance`.
+     * The format is `<SERVICE_NAME>/<type>`.
+     * For example: `compute.googleapis.com/Instance`
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.StringList resource_types_values = 3;</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\StringList|null
@@ -65,8 +66,8 @@ class CELExpression extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource instance types on which this expression is defined.
-     * Format will be of the form : `<canonical service name>/<type>`
-     * Example: `compute.googleapis.com/Instance`.
+     * The format is `<SERVICE_NAME>/<type>`.
+     * For example: `compute.googleapis.com/Instance`
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.StringList resource_types_values = 3;</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\StringList $var
@@ -81,8 +82,9 @@ class CELExpression extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Logic expression in CEL language.
-     * The max length of the condition is 1000 characters.
+     * Required. The logical expression in CEL. The maximum length of the
+     * condition is 1000 characters. For more information, see [CEL
+     * expression](https://cloud.google.com/security-command-center/docs/compliance-manager-write-cel-expressions).
      *
      * Generated from protobuf field <code>string expression = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -93,8 +95,9 @@ class CELExpression extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Logic expression in CEL language.
-     * The max length of the condition is 1000 characters.
+     * Required. The logical expression in CEL. The maximum length of the
+     * condition is 1000 characters. For more information, see [CEL
+     * expression](https://cloud.google.com/security-command-center/docs/compliance-manager-write-cel-expressions).
      *
      * Generated from protobuf field <code>string expression = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

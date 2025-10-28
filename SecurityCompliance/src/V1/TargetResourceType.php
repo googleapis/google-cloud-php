@@ -7,8 +7,7 @@ namespace Google\Cloud\CloudSecurityCompliance\V1;
 use UnexpectedValueException;
 
 /**
- * TargetResourceType represents the type of resource that a control or
- * framework can be applied to.
+ * The type of resource that a control or framework can be applied to.
  *
  * Protobuf type <code>google.cloud.cloudsecuritycompliance.v1.TargetResourceType</code>
  */
@@ -21,25 +20,25 @@ class TargetResourceType
      */
     const TARGET_RESOURCE_TYPE_UNSPECIFIED = 0;
     /**
-     * Target resource is an Organization.
+     * The target resource is a Google Cloud organization.
      *
      * Generated from protobuf enum <code>TARGET_RESOURCE_CRM_TYPE_ORG = 1;</code>
      */
     const TARGET_RESOURCE_CRM_TYPE_ORG = 1;
     /**
-     * Target resource is a Folder.
+     * The target resource is a folder.
      *
      * Generated from protobuf enum <code>TARGET_RESOURCE_CRM_TYPE_FOLDER = 2;</code>
      */
     const TARGET_RESOURCE_CRM_TYPE_FOLDER = 2;
     /**
-     * Target resource is a Project.
+     * The target resource is a project.
      *
      * Generated from protobuf enum <code>TARGET_RESOURCE_CRM_TYPE_PROJECT = 3;</code>
      */
     const TARGET_RESOURCE_CRM_TYPE_PROJECT = 3;
     /**
-     * Target resource is an Application.
+     * The target resource is an application in App Hub.
      *
      * Generated from protobuf enum <code>TARGET_RESOURCE_TYPE_APPLICATION = 4;</code>
      */

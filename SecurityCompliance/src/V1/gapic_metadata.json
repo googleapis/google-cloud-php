@@ -5,6 +5,74 @@
     "protoPackage": "google.cloud.cloudsecuritycompliance.v1",
     "libraryPackage": "Google\\Cloud\\CloudSecurityCompliance\\V1",
     "services": {
+        "Audit": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AuditGapicClient",
+                    "rpcs": {
+                        "CreateFrameworkAudit": {
+                            "methods": [
+                                "createFrameworkAudit"
+                            ]
+                        },
+                        "GenerateFrameworkAuditScopeReport": {
+                            "methods": [
+                                "generateFrameworkAuditScopeReport"
+                            ]
+                        },
+                        "GetFrameworkAudit": {
+                            "methods": [
+                                "getFrameworkAudit"
+                            ]
+                        },
+                        "ListFrameworkAudits": {
+                            "methods": [
+                                "listFrameworkAudits"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CmEnrollmentService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CmEnrollmentServiceGapicClient",
+                    "rpcs": {
+                        "CalculateEffectiveCmEnrollment": {
+                            "methods": [
+                                "calculateEffectiveCmEnrollment"
+                            ]
+                        },
+                        "UpdateCmEnrollment": {
+                            "methods": [
+                                "updateCmEnrollment"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Config": {
             "clients": {
                 "grpc": {

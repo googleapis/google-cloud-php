@@ -9,20 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Number range for number parameters.
+ * The number range for number parameters.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.IntRange</code>
  */
 class IntRange extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Minimum allowed value for the numeric parameter (inclusive).
+     * Required. The minimum permitted value for the numeric parameter
+     * (inclusive).
      *
      * Generated from protobuf field <code>int64 min = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $min = 0;
     /**
-     * Required. Maximum allowed value for the numeric parameter (inclusive).
+     * Required. The maximum permitted value for the numeric parameter
+     * (inclusive).
      *
      * Generated from protobuf field <code>int64 max = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -35,9 +37,11 @@ class IntRange extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $min
-     *           Required. Minimum allowed value for the numeric parameter (inclusive).
+     *           Required. The minimum permitted value for the numeric parameter
+     *           (inclusive).
      *     @type int|string $max
-     *           Required. Maximum allowed value for the numeric parameter (inclusive).
+     *           Required. The maximum permitted value for the numeric parameter
+     *           (inclusive).
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +50,8 @@ class IntRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Minimum allowed value for the numeric parameter (inclusive).
+     * Required. The minimum permitted value for the numeric parameter
+     * (inclusive).
      *
      * Generated from protobuf field <code>int64 min = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int|string
@@ -57,7 +62,8 @@ class IntRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Minimum allowed value for the numeric parameter (inclusive).
+     * Required. The minimum permitted value for the numeric parameter
+     * (inclusive).
      *
      * Generated from protobuf field <code>int64 min = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int|string $var
@@ -72,7 +78,8 @@ class IntRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Maximum allowed value for the numeric parameter (inclusive).
+     * Required. The maximum permitted value for the numeric parameter
+     * (inclusive).
      *
      * Generated from protobuf field <code>int64 max = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int|string
@@ -83,7 +90,8 @@ class IntRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Maximum allowed value for the numeric parameter (inclusive).
+     * Required. The maximum permitted value for the numeric parameter
+     * (inclusive).
      *
      * Generated from protobuf field <code>int64 max = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int|string $var

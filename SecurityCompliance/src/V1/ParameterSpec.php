@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A parameter spec of the cloud control.
+ * The parameter specification for the cloud control.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.ParameterSpec</code>
  */
@@ -22,7 +22,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Optional. The display name of the parameter. The maximum length is 200
+     * Optional. The friendly name of the parameter. The maximum length is 200
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -36,13 +36,13 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
-     * Required. if the parameter is required
+     * Required. Whether the parameter is required.
      *
      * Generated from protobuf field <code>bool is_required = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $is_required = false;
     /**
-     * Required. Parameter value type.
+     * Required. The parameter value type.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.ParameterSpec.ValueType value_type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -54,19 +54,19 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      */
     protected $default_value = null;
     /**
-     * Optional. List of parameter substitutions.
+     * Optional. The list of parameter substitutions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParameterSubstitutionRule substitution_rules = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $substitution_rules;
     /**
-     * Optional. ParameterSpec for oneof attributes.
+     * Optional. The parameter specification for `oneOf` attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParameterSpec sub_parameters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sub_parameters;
     /**
-     * Optional. The allowed set of values for the parameter.
+     * Optional. The permitted set of values for the parameter.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Validation validation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -81,23 +81,23 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the parameter.
      *     @type string $display_name
-     *           Optional. The display name of the parameter. The maximum length is 200
+     *           Optional. The friendly name of the parameter. The maximum length is 200
      *           characters.
      *     @type string $description
      *           Optional. The description of the parameter. The maximum length is 2000
      *           characters.
      *     @type bool $is_required
-     *           Required. if the parameter is required
+     *           Required. Whether the parameter is required.
      *     @type int $value_type
-     *           Required. Parameter value type.
+     *           Required. The parameter value type.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\ParamValue $default_value
      *           Optional. The default value of the parameter.
      *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSubstitutionRule>|\Google\Protobuf\Internal\RepeatedField $substitution_rules
-     *           Optional. List of parameter substitutions.
+     *           Optional. The list of parameter substitutions.
      *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec>|\Google\Protobuf\Internal\RepeatedField $sub_parameters
-     *           Optional. ParameterSpec for oneof attributes.
+     *           Optional. The parameter specification for `oneOf` attributes.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\Validation $validation
-     *           Optional. The allowed set of values for the parameter.
+     *           Optional. The permitted set of values for the parameter.
      * }
      */
     public function __construct($data = NULL) {
@@ -132,7 +132,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The display name of the parameter. The maximum length is 200
+     * Optional. The friendly name of the parameter. The maximum length is 200
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -144,7 +144,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The display name of the parameter. The maximum length is 200
+     * Optional. The friendly name of the parameter. The maximum length is 200
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -188,7 +188,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. if the parameter is required
+     * Required. Whether the parameter is required.
      *
      * Generated from protobuf field <code>bool is_required = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return bool
@@ -199,7 +199,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. if the parameter is required
+     * Required. Whether the parameter is required.
      *
      * Generated from protobuf field <code>bool is_required = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param bool $var
@@ -214,7 +214,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parameter value type.
+     * Required. The parameter value type.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.ParameterSpec.ValueType value_type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -225,7 +225,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parameter value type.
+     * Required. The parameter value type.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.ParameterSpec.ValueType value_type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -276,7 +276,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of parameter substitutions.
+     * Optional. The list of parameter substitutions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParameterSubstitutionRule substitution_rules = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -287,7 +287,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of parameter substitutions.
+     * Optional. The list of parameter substitutions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParameterSubstitutionRule substitution_rules = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSubstitutionRule>|\Google\Protobuf\Internal\RepeatedField $var
@@ -302,7 +302,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. ParameterSpec for oneof attributes.
+     * Optional. The parameter specification for `oneOf` attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParameterSpec sub_parameters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -313,7 +313,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. ParameterSpec for oneof attributes.
+     * Optional. The parameter specification for `oneOf` attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParameterSpec sub_parameters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec>|\Google\Protobuf\Internal\RepeatedField $var
@@ -328,7 +328,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The allowed set of values for the parameter.
+     * Optional. The permitted set of values for the parameter.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Validation validation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\Validation|null
@@ -349,7 +349,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The allowed set of values for the parameter.
+     * Optional. The permitted set of values for the parameter.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Validation validation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\Validation $var

@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A rule of the cloud control.
+ * A rule in the cloud control.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.Rule</code>
  */
 class Rule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Description of the Rule. The maximum length is 2000 characters.
+     * Optional. The rule description. The maximum length is 2000 characters.
      *
      * Generated from protobuf field <code>string description = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
-     * Required. The functionality enabled by the Rule.
+     * Required. The functionality that's enabled by the rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.RuleActionType rule_action_types = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,11 +36,11 @@ class Rule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\CELExpression $cel_expression
-     *           Logic expression in CEL language.
+     *           The rule's logic expression in Common Expression Language (CEL).
      *     @type string $description
-     *           Optional. Description of the Rule. The maximum length is 2000 characters.
+     *           Optional. The rule description. The maximum length is 2000 characters.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $rule_action_types
-     *           Required. The functionality enabled by the Rule.
+     *           Required. The functionality that's enabled by the rule.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,7 +49,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Logic expression in CEL language.
+     * The rule's logic expression in Common Expression Language (CEL).
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CELExpression cel_expression = 1;</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\CELExpression|null
@@ -65,7 +65,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Logic expression in CEL language.
+     * The rule's logic expression in Common Expression Language (CEL).
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CELExpression cel_expression = 1;</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\CELExpression $var
@@ -80,7 +80,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Description of the Rule. The maximum length is 2000 characters.
+     * Optional. The rule description. The maximum length is 2000 characters.
      *
      * Generated from protobuf field <code>string description = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -91,7 +91,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Description of the Rule. The maximum length is 2000 characters.
+     * Optional. The rule description. The maximum length is 2000 characters.
      *
      * Generated from protobuf field <code>string description = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -106,7 +106,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The functionality enabled by the Rule.
+     * Required. The functionality that's enabled by the rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.RuleActionType rule_action_types = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -117,7 +117,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The functionality enabled by the Rule.
+     * Required. The functionality that's enabled by the rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.RuleActionType rule_action_types = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var

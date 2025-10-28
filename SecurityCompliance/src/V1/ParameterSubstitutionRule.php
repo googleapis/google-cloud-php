@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Parameter substitution rules.
+ * The parameter substitution rules.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.ParameterSubstitutionRule</code>
  */
@@ -24,9 +24,9 @@ class ParameterSubstitutionRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\PlaceholderSubstitutionRule $placeholder_substitution_rule
-     *           Placeholder substitution rule.
+     *           The placeholder substitution rule.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\AttributeSubstitutionRule $attribute_substitution_rule
-     *           Attribute substitution rule.
+     *           The attribute substitution rule.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,7 +35,7 @@ class ParameterSubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Placeholder substitution rule.
+     * The placeholder substitution rule.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.PlaceholderSubstitutionRule placeholder_substitution_rule = 1;</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\PlaceholderSubstitutionRule|null
@@ -51,7 +51,7 @@ class ParameterSubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Placeholder substitution rule.
+     * The placeholder substitution rule.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.PlaceholderSubstitutionRule placeholder_substitution_rule = 1;</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\PlaceholderSubstitutionRule $var
@@ -66,7 +66,7 @@ class ParameterSubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Attribute substitution rule.
+     * The attribute substitution rule.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.AttributeSubstitutionRule attribute_substitution_rule = 2;</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\AttributeSubstitutionRule|null
@@ -82,7 +82,7 @@ class ParameterSubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Attribute substitution rule.
+     * The attribute substitution rule.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.AttributeSubstitutionRule attribute_substitution_rule = 2;</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\AttributeSubstitutionRule $var

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A list of strings.
+ * A list of strings for the parameter value.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.StringList</code>
  */

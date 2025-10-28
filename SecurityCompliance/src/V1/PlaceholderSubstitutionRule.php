@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Placeholder is substituted in the rendered string.
+ * The placeholder that's substituted in the rendered string.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.PlaceholderSubstitutionRule</code>
  */
 class PlaceholderSubstitutionRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Fully qualified proto attribute path (e.g., dot notation)
+     * The fully qualified proto attribute path, in dot notation.
      *
      * Generated from protobuf field <code>string attribute = 1;</code>
      */
@@ -29,7 +29,7 @@ class PlaceholderSubstitutionRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $attribute
-     *           Fully qualified proto attribute path (e.g., dot notation)
+     *           The fully qualified proto attribute path, in dot notation.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class PlaceholderSubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified proto attribute path (e.g., dot notation)
+     * The fully qualified proto attribute path, in dot notation.
      *
      * Generated from protobuf field <code>string attribute = 1;</code>
      * @return string
@@ -49,7 +49,7 @@ class PlaceholderSubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified proto attribute path (e.g., dot notation)
+     * The fully qualified proto attribute path, in dot notation.
      *
      * Generated from protobuf field <code>string attribute = 1;</code>
      * @param string $var

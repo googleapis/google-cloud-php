@@ -28,17 +28,17 @@ use Google\Cloud\CloudSecurityCompliance\V1\Client\ConfigClient;
 use Google\Cloud\CloudSecurityCompliance\V1\DeleteFrameworkRequest;
 
 /**
- * Deletes a single Custom Framework, including all its minor and
- * minor revisions.
+ * Deletes a custom framework, including all its major and
+ * minor revisions. Consider the following:
  *
- * - This operation can only be performed on Frameworks with type `CUSTOM`.
- * Built-in Frameworks cannot be deleted.
- * - The Framework cannot be deleted if it is currently deployed on any
- * resource.
- * - This action is permanent and cannot be undone.
+ * - You can't delete built-in frameworks. You can only delete frameworks
+ * with type `CUSTOM`.
+ * - You can't delete frameworks that are deployed to a resource.
+ * - You can't restore a deleted framework. This action is permanent.
  *
- * @param string $formattedName Name of the resource, in the format
- *                              `organizations/{organization}/locations/{location}/frameworks/{framework}`. Please see
+ * @param string $formattedName The name of the resource, in the format
+ *                              `organizations/{organization}/locations/{location}/frameworks/{framework}`.
+ *                              The only supported location is `global`. Please see
  *                              {@see ConfigClient::frameworkName()} for help formatting this field.
  */
 function delete_framework_sample(string $formattedName): void

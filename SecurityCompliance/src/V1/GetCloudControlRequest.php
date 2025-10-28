@@ -9,24 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for getting a CloudControl.
+ * The request message for [GetCloudControl][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.GetCloudControlRequest</code>
  */
 class GetCloudControlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the cloudcontrol to retrieve in the format:
-     * organizations/{organization}/locations/{location}/cloudControls/{cloud_control}
+     * Required. The name of the cloud control to retrieve, in the format
+     * `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Optional. The major version of the cloud control to retrieve. If not
+     * specified, the most recently updated `revision_id` is retrieved.
+     *
+     * Generated from protobuf field <code>int64 major_revision_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $major_revision_id = 0;
 
     /**
-     * @param string $name Required. The name of the cloudcontrol to retrieve in the format:
-     *                     organizations/{organization}/locations/{location}/cloudControls/{cloud_control}
-     *                     Please see {@see ConfigClient::cloudControlName()} for help formatting this field.
+     * @param string $name Required. The name of the cloud control to retrieve, in the format
+     *                     `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`.
+     *                     The only supported location is `global`. Please see
+     *                     {@see ConfigClient::cloudControlName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\GetCloudControlRequest
      *
@@ -45,8 +54,12 @@ class GetCloudControlRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the cloudcontrol to retrieve in the format:
-     *           organizations/{organization}/locations/{location}/cloudControls/{cloud_control}
+     *           Required. The name of the cloud control to retrieve, in the format
+     *           `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`.
+     *           The only supported location is `global`.
+     *     @type int|string $major_revision_id
+     *           Optional. The major version of the cloud control to retrieve. If not
+     *           specified, the most recently updated `revision_id` is retrieved.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,8 +68,9 @@ class GetCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the cloudcontrol to retrieve in the format:
-     * organizations/{organization}/locations/{location}/cloudControls/{cloud_control}
+     * Required. The name of the cloud control to retrieve, in the format
+     * `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,8 +81,9 @@ class GetCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the cloudcontrol to retrieve in the format:
-     * organizations/{organization}/locations/{location}/cloudControls/{cloud_control}
+     * Required. The name of the cloud control to retrieve, in the format
+     * `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -78,6 +93,34 @@ class GetCloudControlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The major version of the cloud control to retrieve. If not
+     * specified, the most recently updated `revision_id` is retrieved.
+     *
+     * Generated from protobuf field <code>int64 major_revision_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMajorRevisionId()
+    {
+        return $this->major_revision_id;
+    }
+
+    /**
+     * Optional. The major version of the cloud control to retrieve. If not
+     * specified, the most recently updated `revision_id` is retrieved.
+     *
+     * Generated from protobuf field <code>int64 major_revision_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMajorRevisionId($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->major_revision_id = $var;
 
         return $this;
     }

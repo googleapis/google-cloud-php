@@ -7,7 +7,7 @@ namespace Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec;
 use UnexpectedValueException;
 
 /**
- * The type of the parameter value.
+ * The type of parameter value.
  *
  * Protobuf type <code>google.cloud.cloudsecuritycompliance.v1.ParameterSpec.ValueType</code>
  */
@@ -20,31 +20,31 @@ class ValueType
      */
     const VALUE_TYPE_UNSPECIFIED = 0;
     /**
-     * String value.
+     * A string value.
      *
      * Generated from protobuf enum <code>STRING = 3;</code>
      */
     const STRING = 3;
     /**
-     * Boolean value.
+     * A boolean value.
      *
      * Generated from protobuf enum <code>BOOLEAN = 4;</code>
      */
     const BOOLEAN = 4;
     /**
-     * String list value.
+     * A string list value.
      *
      * Generated from protobuf enum <code>STRINGLIST = 5;</code>
      */
     const STRINGLIST = 5;
     /**
-     * Numeric value.
+     * A numeric value.
      *
      * Generated from protobuf enum <code>NUMBER = 6;</code>
      */
     const NUMBER = 6;
     /**
-     * OneOf value.
+     * A oneOf value.
      *
      * Generated from protobuf enum <code>ONEOF = 7;</code>
      */
