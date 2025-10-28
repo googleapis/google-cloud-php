@@ -92,6 +92,81 @@ return [
                     'cloud_vm_cluster_id',
                 ],
             ],
+            'CreateDbSystem' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dbSystems',
+                'body' => 'db_system',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'db_system_id',
+                ],
+            ],
+            'CreateExadbVmCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/exadbVmClusters',
+                'body' => 'exadb_vm_cluster',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'exadb_vm_cluster_id',
+                ],
+            ],
+            'CreateExascaleDbStorageVault' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/exascaleDbStorageVaults',
+                'body' => 'exascale_db_storage_vault',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'exascale_db_storage_vault_id',
+                ],
+            ],
+            'CreateOdbNetwork' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/odbNetworks',
+                'body' => 'odb_network',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'odb_network_id',
+                ],
+            ],
+            'CreateOdbSubnet' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/odbNetworks/*}/odbSubnets',
+                'body' => 'odb_subnet',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'odb_subnet_id',
+                ],
+            ],
             'DeleteAutonomousDatabase' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}',
@@ -117,6 +192,73 @@ return [
             'DeleteCloudVmCluster' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/cloudVmClusters/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDbSystem' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/dbSystems/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteExadbVmCluster' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/exadbVmClusters/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteExascaleDbStorageVault' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/exascaleDbStorageVaults/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteOdbNetwork' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/odbNetworks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteOdbSubnet' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/odbNetworks/*/odbSubnets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FailoverAutonomousDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:failover',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -162,6 +304,83 @@ return [
             'GetCloudVmCluster' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/cloudVmClusters/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDatabase' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/databases/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDbSystem' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/dbSystems/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetExadbVmCluster' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/exadbVmClusters/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetExascaleDbStorageVault' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/exascaleDbStorageVaults/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOdbNetwork' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/odbNetworks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOdbSubnet' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/odbNetworks/*/odbSubnets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetPluggableDatabase' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/pluggableDatabases/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -236,9 +455,37 @@ return [
                     ],
                 ],
             ],
+            'ListDatabaseCharacterSets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/databaseCharacterSets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatabases' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/databases',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListDbNodes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/cloudVmClusters/*}/dbNodes',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/exadbVmClusters/*}/dbNodes',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -258,9 +505,42 @@ return [
                     ],
                 ],
             ],
+            'ListDbSystemInitialStorageSizes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dbSystemInitialStorageSizes',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListDbSystemShapes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dbSystemShapes',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDbSystems' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dbSystems',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDbVersions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dbVersions',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -280,6 +560,28 @@ return [
                     ],
                 ],
             ],
+            'ListExadbVmClusters' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/exadbVmClusters',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListExascaleDbStorageVaults' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/exascaleDbStorageVaults',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListGiVersions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/giVersions',
@@ -287,6 +589,62 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMinorVersions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/giVersions/*}/minorVersions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOdbNetworks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/odbNetworks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOdbSubnets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/odbNetworks/*}/odbSubnets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPluggableDatabases' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/pluggableDatabases',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RemoveVirtualMachineExadbVmCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/exadbVmClusters/*}:removeVirtualMachine',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -334,6 +692,44 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SwitchoverAutonomousDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:switchover',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAutonomousDatabase' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{autonomous_database.name=projects/*/locations/*/autonomousDatabases/*}',
+                'body' => 'autonomous_database',
+                'placeholders' => [
+                    'autonomous_database.name' => [
+                        'getters' => [
+                            'getAutonomousDatabase',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateExadbVmCluster' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{exadb_vm_cluster.name=projects/*/locations/*/exadbVmClusters/*}',
+                'body' => 'exadb_vm_cluster',
+                'placeholders' => [
+                    'exadb_vm_cluster.name' => [
+                        'getters' => [
+                            'getExadbVmCluster',
                             'getName',
                         ],
                     ],

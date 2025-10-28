@@ -22,7 +22,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set
  * to `MULTIPLE_LINE`.
  * [Google Workspace
- * Add-ons and Chat apps](https://developers.google.com/workspace/extend):
+ * add-ons and Chat apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.Suggestions</code>
  */

@@ -17,14 +17,37 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Core\ValidateTrait;
+use DateTimeImmutable;
+use Generator;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\ServerStream;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\Session\SessionCache;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CommitRequest;
+use Google\Cloud\Spanner\V1\CommitResponse;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\Partition;
+use Google\Cloud\Spanner\V1\PartitionOptions;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
+use Google\Cloud\Spanner\V1\PartitionReadRequest;
+use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\RequestOptions;
+use Google\Cloud\Spanner\V1\RollbackRequest;
+use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
+use Google\Cloud\Spanner\V1\TransactionSelector;
+use Google\Cloud\Spanner\V1\Type;
+use Google\Protobuf\RepeatedField;
 use Google\Rpc\Code;
 use InvalidArgumentException;
 
@@ -37,13 +60,14 @@ use InvalidArgumentException;
  * Usage examples may be found in classes making use of this class:
  * * {@see \Google\Cloud\Spanner\Database}
  * * {@see \Google\Cloud\Spanner\Transaction}
+ *
+ * @internal
  */
 class Operation
 {
-    use ArrayTrait;
+    use ApiHelperTrait;
+    use RequestProcessorTrait;
     use MutationTrait;
-    use TimeTrait;
-    use ValidateTrait;
 
     const OP_INSERT = 'insert';
     const OP_UPDATE = 'update';
@@ -51,57 +75,38 @@ class Operation
     const OP_REPLACE = 'replace';
     const OP_DELETE = 'delete';
 
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
+    private ValueMapper $mapper;
+    private bool $routeToLeader;
+    private array $defaultQueryOptions;
 
     /**
-     * @var ValueMapper
-     */
-    private $mapper;
-
-    /**
-     * @param ConnectionInterface $connection A connection to Google Cloud
-     *        Spanner. This object is created by SpannerClient,
-     *        and should not be instantiated outside of this client.
-     * @param bool $returnInt64AsObject If true, 64 bit integers will be
+     * @param SpannerClient $spannerClient The Spanner client used to make requests.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
+     *         **Defaults to** `true` (enabled).
+     *     @type array $defaultQueryOptions
+     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
-     */
-    public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
-    {
-        $this->connection = $connection;
-        $this->mapper = new ValueMapper($returnInt64AsObject);
-    }
-
-    /**
-     * Commit all enqueued mutations.
-     *
-     * @codingStandardsIgnoreStart
-     * @param Session $session The session ID to use for the commit.
-     * @param array $mutations A list of mutations to apply.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type string $transactionId The ID of the transaction.
-     *     @type bool $returnCommitStats If true, return the full response.
-     *           **Defaults to** `false`.
-     *     @type Duration $maxCommitDelay The amount of latency this request
-     *           is willing to incur in order to improve throughput.
-     *           **Defaults to** null.
-     *     @type array $requestOptions Request options.
-     *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
-     *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
-     * @return Timestamp The commit Timestamp.
      */
-    public function commit(Session $session, array $mutations, array $options = [])
-    {
-        return $this->commitWithResponse($session, $mutations, $options)[0];
+    public function __construct(
+        private SpannerClient $spannerClient,
+        private Serializer $serializer,
+        array $options = []
+    ) {
+        /** @var array $options */
+        $options = $this->validateOptions(
+            $options,
+            ['returnInt64AsObject', 'routeToLeader', 'defaultQueryOptions']
+        );
+        $this->mapper = new ValueMapper($options['returnInt64AsObject'] ?? false);
+        $this->routeToLeader = $options['routeToLeader'] ?? true;
+        $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
+        $this->optionsValidator = new OptionsValidator($serializer);
     }
 
     /**
@@ -110,7 +115,7 @@ class Operation
      * Commit all enqueued mutations.
      *
      * @codingStandardsIgnoreStart
-     * @param Session $session The session ID to use for the commit.
+     * @param SessionCache $session The session ID to use for the commit.
      * @param array $mutations A list of mutations to apply.
      * @param array $options [optional] {
      *     Configuration options.
@@ -126,30 +131,66 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type MultiplexedSessionPrecommitToken $precommitToken the precommit token with the
+     *         highest sequence number received in this transaction attempt.
      * }
-     * @return array An array containing {@see \Google\Cloud\Spanner\Timestamp}
-     *               at index 0 and the commit response as an array at index 1.
+     * @return CommitResponse
      */
-    public function commitWithResponse(Session $session, array $mutations, array $options = [])
+    public function commit(SessionCache $session, array $mutations, array $options = []): CommitResponse
     {
         $options += [
-            'transactionId' => null
+            'session' => $session->name(),
+            'mutations' => $mutations,
         ];
 
-        $res = $this->connection->commit($this->arrayFilterRemoveNull([
-            'mutations' => $mutations,
-            'session' => $session->name(),
-            'database' => $this->getDatabaseNameFromSession($session)
-        ]) + $options);
+        /**
+         * @var CommitRequest $commitRequest
+         * @var bool|null $_singleUse
+         * @var array $callOptions
+         */
+        [$commitRequest, $_singleUse, $callOptions] = $this->validateOptions(
+            $options,
+            new CommitRequest(),
+            'singleUse', // Internal flag, need to unset before passing to serializer
+            CallOptions::class
+        );
 
-        $time = $this->parseTimeString($res['commitTimestamp']);
-        return [new Timestamp($time[0], $time[1]), $res];
+        // Configure Single Use Transaction options
+        // @TODO: Find out why we do this
+        if ($commitRequest->hasSingleUseTransaction()) {
+            // This will clear any Transaction ID (because its a oneof)
+            $commitRequest->setSingleUseTransaction(
+                (new TransactionOptions())->setReadWrite(new ReadWrite())
+            );
+        }
+
+        /**
+         * Retry once if a precommit token exists in the response
+         */
+        $retryAttempt = 0;
+        $maxRetries = 1;
+        do {
+            $precommitToken = null;
+            $response = $this->spannerClient->commit($commitRequest, $callOptions + [
+                'resource-prefix' => $this->getDatabaseNameFromSession($session),
+                'route-to-leader' => $this->routeToLeader
+            ]);
+            if ($precommitToken = $response->getPrecommitToken()) {
+                $commitRequest->setPrecommitToken($precommitToken);
+            }
+        } while ($precommitToken && $retryAttempt++ < $maxRetries);
+
+        if ($response->hasPrecommitToken()) {
+            throw new ApiException('Commit has not submitted', Code::INTERNAL);
+        }
+
+        return $response;
     }
 
     /**
      * Rollback a Transaction.
      *
-     * @param Session $session The session to use for the rollback.
+     * @param SessionCache $session The session to use for the rollback.
      *        Note that the session MUST be the same one in which the
      *        transaction was created.
      * @param string $transactionId The transaction to roll back.
@@ -157,22 +198,39 @@ class Operation
      * @return void
      * @throws InvalidArgumentException If the transaction is not yet initialized.
      */
-    public function rollback(Session $session, $transactionId, array $options = [])
-    {
+    public function rollback(
+        SessionCache $session,
+        string|null $transactionId,
+        array $options = []
+    ): void {
         if (empty($transactionId)) {
             throw new InvalidArgumentException('Rollback failed: Transaction not initiated.');
         }
-        $this->connection->rollback([
-            'transactionId' => $transactionId,
-            'session' => $session->name(),
-            'database' => $this->getDatabaseNameFromSession($session)
-        ] + $options);
+
+        /**
+         * @var array $callOptions
+         * @var array|null $_transactionOptions
+         */
+        [$callOptions, $_transactionOptions] = $this->validateOptions(
+            $options,
+            CallOptions::class,
+            'transactionOptions'
+        );
+
+        $rollbackRequest = (new RollbackRequest())
+            ->setSession($session->name())
+            ->setTransactionId($transactionId);
+
+        $this->spannerClient->rollback($rollbackRequest, $callOptions + [
+            'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            'route-to-leader' => $this->routeToLeader
+        ]);
     }
 
     /**
      * Run a query.
      *
-     * @param Session $session The session to use to execute the SQL.
+     * @param SessionCache $session The session to use to execute the SQL.
      * @param string $sql The query string.
      * @param array $options [optional] {
      *     Configuration options.
@@ -192,49 +250,69 @@ class Operation
      * }
      * @return Result
      */
-    public function execute(Session $session, $sql, array $options = [])
+    public function execute(SessionCache $session, string $sql, array $options = []): Result
     {
-        $options += [
-            'parameters' => [],
-            'types' => [],
-            'transactionContext' => null
-        ];
+        $options += $this->mapper->formatParamsForExecuteSql(
+            $options['parameters'] ?? [],
+            $options['types'] ?? []
+        );
 
-        $parameters = $this->pluck('parameters', $options);
-        $types = $this->pluck('types', $options);
-        $options += $this->mapper->formatParamsForExecuteSql($parameters, $types);
+        $options = $this->formatSqlParams($options);
+        $options['transaction'] = $options['transaction'] ?? [];
+        $options['queryOptions'] = $this->createQueryOptions($options);
 
-        $context = $this->pluck('transactionContext', $options);
+        /**
+         * @var ExecuteSqlRequest $executeSqlRequest
+         * @var array $callOptions
+         * @var array $miscOptions
+         * @var array $rtl
+         */
+        [$executeSqlRequest, $callOptions, $miscOptions, $rtl] = $this->validateOptions(
+            $options,
+            new ExecuteSqlRequest(),
+            CallOptions::class,
+            ['parameters', 'types', 'transactionContext', 'singleUse'],
+            ['route-to-leader']
+        );
+        $executeSqlRequest->setSql($sql);
+        $executeSqlRequest->setSession($session->name());
+
+        // Spanner allows "route-to-leader" as a call option (See SpannerMiddleware)
+        // @TODO potentially move to a `Spanner\CallOptions`
+        $callOptions += $rtl;
 
         // Initially with begin, transactionId will be null.
         // Once transaction is generated, even in the case of stream failure,
         // transaction will be passed to this callable by the Result class.
         $call = function ($resumeToken = null, $transaction = null) use (
             $session,
-            $sql,
-            $options
+            $executeSqlRequest,
+            $callOptions
         ) {
             if ($transaction && !empty($transaction->id())) {
-                $options['transaction'] = ['id' => $transaction->id()];
+                $executeSqlRequest->setTransaction(new TransactionSelector(['id' => $transaction->id()]));
             }
             if ($resumeToken) {
-                $options['resumeToken'] = $resumeToken;
+                $executeSqlRequest->setResumeToken($resumeToken);
             }
 
-            return $this->connection->executeStreamingSql([
-                'sql' => $sql,
-                'session' => $session->name(),
-                'database' => $this->getDatabaseNameFromSession($session)
-            ] + $options);
-        };
+            if (!$this->routeToLeader) {
+                unset($callOptions['route-to-leader']);
+            }
 
-        return new Result($this, $session, $call, $context, $this->mapper);
+            $stream = $this->spannerClient->executeStreamingSql($executeSqlRequest, $callOptions + [
+                'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            ]);
+
+            return $this->handleResultSetStream($stream, $transaction);
+        };
+        return new Result($this, $session, $call, $miscOptions['transactionContext'] ?? null, $this->mapper);
     }
 
     /**
      * Execute a DML statement and return an affected row count.
      *
-     * @param Session $session The session in which the update operation should be executed.
+     * @param SessionCache $session The session in which the update operation should be executed.
      * @param Transaction $transaction The transaction in which the operation should be executed.
      * @param string $sql The SQL string to execute.
      * @param array $options [optional] {
@@ -253,18 +331,20 @@ class Operation
      * @throws InvalidArgumentException If the SQL string isn't an update operation.
      */
     public function executeUpdate(
-        Session $session,
+        SessionCache $session,
         Transaction $transaction,
-        $sql,
+        string $sql,
         array $options = []
-    ) {
+    ): int {
         if (!isset($options['transaction']['begin'])) {
             $options['transaction'] = ['id' => $transaction->id()];
         }
+        $statsItem = $options['statsItem'] ?? 'rowCountExact';
+        unset($options['statsItem']);
+
         $res = $this->execute($session, $sql, $options);
-        if (empty($transaction->id()) && $res->transaction()) {
-            $transaction->setId($res->transaction()->id());
-        }
+
+        $transaction->updateFromResult($res->transaction());
 
         // Iterate through the result to ensure we have query statistics available.
         iterator_to_array($res->rows());
@@ -276,8 +356,6 @@ class Operation
             );
         }
 
-        $statsItem = $options['statsItem'] ?? 'rowCountExact';
-
         return $stats[$statsItem];
     }
 
@@ -287,7 +365,7 @@ class Operation
      * For detailed usage instructions, see
      * {@see \Google\Cloud\Spanner\Transaction::executeUpdateBatch()}.
      *
-     * @param Session $session The session in which the update operation should
+     * @param SessionCache $session The session in which the update operation should
      *        be executed.
      * @param Transaction $transaction The transaction in which the operation
      *        should be executed.
@@ -323,54 +401,56 @@ class Operation
      * @throws InvalidArgumentException If any statement is missing the `sql` key.
      */
     public function executeUpdateBatch(
-        Session $session,
+        SessionCache $session,
         Transaction $transaction,
         array $statements,
         array $options = []
-    ) {
-        $stmts = [];
-        foreach ($statements as $statement) {
-            if (!isset($statement['sql'])) {
-                throw new InvalidArgumentException('Each statement must contain a SQL key.');
-            }
-
-            $parameters = $this->pluck('parameters', $statement, false) ?: [];
-            $types = $this->pluck('types', $statement, false) ?: [];
-            $stmts[] = [
-                'sql' => $statement['sql']
-            ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
-        }
-
-        if (!isset($options['transaction']['begin'])) {
-            $options['transaction'] = ['id' => $transaction->id()];
-        }
-
-        $res = $this->connection->executeBatchDml([
+    ): BatchDmlResult {
+        $options += [
             'session' => $session->name(),
-            'database' => $this->getDatabaseNameFromSession($session),
-            'statements' => $stmts
-        ] + $options);
+            'statements' => $this->formatStatements($statements),
+        ];
+        $options['transaction'] = $this->createTransactionSelector($options, $transaction->id());
 
-        if (empty($transaction->id())) {
+        /**
+         * @var ExecuteBatchDmlRequest $dmlRequest
+         * @var array $callOptions
+         */
+        [$dmlRequest, $callOptions] = $this->validateOptions(
+            $options,
+            new ExecuteBatchDmlRequest(),
+            CallOptions::class
+        );
+
+        $response = $this->spannerClient->executeBatchDml($dmlRequest, $callOptions + [
+            'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            'route-to-leader' => $this->routeToLeader
+        ]);
+        $resultCount = count($response->getResultSets());
+        if ($precommitToken = $response->getPrecommitToken()) {
+            // Set the precommitToken from {@see ExecuteBatchDmlResponse::getPrecommitToken}
+            $transaction->setPrecommitToken($precommitToken);
+        }
+        if (empty($transaction->id()) && $resultCount > 0) {
             // Get the transaction from array of ResultSets.
             // ResultSet contains transaction in the metadata.
             // @see https://cloud.google.com/spanner/docs/reference/rest/v1/ResultSet
-            $transaction->setId($res['resultSets'][0]['metadata']['transaction']['id'] ?? null);
+            $transaction->setId($response->getResultSets()[0]->getMetadata()->getTransaction()->getId());
         }
 
         $errorStatement = null;
-        if (isset($res['status']) && $res['status']['code'] !== Code::OK) {
-            $errIndex = count($res['resultSets']);
-            $errorStatement = $statements[$errIndex];
+        if ($response->getStatus() && $response->getStatus()->getCode() !== Code::OK) {
+            $errorStatement = $statements[$resultCount];
         }
 
-        return new BatchDmlResult($res, $errorStatement);
+        $responseData = $this->handleResponse($response);
+        return new BatchDmlResult($responseData, $errorStatement);
     }
 
     /**
      * Lookup rows in a database.
      *
-     * @param Session $session The session in which to read data.
+     * @param SessionCache $session The session in which to read data.
      * @param string $table The table name.
      * @param KeySet $keySet The KeySet to select rows.
      * @param array $columns A list of column names to return.
@@ -396,42 +476,61 @@ class Operation
      * @return Result
      */
     public function read(
-        Session $session,
+        SessionCache $session,
         $table,
         KeySet $keySet,
         array $columns,
         array $options = []
-    ) {
-        $options += [
-            'index' => null,
-            'limit' => null,
-            'offset' => null,
-            'transactionContext' => null
-        ];
+    ): Result {
+        $options['transaction'] = $options['transaction'] ?? [];
+        $options['keySet'] = $this->flattenKeySet($keySet);
 
-        $context = $this->pluck('transactionContext', $options);
+        /**
+         * @var ReadRequest $readRequest
+         * @var array $callOptions
+         * @var string|null $context
+         * @var array $rtl
+         */
+        [$readRequest, $callOptions, $context, $rtl] = $this->validateOptions(
+            $options,
+            new ReadRequest(),
+            CallOptions::class,
+            'transactionContext',
+            ['route-to-leader']
+        );
+
+        // Spanner allows "route-to-leader" as a call option {@see Middleware\SpannerMiddleware}
+        $callOptions += $rtl;
 
         $call = function ($resumeToken = null, $transaction = null) use (
             $table,
             $session,
             $columns,
-            $keySet,
-            $options
+            $readRequest,
+            $callOptions
         ) {
             if ($transaction && !empty($transaction->id())) {
-                $options['transaction'] = ['id' => $transaction->id()];
+                $readRequest->setTransaction(new TransactionSelector(['id' => $transaction->id()]));
             }
             if ($resumeToken) {
-                $options['resumeToken'] = $resumeToken;
+                $readRequest->setResumeToken($resumeToken);
             }
 
-            return $this->connection->streamingRead([
-                'table' => $table,
-                'session' => $session->name(),
-                'columns' => $columns,
-                'keySet' => $this->flattenKeySet($keySet),
-                'database' => $this->getDatabaseNameFromSession($session)
-            ] + $options);
+            $readRequest
+                ->setTable($table)
+                ->setSession($session->name())
+                ->setColumns($columns);
+
+            if (!$this->routeToLeader) {
+                unset($callOptions['route-to-leader']);
+            }
+
+            $stream = $this->spannerClient->streamingRead($readRequest, $callOptions + [
+                'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            ]);
+
+            // return the generator
+            return $this->handleResultSetStream($stream, $transaction);
         };
 
         return new Result($this, $session, $call, $context, $this->mapper);
@@ -442,7 +541,7 @@ class Operation
      *
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      *
-     * @param Session $session The session to start the transaction in.
+     * @param SessionCache $session The session to start the transaction in.
      * @param array $options [optional] {
      *     Configuration Options.
      *
@@ -455,71 +554,86 @@ class Operation
      *           `false`.
      *     @type array $begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type array $requestOptions
+     *     @type array $transactionOptions
+     *     @type string $tag
+     *     @type Mutation $mutationKey Required for read-write transactions on a multiplexed session
+     *           that commit mutations but do not perform any reads or queries. If not supplied,
+     *           one of the mutations from the mutation set will be selected and sent as a part of
+     *           this request.
      * }
      * @return Transaction
      */
-    public function transaction(Session $session, array $options = [])
+    public function transaction(SessionCache $session, array $options = []): Transaction
     {
-        $options += [
-            'singleUse' => false,
-            'isRetry' => false,
-            'requestOptions' => []
-        ];
-        $transactionTag = $this->pluck('tag', $options, false);
-        if (isset($transactionTag)) {
-            $options['requestOptions']['transactionTag'] = $transactionTag;
+        if (isset($options['transactionOptions'])) {
+            $options['options'] = $options['transactionOptions'];
         }
 
-        if (!$options['singleUse'] && (!isset($options['begin']) ||
-            isset($options['transactionOptions']['partitionedDml']))
-        ) {
-            $res = $this->beginTransaction($session, $options);
-        } else {
-            $res = [];
-        }
-
-        return $this->createTransaction(
-            $session,
-            $res,
-            [
-                'tag' => $transactionTag,
-                'isRetry' => $options['isRetry'],
-                'transactionOptions' => $options
-            ]
+        /**
+         * @var array $options
+         * @var BeginTransactionRequest $beginTransaction
+         * @var TransactionSelector $transactionSelector
+         * @var array $callOptions
+         */
+        [$options, $beginTransaction, $transactionSelector, $callOptions] = $this->validateOptions(
+            $options,
+            ['tag', 'isRetry', 'transactionOptions', 'singleUse'], // "singleUse" is an internal flag
+            new BeginTransactionRequest(),
+            new TransactionSelector(),
+            CallOptions::class,
         );
-    }
+        $id = null;
+        $precommitToken = null;
+        $transactionTag = $options['tag'] ?? null;
+        $isRetry = $options['isRetry'] ?? false;
 
-    /**
-     * Create a Transaction instance from a response object.
-     *
-     * @param Session $session The session the transaction belongs to.
-     * @param array $res [optional] The createTransaction response.
-     * @param array $options [optional] Options for the transaction object.
-     *     @type array $begin The begin transaction options.
-     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
-     * @return Transaction
-     */
-    public function createTransaction(Session $session, array $res = [], array $options = [])
-    {
-        $res += [
-            'id' => null
-        ];
-        $options += [
-            'tag' => null,
-            'transactionOptions' => null
-        ];
+        // transaction options may be passed in as a message or array
+        // TODO: only allow messages
+        $txnOptions = $beginTransaction->getOptions();
 
-        $options['isRetry'] = $options['isRetry'] ?? false;
+        if (empty($options['singleUse']) && (
+            !$transactionSelector->hasBegin()
+            || $txnOptions?->hasPartitionedDml()
+        )) {
+            if (!$beginTransaction->hasRequestOptions()) {
+                $beginTransaction->setRequestOptions(new RequestOptions());
+            }
+            if ($transactionTag) {
+                $beginTransaction->getRequestOptions()->setTransactionTag($transactionTag);
+            }
+            if ($txnOptions) {
+                $beginTransaction->setOptions($txnOptions);
+            }
 
+            // Execute the beginTransaction RPC
+            $transactionProto = $this->beginTransaction($session, $beginTransaction, $callOptions);
+            $id = $transactionProto->getId();
+            $precommitToken = $transactionProto->getPrecommitToken();
+        }
+
+        $options = array_filter([
+            'isRetry' => $isRetry,
+            'tag' => $transactionTag,
+            'begin' => $transactionSelector->getBegin(),
+            'singleUse' => $options['singleUse'] ?? null,
+            'requestOptions' => $beginTransaction->getRequestOptions(),
+            'transactionOptions' => $txnOptions,
+        ]);
         return new Transaction(
             $this,
             $session,
-            $res['id'],
-            $options['isRetry'],
-            $options['tag'],
-            $options['transactionOptions'],
+            $id,
+            $options,
             $this->mapper
         );
+
+        if ($precommitToken) {
+            // Set the precommitToken from {@see Transaction::getPrecommitToken}
+            $transaction->setPrecommitToken($precommitToken);
+        }
+
+        return $transaction;
     }
 
     /**
@@ -527,7 +641,7 @@ class Operation
      *
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      *
-     * @param Session $session The session to start the snapshot in.
+     * @param SessionCache $session The session to start the snapshot in.
      * @param array $options [optional] {
      *     Configuration Options.
      *
@@ -538,123 +652,65 @@ class Operation
      *     @type string $className If set, an instance of the given class will
      *           be instantiated. This setting is intended for internal use.
      *           **Defaults to** `Google\Cloud\Spanner\Snapshot`.
-     *     @type array $directedReadOptions Directed read options.
-     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
-     *           If using the `replicaSelection::type` setting, utilize the constants available in
-     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type array|TransactionOptions $transactionOptions
      * }
-     * @return mixed
+     * @return TransactionalReadInterface
      */
-    public function snapshot(Session $session, array $options = [])
+    public function snapshot(SessionCache $session, array $options = []): TransactionalReadInterface
     {
-        $options += [
-            'singleUse' => false,
-            'className' => Snapshot::class
-        ];
-
-        if (!$options['singleUse']) {
-            $res = $this->beginTransaction($session, $options);
-        } else {
-            $res = [];
+        // We allow the setting of "options" under the keyword "transactionOptions"
+        // @TODO: get rid of this? This seems like a poor naming choice.
+        if (isset($options['transactionOptions'])) {
+            $options['options'] = $options['transactionOptions'];
+            unset($options['transactionOptions']);
         }
 
-        $className = $this->pluck('className', $options);
-        return $this->createSnapshot(
-            $session,
-            $res + $options,
-            $className
+        /**
+         * @var BeginTransactionRequest $beginTransaction
+         * @var array $callOptions
+         * @var bool $singleUse
+         * @var string $className
+         */
+        [$beginTransaction, $callOptions, $singleUse, $className] = $this->validateOptions(
+            $options,
+            new BeginTransactionRequest(),
+            CallOptions::class,
+            'singleUse',
+            'className',
         );
-    }
 
-    /**
-     * Create a Snapshot instance from a response object.
-     *
-     * @param Session $session The session the snapshot belongs to.
-     * @param array $res [optional] The createTransaction response.
-     * @param string $className [optional] The class to instantiate with a
-     *        snapshot. **Defaults to** `Google\Cloud\Spanner\Snapshot`.
-     * @return mixed
-     */
-    public function createSnapshot(Session $session, array $res = [], $className = Snapshot::class)
-    {
-        $res += [
-            'id' => null,
-            'readTimestamp' => null
-        ];
+        $className ??= Snapshot::class;
+        $transactionId = null;
+        $readTimestamp = null;
+        if (!$singleUse) {
+            $transactionProto = $this->beginTransaction($session, $beginTransaction, $callOptions);
+            $transactionId = $transactionProto->getId();
+            if ($timestamp = $transactionProto->getReadTimestamp()) {
+                // Convert nanoseconds to microseconds (1 microsecond = 1000 nanoseconds)
+                $microseconds = (int) ($timestamp->getNanos() / 1000);
 
-        if ($res['readTimestamp']) {
-            if (!($res['readTimestamp'] instanceof Timestamp)) {
-                $time = $this->parseTimeString($res['readTimestamp']);
-                $res['readTimestamp'] = new Timestamp($time[0], $time[1]);
+                // Combine the seconds and microseconds into a floating-point timestamp
+                $timestampFloat = (float) $timestamp->getSeconds() + ($microseconds / 1000000);
+
+                // Create a DateTimeImmutable object from the floating-point timestamp
+                $datetime = DateTimeImmutable::createFromFormat('U.u', sprintf('%.6f', $timestampFloat));
+                $readTimestamp = new Timestamp($datetime, $timestamp->getNanos());
             }
         }
 
-        return new $className($this, $session, $res);
-    }
-
-    /**
-     * Create a new session.
-     *
-     * Sessions are handled behind the scenes and this method does not need to
-     * be called directly.
-     *
-     * @param string $databaseName The database name
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type array $labels Labels to be applied to each session created in
-     *           the pool. Label keys must be between 1 and 63 characters long
-     *           and must conform to the following regular expression:
-     *           `[a-z]([-a-z0-9]*[a-z0-9])?`. Label values must be between 0
-     *           and 63 characters long and must conform to the regular
-     *           expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`. No more than 64
-     *           labels can be associated with a given session. See
-     *           https://goo.gl/xmQnxf for more information on and examples of
-     *           labels.
-     *     @type string $creator_role The user created database role which creates the session.
-     * }
-     * @return Session
-     */
-    public function createSession($databaseName, array $options = [])
-    {
-        $res = $this->connection->createSession([
-            'database' => $databaseName,
-            'session' => [
-                'labels' => $this->pluck('labels', $options, false) ?: [],
-                'creator_role' => $this->pluck('creator_role', $options, false) ?: ''
-            ]
-        ] + $options);
-
-        return $this->session($res['name']);
-    }
-
-    /**
-     * Lazily instantiates a session. There are no network requests made at this
-     * point. To see the operations that can be performed on a session please
-     * see {@see \Google\Cloud\Spanner\Session\Session}.
-     *
-     * Sessions are handled behind the scenes and this method does not need to
-     * be called directly.
-     *
-     * @param string $sessionName The session's name.
-     * @return Session
-     */
-    public function session($sessionName)
-    {
-        $sessionNameComponents = GapicSpannerClient::parseName($sessionName);
-        return new Session(
-            $this->connection,
-            $sessionNameComponents['project'],
-            $sessionNameComponents['instance'],
-            $sessionNameComponents['database'],
-            $sessionNameComponents['session']
-        );
+        return new $className($this, $session, [
+            'id' => $transactionId,
+            'readTimestamp' => $readTimestamp,
+            'singleUse' => $singleUse,
+            'directedReadOptions' => $options['directedReadOptions'] ?? null,
+            'transactionOptions' => $beginTransaction->getOptions(),
+        ]);
     }
 
     /**
      * Begin a partitioned SQL query.
      *
-     * @param Session $session The session to run in.
+     * @param SessionCache $session The session to run in.
      * @param string $transactionId The transaction to run in.
      * @param string $sql The query string to execute.
      * @param array $options {
@@ -688,30 +744,54 @@ class Operation
      * }
      * @return QueryPartition[]
      */
-    public function partitionQuery(Session $session, $transactionId, $sql, array $options = [])
-    {
-        // cache this to pass to the partition instance.
-        $originalOptions = $options;
+    public function partitionQuery(
+        SessionCache $session,
+        string $transactionId,
+        string $sql,
+        array $options = []
+    ): array {
+        $options += $this->formatPartitionQueryOptions([
+            'parameters' => $options['parameters'] ?? null,
+            'types' => $options['types'] ?? null,
+        ]);
+        $options['transaction'] = $this->createTransactionSelector($options, $transactionId);
 
-        $parameters = $this->pluck('parameters', $options, false) ?: [];
-        $types = $this->pluck('types', $options, false) ?: [];
-        $options += $this->mapper->formatParamsForExecuteSql($parameters, $types);
+        /**
+         * @var PartitionOptions $partitionOptions
+         * @var PartitionQueryRequest $partitionQuery
+         * @var ExecuteSqlRequest $_executeSql
+         * @var array $_paramsAndTypes
+         * @var array $callOptions
+         */
+        [$partitionOptions, $partitionQuery, $_executeSql, $_paramsAndTypes, $callOptions] = $this->validateOptions(
+            $options,
+            new PartitionOptions(),
+            new PartitionQueryRequest(),
+            new ExecuteSqlRequest(), // these options are unused in this method, but are passed to QueryPartition
+            ['parameters', 'types'], // handled above, but define them here as well (so they're validated)
+            CallOptions::class
+        );
 
-        $options = $this->partitionOptions($options);
+        $partitionQuery
+            ->setSession($session->name())
+            ->setSql($sql)
+            ->setPartitionOptions($partitionOptions);
 
-        $res = $this->connection->partitionQuery([
-            'session' => $session->name(),
-            'database' => $this->getDatabaseNameFromSession($session),
-            'transactionId' => $transactionId,
-            'sql' => $sql
-        ] + $options);
+        $response = $this->spannerClient->partitionQuery($partitionQuery, $callOptions + [
+            'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            'route-to-leader' => $this->routeToLeader
+        ]);
 
         $partitions = [];
-        foreach ($res['partitions'] as $partition) {
+        $queryPartitionOptions = $this->pluckArray(['parameters', 'types', 'maxPartitions', 'partitionSizeBytes'], $options);
+
+        /** @var RepeatedField<Partition> $protoPartitions */
+        $protoPartitions = $response->getPartitions();
+        foreach ($protoPartitions as $partition) {
             $partitions[] = new QueryPartition(
-                $partition['partitionToken'],
+                $partition->getPartitionToken(),
                 $sql,
-                $originalOptions
+                $queryPartitionOptions
             );
         }
 
@@ -721,7 +801,7 @@ class Operation
     /**
      * Begin a partitioned read.
      *
-     * @param Session $session The session to run in.
+     * @param SessionCache $session The session to run in.
      * @param string $transactionId The transaction to run in.
      * @param string $table The table name.
      * @param KeySet $keySet The KeySet to select rows.
@@ -743,35 +823,54 @@ class Operation
      * @return ReadPartition[]
      */
     public function partitionRead(
-        Session $session,
-        $transactionId,
-        $table,
+        SessionCache $session,
+        string $transactionId,
+        string $table,
         KeySet $keySet,
         array $columns,
         array $options = []
-    ) {
-        // cache this to pass to the partition instance.
-        $originalOptions = $options;
+    ): array {
+        $options['transaction'] = $this->createTransactionSelector($options, $transactionId);
+        $options['columns'] = $columns;
+        $options['keySet'] = $this->flattenKeySet($keySet);
 
-        $options = $this->partitionOptions($options);
+        // Split all the options into their respective categories.
+        // $readRequest is unused, but the options are valid because they're passed in to the
+        // constructor of ReadPartition.
+        /**
+         * @var PartitionOptions $partitionOptions
+         * @var PartitionReadRequest $partitionRead
+         * @var ReadRequest $_readRequest
+         * @var array $callOptions
+         */
+        [$partitionOptions, $partitionRead, $_readRequest, $callOptions] = $this->validateOptions(
+            $options,
+            new PartitionOptions(),
+            new PartitionReadRequest(),
+            new ReadRequest(), // these options are unused in this method, but are passed to ReadPartition
+            CallOptions::class
+        );
 
-        $res = $this->connection->partitionRead([
-            'session' => $session->name(),
-            'database' => $this->getDatabaseNameFromSession($session),
-            'transactionId' => $transactionId,
-            'table' => $table,
-            'columns' => $columns,
-            'keySet' => $this->flattenKeySet($keySet)
-        ] + $options);
+        $partitionRead->setSession($session->name());
+        $partitionRead->setTable($table);
+        $partitionRead->setPartitionOptions($partitionOptions);
+
+        $response = $this->spannerClient->partitionRead($partitionRead, $callOptions + [
+            'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            'route-to-leader' => $this->routeToLeader
+        ]);
 
         $partitions = [];
-        foreach ($res['partitions'] as $partition) {
+        $readPartitionOptions = $this->pluckArray(['index', 'maxPartitions', 'partitionSizeBytes'], $options);
+        /** @var RepeatedField<Partition> $protoPartitions */
+        $protoPartitions = $response->getPartitions();
+        foreach ($protoPartitions as $partition) {
             $partitions[] = new ReadPartition(
-                $partition['partitionToken'],
+                $partition->getPartitionToken(),
                 $table,
                 $keySet,
                 $columns,
-                $originalOptions
+                $readPartitionOptions
             );
         }
 
@@ -779,73 +878,195 @@ class Operation
     }
 
     /**
-     * Normalize options for partition configuration.
-     *
-     * @param array $options
-     * @return array
-     */
-    private function partitionOptions(array $options)
-    {
-        $options['partitionOptions'] = array_filter([
-            'partitionSizeBytes' => $this->pluck('partitionSizeBytes', $options, false),
-            'maxPartitions' => $this->pluck('maxPartitions', $options, false)
-        ]);
-
-        return $options;
-    }
-
-    /**
      * Execute a service call to begin a transaction or snapshot.
      *
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      *
-     * @param Session $session The session to start the snapshot in.
-     * @param array $options [optional] Configuration options.
+     * @param SessionCache $session The session to start the snapshot in.
+     * @param BeginTransactionRequest $beginTransaction
+     * @param array $callOptions
      *
-     * @return array
+     * @return TransactionProto
      */
-    private function beginTransaction(Session $session, array $options = [])
+    private function beginTransaction(SessionCache $session, BeginTransactionRequest $beginTransaction, array $callOptions): TransactionProto
     {
-        $options += [
-            'transactionOptions' => []
-        ];
+        $routeToLeader = $this->routeToLeader && (
+            $beginTransaction->getOptions()?->hasReadWrite()
+            || $beginTransaction->getOptions()?->hasPartitionedDml()
+        );
 
-        return $this->connection->beginTransaction($options + [
-            'session' => $session->name(),
-            'database' => $this->getDatabaseNameFromSession($session)
+        if (!$beginTransaction->getSession()) {
+            $beginTransaction->setSession($session->name());
+        }
+
+        return $this->spannerClient->beginTransaction($beginTransaction, $callOptions + [
+            'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            'route-to-leader' => $routeToLeader,
         ]);
     }
 
-    /**
-     * Convert a KeySet object to an API-ready array.
-     *
-     * @param KeySet $keySet The keySet object.
-     * @return array [KeySet](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#keyset)
-     */
-    private function flattenKeySet(KeySet $keySet)
+    private function getDatabaseNameFromSession(SessionCache $session): string
     {
-        $keys = $keySet->keySetObject();
-
-        if (!empty($keys['ranges'])) {
-            foreach ($keys['ranges'] as $index => $range) {
-                foreach ($range as $type => $rangeKeys) {
-                    $range[$type] = $this->mapper->encodeValuesAsSimpleType($rangeKeys);
-                }
-
-                $keys['ranges'][$index] = $range;
-            }
-        }
-
-        if (!empty($keys['keys'])) {
-            $keys['keys'] = $this->mapper->encodeValuesAsSimpleType($keys['keys'], true);
-        }
-
-        return $this->arrayFilterRemoveNull($keys);
+        $sessionName = $session->name();
+        $parts = SpannerClient::parseName($sessionName);
+        return SpannerClient::databaseName($parts['project'], $parts['instance'], $parts['database']);
     }
 
-    private function getDatabaseNameFromSession(Session $session)
+    /**
+     * Format statements.
+     *
+     * @param array $statements
+     * @return array
+     */
+    private function formatStatements(array $statements): array
     {
-        return $session->info()['databaseName'];
+        $result = [];
+        foreach ($statements as $statement) {
+            if (!isset($statement['sql'])) {
+                throw new InvalidArgumentException('Each statement must contain a SQL key.');
+            }
+
+            $parameters = $statement['parameters'] ?? [];
+            $types = $statement['types'] ?? [];
+            $mappedStatement = [
+                'sql' => $statement['sql']
+            ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
+
+            $result[] = $this->formatSqlParams($mappedStatement);
+        }
+        return $result;
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    private function formatSqlParams(array $args): array
+    {
+        $params = $this->pluck('params', $args);
+        if ($params) {
+            $modifiedParams = array_map([$this, 'formatValueForApi'], $params);
+            $args['params'] = ['fields' => $modifiedParams];
+        }
+
+        return $args;
+    }
+
+    /**
+     * @param array $args
+     * @param string|null $transactionId
+     *
+     * @return array
+     */
+    private function createTransactionSelector(
+        array $args,
+        string|null $transactionId
+    ): array {
+        if (isset($args['transaction'])) {
+            return $args['transaction'];
+        }
+
+        if ($transactionId) {
+            return ['id' => $transactionId];
+        }
+
+        return [];
+    }
+
+    /**
+     * @param array $args
+     *
+     * @return array
+     */
+    private function createQueryOptions(array $args): array
+    {
+        $queryOptions = $this->pluck('queryOptions', $args, false) ?: [];
+        // Query options precedence is query-level, then environment-level, then client-level.
+        $envQueryOptimizerVersion = getenv('SPANNER_OPTIMIZER_VERSION');
+        $envQueryOptimizerStatisticsPackage = getenv('SPANNER_OPTIMIZER_STATISTICS_PACKAGE');
+        if (!empty($envQueryOptimizerVersion)) {
+            $queryOptions += ['optimizerVersion' => $envQueryOptimizerVersion];
+        }
+        if (!empty($envQueryOptimizerStatisticsPackage)) {
+            $queryOptions += ['optimizerStatisticsPackage' => $envQueryOptimizerStatisticsPackage];
+        }
+        $queryOptions += $this->defaultQueryOptions ?: [];
+
+        return $queryOptions;
+    }
+
+    /**
+     * @param array $args
+     *
+     * @return array{params: array, paramTypes: array}
+     */
+    private function formatPartitionQueryOptions(array $args): array
+    {
+        $parameters = $args['parameters'] ?? [];
+        $types = $args['types'] ?? [];
+
+        $paramsAndParamTypes = $this->mapper->formatParamsForExecuteSql($parameters, $types);
+        return $this->formatSqlParams($paramsAndParamTypes);
+    }
+
+    /**
+     * Handles a streaming response.
+     *
+     * @param ServerStream $response
+     * @return \Generator<array>
+     * @throws ServiceException
+     */
+    private function handleResultSetStream(ServerStream $response, ?Transaction $transaction)
+    {
+        try {
+            foreach ($response->readAll() as $count => $result) {
+                if ($transaction && $precommitToken = $result->getPrecommitToken()) {
+                    $transaction->setPrecommitToken($precommitToken);
+                }
+                $res = $this->serializer->encodeMessage($result);
+                yield $res;
+            }
+        } catch (\Exception $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
+    }
+
+    /**
+     * @param string $databaseName
+     * @param ExecuteSqlRequest $executeSqlRequest
+     * @param array $callOptions
+     * @return Generator
+     */
+    private function executeStreamingSql(string $databaseName, ExecuteSqlRequest $executeSqlRequest, array $callOptions): Generator
+    {
+        if (!$this->routeToLeader) {
+            unset($callOptions['route-to-leader']);
+        }
+
+        $response = $this->spannerClient->executeStreamingSql($executeSqlRequest, $callOptions + [
+            'resource-prefix' => $databaseName,
+        ]);
+
+        return $this->handleResponse($response);
+    }
+
+    /**
+     * @param string $databaseName
+     * @param ReadRequest $readRequest
+     * @param array $callOptions
+     * @return Generator
+     */
+    private function streamingRead(string $databaseName, ReadRequest $readRequest, array $callOptions): Generator
+    {
+        if (!$this->routeToLeader) {
+            unset($callOptions['route-to-leader']);
+        }
+
+        $response = $this->spannerClient->streamingRead($readRequest, $callOptions + [
+            'resource-prefix' => $databaseName,
+        ]);
+
+        return $this->handleResponse($response);
     }
 
     /**
@@ -857,7 +1078,7 @@ class Operation
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'spannerClient' => get_class($this->spannerClient),
         ];
     }
 }

@@ -35,22 +35,22 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\PolicySimulator\V1\Client\SimulatorClient;
-Google\Cloud\PolicySimulator\V1\GetReplayRequest;
-Google\Cloud\PolicySimulator\V1\Replay;
+use Google\ApiCore\ApiException;
+use Google\Cloud\PolicySimulator\V1\Client\OrgPolicyViolationsPreviewServiceClient;
+use Google\Cloud\PolicySimulator\V1\GetOrgPolicyViolationsPreviewRequest;
+use Google\Cloud\PolicySimulator\V1\OrgPolicyViolationsPreview;
 
 // Create a client.
-$simulatorClient = new SimulatorClient();
+$orgPolicyViolationsPreviewServiceClient = new OrgPolicyViolationsPreviewServiceClient();
 
 // Prepare the request message.
-$request = (new GetReplayRequest())
+$request = (new GetOrgPolicyViolationsPreviewRequest())
     ->setName($formattedName);
 
 // Call the API and handle any network failures.
 try {
-    /** @var Replay $response */
-    $response = $simulatorClient->getReplay($request);
+    /** @var OrgPolicyViolationsPreview $response */
+    $response = $orgPolicyViolationsPreviewServiceClient->getOrgPolicyViolationsPreview($request);
     printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

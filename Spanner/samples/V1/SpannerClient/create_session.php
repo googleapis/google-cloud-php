@@ -40,14 +40,14 @@ use Google\Cloud\Spanner\V1\Session;
  * transaction internally, and count toward the one transaction
  * limit.
  *
- * Active sessions use additional server resources, so it is a good idea to
+ * Active sessions use additional server resources, so it's a good idea to
  * delete idle and unneeded sessions.
- * Aside from explicit deletes, Cloud Spanner may delete sessions for which no
+ * Aside from explicit deletes, Cloud Spanner can delete sessions when no
  * operations are sent for more than an hour. If a session is deleted,
  * requests to it return `NOT_FOUND`.
  *
  * Idle sessions can be kept alive by sending a trivial SQL query
- * periodically, e.g., `"SELECT 1"`.
+ * periodically, for example, `"SELECT 1"`.
  *
  * @param string $formattedDatabase The database in which the new session is created. Please see
  *                                  {@see SpannerClient::databaseName()} for help formatting this field.

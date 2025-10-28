@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\DeadlineExceededException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 
@@ -27,8 +28,10 @@ use Google\Cloud\Spanner\KeySet;
  * @group spanner-read
  * @group spanner-postgres
  */
-class PgReadTest extends SpannerPgTestCase
+class PgReadTest extends SystemTestCase
 {
+    use PgSystemTestCaseTrait;
+
     private static $readTableName;
     private static $rangeTableName;
     private static $indexes = [];
@@ -39,10 +42,10 @@ class PgReadTest extends SpannerPgTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
-        self::$readTableName = "read_table";
-        self::$rangeTableName = "range_table";
+        self::$readTableName = 'read_table';
+        self::$rangeTableName = 'range_table';
 
         $create = 'CREATE TABLE %s (
             id bigint NOT NULL,
@@ -312,7 +315,7 @@ class PgReadTest extends SpannerPgTestCase
         };
 
         $limitCount = count(iterator_to_array($res(10)));
-        $unlimitCount = count(iterator_to_array($res(null)));
+        $unlimitCount = count(iterator_to_array($res(0)));
 
         $this->assertEquals(10, $limitCount);
         $this->assertNotEquals($limitCount, $unlimitCount);
@@ -331,7 +334,7 @@ class PgReadTest extends SpannerPgTestCase
         };
 
         $limitCount = count(iterator_to_array($res(10)));
-        $unlimitCount = count(iterator_to_array($res(null)));
+        $unlimitCount = count(iterator_to_array($res(0)));
 
         $this->assertEquals(10, $limitCount);
         $this->assertNotEquals($limitCount, $unlimitCount);

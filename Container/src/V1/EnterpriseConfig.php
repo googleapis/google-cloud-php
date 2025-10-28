@@ -10,7 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * EnterpriseConfig is the cluster enterprise configuration.
+ * Deprecated: GKE Enterprise features are now available without an Enterprise
+ * tier.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.container.v1.EnterpriseConfig</code>
  */
 class EnterpriseConfig extends \Google\Protobuf\Internal\Message

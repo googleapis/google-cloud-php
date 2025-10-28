@@ -20,7 +20,7 @@ class ExplainMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.PlanSummary plan_summary = 1;</code>
      */
-    private $plan_summary = null;
+    protected $plan_summary = null;
     /**
      * Aggregated stats from the execution of the query. Only present when
      * [ExplainOptions.analyze][google.datastore.v1.ExplainOptions.analyze] is set
@@ -28,7 +28,7 @@ class ExplainMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.ExecutionStats execution_stats = 2;</code>
      */
-    private $execution_stats = null;
+    protected $execution_stats = null;
 
     /**
      * Constructor.

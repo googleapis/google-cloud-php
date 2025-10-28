@@ -44,29 +44,18 @@ use Google\Rpc\Status;
  *                                                             cluster resource is created, in the following format:
  *                                                             projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
  *                                                             Please see {@see OracleDatabaseClient::cloudExadataInfrastructureName()} for help formatting this field.
- * @param string $cloudVmClusterCidr                           Network settings. CIDR to use for cluster IP allocation.
- * @param string $cloudVmClusterBackupSubnetCidr               CIDR range of the backup subnet.
- * @param string $formattedCloudVmClusterNetwork               The name of the VPC network.
- *                                                             Format: projects/{project}/global/networks/{network}
- *                                                             Please see {@see OracleDatabaseClient::networkName()} for help formatting this field.
  */
 function create_cloud_vm_cluster_sample(
     string $formattedParent,
     string $cloudVmClusterId,
-    string $formattedCloudVmClusterExadataInfrastructure,
-    string $cloudVmClusterCidr,
-    string $cloudVmClusterBackupSubnetCidr,
-    string $formattedCloudVmClusterNetwork
+    string $formattedCloudVmClusterExadataInfrastructure
 ): void {
     // Create a client.
     $oracleDatabaseClient = new OracleDatabaseClient();
 
     // Prepare the request message.
     $cloudVmCluster = (new CloudVmCluster())
-        ->setExadataInfrastructure($formattedCloudVmClusterExadataInfrastructure)
-        ->setCidr($cloudVmClusterCidr)
-        ->setBackupSubnetCidr($cloudVmClusterBackupSubnetCidr)
-        ->setNetwork($formattedCloudVmClusterNetwork);
+        ->setExadataInfrastructure($formattedCloudVmClusterExadataInfrastructure);
     $request = (new CreateCloudVmClusterRequest())
         ->setParent($formattedParent)
         ->setCloudVmClusterId($cloudVmClusterId)
@@ -110,17 +99,11 @@ function callSample(): void
         '[LOCATION]',
         '[CLOUD_EXADATA_INFRASTRUCTURE]'
     );
-    $cloudVmClusterCidr = '[CIDR]';
-    $cloudVmClusterBackupSubnetCidr = '[BACKUP_SUBNET_CIDR]';
-    $formattedCloudVmClusterNetwork = OracleDatabaseClient::networkName('[PROJECT]', '[NETWORK]');
 
     create_cloud_vm_cluster_sample(
         $formattedParent,
         $cloudVmClusterId,
-        $formattedCloudVmClusterExadataInfrastructure,
-        $cloudVmClusterCidr,
-        $cloudVmClusterBackupSubnetCidr,
-        $formattedCloudVmClusterNetwork
+        $formattedCloudVmClusterExadataInfrastructure
     );
 }
 // [END oracledatabase_v1_generated_OracleDatabase_CreateCloudVmCluster_sync]

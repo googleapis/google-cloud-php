@@ -17,19 +17,25 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\DeadlineExceededException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
 use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
 
 /**
  * @group spanner
  * @group spanner-read
  */
-class ReadTest extends SpannerTestCase
+class ReadTest extends SystemTestCase
 {
+    use SystemTestCaseTrait;
+
     private static $readTableName;
     private static $rangeTableName;
     private static $indexes = [];
@@ -40,7 +46,7 @@ class ReadTest extends SpannerTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$readTableName = uniqid(self::TESTING_PREFIX);
         self::$rangeTableName = uniqid(self::TESTING_PREFIX);
@@ -241,6 +247,36 @@ class ReadTest extends SpannerTestCase
         }
     }
 
+    public function testLockHintReadWriteTransaction()
+    {
+        $db = self::$database;
+        $limit = 10;
+
+        $res = $db->read(self::$rangeTableName, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
+            'begin' => true,
+            'transactionType' => Database::CONTEXT_READWRITE,
+            'lockHint' => LockHint::LOCK_HINT_EXCLUSIVE,
+            'limit' => $limit,
+        ]);
+
+        $rows = iterator_to_array($res->rows());
+        $this->assertNotEmpty($rows);
+        $this->assertEquals($limit, count($rows));
+    }
+
+    public function testLockHintOnReadOnlyThrowsAnError()
+    {
+        $this->skipEmulatorTests();
+        $db = self::$database;
+        $this->expectException(BadRequestException::class);
+
+        $res = $db->read(self::$rangeTableName, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
+            'lockHint' => LockHint::LOCK_HINT_EXCLUSIVE
+        ]);
+
+        iterator_to_array($res->rows());
+    }
+
     /**
      * covers 9
      */
@@ -372,7 +408,7 @@ class ReadTest extends SpannerTestCase
         };
 
         $limitCount = count(iterator_to_array($res(10)));
-        $unlimitCount = count(iterator_to_array($res(null)));
+        $unlimitCount = count(iterator_to_array($res(0)));
 
         $this->assertEquals(10, $limitCount);
         $this->assertNotEquals($limitCount, $unlimitCount);
@@ -394,7 +430,7 @@ class ReadTest extends SpannerTestCase
         };
 
         $limitCount = count(iterator_to_array($res(10)));
-        $unlimitCount = count(iterator_to_array($res(null)));
+        $unlimitCount = count(iterator_to_array($res(0)));
 
         $this->assertEquals(10, $limitCount);
         $this->assertNotEquals($limitCount, $unlimitCount);
@@ -552,7 +588,7 @@ class ReadTest extends SpannerTestCase
             $json = json_decode($e->getMessage(), true);
 
             if ($json['status'] == 'ALREADY_EXISTS') {
-                $this->insertUnorderedBatch($data);
+                $this->insertUnorderedBatch();
             } else {
                 throw $e;
             }

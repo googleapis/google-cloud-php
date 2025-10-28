@@ -29,7 +29,7 @@ use Google\Analytics\Admin\V1alpha\SubpropertySyncConfig;
 use Google\ApiCore\ApiException;
 
 /**
- * Lookup for a single Subproperty Sync Config.
+ * Lookup for a single `SubpropertySyncConfig`.
  *
  * @param string $formattedName Resource name of the SubpropertySyncConfig to lookup.
  *                              Format:

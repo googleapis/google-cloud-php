@@ -21,32 +21,32 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
-     * Parameters to be applied to each created session.
+     * Parameters to apply to each created session.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Session session_template = 2;</code>
      */
-    private $session_template = null;
+    protected $session_template = null;
     /**
      * Required. The number of sessions to be created in this batch call.
-     * The API may return fewer than the requested number of sessions. If a
+     * The API can return fewer than the requested number of sessions. If a
      * specific number of sessions are desired, the client can make additional
-     * calls to BatchCreateSessions (adjusting
+     * calls to `BatchCreateSessions` (adjusting
      * [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
      * as necessary).
      *
      * Generated from protobuf field <code>int32 session_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $session_count = 0;
+    protected $session_count = 0;
 
     /**
      * @param string $database     Required. The database in which the new sessions are created. Please see
      *                             {@see SpannerClient::databaseName()} for help formatting this field.
      * @param int    $sessionCount Required. The number of sessions to be created in this batch call.
-     *                             The API may return fewer than the requested number of sessions. If a
+     *                             The API can return fewer than the requested number of sessions. If a
      *                             specific number of sessions are desired, the client can make additional
-     *                             calls to BatchCreateSessions (adjusting
+     *                             calls to `BatchCreateSessions` (adjusting
      *                             [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
      *                             as necessary).
      *
@@ -70,12 +70,12 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $database
      *           Required. The database in which the new sessions are created.
      *     @type \Google\Cloud\Spanner\V1\Session $session_template
-     *           Parameters to be applied to each created session.
+     *           Parameters to apply to each created session.
      *     @type int $session_count
      *           Required. The number of sessions to be created in this batch call.
-     *           The API may return fewer than the requested number of sessions. If a
+     *           The API can return fewer than the requested number of sessions. If a
      *           specific number of sessions are desired, the client can make additional
-     *           calls to BatchCreateSessions (adjusting
+     *           calls to `BatchCreateSessions` (adjusting
      *           [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
      *           as necessary).
      * }
@@ -112,7 +112,7 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Parameters to be applied to each created session.
+     * Parameters to apply to each created session.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Session session_template = 2;</code>
      * @return \Google\Cloud\Spanner\V1\Session|null
@@ -133,7 +133,7 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Parameters to be applied to each created session.
+     * Parameters to apply to each created session.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Session session_template = 2;</code>
      * @param \Google\Cloud\Spanner\V1\Session $var
@@ -149,9 +149,9 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The number of sessions to be created in this batch call.
-     * The API may return fewer than the requested number of sessions. If a
+     * The API can return fewer than the requested number of sessions. If a
      * specific number of sessions are desired, the client can make additional
-     * calls to BatchCreateSessions (adjusting
+     * calls to `BatchCreateSessions` (adjusting
      * [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
      * as necessary).
      *
@@ -165,9 +165,9 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The number of sessions to be created in this batch call.
-     * The API may return fewer than the requested number of sessions. If a
+     * The API can return fewer than the requested number of sessions. If a
      * specific number of sessions are desired, the client can make additional
-     * calls to BatchCreateSessions (adjusting
+     * calls to `BatchCreateSessions` (adjusting
      * [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
      * as necessary).
      *

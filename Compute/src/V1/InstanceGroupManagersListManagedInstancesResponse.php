@@ -25,7 +25,7 @@ class InstanceGroupManagersListManagedInstancesResponse extends \Google\Protobuf
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
-    private $next_page_token = null;
+    protected $next_page_token = null;
 
     /**
      * Constructor.

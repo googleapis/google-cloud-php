@@ -19,7 +19,7 @@ class InstantSnapshotResourceStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 storage_size_bytes = 387548913;</code>
      */
-    private $storage_size_bytes = null;
+    protected $storage_size_bytes = null;
 
     /**
      * Constructor.

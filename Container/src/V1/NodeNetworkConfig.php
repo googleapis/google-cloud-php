@@ -115,6 +115,14 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $subnetwork = '';
+    /**
+     * Output only. The network tier configuration for the node pool inherits from
+     * the cluster-level configuration and remains immutable throughout the node
+     * pool's lifecycle, including during upgrades.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTierConfig network_tier_config = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $network_tier_config = null;
 
     /**
      * Constructor.
@@ -182,6 +190,10 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *           If the cluster is associated with multiple subnetworks, the subnetwork for
      *           the node pool is picked based on the IP utilization during node pool
      *           creation and is immutable.
+     *     @type \Google\Cloud\Container\V1\NetworkTierConfig $network_tier_config
+     *           Output only. The network tier configuration for the node pool inherits from
+     *           the cluster-level configuration and remains immutable throughout the node
+     *           pool's lifecycle, including during upgrades.
      * }
      */
     public function __construct($data = NULL) {
@@ -555,6 +567,46 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->subnetwork = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The network tier configuration for the node pool inherits from
+     * the cluster-level configuration and remains immutable throughout the node
+     * pool's lifecycle, including during upgrades.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTierConfig network_tier_config = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Container\V1\NetworkTierConfig|null
+     */
+    public function getNetworkTierConfig()
+    {
+        return $this->network_tier_config;
+    }
+
+    public function hasNetworkTierConfig()
+    {
+        return isset($this->network_tier_config);
+    }
+
+    public function clearNetworkTierConfig()
+    {
+        unset($this->network_tier_config);
+    }
+
+    /**
+     * Output only. The network tier configuration for the node pool inherits from
+     * the cluster-level configuration and remains immutable throughout the node
+     * pool's lifecycle, including during upgrades.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTierConfig network_tier_config = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Container\V1\NetworkTierConfig $var
+     * @return $this
+     */
+    public function setNetworkTierConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkTierConfig::class);
+        $this->network_tier_config = $var;
 
         return $this;
     }

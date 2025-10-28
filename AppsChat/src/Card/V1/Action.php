@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * An action that describes the behavior when the form is submitted.
  * For example, you can invoke an Apps Script script to handle the form.
  * If the action is triggered, the form values are sent to the server.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.Action</code>
@@ -21,7 +21,7 @@ class Action extends \Google\Protobuf\Internal\Message
 {
     /**
      * A custom function to invoke when the containing element is
-     * clicked or othrwise activated.
+     * clicked or otherwise activated.
      * For example usage, see [Read form
      * data](https://developers.google.com/workspace/chat/read-form-data).
      *
@@ -80,6 +80,26 @@ class Action extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.apps.card.v1.Action.Interaction interaction = 5;</code>
      */
     protected $interaction = 0;
+    /**
+     * Optional. Fill this list with the names of widgets that this Action
+     * needs for a valid submission.
+     * If the widgets listed here don't have a value when this Action is invoked,
+     * the form submission is aborted.
+     * [Google Workspace add-ons and Chat
+     * apps](https://developers.google.com/workspace/extend):
+     *
+     * Generated from protobuf field <code>repeated string required_widgets = 6;</code>
+     */
+    private $required_widgets;
+    /**
+     * Optional. If this is true, then all widgets are considered required by
+     * this action.
+     * [Google Workspace add-ons and Chat
+     * apps](https://developers.google.com/workspace/extend):
+     *
+     * Generated from protobuf field <code>bool all_widgets_are_required = 7;</code>
+     */
+    protected $all_widgets_are_required = false;
 
     /**
      * Constructor.
@@ -89,7 +109,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      *     @type string $function
      *           A custom function to invoke when the containing element is
-     *           clicked or othrwise activated.
+     *           clicked or otherwise activated.
      *           For example usage, see [Read form
      *           data](https://developers.google.com/workspace/chat/read-form-data).
      *     @type array<\Google\Apps\Card\V1\Action\ActionParameter>|\Google\Protobuf\Internal\RepeatedField $parameters
@@ -128,6 +148,18 @@ class Action extends \Google\Protobuf\Internal\Message
      *           specified, a loading indicator isn't shown. If specified for
      *           an add-on, the entire card is stripped and nothing is shown in the client.
      *           [Google Chat apps](https://developers.google.com/workspace/chat):
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required_widgets
+     *           Optional. Fill this list with the names of widgets that this Action
+     *           needs for a valid submission.
+     *           If the widgets listed here don't have a value when this Action is invoked,
+     *           the form submission is aborted.
+     *           [Google Workspace add-ons and Chat
+     *           apps](https://developers.google.com/workspace/extend):
+     *     @type bool $all_widgets_are_required
+     *           Optional. If this is true, then all widgets are considered required by
+     *           this action.
+     *           [Google Workspace add-ons and Chat
+     *           apps](https://developers.google.com/workspace/extend):
      * }
      */
     public function __construct($data = NULL) {
@@ -137,7 +169,7 @@ class Action extends \Google\Protobuf\Internal\Message
 
     /**
      * A custom function to invoke when the containing element is
-     * clicked or othrwise activated.
+     * clicked or otherwise activated.
      * For example usage, see [Read form
      * data](https://developers.google.com/workspace/chat/read-form-data).
      *
@@ -151,7 +183,7 @@ class Action extends \Google\Protobuf\Internal\Message
 
     /**
      * A custom function to invoke when the containing element is
-     * clicked or othrwise activated.
+     * clicked or otherwise activated.
      * For example usage, see [Read form
      * data](https://developers.google.com/workspace/chat/read-form-data).
      *
@@ -323,6 +355,74 @@ class Action extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Apps\Card\V1\Action\Interaction::class);
         $this->interaction = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Fill this list with the names of widgets that this Action
+     * needs for a valid submission.
+     * If the widgets listed here don't have a value when this Action is invoked,
+     * the form submission is aborted.
+     * [Google Workspace add-ons and Chat
+     * apps](https://developers.google.com/workspace/extend):
+     *
+     * Generated from protobuf field <code>repeated string required_widgets = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRequiredWidgets()
+    {
+        return $this->required_widgets;
+    }
+
+    /**
+     * Optional. Fill this list with the names of widgets that this Action
+     * needs for a valid submission.
+     * If the widgets listed here don't have a value when this Action is invoked,
+     * the form submission is aborted.
+     * [Google Workspace add-ons and Chat
+     * apps](https://developers.google.com/workspace/extend):
+     *
+     * Generated from protobuf field <code>repeated string required_widgets = 6;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRequiredWidgets($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->required_widgets = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If this is true, then all widgets are considered required by
+     * this action.
+     * [Google Workspace add-ons and Chat
+     * apps](https://developers.google.com/workspace/extend):
+     *
+     * Generated from protobuf field <code>bool all_widgets_are_required = 7;</code>
+     * @return bool
+     */
+    public function getAllWidgetsAreRequired()
+    {
+        return $this->all_widgets_are_required;
+    }
+
+    /**
+     * Optional. If this is true, then all widgets are considered required by
+     * this action.
+     * [Google Workspace add-ons and Chat
+     * apps](https://developers.google.com/workspace/extend):
+     *
+     * Generated from protobuf field <code>bool all_widgets_are_required = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllWidgetsAreRequired($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->all_widgets_are_required = $var;
 
         return $this;
     }

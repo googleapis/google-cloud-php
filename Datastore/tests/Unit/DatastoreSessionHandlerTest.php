@@ -21,6 +21,8 @@ use Exception;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
 use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\EntityIterator;
+use Google\Cloud\Datastore\EntityPageIterator;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Transaction;
@@ -444,7 +446,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
 
-        $this->assertTrue($ret);
+        $this->assertEquals(0, $ret);
     }
 
     public function testGc()
@@ -504,7 +506,8 @@ class DatastoreSessionHandlerTest extends TestCase
                     ['namespaceId' => self::NAMESPACE_ID],
                     $args[1]
                 );
-                return [$entity1, $entity2];
+
+                return $that->iteratorFromArray([$entity1, $entity2]);
             });
 
         $this->datastore->deleteBatch([$key1, $key2])
@@ -517,7 +520,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
 
-        $this->assertTrue($ret);
+        $this->assertEquals(2, $ret);
     }
 
     public function testGcWithException()
@@ -579,7 +582,7 @@ class DatastoreSessionHandlerTest extends TestCase
                     ['namespaceId' => self::NAMESPACE_ID],
                     $args[1]
                 );
-                return [$entity1, $entity2];
+                return $that->iteratorFromArray([$entity1, $entity2]);
             });
 
         $this->datastore->deleteBatch([$key1, $key2])
@@ -602,5 +605,17 @@ class DatastoreSessionHandlerTest extends TestCase
             throw new Exception($errstr, $errno);
         }, E_USER_WARNING);
         $this->expectException(Exception::class);
+    }
+
+    public function iteratorFromArray(array $elements)
+    {
+        $validCalls = array_fill(0, count($elements), true);
+        $validCalls[] = false;
+        $iterator = $this->prophesize(EntityIterator::class);
+        $iterator->rewind()->shouldBeCalled();
+        $iterator->next()->shouldBeCalled();
+        $iterator->valid()->willReturn(...$validCalls);
+        $iterator->current()->willReturn(...$elements);
+        return $iterator->reveal();
     }
 }

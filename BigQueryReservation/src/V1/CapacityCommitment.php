@@ -33,15 +33,15 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Number of slots in this commitment.
+     * Optional. Number of slots in this commitment.
      *
-     * Generated from protobuf field <code>int64 slot_count = 2;</code>
+     * Generated from protobuf field <code>int64 slot_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $slot_count = 0;
     /**
-     * Capacity commitment commitment plan.
+     * Optional. Capacity commitment commitment plan.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan plan = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan plan = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $plan = 0;
     /**
@@ -62,7 +62,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The end of the current commitment period. It is applicable
      * only for ACTIVE capacity commitments. Note after renewal,
-     * commitment_end_time is the time the renewed commitment expires. So it would
+     * commitment_end_time is the time the renewed commitment expires. So itwould
      * be at a time after commitment_start_time + committed period, because we
      * don't change commitment_start_time ,
      *
@@ -76,11 +76,12 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     protected $failure_status = null;
     /**
-     * The plan this capacity commitment is converted to after commitment_end_time
-     * passes. Once the plan is changed, committed period is extended according to
-     * commitment plan. Only applicable for ANNUAL and TRIAL commitments.
+     * Optional. The plan this capacity commitment is converted to after
+     * commitment_end_time passes. Once the plan is changed, committed period is
+     * extended according to commitment plan. Only applicable for ANNUAL and TRIAL
+     * commitments.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan renewal_plan = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan renewal_plan = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $renewal_plan = 0;
     /**
@@ -92,13 +93,14 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * NOTE: this is a preview feature. Project must be allow-listed in order to
      * set this field.
      *
-     * Generated from protobuf field <code>bool multi_region_auxiliary = 10;</code>
+     * Generated from protobuf field <code>bool multi_region_auxiliary = 10 [deprecated = true];</code>
+     * @deprecated
      */
     protected $multi_region_auxiliary = false;
     /**
-     * Edition of the capacity commitment.
+     * Optional. Edition of the capacity commitment.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $edition = 0;
     /**
@@ -122,9 +124,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      *           dashes. It must start with a letter and must not end
      *           with a dash. Its maximum length is 64 characters.
      *     @type int|string $slot_count
-     *           Number of slots in this commitment.
+     *           Optional. Number of slots in this commitment.
      *     @type int $plan
-     *           Capacity commitment commitment plan.
+     *           Optional. Capacity commitment commitment plan.
      *     @type int $state
      *           Output only. State of the commitment.
      *     @type \Google\Protobuf\Timestamp $commitment_start_time
@@ -135,15 +137,16 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $commitment_end_time
      *           Output only. The end of the current commitment period. It is applicable
      *           only for ACTIVE capacity commitments. Note after renewal,
-     *           commitment_end_time is the time the renewed commitment expires. So it would
+     *           commitment_end_time is the time the renewed commitment expires. So itwould
      *           be at a time after commitment_start_time + committed period, because we
      *           don't change commitment_start_time ,
      *     @type \Google\Rpc\Status $failure_status
      *           Output only. For FAILED commitment plan, provides the reason of failure.
      *     @type int $renewal_plan
-     *           The plan this capacity commitment is converted to after commitment_end_time
-     *           passes. Once the plan is changed, committed period is extended according to
-     *           commitment plan. Only applicable for ANNUAL and TRIAL commitments.
+     *           Optional. The plan this capacity commitment is converted to after
+     *           commitment_end_time passes. Once the plan is changed, committed period is
+     *           extended according to commitment plan. Only applicable for ANNUAL and TRIAL
+     *           commitments.
      *     @type bool $multi_region_auxiliary
      *           Applicable only for commitments located within one of the BigQuery
      *           multi-regions (US or EU).
@@ -153,7 +156,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      *           NOTE: this is a preview feature. Project must be allow-listed in order to
      *           set this field.
      *     @type int $edition
-     *           Edition of the capacity commitment.
+     *           Optional. Edition of the capacity commitment.
      *     @type bool $is_flat_rate
      *           Output only. If true, the commitment is a flat-rate commitment, otherwise,
      *           it's an edition commitment.
@@ -199,9 +202,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of slots in this commitment.
+     * Optional. Number of slots in this commitment.
      *
-     * Generated from protobuf field <code>int64 slot_count = 2;</code>
+     * Generated from protobuf field <code>int64 slot_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getSlotCount()
@@ -210,9 +213,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of slots in this commitment.
+     * Optional. Number of slots in this commitment.
      *
-     * Generated from protobuf field <code>int64 slot_count = 2;</code>
+     * Generated from protobuf field <code>int64 slot_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */
@@ -225,9 +228,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Capacity commitment commitment plan.
+     * Optional. Capacity commitment commitment plan.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan plan = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan plan = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPlan()
@@ -236,9 +239,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Capacity commitment commitment plan.
+     * Optional. Capacity commitment commitment plan.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan plan = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan plan = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -321,7 +324,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The end of the current commitment period. It is applicable
      * only for ACTIVE capacity commitments. Note after renewal,
-     * commitment_end_time is the time the renewed commitment expires. So it would
+     * commitment_end_time is the time the renewed commitment expires. So itwould
      * be at a time after commitment_start_time + committed period, because we
      * don't change commitment_start_time ,
      *
@@ -346,7 +349,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The end of the current commitment period. It is applicable
      * only for ACTIVE capacity commitments. Note after renewal,
-     * commitment_end_time is the time the renewed commitment expires. So it would
+     * commitment_end_time is the time the renewed commitment expires. So itwould
      * be at a time after commitment_start_time + committed period, because we
      * don't change commitment_start_time ,
      *
@@ -399,11 +402,12 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The plan this capacity commitment is converted to after commitment_end_time
-     * passes. Once the plan is changed, committed period is extended according to
-     * commitment plan. Only applicable for ANNUAL and TRIAL commitments.
+     * Optional. The plan this capacity commitment is converted to after
+     * commitment_end_time passes. Once the plan is changed, committed period is
+     * extended according to commitment plan. Only applicable for ANNUAL and TRIAL
+     * commitments.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan renewal_plan = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan renewal_plan = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getRenewalPlan()
@@ -412,11 +416,12 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The plan this capacity commitment is converted to after commitment_end_time
-     * passes. Once the plan is changed, committed period is extended according to
-     * commitment plan. Only applicable for ANNUAL and TRIAL commitments.
+     * Optional. The plan this capacity commitment is converted to after
+     * commitment_end_time passes. Once the plan is changed, committed period is
+     * extended according to commitment plan. Only applicable for ANNUAL and TRIAL
+     * commitments.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan renewal_plan = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan renewal_plan = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -437,11 +442,15 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * NOTE: this is a preview feature. Project must be allow-listed in order to
      * set this field.
      *
-     * Generated from protobuf field <code>bool multi_region_auxiliary = 10;</code>
+     * Generated from protobuf field <code>bool multi_region_auxiliary = 10 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getMultiRegionAuxiliary()
     {
+        if ($this->multi_region_auxiliary !== false) {
+            @trigger_error('multi_region_auxiliary is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->multi_region_auxiliary;
     }
 
@@ -454,12 +463,14 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * NOTE: this is a preview feature. Project must be allow-listed in order to
      * set this field.
      *
-     * Generated from protobuf field <code>bool multi_region_auxiliary = 10;</code>
+     * Generated from protobuf field <code>bool multi_region_auxiliary = 10 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setMultiRegionAuxiliary($var)
     {
+        @trigger_error('multi_region_auxiliary is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->multi_region_auxiliary = $var;
 
@@ -467,9 +478,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Edition of the capacity commitment.
+     * Optional. Edition of the capacity commitment.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getEdition()
@@ -478,9 +489,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Edition of the capacity commitment.
+     * Optional. Edition of the capacity commitment.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

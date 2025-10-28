@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [`ImageComponent`][google.apps.card.v1.ImageComponent]) and set an
  * `onClick` action.
  * [Google Workspace
- * Add-ons and Chat apps](https://developers.google.com/workspace/extend):
+ * add-ons and Chat apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.Button</code>
  */
@@ -31,38 +31,32 @@ class Button extends \Google\Protobuf\Internal\Message
      */
     protected $text = '';
     /**
-     * The icon image. If both `icon` and `text` are set, then the icon appears
-     * before the text.
+     * An icon displayed inside the button. If both `icon` and `text` are set,
+     * then the icon appears before the text.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Icon icon = 2;</code>
      */
     protected $icon = null;
     /**
-     * If set, the button is filled with a solid background color and the font
-     * color changes to maintain contrast with the background color. For example,
-     * setting a blue background likely results in white text.
-     * If unset, the image background is white and the font color is blue.
-     * For red, green, and blue, the value of each field is a `float` number that
-     * you can express in either of two ways: as a number between 0 and 255
-     * divided by 255 (153/255), or as a value between 0 and 1 (0.6). 0 represents
-     * the absence of a color and 1 or 255/255 represent the full presence of that
-     * color on the RGB scale.
-     * Optionally set `alpha`, which sets a level of transparency using this
-     * equation:
-     * ```
-     * pixel color = alpha * (this color) + (1.0 - alpha) * (background color)
-     * ```
-     * For `alpha`, a value of `1` corresponds with a solid color, and a value of
-     * `0` corresponds with a completely transparent color.
-     * For example, the following color represents a half transparent red:
+     * Optional. The color of the button. If set, the button `type` is set to
+     * `FILLED` and the color of `text` and `icon` fields are set to a
+     * contrasting color for readability. For example, if the button color is
+     * set to blue, any text or icons in the button are set to white.
+     * To set the button color, specify a value for the `red`, `green`, and `blue`
+     * fields.
+     * The value must be a float number between 0 and 1 based on the RGB color
+     * value, where `0` (0/255) represents the absence of color  and `1` (255/255)
+     * represents the maximum intensity of the color.
+     * For example, the following sets the color to red at its maximum intensity:
      * ```
      * "color": {
      *    "red": 1,
      *    "green": 0,
      *    "blue": 0,
-     *    "alpha": 0.5
      * }
      * ```
+     * The `alpha` field is unavailable for button color. If specified, this field
+     * is ignored.
      *
      * Generated from protobuf field <code>.google.type.Color color = 3;</code>
      */
@@ -91,6 +85,14 @@ class Button extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string alt_text = 6;</code>
      */
     protected $alt_text = '';
+    /**
+     * Optional. The type of a button. If unset, button type defaults to
+     * `OUTLINED`. If the `color` field is set, the button type is forced to
+     * `FILLED` and any value set for this field is ignored.
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.Button.Type type = 7;</code>
+     */
+    protected $type = 0;
 
     /**
      * Constructor.
@@ -101,34 +103,28 @@ class Button extends \Google\Protobuf\Internal\Message
      *     @type string $text
      *           The text displayed inside the button.
      *     @type \Google\Apps\Card\V1\Icon $icon
-     *           The icon image. If both `icon` and `text` are set, then the icon appears
-     *           before the text.
+     *           An icon displayed inside the button. If both `icon` and `text` are set,
+     *           then the icon appears before the text.
      *     @type \Google\Type\Color $color
-     *           If set, the button is filled with a solid background color and the font
-     *           color changes to maintain contrast with the background color. For example,
-     *           setting a blue background likely results in white text.
-     *           If unset, the image background is white and the font color is blue.
-     *           For red, green, and blue, the value of each field is a `float` number that
-     *           you can express in either of two ways: as a number between 0 and 255
-     *           divided by 255 (153/255), or as a value between 0 and 1 (0.6). 0 represents
-     *           the absence of a color and 1 or 255/255 represent the full presence of that
-     *           color on the RGB scale.
-     *           Optionally set `alpha`, which sets a level of transparency using this
-     *           equation:
-     *           ```
-     *           pixel color = alpha * (this color) + (1.0 - alpha) * (background color)
-     *           ```
-     *           For `alpha`, a value of `1` corresponds with a solid color, and a value of
-     *           `0` corresponds with a completely transparent color.
-     *           For example, the following color represents a half transparent red:
+     *           Optional. The color of the button. If set, the button `type` is set to
+     *           `FILLED` and the color of `text` and `icon` fields are set to a
+     *           contrasting color for readability. For example, if the button color is
+     *           set to blue, any text or icons in the button are set to white.
+     *           To set the button color, specify a value for the `red`, `green`, and `blue`
+     *           fields.
+     *           The value must be a float number between 0 and 1 based on the RGB color
+     *           value, where `0` (0/255) represents the absence of color  and `1` (255/255)
+     *           represents the maximum intensity of the color.
+     *           For example, the following sets the color to red at its maximum intensity:
      *           ```
      *           "color": {
      *              "red": 1,
      *              "green": 0,
      *              "blue": 0,
-     *              "alpha": 0.5
      *           }
      *           ```
+     *           The `alpha` field is unavailable for button color. If specified, this field
+     *           is ignored.
      *     @type \Google\Apps\Card\V1\OnClick $on_click
      *           Required. The action to perform when a user clicks the button, such as
      *           opening a hyperlink or running a custom function.
@@ -141,6 +137,10 @@ class Button extends \Google\Protobuf\Internal\Message
      *           example, if a button opens a hyperlink, you might write: "Opens a new
      *           browser tab and navigates to the Google Chat developer documentation at
      *           https://developers.google.com/workspace/chat".
+     *     @type int $type
+     *           Optional. The type of a button. If unset, button type defaults to
+     *           `OUTLINED`. If the `color` field is set, the button type is forced to
+     *           `FILLED` and any value set for this field is ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -175,8 +175,8 @@ class Button extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The icon image. If both `icon` and `text` are set, then the icon appears
-     * before the text.
+     * An icon displayed inside the button. If both `icon` and `text` are set,
+     * then the icon appears before the text.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Icon icon = 2;</code>
      * @return \Google\Apps\Card\V1\Icon|null
@@ -197,8 +197,8 @@ class Button extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The icon image. If both `icon` and `text` are set, then the icon appears
-     * before the text.
+     * An icon displayed inside the button. If both `icon` and `text` are set,
+     * then the icon appears before the text.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Icon icon = 2;</code>
      * @param \Google\Apps\Card\V1\Icon $var
@@ -213,31 +213,25 @@ class Button extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, the button is filled with a solid background color and the font
-     * color changes to maintain contrast with the background color. For example,
-     * setting a blue background likely results in white text.
-     * If unset, the image background is white and the font color is blue.
-     * For red, green, and blue, the value of each field is a `float` number that
-     * you can express in either of two ways: as a number between 0 and 255
-     * divided by 255 (153/255), or as a value between 0 and 1 (0.6). 0 represents
-     * the absence of a color and 1 or 255/255 represent the full presence of that
-     * color on the RGB scale.
-     * Optionally set `alpha`, which sets a level of transparency using this
-     * equation:
-     * ```
-     * pixel color = alpha * (this color) + (1.0 - alpha) * (background color)
-     * ```
-     * For `alpha`, a value of `1` corresponds with a solid color, and a value of
-     * `0` corresponds with a completely transparent color.
-     * For example, the following color represents a half transparent red:
+     * Optional. The color of the button. If set, the button `type` is set to
+     * `FILLED` and the color of `text` and `icon` fields are set to a
+     * contrasting color for readability. For example, if the button color is
+     * set to blue, any text or icons in the button are set to white.
+     * To set the button color, specify a value for the `red`, `green`, and `blue`
+     * fields.
+     * The value must be a float number between 0 and 1 based on the RGB color
+     * value, where `0` (0/255) represents the absence of color  and `1` (255/255)
+     * represents the maximum intensity of the color.
+     * For example, the following sets the color to red at its maximum intensity:
      * ```
      * "color": {
      *    "red": 1,
      *    "green": 0,
      *    "blue": 0,
-     *    "alpha": 0.5
      * }
      * ```
+     * The `alpha` field is unavailable for button color. If specified, this field
+     * is ignored.
      *
      * Generated from protobuf field <code>.google.type.Color color = 3;</code>
      * @return \Google\Type\Color|null
@@ -258,31 +252,25 @@ class Button extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, the button is filled with a solid background color and the font
-     * color changes to maintain contrast with the background color. For example,
-     * setting a blue background likely results in white text.
-     * If unset, the image background is white and the font color is blue.
-     * For red, green, and blue, the value of each field is a `float` number that
-     * you can express in either of two ways: as a number between 0 and 255
-     * divided by 255 (153/255), or as a value between 0 and 1 (0.6). 0 represents
-     * the absence of a color and 1 or 255/255 represent the full presence of that
-     * color on the RGB scale.
-     * Optionally set `alpha`, which sets a level of transparency using this
-     * equation:
-     * ```
-     * pixel color = alpha * (this color) + (1.0 - alpha) * (background color)
-     * ```
-     * For `alpha`, a value of `1` corresponds with a solid color, and a value of
-     * `0` corresponds with a completely transparent color.
-     * For example, the following color represents a half transparent red:
+     * Optional. The color of the button. If set, the button `type` is set to
+     * `FILLED` and the color of `text` and `icon` fields are set to a
+     * contrasting color for readability. For example, if the button color is
+     * set to blue, any text or icons in the button are set to white.
+     * To set the button color, specify a value for the `red`, `green`, and `blue`
+     * fields.
+     * The value must be a float number between 0 and 1 based on the RGB color
+     * value, where `0` (0/255) represents the absence of color  and `1` (255/255)
+     * represents the maximum intensity of the color.
+     * For example, the following sets the color to red at its maximum intensity:
      * ```
      * "color": {
      *    "red": 1,
      *    "green": 0,
      *    "blue": 0,
-     *    "alpha": 0.5
      * }
      * ```
+     * The `alpha` field is unavailable for button color. If specified, this field
+     * is ignored.
      *
      * Generated from protobuf field <code>.google.type.Color color = 3;</code>
      * @param \Google\Type\Color $var
@@ -392,6 +380,36 @@ class Button extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->alt_text = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The type of a button. If unset, button type defaults to
+     * `OUTLINED`. If the `color` field is set, the button type is forced to
+     * `FILLED` and any value set for this field is ignored.
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.Button.Type type = 7;</code>
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Optional. The type of a button. If unset, button type defaults to
+     * `OUTLINED`. If the `color` field is set, the button type is forced to
+     * `FILLED` and any value set for this field is ignored.
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.Button.Type type = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Apps\Card\V1\Button\Type::class);
+        $this->type = $var;
 
         return $this;
     }

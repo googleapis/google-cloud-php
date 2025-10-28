@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -35,13 +36,18 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\DocumentAI\V1\BatchProcessRequest;
+use Google\Cloud\DocumentAI\V1\BatchProcessResponse;
 use Google\Cloud\DocumentAI\V1\CreateProcessorRequest;
 use Google\Cloud\DocumentAI\V1\DeleteProcessorRequest;
 use Google\Cloud\DocumentAI\V1\DeleteProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\DeployProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\DeployProcessorVersionResponse;
 use Google\Cloud\DocumentAI\V1\DisableProcessorRequest;
+use Google\Cloud\DocumentAI\V1\DisableProcessorResponse;
 use Google\Cloud\DocumentAI\V1\EnableProcessorRequest;
+use Google\Cloud\DocumentAI\V1\EnableProcessorResponse;
 use Google\Cloud\DocumentAI\V1\EvaluateProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\EvaluateProcessorVersionResponse;
 use Google\Cloud\DocumentAI\V1\Evaluation;
 use Google\Cloud\DocumentAI\V1\FetchProcessorTypesRequest;
 use Google\Cloud\DocumentAI\V1\FetchProcessorTypesResponse;
@@ -59,10 +65,14 @@ use Google\Cloud\DocumentAI\V1\Processor;
 use Google\Cloud\DocumentAI\V1\ProcessorType;
 use Google\Cloud\DocumentAI\V1\ProcessorVersion;
 use Google\Cloud\DocumentAI\V1\ReviewDocumentRequest;
+use Google\Cloud\DocumentAI\V1\ReviewDocumentResponse;
 use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionResponse;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionMetadata;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\TrainProcessorVersionResponse;
 use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -182,9 +192,7 @@ final class DocumentProcessorServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -368,25 +376,28 @@ final class DocumentProcessorServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'documentai.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new DocumentProcessorServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -424,11 +435,13 @@ final class DocumentProcessorServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -465,7 +478,7 @@ final class DocumentProcessorServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BatchProcessResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -526,7 +539,7 @@ final class DocumentProcessorServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -554,7 +567,7 @@ final class DocumentProcessorServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -583,7 +596,7 @@ final class DocumentProcessorServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DeployProcessorVersionResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -612,7 +625,7 @@ final class DocumentProcessorServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DisableProcessorResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -639,7 +652,7 @@ final class DocumentProcessorServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EnableProcessorResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -667,7 +680,7 @@ final class DocumentProcessorServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EvaluateProcessorVersionResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -973,7 +986,7 @@ final class DocumentProcessorServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ReviewDocumentResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1004,7 +1017,7 @@ final class DocumentProcessorServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<SetDefaultProcessorVersionResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1035,7 +1048,7 @@ final class DocumentProcessorServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<TrainProcessorVersionResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1064,7 +1077,7 @@ final class DocumentProcessorServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<UndeployProcessorVersionResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */

@@ -9,7 +9,7 @@ use UnexpectedValueException;
 /**
  * Specifies the loading indicator that the action displays while
  * making the call to the action.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Protobuf type <code>google.apps.card.v1.Action.LoadIndicator</code>

@@ -19,7 +19,7 @@ class InstanceGroupManagersStopInstancesRequest extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>optional bool force_stop = 134762710;</code>
      */
-    private $force_stop = null;
+    protected $force_stop = null;
     /**
      * The URLs of one or more instances to stop. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *

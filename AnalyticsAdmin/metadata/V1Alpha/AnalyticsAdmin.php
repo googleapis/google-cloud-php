@@ -30,7 +30,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ëà
+‚˘
 4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto2google/analytics/admin/v1alpha/channel_group.proto:google/analytics/admin/v1alpha/event_create_and_edit.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.proto=google/analytics/admin/v1alpha/subproperty_event_filter.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"‡
 RunAccessReportRequest
 entity (	C
@@ -503,15 +503,7 @@ page_token (	"Ñ
 page_token (	"z
 ListChannelGroupsResponseD
 channel_groups (2,.google.analytics.admin.v1alpha.ChannelGroup
-next_page_token (	"S
-)SetAutomatedGa4ConfigurationOptOutRequest
-property (	B‡A
-opt_out (",
-*SetAutomatedGa4ConfigurationOptOutResponse"D
-+FetchAutomatedGa4ConfigurationOptOutRequest
-property (	B‡A"?
-,FetchAutomatedGa4ConfigurationOptOutResponse
-opt_out ("©
+next_page_token (	"©
 CreateBigQueryLinkRequestB
 parent (	B2‡A˙A,*analyticsadmin.googleapis.com/BigQueryLinkH
 bigquery_link (2,.google.analytics.admin.v1alpha.BigQueryLinkB‡A"Z
@@ -543,18 +535,7 @@ page_token (	"z
 3analyticsadmin.googleapis.com/DataRedactionSettings"∑
 "UpdateDataRedactionSettingsRequest[
 data_redaction_settings (25.google.analytics.admin.v1alpha.DataRedactionSettingsB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A"Ñ
-CreateConnectedSiteTagRequest
-property (	Q
-connected_site_tag (20.google.analytics.admin.v1alpha.ConnectedSiteTagB‡A" 
-CreateConnectedSiteTagResponse"A
-DeleteConnectedSiteTagRequest
-property (	
-tag_id (	"0
-ListConnectedSiteTagsRequest
-property (	"n
-ListConnectedSiteTagsResponseM
-connected_site_tags (20.google.analytics.admin.v1alpha.ConnectedSiteTag"•
+update_mask (2.google.protobuf.FieldMaskB‡A"•
 CreateAdSenseLinkRequestA
 parent (	B1‡A˙A+)analyticsadmin.googleapis.com/AdSenseLinkF
 adsense_link (2+.google.analytics.admin.v1alpha.AdSenseLinkB‡A"X
@@ -571,13 +552,7 @@ page_token (	"z
 page_token (	"w
 ListAdSenseLinksResponseB
 adsense_links (2+.google.analytics.admin.v1alpha.AdSenseLink
-next_page_token (	"d
- FetchConnectedGa4PropertyRequest@
-property (	B.‡A˙A(
-&analyticsadmin.googleapis.com/Property"b
-!FetchConnectedGa4PropertyResponse=
-property (	B+˙A(
-&analyticsadmin.googleapis.com/Property"∂
+next_page_token (	"∂
 CreateEventCreateRuleRequestE
 parent (	B5‡A˙A/-analyticsadmin.googleapis.com/EventCreateRuleO
 event_create_rule (2/.google.analytics.admin.v1alpha.EventCreateRuleB‡A"•
@@ -715,7 +690,10 @@ page_token (	B‡A"ñ
 next_page_token (	"∑
 "UpdateSubpropertySyncConfigRequest[
 subproperty_sync_config (25.google.analytics.admin.v1alpha.SubpropertySyncConfigB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A2Áü
+update_mask (2.google.protobuf.FieldMaskB‡A"t
+#GetReportingIdentitySettingsRequestM
+name (	B?‡A˙A9
+7analyticsadmin.googleapis.com/ReportingIdentitySettings2§ó
 AnalyticsAdminServiceì
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")⁄AnameÇ”‰ì/v1alpha/{name=accounts/*}î
@@ -821,20 +799,14 @@ GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytic
 ListChannelGroups8.google.analytics.admin.v1alpha.ListChannelGroupsRequest9.google.analytics.admin.v1alpha.ListChannelGroupsResponse"=⁄AparentÇ”‰ì.,/v1alpha/{parent=properties/*}/channelGroupsŸ
 CreateChannelGroup9.google.analytics.admin.v1alpha.CreateChannelGroupRequest,.google.analytics.admin.v1alpha.ChannelGroup"Z⁄Aparent,channel_groupÇ”‰ì=",/v1alpha/{parent=properties/*}/channelGroups:channel_groupÏ
 UpdateChannelGroup9.google.analytics.admin.v1alpha.UpdateChannelGroupRequest,.google.analytics.admin.v1alpha.ChannelGroup"m⁄Achannel_group,update_maskÇ”‰ìK2:/v1alpha/{channel_group.name=properties/*/channelGroups/*}:channel_group§
-DeleteChannelGroup9.google.analytics.admin.v1alpha.DeleteChannelGroupRequest.google.protobuf.Empty";⁄AnameÇ”‰ì.*,/v1alpha/{name=properties/*/channelGroups/*}˛
-"SetAutomatedGa4ConfigurationOptOutI.google.analytics.admin.v1alpha.SetAutomatedGa4ConfigurationOptOutRequestJ.google.analytics.admin.v1alpha.SetAutomatedGa4ConfigurationOptOutResponse"AÇ”‰ì;"6/v1alpha/properties:setAutomatedGa4ConfigurationOptOut:*Ü
-$FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutRequestL.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutResponse"CÇ”‰ì="8/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut:*Ÿ
+DeleteChannelGroup9.google.analytics.admin.v1alpha.DeleteChannelGroupRequest.google.protobuf.Empty";⁄AnameÇ”‰ì.*,/v1alpha/{name=properties/*/channelGroups/*}Ÿ
 CreateBigQueryLink9.google.analytics.admin.v1alpha.CreateBigQueryLinkRequest,.google.analytics.admin.v1alpha.BigQueryLink"Z⁄Aparent,bigquery_linkÇ”‰ì=",/v1alpha/{parent=properties/*}/bigQueryLinks:bigquery_link¥
 GetBigQueryLink6.google.analytics.admin.v1alpha.GetBigQueryLinkRequest,.google.analytics.admin.v1alpha.BigQueryLink";⁄AnameÇ”‰ì.,/v1alpha/{name=properties/*/bigQueryLinks/*}«
 ListBigQueryLinks8.google.analytics.admin.v1alpha.ListBigQueryLinksRequest9.google.analytics.admin.v1alpha.ListBigQueryLinksResponse"=⁄AparentÇ”‰ì.,/v1alpha/{parent=properties/*}/bigQueryLinks§
 DeleteBigQueryLink9.google.analytics.admin.v1alpha.DeleteBigQueryLinkRequest.google.protobuf.Empty";⁄AnameÇ”‰ì.*,/v1alpha/{name=properties/*/bigQueryLinks/*}Ï
 UpdateBigQueryLink9.google.analytics.admin.v1alpha.UpdateBigQueryLinkRequest,.google.analytics.admin.v1alpha.BigQueryLink"m⁄Abigquery_link,update_maskÇ”‰ìK2:/v1alpha/{bigquery_link.name=properties/*/bigQueryLinks/*}:bigquery_link˚
 GetEnhancedMeasurementSettingsE.google.analytics.admin.v1alpha.GetEnhancedMeasurementSettingsRequest;.google.analytics.admin.v1alpha.EnhancedMeasurementSettings"U⁄AnameÇ”‰ìHF/v1alpha/{name=properties/*/dataStreams/*/enhancedMeasurementSettings}Â
-!UpdateEnhancedMeasurementSettingsH.google.analytics.admin.v1alpha.UpdateEnhancedMeasurementSettingsRequest;.google.analytics.admin.v1alpha.EnhancedMeasurementSettings"∏⁄A)enhanced_measurement_settings,update_maskÇ”‰ìÖ2d/v1alpha/{enhanced_measurement_settings.name=properties/*/dataStreams/*/enhancedMeasurementSettings}:enhanced_measurement_settingsŒ
-CreateConnectedSiteTag=.google.analytics.admin.v1alpha.CreateConnectedSiteTagRequest>.google.analytics.admin.v1alpha.CreateConnectedSiteTagResponse"5Ç”‰ì/"*/v1alpha/properties:createConnectedSiteTag:*¶
-DeleteConnectedSiteTag=.google.analytics.admin.v1alpha.DeleteConnectedSiteTagRequest.google.protobuf.Empty"5Ç”‰ì/"*/v1alpha/properties:deleteConnectedSiteTag:* 
-ListConnectedSiteTags<.google.analytics.admin.v1alpha.ListConnectedSiteTagsRequest=.google.analytics.admin.v1alpha.ListConnectedSiteTagsResponse"4Ç”‰ì.")/v1alpha/properties:listConnectedSiteTags:*◊
-FetchConnectedGa4Property@.google.analytics.admin.v1alpha.FetchConnectedGa4PropertyRequestA.google.analytics.admin.v1alpha.FetchConnectedGa4PropertyResponse"5Ç”‰ì/-/v1alpha/properties:fetchConnectedGa4Property∞
+!UpdateEnhancedMeasurementSettingsH.google.analytics.admin.v1alpha.UpdateEnhancedMeasurementSettingsRequest;.google.analytics.admin.v1alpha.EnhancedMeasurementSettings"∏⁄A)enhanced_measurement_settings,update_maskÇ”‰ìÖ2d/v1alpha/{enhanced_measurement_settings.name=properties/*/dataStreams/*/enhancedMeasurementSettings}:enhanced_measurement_settings∞
 GetAdSenseLink5.google.analytics.admin.v1alpha.GetAdSenseLinkRequest+.google.analytics.admin.v1alpha.AdSenseLink":⁄AnameÇ”‰ì-+/v1alpha/{name=properties/*/adSenseLinks/*}”
 CreateAdSenseLink8.google.analytics.admin.v1alpha.CreateAdSenseLinkRequest+.google.analytics.admin.v1alpha.AdSenseLink"W⁄Aparent,adsense_linkÇ”‰ì;"+/v1alpha/{parent=properties/*}/adSenseLinks:adsense_link°
 DeleteAdSenseLink8.google.analytics.admin.v1alpha.DeleteAdSenseLinkRequest.google.protobuf.Empty":⁄AnameÇ”‰ì-*+/v1alpha/{name=properties/*/adSenseLinks/*}√
@@ -876,7 +848,8 @@ $FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAuto
 SubmitUserDeletion9.google.analytics.admin.v1alpha.SubmitUserDeletionRequest:.google.analytics.admin.v1alpha.SubmitUserDeletionResponse"A⁄AnameÇ”‰ì4"//v1alpha/{name=properties/*}:submitUserDeletion:*Î
 ListSubpropertySyncConfigsA.google.analytics.admin.v1alpha.ListSubpropertySyncConfigsRequestB.google.analytics.admin.v1alpha.ListSubpropertySyncConfigsResponse"F⁄AparentÇ”‰ì75/v1alpha/{parent=properties/*}/subpropertySyncConfigsØ
 UpdateSubpropertySyncConfigB.google.analytics.admin.v1alpha.UpdateSubpropertySyncConfigRequest5.google.analytics.admin.v1alpha.SubpropertySyncConfig"î⁄A#subproperty_sync_config,update_maskÇ”‰ìh2M/v1alpha/{subproperty_sync_config.name=properties/*/subpropertySyncConfigs/*}:subproperty_sync_configÿ
-GetSubpropertySyncConfig?.google.analytics.admin.v1alpha.GetSubpropertySyncConfigRequest5.google.analytics.admin.v1alpha.SubpropertySyncConfig"D⁄AnameÇ”‰ì75/v1alpha/{name=properties/*/subpropertySyncConfigs/*}¸ Aanalyticsadmin.googleapis.com“Aÿhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyB{
+GetSubpropertySyncConfig?.google.analytics.admin.v1alpha.GetSubpropertySyncConfigRequest5.google.analytics.admin.v1alpha.SubpropertySyncConfig"D⁄AnameÇ”‰ì75/v1alpha/{name=properties/*/subpropertySyncConfigs/*}Â
+GetReportingIdentitySettingsC.google.analytics.admin.v1alpha.GetReportingIdentitySettingsRequest9.google.analytics.admin.v1alpha.ReportingIdentitySettings"E⁄AnameÇ”‰ì86/v1alpha/{name=properties/*/reportingIdentitySettings}¸ Aanalyticsadmin.googleapis.com“Aÿhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyB{
 "com.google.analytics.admin.v1alphaBAnalyticsAdminProtoPZ>cloud.google.com/go/analytics/admin/apiv1alpha/adminpb;adminpbbproto3'
         , true);
 

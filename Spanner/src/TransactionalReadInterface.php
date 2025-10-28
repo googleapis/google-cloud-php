@@ -28,7 +28,6 @@ interface TransactionalReadInterface
     const STATE_ROLLED_BACK = 1;
     const STATE_COMMITTED = 2;
     const STATE_SINGLE_USE_USED = 3;
-
     const TYPE_SINGLE_USE = 0;
     const TYPE_PRE_ALLOCATED = 1;
 
@@ -39,7 +38,7 @@ interface TransactionalReadInterface
      * @param array $options [optional] Configuration options.
      * @return Result
      */
-    public function execute($sql, array $options = []);
+    public function execute(string $sql, array $options = []): Result;
 
     /**
      * Lookup rows in a table.
@@ -50,24 +49,24 @@ interface TransactionalReadInterface
      * @param array $options [optional] Configuration Options.
      * @return Result
      */
-    public function read($table, KeySet $keySet, array $columns, array $options = []);
+    public function read(string $table, KeySet $keySet, array $columns, array $options = []): Result;
 
     /**
      * Retrieve the Transaction ID.
      *
      * @return string|null
      */
-    public function id();
+    public function id(): string|null;
 
     /**
      * Get the Transaction Type.
      *
      * @return int
      */
-    public function type();
+    public function type(): int;
 
     /**
      * Set the transaction ID.
      */
-    public function setId(?string $transactionId);
+    public function setId(?string $transactionId): void;
 }

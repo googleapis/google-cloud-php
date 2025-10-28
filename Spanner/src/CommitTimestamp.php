@@ -41,7 +41,7 @@ namespace Google\Cloud\Spanner;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $database = $spanner->connect('my-instance', 'my-database');
  *
  * $database->insert('myTable', [
@@ -57,7 +57,7 @@ class CommitTimestamp implements ValueInterface
     /**
      * @access private
      */
-    public function type()
+    public function type(): int
     {
         return Database::TYPE_TIMESTAMP;
     }
@@ -65,7 +65,7 @@ class CommitTimestamp implements ValueInterface
     /**
      * @access private
      */
-    public function get()
+    public function get(): string
     {
         return self::SPECIAL_VALUE;
     }
@@ -73,7 +73,7 @@ class CommitTimestamp implements ValueInterface
     /**
      * @access private
      */
-    public function formatAsString()
+    public function formatAsString(): string
     {
         return self::SPECIAL_VALUE;
     }

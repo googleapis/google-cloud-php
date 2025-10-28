@@ -31,7 +31,7 @@ use Google\Cloud\Compute\V1\Operation;
 /**
  * Retrieves the specified Operations resource. Gets a list of operations by making a `list()` request.
  *
- * @param string $operation Name of the Operations resource to return, or its unique numeric identifier.
+ * @param string $operation Name of the Operations resource to return. Parent is derived from this field.
  */
 function get_sample(string $operation): void
 {

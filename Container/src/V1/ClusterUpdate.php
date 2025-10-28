@@ -486,8 +486,11 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     protected $desired_additional_ip_ranges_config = null;
     /**
      * The desired enterprise configuration for the cluster.
+     * Deprecated: GKE Enterprise features are now available without an Enterprise
+     * tier.
      *
-     * Generated from protobuf field <code>.google.container.v1.DesiredEnterpriseConfig desired_enterprise_config = 147;</code>
+     * Generated from protobuf field <code>.google.container.v1.DesiredEnterpriseConfig desired_enterprise_config = 147 [deprecated = true];</code>
+     * @deprecated
      */
     protected $desired_enterprise_config = null;
     /**
@@ -529,6 +532,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.GkeAutoUpgradeConfig gke_auto_upgrade_config = 154;</code>
      */
     protected $gke_auto_upgrade_config = null;
+    /**
+     * The desired network tier configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTierConfig desired_network_tier_config = 155;</code>
+     */
+    protected $desired_network_tier_config = null;
 
     /**
      * Constructor.
@@ -745,6 +754,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired config for additional subnetworks attached to the cluster.
      *     @type \Google\Cloud\Container\V1\DesiredEnterpriseConfig $desired_enterprise_config
      *           The desired enterprise configuration for the cluster.
+     *           Deprecated: GKE Enterprise features are now available without an Enterprise
+     *           tier.
      *     @type \Google\Cloud\Container\V1\AutoIpamConfig $desired_auto_ipam_config
      *           AutoIpamConfig contains all information related to Auto IPAM
      *     @type bool $desired_disable_l4_lb_firewall_reconciliation
@@ -760,6 +771,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           health checks.
      *     @type \Google\Cloud\Container\V1\GkeAutoUpgradeConfig $gke_auto_upgrade_config
      *           Configuration for GKE auto upgrade.
+     *     @type \Google\Cloud\Container\V1\NetworkTierConfig $desired_network_tier_config
+     *           The desired network tier configuration for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -3161,34 +3174,48 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
 
     /**
      * The desired enterprise configuration for the cluster.
+     * Deprecated: GKE Enterprise features are now available without an Enterprise
+     * tier.
      *
-     * Generated from protobuf field <code>.google.container.v1.DesiredEnterpriseConfig desired_enterprise_config = 147;</code>
+     * Generated from protobuf field <code>.google.container.v1.DesiredEnterpriseConfig desired_enterprise_config = 147 [deprecated = true];</code>
      * @return \Google\Cloud\Container\V1\DesiredEnterpriseConfig|null
+     * @deprecated
      */
     public function getDesiredEnterpriseConfig()
     {
+        if (isset($this->desired_enterprise_config)) {
+            @trigger_error('desired_enterprise_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->desired_enterprise_config;
     }
 
     public function hasDesiredEnterpriseConfig()
     {
+        if (isset($this->desired_enterprise_config)) {
+            @trigger_error('desired_enterprise_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->desired_enterprise_config);
     }
 
     public function clearDesiredEnterpriseConfig()
     {
+        @trigger_error('desired_enterprise_config is deprecated.', E_USER_DEPRECATED);
         unset($this->desired_enterprise_config);
     }
 
     /**
      * The desired enterprise configuration for the cluster.
+     * Deprecated: GKE Enterprise features are now available without an Enterprise
+     * tier.
      *
-     * Generated from protobuf field <code>.google.container.v1.DesiredEnterpriseConfig desired_enterprise_config = 147;</code>
+     * Generated from protobuf field <code>.google.container.v1.DesiredEnterpriseConfig desired_enterprise_config = 147 [deprecated = true];</code>
      * @param \Google\Cloud\Container\V1\DesiredEnterpriseConfig $var
      * @return $this
+     * @deprecated
      */
     public function setDesiredEnterpriseConfig($var)
     {
+        @trigger_error('desired_enterprise_config is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DesiredEnterpriseConfig::class);
         $this->desired_enterprise_config = $var;
 
@@ -3413,6 +3440,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GkeAutoUpgradeConfig::class);
         $this->gke_auto_upgrade_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired network tier configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTierConfig desired_network_tier_config = 155;</code>
+     * @return \Google\Cloud\Container\V1\NetworkTierConfig|null
+     */
+    public function getDesiredNetworkTierConfig()
+    {
+        return $this->desired_network_tier_config;
+    }
+
+    public function hasDesiredNetworkTierConfig()
+    {
+        return isset($this->desired_network_tier_config);
+    }
+
+    public function clearDesiredNetworkTierConfig()
+    {
+        unset($this->desired_network_tier_config);
+    }
+
+    /**
+     * The desired network tier configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTierConfig desired_network_tier_config = 155;</code>
+     * @param \Google\Cloud\Container\V1\NetworkTierConfig $var
+     * @return $this
+     */
+    public function setDesiredNetworkTierConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkTierConfig::class);
+        $this->desired_network_tier_config = $var;
 
         return $this;
     }

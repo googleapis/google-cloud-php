@@ -31,16 +31,26 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Entry;
+use Google\Cloud\DataCatalog\V1\GetEntryRequest;
 
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+// Create a client.
+$dataCatalogClient = new DataCatalogClient();
 
-$client = new DataCatalogClient();
-$location = DataCatalogClient::locationName('[MY_PROJECT_ID]', 'us-central1');
+// Prepare the request message.
+$request = (new GetEntryRequest())
+    ->setName($formattedName);
 
-$entryGroup = $client->createEntryGroup($location, 'sample_entry_group');
-
-printf('Created entry group: %s' . PHP_EOL, $entryGroup->getName());
+// Call the API and handle any network failures.
+try {
+    /** @var Entry $response */
+    $response = $dataCatalogClient->getEntry($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
 
 ### Debugging

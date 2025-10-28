@@ -20,20 +20,20 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * Read only snapshot transactions are supported, read/write and single use
      * transactions are not.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    private $transaction = null;
+    protected $transaction = null;
     /**
      * Required. The name of the table in the database to be read.
      *
      * Generated from protobuf field <code>string table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * If non-empty, the name of an index on
      * [table][google.spanner.v1.PartitionReadRequest.table]. This index is used
@@ -44,7 +44,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string index = 4;</code>
      */
-    private $index = '';
+    protected $index = '';
     /**
      * The columns of [table][google.spanner.v1.PartitionReadRequest.table] to be
      * returned for each row matching this request.
@@ -60,18 +60,18 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * [index][google.spanner.v1.PartitionReadRequest.index] is present, then
      * [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.PartitionReadRequest.index].
-     * It is not an error for the `key_set` to name rows that do not
+     * It isn't an error for the `key_set` to name rows that don't
      * exist in the database. Read yields nothing for nonexistent rows.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key_set = null;
+    protected $key_set = null;
     /**
      * Additional options that affect how many partitions are created.
      *
      * Generated from protobuf field <code>.google.spanner.v1.PartitionOptions partition_options = 9;</code>
      */
-    private $partition_options = null;
+    protected $partition_options = null;
 
     /**
      * Constructor.
@@ -104,7 +104,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      *           [index][google.spanner.v1.PartitionReadRequest.index] is present, then
      *           [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
      *           index keys in [index][google.spanner.v1.PartitionReadRequest.index].
-     *           It is not an error for the `key_set` to name rows that do not
+     *           It isn't an error for the `key_set` to name rows that don't
      *           exist in the database. Read yields nothing for nonexistent rows.
      *     @type \Google\Cloud\Spanner\V1\PartitionOptions $partition_options
      *           Additional options that affect how many partitions are created.
@@ -277,7 +277,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * [index][google.spanner.v1.PartitionReadRequest.index] is present, then
      * [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.PartitionReadRequest.index].
-     * It is not an error for the `key_set` to name rows that do not
+     * It isn't an error for the `key_set` to name rows that don't
      * exist in the database. Read yields nothing for nonexistent rows.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -306,7 +306,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * [index][google.spanner.v1.PartitionReadRequest.index] is present, then
      * [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.PartitionReadRequest.index].
-     * It is not an error for the `key_set` to name rows that do not
+     * It isn't an error for the `key_set` to name rows that don't
      * exist in the database. Read yields nothing for nonexistent rows.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>

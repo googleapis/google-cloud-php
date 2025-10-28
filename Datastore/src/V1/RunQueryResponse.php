@@ -21,13 +21,13 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.QueryResultBatch batch = 1;</code>
      */
-    private $batch = null;
+    protected $batch = null;
     /**
      * The parsed form of the `GqlQuery` from the request, if it was set.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Query query = 2;</code>
      */
-    private $query = null;
+    protected $query = null;
     /**
      * The identifier of the transaction that was started as part of this
      * RunQuery request.
@@ -38,7 +38,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes transaction = 5;</code>
      */
-    private $transaction = '';
+    protected $transaction = '';
     /**
      * Query explain metrics. This is only present when the
      * [RunQueryRequest.explain_options][google.datastore.v1.RunQueryRequest.explain_options]
@@ -46,7 +46,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.ExplainMetrics explain_metrics = 9;</code>
      */
-    private $explain_metrics = null;
+    protected $explain_metrics = null;
 
     /**
      * Constructor.

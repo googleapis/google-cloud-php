@@ -15,23 +15,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The value of the limit to set.
+     * The value of the limit to set. For endpoint_url, the limit should be no more than 1.
      *
      * Generated from protobuf field <code>optional uint32 connection_limit = 131403546;</code>
      */
-    private $connection_limit = null;
+    protected $connection_limit = null;
     /**
      * The network URL for the network to set the limit for.
      *
      * Generated from protobuf field <code>optional string network_url = 207194078;</code>
      */
-    private $network_url = null;
+    protected $network_url = null;
     /**
      * The project id or number for the project to set the limit for.
      *
      * Generated from protobuf field <code>optional string project_id_or_num = 349783336;</code>
      */
-    private $project_id_or_num = null;
+    protected $project_id_or_num = null;
 
     /**
      * Constructor.
@@ -40,7 +40,7 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type int $connection_limit
-     *           The value of the limit to set.
+     *           The value of the limit to set. For endpoint_url, the limit should be no more than 1.
      *     @type string $network_url
      *           The network URL for the network to set the limit for.
      *     @type string $project_id_or_num
@@ -53,7 +53,7 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The value of the limit to set.
+     * The value of the limit to set. For endpoint_url, the limit should be no more than 1.
      *
      * Generated from protobuf field <code>optional uint32 connection_limit = 131403546;</code>
      * @return int
@@ -74,7 +74,7 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The value of the limit to set.
+     * The value of the limit to set. For endpoint_url, the limit should be no more than 1.
      *
      * Generated from protobuf field <code>optional uint32 connection_limit = 131403546;</code>
      * @param int $var

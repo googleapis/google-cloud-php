@@ -5,8 +5,6 @@
 
 namespace Testing\Data;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
@@ -33,7 +31,8 @@ class Book extends \Google\Protobuf\Internal\Message
      *     @type string $author
      * }
      */
-    public function __construct($data = NULL) {
+    public function __construct($data = null)
+    {
         \GPBMetadata\Data\User::initOnce();
         parent::__construct($data);
     }
@@ -54,7 +53,7 @@ class Book extends \Google\Protobuf\Internal\Message
      */
     public function setTitle($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkString($var, true);
         $this->title = $var;
 
         return $this;
@@ -76,11 +75,10 @@ class Book extends \Google\Protobuf\Internal\Message
      */
     public function setAuthor($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkString($var, true);
         $this->author = $var;
 
         return $this;
     }
 
 }
-

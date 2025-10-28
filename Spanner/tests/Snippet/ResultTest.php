@@ -17,13 +17,13 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Result;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -45,13 +45,13 @@ class ResultTest extends SnippetTestCase
         $result = $this->prophesize(Result::class);
         $database = $this->prophesize(Database::class);
         $result->rows()
-            ->willReturn($this->resultGenerator());
+            ->willReturn($this->resultGeneratorStream());
         $result->metadata()
             ->willReturn([]);
         $result->columns()
             ->willReturn([]);
         $result->session()
-            ->willReturn($this->prophesize(Session::class)->reveal());
+            ->willReturn($this->prophesize(SessionCache::class)->reveal());
         $result->snapshot()
             ->willReturn($this->prophesize(Snapshot::class)->reveal());
         $result->transaction()
@@ -102,7 +102,7 @@ class ResultTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Result::class, 'session');
         $snippet->addLocal('result', $this->result);
         $res = $snippet->invoke('session');
-        $this->assertInstanceOf(Session::class, $res->returnVal());
+        $this->assertInstanceOf(SessionCache::class, $res->returnVal());
     }
 
     public function testStats()
@@ -116,7 +116,9 @@ class ResultTest extends SnippetTestCase
     public function testQueryWithStats()
     {
         $db = $this->prophesize(Database::class);
-        $db->execute(Argument::any(), ['queryMode' => 'PROFILE']);
+        $db->execute(Argument::any(), ['queryMode' => Result::MODE_PROFILE])
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(Result::class)->reveal());
 
         $snippet = $this->snippetFromMethod(Result::class, 'stats', 1);
         $snippet->addLocal('database', $db->reveal());
@@ -139,7 +141,7 @@ class ResultTest extends SnippetTestCase
         $this->assertInstanceOf(Transaction::class, $res->returnVal());
     }
 
-    private function resultGenerator()
+    private function resultGeneratorStream()
     {
         yield [];
     }

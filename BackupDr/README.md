@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\BackupDR\V1\Backup;
-Google\Cloud\BackupDR\V1\Client\BackupDRClient;
-Google\Cloud\BackupDR\V1\GetBackupRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\BackupDR\V1\Backup;
+use Google\Cloud\BackupDR\V1\Client\BackupDRClient;
+use Google\Cloud\BackupDR\V1\GetBackupRequest;
 
 // Create a client.
 $backupDRClient = new BackupDRClient();

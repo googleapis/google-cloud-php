@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Shopping\Merchant\Conversions\V1beta\Client\ConversionSourcesServiceClient;
-Google\Shopping\Merchant\Conversions\V1beta\ConversionSource;
-Google\Shopping\Merchant\Conversions\V1beta\GetConversionSourceRequest;
+use Google\ApiCore\ApiException;
+use Google\Shopping\Merchant\Conversions\V1\Client\ConversionSourcesServiceClient;
+use Google\Shopping\Merchant\Conversions\V1\ConversionSource;
+use Google\Shopping\Merchant\Conversions\V1\GetConversionSourceRequest;
 
 // Create a client.
 $conversionSourcesServiceClient = new ConversionSourcesServiceClient();
@@ -66,7 +66,8 @@ for more information about the debugging tools.
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

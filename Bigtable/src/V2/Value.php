@@ -70,6 +70,7 @@ class Value extends \Google\Protobuf\Internal\Message
      *           Represents a typed value transported as a boolean.
      *     @type float $float_value
      *           Represents a typed value transported as a floating point number.
+     *           Does not support NaN or infinities.
      *     @type \Google\Protobuf\Timestamp $timestamp_value
      *           Represents a typed value transported as a timestamp.
      *     @type \Google\Type\Date $date_value
@@ -335,6 +336,7 @@ class Value extends \Google\Protobuf\Internal\Message
 
     /**
      * Represents a typed value transported as a floating point number.
+     * Does not support NaN or infinities.
      *
      * Generated from protobuf field <code>double float_value = 11;</code>
      * @return float
@@ -351,6 +353,7 @@ class Value extends \Google\Protobuf\Internal\Message
 
     /**
      * Represents a typed value transported as a floating point number.
+     * Does not support NaN or infinities.
      *
      * Generated from protobuf field <code>double float_value = 11;</code>
      * @param float $var

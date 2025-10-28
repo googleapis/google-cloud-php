@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,6 +46,28 @@ return [
                 ],
                 'queryParams' => [
                     'network_interface',
+                ],
+            ],
+            'AddNetworkInterface' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/addNetworkInterface',
+                'body' => 'network_interface_resource',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
                 ],
             ],
             'AddResourcePolicies' => [
@@ -164,6 +186,30 @@ return [
                 'queryParams' => [
                     'access_config',
                     'network_interface',
+                ],
+            ],
+            'DeleteNetworkInterface' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/deleteNetworkInterface',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'network_interface_name',
                 ],
             ],
             'DetachDisk' => [

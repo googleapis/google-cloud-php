@@ -15,7 +15,7 @@ class OrderBy
 {
     /**
      * Default value.
-     * ORDER_BY_UNSPECIFIED is equivalent to ORDER_BY_PRIMARY_KEY.
+     * `ORDER_BY_UNSPECIFIED` is equivalent to `ORDER_BY_PRIMARY_KEY`.
      *
      * Generated from protobuf enum <code>ORDER_BY_UNSPECIFIED = 0;</code>
      */
@@ -23,7 +23,7 @@ class OrderBy
     /**
      * Read rows are returned in primary key order.
      * In the event that this option is used in conjunction with the
-     * `partition_token` field, the API will return an `INVALID_ARGUMENT` error.
+     * `partition_token` field, the API returns an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf enum <code>ORDER_BY_PRIMARY_KEY = 1;</code>
      */
@@ -62,6 +62,4 @@ class OrderBy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OrderBy::class, \Google\Cloud\Spanner\V1\ReadRequest_OrderBy::class);
 

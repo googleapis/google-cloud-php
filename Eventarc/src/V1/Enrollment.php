@@ -78,11 +78,11 @@ class Enrollment extends \Google\Protobuf\Internal\Message
      */
     protected $cel_match = '';
     /**
-     * Required. Resource name of the message bus identifying the source of the
-     * messages. It matches the form
+     * Required. Immutable. Resource name of the message bus identifying the
+     * source of the messages. It matches the form
      * projects/{project}/locations/{location}/messageBuses/{messageBus}.
      *
-     * Generated from protobuf field <code>string message_bus = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string message_bus = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $message_bus = '';
     /**
@@ -125,8 +125,8 @@ class Enrollment extends \Google\Protobuf\Internal\Message
      *           Required. A CEL expression identifying which messages this enrollment
      *           applies to.
      *     @type string $message_bus
-     *           Required. Resource name of the message bus identifying the source of the
-     *           messages. It matches the form
+     *           Required. Immutable. Resource name of the message bus identifying the
+     *           source of the messages. It matches the form
      *           projects/{project}/locations/{location}/messageBuses/{messageBus}.
      *     @type string $destination
      *           Required. Destination is the Pipeline that the Enrollment is delivering to.
@@ -406,11 +406,11 @@ class Enrollment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the message bus identifying the source of the
-     * messages. It matches the form
+     * Required. Immutable. Resource name of the message bus identifying the
+     * source of the messages. It matches the form
      * projects/{project}/locations/{location}/messageBuses/{messageBus}.
      *
-     * Generated from protobuf field <code>string message_bus = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string message_bus = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getMessageBus()
@@ -419,11 +419,11 @@ class Enrollment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the message bus identifying the source of the
-     * messages. It matches the form
+     * Required. Immutable. Resource name of the message bus identifying the
+     * source of the messages. It matches the form
      * projects/{project}/locations/{location}/messageBuses/{messageBus}.
      *
-     * Generated from protobuf field <code>string message_bus = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string message_bus = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

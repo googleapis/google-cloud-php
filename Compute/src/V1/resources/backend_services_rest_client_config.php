@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -89,6 +89,22 @@ return [
             'Get' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/backendServices/{backend_service}',
+                'placeholders' => [
+                    'backend_service' => [
+                        'getters' => [
+                            'getBackendService',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEffectiveSecurityPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/backendServices/{backend_service}/getEffectiveSecurityPolicies',
                 'placeholders' => [
                     'backend_service' => [
                         'getters' => [

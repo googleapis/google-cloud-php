@@ -48,6 +48,13 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Value parameters = 3;</code>
      */
     protected $parameters = null;
+    /**
+     * Optional. The user labels for Imagen billing usage only. Only Imagen
+     * supports labels. For other use cases, it will be ignored.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
 
     /**
      * @param string                   $endpoint   Required. The name of the Endpoint requested to serve the prediction.
@@ -107,6 +114,9 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *           ][google.cloud.aiplatform.v1.DeployedModel.model]
      *           [PredictSchemata's][google.cloud.aiplatform.v1.Model.predict_schemata]
      *           [parameters_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri].
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. The user labels for Imagen billing usage only. Only Imagen
+     *           supports labels. For other use cases, it will be ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -226,6 +236,34 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
         $this->parameters = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The user labels for Imagen billing usage only. Only Imagen
+     * supports labels. For other use cases, it will be ignored.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. The user labels for Imagen billing usage only. Only Imagen
+     * supports labels. For other use cases, it will be ignored.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

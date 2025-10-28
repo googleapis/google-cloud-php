@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * An item that users can select in a selection input, such as a checkbox
- * or switch.
- * [Google Workspace Add-ons and Chat
+ * or switch. Supports up to 100 items.
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.SelectionInput.SelectionItem</code>
@@ -42,21 +42,13 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
      */
     protected $selected = false;
     /**
-     * For multiselect menus, the URL for the icon displayed next to
-     * the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS`
-     * URL. For example,
-     * `https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png`.
-     *
-     * Generated from protobuf field <code>string start_icon_uri = 4;</code>
-     */
-    protected $start_icon_uri = '';
-    /**
      * For multiselect menus, a text description or label that's
      * displayed below the item's `text` field.
      *
      * Generated from protobuf field <code>string bottom_text = 5;</code>
      */
     protected $bottom_text = '';
+    protected $start_icon;
 
     /**
      * Constructor.
@@ -76,10 +68,6 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
      *           accepts one value (such as for radio buttons or a dropdown menu), only
      *           set this field for one item.
      *     @type string $start_icon_uri
-     *           For multiselect menus, the URL for the icon displayed next to
-     *           the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS`
-     *           URL. For example,
-     *           `https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png`.
      *     @type string $bottom_text
      *           For multiselect menus, a text description or label that's
      *           displayed below the item's `text` field.
@@ -179,25 +167,20 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For multiselect menus, the URL for the icon displayed next to
-     * the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS`
-     * URL. For example,
-     * `https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png`.
-     *
      * Generated from protobuf field <code>string start_icon_uri = 4;</code>
      * @return string
      */
     public function getStartIconUri()
     {
-        return $this->start_icon_uri;
+        return $this->readOneof(4);
+    }
+
+    public function hasStartIconUri()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
-     * For multiselect menus, the URL for the icon displayed next to
-     * the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS`
-     * URL. For example,
-     * `https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png`.
-     *
      * Generated from protobuf field <code>string start_icon_uri = 4;</code>
      * @param string $var
      * @return $this
@@ -205,7 +188,7 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
     public function setStartIconUri($var)
     {
         GPBUtil::checkString($var, True);
-        $this->start_icon_uri = $var;
+        $this->writeOneof(4, $var);
 
         return $this;
     }
@@ -236,6 +219,14 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
         $this->bottom_text = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStartIcon()
+    {
+        return $this->whichOneof("start_icon");
     }
 
 }

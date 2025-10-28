@@ -33,6 +33,8 @@ use Google\Cloud\Eventarc\V1\UpdateGoogleChannelConfigRequest;
  *
  * @param string $googleChannelConfigName The resource name of the config. Must be in the format of,
  *                                        `projects/{project}/locations/{location}/googleChannelConfig`.
+ *                                        In API responses, the config name always includes the projectID, regardless
+ *                                        of whether the projectID or projectNumber was provided.
  */
 function update_google_channel_config_sample(string $googleChannelConfigName): void
 {

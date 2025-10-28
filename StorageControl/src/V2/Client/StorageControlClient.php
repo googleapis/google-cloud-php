@@ -28,12 +28,18 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Storage\Control\V2\AnywhereCache;
 use Google\Cloud\Storage\Control\V2\CreateAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\CreateFolderRequest;
@@ -87,6 +93,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<AnywhereCache> getAnywhereCacheAsync(GetAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Folder> getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> getFolderIntelligenceConfigAsync(GetFolderIntelligenceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ManagedFolder> getManagedFolderAsync(GetManagedFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> getOrganizationIntelligenceConfigAsync(GetOrganizationIntelligenceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> getProjectIntelligenceConfigAsync(GetProjectIntelligenceConfigRequest $request, array $optionalArgs = [])
@@ -97,6 +104,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<AnywhereCache> pauseAnywhereCacheAsync(PauseAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> renameFolderAsync(RenameFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AnywhereCache> resumeAnywhereCacheAsync(ResumeAnywhereCacheRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAnywhereCacheAsync(UpdateAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> updateFolderIntelligenceConfigAsync(UpdateFolderIntelligenceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> updateOrganizationIntelligenceConfigAsync(UpdateOrganizationIntelligenceConfigRequest $request, array $optionalArgs = [])
@@ -179,9 +188,7 @@ final class StorageControlClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -400,25 +407,28 @@ final class StorageControlClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'storage.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Storage\Control\V2\StorageControlClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new StorageControlClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -456,11 +466,13 @@ final class StorageControlClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -495,7 +507,7 @@ final class StorageControlClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AnywhereCache>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -710,11 +722,39 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getFolderIntelligenceConfig(
-        GetFolderIntelligenceConfigRequest $request,
-        array $callOptions = []
-    ): IntelligenceConfig {
+    public function getFolderIntelligenceConfig(GetFolderIntelligenceConfigRequest $request, array $callOptions = []): IntelligenceConfig
+    {
         return $this->startApiCall('GetFolderIntelligenceConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the IAM policy for a specified bucket.
+     * The `resource` field in the request should be
+     * `projects/_/buckets/{bucket}` for a bucket, or
+     * `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
+     * for a managed folder.
+     *
+     * The async variant is {@see StorageControlClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/get_iam_policy.php
+     *
+     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -765,10 +805,8 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOrganizationIntelligenceConfig(
-        GetOrganizationIntelligenceConfigRequest $request,
-        array $callOptions = []
-    ): IntelligenceConfig {
+    public function getOrganizationIntelligenceConfig(GetOrganizationIntelligenceConfigRequest $request, array $callOptions = []): IntelligenceConfig
+    {
         return $this->startApiCall('GetOrganizationIntelligenceConfig', $request, $callOptions)->wait();
     }
 
@@ -794,10 +832,8 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getProjectIntelligenceConfig(
-        GetProjectIntelligenceConfigRequest $request,
-        array $callOptions = []
-    ): IntelligenceConfig {
+    public function getProjectIntelligenceConfig(GetProjectIntelligenceConfigRequest $request, array $callOptions = []): IntelligenceConfig
+    {
         return $this->startApiCall('GetProjectIntelligenceConfig', $request, $callOptions)->wait();
     }
 
@@ -952,7 +988,7 @@ final class StorageControlClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Folder>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -988,6 +1024,68 @@ final class StorageControlClient
     }
 
     /**
+     * Updates an IAM policy for the specified bucket.
+     * The `resource` field in the request should be
+     * `projects/_/buckets/{bucket}` for a bucket, or
+     * `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
+     * for a managed folder.
+     *
+     * The async variant is {@see StorageControlClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/set_iam_policy.php
+     *
+     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Tests a set of permissions on the given bucket, object, or managed folder
+     * to see which, if any, are held by the caller.
+     * The `resource` field in the request should be
+     * `projects/_/buckets/{bucket}` for a bucket,
+     * `projects/_/buckets/{bucket}/objects/{object}` for an object, or
+     * `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
+     * for a managed folder.
+     *
+     * The async variant is {@see StorageControlClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestIamPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates an Anywhere Cache instance. Mutable fields include `ttl` and
      * `admission_policy`.
      *
@@ -1005,7 +1103,7 @@ final class StorageControlClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AnywhereCache>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1036,10 +1134,8 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateFolderIntelligenceConfig(
-        UpdateFolderIntelligenceConfigRequest $request,
-        array $callOptions = []
-    ): IntelligenceConfig {
+    public function updateFolderIntelligenceConfig(UpdateFolderIntelligenceConfigRequest $request, array $callOptions = []): IntelligenceConfig
+    {
         return $this->startApiCall('UpdateFolderIntelligenceConfig', $request, $callOptions)->wait();
     }
 
@@ -1065,10 +1161,8 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateOrganizationIntelligenceConfig(
-        UpdateOrganizationIntelligenceConfigRequest $request,
-        array $callOptions = []
-    ): IntelligenceConfig {
+    public function updateOrganizationIntelligenceConfig(UpdateOrganizationIntelligenceConfigRequest $request, array $callOptions = []): IntelligenceConfig
+    {
         return $this->startApiCall('UpdateOrganizationIntelligenceConfig', $request, $callOptions)->wait();
     }
 
@@ -1094,10 +1188,8 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateProjectIntelligenceConfig(
-        UpdateProjectIntelligenceConfigRequest $request,
-        array $callOptions = []
-    ): IntelligenceConfig {
+    public function updateProjectIntelligenceConfig(UpdateProjectIntelligenceConfigRequest $request, array $callOptions = []): IntelligenceConfig
+    {
         return $this->startApiCall('UpdateProjectIntelligenceConfig', $request, $callOptions)->wait();
     }
 }

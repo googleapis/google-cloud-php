@@ -27,6 +27,8 @@ use PHPUnit\Framework\TestCase;
  */
 class BatchDaemonTraitTest extends TestCase
 {
+    private $impl;
+
     public function setUp(): void
     {
         $this->impl = TestHelpers::impl(BatchDaemonTrait::class);

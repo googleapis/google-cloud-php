@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\DeviceStreaming\V1\Client\DirectAccessServiceClient;
-Google\Cloud\DeviceStreaming\V1\DeviceSession;
-Google\Cloud\DeviceStreaming\V1\GetDeviceSessionRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\DeviceStreaming\V1\Client\DirectAccessServiceClient;
+use Google\Cloud\DeviceStreaming\V1\DeviceSession;
+use Google\Cloud\DeviceStreaming\V1\GetDeviceSessionRequest;
 
 // Create a client.
 $directAccessServiceClient = new DirectAccessServiceClient();

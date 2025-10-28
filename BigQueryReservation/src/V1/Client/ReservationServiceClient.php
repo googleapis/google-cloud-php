@@ -27,6 +27,7 @@ namespace Google\Cloud\BigQuery\Reservation\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -38,20 +39,25 @@ use Google\Cloud\BigQuery\Reservation\V1\BiReservation;
 use Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment;
 use Google\Cloud\BigQuery\Reservation\V1\CreateAssignmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\CreateCapacityCommitmentRequest;
+use Google\Cloud\BigQuery\Reservation\V1\CreateReservationGroupRequest;
 use Google\Cloud\BigQuery\Reservation\V1\CreateReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\DeleteAssignmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\DeleteCapacityCommitmentRequest;
+use Google\Cloud\BigQuery\Reservation\V1\DeleteReservationGroupRequest;
 use Google\Cloud\BigQuery\Reservation\V1\DeleteReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\FailoverReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\GetBiReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\GetCapacityCommitmentRequest;
+use Google\Cloud\BigQuery\Reservation\V1\GetReservationGroupRequest;
 use Google\Cloud\BigQuery\Reservation\V1\GetReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\ListAssignmentsRequest;
 use Google\Cloud\BigQuery\Reservation\V1\ListCapacityCommitmentsRequest;
+use Google\Cloud\BigQuery\Reservation\V1\ListReservationGroupsRequest;
 use Google\Cloud\BigQuery\Reservation\V1\ListReservationsRequest;
 use Google\Cloud\BigQuery\Reservation\V1\MergeCapacityCommitmentsRequest;
 use Google\Cloud\BigQuery\Reservation\V1\MoveAssignmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\Reservation;
+use Google\Cloud\BigQuery\Reservation\V1\ReservationGroup;
 use Google\Cloud\BigQuery\Reservation\V1\SearchAllAssignmentsRequest;
 use Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsRequest;
 use Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentRequest;
@@ -60,6 +66,11 @@ use Google\Cloud\BigQuery\Reservation\V1\UpdateAssignmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateBiReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateCapacityCommitmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateReservationRequest;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -91,21 +102,28 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Assignment> createAssignmentAsync(CreateAssignmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CapacityCommitment> createCapacityCommitmentAsync(CreateCapacityCommitmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Reservation> createReservationAsync(CreateReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReservationGroup> createReservationGroupAsync(CreateReservationGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteAssignmentAsync(DeleteAssignmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteCapacityCommitmentAsync(DeleteCapacityCommitmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteReservationAsync(DeleteReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteReservationGroupAsync(DeleteReservationGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Reservation> failoverReservationAsync(FailoverReservationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BiReservation> getBiReservationAsync(GetBiReservationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CapacityCommitment> getCapacityCommitmentAsync(GetCapacityCommitmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Reservation> getReservationAsync(GetReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReservationGroup> getReservationGroupAsync(GetReservationGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAssignmentsAsync(ListAssignmentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCapacityCommitmentsAsync(ListCapacityCommitmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReservationGroupsAsync(ListReservationGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listReservationsAsync(ListReservationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CapacityCommitment> mergeCapacityCommitmentsAsync(MergeCapacityCommitmentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Assignment> moveAssignmentAsync(MoveAssignmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchAllAssignmentsAsync(SearchAllAssignmentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchAssignmentsAsync(SearchAssignmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SplitCapacityCommitmentResponse> splitCapacityCommitmentAsync(SplitCapacityCommitmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Assignment> updateAssignmentAsync(UpdateAssignmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BiReservation> updateBiReservationAsync(UpdateBiReservationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CapacityCommitment> updateCapacityCommitmentAsync(UpdateCapacityCommitmentRequest $request, array $optionalArgs = [])
@@ -258,6 +276,25 @@ final class ReservationServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * reservation_group resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $reservationGroup
+     *
+     * @return string The formatted reservation_group resource.
+     */
+    public static function reservationGroupName(string $project, string $location, string $reservationGroup): string
+    {
+        return self::getPathTemplate('reservationGroup')->render([
+            'project' => $project,
+            'location' => $location,
+            'reservation_group' => $reservationGroup,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -266,6 +303,7 @@ final class ReservationServiceClient
      * - capacityCommitment: projects/{project}/locations/{location}/capacityCommitments/{capacity_commitment}
      * - location: projects/{project}/locations/{location}
      * - reservation: projects/{project}/locations/{location}/reservations/{reservation}
+     * - reservationGroup: projects/{project}/locations/{location}/reservationGroups/{reservation_group}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -288,25 +326,28 @@ final class ReservationServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'bigqueryreservation.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new ReservationServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -344,11 +385,13 @@ final class ReservationServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -481,6 +524,35 @@ final class ReservationServiceClient
     }
 
     /**
+     * Creates a new reservation group.
+     *
+     * The async variant is
+     * {@see ReservationServiceClient::createReservationGroupAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/create_reservation_group.php
+     *
+     * @param CreateReservationGroupRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReservationGroup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createReservationGroup(
+        CreateReservationGroupRequest $request,
+        array $callOptions = []
+    ): ReservationGroup {
+        return $this->startApiCall('CreateReservationGroup', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a assignment. No expansion will happen.
      *
      * Example:
@@ -572,6 +644,33 @@ final class ReservationServiceClient
     }
 
     /**
+     * Deletes a reservation.
+     * Returns `google.rpc.Code.FAILED_PRECONDITION` when reservation has
+     * assignments.
+     *
+     * The async variant is
+     * {@see ReservationServiceClient::deleteReservationGroupAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/delete_reservation_group.php
+     *
+     * @param DeleteReservationGroupRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteReservationGroup(DeleteReservationGroupRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteReservationGroup', $request, $callOptions)->wait();
+    }
+
+    /**
      * Fail over a reservation to the secondary location. The operation should be
      * done in the current secondary location, which will be promoted to the
      * new primary location for the reservation.
@@ -658,6 +757,46 @@ final class ReservationServiceClient
     }
 
     /**
+     * Gets the access control policy for a resource.
+     * May return:
+     *
+     * * A`NOT_FOUND` error if the resource doesn't exist or you don't have the
+     * permission to view it.
+     * * An empty policy if the resource exists but doesn't have a set policy.
+     *
+     * Supported resources are:
+     * - Reservations
+     * - ReservationAssignments
+     *
+     * To call this method, you must have the following Google IAM permissions:
+     *
+     * - `bigqueryreservation.reservations.getIamPolicy` to get policies on
+     * reservations.
+     *
+     * The async variant is {@see ReservationServiceClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/get_iam_policy.php
+     *
+     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns information about the reservation.
      *
      * The async variant is {@see ReservationServiceClient::getReservationAsync()} .
@@ -681,6 +820,33 @@ final class ReservationServiceClient
     public function getReservation(GetReservationRequest $request, array $callOptions = []): Reservation
     {
         return $this->startApiCall('GetReservation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns information about the reservation group.
+     *
+     * The async variant is {@see ReservationServiceClient::getReservationGroupAsync()}
+     * .
+     *
+     * @example samples/V1/ReservationServiceClient/get_reservation_group.php
+     *
+     * @param GetReservationGroupRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReservationGroup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getReservationGroup(GetReservationGroupRequest $request, array $callOptions = []): ReservationGroup
+    {
+        return $this->startApiCall('GetReservationGroup', $request, $callOptions)->wait();
     }
 
     /**
@@ -756,6 +922,35 @@ final class ReservationServiceClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListCapacityCommitments', $request, $callOptions);
+    }
+
+    /**
+     * Lists all the reservation groups for the project in the specified location.
+     *
+     * The async variant is
+     * {@see ReservationServiceClient::listReservationGroupsAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/list_reservation_groups.php
+     *
+     * @param ListReservationGroupsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listReservationGroups(
+        ListReservationGroupsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListReservationGroups', $request, $callOptions);
     }
 
     /**
@@ -948,6 +1143,41 @@ final class ReservationServiceClient
     }
 
     /**
+     * Sets an access control policy for a resource. Replaces any existing
+     * policy.
+     *
+     * Supported resources are:
+     * - Reservations
+     *
+     * To call this method, you must have the following Google IAM permissions:
+     *
+     * - `bigqueryreservation.reservations.setIamPolicy` to set policies on
+     * reservations.
+     *
+     * The async variant is {@see ReservationServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/set_iam_policy.php
+     *
+     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Splits capacity commitment to two commitments of the same plan and
      * `commitment_end_time`.
      *
@@ -981,6 +1211,41 @@ final class ReservationServiceClient
         array $callOptions = []
     ): SplitCapacityCommitmentResponse {
         return $this->startApiCall('SplitCapacityCommitment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets your permissions on a resource. Returns an empty set of permissions if
+     * the resource doesn't exist.
+     *
+     * Supported resources are:
+     * - Reservations
+     *
+     * No Google IAM permissions are required to call this method.
+     *
+     * The async variant is {@see ReservationServiceClient::testIamPermissionsAsync()}
+     * .
+     *
+     * @example samples/V1/ReservationServiceClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestIamPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
     /**

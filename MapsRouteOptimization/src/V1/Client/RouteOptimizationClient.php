@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -35,8 +36,13 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Google\Maps\RouteOptimization\V1\BatchOptimizeToursRequest;
+use Google\Maps\RouteOptimization\V1\BatchOptimizeToursResponse;
+use Google\Maps\RouteOptimization\V1\OptimizeToursLongRunningMetadata;
 use Google\Maps\RouteOptimization\V1\OptimizeToursRequest;
 use Google\Maps\RouteOptimization\V1\OptimizeToursResponse;
+use Google\Maps\RouteOptimization\V1\OptimizeToursUriMetadata;
+use Google\Maps\RouteOptimization\V1\OptimizeToursUriRequest;
+use Google\Maps\RouteOptimization\V1\OptimizeToursUriResponse;
 use Google\Maps\RouteOptimization\V1\ShipmentRoute;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -66,6 +72,8 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<OperationResponse> batchOptimizeToursAsync(BatchOptimizeToursRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OptimizeToursResponse> optimizeToursAsync(OptimizeToursRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> optimizeToursLongRunningAsync(OptimizeToursRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> optimizeToursUriAsync(OptimizeToursUriRequest $request, array $optionalArgs = [])
  */
 final class RouteOptimizationClient
 {
@@ -137,9 +145,7 @@ final class RouteOptimizationClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -167,25 +173,28 @@ final class RouteOptimizationClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'routeoptimization.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Maps\RouteOptimization\V1\RouteOptimizationClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new RouteOptimizationClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -223,11 +232,13 @@ final class RouteOptimizationClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -283,7 +294,7 @@ final class RouteOptimizationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BatchOptimizeToursResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -329,5 +340,104 @@ final class RouteOptimizationClient
     public function optimizeTours(OptimizeToursRequest $request, array $callOptions = []): OptimizeToursResponse
     {
         return $this->startApiCall('OptimizeTours', $request, $callOptions)->wait();
+    }
+
+    /**
+     * This is a variant of the
+     * [OptimizeTours][google.maps.routeoptimization.v1.RouteOptimization.OptimizeTours]
+     * method designed for
+     * optimizations with large timeout values. It should be preferred over the
+     * `OptimizeTours` method for optimizations that take longer than
+     * a few minutes.
+     *
+     * The returned [long-running operation][google.longrunning.Operation] (LRO)
+     * will have a name of the format
+     * `<parent>/operations/<operation_id>` and can be used to track
+     * progress of the computation. The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [OptimizeToursLongRunningMetadata][google.maps.routeoptimization.v1.OptimizeToursLongRunningMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [OptimizeToursResponse][google.maps.routeoptimization.v1.OptimizeToursResponse],
+     * if successful.
+     *
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/otlr/make-request
+     * for more details.
+     *
+     *
+     * The async variant is
+     * {@see RouteOptimizationClient::optimizeToursLongRunningAsync()} .
+     *
+     * @example samples/V1/RouteOptimizationClient/optimize_tours_long_running.php
+     *
+     * @param OptimizeToursRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<OptimizeToursResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function optimizeToursLongRunning(OptimizeToursRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('OptimizeToursLongRunning', $request, $callOptions)->wait();
+    }
+
+    /**
+     * This is a variant of the
+     * [OptimizeToursLongRunning][google.maps.routeoptimization.v1.RouteOptimization.OptimizeToursLongRunning]
+     * method designed for optimizations with large timeout values and large
+     * input/output sizes.
+     *
+     * The client specifies the URI of the `OptimizeToursRequest` stored
+     * in Google Cloud Storage and the server writes the `OptimizeToursResponse`
+     * to a client-specified Google Cloud Storage URI.
+     *
+     * This method should be preferred over the `OptimizeTours` method for
+     * optimizations that take longer than a few minutes and input/output sizes
+     * that are larger than 8MB, though it can be used for shorter and smaller
+     * optimizations as well.
+     *
+     * The returned [long-running operation][google.longrunning.Operation] (LRO)
+     * will have a name of the format
+     * `<parent>/operations/<operation_id>` and can be used to track
+     * progress of the computation. The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [OptimizeToursLongRunningMetadata][google.maps.routeoptimization.v1.OptimizeToursUriMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [OptimizeToursUriResponse][google.maps.routeoptimization.v1.OptimizeToursUriResponse],
+     * if successful.
+     *
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/otlr/make-request
+     * for more details.
+     *
+     * The async variant is {@see RouteOptimizationClient::optimizeToursUriAsync()} .
+     *
+     * @example samples/V1/RouteOptimizationClient/optimize_tours_uri.php
+     *
+     * @param OptimizeToursUriRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<OptimizeToursUriResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function optimizeToursUri(OptimizeToursUriRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('OptimizeToursUri', $request, $callOptions)->wait();
     }
 }

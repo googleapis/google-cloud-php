@@ -10,10 +10,8 @@ use UnexpectedValueException;
  * Specifies how a column fills the width of the card. The width of each
  * column depends on both the `HorizontalSizeStyle` and the width of the
  * widgets within the column.
- * [Google Workspace Add-ons and Chat
- * apps](https://developers.google.com/workspace/extend):
- * Columns for Google Workspace Add-ons are in
- * Developer Preview.
+ * [Google Workspace add-ons and Chat
+ * apps](https://developers.google.com/workspace/extend)
  *
  * Protobuf type <code>google.apps.card.v1.Columns.Column.HorizontalSizeStyle</code>
  */

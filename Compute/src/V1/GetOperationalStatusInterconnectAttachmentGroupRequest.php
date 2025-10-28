@@ -20,13 +20,13 @@ class GetOperationalStatusInterconnectAttachmentGroupRequest extends \Google\Pro
      *
      * Generated from protobuf field <code>string interconnect_attachment_group = 75905012 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $interconnect_attachment_group = '';
+    protected $interconnect_attachment_group = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project                     Project ID for this request.

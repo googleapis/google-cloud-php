@@ -17,10 +17,17 @@
 
 namespace Google\Cloud\Core\Tests\Unit;
 
+use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\Serializer;
+use Google\ApiCore\Testing\MockRequest;
 use Google\Cloud\Core\Duration;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Tests\Unit\Stubs\ApiHelpersTraitImpl;
+use Google\Protobuf\Internal\Message;
+use LogicException;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -257,5 +264,135 @@ class ApiHelperTraitTest extends TestCase
                 ]
             ]
         ];
+    }
+
+    /**
+     * @dataProvider validateOptionsProvider
+     */
+    public function testValidateOptions($options, $optionTypes, $expected)
+    {
+        $implementation = new ApiHelpersTraitImpl();
+        $this->assertEquals(
+            $expected,
+            $implementation->validateOptions($options, ...$optionTypes)
+        );
+    }
+
+    /**
+     * @dataProvider validateOptionsProvider
+     */
+    public function testValidateOptionsCustomSerializer($options, $optionTypes, $expected)
+    {
+        $numMessages = count(array_filter($expected, fn ($optionType) => $optionType instanceof Message));
+        $serializer = $this->prophesize(Serializer::class);
+        $serializer->decodeMessage(Argument::type(Message::class), Argument::type('array'))
+            ->shouldBeCalledTimes($numMessages)
+            ->will(function ($args) {
+                return (new Serializer())->decodeMessage($args[0], $args[1]);
+            });
+
+        // test using an implementation with custom serializer
+        $implementation = new ApiHelpersTraitImpl();
+        $implementation->setOptionsValidator(new OptionsValidator($serializer->reveal()));
+        $this->assertEquals(
+            $expected,
+            $implementation->validateOptions($options, ...$optionTypes)
+        );
+    }
+
+    public function validateOptionsProvider()
+    {
+        return [
+            [
+                [
+                    'foo' => 'bar',
+                    'baz' => 'bat',
+                    'qux' => 'quux',
+                ],
+                [
+                    ['foo', 'baz', 'qux'],
+                ],
+                [
+                    [
+                        'foo' => 'bar',
+                        'baz' => 'bat',
+                        'qux' => 'quux',
+                    ],
+                ]
+            ],
+            [
+                [
+                    'pageToken' => 'bat',
+                    'qux' => 'quux',
+                    'timeoutMillis' => 123,
+                ],
+                [
+                    CallOptions::class,
+                    new MockRequest(),
+                    ['qux'],
+                ],
+                [
+                    ['timeoutMillis' => 123],
+                    (new MockRequest())->setPageToken('bat'),
+                    ['qux' => 'quux'],
+                ]
+            ],
+            [
+                [
+                    'baz' => 'bat',
+                ],
+                [
+                    ['baz'],
+                    new MockRequest(),
+                    CallOptions::class,
+                ],
+                [
+                    ['baz' => 'bat'],
+                    new MockRequest(),
+                    [],
+                ]
+            ],
+            [
+                [
+                    'baz' => 'bat',
+                    'pageToken' => 'foo1',
+                ],
+                [
+                    ['baz'],
+                    new MockRequest(),
+                ],
+                [
+                    ['baz' => 'bat'],
+                    (new MockRequest())->setPageToken('foo1'),
+                ]
+            ],
+            [
+                [
+                    'baz' => 'bat',
+                    'pageToken' => 'foo1',
+                ],
+                [
+                    'baz',
+                    new MockRequest(),
+                ],
+                [
+                    'bat',
+                    (new MockRequest())->setPageToken('foo1'),
+                ]
+            ],
+        ];
+    }
+
+    public function testValidateOptionsThrowsException()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Unexpected option(s) provided: bar');
+
+        $options = [
+            'foo' => 'bar',
+            'bar' => 'baz',
+        ];
+
+        $this->implementation->validateOptions($options, ['foo']);
     }
 }

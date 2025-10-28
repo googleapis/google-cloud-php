@@ -38,6 +38,16 @@ class ReplicationStatus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_replication_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $last_replication_time = null;
+    /**
+     * Output only. The time at which a soft failover for the reservation and
+     * its associated datasets was initiated. After this field is set, all
+     * subsequent changes to the reservation will be rejected unless a hard
+     * failover overrides this operation. This field will be cleared once the
+     * failover is complete.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp soft_failover_start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $soft_failover_start_time = null;
 
     /**
      * Constructor.
@@ -56,6 +66,12 @@ class ReplicationStatus extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $last_replication_time
      *           Output only. A timestamp corresponding to the last change on the primary
      *           that was successfully replicated to the secondary.
+     *     @type \Google\Protobuf\Timestamp $soft_failover_start_time
+     *           Output only. The time at which a soft failover for the reservation and
+     *           its associated datasets was initiated. After this field is set, all
+     *           subsequent changes to the reservation will be rejected unless a hard
+     *           failover overrides this operation. This field will be cleared once the
+     *           failover is complete.
      * }
      */
     public function __construct($data = NULL) {
@@ -177,6 +193,50 @@ class ReplicationStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->last_replication_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time at which a soft failover for the reservation and
+     * its associated datasets was initiated. After this field is set, all
+     * subsequent changes to the reservation will be rejected unless a hard
+     * failover overrides this operation. This field will be cleared once the
+     * failover is complete.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp soft_failover_start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getSoftFailoverStartTime()
+    {
+        return $this->soft_failover_start_time;
+    }
+
+    public function hasSoftFailoverStartTime()
+    {
+        return isset($this->soft_failover_start_time);
+    }
+
+    public function clearSoftFailoverStartTime()
+    {
+        unset($this->soft_failover_start_time);
+    }
+
+    /**
+     * Output only. The time at which a soft failover for the reservation and
+     * its associated datasets was initiated. After this field is set, all
+     * subsequent changes to the reservation will be rejected unless a hard
+     * failover overrides this operation. This field will be cleared once the
+     * failover is complete.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp soft_failover_start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setSoftFailoverStartTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->soft_failover_start_time = $var;
 
         return $this;
     }

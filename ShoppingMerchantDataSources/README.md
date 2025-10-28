@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Shopping\Merchant\DataSources\V1beta\Client\DataSourcesServiceClient;
-Google\Shopping\Merchant\DataSources\V1beta\DataSource;
-Google\Shopping\Merchant\DataSources\V1beta\GetDataSourceRequest;
+use Google\ApiCore\ApiException;
+use Google\Shopping\Merchant\DataSources\V1\Client\DataSourcesServiceClient;
+use Google\Shopping\Merchant\DataSources\V1\DataSource;
+use Google\Shopping\Merchant\DataSources\V1\GetDataSourceRequest;
 
 // Create a client.
 $dataSourcesServiceClient = new DataSourcesServiceClient();
@@ -66,7 +66,8 @@ for more information about the debugging tools.
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

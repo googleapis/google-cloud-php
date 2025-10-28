@@ -19,7 +19,7 @@ class SetCommonInstanceMetadataOperationMetadata extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>optional string client_operation_id = 297240295;</code>
      */
-    private $client_operation_id = null;
+    protected $client_operation_id = null;
     /**
      * [Output Only] Status information per location (location name is key). Example key: zones/us-central1-a
      *

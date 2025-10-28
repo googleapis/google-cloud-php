@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 
 /**
  * Read-only snapshot Transaction.
@@ -29,7 +29,7 @@ use Google\Cloud\Spanner\Session\Session;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  * $transaction = $database->snapshot();
@@ -41,7 +41,7 @@ class Snapshot implements TransactionalReadInterface
 
     /**
      * @param Operation $operation The Operation instance.
-     * @param Session $session The session to use for spanner interactions.
+     * @param SessionCache $session The session to use for spanner interactions.
      * @param array $options [optional] {
      *     Configuration Options.
      *
@@ -52,10 +52,11 @@ class Snapshot implements TransactionalReadInterface
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type array $transactonOptions
      * }
      * @throws \InvalidArgumentException if a tag is specified as this is a read-only transaction.
      */
-    public function __construct(Operation $operation, Session $session, array $options = [])
+    public function __construct(Operation $operation, SessionCache $session, array $options = [])
     {
         if (isset($options['tag'])) {
             throw new \InvalidArgumentException(

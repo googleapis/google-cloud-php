@@ -17,16 +17,26 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Spanner\Tests\System\SpannerPgTestCase;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 /**
  * @group spanner
  * @group spanner-pdml
  * @group spanner-postgres
  */
-class PgPartitionedDmlTest extends SpannerPgTestCase
+class PgPartitionedDmlTest extends SystemTestCase
 {
+    use PgSystemTestCaseTrait;
+
     const PDML_TABLE = 'partitionedDml';
+
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
+    {
+        self::setUpTestDatabase();
+    }
 
     public function testPdml()
     {

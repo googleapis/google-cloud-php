@@ -17,7 +17,7 @@ class DiskResourceStatus extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskResourceStatusAsyncReplicationStatus async_primary_disk = 180517533;</code>
      */
-    private $async_primary_disk = null;
+    protected $async_primary_disk = null;
     /**
      * Key: disk, value: AsyncReplicationStatus message
      *

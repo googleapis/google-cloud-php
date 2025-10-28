@@ -28,7 +28,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      * Users should ensure that there is a subscription attached to this topic
      * since messages published to a topic with no subscriptions are lost.
      *
-     * Generated from protobuf field <code>string dead_letter_topic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string dead_letter_topic = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $dead_letter_topic = '';
     /**
@@ -88,7 +88,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      * Users should ensure that there is a subscription attached to this topic
      * since messages published to a topic with no subscriptions are lost.
      *
-     * Generated from protobuf field <code>string dead_letter_topic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string dead_letter_topic = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDeadLetterTopic()
@@ -106,7 +106,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      * Users should ensure that there is a subscription attached to this topic
      * since messages published to a topic with no subscriptions are lost.
      *
-     * Generated from protobuf field <code>string dead_letter_topic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string dead_letter_topic = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

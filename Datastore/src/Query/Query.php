@@ -17,9 +17,13 @@
 
 namespace Google\Cloud\Datastore\Query;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
+use Google\Cloud\Datastore\V1\CompositeFilter\Operator as CompositeFilterOperator;
+use Google\Cloud\Datastore\V1\PropertyFilter\Operator;
+use Google\Cloud\Datastore\V1\PropertyOrder\Direction;
 use InvalidArgumentException;
 
 /**
@@ -78,19 +82,19 @@ class Query implements QueryInterface
     use DatastoreTrait;
 
     const OP_DEFAULT                = self::OP_EQUALS;
-    const OP_LESS_THAN              = 'LESS_THAN';
-    const OP_LESS_THAN_OR_EQUAL     = 'LESS_THAN_OR_EQUAL';
-    const OP_GREATER_THAN           = 'GREATER_THAN';
-    const OP_GREATER_THAN_OR_EQUAL  = 'GREATER_THAN_OR_EQUAL';
-    const OP_EQUALS                 = 'EQUAL';
-    const OP_NOT_EQUALS             = 'NOT_EQUAL';
-    const OP_IN                     = 'IN';
-    const OP_NOT_IN                 = 'NOT_IN';
-    const OP_HAS_ANCESTOR           = 'HAS_ANCESTOR';
+    const OP_LESS_THAN              = Operator::LESS_THAN;
+    const OP_LESS_THAN_OR_EQUAL     = Operator::LESS_THAN_OR_EQUAL;
+    const OP_GREATER_THAN           = Operator::GREATER_THAN;
+    const OP_GREATER_THAN_OR_EQUAL  = Operator::GREATER_THAN_OR_EQUAL;
+    const OP_EQUALS                 = Operator::EQUAL;
+    const OP_NOT_EQUALS             = Operator::NOT_EQUAL;
+    const OP_IN                     = Operator::IN;
+    const OP_NOT_IN                 = Operator::NOT_IN;
+    const OP_HAS_ANCESTOR           = Operator::HAS_ANCESTOR;
 
     const ORDER_DEFAULT             = self::ORDER_ASCENDING;
-    const ORDER_DESCENDING          = 'DESCENDING';
-    const ORDER_ASCENDING           = 'ASCENDING';
+    const ORDER_DESCENDING          = Direction::DESCENDING;
+    const ORDER_ASCENDING           = Direction::ASCENDING;
 
     /**
      * @var array A list of all operators supported by datastore
@@ -130,14 +134,9 @@ class Query implements QueryInterface
     ];
 
     /**
-     * @var EntityMapper
+     * @var Serializer
      */
-    private $entityMapper;
-
-    /**
-     * @var array
-     */
-    private $query;
+    private Serializer $serializer;
 
     /**
      * @codingStandardsIgnoreStart
@@ -145,9 +144,10 @@ class Query implements QueryInterface
      * @param array $query [optional] [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      * @codingStandardsIgnoreEnd
      */
-    public function __construct(EntityMapper $entityMapper, array $query = [])
-    {
-        $this->entityMapper = $entityMapper;
+    public function __construct(
+        private EntityMapper $entityMapper,
+        private array $query = []
+    ) {
         $this->query = $query + [
             'projection' => [],
             'kind' => [],
@@ -171,7 +171,7 @@ class Query implements QueryInterface
      *        the result.
      * @return Query
      */
-    public function projection($properties)
+    public function projection(array|string $properties): Query
     {
         if (!is_array($properties)) {
             $properties = [$properties];
@@ -196,7 +196,7 @@ class Query implements QueryInterface
      *
      * @return Query
      */
-    public function keysOnly()
+    public function keysOnly(): Query
     {
         $this->projection('__key__');
 
@@ -219,7 +219,7 @@ class Query implements QueryInterface
      *        is currently supported.
      * @return Query
      */
-    public function kind($kinds)
+    public function kind(array|string $kinds): Query
     {
         if (!is_array($kinds)) {
             $kinds = [$kinds];
@@ -280,7 +280,7 @@ class Query implements QueryInterface
      *        used in the first argument.
      * @return Query
      */
-    public function filter($filterOrProperty, $operator = null, $value = null)
+    public function filter(string|array $filterOrProperty, ?string $operator = null, $value = null): Query
     {
         if (!isset($this->query['filter']) ||
             !isset($this->query['filter']['compositeFilter'])
@@ -328,7 +328,7 @@ class Query implements QueryInterface
      * @param Key $key The ancestor Key instance.
      * @return Query
      */
-    public function hasAncestor(Key $key)
+    public function hasAncestor(Key $key): Query
     {
         $this->filter('__key__', self::OP_HAS_ANCESTOR, $key);
 
@@ -346,13 +346,13 @@ class Query implements QueryInterface
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#Direction Allowed Directions
      *
      * @param string $property The property to order by.
-     * @param string $direction [optional] The direction to order in. Google
+     * @param int $direction [optional] The direction to order in. Google
      *        Cloud PHP provides class constants which map to allowed Datastore
      *        values. Those constants are `Query::ORDER_DESCENDING` and
      *        `Query::ORDER_ASCENDING`. **Defaults to** `Query::ORDER_ACENDING`.
      * @return Query
      */
-    public function order($property, $direction = self::ORDER_DEFAULT)
+    public function order(string $property, int $direction = self::ORDER_DEFAULT): Query
     {
         $this->query['order'][] = [
             'property' => $this->propertyName($property),
@@ -377,7 +377,7 @@ class Query implements QueryInterface
      * @param array|string $property The property or properties to make distinct.
      * @return Query
      */
-    public function distinctOn($property)
+    public function distinctOn(array|string $property): Query
     {
         if (!is_array($property)) {
             $property = [$property];
@@ -405,7 +405,7 @@ class Query implements QueryInterface
      * @param string $cursor The cursor on which to start the result.
      * @return Query
      */
-    public function start($cursor)
+    public function start(string $cursor): Query
     {
         $this->query['startCursor'] = $cursor;
 
@@ -427,7 +427,7 @@ class Query implements QueryInterface
      * @param string $cursor The cursor on which to end the result.
      * @return Query
      */
-    public function end($cursor)
+    public function end(string $cursor): Query
     {
         $this->query['endCursor'] = $cursor;
 
@@ -449,7 +449,7 @@ class Query implements QueryInterface
      * @param int $num The number of results to skip.
      * @return Query
      */
-    public function offset($num)
+    public function offset(int $num): Query
     {
         $this->query['offset'] = $num;
 
@@ -471,9 +471,9 @@ class Query implements QueryInterface
      * @param int $num The number of results to return.
      * @return Query
      */
-    public function limit($num)
+    public function limit(int $num): Query
     {
-        $this->query['limit'] = $num;
+        $this->query['limit'] = [ 'value' => $num ];
 
         return $this;
     }
@@ -484,7 +484,7 @@ class Query implements QueryInterface
      * @access private
      * @return bool
      */
-    public function canPaginate()
+    public function canPaginate(): bool
     {
         return true;
     }
@@ -494,7 +494,7 @@ class Query implements QueryInterface
      *
      * @return array
      */
-    public function queryObject()
+    public function queryObject(): array
     {
         return array_filter($this->query);
     }
@@ -505,12 +505,12 @@ class Query implements QueryInterface
      * @return string
      * @access private
      */
-    public function queryKey()
+    public function queryKey(): string
     {
         return 'query';
     }
 
-    public function aggregation(Aggregation $aggregation)
+    public function aggregation(Aggregation $aggregation): AggregationQuery
     {
         $aggregationQuery = new AggregationQuery($this);
         $aggregationQuery->addAggregation($aggregation);
@@ -521,8 +521,7 @@ class Query implements QueryInterface
     /**
      * @access private
      */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return $this->queryObject();
     }
@@ -532,12 +531,12 @@ class Query implements QueryInterface
      *
      * @return void
      */
-    private function initializeFilter()
+    private function initializeFilter(): void
     {
         $this->query['filter'] = [
             'compositeFilter' => [
                 'filters' => [],
-                'op' => 'AND'
+                'op' => CompositeFilterOperator::PBAND
             ]
         ];
     }
@@ -548,7 +547,7 @@ class Query implements QueryInterface
      * @param string $property The property name.
      * @return array
      */
-    private function propertyName($property)
+    private function propertyName(string $property): array
     {
         return [
             'name' => $property
@@ -561,7 +560,7 @@ class Query implements QueryInterface
      * @param string $operator
      * @return string
      */
-    private function mapOperator($operator)
+    private function mapOperator(string $operator): string
     {
         if (array_key_exists($operator, $this->shortOperators)) {
             $operator = $this->shortOperators[$operator];
@@ -581,7 +580,7 @@ class Query implements QueryInterface
     /**
      * Converts the filter array data to proper API format recursively.
      */
-    private function convertFilterToApiFormat($filterArray)
+    private function convertFilterToApiFormat(array $filterArray): array
     {
         if (array_key_exists('propertyFilter', $filterArray)) {
             $propertyFilter = $filterArray['propertyFilter'];

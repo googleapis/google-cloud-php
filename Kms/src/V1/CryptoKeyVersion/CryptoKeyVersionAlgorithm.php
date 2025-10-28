@@ -271,6 +271,25 @@ class CryptoKeyVersionAlgorithm
      */
     const EXTERNAL_SYMMETRIC_ENCRYPTION = 18;
     /**
+     * ML-KEM-768 (FIPS 203)
+     *
+     * Generated from protobuf enum <code>ML_KEM_768 = 47;</code>
+     */
+    const ML_KEM_768 = 47;
+    /**
+     * ML-KEM-1024 (FIPS 203)
+     *
+     * Generated from protobuf enum <code>ML_KEM_1024 = 48;</code>
+     */
+    const ML_KEM_1024 = 48;
+    /**
+     * X-Wing hybrid KEM combining ML-KEM-768 with X25519 following
+     * datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.
+     *
+     * Generated from protobuf enum <code>KEM_XWING = 63;</code>
+     */
+    const KEM_XWING = 63;
+    /**
      * The post-quantum Module-Lattice-Based Digital Signature Algorithm, at
      * security level 3. Randomized version.
      *
@@ -322,6 +341,9 @@ class CryptoKeyVersionAlgorithm
         self::HMAC_SHA512 => 'HMAC_SHA512',
         self::HMAC_SHA224 => 'HMAC_SHA224',
         self::EXTERNAL_SYMMETRIC_ENCRYPTION => 'EXTERNAL_SYMMETRIC_ENCRYPTION',
+        self::ML_KEM_768 => 'ML_KEM_768',
+        self::ML_KEM_1024 => 'ML_KEM_1024',
+        self::KEM_XWING => 'KEM_XWING',
         self::PQ_SIGN_ML_DSA_65 => 'PQ_SIGN_ML_DSA_65',
         self::PQ_SIGN_SLH_DSA_SHA2_128S => 'PQ_SIGN_SLH_DSA_SHA2_128S',
     ];

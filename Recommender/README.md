@@ -31,25 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Recommender\V1\Client\RecommenderClient;
+use Google\Cloud\Recommender\V1\GetInsightRequest;
+use Google\Cloud\Recommender\V1\Insight;
 
-use Google\Cloud\Recommender\V1\RecommenderClient;
+// Create a client.
+$recommenderClient = new RecommenderClient();
 
-$client = new RecommenderClient();
+// Prepare the request message.
+$request = (new GetInsightRequest())
+    ->setName($formattedName);
 
-$recommendations = $client->listRecommendations(
-    RecommenderClient::recommenderName(
-        '[MY_PROJECT_ID]',
-        'us-central1',
-        'google.compute.instance.MachineTypeRecommender'
-    )
-);
-
-foreach ($recommendations as $recommendation) {
-    printf(
-        'Found recommendation: %s' . PHP_EOL,
-        $recommendation->getName()
-    );
+// Call the API and handle any network failures.
+try {
+    /** @var Insight $response */
+    $response = $recommenderClient->getInsight($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

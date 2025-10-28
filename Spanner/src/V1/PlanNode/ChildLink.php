@@ -21,7 +21,7 @@ class ChildLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 child_index = 1;</code>
      */
-    private $child_index = 0;
+    protected $child_index = 0;
     /**
      * The type of the link. For example, in Hash Joins this could be used to
      * distinguish between the build child and the probe child, or in the case
@@ -30,20 +30,20 @@ class ChildLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
-     * Only present if the child node is [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and corresponds
-     * to an output variable of the parent node. The field carries the name of
-     * the output variable.
-     * For example, a `TableScan` operator that reads rows from a table will
-     * have child links to the `SCALAR` nodes representing the output variables
-     * created for each column that is read by the operator. The corresponding
-     * `variable` fields will be set to the variable names assigned to the
-     * columns.
+     * Only present if the child node is
+     * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and corresponds to an
+     * output variable of the parent node. The field carries the name of the
+     * output variable. For example, a `TableScan` operator that reads rows from
+     * a table will have child links to the `SCALAR` nodes representing the
+     * output variables created for each column that is read by the operator.
+     * The corresponding `variable` fields will be set to the variable names
+     * assigned to the columns.
      *
      * Generated from protobuf field <code>string variable = 3;</code>
      */
-    private $variable = '';
+    protected $variable = '';
 
     /**
      * Constructor.
@@ -59,14 +59,14 @@ class ChildLink extends \Google\Protobuf\Internal\Message
      *           of the child being an output variable, to represent the tag associated
      *           with the output variable.
      *     @type string $variable
-     *           Only present if the child node is [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and corresponds
-     *           to an output variable of the parent node. The field carries the name of
-     *           the output variable.
-     *           For example, a `TableScan` operator that reads rows from a table will
-     *           have child links to the `SCALAR` nodes representing the output variables
-     *           created for each column that is read by the operator. The corresponding
-     *           `variable` fields will be set to the variable names assigned to the
-     *           columns.
+     *           Only present if the child node is
+     *           [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and corresponds to an
+     *           output variable of the parent node. The field carries the name of the
+     *           output variable. For example, a `TableScan` operator that reads rows from
+     *           a table will have child links to the `SCALAR` nodes representing the
+     *           output variables created for each column that is read by the operator.
+     *           The corresponding `variable` fields will be set to the variable names
+     *           assigned to the columns.
      * }
      */
     public function __construct($data = NULL) {
@@ -133,14 +133,14 @@ class ChildLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only present if the child node is [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and corresponds
-     * to an output variable of the parent node. The field carries the name of
-     * the output variable.
-     * For example, a `TableScan` operator that reads rows from a table will
-     * have child links to the `SCALAR` nodes representing the output variables
-     * created for each column that is read by the operator. The corresponding
-     * `variable` fields will be set to the variable names assigned to the
-     * columns.
+     * Only present if the child node is
+     * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and corresponds to an
+     * output variable of the parent node. The field carries the name of the
+     * output variable. For example, a `TableScan` operator that reads rows from
+     * a table will have child links to the `SCALAR` nodes representing the
+     * output variables created for each column that is read by the operator.
+     * The corresponding `variable` fields will be set to the variable names
+     * assigned to the columns.
      *
      * Generated from protobuf field <code>string variable = 3;</code>
      * @return string
@@ -151,14 +151,14 @@ class ChildLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only present if the child node is [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and corresponds
-     * to an output variable of the parent node. The field carries the name of
-     * the output variable.
-     * For example, a `TableScan` operator that reads rows from a table will
-     * have child links to the `SCALAR` nodes representing the output variables
-     * created for each column that is read by the operator. The corresponding
-     * `variable` fields will be set to the variable names assigned to the
-     * columns.
+     * Only present if the child node is
+     * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and corresponds to an
+     * output variable of the parent node. The field carries the name of the
+     * output variable. For example, a `TableScan` operator that reads rows from
+     * a table will have child links to the `SCALAR` nodes representing the
+     * output variables created for each column that is read by the operator.
+     * The corresponding `variable` fields will be set to the variable names
+     * assigned to the columns.
      *
      * Generated from protobuf field <code>string variable = 3;</code>
      * @param string $var
@@ -174,6 +174,4 @@ class ChildLink extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ChildLink::class, \Google\Cloud\Spanner\V1\PlanNode_ChildLink::class);
 

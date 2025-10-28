@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [slash
+ * Metadata about a [slash
  * command](https://developers.google.com/workspace/chat/commands) in
  * Google Chat.
  *
@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SlashCommand extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The ID of the slash command invoked.
+     * The ID of the slash command.
      *
      * Generated from protobuf field <code>int64 command_id = 1;</code>
      */
@@ -31,7 +31,7 @@ class SlashCommand extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $command_id
-     *           The ID of the slash command invoked.
+     *           The ID of the slash command.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,7 +40,7 @@ class SlashCommand extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the slash command invoked.
+     * The ID of the slash command.
      *
      * Generated from protobuf field <code>int64 command_id = 1;</code>
      * @return int|string
@@ -51,7 +51,7 @@ class SlashCommand extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the slash command invoked.
+     * The ID of the slash command.
      *
      * Generated from protobuf field <code>int64 command_id = 1;</code>
      * @param int|string $var

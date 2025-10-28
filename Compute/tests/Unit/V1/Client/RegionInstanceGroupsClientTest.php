@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Client\RegionInstanceGroupsClient;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
 use Google\Cloud\Compute\V1\GetRegionInstanceGroupRequest;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\InstanceGroup;
@@ -39,8 +40,10 @@ use Google\Cloud\Compute\V1\RegionInstanceGroupList;
 use Google\Cloud\Compute\V1\RegionInstanceGroupsListInstances;
 use Google\Cloud\Compute\V1\RegionInstanceGroupsListInstancesRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupsSetNamedPortsRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetNamedPortsRegionInstanceGroupRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsRegionInstanceGroupRequest;
+use Google\Cloud\Compute\V1\TestPermissionsRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -60,7 +63,9 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return RegionInstanceGroupsClient */
@@ -142,12 +147,15 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceGroup = 'instanceGroup81095253';
@@ -184,9 +192,7 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new InstanceGroup();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new RegionInstanceGroupList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -197,9 +203,7 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new ListRegionInstanceGroupsRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = (new ListRegionInstanceGroupsRequest())->setProject($project)->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -228,19 +232,20 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new ListRegionInstanceGroupsRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = (new ListRegionInstanceGroupsRequest())->setProject($project)->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -268,9 +273,7 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new InstanceWithNamedPorts();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new RegionInstanceGroupsListInstances();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -320,12 +323,15 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceGroup = 'instanceGroup81095253';
@@ -446,12 +452,15 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroup = 'instanceGroup81095253';
@@ -481,6 +490,89 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function testIamPermissionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new TestPermissionsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsRegionInstanceGroupRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $response = $gapicClient->testIamPermissions($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroups/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
+        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function testIamPermissionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsRegionInstanceGroupRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        try {
+            $gapicClient->testIamPermissions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */

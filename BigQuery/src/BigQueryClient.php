@@ -50,7 +50,7 @@ class BigQueryClient
         ClientTrait::jsonDecode insteadof RetryDeciderTrait;
     }
 
-    const VERSION = '1.33.1';
+    const VERSION = '1.34.3';
 
     const MAX_DELAY_MICROSECONDS = 32000000;
 
@@ -93,12 +93,50 @@ class BigQueryClient
      *           fetcher instance.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     *     @type array $keyFile The contents of the service account credentials
-     *           .json file retrieved from the Google Developer's Console.
-     *           Ex: `json_decode(file_get_contents($path), true)`.
-     *     @type string $keyFilePath The full path to your service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
+     *     @type array $keyFile [DEPRECATED]
+     *           @deprecated This option is being deprecated because of a potential security risk.
+     *           This option does not validate the credential configuration. The security
+     *           risk occurs when a credential configuration is accepted from a source
+     *           that is not under your control and used without validation on your side.
+     *           If you know that you will be loading credential configurations of a
+     *           specific type, it is recommended to create the credentials directly and
+     *           configure them using the `credentialsFetcher` option instead.
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
+     *           $creds = new BigQueryClient(['credentialsFetcher' => $creds]);
+     *           ```
+     *           This will ensure that an unexpected credential type with potential for
+     *           malicious intent is not loaded unintentionally. You might still have to do
+     *           validation for certain credential types.
+     *           If you are loading your credential configuration from an untrusted source and have
+     *           not mitigated the risks (e.g. by validating the configuration yourself), make
+     *           these changes as soon as possible to prevent security risks to your environment.
+     *           Regardless of the method used, it is always your responsibility to validate
+     *           configurations received from external sources.
+     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
+    *     @type string $keyFilePath [DEPRECATED]
+     *           @deprecated This option is being deprecated because of a potential security risk.
+     *           This option does not validate the credential configuration. The security
+     *           risk occurs when a credential configuration is accepted from a source
+     *           that is not under your control and used without validation on your side.
+     *           If you know that you will be loading credential configurations of a
+     *           specific type, it is recommended to create the credentials directly and
+     *           configure them using the `credentialsFetcher` option instead.
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
+     *           $creds = new BigQueryClient(['credentialsFetcher' => $creds]);
+     *           ```
+     *           This will ensure that an unexpected credential type with potential for
+     *           malicious intent is not loaded unintentionally. You might still have to do
+     *           validation for certain credential types.
+     *           If you are loading your credential configuration from an untrusted source and have
+     *           not mitigated the risks (e.g. by validating the configuration yourself), make
+     *           these changes as soon as possible to prevent security risks to your environment.
+     *           Regardless of the method used, it is always your responsibility to validate
+     *           configurations received from external sources.
+     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
      *     @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
      *     @type int $retries Number of retries for a failed request. **Defaults
@@ -621,9 +659,18 @@ class BigQueryClient
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *    @type int $accessPolicyVersion Optional. Access policy schema version. Valid values are 0, 1, and 3. Requests
+     *          specifying an invalid value will be rejected. Requests for conditional access policy binding in datasets
+     *          must specify version 3. Dataset with no conditional role bindings in access policy may specify any valid
+     *          value or leave the field unset. This field will be mapped to [IAM Policy version]
+     *          (https://cloud.google.com/iam/docs/policies#versions) and will be used to fetch policy from IAM. If
+     *          unset or if 0 or 1 value is used for dataset with conditional bindings, access entry with condition will
+     *          have role string appended by 'withcond' string followed by a hash value. For example : { "access": [ {
+     *          "role": "roles/bigquery.dataViewer_with_conditionalbinding_7a34awqsda", "userByEmail":
+     *          "user@example.com", } ] } Please refer https://cloud.google.com/iam/docs/troubleshooting-withcond for
+     *          more details.
      *     @type array $metadata The available options for metadata are outlined
-     *           at the [Dataset Resource API docs](
-     *           https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets)
+     *           at the [Dataset Resource API docs](https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets)
      * }
      * @return Dataset
      */

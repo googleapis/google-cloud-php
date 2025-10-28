@@ -9,14 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Lets users input a date, a time, or both a date and a time. For an example in
- * Google Chat apps, see [Let a user pick a date and
+ * Lets users input a date, a time, or both a date and a time.
+ * Supports form submission validation. When `Action.all_widgets_are_required`
+ * is set to `true` or this widget is specified in `Action.required_widgets`,
+ * the submission action is blocked unless a value is selected. For an example
+ * in Google Chat apps, see [Let a user pick a date and
  * time](https://developers.google.com/workspace/chat/design-interactive-card-dialog#let_a_user_pick_a_date_and_time).
  * Users can input text or use the picker to select dates and times. If users
  * input an invalid date or time, the picker shows an error that prompts users
  * to input the information correctly.
  * [Google Workspace
- * Add-ons and Chat apps](https://developers.google.com/workspace/extend):
+ * add-ons and Chat apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.DateTimePicker</code>
  */
@@ -45,8 +48,8 @@ class DateTimePicker extends \Google\Protobuf\Internal\Message
      */
     protected $type = 0;
     /**
-     * The default value displayed in the widget, in milliseconds since [Unix
-     * epoch time](https://en.wikipedia.org/wiki/Unix_time).
+     * Optional. The default value displayed in the widget, in milliseconds since
+     * [Unix epoch time](https://en.wikipedia.org/wiki/Unix_time).
      * Specify the value based on the type of picker (`DateTimePickerType`):
      * * `DATE_AND_TIME`: a calendar date and time in UTC. For example, to
      *   represent January 1, 2023 at 12:00 PM UTC, use `1672574400000`.
@@ -55,9 +58,9 @@ class DateTimePicker extends \Google\Protobuf\Internal\Message
      * * `TIME_ONLY`: a time in UTC. For example, to represent 12:00 PM, use
      *   `43200000` (or `12 * 60 * 60 * 1000`).
      *
-     * Generated from protobuf field <code>int64 value_ms_epoch = 4;</code>
+     * Generated from protobuf field <code>optional int64 value_ms_epoch = 4;</code>
      */
-    protected $value_ms_epoch = 0;
+    protected $value_ms_epoch = null;
     /**
      * The number representing the time zone offset from UTC, in minutes.
      * If set, the `value_ms_epoch` is displayed in the specified time zone.
@@ -91,8 +94,8 @@ class DateTimePicker extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Whether the widget supports inputting a date, a time, or the date and time.
      *     @type int|string $value_ms_epoch
-     *           The default value displayed in the widget, in milliseconds since [Unix
-     *           epoch time](https://en.wikipedia.org/wiki/Unix_time).
+     *           Optional. The default value displayed in the widget, in milliseconds since
+     *           [Unix epoch time](https://en.wikipedia.org/wiki/Unix_time).
      *           Specify the value based on the type of picker (`DateTimePickerType`):
      *           * `DATE_AND_TIME`: a calendar date and time in UTC. For example, to
      *             represent January 1, 2023 at 12:00 PM UTC, use `1672574400000`.
@@ -201,8 +204,8 @@ class DateTimePicker extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The default value displayed in the widget, in milliseconds since [Unix
-     * epoch time](https://en.wikipedia.org/wiki/Unix_time).
+     * Optional. The default value displayed in the widget, in milliseconds since
+     * [Unix epoch time](https://en.wikipedia.org/wiki/Unix_time).
      * Specify the value based on the type of picker (`DateTimePickerType`):
      * * `DATE_AND_TIME`: a calendar date and time in UTC. For example, to
      *   represent January 1, 2023 at 12:00 PM UTC, use `1672574400000`.
@@ -211,17 +214,27 @@ class DateTimePicker extends \Google\Protobuf\Internal\Message
      * * `TIME_ONLY`: a time in UTC. For example, to represent 12:00 PM, use
      *   `43200000` (or `12 * 60 * 60 * 1000`).
      *
-     * Generated from protobuf field <code>int64 value_ms_epoch = 4;</code>
+     * Generated from protobuf field <code>optional int64 value_ms_epoch = 4;</code>
      * @return int|string
      */
     public function getValueMsEpoch()
     {
-        return $this->value_ms_epoch;
+        return isset($this->value_ms_epoch) ? $this->value_ms_epoch : 0;
+    }
+
+    public function hasValueMsEpoch()
+    {
+        return isset($this->value_ms_epoch);
+    }
+
+    public function clearValueMsEpoch()
+    {
+        unset($this->value_ms_epoch);
     }
 
     /**
-     * The default value displayed in the widget, in milliseconds since [Unix
-     * epoch time](https://en.wikipedia.org/wiki/Unix_time).
+     * Optional. The default value displayed in the widget, in milliseconds since
+     * [Unix epoch time](https://en.wikipedia.org/wiki/Unix_time).
      * Specify the value based on the type of picker (`DateTimePickerType`):
      * * `DATE_AND_TIME`: a calendar date and time in UTC. For example, to
      *   represent January 1, 2023 at 12:00 PM UTC, use `1672574400000`.
@@ -230,7 +243,7 @@ class DateTimePicker extends \Google\Protobuf\Internal\Message
      * * `TIME_ONLY`: a time in UTC. For example, to represent 12:00 PM, use
      *   `43200000` (or `12 * 60 * 60 * 1000`).
      *
-     * Generated from protobuf field <code>int64 value_ms_epoch = 4;</code>
+     * Generated from protobuf field <code>optional int64 value_ms_epoch = 4;</code>
      * @param int|string $var
      * @return $this
      */

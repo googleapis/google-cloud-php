@@ -31,23 +31,26 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\BigQuery\Connection\V1\ConnectionServiceClient;
+use Google\ApiCore\ApiException;
+use Google\Cloud\BigQuery\Connection\V1\Client\ConnectionServiceClient;
 use Google\Cloud\BigQuery\Connection\V1\Connection;
+use Google\Cloud\BigQuery\Connection\V1\GetConnectionRequest;
 
-$projectId = '[PROJECT_ID]';
-$locationId = '[LOCATION_ID]';
-$connectionId = '[CONNECTION_ID]';
+// Create a client.
+$connectionServiceClient = new ConnectionServiceClient();
 
-$client = new ConnectionServiceClient();
+// Prepare the request message.
+$request = (new GetConnectionRequest())
+    ->setName($formattedName);
 
-$parent = $client->locationName($projectId, $locationId);
-$connection = new Connection([
-    'name' => $client->connectionName($projectId, $locationId, $connectionId),
-]);
-
-$connection = $client->createConnection($parent, $connection);
+// Call the API and handle any network failures.
+try {
+    /** @var Connection $response */
+    $response = $connectionServiceClient->getConnection($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
 
 ### Debugging

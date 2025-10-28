@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -35,10 +36,12 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Orchestration\Airflow\Service\V1\CheckUpgradeRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\CheckUpgradeResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\CreateEnvironmentRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\CreateUserWorkloadsConfigMapRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\CreateUserWorkloadsSecretRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\DatabaseFailoverRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\DatabaseFailoverResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\DeleteEnvironmentRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\DeleteUserWorkloadsConfigMapRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\DeleteUserWorkloadsSecretRequest;
@@ -55,9 +58,11 @@ use Google\Cloud\Orchestration\Airflow\Service\V1\ListUserWorkloadsConfigMapsReq
 use Google\Cloud\Orchestration\Airflow\Service\V1\ListUserWorkloadsSecretsRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\ListWorkloadsRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\LoadSnapshotRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\LoadSnapshotResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\SaveSnapshotRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\SaveSnapshotResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\StopAirflowCommandRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\StopAirflowCommandResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\UpdateEnvironmentRequest;
@@ -131,7 +136,9 @@ final class EnvironmentsClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -177,9 +184,7 @@ final class EnvironmentsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -234,12 +239,8 @@ final class EnvironmentsClient
      *
      * @return string The formatted user_workloads_config_map resource.
      */
-    public static function userWorkloadsConfigMapName(
-        string $project,
-        string $location,
-        string $environment,
-        string $userWorkloadsConfigMap
-    ): string {
+    public static function userWorkloadsConfigMapName(string $project, string $location, string $environment, string $userWorkloadsConfigMap): string
+    {
         return self::getPathTemplate('userWorkloadsConfigMap')->render([
             'project' => $project,
             'location' => $location,
@@ -259,12 +260,8 @@ final class EnvironmentsClient
      *
      * @return string The formatted user_workloads_secret resource.
      */
-    public static function userWorkloadsSecretName(
-        string $project,
-        string $location,
-        string $environment,
-        string $userWorkloadsSecret
-    ): string {
+    public static function userWorkloadsSecretName(string $project, string $location, string $environment, string $userWorkloadsSecret): string
+    {
         return self::getPathTemplate('userWorkloadsSecret')->render([
             'project' => $project,
             'location' => $location,
@@ -302,25 +299,28 @@ final class EnvironmentsClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'composer.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentsClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new EnvironmentsClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -358,11 +358,13 @@ final class EnvironmentsClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -399,7 +401,7 @@ final class EnvironmentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CheckUpgradeResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -425,7 +427,7 @@ final class EnvironmentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Environment>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -459,10 +461,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createUserWorkloadsConfigMap(
-        CreateUserWorkloadsConfigMapRequest $request,
-        array $callOptions = []
-    ): UserWorkloadsConfigMap {
+    public function createUserWorkloadsConfigMap(CreateUserWorkloadsConfigMapRequest $request, array $callOptions = []): UserWorkloadsConfigMap
+    {
         return $this->startApiCall('CreateUserWorkloadsConfigMap', $request, $callOptions)->wait();
     }
 
@@ -491,10 +491,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createUserWorkloadsSecret(
-        CreateUserWorkloadsSecretRequest $request,
-        array $callOptions = []
-    ): UserWorkloadsSecret {
+    public function createUserWorkloadsSecret(CreateUserWorkloadsSecretRequest $request, array $callOptions = []): UserWorkloadsSecret
+    {
         return $this->startApiCall('CreateUserWorkloadsSecret', $request, $callOptions)->wait();
     }
 
@@ -515,7 +513,7 @@ final class EnvironmentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DatabaseFailoverResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -541,7 +539,7 @@ final class EnvironmentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -573,10 +571,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteUserWorkloadsConfigMap(
-        DeleteUserWorkloadsConfigMapRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteUserWorkloadsConfigMap(DeleteUserWorkloadsConfigMapRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteUserWorkloadsConfigMap', $request, $callOptions)->wait();
     }
 
@@ -629,10 +625,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function executeAirflowCommand(
-        ExecuteAirflowCommandRequest $request,
-        array $callOptions = []
-    ): ExecuteAirflowCommandResponse {
+    public function executeAirflowCommand(ExecuteAirflowCommandRequest $request, array $callOptions = []): ExecuteAirflowCommandResponse
+    {
         return $this->startApiCall('ExecuteAirflowCommand', $request, $callOptions)->wait();
     }
 
@@ -657,10 +651,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function fetchDatabaseProperties(
-        FetchDatabasePropertiesRequest $request,
-        array $callOptions = []
-    ): FetchDatabasePropertiesResponse {
+    public function fetchDatabaseProperties(FetchDatabasePropertiesRequest $request, array $callOptions = []): FetchDatabasePropertiesResponse
+    {
         return $this->startApiCall('FetchDatabaseProperties', $request, $callOptions)->wait();
     }
 
@@ -715,10 +707,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getUserWorkloadsConfigMap(
-        GetUserWorkloadsConfigMapRequest $request,
-        array $callOptions = []
-    ): UserWorkloadsConfigMap {
+    public function getUserWorkloadsConfigMap(GetUserWorkloadsConfigMapRequest $request, array $callOptions = []): UserWorkloadsConfigMap
+    {
         return $this->startApiCall('GetUserWorkloadsConfigMap', $request, $callOptions)->wait();
     }
 
@@ -747,10 +737,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getUserWorkloadsSecret(
-        GetUserWorkloadsSecretRequest $request,
-        array $callOptions = []
-    ): UserWorkloadsSecret {
+    public function getUserWorkloadsSecret(GetUserWorkloadsSecretRequest $request, array $callOptions = []): UserWorkloadsSecret
+    {
         return $this->startApiCall('GetUserWorkloadsSecret', $request, $callOptions)->wait();
     }
 
@@ -805,10 +793,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listUserWorkloadsConfigMaps(
-        ListUserWorkloadsConfigMapsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listUserWorkloadsConfigMaps(ListUserWorkloadsConfigMapsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListUserWorkloadsConfigMaps', $request, $callOptions);
     }
 
@@ -837,10 +823,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listUserWorkloadsSecrets(
-        ListUserWorkloadsSecretsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listUserWorkloadsSecrets(ListUserWorkloadsSecretsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListUserWorkloadsSecrets', $request, $callOptions);
     }
 
@@ -894,7 +878,7 @@ final class EnvironmentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<LoadSnapshotResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -924,10 +908,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function pollAirflowCommand(
-        PollAirflowCommandRequest $request,
-        array $callOptions = []
-    ): PollAirflowCommandResponse {
+    public function pollAirflowCommand(PollAirflowCommandRequest $request, array $callOptions = []): PollAirflowCommandResponse
+    {
         return $this->startApiCall('PollAirflowCommand', $request, $callOptions)->wait();
     }
 
@@ -951,7 +933,7 @@ final class EnvironmentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<SaveSnapshotResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -981,10 +963,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopAirflowCommand(
-        StopAirflowCommandRequest $request,
-        array $callOptions = []
-    ): StopAirflowCommandResponse {
+    public function stopAirflowCommand(StopAirflowCommandRequest $request, array $callOptions = []): StopAirflowCommandResponse
+    {
         return $this->startApiCall('StopAirflowCommand', $request, $callOptions)->wait();
     }
 
@@ -1005,7 +985,7 @@ final class EnvironmentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Environment>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1039,10 +1019,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateUserWorkloadsConfigMap(
-        UpdateUserWorkloadsConfigMapRequest $request,
-        array $callOptions = []
-    ): UserWorkloadsConfigMap {
+    public function updateUserWorkloadsConfigMap(UpdateUserWorkloadsConfigMapRequest $request, array $callOptions = []): UserWorkloadsConfigMap
+    {
         return $this->startApiCall('UpdateUserWorkloadsConfigMap', $request, $callOptions)->wait();
     }
 
@@ -1071,10 +1049,8 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateUserWorkloadsSecret(
-        UpdateUserWorkloadsSecretRequest $request,
-        array $callOptions = []
-    ): UserWorkloadsSecret {
+    public function updateUserWorkloadsSecret(UpdateUserWorkloadsSecretRequest $request, array $callOptions = []): UserWorkloadsSecret
+    {
         return $this->startApiCall('UpdateUserWorkloadsSecret', $request, $callOptions)->wait();
     }
 }

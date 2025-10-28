@@ -56,7 +56,8 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
     protected $description = null;
     /**
      * Optional. Array of disks associated with this instance. Persistent disks
-     * must be created before you can assign them.
+     * must be created before you can assign them. Source regional persistent
+     * disks will be restored with default replica zones if not specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.AttachedDisk disks = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -126,7 +127,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * Optional. An array of network configurations for this instance. These
      * specify how interfaces are configured to interact with other network
      * services, such as connecting to the internet. Multiple interfaces are
-     * supported per instance.
+     * supported per instance. Required to restore in different project or region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkInterface network_interfaces = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -154,11 +155,12 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies the reservations that this instance can consume from.
      *
-     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AllocationAffinity allocation_affinity = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AllocationAffinity allocation_affinity = 21 [json_name = "reservationAffinity", (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $allocation_affinity = null;
     /**
      * Optional. Resource policies applied to this instance.
+     * By default, no resource policies will be applied.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -208,7 +210,8 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      *           when you create the resource.
      *     @type array<\Google\Cloud\BackupDR\V1\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
      *           Optional. Array of disks associated with this instance. Persistent disks
-     *           must be created before you can assign them.
+     *           must be created before you can assign them. Source regional persistent
+     *           disks will be restored with default replica zones if not specified.
      *     @type \Google\Cloud\BackupDR\V1\DisplayDevice $display_device
      *           Optional. Enables display device for the instance.
      *     @type array<\Google\Cloud\BackupDR\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
@@ -238,7 +241,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      *           Optional. An array of network configurations for this instance. These
      *           specify how interfaces are configured to interact with other network
      *           services, such as connecting to the internet. Multiple interfaces are
-     *           supported per instance.
+     *           supported per instance. Required to restore in different project or region.
      *     @type \Google\Cloud\BackupDR\V1\NetworkPerformanceConfig $network_performance_config
      *           Optional. Configure network performance such as egress bandwidth tier.
      *     @type \Google\Cloud\BackupDR\V1\InstanceParams $params
@@ -251,6 +254,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      *           Optional. Specifies the reservations that this instance can consume from.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Optional. Resource policies applied to this instance.
+     *           By default, no resource policies will be applied.
      *     @type \Google\Cloud\BackupDR\V1\Scheduling $scheduling
      *           Optional. Sets the scheduling options for this instance.
      *     @type array<\Google\Cloud\BackupDR\V1\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $service_accounts
@@ -490,7 +494,8 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Array of disks associated with this instance. Persistent disks
-     * must be created before you can assign them.
+     * must be created before you can assign them. Source regional persistent
+     * disks will be restored with default replica zones if not specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.AttachedDisk disks = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -502,7 +507,8 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Array of disks associated with this instance. Persistent disks
-     * must be created before you can assign them.
+     * must be created before you can assign them. Source regional persistent
+     * disks will be restored with default replica zones if not specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.AttachedDisk disks = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\BackupDR\V1\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $var
@@ -838,7 +844,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * Optional. An array of network configurations for this instance. These
      * specify how interfaces are configured to interact with other network
      * services, such as connecting to the internet. Multiple interfaces are
-     * supported per instance.
+     * supported per instance. Required to restore in different project or region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkInterface network_interfaces = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -852,7 +858,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * Optional. An array of network configurations for this instance. These
      * specify how interfaces are configured to interact with other network
      * services, such as connecting to the internet. Multiple interfaces are
-     * supported per instance.
+     * supported per instance. Required to restore in different project or region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkInterface network_interfaces = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\BackupDR\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
@@ -981,7 +987,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies the reservations that this instance can consume from.
      *
-     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AllocationAffinity allocation_affinity = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AllocationAffinity allocation_affinity = 21 [json_name = "reservationAffinity", (.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\BackupDR\V1\AllocationAffinity|null
      */
     public function getAllocationAffinity()
@@ -1002,7 +1008,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies the reservations that this instance can consume from.
      *
-     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AllocationAffinity allocation_affinity = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AllocationAffinity allocation_affinity = 21 [json_name = "reservationAffinity", (.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\BackupDR\V1\AllocationAffinity $var
      * @return $this
      */
@@ -1016,6 +1022,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Resource policies applied to this instance.
+     * By default, no resource policies will be applied.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1027,6 +1034,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Resource policies applied to this instance.
+     * By default, no resource policies will be applied.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

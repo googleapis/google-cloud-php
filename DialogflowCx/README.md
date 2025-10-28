@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Dialogflow\Cx\V3\Agent;
-Google\Cloud\Dialogflow\Cx\V3\Client\AgentsClient;
-Google\Cloud\Dialogflow\Cx\V3\GetAgentRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\Cx\V3\Agent;
+use Google\Cloud\Dialogflow\Cx\V3\Client\AgentsClient;
+use Google\Cloud\Dialogflow\Cx\V3\GetAgentRequest;
 
 // Create a client.
 $agentsClient = new AgentsClient();

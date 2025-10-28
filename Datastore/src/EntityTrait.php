@@ -27,16 +27,6 @@ trait EntityTrait
     use EntityOptionsTrait;
 
     /**
-     * @var Key|null
-     */
-    private $key;
-
-    /**
-     * @var array
-     */
-    private $entity;
-
-    /**
      * @param Key|null $key [optional] The Entity's Key, defining its unique
      *        identifier. **Defaults to** `null`.
      * @param array $entity [optional] The entity body. **Defaults to** `[]`.
@@ -56,10 +46,11 @@ trait EntityTrait
      *           created as the result of a service request.
      * }
      */
-    public function __construct(?Key $key = null, array $entity = [], array $options = [])
-    {
-        $this->key = $key;
-        $this->entity = $entity;
+    public function __construct(
+        private ?Key $key = null,
+        private array $entity = [],
+        array $options = [],
+    ) {
         $this->options = $options + [
             'cursor' => null,
             'baseVersion' => null,
@@ -92,7 +83,7 @@ trait EntityTrait
      * }
      * @throws \InvalidArgumentException
      */
-    public static function build(?Key $key = null, array $entity = [], array $options = [])
+    public static function build(?Key $key = null, array $entity = [], array $options = []): EntityInterface
     {
         return new static($key, $entity, $options);
     }
@@ -107,7 +98,7 @@ trait EntityTrait
      *
      * @return array
      */
-    public function get()
+    public function get(): array
     {
         return $this->entity;
     }
@@ -125,7 +116,7 @@ trait EntityTrait
      * @param string $property The name of an entity property to return.
      * @return mixed|null
      */
-    public function getProperty($property)
+    public function getProperty($property): mixed
     {
         return isset($this->entity[$property])
             ? $this->entity[$property]
@@ -148,7 +139,7 @@ trait EntityTrait
      * @param array $entity The new entity body.
      * @return void
      */
-    public function set(array $entity)
+    public function set(array $entity): void
     {
         $this->entity = $entity;
     }
@@ -168,7 +159,7 @@ trait EntityTrait
      * @param mixed $value The property value.
      * @return void
      */
-    public function setProperty($property, $value)
+    public function setProperty(string $property, $value): void
     {
         $this->entity[$property] = $value;
     }
@@ -183,7 +174,7 @@ trait EntityTrait
      *
      * @return Key|null
      */
-    public function key()
+    public function key(): ?Key
     {
         return $this->key;
     }
@@ -191,7 +182,7 @@ trait EntityTrait
     /**
      * @access private
      */
-    public static function mappings()
+    public static function mappings(): array
     {
         return [];
     }

@@ -19,6 +19,8 @@ namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
+use Google\Protobuf\NullValue;
+use Google\Protobuf\Value;
 
 /**
  * Utility methods for mapping between datastore and {@see \Google\Cloud\Datastore\Entity}.
@@ -32,29 +34,6 @@ class EntityMapper
     const DATE_FORMAT_NO_MS = 'Y-m-d\TH:i:sP';
 
     /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
-     * @var bool
-     */
-    private $encode;
-
-    /**
-     * @var bool
-     */
-    private $returnInt64AsObject;
-
-    /**
-     * The connection type of the client. Required while mapping
-     * `INF`, `-INF` and `NAN` to datastore equivalent values.
-     *
-     * @var string
-     */
-    private $connectionType;
-
-    /**
      * Create an Entity Mapper
      *
      * @param string $projectId The datastore project ID
@@ -62,19 +41,12 @@ class EntityMapper
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
      *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
-     * @param string $connectionType [optional] The connection type of the client.
-     *        Can be `rest` or `grpc`, defaults to `grpc`.
      */
     public function __construct(
-        $projectId,
-        $encode,
-        $returnInt64AsObject,
-        $connectionType = 'grpc'
+        private string $projectId,
+        private bool $encode,
+        private bool $returnInt64AsObject
     ) {
-        $this->projectId = $projectId;
-        $this->encode = $encode;
-        $this->returnInt64AsObject = $returnInt64AsObject;
-        $this->connectionType = $connectionType;
     }
 
     /**
@@ -201,9 +173,6 @@ class EntityMapper
                 break;
 
             case 'doubleValue':
-                // Flow will enter this logic only when REST transport is used
-                // because gRPC response values are always parsed correctly. Therefore
-                // the default $connectionType is set to 'grpc'
                 if (is_string($value)) {
                     switch ($value) {
                         case 'Infinity':
@@ -222,14 +191,26 @@ class EntityMapper
                 break;
 
             case 'timestampValue':
-                $result = \DateTimeImmutable::createFromFormat(self::DATE_FORMAT, $value);
+                if (is_array($value)) {
+                    // The Serializer converts timestamps to an array [seconds, nanos].
+                    // This code is taking that format to convert it into an Immutable date.
+                    $seconds = $value['seconds'];
+                    $nanos = $value['nanos'] ?? 0;
+                    $microseconds = (int) ($nanos / 1000);
+                    $result = \DateTimeImmutable::createFromFormat(
+                        'U.u',
+                        sprintf('%d.%06d', $seconds, $microseconds)
+                    );
+                } else {
+                    // This is to keep compatibility with the previous implementation
+                    $result = \DateTimeImmutable::createFromFormat(self::DATE_FORMAT, $value);
 
-                if (!$result) {
-                    $result = \DateTimeImmutable::createFromFormat(self::DATE_FORMAT_NO_MS, $value);
+                    if (!$result) {
+                        $result = \DateTimeImmutable::createFromFormat(self::DATE_FORMAT_NO_MS, $value);
+                    }
                 }
 
                 break;
-
             case 'keyValue':
                 $namespaceId = (isset($value['partitionId']['namespaceId']))
                     ? $value['partitionId']['namespaceId']
@@ -355,18 +336,6 @@ class EntityMapper
                 break;
 
             case 'double':
-                // The mappings happen automatically for grpc hence
-                // this is required only incase of rest as grpc
-                // doesn't recognises 'Infinity', '-Infinity' and 'NaN'.
-                if ($this->connectionType == 'rest') {
-                    if ($value == INF) {
-                        $value = 'Infinity';
-                    } elseif ($value == -INF) {
-                        $value = '-Infinity';
-                    } elseif (is_nan($value)) {
-                        $value = 'NaN';
-                    }
-                }
                 $propertyValue = [
                     'doubleValue' => $value
                 ];
@@ -405,7 +374,7 @@ class EntityMapper
 
             case 'NULL':
                 $propertyValue = [
-                    'nullValue' => null
+                    'nullValue' => NullValue::NULL_VALUE
                 ];
                 break;
 
@@ -478,8 +447,12 @@ class EntityMapper
                 break;
 
             case $value instanceof GeoPoint:
+                $point = $value->point();
                 return [
-                    'geoPointValue' => $value->point()
+                    'geoPointValue' => [
+                        'latitude' => $point['latitude'] ?? 0.0,
+                        'longitude' => $point['longitude'] ?? 0.0
+                    ]
                 ];
 
                 break;

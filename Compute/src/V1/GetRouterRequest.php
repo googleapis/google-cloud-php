@@ -20,19 +20,19 @@ class GetRouterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region for this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Name of the Router resource to return.
      *
      * Generated from protobuf field <code>string router = 148608841 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $router = '';
+    protected $router = '';
 
     /**
      * @param string $project Project ID for this request.

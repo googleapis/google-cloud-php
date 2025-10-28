@@ -16,10 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. The service account that the Reasoning Engine artifact runs as.
+     * It should have "roles/storage.objectViewer" for reading the user project's
+     * Cloud Storage and "roles/aiplatform.user" for using Vertex extensions. If
+     * not specified, the Vertex AI Reasoning Engine Service Agent in the project
+     * will be used.
+     *
+     * Generated from protobuf field <code>optional string service_account = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $service_account = null;
+    /**
      * Optional. User provided package spec of the ReasoningEngine.
      * Ignored when users directly specify a deployment image through
      * `deployment_spec.first_party_image_override`, but keeping the
      * field_behavior to avoid introducing breaking changes.
+     * The `deployment_source` field should not be set if `package_spec` is
+     * specified.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.PackageSpec package_spec = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,11 +51,13 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
     private $class_methods;
     /**
      * Optional. The OSS agent framework used to develop the agent.
-     * Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     * Currently supported values: "google-adk", "langchain", "langgraph", "ag2",
+     * "llama-index", "custom".
      *
      * Generated from protobuf field <code>string agent_framework = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $agent_framework = '';
+    protected $deployment_source;
 
     /**
      * Constructor.
@@ -51,11 +65,21 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec $source_code_spec
+     *           Deploy from source code files with a defined entrypoint.
+     *     @type string $service_account
+     *           Optional. The service account that the Reasoning Engine artifact runs as.
+     *           It should have "roles/storage.objectViewer" for reading the user project's
+     *           Cloud Storage and "roles/aiplatform.user" for using Vertex extensions. If
+     *           not specified, the Vertex AI Reasoning Engine Service Agent in the project
+     *           will be used.
      *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\PackageSpec $package_spec
      *           Optional. User provided package spec of the ReasoningEngine.
      *           Ignored when users directly specify a deployment image through
      *           `deployment_spec.first_party_image_override`, but keeping the
      *           field_behavior to avoid introducing breaking changes.
+     *           The `deployment_source` field should not be set if `package_spec` is
+     *           specified.
      *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\DeploymentSpec $deployment_spec
      *           Optional. The specification of a Reasoning Engine deployment.
      *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $class_methods
@@ -63,7 +87,8 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
      *           format.
      *     @type string $agent_framework
      *           Optional. The OSS agent framework used to develop the agent.
-     *           Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     *           Currently supported values: "google-adk", "langchain", "langgraph", "ag2",
+     *           "llama-index", "custom".
      * }
      */
     public function __construct($data = NULL) {
@@ -72,10 +97,87 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deploy from source code files with a defined entrypoint.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.SourceCodeSpec source_code_spec = 11;</code>
+     * @return \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec|null
+     */
+    public function getSourceCodeSpec()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasSourceCodeSpec()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Deploy from source code files with a defined entrypoint.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.SourceCodeSpec source_code_spec = 11;</code>
+     * @param \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec $var
+     * @return $this
+     */
+    public function setSourceCodeSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec::class);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The service account that the Reasoning Engine artifact runs as.
+     * It should have "roles/storage.objectViewer" for reading the user project's
+     * Cloud Storage and "roles/aiplatform.user" for using Vertex extensions. If
+     * not specified, the Vertex AI Reasoning Engine Service Agent in the project
+     * will be used.
+     *
+     * Generated from protobuf field <code>optional string service_account = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServiceAccount()
+    {
+        return isset($this->service_account) ? $this->service_account : '';
+    }
+
+    public function hasServiceAccount()
+    {
+        return isset($this->service_account);
+    }
+
+    public function clearServiceAccount()
+    {
+        unset($this->service_account);
+    }
+
+    /**
+     * Optional. The service account that the Reasoning Engine artifact runs as.
+     * It should have "roles/storage.objectViewer" for reading the user project's
+     * Cloud Storage and "roles/aiplatform.user" for using Vertex extensions. If
+     * not specified, the Vertex AI Reasoning Engine Service Agent in the project
+     * will be used.
+     *
+     * Generated from protobuf field <code>optional string service_account = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. User provided package spec of the ReasoningEngine.
      * Ignored when users directly specify a deployment image through
      * `deployment_spec.first_party_image_override`, but keeping the
      * field_behavior to avoid introducing breaking changes.
+     * The `deployment_source` field should not be set if `package_spec` is
+     * specified.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.PackageSpec package_spec = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\PackageSpec|null
@@ -100,6 +202,8 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
      * Ignored when users directly specify a deployment image through
      * `deployment_spec.first_party_image_override`, but keeping the
      * field_behavior to avoid introducing breaking changes.
+     * The `deployment_source` field should not be set if `package_spec` is
+     * specified.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.PackageSpec package_spec = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\PackageSpec $var
@@ -179,7 +283,8 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The OSS agent framework used to develop the agent.
-     * Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     * Currently supported values: "google-adk", "langchain", "langgraph", "ag2",
+     * "llama-index", "custom".
      *
      * Generated from protobuf field <code>string agent_framework = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -191,7 +296,8 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The OSS agent framework used to develop the agent.
-     * Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     * Currently supported values: "google-adk", "langchain", "langgraph", "ag2",
+     * "llama-index", "custom".
      *
      * Generated from protobuf field <code>string agent_framework = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -203,6 +309,14 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
         $this->agent_framework = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeploymentSource()
+    {
+        return $this->whichOneof("deployment_source");
     }
 
 }

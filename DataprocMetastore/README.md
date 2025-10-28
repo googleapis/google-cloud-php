@@ -29,6 +29,31 @@ Please see our [Authentication guide](https://github.com/googleapis/google-cloud
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\Metastore\V1\Backup;
+use Google\Cloud\Metastore\V1\Client\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1\GetBackupRequest;
+
+// Create a client.
+$dataprocMetastoreClient = new DataprocMetastoreClient();
+
+// Prepare the request message.
+$request = (new GetBackupRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Backup $response */
+    $response = $dataprocMetastoreClient->getBackup($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

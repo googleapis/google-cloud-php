@@ -34,6 +34,13 @@ class FunctionResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Struct response = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $response = null;
+    /**
+     * Optional. Ordered `Parts` that constitute a function response. Parts may
+     * have different IANA MIME types.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionResponsePart parts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $parts;
 
     /**
      * Constructor.
@@ -49,6 +56,9 @@ class FunctionResponse extends \Google\Protobuf\Internal\Message
      *           Use "output" key to specify function output and "error" key to specify
      *           error details (if any). If "output" and "error" keys are not specified,
      *           then whole "response" is treated as function output.
+     *     @type array<\Google\Cloud\AIPlatform\V1\FunctionResponsePart>|\Google\Protobuf\Internal\RepeatedField $parts
+     *           Optional. Ordered `Parts` that constitute a function response. Parts may
+     *           have different IANA MIME types.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,6 +132,34 @@ class FunctionResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->response = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Ordered `Parts` that constitute a function response. Parts may
+     * have different IANA MIME types.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionResponsePart parts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getParts()
+    {
+        return $this->parts;
+    }
+
+    /**
+     * Optional. Ordered `Parts` that constitute a function response. Parts may
+     * have different IANA MIME types.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionResponsePart parts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\FunctionResponsePart>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setParts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\FunctionResponsePart::class);
+        $this->parts = $arr;
 
         return $this;
     }

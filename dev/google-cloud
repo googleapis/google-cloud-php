@@ -22,15 +22,17 @@ if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Google\Cloud\Dev\Command\AddComponentCommand;
-use Google\Cloud\Dev\Command\AddSampleToReadmeCommand;
 use Google\Cloud\Dev\Command\ComponentInfoCommand;
 use Google\Cloud\Dev\Command\DocFxCommand;
 use Google\Cloud\Dev\Command\ListBrokenXrefsCommand;
+use Google\Cloud\Dev\Command\NewComponentCommand;
+use Google\Cloud\Dev\Command\AddVersionCommand;
 use Google\Cloud\Dev\Command\RepoInfoCommand;
 use Google\Cloud\Dev\Command\ReleaseInfoCommand;
 use Google\Cloud\Dev\Command\SplitCommand;
+use Google\Cloud\Dev\Command\UpdateComponentCommand;
 use Google\Cloud\Dev\Command\UpdateDepsCommand;
+use Google\Cloud\Dev\Command\UpdateReadmeSampleCommand;
 use Symfony\Component\Console\Application;
 
 if (!class_exists(Application::class)) {
@@ -44,13 +46,15 @@ if (!class_exists(Application::class)) {
 $rootDirectory = realpath(__DIR__ . '/../') . '/';
 
 $app = new Application;
-$app->add(new AddComponentCommand($rootDirectory));
-$app->add(new AddSampleToReadmeCommand());
 $app->add(new ComponentInfoCommand());
 $app->add(new DocFxCommand());
 $app->add(new ListBrokenXrefsCommand());
+$app->add(new NewComponentCommand($rootDirectory));
+$app->add(new AddVersionCommand($rootDirectory));
 $app->add(new RepoInfoCommand());
 $app->add(new ReleaseInfoCommand());
 $app->add(new SplitCommand($rootDirectory));
+$app->add(new UpdateComponentCommand($rootDirectory));
 $app->add(new UpdateDepsCommand());
+$app->add(new UpdateReadmeSampleCommand($rootDirectory));
 $app->run();

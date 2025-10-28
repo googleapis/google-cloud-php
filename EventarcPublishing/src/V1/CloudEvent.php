@@ -78,6 +78,11 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
      *           Optional. Text data.
      *     @type \Google\Protobuf\Any $proto_data
      *           Optional. Proto data.
+     *           NOTE: The `protoData` field only functions as expected when the payload
+     *           is specifically a `CloudEvent` message type, and can't be used for
+     *           arbitrary protocol buffer messages. For any other protocol buffer type,
+     *           you must serialize your proto message into bytes, and use the
+     *           `binaryData` field instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -287,6 +292,11 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Proto data.
+     * NOTE: The `protoData` field only functions as expected when the payload
+     * is specifically a `CloudEvent` message type, and can't be used for
+     * arbitrary protocol buffer messages. For any other protocol buffer type,
+     * you must serialize your proto message into bytes, and use the
+     * `binaryData` field instead.
      *
      * Generated from protobuf field <code>.google.protobuf.Any proto_data = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Any|null
@@ -303,6 +313,11 @@ class CloudEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Proto data.
+     * NOTE: The `protoData` field only functions as expected when the payload
+     * is specifically a `CloudEvent` message type, and can't be used for
+     * arbitrary protocol buffer messages. For any other protocol buffer type,
+     * you must serialize your proto message into bytes, and use the
+     * `binaryData` field instead.
      *
      * Generated from protobuf field <code>.google.protobuf.Any proto_data = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Any $var

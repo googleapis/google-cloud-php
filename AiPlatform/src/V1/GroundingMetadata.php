@@ -45,6 +45,21 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.RetrievalMetadata retrieval_metadata = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $retrieval_metadata = null;
+    /**
+     * Optional. Output only. Resource name of the Google Maps widget context
+     * token to be used with the PlacesContextElement widget to render contextual
+     * data. This is populated only for Google Maps grounding.
+     *
+     * Generated from protobuf field <code>optional string google_maps_widget_context_token = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $google_maps_widget_context_token = null;
+    /**
+     * List of source flagging uris. This is currently populated only for Google
+     * Maps grounding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingMetadata.SourceFlaggingUri source_flagging_uris = 9;</code>
+     */
+    private $source_flagging_uris;
 
     /**
      * Constructor.
@@ -62,6 +77,13 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      *           Optional. List of grounding support.
      *     @type \Google\Cloud\AIPlatform\V1\RetrievalMetadata $retrieval_metadata
      *           Optional. Output only. Retrieval metadata.
+     *     @type string $google_maps_widget_context_token
+     *           Optional. Output only. Resource name of the Google Maps widget context
+     *           token to be used with the PlacesContextElement widget to render contextual
+     *           data. This is populated only for Google Maps grounding.
+     *     @type array<\Google\Cloud\AIPlatform\V1\GroundingMetadata\SourceFlaggingUri>|\Google\Protobuf\Internal\RepeatedField $source_flagging_uris
+     *           List of source flagging uris. This is currently populated only for Google
+     *           Maps grounding.
      * }
      */
     public function __construct($data = NULL) {
@@ -215,6 +237,74 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RetrievalMetadata::class);
         $this->retrieval_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. Resource name of the Google Maps widget context
+     * token to be used with the PlacesContextElement widget to render contextual
+     * data. This is populated only for Google Maps grounding.
+     *
+     * Generated from protobuf field <code>optional string google_maps_widget_context_token = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getGoogleMapsWidgetContextToken()
+    {
+        return isset($this->google_maps_widget_context_token) ? $this->google_maps_widget_context_token : '';
+    }
+
+    public function hasGoogleMapsWidgetContextToken()
+    {
+        return isset($this->google_maps_widget_context_token);
+    }
+
+    public function clearGoogleMapsWidgetContextToken()
+    {
+        unset($this->google_maps_widget_context_token);
+    }
+
+    /**
+     * Optional. Output only. Resource name of the Google Maps widget context
+     * token to be used with the PlacesContextElement widget to render contextual
+     * data. This is populated only for Google Maps grounding.
+     *
+     * Generated from protobuf field <code>optional string google_maps_widget_context_token = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGoogleMapsWidgetContextToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->google_maps_widget_context_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of source flagging uris. This is currently populated only for Google
+     * Maps grounding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingMetadata.SourceFlaggingUri source_flagging_uris = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSourceFlaggingUris()
+    {
+        return $this->source_flagging_uris;
+    }
+
+    /**
+     * List of source flagging uris. This is currently populated only for Google
+     * Maps grounding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingMetadata.SourceFlaggingUri source_flagging_uris = 9;</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\GroundingMetadata\SourceFlaggingUri>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSourceFlaggingUris($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\GroundingMetadata\SourceFlaggingUri::class);
+        $this->source_flagging_uris = $arr;
 
         return $this;
     }

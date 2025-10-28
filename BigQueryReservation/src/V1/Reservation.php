@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class Reservation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the reservation, e.g.,
+     * Identifier. The resource name of the reservation, e.g.,
      * `projects/&#42;&#47;locations/&#42;&#47;reservations/team1-prod`.
      * The reservation_id must only contain lower case alphanumeric characters or
      * dashes. It must start with a letter and must not end with a dash. Its
      * maximum length is 64 characters.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Baseline slots available to this reservation. A slot is a unit of
+     * Optional. Baseline slots available to this reservation. A slot is a unit of
      * computational power in BigQuery, and serves as the unit of parallelism.
      * Queries using this reservation might use more slots during runtime if
      * ignore_idle_slots is set to false, or autoscaling is enabled.
@@ -39,35 +39,34 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * slots exceed your committed slots. Otherwise, you can decrease your
      * baseline slots every few minutes.
      *
-     * Generated from protobuf field <code>int64 slot_capacity = 2;</code>
+     * Generated from protobuf field <code>int64 slot_capacity = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $slot_capacity = 0;
     /**
-     * If false, any query or pipeline job using this reservation will use idle
-     * slots from other reservations within the same admin project. If true, a
-     * query or pipeline job using this reservation will execute with the slot
-     * capacity specified in the slot_capacity field at most.
+     * Optional. If false, any query or pipeline job using this reservation will
+     * use idle slots from other reservations within the same admin project. If
+     * true, a query or pipeline job using this reservation will execute with the
+     * slot capacity specified in the slot_capacity field at most.
      *
-     * Generated from protobuf field <code>bool ignore_idle_slots = 4;</code>
+     * Generated from protobuf field <code>bool ignore_idle_slots = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ignore_idle_slots = false;
     /**
-     * The configuration parameters for the auto scaling feature.
+     * Optional. The configuration parameters for the auto scaling feature.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.Autoscale autoscale = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.Autoscale autoscale = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $autoscale = null;
     /**
-     * Job concurrency target which sets a soft upper bound on the number of jobs
-     * that can run concurrently in this reservation. This is a soft target due to
-     * asynchronous nature of the system and various optimizations for small
-     * queries.
-     * Default value is 0 which means that concurrency target will be
-     * automatically computed by the system.
-     * NOTE: this field is exposed as target job concurrency in the Information
-     * Schema, DDL and BigQuery CLI.
+     * Optional. Job concurrency target which sets a soft upper bound on the
+     * number of jobs that can run concurrently in this reservation. This is a
+     * soft target due to asynchronous nature of the system and various
+     * optimizations for small queries. Default value is 0 which means that
+     * concurrency target will be automatically computed by the system. NOTE: this
+     * field is exposed as target job concurrency in the Information Schema, DDL
+     * and BigQuery CLI.
      *
-     * Generated from protobuf field <code>int64 concurrency = 16;</code>
+     * Generated from protobuf field <code>int64 concurrency = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $concurrency = 0;
     /**
@@ -91,13 +90,14 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * NOTE: this is a preview feature. Project must be allow-listed in order to
      * set this field.
      *
-     * Generated from protobuf field <code>bool multi_region_auxiliary = 14;</code>
+     * Generated from protobuf field <code>bool multi_region_auxiliary = 14 [deprecated = true];</code>
+     * @deprecated
      */
     protected $multi_region_auxiliary = false;
     /**
-     * Edition of the reservation.
+     * Optional. Edition of the reservation.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $edition = 0;
     /**
@@ -127,6 +127,75 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     protected $original_primary_location = '';
     /**
+     * Optional. The overall max slots for the reservation, covering slot_capacity
+     * (baseline), idle slots (if ignore_idle_slots is false) and scaled slots.
+     * If present, the reservation won't use more than the specified number of
+     * slots, even if there is demand and supply (from idle slots).
+     * NOTE: capping a reservation's idle slot usage is best effort and its
+     * usage may exceed the max_slots value. However, in terms of
+     * autoscale.current_slots (which accounts for the additional added slots), it
+     * will never exceed the max_slots - baseline.
+     * This field must be set together with the scaling_mode enum value,
+     * otherwise the request will be rejected with error code
+     * `google.rpc.Code.INVALID_ARGUMENT`.
+     * If the max_slots and scaling_mode are set, the autoscale or
+     * autoscale.max_slots field must be unset. Otherwise the request will be
+     * rejected with error code `google.rpc.Code.INVALID_ARGUMENT`. However, the
+     * autoscale field may still be in the output. The autopscale.max_slots will
+     * always show as 0 and the autoscaler.current_slots will represent the
+     * current slots from autoscaler excluding idle slots.
+     * For example, if the max_slots is 1000 and scaling_mode is AUTOSCALE_ONLY,
+     * then in the output, the autoscaler.max_slots will be 0 and the
+     * autoscaler.current_slots may be any value between 0 and 1000.
+     * If the max_slots is 1000, scaling_mode is ALL_SLOTS, the baseline is 100
+     * and idle slots usage is 200, then in the output, the autoscaler.max_slots
+     * will be 0 and the autoscaler.current_slots will not be higher than 700.
+     * If the max_slots is 1000, scaling_mode is IDLE_SLOTS_ONLY, then in the
+     * output, the autoscaler field will be null.
+     * If the max_slots and scaling_mode are set, then the ignore_idle_slots field
+     * must be aligned with the scaling_mode enum value.(See details in
+     * ScalingMode comments). Otherwise the request will be rejected with
+     * error code `google.rpc.Code.INVALID_ARGUMENT`.
+     * Please note,  the max_slots is for user to manage the part of slots greater
+     * than the baseline. Therefore, we don't allow users to set max_slots smaller
+     * or equal to the baseline as it will not be meaningful. If the field is
+     * present and slot_capacity>=max_slots, requests will be rejected with error
+     * code `google.rpc.Code.INVALID_ARGUMENT`.
+     * Please note that if max_slots is set to 0, we will treat it as unset.
+     * Customers can set max_slots to 0 and set scaling_mode to
+     * SCALING_MODE_UNSPECIFIED to disable the max_slots feature.
+     *
+     * Generated from protobuf field <code>optional int64 max_slots = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $max_slots = null;
+    /**
+     * Optional. The scaling mode for the reservation.
+     * If the field is present but max_slots is not present, requests will be
+     * rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.ScalingMode scaling_mode = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $scaling_mode = 0;
+    /**
+     * Optional. The labels associated with this reservation. You can use these
+     * to organize and group your reservations.
+     * You can set this property when you create or update a reservation.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
+    /**
+     * Optional. The reservation group that this reservation belongs to.
+     * You can set this property when you create or update a reservation.
+     * Reservations do not need to belong to a reservation group.
+     * Format:
+     * projects/{project}/locations/{location}/reservationGroups/{reservation_group}
+     * or just {reservation_group}
+     *
+     * Generated from protobuf field <code>string reservation_group = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $reservation_group = '';
+    /**
      * Output only. The Disaster Recovery(DR) replication status of the
      * reservation. This is only available for the primary replicas of DR/failover
      * reservations and provides information about the both the staleness of the
@@ -139,6 +208,15 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.ReplicationStatus replication_status = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $replication_status = null;
+    /**
+     * Optional. The scheduling policy to use for jobs and queries running under
+     * this reservation. The scheduling policy controls how the reservation's
+     * resources are distributed.
+     * This feature is not yet generally available.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.SchedulingPolicy scheduling_policy = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $scheduling_policy = null;
 
     /**
      * Constructor.
@@ -147,13 +225,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the reservation, e.g.,
+     *           Identifier. The resource name of the reservation, e.g.,
      *           `projects/&#42;&#47;locations/&#42;&#47;reservations/team1-prod`.
      *           The reservation_id must only contain lower case alphanumeric characters or
      *           dashes. It must start with a letter and must not end with a dash. Its
      *           maximum length is 64 characters.
      *     @type int|string $slot_capacity
-     *           Baseline slots available to this reservation. A slot is a unit of
+     *           Optional. Baseline slots available to this reservation. A slot is a unit of
      *           computational power in BigQuery, and serves as the unit of parallelism.
      *           Queries using this reservation might use more slots during runtime if
      *           ignore_idle_slots is set to false, or autoscaling is enabled.
@@ -166,21 +244,20 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           slots exceed your committed slots. Otherwise, you can decrease your
      *           baseline slots every few minutes.
      *     @type bool $ignore_idle_slots
-     *           If false, any query or pipeline job using this reservation will use idle
-     *           slots from other reservations within the same admin project. If true, a
-     *           query or pipeline job using this reservation will execute with the slot
-     *           capacity specified in the slot_capacity field at most.
+     *           Optional. If false, any query or pipeline job using this reservation will
+     *           use idle slots from other reservations within the same admin project. If
+     *           true, a query or pipeline job using this reservation will execute with the
+     *           slot capacity specified in the slot_capacity field at most.
      *     @type \Google\Cloud\BigQuery\Reservation\V1\Reservation\Autoscale $autoscale
-     *           The configuration parameters for the auto scaling feature.
+     *           Optional. The configuration parameters for the auto scaling feature.
      *     @type int|string $concurrency
-     *           Job concurrency target which sets a soft upper bound on the number of jobs
-     *           that can run concurrently in this reservation. This is a soft target due to
-     *           asynchronous nature of the system and various optimizations for small
-     *           queries.
-     *           Default value is 0 which means that concurrency target will be
-     *           automatically computed by the system.
-     *           NOTE: this field is exposed as target job concurrency in the Information
-     *           Schema, DDL and BigQuery CLI.
+     *           Optional. Job concurrency target which sets a soft upper bound on the
+     *           number of jobs that can run concurrently in this reservation. This is a
+     *           soft target due to asynchronous nature of the system and various
+     *           optimizations for small queries. Default value is 0 which means that
+     *           concurrency target will be automatically computed by the system. NOTE: this
+     *           field is exposed as target job concurrency in the Information Schema, DDL
+     *           and BigQuery CLI.
      *     @type \Google\Protobuf\Timestamp $creation_time
      *           Output only. Creation time of the reservation.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -194,7 +271,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           NOTE: this is a preview feature. Project must be allow-listed in order to
      *           set this field.
      *     @type int $edition
-     *           Edition of the reservation.
+     *           Optional. Edition of the reservation.
      *     @type string $primary_location
      *           Output only. The current location of the reservation's primary replica.
      *           This field is only set for reservations using the managed disaster recovery
@@ -209,6 +286,59 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           Output only. The location where the reservation was originally created.
      *           This is set only during the failover reservation's creation. All billing
      *           charges for the failover reservation will be applied to this location.
+     *     @type int|string $max_slots
+     *           Optional. The overall max slots for the reservation, covering slot_capacity
+     *           (baseline), idle slots (if ignore_idle_slots is false) and scaled slots.
+     *           If present, the reservation won't use more than the specified number of
+     *           slots, even if there is demand and supply (from idle slots).
+     *           NOTE: capping a reservation's idle slot usage is best effort and its
+     *           usage may exceed the max_slots value. However, in terms of
+     *           autoscale.current_slots (which accounts for the additional added slots), it
+     *           will never exceed the max_slots - baseline.
+     *           This field must be set together with the scaling_mode enum value,
+     *           otherwise the request will be rejected with error code
+     *           `google.rpc.Code.INVALID_ARGUMENT`.
+     *           If the max_slots and scaling_mode are set, the autoscale or
+     *           autoscale.max_slots field must be unset. Otherwise the request will be
+     *           rejected with error code `google.rpc.Code.INVALID_ARGUMENT`. However, the
+     *           autoscale field may still be in the output. The autopscale.max_slots will
+     *           always show as 0 and the autoscaler.current_slots will represent the
+     *           current slots from autoscaler excluding idle slots.
+     *           For example, if the max_slots is 1000 and scaling_mode is AUTOSCALE_ONLY,
+     *           then in the output, the autoscaler.max_slots will be 0 and the
+     *           autoscaler.current_slots may be any value between 0 and 1000.
+     *           If the max_slots is 1000, scaling_mode is ALL_SLOTS, the baseline is 100
+     *           and idle slots usage is 200, then in the output, the autoscaler.max_slots
+     *           will be 0 and the autoscaler.current_slots will not be higher than 700.
+     *           If the max_slots is 1000, scaling_mode is IDLE_SLOTS_ONLY, then in the
+     *           output, the autoscaler field will be null.
+     *           If the max_slots and scaling_mode are set, then the ignore_idle_slots field
+     *           must be aligned with the scaling_mode enum value.(See details in
+     *           ScalingMode comments). Otherwise the request will be rejected with
+     *           error code `google.rpc.Code.INVALID_ARGUMENT`.
+     *           Please note,  the max_slots is for user to manage the part of slots greater
+     *           than the baseline. Therefore, we don't allow users to set max_slots smaller
+     *           or equal to the baseline as it will not be meaningful. If the field is
+     *           present and slot_capacity>=max_slots, requests will be rejected with error
+     *           code `google.rpc.Code.INVALID_ARGUMENT`.
+     *           Please note that if max_slots is set to 0, we will treat it as unset.
+     *           Customers can set max_slots to 0 and set scaling_mode to
+     *           SCALING_MODE_UNSPECIFIED to disable the max_slots feature.
+     *     @type int $scaling_mode
+     *           Optional. The scaling mode for the reservation.
+     *           If the field is present but max_slots is not present, requests will be
+     *           rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. The labels associated with this reservation. You can use these
+     *           to organize and group your reservations.
+     *           You can set this property when you create or update a reservation.
+     *     @type string $reservation_group
+     *           Optional. The reservation group that this reservation belongs to.
+     *           You can set this property when you create or update a reservation.
+     *           Reservations do not need to belong to a reservation group.
+     *           Format:
+     *           projects/{project}/locations/{location}/reservationGroups/{reservation_group}
+     *           or just {reservation_group}
      *     @type \Google\Cloud\BigQuery\Reservation\V1\Reservation\ReplicationStatus $replication_status
      *           Output only. The Disaster Recovery(DR) replication status of the
      *           reservation. This is only available for the primary replicas of DR/failover
@@ -218,6 +348,11 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           the reservation is either not a DR reservation or the reservation is a DR
      *           secondary or that any replication operations on the reservation have
      *           succeeded.
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\SchedulingPolicy $scheduling_policy
+     *           Optional. The scheduling policy to use for jobs and queries running under
+     *           this reservation. The scheduling policy controls how the reservation's
+     *           resources are distributed.
+     *           This feature is not yet generally available.
      * }
      */
     public function __construct($data = NULL) {
@@ -226,13 +361,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the reservation, e.g.,
+     * Identifier. The resource name of the reservation, e.g.,
      * `projects/&#42;&#47;locations/&#42;&#47;reservations/team1-prod`.
      * The reservation_id must only contain lower case alphanumeric characters or
      * dashes. It must start with a letter and must not end with a dash. Its
      * maximum length is 64 characters.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -241,13 +376,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the reservation, e.g.,
+     * Identifier. The resource name of the reservation, e.g.,
      * `projects/&#42;&#47;locations/&#42;&#47;reservations/team1-prod`.
      * The reservation_id must only contain lower case alphanumeric characters or
      * dashes. It must start with a letter and must not end with a dash. Its
      * maximum length is 64 characters.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -260,7 +395,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Baseline slots available to this reservation. A slot is a unit of
+     * Optional. Baseline slots available to this reservation. A slot is a unit of
      * computational power in BigQuery, and serves as the unit of parallelism.
      * Queries using this reservation might use more slots during runtime if
      * ignore_idle_slots is set to false, or autoscaling is enabled.
@@ -273,7 +408,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * slots exceed your committed slots. Otherwise, you can decrease your
      * baseline slots every few minutes.
      *
-     * Generated from protobuf field <code>int64 slot_capacity = 2;</code>
+     * Generated from protobuf field <code>int64 slot_capacity = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getSlotCapacity()
@@ -282,7 +417,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Baseline slots available to this reservation. A slot is a unit of
+     * Optional. Baseline slots available to this reservation. A slot is a unit of
      * computational power in BigQuery, and serves as the unit of parallelism.
      * Queries using this reservation might use more slots during runtime if
      * ignore_idle_slots is set to false, or autoscaling is enabled.
@@ -295,7 +430,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * slots exceed your committed slots. Otherwise, you can decrease your
      * baseline slots every few minutes.
      *
-     * Generated from protobuf field <code>int64 slot_capacity = 2;</code>
+     * Generated from protobuf field <code>int64 slot_capacity = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */
@@ -308,12 +443,12 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If false, any query or pipeline job using this reservation will use idle
-     * slots from other reservations within the same admin project. If true, a
-     * query or pipeline job using this reservation will execute with the slot
-     * capacity specified in the slot_capacity field at most.
+     * Optional. If false, any query or pipeline job using this reservation will
+     * use idle slots from other reservations within the same admin project. If
+     * true, a query or pipeline job using this reservation will execute with the
+     * slot capacity specified in the slot_capacity field at most.
      *
-     * Generated from protobuf field <code>bool ignore_idle_slots = 4;</code>
+     * Generated from protobuf field <code>bool ignore_idle_slots = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getIgnoreIdleSlots()
@@ -322,12 +457,12 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If false, any query or pipeline job using this reservation will use idle
-     * slots from other reservations within the same admin project. If true, a
-     * query or pipeline job using this reservation will execute with the slot
-     * capacity specified in the slot_capacity field at most.
+     * Optional. If false, any query or pipeline job using this reservation will
+     * use idle slots from other reservations within the same admin project. If
+     * true, a query or pipeline job using this reservation will execute with the
+     * slot capacity specified in the slot_capacity field at most.
      *
-     * Generated from protobuf field <code>bool ignore_idle_slots = 4;</code>
+     * Generated from protobuf field <code>bool ignore_idle_slots = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -340,9 +475,9 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration parameters for the auto scaling feature.
+     * Optional. The configuration parameters for the auto scaling feature.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.Autoscale autoscale = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.Autoscale autoscale = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation\Autoscale|null
      */
     public function getAutoscale()
@@ -361,9 +496,9 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration parameters for the auto scaling feature.
+     * Optional. The configuration parameters for the auto scaling feature.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.Autoscale autoscale = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.Autoscale autoscale = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\BigQuery\Reservation\V1\Reservation\Autoscale $var
      * @return $this
      */
@@ -376,16 +511,15 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job concurrency target which sets a soft upper bound on the number of jobs
-     * that can run concurrently in this reservation. This is a soft target due to
-     * asynchronous nature of the system and various optimizations for small
-     * queries.
-     * Default value is 0 which means that concurrency target will be
-     * automatically computed by the system.
-     * NOTE: this field is exposed as target job concurrency in the Information
-     * Schema, DDL and BigQuery CLI.
+     * Optional. Job concurrency target which sets a soft upper bound on the
+     * number of jobs that can run concurrently in this reservation. This is a
+     * soft target due to asynchronous nature of the system and various
+     * optimizations for small queries. Default value is 0 which means that
+     * concurrency target will be automatically computed by the system. NOTE: this
+     * field is exposed as target job concurrency in the Information Schema, DDL
+     * and BigQuery CLI.
      *
-     * Generated from protobuf field <code>int64 concurrency = 16;</code>
+     * Generated from protobuf field <code>int64 concurrency = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getConcurrency()
@@ -394,16 +528,15 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job concurrency target which sets a soft upper bound on the number of jobs
-     * that can run concurrently in this reservation. This is a soft target due to
-     * asynchronous nature of the system and various optimizations for small
-     * queries.
-     * Default value is 0 which means that concurrency target will be
-     * automatically computed by the system.
-     * NOTE: this field is exposed as target job concurrency in the Information
-     * Schema, DDL and BigQuery CLI.
+     * Optional. Job concurrency target which sets a soft upper bound on the
+     * number of jobs that can run concurrently in this reservation. This is a
+     * soft target due to asynchronous nature of the system and various
+     * optimizations for small queries. Default value is 0 which means that
+     * concurrency target will be automatically computed by the system. NOTE: this
+     * field is exposed as target job concurrency in the Information Schema, DDL
+     * and BigQuery CLI.
      *
-     * Generated from protobuf field <code>int64 concurrency = 16;</code>
+     * Generated from protobuf field <code>int64 concurrency = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */
@@ -496,11 +629,15 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * NOTE: this is a preview feature. Project must be allow-listed in order to
      * set this field.
      *
-     * Generated from protobuf field <code>bool multi_region_auxiliary = 14;</code>
+     * Generated from protobuf field <code>bool multi_region_auxiliary = 14 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getMultiRegionAuxiliary()
     {
+        if ($this->multi_region_auxiliary !== false) {
+            @trigger_error('multi_region_auxiliary is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->multi_region_auxiliary;
     }
 
@@ -513,12 +650,14 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * NOTE: this is a preview feature. Project must be allow-listed in order to
      * set this field.
      *
-     * Generated from protobuf field <code>bool multi_region_auxiliary = 14;</code>
+     * Generated from protobuf field <code>bool multi_region_auxiliary = 14 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setMultiRegionAuxiliary($var)
     {
+        @trigger_error('multi_region_auxiliary is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->multi_region_auxiliary = $var;
 
@@ -526,9 +665,9 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Edition of the reservation.
+     * Optional. Edition of the reservation.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getEdition()
@@ -537,9 +676,9 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Edition of the reservation.
+     * Optional. Edition of the reservation.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -646,6 +785,210 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The overall max slots for the reservation, covering slot_capacity
+     * (baseline), idle slots (if ignore_idle_slots is false) and scaled slots.
+     * If present, the reservation won't use more than the specified number of
+     * slots, even if there is demand and supply (from idle slots).
+     * NOTE: capping a reservation's idle slot usage is best effort and its
+     * usage may exceed the max_slots value. However, in terms of
+     * autoscale.current_slots (which accounts for the additional added slots), it
+     * will never exceed the max_slots - baseline.
+     * This field must be set together with the scaling_mode enum value,
+     * otherwise the request will be rejected with error code
+     * `google.rpc.Code.INVALID_ARGUMENT`.
+     * If the max_slots and scaling_mode are set, the autoscale or
+     * autoscale.max_slots field must be unset. Otherwise the request will be
+     * rejected with error code `google.rpc.Code.INVALID_ARGUMENT`. However, the
+     * autoscale field may still be in the output. The autopscale.max_slots will
+     * always show as 0 and the autoscaler.current_slots will represent the
+     * current slots from autoscaler excluding idle slots.
+     * For example, if the max_slots is 1000 and scaling_mode is AUTOSCALE_ONLY,
+     * then in the output, the autoscaler.max_slots will be 0 and the
+     * autoscaler.current_slots may be any value between 0 and 1000.
+     * If the max_slots is 1000, scaling_mode is ALL_SLOTS, the baseline is 100
+     * and idle slots usage is 200, then in the output, the autoscaler.max_slots
+     * will be 0 and the autoscaler.current_slots will not be higher than 700.
+     * If the max_slots is 1000, scaling_mode is IDLE_SLOTS_ONLY, then in the
+     * output, the autoscaler field will be null.
+     * If the max_slots and scaling_mode are set, then the ignore_idle_slots field
+     * must be aligned with the scaling_mode enum value.(See details in
+     * ScalingMode comments). Otherwise the request will be rejected with
+     * error code `google.rpc.Code.INVALID_ARGUMENT`.
+     * Please note,  the max_slots is for user to manage the part of slots greater
+     * than the baseline. Therefore, we don't allow users to set max_slots smaller
+     * or equal to the baseline as it will not be meaningful. If the field is
+     * present and slot_capacity>=max_slots, requests will be rejected with error
+     * code `google.rpc.Code.INVALID_ARGUMENT`.
+     * Please note that if max_slots is set to 0, we will treat it as unset.
+     * Customers can set max_slots to 0 and set scaling_mode to
+     * SCALING_MODE_UNSPECIFIED to disable the max_slots feature.
+     *
+     * Generated from protobuf field <code>optional int64 max_slots = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMaxSlots()
+    {
+        return isset($this->max_slots) ? $this->max_slots : 0;
+    }
+
+    public function hasMaxSlots()
+    {
+        return isset($this->max_slots);
+    }
+
+    public function clearMaxSlots()
+    {
+        unset($this->max_slots);
+    }
+
+    /**
+     * Optional. The overall max slots for the reservation, covering slot_capacity
+     * (baseline), idle slots (if ignore_idle_slots is false) and scaled slots.
+     * If present, the reservation won't use more than the specified number of
+     * slots, even if there is demand and supply (from idle slots).
+     * NOTE: capping a reservation's idle slot usage is best effort and its
+     * usage may exceed the max_slots value. However, in terms of
+     * autoscale.current_slots (which accounts for the additional added slots), it
+     * will never exceed the max_slots - baseline.
+     * This field must be set together with the scaling_mode enum value,
+     * otherwise the request will be rejected with error code
+     * `google.rpc.Code.INVALID_ARGUMENT`.
+     * If the max_slots and scaling_mode are set, the autoscale or
+     * autoscale.max_slots field must be unset. Otherwise the request will be
+     * rejected with error code `google.rpc.Code.INVALID_ARGUMENT`. However, the
+     * autoscale field may still be in the output. The autopscale.max_slots will
+     * always show as 0 and the autoscaler.current_slots will represent the
+     * current slots from autoscaler excluding idle slots.
+     * For example, if the max_slots is 1000 and scaling_mode is AUTOSCALE_ONLY,
+     * then in the output, the autoscaler.max_slots will be 0 and the
+     * autoscaler.current_slots may be any value between 0 and 1000.
+     * If the max_slots is 1000, scaling_mode is ALL_SLOTS, the baseline is 100
+     * and idle slots usage is 200, then in the output, the autoscaler.max_slots
+     * will be 0 and the autoscaler.current_slots will not be higher than 700.
+     * If the max_slots is 1000, scaling_mode is IDLE_SLOTS_ONLY, then in the
+     * output, the autoscaler field will be null.
+     * If the max_slots and scaling_mode are set, then the ignore_idle_slots field
+     * must be aligned with the scaling_mode enum value.(See details in
+     * ScalingMode comments). Otherwise the request will be rejected with
+     * error code `google.rpc.Code.INVALID_ARGUMENT`.
+     * Please note,  the max_slots is for user to manage the part of slots greater
+     * than the baseline. Therefore, we don't allow users to set max_slots smaller
+     * or equal to the baseline as it will not be meaningful. If the field is
+     * present and slot_capacity>=max_slots, requests will be rejected with error
+     * code `google.rpc.Code.INVALID_ARGUMENT`.
+     * Please note that if max_slots is set to 0, we will treat it as unset.
+     * Customers can set max_slots to 0 and set scaling_mode to
+     * SCALING_MODE_UNSPECIFIED to disable the max_slots feature.
+     *
+     * Generated from protobuf field <code>optional int64 max_slots = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxSlots($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_slots = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The scaling mode for the reservation.
+     * If the field is present but max_slots is not present, requests will be
+     * rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.ScalingMode scaling_mode = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getScalingMode()
+    {
+        return $this->scaling_mode;
+    }
+
+    /**
+     * Optional. The scaling mode for the reservation.
+     * If the field is present but max_slots is not present, requests will be
+     * rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.ScalingMode scaling_mode = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setScalingMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\Reservation\ScalingMode::class);
+        $this->scaling_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The labels associated with this reservation. You can use these
+     * to organize and group your reservations.
+     * You can set this property when you create or update a reservation.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. The labels associated with this reservation. You can use these
+     * to organize and group your reservations.
+     * You can set this property when you create or update a reservation.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The reservation group that this reservation belongs to.
+     * You can set this property when you create or update a reservation.
+     * Reservations do not need to belong to a reservation group.
+     * Format:
+     * projects/{project}/locations/{location}/reservationGroups/{reservation_group}
+     * or just {reservation_group}
+     *
+     * Generated from protobuf field <code>string reservation_group = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getReservationGroup()
+    {
+        return $this->reservation_group;
+    }
+
+    /**
+     * Optional. The reservation group that this reservation belongs to.
+     * You can set this property when you create or update a reservation.
+     * Reservations do not need to belong to a reservation group.
+     * Format:
+     * projects/{project}/locations/{location}/reservationGroups/{reservation_group}
+     * or just {reservation_group}
+     *
+     * Generated from protobuf field <code>string reservation_group = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReservationGroup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->reservation_group = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The Disaster Recovery(DR) replication status of the
      * reservation. This is only available for the primary replicas of DR/failover
      * reservations and provides information about the both the staleness of the
@@ -691,6 +1034,48 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\Reservation\ReplicationStatus::class);
         $this->replication_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The scheduling policy to use for jobs and queries running under
+     * this reservation. The scheduling policy controls how the reservation's
+     * resources are distributed.
+     * This feature is not yet generally available.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.SchedulingPolicy scheduling_policy = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\Reservation\V1\SchedulingPolicy|null
+     */
+    public function getSchedulingPolicy()
+    {
+        return $this->scheduling_policy;
+    }
+
+    public function hasSchedulingPolicy()
+    {
+        return isset($this->scheduling_policy);
+    }
+
+    public function clearSchedulingPolicy()
+    {
+        unset($this->scheduling_policy);
+    }
+
+    /**
+     * Optional. The scheduling policy to use for jobs and queries running under
+     * this reservation. The scheduling policy controls how the reservation's
+     * resources are distributed.
+     * This feature is not yet generally available.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.SchedulingPolicy scheduling_policy = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\Reservation\V1\SchedulingPolicy $var
+     * @return $this
+     */
+    public function setSchedulingPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\SchedulingPolicy::class);
+        $this->scheduling_policy = $var;
 
         return $this;
     }

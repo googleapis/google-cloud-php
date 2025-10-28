@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2018 Google Inc.
  *
@@ -55,7 +56,7 @@ class ArrayTypeTest extends TestCase
         return [
             ['hello'],
             [100],
-            [3.1415],
+            [-1],
             [Database::TYPE_ARRAY],
             [Database::TYPE_STRUCT]
         ];
@@ -72,7 +73,7 @@ class ArrayTypeTest extends TestCase
 
     public function testArrayTypeStruct()
     {
-        $struct = new StructType;
+        $struct = new StructType();
         $struct->add('foo', Database::TYPE_STRING);
 
         $arr = new ArrayType($struct);

@@ -38,67 +38,34 @@ be ready to start making requests.
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Trace\V2\Client\TraceServiceClient;
+use Google\Cloud\Trace\V2\Span;
+use Google\Cloud\Trace\V2\TruncatableString;
+use Google\Protobuf\Timestamp;
 
-use Google\Cloud\Trace\TraceClient;
+// Create a client.
+$traceServiceClient = new TraceServiceClient();
 
-$traceClient = new TraceClient();
+// Prepare the request message.
+$displayName = new TruncatableString();
+$startTime = new Timestamp();
+$endTime = new Timestamp();
+$request = (new Span())
+    ->setName($name)
+    ->setSpanId($spanId)
+    ->setDisplayName($displayName)
+    ->setStartTime($startTime)
+    ->setEndTime($endTime);
 
-// Create a Trace
-$trace = $traceClient->trace();
-$span = $trace->span([
-    'name' => 'main'
-]);
-$span->setStartTime();
-// some expensive operation
-$span->setEndTime();
-
-$trace->setSpans([$span]);
-$traceClient->insert($trace);
-
-// List recent Traces
-foreach($traceClient->traces() as $trace) {
-    var_dump($trace->traceId());
+// Call the API and handle any network failures.
+try {
+    /** @var Span $response */
+    $response = $traceServiceClient->createSpan($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
-```
-
-### Creating a Trace
-
-```php
-use Google\Cloud\Trace\TraceClient;
-
-$client = new TraceClient();
-$trace = $client->trace();
-$span = $trace->span(['name' => 'main']);
-$trace->setSpans([$span]);
-
-$client->insert($trace);
-```
-
-### Using OpenCensus
-
-We highly recommend using the [OpenCensus][opencensus] project to instrument
-your application. OpenCensus is an open source, distributed tracing framework
-that maintains integrations with popular frameworks and tools. OpenCensus
-provides a data exporter for Stackdriver Trace which uses this library. If you
-were using google/cloud-trace <= v0.3.3 or google/cloud  <= 0.46.0, then check
-out the [migration guide to OpenCensus][opencensus-migration].
-
-Install with `composer` or add to your `composer.json`.
-
-```sh
-$ composer require opencensus/opencensus opencensus/opencensus-exporter-stackdriver
-```
-
-`opencensus/opencensus` provides a service-agnostic implementation. Be sure to
-also require `opencensus/opencensus-exporter-stackdriver` to enable exporting of
-traces to Stackdriver Trace.
-
-```php
-use OpenCensus\Trace\Exporter\StackdriverExporter;
-use OpenCensus\Trace\Tracer;
-
-Tracer::start(new StackdriverExporter());
 ```
 
 See the [OpenCensus documentation][opencensus-php] for more configuration

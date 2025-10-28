@@ -39,7 +39,13 @@ use Google\Apps\Chat\V1\Message;
  * messages](https://developers.google.com/workspace/chat/api/guides/v1/messages/list).
  *
  * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following [authorization
+ * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.messages.readonly`
+ * - `https://www.googleapis.com/auth/chat.messages`
+ * - `https://www.googleapis.com/auth/chat.import` (import mode spaces only)
  *
  * @param string $formattedParent The resource name of the space to list messages from.
  *

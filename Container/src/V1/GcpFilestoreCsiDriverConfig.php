@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration for the GCP Filestore CSI driver.
+ * Configuration for the Filestore CSI driver.
  *
  * Generated from protobuf message <code>google.container.v1.GcpFilestoreCsiDriverConfig</code>
  */
 class GcpFilestoreCsiDriverConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether the GCP Filestore CSI driver is enabled for this cluster.
+     * Whether the Filestore CSI driver is enabled for this cluster.
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
@@ -29,7 +29,7 @@ class GcpFilestoreCsiDriverConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enabled
-     *           Whether the GCP Filestore CSI driver is enabled for this cluster.
+     *           Whether the Filestore CSI driver is enabled for this cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class GcpFilestoreCsiDriverConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the GCP Filestore CSI driver is enabled for this cluster.
+     * Whether the Filestore CSI driver is enabled for this cluster.
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      * @return bool
@@ -49,7 +49,7 @@ class GcpFilestoreCsiDriverConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the GCP Filestore CSI driver is enabled for this cluster.
+     * Whether the Filestore CSI driver is enabled for this cluster.
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      * @param bool $var

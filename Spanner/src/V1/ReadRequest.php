@@ -21,20 +21,20 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * The transaction to use. If none is provided, the default is a
      * temporary read-only transaction with strong concurrency.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    private $transaction = null;
+    protected $transaction = null;
     /**
      * Required. The name of the table in the database to be read.
      *
      * Generated from protobuf field <code>string table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * If non-empty, the name of an index on
      * [table][google.spanner.v1.ReadRequest.table]. This index is used instead of
@@ -45,7 +45,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string index = 4;</code>
      */
-    private $index = '';
+    protected $index = '';
     /**
      * Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be
      * returned for each row matching this request.
@@ -63,23 +63,23 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * If the [partition_token][google.spanner.v1.ReadRequest.partition_token]
      * field is empty, rows are yielded in table primary key order (if
      * [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
-     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the
-     * [partition_token][google.spanner.v1.ReadRequest.partition_token] field is
-     * not empty, rows will be yielded in an unspecified order.
-     * It is not an error for the `key_set` to name rows that do not
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty). If the
+     * [partition_token][google.spanner.v1.ReadRequest.partition_token] field
+     * isn't empty, rows are yielded in an unspecified order.
+     * It isn't an error for the `key_set` to name rows that don't
      * exist in the database. Read yields nothing for nonexistent rows.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key_set = null;
+    protected $key_set = null;
     /**
      * If greater than zero, only the first `limit` rows are yielded. If `limit`
-     * is zero, the default is no limit. A limit cannot be specified if
+     * is zero, the default is no limit. A limit can't be specified if
      * `partition_token` is set.
      *
      * Generated from protobuf field <code>int64 limit = 8;</code>
      */
-    private $limit = 0;
+    protected $limit = 0;
     /**
      * If this request is resuming a previously interrupted read,
      * `resume_token` should be copied from the last
@@ -90,55 +90,56 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes resume_token = 9;</code>
      */
-    private $resume_token = '';
+    protected $resume_token = '';
     /**
-     * If present, results will be restricted to the specified partition
-     * previously created using PartitionRead().    There must be an exact
+     * If present, results are restricted to the specified partition
+     * previously created using `PartitionRead`. There must be an exact
      * match for the values of fields common to this message and the
      * PartitionReadRequest message used to create this partition_token.
      *
      * Generated from protobuf field <code>bytes partition_token = 10;</code>
      */
-    private $partition_token = '';
+    protected $partition_token = '';
     /**
      * Common options for this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
      */
-    private $request_options = null;
+    protected $request_options = null;
     /**
      * Directed read options for this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions directed_read_options = 14;</code>
      */
-    private $directed_read_options = null;
+    protected $directed_read_options = null;
     /**
      * If this is for a partitioned read and this field is set to `true`, the
      * request is executed with Spanner Data Boost independent compute resources.
-     * If the field is set to `true` but the request does not set
+     * If the field is set to `true` but the request doesn't set
      * `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>bool data_boost_enabled = 15;</code>
      */
-    private $data_boost_enabled = false;
+    protected $data_boost_enabled = false;
     /**
      * Optional. Order for the returned rows.
-     * By default, Spanner will return result rows in primary key order except for
-     * PartitionRead requests. For applications that do not require rows to be
+     * By default, Spanner returns result rows in primary key order except for
+     * PartitionRead requests. For applications that don't require rows to be
      * returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting
      * `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval,
-     * resulting in lower latencies in certain cases (e.g. bulk point lookups).
+     * resulting in lower latencies in certain cases (for example, bulk point
+     * lookups).
      *
      * Generated from protobuf field <code>.google.spanner.v1.ReadRequest.OrderBy order_by = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = 0;
+    protected $order_by = 0;
     /**
      * Optional. Lock Hint for the request, it can only be used with read-write
      * transactions.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ReadRequest.LockHint lock_hint = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $lock_hint = 0;
+    protected $lock_hint = 0;
 
     /**
      * Constructor.
@@ -173,14 +174,14 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *           If the [partition_token][google.spanner.v1.ReadRequest.partition_token]
      *           field is empty, rows are yielded in table primary key order (if
      *           [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
-     *           (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the
-     *           [partition_token][google.spanner.v1.ReadRequest.partition_token] field is
-     *           not empty, rows will be yielded in an unspecified order.
-     *           It is not an error for the `key_set` to name rows that do not
+     *           (if [index][google.spanner.v1.ReadRequest.index] is non-empty). If the
+     *           [partition_token][google.spanner.v1.ReadRequest.partition_token] field
+     *           isn't empty, rows are yielded in an unspecified order.
+     *           It isn't an error for the `key_set` to name rows that don't
      *           exist in the database. Read yields nothing for nonexistent rows.
      *     @type int|string $limit
      *           If greater than zero, only the first `limit` rows are yielded. If `limit`
-     *           is zero, the default is no limit. A limit cannot be specified if
+     *           is zero, the default is no limit. A limit can't be specified if
      *           `partition_token` is set.
      *     @type string $resume_token
      *           If this request is resuming a previously interrupted read,
@@ -190,8 +191,8 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *           left off. The rest of the request parameters must exactly match the request
      *           that yielded this token.
      *     @type string $partition_token
-     *           If present, results will be restricted to the specified partition
-     *           previously created using PartitionRead().    There must be an exact
+     *           If present, results are restricted to the specified partition
+     *           previously created using `PartitionRead`. There must be an exact
      *           match for the values of fields common to this message and the
      *           PartitionReadRequest message used to create this partition_token.
      *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
@@ -201,15 +202,16 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $data_boost_enabled
      *           If this is for a partitioned read and this field is set to `true`, the
      *           request is executed with Spanner Data Boost independent compute resources.
-     *           If the field is set to `true` but the request does not set
+     *           If the field is set to `true` but the request doesn't set
      *           `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      *     @type int $order_by
      *           Optional. Order for the returned rows.
-     *           By default, Spanner will return result rows in primary key order except for
-     *           PartitionRead requests. For applications that do not require rows to be
+     *           By default, Spanner returns result rows in primary key order except for
+     *           PartitionRead requests. For applications that don't require rows to be
      *           returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting
      *           `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval,
-     *           resulting in lower latencies in certain cases (e.g. bulk point lookups).
+     *           resulting in lower latencies in certain cases (for example, bulk point
+     *           lookups).
      *     @type int $lock_hint
      *           Optional. Lock Hint for the request, it can only be used with read-write
      *           transactions.
@@ -384,10 +386,10 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * If the [partition_token][google.spanner.v1.ReadRequest.partition_token]
      * field is empty, rows are yielded in table primary key order (if
      * [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
-     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the
-     * [partition_token][google.spanner.v1.ReadRequest.partition_token] field is
-     * not empty, rows will be yielded in an unspecified order.
-     * It is not an error for the `key_set` to name rows that do not
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty). If the
+     * [partition_token][google.spanner.v1.ReadRequest.partition_token] field
+     * isn't empty, rows are yielded in an unspecified order.
+     * It isn't an error for the `key_set` to name rows that don't
      * exist in the database. Read yields nothing for nonexistent rows.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -418,10 +420,10 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * If the [partition_token][google.spanner.v1.ReadRequest.partition_token]
      * field is empty, rows are yielded in table primary key order (if
      * [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
-     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the
-     * [partition_token][google.spanner.v1.ReadRequest.partition_token] field is
-     * not empty, rows will be yielded in an unspecified order.
-     * It is not an error for the `key_set` to name rows that do not
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty). If the
+     * [partition_token][google.spanner.v1.ReadRequest.partition_token] field
+     * isn't empty, rows are yielded in an unspecified order.
+     * It isn't an error for the `key_set` to name rows that don't
      * exist in the database. Read yields nothing for nonexistent rows.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -438,7 +440,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If greater than zero, only the first `limit` rows are yielded. If `limit`
-     * is zero, the default is no limit. A limit cannot be specified if
+     * is zero, the default is no limit. A limit can't be specified if
      * `partition_token` is set.
      *
      * Generated from protobuf field <code>int64 limit = 8;</code>
@@ -451,7 +453,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If greater than zero, only the first `limit` rows are yielded. If `limit`
-     * is zero, the default is no limit. A limit cannot be specified if
+     * is zero, the default is no limit. A limit can't be specified if
      * `partition_token` is set.
      *
      * Generated from protobuf field <code>int64 limit = 8;</code>
@@ -503,8 +505,8 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If present, results will be restricted to the specified partition
-     * previously created using PartitionRead().    There must be an exact
+     * If present, results are restricted to the specified partition
+     * previously created using `PartitionRead`. There must be an exact
      * match for the values of fields common to this message and the
      * PartitionReadRequest message used to create this partition_token.
      *
@@ -517,8 +519,8 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If present, results will be restricted to the specified partition
-     * previously created using PartitionRead().    There must be an exact
+     * If present, results are restricted to the specified partition
+     * previously created using `PartitionRead`. There must be an exact
      * match for the values of fields common to this message and the
      * PartitionReadRequest message used to create this partition_token.
      *
@@ -609,7 +611,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * If this is for a partitioned read and this field is set to `true`, the
      * request is executed with Spanner Data Boost independent compute resources.
-     * If the field is set to `true` but the request does not set
+     * If the field is set to `true` but the request doesn't set
      * `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>bool data_boost_enabled = 15;</code>
@@ -623,7 +625,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     /**
      * If this is for a partitioned read and this field is set to `true`, the
      * request is executed with Spanner Data Boost independent compute resources.
-     * If the field is set to `true` but the request does not set
+     * If the field is set to `true` but the request doesn't set
      * `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>bool data_boost_enabled = 15;</code>
@@ -640,11 +642,12 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Order for the returned rows.
-     * By default, Spanner will return result rows in primary key order except for
-     * PartitionRead requests. For applications that do not require rows to be
+     * By default, Spanner returns result rows in primary key order except for
+     * PartitionRead requests. For applications that don't require rows to be
      * returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting
      * `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval,
-     * resulting in lower latencies in certain cases (e.g. bulk point lookups).
+     * resulting in lower latencies in certain cases (for example, bulk point
+     * lookups).
      *
      * Generated from protobuf field <code>.google.spanner.v1.ReadRequest.OrderBy order_by = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -656,11 +659,12 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Order for the returned rows.
-     * By default, Spanner will return result rows in primary key order except for
-     * PartitionRead requests. For applications that do not require rows to be
+     * By default, Spanner returns result rows in primary key order except for
+     * PartitionRead requests. For applications that don't require rows to be
      * returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting
      * `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval,
-     * resulting in lower latencies in certain cases (e.g. bulk point lookups).
+     * resulting in lower latencies in certain cases (for example, bulk point
+     * lookups).
      *
      * Generated from protobuf field <code>.google.spanner.v1.ReadRequest.OrderBy order_by = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

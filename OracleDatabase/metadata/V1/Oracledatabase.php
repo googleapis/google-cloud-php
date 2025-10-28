@@ -23,25 +23,39 @@ class Oracledatabase
         \GPBMetadata\Google\Cloud\Oracledatabase\V1\AutonomousDatabaseCharacterSet::initOnce();
         \GPBMetadata\Google\Cloud\Oracledatabase\V1\AutonomousDbBackup::initOnce();
         \GPBMetadata\Google\Cloud\Oracledatabase\V1\AutonomousDbVersion::initOnce();
+        \GPBMetadata\Google\Cloud\Oracledatabase\V1\Database::initOnce();
+        \GPBMetadata\Google\Cloud\Oracledatabase\V1\DatabaseCharacterSet::initOnce();
         \GPBMetadata\Google\Cloud\Oracledatabase\V1\DbNode::initOnce();
         \GPBMetadata\Google\Cloud\Oracledatabase\V1\DbServer::initOnce();
+        \GPBMetadata\Google\Cloud\Oracledatabase\V1\DbSystem::initOnce();
+        \GPBMetadata\Google\Cloud\Oracledatabase\V1\DbSystemInitialStorageSize::initOnce();
         \GPBMetadata\Google\Cloud\Oracledatabase\V1\DbSystemShape::initOnce();
+        \GPBMetadata\Google\Cloud\Oracledatabase\V1\DbVersion::initOnce();
         \GPBMetadata\Google\Cloud\Oracledatabase\V1\Entitlement::initOnce();
         \GPBMetadata\Google\Cloud\Oracledatabase\V1\ExadataInfra::initOnce();
+        \GPBMetadata\Google\Cloud\Oracledatabase\V1\ExadbVmCluster::initOnce();
+        \GPBMetadata\Google\Cloud\Oracledatabase\V1\ExascaleDbStorageVault::initOnce();
         \GPBMetadata\Google\Cloud\Oracledatabase\V1\GiVersion::initOnce();
+        \GPBMetadata\Google\Cloud\Oracledatabase\V1\MinorVersion::initOnce();
+        \GPBMetadata\Google\Cloud\Oracledatabase\V1\OdbNetwork::initOnce();
+        \GPBMetadata\Google\Cloud\Oracledatabase\V1\OdbSubnet::initOnce();
+        \GPBMetadata\Google\Cloud\Oracledatabase\V1\PluggableDatabase::initOnce();
         \GPBMetadata\Google\Cloud\Oracledatabase\V1\VmCluster::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
+        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-­i
-3google/cloud/oracledatabase/v1/oracledatabase.protogoogle.cloud.oracledatabase.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.proto8google/cloud/oracledatabase/v1/autonomous_database.protoFgoogle/cloud/oracledatabase/v1/autonomous_database_character_set.proto9google/cloud/oracledatabase/v1/autonomous_db_backup.proto:google/cloud/oracledatabase/v1/autonomous_db_version.proto,google/cloud/oracledatabase/v1/db_node.proto.google/cloud/oracledatabase/v1/db_server.proto4google/cloud/oracledatabase/v1/db_system_shape.proto0google/cloud/oracledatabase/v1/entitlement.proto2google/cloud/oracledatabase/v1/exadata_infra.proto/google/cloud/oracledatabase/v1/gi_version.proto/google/cloud/oracledatabase/v1/vm_cluster.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"«
+Åº
+3google/cloud/oracledatabase/v1/oracledatabase.protogoogle.cloud.oracledatabase.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.proto8google/cloud/oracledatabase/v1/autonomous_database.protoFgoogle/cloud/oracledatabase/v1/autonomous_database_character_set.proto9google/cloud/oracledatabase/v1/autonomous_db_backup.proto:google/cloud/oracledatabase/v1/autonomous_db_version.proto-google/cloud/oracledatabase/v1/database.proto;google/cloud/oracledatabase/v1/database_character_set.proto,google/cloud/oracledatabase/v1/db_node.proto.google/cloud/oracledatabase/v1/db_server.proto.google/cloud/oracledatabase/v1/db_system.protoCgoogle/cloud/oracledatabase/v1/db_system_initial_storage_size.proto4google/cloud/oracledatabase/v1/db_system_shape.proto/google/cloud/oracledatabase/v1/db_version.proto0google/cloud/oracledatabase/v1/entitlement.proto2google/cloud/oracledatabase/v1/exadata_infra.proto5google/cloud/oracledatabase/v1/exadb_vm_cluster.proto>google/cloud/oracledatabase/v1/exascale_db_storage_vault.proto/google/cloud/oracledatabase/v1/gi_version.proto2google/cloud/oracledatabase/v1/minor_version.proto0google/cloud/oracledatabase/v1/odb_network.proto/google/cloud/oracledatabase/v1/odb_subnet.proto7google/cloud/oracledatabase/v1/pluggable_database.proto/google/cloud/oracledatabase/v1/vm_cluster.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"×
 &ListCloudExadataInfrastructuresRequestP
 parent (	B@àAúA:8oracledatabase.googleapis.com/CloudExadataInfrastructure
 	page_size (BàA
 
-page_token (	BàA"¥
+page_token (	BàA
+filter (	BàA
+order_by (	BàA"¥
 \'ListCloudExadataInfrastructuresResponsea
 cloud_exadata_infrastructures (2:.google.cloud.oracledatabase.v1.CloudExadataInfrastructure
 next_page_token (	"v
@@ -108,20 +122,22 @@ db_servers (2(.google.cloud.oracledatabase.v1.DbServer
 page_token (	BàA"h
 ListDbNodesResponse8
 db_nodes (2&.google.cloud.oracledatabase.v1.DbNode
-next_page_token (	"‰
+next_page_token (	"ž
 ListGiVersionsRequest?
 parent (	B/àAúA)\'oracledatabase.googleapis.com/GiVersion
 	page_size (BàA
 
-page_token (	BàA"q
+page_token (	BàA
+filter (	BàA"q
 ListGiVersionsResponse>
 gi_versions (2).google.cloud.oracledatabase.v1.GiVersion
-next_page_token (	"‘
+next_page_token (	"¦
 ListDbSystemShapesRequestC
 parent (	B3àAúA-+oracledatabase.googleapis.com/DbSystemShape
 	page_size (BàA
 
-page_token (	BàA"~
+page_token (	BàA
+filter (	BàA"~
 ListDbSystemShapesResponseG
 db_system_shapes (2-.google.cloud.oracledatabase.v1.DbSystemShape
 next_page_token (	"Ÿ
@@ -152,7 +168,12 @@ page_token (	BàA
 autonomous_database_id (	BàAT
 autonomous_database (22.google.cloud.oracledatabase.v1.AutonomousDatabaseBàA
 
-request_id (	BàAâŒÏ×"Š
+request_id (	BàAâŒÏ×"Î
+UpdateAutonomousDatabaseRequest4
+update_mask (2.google.protobuf.FieldMaskBàAT
+autonomous_database (22.google.cloud.oracledatabase.v1.AutonomousDatabaseBàA
+
+request_id (	BàAâŒÏ×"Š
 DeleteAutonomousDatabaseRequestF
 name (	B8àAúA2
 0oracledatabase.googleapis.com/AutonomousDatabase
@@ -170,6 +191,16 @@ request_id (	BàAâŒÏ×"¡
 0oracledatabase.googleapis.com/AutonomousDatabase"j
  RestartAutonomousDatabaseRequestF
 name (	B8àAúA2
+0oracledatabase.googleapis.com/AutonomousDatabase"É
+#SwitchoverAutonomousDatabaseRequestF
+name (	B8àAúA2
+0oracledatabase.googleapis.com/AutonomousDatabaseZ
+peer_autonomous_database (	B8àAúA2
+0oracledatabase.googleapis.com/AutonomousDatabase"Ç
+!FailoverAutonomousDatabaseRequestF
+name (	B8àAúA2
+0oracledatabase.googleapis.com/AutonomousDatabaseZ
+peer_autonomous_database (	B8àAúA2
 0oracledatabase.googleapis.com/AutonomousDatabase"ã
 \'GenerateAutonomousDatabaseWalletRequestF
 name (	B8àAúA2
@@ -204,7 +235,42 @@ $ListAutonomousDatabaseBackupsRequestN
 page_token (	BàA"Ÿ
 %ListAutonomousDatabaseBackupsResponse]
 autonomous_database_backups (28.google.cloud.oracledatabase.v1.AutonomousDatabaseBackup
-next_page_token (	2ñ0
+next_page_token (	"õ
+CreateExadbVmClusterRequestD
+parent (	B4àAúA.,oracledatabase.googleapis.com/ExadbVmCluster 
+exadb_vm_cluster_id (	BàAM
+exadb_vm_cluster (2..google.cloud.oracledatabase.v1.ExadbVmClusterBàA
+
+request_id (	BàAâŒÏ×"‚
+DeleteExadbVmClusterRequestB
+name (	B4àAúA.
+,oracledatabase.googleapis.com/ExadbVmCluster
+
+request_id (	BàAâŒÏ×"^
+GetExadbVmClusterRequestB
+name (	B4àAúA.
+,oracledatabase.googleapis.com/ExadbVmCluster"¿
+ListExadbVmClustersRequestD
+parent (	B4àAúA.,oracledatabase.googleapis.com/ExadbVmCluster
+	page_size (BàA
+
+page_token (	BàA
+filter (	BàA
+order_by (	BàA"
+ListExadbVmClustersResponseI
+exadb_vm_clusters (2..google.cloud.oracledatabase.v1.ExadbVmCluster
+next_page_token (	"Ã
+UpdateExadbVmClusterRequest4
+update_mask (2.google.protobuf.FieldMaskBàAM
+exadb_vm_cluster (2..google.cloud.oracledatabase.v1.ExadbVmClusterBàA
+
+request_id (	BàAâŒÏ×"¨
+)RemoveVirtualMachineExadbVmClusterRequestB
+name (	B4àAúA.
+,oracledatabase.googleapis.com/ExadbVmCluster
+
+request_id (	BàAâŒÏ×
+	hostnames (	BàA2Âm
 OracleDatabase„
 ListCloudExadataInfrastructuresF.google.cloud.oracledatabase.v1.ListCloudExadataInfrastructuresRequestG.google.cloud.oracledatabase.v1.ListCloudExadataInfrastructuresResponse"PÚAparent‚Óä“A?/v1/{parent=projects/*/locations/*}/cloudExadataInfrastructuresñ
 GetCloudExadataInfrastructureD.google.cloud.oracledatabase.v1.GetCloudExadataInfrastructureRequest:.google.cloud.oracledatabase.v1.CloudExadataInfrastructure"NÚAname‚Óä“A?/v1/{name=projects/*/locations/*/cloudExadataInfrastructures/*}ê
@@ -219,14 +285,17 @@ page_token (	BàA"Ÿ
 DeleteCloudVmCluster;.google.cloud.oracledatabase.v1.DeleteCloudVmClusterRequest.google.longrunning.Operation"oÊA*
 google.protobuf.EmptyOperationMetadataÚAname‚Óä“5*3/v1/{name=projects/*/locations/*/cloudVmClusters/*}È
 ListEntitlements7.google.cloud.oracledatabase.v1.ListEntitlementsRequest8.google.cloud.oracledatabase.v1.ListEntitlementsResponse"AÚAparent‚Óä“20/v1/{parent=projects/*/locations/*}/entitlementsÚ
-ListDbServers4.google.cloud.oracledatabase.v1.ListDbServersRequest5.google.cloud.oracledatabase.v1.ListDbServersResponse"\\ÚAparent‚Óä“MK/v1/{parent=projects/*/locations/*/cloudExadataInfrastructures/*}/dbServersÆ
-ListDbNodes2.google.cloud.oracledatabase.v1.ListDbNodesRequest3.google.cloud.oracledatabase.v1.ListDbNodesResponse"NÚAparent‚Óä“?=/v1/{parent=projects/*/locations/*/cloudVmClusters/*}/dbNodesÀ
-ListGiVersions5.google.cloud.oracledatabase.v1.ListGiVersionsRequest6.google.cloud.oracledatabase.v1.ListGiVersionsResponse"?ÚAparent‚Óä“0./v1/{parent=projects/*/locations/*}/giVersionsÐ
+ListDbServers4.google.cloud.oracledatabase.v1.ListDbServersRequest5.google.cloud.oracledatabase.v1.ListDbServersResponse"\\ÚAparent‚Óä“MK/v1/{parent=projects/*/locations/*/cloudExadataInfrastructures/*}/dbServers‰
+ListDbNodes2.google.cloud.oracledatabase.v1.ListDbNodesRequest3.google.cloud.oracledatabase.v1.ListDbNodesResponse"ÚAparent‚Óä“€=/v1/{parent=projects/*/locations/*/cloudVmClusters/*}/dbNodesZ?=/v1/{parent=projects/*/locations/*/exadbVmClusters/*}/dbNodesÀ
+ListGiVersions5.google.cloud.oracledatabase.v1.ListGiVersionsRequest6.google.cloud.oracledatabase.v1.ListGiVersionsResponse"?ÚAparent‚Óä“0./v1/{parent=projects/*/locations/*}/giVersionsÙ
+ListMinorVersions8.google.cloud.oracledatabase.v1.ListMinorVersionsRequest9.google.cloud.oracledatabase.v1.ListMinorVersionsResponse"OÚAparent‚Óä“@>/v1/{parent=projects/*/locations/*/giVersions/*}/minorVersionsÐ
 ListDbSystemShapes9.google.cloud.oracledatabase.v1.ListDbSystemShapesRequest:.google.cloud.oracledatabase.v1.ListDbSystemShapesResponse"CÚAparent‚Óä“42/v1/{parent=projects/*/locations/*}/dbSystemShapesä
 ListAutonomousDatabases>.google.cloud.oracledatabase.v1.ListAutonomousDatabasesRequest?.google.cloud.oracledatabase.v1.ListAutonomousDatabasesResponse"HÚAparent‚Óä“97/v1/{parent=projects/*/locations/*}/autonomousDatabasesÑ
 GetAutonomousDatabase<.google.cloud.oracledatabase.v1.GetAutonomousDatabaseRequest2.google.cloud.oracledatabase.v1.AutonomousDatabase"FÚAname‚Óä“97/v1/{name=projects/*/locations/*/autonomousDatabases/*}¯
 CreateAutonomousDatabase?.google.cloud.oracledatabase.v1.CreateAutonomousDatabaseRequest.google.longrunning.Operation"²ÊA\'
-AutonomousDatabaseOperationMetadataÚA1parent,autonomous_database,autonomous_database_id‚Óä“N"7/v1/{parent=projects/*/locations/*}/autonomousDatabases:autonomous_databaseï
+AutonomousDatabaseOperationMetadataÚA1parent,autonomous_database,autonomous_database_id‚Óä“N"7/v1/{parent=projects/*/locations/*}/autonomousDatabases:autonomous_database±
+UpdateAutonomousDatabase?.google.cloud.oracledatabase.v1.UpdateAutonomousDatabaseRequest.google.longrunning.Operation"´ÊA\'
+AutonomousDatabaseOperationMetadataÚAautonomous_database,update_mask‚Óä“b2K/v1/{autonomous_database.name=projects/*/locations/*/autonomousDatabases/*}:autonomous_databaseï
 DeleteAutonomousDatabase?.google.cloud.oracledatabase.v1.DeleteAutonomousDatabaseRequest.google.longrunning.Operation"sÊA*
 google.protobuf.EmptyOperationMetadataÚAname‚Óä“9*7/v1/{name=projects/*/locations/*/autonomousDatabases/*}‡
 RestoreAutonomousDatabase@.google.cloud.oracledatabase.v1.RestoreAutonomousDatabaseRequest.google.longrunning.Operation"ˆÊA\'
@@ -240,9 +309,57 @@ page_token (	BàA"Ÿ
 StartAutonomousDatabase>.google.cloud.oracledatabase.v1.StartAutonomousDatabaseRequest.google.longrunning.Operation"yÊA\'
 AutonomousDatabaseOperationMetadataÚAname‚Óä“B"=/v1/{name=projects/*/locations/*/autonomousDatabases/*}:start:*ù
 RestartAutonomousDatabase@.google.cloud.oracledatabase.v1.RestartAutonomousDatabaseRequest.google.longrunning.Operation"{ÊA\'
-AutonomousDatabaseOperationMetadataÚAname‚Óä“D"?/v1/{name=projects/*/locations/*/autonomousDatabases/*}:restart:*QÊAoracledatabase.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¶
+AutonomousDatabaseOperationMetadataÚAname‚Óä“D"?/v1/{name=projects/*/locations/*/autonomousDatabases/*}:restart:*œ
+SwitchoverAutonomousDatabaseC.google.cloud.oracledatabase.v1.SwitchoverAutonomousDatabaseRequest.google.longrunning.Operation"—ÊA\'
+AutonomousDatabaseOperationMetadataÚAname,peer_autonomous_database‚Óä“G"B/v1/{name=projects/*/locations/*/autonomousDatabases/*}:switchover:*–
+FailoverAutonomousDatabaseA.google.cloud.oracledatabase.v1.FailoverAutonomousDatabaseRequest.google.longrunning.Operation"•ÊA\'
+AutonomousDatabaseOperationMetadataÚAname,peer_autonomous_database‚Óä“E"@/v1/{name=projects/*/locations/*/autonomousDatabases/*}:failover:*Ä
+ListOdbNetworks6.google.cloud.oracledatabase.v1.ListOdbNetworksRequest7.google.cloud.oracledatabase.v1.ListOdbNetworksResponse"@ÚAparent‚Óä“1//v1/{parent=projects/*/locations/*}/odbNetworks±
+GetOdbNetwork4.google.cloud.oracledatabase.v1.GetOdbNetworkRequest*.google.cloud.oracledatabase.v1.OdbNetwork">ÚAname‚Óä“1//v1/{name=projects/*/locations/*/odbNetworks/*}÷
+CreateOdbNetwork7.google.cloud.oracledatabase.v1.CreateOdbNetworkRequest.google.longrunning.Operation"ŠÊA
+
+OdbNetworkOperationMetadataÚA!parent,odb_network,odb_network_id‚Óä“>"//v1/{parent=projects/*/locations/*}/odbNetworks:odb_network×
+DeleteOdbNetwork7.google.cloud.oracledatabase.v1.DeleteOdbNetworkRequest.google.longrunning.Operation"kÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“1*//v1/{name=projects/*/locations/*/odbNetworks/*}Î
+ListOdbSubnets5.google.cloud.oracledatabase.v1.ListOdbSubnetsRequest6.google.cloud.oracledatabase.v1.ListOdbSubnetsResponse"MÚAparent‚Óä“></v1/{parent=projects/*/locations/*/odbNetworks/*}/odbSubnets»
+GetOdbSubnet3.google.cloud.oracledatabase.v1.GetOdbSubnetRequest).google.cloud.oracledatabase.v1.OdbSubnet"KÚAname‚Óä“></v1/{name=projects/*/locations/*/odbNetworks/*/odbSubnets/*}þ
+CreateOdbSubnet6.google.cloud.oracledatabase.v1.CreateOdbSubnetRequest.google.longrunning.Operation"“ÊA
+	OdbSubnetOperationMetadataÚAparent,odb_subnet,odb_subnet_id‚Óä“J"</v1/{parent=projects/*/locations/*/odbNetworks/*}/odbSubnets:
+odb_subnetâ
+DeleteOdbSubnet6.google.cloud.oracledatabase.v1.DeleteOdbSubnetRequest.google.longrunning.Operation"xÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“>*</v1/{name=projects/*/locations/*/odbNetworks/*/odbSubnets/*}Ô
+ListExadbVmClusters:.google.cloud.oracledatabase.v1.ListExadbVmClustersRequest;.google.cloud.oracledatabase.v1.ListExadbVmClustersResponse"DÚAparent‚Óä“53/v1/{parent=projects/*/locations/*}/exadbVmClustersÁ
+GetExadbVmCluster8.google.cloud.oracledatabase.v1.GetExadbVmClusterRequest..google.cloud.oracledatabase.v1.ExadbVmCluster"BÚAname‚Óä“53/v1/{name=projects/*/locations/*/exadbVmClusters/*}–
+CreateExadbVmCluster;.google.cloud.oracledatabase.v1.CreateExadbVmClusterRequest.google.longrunning.Operation"¡ÊA#
+ExadbVmClusterOperationMetadataÚA+parent,exadb_vm_cluster,exadb_vm_cluster_id‚Óä“G"3/v1/{parent=projects/*/locations/*}/exadbVmClusters:exadb_vm_clusterã
+DeleteExadbVmCluster;.google.cloud.oracledatabase.v1.DeleteExadbVmClusterRequest.google.longrunning.Operation"oÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“5*3/v1/{name=projects/*/locations/*/exadbVmClusters/*}˜
+UpdateExadbVmCluster;.google.cloud.oracledatabase.v1.UpdateExadbVmClusterRequest.google.longrunning.Operation"£ÊA#
+ExadbVmClusterOperationMetadataÚAexadb_vm_cluster,update_mask‚Óä“X2D/v1/{exadb_vm_cluster.name=projects/*/locations/*/exadbVmClusters/*}:exadb_vm_cluster›
+"RemoveVirtualMachineExadbVmClusterI.google.cloud.oracledatabase.v1.RemoveVirtualMachineExadbVmClusterRequest.google.longrunning.Operation"ŠÊA#
+ExadbVmClusterOperationMetadataÚAname,hostnames‚Óä“M"H/v1/{name=projects/*/locations/*/exadbVmClusters/*}:removeVirtualMachine:*ô
+ListExascaleDbStorageVaultsB.google.cloud.oracledatabase.v1.ListExascaleDbStorageVaultsRequestC.google.cloud.oracledatabase.v1.ListExascaleDbStorageVaultsResponse"LÚAparent‚Óä“=;/v1/{parent=projects/*/locations/*}/exascaleDbStorageVaultsá
+GetExascaleDbStorageVault@.google.cloud.oracledatabase.v1.GetExascaleDbStorageVaultRequest6.google.cloud.oracledatabase.v1.ExascaleDbStorageVault"JÚAname‚Óä“=;/v1/{name=projects/*/locations/*/exascaleDbStorageVaults/*}Ñ
+CreateExascaleDbStorageVaultC.google.cloud.oracledatabase.v1.CreateExascaleDbStorageVaultRequest.google.longrunning.Operation"ÌÊA+
+ExascaleDbStorageVaultOperationMetadataÚA=parent,exascale_db_storage_vault,exascale_db_storage_vault_id‚Óä“X";/v1/{parent=projects/*/locations/*}/exascaleDbStorageVaults:exascale_db_storage_vaultû
+DeleteExascaleDbStorageVaultC.google.cloud.oracledatabase.v1.DeleteExascaleDbStorageVaultRequest.google.longrunning.Operation"wÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“=*;/v1/{name=projects/*/locations/*/exascaleDbStorageVaults/*}„
+ListDbSystemInitialStorageSizesF.google.cloud.oracledatabase.v1.ListDbSystemInitialStorageSizesRequestG.google.cloud.oracledatabase.v1.ListDbSystemInitialStorageSizesResponse"PÚAparent‚Óä“A?/v1/{parent=projects/*/locations/*}/dbSystemInitialStorageSizes¼
+ListDatabases4.google.cloud.oracledatabase.v1.ListDatabasesRequest5.google.cloud.oracledatabase.v1.ListDatabasesResponse">ÚAparent‚Óä“/-/v1/{parent=projects/*/locations/*}/databases©
+GetDatabase2.google.cloud.oracledatabase.v1.GetDatabaseRequest(.google.cloud.oracledatabase.v1.Database"<ÚAname‚Óä“/-/v1/{name=projects/*/locations/*/databases/*}à
+ListPluggableDatabases=.google.cloud.oracledatabase.v1.ListPluggableDatabasesRequest>.google.cloud.oracledatabase.v1.ListPluggableDatabasesResponse"GÚAparent‚Óä“86/v1/{parent=projects/*/locations/*}/pluggableDatabasesÍ
+GetPluggableDatabase;.google.cloud.oracledatabase.v1.GetPluggableDatabaseRequest1.google.cloud.oracledatabase.v1.PluggableDatabase"EÚAname‚Óä“86/v1/{name=projects/*/locations/*/pluggableDatabases/*}¼
+ListDbSystems4.google.cloud.oracledatabase.v1.ListDbSystemsRequest5.google.cloud.oracledatabase.v1.ListDbSystemsResponse">ÚAparent‚Óä“/-/v1/{parent=projects/*/locations/*}/dbSystems©
+GetDbSystem2.google.cloud.oracledatabase.v1.GetDbSystemRequest(.google.cloud.oracledatabase.v1.DbSystem"<ÚAname‚Óä“/-/v1/{name=projects/*/locations/*/dbSystems/*}é
+CreateDbSystem5.google.cloud.oracledatabase.v1.CreateDbSystemRequest.google.longrunning.Operation"€ÊA
+DbSystemOperationMetadataÚAparent,db_system,db_system_id‚Óä“:"-/v1/{parent=projects/*/locations/*}/dbSystems:	db_systemÑ
+DeleteDbSystem5.google.cloud.oracledatabase.v1.DeleteDbSystemRequest.google.longrunning.Operation"iÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“/*-/v1/{name=projects/*/locations/*/dbSystems/*}À
+ListDbVersions5.google.cloud.oracledatabase.v1.ListDbVersionsRequest6.google.cloud.oracledatabase.v1.ListDbVersionsResponse"?ÚAparent‚Óä“0./v1/{parent=projects/*/locations/*}/dbVersionsì
+ListDatabaseCharacterSets@.google.cloud.oracledatabase.v1.ListDatabaseCharacterSetsRequestA.google.cloud.oracledatabase.v1.ListDatabaseCharacterSetsResponse"JÚAparent‚Óä“;9/v1/{parent=projects/*/locations/*}/databaseCharacterSetsQÊAoracledatabase.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB±
 "com.google.cloud.oracledatabase.v1BV1mainProtoPZJcloud.google.com/go/oracledatabase/apiv1/oracledatabasepb;oracledatabasepbªGoogle.Cloud.OracleDatabase.V1ÊGoogle\\Cloud\\OracleDatabase\\V1ê!Google::Cloud::OracleDatabase::V1êAN
-compute.googleapis.com/Network,projects/{project}/global/networks/{network}bproto3'
+compute.googleapis.com/Network,projects/{project}/global/networks/{network}êAx
+!cloudkms.googleapis.com/CryptoKeySprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}bproto3'
         , true);
 
         static::$is_initialized = true;

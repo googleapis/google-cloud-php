@@ -28,7 +28,7 @@ class PartitionStartRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_timestamp = 1;</code>
      */
-    private $start_timestamp = null;
+    protected $start_timestamp = null;
     /**
      * Record sequence numbers are unique and monotonically increasing (but not
      * necessarily contiguous) for a specific timestamp across record
@@ -38,7 +38,7 @@ class PartitionStartRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string record_sequence = 2;</code>
      */
-    private $record_sequence = '';
+    protected $record_sequence = '';
     /**
      * Unique partition identifiers to be used in queries.
      *
@@ -185,6 +185,4 @@ class PartitionStartRecord extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PartitionStartRecord::class, \Google\Cloud\Spanner\V1\ChangeStreamRecord_PartitionStartRecord::class);
 

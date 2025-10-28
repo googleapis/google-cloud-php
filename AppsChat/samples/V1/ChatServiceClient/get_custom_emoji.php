@@ -39,7 +39,12 @@ use Google\Apps\Chat\V1\GetCustomEmojiRequest;
  * permissions](https://support.google.com/a/answer/12850085).
  *
  * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following [authorization
+ * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.customemojis.readonly`
+ * - `https://www.googleapis.com/auth/chat.customemojis`
  *
  * @param string $formattedName Resource name of the custom emoji.
  *

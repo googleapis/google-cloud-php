@@ -17,66 +17,37 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\ApiCore\ArrayTrait;
+use Google\Cloud\Spanner\Session\SessionCache;
+use Google\Cloud\Spanner\V1\TransactionOptions;
 
 /**
  * Shared methods for reads inside a transaction.
+ *
+ * @internal
  */
 trait TransactionalReadTrait
 {
-    use TransactionConfigurationTrait;
-    use RequestHeaderTrait;
+    use ArrayTrait;
 
+    private Operation $operation;
+    private SessionCache $session;
+    private string|null $transactionId;
+    private string $context;
+    private int $type;
+    private int $state = TransactionalReadInterface::STATE_ACTIVE;
     /**
-     * @var Operation
+     * @see V1\TransactionSelector
      */
-    private $operation;
-
+    private array $transactionSelector = [];
     /**
-     * @var Session
+     * @see V1\TransactionOptions
      */
-    private $session;
-
-    /**
-     * @var string
-     */
-    private $transactionId;
-
-    /**
-     * @var string
-     */
-    private $context;
-
-    /**
-     * @var int
-     */
-    private $type;
-
-    /**
-     * @var int
-     */
-    private $state = 0; // TransactionalReadInterface::STATE_ACTIVE
-
-    /**
-     * @var array
-     */
-    private $options = [];
-
-    /**
-     * @var int
-     */
-    private $seqno = 1;
-
-    /**
-     * @var string
-     */
-    private $tag = null;
-
-    /**
-     * @var array
-     */
-    private $directedReadOptions = [];
+    private TransactionOptions $transactionOptions;
+    private TransactionOptionsBuilder $transactionOptionsBuilder;
+    private int $seqno = 1;
+    private string|null $tag = null;
+    private array $directedReadOptions = [];
 
     /**
      * Run a query.
@@ -268,44 +239,46 @@ trait TransactionalReadTrait
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type string $partitionToken
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
      */
-    public function execute($sql, array $options = [])
+    public function execute(string $sql, array $options = []): Result
     {
         $this->singleUseState();
         $this->checkReadContext();
 
-        if (empty($this->transactionId) && isset($this->options['begin'])) {
-            $options['begin'] = $this->options['begin'];
+        if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
+            $options['begin'] = $this->transactionSelector['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
         }
         $options['transactionType'] = $this->context;
-        $options['seqno'] = $this->seqno;
-        $this->seqno++;
-
-        $selector = $this->transactionSelector($options, $this->options);
-
-        $options['transaction'] = $selector[0];
-
-        unset($options['requestOptions']['transactionTag']);
-        if (isset($this->tag)) {
-            $options += [
-                'requestOptions' => []
-            ];
-            $options['requestOptions']['transactionTag'] = $this->tag;
-        }
-
-        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
+        [$txnOptions] = $this->transactionOptionsBuilder->transactionSelector(
             $options,
-            $this->directedReadOptions ?? []
+            $this->transactionOptions->getReadOnly()
+        );
+        $directedReadOptions = $this->transactionOptionsBuilder->configureDirectedReadOptions(
+            ['transaction' => $txnOptions] + $options,
+            $this->directedReadOptions
         );
 
-        $options = $this->addLarHeader($options, true, $this->context);
+        $executeSqlOptions = $this->pluckArray(
+            ['partitionToken', 'parameters', 'types', ],
+            $options
+        );
+        $executeSqlOptions['seqno'] = $this->seqno++;
+        $executeSqlOptions['transaction'] = $txnOptions;
+        $executeSqlOptions['directedReadOptions'] = $directedReadOptions;
+        if ($this->tag) {
+            $executeSqlOptions['requestOptions']['transactionTag'] = $this->tag;
+        }
 
-        $result = $this->operation->execute($this->session, $sql, $options);
+        $result = $this->operation->execute($this->session, $sql, $executeSqlOptions + [
+            'route-to-leader' => $this->context === Database::CONTEXT_READWRITE
+        ]);
+
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
         }
@@ -340,6 +313,7 @@ trait TransactionalReadTrait
      *
      *     @type string $index The name of an index on the table.
      *     @type int $limit The number of results to return.
+     *     @type string $partitionToken
      *     @type array $requestOptions Request options.
      *           For more information on available options, please see
      *           [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
@@ -351,44 +325,51 @@ trait TransactionalReadTrait
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type int $orderBy Set the OrderBy option for the ReadRequest.
+     *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\OrderBy}
+     *           for more information and available options.
+     *     @type int $lockHint Set the LockHint option for the ReadRequest. Only available for ReadWrite transactions
+     *           and not Snapshots.
+     *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\LockHint}
+     *           for more information and available options.
      * }
      * @return Result
      */
-    public function read($table, KeySet $keySet, array $columns, array $options = [])
+    public function read(string $table, KeySet $keySet, array $columns, array $options = []): Result
     {
         $this->singleUseState();
         $this->checkReadContext();
 
-        if (empty($this->transactionId) && isset($this->options['begin'])) {
-            $options['begin'] = $this->options['begin'];
+        $readOptions = $this->pluckArray(
+            ['index', 'limit', 'partitionToken', 'requestOptions', 'directedReadOptions'],
+            $options,
+        );
+        $options['transactionType'] = $this->context;
+        if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
+            $options['begin'] = $this->transactionSelector['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
         }
-        $options['transactionType'] = $this->context;
-        $options += $this->options;
-        $selector = $this->transactionSelector($options, $this->options);
 
-        $options['transaction'] = $selector[0];
+        [$txnOptions] = $this->transactionOptionsBuilder
+            ->transactionSelector($options, $this->transactionOptions->getReadOnly());
+        $readOptions['transaction'] = $txnOptions;
 
-        unset($options['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
-            $options += [
-                'requestOptions' => []
-            ];
-            $options['requestOptions']['transactionTag'] = $this->tag;
+            $readOptions['requestOptions']['transactionTag'] = $this->tag;
         }
-
-        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
-            $options,
+        $readOptions['directedReadOptions'] = $this->transactionOptionsBuilder->configureDirectedReadOptions(
+            $readOptions,
             $this->directedReadOptions ?? []
         );
+        $result = $this->operation->read($this->session, $table, $keySet, $columns, $readOptions + [
+            'route-to-leader' => $this->context === Database::CONTEXT_READWRITE
+        ]);
 
-        $options = $this->addLarHeader($options, true, $this->context);
-
-        $result = $this->operation->read($this->session, $table, $keySet, $columns, $options);
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
         }
+
         return $result;
     }
 
@@ -402,7 +383,7 @@ trait TransactionalReadTrait
      *
      * @return string|null
      */
-    public function id()
+    public function id(): string|null
     {
         return $this->transactionId;
     }
@@ -410,7 +391,7 @@ trait TransactionalReadTrait
     /**
      * Set the transaction ID.
      */
-    public function setId(?string $transactionId)
+    public function setId(string|null $transactionId): void
     {
         $this->transactionId = $transactionId;
     }
@@ -421,7 +402,7 @@ trait TransactionalReadTrait
      * @access private
      * @return int
      */
-    public function type()
+    public function type(): int
     {
         return $this->type;
     }
@@ -430,9 +411,9 @@ trait TransactionalReadTrait
      * Get the Transaction Session
      *
      * @access private
-     * @return Session
+     * @return SessionCache
      */
-    public function session()
+    public function session(): SessionCache
     {
         return $this->session;
     }
@@ -443,7 +424,7 @@ trait TransactionalReadTrait
      * @return bool true if transaction is single use, false otherwise.
      * @throws \BadMethodCallException
      */
-    private function singleUseState()
+    private function singleUseState(): bool
     {
         if ($this->type === self::TYPE_SINGLE_USE) {
             if ($this->state === self::STATE_SINGLE_USE_USED) {
@@ -464,9 +445,9 @@ trait TransactionalReadTrait
      *
      * @throws \BadMethodCallException
      */
-    private function checkReadContext()
+    private function checkReadContext(): void
     {
-        if ($this->type === self::TYPE_SINGLE_USE && $this->context === SessionPoolInterface::CONTEXT_READWRITE) {
+        if ($this->type === self::TYPE_SINGLE_USE && $this->context === Database::CONTEXT_READWRITE) {
             throw new \BadMethodCallException('Cannot use a single-use read-write transaction for read or execute.');
         }
     }

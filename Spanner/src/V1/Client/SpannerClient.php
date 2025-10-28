@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\InsecureCredentialsWrapper;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -38,6 +39,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
+use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
@@ -50,6 +52,7 @@ use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
 use Google\Cloud\Spanner\V1\ListSessionsRequest;
 use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
@@ -211,25 +214,28 @@ final class SpannerClient
      * the API Endpoint to the value specified in the variable, as well as ensure that
      * empty credentials are used in the transport layer.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'spanner.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Spanner\V1\SpannerClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new SpannerClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -267,11 +273,13 @@ final class SpannerClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $options = $this->setDefaultEmulatorConfig($options);
         $clientOptions = $this->buildClientOptions($options);
@@ -323,15 +331,15 @@ final class SpannerClient
      * transactions. All mutations in a group are committed atomically. However,
      * mutations across groups can be committed non-atomically in an unspecified
      * order and thus, they must be independent of each other. Partial failure is
-     * possible, i.e., some groups may have been committed successfully, while
-     * some may have failed. The results of individual batches are streamed into
-     * the response as the batches are applied.
+     * possible, that is, some groups might have been committed successfully,
+     * while some might have failed. The results of individual batches are
+     * streamed into the response as the batches are applied.
      *
-     * BatchWrite requests are not replay protected, meaning that each mutation
-     * group may be applied more than once. Replays of non-idempotent mutations
-     * may have undesirable effects. For example, replays of an insert mutation
-     * may produce an already exists error or if you use generated or commit
-     * timestamp-based keys, it may result in additional rows being added to the
+     * `BatchWrite` requests are not replay protected, meaning that each mutation
+     * group can be applied more than once. Replays of non-idempotent mutations
+     * can have undesirable effects. For example, replays of an insert mutation
+     * can produce an already exists error or if you use generated or commit
+     * timestamp-based keys, it can result in additional rows being added to the
      * mutation's table. We recommend structuring your mutation groups to be
      * idempotent to avoid this issue.
      *
@@ -345,7 +353,7 @@ final class SpannerClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<BatchWriteResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -391,8 +399,8 @@ final class SpannerClient
      * `Commit` might return an `ABORTED` error. This can occur at any time;
      * commonly, the cause is conflicts with concurrent
      * transactions. However, it can also happen for a variety of other
-     * reasons. If `Commit` returns `ABORTED`, the caller should re-attempt
-     * the transaction from the beginning, re-using the same session.
+     * reasons. If `Commit` returns `ABORTED`, the caller should retry
+     * the transaction from the beginning, reusing the same session.
      *
      * On very rare occasions, `Commit` might return `UNKNOWN`. This can happen,
      * for example, if the client job experiences a 1+ hour networking failure.
@@ -435,14 +443,14 @@ final class SpannerClient
      * transaction internally, and count toward the one transaction
      * limit.
      *
-     * Active sessions use additional server resources, so it is a good idea to
+     * Active sessions use additional server resources, so it's a good idea to
      * delete idle and unneeded sessions.
-     * Aside from explicit deletes, Cloud Spanner may delete sessions for which no
+     * Aside from explicit deletes, Cloud Spanner can delete sessions when no
      * operations are sent for more than an hour. If a session is deleted,
      * requests to it return `NOT_FOUND`.
      *
      * Idle sessions can be kept alive by sending a trivial SQL query
-     * periodically, e.g., `"SELECT 1"`.
+     * periodically, for example, `"SELECT 1"`.
      *
      * The async variant is {@see SpannerClient::createSessionAsync()} .
      *
@@ -468,9 +476,9 @@ final class SpannerClient
     }
 
     /**
-     * Ends a session, releasing server resources associated with it. This will
-     * asynchronously trigger cancellation of any operations that are running with
-     * this session.
+     * Ends a session, releasing server resources associated with it. This
+     * asynchronously triggers the cancellation of any operations that are running
+     * with this session.
      *
      * The async variant is {@see SpannerClient::deleteSessionAsync()} .
      *
@@ -532,7 +540,7 @@ final class SpannerClient
 
     /**
      * Executes an SQL statement, returning all results in a single reply. This
-     * method cannot be used to return a result set larger than 10 MiB;
+     * method can't be used to return a result set larger than 10 MiB;
      * if the query yields more data than that, the query fails with
      * a `FAILED_PRECONDITION` error.
      *
@@ -544,6 +552,9 @@ final class SpannerClient
      * Larger result sets can be fetched in streaming fashion by calling
      * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql]
      * instead.
+     *
+     * The query string can be SQL or [Graph Query Language
+     * (GQL)](https://cloud.google.com/spanner/docs/reference/standard-sql/graph-intro).
      *
      * The async variant is {@see SpannerClient::executeSqlAsync()} .
      *
@@ -575,6 +586,9 @@ final class SpannerClient
      * the size of the returned result set. However, no individual row in the
      * result set can exceed 100 MiB, and no column value can exceed 10 MiB.
      *
+     * The query string can be SQL or [Graph Query Language
+     * (GQL)](https://cloud.google.com/spanner/docs/reference/standard-sql/graph-intro).
+     *
      * @example samples/V1/SpannerClient/execute_streaming_sql.php
      *
      * @param ExecuteSqlRequest $request     A request to house fields associated with the call.
@@ -585,7 +599,7 @@ final class SpannerClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<PartialResultSet>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -595,7 +609,7 @@ final class SpannerClient
     }
 
     /**
-     * Gets a session. Returns `NOT_FOUND` if the session does not exist.
+     * Gets a session. Returns `NOT_FOUND` if the session doesn't exist.
      * This is mainly useful for determining whether a session is still
      * alive.
      *
@@ -650,16 +664,16 @@ final class SpannerClient
 
     /**
      * Creates a set of partition tokens that can be used to execute a query
-     * operation in parallel.  Each of the returned partition tokens can be used
+     * operation in parallel. Each of the returned partition tokens can be used
      * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to
-     * specify a subset of the query result to read.  The same session and
-     * read-only transaction must be used by the PartitionQueryRequest used to
-     * create the partition tokens and the ExecuteSqlRequests that use the
+     * specify a subset of the query result to read. The same session and
+     * read-only transaction must be used by the `PartitionQueryRequest` used to
+     * create the partition tokens and the `ExecuteSqlRequests` that use the
      * partition tokens.
      *
      * Partition tokens become invalid when the session used to create them
      * is deleted, is idle for too long, begins a new transaction, or becomes too
-     * old.  When any of these happen, it is not possible to resume the query, and
+     * old. When any of these happen, it isn't possible to resume the query, and
      * the whole operation must be restarted from the beginning.
      *
      * The async variant is {@see SpannerClient::partitionQueryAsync()} .
@@ -687,18 +701,18 @@ final class SpannerClient
 
     /**
      * Creates a set of partition tokens that can be used to execute a read
-     * operation in parallel.  Each of the returned partition tokens can be used
+     * operation in parallel. Each of the returned partition tokens can be used
      * by [StreamingRead][google.spanner.v1.Spanner.StreamingRead] to specify a
-     * subset of the read result to read.  The same session and read-only
-     * transaction must be used by the PartitionReadRequest used to create the
-     * partition tokens and the ReadRequests that use the partition tokens.  There
-     * are no ordering guarantees on rows returned among the returned partition
-     * tokens, or even within each individual StreamingRead call issued with a
-     * partition_token.
+     * subset of the read result to read. The same session and read-only
+     * transaction must be used by the `PartitionReadRequest` used to create the
+     * partition tokens and the `ReadRequests` that use the partition tokens.
+     * There are no ordering guarantees on rows returned among the returned
+     * partition tokens, or even within each individual `StreamingRead` call
+     * issued with a `partition_token`.
      *
      * Partition tokens become invalid when the session used to create them
      * is deleted, is idle for too long, begins a new transaction, or becomes too
-     * old.  When any of these happen, it is not possible to resume the read, and
+     * old. When any of these happen, it isn't possible to resume the read, and
      * the whole operation must be restarted from the beginning.
      *
      * The async variant is {@see SpannerClient::partitionReadAsync()} .
@@ -727,7 +741,7 @@ final class SpannerClient
     /**
      * Reads rows from the database using key lookups and scans, as a
      * simple key/value style alternative to
-     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].  This method cannot be
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql]. This method can't be
      * used to return a result set larger than 10 MiB; if the read matches more
      * data than that, the read fails with a `FAILED_PRECONDITION`
      * error.
@@ -764,14 +778,14 @@ final class SpannerClient
     }
 
     /**
-     * Rolls back a transaction, releasing any locks it holds. It is a good
+     * Rolls back a transaction, releasing any locks it holds. It's a good
      * idea to call this for any transaction that includes one or more
      * [Read][google.spanner.v1.Spanner.Read] or
      * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] requests and ultimately
      * decides not to commit.
      *
      * `Rollback` returns `OK` if it successfully aborts the transaction, the
-     * transaction was already aborted, or the transaction is not
+     * transaction was already aborted, or the transaction isn't
      * found. `Rollback` never returns `ABORTED`.
      *
      * The async variant is {@see SpannerClient::rollbackAsync()} .
@@ -812,7 +826,7 @@ final class SpannerClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<PartialResultSet>
      *
      * @throws ApiException Thrown if the API call fails.
      */

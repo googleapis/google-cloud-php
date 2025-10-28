@@ -11,7 +11,7 @@ jobs:
     name: Breaking Change Detector
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: "Install PHP"
@@ -40,6 +40,7 @@ jobs:
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: ${{ github.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: "Check for BC breaks (Next Release)"
         if: github.event.pull_request.user.login == 'release-please[bot]'
         # We've already approved and justified the breaking changes. Run the check but continue on error
@@ -57,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Parse allowed major versions
@@ -98,7 +99,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: "Verify the subrepos exist for new components"
@@ -110,9 +111,9 @@ jobs:
               SUBREPO=$(cat $COMPONENT/composer.json | jq -r '.extra.component.target')
               echo "New component found: $COMPONENT"
               if curl --head --silent --fail "https://api.github.com/repos/$SUBREPO" -H 'Authorization: Bearer ${{secrets.SPLIT_TOKEN}}' > /dev/null; then
-                  echo " - Target Repo '$SUBREPO' exists"
+                  echo "✅ Target Repo '$SUBREPO' exists"
               else
-                  echo " - Target Repo '$SUBREPO' DOES NOT EXIST"
+                  echo "❌ Target Repo '$SUBREPO' DOES NOT EXIST"
                   FAIL="true"
               fi
             fi
@@ -121,3 +122,10 @@ jobs:
               echo "Missing repositories for one or more new components"
               exit 1
           fi
+
+  next-release-label-check:
+    name: Check for "next release" label
+    uses: GoogleCloudPlatform/php-tools/.github/workflows/release-checks.yml@main
+    if: github.event.pull_request.user.login == 'release-please[bot]'
+    with:
+      next-release-label-check: true

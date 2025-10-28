@@ -18,6 +18,8 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The resource name of the ReasoningEngine.
+     * Format:
+     * `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -59,6 +61,20 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $etag = '';
+    /**
+     * Customer-managed encryption key spec for a ReasoningEngine. If set, this
+     * ReasoningEngine and all sub-resources of this ReasoningEngine will be
+     * secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 11;</code>
+     */
+    protected $encryption_spec = null;
+    /**
+     * Labels for the ReasoningEngine.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 17;</code>
+     */
+    private $labels;
 
     /**
      * Constructor.
@@ -68,6 +84,8 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The resource name of the ReasoningEngine.
+     *           Format:
+     *           `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
      *     @type string $display_name
      *           Required. The display name of the ReasoningEngine.
      *     @type string $description
@@ -81,6 +99,12 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *           Optional. Used to perform consistent read-modify-write updates. If not set,
      *           a blind "overwrite" update happens.
+     *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
+     *           Customer-managed encryption key spec for a ReasoningEngine. If set, this
+     *           ReasoningEngine and all sub-resources of this ReasoningEngine will be
+     *           secured by this key.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Labels for the ReasoningEngine.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,6 +114,8 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the ReasoningEngine.
+     * Format:
+     * `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -101,6 +127,8 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the ReasoningEngine.
+     * Format:
+     * `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -298,6 +326,72 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Customer-managed encryption key spec for a ReasoningEngine. If set, this
+     * ReasoningEngine and all sub-resources of this ReasoningEngine will be
+     * secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 11;</code>
+     * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Customer-managed encryption key spec for a ReasoningEngine. If set, this
+     * ReasoningEngine and all sub-resources of this ReasoningEngine will be
+     * secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 11;</code>
+     * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Labels for the ReasoningEngine.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 17;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Labels for the ReasoningEngine.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 17;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

@@ -32,7 +32,7 @@ For more information, see
 ### Environment Variables
 
 **NOTE**: This library uses [`getenv`](https://www.php.net/manual/en/function.getenv.php), so if
-your environemnt variables are set in PHP, they must use
+your environment variables are set in PHP, they must use
 [`putenv`](https://www.php.net/manual/en/function.putenv.php),
 
 ```php
@@ -79,8 +79,6 @@ Each Google Cloud PHP client may be authenticated in code when creating a client
 Most clients use the `credentials` option for providing credentials as a constructor option:
 
 ```php
-require 'vendor/autoload.php';
-
 use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
 
 // Authenticating with keyfile data.
@@ -93,6 +91,36 @@ $video = new VideoIntelligenceServiceClient([
     'credentials' => '/path/to/credential-file.json'
 ]);
 ```
+
+#### Note:
+Some clients accept the `keyFilePath` and `keyFile` configuration options pointing to the credentials
+file. However, both of these options are deprecated in favor of using the `credentialsFetcher`
+option or
+[Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials).
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+use Google\Auth\Credentials\ServiceAccountCredentials;
+
+// Create the service account credentials and pass them in using the "credentialsFile" option
+$keyFile = json_decode(file_get_contents('/path/to/keyfile.json'), true);
+$storage = new StorageClient([
+    'credentialsFetcher' => new ServiceAccountCredentials($scopes, $keyFile),
+]);
+```
+A list of clients that accept these parameters are:
+
+- [BigQuery](https://github.com/googleapis/google-cloud-php-bigquery)
+- [Datastore](https://github.com/googleapis/google-cloud-php-datastore)
+- [Firestore](https://github.com/googleapis/google-cloud-php-firestore)
+- [Logging](https://github.com/googleapis/google-cloud-php-logging)
+- [Spanner](https://github.com/googleapis/google-cloud-php-spanner)
+- [Storage](https://github.com/googleapis/google-cloud-php-storage)
+
+We recommend to visit the Check the [client documentation][php-ref-docs] for the client library you're using
+for more in depth information.
 
 ### Local ADC file
 

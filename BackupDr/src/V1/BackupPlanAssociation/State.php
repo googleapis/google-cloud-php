@@ -43,6 +43,12 @@ class State
      * Generated from protobuf enum <code>INACTIVE = 4;</code>
      */
     const INACTIVE = 4;
+    /**
+     * The resource is being updated.
+     *
+     * Generated from protobuf enum <code>UPDATING = 5;</code>
+     */
+    const UPDATING = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class State
         self::ACTIVE => 'ACTIVE',
         self::DELETING => 'DELETING',
         self::INACTIVE => 'INACTIVE',
+        self::UPDATING => 'UPDATING',
     ];
 
     public static function name($value)

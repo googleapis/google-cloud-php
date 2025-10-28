@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\AdvisoryNotifications\V1\Client\AdvisoryNotificationsServiceClient;
-Google\Cloud\AdvisoryNotifications\V1\GetNotificationRequest;
-Google\Cloud\AdvisoryNotifications\V1\Notification;
+use Google\ApiCore\ApiException;
+use Google\Cloud\AdvisoryNotifications\V1\Client\AdvisoryNotificationsServiceClient;
+use Google\Cloud\AdvisoryNotifications\V1\GetNotificationRequest;
+use Google\Cloud\AdvisoryNotifications\V1\Notification;
 
 // Create a client.
 $advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();

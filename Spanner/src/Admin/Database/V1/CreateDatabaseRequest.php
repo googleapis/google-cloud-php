@@ -22,7 +22,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A `CREATE DATABASE` statement, which specifies the ID of the
      * new database.  The database ID must conform to the regular expression
@@ -32,7 +32,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string create_statement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $create_statement = '';
+    protected $create_statement = '';
     /**
      * Optional. A list of DDL statements to run inside the newly created
      * database. Statements can create tables, indexes, etc. These
@@ -49,13 +49,13 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encryption_config = null;
+    protected $encryption_config = null;
     /**
      * Optional. The dialect of the Cloud Spanner Database.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $database_dialect = 0;
+    protected $database_dialect = 0;
     /**
      * Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements in
      * 'extra_statements' above.
@@ -75,7 +75,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes proto_descriptors = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $proto_descriptors = '';
+    protected $proto_descriptors = '';
 
     /**
      * @param string $parent          Required. The name of the instance that will serve the new database.

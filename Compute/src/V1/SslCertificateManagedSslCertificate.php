@@ -22,7 +22,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
      */
     private $domain_status;
     /**
-     * The domains for which a managed SSL certificate will be generated. Each Google-managed SSL certificate supports up to the [maximum number of domains per Google-managed SSL certificate](https://cloud.google.com/load-balancing/docs/quotas#ssl_certificates).
+     * The domains for which a managed SSL certificate will be generated. Each Google-managed SSL certificate supports up to the [maximum number of domains per Google-managed SSL certificate](/load-balancing/docs/quotas#ssl_certificates).
      *
      * Generated from protobuf field <code>repeated string domains = 226935855;</code>
      */
@@ -33,7 +33,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.
@@ -44,7 +44,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
      *     @type array|\Google\Protobuf\Internal\MapField $domain_status
      *           [Output only] Detailed statuses of the domains specified for managed certificate resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domains
-     *           The domains for which a managed SSL certificate will be generated. Each Google-managed SSL certificate supports up to the [maximum number of domains per Google-managed SSL certificate](https://cloud.google.com/load-balancing/docs/quotas#ssl_certificates).
+     *           The domains for which a managed SSL certificate will be generated. Each Google-managed SSL certificate supports up to the [maximum number of domains per Google-managed SSL certificate](/load-balancing/docs/quotas#ssl_certificates).
      *     @type string $status
      *           [Output only] Status of the managed certificate resource.
      *           Check the Status enum for the list of possible values.
@@ -82,7 +82,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The domains for which a managed SSL certificate will be generated. Each Google-managed SSL certificate supports up to the [maximum number of domains per Google-managed SSL certificate](https://cloud.google.com/load-balancing/docs/quotas#ssl_certificates).
+     * The domains for which a managed SSL certificate will be generated. Each Google-managed SSL certificate supports up to the [maximum number of domains per Google-managed SSL certificate](/load-balancing/docs/quotas#ssl_certificates).
      *
      * Generated from protobuf field <code>repeated string domains = 226935855;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -93,7 +93,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The domains for which a managed SSL certificate will be generated. Each Google-managed SSL certificate supports up to the [maximum number of domains per Google-managed SSL certificate](https://cloud.google.com/load-balancing/docs/quotas#ssl_certificates).
+     * The domains for which a managed SSL certificate will be generated. Each Google-managed SSL certificate supports up to the [maximum number of domains per Google-managed SSL certificate](/load-balancing/docs/quotas#ssl_certificates).
      *
      * Generated from protobuf field <code>repeated string domains = 226935855;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

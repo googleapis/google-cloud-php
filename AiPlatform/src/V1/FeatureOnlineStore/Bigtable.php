@@ -19,6 +19,19 @@ class Bigtable extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.AutoScaling auto_scaling = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $auto_scaling = null;
+    /**
+     * Optional. Whether direct access to the Bigtable instance is enabled or
+     * not.
+     *
+     * Generated from protobuf field <code>bool enable_direct_bigtable_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_direct_bigtable_access = false;
+    /**
+     * Output only. Metadata of the Bigtable instance. Output only.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.BigtableMetadata bigtable_metadata = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $bigtable_metadata = null;
 
     /**
      * Constructor.
@@ -28,6 +41,11 @@ class Bigtable extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable\AutoScaling $auto_scaling
      *           Required. Autoscaling config applied to Bigtable Instance.
+     *     @type bool $enable_direct_bigtable_access
+     *           Optional. Whether direct access to the Bigtable instance is enabled or
+     *           not.
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable\BigtableMetadata $bigtable_metadata
+     *           Output only. Metadata of the Bigtable instance. Output only.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,6 +85,70 @@ class Bigtable extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable\AutoScaling::class);
         $this->auto_scaling = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether direct access to the Bigtable instance is enabled or
+     * not.
+     *
+     * Generated from protobuf field <code>bool enable_direct_bigtable_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableDirectBigtableAccess()
+    {
+        return $this->enable_direct_bigtable_access;
+    }
+
+    /**
+     * Optional. Whether direct access to the Bigtable instance is enabled or
+     * not.
+     *
+     * Generated from protobuf field <code>bool enable_direct_bigtable_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableDirectBigtableAccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_direct_bigtable_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Metadata of the Bigtable instance. Output only.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.BigtableMetadata bigtable_metadata = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable\BigtableMetadata|null
+     */
+    public function getBigtableMetadata()
+    {
+        return $this->bigtable_metadata;
+    }
+
+    public function hasBigtableMetadata()
+    {
+        return isset($this->bigtable_metadata);
+    }
+
+    public function clearBigtableMetadata()
+    {
+        unset($this->bigtable_metadata);
+    }
+
+    /**
+     * Output only. Metadata of the Bigtable instance. Output only.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.BigtableMetadata bigtable_metadata = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable\BigtableMetadata $var
+     * @return $this
+     */
+    public function setBigtableMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable\BigtableMetadata::class);
+        $this->bigtable_metadata = $var;
 
         return $this;
     }

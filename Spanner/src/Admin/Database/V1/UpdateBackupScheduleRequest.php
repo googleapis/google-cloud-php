@@ -23,7 +23,7 @@ class UpdateBackupScheduleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.BackupSchedule backup_schedule = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup_schedule = null;
+    protected $backup_schedule = null;
     /**
      * Required. A mask specifying which fields in the BackupSchedule resource
      * should be updated. This mask is relative to the BackupSchedule resource,
@@ -33,7 +33,7 @@ class UpdateBackupScheduleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Spanner\Admin\Database\V1\BackupSchedule $backupSchedule Required. The backup schedule to update. `backup_schedule.name`, and the

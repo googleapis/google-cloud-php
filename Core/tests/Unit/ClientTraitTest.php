@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Exception;
+use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Exception\GoogleException;
@@ -163,6 +164,36 @@ class ClientTraitTest extends TestCase
 
         $this->assertEquals($keyFile, $conf['keyFile']);
         $this->assertEquals('example_project', $this->impl->___getProperty('projectId'));
+    }
+
+    public function testIgnoreKeyFileWhenUsingCredentialsFetcher()
+    {
+        $keyFilePath = Fixtures::SERVICE_ACCOUNT_FIXTURE();
+        $key = json_decode(file_get_contents($keyFilePath), true);
+        $key['private_key'] = 'xxx';
+
+        $credentials = new ServiceAccountCredentials([], $key);
+
+        $conf = $this->impl->call('configureAuthentication', [[
+            'credentialsFetcher' => $credentials,
+        ]]);
+
+        $this->assertArrayNotHasKey('keyFile', $conf);
+    }
+
+    public function testGetProjectIdFromCredentialsFetcher()
+    {
+        $keyFilePath = Fixtures::SERVICE_ACCOUNT_FIXTURE();
+        $key = json_decode(file_get_contents($keyFilePath), true);
+        $key['private_key'] = 'xxx';
+
+        $credentials = new ServiceAccountCredentials([], $key);
+
+        $this->impl->call('configureAuthentication', [[
+            'credentialsFetcher' => $credentials,
+        ]]);
+
+        $this->assertEquals('example-project-12345', $this->impl->___getProperty('projectId'));
     }
 
     public function testConfigureAuthenticationWithInvalidKeyFilePath()

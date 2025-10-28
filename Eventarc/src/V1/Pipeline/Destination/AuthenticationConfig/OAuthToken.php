@@ -23,7 +23,7 @@ class OAuthToken extends \Google\Protobuf\Internal\Message
      * token](https://developers.google.com/identity/protocols/OAuth2).
      * The principal who calls this API must have
      * iam.serviceAccounts.actAs permission in the service account. See
-     * https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common
+     * https://cloud.google.com/iam/docs/understanding-service-accounts
      * for more information. Eventarc service agents must have
      * roles/roles/iam.serviceAccountTokenCreator role to allow Pipeline
      * to create OAuth2 tokens for authenticated requests.
@@ -51,7 +51,7 @@ class OAuthToken extends \Google\Protobuf\Internal\Message
      *           token](https://developers.google.com/identity/protocols/OAuth2).
      *           The principal who calls this API must have
      *           iam.serviceAccounts.actAs permission in the service account. See
-     *           https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common
+     *           https://cloud.google.com/iam/docs/understanding-service-accounts
      *           for more information. Eventarc service agents must have
      *           roles/roles/iam.serviceAccountTokenCreator role to allow Pipeline
      *           to create OAuth2 tokens for authenticated requests.
@@ -71,7 +71,7 @@ class OAuthToken extends \Google\Protobuf\Internal\Message
      * token](https://developers.google.com/identity/protocols/OAuth2).
      * The principal who calls this API must have
      * iam.serviceAccounts.actAs permission in the service account. See
-     * https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common
+     * https://cloud.google.com/iam/docs/understanding-service-accounts
      * for more information. Eventarc service agents must have
      * roles/roles/iam.serviceAccountTokenCreator role to allow Pipeline
      * to create OAuth2 tokens for authenticated requests.
@@ -89,7 +89,7 @@ class OAuthToken extends \Google\Protobuf\Internal\Message
      * token](https://developers.google.com/identity/protocols/OAuth2).
      * The principal who calls this API must have
      * iam.serviceAccounts.actAs permission in the service account. See
-     * https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common
+     * https://cloud.google.com/iam/docs/understanding-service-accounts
      * for more information. Eventarc service agents must have
      * roles/roles/iam.serviceAccountTokenCreator role to allow Pipeline
      * to create OAuth2 tokens for authenticated requests.

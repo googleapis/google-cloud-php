@@ -17,16 +17,18 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Testing\System\SystemTestCase;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * @group spanner
  */
-class OperationsTest extends SpannerTestCase
+class OperationsTest extends SystemTestCase
 {
     use DatabaseRoleTrait;
+    use SystemTestCaseTrait;
 
     private static $id1;
     private static $id2;
@@ -47,7 +49,7 @@ class OperationsTest extends SpannerTestCase
         self::$name1 = uniqid(self::TESTING_PREFIX);
         self::$name2 = uniqid(self::TESTING_PREFIX);
 
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$database->insert(self::TEST_TABLE_NAME, [
             'id' => self::$id1,
@@ -147,7 +149,7 @@ class OperationsTest extends SpannerTestCase
 
         $keySet = self::$client->keySet(['keys' => [99999]]);
 
-        $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id','name']);
+        $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id', 'name']);
         $this->assertEmpty(iterator_to_array($res->rows()));
     }
 
@@ -157,7 +159,7 @@ class OperationsTest extends SpannerTestCase
 
         $keySet = self::$client->keySet(['keys' => [99999]]);
 
-        $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id','name'], [
+        $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id', 'name'], [
             'index' => self::TEST_INDEX_NAME
         ]);
 
@@ -185,7 +187,7 @@ class OperationsTest extends SpannerTestCase
             'keys' => [99999]
         ]);
 
-        $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id','name']);
+        $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id', 'name']);
         $this->assertEmpty(iterator_to_array($res->rows()));
     }
 
@@ -239,6 +241,7 @@ class OperationsTest extends SpannerTestCase
         ]);
         $columns = ['id', 'name', 'birthday'];
 
+        $row = null;
         try {
             $res = $db->read(self::TEST_TABLE_NAME, $keySet, $columns);
             $row = $res->rows()->current();
@@ -247,6 +250,7 @@ class OperationsTest extends SpannerTestCase
         }
 
         if ($expected === null) {
+            $this->assertNotNull($row);
             $this->assertEquals(self::$id1, $row['id']);
         } else {
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);

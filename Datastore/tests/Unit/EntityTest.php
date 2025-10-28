@@ -132,28 +132,28 @@ class EntityTest extends TestCase
     /**
      * @dataProvider options
      */
-    public function testOptionGetters($method, $unsetValue = null, $name = null)
+    public function testOptionGetters($method, $value, $unsetValue, $propName = null)
     {
-        $name = $name ?: $method;
+        $name = $propName ?: $method;
 
         $entity = new Entity($this->key);
         $this->assertEquals($unsetValue, $entity->$method());
 
         $entity = new Entity($this->key, [], [
-            $name => 'foo'
+            $name => $value
         ]);
 
-        $this->assertEquals('foo', $entity->$method());
+        $this->assertEquals($value, $entity->$method());
     }
 
     public function options()
     {
         return [
-            ['cursor'],
-            ['baseVersion'],
-            ['populatedByService', false],
-            ['excludedProperties', [], 'excludeFromIndexes'],
-            ['meanings', []]
+            ['cursor', 'foo', null],
+            ['baseVersion', 'foo', null],
+            ['populatedByService', true, false],
+            ['excludedProperties', ['foo'], [], 'excludeFromIndexes'],
+            ['meanings', ['foo'], []]
         ];
     }
 }

@@ -10,17 +10,16 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A value that combines incremental updates into a summarized value.
- * Data is never directly written or read using type `Aggregate`. Writes will
- * provide either the `input_type` or `state_type`, and reads will always
- * return the `state_type` .
+ * Data is never directly written or read using type `Aggregate`. Writes
+ * provide either the `input_type` or `state_type`, and reads always return
+ * the `state_type` .
  *
  * Generated from protobuf message <code>google.bigtable.v2.Type.Aggregate</code>
  */
 class Aggregate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Type of the inputs that are accumulated by this `Aggregate`, which must
-     * specify a full encoding.
+     * Type of the inputs that are accumulated by this `Aggregate`.
      * Use `AddInput` mutations to accumulate new inputs.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Type input_type = 1;</code>
@@ -29,7 +28,7 @@ class Aggregate extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Type that holds the internal accumulator state for the
      * `Aggregate`. This is a function of the `input_type` and `aggregator`
-     * chosen, and will always specify a full encoding.
+     * chosen.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Type state_type = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -43,13 +42,12 @@ class Aggregate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Bigtable\V2\Type $input_type
-     *           Type of the inputs that are accumulated by this `Aggregate`, which must
-     *           specify a full encoding.
+     *           Type of the inputs that are accumulated by this `Aggregate`.
      *           Use `AddInput` mutations to accumulate new inputs.
      *     @type \Google\Cloud\Bigtable\V2\Type $state_type
      *           Output only. Type that holds the internal accumulator state for the
      *           `Aggregate`. This is a function of the `input_type` and `aggregator`
-     *           chosen, and will always specify a full encoding.
+     *           chosen.
      *     @type \Google\Cloud\Bigtable\V2\Type\Aggregate\Sum $sum
      *           Sum aggregator.
      *     @type \Google\Cloud\Bigtable\V2\Type\Aggregate\HyperLogLogPlusPlusUniqueCount $hllpp_unique_count
@@ -66,8 +64,7 @@ class Aggregate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the inputs that are accumulated by this `Aggregate`, which must
-     * specify a full encoding.
+     * Type of the inputs that are accumulated by this `Aggregate`.
      * Use `AddInput` mutations to accumulate new inputs.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Type input_type = 1;</code>
@@ -89,8 +86,7 @@ class Aggregate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the inputs that are accumulated by this `Aggregate`, which must
-     * specify a full encoding.
+     * Type of the inputs that are accumulated by this `Aggregate`.
      * Use `AddInput` mutations to accumulate new inputs.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Type input_type = 1;</code>
@@ -108,7 +104,7 @@ class Aggregate extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Type that holds the internal accumulator state for the
      * `Aggregate`. This is a function of the `input_type` and `aggregator`
-     * chosen, and will always specify a full encoding.
+     * chosen.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Type state_type = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Bigtable\V2\Type|null
@@ -131,7 +127,7 @@ class Aggregate extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Type that holds the internal accumulator state for the
      * `Aggregate`. This is a function of the `input_type` and `aggregator`
-     * chosen, and will always specify a full encoding.
+     * chosen.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Type state_type = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Bigtable\V2\Type $var

@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\Spanner\Batch;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\TransactionConfigurationTrait;
+use Google\Cloud\Spanner\TransactionOptionsBuilder;
 
 /**
  * Provides Batch APIs used to read data from a Cloud Spanner database.
@@ -36,7 +37,7 @@ use Google\Cloud\Spanner\TransactionConfigurationTrait;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $batch = $spanner->batch('instance-id', 'database-id');
  * ```
  *
@@ -73,10 +74,6 @@ use Google\Cloud\Spanner\TransactionConfigurationTrait;
  * // and is not implemented here.
  * do {
  *     $finished = areWorkersDone();
- *
- *     if ($finished) {
- *         $snapshot->close();
- *     }
  * } while(!$finished);
  * ```
  *
@@ -105,48 +102,22 @@ use Google\Cloud\Spanner\TransactionConfigurationTrait;
 class BatchClient
 {
     use TimeTrait;
-    use TransactionConfigurationTrait;
+    use ArrayTrait;
 
     const PARTITION_TYPE_KEY = '__partitionTypeName';
-
-    /**
-     * @var Operation
-     */
-    private $operation;
-
-    /**
-     * @var string
-     */
-    private $databaseName;
-
-    /**
-     * @var string|null
-     */
-    private $databaseRole;
-
-    /**
-     * @var array
-     */
-    private $allowedPartitionTypes = [
+    private const ALLOWED_PARTITION_TYPES = [
         QueryPartition::class,
         ReadPartition::class
     ];
 
     /**
      * @param Operation $operation A Cloud Spanner Operations wrapper.
-     * @param string $databaseName The database name to which the batch client
-     *        instance is scoped.
-     * @param array $options  [optional] {
-     *     Configuration options.
-     *
-     *     @type string $databaseRole The user created database role which creates the session.
-     * }
+     * @param SessionCache $session The session to which the batch client instance is scoped.
      */
-    public function __construct(Operation $operation, $databaseName, array $options = [])
-    {
-        $this->operation = $operation;
-        $this->databaseName = $databaseName;
-        $this->databaseRole = $options['databaseRole'] ?? '';
+    public function __construct(
+        private Operation $operation,
+        private SessionCache $session,
+    ) {
     }
 
     /**
@@ -169,38 +140,22 @@ class BatchClient
      *           timestamp.
      *     @type Duration $transactionOptions.exactStaleness Represents a number of seconds. Executes
      *           all reads at a timestamp that is $exactStaleness old.
-     *     @type array $sessionOptions Configuration options for session creation.
      * }
      * @return BatchSnapshot
      */
     public function snapshot(array $options = [])
     {
-        $options += [
-            'transactionOptions' => [],
-        ];
-
-        $sessionOptions = $this->pluck('sessionOptions', $options, false) ?: [];
-
         // Single Use transactions are not supported in batch mode.
         $options['transactionOptions']['singleUse'] = false;
+        $options['transactionOptions']['returnReadTimestamp'] = true;
 
-        $transactionOptions = $this->pluck('transactionOptions', $options);
-        $transactionOptions['returnReadTimestamp'] = true;
+        $txnOptions = (new TransactionOptionsBuilder())
+            ->configureReadOnlyTransactionOptions($options['transactionOptions']);
 
-        $transactionOptions = $this->configureSnapshotOptions($transactionOptions);
-
-        if ($this->databaseRole !== null) {
-            $sessionOptions['creator_role'] = $this->databaseRole;
-        }
-
-        $session = $this->operation->createSession(
-            $this->databaseName,
-            $sessionOptions
-        );
-
-        return $this->operation->snapshot($session, [
+        /** @var BatchSnapshot */
+        return $this->operation->snapshot($this->session, [
             'className' => BatchSnapshot::class,
-            'transactionOptions' => $transactionOptions
+            'transactionOptions' => $txnOptions
         ] + $options);
     }
 
@@ -231,13 +186,20 @@ class BatchClient
             throw new \InvalidArgumentException('Invalid identifier.');
         }
 
-        $session = $this->operation->session($data['sessionName']);
-
-        $readTime = $this->parseTimeString($data['readTimestamp']);
-        return $this->operation->createSnapshot($session, [
-            'id' => $data['transactionId'],
-            'readTimestamp' => $data['readTimestamp']
-        ], BatchSnapshot::class);
+        if ($data['readTimestamp']) {
+            if (!($data['readTimestamp'] instanceof Timestamp)) {
+                $time = $this->parseTimeString($data['readTimestamp']);
+                $data['readTimestamp'] = new Timestamp($time[0], $time[1]);
+            }
+        }
+        return new BatchSnapshot(
+            $this->operation,
+            $this->session,
+            [
+                'id' => $data['transactionId'],
+                'readTimestamp' => $data['readTimestamp']
+            ]
+        );
     }
 
     /**
@@ -262,7 +224,7 @@ class BatchClient
         }
 
         $class = $data[self::PARTITION_TYPE_KEY];
-        if (!in_array($class, $this->allowedPartitionTypes)) {
+        if (!in_array($class, self::ALLOWED_PARTITION_TYPES)) {
             throw new \InvalidArgumentException('Invalid partition type.');
         }
 

@@ -31,16 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Channel\V1\ChannelPartnerLink;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\GetChannelPartnerLinkRequest;
 
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+// Create a client.
+$cloudChannelServiceClient = new CloudChannelServiceClient();
 
-$client = new CloudChannelServiceClient();
+// Prepare the request message.
+$request = (new GetChannelPartnerLinkRequest())
+    ->setName($name);
 
-$customers = $client->listCustomers('accounts/[MY_ACCOUNT_ID]');
-
-foreach ($customers as $customer) {
-    print 'Customer: ' . $customer->getName() . PHP_EOL;
+// Call the API and handle any network failures.
+try {
+    /** @var ChannelPartnerLink $response */
+    $response = $cloudChannelServiceClient->getChannelPartnerLink($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

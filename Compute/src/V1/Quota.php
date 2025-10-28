@@ -20,26 +20,26 @@ class Quota extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double limit = 102976443;</code>
      */
-    private $limit = null;
+    protected $limit = null;
     /**
      * [Output Only] Name of the quota metric.
      * Check the Metric enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string metric = 533067184;</code>
      */
-    private $metric = null;
+    protected $metric = null;
     /**
      * [Output Only] Owning resource. This is the resource on which this quota is applied.
      *
      * Generated from protobuf field <code>optional string owner = 106164915;</code>
      */
-    private $owner = null;
+    protected $owner = null;
     /**
      * [Output Only] Current usage of this metric.
      *
      * Generated from protobuf field <code>optional double usage = 111574433;</code>
      */
-    private $usage = null;
+    protected $usage = null;
 
     /**
      * Constructor.

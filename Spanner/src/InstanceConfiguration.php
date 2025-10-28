@@ -17,19 +17,23 @@
 
 namespace Google\Cloud\Spanner;
 
+use Closure;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LROTrait;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Spanner\Connection\LongRunningConnection;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
+use Google\Rpc\Code;
 
 /**
  * Represents a Cloud Spanner Instance Configuration.
@@ -38,7 +42,7 @@ use Google\Cloud\Spanner\Connection\LongRunningConnection;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => $projectId]);
  *
  * $configuration = $spanner->instanceConfiguration('regional-europe-west');
  * ```
@@ -49,78 +53,36 @@ use Google\Cloud\Spanner\Connection\LongRunningConnection;
  */
 class InstanceConfiguration
 {
-    use ArrayTrait;
-    use LROTrait;
+    use ApiHelperTrait;
+    use RequestTrait;
 
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
-
-    /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var array
-     */
-    private $info;
+    private array $info;
 
     /**
      * Create an instance configuration object.
      *
-     * @param ConnectionInterface $connection A service connection for the
-     *        Spanner API. This object is created by SpannerClient,
-     *        and should not be instantiated outside of this client.
+     * @internal InstanceConfiguration is constructed by the {@see SpannerClient} class.
+     *
+     * @param InstanceAdminClient $instanceAdminClient The client library to use for the request
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The current project ID.
      * @param string $name The configuration name or ID.
-     * @param array $info [optional] A service representation of the
-     *        configuration.
-     * @param LongRunningConnectionInterface $lroConnection An implementation
-     *        mapping to methods which handle LRO resolution in the service.
+     * @param array $options [Optional] {
+     *     Instance Configuration options.
+
+     *     @type array $instanceConfig The instance configuration info.
+     * }
      */
     public function __construct(
-        ConnectionInterface $connection,
-        $projectId,
-        $name,
-        array $info = [],
-        ?LongRunningConnectionInterface $lroConnection = null
+        private InstanceAdminClient $instanceAdminClient,
+        private Serializer $serializer,
+        private string $projectId,
+        private string $name,
+        private array $options = [],
     ) {
-        $this->connection = $connection;
-        $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedConfigName($name, $projectId);
-        $this->info = $info;
-        $lroConnection = $lroConnection ?: new LongRunningConnection($this->connection);
-        $instanceConfigFactoryFn = function ($instanceConfig) use ($connection, $projectId, $name, $lroConnection) {
-            $name = InstanceAdminClient::parseName($instanceConfig['name'])['instance_config'];
-            return new self(
-                $connection,
-                $projectId,
-                $name,
-                $instanceConfig,
-                $lroConnection
-            );
-        };
-        $this->setLroProperties(
-            $lroConnection,
-            [
-                [
-                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata',
-                    'callable' => $instanceConfigFactoryFn
-                ],
-                [
-                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata',
-                    'callable' => $instanceConfigFactoryFn
-                ]
-            ]
-        );
+        $this->info = $options['instanceConfig'] ?? [];
+        $this->optionsValidator = new OptionsValidator($serializer);
     }
 
     /**
@@ -133,7 +95,7 @@ class InstanceConfiguration
      *
      * @return string
      */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
@@ -155,7 +117,7 @@ class InstanceConfiguration
      * @return array [InstanceConfig](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig)
      * @codingStandardsIgnoreEnd
      */
-    public function info(array $options = [])
+    public function info(array $options = []): array
     {
         if (!$this->info) {
             $this->reload($options);
@@ -181,12 +143,15 @@ class InstanceConfiguration
      * @param array $options [optional] Configuration options.
      * @return bool
      */
-    public function exists(array $options = [])
+    public function exists(array $options = []): bool
     {
         try {
-            $this->reload($options = []);
-        } catch (NotFoundException $e) {
-            return false;
+            $this->reload($options);
+        } catch (ApiException $e) {
+            if ($e->getCode() === Code::NOT_FOUND) {
+                return false;
+            }
+            throw $e;
         }
 
         return true;
@@ -207,14 +172,24 @@ class InstanceConfiguration
      * @return array [InstanceConfig](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig)
      * @codingStandardsIgnoreEnd
      */
-    public function reload(array $options = [])
+    public function reload(array $options = []): array
     {
-        $this->info = $this->connection->getInstanceConfig($options + [
-            'name' => $this->name,
-            'projectName' => InstanceAdminClient::projectName($this->projectId),
+        $options += ['name' => $this->name];
+        /**
+         * @var GetInstanceConfigRequest $getInstanceConfig
+         * @var array $callOptions
+         */
+        [$getInstanceConfig, $callOptions] = $this->validateOptions(
+            $options,
+            new GetInstanceConfigRequest(),
+            CallOptions::class
+        );
+
+        $response = $this->instanceAdminClient->getInstanceConfig($getInstanceConfig, $callOptions + [
+            'resource-prefix' => InstanceAdminClient::projectName($this->projectId),
         ]);
 
-        return $this->info;
+        return $this->info = $this->handleResponse($response);
     }
 
     /**
@@ -247,35 +222,45 @@ class InstanceConfiguration
      *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
      *           response. **Defaults to** `false`.
      * }
-     * @return LongRunningOperation<InstanceConfiguration>
+     * @return LongRunningOperation
      * @throws ValidationException
      * @codingStandardsIgnoreEnd
      */
-    public function create(InstanceConfiguration $baseConfig, array $replicas, array $options = [])
-    {
-        $configId = InstanceAdminClient::parseName($this->name)['instance_config'];
-        $leaderOptions = $baseConfig->__debugInfo()['info']['leaderOptions'] ?? [];
-        $options += [
-            'displayName' => $configId,
-            'labels' => [],
-            'replicas' => $replicas,
-            'leaderOptions' => $leaderOptions,
-        ];
+    public function create(
+        InstanceConfiguration $baseConfig,
+        array $replicas,
+        array $options = []
+    ): LongRunningOperation {
+        $leaderOptions = $baseConfig->info()['leaderOptions'] ?? [];
+        $options['leaderOptions'] = $leaderOptions;
+        $options['replicas'] = $replicas;
+        $options['baseConfig'] = $baseConfig->name();
 
-        // Set output parameters to their default values.
-        $options['state'] = State::CREATING;
-        $options['configType'] = Type::USER_MANAGED;
-        $options['optionalReplicas'] = [];
-        $options['reconciling'] = false;
+        [$instanceConfig, $callOptions] = $this->validateOptions(
+            $options,
+            new InstanceConfig(),
+            CallOptions::class
+        );
 
-        $operation = $this->connection->createInstanceConfig([
-            'instanceConfigId' => $configId,
-            'name' => $this->name,
-            'projectName' => InstanceAdminClient::projectName($this->projectId),
-            'baseConfig' => $baseConfig->name(),
-        ] + $options);
+        $instanceConfig->setName($this->name);
+        if (!$instanceConfig->getDisplayName()) {
+            $instanceConfig->setDisplayName(InstanceAdminClient::parseName($this->name)['instance_config']);
+        }
+        $instanceConfig->setConfigType(InstanceConfig\Type::USER_MANAGED);
 
-        return $this->resumeOperation($operation['name'], $operation);
+        $request = new CreateInstanceConfigRequest([
+            'parent' => InstanceAdminClient::projectName($this->projectId),
+            'instance_config_id' => InstanceAdminClient::parseName($this->name)['instance_config'],
+            'instance_config' => $instanceConfig,
+            'validate_only' => $options['validateOnly'] ?? false
+        ]);
+
+        $operation = $this->instanceAdminClient->createInstanceConfig(
+            $request,
+            $callOptions + ['resource-prefix' => $this->name]
+        );
+
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -302,16 +287,30 @@ class InstanceConfiguration
      *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
      *           response. **Defaults to** `false`.
      * }
-     * @return LongRunningOperation<InstanceConfiguration>
+     * @return LongRunningOperation
      * @throws \InvalidArgumentException
      */
-    public function update(array $options = [])
+    public function update(array $options = []): LongRunningOperation
     {
-        $operation = $this->connection->updateInstanceConfig([
-            'name' => $this->name,
-        ] + $options);
+        $validateOnly = $options['validateOnly'] ?? false;
+        unset($options['validateOnly']);
 
-        return $this->resumeOperation($operation['name'], $operation);
+        [$request, $callOptions] = $this->validateOptions(
+            [
+                'instanceConfig' => $options + ['name' => $this->name],
+                'updateMask' => $this->fieldMask($options),
+                'validateOnly' => $validateOnly,
+            ],
+            new UpdateInstanceConfigRequest(),
+            CallOptions::class
+        );
+
+        $operation = $this->instanceAdminClient->updateInstanceConfig(
+            $request,
+            $callOptions + ['resource-prefix' => $this->name]
+        );
+
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -330,11 +329,86 @@ class InstanceConfiguration
      * @param array $options [optional] Configuration options.
      * @return void
      */
-    public function delete(array $options = [])
+    public function delete(array $options = []): void
     {
-        $this->connection->deleteInstanceConfig([
-            'name' => $this->name
-        ] + $options);
+        $options += ['name' => $this->name];
+
+        /**
+         * @var DeleteInstanceConfigRequest $deleteInstanceConfigs
+         * @var array $callOptions
+         */
+        [$deleteInstanceConfigs, $callOptions] = $this->validateOptions(
+            $options,
+            new DeleteInstanceConfigRequest(),
+            CallOptions::class
+        );
+
+        $this->instanceAdminClient->deleteInstanceConfig($deleteInstanceConfigs, $callOptions + [
+            'resource-prefix' => $this->name
+        ]);
+    }
+
+    /**
+     * Resume a Long Running Operation
+     *
+     * Example:
+     * ```
+     * $operation = $spanner->resumeOperation($operationName);
+     * ```
+     *
+     * @param string $operationName The Long Running Operation name.
+     * @return LongRunningOperation
+     */
+    public function resumeOperation(string $operationName, array $options = []): LongRunningOperation
+    {
+        return new LongRunningOperation(
+            new LongRunningClientConnection($this->instanceAdminClient, $this->serializer),
+            $operationName,
+            [
+                [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata',
+                    'callable' => $this->instanceConfigResultFunction(),
+                ],
+                [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata',
+                    'callable' => $this->instanceConfigResultFunction(),
+                ]
+            ],
+            $options
+        );
+    }
+
+    /**
+     * Get the fully qualified instance config name.
+     *
+     * @param string $name The configuration name.
+     * @param string $projectId The project ID.
+     * @return string
+     */
+    private function fullyQualifiedConfigName($name, $projectId): string
+    {
+        try {
+            return InstanceAdminClient::instanceConfigName(
+                $projectId,
+                $name
+            );
+        } catch (ValidationException $e) {
+            return $name;
+        }
+    }
+
+    private function instanceConfigResultFunction(): Closure
+    {
+        return function (array $result) {
+            $name = InstanceAdminClient::parseName($result['name']);
+            return new self(
+                $this->instanceAdminClient,
+                $this->serializer,
+                $this->projectId,
+                $name['instance_config'],
+                ['instanceConfig' => $result],
+            );
+        };
     }
 
     /**
@@ -346,29 +420,10 @@ class InstanceConfiguration
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'instanceAdminClient' => get_class($this->instanceAdminClient),
             'projectId' => $this->projectId,
             'name' => $this->name,
             'info' => $this->info,
         ];
-    }
-
-    /**
-     * Get the fully qualified instance config name.
-     *
-     * @param string $name The configuration name.
-     * @param string $projectId The project ID.
-     * @return string
-     */
-    private function fullyQualifiedConfigName($name, $projectId)
-    {
-        try {
-            return InstanceAdminClient::instanceConfigName(
-                $projectId,
-                $name
-            );
-        } catch (ValidationException $e) {
-            return $name;
-        }
     }
 }

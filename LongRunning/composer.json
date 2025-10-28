@@ -3,7 +3,7 @@
     "description": "Google LongRunning Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
-    "version": "0.4.7",
+    "version": "0.6.0",
     "autoload": {
         "psr-4": {
             "Google\\ApiCore\\LongRunning\\": "src/ApiCore/LongRunning",
@@ -20,7 +20,7 @@
         }
     },
     "require-dev": {
-        "google/gax": "^1.36.0",
+        "google/gax": "^1.38.0",
         "phpunit/phpunit": "^9.0"
     }
 }

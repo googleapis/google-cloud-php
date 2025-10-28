@@ -35,22 +35,22 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Shopping\Merchant\Lfp\V1beta\Client\LfpStoreServiceClient;
-Google\Shopping\Merchant\Lfp\V1beta\GetLfpStoreRequest;
-Google\Shopping\Merchant\Lfp\V1beta\LfpStore;
+use Google\ApiCore\ApiException;
+use Google\Shopping\Merchant\Lfp\V1\Client\LfpMerchantStateServiceClient;
+use Google\Shopping\Merchant\Lfp\V1\GetLfpMerchantStateRequest;
+use Google\Shopping\Merchant\Lfp\V1\LfpMerchantState;
 
 // Create a client.
-$lfpStoreServiceClient = new LfpStoreServiceClient();
+$lfpMerchantStateServiceClient = new LfpMerchantStateServiceClient();
 
 // Prepare the request message.
-$request = (new GetLfpStoreRequest())
+$request = (new GetLfpMerchantStateRequest())
     ->setName($formattedName);
 
 // Call the API and handle any network failures.
 try {
-    /** @var LfpStore $response */
-    $response = $lfpStoreServiceClient->getLfpStore($request);
+    /** @var LfpMerchantState $response */
+    $response = $lfpMerchantStateServiceClient->getLfpMerchantState($request);
     printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -66,7 +66,8 @@ for more information about the debugging tools.
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

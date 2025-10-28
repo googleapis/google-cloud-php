@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Date;
 
 /**
@@ -25,9 +26,10 @@ use Google\Cloud\Spanner\Date;
  * @group spanner-operations
  * @group spanner-postgres
  */
-class PgOperationsTest extends SpannerPgTestCase
+class PgOperationsTest extends SystemTestCase
 {
     use DatabaseRoleTrait;
+    use PgSystemTestCaseTrait;
 
     private static $row = [];
 
@@ -42,7 +44,7 @@ class PgOperationsTest extends SpannerPgTestCase
         if (self::$isSetup) {
             return;
         }
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$id = rand(1000, 9999);
         self::$row = [

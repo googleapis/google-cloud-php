@@ -19,13 +19,13 @@ class WafExpressionSetExpression extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * The sensitivity value associated with the WAF rule ID. This corresponds to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for opt-in only rules.
      *
      * Generated from protobuf field <code>optional int32 sensitivity = 27532959;</code>
      */
-    private $sensitivity = null;
+    protected $sensitivity = null;
 
     /**
      * Constructor.

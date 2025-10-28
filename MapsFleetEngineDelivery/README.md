@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Maps\FleetEngine\Delivery\V1\Client\DeliveryServiceClient;
-Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle;
-Google\Maps\FleetEngine\Delivery\V1\GetDeliveryVehicleRequest;
+use Google\ApiCore\ApiException;
+use Google\Maps\FleetEngine\Delivery\V1\Client\DeliveryServiceClient;
+use Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle;
+use Google\Maps\FleetEngine\Delivery\V1\GetDeliveryVehicleRequest;
 
 // Create a client.
 $deliveryServiceClient = new DeliveryServiceClient();

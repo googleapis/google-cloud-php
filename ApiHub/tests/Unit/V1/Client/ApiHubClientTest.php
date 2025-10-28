@@ -33,6 +33,7 @@ use Google\Cloud\ApiHub\V1\AttributeValues;
 use Google\Cloud\ApiHub\V1\Attribute\DataType;
 use Google\Cloud\ApiHub\V1\Attribute\Scope;
 use Google\Cloud\ApiHub\V1\Client\ApiHubClient;
+use Google\Cloud\ApiHub\V1\CreateApiOperationRequest;
 use Google\Cloud\ApiHub\V1\CreateApiRequest;
 use Google\Cloud\ApiHub\V1\CreateAttributeRequest;
 use Google\Cloud\ApiHub\V1\CreateDeploymentRequest;
@@ -40,6 +41,7 @@ use Google\Cloud\ApiHub\V1\CreateExternalApiRequest;
 use Google\Cloud\ApiHub\V1\CreateSpecRequest;
 use Google\Cloud\ApiHub\V1\CreateVersionRequest;
 use Google\Cloud\ApiHub\V1\Definition;
+use Google\Cloud\ApiHub\V1\DeleteApiOperationRequest;
 use Google\Cloud\ApiHub\V1\DeleteApiRequest;
 use Google\Cloud\ApiHub\V1\DeleteAttributeRequest;
 use Google\Cloud\ApiHub\V1\DeleteDeploymentRequest;
@@ -76,6 +78,7 @@ use Google\Cloud\ApiHub\V1\SearchResourcesResponse;
 use Google\Cloud\ApiHub\V1\SearchResult;
 use Google\Cloud\ApiHub\V1\Spec;
 use Google\Cloud\ApiHub\V1\SpecContents;
+use Google\Cloud\ApiHub\V1\UpdateApiOperationRequest;
 use Google\Cloud\ApiHub\V1\UpdateApiRequest;
 use Google\Cloud\ApiHub\V1\UpdateAttributeRequest;
 use Google\Cloud\ApiHub\V1\UpdateDeploymentRequest;
@@ -135,11 +138,13 @@ class ApiHubClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $selectedVersion = 'selectedVersion-1981289676';
+        $fingerprint = 'fingerprint-1375934236';
         $expectedResponse = new Api();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSelectedVersion($selectedVersion);
+        $expectedResponse->setFingerprint($fingerprint);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -190,6 +195,77 @@ class ApiHubClientTest extends GeneratedTest
         $request = (new CreateApiRequest())->setParent($formattedParent)->setApi($api);
         try {
             $gapicClient->createApi($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createApiOperationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $spec = 'spec3536827';
+        $expectedResponse = new ApiOperation();
+        $expectedResponse->setName($name);
+        $expectedResponse->setSpec($spec);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
+        $apiOperation = new ApiOperation();
+        $request = (new CreateApiOperationRequest())->setParent($formattedParent)->setApiOperation($apiOperation);
+        $response = $gapicClient->createApiOperation($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.apihub.v1.ApiHub/CreateApiOperation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getApiOperation();
+        $this->assertProtobufEquals($apiOperation, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createApiOperationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
+        $apiOperation = new ApiOperation();
+        $request = (new CreateApiOperationRequest())->setParent($formattedParent)->setApiOperation($apiOperation);
+        try {
+            $gapicClient->createApiOperation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -303,11 +379,15 @@ class ApiHubClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $resourceUri = 'resourceUri-384040517';
+        $sourceProject = 'sourceProject620760821';
+        $sourceEnvironment = 'sourceEnvironment-1428969489';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setResourceUri($resourceUri);
+        $expectedResponse->setSourceProject($sourceProject);
+        $expectedResponse->setSourceEnvironment($sourceEnvironment);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -681,6 +761,68 @@ class ApiHubClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteApiOperationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->apiOperationName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[OPERATION]');
+        $request = (new DeleteApiOperationRequest())->setName($formattedName);
+        $gapicClient->deleteApiOperation($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.apihub.v1.ApiHub/DeleteApiOperation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteApiOperationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->apiOperationName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[OPERATION]');
+        $request = (new DeleteApiOperationRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteApiOperation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteAttributeTest()
     {
         $transport = $this->createTransport();
@@ -1003,11 +1145,13 @@ class ApiHubClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $selectedVersion = 'selectedVersion-1981289676';
+        $fingerprint = 'fingerprint-1375934236';
         $expectedResponse = new Api();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSelectedVersion($selectedVersion);
+        $expectedResponse->setFingerprint($fingerprint);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
@@ -1281,11 +1425,15 @@ class ApiHubClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $resourceUri = 'resourceUri-384040517';
+        $sourceProject = 'sourceProject620760821';
+        $sourceEnvironment = 'sourceEnvironment-1428969489';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setResourceUri($resourceUri);
+        $expectedResponse->setSourceProject($sourceProject);
+        $expectedResponse->setSourceEnvironment($sourceEnvironment);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
@@ -2200,11 +2348,13 @@ class ApiHubClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $selectedVersion = 'selectedVersion-1981289676';
+        $fingerprint = 'fingerprint-1375934236';
         $expectedResponse = new Api();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSelectedVersion($selectedVersion);
+        $expectedResponse->setFingerprint($fingerprint);
         $transport->addResponse($expectedResponse);
         // Mock request
         $api = new Api();
@@ -2255,6 +2405,77 @@ class ApiHubClientTest extends GeneratedTest
         $request = (new UpdateApiRequest())->setApi($api)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateApi($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateApiOperationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $spec = 'spec3536827';
+        $expectedResponse = new ApiOperation();
+        $expectedResponse->setName($name);
+        $expectedResponse->setSpec($spec);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $apiOperation = new ApiOperation();
+        $updateMask = new FieldMask();
+        $request = (new UpdateApiOperationRequest())->setApiOperation($apiOperation)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateApiOperation($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.apihub.v1.ApiHub/UpdateApiOperation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getApiOperation();
+        $this->assertProtobufEquals($apiOperation, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateApiOperationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $apiOperation = new ApiOperation();
+        $updateMask = new FieldMask();
+        $request = (new UpdateApiOperationRequest())->setApiOperation($apiOperation)->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateApiOperation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2368,11 +2589,15 @@ class ApiHubClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $resourceUri = 'resourceUri-384040517';
+        $sourceProject = 'sourceProject620760821';
+        $sourceEnvironment = 'sourceEnvironment-1428969489';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setResourceUri($resourceUri);
+        $expectedResponse->setSourceProject($sourceProject);
+        $expectedResponse->setSourceEnvironment($sourceEnvironment);
         $transport->addResponse($expectedResponse);
         // Mock request
         $deployment = new Deployment();
@@ -2824,11 +3049,13 @@ class ApiHubClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $selectedVersion = 'selectedVersion-1981289676';
+        $fingerprint = 'fingerprint-1375934236';
         $expectedResponse = new Api();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSelectedVersion($selectedVersion);
+        $expectedResponse->setFingerprint($fingerprint);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');

@@ -3,7 +3,7 @@
     "batch": {
       "entityResults": null,
       "endCursor": "1234",
-      "moreResults": "NO_MORE_RESULTS"
+      "moreResults": 3
     }
   },
   "notPaged": {
@@ -42,7 +42,7 @@
         }
       ],
       "endCursor": "1234",
-      "moreResults": "NO_MORE_RESULTS"
+      "moreResults": 3
     }
   },
   "paged": [
@@ -108,7 +108,7 @@
           }
         ],
         "endCursor": "12345",
-        "moreResults": "NO_MORE_RESULTS"
+        "moreResults": 3
       }
     }
   ]

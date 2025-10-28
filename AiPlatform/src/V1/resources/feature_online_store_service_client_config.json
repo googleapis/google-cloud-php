@@ -16,7 +16,15 @@
                 }
             },
             "methods": {
+                "FeatureViewDirectWrite": {
+                    "timeout_millis": 60000
+                },
                 "FetchFeatureValues": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "GenerateFetchAccessToken": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"

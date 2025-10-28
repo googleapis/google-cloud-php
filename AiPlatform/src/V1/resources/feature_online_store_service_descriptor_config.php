@@ -23,9 +23,36 @@
 return [
     'interfaces' => [
         'google.cloud.aiplatform.v1.FeatureOnlineStoreService' => [
+            'FeatureViewDirectWrite' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'feature_view',
+                        'fieldAccessors' => [
+                            'getFeatureView',
+                        ],
+                    ],
+                ],
+            ],
             'FetchFeatureValues' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'feature_view',
+                        'fieldAccessors' => [
+                            'getFeatureView',
+                        ],
+                    ],
+                ],
+            ],
+            'GenerateFetchAccessToken' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\GenerateFetchAccessTokenResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'feature_view',

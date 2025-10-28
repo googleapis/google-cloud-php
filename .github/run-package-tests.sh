@@ -13,6 +13,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+set -e
+
+# USAGE:
+#
+#     run-package-tests.sh [DIRECTORY] [PREFER_LOWEST]
+#
+# DIRECTORY:     Optionally pass in a component directory and only run the script
+#.               for that component.
+#
+# PREFER_LOWEST: can be "--prefer-lowest" or "--prefer-lowest-strict". When the
+#                "--prefer-lowest-strict" flag is set, local package dependencies
+#                are  installed according to their version number in
+#                `[Component]/VERSION`. This flag is set on the release PRs to
+#.               ensure the dependencies for the upcoming release will be
+#                configured correctly.
+
 DIRS=$(find * -maxdepth 0 -type d -name '[A-Z]*')
 PREFER_LOWEST=""
 if [ "$#" -eq 1 ]; then
@@ -42,45 +58,57 @@ fi
 export COMPOSER=composer-local.json
 
 FAILED_FILE=$(mktemp -d)/failed
-for DIR in ${DIRS}; do {
-    cp ${DIR}/composer.json ${DIR}/composer-local.json
+for DIR in ${DIRS}; do
+    echo "--- Processing ${DIR} ---"
+    cp "${DIR}/composer.json" "${DIR}/composer-local.json"
     # Update composer to use local packages
-    for i in CommonProtos,common-protos,4.100 BigQuery,cloud-bigquery Core,cloud-core Logging,cloud-logging PubSub,cloud-pubsub Storage,cloud-storage ShoppingCommonProtos,shopping-common-protos GeoCommonProtos,geo-common-protos,0.1; do
-        IFS=","; set -- $i;
-        if grep -q "\"google/$2\":" ${DIR}/composer.json; then
+    PACKAGE_DEPENDENCIES=(
+        "CommonProtos,common-protos,4.100"
+        "BigQuery,cloud-bigquery"
+        "Core,cloud-core"
+        "Logging,cloud-logging"
+        "PubSub,cloud-pubsub"
+        "Storage,cloud-storage"
+        "ShoppingCommonProtos,shopping-common-protos"
+        "GeoCommonProtos,geo-common-protos,0.1"
+    )
+    for i in "${PACKAGE_DEPENDENCIES[@]}"; do
+        IFS="," read -r PKG_DIR PKG_NAME PKG_VERSION <<< "$i"
+        if grep -q "\"google/${PKG_NAME}\":" "${DIR}/composer.json"; then
             # determine local package version
-            if [ "$STRICT" = "true" ]; then VERSION=$(cat $1/VERSION); elif [ -z "$3" ]; then VERSION="1.100"; else VERSION=$3; fi
-            echo "Use local package $1 as google/$2:$VERSION in $DIR"
+            if [ "${STRICT}" = "true" ]; then
+                VERSION=$(cat "${PKG_DIR}/VERSION")
+            elif [ -z "${PKG_VERSION}" ]; then
+                VERSION="1.100"
+            else
+                VERSION=${PKG_VERSION}
+            fi
+            echo "Use local package ${PKG_DIR} as google/${PKG_NAME}:${VERSION} in ${DIR}"
             # "canonical: false" ensures composer will try to install from packagist when the "--prefer-lowest" flag is set.
-            composer config repositories.$2 -d ${DIR} "{\"type\": \"path\", \"url\": \"../$1\", \"options\":{\"versions\":{\"google/$2\":\"$VERSION\"}},\"canonical\":false}"
+            JSON_CONFIG=$(printf '{"type":"path","url":"../%s","options":{"versions":{"google/%s":"%s"}},"canonical":false}' "${PKG_DIR}" "${PKG_NAME}" "${VERSION}")
+            composer config "repositories.${PKG_NAME}" -d "${DIR}" "${JSON_CONFIG}"
         fi
     done
 
-    echo -n "Installing composer in $DIR"
-    if [ "$PREFER_LOWEST" != "" ]; then
-        echo -n " (with $PREFER_LOWEST)"
+    echo -n "Installing composer in ${DIR}"
+    if [ -n "${PREFER_LOWEST}" ]; then
+        echo -n " (with ${PREFER_LOWEST})"
     fi
     echo ""
-    composer -q --no-interaction --no-ansi --no-progress $PREFER_LOWEST update -d ${DIR};
-    if [ $? != 0 ]; then
-        echo "$DIR: composer install failed" >> "${FAILED_FILE}"
+    composer -q --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}" || {
+        echo "${DIR}: composer install failed" >> "${FAILED_FILE}"
         # run again but without "-q" so we can see the error
-        composer --no-interaction --no-ansi --no-progress $PREFER_LOWEST update -d ${DIR};
+        composer --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}"
         continue
-    fi
-    echo "Running $DIR Unit Tests"
-    ${DIR}/vendor/bin/phpunit -c ${DIR}/phpunit.xml.dist;
-    if [ $? != 0 ]; then
-        echo "$DIR: failed" >> "${FAILED_FILE}"
-    fi
+    }
+    echo "Running ${DIR} Unit Tests"
+    "${DIR}/vendor/bin/phpunit" -c "${DIR}/phpunit.xml.dist" || echo "${DIR}: failed" >> "${FAILED_FILE}"
+
     if [ -f "${DIR}/phpunit-snippets.xml.dist" ]; then
-        echo "Running $DIR Snippet Tests"
-        ${DIR}/vendor/bin/phpunit -c ${DIR}/phpunit-snippets.xml.dist;
-        if [ $? != 0 ]; then
-            echo "$DIR (snippets): failed" >> "${FAILED_FILE}"
-        fi
+        echo "Running ${DIR} Snippet Tests"
+        "${DIR}/vendor/bin/phpunit" -c "${DIR}/phpunit-snippets.xml.dist" || echo "${DIR} (snippets): failed" >> "${FAILED_FILE}"
     fi
-}; done
+done
 
 if [ -f "${FAILED_FILE}" ]; then
     echo "--------- Failed tests --------------"

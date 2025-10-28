@@ -39,7 +39,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      *           and
      *           [Formatting
      *           text in Google Workspace
-     *           Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     *           add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      *           For example, the following JSON creates a bolded text:
      *           ```
      *           "textParagraph": {
@@ -89,7 +89,6 @@ class Widget extends \Google\Protobuf\Internal\Message
      *                   "red": 0,
      *                   "green": 0,
      *                   "blue": 1,
-     *                   "alpha": 1
      *                 },
      *                 "disabled": true,
      *               },
@@ -184,7 +183,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      *             "name": "appointment_time",
      *             "label": "Book your appointment at:",
      *             "type": "DATE_AND_TIME",
-     *             "valueMsEpoch": "796435200000"
+     *             "valueMsEpoch": 796435200000
      *           }
      *           ```
      *     @type \Google\Apps\Card\V1\Divider $divider
@@ -200,7 +199,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      *           determined by the upper bounds of the number items divided by the number
      *           of columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11
      *           items and 2 columns has 6 rows.
-     *           [Google Workspace Add-ons and
+     *           [Google Workspace add-ons and
      *           Chat apps](https://developers.google.com/workspace/extend):
      *           For example, the following JSON creates a 2 column grid with a single
      *           item:
@@ -269,6 +268,52 @@ class Widget extends \Google\Protobuf\Internal\Message
      *             ]
      *           }
      *           ```
+     *     @type \Google\Apps\Card\V1\Carousel $carousel
+     *           A carousel contains a collection of nested widgets.
+     *           For example, this is a JSON representation of a carousel that contains
+     *           two text paragraphs.
+     *           ```
+     *           {
+     *             "widgets": [
+     *               {
+     *                 "textParagraph": {
+     *                   "text": "First text paragraph in the carousel."
+     *                 }
+     *               },
+     *               {
+     *                 "textParagraph": {
+     *                   "text": "Second text paragraph in the carousel."
+     *                 }
+     *               }
+     *             ]
+     *           }
+     *           ```
+     *     @type \Google\Apps\Card\V1\ChipList $chip_list
+     *           A list of chips.
+     *           For example, the following JSON creates two chips. The first
+     *           is a text chip and the second is an icon chip that opens a
+     *           link:
+     *           ```
+     *           "chipList": {
+     *             "chips": [
+     *               {
+     *                 "text": "Edit",
+     *                 "disabled": true,
+     *               },
+     *               {
+     *                 "icon": {
+     *                   "knownIcon": "INVITE",
+     *                   "altText": "check calendar"
+     *                 },
+     *                 "onClick": {
+     *                   "openLink": {
+     *                     "url": "https://example.com/calendar"
+     *                   }
+     *                 }
+     *               }
+     *             ]
+     *           }
+     *           ```
      *     @type int $horizontal_alignment
      *           Specifies whether widgets align to the left, right, or center of a column.
      * }
@@ -286,7 +331,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      * and
      * [Formatting
      * text in Google Workspace
-     * Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     * add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      * For example, the following JSON creates a bolded text:
      * ```
      * "textParagraph": {
@@ -315,7 +360,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      * and
      * [Formatting
      * text in Google Workspace
-     * Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     * add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      * For example, the following JSON creates a bolded text:
      * ```
      * "textParagraph": {
@@ -461,7 +506,6 @@ class Widget extends \Google\Protobuf\Internal\Message
      *         "red": 0,
      *         "green": 0,
      *         "blue": 1,
-     *         "alpha": 1
      *       },
      *       "disabled": true,
      *     },
@@ -507,7 +551,6 @@ class Widget extends \Google\Protobuf\Internal\Message
      *         "red": 0,
      *         "green": 0,
      *         "blue": 1,
-     *         "alpha": 1
      *       },
      *       "disabled": true,
      *     },
@@ -737,7 +780,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      *   "name": "appointment_time",
      *   "label": "Book your appointment at:",
      *   "type": "DATE_AND_TIME",
-     *   "valueMsEpoch": "796435200000"
+     *   "valueMsEpoch": 796435200000
      * }
      * ```
      *
@@ -763,7 +806,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      *   "name": "appointment_time",
      *   "label": "Book your appointment at:",
      *   "type": "DATE_AND_TIME",
-     *   "valueMsEpoch": "796435200000"
+     *   "valueMsEpoch": 796435200000
      * }
      * ```
      *
@@ -826,7 +869,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      * determined by the upper bounds of the number items divided by the number
      * of columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11
      * items and 2 columns has 6 rows.
-     * [Google Workspace Add-ons and
+     * [Google Workspace add-ons and
      * Chat apps](https://developers.google.com/workspace/extend):
      * For example, the following JSON creates a 2 column grid with a single
      * item:
@@ -880,7 +923,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      * determined by the upper bounds of the number items divided by the number
      * of columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11
      * items and 2 columns has 6 rows.
-     * [Google Workspace Add-ons and
+     * [Google Workspace add-ons and
      * Chat apps](https://developers.google.com/workspace/extend):
      * For example, the following JSON creates a 2 column grid with a single
      * item:
@@ -1020,6 +1063,152 @@ class Widget extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Card\V1\Columns::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * A carousel contains a collection of nested widgets.
+     * For example, this is a JSON representation of a carousel that contains
+     * two text paragraphs.
+     * ```
+     * {
+     *   "widgets": [
+     *     {
+     *       "textParagraph": {
+     *         "text": "First text paragraph in the carousel."
+     *       }
+     *     },
+     *     {
+     *       "textParagraph": {
+     *         "text": "Second text paragraph in the carousel."
+     *       }
+     *     }
+     *   ]
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.Carousel carousel = 13;</code>
+     * @return \Google\Apps\Card\V1\Carousel|null
+     */
+    public function getCarousel()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasCarousel()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * A carousel contains a collection of nested widgets.
+     * For example, this is a JSON representation of a carousel that contains
+     * two text paragraphs.
+     * ```
+     * {
+     *   "widgets": [
+     *     {
+     *       "textParagraph": {
+     *         "text": "First text paragraph in the carousel."
+     *       }
+     *     },
+     *     {
+     *       "textParagraph": {
+     *         "text": "Second text paragraph in the carousel."
+     *       }
+     *     }
+     *   ]
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.Carousel carousel = 13;</code>
+     * @param \Google\Apps\Card\V1\Carousel $var
+     * @return $this
+     */
+    public function setCarousel($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Card\V1\Carousel::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * A list of chips.
+     * For example, the following JSON creates two chips. The first
+     * is a text chip and the second is an icon chip that opens a
+     * link:
+     * ```
+     * "chipList": {
+     *   "chips": [
+     *     {
+     *       "text": "Edit",
+     *       "disabled": true,
+     *     },
+     *     {
+     *       "icon": {
+     *         "knownIcon": "INVITE",
+     *         "altText": "check calendar"
+     *       },
+     *       "onClick": {
+     *         "openLink": {
+     *           "url": "https://example.com/calendar"
+     *         }
+     *       }
+     *     }
+     *   ]
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.ChipList chip_list = 14;</code>
+     * @return \Google\Apps\Card\V1\ChipList|null
+     */
+    public function getChipList()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasChipList()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * A list of chips.
+     * For example, the following JSON creates two chips. The first
+     * is a text chip and the second is an icon chip that opens a
+     * link:
+     * ```
+     * "chipList": {
+     *   "chips": [
+     *     {
+     *       "text": "Edit",
+     *       "disabled": true,
+     *     },
+     *     {
+     *       "icon": {
+     *         "knownIcon": "INVITE",
+     *         "altText": "check calendar"
+     *       },
+     *       "onClick": {
+     *         "openLink": {
+     *           "url": "https://example.com/calendar"
+     *         }
+     *       }
+     *     }
+     *   ]
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.ChipList chip_list = 14;</code>
+     * @param \Google\Apps\Card\V1\ChipList $var
+     * @return $this
+     */
+    public function setChipList($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Card\V1\ChipList::class);
+        $this->writeOneof(14, $var);
 
         return $this;
     }

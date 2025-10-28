@@ -20,14 +20,15 @@ namespace Google\Cloud\Spanner\Tests\System;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\FailedPreconditionException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\PgJsonb;
+use Google\Cloud\Spanner\PgNumeric;
+use Google\Cloud\Spanner\Timestamp;
 use Google\Rpc\Code;
 
 /**
@@ -35,8 +36,9 @@ use Google\Rpc\Code;
  * @group spanner-write
  * @group spanner-postgres
  */
-class PgWriteTest extends SpannerPgTestCase
+class PgWriteTest extends SystemTestCase
 {
+    use PgSystemTestCaseTrait;
     use TimeTrait;
 
     const TABLE_NAME = 'Writes';
@@ -49,7 +51,7 @@ class PgWriteTest extends SpannerPgTestCase
     {
         // The equiavalent tests for the GSQL dialect are also skipped.
         self::skipEmulatorTests();
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$database->updateDdlBatch([
             'CREATE TABLE ' . self::TABLE_NAME . ' (
@@ -98,7 +100,7 @@ class PgWriteTest extends SpannerPgTestCase
             [$this->randId(), 'datefield', new Date(new \DateTime('1981-01-20'))],
             [$this->randId(), 'intfield', 787878787],
             [$this->randId(), 'stringfield', 'foo bar'],
-            [$this->randId(), 'timestampfield', new Timestamp(new \DateTime)],
+            [$this->randId(), 'timestampfield', new Timestamp(new \DateTime())],
             [$this->randId(), 'pgnumericfield', new PgNumeric('0.123456789')],
             [$this->randId(), 'pgjsonbfield', new PgJsonb('{}')],
             [$this->randId(), 'pgjsonbfield', new PgJsonb('{"a": 1.1, "b": "def"}')],
@@ -242,9 +244,9 @@ class PgWriteTest extends SpannerPgTestCase
     {
         return [
             [$this->randId(), 'arrayfield', []],
-            [$this->randId(), 'arrayfield', [1,2,null,4,5]],
+            [$this->randId(), 'arrayfield', [1, 2, null, 4, 5]],
             [$this->randId(), 'arrayfield', null],
-            [$this->randId(), 'arrayboolfield', [true,false]],
+            [$this->randId(), 'arrayboolfield', [true, false]],
             [$this->randId(), 'arrayboolfield', []],
             [$this->randId(), 'arrayboolfield', [true, false, null, false]],
             [$this->randId(), 'arrayboolfield', null],
@@ -256,9 +258,9 @@ class PgWriteTest extends SpannerPgTestCase
             [$this->randId(), 'arrayfloat4field', []],
             [$this->randId(), 'arrayfloat4field', [1.1, null, 1.3]],
             [$this->randId(), 'arrayfloat4field', null],
-            [$this->randId(), 'arraystringfield', ['foo','bar','baz']],
+            [$this->randId(), 'arraystringfield', ['foo', 'bar', 'baz']],
             [$this->randId(), 'arraystringfield', []],
-            [$this->randId(), 'arraystringfield', ['foo',null,'baz']],
+            [$this->randId(), 'arraystringfield', ['foo', null, 'baz']],
             [$this->randId(), 'arraystringfield', null],
             [$this->randId(), 'arraybytesfield', []],
             [$this->randId(), 'arraybytesfield', null],
@@ -310,13 +312,14 @@ class PgWriteTest extends SpannerPgTestCase
 
     public function arrayFieldComplexValueProvider()
     {
+        $timestamp = new Timestamp(new \DateTime());
         return [
-            [$this->randId(), 'arraybytesfield', [new Bytes('foo'),null,new Bytes('baz')]],
-            [$this->randId(), 'arraytimestampfield', [new Timestamp(new \DateTime),null,new Timestamp(new \DateTime)]],
-            [$this->randId(), 'arraydatefield', [new Date(new \DateTime),null,new Date(new \DateTime)]],
-            [$this->randId(), 'arraypgnumericfield', [new PgNumeric("0.12345"),null,new PgNumeric("12345")]],
-            [$this->randId(), 'arraypgjsonbfield', [new PgJsonb('{"a":1.1,"b":"hello"}'),null,
-            new PgJsonb(["a" => 1, "b" => null]),new PgJsonb('{}'),new PgJsonb([])]],
+            [$this->randId(), 'arraybytesfield', [new Bytes('foo'), null, new Bytes('baz')]],
+            [$this->randId(), 'arraytimestampfield', [$timestamp, null, $timestamp]],
+            [$this->randId(), 'arraydatefield', [new Date(new \DateTime()), null, new Date(new \DateTime())]],
+            [$this->randId(), 'arraypgnumericfield', [new PgNumeric('0.12345'), null, new PgNumeric('12345')]],
+            [$this->randId(), 'arraypgjsonbfield', [new PgJsonb('{"a":1.1,"b":"hello"}'), null,
+            new PgJsonb(['a' => 1, 'b' => null]), new PgJsonb('{}'), new PgJsonb([])]],
         ];
     }
 
@@ -442,11 +445,11 @@ class PgWriteTest extends SpannerPgTestCase
     public function randomNumericProvider()
     {
         return [
-            [$this->randId(), new PgNumeric((string)rand(100, 9999))],
-            [$this->randId(), new PgNumeric((string)rand(100, 9999))],
-            [$this->randId(), new PgNumeric((string)rand(100, 9999))],
-            [$this->randId(), new PgNumeric((string)rand(100, 9999))],
-            [$this->randId(), new PgNumeric((string)rand(100, 9999))],
+            [$this->randId(), new PgNumeric((string) rand(100, 9999))],
+            [$this->randId(), new PgNumeric((string) rand(100, 9999))],
+            [$this->randId(), new PgNumeric((string) rand(100, 9999))],
+            [$this->randId(), new PgNumeric((string) rand(100, 9999))],
+            [$this->randId(), new PgNumeric((string) rand(100, 9999))],
         ];
     }
 
@@ -458,7 +461,7 @@ class PgWriteTest extends SpannerPgTestCase
         $id = $this->randId();
         $ts = self::$database->insert(self::COMMIT_TIMESTAMP_TABLE_NAME, [
             'id' => $id,
-            'committimestamp' => new CommitTimestamp
+            'committimestamp' => new CommitTimestamp()
         ]);
 
         $res = self::$database->execute('SELECT * FROM ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' WHERE id = $1', [
@@ -583,7 +586,7 @@ class PgWriteTest extends SpannerPgTestCase
 
     public function timestamps()
     {
-        $today = new \DateTime;
+        $today = new \DateTime();
         $str = $today->format('Y-m-d\TH:i:s');
 
         $todayLowMs = \DateTime::createFromFormat('U.u', time() . '.012345');
@@ -611,17 +614,17 @@ class PgWriteTest extends SpannerPgTestCase
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $randStr) {
-                $count = $t->executeUpdate(
-                    'INSERT INTO ' . self::TABLE_NAME . ' (id, stringfield) VALUES ($1, $2)',
-                    [
-                        'parameters' => [
-                            'p1' => $id,
-                            'p2' => $randStr
-                        ]
+            $count = $t->executeUpdate(
+                'INSERT INTO ' . self::TABLE_NAME . ' (id, stringfield) VALUES ($1, $2)',
+                [
+                    'parameters' => [
+                        'p1' => $id,
+                        'p2' => $randStr
                     ]
-                );
+                ]
+            );
 
-                $this->assertEquals(1, $count);
+            $this->assertEquals(1, $count);
 
             $row = $t->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = $1', [
                 'parameters' => [

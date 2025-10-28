@@ -9,34 +9,36 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Node information for nodes appearing in a [QueryPlan.plan_nodes][google.spanner.v1.QueryPlan.plan_nodes].
+ * Node information for nodes appearing in a
+ * [QueryPlan.plan_nodes][google.spanner.v1.QueryPlan.plan_nodes].
  *
  * Generated from protobuf message <code>google.spanner.v1.PlanNode</code>
  */
 class PlanNode extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
+     * The `PlanNode`'s index in [node
+     * list][google.spanner.v1.QueryPlan.plan_nodes].
      *
      * Generated from protobuf field <code>int32 index = 1;</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * Used to determine the type of node. May be needed for visualizing
      * different kinds of nodes differently. For example, If the node is a
-     * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will have a condensed representation
-     * which can be used to directly embed a description of the node in its
-     * parent.
+     * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will have a
+     * condensed representation which can be used to directly embed a description
+     * of the node in its parent.
      *
      * Generated from protobuf field <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
      */
-    private $kind = 0;
+    protected $kind = 0;
     /**
      * The display name for the node.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * List of child node `index`es and their relationship to this parent.
      *
@@ -44,11 +46,12 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     private $child_links;
     /**
-     * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
+     * Condensed representation for
+     * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      *
      * Generated from protobuf field <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      */
-    private $short_representation = null;
+    protected $short_representation = null;
     /**
      * Attributes relevant to the node contained in a group of key-value pairs.
      * For example, a Parameter Reference node could have the following
@@ -60,7 +63,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 6;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * The execution statistics associated with the node, contained in a group of
      * key-value pairs. Only present if the plan was returned as a result of a
@@ -69,7 +72,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct execution_stats = 7;</code>
      */
-    private $execution_stats = null;
+    protected $execution_stats = null;
 
     /**
      * Constructor.
@@ -78,19 +81,21 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $index
-     *           The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
+     *           The `PlanNode`'s index in [node
+     *           list][google.spanner.v1.QueryPlan.plan_nodes].
      *     @type int $kind
      *           Used to determine the type of node. May be needed for visualizing
      *           different kinds of nodes differently. For example, If the node is a
-     *           [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will have a condensed representation
-     *           which can be used to directly embed a description of the node in its
-     *           parent.
+     *           [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will have a
+     *           condensed representation which can be used to directly embed a description
+     *           of the node in its parent.
      *     @type string $display_name
      *           The display name for the node.
      *     @type array<\Google\Cloud\Spanner\V1\PlanNode\ChildLink>|\Google\Protobuf\Internal\RepeatedField $child_links
      *           List of child node `index`es and their relationship to this parent.
      *     @type \Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation $short_representation
-     *           Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
+     *           Condensed representation for
+     *           [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      *     @type \Google\Protobuf\Struct $metadata
      *           Attributes relevant to the node contained in a group of key-value pairs.
      *           For example, a Parameter Reference node could have the following
@@ -112,7 +117,8 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
+     * The `PlanNode`'s index in [node
+     * list][google.spanner.v1.QueryPlan.plan_nodes].
      *
      * Generated from protobuf field <code>int32 index = 1;</code>
      * @return int
@@ -123,7 +129,8 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
+     * The `PlanNode`'s index in [node
+     * list][google.spanner.v1.QueryPlan.plan_nodes].
      *
      * Generated from protobuf field <code>int32 index = 1;</code>
      * @param int $var
@@ -140,9 +147,9 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     /**
      * Used to determine the type of node. May be needed for visualizing
      * different kinds of nodes differently. For example, If the node is a
-     * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will have a condensed representation
-     * which can be used to directly embed a description of the node in its
-     * parent.
+     * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will have a
+     * condensed representation which can be used to directly embed a description
+     * of the node in its parent.
      *
      * Generated from protobuf field <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
      * @return int
@@ -155,9 +162,9 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     /**
      * Used to determine the type of node. May be needed for visualizing
      * different kinds of nodes differently. For example, If the node is a
-     * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will have a condensed representation
-     * which can be used to directly embed a description of the node in its
-     * parent.
+     * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will have a
+     * condensed representation which can be used to directly embed a description
+     * of the node in its parent.
      *
      * Generated from protobuf field <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
      * @param int $var
@@ -224,7 +231,8 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
+     * Condensed representation for
+     * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      *
      * Generated from protobuf field <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      * @return \Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation|null
@@ -245,7 +253,8 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
+     * Condensed representation for
+     * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      *
      * Generated from protobuf field <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      * @param \Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation $var

@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * determined by items divided by columns. A grid with
  * 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns
  * has 6 rows.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  * For example, the following JSON creates a 2 column grid with a single
  * item:

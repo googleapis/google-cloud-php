@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ namespace Google\Cloud\Datastore\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -123,7 +124,7 @@ final class DatastoreClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -179,11 +180,13 @@ final class DatastoreClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -248,8 +251,10 @@ final class DatastoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function beginTransaction(BeginTransactionRequest $request, array $callOptions = []): BeginTransactionResponse
-    {
+    public function beginTransaction(
+        BeginTransactionRequest $request,
+        array $callOptions = []
+    ): BeginTransactionResponse {
         return $this->startApiCall('BeginTransaction', $request, $callOptions)->wait();
     }
 
@@ -380,8 +385,10 @@ final class DatastoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function runAggregationQuery(RunAggregationQueryRequest $request, array $callOptions = []): RunAggregationQueryResponse
-    {
+    public function runAggregationQuery(
+        RunAggregationQueryRequest $request,
+        array $callOptions = []
+    ): RunAggregationQueryResponse {
         return $this->startApiCall('RunAggregationQuery', $request, $callOptions)->wait();
     }
 

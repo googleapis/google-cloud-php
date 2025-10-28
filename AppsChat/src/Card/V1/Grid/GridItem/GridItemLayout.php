@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Represents the various layout options available for a grid item.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Protobuf type <code>google.apps.card.v1.Grid.GridItem.GridItemLayout</code>

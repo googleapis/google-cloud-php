@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\ConfidentialComputing\V1\Client\ConfidentialComputingClient;
-Google\Cloud\Location\GetLocationRequest;
-Google\Cloud\Location\Location;
+use Google\ApiCore\ApiException;
+use Google\Cloud\ConfidentialComputing\V1\Client\ConfidentialComputingClient;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\Location;
 
 // Create a client.
 $confidentialComputingClient = new ConfidentialComputingClient();

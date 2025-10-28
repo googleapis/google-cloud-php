@@ -1,8 +1,22 @@
 #!/bin/bash
 
-# Create a temporary bootstrap file that combines the autoloader of the project and the dev autoloader
+set -euo pipefail
+
+# Create a temporary directory
 TMPDIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir')
-echo "<?php require 'vendor/autoload.php';require 'dev/vendor/autoload.php';" > $TMPDIR/phpstan-bootstrap.php
+
+# Ensure the temporary directory is cleaned up on exit
+trap 'rm -rf "$TMPDIR"' EXIT
+
+# Create a temporary bootstrap file that combines the autoloader of the project and the dev autoloader
+echo "<?php require 'vendor/autoload.php';require 'dev/vendor/autoload.php';" > "$TMPDIR/phpstan-bootstrap.php"
 
 # Run phpstan
-dev/vendor/bin/phpstan analyse */src */metadata --autoload-file=$TMPDIR/phpstan-bootstrap.php
+dev/vendor/bin/phpstan analyse */src */metadata --autoload-file="$TMPDIR/phpstan-bootstrap.php"
+
+# Run phpstan in individual package directories which support them
+find . -mindepth 2 -maxdepth 2 -name phpstan.neon.dist | while IFS= read -r FILE; do
+  DIR="$(dirname "$FILE")"
+  echo "Running phpstan in $DIR"
+  dev/vendor/bin/phpstan analyze -c "$DIR/phpstan.neon.dist" "$DIR/src/"
+done

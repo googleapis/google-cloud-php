@@ -54,6 +54,17 @@ class Reason extends \Google\Protobuf\Internal\Message
      */
     protected $example_vehicle_index = null;
     /**
+     * Same as
+     * [example_vehicle_index][google.maps.routeoptimization.v1.SkippedShipment.Reason.example_vehicle_index]
+     * except that we provide the list of multiple identified vehicles. This
+     * list is not necessarily exhaustive. This is only filled if
+     * [fill_example_vehicle_indices_in_skipped_reasons][] is true.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>repeated int32 example_vehicle_indices = 5;</code>
+     */
+    private $example_vehicle_indices;
+    /**
      * If the reason code is `DEMAND_EXCEEDS_VEHICLE_CAPACITY`, documents one
      * capacity type that is exceeded.
      *
@@ -72,6 +83,13 @@ class Reason extends \Google\Protobuf\Internal\Message
      *     @type int $example_vehicle_index
      *           If the reason is related to a shipment-vehicle incompatibility, this
      *           field provides the index of one relevant vehicle.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $example_vehicle_indices
+     *           Same as
+     *           [example_vehicle_index][google.maps.routeoptimization.v1.SkippedShipment.Reason.example_vehicle_index]
+     *           except that we provide the list of multiple identified vehicles. This
+     *           list is not necessarily exhaustive. This is only filled if
+     *           [fill_example_vehicle_indices_in_skipped_reasons][] is true.
+     *           Experimental: This field's behavior or existence may change in future.
      *     @type string $example_exceeded_capacity_type
      *           If the reason code is `DEMAND_EXCEEDS_VEHICLE_CAPACITY`, documents one
      *           capacity type that is exceeded.
@@ -142,6 +160,42 @@ class Reason extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->example_vehicle_index = $var;
+
+        return $this;
+    }
+
+    /**
+     * Same as
+     * [example_vehicle_index][google.maps.routeoptimization.v1.SkippedShipment.Reason.example_vehicle_index]
+     * except that we provide the list of multiple identified vehicles. This
+     * list is not necessarily exhaustive. This is only filled if
+     * [fill_example_vehicle_indices_in_skipped_reasons][] is true.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>repeated int32 example_vehicle_indices = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExampleVehicleIndices()
+    {
+        return $this->example_vehicle_indices;
+    }
+
+    /**
+     * Same as
+     * [example_vehicle_index][google.maps.routeoptimization.v1.SkippedShipment.Reason.example_vehicle_index]
+     * except that we provide the list of multiple identified vehicles. This
+     * list is not necessarily exhaustive. This is only filled if
+     * [fill_example_vehicle_indices_in_skipped_reasons][] is true.
+     * Experimental: This field's behavior or existence may change in future.
+     *
+     * Generated from protobuf field <code>repeated int32 example_vehicle_indices = 5;</code>
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExampleVehicleIndices($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
+        $this->example_vehicle_indices = $arr;
 
         return $this;
     }

@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\FinancialServices\V1\BacktestResult;
-Google\Cloud\FinancialServices\V1\Client\AMLClient;
-Google\Cloud\FinancialServices\V1\GetBacktestResultRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\FinancialServices\V1\BacktestResult;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\GetBacktestResultRequest;
 
 // Create a client.
 $aMLClient = new AMLClient();

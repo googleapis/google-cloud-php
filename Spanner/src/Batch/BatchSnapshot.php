@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner\Batch;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\SnapshotTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionalReadInterface;
@@ -31,17 +31,11 @@ use Google\Cloud\Spanner\TransactionalReadInterface;
  * Batch Snapshots can be shared with other servers or processes by casting the
  * object to a string, or by calling {@see \Google\Cloud\Spanner\Batch\BatchSnapshot::serialize()}.
  *
- * Please note that it is important that Snapshots are closed when they are no
- * longer needed. Closing a snapshot is accomplished by calling
- * {@see \Google\Cloud\Spanner\Batch\BatchSnapshot::close()}. Snapshots should be
- * closed only after all workers have finished processing. Closing a snapshot
- * before all workers have processed will result in call failures.
- *
  * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $batch = $spanner->batch('instance-id', 'database-id');
  * $snapshot = $batch->snapshot();
  * ```
@@ -62,7 +56,7 @@ class BatchSnapshot implements TransactionalReadInterface
 
     /**
      * @param Operation $operation The Operation instance.
-     * @param Session $session The session to use for spanner interactions.
+     * @param SessionCache $session The session to use for spanner interactions.
      * @param array $options [optional] {
      *     Configuration Options.
      *
@@ -70,31 +64,9 @@ class BatchSnapshot implements TransactionalReadInterface
      *     @type Timestamp $readTimestamp The read timestamp.
      * }
      */
-    public function __construct(Operation $operation, Session $session, array $options = [])
+    public function __construct(Operation $operation, SessionCache $session, array $options = [])
     {
         $this->initialize($operation, $session, $options);
-    }
-
-    /**
-     * Closes all open resources.
-     *
-     * When the snapshot is no longer needed, it is important to call this method
-     * to free up resources allocated by the Batch Client.
-     *
-     * Methods on this instance which make service calls will fail if the snapshot
-     * has been closed.
-     *
-     * Example:
-     * ```
-     * $snapshot->close();
-     * ```
-     *
-     * @param array $options [optional] Configuration Options
-     * @return void
-     */
-    public function close(array $options = [])
-    {
-        $this->session->delete($options);
     }
 
     /**
@@ -131,7 +103,7 @@ class BatchSnapshot implements TransactionalReadInterface
      * }
      * @return ReadPartition[]
      */
-    public function partitionRead($table, KeySet $keySet, array $columns, array $options = [])
+    public function partitionRead($table, KeySet $keySet, array $columns, array $options = []): array
     {
         return $this->operation->partitionRead(
             $this->session,
@@ -194,7 +166,7 @@ class BatchSnapshot implements TransactionalReadInterface
      * }
      * @return QueryPartition[]
      */
-    public function partitionQuery($sql, array $options = [])
+    public function partitionQuery($sql, array $options = []): array
     {
         return $this->operation->partitionQuery(
             $this->session,
@@ -218,11 +190,10 @@ class BatchSnapshot implements TransactionalReadInterface
      * ```
      *
      * @param PartitionInterface $partition The partition to read.
-     * @param array $options Configuration Options.
      * @return Result
      * @throws \BadMethodCallException If an invalid partition type is given.
      */
-    public function executePartition(PartitionInterface $partition, array $options = [])
+    public function executePartition(PartitionInterface $partition): Result
     {
         if ($partition instanceof QueryPartition) {
             return $this->executeQuery($partition);
@@ -243,7 +214,7 @@ class BatchSnapshot implements TransactionalReadInterface
      *
      * @return string
      */
-    public function serialize()
+    public function serialize(): string
     {
         return base64_encode(json_encode([
             'sessionName' => $this->session->name(),
@@ -269,7 +240,7 @@ class BatchSnapshot implements TransactionalReadInterface
      * @param QueryPartition $partition The partition.
      * @return Result
      */
-    private function executeQuery(QueryPartition $partition)
+    private function executeQuery(QueryPartition $partition): Result
     {
         return $this->execute($partition->sql(), [
             'partitionToken' => $partition->token()
@@ -282,7 +253,7 @@ class BatchSnapshot implements TransactionalReadInterface
      * @param ReadPartition $partition The partition.
      * @return Result
      */
-    private function executeRead(ReadPartition $partition)
+    private function executeRead(ReadPartition $partition): Result
     {
         return $this->read($partition->table(), $partition->keySet(), $partition->columns(), [
             'partitionToken' => $partition->token()

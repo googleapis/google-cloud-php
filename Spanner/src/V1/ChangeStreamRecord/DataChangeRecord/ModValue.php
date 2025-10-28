@@ -23,13 +23,13 @@ class ModValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 column_metadata_index = 1;</code>
      */
-    private $column_metadata_index = 0;
+    protected $column_metadata_index = 0;
     /**
      * The value of the column.
      *
      * Generated from protobuf field <code>.google.protobuf.Value value = 2;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.
@@ -118,6 +118,4 @@ class ModValue extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ModValue::class, \Google\Cloud\Spanner\V1\ChangeStreamRecord_DataChangeRecord_ModValue::class);
 

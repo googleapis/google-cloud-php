@@ -17,21 +17,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class DataProfileResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The count of rows scanned.
+     * Output only. The count of rows scanned.
      *
-     * Generated from protobuf field <code>int64 row_count = 3;</code>
+     * Generated from protobuf field <code>int64 row_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $row_count = 0;
     /**
-     * The profile information per field.
+     * Output only. The profile information per field.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile profile = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile profile = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $profile = null;
     /**
-     * The data scanned for this result.
+     * Output only. The data scanned for this result.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $scanned_data = null;
     /**
@@ -48,11 +48,11 @@ class DataProfileResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $row_count
-     *           The count of rows scanned.
+     *           Output only. The count of rows scanned.
      *     @type \Google\Cloud\Dataplex\V1\DataProfileResult\Profile $profile
-     *           The profile information per field.
+     *           Output only. The profile information per field.
      *     @type \Google\Cloud\Dataplex\V1\ScannedData $scanned_data
-     *           The data scanned for this result.
+     *           Output only. The data scanned for this result.
      *     @type \Google\Cloud\Dataplex\V1\DataProfileResult\PostScanActionsResult $post_scan_actions_result
      *           Output only. The result of post scan actions.
      * }
@@ -63,9 +63,9 @@ class DataProfileResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The count of rows scanned.
+     * Output only. The count of rows scanned.
      *
-     * Generated from protobuf field <code>int64 row_count = 3;</code>
+     * Generated from protobuf field <code>int64 row_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getRowCount()
@@ -74,9 +74,9 @@ class DataProfileResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The count of rows scanned.
+     * Output only. The count of rows scanned.
      *
-     * Generated from protobuf field <code>int64 row_count = 3;</code>
+     * Generated from protobuf field <code>int64 row_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -89,9 +89,9 @@ class DataProfileResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The profile information per field.
+     * Output only. The profile information per field.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile profile = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile profile = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataplex\V1\DataProfileResult\Profile|null
      */
     public function getProfile()
@@ -110,9 +110,9 @@ class DataProfileResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The profile information per field.
+     * Output only. The profile information per field.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile profile = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile profile = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataplex\V1\DataProfileResult\Profile $var
      * @return $this
      */
@@ -125,9 +125,9 @@ class DataProfileResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The data scanned for this result.
+     * Output only. The data scanned for this result.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataplex\V1\ScannedData|null
      */
     public function getScannedData()
@@ -146,9 +146,9 @@ class DataProfileResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The data scanned for this result.
+     * Output only. The data scanned for this result.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataplex\V1\ScannedData $var
      * @return $this
      */

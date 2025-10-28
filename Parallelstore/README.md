@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Parallelstore\V1\Client\ParallelstoreClient;
-Google\Cloud\Parallelstore\V1\GetInstanceRequest;
-Google\Cloud\Parallelstore\V1\Instance;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Parallelstore\V1\Client\ParallelstoreClient;
+use Google\Cloud\Parallelstore\V1\GetInstanceRequest;
+use Google\Cloud\Parallelstore\V1\Instance;
 
 // Create a client.
 $parallelstoreClient = new ParallelstoreClient();

@@ -25,27 +25,27 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyReference vector_property = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vector_property = null;
+    protected $vector_property = null;
     /**
      * Required. The query vector that we are searching on. Must be a vector of no
      * more than 2048 dimensions.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Value query_vector = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query_vector = null;
+    protected $query_vector = null;
     /**
      * Required. The Distance Measure to use, required.
      *
      * Generated from protobuf field <code>.google.datastore.v1.FindNearest.DistanceMeasure distance_measure = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $distance_measure = 0;
+    protected $distance_measure = 0;
     /**
      * Required. The number of nearest neighbors to return. Must be a positive
      * integer of no more than 100.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $limit = null;
+    protected $limit = null;
     /**
      * Optional. Optional name of the field to output the result of the vector
      * distance calculation. Must conform to [entity
@@ -53,7 +53,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string distance_result_property = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $distance_result_property = '';
+    protected $distance_result_property = '';
     /**
      * Optional. Option to specify a threshold for which no less similar documents
      * will be returned. The behavior of the specified `distance_measure` will
@@ -64,7 +64,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue distance_threshold = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $distance_threshold = null;
+    protected $distance_threshold = null;
 
     /**
      * Constructor.
@@ -237,7 +237,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int|null
      */
-    public function getLimitValue()
+    public function getLimitUnwrapped()
     {
         return $this->readWrapperValue("limit");
     }
@@ -268,7 +268,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setLimitValue($var)
+    public function setLimitUnwrapped($var)
     {
         $this->writeWrapperValue("limit", $var);
         return $this;}
@@ -342,7 +342,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.DoubleValue distance_threshold = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float|null
      */
-    public function getDistanceThresholdValue()
+    public function getDistanceThresholdUnwrapped()
     {
         return $this->readWrapperValue("distance_threshold");
     }
@@ -381,7 +381,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      * @param float|null $var
      * @return $this
      */
-    public function setDistanceThresholdValue($var)
+    public function setDistanceThresholdUnwrapped($var)
     {
         $this->writeWrapperValue("distance_threshold", $var);
         return $this;}

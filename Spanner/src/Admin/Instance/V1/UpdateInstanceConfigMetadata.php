@@ -21,7 +21,7 @@ class UpdateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig instance_config = 1;</code>
      */
-    private $instance_config = null;
+    protected $instance_config = null;
     /**
      * The progress of the
      * [UpdateInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstanceConfig]
@@ -29,13 +29,13 @@ class UpdateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.OperationProgress progress = 2;</code>
      */
-    private $progress = null;
+    protected $progress = null;
     /**
      * The time at which this operation was cancelled.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 3;</code>
      */
-    private $cancel_time = null;
+    protected $cancel_time = null;
 
     /**
      * Constructor.

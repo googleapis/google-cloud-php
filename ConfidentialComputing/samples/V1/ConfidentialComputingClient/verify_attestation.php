@@ -30,7 +30,8 @@ use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationRequest;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationResponse;
 
 /**
- * Verifies the provided attestation info, returning a signed OIDC token.
+ * Verifies the provided attestation info, returning a signed attestation
+ * token.
  *
  * @param string $formattedChallenge The name of the Challenge whose nonce was used to generate the
  *                                   attestation, in the format `projects/&#42;/locations/&#42;/challenges/*`. The

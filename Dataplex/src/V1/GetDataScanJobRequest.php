@@ -19,7 +19,7 @@ class GetDataScanJobRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the DataScanJob:
      * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/jobs/{data_scan_job_id}`
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,7 +35,7 @@ class GetDataScanJobRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the DataScanJob:
      *                     `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/jobs/{data_scan_job_id}`
      *                     where `project` refers to a *project_id* or *project_number* and
-     *                     `location_id` refers to a GCP region. Please see
+     *                     `location_id` refers to a Google Cloud region. Please see
      *                     {@see DataScanServiceClient::dataScanJobName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\GetDataScanJobRequest
@@ -58,7 +58,7 @@ class GetDataScanJobRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the DataScanJob:
      *           `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/jobs/{data_scan_job_id}`
      *           where `project` refers to a *project_id* or *project_number* and
-     *           `location_id` refers to a GCP region.
+     *           `location_id` refers to a Google Cloud region.
      *     @type int $view
      *           Optional. Select the DataScanJob view to return. Defaults to `BASIC`.
      * }
@@ -72,7 +72,7 @@ class GetDataScanJobRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the DataScanJob:
      * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/jobs/{data_scan_job_id}`
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -86,7 +86,7 @@ class GetDataScanJobRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the DataScanJob:
      * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/jobs/{data_scan_job_id}`
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

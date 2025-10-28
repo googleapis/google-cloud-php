@@ -52,6 +52,32 @@ class JobType
      * Generated from protobuf enum <code>CONTINUOUS = 6;</code>
      */
     const CONTINUOUS = 6;
+    /**
+     * Finer granularity background jobs for capturing changes in a source
+     * database and streaming them into BigQuery. Reservations with this job
+     * type take priority over a default BACKGROUND reservation assignment (if
+     * it exists).
+     *
+     * Generated from protobuf enum <code>BACKGROUND_CHANGE_DATA_CAPTURE = 7;</code>
+     */
+    const BACKGROUND_CHANGE_DATA_CAPTURE = 7;
+    /**
+     * Finer granularity background jobs for refreshing cached metadata for
+     * BigQuery tables. Reservations with this job type take priority over a
+     * default BACKGROUND reservation assignment (if it exists).
+     *
+     * Generated from protobuf enum <code>BACKGROUND_COLUMN_METADATA_INDEX = 8;</code>
+     */
+    const BACKGROUND_COLUMN_METADATA_INDEX = 8;
+    /**
+     * Finer granularity background jobs for refreshing search indexes upon
+     * BigQuery table columns. Reservations with this job type
+     * take priority over a default BACKGROUND reservation assignment (if it
+     * exists).
+     *
+     * Generated from protobuf enum <code>BACKGROUND_SEARCH_INDEX_REFRESH = 9;</code>
+     */
+    const BACKGROUND_SEARCH_INDEX_REFRESH = 9;
 
     private static $valueToName = [
         self::JOB_TYPE_UNSPECIFIED => 'JOB_TYPE_UNSPECIFIED',
@@ -60,6 +86,9 @@ class JobType
         self::ML_EXTERNAL => 'ML_EXTERNAL',
         self::BACKGROUND => 'BACKGROUND',
         self::CONTINUOUS => 'CONTINUOUS',
+        self::BACKGROUND_CHANGE_DATA_CAPTURE => 'BACKGROUND_CHANGE_DATA_CAPTURE',
+        self::BACKGROUND_COLUMN_METADATA_INDEX => 'BACKGROUND_COLUMN_METADATA_INDEX',
+        self::BACKGROUND_SEARCH_INDEX_REFRESH => 'BACKGROUND_SEARCH_INDEX_REFRESH',
     ];
 
     public static function name($value)

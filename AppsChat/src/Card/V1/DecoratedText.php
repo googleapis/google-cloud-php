@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * button after the text. For an example in
  * Google Chat apps, see [Display text with decorative
  * text](https://developers.google.com/workspace/chat/add-text-image-card-dialog#display_text_with_decorative_elements).
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.DecoratedText</code>
@@ -35,11 +35,27 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      */
     protected $start_icon = null;
     /**
+     * Optional. Vertical alignment of the start icon. If not set, the icon
+     * will be vertically centered.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.Widget.VerticalAlignment start_icon_vertical_alignment = 13;</code>
+     */
+    protected $start_icon_vertical_alignment = 0;
+    /**
      * The text that appears above `text`. Always truncates.
      *
      * Generated from protobuf field <code>string top_label = 3;</code>
      */
     protected $top_label = '';
+    /**
+     * `TextParagraph` equivalent of `top_label`. Always truncates. Allows for
+     * more complex formatting than `top_label`.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.TextParagraph top_label_text = 17;</code>
+     */
+    protected $top_label_text = null;
     /**
      * Required. The primary text.
      * Supports simple formatting. For more information
@@ -49,11 +65,19 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      * and
      * [Formatting
      * text in Google Workspace
-     * Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     * add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      *
      * Generated from protobuf field <code>string text = 4;</code>
      */
     protected $text = '';
+    /**
+     * `TextParagraph` equivalent of `text`. Allows for more complex formatting
+     * than `text`.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.TextParagraph content_text = 18;</code>
+     */
+    protected $content_text = null;
     /**
      * The wrap text setting. If `true`, the text wraps and displays on
      * multiple lines. Otherwise, the text is truncated.
@@ -68,6 +92,14 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string bottom_label = 6;</code>
      */
     protected $bottom_label = '';
+    /**
+     * `TextParagraph` equivalent of `bottom_label`. Always wraps. Allows for
+     * more complex formatting than `bottom_label`.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.TextParagraph bottom_label_text = 19;</code>
+     */
+    protected $bottom_label_text = null;
     /**
      * This action is triggered when users click `topLabel` or `bottomLabel`.
      *
@@ -86,8 +118,16 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      *           Deprecated in favor of `startIcon`.
      *     @type \Google\Apps\Card\V1\Icon $start_icon
      *           The icon displayed in front of the text.
+     *     @type int $start_icon_vertical_alignment
+     *           Optional. Vertical alignment of the start icon. If not set, the icon
+     *           will be vertically centered.
+     *           [Google Chat apps](https://developers.google.com/workspace/chat):
      *     @type string $top_label
      *           The text that appears above `text`. Always truncates.
+     *     @type \Google\Apps\Card\V1\TextParagraph $top_label_text
+     *           `TextParagraph` equivalent of `top_label`. Always truncates. Allows for
+     *           more complex formatting than `top_label`.
+     *           [Google Chat apps](https://developers.google.com/workspace/chat):
      *     @type string $text
      *           Required. The primary text.
      *           Supports simple formatting. For more information
@@ -97,13 +137,21 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      *           and
      *           [Formatting
      *           text in Google Workspace
-     *           Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     *           add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     *     @type \Google\Apps\Card\V1\TextParagraph $content_text
+     *           `TextParagraph` equivalent of `text`. Allows for more complex formatting
+     *           than `text`.
+     *           [Google Chat apps](https://developers.google.com/workspace/chat):
      *     @type bool $wrap_text
      *           The wrap text setting. If `true`, the text wraps and displays on
      *           multiple lines. Otherwise, the text is truncated.
      *           Only applies to `text`, not `topLabel` and `bottomLabel`.
      *     @type string $bottom_label
      *           The text that appears below `text`. Always wraps.
+     *     @type \Google\Apps\Card\V1\TextParagraph $bottom_label_text
+     *           `TextParagraph` equivalent of `bottom_label`. Always wraps. Allows for
+     *           more complex formatting than `bottom_label`.
+     *           [Google Chat apps](https://developers.google.com/workspace/chat):
      *     @type \Google\Apps\Card\V1\OnClick $on_click
      *           This action is triggered when users click `topLabel` or `bottomLabel`.
      *     @type \Google\Apps\Card\V1\Button $button
@@ -208,6 +256,36 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Vertical alignment of the start icon. If not set, the icon
+     * will be vertically centered.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.Widget.VerticalAlignment start_icon_vertical_alignment = 13;</code>
+     * @return int
+     */
+    public function getStartIconVerticalAlignment()
+    {
+        return $this->start_icon_vertical_alignment;
+    }
+
+    /**
+     * Optional. Vertical alignment of the start icon. If not set, the icon
+     * will be vertically centered.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.Widget.VerticalAlignment start_icon_vertical_alignment = 13;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStartIconVerticalAlignment($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Apps\Card\V1\Widget\VerticalAlignment::class);
+        $this->start_icon_vertical_alignment = $var;
+
+        return $this;
+    }
+
+    /**
      * The text that appears above `text`. Always truncates.
      *
      * Generated from protobuf field <code>string top_label = 3;</code>
@@ -234,6 +312,46 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * `TextParagraph` equivalent of `top_label`. Always truncates. Allows for
+     * more complex formatting than `top_label`.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.TextParagraph top_label_text = 17;</code>
+     * @return \Google\Apps\Card\V1\TextParagraph|null
+     */
+    public function getTopLabelText()
+    {
+        return $this->top_label_text;
+    }
+
+    public function hasTopLabelText()
+    {
+        return isset($this->top_label_text);
+    }
+
+    public function clearTopLabelText()
+    {
+        unset($this->top_label_text);
+    }
+
+    /**
+     * `TextParagraph` equivalent of `top_label`. Always truncates. Allows for
+     * more complex formatting than `top_label`.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.TextParagraph top_label_text = 17;</code>
+     * @param \Google\Apps\Card\V1\TextParagraph $var
+     * @return $this
+     */
+    public function setTopLabelText($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Card\V1\TextParagraph::class);
+        $this->top_label_text = $var;
+
+        return $this;
+    }
+
+    /**
      * Required. The primary text.
      * Supports simple formatting. For more information
      * about formatting text, see
@@ -242,7 +360,7 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      * and
      * [Formatting
      * text in Google Workspace
-     * Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     * add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      *
      * Generated from protobuf field <code>string text = 4;</code>
      * @return string
@@ -261,7 +379,7 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      * and
      * [Formatting
      * text in Google Workspace
-     * Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     * add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      *
      * Generated from protobuf field <code>string text = 4;</code>
      * @param string $var
@@ -271,6 +389,46 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->text = $var;
+
+        return $this;
+    }
+
+    /**
+     * `TextParagraph` equivalent of `text`. Allows for more complex formatting
+     * than `text`.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.TextParagraph content_text = 18;</code>
+     * @return \Google\Apps\Card\V1\TextParagraph|null
+     */
+    public function getContentText()
+    {
+        return $this->content_text;
+    }
+
+    public function hasContentText()
+    {
+        return isset($this->content_text);
+    }
+
+    public function clearContentText()
+    {
+        unset($this->content_text);
+    }
+
+    /**
+     * `TextParagraph` equivalent of `text`. Allows for more complex formatting
+     * than `text`.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.TextParagraph content_text = 18;</code>
+     * @param \Google\Apps\Card\V1\TextParagraph $var
+     * @return $this
+     */
+    public function setContentText($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Card\V1\TextParagraph::class);
+        $this->content_text = $var;
 
         return $this;
     }
@@ -327,6 +485,46 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->bottom_label = $var;
+
+        return $this;
+    }
+
+    /**
+     * `TextParagraph` equivalent of `bottom_label`. Always wraps. Allows for
+     * more complex formatting than `bottom_label`.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.TextParagraph bottom_label_text = 19;</code>
+     * @return \Google\Apps\Card\V1\TextParagraph|null
+     */
+    public function getBottomLabelText()
+    {
+        return $this->bottom_label_text;
+    }
+
+    public function hasBottomLabelText()
+    {
+        return isset($this->bottom_label_text);
+    }
+
+    public function clearBottomLabelText()
+    {
+        unset($this->bottom_label_text);
+    }
+
+    /**
+     * `TextParagraph` equivalent of `bottom_label`. Always wraps. Allows for
+     * more complex formatting than `bottom_label`.
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.TextParagraph bottom_label_text = 19;</code>
+     * @param \Google\Apps\Card\V1\TextParagraph $var
+     * @return $this
+     */
+    public function setBottomLabelText($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Card\V1\TextParagraph::class);
+        $this->bottom_label_text = $var;
 
         return $this;
     }

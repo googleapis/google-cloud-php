@@ -31,36 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Scheduler\V1\AppEngineHttpTarget;
-use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Scheduler\V1\Client\CloudSchedulerClient;
+use Google\Cloud\Scheduler\V1\GetJobRequest;
 use Google\Cloud\Scheduler\V1\Job;
-use Google\Cloud\Scheduler\V1\Job\State;
 
-$client = new CloudSchedulerClient();
-$projectId = '[MY_PROJECT_ID]';
-$location = 'us-central1';
-$parent = CloudSchedulerClient::locationName($projectId, $location);
-$job = new Job([
-    'name' => CloudSchedulerClient::jobName(
-        $projectId,
-        $location,
-        uniqid()
-    ),
-    'app_engine_http_target' => new AppEngineHttpTarget([
-        'relative_uri' => '/'
-    ]),
-    'schedule' => '* * * * *'
-]);
-$client->createJob($parent, $job);
+// Create a client.
+$cloudSchedulerClient = new CloudSchedulerClient();
 
-foreach ($client->listJobs($parent) as $job) {
-    printf(
-        'Job: %s : %s' . PHP_EOL,
-        $job->getName(),
-        State::name($job->getState())
-    );
+// Prepare the request message.
+$request = (new GetJobRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Job $response */
+    $response = $cloudSchedulerClient->getJob($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

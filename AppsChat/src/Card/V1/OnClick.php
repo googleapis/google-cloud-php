@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Represents how to respond when users click an interactive element on
  * a card, such as a button.
- * [Google Workspace Add-ons and Chat
+ * [Google Workspace add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
  * Generated from protobuf message <code>google.apps.card.v1.OnClick</code>
@@ -36,11 +36,13 @@ class OnClick extends \Google\Protobuf\Internal\Message
      *           to server to get the link. Thus some preparation work is required for
      *           web client to do before the open link action response comes back.
      *           [Google Workspace
-     *           Add-ons](https://developers.google.com/workspace/add-ons):
+     *           add-ons](https://developers.google.com/workspace/add-ons):
      *     @type \Google\Apps\Card\V1\Card $card
      *           A new card is pushed to the card stack after clicking if specified.
      *           [Google Workspace
-     *           Add-ons](https://developers.google.com/workspace/add-ons):
+     *           add-ons](https://developers.google.com/workspace/add-ons):
+     *     @type \Google\Apps\Card\V1\OverflowMenu $overflow_menu
+     *           If specified, this `onClick` opens an overflow menu.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,7 +118,7 @@ class OnClick extends \Google\Protobuf\Internal\Message
      * to server to get the link. Thus some preparation work is required for
      * web client to do before the open link action response comes back.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action open_dynamic_link_action = 3;</code>
      * @return \Google\Apps\Card\V1\Action|null
@@ -137,7 +139,7 @@ class OnClick extends \Google\Protobuf\Internal\Message
      * to server to get the link. Thus some preparation work is required for
      * web client to do before the open link action response comes back.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action open_dynamic_link_action = 3;</code>
      * @param \Google\Apps\Card\V1\Action $var
@@ -154,7 +156,7 @@ class OnClick extends \Google\Protobuf\Internal\Message
     /**
      * A new card is pushed to the card stack after clicking if specified.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card card = 4;</code>
      * @return \Google\Apps\Card\V1\Card|null
@@ -172,7 +174,7 @@ class OnClick extends \Google\Protobuf\Internal\Message
     /**
      * A new card is pushed to the card stack after clicking if specified.
      * [Google Workspace
-     * Add-ons](https://developers.google.com/workspace/add-ons):
+     * add-ons](https://developers.google.com/workspace/add-ons):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Card card = 4;</code>
      * @param \Google\Apps\Card\V1\Card $var
@@ -182,6 +184,37 @@ class OnClick extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Card\V1\Card::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * If specified, this `onClick` opens an overflow menu.
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.OverflowMenu overflow_menu = 8;</code>
+     * @return \Google\Apps\Card\V1\OverflowMenu|null
+     */
+    public function getOverflowMenu()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasOverflowMenu()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * If specified, this `onClick` opens an overflow menu.
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.OverflowMenu overflow_menu = 8;</code>
+     * @param \Google\Apps\Card\V1\OverflowMenu $var
+     * @return $this
+     */
+    public function setOverflowMenu($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Card\V1\OverflowMenu::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

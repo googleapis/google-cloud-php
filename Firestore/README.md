@@ -36,17 +36,26 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\Document;
+use Google\Cloud\Firestore\V1\GetDocumentRequest;
 
-use Google\Cloud\Firestore\FirestoreClient;
+// Create a client.
+$firestoreClient = new FirestoreClient();
 
-$firestore = new FirestoreClient();
+// Prepare the request message.
+$request = (new GetDocumentRequest())
+    ->setName($name);
 
-$collectionReference = $firestore->collection('Users');
-$documentReference = $collectionReference->document($userId);
-$snapshot = $documentReference->snapshot();
-
-echo "Hello " . $snapshot['firstName'];
+// Call the API and handle any network failures.
+try {
+    /** @var Document $response */
+    $response = $firestoreClient->getDocument($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
 
 ### Debugging

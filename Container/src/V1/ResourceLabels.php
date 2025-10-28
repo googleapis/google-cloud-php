@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Collection of [GCP
+ * Collection of [Resource Manager
  * labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels).
  *
  * Generated from protobuf message <code>google.container.v1.ResourceLabels</code>

@@ -20,14 +20,27 @@ namespace Google\Cloud\Datastore\Tests\Snippet;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\Tests\Unit\ProtoEncodeTrait;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\AllocateIdsResponse;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
+use Google\Cloud\Datastore\V1\BeginTransactionResponse;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\CommitResponse;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\LookupResponse;
+use Google\Cloud\Datastore\V1\RollbackResponse;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryResponse;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -38,11 +51,12 @@ class TransactionTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
+    use ProtoEncodeTrait;
 
     const PROJECT = 'my-awesome-project';
     const TRANSACTION = 'transaction-id';
 
-    private $connection;
+    private $gapicClient;
     private $operation;
     private $transaction;
     private $client;
@@ -50,22 +64,18 @@ class TransactionTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->gapicClient = $this->prophesize(GapicDatastoreClient::class);
 
-        $operation = new Operation(
-            $this->connection->reveal(),
-            self::PROJECT,
-            '',
-            new EntityMapper(self::PROJECT, false, false)
-        );
+        $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, [
+                'transaction' => base64_encode(self::TRANSACTION)
+            ]));
 
-        $this->transaction = TestHelpers::stub(Transaction::class, [
-            $operation,
-            self::PROJECT,
-            self::TRANSACTION
-        ], ['operation']);
-
-        $this->client = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
+        $this->client = new DatastoreClient([
+            'datastoreClient' => $this->gapicClient->reveal()
+        ]);
+        $this->transaction = $this->client->transaction();
 
         $this->key = new Key('my-awesome-project', [
             [
@@ -78,15 +88,11 @@ class TransactionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->gapicClient->beginTransaction(Argument::type(BeginTransactionRequest::class), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, [
                 'transaction' => 'foo'
-            ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $snippet = $this->snippetFromClass(Transaction::class);
         $snippet->setLine(2, '');
@@ -102,20 +108,19 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'insert';
-            })
-        ))->shouldBeCalled()->willReturn([
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $this->assertEquals(self::TRANSACTION, $request->getTransaction());
+                $this->assertEquals('insert', $request->getMutations()[0]->getOperation());
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(self::generateProto(CommitResponse::class, [
             'mutationResults' => [
                 ['version' => 1]
             ]
-        ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        ]));
 
         $res = $snippet->invoke();
     }
@@ -126,22 +131,20 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'insert';
-            })
-        ))->shouldBeCalled()->willReturn([
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $this->assertEquals(self::TRANSACTION, $request->getTransaction());
+                $this->assertEquals('insert', $request->getMutations()[0]->getOperation());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(self::generateProto(CommitResponse::class, [
             'mutationResults' => [
                 ['version' => 1]
             ]
-        ]);
+        ]));
 
         $this->allocateIdsConnectionMock();
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
 
         $res = $snippet->invoke();
     }
@@ -155,20 +158,18 @@ class TransactionTest extends SnippetTestCase
             'populatedByService' => true
         ]));
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'update';
-            })
-        ))->shouldBeCalled()->willReturn([
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $this->assertEquals(self::TRANSACTION, $request->getTransaction());
+                $this->assertEquals('update', $request->getMutations()[0]->getOperation());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(self::generateProto(CommitResponse::class, [
             'mutationResults' => [
                 ['version' => 1]
             ]
-        ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        ]));
 
         $res = $snippet->invoke();
     }
@@ -183,12 +184,19 @@ class TransactionTest extends SnippetTestCase
             $this->client->entity($this->client->key('Person', 'John'), [], ['populatedByService' => true])
         ]);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'update';
-            })
-        ))->shouldBeCalled();
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $this->assertEquals(self::TRANSACTION, $request->getTransaction());
+                $this->assertEquals('update', $request->getMutations()[0]->getOperation());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()
+            ->willReturn(self::generateProto(CommitResponse::class, [
+            'mutationResults' => [
+                ['version' => 1]
+            ]
+        ]));
 
         $res = $snippet->invoke();
     }
@@ -202,22 +210,20 @@ class TransactionTest extends SnippetTestCase
             'populatedByService' => true
         ]));
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'upsert';
-            })
-        ))
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                    $this->assertEquals(self::TRANSACTION, $request->getTransaction());
+                    $this->assertEquals('upsert', $request->getMutations()[0]->getOperation());
+                    return true;
+            }),
+            Argument::any()
+        )
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(CommitResponse::class, [
                 'mutationResults' => [
                     ['version' => 1]
                 ]
-            ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
     }
@@ -232,13 +238,20 @@ class TransactionTest extends SnippetTestCase
             $this->client->entity($this->client->key('Person', 'John'), [], ['populatedByService' => true])
         ]);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'upsert';
-            })
-        ))
-            ->shouldBeCalled();
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                    $this->assertEquals(self::TRANSACTION, $request->getTransaction());
+                    $this->assertEquals('upsert', $request->getMutations()[0]->getOperation());
+                    return true;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(CommitResponse::class, [
+                'mutationResults' => [
+                    ['version' => 1]
+                ]
+            ]));
 
         $res = $snippet->invoke();
     }
@@ -249,22 +262,20 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'delete';
-            })
-        ))
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                    $this->assertEquals(self::TRANSACTION, $request->getTransaction());
+                    $this->assertEquals('delete', $request->getMutations()[0]->getOperation());
+                    return true;
+            }),
+            Argument::any()
+        )
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(CommitResponse::class, [
                 'mutationResults' => [
                     ['version' => 1]
                 ]
-            ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
     }
@@ -275,12 +286,21 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'delete';
-            })
-        ))->shouldBeCalled();
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                    $this->assertEquals(self::TRANSACTION, $request->getTransaction());
+                    $this->assertEquals('delete', $request->getMutations()[0]->getOperation());
+                    return true;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(CommitResponse::class, [
+                'mutationResults' => [
+                    ['version' => 1]
+                ]
+            ]));
+
 
         $res = $snippet->invoke();
     }
@@ -291,9 +311,15 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
+        $this->gapicClient->lookup(
+            Argument::that(function (LookupRequest $request) {
+                    $this->assertEquals(self::TRANSACTION, $request->getReadOptions()->getTransaction());
+                    return true;
+            }),
+            Argument::any()
+        )
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => [
                     [
                         'entity' => [
@@ -310,11 +336,7 @@ class TransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
         $this->assertEquals('Bob', $res->output());
@@ -326,9 +348,15 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
+        $this->gapicClient->lookup(
+            Argument::that(function (LookupRequest $request) {
+                    $this->assertEquals(self::TRANSACTION, $request->getReadOptions()->getTransaction());
+                    return true;
+            }),
+            Argument::any()
+        )
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => [
                     [
                         'entity' => [
@@ -359,11 +387,7 @@ class TransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
         $this->assertEquals("Bob", explode("\n", $res->output())[0]);
@@ -379,11 +403,18 @@ class TransactionTest extends SnippetTestCase
         $query = $this->prophesize(QueryInterface::class);
         $query->queryObject()->willReturn([]);
         $query->queryKey()->willReturn('query');
+        $query->canPaginate()->willReturn(false);
         $snippet->addLocal('query', $query->reveal());
 
-        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
+        $this->gapicClient->runQuery(
+            Argument::that(function (RunQueryRequest $request) {
+                    $this->assertEquals(self::TRANSACTION, $request->getReadOptions()->getTransaction());
+                    return true;
+            }),
+            Argument::any()
+        )
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(RunQueryResponse::class, [
                 'batch' => [
                     'entityResults' => [
                         [
@@ -402,11 +433,7 @@ class TransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
@@ -422,24 +449,31 @@ class TransactionTest extends SnippetTestCase
         $query->queryObject()->willReturn([]);
         $snippet->addLocal('query', $query->reveal());
 
-        $this->connection->runAggregationQuery(Argument::withEntry('transaction', self::TRANSACTION))
+        $this->gapicClient->runAggregationQuery(
+            Argument::that(function (RunAggregationQueryRequest $request) {
+                    $this->assertEquals(self::TRANSACTION, $request->getReadOptions()->getTransaction());
+                    return true;
+            }),
+            Argument::any()
+        )
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(RunAggregationQueryResponse::class, [
                 'batch' => [
                     'aggregationResults' => [
                         [
                             'aggregateProperties' => [
-                                'total' => 1,
+                                'total' => [
+                                    'integerValue' => 1
+                                ],
                             ]
                         ]
                     ],
-                    'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+                    'readTime' => [
+                        'seconds' => 1,
+                        'nanos' => 2
+                    ]
                 ]
-            ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
         $this->assertEquals('1', $res->output());
@@ -447,17 +481,21 @@ class TransactionTest extends SnippetTestCase
 
     public function testCommit()
     {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'commit');
-        $snippet->addLocal('transaction', $this->transaction);
+         $keys = [
+            $this->client->key('Person', 'Bob'),
+            $this->client->key('Person', 'John')
+         ];
 
-        $this->connection->commit(Argument::any())
-            ->shouldBeCalled();
+         $this->transaction->deleteBatch($keys);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+         $snippet = $this->snippetFromMethod(Transaction::class, 'commit');
+         $snippet->addLocal('transaction', $this->transaction);
 
-        $snippet->invoke();
+         $this->gapicClient->commit(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(CommitResponse::class, []));
+
+         $snippet->invoke();
     }
 
     public function testRollback()
@@ -465,23 +503,20 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'rollback');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->rollback(Argument::any())
-            ->shouldBeCalled();
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->rollback(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(RollbackResponse::class, []));
 
         $snippet->invoke();
     }
 
     // ******** HELPERS
 
-    private function allocateIdsConnectionMock()
+    private function allocateIdsConnectionMock(): void
     {
-        $this->connection->allocateIds(Argument::any())
+        $this->gapicClient->allocateIds(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(AllocateIdsResponse::class, [
                 'keys' => [
                     [
                         'path' => [
@@ -500,8 +535,6 @@ class TransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
-
-        return $this->connection->reveal();
+            ]));
     }
 }

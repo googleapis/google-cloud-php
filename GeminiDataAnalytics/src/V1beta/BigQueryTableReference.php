@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class BigQueryTableReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project the table belongs to.
+     * Required. The project that the table belongs to.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $project_id = '';
     /**
-     * Required. The dataset the table belongs to.
+     * Required. The dataset that the table belongs to.
      *
      * Generated from protobuf field <code>string dataset_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -33,6 +33,12 @@ class BigQueryTableReference extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string table_id = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $table_id = '';
+    /**
+     * Optional. The schema of the datasource.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Schema schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $schema = null;
 
     /**
      * Constructor.
@@ -41,11 +47,13 @@ class BigQueryTableReference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Required. The project the table belongs to.
+     *           Required. The project that the table belongs to.
      *     @type string $dataset_id
-     *           Required. The dataset the table belongs to.
+     *           Required. The dataset that the table belongs to.
      *     @type string $table_id
      *           Required. The table id.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Schema $schema
+     *           Optional. The schema of the datasource.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +62,7 @@ class BigQueryTableReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project the table belongs to.
+     * Required. The project that the table belongs to.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -65,7 +73,7 @@ class BigQueryTableReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project the table belongs to.
+     * Required. The project that the table belongs to.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -80,7 +88,7 @@ class BigQueryTableReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The dataset the table belongs to.
+     * Required. The dataset that the table belongs to.
      *
      * Generated from protobuf field <code>string dataset_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -91,7 +99,7 @@ class BigQueryTableReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The dataset the table belongs to.
+     * Required. The dataset that the table belongs to.
      *
      * Generated from protobuf field <code>string dataset_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -127,6 +135,42 @@ class BigQueryTableReference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->table_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The schema of the datasource.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Schema schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\Schema|null
+     */
+    public function getSchema()
+    {
+        return $this->schema;
+    }
+
+    public function hasSchema()
+    {
+        return isset($this->schema);
+    }
+
+    public function clearSchema()
+    {
+        unset($this->schema);
+    }
+
+    /**
+     * Optional. The schema of the datasource.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Schema schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Schema $var
+     * @return $this
+     */
+    public function setSchema($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\Schema::class);
+        $this->schema = $var;
 
         return $this;
     }

@@ -20,13 +20,13 @@ class BatchWriteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * Common options for this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
      */
-    private $request_options = null;
+    protected $request_options = null;
     /**
      * Required. The groups of mutations to be applied.
      *
@@ -34,21 +34,13 @@ class BatchWriteRequest extends \Google\Protobuf\Internal\Message
      */
     private $mutation_groups;
     /**
-     * Optional. When `exclude_txn_from_change_streams` is set to `true`:
-     *  * Mutations from all transactions in this batch write operation will not
-     *  be recorded in change streams with DDL option `allow_txn_exclusion=true`
-     *  that are tracking columns modified by these transactions.
-     *  * Mutations from all transactions in this batch write operation will be
-     *  recorded in change streams with DDL option `allow_txn_exclusion=false or
-     *  not set` that are tracking columns modified by these transactions.
-     * When `exclude_txn_from_change_streams` is set to `false` or not set,
-     * mutations from all transactions in this batch write operation will be
-     * recorded in all change streams that are tracking columns modified by these
-     * transactions.
+     * Optional. If you don't set the `exclude_txn_from_change_streams` option or
+     * if it's set to `false`, then any change streams monitoring columns modified
+     * by transactions will capture the updates made within that transaction.
      *
      * Generated from protobuf field <code>bool exclude_txn_from_change_streams = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $exclude_txn_from_change_streams = false;
+    protected $exclude_txn_from_change_streams = false;
 
     /**
      * @param string                                                     $session        Required. The session in which the batch request is to be run. Please see
@@ -79,17 +71,9 @@ class BatchWriteRequest extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup>|\Google\Protobuf\Internal\RepeatedField $mutation_groups
      *           Required. The groups of mutations to be applied.
      *     @type bool $exclude_txn_from_change_streams
-     *           Optional. When `exclude_txn_from_change_streams` is set to `true`:
-     *            * Mutations from all transactions in this batch write operation will not
-     *            be recorded in change streams with DDL option `allow_txn_exclusion=true`
-     *            that are tracking columns modified by these transactions.
-     *            * Mutations from all transactions in this batch write operation will be
-     *            recorded in change streams with DDL option `allow_txn_exclusion=false or
-     *            not set` that are tracking columns modified by these transactions.
-     *           When `exclude_txn_from_change_streams` is set to `false` or not set,
-     *           mutations from all transactions in this batch write operation will be
-     *           recorded in all change streams that are tracking columns modified by these
-     *           transactions.
+     *           Optional. If you don't set the `exclude_txn_from_change_streams` option or
+     *           if it's set to `false`, then any change streams monitoring columns modified
+     *           by transactions will capture the updates made within that transaction.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,17 +170,9 @@ class BatchWriteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When `exclude_txn_from_change_streams` is set to `true`:
-     *  * Mutations from all transactions in this batch write operation will not
-     *  be recorded in change streams with DDL option `allow_txn_exclusion=true`
-     *  that are tracking columns modified by these transactions.
-     *  * Mutations from all transactions in this batch write operation will be
-     *  recorded in change streams with DDL option `allow_txn_exclusion=false or
-     *  not set` that are tracking columns modified by these transactions.
-     * When `exclude_txn_from_change_streams` is set to `false` or not set,
-     * mutations from all transactions in this batch write operation will be
-     * recorded in all change streams that are tracking columns modified by these
-     * transactions.
+     * Optional. If you don't set the `exclude_txn_from_change_streams` option or
+     * if it's set to `false`, then any change streams monitoring columns modified
+     * by transactions will capture the updates made within that transaction.
      *
      * Generated from protobuf field <code>bool exclude_txn_from_change_streams = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -207,17 +183,9 @@ class BatchWriteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When `exclude_txn_from_change_streams` is set to `true`:
-     *  * Mutations from all transactions in this batch write operation will not
-     *  be recorded in change streams with DDL option `allow_txn_exclusion=true`
-     *  that are tracking columns modified by these transactions.
-     *  * Mutations from all transactions in this batch write operation will be
-     *  recorded in change streams with DDL option `allow_txn_exclusion=false or
-     *  not set` that are tracking columns modified by these transactions.
-     * When `exclude_txn_from_change_streams` is set to `false` or not set,
-     * mutations from all transactions in this batch write operation will be
-     * recorded in all change streams that are tracking columns modified by these
-     * transactions.
+     * Optional. If you don't set the `exclude_txn_from_change_streams` option or
+     * if it's set to `false`, then any change streams monitoring columns modified
+     * by transactions will capture the updates made within that transaction.
      *
      * Generated from protobuf field <code>bool exclude_txn_from_change_streams = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

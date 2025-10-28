@@ -20,59 +20,65 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] An optional description of this resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] Features supported by the network.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkProfileNetworkFeatures features = 246211645;</code>
      */
-    private $features = null;
+    protected $features = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#networkProfile for network profiles.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Location to which the network is restricted.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkProfileLocation location = 290430901;</code>
      */
-    private $location = null;
+    protected $location = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
+    /**
+     * [Output Only] Type of the network profile.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkProfileProfileType profile_type = 150167568;</code>
+     */
+    protected $profile_type = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
-    private $self_link_with_id = null;
+    protected $self_link_with_id = null;
     /**
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.
@@ -94,6 +100,8 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
      *           [Output Only] Location to which the network is restricted.
      *     @type string $name
      *           [Output Only] Name of the resource.
+     *     @type \Google\Cloud\Compute\V1\NetworkProfileProfileType $profile_type
+     *           [Output Only] Type of the network profile.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
@@ -354,6 +362,42 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Type of the network profile.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkProfileProfileType profile_type = 150167568;</code>
+     * @return \Google\Cloud\Compute\V1\NetworkProfileProfileType|null
+     */
+    public function getProfileType()
+    {
+        return $this->profile_type;
+    }
+
+    public function hasProfileType()
+    {
+        return isset($this->profile_type);
+    }
+
+    public function clearProfileType()
+    {
+        unset($this->profile_type);
+    }
+
+    /**
+     * [Output Only] Type of the network profile.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkProfileProfileType profile_type = 150167568;</code>
+     * @param \Google\Cloud\Compute\V1\NetworkProfileProfileType $var
+     * @return $this
+     */
+    public function setProfileType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\NetworkProfileProfileType::class);
+        $this->profile_type = $var;
 
         return $this;
     }

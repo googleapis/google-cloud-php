@@ -228,6 +228,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/changeRequests/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{resource=organizations/*/locations/*/encryptionConfigs/*}:getIamPolicy',
                     ],
                 ],
@@ -326,7 +330,22 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/changeRequests/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{resource=organizations/*/locations/*/encryptionConfigs/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*/dataAssets/*}:setIamPolicy',
                         'body' => '*',
                     ],
                 ],
@@ -425,7 +444,22 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/changeRequests/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{resource=organizations/*/locations/*/encryptionConfigs/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*/dataAssets/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],
@@ -498,7 +532,7 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/operations/*}',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*}/operations',
                     ],
                 ],
                 'placeholders' => [

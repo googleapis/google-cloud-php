@@ -23,12 +23,17 @@
 namespace Google\Cloud\AIPlatform\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\Client\FeatureOnlineStoreServiceClient;
+use Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteRequest;
+use Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteResponse;
 use Google\Cloud\AIPlatform\V1\FetchFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse;
+use Google\Cloud\AIPlatform\V1\GenerateFetchAccessTokenRequest;
+use Google\Cloud\AIPlatform\V1\GenerateFetchAccessTokenResponse;
 use Google\Cloud\AIPlatform\V1\NearestNeighborQuery;
 use Google\Cloud\AIPlatform\V1\SearchNearestEntitiesRequest;
 use Google\Cloud\AIPlatform\V1\SearchNearestEntitiesResponse;
@@ -72,6 +77,103 @@ class FeatureOnlineStoreServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new FeatureOnlineStoreServiceClient($options);
+    }
+
+    /** @test */
+    public function featureViewDirectWriteTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new FeatureViewDirectWriteResponse();
+        $transport->addResponse($expectedResponse);
+        $expectedResponse2 = new FeatureViewDirectWriteResponse();
+        $transport->addResponse($expectedResponse2);
+        $expectedResponse3 = new FeatureViewDirectWriteResponse();
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $dataKeyAndFeatureValues = [];
+        $request = new FeatureViewDirectWriteRequest();
+        $request->setDataKeyAndFeatureValues($dataKeyAndFeatureValues);
+        $dataKeyAndFeatureValues2 = [];
+        $request2 = new FeatureViewDirectWriteRequest();
+        $request2->setDataKeyAndFeatureValues($dataKeyAndFeatureValues2);
+        $dataKeyAndFeatureValues3 = [];
+        $request3 = new FeatureViewDirectWriteRequest();
+        $request3->setDataKeyAndFeatureValues($dataKeyAndFeatureValues3);
+        $bidi = $gapicClient->featureViewDirectWrite();
+        $this->assertInstanceOf(BidiStream::class, $bidi);
+        $bidi->write($request);
+        $responses = [];
+        $responses[] = $bidi->read();
+        $bidi->writeAll([$request2, $request3]);
+        foreach ($bidi->closeWriteAndReadAll() as $response) {
+            $responses[] = $response;
+        }
+
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $createStreamRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($createStreamRequests));
+        $streamFuncCall = $createStreamRequests[0]->getFuncCall();
+        $streamRequestObject = $createStreamRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.FeatureOnlineStoreService/FeatureViewDirectWrite',
+            $streamFuncCall
+        );
+        $this->assertNull($streamRequestObject);
+        $callObjects = $transport->popCallObjects();
+        $this->assertSame(1, count($callObjects));
+        $bidiCall = $callObjects[0];
+        $writeRequests = $bidiCall->popReceivedCalls();
+        $expectedRequests = [];
+        $expectedRequests[] = $request;
+        $expectedRequests[] = $request2;
+        $expectedRequests[] = $request3;
+        $this->assertEquals($expectedRequests, $writeRequests);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function featureViewDirectWriteExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        $bidi = $gapicClient->featureViewDirectWrite();
+        $results = $bidi->closeWriteAndReadAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -136,6 +238,68 @@ class FeatureOnlineStoreServiceClientTest extends GeneratedTest
         $request = (new FetchFeatureValuesRequest())->setFeatureView($formattedFeatureView);
         try {
             $gapicClient->fetchFeatureValues($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateFetchAccessTokenTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $accessToken = 'accessToken-1938933922';
+        $expectedResponse = new GenerateFetchAccessTokenResponse();
+        $expectedResponse->setAccessToken($accessToken);
+        $transport->addResponse($expectedResponse);
+        $request = new GenerateFetchAccessTokenRequest();
+        $response = $gapicClient->generateFetchAccessToken($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.FeatureOnlineStoreService/GenerateFetchAccessToken',
+            $actualFuncCall
+        );
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateFetchAccessTokenExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        $request = new GenerateFetchAccessTokenRequest();
+        try {
+            $gapicClient->generateFetchAccessToken($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

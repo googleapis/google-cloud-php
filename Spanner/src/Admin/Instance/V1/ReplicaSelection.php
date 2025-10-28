@@ -20,7 +20,7 @@ class ReplicaSelection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

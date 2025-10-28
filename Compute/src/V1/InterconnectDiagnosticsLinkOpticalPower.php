@@ -20,13 +20,13 @@ class InterconnectDiagnosticsLinkOpticalPower extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * Value of the current receiving or transmitting optical power, read in dBm. Take a known good optical value, give it a 10% margin and trigger warnings relative to that value. In general, a -7dBm warning and a -11dBm alarm are good optical value estimates for most links.
      *
      * Generated from protobuf field <code>optional float value = 111972721;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.

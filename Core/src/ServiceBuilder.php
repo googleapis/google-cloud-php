@@ -88,12 +88,8 @@ class ServiceBuilder
      *           requests specifically for authentication.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     *     @type array $keyFile The contents of the service account credentials
-     *           .json file retrieved from the Google Developer's Console.
-     *           Ex: `json_decode(file_get_contents($path), true)`.
-     *     @type string $keyFilePath The full path to your service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
+     *     @type array $keyFile [DEPRECATED]
+     *     @type string $keyFilePath [DEPRECATED]
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
@@ -261,7 +257,7 @@ class ServiceBuilder
      *
      * Example:
      * ```
-     * $spanner = $cloud->spanner();
+     * $spanner = $cloud->spanner(['projectId' => 'my-project']);
      * ```
      *
      * @param array $config [optional] {

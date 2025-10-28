@@ -20,26 +20,26 @@ class ColumnMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Type of the column.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Type type = 2;</code>
      */
-    private $type = null;
+    protected $type = null;
     /**
      * Indicates whether the column is a primary key column.
      *
      * Generated from protobuf field <code>bool is_primary_key = 3;</code>
      */
-    private $is_primary_key = false;
+    protected $is_primary_key = false;
     /**
      * Ordinal position of the column based on the original table definition
      * in the schema starting with a value of 1.
      *
      * Generated from protobuf field <code>int64 ordinal_position = 4;</code>
      */
-    private $ordinal_position = 0;
+    protected $ordinal_position = 0;
 
     /**
      * Constructor.
@@ -181,6 +181,4 @@ class ColumnMetadata extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ColumnMetadata::class, \Google\Cloud\Spanner\V1\ChangeStreamRecord_DataChangeRecord_ColumnMetadata::class);
 

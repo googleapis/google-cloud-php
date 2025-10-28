@@ -31,46 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\BigQuery\Storage\V1\Client\BigQueryWriteClient;
+use Google\Cloud\BigQuery\Storage\V1\GetWriteStreamRequest;
+use Google\Cloud\BigQuery\Storage\V1\WriteStream;
 
-use Google\Cloud\BigQuery\Storage\V1\BigQueryReadClient;
-use Google\Cloud\BigQuery\Storage\V1\DataFormat;
-use Google\Cloud\BigQuery\Storage\V1\ReadSession;
-use Google\Cloud\BigQuery\Storage\V1\ReadSession\TableReadOptions;
+// Create a client.
+$bigQueryWriteClient = new BigQueryWriteClient();
 
-$client = new BigQueryReadClient();
+// Prepare the request message.
+$request = (new GetWriteStreamRequest())
+    ->setName($formattedName);
 
-$project = sprintf(
-    'projects/%s',
-    '[MY_PROJECT_ID]'
-);
-$table = sprintf(
-    'projects/%s/datasets/%s/tables/%s',
-    'bigquery-public-data',
-    'usa_names',
-    'usa_1910_current'
-);
-$readOptions = (new TableReadOptions())
-    ->setRowRestriction('state = "WA"');
-$readSession = (new ReadSession())
-    ->setTable($table)
-    ->setDataFormat(DataFormat::AVRO)
-    ->setReadOptions($readOptions);
-$session = $client->createReadSession([
-    'parent' => $project,
-    'readSession' => $readSession,
-    'maxStreamCount' => 1
-]);
-
-$stream = $client->readRows([
-    'readStream' => $session->getStreams()[0]->getName()
-]);
-
-foreach ($stream->readAll() as $response) {
-    printf(
-        'Discovered %s rows in response.' . PHP_EOL,
-        $response->getRowCount()
-    );
+// Call the API and handle any network failures.
+try {
+    /** @var WriteStream $response */
+    $response = $bigQueryWriteClient->getWriteStream($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

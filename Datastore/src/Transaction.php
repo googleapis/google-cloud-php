@@ -84,7 +84,7 @@ class Transaction
      * @param EntityInterface $entity The entity to insert.
      * @return Transaction
      */
-    public function insert(EntityInterface $entity)
+    public function insert(EntityInterface $entity): Transaction
     {
         return $this->insertBatch([$entity]);
     }
@@ -113,7 +113,7 @@ class Transaction
      * @param EntityInterface[] $entities The entities to insert.
      * @return Transaction
      */
-    public function insertBatch(array $entities)
+    public function insertBatch(array $entities): Transaction
     {
         $entities = $this->operation->allocateIdsToEntities($entities);
         foreach ($entities as $entity) {
@@ -153,7 +153,7 @@ class Transaction
      * }
      * @return Transaction
      */
-    public function update(EntityInterface $entity, array $options = [])
+    public function update(EntityInterface $entity, array $options = []): Transaction
     {
         $options += [
             'allowOverwrite' => false
@@ -193,7 +193,7 @@ class Transaction
      * }
      * @return Transaction
      */
-    public function updateBatch(array $entities, array $options = [])
+    public function updateBatch(array $entities, array $options = []): Transaction
     {
         $options += [
             'allowOverwrite' => false
@@ -232,7 +232,7 @@ class Transaction
      * @param EntityInterface $entity The entity to upsert.
      * @return Transaction
      */
-    public function upsert(EntityInterface $entity)
+    public function upsert(EntityInterface $entity): Transaction
     {
         return $this->upsertBatch([$entity]);
     }
@@ -269,7 +269,7 @@ class Transaction
      * @param EntityInterface[] $entities The entities to upsert.
      * @return Transaction
      */
-    public function upsertBatch(array $entities)
+    public function upsertBatch(array $entities): Transaction
     {
         $entities = $this->operation->allocateIdsToEntities($entities);
         foreach ($entities as $entity) {
@@ -297,7 +297,7 @@ class Transaction
      * @param Key $key The key to delete
      * @return Transaction
      */
-    public function delete(Key $key)
+    public function delete(Key $key): Transaction
     {
         return $this->deleteBatch([$key]);
     }
@@ -323,7 +323,7 @@ class Transaction
      * @param Key[] $keys The keys to delete.
      * @return Transaction
      */
-    public function deleteBatch(array $keys)
+    public function deleteBatch(array $keys): Transaction
     {
         foreach ($keys as $key) {
             $this->mutations[] = $this->operation->mutation('delete', $key, Key::class);
@@ -350,6 +350,15 @@ class Transaction
      */
     public function commit(array $options = [])
     {
+        if (empty($this->mutations)) {
+            $this->operation->rollback($this->transactionId);
+
+            return [
+                'mutationResults' => [],
+                'indexUpdates' => 0
+            ];
+        }
+
         $options['transaction'] = $this->transactionId;
 
         return $this->operation->commit($this->mutations, $options);

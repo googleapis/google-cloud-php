@@ -20,7 +20,6 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
@@ -31,6 +30,21 @@ use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\AllocateIdsRequest;
+use Google\Cloud\Datastore\V1\AllocateIdsResponse;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
+use Google\Cloud\Datastore\V1\CommitResponse;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\LookupResponse;
+use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RollbackResponse;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryResponse;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -43,13 +57,15 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class TransactionTest extends TestCase
 {
+    use ProtoEncodeTrait;
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
 
     const PROJECT = 'example-project';
-    const TRANSACTION = 'transaction-id';
+    const TRANSACTION = 'base64EncodedId';
 
-    private $connection;
+    private $gapicClient;
+    private $operation;
     private $transaction;
     private $readOnly;
     private $key;
@@ -57,72 +73,82 @@ class TransactionTest extends TestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->gapicClient = $this->prophesize(DatastoreClient::class);
 
-        $op = new Operation(
-            $this->connection->reveal(),
+        $this->operation = new Operation(
+            $this->gapicClient->reveal(),
             self::PROJECT,
             null,
             new EntityMapper(self::PROJECT, false, false)
         );
 
-        $this->transaction = TestHelpers::stub(Transaction::class, [
-            $op, self::PROJECT, self::TRANSACTION
-        ], ['operation']);
+        $this->transaction = new Transaction(
+            $this->operation,
+            self::PROJECT,
+            self::TRANSACTION
+        );
 
-        $this->readOnly = TestHelpers::stub(ReadOnlyTransaction::class, [
-            $op, self::PROJECT, self::TRANSACTION
-        ], ['operation']);
+        $this->readOnly = new ReadOnlyTransaction(
+            $this->operation,
+            self::PROJECT,
+            self::TRANSACTION
+        );
 
-        $this->key = $op->key('Person', 12345);
-        $this->entity = $op->entity($this->key, ['name' => 'John']);
+        $this->key = $this->operation->key('Person', 12345);
+        $this->entity = $this->operation->entity($this->key, ['name' => 'John']);
     }
 
-    /**
-     * @dataProvider transactionProvider
-     */
-    public function testLookup(callable $transaction)
+    public function testTesting()
     {
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('keys', [$this->key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
+        $this->gapicClient->lookup(
+            Argument::type(LookupRequest::class),
+            Argument::any()
+        )->shouldBeCalled(1)
+            ->willReturn(self::generateProto(LookupResponse::class, [
             'found' => [
                 [
                     'entity' => $this->entityArray($this->key)
                 ]
             ]
-        ]);
+        ]));
 
-        $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $transaction = new Transaction($this->operation, self::PROJECT, self::TRANSACTION);
 
         $res = $transaction->lookup($this->key);
         $this->assertInstanceOf(Entity::class, $res);
         $this->assertEquals($this->key->keyObject(), $res->key()->keyObject());
     }
 
-    public function testLookupWithReadTime()
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testLookup(string $transactionName)
     {
-        $time = new Timestamp(new \DateTime());
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('keys', [$this->key->keyObject()]),
-            Argument::withEntry('readTime', $time)
-        ))->shouldBeCalled()->willReturn([
+         $this->gapicClient->lookup(
+             Argument::type(LookupRequest::class),
+             Argument::any()
+         )->shouldBeCalled(1)
+            ->willReturn(self::generateProto(LookupResponse::class, [
             'found' => [
                 [
                     'entity' => $this->entityArray($this->key)
                 ]
             ]
-        ]);
+         ]));
 
-        $transaction = $this->readOnly;
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $transaction = $this->$transactionName;
+
+        $res = $transaction->lookup($this->key);
+        $this->assertInstanceOf(Entity::class, $res);
+        $this->assertEquals($this->key->keyObject(), $res->key()->keyObject());
+    }
+
+    public function testLookupWithReadTimeThrowsAnException()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $time = new Timestamp(new \DateTime());
+
+        $transaction = $this->transaction;
 
         $res = $transaction->lookup($this->key, ['readTime' => $time]);
         $this->assertInstanceOf(Entity::class, $res);
@@ -131,22 +157,20 @@ class TransactionTest extends TestCase
     /**
      * @dataProvider transactionProvider
      */
-    public function testLookupMissing(callable $transaction)
+    public function testLookupMissing(string $transaction)
     {
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$this->key->keyObject()])
-        )->shouldBeCalled()->willReturn([
+        $this->gapicClient->lookup(
+            Argument::type(LookupRequest::class),
+            Argument::any()
+        )->shouldBeCalled(1)->willReturn(self::generateProto(LookupResponse::class, [
             'missing' => [
                 [
                     'entity' => $this->entityArray($this->key)
                 ]
             ]
-        ]);
+        ]));
 
-        $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $transaction = $this->$transaction;
 
         $res = $transaction->lookup($this->key);
         $this->assertNull($res);
@@ -155,11 +179,13 @@ class TransactionTest extends TestCase
     /**
      * @dataProvider transactionProvider
      */
-    public function testLookupBatch(callable $transaction)
+    public function testLookupBatch(string $transaction)
     {
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$this->key->keyObject()])
-        )->shouldBeCalled()->willReturn([
+        $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
+                $this->assertEquals(1, count($request->getKeys()));
+                return true;
+        }), Argument::any())
+        ->shouldBeCalled(1)->willReturn(self::generateProto(LookupResponse::class, [
             'found' => [
                 [
                     'entity' => $this->entityArray($this->key)
@@ -173,13 +199,9 @@ class TransactionTest extends TestCase
             'deferred' => [
                 $this->key->keyObject()
             ]
-        ]);
+        ]));
 
-        $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
-
+        $transaction = $this->$transaction;
         $res = $transaction->lookupBatch([$this->key]);
         $this->assertInstanceOf(Entity::class, $res['found'][0]);
         $this->assertInstanceOf(Key::class, $res['missing'][0]);
@@ -189,36 +211,27 @@ class TransactionTest extends TestCase
     /**
      * @dataProvider transactionProvider
      */
-    public function testLookupBatchWithReadTime(callable $transaction)
+    public function testLookupBatchWithReadTimeThrowsAnException(string $transaction)
     {
+        $this->expectException(InvalidArgumentException::class);
         $time = new Timestamp(new \DateTime());
-        $this->connection->lookup(
-            Argument::withEntry('readTime', $time)
-        )->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($this->key)
-                ]
-            ]
-        ]);
 
-        $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $transaction = $this->$transaction;
 
-        $res = $transaction->lookupBatch([$this->key], ['readTime' => $time]);
+        $transaction->lookupBatch([$this->key], ['readTime' => $time]);
     }
 
     /**
      * @dataProvider transactionProvider
      */
-    public function testRunQuery(callable $transaction)
+    public function testRunQuery(string $transaction)
     {
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1'])
-        ))->shouldBeCalled()->willReturn([
+        $this->gapicClient->runQuery(Argument::that(function (RunQueryRequest $request) {
+            $this->assertEquals(self::PROJECT, $request->getProjectId());
+            $this->assertNotNull($request->getGqlQuery());
+            $this->assertEquals('SELECT 1=1', $request->getGqlQuery()->getQueryString());
+            return true;
+        }), Argument::any())->shouldBeCalled(1)->willReturn(self::generateProto(RunQueryResponse::class, [
             'batch' => [
                 'entityResults' => [
                     [
@@ -226,16 +239,14 @@ class TransactionTest extends TestCase
                     ]
                 ]
             ]
-        ]);
+        ]));
 
-        $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $transaction = $this->$transaction;
 
         $query = $this->prophesize(QueryInterface::class);
         $query->queryKey()->willReturn('gqlQuery');
         $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
+        $query->canPaginate()->willReturn(false);
 
         $res = iterator_to_array($transaction->runQuery($query->reveal()));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
@@ -244,33 +255,37 @@ class TransactionTest extends TestCase
     /**
      * @dataProvider transactionProvider
      */
-    public function testRunAggregationQuery(callable $transaction)
+    public function testRunAggregationQuery(string $transaction)
     {
-        $this->connection->runAggregationQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', [
-                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
-            ])
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'aggregationResults' => [
-                    [
-                        'aggregateProperties' => ['property_1' => 1]
-                    ]
-                ],
-                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
-            ]
-        ]);
+        $expectedQueryString = 'AGGREGATE (COUNT(*)) over (SELECT 1=1)';
 
-        $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->runAggregationQuery(Argument::that(
+            function (RunAggregationQueryRequest $request) use ($expectedQueryString) {
+                $this->assertEquals(self::PROJECT, $request->getPartitionId()->getProjectId());
+                $this->assertEquals($expectedQueryString, $request->getGqlQuery()->getQueryString());
+                return true;
+            }
+        ), Argument::any())->shouldBeCalled(1)
+            ->willReturn(self::generateProto(RunAggregationQueryResponse::class, [
+                'batch' => [
+                        'aggregationResults' => [
+                            [
+                                'aggregateProperties' => ['property_1' => ['integerValue' => 1]]
+                            ]
+                        ],
+                        'readTime' => [
+                            'seconds' => 10,
+                            'nanos' => 10
+                        ]
+                    ]
+                ]));
+
+        $transaction = $this->$transaction;
 
         $query = $this->prophesize(AggregationQuery::class);
         $query->queryObject()->willReturn([
             'gqlQuery' => [
-                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
+                'queryString' => $expectedQueryString
             ]
         ]);
 
@@ -278,48 +293,33 @@ class TransactionTest extends TestCase
         $this->assertInstanceOf(AggregationQueryResult::class, $res);
     }
 
-    public function testRunQueryWithReadTime()
+    public function testRunQueryWithReadTimeThrowsAnException()
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $time = new Timestamp(new \DateTime());
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1']),
-            Argument::withEntry('readTime', $time)
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'entityResults' => [
-                    [
-                        'entity' => $this->entityArray($this->key)
-                    ]
-                ]
-            ]
-        ]);
 
         $transaction = $this->readOnly;
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
 
         $query = $this->prophesize(QueryInterface::class);
         $query->queryKey()->willReturn('gqlQuery');
         $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
 
         $res = iterator_to_array($transaction->runQuery($query->reveal(), ['readTime' => $time]));
-        $this->assertContainsOnlyInstancesOf(Entity::class, $res);
     }
 
     /**
      * @dataProvider transactionProvider
      */
-    public function testRollback(callable $transaction)
+    public function testRollback(string $transaction)
     {
-        $this->connection->rollback(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled();
+        $this->gapicClient->rollback(Argument::that(function (RollbackRequest $request) {
+            $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
+            return true;
+        }))->shouldBeCalled(1)
+            ->willReturn(new RollbackResponse());
 
-        $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $transaction = $this->$transaction;
 
         $transaction->rollback();
     }
@@ -329,20 +329,30 @@ class TransactionTest extends TestCase
      */
     public function testEntityMutations($method, $mutation, $key)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $expectedResult =  [
+            'mutationResults' => [
+                [
+                    'version' => 1,
+                    'conflictDetected' => false,
+                    'transformResults' => []
+                ]
+            ],
+            'indexUpdates' => 0
+        ];
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+                $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
+                $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
+                $this->assertNotEmpty($request->getMutations());
+                return true;
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
         $this->transaction->$method($this->entity, ['allowOverwrite' => true]);
         $res = $this->transaction->commit();
 
-        $this->assertEquals($this->commitResponse(), $res);
+        $this->assertEquals($expectedResult, $res);
     }
 
     /**
@@ -350,22 +360,23 @@ class TransactionTest extends TestCase
      */
     public function testEntityMutationsBatch($method, $mutation, $key)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $expectedResult = $this->basicCommitResponse();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+                $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
+                $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
+                $this->assertNotEmpty($request->getMutations());
+                return true;
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
         $method .= 'Batch';
 
         $this->transaction->$method([$this->entity], ['allowOverwrite' => true]);
         $res = $this->transaction->commit();
 
-        $this->assertEquals($this->commitResponse(), $res);
+        $this->assertEquals($expectedResult, $res);
     }
 
     public function mutationsProvider()
@@ -378,31 +389,33 @@ class TransactionTest extends TestCase
      */
     public function testMutationsWithPartialKey($method, $mutation, $key, $id)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $expectedResponse = $this->basicCommitResponse();
+
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+                $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
+                $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
+                $this->assertNotEmpty($request->getMutations());
+                return true;
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(CommitResponse::class, $expectedResponse));
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
+        $this->gapicClient->allocateIds(Argument::that(function (AllocateIdsRequest $request) {
+            $this->assertEquals(1, count($request->getKeys()));
+            return true;
+        }), Argument::any())->shouldBeCalled()->willReturn(self::generateProto(AllocateIdsResponse::class, [
             'keys' => [
                 $keyWithId->keyObject()
             ]
-        ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        ]));
 
         $entity = new Entity($key, ['name' => 'John']);
         $this->transaction->$method($entity);
         $res = $this->transaction->commit();
 
-        $this->assertEquals($this->commitResponse(), $res);
+        $this->assertEquals($expectedResponse, $res);
     }
 
     /**
@@ -410,32 +423,33 @@ class TransactionTest extends TestCase
      */
     public function testBatchMutationsWithPartialKey($method, $mutation, $key, $id)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $expectedResult = $this->basicCommitResponse();
+
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
+            $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
+            $this->assertNotEmpty($request->getMutations());
+            return true;
+        }), Argument::any())->shouldBeCalled(1)
+            ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
+        $this->gapicClient->allocateIds(Argument::that(function (AllocateIdsRequest $request) {
+            $this->assertEquals(1, count($request->getKeys()));
+            return true;
+        }), Argument::any())->shouldBeCalled(1)->willReturn(self::generateProto(AllocateIdsResponse::class, [
             'keys' => [
                 $keyWithId->keyObject()
             ]
-        ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        ]));
 
         $method .= 'Batch';
         $entity = new Entity($key, ['name' => 'John']);
         $this->transaction->$method([$entity]);
         $res = $this->transaction->commit();
 
-        $this->assertEquals($this->commitResponse(), $res);
+        $this->assertEquals($expectedResult, $res);
     }
 
     public function partialKeyMutationsProvider()
@@ -448,47 +462,40 @@ class TransactionTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [
-                [
-                    'delete' => $this->key->keyObject()
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $expectedResult = $this->basicCommitResponse();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+                $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
+                $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
+                $this->assertNotEmpty($request->getMutations());
+                return true;
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
         $this->transaction->delete($this->key);
         $res = $this->transaction->commit();
 
-        $this->assertEquals($this->commitResponse(), $res);
+        $this->assertEquals($expectedResult, $res);
     }
 
     public function testDeleteBatch()
     {
+        $expectedResult = $this->basicCommitResponse();
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [
-                [
-                    'delete' => $this->key->keyObject()
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+                $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
+                $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
+                $this->assertNotEmpty($request->getMutations());
+                return true;
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
         $this->transaction->deleteBatch([$this->key]);
         $res = $this->transaction->commit();
 
-        $this->assertEquals($this->commitResponse(), $res);
+        $this->assertEquals($expectedResult, $res);
     }
 
     private function entityArray(Key $key)
@@ -520,33 +527,29 @@ class TransactionTest extends TestCase
         ];
     }
 
-    private function commitResponse()
+    public function transactionProvider()
     {
         return [
-            'mutationResults' => [
-                [
-                    'version' => 1
-                ]
+            [
+                'transaction'
+            ],
+            [
+                'readOnly'
             ]
         ];
     }
 
-    public function transactionProvider()
+    private function basicCommitResponse(): array
     {
-        // init so the callbacks have a reference to hold until invoked.
-        $this->setUp();
-
         return [
-            // return callables to get around phpunit's annoying habit of running data providers way too early.
-            [
-                function () {
-                    return $this->transaction;
-                }
-            ], [
-                function () {
-                    return $this->readOnly;
-                }
-            ]
+            'mutationResults' => [
+                [
+                    'version' => 1,
+                    'conflictDetected' => false,
+                    'transformResults' => []
+                ]
+            ],
+            'indexUpdates' => 0
         ];
     }
 }

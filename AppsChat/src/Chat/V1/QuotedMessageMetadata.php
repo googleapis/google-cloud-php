@@ -9,24 +9,35 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Information about a quoted message.
+ * Information about a message that another message quotes.
+ * When you create a message, you can quote messages within the same
+ * thread, or quote a root message to create a new root message.
+ * However, you can't quote a message reply from a different thread.
+ * When you update a message, you can't add or replace the
+ * `quotedMessageMetadata` field, but you can remove it.
+ * For example usage, see [Quote another
+ * message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
  *
  * Generated from protobuf message <code>google.chat.v1.QuotedMessageMetadata</code>
  */
 class QuotedMessageMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Resource name of the quoted message.
+     * Required. Resource name of the message that is quoted.
      * Format: `spaces/{space}/messages/{message}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
     /**
-     * Output only. The timestamp when the quoted message was created or when the
+     * Required. The timestamp when the quoted message was created or when the
      * quoted message was last updated.
+     * If the message was edited, use this field, `last_update_time`.
+     * If the message was never edited, use `create_time`.
+     * If `last_update_time` doesn't match the latest version of the quoted
+     * message, the request fails.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $last_update_time = null;
 
@@ -37,11 +48,15 @@ class QuotedMessageMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Resource name of the quoted message.
+     *           Required. Resource name of the message that is quoted.
      *           Format: `spaces/{space}/messages/{message}`
      *     @type \Google\Protobuf\Timestamp $last_update_time
-     *           Output only. The timestamp when the quoted message was created or when the
+     *           Required. The timestamp when the quoted message was created or when the
      *           quoted message was last updated.
+     *           If the message was edited, use this field, `last_update_time`.
+     *           If the message was never edited, use `create_time`.
+     *           If `last_update_time` doesn't match the latest version of the quoted
+     *           message, the request fails.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,10 +65,10 @@ class QuotedMessageMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of the quoted message.
+     * Required. Resource name of the message that is quoted.
      * Format: `spaces/{space}/messages/{message}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -62,10 +77,10 @@ class QuotedMessageMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of the quoted message.
+     * Required. Resource name of the message that is quoted.
      * Format: `spaces/{space}/messages/{message}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -78,10 +93,14 @@ class QuotedMessageMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The timestamp when the quoted message was created or when the
+     * Required. The timestamp when the quoted message was created or when the
      * quoted message was last updated.
+     * If the message was edited, use this field, `last_update_time`.
+     * If the message was never edited, use `create_time`.
+     * If `last_update_time` doesn't match the latest version of the quoted
+     * message, the request fails.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastUpdateTime()
@@ -100,10 +119,14 @@ class QuotedMessageMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The timestamp when the quoted message was created or when the
+     * Required. The timestamp when the quoted message was created or when the
      * quoted message was last updated.
+     * If the message was edited, use this field, `last_update_time`.
+     * If the message was never edited, use `create_time`.
+     * If `last_update_time` doesn't match the latest version of the quoted
+     * message, the request fails.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

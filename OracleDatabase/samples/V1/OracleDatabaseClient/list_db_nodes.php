@@ -33,8 +33,9 @@ use Google\Cloud\OracleDatabase\V1\ListDbNodesRequest;
  * Lists the database nodes of a VM Cluster.
  *
  * @param string $formattedParent The parent value for database node in the following format:
- *                                projects/{project}/locations/{location}/cloudVmClusters/{cloudVmCluster}. Please see
- *                                {@see OracleDatabaseClient::cloudVmClusterName()} for help formatting this field.
+ *                                projects/{project}/locations/{location}/cloudVmClusters/{cloudVmCluster}.
+ *                                . Please see
+ *                                {@see OracleDatabaseClient::exadbVmClusterName()} for help formatting this field.
  */
 function list_db_nodes_sample(string $formattedParent): void
 {
@@ -70,10 +71,10 @@ function list_db_nodes_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = OracleDatabaseClient::cloudVmClusterName(
+    $formattedParent = OracleDatabaseClient::exadbVmClusterName(
         '[PROJECT]',
         '[LOCATION]',
-        '[CLOUD_VM_CLUSTER]'
+        '[EXADB_VM_CLUSTER]'
     );
 
     list_db_nodes_sample($formattedParent);

@@ -24,7 +24,7 @@ namespace Google\Cloud\Spanner;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * // Create a KeyRange for all people named Bob, born in 1969.
  * $start = $spanner->date(new \DateTime('1969-01-01'));
@@ -44,31 +44,7 @@ class KeyRange
 {
     const TYPE_OPEN = 'open';
     const TYPE_CLOSED = 'closed';
-
-    /**
-     * @var string
-     */
-    private $startType;
-
-    /**
-     * @var array
-     */
-    private $start;
-
-    /**
-     * @var string
-     */
-    private $endType;
-
-    /**
-     * @var array
-     */
-    private $end;
-
-    /**
-     * @var array
-     */
-    private $definition = [
+    private const DEFINITION = [
         self::TYPE_OPEN => [
             'start' => 'startOpen',
             'end' => 'endOpen'
@@ -78,6 +54,11 @@ class KeyRange
             'end' => 'endClosed'
         ]
     ];
+
+    private string $startType;
+    private array|null $start;
+    private string $endType;
+    private array|null $end;
 
     /**
      * Create a KeyRange.
@@ -130,7 +111,7 @@ class KeyRange
      * @param array $key The key to match against.
      * @return KeyRange
      */
-    public static function prefixMatch(array $key)
+    public static function prefixMatch(array $key): KeyRange
     {
         return new static([
             'startType' => self::TYPE_CLOSED,
@@ -150,7 +131,7 @@ class KeyRange
      *
      * @return array|null
      */
-    public function start()
+    public function start(): array|null
     {
         return $this->start;
     }
@@ -169,7 +150,7 @@ class KeyRange
      * @param array $start The start of the key range.
      * @return void
      */
-    public function setStart($type, array $start)
+    public function setStart(string $type, array $start): void
     {
         $rangeKey = $this->fromDefinition($type, 'start');
 
@@ -187,7 +168,7 @@ class KeyRange
      *
      * @return array
      */
-    public function end()
+    public function end(): array
     {
         return $this->end;
     }
@@ -206,12 +187,12 @@ class KeyRange
      * @param array $end The end of the key range.
      * @return void
      */
-    public function setEnd($type, array $end)
+    public function setEnd(string $type, array $end): void
     {
-        if (!in_array($type, array_keys($this->definition))) {
+        if (!in_array($type, array_keys(self::DEFINITION))) {
             throw new \InvalidArgumentException(sprintf(
                 'Invalid KeyRange type. Allowed values are %s',
-                implode(', ', array_keys($this->definition))
+                implode(', ', array_keys(self::DEFINITION))
             ));
         }
 
@@ -245,9 +226,9 @@ class KeyRange
      * @return array
      * @access private
      */
-    public function keyRangeObject()
+    public function keyRangeObject(): array
     {
-        if (!$this->start || !$this->end) {
+        if (!isset($this->start) || !isset($this->end)) {
             throw new \BadMethodCallException('Key Range must supply a start and an end');
         }
 
@@ -264,7 +245,7 @@ class KeyRange
      * @return KeyRange
      * @access private
      */
-    public static function fromArray(array $range)
+    public static function fromArray(array $range): KeyRange
     {
         $startType = null;
         $start = null;
@@ -301,16 +282,16 @@ class KeyRange
      * @param mixed $startOrEnd
      * @return string
      */
-    private function fromDefinition($type, $startOrEnd)
+    private function fromDefinition(string $type, mixed $startOrEnd): string
     {
-        if (!array_key_exists($type, $this->definition)) {
+        if (!array_key_exists($type, self::DEFINITION)) {
             throw new \InvalidArgumentException(sprintf(
                 'Invalid KeyRange %s type. Allowed values are %s.',
                 $startOrEnd,
-                implode(', ', array_keys($this->definition))
+                implode(', ', array_keys(self::DEFINITION))
             ));
         }
 
-        return $this->definition[$type][$startOrEnd];
+        return self::DEFINITION[$type][$startOrEnd];
     }
 }

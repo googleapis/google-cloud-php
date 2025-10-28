@@ -17,18 +17,16 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\SpannerClient;
 
 class UniverseDomainTest extends SystemTestCase
 {
-    private static $client;
-    private static $instance;
+    use SystemTestCaseTrait;
+
     private static $instanceId;
-    private static $database;
-    private static $dbName;
     private static $tableName;
 
     /**
@@ -46,15 +44,15 @@ class UniverseDomainTest extends SystemTestCase
         }
 
         self::$client = new SpannerClient([
-            'keyFilePath' => $keyFilePath,
+            'credentials' => $keyFilePath,
             'projectId' => $credentials['project_id'] ?? null,
             'universeDomain' => $credentials['universe_domain'] ?? null
         ]);
 
         // Create a unique instance ID for this test
-        self::$instanceId = uniqid(SpannerTestCase::INSTANCE_NAME);
-        self::$dbName = uniqid(SpannerTestCase::TESTING_PREFIX);
-        self::$tableName = uniqid(SpannerTestCase::TESTING_PREFIX);
+        self::$instanceId = uniqid(self::INSTANCE_NAME);
+        self::$dbName = uniqid(self::TESTING_PREFIX);
+        self::$tableName = uniqid(self::TESTING_PREFIX);
     }
 
     /**
@@ -74,7 +72,7 @@ class UniverseDomainTest extends SystemTestCase
         ]);
         $op->pollUntilComplete();
 
-        $this->assertEquals(LongRunningOperation::STATE_SUCCESS, $op->state());
+        $this->assertEquals(LongRunningOperation::STATE_SUCCESS, $op->state(), json_encode($op->error()));
 
         self::$instance = self::$client->instance(self::$instanceId);
         $info = self::$instance->info();

@@ -17,17 +17,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class Turn extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The user query.
+     * Optional. The user query. May not be set if this turn is merely
+     * regenerating an answer to a different turn
      *
-     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Query query = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Query query = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $query = null;
     /**
-     * The resource name of the answer to the user query.
+     * Optional. The resource name of the answer to the user query.
      * Only set if the answer generation (/answer API call) happened in this
      * turn.
      *
-     * Generated from protobuf field <code>string answer = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string answer = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $answer = '';
     /**
@@ -41,6 +42,26 @@ class Turn extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Answer detailed_answer = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $detailed_answer = null;
+    /**
+     * Output only. In
+     * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
+     * API, if
+     * [GetSessionRequest.include_answer_details][google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details]
+     * is set to true, this field will be populated when getting assistant
+     * session.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer detailed_assist_answer = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $detailed_assist_answer = null;
+    /**
+     * Optional. Represents metadata related to the query config, for example
+     * LLM model and version used, model parameters (temperature, grounding
+     * parameters, etc.). The prefix "google." is reserved for Google-developed
+     * functionality.
+     *
+     * Generated from protobuf field <code>map<string, string> query_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $query_config;
 
     /**
      * Constructor.
@@ -49,9 +70,10 @@ class Turn extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DiscoveryEngine\V1\Query $query
-     *           The user query.
+     *           Optional. The user query. May not be set if this turn is merely
+     *           regenerating an answer to a different turn
      *     @type string $answer
-     *           The resource name of the answer to the user query.
+     *           Optional. The resource name of the answer to the user query.
      *           Only set if the answer generation (/answer API call) happened in this
      *           turn.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Answer $detailed_answer
@@ -61,6 +83,18 @@ class Turn extends \Google\Protobuf\Internal\Message
      *           [GetSessionRequest.include_answer_details][google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details]
      *           is set to true, this field will be populated when getting answer query
      *           session.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AssistAnswer $detailed_assist_answer
+     *           Output only. In
+     *           [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
+     *           API, if
+     *           [GetSessionRequest.include_answer_details][google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details]
+     *           is set to true, this field will be populated when getting assistant
+     *           session.
+     *     @type array|\Google\Protobuf\Internal\MapField $query_config
+     *           Optional. Represents metadata related to the query config, for example
+     *           LLM model and version used, model parameters (temperature, grounding
+     *           parameters, etc.). The prefix "google." is reserved for Google-developed
+     *           functionality.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,9 +103,10 @@ class Turn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The user query.
+     * Optional. The user query. May not be set if this turn is merely
+     * regenerating an answer to a different turn
      *
-     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Query query = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Query query = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\Query|null
      */
     public function getQuery()
@@ -90,9 +125,10 @@ class Turn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The user query.
+     * Optional. The user query. May not be set if this turn is merely
+     * regenerating an answer to a different turn
      *
-     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Query query = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Query query = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\Query $var
      * @return $this
      */
@@ -105,11 +141,11 @@ class Turn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the answer to the user query.
+     * Optional. The resource name of the answer to the user query.
      * Only set if the answer generation (/answer API call) happened in this
      * turn.
      *
-     * Generated from protobuf field <code>string answer = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string answer = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getAnswer()
@@ -118,11 +154,11 @@ class Turn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the answer to the user query.
+     * Optional. The resource name of the answer to the user query.
      * Only set if the answer generation (/answer API call) happened in this
      * turn.
      *
-     * Generated from protobuf field <code>string answer = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string answer = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -176,6 +212,84 @@ class Turn extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Answer::class);
         $this->detailed_answer = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. In
+     * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
+     * API, if
+     * [GetSessionRequest.include_answer_details][google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details]
+     * is set to true, this field will be populated when getting assistant
+     * session.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer detailed_assist_answer = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\AssistAnswer|null
+     */
+    public function getDetailedAssistAnswer()
+    {
+        return $this->detailed_assist_answer;
+    }
+
+    public function hasDetailedAssistAnswer()
+    {
+        return isset($this->detailed_assist_answer);
+    }
+
+    public function clearDetailedAssistAnswer()
+    {
+        unset($this->detailed_assist_answer);
+    }
+
+    /**
+     * Output only. In
+     * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
+     * API, if
+     * [GetSessionRequest.include_answer_details][google.cloud.discoveryengine.v1.GetSessionRequest.include_answer_details]
+     * is set to true, this field will be populated when getting assistant
+     * session.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AssistAnswer detailed_assist_answer = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AssistAnswer $var
+     * @return $this
+     */
+    public function setDetailedAssistAnswer($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AssistAnswer::class);
+        $this->detailed_assist_answer = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Represents metadata related to the query config, for example
+     * LLM model and version used, model parameters (temperature, grounding
+     * parameters, etc.). The prefix "google." is reserved for Google-developed
+     * functionality.
+     *
+     * Generated from protobuf field <code>map<string, string> query_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getQueryConfig()
+    {
+        return $this->query_config;
+    }
+
+    /**
+     * Optional. Represents metadata related to the query config, for example
+     * LLM model and version used, model parameters (temperature, grounding
+     * parameters, etc.). The prefix "google." is reserved for Google-developed
+     * functionality.
+     *
+     * Generated from protobuf field <code>map<string, string> query_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setQueryConfig($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->query_config = $arr;
 
         return $this;
     }

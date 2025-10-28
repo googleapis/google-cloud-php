@@ -68,6 +68,11 @@
                             "methods": [
                                 "setLabels"
                             ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
                         }
                     }
                 }
@@ -214,6 +219,11 @@
                         "Get": {
                             "methods": [
                                 "get"
+                            ]
+                        },
+                        "GetEffectiveSecurityPolicies": {
+                            "methods": [
+                                "getEffectiveSecurityPolicies"
                             ]
                         },
                         "GetHealth": {
@@ -662,6 +672,11 @@
                         "SetLabels": {
                             "methods": [
                                 "setLabels"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }
@@ -1182,6 +1197,11 @@
                             "methods": [
                                 "setNamedPorts"
                             ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
                         }
                     }
                 }
@@ -1265,6 +1285,11 @@
                                 "addAccessConfig"
                             ]
                         },
+                        "AddNetworkInterface": {
+                            "methods": [
+                                "addNetworkInterface"
+                            ]
+                        },
                         "AddResourcePolicies": {
                             "methods": [
                                 "addResourcePolicies"
@@ -1293,6 +1318,11 @@
                         "DeleteAccessConfig": {
                             "methods": [
                                 "deleteAccessConfig"
+                            ]
+                        },
+                        "DeleteNetworkInterface": {
+                            "methods": [
+                                "deleteNetworkInterface"
                             ]
                         },
                         "DetachDisk": {
@@ -2273,6 +2303,11 @@
                                 "removePeering"
                             ]
                         },
+                        "RequestRemovePeering": {
+                            "methods": [
+                                "requestRemovePeering"
+                            ]
+                        },
                         "SwitchToCustomMode": {
                             "methods": [
                                 "switchToCustomMode"
@@ -2444,6 +2479,95 @@
                 }
             }
         },
+        "OrganizationSecurityPolicies": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OrganizationSecurityPoliciesGapicClient",
+                    "rpcs": {
+                        "AddAssociation": {
+                            "methods": [
+                                "addAssociation"
+                            ]
+                        },
+                        "AddRule": {
+                            "methods": [
+                                "addRule"
+                            ]
+                        },
+                        "CopyRules": {
+                            "methods": [
+                                "copyRules"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "GetAssociation": {
+                            "methods": [
+                                "getAssociation"
+                            ]
+                        },
+                        "GetRule": {
+                            "methods": [
+                                "getRule"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "ListAssociations": {
+                            "methods": [
+                                "listAssociations"
+                            ]
+                        },
+                        "ListPreconfiguredExpressionSets": {
+                            "methods": [
+                                "listPreconfiguredExpressionSets"
+                            ]
+                        },
+                        "Move": {
+                            "methods": [
+                                "move"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        },
+                        "PatchRule": {
+                            "methods": [
+                                "patchRule"
+                            ]
+                        },
+                        "RemoveAssociation": {
+                            "methods": [
+                                "removeAssociation"
+                            ]
+                        },
+                        "RemoveRule": {
+                            "methods": [
+                                "removeRule"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "PacketMirrorings": {
             "clients": {
                 "grpc": {
@@ -2482,6 +2606,30 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PreviewFeatures": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PreviewFeaturesGapicClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
                             ]
                         }
                     }
@@ -3136,6 +3284,11 @@
                             "methods": [
                                 "setNamedPorts"
                             ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
                         }
                     }
                 }
@@ -3782,6 +3935,11 @@
                         "PerformMaintenance": {
                             "methods": [
                                 "performMaintenance"
+                            ]
+                        },
+                        "ReportFaulty": {
+                            "methods": [
+                                "reportFaulty"
                             ]
                         }
                     }
@@ -4626,6 +4784,11 @@
                             "methods": [
                                 "setSecurityPolicy"
                             ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
                         }
                     }
                 }
@@ -4694,6 +4857,11 @@
                         "SetSecurityPolicy": {
                             "methods": [
                                 "setSecurityPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }

@@ -22,14 +22,14 @@ class AsymmetricAutoscalingOption extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.ReplicaSelection replica_selection = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $replica_selection = null;
+    protected $replica_selection = null;
     /**
      * Optional. Overrides applied to the top-level autoscaling configuration
      * for the selected replicas.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides overrides = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $overrides = null;
+    protected $overrides = null;
 
     /**
      * Constructor.

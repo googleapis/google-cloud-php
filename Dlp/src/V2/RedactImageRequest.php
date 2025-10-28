@@ -64,6 +64,29 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ByteContentItem byte_item = 7;</code>
      */
     protected $byte_item = null;
+    /**
+     * The full resource name of the inspection template to use. Settings in the
+     * main `inspect_config` field override the corresponding settings in this
+     * inspection template.
+     * The merge behavior is as follows:
+     *   - Singular field: The main field's value replaces the value of the
+     *   corresponding field in the template.
+     *   - Repeated fields: The field values are appended to the list defined in
+     *   the template.
+     *   - Sub-messages and groups: The fields are recursively merged.
+     *
+     * Generated from protobuf field <code>string inspect_template = 9;</code>
+     */
+    protected $inspect_template = '';
+    /**
+     * The full resource name of the de-identification template to use. Settings
+     * in the main `image_redaction_configs` field override the corresponding
+     * settings in this de-identification template. The request fails if the
+     * type of the template's deidentify_config is not image_transformations.
+     *
+     * Generated from protobuf field <code>string deidentify_template = 10;</code>
+     */
+    protected $deidentify_template = '';
 
     /**
      * Constructor.
@@ -95,6 +118,21 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      *           image.
      *     @type \Google\Cloud\Dlp\V2\ByteContentItem $byte_item
      *           The content must be PNG, JPEG, SVG or BMP.
+     *     @type string $inspect_template
+     *           The full resource name of the inspection template to use. Settings in the
+     *           main `inspect_config` field override the corresponding settings in this
+     *           inspection template.
+     *           The merge behavior is as follows:
+     *             - Singular field: The main field's value replaces the value of the
+     *             corresponding field in the template.
+     *             - Repeated fields: The field values are appended to the list defined in
+     *             the template.
+     *             - Sub-messages and groups: The fields are recursively merged.
+     *     @type string $deidentify_template
+     *           The full resource name of the de-identification template to use. Settings
+     *           in the main `image_redaction_configs` field override the corresponding
+     *           settings in this de-identification template. The request fails if the
+     *           type of the template's deidentify_config is not image_transformations.
      * }
      */
     public function __construct($data = NULL) {
@@ -298,6 +336,80 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ByteContentItem::class);
         $this->byte_item = $var;
+
+        return $this;
+    }
+
+    /**
+     * The full resource name of the inspection template to use. Settings in the
+     * main `inspect_config` field override the corresponding settings in this
+     * inspection template.
+     * The merge behavior is as follows:
+     *   - Singular field: The main field's value replaces the value of the
+     *   corresponding field in the template.
+     *   - Repeated fields: The field values are appended to the list defined in
+     *   the template.
+     *   - Sub-messages and groups: The fields are recursively merged.
+     *
+     * Generated from protobuf field <code>string inspect_template = 9;</code>
+     * @return string
+     */
+    public function getInspectTemplate()
+    {
+        return $this->inspect_template;
+    }
+
+    /**
+     * The full resource name of the inspection template to use. Settings in the
+     * main `inspect_config` field override the corresponding settings in this
+     * inspection template.
+     * The merge behavior is as follows:
+     *   - Singular field: The main field's value replaces the value of the
+     *   corresponding field in the template.
+     *   - Repeated fields: The field values are appended to the list defined in
+     *   the template.
+     *   - Sub-messages and groups: The fields are recursively merged.
+     *
+     * Generated from protobuf field <code>string inspect_template = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInspectTemplate($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->inspect_template = $var;
+
+        return $this;
+    }
+
+    /**
+     * The full resource name of the de-identification template to use. Settings
+     * in the main `image_redaction_configs` field override the corresponding
+     * settings in this de-identification template. The request fails if the
+     * type of the template's deidentify_config is not image_transformations.
+     *
+     * Generated from protobuf field <code>string deidentify_template = 10;</code>
+     * @return string
+     */
+    public function getDeidentifyTemplate()
+    {
+        return $this->deidentify_template;
+    }
+
+    /**
+     * The full resource name of the de-identification template to use. Settings
+     * in the main `image_redaction_configs` field override the corresponding
+     * settings in this de-identification template. The request fails if the
+     * type of the template's deidentify_config is not image_transformations.
+     *
+     * Generated from protobuf field <code>string deidentify_template = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDeidentifyTemplate($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->deidentify_template = $var;
 
         return $this;
     }

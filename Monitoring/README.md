@@ -31,54 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-use Google\Api\Metric;
-use Google\Api\MonitoredResource;
-use Google\Cloud\Monitoring\V3\MetricServiceClient;
-use Google\Cloud\Monitoring\V3\Point;
-use Google\Cloud\Monitoring\V3\TimeInterval;
-use Google\Cloud\Monitoring\V3\TimeSeries;
-use Google\Cloud\Monitoring\V3\TypedValue;
-use Google\Protobuf\Timestamp;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Monitoring\V3\AlertPolicy;
+use Google\Cloud\Monitoring\V3\Client\AlertPolicyServiceClient;
+use Google\Cloud\Monitoring\V3\GetAlertPolicyRequest;
 
-$metricServiceClient = new MetricServiceClient();
-$formattedProjectName = $metricServiceClient->projectName($projectId);
-$labels = [
-    'instance_id' => $instanceId,
-    'zone' => $zone,
-];
+// Create a client.
+$alertPolicyServiceClient = new AlertPolicyServiceClient();
 
-$m = new Metric();
-$m->setType('custom.googleapis.com/my_metric');
+// Prepare the request message.
+$request = (new GetAlertPolicyRequest())
+    ->setName($formattedName);
 
-$r = new MonitoredResource();
-$r->setType('gce_instance');
-$r->setLabels($labels);
-
-$value = new TypedValue();
-$value->setDoubleValue(3.14);
-
-$timestamp = new Timestamp();
-$timestamp->setSeconds(time());
-
-$interval = new TimeInterval();
-$interval->setStartTime($timestamp);
-$interval->setEndTime($timestamp);
-
-$point = new Point();
-$point->setValue($value);
-$point->setInterval($interval);
-$points = [$point];
-
-$timeSeries = new TimeSeries();
-$timeSeries->setMetric($m);
-$timeSeries->setResource($r);
-$timeSeries->setPoints($points);
-
+// Call the API and handle any network failures.
 try {
-    $metricServiceClient->createTimeSeries($formattedProjectName, [$timeSeries]);
-    print('Successfully submitted a time series' . PHP_EOL);
-} finally {
-    $metricServiceClient->close();
+    /** @var AlertPolicy $response */
+    $response = $alertPolicyServiceClient->getAlertPolicy($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

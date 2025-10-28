@@ -116,6 +116,19 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      */
     protected $enable_access_logging = false;
     /**
+     * Optional. If true, logs to Cloud Logging errors relating to datapoint
+     * upserts.
+     * Under normal operation conditions, these log entries should be very rare.
+     * However, if incompatible datapoint updates are being uploaded to an index,
+     * a high volume of log entries may be generated in a short period of time.
+     * Note that logs may incur a cost, especially if the deployed index receives
+     * a high volume of datapoint upserts. Estimate your costs before enabling
+     * this option.
+     *
+     * Generated from protobuf field <code>bool enable_datapoint_upsert_logging = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_datapoint_upsert_logging = false;
+    /**
      * Optional. If set, the authentication is enabled for the private endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndexAuthConfig deployed_index_auth_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -151,6 +164,13 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string deployment_group = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $deployment_group = '';
+    /**
+     * Optional. The deployment tier that the index is deployed to.
+     * DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex.DeploymentTier deployment_tier = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deployment_tier = 0;
     /**
      * Optional. If set for PSC deployed index, PSC connection will be
      * automatically created after deployment is done and the endpoint information
@@ -230,6 +250,15 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           Note that logs may incur a cost, especially if the deployed
      *           index receives a high queries per second rate (QPS).
      *           Estimate your costs before enabling this option.
+     *     @type bool $enable_datapoint_upsert_logging
+     *           Optional. If true, logs to Cloud Logging errors relating to datapoint
+     *           upserts.
+     *           Under normal operation conditions, these log entries should be very rare.
+     *           However, if incompatible datapoint updates are being uploaded to an index,
+     *           a high volume of log entries may be generated in a short period of time.
+     *           Note that logs may incur a cost, especially if the deployed index receives
+     *           a high volume of datapoint upserts. Estimate your costs before enabling
+     *           this option.
      *     @type \Google\Cloud\AIPlatform\V1\DeployedIndexAuthConfig $deployed_index_auth_config
      *           Optional. If set, the authentication is enabled for the private endpoint.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reserved_ip_ranges
@@ -254,6 +283,9 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           has been used with reserved_ip_ranges: [a, b, c], using it with [a, b] or
      *           [d, e] is disallowed.
      *           Note: we only support up to 5 deployment groups(not including 'default').
+     *     @type int $deployment_tier
+     *           Optional. The deployment tier that the index is deployed to.
+     *           DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
      *     @type array<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>|\Google\Protobuf\Internal\RepeatedField $psc_automation_configs
      *           Optional. If set for PSC deployed index, PSC connection will be
      *           automatically created after deployment is done and the endpoint information
@@ -642,6 +674,46 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. If true, logs to Cloud Logging errors relating to datapoint
+     * upserts.
+     * Under normal operation conditions, these log entries should be very rare.
+     * However, if incompatible datapoint updates are being uploaded to an index,
+     * a high volume of log entries may be generated in a short period of time.
+     * Note that logs may incur a cost, especially if the deployed index receives
+     * a high volume of datapoint upserts. Estimate your costs before enabling
+     * this option.
+     *
+     * Generated from protobuf field <code>bool enable_datapoint_upsert_logging = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableDatapointUpsertLogging()
+    {
+        return $this->enable_datapoint_upsert_logging;
+    }
+
+    /**
+     * Optional. If true, logs to Cloud Logging errors relating to datapoint
+     * upserts.
+     * Under normal operation conditions, these log entries should be very rare.
+     * However, if incompatible datapoint updates are being uploaded to an index,
+     * a high volume of log entries may be generated in a short period of time.
+     * Note that logs may incur a cost, especially if the deployed index receives
+     * a high volume of datapoint upserts. Estimate your costs before enabling
+     * this option.
+     *
+     * Generated from protobuf field <code>bool enable_datapoint_upsert_logging = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableDatapointUpsertLogging($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_datapoint_upsert_logging = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. If set, the authentication is enabled for the private endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndexAuthConfig deployed_index_auth_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -761,6 +833,34 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->deployment_group = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The deployment tier that the index is deployed to.
+     * DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex.DeploymentTier deployment_tier = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDeploymentTier()
+    {
+        return $this->deployment_tier;
+    }
+
+    /**
+     * Optional. The deployment tier that the index is deployed to.
+     * DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex.DeploymentTier deployment_tier = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDeploymentTier($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\DeployedIndex\DeploymentTier::class);
+        $this->deployment_tier = $var;
 
         return $this;
     }

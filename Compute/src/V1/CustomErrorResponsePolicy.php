@@ -26,7 +26,7 @@ class CustomErrorResponsePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string error_service = 164214654;</code>
      */
-    private $error_service = null;
+    protected $error_service = null;
 
     /**
      * Constructor.

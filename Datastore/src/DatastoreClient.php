@@ -18,19 +18,22 @@
 namespace Google\Cloud\Datastore;
 
 use DomainException;
+use Google\ApiCore\ClientOptionsTrait;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\Options\ClientOptions;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
+use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Int64;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
-use Google\Cloud\Datastore\Connection\Grpc;
-use Google\Cloud\Datastore\Connection\Rest;
+use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use Psr\Cache\CacheItemPoolInterface;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use InvalidArgumentException;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -87,76 +90,114 @@ use Psr\Http\Message\StreamInterface;
  */
 class DatastoreClient
 {
-    use ArrayTrait;
-    use ClientTrait;
+    use DetectProjectIdTrait;
     use DatastoreTrait;
+    use TimestampTrait;
+    use ApiHelperTrait;
+    use ClientOptionsTrait;
+    use EmulatorTrait;
 
-    const VERSION = '1.33.1';
+    const VERSION = '2.0.0-RC1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
     /**
-     * @deprecated
-     * @var ConnectionInterface
-     */
-    protected $connection;
-
-    /**
      * @var Operation
      */
-    protected $operation;
+    protected Operation $operation;
 
     /**
      * @var EntityMapper
      */
-    private $entityMapper;
+    private EntityMapper $entityMapper;
+
+    /**
+     * @var GapicDatastoreClient
+     */
+    private GapicDatastoreClient $gapicClient;
 
     /**
      * Create a Datastore client.
      *
      * @param array $config [optional] {
      *     Configuration Options.
+     *     Some of this options details on {@see ClientOptions}.
      *
-     *     @type string $apiEndpoint A hostname with optional port to use in
-     *           place of the service's default endpoint.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
-     *     @type CacheItemPoolInterface $authCache A cache for storing access
-     *           tokens. **Defaults to** a simple in memory implementation.
-     *     @type array $authCacheOptions Cache configuration options.
-     *     @type callable $authHttpHandler A handler used to deliver Psr7
-     *           requests specifically for authentication.
-     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
-     *           fetcher instance.
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *           Only valid for requests sent over REST.
-     *     @type array $keyFile The contents of the service account credentials
-     *           .json file retrieved from the Google Developer's Console.
-     *           Ex: `json_decode(file_get_contents($path), true)`.
-     *     @type string $keyFilePath The full path to your service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
-     *     @type float $requestTimeout Seconds to wait before timing out the
-     *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     *     @type int $retries Number of retries for a failed request. **Defaults
-     *           to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
-     *     @type string $quotaProject Specifies a user project to bill for
-     *           access charges associated with the request.
      *     @type string $namespaceId Partitions data under a namespace. Useful for
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
      *     @type string $databaseId ID of the database to which the entities belong.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type GapicDatastoreClient $datastoreClient A client that is of
+     *           type {@see GapicDatastoreClient}
+     *     @type string $apiEndpoint
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'datastore.googleapis.com:443'.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Datastore\V1\DatastoreClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new DatastoreClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the
+     *           client. For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()} .
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either
+     *           a path to a JSON file, or a PHP array containing the decoded JSON data. By
+     *           default this settings points to the default client config file, which is
+     *           provided in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string
+     *           `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already
+     *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
+     *           that when this object is provided, any settings in $transportConfig, and any
+     *           $apiEndpoint setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...],
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      * @throws \InvalidArgumentException
      */
     public function __construct(array $config = [])
     {
         $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
-
-        $connectionType = $this->getConnectionType($config);
+        $this->validateConfigurationOptions($config);
 
         $config += [
             'namespaceId' => null,
@@ -165,24 +206,46 @@ class DatastoreClient
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost
+            'emulatorHost' => $emulatorHost,
         ];
 
-        $config = $this->configureAuthentication($config);
-        $this->connection = $connectionType === 'grpc'
-            ? new Grpc($config)
-            : new Rest($config);
+        $gapicOptions = $this->buildClientOptions($config);
+
+        if (isset($gapicOptions['credentialsConfig']['scopes'])) {
+            $options['credentialsConfig']['scopes'] = array_merge(
+                $gapicOptions['credentialsConfig']['scopes'],
+                $config['scopes']
+            );
+        } else {
+            $options['credentialsConfig']['scopes'] = $config['scopes'];
+        }
+
+        if ($emulatorHost) {
+            $emulatorConfig = $this->emulatorGapicConfig($emulatorHost);
+            $gapicOptions = array_merge(
+                $gapicOptions,
+                $emulatorConfig
+            );
+        } else {
+            $gapicOptions['credentials'] = $this->createCredentialsWrapper(
+                $gapicOptions['credentials'],
+                $gapicOptions['credentialsConfig'],
+                $gapicOptions['universeDomain']
+            );
+        }
+
+        $this->projectId = (string) $this->detectProjectId($gapicOptions);
+        $this->gapicClient = $this->getGapicClient($gapicOptions);
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
         $this->entityMapper = new EntityMapper(
             $this->projectId,
             true,
-            $config['returnInt64AsObject'],
-            $connectionType
+            $config['returnInt64AsObject']
         );
         $this->operation = new Operation(
-            $this->connection,
+            $this->gapicClient,
             $this->projectId,
             $config['namespaceId'],
             $this->entityMapper,
@@ -223,7 +286,7 @@ class DatastoreClient
      * }
      * @return Key
      */
-    public function key($kind, $identifier = null, array $options = [])
+    public function key(string $kind, $identifier = null, array $options = []): Key
     {
         return $this->operation->key($kind, $identifier, $options);
     }
@@ -271,7 +334,7 @@ class DatastoreClient
      * }
      * @return Key[]
      */
-    public function keys($kind, array $options = [])
+    public function keys(string $kind, array $options = []): array
     {
         return $this->operation->keys($kind, $options);
     }
@@ -394,7 +457,7 @@ class DatastoreClient
      * }
      * @return EntityInterface
      */
-    public function entity($key = null, array $entity = [], array $options = [])
+    public function entity(Key|string|null $key = null, array $entity = [], array $options = []): EntityInterface
     {
         return $this->operation->entity($key, $entity, $options);
     }
@@ -415,7 +478,7 @@ class DatastoreClient
      *        **Defaults to** `false`.
      * @return GeoPoint
      */
-    public function geoPoint($latitude, $longitude, $allowNull = false)
+    public function geoPoint(float $latitude, float $longitude, bool $allowNull = false): GeoPoint
     {
         return new GeoPoint($latitude, $longitude, $allowNull);
     }
@@ -436,7 +499,7 @@ class DatastoreClient
      * @param string|resource|StreamInterface $value The value to store in a blob.
      * @return Blob
      */
-    public function blob($value)
+    public function blob(mixed $value): Blob
     {
         return new Blob($value);
     }
@@ -453,7 +516,7 @@ class DatastoreClient
      * @param string $value
      * @return Int64
      */
-    public function int64($value)
+    public function int64(string $value): Int64
     {
         return new Int64($value);
     }
@@ -472,7 +535,7 @@ class DatastoreClient
      * @param string|int $cursorValue
      * @return Cursor
      */
-    public function cursor($cursorValue)
+    public function cursor(string|int $cursorValue): Cursor
     {
         return new Cursor($cursorValue);
     }
@@ -497,7 +560,7 @@ class DatastoreClient
      * @param array $options [optional] Configuration options.
      * @return Key
      */
-    public function allocateId(Key $key, array $options = [])
+    public function allocateId(Key $key, array $options = []): Key
     {
         $res = $this->allocateIds([$key], $options);
         return $res[0];
@@ -524,10 +587,14 @@ class DatastoreClient
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/allocateIds allocateIds
      *
      * @param Key[] $keys The incomplete keys.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *      Configuration Options.
+     *
+     *      string $databaseId The ID of the database against which to make the request.
+     * }.
      * @return Key[]
      */
-    public function allocateIds(array $keys, array $options = [])
+    public function allocateIds(array $keys, array $options = []): array
     {
         return $this->operation->allocateIds($keys, $options);
     }
@@ -546,7 +613,6 @@ class DatastoreClient
      * @codingStandardsIgnoreStart
      * @param array $options {
      *     Configuration options.
-     *
      *     @type array $transactionOptions Transaction configuration. See
      *           [ReadWrite](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadWrite).
      *     @type string $databaseId ID of the database to which the entities belong.
@@ -554,11 +620,11 @@ class DatastoreClient
      * @return Transaction
      * @codingStandardsIgnoreEnd
      */
-    public function transaction(array $options = [])
+    public function transaction(array $options = []): Transaction
     {
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
-            'readWrite' => $this->pluck('transactionOptions', $options, false) ?: (object) []
+            'readWrite' => $this->pluck('transactionOptions', $options, false) ?: []
         ], $options);
 
         return new Transaction(
@@ -593,11 +659,11 @@ class DatastoreClient
      * @return ReadOnlyTransaction
      * @codingStandardsIgnoreEnd
      */
-    public function readOnlyTransaction(array $options = [])
+    public function readOnlyTransaction(array $options = []): ReadOnlyTransaction
     {
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
-            'readOnly' => $this->pluck('transactionOptions', $options, false) ?: (object) []
+            'readOnly' => $this->pluck('transactionOptions', $options, false) ?: []
         ], $options);
 
         return new ReadOnlyTransaction(
@@ -630,7 +696,7 @@ class DatastoreClient
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
-    public function insert(EntityInterface $entity, array $options = [])
+    public function insert(EntityInterface $entity, array $options = []): string
     {
         $res = $this->insertBatch([$entity], $options);
         return $this->parseSingleMutationResult($res);
@@ -661,7 +727,7 @@ class DatastoreClient
      * @param array $options [optional] Configuration options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
-    public function insertBatch(array $entities, array $options = [])
+    public function insertBatch(array $entities, array $options = []): array
     {
         $entities = $this->operation->allocateIdsToEntities($entities);
         $mutations = [];
@@ -707,7 +773,7 @@ class DatastoreClient
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
-    public function update(EntityInterface $entity, array $options = [])
+    public function update(EntityInterface $entity, array $options = []): string
     {
         $res = $this->updateBatch([$entity], $options);
         return $this->parseSingleMutationResult($res);
@@ -748,13 +814,13 @@ class DatastoreClient
      * }
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
-    public function updateBatch(array $entities, array $options = [])
+    public function updateBatch(array $entities, array $options = []): array
     {
         $options += [
             'allowOverwrite' => false
         ];
 
-        $this->operation->checkOverwrite($entities, $options['allowOverwrite']);
+        $this->operation->checkOverwrite($entities, $this->pluck('allowOverwrite', $options));
         $mutations = [];
         foreach ($entities as $entity) {
             $mutations[] = $this->operation->mutation('update', $entity, Entity::class);
@@ -794,7 +860,7 @@ class DatastoreClient
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
-    public function upsert(EntityInterface $entity, array $options = [])
+    public function upsert(EntityInterface $entity, array $options = []): string
     {
         $res = $this->upsertBatch([$entity], $options);
         return $this->parseSingleMutationResult($res);
@@ -837,7 +903,7 @@ class DatastoreClient
      * @param array $options [optional] Configuration Options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
-    public function upsertBatch(array $entities, array $options = [])
+    public function upsertBatch(array $entities, array $options = []): array
     {
         $entities = $this->operation->allocateIdsToEntities($entities);
         $mutations = [];
@@ -875,7 +941,7 @@ class DatastoreClient
      * @return string The updated entity version number.
      * @throws DomainException If a conflict occurs, fail.
      */
-    public function delete(Key $key, array $options = [])
+    public function delete(Key $key, array $options = []): string
     {
         $res = $this->deleteBatch([$key], $options);
         return $this->parseSingleMutationResult($res);
@@ -910,7 +976,7 @@ class DatastoreClient
      * }
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
-    public function deleteBatch(array $keys, array $options = [])
+    public function deleteBatch(array $keys, array $options = []): array
     {
         $options += [
             'baseVersion' => null
@@ -918,7 +984,8 @@ class DatastoreClient
 
         $mutations = [];
         foreach ($keys as $key) {
-            $mutations[] = $this->operation->mutation('delete', $key, Key::class, $options['baseVersion']);
+            $mutations[] = $this->operation
+                ->mutation('delete', $key, Key::class, $this->pluck('baseVersion', $options, false));
         }
 
         return $this->operation->commit($mutations, $options);
@@ -966,7 +1033,7 @@ class DatastoreClient
      * }
      * @return EntityInterface|null
      */
-    public function lookup(Key $key, array $options = [])
+    public function lookup(Key $key, array $options = []): ?EntityInterface
     {
         $res = $this->lookupBatch([$key], $options);
 
@@ -1033,7 +1100,7 @@ class DatastoreClient
      *         {@see \Google\Cloud\Datastore\Entity}. Members of `missing` and
      *         `deferred` will be instance of {@see \Google\Cloud\Datastore\Key}.
      */
-    public function lookupBatch(array $keys, array $options = [])
+    public function lookupBatch(array $keys, array $options = []): array
     {
         return $this->operation->lookup($keys, $options);
     }
@@ -1052,7 +1119,7 @@ class DatastoreClient
      * @param array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      * @return Query
      */
-    public function query(array $query = [])
+    public function query(array $query = []): Query
     {
         return new Query($this->entityMapper, [
             'query' => $query
@@ -1072,7 +1139,7 @@ class DatastoreClient
      * @param array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      * @return AggregationQuery
      */
-    public function aggregationQuery(array $query = [])
+    public function aggregationQuery(array $query = []): AggregationQuery
     {
         return new AggregationQuery($this->query($query));
     }
@@ -1145,7 +1212,7 @@ class DatastoreClient
      * }
      * @return GqlQuery
      */
-    public function gqlQuery($query, array $options = [])
+    public function gqlQuery(string $query, array $options = []): GqlQuery
     {
         return new GqlQuery($this->entityMapper, $query, $options);
     }
@@ -1227,7 +1294,7 @@ class DatastoreClient
      * }
      * @return AggregationQueryResult
      */
-    public function runAggregationQuery(AggregationQuery $query, array $options = [])
+    public function runAggregationQuery(AggregationQuery $query, array $options = []): AggregationQueryResult
     {
         return $this->operation->runAggregationQuery($query, $options);
     }
@@ -1241,7 +1308,7 @@ class DatastoreClient
      * @throws DomainException
      * @codingStandardsIgnoreEnd
      */
-    private function parseSingleMutationResult(array $res)
+    private function parseSingleMutationResult(array $res): string
     {
         $mutationResult = $res['mutationResults'][0];
 
@@ -1254,5 +1321,39 @@ class DatastoreClient
 
         // cast to string for conformance between REST and gRPC.
         return (string) $mutationResult['version'];
+    }
+
+    private function getGapicClient(array $config): GapicDatastoreClient
+    {
+        if (isset($config['datastoreClient']) && (!$config['datastoreClient'] instanceof GapicDatastoreClient)) {
+            throw new InvalidArgumentException(
+                'The client configuration option must be an instance of ' . GapicDatastoreClient::class
+            );
+        }
+
+        return $config['datastoreClient'] ?? new GapicDatastoreClient($config);
+    }
+
+    private function validateConfigurationOptions(array $config): void
+    {
+        $availableOptions = [
+            'projectId',
+            'namespaceId',
+            'databaseId',
+            'returnInt64AsObject',
+            'datastoreClient',
+            'apiEndpoint',
+            'credentials',
+            'credentialsConfig',
+            'disableRetries',
+            'clientConfig',
+            'transport',
+            'transportConfig',
+            'clientCertSource',
+            'logger',
+            'universeDomain'
+        ];
+
+        $this->validateOptions($config, $availableOptions);
     }
 }

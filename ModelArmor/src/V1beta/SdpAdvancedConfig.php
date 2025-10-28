@@ -21,7 +21,7 @@ class SdpAdvancedConfig extends \Google\Protobuf\Internal\Message
      * then Sensitive Data Protection InspectContent action is performed during
      * Sanitization. All Sensitive Data Protection findings identified during
      * inspection will be returned as SdpFinding in SdpInsepctionResult.
-     *  e.g.
+     * e.g.
      * `projects/{project}/locations/{location}/inspectTemplates/{inspect_template}`
      *
      * Generated from protobuf field <code>string inspect_template = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -54,7 +54,7 @@ class SdpAdvancedConfig extends \Google\Protobuf\Internal\Message
      *           then Sensitive Data Protection InspectContent action is performed during
      *           Sanitization. All Sensitive Data Protection findings identified during
      *           inspection will be returned as SdpFinding in SdpInsepctionResult.
-     *            e.g.
+     *           e.g.
      *           `projects/{project}/locations/{location}/inspectTemplates/{inspect_template}`
      *     @type string $deidentify_template
      *           Optional. Optional Sensitive Data Protection Deidentify template resource
@@ -79,7 +79,7 @@ class SdpAdvancedConfig extends \Google\Protobuf\Internal\Message
      * then Sensitive Data Protection InspectContent action is performed during
      * Sanitization. All Sensitive Data Protection findings identified during
      * inspection will be returned as SdpFinding in SdpInsepctionResult.
-     *  e.g.
+     * e.g.
      * `projects/{project}/locations/{location}/inspectTemplates/{inspect_template}`
      *
      * Generated from protobuf field <code>string inspect_template = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -96,7 +96,7 @@ class SdpAdvancedConfig extends \Google\Protobuf\Internal\Message
      * then Sensitive Data Protection InspectContent action is performed during
      * Sanitization. All Sensitive Data Protection findings identified during
      * inspection will be returned as SdpFinding in SdpInsepctionResult.
-     *  e.g.
+     * e.g.
      * `projects/{project}/locations/{location}/inspectTemplates/{inspect_template}`
      *
      * Generated from protobuf field <code>string inspect_template = 1 [(.google.api.field_behavior) = OPTIONAL];</code>

@@ -39,6 +39,8 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
      * * [cost_per_unit_above_soft_max][google.maps.routeoptimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max]. All costs
      * add up and must be in the same unit as
      * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost].
+     * Soft limits may only be defined on types that apply to either pickups
+     * only or deliveries only throughout the model.
      *
      * Generated from protobuf field <code>double cost_per_unit_above_soft_max = 3;</code>
      */
@@ -55,6 +57,26 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.maps.routeoptimization.v1.Vehicle.LoadLimit.Interval end_load_interval = 5;</code>
      */
     protected $end_load_interval = null;
+    /**
+     * Cost of moving one unit of load over one kilometer for this vehicle.
+     * This can be used as a proxy for fuel consumption: if the load is a weight
+     * (in Newtons), then load*kilometer has the dimension of an energy.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/load-cost/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>optional .google.maps.routeoptimization.v1.Vehicle.LoadLimit.LoadCost cost_per_kilometer = 6;</code>
+     */
+    protected $cost_per_kilometer = null;
+    /**
+     * Cost of traveling with a unit of load during one hour for this vehicle.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/load-cost/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>optional .google.maps.routeoptimization.v1.Vehicle.LoadLimit.LoadCost cost_per_traveled_hour = 7;</code>
+     */
+    protected $cost_per_traveled_hour = null;
 
     /**
      * Constructor.
@@ -76,10 +98,24 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
      *           * [cost_per_unit_above_soft_max][google.maps.routeoptimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max]. All costs
      *           add up and must be in the same unit as
      *           [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost].
+     *           Soft limits may only be defined on types that apply to either pickups
+     *           only or deliveries only throughout the model.
      *     @type \Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit\Interval $start_load_interval
      *           The acceptable load interval of the vehicle at the start of the route.
      *     @type \Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit\Interval $end_load_interval
      *           The acceptable load interval of the vehicle at the end of the route.
+     *     @type \Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit\LoadCost $cost_per_kilometer
+     *           Cost of moving one unit of load over one kilometer for this vehicle.
+     *           This can be used as a proxy for fuel consumption: if the load is a weight
+     *           (in Newtons), then load*kilometer has the dimension of an energy.
+     *           Experimental: See
+     *           https://developers.google.com/maps/tt/route-optimization/experimental/load-cost/make-request
+     *           for more details.
+     *     @type \Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit\LoadCost $cost_per_traveled_hour
+     *           Cost of traveling with a unit of load during one hour for this vehicle.
+     *           Experimental: See
+     *           https://developers.google.com/maps/tt/route-optimization/experimental/load-cost/make-request
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -160,6 +196,8 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
      * * [cost_per_unit_above_soft_max][google.maps.routeoptimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max]. All costs
      * add up and must be in the same unit as
      * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost].
+     * Soft limits may only be defined on types that apply to either pickups
+     * only or deliveries only throughout the model.
      *
      * Generated from protobuf field <code>double cost_per_unit_above_soft_max = 3;</code>
      * @return float
@@ -178,6 +216,8 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
      * * [cost_per_unit_above_soft_max][google.maps.routeoptimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max]. All costs
      * add up and must be in the same unit as
      * [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost].
+     * Soft limits may only be defined on types that apply to either pickups
+     * only or deliveries only throughout the model.
      *
      * Generated from protobuf field <code>double cost_per_unit_above_soft_max = 3;</code>
      * @param float $var
@@ -259,6 +299,94 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit\Interval::class);
         $this->end_load_interval = $var;
+
+        return $this;
+    }
+
+    /**
+     * Cost of moving one unit of load over one kilometer for this vehicle.
+     * This can be used as a proxy for fuel consumption: if the load is a weight
+     * (in Newtons), then load*kilometer has the dimension of an energy.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/load-cost/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>optional .google.maps.routeoptimization.v1.Vehicle.LoadLimit.LoadCost cost_per_kilometer = 6;</code>
+     * @return \Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit\LoadCost|null
+     */
+    public function getCostPerKilometer()
+    {
+        return $this->cost_per_kilometer;
+    }
+
+    public function hasCostPerKilometer()
+    {
+        return isset($this->cost_per_kilometer);
+    }
+
+    public function clearCostPerKilometer()
+    {
+        unset($this->cost_per_kilometer);
+    }
+
+    /**
+     * Cost of moving one unit of load over one kilometer for this vehicle.
+     * This can be used as a proxy for fuel consumption: if the load is a weight
+     * (in Newtons), then load*kilometer has the dimension of an energy.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/load-cost/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>optional .google.maps.routeoptimization.v1.Vehicle.LoadLimit.LoadCost cost_per_kilometer = 6;</code>
+     * @param \Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit\LoadCost $var
+     * @return $this
+     */
+    public function setCostPerKilometer($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit\LoadCost::class);
+        $this->cost_per_kilometer = $var;
+
+        return $this;
+    }
+
+    /**
+     * Cost of traveling with a unit of load during one hour for this vehicle.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/load-cost/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>optional .google.maps.routeoptimization.v1.Vehicle.LoadLimit.LoadCost cost_per_traveled_hour = 7;</code>
+     * @return \Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit\LoadCost|null
+     */
+    public function getCostPerTraveledHour()
+    {
+        return $this->cost_per_traveled_hour;
+    }
+
+    public function hasCostPerTraveledHour()
+    {
+        return isset($this->cost_per_traveled_hour);
+    }
+
+    public function clearCostPerTraveledHour()
+    {
+        unset($this->cost_per_traveled_hour);
+    }
+
+    /**
+     * Cost of traveling with a unit of load during one hour for this vehicle.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/load-cost/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>optional .google.maps.routeoptimization.v1.Vehicle.LoadLimit.LoadCost cost_per_traveled_hour = 7;</code>
+     * @param \Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit\LoadCost $var
+     * @return $this
+     */
+    public function setCostPerTraveledHour($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit\LoadCost::class);
+        $this->cost_per_traveled_hour = $var;
 
         return $this;
     }

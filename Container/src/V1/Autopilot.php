@@ -27,6 +27,13 @@ class Autopilot extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig workload_policy_config = 2;</code>
      */
     protected $workload_policy_config = null;
+    /**
+     * PrivilegedAdmissionConfig is the configuration related to privileged
+     * admission control.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivilegedAdmissionConfig privileged_admission_config = 4;</code>
+     */
+    protected $privileged_admission_config = null;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class Autopilot extends \Google\Protobuf\Internal\Message
      *           Enable Autopilot
      *     @type \Google\Cloud\Container\V1\WorkloadPolicyConfig $workload_policy_config
      *           WorkloadPolicyConfig is the configuration related to GCW workload policy
+     *     @type \Google\Cloud\Container\V1\PrivilegedAdmissionConfig $privileged_admission_config
+     *           PrivilegedAdmissionConfig is the configuration related to privileged
+     *           admission control.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,6 +113,44 @@ class Autopilot extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\WorkloadPolicyConfig::class);
         $this->workload_policy_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * PrivilegedAdmissionConfig is the configuration related to privileged
+     * admission control.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivilegedAdmissionConfig privileged_admission_config = 4;</code>
+     * @return \Google\Cloud\Container\V1\PrivilegedAdmissionConfig|null
+     */
+    public function getPrivilegedAdmissionConfig()
+    {
+        return $this->privileged_admission_config;
+    }
+
+    public function hasPrivilegedAdmissionConfig()
+    {
+        return isset($this->privileged_admission_config);
+    }
+
+    public function clearPrivilegedAdmissionConfig()
+    {
+        unset($this->privileged_admission_config);
+    }
+
+    /**
+     * PrivilegedAdmissionConfig is the configuration related to privileged
+     * admission control.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivilegedAdmissionConfig privileged_admission_config = 4;</code>
+     * @param \Google\Cloud\Container\V1\PrivilegedAdmissionConfig $var
+     * @return $this
+     */
+    public function setPrivilegedAdmissionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PrivilegedAdmissionConfig::class);
+        $this->privileged_admission_config = $var;
 
         return $this;
     }

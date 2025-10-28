@@ -17,12 +17,12 @@ use Google\Protobuf\Internal\GPBUtil;
  *   * `type` - The type of the replica.
  * Some examples of using replica_selectors are:
  *   * `location:us-east1` --> The "us-east1" replica(s) of any available type
- *                             will be used to process the request.
- *   * `type:READ_ONLY`    --> The "READ_ONLY" type replica(s) in nearest
- *                             available location will be used to process the
+ *                             is used to process the request.
+ *   * `type:READ_ONLY`    --> The "READ_ONLY" type replica(s) in the nearest
+ *                             available location are used to process the
  *                             request.
  *   * `location:us-east1 type:READ_ONLY` --> The "READ_ONLY" type replica(s)
- *                          in location "us-east1" will be used to process
+ *                          in location "us-east1" is used to process
  *                          the request.
  *
  * Generated from protobuf message <code>google.spanner.v1.DirectedReadOptions.ReplicaSelection</code>
@@ -30,17 +30,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReplicaSelection extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The location or region of the serving requests, e.g. "us-east1".
+     * The location or region of the serving requests, for example, "us-east1".
      *
      * Generated from protobuf field <code>string location = 1;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * The type of replica.
      *
      * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions.ReplicaSelection.Type type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.
@@ -49,7 +49,7 @@ class ReplicaSelection extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $location
-     *           The location or region of the serving requests, e.g. "us-east1".
+     *           The location or region of the serving requests, for example, "us-east1".
      *     @type int $type
      *           The type of replica.
      * }
@@ -60,7 +60,7 @@ class ReplicaSelection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location or region of the serving requests, e.g. "us-east1".
+     * The location or region of the serving requests, for example, "us-east1".
      *
      * Generated from protobuf field <code>string location = 1;</code>
      * @return string
@@ -71,7 +71,7 @@ class ReplicaSelection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location or region of the serving requests, e.g. "us-east1".
+     * The location or region of the serving requests, for example, "us-east1".
      *
      * Generated from protobuf field <code>string location = 1;</code>
      * @param string $var
@@ -113,6 +113,4 @@ class ReplicaSelection extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReplicaSelection::class, \Google\Cloud\Spanner\V1\DirectedReadOptions_ReplicaSelection::class);
 

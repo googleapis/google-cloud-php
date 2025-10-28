@@ -37,6 +37,14 @@ class ListGiVersionsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
+    /**
+     * Optional. An expression for filtering the results of the request. Only the
+     * shape, gcp_oracle_zone and gi_version fields are supported in this format:
+     * `shape="{shape}"`.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The parent value for Grid Infrastructure Version in the following
@@ -69,6 +77,10 @@ class ListGiVersionsRequest extends \Google\Protobuf\Internal\Message
      *           reset to 1000.
      *     @type string $page_token
      *           Optional. A token identifying a page of results the server should return.
+     *     @type string $filter
+     *           Optional. An expression for filtering the results of the request. Only the
+     *           shape, gcp_oracle_zone and gi_version fields are supported in this format:
+     *           `shape="{shape}"`.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +170,36 @@ class ListGiVersionsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An expression for filtering the results of the request. Only the
+     * shape, gcp_oracle_zone and gi_version fields are supported in this format:
+     * `shape="{shape}"`.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. An expression for filtering the results of the request. Only the
+     * shape, gcp_oracle_zone and gi_version fields are supported in this format:
+     * `shape="{shape}"`.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

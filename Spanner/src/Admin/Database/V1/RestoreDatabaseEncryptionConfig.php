@@ -20,7 +20,7 @@ class RestoreDatabaseEncryptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.EncryptionType encryption_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $encryption_type = 0;
+    protected $encryption_type = 0;
     /**
      * Optional. The Cloud KMS key that will be used to encrypt/decrypt the
      * restored database. This field should be set only when
@@ -30,7 +30,7 @@ class RestoreDatabaseEncryptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * Optional. Specifies the KMS configuration for the one or more keys used to
      * encrypt the database. Values are of the form

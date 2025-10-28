@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * User provided package spec like pickled object and package requirements.
+ * User-provided package specification, containing pickled object and package
+ * requirements.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ReasoningEngineSpec.PackageSpec</code>
  */

@@ -17,15 +17,22 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Spanner\Duration;
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
+use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
+use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
+use Google\Protobuf\Duration;
 
 /**
  * @group spanner
  * @group spanner-snapshot
  */
-class SnapshotTest extends SpannerTestCase
+class SnapshotTest extends SystemTestCase
 {
+    use SystemTestCaseTrait;
+
     const TABLE_NAME = 'Snapshots';
 
     private static $tableName;
@@ -35,7 +42,7 @@ class SnapshotTest extends SpannerTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$tableName = uniqid(self::TABLE_NAME);
 
@@ -90,7 +97,7 @@ class SnapshotTest extends SpannerTestCase
 
         $db->insert(self::$tableName, $row);
         sleep(1);
-        $ts = new Timestamp(new \DateTimeImmutable);
+        $ts = new Timestamp(new \DateTimeImmutable());
         sleep(1);
 
         $newRow = $row;
@@ -155,21 +162,24 @@ class SnapshotTest extends SpannerTestCase
 
         $db->insert(self::$tableName, $row);
         sleep(1);
-        $ts = new Timestamp(new \DateTimeImmutable);
+        $ts = new Timestamp(new \DateTimeImmutable());
         sleep(1);
 
         $newRow = $row;
         $newRow['number'] = 2;
         $db->replace(self::$tableName, $newRow);
 
-        $duration = new Duration(1);
+        $duration = new Duration(['seconds' => 1, 'nanos' => 0]);
 
         $snapshot = $db->snapshot([
             'exactStaleness' => $duration,
             'returnReadTimestamp' => true
         ]);
 
-        $this->assertGreaterThan($ts->get()->format('U.u'), $snapshot->readTimestamp()->get()->format('U.u'));
+        $this->assertGreaterThan(
+            $ts->get()->format('U.u'),
+            $snapshot->readTimestamp()->get()->format('U.u')
+        );
 
         $res = $this->getRow($snapshot, $id);
         $this->assertEquals($row, $res);
@@ -190,14 +200,14 @@ class SnapshotTest extends SpannerTestCase
 
         $db->insert(self::$tableName, $row);
         sleep(1);
-        $ts = new Timestamp(new \DateTimeImmutable);
+        $ts = new Timestamp(new \DateTimeImmutable());
         sleep(1);
 
         $newRow = $row;
         $newRow['number'] = 2;
         $db->replace(self::$tableName, $newRow);
 
-        $duration = new Duration(1);
+        $duration = new Duration(['seconds' => 1, 'nanos' => 0]);
 
         $snapshot = $db->snapshot([
             'maxStaleness' => $duration,
@@ -219,7 +229,7 @@ class SnapshotTest extends SpannerTestCase
         $db = self::$database;
 
         $db->snapshot([
-            'minReadTimestamp' => new Timestamp(new \DateTimeImmutable)
+            'minReadTimestamp' => new Timestamp(new \DateTimeImmutable())
         ]);
     }
 
@@ -233,8 +243,68 @@ class SnapshotTest extends SpannerTestCase
         $db = self::$database;
 
         $db->snapshot([
-            'maxStaleness' => new Duration(1)
+            'maxStaleness' => new Duration(['seconds' => 1, 'nanos' => 0])
         ]);
+    }
+
+    public function testOrderByInSnapshot()
+    {
+        $db = self::$database;
+
+        $db->insertBatch(self::$tableName, [
+            [
+                'id' => rand(1, 346464),
+                'number' => 1
+            ],
+            [
+                'id' => rand(1, 346464),
+                'number' => 2
+            ]
+        ]);
+
+        $keySet = new KeySet([
+            'all' => true
+        ]);
+        $cols = ['id', 'number'];
+        $options = [
+            'orderBy' => OrderBy::ORDER_BY_PRIMARY_KEY,
+            'limit' => 2,
+        ];
+
+        $snapshot = $db->snapshot();
+        $res = $snapshot->read(self::$tableName, $keySet, $cols, $options);
+        $rows = iterator_to_array($res->rows());
+
+        // Assert that the returned rows are sorted by the 'id' property.
+        for ($i = 0; $i < count($rows) - 1; $i++) {
+            $this->assertLessThanOrEqual(
+                $rows[$i + 1]['id'],
+                $rows[$i]['id'],
+                'The array is not sorted by id in ascending order.'
+            );
+        }
+    }
+
+    public function testLockHintInSnapshotThrowsAnException()
+    {
+        $this->skipEmulatorTests();
+        $this->expectException(BadRequestException::class);
+        $db = self::$database;
+
+        $keySet = new KeySet([
+            'all' => true
+        ]);
+        $cols = ['id', 'number'];
+
+        // LockHint is only for read-write transactions
+        $options = [
+            'lockHint' => LockHint::LOCK_HINT_EXCLUSIVE,
+            'limit' => 2,
+        ];
+
+        $snapshot = $db->snapshot();
+        $res = $snapshot->read(self::$tableName, $keySet, $cols, $options);
+        $rows = iterator_to_array($res->rows());
     }
 
     private function getRow($client, $id)

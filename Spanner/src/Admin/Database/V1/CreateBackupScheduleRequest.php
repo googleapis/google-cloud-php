@@ -21,7 +21,7 @@ class CreateBackupScheduleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Id to use for the backup schedule. The `backup_schedule_id`
      * appended to `parent` forms the full backup schedule name of the form
@@ -29,13 +29,13 @@ class CreateBackupScheduleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup_schedule_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup_schedule_id = '';
+    protected $backup_schedule_id = '';
     /**
      * Required. The backup schedule to create.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.BackupSchedule backup_schedule = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup_schedule = null;
+    protected $backup_schedule = null;
 
     /**
      * @param string                                                 $parent           Required. The name of the database that this backup schedule applies to. Please see

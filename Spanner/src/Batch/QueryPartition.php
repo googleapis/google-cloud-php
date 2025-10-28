@@ -33,7 +33,7 @@ namespace Google\Cloud\Spanner\Batch;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $batch = $spanner->batch('instance-id', 'database-id');
  * $snapshot = $batch->snapshot();
  *
@@ -117,7 +117,7 @@ class QueryPartition implements PartitionInterface
      *
      * @return string
      */
-    public function sql()
+    public function sql(): string
     {
         return $this->sql;
     }
@@ -132,7 +132,7 @@ class QueryPartition implements PartitionInterface
      *
      * @return string
      */
-    public function serialize()
+    public function serialize(): string
     {
         return base64_encode(json_encode(get_object_vars($this) + [
             BatchClient::PARTITION_TYPE_KEY => static::class
@@ -146,7 +146,7 @@ class QueryPartition implements PartitionInterface
      * @return QueryPartition
      * @access private
      */
-    public static function hydrate(array $data)
+    public static function hydrate(array $data): self
     {
         return new self(
             $data['token'],

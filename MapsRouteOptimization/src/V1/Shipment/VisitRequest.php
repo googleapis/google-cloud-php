@@ -122,6 +122,18 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string label = 11;</code>
      */
     protected $label = '';
+    /**
+     * Specifies whether U-turns should be avoided in driving routes at this
+     * location.
+     * U-turn avoidance is best effort and complete avoidance is not guaranteed.
+     * This is an experimental feature and behavior is subject to change.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/u-turn-avoidance/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>optional bool avoid_u_turns = 13;</code>
+     */
+    protected $avoid_u_turns = null;
 
     /**
      * Constructor.
@@ -189,6 +201,14 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *           Specifies a label for this `VisitRequest`. This label is reported in the
      *           response as `visit_label` in the corresponding
      *           [ShipmentRoute.Visit][google.maps.routeoptimization.v1.ShipmentRoute.Visit].
+     *     @type bool $avoid_u_turns
+     *           Specifies whether U-turns should be avoided in driving routes at this
+     *           location.
+     *           U-turn avoidance is best effort and complete avoidance is not guaranteed.
+     *           This is an experimental feature and behavior is subject to change.
+     *           Experimental: See
+     *           https://developers.google.com/maps/tt/route-optimization/experimental/u-turn-avoidance/make-request
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -604,6 +624,54 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->label = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether U-turns should be avoided in driving routes at this
+     * location.
+     * U-turn avoidance is best effort and complete avoidance is not guaranteed.
+     * This is an experimental feature and behavior is subject to change.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/u-turn-avoidance/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>optional bool avoid_u_turns = 13;</code>
+     * @return bool
+     */
+    public function getAvoidUTurns()
+    {
+        return isset($this->avoid_u_turns) ? $this->avoid_u_turns : false;
+    }
+
+    public function hasAvoidUTurns()
+    {
+        return isset($this->avoid_u_turns);
+    }
+
+    public function clearAvoidUTurns()
+    {
+        unset($this->avoid_u_turns);
+    }
+
+    /**
+     * Specifies whether U-turns should be avoided in driving routes at this
+     * location.
+     * U-turn avoidance is best effort and complete avoidance is not guaranteed.
+     * This is an experimental feature and behavior is subject to change.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/u-turn-avoidance/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>optional bool avoid_u_turns = 13;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAvoidUTurns($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->avoid_u_turns = $var;
 
         return $this;
     }

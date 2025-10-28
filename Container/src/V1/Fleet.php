@@ -38,6 +38,12 @@ class Fleet extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool pre_registered = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $pre_registered = false;
+    /**
+     * The type of the cluster's fleet membership.
+     *
+     * Generated from protobuf field <code>.google.container.v1.Fleet.MembershipType membership_type = 4;</code>
+     */
+    protected $membership_type = 0;
 
     /**
      * Constructor.
@@ -56,6 +62,8 @@ class Fleet extends \Google\Protobuf\Internal\Message
      *     @type bool $pre_registered
      *           Output only. Whether the cluster has been registered through the fleet
      *           API.
+     *     @type int $membership_type
+     *           The type of the cluster's fleet membership.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +155,32 @@ class Fleet extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->pre_registered = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of the cluster's fleet membership.
+     *
+     * Generated from protobuf field <code>.google.container.v1.Fleet.MembershipType membership_type = 4;</code>
+     * @return int
+     */
+    public function getMembershipType()
+    {
+        return $this->membership_type;
+    }
+
+    /**
+     * The type of the cluster's fleet membership.
+     *
+     * Generated from protobuf field <code>.google.container.v1.Fleet.MembershipType membership_type = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMembershipType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\Fleet\MembershipType::class);
+        $this->membership_type = $var;
 
         return $this;
     }

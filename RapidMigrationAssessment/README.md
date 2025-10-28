@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\RapidMigrationAssessment\V1\Annotation;
-Google\Cloud\RapidMigrationAssessment\V1\Client\RapidMigrationAssessmentClient;
-Google\Cloud\RapidMigrationAssessment\V1\GetAnnotationRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\RapidMigrationAssessment\V1\Annotation;
+use Google\Cloud\RapidMigrationAssessment\V1\Client\RapidMigrationAssessmentClient;
+use Google\Cloud\RapidMigrationAssessment\V1\GetAnnotationRequest;
 
 // Create a client.
 $rapidMigrationAssessmentClient = new RapidMigrationAssessmentClient();

@@ -11,6 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Scheduling information for VM on maintenance/restart behaviour and
  * node allocation in sole tenant nodes.
+ * Options for instance behavior when the host machine undergoes
+ * maintenance that may temporarily impact instance performance.
  *
  * Generated from protobuf message <code>google.cloud.vmmigration.v1.ComputeScheduling</code>
  */

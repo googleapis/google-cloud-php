@@ -18,12 +18,15 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Rpc\Code;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 /**
  * @group spanner
  */
-class BatchWriteTest extends SpannerTestCase
+class BatchWriteTest extends SystemTestCase
 {
+    use SystemTestCaseTrait;
+
     const TABLE_NAME = 'BatchWrites';
     /**
      * @beforeClass
@@ -31,7 +34,7 @@ class BatchWriteTest extends SpannerTestCase
     public static function setUpTestFixtures(): void
     {
         self::skipEmulatorTests();
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$database->updateDdlBatch([
             'CREATE TABLE Singers (
@@ -53,16 +56,16 @@ class BatchWriteTest extends SpannerTestCase
         $mutationGroups = [];
         $mutationGroups[] = self::$database->mutationGroup()
             ->insertOrUpdate(
-                "Singers",
+                'Singers',
                 ['SingerId' => 16, 'FirstName' => 'Scarlet', 'LastName' => 'Terry']
             );
 
         $mutationGroups[] = self::$database->mutationGroup()
             ->insertOrUpdate(
-                "Singers",
+                'Singers',
                 ['SingerId' => 17, 'FirstName' => 'Marc', 'LastName' => 'Kristen']
             )->insertOrUpdate(
-                "Albums",
+                'Albums',
                 ['AlbumId' => 1, 'SingerId' => 17, 'AlbumTitle' => 'Total Junk']
             );
 

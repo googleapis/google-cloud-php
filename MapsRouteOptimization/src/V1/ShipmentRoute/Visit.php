@@ -90,6 +90,21 @@ class Visit extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string visit_label = 8;</code>
      */
     protected $visit_label = '';
+    /**
+     * An opaque token representing information about a visit location.
+     * This field may be populated in the result routes' visits when
+     * [VisitRequest.avoid_u_turns][google.maps.routeoptimization.v1.Shipment.VisitRequest.avoid_u_turns]
+     * was set to true for this visit or if
+     * [ShipmentModel.avoid_u_turns][google.maps.routeoptimization.v1.ShipmentModel.avoid_u_turns]
+     * was set to true in the request
+     * [OptimizeToursRequest][google.maps.routeoptimization.v1.OptimizeToursRequest].
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/u-turn-avoidance/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>optional int32 injected_solution_location_token = 13;</code>
+     */
+    protected $injected_solution_location_token = null;
 
     /**
      * Constructor.
@@ -139,6 +154,17 @@ class Visit extends \Google\Protobuf\Internal\Message
      *           Copy of the corresponding
      *           [VisitRequest.label][google.maps.routeoptimization.v1.Shipment.VisitRequest.label],
      *           if specified in the `VisitRequest`.
+     *     @type int $injected_solution_location_token
+     *           An opaque token representing information about a visit location.
+     *           This field may be populated in the result routes' visits when
+     *           [VisitRequest.avoid_u_turns][google.maps.routeoptimization.v1.Shipment.VisitRequest.avoid_u_turns]
+     *           was set to true for this visit or if
+     *           [ShipmentModel.avoid_u_turns][google.maps.routeoptimization.v1.ShipmentModel.avoid_u_turns]
+     *           was set to true in the request
+     *           [OptimizeToursRequest][google.maps.routeoptimization.v1.OptimizeToursRequest].
+     *           Experimental: See
+     *           https://developers.google.com/maps/tt/route-optimization/experimental/u-turn-avoidance/make-request
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -422,6 +448,60 @@ class Visit extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->visit_label = $var;
+
+        return $this;
+    }
+
+    /**
+     * An opaque token representing information about a visit location.
+     * This field may be populated in the result routes' visits when
+     * [VisitRequest.avoid_u_turns][google.maps.routeoptimization.v1.Shipment.VisitRequest.avoid_u_turns]
+     * was set to true for this visit or if
+     * [ShipmentModel.avoid_u_turns][google.maps.routeoptimization.v1.ShipmentModel.avoid_u_turns]
+     * was set to true in the request
+     * [OptimizeToursRequest][google.maps.routeoptimization.v1.OptimizeToursRequest].
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/u-turn-avoidance/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>optional int32 injected_solution_location_token = 13;</code>
+     * @return int
+     */
+    public function getInjectedSolutionLocationToken()
+    {
+        return isset($this->injected_solution_location_token) ? $this->injected_solution_location_token : 0;
+    }
+
+    public function hasInjectedSolutionLocationToken()
+    {
+        return isset($this->injected_solution_location_token);
+    }
+
+    public function clearInjectedSolutionLocationToken()
+    {
+        unset($this->injected_solution_location_token);
+    }
+
+    /**
+     * An opaque token representing information about a visit location.
+     * This field may be populated in the result routes' visits when
+     * [VisitRequest.avoid_u_turns][google.maps.routeoptimization.v1.Shipment.VisitRequest.avoid_u_turns]
+     * was set to true for this visit or if
+     * [ShipmentModel.avoid_u_turns][google.maps.routeoptimization.v1.ShipmentModel.avoid_u_turns]
+     * was set to true in the request
+     * [OptimizeToursRequest][google.maps.routeoptimization.v1.OptimizeToursRequest].
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/u-turn-avoidance/make-request
+     * for more details.
+     *
+     * Generated from protobuf field <code>optional int32 injected_solution_location_token = 13;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setInjectedSolutionLocationToken($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->injected_solution_location_token = $var;
 
         return $this;
     }

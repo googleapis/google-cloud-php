@@ -24,9 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_StoragePools_List_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\Client\StoragePoolsClient;
 use Google\Cloud\Compute\V1\ListStoragePoolsRequest;
-use Google\Cloud\Compute\V1\StoragePoolList;
 
 /**
  * Retrieves a list of storage pools contained within the specified zone.
@@ -46,9 +46,12 @@ function list_sample(string $project, string $zone): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var StoragePoolList $response */
+        /** @var PagedListResponse $response */
         $response = $storagePoolsClient->list($request);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

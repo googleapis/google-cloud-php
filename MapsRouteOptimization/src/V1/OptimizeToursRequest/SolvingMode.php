@@ -51,11 +51,25 @@ class SolvingMode
      * Generated from protobuf enum <code>DETECT_SOME_INFEASIBLE_SHIPMENTS = 2;</code>
      */
     const DETECT_SOME_INFEASIBLE_SHIPMENTS = 2;
+    /**
+     * This mode only works if `ShipmentModel.objectives` is not empty. The
+     * request is not solved. It is only validated and filled with costs
+     * corresponding to the given objectives. Also see the documentation of
+     * `ShipmentModel.objectives`. The resulting request is returned as
+     * `OptimizeToursResponse.processed_request`.
+     * Experimental: See
+     * https://developers.google.com/maps/tt/route-optimization/experimental/objectives/make-request
+     * for more details.
+     *
+     * Generated from protobuf enum <code>TRANSFORM_AND_RETURN_REQUEST = 3;</code>
+     */
+    const TRANSFORM_AND_RETURN_REQUEST = 3;
 
     private static $valueToName = [
         self::DEFAULT_SOLVE => 'DEFAULT_SOLVE',
         self::VALIDATE_ONLY => 'VALIDATE_ONLY',
         self::DETECT_SOME_INFEASIBLE_SHIPMENTS => 'DETECT_SOME_INFEASIBLE_SHIPMENTS',
+        self::TRANSFORM_AND_RETURN_REQUEST => 'TRANSFORM_AND_RETURN_REQUEST',
     ];
 
     public static function name($value)

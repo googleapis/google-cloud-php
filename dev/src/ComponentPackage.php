@@ -98,15 +98,32 @@ class ComponentPackage
                 $contents,
                 $matches
             ) && preg_match('/namespace (.*);/', $contents, $nsMatches)) {
-                // remove namespace (in case it's nested)
-                $protoPackages[$matches[1]] = str_replace(
-                    str_replace('.', '\\', substr($matches[2], 0, strrpos($matches[2], '.'))),
-                    '',
-                    $nsMatches[1]
-                );
+                $protoNs = $nsMatches[1];
+                // remove nested namespaces
+                if ($nestedNs = str_replace('.', '\\', substr($matches[2], 0, strrpos($matches[2], '.')))) {
+                    $nestedNsPos = strrpos($protoNs, $nestedNs);
+                    if (false === $nestedNsPos) {
+                        // this should only occur for "keywords" in PHP needing to be prefixed by "PB" (e.g. `PBString`)
+                        if (false === strpos($protoNs, '\\PB')) {
+                            throw new \Exception(sprintf('Unexpected namespace found in %s: %s', $protoNs, $nestedNs));
+                        }
+                        continue; // skip this classs - use the others in the component instead
+                    }
+                    $protoNs = substr_replace($protoNs, '', $nestedNsPos, strlen($nestedNs));
+                    if (isset($protoPackages[$matches[1]]) && $protoPackages[$matches[1]] !== $protoNs) {
+                        throw new \Exception(sprintf(
+                            'Differing namespaces for "%s": %s and %s',
+                            $matches[1],
+                            $protoPackages[$matches[1]],
+                            $protoNs
+                        ));
+                    }
+                }
+                $protoPackages[$matches[1]] = $protoNs;
             }
         }
-        return array_unique($protoPackages);
+
+        return $protoPackages;
     }
 
     public function getBaseUri(): string
@@ -161,5 +178,64 @@ class ComponentPackage
             }
         }
         throw new \Exception('No class found in ' . $filePath);
+    }
+
+    public function getSimplestSample(): string
+    {
+        $samplesPath = $this->component->getPath() . '/samples/' . $this->name;
+        if (!file_exists($samplesPath)) {
+            return '';
+        }
+
+        $result = (new Finder())->files()->in($samplesPath)
+            ->name('*.php')->sortByName();
+
+        $preferredFile = array_filter(
+            iterator_to_array($result),
+            fn ($f) => str_starts_with($f->getFilename(), 'get') && $f->getFilename() !== 'get_iam_policy.php'
+        )[0] ?? null;
+
+        // grab the shortest file if no "get" example exists
+        if ($preferredFile === null) {
+            foreach ($result as $file) {
+                if (str_starts_with($file->getFilename(), 'get')
+                    && $file->getFilename() !== 'get_iam_policy.php'
+                ) {
+                    $preferredFile = $file;
+                    break;
+                }
+                $preferredFile ??= $file; // set first file to default preferred file
+
+                $preferredFile = count(file($file->getRealPath())) < count(file($preferredFile->getRealPath()))
+                    ? $file
+                    : $preferredFile;
+            }
+        }
+
+        if ($preferredFile === null || !preg_match('/^{(.|\n)*?(^})/m', $preferredFile->getContents(), $matches)) {
+            return '';
+        }
+
+        $lines = explode("\n", $matches[0]);
+
+        // remove wrapped parenthesis
+        array_shift($lines);
+        array_pop($lines);
+
+        // remove indent
+        $sampleText = implode("\n", array_map(fn ($line) => substr($line, 4), $lines));
+
+        // add imports
+        $imports = array_filter(
+            explode("\n", $preferredFile->getContents()),
+            fn ($line) => str_starts_with($line, 'use Google\\')
+        );
+
+        if ($imports) {
+            $imports[] = "\n";
+            $sampleText = implode("\n", $imports) . $sampleText;
+        }
+
+        return $sampleText;
     }
 }
