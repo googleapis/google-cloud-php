@@ -81,6 +81,13 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.ResourceState state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
+    /**
+     * Optional. The remote peering network type of the underlying interconnect.
+     * It is required when peering separation is enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.RemotePeeringNetworkType peering_type = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $peering_type = 0;
 
     /**
      * Constructor.
@@ -114,6 +121,9 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           Default to 1500 if not set.
      *     @type int $state
      *           Output only. Current stage of the resource to the device by config push.
+     *     @type int $peering_type
+     *           Optional. The remote peering network type of the underlying interconnect.
+     *           It is required when peering separation is enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -409,6 +419,34 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\EdgeNetwork\V1\ResourceState::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The remote peering network type of the underlying interconnect.
+     * It is required when peering separation is enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.RemotePeeringNetworkType peering_type = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPeeringType()
+    {
+        return $this->peering_type;
+    }
+
+    /**
+     * Optional. The remote peering network type of the underlying interconnect.
+     * It is required when peering separation is enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.RemotePeeringNetworkType peering_type = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPeeringType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\EdgeNetwork\V1\RemotePeeringNetworkType::class);
+        $this->peering_type = $var;
 
         return $this;
     }
