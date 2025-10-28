@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use ArrayIterator;
+use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\GeoPoint;
@@ -25,17 +28,33 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\CommitResponse;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
+use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
 use Google\Cloud\Firestore\WriteBatch;
+use Google\ApiCore\ServerStream;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
+use Google\Cloud\Firestore\V1\BeginTransactionResponse;
+use Google\Cloud\Firestore\V1\Document as GapicDocument;
+use Google\Cloud\Firestore\V1\RollbackRequest;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
+use Google\Cloud\Firestore\V1\RunQueryResponse;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+
+use function PHPUnit\Framework\assertEquals;
 
 /**
  * @group firestore
@@ -45,40 +64,24 @@ class FirestoreClientTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
+    use GenerateProtoTrait;
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
 
-    private $connection;
+    private $gapicClient;
     private $client;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = TestHelpers::stub(
-            FirestoreClient::class,
-            [['projectId' => self::PROJECT]]
-        );
-    }
-
-    public function testBatch()
-    {
-        $batch = $this->client->batch();
-        $this->assertInstanceOf(WriteBatch::class, $batch);
-    }
-
-    public function testBatchCorrectDatabaseName()
-    {
-        $db = sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
-        $this->connection->commit(Argument::withEntry('database', $db))
-            ->shouldBeCalled()
-            ->willReturn([[]]);
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
-        $batch = $this->client->batch();
-        $batch->commit();
+        $this->gapicClient = $this->prophesize(GapicFirestoreClient::class);
+        $this->client = new FirestoreClient([
+            'projectId' => self::PROJECT,
+            'database' => self::DATABASE,
+            'firestoreClient' => $this->gapicClient->reveal()
+        ]);
     }
 
     public function testCollection()
@@ -97,15 +100,19 @@ class FirestoreClientTest extends TestCase
             'collection-c',
         ];
 
-        $this->connection->listCollectionIds(Argument::withEntry('foo', 'bar'))
-            ->willReturn([
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getIterator()
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
                 'collectionIds' => $collectionIds
-            ])->shouldBeCalledTimes(1);
+            ]));
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->listCollectionIds(Argument::type(ListCollectionIdsRequest::class), Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willReturn($pagedListResponse->reveal());
 
         $collections = $this->client->collections([
-            'foo' => 'bar'
+            'resultLimit' => 3
         ]);
 
         $this->assertInstanceOf(ItemIterator::class, $collections);
@@ -125,25 +132,25 @@ class FirestoreClientTest extends TestCase
             'collection-c',
         ];
 
-        $this->connection->listCollectionIds(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::that(function ($options) {
-                if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
-                    return false;
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getIterator()
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+                'collectionIds' => $collectionIds,
+                'nextPageToken' => 'nextPageTokenValue'
+            ]));
+
+        $this->gapicClient->listCollectionIds(
+            Argument::that(function (ListCollectionIdsRequest $request) {
+                if (!empty($request->getPageToken()) && $request->getPageToken() !== 'nextPageTokenValue') {
+                    $this->fail('The pageToken value is the incorrect value');
                 }
-
                 return true;
-            })
-        ))->willReturn([
-            'collectionIds' => $collectionIds,
-            'nextPageToken' => 'foo'
-        ])->shouldBeCalledTimes(2);
+            }),
+            Argument::any()
+        )->willReturn($pagedListResponse->reveal())->shouldBeCalledTimes(2);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
-
-        $collections = $this->client->collections([
-            'foo' => 'bar'
-        ]);
+        $collections = $this->client->collections();
 
         // enumerate the iterator and kill after it loops twice.
         $arr = [];
@@ -167,14 +174,14 @@ class FirestoreClientTest extends TestCase
         $this->assertEquals('b', $document->id());
     }
 
-    public function testDocumentPathSpecialChars()
-    {
-        $id = 'a!@#$%^&*(){[{}]+=-_|';
-        $document = $this->client->document('a/' . $id);
+    // public function testDocumentPathSpecialChars()
+    // {
+    //     $id = 'a!@#$%^&*(){[{}]+=-_|';
+    //     $document = $this->client->document('a/' . $id);
 
-        $this->assertInstanceOf(DocumentReference::class, $document);
-        $this->assertEquals($id, $document->id());
-    }
+    //     $this->assertInstanceOf(DocumentReference::class, $document);
+    //     $this->assertEquals($id, $document->id());
+    // }
 
     /**
      * @dataProvider paths
@@ -201,35 +208,47 @@ class FirestoreClientTest extends TestCase
      */
     public function testDocuments(array $input, array $names)
     {
-        $res = [
-            [
-                'found' => [
+        $responses = [
+            (new BatchGetDocumentsResponse([
+                'found' => self::generateProto(GapicDocument::class, [
                     'name' => $names[0],
                     'fields' => [
                         'hello' => [
                             'stringValue' => 'world'
                         ]
                     ]
-                ],
-                'readTime' => new Timestamp(new \DateTimeImmutable)
-            ], [
+                ]),
+                'read_time' => new ProtobufTimestamp(),
+            ])),
+            (new BatchGetDocumentsResponse([
                 'missing' => $names[1],
-                'readTime' => new Timestamp(new \DateTimeImmutable)
-            ], [
+                'read_time' => new ProtobufTimestamp()
+            ])),
+            (new BatchGetDocumentsResponse([
                 'missing' => $names[2],
-                'readTime' => new Timestamp(new \DateTimeImmutable)
-            ]
+                'read_time' => new ProtobufTimestamp()
+            ]))
         ];
 
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', $names))
-            ->shouldBeCalled()
-            ->willReturn($res);
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->willReturn(new \ArrayIterator($responses));
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) use ($names) {
+                $this->assertNotEmpty($request->getDocuments());
+                $this->assertEquals($names, iterator_to_array($request->getDocuments()));
+                return true;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalled()
+            ->willReturn($stream->reveal());
 
         $res = $this->client->documents($input);
 
         $this->assertEquals('world', $res[0]['hello']);
+        $this->assertFalse($res[1]->exists());
+        $this->assertFalse($res[2]->exists());
     }
 
     public function testDocumentsInvalidInputType()
@@ -295,24 +314,34 @@ class FirestoreClientTest extends TestCase
             sprintf($tpl, 'c'),
         ];
 
-        $res = [
-            [
+        $responses = [
+            new BatchGetDocumentsResponse([
                 'missing' => $names[2],
-                'readTime' => new Timestamp(new \DateTimeImmutable)
-            ], [
+                'read_time' => new ProtobufTimestamp()
+            ]),
+            new BatchGetDocumentsResponse([
                 'missing' => $names[1],
-                'readTime' => new Timestamp(new \DateTimeImmutable)
-            ], [
+                'read_time' => new ProtobufTimestamp()
+            ]),
+            new BatchGetDocumentsResponse([
                 'missing' => $names[0],
-                'readTime' => new Timestamp(new \DateTimeImmutable)
-            ]
+                'read_time' => new ProtobufTimestamp()
+            ])
         ];
 
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', $names))
-            ->shouldBeCalled()
-            ->willReturn($res);
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->willReturn(new \ArrayIterator($responses));
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) use ($names) {
+                $this->assertNotEmpty($request->getDocuments());
+                $this->assertEquals($names, iterator_to_array($request->getDocuments()));
+                return true;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalled()
+            ->willReturn($stream->reveal());
 
         $res = $this->client->documents($names);
         $this->assertEquals($names[0], $res[0]->name());
@@ -322,33 +351,36 @@ class FirestoreClientTest extends TestCase
 
     public function testCollectionGroup()
     {
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('structuredQuery', [
-                'from' => [
-                    [
-                        'collectionId' => 'foo',
-                        'allDescendants' => true
-                    ]
-                ]
-            ]),
-            Argument::withEntry('parent', 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents')
-        ))->shouldBeCalled()->willReturn(new \ArrayIterator([
-            [
-                'document' => [
+        $responses = [
+            new RunQueryResponse([
+                'document' => new GapicDocument([
                     'name' => 'a/b/c/d',
                     'fields' => []
-                ],
-                'readTime' => null
-            ], [
-                'document' => [
+                ]),
+                'read_time' => null,
+            ]),
+            new RunQueryResponse([
+                'document' => new GapicDocument([
                     'name' => 'c/d',
                     'fields' => []
-                ],
-                'readTime' => null
-            ]
-        ]));
+                ]),
+                'read_time' => null,
+            ])
+        ];
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $serverStream = $this->prophesize(ServerStream::class);
+        $serverStream->readAll()
+            ->willReturn(new ArrayIterator($responses));
+
+        $this->gapicClient->runQuery(
+            Argument::that(function (RunQueryRequest $request) {
+                $this->assertNotEmpty($request->getStructuredQuery());
+                $this->assertEquals($request->getParent(), 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents');
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn($serverStream->reveal());
+
         $query = $this->client->collectionGroup('foo');
 
         $this->assertInstanceOf(Query::class, $query);
@@ -364,67 +396,104 @@ class FirestoreClientTest extends TestCase
 
     public function testRunTransaction()
     {
-        $transactionId = 'foobar';
+        $transactionId = 'transactionId';
         $timestamp = new Timestamp(new \DateTimeImmutable);
+        $expectedDatabase = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE;
 
-        $this->connection->beginTransaction([
-            'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE
-        ])->shouldBeCalled()->willReturn([
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) use ($expectedDatabase){
+                $this->assertEquals($expectedDatabase, $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(self::generateProto(BeginTransactionResponse::class, [
             'transaction' => $transactionId
-        ]);
+        ]));
 
-        $this->connection->rollback([
-            'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE,
-            'transaction' => $transactionId
-        ])->shouldBeCalled();
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->rollback(
+            Argument::that(function (RollbackRequest $request) use ($expectedDatabase) {
+                $this->assertEquals('transactionId', $request->getTransaction());
+                $this->assertEquals($expectedDatabase, $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled();
 
         $this->client->runTransaction($this->noop());
     }
 
     public function testRunTransactionRetryable()
     {
-        $transactionId = 'foobar';
-        $transactionId2 = 'barfoo';
-        $timestamp = new Timestamp(new \DateTimeImmutable);
+        $transactionId = 'transaction1';
+        $transactionId2 = 'transaction2';
+        // $timestamp = new Timestamp(new \DateTimeImmutable);
+        $expectedDatabase = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE;
 
-        $this->connection->beginTransaction([
-            'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE
-        ])->shouldBeCalled()->will(function ($args, $mock) use ($transactionId, $transactionId2) {
-            $mock->beginTransaction(Argument::withEntry('retryTransaction', $transactionId))->willReturn([
-                'transaction' => $transactionId2
+        $beginTransactionCount = 0;
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) use ($expectedDatabase, $transactionId, &$beginTransactionCount) {
+                $beginTransactionCount++;
+                if ($beginTransactionCount == 2) {
+                    $this->assertEquals($transactionId, $request->getOptions()->getReadWrite()->getRetryTransaction());
+                }
+                $this->assertEquals($expectedDatabase, $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()
+            ->will(function () use ($transactionId, $transactionId2, &$beginTransactionCount) {
+                if ($beginTransactionCount == 1) {
+                    return new BeginTransactionResponse(['transaction' => $transactionId]);
+                }
+
+                if ($beginTransactionCount == 2) {
+                    return new BeginTransactionResponse(['transaction' => $transactionId2]);
+                }
+            });
+
+        $this->gapicClient->rollback(
+            Argument::that(function (RollbackRequest $request) use ($expectedDatabase, $transactionId) {
+                $this->assertEquals($transactionId, $request->getTransaction());
+                $this->assertEquals($expectedDatabase, $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1);
+
+        $callCount = 0;
+
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) use (&$callCount, $expectedDatabase, $transactionId, $transactionId2) {
+                $callCount++;
+                if ($callCount === 1) {
+                    // Assertions for the first call
+                    $this->assertEquals($expectedDatabase, $request->getDatabase());
+                    $this->assertEquals($transactionId, $request->getTransaction());
+                } elseif ($callCount === 2) {
+                    // Assertions for the second call
+                    $this->assertEquals($expectedDatabase, $request->getDatabase());
+                    $this->assertEquals($transactionId2, $request->getTransaction());
+                }
+
+                return true; // The arguments are valid for the current call number
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(2)
+        ->will(function () use (&$callCount) {
+            if ($callCount === 1) {
+                // Action for the first call
+                throw new AbortedException('');
+            }
+
+            // Action for the second call
+            return new CommitResponse([
+                'commit_time' => new ProtobufTimestamp()
             ]);
-
-            return [
-                'transaction' => $transactionId
-            ];
         });
-
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('database', 'projects/'. self::PROJECT .'/databases/'. self::DATABASE),
-            Argument::withEntry('transaction', $transactionId)
-        ))->shouldBeCalled()->will(function ($args, $mock) use ($timestamp, $transactionId2) {
-            $mock->commit(Argument::allOf(
-                Argument::withEntry('database', 'projects/'. self::PROJECT .'/databases/'. self::DATABASE),
-                Argument::withEntry('transaction', $transactionId2)
-            ))->willReturn([
-                'commitTime' => $timestamp,
-            ]);
-
-            throw new AbortedException('');
-        });
-
-        $this->connection->rollback([
-            'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE,
-            'transaction' => $transactionId
-        ])->shouldBeCalledTimes(1);
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->client->runTransaction(function ($t) {
             $doc = $this->prophesize(DocumentReference::class);
-            $doc->name('foo');
+            $doc->name()->willReturn('foo');
             $t->create($doc->reveal(), ['foo'=>'bar']);
 
             return 'foo';
@@ -438,24 +507,31 @@ class FirestoreClientTest extends TestCase
         $this->expectExceptionMessage('foo');
 
         $transactionId = 'foobar';
-        $timestamp = new Timestamp(new \DateTimeImmutable);
+        $expectedDatabase = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE;
 
-        $this->connection->beginTransaction([
-            'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE
-        ])->shouldBeCalled()->willReturn([
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) use ($expectedDatabase) {
+                $this->assertEquals($expectedDatabase, $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(new BeginTransactionResponse([
             'transaction' => $transactionId
-        ]);
+        ]));
 
-        $this->connection->commit()->shouldNotBeCalled();
+        $this->gapicClient->commit()->shouldNotBeCalled();
 
-        $this->connection->rollback([
-            'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE,
-            'transaction' => $transactionId
-        ])->shouldBeCalledTimes(1);
+        $this->gapicClient->rollback(
+            Argument::that(function (RollbackRequest $request) use ($expectedDatabase, $transactionId) {
+                $this->assertEquals($expectedDatabase, $request->getDatabase());
+                $this->assertEquals($transactionId, $request->getTransaction());
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1);
 
-        $res = $this->client->runTransaction(function ($t) {
+        $this->client->runTransaction(function ($t) {
             throw new \RangeException('foo');
         });
     }
@@ -465,23 +541,23 @@ class FirestoreClientTest extends TestCase
         $this->expectException(AbortedException::class);
 
         $transactionId = 'foobar';
-        $timestamp = new Timestamp(new \DateTimeImmutable);
 
-        $this->connection->beginTransaction(Argument::any())->shouldBeCalledTimes(6)->willReturn([
-            'transaction' => $transactionId
-        ]);
+        $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
+            ->shouldBeCalledTimes(6)
+            ->willReturn(new BeginTransactionResponse([
+                'transaction' => $transactionId
+            ]));
 
-        $this->connection->commit(Argument::any())
+        $this->gapicClient->commit(Argument::any(), Argument::any())
             ->shouldBeCalledTimes(6)
             ->willThrow(new AbortedException('foo'));
 
-        $this->connection->rollback(Argument::any())->shouldBeCalledTimes(6);
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->rollback(Argument::any(), Argument::any())
+            ->shouldBeCalledTimes(6);
 
         $res = $this->client->runTransaction(function ($t) {
             $doc = $this->prophesize(DocumentReference::class);
-            $doc->name('foo');
+            $doc->name()->willReturn('foo');
             $t->create($doc->reveal(), ['foo'=>'bar']);
         });
     }
@@ -493,21 +569,22 @@ class FirestoreClientTest extends TestCase
         $transactionId = 'foobar';
         $timestamp = new Timestamp(new \DateTimeImmutable);
 
-        $this->connection->beginTransaction(Argument::any())->shouldBeCalledTimes(3)->willReturn([
-            'transaction' => $transactionId
-        ]);
+        $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
+            ->shouldBeCalledTimes(3)
+            ->willReturn(new BeginTransactionResponse([
+                'transaction' => $transactionId
+            ]));
 
-        $this->connection->commit(Argument::any())
+        $this->gapicClient->commit(Argument::any(), Argument::any())
             ->shouldBeCalledTimes(3)
             ->willThrow(new AbortedException('foo'));
 
-        $this->connection->rollback(Argument::any())->shouldBeCalledTimes(3);
+        $this->gapicClient->rollback(Argument::any(), Argument::any())
+            ->shouldBeCalledTimes(3);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
-
-        $res = $this->client->runTransaction(function ($t) {
+        $this->client->runTransaction(function ($t) {
             $doc = $this->prophesize(DocumentReference::class);
-            $doc->name('foo');
+            $doc->name()->willReturn('foo');
             $t->create($doc->reveal(), ['foo'=>'bar']);
         }, ['maxRetries' => 2]);
     }

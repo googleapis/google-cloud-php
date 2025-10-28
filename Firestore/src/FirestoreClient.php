@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Options\CallOptions;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\ClientTrait;
@@ -30,6 +31,7 @@ use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
 use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
 use InvalidArgumentException;
@@ -196,6 +198,7 @@ class FirestoreClient
             'emulatorHost' => $emulatorHost,
         ];
 
+        $this->projectId = $this->detectProjectId($config);
         $this->database = $config['database'];
 
         $this->gapicClient = $this->getGapicClient($config);
@@ -316,12 +319,28 @@ class FirestoreClient
         $options = $this->formatReadTimeOption($options);
 
         $resultLimit = $this->pluck('resultLimit', $options, false);
+
+        $listCollectionCall = function (array $options) {
+            /**
+             * @var ListCollectionIdsRequest $request
+             * @var CallOptions $callOptions
+             */
+            [$request, $callOptions] = $this->validateOptions(
+                $options,
+                new ListCollectionIdsRequest(),
+                CallOptions::class
+            );
+
+            $response = $this->gapicClient->listCollectionIds($request, $callOptions);
+            return iterator_to_array($response->getIterator());
+        };
+
         return new ItemIterator(
             new PageIterator(
                 function ($collectionId) {
                     return $this->collection($collectionId);
                 },
-                [$this->gapicClient, 'listCollectionIds'],
+                $listCollectionCall,
                 [
                     'parent' => $this->fullName($this->projectId, $this->database),
                 ] + $options,
@@ -569,6 +588,7 @@ class FirestoreClient
             }
 
             $response = $this->gapicClient->beginTransaction($request, $options);
+            $transactionId = $response->getTransaction();
 
             $transaction = new Transaction(
                 $this->gapicClient,
