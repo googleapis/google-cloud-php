@@ -23,6 +23,78 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.PlacementService' => [
+            'BatchActivatePlacements' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchActivatePlacementsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchArchivePlacements' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchArchivePlacementsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreatePlacements' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchCreatePlacementsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivatePlacements' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchDeactivatePlacementsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdatePlacements' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchUpdatePlacementsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreatePlacement' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\Placement',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetPlacement' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\Placement',
@@ -55,7 +127,21 @@ return [
                     ],
                 ],
             ],
+            'UpdatePlacement' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\Placement',
+                'headerParams' => [
+                    [
+                        'keyName' => 'placement.name',
+                        'fieldAccessors' => [
+                            'getPlacement',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
+                'adUnit' => 'networks/{network_code}/adUnits/{ad_unit}',
                 'network' => 'networks/{network_code}',
                 'placement' => 'networks/{network_code}/placements/{placement}',
             ],

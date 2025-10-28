@@ -23,6 +23,66 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.CustomFieldService' => [
+            'BatchActivateCustomFields' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchActivateCustomFieldsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateCustomFields' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchCreateCustomFieldsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateCustomFields' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchDeactivateCustomFieldsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateCustomFields' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchUpdateCustomFieldsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateCustomField' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\CustomField',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetCustomField' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\CustomField',
@@ -51,6 +111,19 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCustomField' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\CustomField',
+                'headerParams' => [
+                    [
+                        'keyName' => 'custom_field.name',
+                        'fieldAccessors' => [
+                            'getCustomField',
+                            'getName',
                         ],
                     ],
                 ],

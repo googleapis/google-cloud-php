@@ -79,9 +79,7 @@ final class DeviceCategoryServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/admanager',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {
@@ -111,9 +109,7 @@ final class DeviceCategoryServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -304,8 +300,10 @@ final class DeviceCategoryServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDeviceCategories(ListDeviceCategoriesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDeviceCategories(
+        ListDeviceCategoriesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDeviceCategories', $request, $callOptions);
     }
 }

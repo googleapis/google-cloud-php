@@ -28,9 +28,9 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
      * Format:
      * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
      *
-     * Generated from protobuf field <code>string custom_targeting_key = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string custom_targeting_key = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    protected $custom_targeting_key = '';
+    protected $custom_targeting_key = null;
     /**
      * Immutable. Name of the `CustomTargetingValue`. Values can contain up to 40
      * characters each. You can use alphanumeric characters and symbols other than
@@ -38,28 +38,28 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
      * not data-specific; all values are treated as strings. For example, instead
      * of using "age>=18 AND <=34", try "18-34"
      *
-     * Generated from protobuf field <code>string ad_tag_name = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>optional string ad_tag_name = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    protected $ad_tag_name = '';
+    protected $ad_tag_name = null;
     /**
      * Optional. Descriptive name for the `CustomTargetingValue`.
      *
-     * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $display_name = '';
+    protected $display_name = null;
     /**
      * Required. Immutable. The way in which the CustomTargetingValue.name strings
      * will be matched.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingValueMatchTypeEnum.CustomTargetingValueMatchType match_type = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingValueMatchTypeEnum.CustomTargetingValueMatchType match_type = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $match_type = 0;
+    protected $match_type = null;
     /**
      * Output only. Status of the `CustomTargetingValue`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingValueStatusEnum.CustomTargetingValueStatus status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingValueStatusEnum.CustomTargetingValueStatus status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $status = 0;
+    protected $status = null;
 
     /**
      * Constructor.
@@ -130,12 +130,22 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
      * Format:
      * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
      *
-     * Generated from protobuf field <code>string custom_targeting_key = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string custom_targeting_key = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getCustomTargetingKey()
     {
-        return $this->custom_targeting_key;
+        return isset($this->custom_targeting_key) ? $this->custom_targeting_key : '';
+    }
+
+    public function hasCustomTargetingKey()
+    {
+        return isset($this->custom_targeting_key);
+    }
+
+    public function clearCustomTargetingKey()
+    {
+        unset($this->custom_targeting_key);
     }
 
     /**
@@ -143,7 +153,7 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
      * Format:
      * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
      *
-     * Generated from protobuf field <code>string custom_targeting_key = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string custom_targeting_key = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -162,12 +172,22 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
      * not data-specific; all values are treated as strings. For example, instead
      * of using "age>=18 AND <=34", try "18-34"
      *
-     * Generated from protobuf field <code>string ad_tag_name = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>optional string ad_tag_name = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getAdTagName()
     {
-        return $this->ad_tag_name;
+        return isset($this->ad_tag_name) ? $this->ad_tag_name : '';
+    }
+
+    public function hasAdTagName()
+    {
+        return isset($this->ad_tag_name);
+    }
+
+    public function clearAdTagName()
+    {
+        unset($this->ad_tag_name);
     }
 
     /**
@@ -177,7 +197,7 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
      * not data-specific; all values are treated as strings. For example, instead
      * of using "age>=18 AND <=34", try "18-34"
      *
-     * Generated from protobuf field <code>string ad_tag_name = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>optional string ad_tag_name = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -192,18 +212,28 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Descriptive name for the `CustomTargetingValue`.
      *
-     * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
      * Optional. Descriptive name for the `CustomTargetingValue`.
      *
-     * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -219,19 +249,29 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
      * Required. Immutable. The way in which the CustomTargetingValue.name strings
      * will be matched.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingValueMatchTypeEnum.CustomTargetingValueMatchType match_type = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingValueMatchTypeEnum.CustomTargetingValueMatchType match_type = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getMatchType()
     {
-        return $this->match_type;
+        return isset($this->match_type) ? $this->match_type : 0;
+    }
+
+    public function hasMatchType()
+    {
+        return isset($this->match_type);
+    }
+
+    public function clearMatchType()
+    {
+        unset($this->match_type);
     }
 
     /**
      * Required. Immutable. The way in which the CustomTargetingValue.name strings
      * will be matched.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingValueMatchTypeEnum.CustomTargetingValueMatchType match_type = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingValueMatchTypeEnum.CustomTargetingValueMatchType match_type = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -246,18 +286,28 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Status of the `CustomTargetingValue`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingValueStatusEnum.CustomTargetingValueStatus status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingValueStatusEnum.CustomTargetingValueStatus status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
      * Output only. Status of the `CustomTargetingValue`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingValueStatusEnum.CustomTargetingValueStatus status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingValueStatusEnum.CustomTargetingValueStatus status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

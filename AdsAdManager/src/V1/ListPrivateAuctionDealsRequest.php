@@ -27,7 +27,7 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of `PrivateAuctionDeals` to return. The
      * service may return fewer than this value. If unspecified, at most 50
      * `PrivateAuctionDeals` will be returned. The maximum value is 1000;
-     * values above 1000 will be coerced to 1000.
+     * values greater than 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -95,7 +95,7 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The maximum number of `PrivateAuctionDeals` to return. The
      *           service may return fewer than this value. If unspecified, at most 50
      *           `PrivateAuctionDeals` will be returned. The maximum value is 1000;
-     *           values above 1000 will be coerced to 1000.
+     *           values greater than 1000 will be coerced to 1000.
      *     @type string $page_token
      *           Optional. A page token, received from a previous `ListPrivateAuctionDeals`
      *           call. Provide this to retrieve the subsequent page.
@@ -153,7 +153,7 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of `PrivateAuctionDeals` to return. The
      * service may return fewer than this value. If unspecified, at most 50
      * `PrivateAuctionDeals` will be returned. The maximum value is 1000;
-     * values above 1000 will be coerced to 1000.
+     * values greater than 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -167,7 +167,7 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of `PrivateAuctionDeals` to return. The
      * service may return fewer than this value. If unspecified, at most 50
      * `PrivateAuctionDeals` will be returned. The maximum value is 1000;
-     * values above 1000 will be coerced to 1000.
+     * values greater than 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

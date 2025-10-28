@@ -16,12 +16,42 @@
                 }
             },
             "methods": {
+                "BatchActivateCustomFields": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "BatchCreateCustomFields": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "BatchDeactivateCustomFields": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "BatchUpdateCustomFields": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "CreateCustomField": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "GetCustomField": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
                 "ListCustomFields": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "UpdateCustomField": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"

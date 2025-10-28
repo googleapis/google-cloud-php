@@ -18,15 +18,15 @@ class AdUnitSize extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Size of the AdUnit.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.Size size = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.Size size = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $size = null;
     /**
      * Required. The EnvironmentType of the AdUnit
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType environment_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType environment_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $environment_type = 0;
+    protected $environment_type = null;
     /**
      * The companions for this ad unit size. Companions are only valid if the
      * environment is
@@ -60,7 +60,7 @@ class AdUnitSize extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Size of the AdUnit.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.Size size = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.Size size = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Ads\AdManager\V1\Size|null
      */
     public function getSize()
@@ -81,7 +81,7 @@ class AdUnitSize extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Size of the AdUnit.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.Size size = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.Size size = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Ads\AdManager\V1\Size $var
      * @return $this
      */
@@ -96,18 +96,28 @@ class AdUnitSize extends \Google\Protobuf\Internal\Message
     /**
      * Required. The EnvironmentType of the AdUnit
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType environment_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType environment_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getEnvironmentType()
     {
-        return $this->environment_type;
+        return isset($this->environment_type) ? $this->environment_type : 0;
+    }
+
+    public function hasEnvironmentType()
+    {
+        return isset($this->environment_type);
+    }
+
+    public function clearEnvironmentType()
+    {
+        unset($this->environment_type);
     }
 
     /**
      * Required. The EnvironmentType of the AdUnit
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType environment_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType environment_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

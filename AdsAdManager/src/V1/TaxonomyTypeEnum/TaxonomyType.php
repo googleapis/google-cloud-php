@@ -27,6 +27,12 @@ class TaxonomyType
      */
     const TAXONOMY_IAB_AUDIENCE_1_1 = 3;
     /**
+     * The IAB Content Taxonomy v1.0.
+     *
+     * Generated from protobuf enum <code>TAXONOMY_IAB_CONTENT_1_0 = 8;</code>
+     */
+    const TAXONOMY_IAB_CONTENT_1_0 = 8;
+    /**
      * The IAB Content Taxonomy v2.1.
      *
      * Generated from protobuf enum <code>TAXONOMY_IAB_CONTENT_2_1 = 4;</code>
@@ -54,6 +60,7 @@ class TaxonomyType
     private static $valueToName = [
         self::TAXONOMY_TYPE_UNSPECIFIED => 'TAXONOMY_TYPE_UNSPECIFIED',
         self::TAXONOMY_IAB_AUDIENCE_1_1 => 'TAXONOMY_IAB_AUDIENCE_1_1',
+        self::TAXONOMY_IAB_CONTENT_1_0 => 'TAXONOMY_IAB_CONTENT_1_0',
         self::TAXONOMY_IAB_CONTENT_2_1 => 'TAXONOMY_IAB_CONTENT_2_1',
         self::TAXONOMY_IAB_CONTENT_2_2 => 'TAXONOMY_IAB_CONTENT_2_2',
         self::TAXONOMY_IAB_CONTENT_3_0 => 'TAXONOMY_IAB_CONTENT_3_0',
