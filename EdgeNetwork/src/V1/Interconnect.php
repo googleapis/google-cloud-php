@@ -72,6 +72,13 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string physical_ports = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $physical_ports;
+    /**
+     * Optional. The remote peering network type of the interconnect. It is
+     * required when peering separation is enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.RemotePeeringNetworkType remote_peering_network_type = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $remote_peering_network_type = 0;
 
     /**
      * Constructor.
@@ -100,6 +107,9 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $physical_ports
      *           Output only. Physical ports (e.g., TenGigE0/0/0/1) that form the
      *           interconnect.
+     *     @type int $remote_peering_network_type
+     *           Optional. The remote peering network type of the interconnect. It is
+     *           required when peering separation is enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -363,6 +373,34 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->physical_ports = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The remote peering network type of the interconnect. It is
+     * required when peering separation is enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.RemotePeeringNetworkType remote_peering_network_type = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getRemotePeeringNetworkType()
+    {
+        return $this->remote_peering_network_type;
+    }
+
+    /**
+     * Optional. The remote peering network type of the interconnect. It is
+     * required when peering separation is enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.RemotePeeringNetworkType remote_peering_network_type = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRemotePeeringNetworkType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\EdgeNetwork\V1\RemotePeeringNetworkType::class);
+        $this->remote_peering_network_type = $var;
 
         return $this;
     }
