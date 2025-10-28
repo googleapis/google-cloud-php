@@ -9,15 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Attribute at the given path is substituted entirely.
+ * The attribute at the given path that's substituted entirely.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.AttributeSubstitutionRule</code>
  */
 class AttributeSubstitutionRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Fully qualified proto attribute path (in dot notation).
-     * Example: rules[0].cel_expression.resource_types_values
+     * The fully qualified proto attribute path, in dot notation.
+     * For example: `rules[0].cel_expression.resource_types_values`
      *
      * Generated from protobuf field <code>string attribute = 1;</code>
      */
@@ -30,8 +30,8 @@ class AttributeSubstitutionRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $attribute
-     *           Fully qualified proto attribute path (in dot notation).
-     *           Example: rules[0].cel_expression.resource_types_values
+     *           The fully qualified proto attribute path, in dot notation.
+     *           For example: `rules[0].cel_expression.resource_types_values`
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class AttributeSubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified proto attribute path (in dot notation).
-     * Example: rules[0].cel_expression.resource_types_values
+     * The fully qualified proto attribute path, in dot notation.
+     * For example: `rules[0].cel_expression.resource_types_values`
      *
      * Generated from protobuf field <code>string attribute = 1;</code>
      * @return string
@@ -52,8 +52,8 @@ class AttributeSubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified proto attribute path (in dot notation).
-     * Example: rules[0].cel_expression.resource_types_values
+     * The fully qualified proto attribute path, in dot notation.
+     * For example: `rules[0].cel_expression.resource_types_values`
      *
      * Generated from protobuf field <code>string attribute = 1;</code>
      * @param string $var

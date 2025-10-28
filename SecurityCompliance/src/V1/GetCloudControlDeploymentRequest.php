@@ -9,24 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for GetCloudControlDeployment.
+ * The request message for [GetCloudControlDeployment][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.GetCloudControlDeploymentRequest</code>
  */
 class GetCloudControlDeploymentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. CloudControlDeployment name in the following format:
-     * organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}
+     * Required. The name for the cloud control deployment, in the format
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. CloudControlDeployment name in the following format:
-     *                     organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}
-     *                     Please see {@see DeploymentClient::cloudControlDeploymentName()} for help formatting this field.
+     * @param string $name Required. The name for the cloud control deployment, in the format
+     *                     `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     *                     The only supported location is `global`. Please see
+     *                     {@see DeploymentClient::cloudControlDeploymentName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\GetCloudControlDeploymentRequest
      *
@@ -45,8 +47,9 @@ class GetCloudControlDeploymentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. CloudControlDeployment name in the following format:
-     *           organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}
+     *           Required. The name for the cloud control deployment, in the format
+     *           `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     *           The only supported location is `global`.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,8 +58,9 @@ class GetCloudControlDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. CloudControlDeployment name in the following format:
-     * organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}
+     * Required. The name for the cloud control deployment, in the format
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,8 +71,9 @@ class GetCloudControlDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. CloudControlDeployment name in the following format:
-     * organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}
+     * Required. The name for the cloud control deployment, in the format
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

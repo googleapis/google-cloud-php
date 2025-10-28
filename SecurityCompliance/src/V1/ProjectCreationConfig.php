@@ -9,27 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ProjectCreationConfig contains the config to create a new project to be used
- * as the target_resource of a deployment.
+ * The configuration that's required to create a project to be used
+ * as the target resource of a deployment.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.ProjectCreationConfig</code>
  */
 class ProjectCreationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. organizations/{org} or folders/{folder}
+     * Required. The parent of the project, in the format
+     * `organizations/{organizationID}` or `folders/{folderID}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $parent = '';
     /**
-     * Required. Display name of the project to be created.
+     * Required. The display name of the project.
      *
      * Generated from protobuf field <code>string project_display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $project_display_name = '';
     /**
-     * Required. Billing account id to be used for the project.
+     * Required. The billing account ID for the project.
      *
      * Generated from protobuf field <code>string billing_account_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -42,11 +43,12 @@ class ProjectCreationConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. organizations/{org} or folders/{folder}
+     *           Required. The parent of the project, in the format
+     *           `organizations/{organizationID}` or `folders/{folderID}`.
      *     @type string $project_display_name
-     *           Required. Display name of the project to be created.
+     *           Required. The display name of the project.
      *     @type string $billing_account_id
-     *           Required. Billing account id to be used for the project.
+     *           Required. The billing account ID for the project.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,7 +57,8 @@ class ProjectCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. organizations/{org} or folders/{folder}
+     * Required. The parent of the project, in the format
+     * `organizations/{organizationID}` or `folders/{folderID}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -66,7 +69,8 @@ class ProjectCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. organizations/{org} or folders/{folder}
+     * Required. The parent of the project, in the format
+     * `organizations/{organizationID}` or `folders/{folderID}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -81,7 +85,7 @@ class ProjectCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Display name of the project to be created.
+     * Required. The display name of the project.
      *
      * Generated from protobuf field <code>string project_display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -92,7 +96,7 @@ class ProjectCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Display name of the project to be created.
+     * Required. The display name of the project.
      *
      * Generated from protobuf field <code>string project_display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -107,7 +111,7 @@ class ProjectCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Billing account id to be used for the project.
+     * Required. The billing account ID for the project.
      *
      * Generated from protobuf field <code>string billing_account_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -118,7 +122,7 @@ class ProjectCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Billing account id to be used for the project.
+     * Required. The billing account ID for the project.
      *
      * Generated from protobuf field <code>string billing_account_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

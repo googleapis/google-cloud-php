@@ -9,32 +9,37 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The reference to a FrameworkDeployment.
+ * The reference to a framework deployment.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.FrameworkDeploymentReference</code>
  */
 class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The name of the FrameworkDeployment. The format is:
-     * organizations/{org}/locations/{location}/frameworkDeployments/{framework_deployment_id}
+     * Output only. The name of the framework deployment, in the format
+     * `organizations/{org}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string framework_deployment = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $framework_deployment = '';
     /**
-     * Optional. The reference to the Framework that this deployment is for.
-     * Example: {
+     * Optional. The reference to the framework that this deployment is for.
+     * For example:
+     * ```
+     * {
      *   framework:
      *   "organizations/{org}/locations/{location}/frameworks/{framework}",
      *   major_revision_id: 1
      * }
+     * ```
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FrameworkReference framework_reference = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $framework_reference = null;
     /**
-     * Optional. The display name of the Framework that this FrameworkDeployment
+     * Optional. The display name of the framework that this framework deployment
      * is for.
      *
      * Generated from protobuf field <code>string framework_display_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -48,17 +53,22 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $framework_deployment
-     *           Output only. The name of the FrameworkDeployment. The format is:
-     *           organizations/{org}/locations/{location}/frameworkDeployments/{framework_deployment_id}
+     *           Output only. The name of the framework deployment, in the format
+     *           `organizations/{org}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     *           The only supported location is `global`.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\FrameworkReference $framework_reference
-     *           Optional. The reference to the Framework that this deployment is for.
-     *           Example: {
+     *           Optional. The reference to the framework that this deployment is for.
+     *           For example:
+     *           ```
+     *           {
      *             framework:
      *             "organizations/{org}/locations/{location}/frameworks/{framework}",
      *             major_revision_id: 1
      *           }
+     *           ```
+     *           The only supported location is `global`.
      *     @type string $framework_display_name
-     *           Optional. The display name of the Framework that this FrameworkDeployment
+     *           Optional. The display name of the framework that this framework deployment
      *           is for.
      * }
      */
@@ -68,8 +78,9 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the FrameworkDeployment. The format is:
-     * organizations/{org}/locations/{location}/frameworkDeployments/{framework_deployment_id}
+     * Output only. The name of the framework deployment, in the format
+     * `organizations/{org}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string framework_deployment = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -80,8 +91,9 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the FrameworkDeployment. The format is:
-     * organizations/{org}/locations/{location}/frameworkDeployments/{framework_deployment_id}
+     * Output only. The name of the framework deployment, in the format
+     * `organizations/{org}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string framework_deployment = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -96,12 +108,16 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The reference to the Framework that this deployment is for.
-     * Example: {
+     * Optional. The reference to the framework that this deployment is for.
+     * For example:
+     * ```
+     * {
      *   framework:
      *   "organizations/{org}/locations/{location}/frameworks/{framework}",
      *   major_revision_id: 1
      * }
+     * ```
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FrameworkReference framework_reference = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\FrameworkReference|null
@@ -122,12 +138,16 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The reference to the Framework that this deployment is for.
-     * Example: {
+     * Optional. The reference to the framework that this deployment is for.
+     * For example:
+     * ```
+     * {
      *   framework:
      *   "organizations/{org}/locations/{location}/frameworks/{framework}",
      *   major_revision_id: 1
      * }
+     * ```
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FrameworkReference framework_reference = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\FrameworkReference $var
@@ -142,7 +162,7 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The display name of the Framework that this FrameworkDeployment
+     * Optional. The display name of the framework that this framework deployment
      * is for.
      *
      * Generated from protobuf field <code>string framework_display_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -154,7 +174,7 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The display name of the Framework that this FrameworkDeployment
+     * Optional. The display name of the framework that this framework deployment
      * is for.
      *
      * Generated from protobuf field <code>string framework_display_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>

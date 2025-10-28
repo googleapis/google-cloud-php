@@ -9,20 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Parameters is a key-value pair.
+ * Parameters are key-value pairs that let you provide your custom location
+ * requirements, environment requirements, or other settings that are
+ * relevant to the cloud control.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.Parameter</code>
  */
 class Parameter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the parameter.
+     * Required. The name or key of the parameter.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $name = '';
     /**
-     * Required. The value of the parameter
+     * Required. The value of the parameter.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.ParamValue parameter_value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -35,9 +37,9 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the parameter.
+     *           Required. The name or key of the parameter.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\ParamValue $parameter_value
-     *           Required. The value of the parameter
+     *           Required. The value of the parameter.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +48,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the parameter.
+     * Required. The name or key of the parameter.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -57,7 +59,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the parameter.
+     * Required. The name or key of the parameter.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -72,7 +74,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The value of the parameter
+     * Required. The value of the parameter.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.ParamValue parameter_value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\ParamValue|null
@@ -93,7 +95,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The value of the parameter
+     * Required. The value of the parameter.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.ParamValue parameter_value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\ParamValue $var

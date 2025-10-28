@@ -36,19 +36,22 @@ use Google\Cloud\CloudSecurityCompliance\V1\TargetResourceConfig;
 use Google\Rpc\Status;
 
 /**
- * Creates a new FrameworkDeployment in a given parent resource.
+ * Creates a framework deployment in a given parent resource. A
+ * framework deployment lets you assign a particular framework version to an
+ * organization, folder, or project so that you can control and monitor
+ * those resources using the framework's cloud controls.
  *
- * @param string $formattedParent                                                           The parent resource of the FrameworkDeployment in the format:
- *                                                                                          organizations/{organization}/locations/{location}
- *                                                                                          Only global location is supported. Please see
+ * @param string $formattedParent                                                           The parent resource of the framework deployment in the format
+ *                                                                                          `organizations/{organization}/locations/{location}`.
+ *                                                                                          Only the global location is supported. Please see
  *                                                                                          {@see DeploymentClient::organizationLocationName()} for help formatting this field.
- * @param string $frameworkDeploymentFrameworkFramework                                     In the format:
- *                                                                                          organizations/{org}/locations/{location}/frameworks/{framework}
- * @param string $frameworkDeploymentCloudControlMetadataCloudControlDetailsName            The name of the CloudControl in the format:
- *                                                                                          “organizations/{organization}/locations/{location}/
- *                                                                                          cloudControls/{cloud-control}”
- * @param int    $frameworkDeploymentCloudControlMetadataCloudControlDetailsMajorRevisionId Major revision of cloudcontrol
- * @param int    $frameworkDeploymentCloudControlMetadataEnforcementMode                    Enforcement mode of the cloud control
+ * @param string $frameworkDeploymentFrameworkFramework                                     The major version of the framework. If not specified, the version
+ *                                                                                          corresponds to the latest version of the framework.
+ * @param string $frameworkDeploymentCloudControlMetadataCloudControlDetailsName            The name of the cloud control, in the format
+ *                                                                                          `organizations/{organization}/locations/{location}/cloudControls/{cloud-control}`.
+ *                                                                                          The only supported location is `global`.
+ * @param int    $frameworkDeploymentCloudControlMetadataCloudControlDetailsMajorRevisionId The major version of the cloud control.
+ * @param int    $frameworkDeploymentCloudControlMetadataEnforcementMode                    The enforcement mode of the cloud control.
  */
 function create_framework_deployment_sample(
     string $formattedParent,

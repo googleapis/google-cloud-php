@@ -9,22 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * FrameworkReference contains the reference of a framework.
+ * The reference of a framework, in the format
+ * `organizations/{organization}/locations/{location}/frameworks/{framework}`.
+ * The only supported location is `global`.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.FrameworkReference</code>
  */
 class FrameworkReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. In the format:
-     * organizations/{org}/locations/{location}/frameworks/{framework}
+     * Required. The major version of the framework. If not specified, the version
+     * corresponds to the latest version of the framework.
      *
      * Generated from protobuf field <code>string framework = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $framework = '';
     /**
-     * Optional. Major revision id of the framework. If not specified, corresponds
-     * to the latest revision of the framework.
+     * Optional. The major version of the framework. If not specified, the version
+     * corresponds to the latest version of the framework.
      *
      * Generated from protobuf field <code>optional int64 major_revision_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -37,11 +39,11 @@ class FrameworkReference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $framework
-     *           Required. In the format:
-     *           organizations/{org}/locations/{location}/frameworks/{framework}
+     *           Required. The major version of the framework. If not specified, the version
+     *           corresponds to the latest version of the framework.
      *     @type int|string $major_revision_id
-     *           Optional. Major revision id of the framework. If not specified, corresponds
-     *           to the latest revision of the framework.
+     *           Optional. The major version of the framework. If not specified, the version
+     *           corresponds to the latest version of the framework.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,8 +52,8 @@ class FrameworkReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. In the format:
-     * organizations/{org}/locations/{location}/frameworks/{framework}
+     * Required. The major version of the framework. If not specified, the version
+     * corresponds to the latest version of the framework.
      *
      * Generated from protobuf field <code>string framework = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -62,8 +64,8 @@ class FrameworkReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. In the format:
-     * organizations/{org}/locations/{location}/frameworks/{framework}
+     * Required. The major version of the framework. If not specified, the version
+     * corresponds to the latest version of the framework.
      *
      * Generated from protobuf field <code>string framework = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -78,8 +80,8 @@ class FrameworkReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Major revision id of the framework. If not specified, corresponds
-     * to the latest revision of the framework.
+     * Optional. The major version of the framework. If not specified, the version
+     * corresponds to the latest version of the framework.
      *
      * Generated from protobuf field <code>optional int64 major_revision_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -100,8 +102,8 @@ class FrameworkReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Major revision id of the framework. If not specified, corresponds
-     * to the latest revision of the framework.
+     * Optional. The major version of the framework. If not specified, the version
+     * corresponds to the latest version of the framework.
      *
      * Generated from protobuf field <code>optional int64 major_revision_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var

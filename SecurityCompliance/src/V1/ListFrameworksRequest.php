@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing Frameworks.
+ * Request message for [ListFrameworks][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.ListFrameworksRequest</code>
  */
@@ -18,7 +18,7 @@ class ListFrameworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource name, in the format
      * `organizations/{organization}/locations/{location}`.
-     * Only global location is supported.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,7 +43,7 @@ class ListFrameworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent resource name, in the format
      *                       `organizations/{organization}/locations/{location}`.
-     *                       Only global location is supported. Please see
+     *                       The only supported location is `global`. Please see
      *                       {@see ConfigClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\ListFrameworksRequest
@@ -65,7 +65,7 @@ class ListFrameworksRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource name, in the format
      *           `organizations/{organization}/locations/{location}`.
-     *           Only global location is supported.
+     *           The only supported location is `global`.
      *     @type int $page_size
      *           Optional. The maximum number of frameworks to return. The default value is
      *           `500`.
@@ -84,7 +84,7 @@ class ListFrameworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource name, in the format
      * `organizations/{organization}/locations/{location}`.
-     * Only global location is supported.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -97,7 +97,7 @@ class ListFrameworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource name, in the format
      * `organizations/{organization}/locations/{location}`.
-     * Only global location is supported.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

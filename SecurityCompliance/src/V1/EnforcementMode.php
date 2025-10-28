@@ -7,7 +7,7 @@ namespace Google\Cloud\CloudSecurityCompliance\V1;
 use UnexpectedValueException;
 
 /**
- * The enforcement mode of the cloud control.
+ * The enforcement mode for the cloud control.
  *
  * Protobuf type <code>google.cloud.cloudsecuritycompliance.v1.EnforcementMode</code>
  */
@@ -20,19 +20,19 @@ class EnforcementMode
      */
     const ENFORCEMENT_MODE_UNSPECIFIED = 0;
     /**
-     * The cloud control is enforced to prevent resource non-compliance.
+     * The cloud control is enforced to prevent non-compliance.
      *
      * Generated from protobuf enum <code>PREVENTIVE = 1;</code>
      */
     const PREVENTIVE = 1;
     /**
-     * The cloud control is enforced to detect resource non-compliance.
+     * The cloud control is enforced to detect non-compliance.
      *
      * Generated from protobuf enum <code>DETECTIVE = 2;</code>
      */
     const DETECTIVE = 2;
     /**
-     * The cloud control is enforced to audit resource non-compliance.
+     * The cloud control is enforced to audit for non-compliance.
      *
      * Generated from protobuf enum <code>AUDIT = 3;</code>
      */

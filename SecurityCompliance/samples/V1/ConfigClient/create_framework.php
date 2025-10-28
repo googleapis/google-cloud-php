@@ -29,19 +29,19 @@ use Google\Cloud\CloudSecurityCompliance\V1\CreateFrameworkRequest;
 use Google\Cloud\CloudSecurityCompliance\V1\Framework;
 
 /**
- * Creates a new Framework with type `Custom` under a given parent resource.
- * Frameworks with type `Built-in` are managed by Google and cannot be created
- * through this API.
+ * Creates a custom framework in a given parent resource.
+ * You can't create built-in frameworks because those are managed by
+ * Google.
  *
  * @param string $formattedParent The parent resource name, in the format
- *                                `organizations/{organization}/locations/{location}`. Please see
+ *                                `organizations/{organization}/locations/{location}`.
+ *                                The only supported location is `global`. Please see
  *                                {@see ConfigClient::organizationLocationName()} for help formatting this field.
- * @param string $frameworkId     ID of the framework.
- *                                This is not the full name of the framework.
- *                                This is the last part of the full name of the framework.
- * @param string $frameworkName   Identifier. The name of the framework.
- *                                Format:
- *                                organizations/{organization}/locations/{location}/frameworks/{framework_id}
+ * @param string $frameworkId     The identifier (ID) of the framework. The ID is not the full name
+ *                                of the framework; it's the last part of the full name of the framework.
+ * @param string $frameworkName   Identifier. The name of the framework, in the format
+ *                                `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.
+ *                                The only supported location is `global`.
  */
 function create_framework_sample(
     string $formattedParent,

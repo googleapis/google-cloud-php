@@ -9,16 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for DeleteFrameworkDeployment.
+ * The request message for [DeleteFrameworkDeployment][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.DeleteFrameworkDeploymentRequest</code>
  */
 class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. name of the FrameworkDeployment to be deleted in the following
-     * format:
-     * organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}
+     * Required. The name of the framework deployment that you want to delete,
+     * in the format
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -27,7 +28,7 @@ class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
      * Optional. An opaque identifier for the current version of the resource.
      * If you provide this value, then it must match the existing value. If the
      * values don't match, then the request fails with an
-     * [ABORTED][google.rpc.Code.ABORTED] error.
+     * [`ABORTED`][google.rpc.Code.ABORTED] error.
      * If you omit this value, then the resource is deleted regardless of its
      * current `etag` value.
      *
@@ -36,10 +37,11 @@ class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     protected $etag = '';
 
     /**
-     * @param string $name Required. name of the FrameworkDeployment to be deleted in the following
-     *                     format:
-     *                     organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}
-     *                     Please see {@see DeploymentClient::frameworkDeploymentName()} for help formatting this field.
+     * @param string $name Required. The name of the framework deployment that you want to delete,
+     *                     in the format
+     *                     `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     *                     The only supported location is `global`. Please see
+     *                     {@see DeploymentClient::frameworkDeploymentName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\DeleteFrameworkDeploymentRequest
      *
@@ -58,14 +60,15 @@ class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. name of the FrameworkDeployment to be deleted in the following
-     *           format:
-     *           organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}
+     *           Required. The name of the framework deployment that you want to delete,
+     *           in the format
+     *           `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     *           The only supported location is `global`.
      *     @type string $etag
      *           Optional. An opaque identifier for the current version of the resource.
      *           If you provide this value, then it must match the existing value. If the
      *           values don't match, then the request fails with an
-     *           [ABORTED][google.rpc.Code.ABORTED] error.
+     *           [`ABORTED`][google.rpc.Code.ABORTED] error.
      *           If you omit this value, then the resource is deleted regardless of its
      *           current `etag` value.
      * }
@@ -76,9 +79,10 @@ class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. name of the FrameworkDeployment to be deleted in the following
-     * format:
-     * organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}
+     * Required. The name of the framework deployment that you want to delete,
+     * in the format
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -89,9 +93,10 @@ class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. name of the FrameworkDeployment to be deleted in the following
-     * format:
-     * organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}
+     * Required. The name of the framework deployment that you want to delete,
+     * in the format
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -109,7 +114,7 @@ class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
      * Optional. An opaque identifier for the current version of the resource.
      * If you provide this value, then it must match the existing value. If the
      * values don't match, then the request fails with an
-     * [ABORTED][google.rpc.Code.ABORTED] error.
+     * [`ABORTED`][google.rpc.Code.ABORTED] error.
      * If you omit this value, then the resource is deleted regardless of its
      * current `etag` value.
      *
@@ -125,7 +130,7 @@ class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
      * Optional. An opaque identifier for the current version of the resource.
      * If you provide this value, then it must match the existing value. If the
      * values don't match, then the request fails with an
-     * [ABORTED][google.rpc.Code.ABORTED] error.
+     * [`ABORTED`][google.rpc.Code.ABORTED] error.
      * If you omit this value, then the resource is deleted regardless of its
      * current `etag` value.
      *

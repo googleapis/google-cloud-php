@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Allowed set of values for the parameter.
+ * The allowed set of values for the parameter.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.AllowedValues</code>
  */
 class AllowedValues extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. List of allowed values for the parameter.
+     * Required. The list of allowed values for the parameter.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParamValue values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -29,7 +29,7 @@ class AllowedValues extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\ParamValue>|\Google\Protobuf\Internal\RepeatedField $values
-     *           Required. List of allowed values for the parameter.
+     *           Required. The list of allowed values for the parameter.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class AllowedValues extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. List of allowed values for the parameter.
+     * Required. The list of allowed values for the parameter.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParamValue values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,7 +49,7 @@ class AllowedValues extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. List of allowed values for the parameter.
+     * Required. The list of allowed values for the parameter.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParamValue values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\CloudSecurityCompliance\V1\ParamValue>|\Google\Protobuf\Internal\RepeatedField $var

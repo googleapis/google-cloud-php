@@ -7,7 +7,7 @@ namespace Google\Cloud\CloudSecurityCompliance\V1;
 use UnexpectedValueException;
 
 /**
- * The category of the framework.
+ * The category for the framework.
  *
  * Protobuf type <code>google.cloud.cloudsecuritycompliance.v1.FrameworkCategory</code>
  */
@@ -20,31 +20,31 @@ class FrameworkCategory
      */
     const FRAMEWORK_CATEGORY_UNSPECIFIED = 0;
     /**
-     * Standard framework
+     * An industry-defined framework.
      *
      * Generated from protobuf enum <code>INDUSTRY_DEFINED_STANDARD = 1;</code>
      */
     const INDUSTRY_DEFINED_STANDARD = 1;
     /**
-     * Assured Workloads framework
+     * An Assured Workloads framework.
      *
      * Generated from protobuf enum <code>ASSURED_WORKLOADS = 2;</code>
      */
     const ASSURED_WORKLOADS = 2;
     /**
-     * Data Security framework
+     * A data security posture framework.
      *
      * Generated from protobuf enum <code>DATA_SECURITY = 3;</code>
      */
     const DATA_SECURITY = 3;
     /**
-     * Google Best Practices framework
+     * A Google's best practices framework.
      *
      * Generated from protobuf enum <code>GOOGLE_BEST_PRACTICES = 4;</code>
      */
     const GOOGLE_BEST_PRACTICES = 4;
     /**
-     * User created framework.
+     * A user-created framework.
      *
      * Generated from protobuf enum <code>CUSTOM_FRAMEWORK = 5;</code>
      */

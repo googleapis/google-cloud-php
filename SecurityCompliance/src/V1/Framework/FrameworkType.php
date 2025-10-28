@@ -7,7 +7,7 @@ namespace Google\Cloud\CloudSecurityCompliance\V1\Framework;
 use UnexpectedValueException;
 
 /**
- * The type of the framework.
+ * The type of framework.
  *
  * Protobuf type <code>google.cloud.cloudsecuritycompliance.v1.Framework.FrameworkType</code>
  */
@@ -20,15 +20,13 @@ class FrameworkType
      */
     const FRAMEWORK_TYPE_UNSPECIFIED = 0;
     /**
-     * The framework is a built-in framework if it is created and managed by
-     * GCP.
+     * A framework that's provided and managed by Google.
      *
      * Generated from protobuf enum <code>BUILT_IN = 1;</code>
      */
     const BUILT_IN = 1;
     /**
-     * The framework is a custom framework if it is created and managed by the
-     * user.
+     * A framework that's created and managed by you.
      *
      * Generated from protobuf enum <code>CUSTOM = 2;</code>
      */

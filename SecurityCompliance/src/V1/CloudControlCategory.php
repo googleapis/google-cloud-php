@@ -7,7 +7,7 @@ namespace Google\Cloud\CloudSecurityCompliance\V1;
 use UnexpectedValueException;
 
 /**
- * The category of the cloud control.
+ * The category for the cloud control.
  *
  * Protobuf type <code>google.cloud.cloudsecuritycompliance.v1.CloudControlCategory</code>
  */
@@ -20,91 +20,91 @@ class CloudControlCategory
      */
     const CLOUD_CONTROL_CATEGORY_UNSPECIFIED = 0;
     /**
-     * Infrastructure
+     * The infrastructure security category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_INFRASTRUCTURE = 1;</code>
      */
     const CC_CATEGORY_INFRASTRUCTURE = 1;
     /**
-     * Artificial Intelligence
+     * The artificial intelligence category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_ARTIFICIAL_INTELLIGENCE = 2;</code>
      */
     const CC_CATEGORY_ARTIFICIAL_INTELLIGENCE = 2;
     /**
-     * Physical Security
+     * The physical security category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_PHYSICAL_SECURITY = 3;</code>
      */
     const CC_CATEGORY_PHYSICAL_SECURITY = 3;
     /**
-     * Data Security
+     * The data security category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_DATA_SECURITY = 4;</code>
      */
     const CC_CATEGORY_DATA_SECURITY = 4;
     /**
-     * Network Security
+     * The network security category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_NETWORK_SECURITY = 5;</code>
      */
     const CC_CATEGORY_NETWORK_SECURITY = 5;
     /**
-     * Incident Management
+     * The incident management category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_INCIDENT_MANAGEMENT = 6;</code>
      */
     const CC_CATEGORY_INCIDENT_MANAGEMENT = 6;
     /**
-     * Identity & Access Management
+     * The identity and access management category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_IDENTITY_AND_ACCESS_MANAGEMENT = 7;</code>
      */
     const CC_CATEGORY_IDENTITY_AND_ACCESS_MANAGEMENT = 7;
     /**
-     * Encryption
+     * The encryption category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_ENCRYPTION = 8;</code>
      */
     const CC_CATEGORY_ENCRYPTION = 8;
     /**
-     * Logs Management & Infrastructure
+     * The logs management and infrastructure category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_LOGS_MANAGEMENT_AND_INFRASTRUCTURE = 9;</code>
      */
     const CC_CATEGORY_LOGS_MANAGEMENT_AND_INFRASTRUCTURE = 9;
     /**
-     * HR, Admin & Processes
+     * The HR, admin, and processes category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_HR_ADMIN_AND_PROCESSES = 10;</code>
      */
     const CC_CATEGORY_HR_ADMIN_AND_PROCESSES = 10;
     /**
-     * Third Party & Sub-Processor Management
+     * The third-party and sub-processor management category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_THIRD_PARTY_AND_SUB_PROCESSOR_MANAGEMENT = 11;</code>
      */
     const CC_CATEGORY_THIRD_PARTY_AND_SUB_PROCESSOR_MANAGEMENT = 11;
     /**
-     * Legal & Disclosures
+     * The legal and disclosures category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_LEGAL_AND_DISCLOSURES = 12;</code>
      */
     const CC_CATEGORY_LEGAL_AND_DISCLOSURES = 12;
     /**
-     * Vulnerability Management
+     * The vulnerability management category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_VULNERABILITY_MANAGEMENT = 13;</code>
      */
     const CC_CATEGORY_VULNERABILITY_MANAGEMENT = 13;
     /**
-     * Privacy
+     * The privacy category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_PRIVACY = 14;</code>
      */
     const CC_CATEGORY_PRIVACY = 14;
     /**
-     * BCDR (Business Continuity and Disaster Recovery)
+     * The business continuity and disaster recovery (BCDR) category.
      *
      * Generated from protobuf enum <code>CC_CATEGORY_BCDR = 15;</code>
      */

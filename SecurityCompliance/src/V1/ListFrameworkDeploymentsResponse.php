@@ -9,20 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for ListFrameworkDeployments.
+ * The response message for [ListFrameworkDeployments][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.ListFrameworkDeploymentsResponse</code>
  */
 class ListFrameworkDeploymentsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of FrameworkDeployments.
+     * The list of framework deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkDeployment framework_deployments = 1;</code>
      */
     private $framework_deployments;
     /**
-     * A token identifying a page of results the server should return.
+     * A token that identifies the next page of results that the server
+     * should return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -35,9 +36,10 @@ class ListFrameworkDeploymentsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeployment>|\Google\Protobuf\Internal\RepeatedField $framework_deployments
-     *           The list of FrameworkDeployments.
+     *           The list of framework deployments.
      *     @type string $next_page_token
-     *           A token identifying a page of results the server should return.
+     *           A token that identifies the next page of results that the server
+     *           should return.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +48,7 @@ class ListFrameworkDeploymentsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of FrameworkDeployments.
+     * The list of framework deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkDeployment framework_deployments = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -57,7 +59,7 @@ class ListFrameworkDeploymentsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of FrameworkDeployments.
+     * The list of framework deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkDeployment framework_deployments = 1;</code>
      * @param array<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeployment>|\Google\Protobuf\Internal\RepeatedField $var
@@ -72,7 +74,8 @@ class ListFrameworkDeploymentsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * A token that identifies the next page of results that the server
+     * should return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -83,7 +86,8 @@ class ListFrameworkDeploymentsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * A token that identifies the next page of results that the server
+     * should return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

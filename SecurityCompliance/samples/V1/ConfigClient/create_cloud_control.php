@@ -29,19 +29,21 @@ use Google\Cloud\CloudSecurityCompliance\V1\CloudControl;
 use Google\Cloud\CloudSecurityCompliance\V1\CreateCloudControlRequest;
 
 /**
- * Creates a new CloudControl with type `Custom` under a given parent
- * resource. `Built-in` CloudControls are managed by Google and cannot be
- * created through this API.
+ * Creates a custom cloud control in a given parent
+ * resource.
+ * You can't create built-in cloud controls because those are managed by
+ * Google.
  *
  * @param string $formattedParent  The parent resource name, in the format
- *                                 `organizations/{organization}/locations/{location}`. Please see
+ *                                 `organizations/{organization}/locations/{location}`.
+ *                                 The only supported location is `global`. Please see
  *                                 {@see ConfigClient::organizationLocationName()} for help formatting this field.
- * @param string $cloudControlId   ID of the CloudControl.
- *                                 This is the last segment of the CloudControl resource name.
- *                                 Format: `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
- * @param string $cloudControlName Identifier. The resource name of the cloud control.
- *                                 Format:
- *                                 organizations/{organization}/locations/{location}/cloudControls/{cloud_control_id}
+ * @param string $cloudControlId   The identifier for the cloud control, which is the last segment
+ *                                 of the cloud control name. The format is
+ *                                 `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
+ * @param string $cloudControlName Identifier. The name of the cloud control, in the format
+ *                                 `organizations/{organization}/locations/{location}/cloudControls/{cloud_control_id}`.
+ *                                 The only supported location is `global`.
  */
 function create_cloud_control_sample(
     string $formattedParent,

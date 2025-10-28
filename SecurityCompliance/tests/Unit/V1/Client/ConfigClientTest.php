@@ -395,14 +395,14 @@ class ConfigClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
-        $majorRevisionId = 612576889;
+        $majorRevisionId2 = 275873772;
         $description = 'description-1724546052';
         $displayName = 'displayName1615086568';
         $findingCategory = 'findingCategory1739472116';
         $remediationSteps = 'remediationSteps-161402227';
         $expectedResponse = new CloudControl();
         $expectedResponse->setName($name2);
-        $expectedResponse->setMajorRevisionId($majorRevisionId);
+        $expectedResponse->setMajorRevisionId($majorRevisionId2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setFindingCategory($findingCategory);

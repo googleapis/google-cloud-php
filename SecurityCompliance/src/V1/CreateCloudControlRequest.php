@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for creating a CloudControl
+ * The request message for [CreateCloudControl][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.CreateCloudControlRequest</code>
  */
@@ -18,20 +18,21 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource name, in the format
      * `organizations/{organization}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Required. ID of the CloudControl.
-     * This is the last segment of the CloudControl resource name.
-     * Format: `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
+     * Required. The identifier for the cloud control, which is the last segment
+     * of the cloud control name. The format is
+     * `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
      *
      * Generated from protobuf field <code>string cloud_control_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $cloud_control_id = '';
     /**
-     * Required. The resource being created
+     * Required. The cloud control that's being created.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControl cloud_control = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,12 +40,13 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                                $parent         Required. The parent resource name, in the format
-     *                                                                              `organizations/{organization}/locations/{location}`. Please see
+     *                                                                              `organizations/{organization}/locations/{location}`.
+     *                                                                              The only supported location is `global`. Please see
      *                                                                              {@see ConfigClient::organizationLocationName()} for help formatting this field.
-     * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControl $cloudControl   Required. The resource being created
-     * @param string                                                $cloudControlId Required. ID of the CloudControl.
-     *                                                                              This is the last segment of the CloudControl resource name.
-     *                                                                              Format: `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControl $cloudControl   Required. The cloud control that's being created.
+     * @param string                                                $cloudControlId Required. The identifier for the cloud control, which is the last segment
+     *                                                                              of the cloud control name. The format is
+     *                                                                              `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\CreateCloudControlRequest
      *
@@ -67,12 +69,13 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource name, in the format
      *           `organizations/{organization}/locations/{location}`.
+     *           The only supported location is `global`.
      *     @type string $cloud_control_id
-     *           Required. ID of the CloudControl.
-     *           This is the last segment of the CloudControl resource name.
-     *           Format: `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
+     *           Required. The identifier for the cloud control, which is the last segment
+     *           of the cloud control name. The format is
+     *           `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControl $cloud_control
-     *           Required. The resource being created
+     *           Required. The cloud control that's being created.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,6 +86,7 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource name, in the format
      * `organizations/{organization}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -95,6 +99,7 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource name, in the format
      * `organizations/{organization}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -109,9 +114,9 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the CloudControl.
-     * This is the last segment of the CloudControl resource name.
-     * Format: `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
+     * Required. The identifier for the cloud control, which is the last segment
+     * of the cloud control name. The format is
+     * `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
      *
      * Generated from protobuf field <code>string cloud_control_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -122,9 +127,9 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the CloudControl.
-     * This is the last segment of the CloudControl resource name.
-     * Format: `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
+     * Required. The identifier for the cloud control, which is the last segment
+     * of the cloud control name. The format is
+     * `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
      *
      * Generated from protobuf field <code>string cloud_control_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -139,7 +144,7 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource being created
+     * Required. The cloud control that's being created.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControl cloud_control = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\CloudControl|null
@@ -160,7 +165,7 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource being created
+     * Required. The cloud control that's being created.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControl cloud_control = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControl $var

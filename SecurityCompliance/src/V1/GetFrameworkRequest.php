@@ -9,33 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for getting a Framework.
+ * The request message for [GetFramework][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.GetFrameworkRequest</code>
  */
 class GetFrameworkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the framework to retrieve.
-     * Format:
-     * organizations/{organization}/locations/{location}/frameworks/{framework_id}
+     * Required. The name of the framework to retrieve, in the format
+     * `organizations/{organization}/locations/{location}/frameworks/{framework_id}`
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
     /**
-     * Optional. The Framework major version to retrieve. If not specified, the
-     * most recently updated revision_id is retrieved.
+     * Optional. The framework major version to retrieve. If not specified, the
+     * most recently updated `revision_id` is retrieved.
      *
      * Generated from protobuf field <code>int64 major_revision_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $major_revision_id = 0;
 
     /**
-     * @param string $name Required. The name of the framework to retrieve.
-     *                     Format:
-     *                     organizations/{organization}/locations/{location}/frameworks/{framework_id}
-     *                     Please see {@see ConfigClient::frameworkName()} for help formatting this field.
+     * @param string $name Required. The name of the framework to retrieve, in the format
+     *                     `organizations/{organization}/locations/{location}/frameworks/{framework_id}`
+     *                     The only supported location is `global`. Please see
+     *                     {@see ConfigClient::frameworkName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\GetFrameworkRequest
      *
@@ -54,12 +54,12 @@ class GetFrameworkRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the framework to retrieve.
-     *           Format:
-     *           organizations/{organization}/locations/{location}/frameworks/{framework_id}
+     *           Required. The name of the framework to retrieve, in the format
+     *           `organizations/{organization}/locations/{location}/frameworks/{framework_id}`
+     *           The only supported location is `global`.
      *     @type int|string $major_revision_id
-     *           Optional. The Framework major version to retrieve. If not specified, the
-     *           most recently updated revision_id is retrieved.
+     *           Optional. The framework major version to retrieve. If not specified, the
+     *           most recently updated `revision_id` is retrieved.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,9 +68,9 @@ class GetFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the framework to retrieve.
-     * Format:
-     * organizations/{organization}/locations/{location}/frameworks/{framework_id}
+     * Required. The name of the framework to retrieve, in the format
+     * `organizations/{organization}/locations/{location}/frameworks/{framework_id}`
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,9 +81,9 @@ class GetFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the framework to retrieve.
-     * Format:
-     * organizations/{organization}/locations/{location}/frameworks/{framework_id}
+     * Required. The name of the framework to retrieve, in the format
+     * `organizations/{organization}/locations/{location}/frameworks/{framework_id}`
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -98,8 +98,8 @@ class GetFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Framework major version to retrieve. If not specified, the
-     * most recently updated revision_id is retrieved.
+     * Optional. The framework major version to retrieve. If not specified, the
+     * most recently updated `revision_id` is retrieved.
      *
      * Generated from protobuf field <code>int64 major_revision_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -110,8 +110,8 @@ class GetFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Framework major version to retrieve. If not specified, the
-     * most recently updated revision_id is retrieved.
+     * Optional. The framework major version to retrieve. If not specified, the
+     * most recently updated `revision_id` is retrieved.
      *
      * Generated from protobuf field <code>int64 major_revision_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var

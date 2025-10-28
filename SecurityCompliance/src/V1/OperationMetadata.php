@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents the metadata of the long-running operation.
+ * The metadata for the long-running operation.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.OperationMetadata</code>
  */
@@ -28,35 +28,35 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $end_time = null;
     /**
-     * Output only. Server-defined resource path for the target of the operation.
+     * Output only. The server-defined resource path for the target of the
+     * operation.
      *
      * Generated from protobuf field <code>string target = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $target = '';
     /**
-     * Output only. Name of the verb executed by the operation.
+     * Output only. The name of the verb that was executed by the operation.
      *
      * Generated from protobuf field <code>string verb = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $verb = '';
     /**
-     * Output only. Human-readable status of the operation, if any.
+     * Output only. The human-readable status of the operation, if any.
      *
      * Generated from protobuf field <code>string status_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $status_message = '';
     /**
-     * Output only. Identifies whether the user has requested cancellation
-     * of the operation. Operations that have been cancelled successfully
-     * have [Operation.error][] value with a
-     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-     * `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested that the operation
+     * be cancelled. If an operation was cancelled successfully, then the field
+     * [google.longrunning.Operation.error][google.longrunning.Operation.error]
+     * contains the value [google.rpc.Code.CANCELLED][google.rpc.Code.CANCELLED].
      *
      * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $requested_cancellation = false;
     /**
-     * Output only. API version used to start the operation.
+     * Output only. The API version that was used to start the operation.
      *
      * Generated from protobuf field <code>string api_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -73,19 +73,19 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. The time the operation finished running.
      *     @type string $target
-     *           Output only. Server-defined resource path for the target of the operation.
+     *           Output only. The server-defined resource path for the target of the
+     *           operation.
      *     @type string $verb
-     *           Output only. Name of the verb executed by the operation.
+     *           Output only. The name of the verb that was executed by the operation.
      *     @type string $status_message
-     *           Output only. Human-readable status of the operation, if any.
+     *           Output only. The human-readable status of the operation, if any.
      *     @type bool $requested_cancellation
-     *           Output only. Identifies whether the user has requested cancellation
-     *           of the operation. Operations that have been cancelled successfully
-     *           have [Operation.error][] value with a
-     *           [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-     *           `Code.CANCELLED`.
+     *           Output only. Identifies whether the user has requested that the operation
+     *           be cancelled. If an operation was cancelled successfully, then the field
+     *           [google.longrunning.Operation.error][google.longrunning.Operation.error]
+     *           contains the value [google.rpc.Code.CANCELLED][google.rpc.Code.CANCELLED].
      *     @type string $api_version
-     *           Output only. API version used to start the operation.
+     *           Output only. The API version that was used to start the operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,7 +166,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server-defined resource path for the target of the operation.
+     * Output only. The server-defined resource path for the target of the
+     * operation.
      *
      * Generated from protobuf field <code>string target = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -177,7 +178,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server-defined resource path for the target of the operation.
+     * Output only. The server-defined resource path for the target of the
+     * operation.
      *
      * Generated from protobuf field <code>string target = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -192,7 +194,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the verb executed by the operation.
+     * Output only. The name of the verb that was executed by the operation.
      *
      * Generated from protobuf field <code>string verb = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -203,7 +205,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the verb executed by the operation.
+     * Output only. The name of the verb that was executed by the operation.
      *
      * Generated from protobuf field <code>string verb = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -218,7 +220,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Human-readable status of the operation, if any.
+     * Output only. The human-readable status of the operation, if any.
      *
      * Generated from protobuf field <code>string status_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -229,7 +231,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Human-readable status of the operation, if any.
+     * Output only. The human-readable status of the operation, if any.
      *
      * Generated from protobuf field <code>string status_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -244,11 +246,10 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Identifies whether the user has requested cancellation
-     * of the operation. Operations that have been cancelled successfully
-     * have [Operation.error][] value with a
-     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-     * `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested that the operation
+     * be cancelled. If an operation was cancelled successfully, then the field
+     * [google.longrunning.Operation.error][google.longrunning.Operation.error]
+     * contains the value [google.rpc.Code.CANCELLED][google.rpc.Code.CANCELLED].
      *
      * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -259,11 +260,10 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Identifies whether the user has requested cancellation
-     * of the operation. Operations that have been cancelled successfully
-     * have [Operation.error][] value with a
-     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-     * `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested that the operation
+     * be cancelled. If an operation was cancelled successfully, then the field
+     * [google.longrunning.Operation.error][google.longrunning.Operation.error]
+     * contains the value [google.rpc.Code.CANCELLED][google.rpc.Code.CANCELLED].
      *
      * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -278,7 +278,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. API version used to start the operation.
+     * Output only. The API version that was used to start the operation.
      *
      * Generated from protobuf field <code>string api_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -289,7 +289,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. API version used to start the operation.
+     * Output only. The API version that was used to start the operation.
      *
      * Generated from protobuf field <code>string api_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

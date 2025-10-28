@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * TargetResourceCreationConfig contains the config to create a new resource to
- * be used as the target_resource of a deployment.
+ * The configuration that's required to create a target resource.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.TargetResourceCreationConfig</code>
  */
@@ -25,11 +24,9 @@ class TargetResourceCreationConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\FolderCreationConfig $folder_creation_config
-     *           Optional. Config to create a new folder to be used as the target_resource
-     *           of a deployment.
+     *           Optional. The configuration that's required to create a folder.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\ProjectCreationConfig $project_creation_config
-     *           Optional. Config to create a new project to be used as the
-     *           target_resource of a deployment.
+     *           Optional. The configuration that's required to create a project.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,8 +35,7 @@ class TargetResourceCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Config to create a new folder to be used as the target_resource
-     * of a deployment.
+     * Optional. The configuration that's required to create a folder.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FolderCreationConfig folder_creation_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\FolderCreationConfig|null
@@ -55,8 +51,7 @@ class TargetResourceCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Config to create a new folder to be used as the target_resource
-     * of a deployment.
+     * Optional. The configuration that's required to create a folder.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FolderCreationConfig folder_creation_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\FolderCreationConfig $var
@@ -71,8 +66,7 @@ class TargetResourceCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Config to create a new project to be used as the
-     * target_resource of a deployment.
+     * Optional. The configuration that's required to create a project.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.ProjectCreationConfig project_creation_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\ProjectCreationConfig|null
@@ -88,8 +82,7 @@ class TargetResourceCreationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Config to create a new project to be used as the
-     * target_resource of a deployment.
+     * Optional. The configuration that's required to create a project.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.ProjectCreationConfig project_creation_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\ProjectCreationConfig $var

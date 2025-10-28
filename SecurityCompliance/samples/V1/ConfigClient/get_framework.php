@@ -29,18 +29,16 @@ use Google\Cloud\CloudSecurityCompliance\V1\Framework;
 use Google\Cloud\CloudSecurityCompliance\V1\GetFrameworkRequest;
 
 /**
- * Gets details of a single Framework.
- * This method retrieves a Framework resource, which can be either Built-in or
- * Custom, identified by its name.
+ * Gets details about a framework.
+ * This method retrieves the latest major version of the framework.
  *
- * By default, the latest major version of the Framework is returned.
- * A specific major version can be retrieved by specifying the
- * `major_revision_id` in the request.
+ * To retrieve a specific major version, include `major_revision_id` in
+ * the request.
  *
- * @param string $formattedName The name of the framework to retrieve.
- *                              Format:
- *                              organizations/{organization}/locations/{location}/frameworks/{framework_id}
- *                              Please see {@see ConfigClient::frameworkName()} for help formatting this field.
+ * @param string $formattedName The name of the framework to retrieve, in the format
+ *                              `organizations/{organization}/locations/{location}/frameworks/{framework_id}`
+ *                              The only supported location is `global`. Please see
+ *                              {@see ConfigClient::frameworkName()} for help formatting this field.
  */
 function get_framework_sample(string $formattedName): void
 {

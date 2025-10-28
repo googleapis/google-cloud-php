@@ -29,11 +29,12 @@ use Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeployment;
 use Google\Cloud\CloudSecurityCompliance\V1\GetFrameworkDeploymentRequest;
 
 /**
- * Gets details of a single FrameworkDeployment.
+ * Gets details about a framework deployment.
  *
- * @param string $formattedName FrameworkDeployment name in the following format:
- *                              organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}
- *                              Please see {@see DeploymentClient::frameworkDeploymentName()} for help formatting this field.
+ * @param string $formattedName The name of the framework deployment, in the format
+ *                              `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+ *                              The only supported location is `global`. Please see
+ *                              {@see DeploymentClient::frameworkDeploymentName()} for help formatting this field.
  */
 function get_framework_deployment_sample(string $formattedName): void
 {

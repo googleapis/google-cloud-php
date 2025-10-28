@@ -29,21 +29,22 @@ use Google\Cloud\CloudSecurityCompliance\V1\Framework;
 use Google\Cloud\CloudSecurityCompliance\V1\UpdateFrameworkRequest;
 
 /**
- * Updates a single Framework.
- * This method allows for partial updates of a Framework resource. The fields
- * to be updated are specified using the `update_mask`.
+ * Updates a custom framework.
+ * This method allows for partial updates of a framework. Use the
+ * `update_mask` to specify which fields to update. Consider the following:
  *
- * - If an `update_mask` is provided, only the fields specified in the mask
- * will be updated.
- * - If no `update_mask` is provided, all fields present in the request's
- * `framework` body will be used to overwrite the existing resource.
+ * - If you provide an `update_mask`, only the fields that are specified
+ * in the mask are updated.
+ * - If you don't provide an `update_mask`, all the fields that are present
+ * in the request's `framework` body are used to overwrite the existing
+ * resource.
  *
- * This operation can only be performed on Frameworks with type `CUSTOM`.
- * A successful update will result in a new version of the Framework.
+ * You can only update frameworks with the `CUSTOM` type.
+ * A successful update creates a new version of the framework.
  *
- * @param string $frameworkName Identifier. The name of the framework.
- *                              Format:
- *                              organizations/{organization}/locations/{location}/frameworks/{framework_id}
+ * @param string $frameworkName Identifier. The name of the framework, in the format
+ *                              `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.
+ *                              The only supported location is `global`.
  */
 function update_framework_sample(string $frameworkName): void
 {

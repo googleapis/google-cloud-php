@@ -29,20 +29,22 @@ use Google\Cloud\CloudSecurityCompliance\V1\CloudControl;
 use Google\Cloud\CloudSecurityCompliance\V1\UpdateCloudControlRequest;
 
 /**
- * Updates a single CloudControl.
- * This method allows for partial updates of a Custom CloudControl resource.
- * Built-in CloudControls cannot be updated.
+ * Updates a custom cloud control.
+ * This method allows for partial updates of a cloud control. Use the
+ * `update_mask` to specify which fields to update. Consider the following:
  *
- * - If an `update_mask` is provided, only the fields specified in the mask
- * will be updated.
- * - If no `update_mask` is provided, all fields present in the request's
- * `cloud_control` body will be used to overwrite the existing resource.
+ * - If you provide an `update_mask`, only the fields that are specified
+ * in the mask are updated.
+ * - If you don't provide an `update_mask`, all the fields that are present
+ * in the request's `cloud_control` body are used to overwrite the existing
+ * resource.
  *
- * A successful update will result in a new version of the CloudControl.
+ * You can only update cloud controls with the `CUSTOM` type.
+ * A successful update creates a new version of the cloud control.
  *
- * @param string $cloudControlName Identifier. The resource name of the cloud control.
- *                                 Format:
- *                                 organizations/{organization}/locations/{location}/cloudControls/{cloud_control_id}
+ * @param string $cloudControlName Identifier. The name of the cloud control, in the format
+ *                                 `organizations/{organization}/locations/{location}/cloudControls/{cloud_control_id}`.
+ *                                 The only supported location is `global`.
  */
 function update_cloud_control_sample(string $cloudControlName): void
 {

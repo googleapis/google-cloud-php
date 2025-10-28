@@ -9,15 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for listing Frameworks.
- * Contains a paginated list of Framework resources.
+ * The response message for [ListFrameworks][].
+ * Returns a paginated list of Framework resources.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.ListFrameworksResponse</code>
  */
 class ListFrameworksResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of Framework resources.
+     * The list of framework resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.Framework frameworks = 1;</code>
      */
@@ -37,7 +37,7 @@ class ListFrameworksResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\Framework>|\Google\Protobuf\Internal\RepeatedField $frameworks
-     *           The list of Framework resources.
+     *           The list of framework resources.
      *     @type string $next_page_token
      *           A pagination token. To retrieve the next page of results, call the method
      *           again with this token.
@@ -49,7 +49,7 @@ class ListFrameworksResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of Framework resources.
+     * The list of framework resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.Framework frameworks = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -60,7 +60,7 @@ class ListFrameworksResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of Framework resources.
+     * The list of framework resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.Framework frameworks = 1;</code>
      * @param array<\Google\Cloud\CloudSecurityCompliance\V1\Framework>|\Google\Protobuf\Internal\RepeatedField $var

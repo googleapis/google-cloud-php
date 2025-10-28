@@ -342,7 +342,10 @@ final class DeploymentClient
     }
 
     /**
-     * Creates a new FrameworkDeployment in a given parent resource.
+     * Creates a framework deployment in a given parent resource. A
+     * framework deployment lets you assign a particular framework version to an
+     * organization, folder, or project so that you can control and monitor
+     * those resources using the framework's cloud controls.
      *
      * The async variant is {@see DeploymentClient::createFrameworkDeploymentAsync()} .
      *
@@ -370,7 +373,7 @@ final class DeploymentClient
     }
 
     /**
-     * Deletes a single FrameworkDeployment.
+     * Deletes a framework deployment.
      *
      * The async variant is {@see DeploymentClient::deleteFrameworkDeploymentAsync()} .
      *
@@ -398,7 +401,7 @@ final class DeploymentClient
     }
 
     /**
-     * Gets details of a single CloudControlDeployment.
+     * Gets details about a cloud control deployment.
      *
      * The async variant is {@see DeploymentClient::getCloudControlDeploymentAsync()} .
      *
@@ -426,7 +429,7 @@ final class DeploymentClient
     }
 
     /**
-     * Gets details of a single FrameworkDeployment.
+     * Gets details about a framework deployment.
      *
      * The async variant is {@see DeploymentClient::getFrameworkDeploymentAsync()} .
      *
@@ -454,7 +457,7 @@ final class DeploymentClient
     }
 
     /**
-     * Lists CloudControlDeployments in a given parent resource.
+     * Lists the cloud conrol deployments in a given parent resource.
      *
      * The async variant is {@see DeploymentClient::listCloudControlDeploymentsAsync()}
      * .
@@ -483,7 +486,7 @@ final class DeploymentClient
     }
 
     /**
-     * Lists FrameworkDeployments in a given parent resource.
+     * Lists the framework deployments in a given parent resource.
      *
      * The async variant is {@see DeploymentClient::listFrameworkDeploymentsAsync()} .
      *

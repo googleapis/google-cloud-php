@@ -9,87 +9,90 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * CloudControlDeployment represents deployment of a CloudControl on a target
- * resource. Supported target resources are organizations/{organization},
- * folders/{folder}, and projects/{project}.
+ * A cloud control deployment represents the deployment of a particular cloud
+ * control on a target resource. Supported target resources are
+ * `organizations/{organizationID}`, `folders/{folderID}`, and
+ * `projects/{projectID}`.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.CloudControlDeployment</code>
  */
 class CloudControlDeployment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. CloudControlDeployment name in the following format:
-     * organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}
+     * Identifier. The name for the cloud control deployment, in the format
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Required. The details of the target resource on which the CloudControl is
-     * to be deployed. It can either be an existing target resource or a new
-     * target resource to be created.
+     * Required. The details of the target resource that the cloud control is
+     * deployed You can use an existing target resource or create a new target.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.TargetResourceConfig target_resource_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $target_resource_config = null;
     /**
-     * Output only. The resource on which the CloudControl is deployed based on
-     * the provided TargetResourceConfig in the following format:
-     * organizations/{organization}, folders/{folder} or projects/{project}.
+     * Output only. The resource that the cloud control is deployed on, in one of
+     * the following formats:
+     * - `organizations/{organizationID}`
+     * - `folders/{folderID}`
+     * - `projects/{projectID}`
      *
      * Generated from protobuf field <code>string target_resource = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $target_resource = '';
     /**
-     * Required. Deployment mode and parameters for the Cloud Control.
+     * Required. The deployment mode and parameters for the cloud control.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControlMetadata cloud_control_metadata = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $cloud_control_metadata = null;
     /**
-     * Optional. User provided description of the CloudControl deployment
+     * Optional. A friendly description for the cloud control deployment.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
-     * Output only. State of the CloudControl deployment
+     * Output only. The state of the cloud control deployment.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.DeploymentState deployment_state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $deployment_state = 0;
     /**
-     * Output only. The time at which the resource was created.
+     * Output only. The time when the resource was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Output only. The time at which the resource last updated.
+     * Output only. The time when the resource was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
     /**
-     * Optional. To prevent concurrent updates from overwriting each other, always
-     * provide the `etag` when you update a CloudControlDeployment. You can also
-     * provide the `etag` when you delete a CloudControlDeployment, to help
+     * Optional. To prevent concurrent updates from overwriting each other,
+     * provide the `etag` when you update a cloud control deployment. You can also
+     * provide the `etag` when you delete a cloud control deployment to help
      * ensure that you're deleting the intended version of the
-     * CloudControlDeployment.
+     * deployment.
      *
      * Generated from protobuf field <code>string etag = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $etag = '';
     /**
-     * Output only. The CloudControl after substitution of given parameters.
+     * Output only. The cloud control after the given parameters are substituted.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControl parameter_substituted_cloud_control = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $parameter_substituted_cloud_control = null;
     /**
-     * Output only. The references to the Framework deployments that this Cloud
-     * Control deployment is part of. A Cloud Control deployment can be part of
-     * multiple Framework deployments.
+     * Output only. The references to the framework deployments that this cloud
+     * control deployment is part of. A cloud control deployment can be part of
+     * multiple framework deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkDeploymentReference framework_deployment_references = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -108,38 +111,40 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. CloudControlDeployment name in the following format:
-     *           organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}
+     *           Identifier. The name for the cloud control deployment, in the format
+     *           `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     *           The only supported location is `global`.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceConfig $target_resource_config
-     *           Required. The details of the target resource on which the CloudControl is
-     *           to be deployed. It can either be an existing target resource or a new
-     *           target resource to be created.
+     *           Required. The details of the target resource that the cloud control is
+     *           deployed You can use an existing target resource or create a new target.
      *     @type string $target_resource
-     *           Output only. The resource on which the CloudControl is deployed based on
-     *           the provided TargetResourceConfig in the following format:
-     *           organizations/{organization}, folders/{folder} or projects/{project}.
+     *           Output only. The resource that the cloud control is deployed on, in one of
+     *           the following formats:
+     *           - `organizations/{organizationID}`
+     *           - `folders/{folderID}`
+     *           - `projects/{projectID}`
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControlMetadata $cloud_control_metadata
-     *           Required. Deployment mode and parameters for the Cloud Control.
+     *           Required. The deployment mode and parameters for the cloud control.
      *     @type string $description
-     *           Optional. User provided description of the CloudControl deployment
+     *           Optional. A friendly description for the cloud control deployment.
      *     @type int $deployment_state
-     *           Output only. State of the CloudControl deployment
+     *           Output only. The state of the cloud control deployment.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time at which the resource was created.
+     *           Output only. The time when the resource was created.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. The time at which the resource last updated.
+     *           Output only. The time when the resource was last updated.
      *     @type string $etag
-     *           Optional. To prevent concurrent updates from overwriting each other, always
-     *           provide the `etag` when you update a CloudControlDeployment. You can also
-     *           provide the `etag` when you delete a CloudControlDeployment, to help
+     *           Optional. To prevent concurrent updates from overwriting each other,
+     *           provide the `etag` when you update a cloud control deployment. You can also
+     *           provide the `etag` when you delete a cloud control deployment to help
      *           ensure that you're deleting the intended version of the
-     *           CloudControlDeployment.
+     *           deployment.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControl $parameter_substituted_cloud_control
-     *           Output only. The CloudControl after substitution of given parameters.
+     *           Output only. The cloud control after the given parameters are substituted.
      *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeploymentReference>|\Google\Protobuf\Internal\RepeatedField $framework_deployment_references
-     *           Output only. The references to the Framework deployments that this Cloud
-     *           Control deployment is part of. A Cloud Control deployment can be part of
-     *           multiple Framework deployments.
+     *           Output only. The references to the framework deployments that this cloud
+     *           control deployment is part of. A cloud control deployment can be part of
+     *           multiple framework deployments.
      *     @type string $target_resource_display_name
      *           Output only. The display name of the target resource.
      * }
@@ -150,8 +155,9 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. CloudControlDeployment name in the following format:
-     * organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}
+     * Identifier. The name for the cloud control deployment, in the format
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -162,8 +168,9 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. CloudControlDeployment name in the following format:
-     * organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}
+     * Identifier. The name for the cloud control deployment, in the format
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -178,9 +185,8 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The details of the target resource on which the CloudControl is
-     * to be deployed. It can either be an existing target resource or a new
-     * target resource to be created.
+     * Required. The details of the target resource that the cloud control is
+     * deployed You can use an existing target resource or create a new target.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.TargetResourceConfig target_resource_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceConfig|null
@@ -201,9 +207,8 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The details of the target resource on which the CloudControl is
-     * to be deployed. It can either be an existing target resource or a new
-     * target resource to be created.
+     * Required. The details of the target resource that the cloud control is
+     * deployed You can use an existing target resource or create a new target.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.TargetResourceConfig target_resource_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceConfig $var
@@ -218,9 +223,11 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource on which the CloudControl is deployed based on
-     * the provided TargetResourceConfig in the following format:
-     * organizations/{organization}, folders/{folder} or projects/{project}.
+     * Output only. The resource that the cloud control is deployed on, in one of
+     * the following formats:
+     * - `organizations/{organizationID}`
+     * - `folders/{folderID}`
+     * - `projects/{projectID}`
      *
      * Generated from protobuf field <code>string target_resource = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -231,9 +238,11 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource on which the CloudControl is deployed based on
-     * the provided TargetResourceConfig in the following format:
-     * organizations/{organization}, folders/{folder} or projects/{project}.
+     * Output only. The resource that the cloud control is deployed on, in one of
+     * the following formats:
+     * - `organizations/{organizationID}`
+     * - `folders/{folderID}`
+     * - `projects/{projectID}`
      *
      * Generated from protobuf field <code>string target_resource = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -248,7 +257,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deployment mode and parameters for the Cloud Control.
+     * Required. The deployment mode and parameters for the cloud control.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControlMetadata cloud_control_metadata = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\CloudControlMetadata|null
@@ -269,7 +278,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Deployment mode and parameters for the Cloud Control.
+     * Required. The deployment mode and parameters for the cloud control.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControlMetadata cloud_control_metadata = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControlMetadata $var
@@ -284,7 +293,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User provided description of the CloudControl deployment
+     * Optional. A friendly description for the cloud control deployment.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -295,7 +304,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User provided description of the CloudControl deployment
+     * Optional. A friendly description for the cloud control deployment.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -310,7 +319,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. State of the CloudControl deployment
+     * Output only. The state of the cloud control deployment.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.DeploymentState deployment_state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -321,7 +330,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. State of the CloudControl deployment
+     * Output only. The state of the cloud control deployment.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.DeploymentState deployment_state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -336,7 +345,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which the resource was created.
+     * Output only. The time when the resource was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -357,7 +366,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which the resource was created.
+     * Output only. The time when the resource was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -372,7 +381,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which the resource last updated.
+     * Output only. The time when the resource was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -393,7 +402,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which the resource last updated.
+     * Output only. The time when the resource was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -408,11 +417,11 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. To prevent concurrent updates from overwriting each other, always
-     * provide the `etag` when you update a CloudControlDeployment. You can also
-     * provide the `etag` when you delete a CloudControlDeployment, to help
+     * Optional. To prevent concurrent updates from overwriting each other,
+     * provide the `etag` when you update a cloud control deployment. You can also
+     * provide the `etag` when you delete a cloud control deployment to help
      * ensure that you're deleting the intended version of the
-     * CloudControlDeployment.
+     * deployment.
      *
      * Generated from protobuf field <code>string etag = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -423,11 +432,11 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. To prevent concurrent updates from overwriting each other, always
-     * provide the `etag` when you update a CloudControlDeployment. You can also
-     * provide the `etag` when you delete a CloudControlDeployment, to help
+     * Optional. To prevent concurrent updates from overwriting each other,
+     * provide the `etag` when you update a cloud control deployment. You can also
+     * provide the `etag` when you delete a cloud control deployment to help
      * ensure that you're deleting the intended version of the
-     * CloudControlDeployment.
+     * deployment.
      *
      * Generated from protobuf field <code>string etag = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -442,7 +451,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The CloudControl after substitution of given parameters.
+     * Output only. The cloud control after the given parameters are substituted.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControl parameter_substituted_cloud_control = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\CloudControl|null
@@ -463,7 +472,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The CloudControl after substitution of given parameters.
+     * Output only. The cloud control after the given parameters are substituted.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControl parameter_substituted_cloud_control = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControl $var
@@ -478,9 +487,9 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The references to the Framework deployments that this Cloud
-     * Control deployment is part of. A Cloud Control deployment can be part of
-     * multiple Framework deployments.
+     * Output only. The references to the framework deployments that this cloud
+     * control deployment is part of. A cloud control deployment can be part of
+     * multiple framework deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkDeploymentReference framework_deployment_references = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -491,9 +500,9 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The references to the Framework deployments that this Cloud
-     * Control deployment is part of. A Cloud Control deployment can be part of
-     * multiple Framework deployments.
+     * Output only. The references to the framework deployments that this cloud
+     * control deployment is part of. A cloud control deployment can be part of
+     * multiple framework deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkDeploymentReference framework_deployment_references = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeploymentReference>|\Google\Protobuf\Internal\RepeatedField $var

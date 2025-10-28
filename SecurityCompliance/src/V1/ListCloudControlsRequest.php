@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing CloudControls.
+ * Request message for [ListCloudControls][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.ListCloudControlsRequest</code>
  */
@@ -18,12 +18,13 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource name, in the format
      * `organizations/{organization}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Optional. The maximum number of CloudControls to return. The default value
+     * Optional. The maximum number of cloud controls to return. The default value
      * is `500`.
      * If you exceed the maximum value of `1000`, then the service uses the
      * maximum value.
@@ -32,11 +33,12 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_size = 0;
     /**
-     * Optional. A pagination token returned from a previous request to list
-     * CloudControls. Provide this token to retrieve the next page of results.
-     * When paginating, parent provided to
-     * ListCloudControls request must match the call that provided the page
-     * token.
+     * Optional. A pagination token that's returned from a previous request to
+     * list cloud controls. Provide this token to retrieve the next page of
+     * results.
+     * When paginating, the parent that you provide to the
+     * [ListCloudControls][google.cloud.cloudsecuritycompliance.v1.Config.ListCloudControls]
+     * request must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -44,7 +46,8 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent resource name, in the format
-     *                       `organizations/{organization}/locations/{location}`. Please see
+     *                       `organizations/{organization}/locations/{location}`.
+     *                       The only supported location is `global`. Please see
      *                       {@see ConfigClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\ListCloudControlsRequest
@@ -66,17 +69,19 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource name, in the format
      *           `organizations/{organization}/locations/{location}`.
+     *           The only supported location is `global`.
      *     @type int $page_size
-     *           Optional. The maximum number of CloudControls to return. The default value
+     *           Optional. The maximum number of cloud controls to return. The default value
      *           is `500`.
      *           If you exceed the maximum value of `1000`, then the service uses the
      *           maximum value.
      *     @type string $page_token
-     *           Optional. A pagination token returned from a previous request to list
-     *           CloudControls. Provide this token to retrieve the next page of results.
-     *           When paginating, parent provided to
-     *           ListCloudControls request must match the call that provided the page
-     *           token.
+     *           Optional. A pagination token that's returned from a previous request to
+     *           list cloud controls. Provide this token to retrieve the next page of
+     *           results.
+     *           When paginating, the parent that you provide to the
+     *           [ListCloudControls][google.cloud.cloudsecuritycompliance.v1.Config.ListCloudControls]
+     *           request must match the call that provided the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -87,6 +92,7 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource name, in the format
      * `organizations/{organization}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -99,6 +105,7 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource name, in the format
      * `organizations/{organization}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -113,7 +120,7 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of CloudControls to return. The default value
+     * Optional. The maximum number of cloud controls to return. The default value
      * is `500`.
      * If you exceed the maximum value of `1000`, then the service uses the
      * maximum value.
@@ -127,7 +134,7 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of CloudControls to return. The default value
+     * Optional. The maximum number of cloud controls to return. The default value
      * is `500`.
      * If you exceed the maximum value of `1000`, then the service uses the
      * maximum value.
@@ -145,11 +152,12 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous request to list
-     * CloudControls. Provide this token to retrieve the next page of results.
-     * When paginating, parent provided to
-     * ListCloudControls request must match the call that provided the page
-     * token.
+     * Optional. A pagination token that's returned from a previous request to
+     * list cloud controls. Provide this token to retrieve the next page of
+     * results.
+     * When paginating, the parent that you provide to the
+     * [ListCloudControls][google.cloud.cloudsecuritycompliance.v1.Config.ListCloudControls]
+     * request must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -160,11 +168,12 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous request to list
-     * CloudControls. Provide this token to retrieve the next page of results.
-     * When paginating, parent provided to
-     * ListCloudControls request must match the call that provided the page
-     * token.
+     * Optional. A pagination token that's returned from a previous request to
+     * list cloud controls. Provide this token to retrieve the next page of
+     * results.
+     * When paginating, the parent that you provide to the
+     * [ListCloudControls][google.cloud.cloudsecuritycompliance.v1.Config.ListCloudControls]
+     * request must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

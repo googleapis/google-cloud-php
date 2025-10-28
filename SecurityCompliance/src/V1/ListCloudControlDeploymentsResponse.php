@@ -9,20 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for ListCloudControlDeployments.
+ * The response message for [ListCloudControlDeployments][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.ListCloudControlDeploymentsResponse</code>
  */
 class ListCloudControlDeploymentsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of CloudControlDeployments.
+     * The list of cloud control deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDeployment cloud_control_deployments = 1;</code>
      */
     private $cloud_control_deployments;
     /**
-     * A token identifying a page of results the server should return.
+     * A token that identifies the next page of results that the server
+     * should return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -35,9 +36,10 @@ class ListCloudControlDeploymentsResponse extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeployment>|\Google\Protobuf\Internal\RepeatedField $cloud_control_deployments
-     *           The list of CloudControlDeployments.
+     *           The list of cloud control deployments.
      *     @type string $next_page_token
-     *           A token identifying a page of results the server should return.
+     *           A token that identifies the next page of results that the server
+     *           should return.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +48,7 @@ class ListCloudControlDeploymentsResponse extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The list of CloudControlDeployments.
+     * The list of cloud control deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDeployment cloud_control_deployments = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -57,7 +59,7 @@ class ListCloudControlDeploymentsResponse extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The list of CloudControlDeployments.
+     * The list of cloud control deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDeployment cloud_control_deployments = 1;</code>
      * @param array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeployment>|\Google\Protobuf\Internal\RepeatedField $var
@@ -72,7 +74,8 @@ class ListCloudControlDeploymentsResponse extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * A token that identifies the next page of results that the server
+     * should return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -83,7 +86,8 @@ class ListCloudControlDeploymentsResponse extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * A token that identifies the next page of results that the server
+     * should return.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

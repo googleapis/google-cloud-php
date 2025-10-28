@@ -9,48 +9,52 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for UpdateCloudControl.
+ * The request message for [UpdateCloudControl][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.UpdateCloudControlRequest</code>
  */
 class UpdateCloudControlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the
-     * CloudControl resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields present in the request will be
-     * overwritten. The fields that can be updated are:
-     * 1. Display_name
-     * 2. Description
-     * 3. Parameters
-     * 4. Rules
-     * 5. ParameterSpec.
+     * Optional. Use a field mask to specify the fields to be overwritten in the
+     * cloud control during the update.
+     * The fields that you specify in the `update_mask` are relative to the
+     * cloud control, not the full request. A field is overwritten if it is in
+     * the mask. If you don't provide a mask, all fields in the request
+     * are updated.
+     * You can update the following fields:
+     * - Display name
+     * - Description
+     * - Parameters
+     * - Rules
+     * - Parameter specification
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
     /**
-     * Required. The resource being updated
+     * Required. The cloud control that you're updating.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControl cloud_control = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $cloud_control = null;
 
     /**
-     * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControl $cloudControl Required. The resource being updated
-     * @param \Google\Protobuf\FieldMask                            $updateMask   Optional. Field mask is used to specify the fields to be overwritten in the
-     *                                                                            CloudControl resource by the update.
-     *                                                                            The fields specified in the update_mask are relative to the resource, not
-     *                                                                            the full request. A field will be overwritten if it is in the mask. If the
-     *                                                                            user does not provide a mask then all fields present in the request will be
-     *                                                                            overwritten. The fields that can be updated are:
-     *                                                                            1. Display_name
-     *                                                                            2. Description
-     *                                                                            3. Parameters
-     *                                                                            4. Rules
-     *                                                                            5. ParameterSpec.
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControl $cloudControl Required. The cloud control that you're updating.
+     * @param \Google\Protobuf\FieldMask                            $updateMask   Optional. Use a field mask to specify the fields to be overwritten in the
+     *                                                                            cloud control during the update.
+     *                                                                            The fields that you specify in the `update_mask` are relative to the
+     *                                                                            cloud control, not the full request. A field is overwritten if it is in
+     *                                                                            the mask. If you don't provide a mask, all fields in the request
+     *                                                                            are updated.
+     *
+     *                                                                            You can update the following fields:
+     *
+     *                                                                            - Display name
+     *                                                                            - Description
+     *                                                                            - Parameters
+     *                                                                            - Rules
+     *                                                                            - Parameter specification
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\UpdateCloudControlRequest
      *
@@ -70,19 +74,20 @@ class UpdateCloudControlRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional. Field mask is used to specify the fields to be overwritten in the
-     *           CloudControl resource by the update.
-     *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request. A field will be overwritten if it is in the mask. If the
-     *           user does not provide a mask then all fields present in the request will be
-     *           overwritten. The fields that can be updated are:
-     *           1. Display_name
-     *           2. Description
-     *           3. Parameters
-     *           4. Rules
-     *           5. ParameterSpec.
+     *           Optional. Use a field mask to specify the fields to be overwritten in the
+     *           cloud control during the update.
+     *           The fields that you specify in the `update_mask` are relative to the
+     *           cloud control, not the full request. A field is overwritten if it is in
+     *           the mask. If you don't provide a mask, all fields in the request
+     *           are updated.
+     *           You can update the following fields:
+     *           - Display name
+     *           - Description
+     *           - Parameters
+     *           - Rules
+     *           - Parameter specification
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControl $cloud_control
-     *           Required. The resource being updated
+     *           Required. The cloud control that you're updating.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,17 +96,18 @@ class UpdateCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the
-     * CloudControl resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields present in the request will be
-     * overwritten. The fields that can be updated are:
-     * 1. Display_name
-     * 2. Description
-     * 3. Parameters
-     * 4. Rules
-     * 5. ParameterSpec.
+     * Optional. Use a field mask to specify the fields to be overwritten in the
+     * cloud control during the update.
+     * The fields that you specify in the `update_mask` are relative to the
+     * cloud control, not the full request. A field is overwritten if it is in
+     * the mask. If you don't provide a mask, all fields in the request
+     * are updated.
+     * You can update the following fields:
+     * - Display name
+     * - Description
+     * - Parameters
+     * - Rules
+     * - Parameter specification
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -122,17 +128,18 @@ class UpdateCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the
-     * CloudControl resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it is in the mask. If the
-     * user does not provide a mask then all fields present in the request will be
-     * overwritten. The fields that can be updated are:
-     * 1. Display_name
-     * 2. Description
-     * 3. Parameters
-     * 4. Rules
-     * 5. ParameterSpec.
+     * Optional. Use a field mask to specify the fields to be overwritten in the
+     * cloud control during the update.
+     * The fields that you specify in the `update_mask` are relative to the
+     * cloud control, not the full request. A field is overwritten if it is in
+     * the mask. If you don't provide a mask, all fields in the request
+     * are updated.
+     * You can update the following fields:
+     * - Display name
+     * - Description
+     * - Parameters
+     * - Rules
+     * - Parameter specification
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -147,7 +154,7 @@ class UpdateCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource being updated
+     * Required. The cloud control that you're updating.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControl cloud_control = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\CloudControl|null
@@ -168,7 +175,7 @@ class UpdateCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource being updated
+     * Required. The cloud control that you're updating.
      *
      * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.CloudControl cloud_control = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControl $var

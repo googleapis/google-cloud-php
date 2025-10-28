@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Regular Expression Validator for parameter values.
+ * The regular expression (regex) validator for parameter values.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.RegexpPattern</code>
  */
 class RegexpPattern extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Regex Pattern to match the value(s) of parameter.
+     * Required. The regex pattern to match the values of the parameter with.
      *
      * Generated from protobuf field <code>string pattern = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -29,7 +29,7 @@ class RegexpPattern extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $pattern
-     *           Required. Regex Pattern to match the value(s) of parameter.
+     *           Required. The regex pattern to match the values of the parameter with.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class RegexpPattern extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Regex Pattern to match the value(s) of parameter.
+     * Required. The regex pattern to match the values of the parameter with.
      *
      * Generated from protobuf field <code>string pattern = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -49,7 +49,7 @@ class RegexpPattern extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Regex Pattern to match the value(s) of parameter.
+     * Required. The regex pattern to match the values of the parameter with.
      *
      * Generated from protobuf field <code>string pattern = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

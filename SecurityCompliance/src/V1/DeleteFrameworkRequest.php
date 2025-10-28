@@ -9,23 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for deleting a Framework.
+ * Request message for [DeleteFramework][].
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.DeleteFrameworkRequest</code>
  */
 class DeleteFrameworkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the resource, in the format
+     * Required. The name of the resource, in the format
      * `organizations/{organization}/locations/{location}/frameworks/{framework}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. Name of the resource, in the format
-     *                     `organizations/{organization}/locations/{location}/frameworks/{framework}`. Please see
+     * @param string $name Required. The name of the resource, in the format
+     *                     `organizations/{organization}/locations/{location}/frameworks/{framework}`.
+     *                     The only supported location is `global`. Please see
      *                     {@see ConfigClient::frameworkName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\DeleteFrameworkRequest
@@ -45,8 +47,9 @@ class DeleteFrameworkRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the resource, in the format
+     *           Required. The name of the resource, in the format
      *           `organizations/{organization}/locations/{location}/frameworks/{framework}`.
+     *           The only supported location is `global`.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,8 +58,9 @@ class DeleteFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the resource, in the format
+     * Required. The name of the resource, in the format
      * `organizations/{organization}/locations/{location}/frameworks/{framework}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,8 +71,9 @@ class DeleteFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the resource, in the format
+     * Required. The name of the resource, in the format
      * `organizations/{organization}/locations/{location}/frameworks/{framework}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

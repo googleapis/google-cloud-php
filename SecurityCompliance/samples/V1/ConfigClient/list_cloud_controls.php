@@ -30,12 +30,14 @@ use Google\Cloud\CloudSecurityCompliance\V1\CloudControl;
 use Google\Cloud\CloudSecurityCompliance\V1\ListCloudControlsRequest;
 
 /**
- * Lists all CloudControls (both Built-in and Custom) available within a given
- * parent resource. This method supports pagination.
- * The latest major version of each CloudControl is returned.
+ * Lists the cloud controls (both built-in and custom) that are available
+ * in a given parent resource. The latest major version of each cloud control
+ * is returned.
+ * This method supports pagination.
  *
  * @param string $formattedParent The parent resource name, in the format
- *                                `organizations/{organization}/locations/{location}`. Please see
+ *                                `organizations/{organization}/locations/{location}`.
+ *                                The only supported location is `global`. Please see
  *                                {@see ConfigClient::organizationLocationName()} for help formatting this field.
  */
 function list_cloud_controls_sample(string $formattedParent): void
