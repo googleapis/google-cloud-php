@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Options\CallOptions;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
@@ -31,7 +33,7 @@ use Google\Cloud\Firestore\V1\Client\FirestoreClient;
  */
 trait SnapshotTrait
 {
-    use ArrayTrait;
+    use ApiHelperTrait;
     use PathTrait;
     use TimeTrait;
     use TimestampTrait;
@@ -110,11 +112,20 @@ trait SnapshotTrait
     {
         $options = $this->formatReadTimeOption($options);
 
-        $request = new BatchGetDocumentsRequest();
-        $request->setDatabase($this->databaseFromName($name));
-        $request->setDocuments([$name]);
+        /**
+         * @var BatchGetDocumentsRequest $request
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            [
+                'database' => $this->databaseFromName($name),
+                'documents' => [$name]
+            ] + $options,
+            new BatchGetDocumentsRequest(),
+            CallOptions::class,
+        );
 
-        $stream = $gapicClient->batchGetDocuments($request, $options);
+        $stream = $gapicClient->batchGetDocuments($request, $callOptions);
 
         /** @var BatchGetDocumentsResponse */
         $response = $stream->readAll()->current();
@@ -170,18 +181,27 @@ trait SnapshotTrait
             $documentNames[] = $path;
         }
 
-        $request = new BatchGetDocumentsRequest();
-        $request->setDatabase($this->databaseName($projectId, $database));
-        $request->setDocuments($documentNames, $options);
+        /**
+         * @var BatchGetDocumentsRequest $request
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            [
+                'database' => $this->databaseName($projectId, $database),
+                'documents' => $documentNames
+            ] + $options,
+            new BatchGetDocumentsRequest(),
+            CallOptions::class
+        );
 
-        $stream = $gapicClient->batchGetDocuments($request, $options);
+        $stream = $gapicClient->batchGetDocuments($request, $callOptions);
 
         $res = [];
         /** @var BatchGetDocumentsResponse $response*/
         foreach ($stream->readAll() as $response) {
             $document = json_decode($response->serializeToJsonString(), true);
+            $exists = $response->hasFound();
 
-            $exists = $document->hasFound();
             $data = $exists
                 ? $document['found'] + ['readTime' => $document['readTime']]
                 : ['readTime' => $document['readTime']];

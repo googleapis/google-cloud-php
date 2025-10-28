@@ -17,10 +17,13 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
-use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
 use Google\Cloud\Firestore\V1\ExplainMetrics;
 use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
@@ -47,6 +50,7 @@ use InvalidArgumentException;
  */
 class Query
 {
+    use ApiHelperTrait;
     use DebugInfoTrait;
     use SnapshotTrait;
     use QueryTrait;
@@ -117,9 +121,9 @@ class Query
     ];
 
     /**
-     * @var FirestoreClient
+     * @var GapicFirestoreClient
      */
-    private FirestoreClient $gapicClient;
+    private GapicFirestoreClient $gapicClient;
 
     /**
      * @var ValueMapper
@@ -142,7 +146,7 @@ class Query
     private $limitToLast;
 
     /**
-     * @param FirestoreClient $gapicClient A FirestoreClient instance.
+     * @param GapicFirestoreClient $gapicClient A FirestoreClient instance.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $parent The parent of the query.
      * @param array $query The Query object
@@ -150,7 +154,7 @@ class Query
      * @throws \InvalidArgumentException If the query does not provide a valid selector.
      */
     public function __construct(
-        FirestoreClient $gapicClient,
+        GapicFirestoreClient $gapicClient,
         ValueMapper $valueMapper,
         $parent,
         array $query,
@@ -336,19 +340,32 @@ class Query
         $explainMetrics = null;
 
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($query, $options, &$explainMetrics) {
-            $request = new RunQueryRequest();
-            $request->setParent($this->parentName);
-            $request->setStructuredQuery($query);
+            /**
+             * @var RunQueryRequest $request
+             * @var CallOptions $callOptions
+             */
+            [$request, $callOptions] = $this->validateOptions(
+                [
+                    'parent' => $this->parentName,
+                    'structuredQuery' => $query
+                ] + $options,
+                new RunQueryRequest(),
+                CallOptions::class
+            );
 
             // WHY WAS RETRIES HERE? Need to check the old GRPC
-            $generator = $this->gapicClient->runQuery($request, $options)->readAll();
+            $generator = $this->gapicClient->runQuery($request, $callOptions)->readAll();
 
             // cache collection references
             $collections = [];
 
             $out = [];
+
+            $serializer = new Serializer();
+
             while ($generator->valid()) {
-                $result = $generator->current();
+                $result = $serializer->encodeMessage($generator->current());
+
 
                 if (isset($result['document']) && $result['document']) {
                     $collectionName = $this->parentPath($result['document']['name']);
@@ -368,7 +385,7 @@ class Query
                     );
 
                     $document = $result['document'];
-                    $document['readTime'] = $result['readTime'];
+                    $document['readTime'] = $result['readTime'] ?? null;
 
                     $out[] = $this->createSnapshotWithData($this->valueMapper, $ref, $document);
                 }
