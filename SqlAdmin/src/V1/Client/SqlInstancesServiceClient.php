@@ -274,8 +274,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function acquireSsrsLease(SqlInstancesAcquireSsrsLeaseRequest $request, array $callOptions = []): SqlInstancesAcquireSsrsLeaseResponse
-    {
+    public function acquireSsrsLease(
+        SqlInstancesAcquireSsrsLeaseRequest $request,
+        array $callOptions = []
+    ): SqlInstancesAcquireSsrsLeaseResponse {
         return $this->startApiCall('AcquireSsrsLease', $request, $callOptions)->wait();
     }
 
@@ -555,8 +557,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDiskShrinkConfig(SqlInstancesGetDiskShrinkConfigRequest $request, array $callOptions = []): SqlInstancesGetDiskShrinkConfigResponse
-    {
+    public function getDiskShrinkConfig(
+        SqlInstancesGetDiskShrinkConfigRequest $request,
+        array $callOptions = []
+    ): SqlInstancesGetDiskShrinkConfigResponse {
         return $this->startApiCall('GetDiskShrinkConfig', $request, $callOptions)->wait();
     }
 
@@ -582,8 +586,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getLatestRecoveryTime(SqlInstancesGetLatestRecoveryTimeRequest $request, array $callOptions = []): SqlInstancesGetLatestRecoveryTimeResponse
-    {
+    public function getLatestRecoveryTime(
+        SqlInstancesGetLatestRecoveryTimeRequest $request,
+        array $callOptions = []
+    ): SqlInstancesGetLatestRecoveryTimeResponse {
         return $this->startApiCall('GetLatestRecoveryTime', $request, $callOptions)->wait();
     }
 
@@ -691,8 +697,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listServerCas(SqlInstancesListServerCasRequest $request, array $callOptions = []): InstancesListServerCasResponse
-    {
+    public function listServerCas(
+        SqlInstancesListServerCasRequest $request,
+        array $callOptions = []
+    ): InstancesListServerCasResponse {
         return $this->startApiCall('ListServerCas', $request, $callOptions)->wait();
     }
 
@@ -825,8 +833,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function releaseSsrsLease(SqlInstancesReleaseSsrsLeaseRequest $request, array $callOptions = []): SqlInstancesReleaseSsrsLeaseResponse
-    {
+    public function releaseSsrsLease(
+        SqlInstancesReleaseSsrsLeaseRequest $request,
+        array $callOptions = []
+    ): SqlInstancesReleaseSsrsLeaseResponse {
         return $this->startApiCall('ReleaseSsrsLease', $request, $callOptions)->wait();
     }
 
@@ -852,8 +862,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function rescheduleMaintenance(SqlInstancesRescheduleMaintenanceRequest $request, array $callOptions = []): Operation
-    {
+    public function rescheduleMaintenance(
+        SqlInstancesRescheduleMaintenanceRequest $request,
+        array $callOptions = []
+    ): Operation {
         return $this->startApiCall('RescheduleMaintenance', $request, $callOptions)->wait();
     }
 
@@ -1174,8 +1186,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function verifyExternalSyncSettings(SqlInstancesVerifyExternalSyncSettingsRequest $request, array $callOptions = []): SqlInstancesVerifyExternalSyncSettingsResponse
-    {
+    public function verifyExternalSyncSettings(
+        SqlInstancesVerifyExternalSyncSettingsRequest $request,
+        array $callOptions = []
+    ): SqlInstancesVerifyExternalSyncSettingsResponse {
         return $this->startApiCall('VerifyExternalSyncSettings', $request, $callOptions)->wait();
     }
 }

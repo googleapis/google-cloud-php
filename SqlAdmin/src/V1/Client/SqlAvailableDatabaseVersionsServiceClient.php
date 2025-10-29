@@ -71,14 +71,16 @@ final class SqlAvailableDatabaseVersionsServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/sql_available_database_versions_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/sql_available_database_versions_service_descriptor_config.php',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/sql_available_database_versions_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/sql_available_database_versions_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/sql_available_database_versions_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/sql_available_database_versions_service_rest_client_config.php',
                 ],
             ],
         ];
