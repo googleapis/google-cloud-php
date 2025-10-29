@@ -37,6 +37,10 @@ class BackupTest extends SystemTestCase
 
     const BACKUP_PREFIX = 'spanner_backup_';
 
+    // Set a much longer timeout for waiting on the LRO to complete.
+    // Example: 4 hours (4 * 3600 seconds)
+    const LONG_TIMEOUT_SECONDS = 4 * 3600;
+
     protected static $backupId1;
     protected static $backupId2;
     protected static $copyBackupId;
@@ -489,9 +493,10 @@ class BackupTest extends SystemTestCase
         $backup = self::$instance->backup($backupId);
 
         $op = $backup->create(self::$dbName1, $expireTime);
+
+        // Poll for completion with the extended timeout
         $op->pollUntilComplete([
-            // increase to 10 minutes (to prevent timeout)
-            'maxPollingDurationSeconds' => 600,
+            'timeoutMillis' => self::LONG_TIMEOUT_SECONDS * 1000 // GAX expects milliseconds
         ]);
 
         $this->assertTrue($backup->exists());
@@ -563,7 +568,10 @@ class BackupTest extends SystemTestCase
         $this->assertArrayHasKey('progressPercent', $metadata['progress']);
         $this->assertArrayHasKey('startTime', $metadata['progress']);
 
-        $op->pollUntilComplete();
+        // Poll for completion with the extended timeout
+        $op->pollUntilComplete([
+            'timeoutMillis' => self::LONG_TIMEOUT_SECONDS * 1000 // GAX expects milliseconds
+        ]);
         $restoredDb = $this::$instance->database($restoreDbName);
 
         self::$deletionQueue->add(function () use ($restoredDb) {
