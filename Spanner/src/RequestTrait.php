@@ -24,6 +24,8 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\RequestProcessorTrait;
+use Google\LongRunning\Operation as OperationProto;
+use Google\Protobuf\Any;
 use Google\Protobuf\Internal\Message;
 
 /**
@@ -136,5 +138,26 @@ trait RequestTrait
             $mask[] = $this->serializer::toSnakeCase($key);
         }
         return ['paths' => $mask];
+    }
+
+    private function handleOperationProto(OperationProto $operation)
+    {
+        $response = $this->handleResponse($operation);
+
+        $typeUrl = $response['metadata']['typeUrl'];
+
+        // unpack result Any type
+        $response['response'] = $this->handleResponse($operation->getResponse()?->unpack());
+
+        // unpack error Any type
+        $response['error'] = $this->handleResponse($operation->getError());
+
+        // unpack metadata Any type
+        $response['metadata'] = $this->handleResponse($operation->getMetadata()?->unpack());
+
+        // Used in LongRunningOperation to invoke callables
+        $response['metadata'] += ['typeUrl' => $typeUrl];
+
+        return $response;
     }
 }

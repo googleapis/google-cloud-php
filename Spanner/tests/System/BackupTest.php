@@ -57,9 +57,7 @@ class BackupTest extends SystemTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        // skip this test (it's not working)
         self::skipEmulatorTests();
-        self::emulatorOnly();
 
         self::setUpTestDatabase();
         if (self::$hasSetUpBackup) {
@@ -135,12 +133,17 @@ class BackupTest extends SystemTestCase
         self::$backupOperationName = $op->name();
 
         $metadata = null;
-        foreach (self::$instance->backupOperations() as $listItem) {
-            if ($listItem->name() == $op->name()) {
-                $metadata = $listItem->info()['metadata'];
+        foreach (self::$instance->backupOperations() as $lro) {
+            if ($lro->name() == $op->name()) {
+                $lro->reload();
+                $metadata = $lro->info()['metadata'];
                 break;
             }
         }
+
+        $this->assertArrayHasKey('progress', $metadata);
+        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
+        $this->assertArrayHasKey('startTime', $metadata['progress']);
 
         $op->pollUntilComplete();
 
@@ -156,16 +159,15 @@ class BackupTest extends SystemTestCase
         $this->assertTrue(is_string($backup->info()['createTime']));
         $this->assertEquals(Backup::STATE_READY, $backup->state());
         $this->assertTrue($backup->info()['sizeBytes'] > 0);
-        // earliestVersionTime deviates from backup's versionTime by a couple of minutes
-        $expectedDateTime = \DateTime::createFromFormat('Y-m-d\TH:i:s.u\Z', $db1->info()['earliestVersionTime']);
-        $actualDateTime = \DateTime::createFromFormat('Y-m-d\TH:i:s.u\Z', $backup->info()['versionTime']);
-        $this->assertEqualsWithDelta($expectedDateTime->getTimestamp(), $actualDateTime->getTimestamp(), 300);
+        if (!getenv('GOOGLE_CLOUD_SPANNER_TEST_BACKUP_DATABASE_1')) {
+            // earliestVersionTime deviates from backup's versionTime by a couple of minutes
+            $expectedDateTime = \DateTime::createFromFormat('Y-m-d\TH:i:s.u\Z', $db1->info()['earliestVersionTime']);
+            $actualDateTime = \DateTime::createFromFormat('Y-m-d\TH:i:s.u\Z', $backup->info()['versionTime']);
+            $this->assertEqualsWithDelta($expectedDateTime->getTimestamp(), $actualDateTime->getTimestamp(), 300);
+        }
         $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $backup->info()['encryptionInfo']['encryptionType']);
 
         $this->assertNotNull($metadata);
-        $this->assertArrayHasKey('progress', $metadata);
-        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
-        $this->assertArrayHasKey('startTime', $metadata['progress']);
     }
 
     public function testCreateBackupRequestFailed()
@@ -247,12 +249,17 @@ class BackupTest extends SystemTestCase
         $op = $backup->createCopy($newBackup, $expireTime);
 
         $metadata = null;
-        foreach (self::$instance->backupOperations() as $listItem) {
-            if ($listItem->name() == $op->name()) {
-                $metadata = $listItem->info()['metadata'];
+        foreach (self::$instance->backupOperations() as $lro) {
+            if ($lro->name() == $op->name()) {
+                $metadata = $lro->info()['metadata'];
                 break;
             }
         }
+
+        $this->assertNotNull($metadata);
+        $this->assertArrayHasKey('progress', $metadata);
+        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
+        $this->assertArrayHasKey('startTime', $metadata['progress']);
 
         $op->pollUntilComplete();
 
@@ -269,11 +276,6 @@ class BackupTest extends SystemTestCase
         $this->assertEquals(Backup::STATE_READY, $newBackup->state());
         $this->assertTrue($newBackup->info()['sizeBytes'] > 0);
         $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $newBackup->info()['encryptionInfo']['encryptionType']);
-
-        $this->assertNotNull($metadata);
-        $this->assertArrayHasKey('progress', $metadata);
-        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
-        $this->assertArrayHasKey('startTime', $metadata['progress']);
     }
 
     /**
@@ -487,7 +489,10 @@ class BackupTest extends SystemTestCase
         $backup = self::$instance->backup($backupId);
 
         $op = $backup->create(self::$dbName1, $expireTime);
-        $op->pollUntilComplete();
+        $op->pollUntilComplete([
+            // increase to 10 minutes (to prevent timeout)
+            'maxPollingDurationSeconds' => 600,
+        ]);
 
         $this->assertTrue($backup->exists());
 
@@ -546,12 +551,17 @@ class BackupTest extends SystemTestCase
         self::$restoreOperationName = $op->name();
 
         $metadata = null;
-        foreach (self::$instance->databaseOperations() as $listItem) {
-            if (basename($listItem->info()['metadata']['name']) == $restoreDbName) {
-                $metadata = $listItem->info()['metadata'];
+        foreach (self::$instance->databaseOperations() as $lro) {
+            if (basename($lro->info()['metadata']['name']) == $restoreDbName) {
+                $metadata = $lro->info()['metadata'];
                 break;
             }
         }
+
+        $this->assertNotNull($metadata);
+        $this->assertArrayHasKey('progress', $metadata);
+        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
+        $this->assertArrayHasKey('startTime', $metadata['progress']);
 
         $op->pollUntilComplete();
         $restoredDb = $this::$instance->database($restoreDbName);
@@ -571,11 +581,6 @@ class BackupTest extends SystemTestCase
             Type::GOOGLE_DEFAULT_ENCRYPTION,
             current($restoredDb->info()['encryptionInfo'])['encryptionType']
         );
-
-        $this->assertNotNull($metadata);
-        $this->assertArrayHasKey('progress', $metadata);
-        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
-        $this->assertArrayHasKey('startTime', $metadata['progress']);
     }
 
     /**
