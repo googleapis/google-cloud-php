@@ -31,8 +31,14 @@ use Google\Cloud\NetworkManagement\V1\VpcFlowLogsConfig;
 /**
  * Gets the details of a specific `VpcFlowLogsConfig`.
  *
- * @param string $formattedName `VpcFlowLogsConfig` resource name using the form:
- *                              `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`
+ * @param string $formattedName The resource name of the VpcFlowLogsConfig,
+ *                              in one of the following formats:
+ *
+ *                              - For project-level resources:
+ *                              `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+ *
+ *                              - For organization-level resources:
+ *                              `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
  *                              Please see {@see VpcFlowLogsServiceClient::vpcFlowLogsConfigName()} for help formatting this field.
  */
 function get_vpc_flow_logs_config_sample(string $formattedName): void

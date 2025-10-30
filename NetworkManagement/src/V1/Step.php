@@ -71,10 +71,14 @@ class Step extends \Google\Protobuf\Internal\Message
      *           Display information of a Google service
      *     @type \Google\Cloud\NetworkManagement\V1\ForwardingRuleInfo $forwarding_rule
      *           Display information of a Compute Engine forwarding rule.
+     *     @type \Google\Cloud\NetworkManagement\V1\HybridSubnetInfo $hybrid_subnet
+     *           Display information of a hybrid subnet.
      *     @type \Google\Cloud\NetworkManagement\V1\VpnGatewayInfo $vpn_gateway
      *           Display information of a Compute Engine VPN gateway.
      *     @type \Google\Cloud\NetworkManagement\V1\VpnTunnelInfo $vpn_tunnel
      *           Display information of a Compute Engine VPN tunnel.
+     *     @type \Google\Cloud\NetworkManagement\V1\InterconnectAttachmentInfo $interconnect_attachment
+     *           Display information of an interconnect attachment.
      *     @type \Google\Cloud\NetworkManagement\V1\VpcConnectorInfo $vpc_connector
      *           Display information of a VPC connector.
      *     @type \Google\Cloud\NetworkManagement\V1\DirectVpcEgressConnectionInfo $direct_vpc_egress_connection
@@ -423,6 +427,37 @@ class Step extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Display information of a hybrid subnet.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.HybridSubnetInfo hybrid_subnet = 36;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\HybridSubnetInfo|null
+     */
+    public function getHybridSubnet()
+    {
+        return $this->readOneof(36);
+    }
+
+    public function hasHybridSubnet()
+    {
+        return $this->hasOneof(36);
+    }
+
+    /**
+     * Display information of a hybrid subnet.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.HybridSubnetInfo hybrid_subnet = 36;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\HybridSubnetInfo $var
+     * @return $this
+     */
+    public function setHybridSubnet($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\HybridSubnetInfo::class);
+        $this->writeOneof(36, $var);
+
+        return $this;
+    }
+
+    /**
      * Display information of a Compute Engine VPN gateway.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.VpnGatewayInfo vpn_gateway = 10;</code>
@@ -480,6 +515,37 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\VpnTunnelInfo::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of an interconnect attachment.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.InterconnectAttachmentInfo interconnect_attachment = 35;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\InterconnectAttachmentInfo|null
+     */
+    public function getInterconnectAttachment()
+    {
+        return $this->readOneof(35);
+    }
+
+    public function hasInterconnectAttachment()
+    {
+        return $this->hasOneof(35);
+    }
+
+    /**
+     * Display information of an interconnect attachment.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.InterconnectAttachmentInfo interconnect_attachment = 35;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\InterconnectAttachmentInfo $var
+     * @return $this
+     */
+    public function setInterconnectAttachment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\InterconnectAttachmentInfo::class);
+        $this->writeOneof(35, $var);
 
         return $this;
     }

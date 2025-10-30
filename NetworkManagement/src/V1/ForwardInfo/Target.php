@@ -73,6 +73,12 @@ class Target
      * Generated from protobuf enum <code>ROUTER_APPLIANCE = 9;</code>
      */
     const ROUTER_APPLIANCE = 9;
+    /**
+     * Forwarded to a Secure Web Proxy Gateway.
+     *
+     * Generated from protobuf enum <code>SECURE_WEB_PROXY_GATEWAY = 10;</code>
+     */
+    const SECURE_WEB_PROXY_GATEWAY = 10;
 
     private static $valueToName = [
         self::TARGET_UNSPECIFIED => 'TARGET_UNSPECIFIED',
@@ -85,6 +91,7 @@ class Target
         self::ANOTHER_PROJECT => 'ANOTHER_PROJECT',
         self::NCC_HUB => 'NCC_HUB',
         self::ROUTER_APPLIANCE => 'ROUTER_APPLIANCE',
+        self::SECURE_WEB_PROXY_GATEWAY => 'SECURE_WEB_PROXY_GATEWAY',
     ];
 
     public static function name($value)

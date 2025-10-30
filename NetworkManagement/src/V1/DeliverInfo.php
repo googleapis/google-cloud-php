@@ -46,6 +46,13 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string psc_google_api_target = 5;</code>
      */
     protected $psc_google_api_target = '';
+    /**
+     * Recognized type of a Google Service the packet is delivered to (if
+     * applicable).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.DeliverInfo.GoogleServiceType google_service_type = 6;</code>
+     */
+    protected $google_service_type = 0;
 
     /**
      * Constructor.
@@ -64,6 +71,9 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
      *           applicable).
      *     @type string $psc_google_api_target
      *           PSC Google API target the packet is delivered to (if applicable).
+     *     @type int $google_service_type
+     *           Recognized type of a Google Service the packet is delivered to (if
+     *           applicable).
      * }
      */
     public function __construct($data = NULL) {
@@ -199,6 +209,34 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->psc_google_api_target = $var;
+
+        return $this;
+    }
+
+    /**
+     * Recognized type of a Google Service the packet is delivered to (if
+     * applicable).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.DeliverInfo.GoogleServiceType google_service_type = 6;</code>
+     * @return int
+     */
+    public function getGoogleServiceType()
+    {
+        return $this->google_service_type;
+    }
+
+    /**
+     * Recognized type of a Google Service the packet is delivered to (if
+     * applicable).
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.DeliverInfo.GoogleServiceType google_service_type = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setGoogleServiceType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkManagement\V1\DeliverInfo\GoogleServiceType::class);
+        $this->google_service_type = $var;
 
         return $this;
     }

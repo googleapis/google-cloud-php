@@ -36,8 +36,8 @@ use Google\Rpc\Status;
  * ID is different), the creation fails.
  * Notes:
  *
- * 1. Creating a configuration with state=DISABLED will fail
- * 2. The following fields are not considered as `settings` for the purpose
+ * 1. Creating a configuration with `state=DISABLED` will fail
+ * 2. The following fields are not considered as settings for the purpose
  * of the check mentioned above, therefore - creating another configuration
  * with the same fields but different values for the following fields will
  * fail as well:
@@ -47,9 +47,14 @@ use Google\Rpc\Status;
  * * labels
  * * description
  *
- * @param string $formattedParent              The parent resource of the VPC Flow Logs configuration to create:
- *                                             `projects/{project_id}/locations/global`
- *                                             Please see {@see VpcFlowLogsServiceClient::locationName()} for help formatting this field.
+ * @param string $formattedParent              The parent resource of the VpcFlowLogsConfig to create,
+ *                                             in one of the following formats:
+ *
+ *                                             - For project-level resources: `projects/{project_id}/locations/global`
+ *
+ *                                             - For organization-level resources:
+ *                                             `organizations/{organization_id}/locations/global`
+ *                                             Please see {@see VpcFlowLogsServiceClient::organizationLocationName()} for help formatting this field.
  * @param string $formattedVpcFlowLogsConfigId ID of the `VpcFlowLogsConfig`. Please see
  *                                             {@see VpcFlowLogsServiceClient::vpcFlowLogsConfigName()} for help formatting this field.
  */
@@ -98,7 +103,10 @@ function create_vpc_flow_logs_config_sample(
  */
 function callSample(): void
 {
-    $formattedParent = VpcFlowLogsServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedParent = VpcFlowLogsServiceClient::organizationLocationName(
+        '[ORGANIZATION]',
+        '[LOCATION]'
+    );
     $formattedVpcFlowLogsConfigId = VpcFlowLogsServiceClient::vpcFlowLogsConfigName(
         '[PROJECT]',
         '[LOCATION]',
