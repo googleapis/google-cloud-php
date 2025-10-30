@@ -16,16 +16,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteVpcFlowLogsConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. `VpcFlowLogsConfig` resource name using the form:
-     *     `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`
+     * Required. The resource name of the VpcFlowLogsConfig,
+     * in one of the following formats:
+     * - For a project-level resource:
+     * `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     * - For an organization-level resource:
+     * `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. `VpcFlowLogsConfig` resource name using the form:
-     *                     `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`
+     * @param string $name Required. The resource name of the VpcFlowLogsConfig,
+     *                     in one of the following formats:
+     *
+     *                     - For a project-level resource:
+     *                     `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     *
+     *                     - For an organization-level resource:
+     *                     `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
      *                     Please see {@see VpcFlowLogsServiceClient::vpcFlowLogsConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetworkManagement\V1\DeleteVpcFlowLogsConfigRequest
@@ -45,8 +55,12 @@ class DeleteVpcFlowLogsConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. `VpcFlowLogsConfig` resource name using the form:
-     *               `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`
+     *           Required. The resource name of the VpcFlowLogsConfig,
+     *           in one of the following formats:
+     *           - For a project-level resource:
+     *           `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     *           - For an organization-level resource:
+     *           `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -55,8 +69,12 @@ class DeleteVpcFlowLogsConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. `VpcFlowLogsConfig` resource name using the form:
-     *     `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`
+     * Required. The resource name of the VpcFlowLogsConfig,
+     * in one of the following formats:
+     * - For a project-level resource:
+     * `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     * - For an organization-level resource:
+     * `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,8 +85,12 @@ class DeleteVpcFlowLogsConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. `VpcFlowLogsConfig` resource name using the form:
-     *     `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`
+     * Required. The resource name of the VpcFlowLogsConfig,
+     * in one of the following formats:
+     * - For a project-level resource:
+     * `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     * - For an organization-level resource:
+     * `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

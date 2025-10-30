@@ -45,6 +45,18 @@ class DropInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string region = 5;</code>
      */
     protected $region = '';
+    /**
+     * Geolocation (region code) of the source IP address (if relevant).
+     *
+     * Generated from protobuf field <code>string source_geolocation_code = 6;</code>
+     */
+    protected $source_geolocation_code = '';
+    /**
+     * Geolocation (region code) of the destination IP address (if relevant).
+     *
+     * Generated from protobuf field <code>string destination_geolocation_code = 7;</code>
+     */
+    protected $destination_geolocation_code = '';
 
     /**
      * Constructor.
@@ -62,6 +74,10 @@ class DropInfo extends \Google\Protobuf\Internal\Message
      *           Destination IP address of the dropped packet (if relevant).
      *     @type string $region
      *           Region of the dropped packet (if relevant).
+     *     @type string $source_geolocation_code
+     *           Geolocation (region code) of the source IP address (if relevant).
+     *     @type string $destination_geolocation_code
+     *           Geolocation (region code) of the destination IP address (if relevant).
      * }
      */
     public function __construct($data = NULL) {
@@ -195,6 +211,58 @@ class DropInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->region = $var;
+
+        return $this;
+    }
+
+    /**
+     * Geolocation (region code) of the source IP address (if relevant).
+     *
+     * Generated from protobuf field <code>string source_geolocation_code = 6;</code>
+     * @return string
+     */
+    public function getSourceGeolocationCode()
+    {
+        return $this->source_geolocation_code;
+    }
+
+    /**
+     * Geolocation (region code) of the source IP address (if relevant).
+     *
+     * Generated from protobuf field <code>string source_geolocation_code = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceGeolocationCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_geolocation_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Geolocation (region code) of the destination IP address (if relevant).
+     *
+     * Generated from protobuf field <code>string destination_geolocation_code = 7;</code>
+     * @return string
+     */
+    public function getDestinationGeolocationCode()
+    {
+        return $this->destination_geolocation_code;
+    }
+
+    /**
+     * Geolocation (region code) of the destination IP address (if relevant).
+     *
+     * Generated from protobuf field <code>string destination_geolocation_code = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDestinationGeolocationCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->destination_geolocation_code = $var;
 
         return $this;
     }

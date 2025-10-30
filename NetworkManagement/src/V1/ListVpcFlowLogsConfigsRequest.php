@@ -16,8 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListVpcFlowLogsConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource of the VpcFlowLogsConfig:
-     *     `projects/{project_id}/locations/global`
+     * Required. The parent resource of the VpcFlowLogsConfig,
+     * in one of the following formats:
+     * - For project-level resourcs: `projects/{project_id}/locations/global`
+     * - For organization-level resources:
+     * `organizations/{organization_id}/locations/global`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -51,9 +54,14 @@ class ListVpcFlowLogsConfigsRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
-     * @param string $parent Required. The parent resource of the VpcFlowLogsConfig:
-     *                       `projects/{project_id}/locations/global`
-     *                       Please see {@see VpcFlowLogsServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent resource of the VpcFlowLogsConfig,
+     *                       in one of the following formats:
+     *
+     *                       - For project-level resourcs: `projects/{project_id}/locations/global`
+     *
+     *                       - For organization-level resources:
+     *                       `organizations/{organization_id}/locations/global`
+     *                       Please see {@see VpcFlowLogsServiceClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetworkManagement\V1\ListVpcFlowLogsConfigsRequest
      *
@@ -72,8 +80,11 @@ class ListVpcFlowLogsConfigsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource of the VpcFlowLogsConfig:
-     *               `projects/{project_id}/locations/global`
+     *           Required. The parent resource of the VpcFlowLogsConfig,
+     *           in one of the following formats:
+     *           - For project-level resourcs: `projects/{project_id}/locations/global`
+     *           - For organization-level resources:
+     *           `organizations/{organization_id}/locations/global`
      *     @type int $page_size
      *           Optional. Number of `VpcFlowLogsConfigs` to return.
      *     @type string $page_token
@@ -93,8 +104,11 @@ class ListVpcFlowLogsConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource of the VpcFlowLogsConfig:
-     *     `projects/{project_id}/locations/global`
+     * Required. The parent resource of the VpcFlowLogsConfig,
+     * in one of the following formats:
+     * - For project-level resourcs: `projects/{project_id}/locations/global`
+     * - For organization-level resources:
+     * `organizations/{organization_id}/locations/global`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -105,8 +119,11 @@ class ListVpcFlowLogsConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource of the VpcFlowLogsConfig:
-     *     `projects/{project_id}/locations/global`
+     * Required. The parent resource of the VpcFlowLogsConfig,
+     * in one of the following formats:
+     * - For project-level resourcs: `projects/{project_id}/locations/global`
+     * - For organization-level resources:
+     * `organizations/{organization_id}/locations/global`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

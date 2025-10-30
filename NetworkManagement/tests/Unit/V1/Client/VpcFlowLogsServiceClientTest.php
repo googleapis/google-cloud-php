@@ -38,9 +38,14 @@ use Google\Cloud\Location\Location;
 use Google\Cloud\NetworkManagement\V1\Client\VpcFlowLogsServiceClient;
 use Google\Cloud\NetworkManagement\V1\CreateVpcFlowLogsConfigRequest;
 use Google\Cloud\NetworkManagement\V1\DeleteVpcFlowLogsConfigRequest;
+use Google\Cloud\NetworkManagement\V1\EffectiveVpcFlowLogsConfig;
 use Google\Cloud\NetworkManagement\V1\GetVpcFlowLogsConfigRequest;
 use Google\Cloud\NetworkManagement\V1\ListVpcFlowLogsConfigsRequest;
 use Google\Cloud\NetworkManagement\V1\ListVpcFlowLogsConfigsResponse;
+use Google\Cloud\NetworkManagement\V1\QueryOrgVpcFlowLogsConfigsRequest;
+use Google\Cloud\NetworkManagement\V1\QueryOrgVpcFlowLogsConfigsResponse;
+use Google\Cloud\NetworkManagement\V1\ShowEffectiveFlowLogsConfigsRequest;
+use Google\Cloud\NetworkManagement\V1\ShowEffectiveFlowLogsConfigsResponse;
 use Google\Cloud\NetworkManagement\V1\UpdateVpcFlowLogsConfigRequest;
 use Google\Cloud\NetworkManagement\V1\VpcFlowLogsConfig;
 use Google\LongRunning\Client\OperationsClient;
@@ -107,13 +112,13 @@ class VpcFlowLogsServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $flowSampling = -4027498;
         $filterExpr = 'filterExpr-890367396';
-        $interconnectAttachment = 'interconnectAttachment308135284';
+        $network = 'network1843485230';
         $expectedResponse = new VpcFlowLogsConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFlowSampling($flowSampling);
         $expectedResponse->setFilterExpr($filterExpr);
-        $expectedResponse->setInterconnectAttachment($interconnectAttachment);
+        $expectedResponse->setNetwork($network);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -122,7 +127,7 @@ class VpcFlowLogsServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $formattedVpcFlowLogsConfigId = $gapicClient->vpcFlowLogsConfigName(
             '[PROJECT]',
             '[LOCATION]',
@@ -206,7 +211,7 @@ class VpcFlowLogsServiceClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $formattedVpcFlowLogsConfigId = $gapicClient->vpcFlowLogsConfigName(
             '[PROJECT]',
             '[LOCATION]',
@@ -377,13 +382,13 @@ class VpcFlowLogsServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $flowSampling = -4027498;
         $filterExpr = 'filterExpr-890367396';
-        $interconnectAttachment = 'interconnectAttachment308135284';
+        $network = 'network1843485230';
         $expectedResponse = new VpcFlowLogsConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFlowSampling($flowSampling);
         $expectedResponse->setFilterExpr($filterExpr);
-        $expectedResponse->setInterconnectAttachment($interconnectAttachment);
+        $expectedResponse->setNetwork($network);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->vpcFlowLogsConfigName('[PROJECT]', '[LOCATION]', '[VPC_FLOW_LOGS_CONFIG]');
@@ -457,7 +462,7 @@ class VpcFlowLogsServiceClientTest extends GeneratedTest
         $expectedResponse->setVpcFlowLogsConfigs($vpcFlowLogsConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $request = (new ListVpcFlowLogsConfigsRequest())->setParent($formattedParent);
         $response = $gapicClient->listVpcFlowLogsConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -499,10 +504,162 @@ class VpcFlowLogsServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $request = (new ListVpcFlowLogsConfigsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listVpcFlowLogsConfigs($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryOrgVpcFlowLogsConfigsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $vpcFlowLogsConfigsElement = new VpcFlowLogsConfig();
+        $vpcFlowLogsConfigs = [$vpcFlowLogsConfigsElement];
+        $expectedResponse = new QueryOrgVpcFlowLogsConfigsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setVpcFlowLogsConfigs($vpcFlowLogsConfigs);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $request = (new QueryOrgVpcFlowLogsConfigsRequest())->setParent($formattedParent);
+        $response = $gapicClient->queryOrgVpcFlowLogsConfigs($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getVpcFlowLogsConfigs()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.networkmanagement.v1.VpcFlowLogsService/QueryOrgVpcFlowLogsConfigs',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryOrgVpcFlowLogsConfigsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $request = (new QueryOrgVpcFlowLogsConfigsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->queryOrgVpcFlowLogsConfigs($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function showEffectiveFlowLogsConfigsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $effectiveFlowLogsConfigsElement = new EffectiveVpcFlowLogsConfig();
+        $effectiveFlowLogsConfigs = [$effectiveFlowLogsConfigsElement];
+        $expectedResponse = new ShowEffectiveFlowLogsConfigsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setEffectiveFlowLogsConfigs($effectiveFlowLogsConfigs);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $resource = 'resource-341064690';
+        $request = (new ShowEffectiveFlowLogsConfigsRequest())->setParent($formattedParent)->setResource($resource);
+        $response = $gapicClient->showEffectiveFlowLogsConfigs($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getEffectiveFlowLogsConfigs()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.networkmanagement.v1.VpcFlowLogsService/ShowEffectiveFlowLogsConfigs',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function showEffectiveFlowLogsConfigsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $resource = 'resource-341064690';
+        $request = (new ShowEffectiveFlowLogsConfigsRequest())->setParent($formattedParent)->setResource($resource);
+        try {
+            $gapicClient->showEffectiveFlowLogsConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -539,13 +696,13 @@ class VpcFlowLogsServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $flowSampling = -4027498;
         $filterExpr = 'filterExpr-890367396';
-        $interconnectAttachment = 'interconnectAttachment308135284';
+        $network = 'network1843485230';
         $expectedResponse = new VpcFlowLogsConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFlowSampling($flowSampling);
         $expectedResponse->setFilterExpr($filterExpr);
-        $expectedResponse->setInterconnectAttachment($interconnectAttachment);
+        $expectedResponse->setNetwork($network);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1015,13 +1172,13 @@ class VpcFlowLogsServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $flowSampling = -4027498;
         $filterExpr = 'filterExpr-890367396';
-        $interconnectAttachment = 'interconnectAttachment308135284';
+        $network = 'network1843485230';
         $expectedResponse = new VpcFlowLogsConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFlowSampling($flowSampling);
         $expectedResponse->setFilterExpr($filterExpr);
-        $expectedResponse->setInterconnectAttachment($interconnectAttachment);
+        $expectedResponse->setNetwork($network);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1030,7 +1187,7 @@ class VpcFlowLogsServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $formattedVpcFlowLogsConfigId = $gapicClient->vpcFlowLogsConfigName(
             '[PROJECT]',
             '[LOCATION]',

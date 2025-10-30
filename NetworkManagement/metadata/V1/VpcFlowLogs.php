@@ -25,7 +25,7 @@ class VpcFlowLogs
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ù
+µ/
 5google/cloud/networkmanagement/v1/vpc_flow_logs.proto!google.cloud.networkmanagement.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto4google/cloud/networkmanagement/v1/reachability.proto<google/cloud/networkmanagement/v1/vpc_flow_logs_config.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"»
 ListVpcFlowLogsConfigsRequestJ
 parent (	B:‡A˙A42networkmanagement.googleapis.com/VpcFlowLogsConfig
@@ -51,7 +51,28 @@ page_token (	B‡A
 vpc_flow_logs_config (24.google.cloud.networkmanagement.v1.VpcFlowLogsConfigB‡A"j
 DeleteVpcFlowLogsConfigRequestH
 name (	B:‡A˙A4
-2networkmanagement.googleapis.com/VpcFlowLogsConfig2Ï
+2networkmanagement.googleapis.com/VpcFlowLogsConfig"µ
+!QueryOrgVpcFlowLogsConfigsRequestJ
+parent (	B:‡A˙A42networkmanagement.googleapis.com/VpcFlowLogsConfig
+	page_size (B‡A
+
+page_token (	B‡A
+filter (	B‡A"ß
+"QueryOrgVpcFlowLogsConfigsResponseS
+vpc_flow_logs_configs (24.google.cloud.networkmanagement.v1.VpcFlowLogsConfig
+next_page_token (	
+unreachable (	"Œ
+#ShowEffectiveFlowLogsConfigsRequestJ
+parent (	B:‡A˙A42networkmanagement.googleapis.com/VpcFlowLogsConfig
+resource (	B‡A
+	page_size (B‡A
+
+page_token (	B‡A
+filter (	B‡A"∏
+$ShowEffectiveFlowLogsConfigsResponseb
+effective_flow_logs_configs (2=.google.cloud.networkmanagement.v1.EffectiveVpcFlowLogsConfig
+next_page_token (	
+unreachable (	2Ç
 VpcFlowLogsServiceÊ
 ListVpcFlowLogsConfigs@.google.cloud.networkmanagement.v1.ListVpcFlowLogsConfigsRequestA.google.cloud.networkmanagement.v1.ListVpcFlowLogsConfigsResponse"G⁄AparentÇ”‰ì86/v1/{parent=projects/*/locations/*}/vpcFlowLogsConfigs”
 GetVpcFlowLogsConfig>.google.cloud.networkmanagement.v1.GetVpcFlowLogsConfigRequest4.google.cloud.networkmanagement.v1.VpcFlowLogsConfig"E⁄AnameÇ”‰ì86/v1/{name=projects/*/locations/*/vpcFlowLogsConfigs/*}”
@@ -60,7 +81,18 @@ page_token (	B‡A
 UpdateVpcFlowLogsConfigA.google.cloud.networkmanagement.v1.UpdateVpcFlowLogsConfigRequest.google.longrunning.Operation"◊ AH
 VpcFlowLogsConfig3google.cloud.networkmanagement.v1.OperationMetadata⁄A vpc_flow_logs_config,update_maskÇ”‰ìc2K/v1/{vpc_flow_logs_config.name=projects/*/locations/*/vpcFlowLogsConfigs/*}:vpc_flow_logs_configí
 DeleteVpcFlowLogsConfigA.google.cloud.networkmanagement.v1.DeleteVpcFlowLogsConfigRequest.google.longrunning.Operation"î AL
-google.protobuf.Empty3google.cloud.networkmanagement.v1.OperationMetadata⁄AnameÇ”‰ì8*6/v1/{name=projects/*/locations/*/vpcFlowLogsConfigs/*}T A networkmanagement.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBˇ
+google.protobuf.Empty3google.cloud.networkmanagement.v1.OperationMetadata⁄AnameÇ”‰ì8*6/v1/{name=projects/*/locations/*/vpcFlowLogsConfigs/*}Ñ
+QueryOrgVpcFlowLogsConfigsD.google.cloud.networkmanagement.v1.QueryOrgVpcFlowLogsConfigsRequestE.google.cloud.networkmanagement.v1.QueryOrgVpcFlowLogsConfigsResponse"YÇ”‰ìSQ/v1/{parent=projects/*/locations/*}/vpcFlowLogsConfigs:queryOrgVpcFlowLogsConfigså
+ShowEffectiveFlowLogsConfigsF.google.cloud.networkmanagement.v1.ShowEffectiveFlowLogsConfigsRequestG.google.cloud.networkmanagement.v1.ShowEffectiveFlowLogsConfigsResponse"[Ç”‰ìUS/v1/{parent=projects/*/locations/*}/vpcFlowLogsConfigs:showEffectiveFlowLogsConfigsT A networkmanagement.googleapis.com“A.https://www.googleapis.com/auth/cloud-platform2ë
+OrganizationVpcFlowLogsServiceÎ
+ListVpcFlowLogsConfigs@.google.cloud.networkmanagement.v1.ListVpcFlowLogsConfigsRequestA.google.cloud.networkmanagement.v1.ListVpcFlowLogsConfigsResponse"L⁄AparentÇ”‰ì=;/v1/{parent=organizations/*/locations/*}/vpcFlowLogsConfigsÿ
+GetVpcFlowLogsConfig>.google.cloud.networkmanagement.v1.GetVpcFlowLogsConfigRequest4.google.cloud.networkmanagement.v1.VpcFlowLogsConfig"J⁄AnameÇ”‰ì=;/v1/{name=organizations/*/locations/*/vpcFlowLogsConfigs/*}ÿ
+CreateVpcFlowLogsConfigA.google.cloud.networkmanagement.v1.CreateVpcFlowLogsConfigRequest.google.longrunning.Operation"⁄ AH
+VpcFlowLogsConfig3google.cloud.networkmanagement.v1.OperationMetadata⁄A3parent,vpc_flow_logs_config,vpc_flow_logs_config_idÇ”‰ìS";/v1/{parent=organizations/*/locations/*}/vpcFlowLogsConfigs:vpc_flow_logs_config⁄
+UpdateVpcFlowLogsConfigA.google.cloud.networkmanagement.v1.UpdateVpcFlowLogsConfigRequest.google.longrunning.Operation"‹ AH
+VpcFlowLogsConfig3google.cloud.networkmanagement.v1.OperationMetadata⁄A vpc_flow_logs_config,update_maskÇ”‰ìh2P/v1/{vpc_flow_logs_config.name=organizations/*/locations/*/vpcFlowLogsConfigs/*}:vpc_flow_logs_configó
+DeleteVpcFlowLogsConfigA.google.cloud.networkmanagement.v1.DeleteVpcFlowLogsConfigRequest.google.longrunning.Operation"ô AL
+google.protobuf.Empty3google.cloud.networkmanagement.v1.OperationMetadata⁄AnameÇ”‰ì=*;/v1/{name=organizations/*/locations/*/vpcFlowLogsConfigs/*}T A networkmanagement.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBˇ
 %com.google.cloud.networkmanagement.v1BVpcFlowLogsProtoPZScloud.google.com/go/networkmanagement/apiv1/networkmanagementpb;networkmanagementpb™!Google.Cloud.NetworkManagement.V1 !Google\\Cloud\\NetworkManagement\\V1Í$Google::Cloud::NetworkManagement::V1bproto3'
         , true);
 
