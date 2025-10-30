@@ -149,7 +149,10 @@ class BackupTest extends SystemTestCase
         $this->assertArrayHasKey('progressPercent', $metadata['progress']);
         $this->assertArrayHasKey('startTime', $metadata['progress']);
 
-        $op->pollUntilComplete();
+        // Poll for completion with the extended timeout
+        $op->pollUntilComplete([
+            'timeoutMillis' => self::LONG_TIMEOUT_SECONDS * 1000 // GAX expects milliseconds
+        ]);
 
         self::$deletionQueue->add(function () use ($backup) {
             $backup->delete();
