@@ -7,7 +7,6 @@ use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 /**
  * Runs a process which is designed to wait while a session is acquired.
@@ -45,7 +44,6 @@ $acquireSession = new class($argv[1]) {
         $sessionCache = new SessionCache(
             $spannerClient->reveal(),
             $this->databaseName,
-            ['cacheItemPool' => new FilesystemAdapter(array_pop($parts))]
         );
 
         return $sessionCache->name();
