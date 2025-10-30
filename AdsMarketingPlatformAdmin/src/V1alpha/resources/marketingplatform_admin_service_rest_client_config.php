@@ -46,6 +46,18 @@ return [
                     ],
                 ],
             ],
+            'FindSalesPartnerManagedClients' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{organization=organizations/*}:findSalesPartnerManagedClients',
+                'body' => '*',
+                'placeholders' => [
+                    'organization' => [
+                        'getters' => [
+                            'getOrganization',
+                        ],
+                    ],
+                ],
+            ],
             'GetOrganization' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=organizations/*}',
@@ -64,6 +76,22 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOrganizations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/organizations',
+            ],
+            'ReportPropertyUsage' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{organization=organizations/*}:reportPropertyUsage',
+                'body' => '*',
+                'placeholders' => [
+                    'organization' => [
+                        'getters' => [
+                            'getOrganization',
                         ],
                     ],
                 ],

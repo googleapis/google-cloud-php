@@ -20,6 +20,11 @@
                                 "deleteAnalyticsAccountLink"
                             ]
                         },
+                        "FindSalesPartnerManagedClients": {
+                            "methods": [
+                                "findSalesPartnerManagedClients"
+                            ]
+                        },
                         "GetOrganization": {
                             "methods": [
                                 "getOrganization"
@@ -28,6 +33,16 @@
                         "ListAnalyticsAccountLinks": {
                             "methods": [
                                 "listAnalyticsAccountLinks"
+                            ]
+                        },
+                        "ListOrganizations": {
+                            "methods": [
+                                "listOrganizations"
+                            ]
+                        },
+                        "ReportPropertyUsage": {
+                            "methods": [
+                                "reportPropertyUsage"
                             ]
                         },
                         "SetPropertyServiceLevel": {

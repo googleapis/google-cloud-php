@@ -47,6 +47,18 @@ return [
                     ],
                 ],
             ],
+            'FindSalesPartnerManagedClients' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'organization',
+                        'fieldAccessors' => [
+                            'getOrganization',
+                        ],
+                    ],
+                ],
+            ],
             'GetOrganization' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\Organization',
@@ -75,6 +87,30 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOrganizations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getOrganizations',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\ListOrganizationsResponse',
+            ],
+            'ReportPropertyUsage' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'organization',
+                        'fieldAccessors' => [
+                            'getOrganization',
                         ],
                     ],
                 ],
