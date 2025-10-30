@@ -366,7 +366,6 @@ class ManageObjectsTest extends StorageTestCase
             self::$client,
             $name,
             [
-                'hierarchicalNamespace' => ['enabled' => true,],
                 'iamConfiguration' => ['uniformBucketLevelAccess' => ['enabled' => true]]
             ]
         );
@@ -380,7 +379,7 @@ class ManageObjectsTest extends StorageTestCase
         // Move the object.
         $movedObject = $object->move($destinationObjectName);
 
-        // Assert that check existance of source and destination object.
+        // Assert that check existence of source and destination object.
         $this->assertStorageObjectNotExists($sourceBucket, $object);
         $this->assertStorageObjectExists($sourceBucket, $movedObject);
     }
