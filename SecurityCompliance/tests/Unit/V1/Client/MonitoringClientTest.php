@@ -63,7 +63,9 @@ class MonitoringClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return MonitoringClient */
@@ -87,16 +89,22 @@ class MonitoringClientTest extends GeneratedTest
         $expectedResponse = new AggregateFrameworkComplianceReportResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->frameworkComplianceReportName('[PROJECT]', '[LOCATION]', '[FRAMEWORK_COMPLIANCE_REPORT]');
-        $request = (new AggregateFrameworkComplianceReportRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->frameworkComplianceReportName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FRAMEWORK_COMPLIANCE_REPORT]'
+        );
+        $request = (new AggregateFrameworkComplianceReportRequest())->setName($formattedName);
         $response = $gapicClient->aggregateFrameworkComplianceReport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.cloudsecuritycompliance.v1.Monitoring/AggregateFrameworkComplianceReport', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.cloudsecuritycompliance.v1.Monitoring/AggregateFrameworkComplianceReport',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -113,17 +121,23 @@ class MonitoringClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->frameworkComplianceReportName('[PROJECT]', '[LOCATION]', '[FRAMEWORK_COMPLIANCE_REPORT]');
-        $request = (new AggregateFrameworkComplianceReportRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->frameworkComplianceReportName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FRAMEWORK_COMPLIANCE_REPORT]'
+        );
+        $request = (new AggregateFrameworkComplianceReportRequest())->setName($formattedName);
         try {
             $gapicClient->aggregateFrameworkComplianceReport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -161,16 +175,22 @@ class MonitoringClientTest extends GeneratedTest
         $expectedResponse->setMinorRevisionId($minorRevisionId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->frameworkComplianceReportName('[PROJECT]', '[LOCATION]', '[FRAMEWORK_COMPLIANCE_REPORT]');
-        $request = (new FetchFrameworkComplianceReportRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->frameworkComplianceReportName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FRAMEWORK_COMPLIANCE_REPORT]'
+        );
+        $request = (new FetchFrameworkComplianceReportRequest())->setName($formattedName);
         $response = $gapicClient->fetchFrameworkComplianceReport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.cloudsecuritycompliance.v1.Monitoring/FetchFrameworkComplianceReport', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.cloudsecuritycompliance.v1.Monitoring/FetchFrameworkComplianceReport',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -187,17 +207,23 @@ class MonitoringClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->frameworkComplianceReportName('[PROJECT]', '[LOCATION]', '[FRAMEWORK_COMPLIANCE_REPORT]');
-        $request = (new FetchFrameworkComplianceReportRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->frameworkComplianceReportName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FRAMEWORK_COMPLIANCE_REPORT]'
+        );
+        $request = (new FetchFrameworkComplianceReportRequest())->setName($formattedName);
         try {
             $gapicClient->fetchFrameworkComplianceReport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -222,17 +248,18 @@ class MonitoringClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $controlComplianceSummariesElement = new ControlComplianceSummary();
-        $controlComplianceSummaries = [
-            $controlComplianceSummariesElement,
-        ];
+        $controlComplianceSummaries = [$controlComplianceSummariesElement];
         $expectedResponse = new ListControlComplianceSummariesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setControlComplianceSummaries($controlComplianceSummaries);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->frameworkComplianceReportName('[PROJECT]', '[LOCATION]', '[FRAMEWORK_COMPLIANCE_REPORT]');
-        $request = (new ListControlComplianceSummariesRequest())
-            ->setParent($formattedParent);
+        $formattedParent = $gapicClient->frameworkComplianceReportName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FRAMEWORK_COMPLIANCE_REPORT]'
+        );
+        $request = (new ListControlComplianceSummariesRequest())->setParent($formattedParent);
         $response = $gapicClient->listControlComplianceSummaries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -242,7 +269,10 @@ class MonitoringClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.cloudsecuritycompliance.v1.Monitoring/ListControlComplianceSummaries', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.cloudsecuritycompliance.v1.Monitoring/ListControlComplianceSummaries',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -259,17 +289,23 @@ class MonitoringClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->frameworkComplianceReportName('[PROJECT]', '[LOCATION]', '[FRAMEWORK_COMPLIANCE_REPORT]');
-        $request = (new ListControlComplianceSummariesRequest())
-            ->setParent($formattedParent);
+        $formattedParent = $gapicClient->frameworkComplianceReportName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FRAMEWORK_COMPLIANCE_REPORT]'
+        );
+        $request = (new ListControlComplianceSummariesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listControlComplianceSummaries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -294,17 +330,14 @@ class MonitoringClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $findingSummariesElement = new FindingSummary();
-        $findingSummaries = [
-            $findingSummariesElement,
-        ];
+        $findingSummaries = [$findingSummariesElement];
         $expectedResponse = new ListFindingSummariesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFindingSummaries($findingSummaries);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListFindingSummariesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFindingSummariesRequest())->setParent($formattedParent);
         $response = $gapicClient->listFindingSummaries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -331,17 +364,19 @@ class MonitoringClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListFindingSummariesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFindingSummariesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listFindingSummaries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -366,17 +401,14 @@ class MonitoringClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $frameworkComplianceSummariesElement = new FrameworkComplianceSummary();
-        $frameworkComplianceSummaries = [
-            $frameworkComplianceSummariesElement,
-        ];
+        $frameworkComplianceSummaries = [$frameworkComplianceSummariesElement];
         $expectedResponse = new ListFrameworkComplianceSummariesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFrameworkComplianceSummaries($frameworkComplianceSummaries);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListFrameworkComplianceSummariesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFrameworkComplianceSummariesRequest())->setParent($formattedParent);
         $response = $gapicClient->listFrameworkComplianceSummaries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -386,7 +418,10 @@ class MonitoringClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.cloudsecuritycompliance.v1.Monitoring/ListFrameworkComplianceSummaries', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.cloudsecuritycompliance.v1.Monitoring/ListFrameworkComplianceSummaries',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -403,17 +438,19 @@ class MonitoringClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListFrameworkComplianceSummariesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFrameworkComplianceSummariesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listFrameworkComplianceSummaries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -466,12 +503,15 @@ class MonitoringClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -498,9 +538,7 @@ class MonitoringClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -530,12 +568,15 @@ class MonitoringClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -563,16 +604,22 @@ class MonitoringClientTest extends GeneratedTest
         $expectedResponse = new AggregateFrameworkComplianceReportResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->frameworkComplianceReportName('[PROJECT]', '[LOCATION]', '[FRAMEWORK_COMPLIANCE_REPORT]');
-        $request = (new AggregateFrameworkComplianceReportRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->frameworkComplianceReportName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FRAMEWORK_COMPLIANCE_REPORT]'
+        );
+        $request = (new AggregateFrameworkComplianceReportRequest())->setName($formattedName);
         $response = $gapicClient->aggregateFrameworkComplianceReportAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.cloudsecuritycompliance.v1.Monitoring/AggregateFrameworkComplianceReport', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.cloudsecuritycompliance.v1.Monitoring/AggregateFrameworkComplianceReport',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
