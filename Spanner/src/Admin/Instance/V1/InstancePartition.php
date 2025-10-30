@@ -44,6 +44,15 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
+     * Optional. The autoscaling configuration. Autoscaling is enabled if this
+     * field is set. When autoscaling is enabled, fields in compute_capacity are
+     * treated as OUTPUT_ONLY fields and reflect the current compute capacity
+     * allocated to the instance partition.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.AutoscalingConfig autoscaling_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $autoscaling_config = null;
+    /**
      * Output only. The current instance partition state.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstancePartition.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -132,6 +141,11 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      *           of processing units allocated to the instance partition.
      *           This might be zero in API responses for instance partitions that are not
      *           yet in the `READY` state.
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig $autoscaling_config
+     *           Optional. The autoscaling configuration. Autoscaling is enabled if this
+     *           field is set. When autoscaling is enabled, fields in compute_capacity are
+     *           treated as OUTPUT_ONLY fields and reflect the current compute capacity
+     *           allocated to the instance partition.
      *     @type int $state
      *           Output only. The current instance partition state.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -338,6 +352,48 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The autoscaling configuration. Autoscaling is enabled if this
+     * field is set. When autoscaling is enabled, fields in compute_capacity are
+     * treated as OUTPUT_ONLY fields and reflect the current compute capacity
+     * allocated to the instance partition.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.AutoscalingConfig autoscaling_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig|null
+     */
+    public function getAutoscalingConfig()
+    {
+        return $this->autoscaling_config;
+    }
+
+    public function hasAutoscalingConfig()
+    {
+        return isset($this->autoscaling_config);
+    }
+
+    public function clearAutoscalingConfig()
+    {
+        unset($this->autoscaling_config);
+    }
+
+    /**
+     * Optional. The autoscaling configuration. Autoscaling is enabled if this
+     * field is set. When autoscaling is enabled, fields in compute_capacity are
+     * treated as OUTPUT_ONLY fields and reflect the current compute capacity
+     * allocated to the instance partition.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.AutoscalingConfig autoscaling_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig $var
+     * @return $this
+     */
+    public function setAutoscalingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig::class);
+        $this->autoscaling_config = $var;
 
         return $this;
     }
