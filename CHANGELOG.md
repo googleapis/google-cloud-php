@@ -1,5 +1,72 @@
 # Changelog
 
+## 0.309.0
+
+<details><summary>google/cloud-ai-platform 1.43.1</summary>
+
+
+
+### Bug Fixes
+
+* [AiPlatform] updating `bigtable_metadata` field name in `FeatureOnlineStore` ([#8691](https://github.com/googleapis/google-cloud-php/issues/8691)) ([49efb9a](https://github.com/googleapis/google-cloud-php/commit/49efb9a5f31c0e082db4e042d963bb3e9ae10830))
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 1.4.0</summary>
+
+
+
+### Features
+
+* [EdgeNetwork] A new field `remote_peering_network_type` is added to message `google.cloud.edgenetwork.v1.Interconnect` ([#8696](https://github.com/googleapis/google-cloud-php/issues/8696)) ([b56fe9b](https://github.com/googleapis/google-cloud-php/commit/b56fe9b5b93bbbac2d132397818205b2dfda0683))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.7.0</summary>
+
+
+
+### Features
+
+* [NetworkManagement] Various documentation and comment improvements, Enable organization-level support for VPC Flow Logs ([#8704](https://github.com/googleapis/google-cloud-php/issues/8704)) ([cfeac0b](https://github.com/googleapis/google-cloud-php/commit/cfeac0b35af99a38a84606b9a9d2c0a1e1b3ba77))
+
+</details>
+
+<details><summary>google/cloud-securitycompliance 0.2.0</summary>
+
+
+
+### Features
+
+* [SecurityCompliance] add Audit API surface ([#8697](https://github.com/googleapis/google-cloud-php/issues/8697)) ([11e4068](https://github.com/googleapis/google-cloud-php/commit/11e406805efd88dfaf6915239b76bb14c60d758d))
+* [SecurityCompliance] Updated docs for the APIs ([#8706](https://github.com/googleapis/google-cloud-php/issues/8706)) ([29ce3a2](https://github.com/googleapis/google-cloud-php/commit/29ce3a26e3a228df7ba1a0b47c3083abd565be6d))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.1.0-RC1
+
+</summary>
+
+
+](https://github.com/googleapis/google-cloud-php/compare/v0.308.1...v0.309.0) (2025-10-30)
+
+
+### Features
+
+* [Spanner] Exposing AutoscalingConfig in InstancePartition ([#8699](https://github.com/googleapis/google-cloud-php/issues/8699)) ([d93c6c4](https://github.com/googleapis/google-cloud-php/commit/d93c6c41234a5672a1d4d6fad50659b2266a8521))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.4.0</summary>
+
+
+
+### Features
+
+* [SqlAdmin] introduces POSTGRES_17 and POSTGRES_18 database versions in the SqlDatabaseVersion enum type ([#8702](https://github.com/googleapis/google-cloud-php/issues/8702)) ([e5c6eed](https://github.com/googleapis/google-cloud-php/commit/e5c6eed527ba84f80bbda4174febeca99edc8191))
+
+</details>
+
 ## 0.308.1
 
 <details><summary>google/cloud-storage 1.48.6</summary>
