@@ -971,7 +971,7 @@ class Instance
         return function (OperationProto $operation) {
             return $this->resumeOperation(
                 $operation->getName(),
-                $this->handleResponse($operation)
+                $this->handleOperationProto($operation)
             );
         };
     }
