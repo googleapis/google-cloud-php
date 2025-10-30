@@ -140,4 +140,26 @@ class JobConfigurationTraitTest extends TestCase
         $this->assertIsString($uuid);
         $this->assertTrue(Uuid::isValid($uuid));
     }
+
+    public function testJobTimeoutMs()
+    {
+        $timeout = 10000;
+        $this->trait->call('jobTimeoutMs', [$timeout]);
+
+        $this->assertEquals(
+            $timeout,
+            $this->trait->call('toArray')['configuration']['jobTimeoutMs']
+        );
+    }
+
+    public function testReservationUsage()
+    {
+        $reservation = 'test-reservation';
+        $this->trait->call('reservation', [$reservation]);
+        
+        $this->assertEquals(
+            $reservation,
+            $this->trait->call('toArray')['configuration']['reservation']
+        );
+    }
 }

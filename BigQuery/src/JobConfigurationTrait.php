@@ -113,6 +113,41 @@ trait JobConfigurationTrait
     }
 
     /**
+     * Sets the optional reservation that job would use. User can specify a
+     * reservation to execute the job. If reservation is not set, reservation is
+     * determined based on the rules defined by the reservation assignments. The
+     * expected format is
+     * projects/{project}/locations/{location}/reservations/{reservation}.
+     *
+     * @param string $reservation The reservation to use.
+     * @return JobConfigurationInterface
+     */
+    public function reservation(string $reservation): self
+    {
+        $this->config['configuration']['reservation'] = $reservation;
+
+        return $this;
+    }
+
+    /**
+     * Sets the optional job timeout in milliseconds relative to the job
+     * creation time. If this time limit is exceeded, BigQuery attempts to stop
+     * the job, but might not always succeed in canceling it before the job
+     * completes. For example, a job that takes more than 60 seconds to complete
+     * has a better chance of being stopped than a job that takes 10 seconds to
+     * complete.
+     *
+     * @param int $jobTimeoutMs The job timeout in milliseconds.
+     * @return JobConfigurationInterface
+     */
+    public function jobTimeoutMs(int $jobTimeoutMs): self
+    {
+        $this->config['configuration']['jobTimeoutMs'] = $jobTimeoutMs;
+
+        return $this;
+    }
+
+    /**
      * Specifies the geographic location of the job. Required for jobs started
      * outside of the US and EU regions.
      *

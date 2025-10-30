@@ -23,7 +23,10 @@ use Google\Cloud\BigQuery\Json;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\ApiCore\ApiException;
 use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\Reservation;
 use GuzzleHttp\Psr7\Utils;
 
 /**
@@ -971,6 +974,75 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         );
         $job = self::$client->runJob($queryJobConfig);
         $this->assertFalse(isset($job->info()['status']['errorResult']));
+    }
+
+    public function testLoadJobWithReservationAndTimeout()
+    {
+        $data = file_get_contents(__DIR__ . '/data/table-data.json');
+        $projectId = self::$dataset->identity()['projectId'];
+        $reservationId= 'test-reservation';
+        $fullReservationPath = 'projects/' . $projectId . '/locations/US/reservations/' . $reservationId;
+        $timeout = 10000;
+
+        // Create reservation if it does not exist
+        $reservationAdminClient = new ReservationServiceClient();
+        try {
+            $reservationAdminClient->getReservation($fullReservationPath);
+        } catch (ApiException $e) {
+            if ($e->getStatus() === 'NOT_FOUND') {
+                $reservationAdminClient->createReservation(
+                    'projects/' . $projectId . '/locations/US',
+                    ['reservation' => new Reservation(['slot_capacity' => 50, 'ignore_idle_slots' => true]),
+                    'reservationId' => $reservationId]
+                );
+            }
+        }
+
+        // Create load job config with reservation and timeout
+        $loadConfig = self::$table->load($data)
+            ->sourceFormat('NEWLINE_DELIMITED_JSON')
+            ->reservation($fullReservationPath)
+            ->jobTimeoutMs($timeout);
+
+        $maxRetry = 3;
+        $retry = 1;
+        $success = false;
+
+        do {
+            sleep(15 * $retry); // Multiplicative backoff
+            try {
+                // Start load job
+                $job = self::$client->startJob($loadConfig);
+
+                // Verify job configuration
+                $config = $job->info()['configuration'];
+                $this->assertEquals($fullReservationPath, $config['reservation']);
+                $this->assertEquals($timeout, $config['jobTimeoutMs']);
+
+                // Cancel job
+                $job->cancel();
+            
+                // Exit retry loop
+                $success = true;
+                break;
+            } catch (BadRequestException $e) {
+                // It will some time for the created reservation to be ready for use. Before that, reservation not found
+                // error will be thrown. Retry up to $maxRetry times with multiplicative backoff.
+                $error = json_decode($e->getMessage(), true)['error'];
+                if ($error['message'] == 'User specified reservation ' . $fullReservationPath . ' is not found.') {
+                    $retry++;
+                } else {
+                    // Throw any other BadRequestException
+                    throw $e;
+                }
+            }
+        } while ($retry <= $maxRetry);
+
+        // Clean up - delete reservation
+        $reservationAdminClient->deleteReservation($fullReservationPath);
+
+        // Assert that load job with reservation could be started and verified
+        $this->assertTrue($success, 'Load job with reservation could not be started after maximum retries.');
     }
 
     public function invalidJsonProvider()

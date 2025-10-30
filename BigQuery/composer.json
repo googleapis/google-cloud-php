@@ -15,7 +15,8 @@
         "phpdocumentor/reflection": "^5.3.3||^6.0",
         "phpdocumentor/reflection-docblock": "^5.3",
         "erusev/parsedown": "^1.6",
-        "google/cloud-storage": "^1.3"
+        "google/cloud-storage": "^1.3",
+        "google/cloud-bigquery-reservation": "^1.0"
     },
     "suggest": {
         "google/cloud-storage": "Makes it easier to load data from Cloud Storage into BigQuery"
