@@ -137,7 +137,8 @@ trait SnapshotTrait
             ));
         }
 
-        return json_decode($response->getFound()->serializeToJsonString(), true);
+
+        return $this->serializer->encodeMessage($response->getFound());
     }
 
     /**
