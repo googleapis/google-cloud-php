@@ -69,14 +69,6 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
      */
     protected $default_rule = null;
     /**
-     * Output only. The existing data source setup contains at least one custom
-     * (non-default) rule and therefore its management through the
-     * `default_rule_data_sources` field should be treated with caution.
-     *
-     * Generated from protobuf field <code>bool contains_custom_rules = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    protected $contains_custom_rules = false;
-    /**
      * Optional. A list of destinations describing where products of the data
      * source can be shown.
      * When retrieving the data source, the list contains all the destinations
@@ -133,10 +125,6 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\DataSources\V1\PrimaryProductDataSource\DefaultRule $default_rule
      *           Optional. Default rule management of the data source. If set, the linked
      *           data sources will be replaced.
-     *     @type bool $contains_custom_rules
-     *           Output only. The existing data source setup contains at least one custom
-     *           (non-default) rule and therefore its management through the
-     *           `default_rule_data_sources` field should be treated with caution.
      *     @type array<\Google\Shopping\Merchant\DataSources\V1\PrimaryProductDataSource\Destination>|\Google\Protobuf\Internal\RepeatedField $destinations
      *           Optional. A list of destinations describing where products of the data
      *           source can be shown.
@@ -359,36 +347,6 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Merchant\DataSources\V1\PrimaryProductDataSource\DefaultRule::class);
         $this->default_rule = $var;
-
-        return $this;
-    }
-
-    /**
-     * Output only. The existing data source setup contains at least one custom
-     * (non-default) rule and therefore its management through the
-     * `default_rule_data_sources` field should be treated with caution.
-     *
-     * Generated from protobuf field <code>bool contains_custom_rules = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return bool
-     */
-    public function getContainsCustomRules()
-    {
-        return $this->contains_custom_rules;
-    }
-
-    /**
-     * Output only. The existing data source setup contains at least one custom
-     * (non-default) rule and therefore its management through the
-     * `default_rule_data_sources` field should be treated with caution.
-     *
-     * Generated from protobuf field <code>bool contains_custom_rules = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setContainsCustomRules($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->contains_custom_rules = $var;
 
         return $this;
     }
