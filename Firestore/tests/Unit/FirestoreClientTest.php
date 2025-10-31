@@ -426,19 +426,27 @@ class FirestoreClientTest extends TestCase
     {
         $transactionId = 'transaction1';
         $transactionId2 = 'transaction2';
-        // $timestamp = new Timestamp(new \DateTimeImmutable);
         $expectedDatabase = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE;
 
         $beginTransactionCount = 0;
         $this->gapicClient->beginTransaction(
-            Argument::that(function (BeginTransactionRequest $request) use ($expectedDatabase, $transactionId, &$beginTransactionCount) {
-                $beginTransactionCount++;
-                if ($beginTransactionCount == 2) {
-                    $this->assertEquals($transactionId, $request->getOptions()->getReadWrite()->getRetryTransaction());
+            Argument::that(
+                function (BeginTransactionRequest $request) use (
+                    $expectedDatabase,
+                    $transactionId,
+                    &$beginTransactionCount
+                ) {
+                    $beginTransactionCount++;
+                    if ($beginTransactionCount == 2) {
+                        $this->assertEquals(
+                            $transactionId,
+                            $request->getOptions()->getReadWrite()->getRetryTransaction()
+                        );
+                    }
+                    $this->assertEquals($expectedDatabase, $request->getDatabase());
+                    return true;
                 }
-                $this->assertEquals($expectedDatabase, $request->getDatabase());
-                return true;
-            }),
+            ),
             Argument::any()
         )->shouldBeCalled()
             ->will(function () use ($transactionId, $transactionId2, &$beginTransactionCount) {
@@ -463,20 +471,26 @@ class FirestoreClientTest extends TestCase
         $callCount = 0;
 
         $this->gapicClient->commit(
-            Argument::that(function (CommitRequest $request) use (&$callCount, $expectedDatabase, $transactionId, $transactionId2) {
-                $callCount++;
-                if ($callCount === 1) {
-                    // Assertions for the first call
-                    $this->assertEquals($expectedDatabase, $request->getDatabase());
-                    $this->assertEquals($transactionId, $request->getTransaction());
-                } elseif ($callCount === 2) {
-                    // Assertions for the second call
-                    $this->assertEquals($expectedDatabase, $request->getDatabase());
-                    $this->assertEquals($transactionId2, $request->getTransaction());
-                }
+            Argument::that(function (CommitRequest $request) use (
+                &$callCount,
+                $expectedDatabase,
+                $transactionId,
+                $transactionId2
+                ) {
+                    $callCount++;
+                    if ($callCount === 1) {
+                        // Assertions for the first call
+                        $this->assertEquals($expectedDatabase, $request->getDatabase());
+                        $this->assertEquals($transactionId, $request->getTransaction());
+                    } elseif ($callCount === 2) {
+                        // Assertions for the second call
+                        $this->assertEquals($expectedDatabase, $request->getDatabase());
+                        $this->assertEquals($transactionId2, $request->getTransaction());
+                    }
 
-                return true; // The arguments are valid for the current call number
-            }),
+                    return true; // The arguments are valid for the current call number
+                }
+            ),
             Argument::any()
         )->shouldBeCalledTimes(2)
         ->will(function () use (&$callCount) {
