@@ -939,7 +939,7 @@ class BulkWriter
         $options += ['labels' => []];
         $options += [
             'database' => $this->database,
-            'writes' => $this->writes
+            'writes' => $writes
         ];
 
         /**
@@ -954,7 +954,7 @@ class BulkWriter
 
         $response = $this->gapicClient->batchWrite($request, $callOptions);
 
-        $responseArray = json_decode($response->serializeToJsonString(), true);
+        $responseArray = $this->serializer->encodeMessage($response);
 
         if (!isEmpty($response->getWriteResults())) {
             foreach ($responseArray['writeResults'] as &$result) {
