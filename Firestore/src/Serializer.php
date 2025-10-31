@@ -47,6 +47,9 @@ class Serializer extends ApiCoreSerializer
         $fieldTransformers = [
             'commit_time' => function ($v) {
                 return $this->formatTimestampFromApi($v);
+            },
+            'update_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
             }
         ];
         $messageTypeTransformers = [
