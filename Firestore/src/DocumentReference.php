@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 
 /**
  * Represents a reference to a Firestore document.
@@ -56,6 +58,8 @@ class DocumentReference
      */
     private $name;
 
+    private Serializer $serializer;
+
     /**
      * @param FirestoreClient $gapicClient An instance of the Firestore client.
      *        This object is created by FirestoreClient,
@@ -74,6 +78,7 @@ class DocumentReference
         $this->valueMapper = $valueMapper;
         $this->parent = $parent;
         $this->name = $name;
+        $this->serializer = new Serializer();
     }
 
     /**
@@ -388,6 +393,21 @@ class DocumentReference
     {
         $options = $this->formatReadTimeOption($options);
 
+        $listCollectionCall = function (array $options) {
+            /**
+             * @var ListCollectionIdsRequest $request
+             * @var CallOptions $callOptions
+             */
+            [$request, $callOptions] = $this->validateOptions(
+                $options,
+                new ListCollectionIdsRequest(),
+                CallOptions::class
+            );
+
+            $response = $this->gapicClient->listCollectionIds($request, $callOptions);
+            return iterator_to_array($response->getIterator());
+        };
+
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(
@@ -398,7 +418,7 @@ class DocumentReference
                         $this->childPath($this->name, $collectionId)
                     );
                 },
-                [$this->gapicClient, 'listCollectionIds'],
+                $listCollectionCall,
                 $options + ['parent' => $this->name],
                 [
                     'itemsKey' => 'collectionIds',
