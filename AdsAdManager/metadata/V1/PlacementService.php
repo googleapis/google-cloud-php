@@ -19,10 +19,11 @@ class PlacementService
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Â	
-/google/ads/admanager/v1/placement_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"O
+ã
+/google/ads/admanager/v1/placement_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/protobuf/field_mask.proto"O
 GetPlacementRequest8
 name (	B*àAúA$
 "admanager.googleapis.com/Placement"Á
@@ -40,10 +41,56 @@ page_token (	BàA
 placements (2".google.ads.admanager.v1.Placement
 next_page_token (	
 
-total_size (2š
+total_size ("Ž
+CreatePlacementRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/Network:
+	placement (2".google.ads.admanager.v1.PlacementBàA" 
+BatchCreatePlacementsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/NetworkF
+requests (2/.google.ads.admanager.v1.CreatePlacementRequestBàA"W
+BatchCreatePlacementsResponse6
+
+placements (2".google.ads.admanager.v1.Placement"Š
+UpdatePlacementRequest:
+	placement (2".google.ads.admanager.v1.PlacementBàA4
+update_mask (2.google.protobuf.FieldMaskBàA" 
+BatchUpdatePlacementsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/NetworkF
+requests (2/.google.ads.admanager.v1.UpdatePlacementRequestBàA"W
+BatchUpdatePlacementsResponse6
+
+placements (2".google.ads.admanager.v1.Placement"•
+BatchActivatePlacementsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/Network9
+names (	B*àAúA$
+"admanager.googleapis.com/Placement"!
+BatchActivatePlacementsResponse"—
+ BatchDeactivatePlacementsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/Network9
+names (	B*àAúA$
+"admanager.googleapis.com/Placement"#
+!BatchDeactivatePlacementsResponse"”
+BatchArchivePlacementsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/Network9
+names (	B*àAúA$
+"admanager.googleapis.com/Placement" 
+BatchArchivePlacementsResponse2Ð
 PlacementService“
 GetPlacement,.google.ads.admanager.v1.GetPlacementRequest".google.ads.admanager.v1.Placement"1ÚAname‚Óä“$"/v1/{name=networks/*/placements/*}¦
-ListPlacements..google.ads.admanager.v1.ListPlacementsRequest/.google.ads.admanager.v1.ListPlacementsResponse"3ÚAparent‚Óä“$"/v1/{parent=networks/*}/placementsGÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÉ
+ListPlacements..google.ads.admanager.v1.ListPlacementsRequest/.google.ads.admanager.v1.ListPlacementsResponse"3ÚAparent‚Óä“$"/v1/{parent=networks/*}/placements°
+CreatePlacement/.google.ads.admanager.v1.CreatePlacementRequest".google.ads.admanager.v1.Placement"HÚAparent,placement‚Óä“/""/v1/{parent=networks/*}/placements:	placement¿
+UpdatePlacement/.google.ads.admanager.v1.UpdatePlacementRequest".google.ads.admanager.v1.Placement"WÚAplacement,update_mask‚Óä“92,/v1/{placement.name=networks/*/placements/*}:	placementÓ
+BatchCreatePlacements5.google.ads.admanager.v1.BatchCreatePlacementsRequest6.google.ads.admanager.v1.BatchCreatePlacementsResponse"KÚAparent,requests‚Óä“3"./v1/{parent=networks/*}/placements:batchCreate:*Ó
+BatchUpdatePlacements5.google.ads.admanager.v1.BatchUpdatePlacementsRequest6.google.ads.admanager.v1.BatchUpdatePlacementsResponse"KÚAparent,requests‚Óä“3"./v1/{parent=networks/*}/placements:batchUpdate:*Ø
+BatchActivatePlacements7.google.ads.admanager.v1.BatchActivatePlacementsRequest8.google.ads.admanager.v1.BatchActivatePlacementsResponse"JÚAparent,names‚Óä“5"0/v1/{parent=networks/*}/placements:batchActivate:*à
+BatchDeactivatePlacements9.google.ads.admanager.v1.BatchDeactivatePlacementsRequest:.google.ads.admanager.v1.BatchDeactivatePlacementsResponse"LÚAparent,names‚Óä“7"2/v1/{parent=networks/*}/placements:batchDeactivate:*Ô
+BatchArchivePlacements6.google.ads.admanager.v1.BatchArchivePlacementsRequest7.google.ads.admanager.v1.BatchArchivePlacementsResponse"IÚAparent,names‚Óä“4"//v1/{parent=networks/*}/placements:batchArchive:*GÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÉ
 com.google.ads.admanager.v1BPlacementServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

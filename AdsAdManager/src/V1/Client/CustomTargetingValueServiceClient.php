@@ -79,9 +79,7 @@ final class CustomTargetingValueServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/admanager',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {
@@ -96,7 +94,8 @@ final class CustomTargetingValueServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/custom_targeting_value_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/custom_targeting_value_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -111,9 +110,7 @@ final class CustomTargetingValueServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -277,8 +274,10 @@ final class CustomTargetingValueServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCustomTargetingValue(GetCustomTargetingValueRequest $request, array $callOptions = []): CustomTargetingValue
-    {
+    public function getCustomTargetingValue(
+        GetCustomTargetingValueRequest $request,
+        array $callOptions = []
+    ): CustomTargetingValue {
         return $this->startApiCall('GetCustomTargetingValue', $request, $callOptions)->wait();
     }
 
@@ -304,8 +303,10 @@ final class CustomTargetingValueServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCustomTargetingValues(ListCustomTargetingValuesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCustomTargetingValues(
+        ListCustomTargetingValuesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCustomTargetingValues', $request, $callOptions);
     }
 }

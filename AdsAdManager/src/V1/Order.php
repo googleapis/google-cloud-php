@@ -94,8 +94,7 @@ class Order extends \Google\Protobuf\Internal\Message
     private $effective_teams;
     /**
      * Output only. The resource name of the User who created the Order on behalf
-     * of the advertiser. This value is assigned by Google. Format:
-     * "networks/{network_code}/users/{user_id}"
+     * of the advertiser. Format: "networks/{network_code}/users/{user_id}"
      *
      * Generated from protobuf field <code>optional string creator = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -108,17 +107,17 @@ class Order extends \Google\Protobuf\Internal\Message
      */
     protected $currency_code = null;
     /**
-     * Output only. The instant at which the Order and its associated line items
-     * are eligible to begin serving. This attribute is derived from the line item
-     * of the order that has the earliest LineItem.start_time.
+     * Output only. The instant at which the Order and its associated Line items
+     * are eligible to begin serving. This attribute is derived from the Line item
+     * of the order that has the earliest `LineItem.start_time`.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp start_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $start_time = null;
     /**
-     * Output only. The instant at which the Order and its associated line items
-     * stop being served. This attribute is derived from the line item of the
-     * order that has the latest LineItem.end_time.
+     * Output only. The instant at which the Order and its associated Line items
+     * stop being served. This attribute is derived from the Line item of the
+     * order that has the latest `LineItem.end_time`.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp end_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -261,19 +260,18 @@ class Order extends \Google\Protobuf\Internal\Message
      *           inherited values. Format: "networks/{network_code}/teams/{team_id}"
      *     @type string $creator
      *           Output only. The resource name of the User who created the Order on behalf
-     *           of the advertiser. This value is assigned by Google. Format:
-     *           "networks/{network_code}/users/{user_id}"
+     *           of the advertiser. Format: "networks/{network_code}/users/{user_id}"
      *     @type string $currency_code
      *           Output only. The ISO 4217 3-letter currency code for the currency used by
      *           the Order. This value is the network's currency code.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Output only. The instant at which the Order and its associated line items
-     *           are eligible to begin serving. This attribute is derived from the line item
-     *           of the order that has the earliest LineItem.start_time.
+     *           Output only. The instant at which the Order and its associated Line items
+     *           are eligible to begin serving. This attribute is derived from the Line item
+     *           of the order that has the earliest `LineItem.start_time`.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           Output only. The instant at which the Order and its associated line items
-     *           stop being served. This attribute is derived from the line item of the
-     *           order that has the latest LineItem.end_time.
+     *           Output only. The instant at which the Order and its associated Line items
+     *           stop being served. This attribute is derived from the Line item of the
+     *           order that has the latest `LineItem.end_time`.
      *     @type bool $unlimited_end_time
      *           Output only. Indicates whether or not this Order has an end time.
      *     @type int $external_order_id
@@ -691,8 +689,7 @@ class Order extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the User who created the Order on behalf
-     * of the advertiser. This value is assigned by Google. Format:
-     * "networks/{network_code}/users/{user_id}"
+     * of the advertiser. Format: "networks/{network_code}/users/{user_id}"
      *
      * Generated from protobuf field <code>optional string creator = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -714,8 +711,7 @@ class Order extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the User who created the Order on behalf
-     * of the advertiser. This value is assigned by Google. Format:
-     * "networks/{network_code}/users/{user_id}"
+     * of the advertiser. Format: "networks/{network_code}/users/{user_id}"
      *
      * Generated from protobuf field <code>optional string creator = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -768,9 +764,9 @@ class Order extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The instant at which the Order and its associated line items
-     * are eligible to begin serving. This attribute is derived from the line item
-     * of the order that has the earliest LineItem.start_time.
+     * Output only. The instant at which the Order and its associated Line items
+     * are eligible to begin serving. This attribute is derived from the Line item
+     * of the order that has the earliest `LineItem.start_time`.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp start_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -791,9 +787,9 @@ class Order extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The instant at which the Order and its associated line items
-     * are eligible to begin serving. This attribute is derived from the line item
-     * of the order that has the earliest LineItem.start_time.
+     * Output only. The instant at which the Order and its associated Line items
+     * are eligible to begin serving. This attribute is derived from the Line item
+     * of the order that has the earliest `LineItem.start_time`.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp start_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -808,9 +804,9 @@ class Order extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The instant at which the Order and its associated line items
-     * stop being served. This attribute is derived from the line item of the
-     * order that has the latest LineItem.end_time.
+     * Output only. The instant at which the Order and its associated Line items
+     * stop being served. This attribute is derived from the Line item of the
+     * order that has the latest `LineItem.end_time`.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp end_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -831,9 +827,9 @@ class Order extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The instant at which the Order and its associated line items
-     * stop being served. This attribute is derived from the line item of the
-     * order that has the latest LineItem.end_time.
+     * Output only. The instant at which the Order and its associated Line items
+     * stop being served. This attribute is derived from the Line item of the
+     * order that has the latest `LineItem.end_time`.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp end_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

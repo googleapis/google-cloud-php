@@ -24,9 +24,21 @@
 
 namespace Google\Ads\AdManager\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivatePlacementsRequest;
+use Google\Ads\AdManager\V1\BatchActivatePlacementsResponse;
+use Google\Ads\AdManager\V1\BatchArchivePlacementsRequest;
+use Google\Ads\AdManager\V1\BatchArchivePlacementsResponse;
+use Google\Ads\AdManager\V1\BatchCreatePlacementsRequest;
+use Google\Ads\AdManager\V1\BatchCreatePlacementsResponse;
+use Google\Ads\AdManager\V1\BatchDeactivatePlacementsRequest;
+use Google\Ads\AdManager\V1\BatchDeactivatePlacementsResponse;
+use Google\Ads\AdManager\V1\BatchUpdatePlacementsRequest;
+use Google\Ads\AdManager\V1\BatchUpdatePlacementsResponse;
+use Google\Ads\AdManager\V1\CreatePlacementRequest;
 use Google\Ads\AdManager\V1\GetPlacementRequest;
 use Google\Ads\AdManager\V1\ListPlacementsRequest;
 use Google\Ads\AdManager\V1\Placement;
+use Google\Ads\AdManager\V1\UpdatePlacementRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -51,8 +63,15 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivatePlacementsResponse> batchActivatePlacementsAsync(BatchActivatePlacementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchArchivePlacementsResponse> batchArchivePlacementsAsync(BatchArchivePlacementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreatePlacementsResponse> batchCreatePlacementsAsync(BatchCreatePlacementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchDeactivatePlacementsResponse> batchDeactivatePlacementsAsync(BatchDeactivatePlacementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdatePlacementsResponse> batchUpdatePlacementsAsync(BatchUpdatePlacementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Placement> createPlacementAsync(CreatePlacementRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Placement> getPlacementAsync(GetPlacementRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listPlacementsAsync(ListPlacementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Placement> updatePlacementAsync(UpdatePlacementRequest $request, array $optionalArgs = [])
  */
 final class PlacementServiceClient
 {
@@ -79,9 +98,7 @@ final class PlacementServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/admanager',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {
@@ -111,9 +128,24 @@ final class PlacementServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a ad_unit
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $adUnit
+     *
+     * @return string The formatted ad_unit resource.
+     */
+    public static function adUnitName(string $networkCode, string $adUnit): string
+    {
+        return self::getPathTemplate('adUnit')->render([
+            'network_code' => $networkCode,
+            'ad_unit' => $adUnit,
+        ]);
     }
 
     /**
@@ -152,6 +184,7 @@ final class PlacementServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - adUnit: networks/{network_code}/adUnits/{ad_unit}
      * - network: networks/{network_code}
      * - placement: networks/{network_code}/placements/{placement}
      *
@@ -256,6 +289,177 @@ final class PlacementServiceClient
     }
 
     /**
+     * Activates a list of `Placement` objects.
+     *
+     * The async variant is
+     * {@see PlacementServiceClient::batchActivatePlacementsAsync()} .
+     *
+     * @example samples/V1/PlacementServiceClient/batch_activate_placements.php
+     *
+     * @param BatchActivatePlacementsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivatePlacementsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivatePlacements(
+        BatchActivatePlacementsRequest $request,
+        array $callOptions = []
+    ): BatchActivatePlacementsResponse {
+        return $this->startApiCall('BatchActivatePlacements', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Archives a list of `Placement` objects.
+     *
+     * The async variant is
+     * {@see PlacementServiceClient::batchArchivePlacementsAsync()} .
+     *
+     * @example samples/V1/PlacementServiceClient/batch_archive_placements.php
+     *
+     * @param BatchArchivePlacementsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchArchivePlacementsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchArchivePlacements(
+        BatchArchivePlacementsRequest $request,
+        array $callOptions = []
+    ): BatchArchivePlacementsResponse {
+        return $this->startApiCall('BatchArchivePlacements', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to batch create `Placement` objects.
+     *
+     * The async variant is {@see PlacementServiceClient::batchCreatePlacementsAsync()}
+     * .
+     *
+     * @example samples/V1/PlacementServiceClient/batch_create_placements.php
+     *
+     * @param BatchCreatePlacementsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreatePlacementsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreatePlacements(
+        BatchCreatePlacementsRequest $request,
+        array $callOptions = []
+    ): BatchCreatePlacementsResponse {
+        return $this->startApiCall('BatchCreatePlacements', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deactivates a list of `Placement` objects.
+     *
+     * The async variant is
+     * {@see PlacementServiceClient::batchDeactivatePlacementsAsync()} .
+     *
+     * @example samples/V1/PlacementServiceClient/batch_deactivate_placements.php
+     *
+     * @param BatchDeactivatePlacementsRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchDeactivatePlacementsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeactivatePlacements(
+        BatchDeactivatePlacementsRequest $request,
+        array $callOptions = []
+    ): BatchDeactivatePlacementsResponse {
+        return $this->startApiCall('BatchDeactivatePlacements', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to batch update `Placement` objects.
+     *
+     * The async variant is {@see PlacementServiceClient::batchUpdatePlacementsAsync()}
+     * .
+     *
+     * @example samples/V1/PlacementServiceClient/batch_update_placements.php
+     *
+     * @param BatchUpdatePlacementsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdatePlacementsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdatePlacements(
+        BatchUpdatePlacementsRequest $request,
+        array $callOptions = []
+    ): BatchUpdatePlacementsResponse {
+        return $this->startApiCall('BatchUpdatePlacements', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to create an `Placement` object.
+     *
+     * The async variant is {@see PlacementServiceClient::createPlacementAsync()} .
+     *
+     * @example samples/V1/PlacementServiceClient/create_placement.php
+     *
+     * @param CreatePlacementRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Placement
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createPlacement(CreatePlacementRequest $request, array $callOptions = []): Placement
+    {
+        return $this->startApiCall('CreatePlacement', $request, $callOptions)->wait();
+    }
+
+    /**
      * API to retrieve a `Placement` object.
      *
      * The async variant is {@see PlacementServiceClient::getPlacementAsync()} .
@@ -305,5 +509,31 @@ final class PlacementServiceClient
     public function listPlacements(ListPlacementsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListPlacements', $request, $callOptions);
+    }
+
+    /**
+     * API to update an `Placement` object.
+     *
+     * The async variant is {@see PlacementServiceClient::updatePlacementAsync()} .
+     *
+     * @example samples/V1/PlacementServiceClient/update_placement.php
+     *
+     * @param UpdatePlacementRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Placement
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updatePlacement(UpdatePlacementRequest $request, array $callOptions = []): Placement
+    {
+        return $this->startApiCall('UpdatePlacement', $request, $callOptions)->wait();
     }
 }

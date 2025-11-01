@@ -79,9 +79,7 @@ final class OperatingSystemVersionServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/admanager',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {
@@ -96,7 +94,8 @@ final class OperatingSystemVersionServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/operating_system_version_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/operating_system_version_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -111,9 +110,7 @@ final class OperatingSystemVersionServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -277,8 +274,10 @@ final class OperatingSystemVersionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOperatingSystemVersion(GetOperatingSystemVersionRequest $request, array $callOptions = []): OperatingSystemVersion
-    {
+    public function getOperatingSystemVersion(
+        GetOperatingSystemVersionRequest $request,
+        array $callOptions = []
+    ): OperatingSystemVersion {
         return $this->startApiCall('GetOperatingSystemVersion', $request, $callOptions)->wait();
     }
 
@@ -304,8 +303,10 @@ final class OperatingSystemVersionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listOperatingSystemVersions(ListOperatingSystemVersionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listOperatingSystemVersions(
+        ListOperatingSystemVersionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListOperatingSystemVersions', $request, $callOptions);
     }
 }

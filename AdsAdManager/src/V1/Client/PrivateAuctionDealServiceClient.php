@@ -83,9 +83,7 @@ final class PrivateAuctionDealServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/admanager',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {
@@ -100,7 +98,8 @@ final class PrivateAuctionDealServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/private_auction_deal_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/private_auction_deal_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -115,9 +114,7 @@ final class PrivateAuctionDealServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -138,6 +135,40 @@ final class PrivateAuctionDealServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a application
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $application
+     *
+     * @return string The formatted application resource.
+     */
+    public static function applicationName(string $networkCode, string $application): string
+    {
+        return self::getPathTemplate('application')->render([
+            'network_code' => $networkCode,
+            'application' => $application,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * audience_segment resource.
+     *
+     * @param string $networkCode
+     * @param string $audienceSegment
+     *
+     * @return string The formatted audience_segment resource.
+     */
+    public static function audienceSegmentName(string $networkCode, string $audienceSegment): string
+    {
+        return self::getPathTemplate('audienceSegment')->render([
+            'network_code' => $networkCode,
+            'audience_segment' => $audienceSegment,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * bandwidth_group resource.
      *
@@ -151,6 +182,91 @@ final class PrivateAuctionDealServiceClient
         return self::getPathTemplate('bandwidthGroup')->render([
             'network_code' => $networkCode,
             'bandwidth_group' => $bandwidthGroup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a browser
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $browser
+     *
+     * @return string The formatted browser resource.
+     */
+    public static function browserName(string $networkCode, string $browser): string
+    {
+        return self::getPathTemplate('browser')->render([
+            'network_code' => $networkCode,
+            'browser' => $browser,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * browser_language resource.
+     *
+     * @param string $networkCode
+     * @param string $browserLanguage
+     *
+     * @return string The formatted browser_language resource.
+     */
+    public static function browserLanguageName(string $networkCode, string $browserLanguage): string
+    {
+        return self::getPathTemplate('browserLanguage')->render([
+            'network_code' => $networkCode,
+            'browser_language' => $browserLanguage,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * cms_metadata_value resource.
+     *
+     * @param string $networkCode
+     * @param string $cmsMetadataValue
+     *
+     * @return string The formatted cms_metadata_value resource.
+     */
+    public static function cmsMetadataValueName(string $networkCode, string $cmsMetadataValue): string
+    {
+        return self::getPathTemplate('cmsMetadataValue')->render([
+            'network_code' => $networkCode,
+            'cms_metadata_value' => $cmsMetadataValue,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a content
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $content
+     *
+     * @return string The formatted content resource.
+     */
+    public static function contentName(string $networkCode, string $content): string
+    {
+        return self::getPathTemplate('content')->render([
+            'network_code' => $networkCode,
+            'content' => $content,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * content_bundle resource.
+     *
+     * @param string $networkCode
+     * @param string $contentBundle
+     *
+     * @return string The formatted content_bundle resource.
+     */
+    public static function contentBundleName(string $networkCode, string $contentBundle): string
+    {
+        return self::getPathTemplate('contentBundle')->render([
+            'network_code' => $networkCode,
+            'content_bundle' => $contentBundle,
         ]);
     }
 
@@ -190,6 +306,23 @@ final class PrivateAuctionDealServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * device_capability resource.
+     *
+     * @param string $networkCode
+     * @param string $deviceCapability
+     *
+     * @return string The formatted device_capability resource.
+     */
+    public static function deviceCapabilityName(string $networkCode, string $deviceCapability): string
+    {
+        return self::getPathTemplate('deviceCapability')->render([
+            'network_code' => $networkCode,
+            'device_capability' => $deviceCapability,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * device_category resource.
      *
      * @param string $networkCode
@@ -202,6 +335,23 @@ final class PrivateAuctionDealServiceClient
         return self::getPathTemplate('deviceCategory')->render([
             'network_code' => $networkCode,
             'device_category' => $deviceCategory,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * device_manufacturer resource.
+     *
+     * @param string $networkCode
+     * @param string $deviceManufacturer
+     *
+     * @return string The formatted device_manufacturer resource.
+     */
+    public static function deviceManufacturerName(string $networkCode, string $deviceManufacturer): string
+    {
+        return self::getPathTemplate('deviceManufacturer')->render([
+            'network_code' => $networkCode,
+            'device_manufacturer' => $deviceManufacturer,
         ]);
     }
 
@@ -219,6 +369,57 @@ final class PrivateAuctionDealServiceClient
         return self::getPathTemplate('geoTarget')->render([
             'network_code' => $networkCode,
             'geo_target' => $geoTarget,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * mobile_carrier resource.
+     *
+     * @param string $networkCode
+     * @param string $mobileCarrier
+     *
+     * @return string The formatted mobile_carrier resource.
+     */
+    public static function mobileCarrierName(string $networkCode, string $mobileCarrier): string
+    {
+        return self::getPathTemplate('mobileCarrier')->render([
+            'network_code' => $networkCode,
+            'mobile_carrier' => $mobileCarrier,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * mobile_device resource.
+     *
+     * @param string $networkCode
+     * @param string $mobileDevice
+     *
+     * @return string The formatted mobile_device resource.
+     */
+    public static function mobileDeviceName(string $networkCode, string $mobileDevice): string
+    {
+        return self::getPathTemplate('mobileDevice')->render([
+            'network_code' => $networkCode,
+            'mobile_device' => $mobileDevice,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * mobile_device_submodel resource.
+     *
+     * @param string $networkCode
+     * @param string $mobileDeviceSubmodel
+     *
+     * @return string The formatted mobile_device_submodel resource.
+     */
+    public static function mobileDeviceSubmodelName(string $networkCode, string $mobileDeviceSubmodel): string
+    {
+        return self::getPathTemplate('mobileDeviceSubmodel')->render([
+            'network_code' => $networkCode,
+            'mobile_device_submodel' => $mobileDeviceSubmodel,
         ]);
     }
 
@@ -310,11 +511,23 @@ final class PrivateAuctionDealServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - adUnit: networks/{network_code}/adUnits/{ad_unit}
+     * - application: networks/{network_code}/applications/{application}
+     * - audienceSegment: networks/{network_code}/audienceSegments/{audience_segment}
      * - bandwidthGroup: networks/{network_code}/bandwidthGroups/{bandwidth_group}
+     * - browser: networks/{network_code}/browsers/{browser}
+     * - browserLanguage: networks/{network_code}/browserLanguages/{browser_language}
+     * - cmsMetadataValue: networks/{network_code}/cmsMetadataValues/{cms_metadata_value}
+     * - content: networks/{network_code}/content/{content}
+     * - contentBundle: networks/{network_code}/contentBundles/{content_bundle}
      * - customTargetingKey: networks/{network_code}/customTargetingKeys/{custom_targeting_key}
      * - customTargetingValue: networks/{network_code}/customTargetingValues/{custom_targeting_value}
+     * - deviceCapability: networks/{network_code}/deviceCapabilities/{device_capability}
      * - deviceCategory: networks/{network_code}/deviceCategories/{device_category}
+     * - deviceManufacturer: networks/{network_code}/deviceManufacturers/{device_manufacturer}
      * - geoTarget: networks/{network_code}/geoTargets/{geo_target}
+     * - mobileCarrier: networks/{network_code}/mobileCarriers/{mobile_carrier}
+     * - mobileDevice: networks/{network_code}/mobileDevices/{mobile_device}
+     * - mobileDeviceSubmodel: networks/{network_code}/mobileDeviceSubmodels/{mobile_device_submodel}
      * - network: networks/{network_code}
      * - operatingSystem: networks/{network_code}/operatingSystems/{operating_system}
      * - operatingSystemVersion: networks/{network_code}/operatingSystemVersions/{operating_system_version}
@@ -443,8 +656,10 @@ final class PrivateAuctionDealServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPrivateAuctionDeal(CreatePrivateAuctionDealRequest $request, array $callOptions = []): PrivateAuctionDeal
-    {
+    public function createPrivateAuctionDeal(
+        CreatePrivateAuctionDealRequest $request,
+        array $callOptions = []
+    ): PrivateAuctionDeal {
         return $this->startApiCall('CreatePrivateAuctionDeal', $request, $callOptions)->wait();
     }
 
@@ -470,8 +685,10 @@ final class PrivateAuctionDealServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getPrivateAuctionDeal(GetPrivateAuctionDealRequest $request, array $callOptions = []): PrivateAuctionDeal
-    {
+    public function getPrivateAuctionDeal(
+        GetPrivateAuctionDealRequest $request,
+        array $callOptions = []
+    ): PrivateAuctionDeal {
         return $this->startApiCall('GetPrivateAuctionDeal', $request, $callOptions)->wait();
     }
 
@@ -497,8 +714,10 @@ final class PrivateAuctionDealServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPrivateAuctionDeals(ListPrivateAuctionDealsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPrivateAuctionDeals(
+        ListPrivateAuctionDealsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPrivateAuctionDeals', $request, $callOptions);
     }
 
@@ -524,8 +743,10 @@ final class PrivateAuctionDealServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updatePrivateAuctionDeal(UpdatePrivateAuctionDealRequest $request, array $callOptions = []): PrivateAuctionDeal
-    {
+    public function updatePrivateAuctionDeal(
+        UpdatePrivateAuctionDealRequest $request,
+        array $callOptions = []
+    ): PrivateAuctionDeal {
         return $this->startApiCall('UpdatePrivateAuctionDeal', $request, $callOptions)->wait();
     }
 }

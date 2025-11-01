@@ -19,13 +19,13 @@ class LabelFrequencyCap extends \Google\Protobuf\Internal\Message
      * Required. The label to used for frequency capping.
      * Format: "networks/{network_code}/labels/{label_id}"
      *
-     * Generated from protobuf field <code>string label = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string label = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $label = '';
+    protected $label = null;
     /**
      * The frequency cap.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.FrequencyCap frequency_cap = 2;</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.FrequencyCap frequency_cap = 2;</code>
      */
     protected $frequency_cap = null;
 
@@ -51,19 +51,29 @@ class LabelFrequencyCap extends \Google\Protobuf\Internal\Message
      * Required. The label to used for frequency capping.
      * Format: "networks/{network_code}/labels/{label_id}"
      *
-     * Generated from protobuf field <code>string label = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string label = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getLabel()
     {
-        return $this->label;
+        return isset($this->label) ? $this->label : '';
+    }
+
+    public function hasLabel()
+    {
+        return isset($this->label);
+    }
+
+    public function clearLabel()
+    {
+        unset($this->label);
     }
 
     /**
      * Required. The label to used for frequency capping.
      * Format: "networks/{network_code}/labels/{label_id}"
      *
-     * Generated from protobuf field <code>string label = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string label = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -78,7 +88,7 @@ class LabelFrequencyCap extends \Google\Protobuf\Internal\Message
     /**
      * The frequency cap.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.FrequencyCap frequency_cap = 2;</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.FrequencyCap frequency_cap = 2;</code>
      * @return \Google\Ads\AdManager\V1\FrequencyCap|null
      */
     public function getFrequencyCap()
@@ -99,7 +109,7 @@ class LabelFrequencyCap extends \Google\Protobuf\Internal\Message
     /**
      * The frequency cap.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.FrequencyCap frequency_cap = 2;</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.FrequencyCap frequency_cap = 2;</code>
      * @param \Google\Ads\AdManager\V1\FrequencyCap $var
      * @return $this
      */
