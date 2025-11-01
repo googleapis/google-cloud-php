@@ -24,6 +24,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Google\Cloud\Dev\Command\ComponentInfoCommand;
 use Google\Cloud\Dev\Command\DocFxCommand;
+use Google\Cloud\Dev\Command\ListBrokenXrefsCommand;
 use Google\Cloud\Dev\Command\NewComponentCommand;
 use Google\Cloud\Dev\Command\AddVersionCommand;
 use Google\Cloud\Dev\Command\RepoInfoCommand;
@@ -47,6 +48,7 @@ $rootDirectory = realpath(__DIR__ . '/../') . '/';
 $app = new Application;
 $app->add(new ComponentInfoCommand());
 $app->add(new DocFxCommand());
+$app->add(new ListBrokenXrefsCommand());
 $app->add(new NewComponentCommand($rootDirectory));
 $app->add(new AddVersionCommand($rootDirectory));
 $app->add(new RepoInfoCommand());
