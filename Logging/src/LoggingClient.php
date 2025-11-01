@@ -168,7 +168,7 @@ class LoggingClient
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
      *     @type array $keyFile [DEPRECATED]
-     *           @deprecated This option is being deprecated because of a potential security risk.
+     *           This option is being deprecated because of a potential security risk.
      *           This option does not validate the credential configuration. The security
      *           risk occurs when a credential configuration is accepted from a source
      *           that is not under your control and used without validation on your side.
@@ -190,7 +190,7 @@ class LoggingClient
      *           configurations received from external sources.
      *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
     *     @type string $keyFilePath [DEPRECATED]
-     *           @deprecated This option is being deprecated because of a potential security risk.
+     *           This option is being deprecated because of a potential security risk.
      *           This option does not validate the credential configuration. The security
      *           risk occurs when a credential configuration is accepted from a source
      *           that is not under your control and used without validation on your side.
