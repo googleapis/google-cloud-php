@@ -26,7 +26,6 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Process\Process;
 
 /**
@@ -180,7 +179,6 @@ class SessionCacheTest extends TestCase
         $sessionCache = new SessionCache(
             $this->spannerClient->reveal(),
             $databaseName,
-            ['cacheItemPool' => new FilesystemAdapter($databaseId)]
         );
 
         $process = new Process(['php', __DIR__ . '/lock_test_process.php', $databaseName]);
