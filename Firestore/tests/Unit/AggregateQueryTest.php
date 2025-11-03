@@ -17,12 +17,17 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use ArrayIterator;
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\AggregateQuery;
 use Google\Cloud\Firestore\AggregateQuerySnapshot;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\Serializer;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Firestore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -44,27 +49,21 @@ class AggregateQueryTest extends TestCase
         ]
     ];
 
-    private $connection;
+    private $gapicClient;
     private $query;
     private $aggregate;
     private $aggregateQuery;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->query = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+        $this->gapicClient = $this->prophesize(FirestoreClient::class);
+        $this->query = new Query(
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             self::QUERY_PARENT,
             $this->queryObj
-        ], ['connection', 'query']);
+        );
         $this->aggregate = Aggregate::count();
-        $this->aggregateQuery = TestHelpers::stub(AggregateQuery::class, [
-            $this->connection->reveal(),
-            self::QUERY_PARENT,
-            ['query' => $this->queryObj],
-            $this->aggregate
-        ], ['connection', 'query', 'aggregates']);
     }
 
     /**
@@ -72,26 +71,54 @@ class AggregateQueryTest extends TestCase
      */
     public function testGetSnapshot($type, $arg, $expected)
     {
-        $expectedProps = [
-            [$type => $expected]
-        ];
         $aggregate = $arg ? Aggregate::$type($arg) : Aggregate::$type();
-        $this->aggregateQuery->___setProperty('aggregates', [$aggregate]);
+        $aggregateQuery = new AggregateQuery(
+            $this->gapicClient->reveal(),
+            self::QUERY_PARENT,
+            ['query' => $this->queryObj],
+            $aggregate
+        );
 
-        $this->connection->runAggregationQuery(Argument::that(function ($args) use ($expectedProps) {
-            return $expectedProps == $args['structuredAggregationQuery']['aggregations'];
-        }))
-            ->shouldBeCalledTimes(1)
-            ->willReturn(new \ArrayIterator([[
-                'result' => [
-                    'aggregateFields' => [
-                        $type => ['testResultType' => 123456]
-                    ]
+
+        $response = new RunAggregationQueryResponse();
+        $response->mergeFromJsonString(json_encode([
+            'result' => [
+                'aggregateFields' => [
+                    $type => ['integerValue' => 123456]
                 ]
-            ]]));
-        $this->aggregateQuery->___setProperty('connection', $this->connection->reveal());
+            ]
+        ]));
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->willReturn(new ArrayIterator([
+            $response
+        ]));
 
-        $response = $this->aggregateQuery->getSnapshot();
+        $this->gapicClient->runAggregationQuery(
+            Argument::that(function (RunAggregationQueryRequest $request) use ($type, $expected) {
+                $this->assertEquals(1, count($request->getStructuredAggregationQuery()->getAggregations()));
+                $aggregation = $request->getStructuredAggregationQuery()->getAggregations()[0];
+
+                switch ($type) {
+                    case 'count':
+                        $this->assertTrue($aggregation->hasCount());
+                        break;
+                    case 'sum':
+                        $this->assertTrue($aggregation->hasSum());
+                        break;
+                    case 'avg':
+                        $this->assertTrue($aggregation->hasAvg());
+                        break;
+                    default:
+                        $this->fail('Unknown property detected');
+                }
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn($stream->reveal());
+
+        $response = $aggregateQuery->getSnapshot();
         $this->assertInstanceOf(AggregateQuerySnapshot::class, $response);
         $this->assertEquals(123456, $response->get($type));
     }
@@ -107,22 +134,67 @@ class AggregateQueryTest extends TestCase
             [$type => $expected, 'alias' => 'type_with_another_alias'],
         ];
 
-        // Filling the array using array_fill or similar method results in
-        // having values by reference, hence not suited for test's purpose.
-        $aggregates = [
-            $arg ? Aggregate::$type($arg) : Aggregate::$type(),
-            ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('total'),
-            ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('type_with_another_alias')
-        ];
-        $this->aggregateQuery->___setProperty('aggregates', $aggregates);
-        $this->connection->runAggregationQuery(Argument::that(function ($args) use ($expectedProps) {
-            return $expectedProps == $args['structuredAggregationQuery']['aggregations'];
-        }))
-            ->shouldBeCalledTimes(1)
-            ->willReturn(new \ArrayIterator([]));
-        $this->aggregateQuery->___setProperty('connection', $this->connection->reveal());
+        $aggregate = $arg ? Aggregate::$type($arg) : Aggregate::$type();
+        $aggregate2 = $arg ? Aggregate::$type($arg) : Aggregate::$type();
+        $aggregate3 = $arg ? Aggregate::$type($arg) : Aggregate::$type();
+        $aggregate2->alias('total');
+        $aggregate3->alias('type_with_another_alias');
 
-        $response = $this->aggregateQuery->getSnapshot();
+        $aggregateQuery = new AggregateQuery(
+             $this->gapicClient->reveal(),
+            self::QUERY_PARENT,
+            ['query' => $this->queryObj],
+            $aggregate
+        );
+
+        $aggregateQuery->addAggregation($aggregate2);
+        $aggregateQuery->addAggregation($aggregate3);
+
+        $response = new RunAggregationQueryResponse();
+        $response->mergeFromJsonString(json_encode([
+            'result' => [
+                'aggregateFields' => [
+                    $type => ['integerValue' => 123456]
+                ]
+            ]
+        ]));
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->willReturn(new ArrayIterator([
+            $response
+        ]));
+
+        $this->gapicClient->runAggregationQuery(
+            Argument::that(function (RunAggregationQueryRequest $request) use ($type) {
+                $this->assertEquals(3, count($request->getStructuredAggregationQuery()->getAggregations()));
+
+                $aggregations = $request->getStructuredAggregationQuery()->getAggregations();
+
+                $this->assertEquals('total', $aggregations[1]->getAlias());
+                $this->assertNotEmpty('type_with_another_alias', $aggregations[2]->getAlias());
+
+                $aggregation = $aggregations[0];
+
+                switch ($type) {
+                    case 'count':
+                        $this->assertTrue($aggregation->hasCount());
+                        break;
+                    case 'sum':
+                        $this->assertTrue($aggregation->hasSum());
+                        break;
+                    case 'avg':
+                        $this->assertTrue($aggregation->hasAvg());
+                        break;
+                    default:
+                        $this->fail('Unknown property detected');
+                }
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn($stream->reveal());
+
+        $response = $aggregateQuery->getSnapshot();
 
         $this->assertInstanceOf(AggregateQuerySnapshot::class, $response);
     }

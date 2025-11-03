@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Options\CallOptions;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\ExplainOptions;
 use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
@@ -37,28 +40,15 @@ use InvalidArgumentException;
  */
 class AggregateQuery
 {
+    use ApiHelperTrait;
     use QueryTrait;
 
-    /**
-     * @var FirestoreClient
-     * @internal
-     */
     private FirestoreClient $gapicClient;
-
-    /**
-     * @var array
-     */
-    private $query;
-
-    /**
-     * @var string
-     */
-    private $parentName;
-
-    /**
-     * @var array
-     */
-    private $aggregates = [];
+    private array $query;
+    private string $parentName;
+    private array $aggregates = [];
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
      * Create an aggregation query.
@@ -78,6 +68,8 @@ class AggregateQuery
         $this->parentName = $parent;
         $this->query = $query;
         $this->aggregates[] = $aggregate;
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
     }
 
     /**
@@ -114,6 +106,7 @@ class AggregateQuery
             );
         }
 
+        /** @var Aggregate $aggregate */
         foreach ($this->aggregates as $aggregate) {
             $parsedAggregates[] = $aggregate->getProps();
         }
@@ -125,11 +118,23 @@ class AggregateQuery
             'aggregates' => $this->aggregates
         ] + $this->query);
 
-        $request->mergeFromJsonString(json_encode($jsonStructuredAggregationQuery));
+        $options += [
+            'structuredAggregationQuery' => $jsonStructuredAggregationQuery
+        ];
 
-        $snapshot = $this->gapicClient->runAggregationQuery($request, $options)->readAll()->current();
+        /**
+         * @var RunAggregationQueryRequest $request
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            $options,
+            new RunAggregationQueryRequest(),
+            CallOptions::class
+        );
 
-        return new AggregateQuerySnapshot($snapshot);
+        $snapshot = $this->gapicClient->runAggregationQuery($request, $callOptions)->readAll()->current();
+
+        return new AggregateQuerySnapshot($this->serializer->encodeMessage($snapshot));
     }
 
     /**
