@@ -450,8 +450,10 @@ class DocumentReference
      */
     private function writeResult(array $commitResponse)
     {
-        return isset($commitResponse['writeResults']) && is_array($commitResponse['writeResults'])
-            ? array_pop($commitResponse['writeResults'])
-            : [];
+        if (empty($commitResponse['writeResults'])) {
+            return [];
+        }
+
+        return array_pop($commitResponse['writeResults']);
     }
 }

@@ -17,12 +17,17 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\ListDocumentsRequest;
 
 /**
  * Represents a Cloud Firestore Collection.
@@ -41,30 +46,17 @@ use Google\Cloud\Firestore\V1\Client\FirestoreClient;
  */
 class CollectionReference extends Query
 {
-    use ArrayTrait;
+    use ApiHelperTrait;
     use DebugInfoTrait;
     use PathTrait;
     use TimestampTrait;
 
-    /**
-     * @var FirestoreClient
-     */
     private FirestoreClient $gapicClient;
-
-    /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var DocumentReference|null
-     */
-    private $parent;
+    private ValueMapper $valueMapper;
+    private String $name;
+    private DocumentReference|null $parent = null;
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
      * @param FirestoreClient $gapicClient A Connection to Cloud Firestore.
@@ -81,6 +73,8 @@ class CollectionReference extends Query
         $this->gapicClient = $gapicClient;
         $this->valueMapper = $valueMapper;
         $this->name = $name;
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
 
         parent::__construct(
             $gapicClient,
@@ -274,12 +268,37 @@ class CollectionReference extends Query
 
         $options = $this->formatReadTimeOption($options);
 
+        $listDocumentsCall = function (array $options) {
+            /**
+             * @var ListDocumentsRequest $request
+             * @var CallOptions $callOptions
+             */
+            [$request, $callOptions] = $this->validateOptions(
+                $options,
+                new ListDocumentsRequest(),
+                CallOptions::class
+            );
+
+            $response = $this->gapicClient->listDocuments($request, $callOptions);
+
+            $page = $response->getPage();
+            $documents = [];
+            foreach ($page as $document) {
+                $documents[] = $this->serializer->encodeMessage($document);
+            }
+
+            return [
+                'documents' => $documents,
+                'nextPageToken' => $page->getNextPageToken()
+            ];
+        };
+
         return new ItemIterator(
             new PageIterator(
                 function ($document) {
                     return $this->documentFactory($document['name']);
                 },
-                [$this->gapicClient, 'listDocuments'],
+                $listDocumentsCall,
                 $options,
                 [
                     'itemsKey' => 'documents',
