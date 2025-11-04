@@ -88,6 +88,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "FetchBackupsForResourceType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "FetchDataSourceReferencesForResourceType": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
@@ -167,6 +172,11 @@
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
+                },
+                "ListDataSourceReferences": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "ListDataSources": {
                     "timeout_millis": 60000,
