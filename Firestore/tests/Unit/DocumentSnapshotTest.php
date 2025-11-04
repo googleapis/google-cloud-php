@@ -18,16 +18,16 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Exception;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use InvalidArgumentException;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Prophecy\ObjectProphecy;
 
 /**
  * @group firestore
@@ -39,41 +39,45 @@ class DocumentSnapshotTest extends TestCase
 
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
     const ID = 'b';
+    const PATH = 'a/b';
 
-    private $snapshot;
+    private $ref;
+    private $valueMapper;
 
     public function setUp(): void
     {
-        $ref = $this->prophesize(DocumentReference::class);
-        $ref->name()->willReturn(self::NAME);
-        $ref->id()->willReturn(self::ID);
-        $ref->path()->willReturn('a/b');
-
-        $this->snapshot = TestHelpers::stub(DocumentSnapshot::class, [
-            $ref->reveal(),
-            new ValueMapper($this->prophesize(ConnectionInterface::class)->reveal(), false),
-            [], [], true
-        ], ['info', 'data', 'exists']);
+        $this->ref = $this->prophesize(DocumentReference::class);
+        $this->valueMapper = new ValueMapper(
+            $this->prophesize(FirestoreClient::class)->reveal(),
+            false
+        );
     }
 
     public function testReference()
     {
-        $this->assertInstanceOf(DocumentReference::class, $this->snapshot->reference());
+        $snapshot = $this->getSnapshot();
+        $this->assertEquals($this->ref->reveal(), $snapshot->reference());
     }
 
     public function testName()
     {
-        $this->assertEquals(self::NAME, $this->snapshot->name());
+        $this->ref->name()->willReturn(self::NAME);
+        $snapshot = $this->getSnapshot();
+        $this->assertEquals(self::NAME, $snapshot->name());
     }
 
     public function testPath()
     {
-        $this->assertEquals('a/b', $this->snapshot->path());
+        $this->ref->path()->willReturn(self::PATH);
+        $snapshot = $this->getSnapshot();
+        $this->assertEquals(self::PATH, $snapshot->path());
     }
 
     public function testId()
     {
-        $this->assertEquals(self::ID, $this->snapshot->id());
+        $this->ref->id()->willReturn(self::ID);
+        $snapshot = $this->getSnapshot();
+        $this->assertEquals(self::ID, $snapshot->id());
     }
 
     /**
@@ -83,15 +87,13 @@ class DocumentSnapshotTest extends TestCase
     {
         $ts = new Timestamp(new \DateTime);
         $info = [$method => $ts];
-        $this->snapshot->___setProperty('info', $info);
+        $snapshot = $this->getSnapshot($info);
 
-        $res = $this->snapshot->$method();
-
+        $res = $snapshot->$method();
         $this->assertEquals($ts, $res);
 
-        $this->snapshot->___setProperty('info', []);
-        $res = $this->snapshot->$method();
-
+        $snapshot = $this->getSnapshot();
+        $res = $snapshot->$method();
         $this->assertNull($res);
     }
 
@@ -107,26 +109,24 @@ class DocumentSnapshotTest extends TestCase
     public function testData()
     {
         $data = ['foo' => 'bar'];
-
-        $this->snapshot->___setProperty('data', $data);
-        $this->assertEquals($data, $this->snapshot->data());
+        $snapshot = $this->getSnapshot([], $data);
+        $this->assertEquals($data, $snapshot->data());
     }
 
     public function testDataDocumentDoesntExist()
     {
         $data = ['foo' => 'bar'];
-
-        $this->snapshot->___setProperty('data', $data);
-        $this->snapshot->___setProperty('exists', false);
-
-        $this->assertNull($this->snapshot->data());
+        $snapshot = $this->getSnapshot([], $data, false);
+        $this->assertNull($snapshot->data());
     }
 
     public function testExists()
     {
-        $this->assertTrue($this->snapshot->exists());
-        $this->snapshot->___setProperty('exists', false);
-        $this->assertFalse($this->snapshot->exists());
+        $snapshot = $this->getSnapshot();
+        $this->assertTrue($snapshot->exists());
+
+        $snapshot = $this->getSnapshot([], [], false);
+        $this->assertFalse($snapshot->exists());
     }
 
     public function testGet()
@@ -142,12 +142,12 @@ class DocumentSnapshotTest extends TestCase
             'null' => null,
         ];
 
-        $this->snapshot->___setProperty('data', $fields);
+        $snapshot = $this->getSnapshot([], $fields);
 
-        $this->assertEquals('bar', $this->snapshot->get('foo'));
-        $this->assertEquals('c', $this->snapshot->get('a.b'));
-        $this->assertEquals('f', $this->snapshot->get('a.d.e'));
-        $this->assertNull($this->snapshot->get('null'));
+        $this->assertEquals('bar', $snapshot->get('foo'));
+        $this->assertEquals('c', $snapshot->get('a.b'));
+        $this->assertEquals('f', $snapshot->get('a.d.e'));
+        $this->assertNull($snapshot->get('null'));
     }
 
     public function testGetWithFieldPath()
@@ -163,48 +163,50 @@ class DocumentSnapshotTest extends TestCase
             'null' => null,
         ];
 
-        $this->snapshot->___setProperty('data', $fields);
+        $snapshot = $this->getSnapshot([], $fields);
 
-        $this->assertEquals('bar', $this->snapshot->get(new FieldPath(['foo'])));
-        $this->assertEquals('c', $this->snapshot->get(new FieldPath(['a', 'b'])));
-        $this->assertEquals('f', $this->snapshot->get(new FieldPath(['a', 'd', 'e'])));
-        $this->assertNull($this->snapshot->get(new FieldPath(['null'])));
+        $this->assertEquals('bar', $snapshot->get(new FieldPath(['foo'])));
+        $this->assertEquals('c', $snapshot->get(new FieldPath(['a', 'b'])));
+        $this->assertEquals('f', $snapshot->get(new FieldPath(['a', 'd', 'e'])));
+        $this->assertNull($snapshot->get(new FieldPath(['null'])));
     }
 
     public function testGetInvalid()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->snapshot->get('foo');
+        $this->getSnapshot()->get('foo');
     }
 
     public function testGetInvalidArgumentType()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->snapshot->get(1234);
+        $this->getSnapshot()->get(1234);
     }
 
     public function testArrayAccessRead()
     {
-        $this->snapshot->___setProperty('data', ['foo' => 'bar']);
-        $this->assertEquals('bar', $this->snapshot['foo']);
-        $this->assertArrayHasKey('foo', $this->snapshot);
-        $this->assertArrayNotHasKey('baz', $this->snapshot);
+        $snapshot = $this->getSnapshot([], ['foo' => 'bar']);
+        $this->assertEquals('bar', $snapshot['foo']);
+        $this->assertArrayHasKey('foo', $snapshot);
+        $this->assertArrayNotHasKey('baz', $snapshot);
     }
 
     public function testArrayAccessSetDisabled()
     {
         $this->expectException(\BadMethodCallException::class);
 
-        $this->snapshot['name'] = 'bob';
+        $snapshot = $this->getSnapshot();
+        $snapshot['name'] = 'bob';
     }
 
     public function testArrayAccessUnsetDisabled()
     {
         $this->expectException(\BadMethodCallException::class);
 
-        unset($this->snapshot['name']);
+        $snapshot = $this->getSnapshot();
+        unset($snapshot['name']);
     }
 
     public function testArrayAccessNonExistentIndex()
@@ -214,6 +216,22 @@ class DocumentSnapshotTest extends TestCase
         }, E_USER_NOTICE);
         $this->expectException(Exception::class);
 
-        $this->snapshot['name'];
+        try {
+            $snapshot = $this->getSnapshot();
+            $snapshot['name'];
+        } finally {
+            restore_error_handler();
+        }
+    }
+
+    private function getSnapshot(array $info = [], array $data = [], bool $exists = true)
+    {
+        return new DocumentSnapshot(
+            $this->ref->reveal(),
+            $this->valueMapper,
+            $info,
+            $data,
+            $exists
+        );
     }
 }
