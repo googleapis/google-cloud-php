@@ -232,6 +232,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{resource=organizations/*/locations/*/encryptionConfigs/*}:getIamPolicy',
                     ],
                 ],
@@ -343,11 +347,6 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*}:setIamPolicy',
                         'body' => '*',
                     ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*/dataAssets/*}:setIamPolicy',
-                        'body' => '*',
-                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -455,11 +454,6 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*}:testIamPermissions',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*/dataAssets/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],

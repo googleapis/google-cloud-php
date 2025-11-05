@@ -40,6 +40,13 @@ class DataProfileResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.PostScanActionsResult post_scan_actions_result = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $post_scan_actions_result = null;
+    /**
+     * Output only. The status of publishing the data scan as Dataplex Universal
+     * Catalog metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus catalog_publishing_status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $catalog_publishing_status = null;
 
     /**
      * Constructor.
@@ -55,6 +62,9 @@ class DataProfileResult extends \Google\Protobuf\Internal\Message
      *           Output only. The data scanned for this result.
      *     @type \Google\Cloud\Dataplex\V1\DataProfileResult\PostScanActionsResult $post_scan_actions_result
      *           Output only. The result of post scan actions.
+     *     @type \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus $catalog_publishing_status
+     *           Output only. The status of publishing the data scan as Dataplex Universal
+     *           Catalog metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -192,6 +202,44 @@ class DataProfileResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataProfileResult\PostScanActionsResult::class);
         $this->post_scan_actions_result = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The status of publishing the data scan as Dataplex Universal
+     * Catalog metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus catalog_publishing_status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus|null
+     */
+    public function getCatalogPublishingStatus()
+    {
+        return $this->catalog_publishing_status;
+    }
+
+    public function hasCatalogPublishingStatus()
+    {
+        return isset($this->catalog_publishing_status);
+    }
+
+    public function clearCatalogPublishingStatus()
+    {
+        unset($this->catalog_publishing_status);
+    }
+
+    /**
+     * Output only. The status of publishing the data scan as Dataplex Universal
+     * Catalog metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus catalog_publishing_status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus $var
+     * @return $this
+     */
+    public function setCatalogPublishingStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataScanCatalogPublishingStatus::class);
+        $this->catalog_publishing_status = $var;
 
         return $this;
     }
