@@ -15,6 +15,11 @@
                                 "createAuthzExtension"
                             ]
                         },
+                        "CreateLbEdgeExtension": {
+                            "methods": [
+                                "createLbEdgeExtension"
+                            ]
+                        },
                         "CreateLbRouteExtension": {
                             "methods": [
                                 "createLbRouteExtension"
@@ -28,6 +33,11 @@
                         "DeleteAuthzExtension": {
                             "methods": [
                                 "deleteAuthzExtension"
+                            ]
+                        },
+                        "DeleteLbEdgeExtension": {
+                            "methods": [
+                                "deleteLbEdgeExtension"
                             ]
                         },
                         "DeleteLbRouteExtension": {
@@ -45,6 +55,11 @@
                                 "getAuthzExtension"
                             ]
                         },
+                        "GetLbEdgeExtension": {
+                            "methods": [
+                                "getLbEdgeExtension"
+                            ]
+                        },
                         "GetLbRouteExtension": {
                             "methods": [
                                 "getLbRouteExtension"
@@ -60,6 +75,11 @@
                                 "listAuthzExtensions"
                             ]
                         },
+                        "ListLbEdgeExtensions": {
+                            "methods": [
+                                "listLbEdgeExtensions"
+                            ]
+                        },
                         "ListLbRouteExtensions": {
                             "methods": [
                                 "listLbRouteExtensions"
@@ -73,6 +93,11 @@
                         "UpdateAuthzExtension": {
                             "methods": [
                                 "updateAuthzExtension"
+                            ]
+                        },
+                        "UpdateLbEdgeExtension": {
+                            "methods": [
+                                "updateLbEdgeExtension"
                             ]
                         },
                         "UpdateLbRouteExtension": {

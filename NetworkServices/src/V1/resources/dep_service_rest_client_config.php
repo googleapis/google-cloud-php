@@ -62,6 +62,21 @@ return [
                     'authz_extension_id',
                 ],
             ],
+            'CreateLbEdgeExtension' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/lbEdgeExtensions',
+                'body' => 'lb_edge_extension',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'lb_edge_extension_id',
+                ],
+            ],
             'CreateLbRouteExtension' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/lbRouteExtensions',
@@ -103,6 +118,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteLbEdgeExtension' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/lbEdgeExtensions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteLbRouteExtension' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/lbRouteExtensions/*}',
@@ -136,6 +162,17 @@ return [
                     ],
                 ],
             ],
+            'GetLbEdgeExtension' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/lbEdgeExtensions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetLbRouteExtension' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/lbRouteExtensions/*}',
@@ -161,6 +198,17 @@ return [
             'ListAuthzExtensions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/authzExtensions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLbEdgeExtensions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/lbEdgeExtensions',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -205,6 +253,19 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateLbEdgeExtension' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{lb_edge_extension.name=projects/*/locations/*/lbEdgeExtensions/*}',
+                'body' => 'lb_edge_extension',
+                'placeholders' => [
+                    'lb_edge_extension.name' => [
+                        'getters' => [
+                            'getLbEdgeExtension',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateLbRouteExtension' => [
