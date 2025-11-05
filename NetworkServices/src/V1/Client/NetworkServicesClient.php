@@ -219,9 +219,7 @@ final class NetworkServicesClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -321,8 +319,11 @@ final class NetworkServicesClient
      *
      * @return string The formatted authorization_policy resource.
      */
-    public static function authorizationPolicyName(string $project, string $location, string $authorizationPolicy): string
-    {
+    public static function authorizationPolicyName(
+        string $project,
+        string $location,
+        string $authorizationPolicy
+    ): string {
         return self::getPathTemplate('authorizationPolicy')->render([
             'project' => $project,
             'location' => $location,
@@ -436,8 +437,12 @@ final class NetworkServicesClient
      *
      * @return string The formatted gateway_route_view resource.
      */
-    public static function gatewayRouteViewName(string $project, string $location, string $gateway, string $routeView): string
-    {
+    public static function gatewayRouteViewName(
+        string $project,
+        string $location,
+        string $gateway,
+        string $routeView
+    ): string {
         return self::getPathTemplate('gatewayRouteView')->render([
             'project' => $project,
             'location' => $location,
@@ -456,8 +461,11 @@ final class NetworkServicesClient
      *
      * @return string The formatted gateway_security_policy resource.
      */
-    public static function gatewaySecurityPolicyName(string $project, string $location, string $gatewaySecurityPolicy): string
-    {
+    public static function gatewaySecurityPolicyName(
+        string $project,
+        string $location,
+        string $gatewaySecurityPolicy
+    ): string {
         return self::getPathTemplate('gatewaySecurityPolicy')->render([
             'project' => $project,
             'location' => $location,
@@ -742,8 +750,12 @@ final class NetworkServicesClient
      *
      * @return string The formatted wasm_plugin_version resource.
      */
-    public static function wasmPluginVersionName(string $project, string $location, string $wasmPlugin, string $wasmPluginVersion): string
-    {
+    public static function wasmPluginVersionName(
+        string $project,
+        string $location,
+        string $wasmPlugin,
+        string $wasmPluginVersion
+    ): string {
         return self::getPathTemplate('wasmPluginVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -906,8 +918,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createEndpointPolicy(CreateEndpointPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createEndpointPolicy(
+        CreateEndpointPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateEndpointPolicy', $request, $callOptions)->wait();
     }
 
@@ -1036,8 +1050,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createServiceBinding(CreateServiceBindingRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createServiceBinding(
+        CreateServiceBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateServiceBinding', $request, $callOptions)->wait();
     }
 
@@ -1063,8 +1079,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createServiceLbPolicy(CreateServiceLbPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createServiceLbPolicy(
+        CreateServiceLbPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateServiceLbPolicy', $request, $callOptions)->wait();
     }
 
@@ -1170,8 +1188,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createWasmPluginVersion(CreateWasmPluginVersionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createWasmPluginVersion(
+        CreateWasmPluginVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateWasmPluginVersion', $request, $callOptions)->wait();
     }
 
@@ -1196,8 +1216,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteEndpointPolicy(DeleteEndpointPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteEndpointPolicy(
+        DeleteEndpointPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteEndpointPolicy', $request, $callOptions)->wait();
     }
 
@@ -1326,8 +1348,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteServiceBinding(DeleteServiceBindingRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteServiceBinding(
+        DeleteServiceBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteServiceBinding', $request, $callOptions)->wait();
     }
 
@@ -1353,8 +1377,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteServiceLbPolicy(DeleteServiceLbPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteServiceLbPolicy(
+        DeleteServiceLbPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteServiceLbPolicy', $request, $callOptions)->wait();
     }
 
@@ -1458,8 +1484,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteWasmPluginVersion(DeleteWasmPluginVersionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteWasmPluginVersion(
+        DeleteWasmPluginVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteWasmPluginVersion', $request, $callOptions)->wait();
     }
 
@@ -1796,8 +1824,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getWasmPluginVersion(GetWasmPluginVersionRequest $request, array $callOptions = []): WasmPluginVersion
-    {
+    public function getWasmPluginVersion(
+        GetWasmPluginVersionRequest $request,
+        array $callOptions = []
+    ): WasmPluginVersion {
         return $this->startApiCall('GetWasmPluginVersion', $request, $callOptions)->wait();
     }
 
@@ -1822,8 +1852,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listEndpointPolicies(ListEndpointPoliciesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listEndpointPolicies(
+        ListEndpointPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListEndpointPolicies', $request, $callOptions);
     }
 
@@ -1849,8 +1881,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listGatewayRouteViews(ListGatewayRouteViewsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listGatewayRouteViews(
+        ListGatewayRouteViewsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListGatewayRouteViews', $request, $callOptions);
     }
 
@@ -2032,8 +2066,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listServiceLbPolicies(ListServiceLbPoliciesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listServiceLbPolicies(
+        ListServiceLbPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListServiceLbPolicies', $request, $callOptions);
     }
 
@@ -2112,8 +2148,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listWasmPluginVersions(ListWasmPluginVersionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listWasmPluginVersions(
+        ListWasmPluginVersionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListWasmPluginVersions', $request, $callOptions);
     }
 
@@ -2165,8 +2203,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateEndpointPolicy(UpdateEndpointPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateEndpointPolicy(
+        UpdateEndpointPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateEndpointPolicy', $request, $callOptions)->wait();
     }
 
@@ -2295,8 +2335,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateServiceBinding(UpdateServiceBindingRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateServiceBinding(
+        UpdateServiceBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateServiceBinding', $request, $callOptions)->wait();
     }
 
@@ -2322,8 +2364,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateServiceLbPolicy(UpdateServiceLbPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateServiceLbPolicy(
+        UpdateServiceLbPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateServiceLbPolicy', $request, $callOptions)->wait();
     }
 
@@ -2541,8 +2585,10 @@ final class NetworkServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
