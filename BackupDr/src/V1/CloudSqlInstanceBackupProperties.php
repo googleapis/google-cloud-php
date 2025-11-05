@@ -38,12 +38,24 @@ class CloudSqlInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      */
     protected $source_instance = '';
     /**
+     * Output only. The instance creation timestamp.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp instance_create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $instance_create_time = null;
+    /**
      * Output only. The tier (or machine type) for this instance. Example:
      * `db-custom-1-3840`
      *
      * Generated from protobuf field <code>string instance_tier = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $instance_tier = '';
+    /**
+     * Output only. The instance delete timestamp.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp instance_delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $instance_delete_time = null;
 
     /**
      * Constructor.
@@ -60,9 +72,13 @@ class CloudSqlInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      *           Output only. The source instance of the backup.
      *           Format:
      *           projects/{project}/instances/{instance}
+     *     @type \Google\Protobuf\Timestamp $instance_create_time
+     *           Output only. The instance creation timestamp.
      *     @type string $instance_tier
      *           Output only. The tier (or machine type) for this instance. Example:
      *           `db-custom-1-3840`
+     *     @type \Google\Protobuf\Timestamp $instance_delete_time
+     *           Output only. The instance delete timestamp.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,6 +171,42 @@ class CloudSqlInstanceBackupProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The instance creation timestamp.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp instance_create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getInstanceCreateTime()
+    {
+        return $this->instance_create_time;
+    }
+
+    public function hasInstanceCreateTime()
+    {
+        return isset($this->instance_create_time);
+    }
+
+    public function clearInstanceCreateTime()
+    {
+        unset($this->instance_create_time);
+    }
+
+    /**
+     * Output only. The instance creation timestamp.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp instance_create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setInstanceCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->instance_create_time = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The tier (or machine type) for this instance. Example:
      * `db-custom-1-3840`
      *
@@ -178,6 +230,42 @@ class CloudSqlInstanceBackupProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->instance_tier = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The instance delete timestamp.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp instance_delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getInstanceDeleteTime()
+    {
+        return $this->instance_delete_time;
+    }
+
+    public function hasInstanceDeleteTime()
+    {
+        return isset($this->instance_delete_time);
+    }
+
+    public function clearInstanceDeleteTime()
+    {
+        unset($this->instance_delete_time);
+    }
+
+    /**
+     * Output only. The instance delete timestamp.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp instance_delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setInstanceDeleteTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->instance_delete_time = $var;
 
         return $this;
     }

@@ -121,6 +121,7 @@ class Backup extends \Google\Protobuf\Internal\Message
     protected $satisfies_pzi = null;
     protected $backup_properties;
     protected $plan_info;
+    protected $source_resource;
 
     /**
      * Constructor.
@@ -178,6 +179,9 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Optional. Output only. Reserved for future use.
      *     @type bool $satisfies_pzi
      *           Optional. Output only. Reserved for future use.
+     *     @type \Google\Cloud\BackupDR\V1\BackupGcpResource $gcp_resource
+     *           Output only. Unique identifier of the GCP resource that is being backed
+     *           up.
      * }
      */
     public function __construct($data = NULL) {
@@ -863,6 +867,39 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Unique identifier of the GCP resource that is being backed
+     * up.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.BackupGcpResource gcp_resource = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BackupDR\V1\BackupGcpResource|null
+     */
+    public function getGcpResource()
+    {
+        return $this->readOneof(31);
+    }
+
+    public function hasGcpResource()
+    {
+        return $this->hasOneof(31);
+    }
+
+    /**
+     * Output only. Unique identifier of the GCP resource that is being backed
+     * up.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.BackupGcpResource gcp_resource = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BackupDR\V1\BackupGcpResource $var
+     * @return $this
+     */
+    public function setGcpResource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\BackupGcpResource::class);
+        $this->writeOneof(31, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getBackupProperties()
@@ -876,6 +913,14 @@ class Backup extends \Google\Protobuf\Internal\Message
     public function getPlanInfo()
     {
         return $this->whichOneof("plan_info");
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceResource()
+    {
+        return $this->whichOneof("source_resource");
     }
 
 }
