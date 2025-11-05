@@ -67,6 +67,18 @@ class DeploymentStage
      * Generated from protobuf enum <code>DEPLOYMENT_TERMINATED = 10;</code>
      */
     const DEPLOYMENT_TERMINATED = 10;
+    /**
+     * The deployment has succeeded.
+     *
+     * Generated from protobuf enum <code>SUCCESSFULLY_DEPLOYED = 11;</code>
+     */
+    const SUCCESSFULLY_DEPLOYED = 11;
+    /**
+     * The deployment has failed.
+     *
+     * Generated from protobuf enum <code>FAILED_TO_DEPLOY = 12;</code>
+     */
+    const FAILED_TO_DEPLOY = 12;
 
     private static $valueToName = [
         self::DEPLOYMENT_STAGE_UNSPECIFIED => 'DEPLOYMENT_STAGE_UNSPECIFIED',
@@ -78,6 +90,8 @@ class DeploymentStage
         self::STARTING_MODEL_SERVER => 'STARTING_MODEL_SERVER',
         self::FINISHING_UP => 'FINISHING_UP',
         self::DEPLOYMENT_TERMINATED => 'DEPLOYMENT_TERMINATED',
+        self::SUCCESSFULLY_DEPLOYED => 'SUCCESSFULLY_DEPLOYED',
+        self::FAILED_TO_DEPLOY => 'FAILED_TO_DEPLOY',
     ];
 
     public static function name($value)

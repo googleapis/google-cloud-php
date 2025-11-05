@@ -107,6 +107,13 @@ class Listing extends \Google\Protobuf\Internal\Message
      */
     protected $restricted_export_config = null;
     /**
+     * Optional. If set, stored procedure configuration will be propagated and
+     * enforced on the linked dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.StoredProcedureConfig stored_procedure_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $stored_procedure_config = null;
+    /**
      * Optional. Type of discovery of the listing on the discovery page.
      *
      * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -190,6 +197,9 @@ class Listing extends \Google\Protobuf\Internal\Message
      *           Max Length: 1000 bytes.
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\RestrictedExportConfig $restricted_export_config
      *           Optional. If set, restricted export configuration will be propagated and
+     *           enforced on the linked dataset.
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\StoredProcedureConfig $stored_procedure_config
+     *           Optional. If set, stored procedure configuration will be propagated and
      *           enforced on the linked dataset.
      *     @type int $discovery_type
      *           Optional. Type of discovery of the listing on the discovery page.
@@ -643,6 +653,44 @@ class Listing extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\RestrictedExportConfig::class);
         $this->restricted_export_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, stored procedure configuration will be propagated and
+     * enforced on the linked dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.StoredProcedureConfig stored_procedure_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\StoredProcedureConfig|null
+     */
+    public function getStoredProcedureConfig()
+    {
+        return $this->stored_procedure_config;
+    }
+
+    public function hasStoredProcedureConfig()
+    {
+        return isset($this->stored_procedure_config);
+    }
+
+    public function clearStoredProcedureConfig()
+    {
+        unset($this->stored_procedure_config);
+    }
+
+    /**
+     * Optional. If set, stored procedure configuration will be propagated and
+     * enforced on the linked dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.StoredProcedureConfig stored_procedure_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\StoredProcedureConfig $var
+     * @return $this
+     */
+    public function setStoredProcedureConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\StoredProcedureConfig::class);
+        $this->stored_procedure_config = $var;
 
         return $this;
     }

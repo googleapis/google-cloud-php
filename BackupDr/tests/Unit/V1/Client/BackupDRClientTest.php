@@ -45,6 +45,8 @@ use Google\Cloud\BackupDR\V1\DeleteBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\DeleteManagementServerRequest;
 use Google\Cloud\BackupDR\V1\FetchBackupPlanAssociationsForResourceTypeRequest;
 use Google\Cloud\BackupDR\V1\FetchBackupPlanAssociationsForResourceTypeResponse;
+use Google\Cloud\BackupDR\V1\FetchBackupsForResourceTypeRequest;
+use Google\Cloud\BackupDR\V1\FetchBackupsForResourceTypeResponse;
 use Google\Cloud\BackupDR\V1\FetchDataSourceReferencesForResourceTypeRequest;
 use Google\Cloud\BackupDR\V1\FetchDataSourceReferencesForResourceTypeResponse;
 use Google\Cloud\BackupDR\V1\FetchUsableBackupVaultsRequest;
@@ -69,6 +71,8 @@ use Google\Cloud\BackupDR\V1\ListBackupVaultsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupVaultsResponse;
 use Google\Cloud\BackupDR\V1\ListBackupsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupsResponse;
+use Google\Cloud\BackupDR\V1\ListDataSourceReferencesRequest;
+use Google\Cloud\BackupDR\V1\ListDataSourceReferencesResponse;
 use Google\Cloud\BackupDR\V1\ListDataSourcesRequest;
 use Google\Cloud\BackupDR\V1\ListDataSourcesResponse;
 use Google\Cloud\BackupDR\V1\ListManagementServersRequest;
@@ -1486,6 +1490,85 @@ class BackupDRClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function fetchBackupsForResourceTypeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $backupsElement = new Backup();
+        $backups = [$backupsElement];
+        $expectedResponse = new FetchBackupsForResourceTypeResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBackups($backups);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataSourceName('[PROJECT]', '[LOCATION]', '[BACKUPVAULT]', '[DATASOURCE]');
+        $resourceType = 'resourceType979623115';
+        $request = (new FetchBackupsForResourceTypeRequest())
+            ->setParent($formattedParent)
+            ->setResourceType($resourceType);
+        $response = $gapicClient->fetchBackupsForResourceType($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBackups()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/FetchBackupsForResourceType', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getResourceType();
+        $this->assertProtobufEquals($resourceType, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchBackupsForResourceTypeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataSourceName('[PROJECT]', '[LOCATION]', '[BACKUPVAULT]', '[DATASOURCE]');
+        $resourceType = 'resourceType979623115';
+        $request = (new FetchBackupsForResourceTypeRequest())
+            ->setParent($formattedParent)
+            ->setResourceType($resourceType);
+        try {
+            $gapicClient->fetchBackupsForResourceType($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function fetchDataSourceReferencesForResourceTypeTest()
     {
         $transport = $this->createTransport();
@@ -2122,10 +2205,12 @@ class BackupDRClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $dataSource = 'dataSource-1333894576';
         $dataSourceBackupCount = 1620010527;
+        $totalStoredBytes = 1181597162;
         $expectedResponse = new DataSourceReference();
         $expectedResponse->setName($name2);
         $expectedResponse->setDataSource($dataSource);
         $expectedResponse->setDataSourceBackupCount($dataSourceBackupCount);
+        $expectedResponse->setTotalStoredBytes($totalStoredBytes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataSourceReferenceName('[PROJECT]', '[LOCATION]', '[DATA_SOURCE_REFERENCE]');
@@ -2726,6 +2811,77 @@ class BackupDRClientTest extends GeneratedTest
         $request = (new ListBackupsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listBackups($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listDataSourceReferencesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $dataSourceReferencesElement = new DataSourceReference();
+        $dataSourceReferences = [$dataSourceReferencesElement];
+        $expectedResponse = new ListDataSourceReferencesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setDataSourceReferences($dataSourceReferences);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListDataSourceReferencesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listDataSourceReferences($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getDataSourceReferences()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/ListDataSourceReferences', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listDataSourceReferencesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListDataSourceReferencesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listDataSourceReferences($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
