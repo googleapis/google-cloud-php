@@ -149,6 +149,17 @@ return [
                     ],
                 ],
             ],
+            'FetchBackupsForResourceType' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/backupVaults/*/dataSources/*}/backups:fetchForResourceType',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'FetchDataSourceReferencesForResourceType' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dataSourceReferences:fetchForResourceType',
@@ -318,6 +329,17 @@ return [
             'ListBackups' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/backupVaults/*/dataSources/*}/backups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDataSourceReferences' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dataSourceReferences',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
