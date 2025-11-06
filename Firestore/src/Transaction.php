@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 
@@ -45,33 +47,17 @@ use Google\Cloud\Firestore\V1\Client\FirestoreClient;
  */
 class Transaction
 {
+    use ApiHelperTrait;
     use SnapshotTrait;
     use DebugInfoTrait;
 
-    /**
-     * @var FirestoreClient
-     */
     private FirestoreClient $gapicClient;
-
-    /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-
-    /**
-     * @var string
-     */
-    private $transaction;
-
-    /**
-     * @var string
-     */
-    private $database;
-
-    /**
-     * @var BulkWriter
-     */
-    private $writer;
+    private ValueMapper $valueMapper;
+    private string $transaction;
+    private string $database;
+    private BulkWriter $writer;
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
      * @param FirestoreClient $gapicClient A FirestoreClient instance.
@@ -89,6 +75,8 @@ class Transaction
         $this->valueMapper = $valueMapper;
         $this->database = $database;
         $this->transaction = $transaction;
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
 
         $this->writer = new BulkWriter($this->gapicClient, $valueMapper, $database, $transaction);
     }

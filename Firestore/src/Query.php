@@ -18,10 +18,10 @@
 namespace Google\Cloud\Firestore;
 
 use Google\ApiCore\Options\CallOptions;
-use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
 use Google\Cloud\Firestore\V1\ExplainMetrics;
@@ -144,6 +144,8 @@ class Query
      * @var bool
      */
     private $limitToLast;
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
      * @param GapicFirestoreClient $gapicClient A FirestoreClient instance.
@@ -165,6 +167,8 @@ class Query
         $this->parentName = $parent;
         $this->query = $query;
         $this->limitToLast = $limitToLast;
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
 
         if (!isset($this->query['from'])) {
             throw new \InvalidArgumentException(
@@ -361,10 +365,8 @@ class Query
 
             $out = [];
 
-            $serializer = new Serializer();
-
             while ($generator->valid()) {
-                $result = $serializer->encodeMessage($generator->current());
+                $result = $this->serializer->encodeMessage($generator->current());
 
 
                 if (isset($result['document']) && $result['document']) {
