@@ -137,7 +137,6 @@ trait SnapshotTrait
             ));
         }
 
-
         return $this->serializer->encodeMessage($response->getFound());
     }
 
