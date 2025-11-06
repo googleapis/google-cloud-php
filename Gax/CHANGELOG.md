@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.38.1](https://github.com/googleapis/gax-php/compare/v1.38.0...v1.38.1) (2025-11-06)
+
+
+### Bug Fixes
+
+* Add return type to `offsetGet` ([#633](https://github.com/googleapis/gax-php/issues/633)) ([b77c12d](https://github.com/googleapis/gax-php/commit/b77c12dc959e8434fcd1f7f08cedaa84cdfb00a4))
+
 ## [1.38.0](https://github.com/googleapis/gax-php/compare/v1.37.0...v1.38.0) (2025-09-17)
 
 
