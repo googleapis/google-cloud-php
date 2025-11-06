@@ -130,7 +130,7 @@ trait SnapshotTrait
         /** @var BatchGetDocumentsResponse */
         $response = $stream->readAll()->current();
 
-        if ($response->hasFound()) {
+        if (!$response->hasFound()) {
             throw new NotFoundException(sprintf(
                 'Document %s does not exist',
                 $name
