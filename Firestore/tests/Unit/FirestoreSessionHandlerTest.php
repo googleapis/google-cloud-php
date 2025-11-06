@@ -462,44 +462,44 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->assertTrue($ret);
     }
 
-    // public function testDestroyWithException()
-    // {
-    //     $this->expectWarningUsingErrorhandler();
+    public function testDestroyWithException()
+    {
+        $this->expectWarningUsingErrorhandler();
 
-    //     $this->gapicClient->beginTransaction(
-    //         Argument::that(function (BeginTransactionRequest $request) {
-    //             $this->assertEquals($this->dbName(), $request->getDatabase());
-    //             return true;
-    //         }),
-    //         Argument::any()
-    //     )->shouldBeCalledTimes(1)
-    //         ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => 123]));
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => 123]));
 
-    //     $this->gapicClient->commit(Argument::any(), Argument::any())
-    //         ->shouldBeCalledTimes(1)
-    //         ->willThrow(new ServiceException(''));
+        $this->gapicClient->commit(Argument::any(), Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willThrow(new ServiceException(''));
 
-    //     $this->gapicClient->rollback(
-    //         Argument::that(function (RollbackRequest $request) {
-    //             $this->assertEquals($this->dbName(), $request->getDatabase());
-    //             $this->assertEquals('123', $request->getTransaction());
-    //             return true;
-    //         }),
-    //         Argument::any()
-    //     )->shouldBeCalledTimes(1);
+        $this->gapicClient->rollback(
+            Argument::that(function (RollbackRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                $this->assertEquals('123', $request->getTransaction());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1);
 
-    //     $firestoreSessionHandler = new FirestoreSessionHandler(
-    //         $this->gapicClient->reveal(),
-    //         $this->valueMapper->reveal(),
-    //         self::PROJECT,
-    //         self::DATABASE
-    //     );
-    //     $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
-    //     $ret = $firestoreSessionHandler->destroy('sessionid');
-    //     $firestoreSessionHandler->close();
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->gapicClient->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE
+        );
+        $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
+        $ret = $firestoreSessionHandler->destroy('sessionid');
+        $firestoreSessionHandler->close();
 
-    //     $this->assertFalse($ret);
-    // }
+        $this->assertFalse($ret);
+    }
 
     public function testDefaultGcDoesNothing()
     {
