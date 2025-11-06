@@ -51,7 +51,7 @@ class Serializer extends ApiCoreSerializer
             },
             'update_time' => function ($v) {
                 return $this->formatTimestampFromApi($v);
-            }
+            },
         ];
         $messageTypeTransformers = [
             // 'google.protobuf.Duration' => function ($v) {
@@ -80,9 +80,9 @@ class Serializer extends ApiCoreSerializer
             // 'timestamp_value' => function ($v) {
             //     return $this->formatTimestampForApi($v);
             // },
-            'commit_time' => function ($v) {
-                return 'AAA';
-            }
+            // 'commit_time' => function ($v) {
+            //     return 'AAA';
+            // }
         ];
         $decodeMessageTypeTransformers = [
             'google.protobuf.Timestamp' => function ($v) {
