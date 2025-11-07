@@ -27,6 +27,12 @@ class ConversationOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.AnalysisOptions analysis = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $analysis = null;
+    /**
+     * Optional. Options for datasources.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.DatasourceOptions datasource = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $datasource = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class ConversationOptions extends \Google\Protobuf\Internal\Message
      *           Optional. Options for chart generation.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\AnalysisOptions $analysis
      *           Optional. Options for analysis.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceOptions $datasource
+     *           Optional. Options for datasources.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +121,42 @@ class ConversationOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\AnalysisOptions::class);
         $this->analysis = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Options for datasources.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.DatasourceOptions datasource = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceOptions|null
+     */
+    public function getDatasource()
+    {
+        return $this->datasource;
+    }
+
+    public function hasDatasource()
+    {
+        return isset($this->datasource);
+    }
+
+    public function clearDatasource()
+    {
+        unset($this->datasource);
+    }
+
+    /**
+     * Optional. Options for datasources.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.DatasourceOptions datasource = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceOptions $var
+     * @return $this
+     */
+    public function setDatasource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceOptions::class);
+        $this->datasource = $var;
 
         return $this;
     }

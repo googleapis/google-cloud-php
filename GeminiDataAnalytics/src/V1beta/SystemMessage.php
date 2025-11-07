@@ -45,6 +45,8 @@ class SystemMessage extends \Google\Protobuf\Internal\Message
      *           A message produced during chart generation.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ErrorMessage $error
      *           An error message.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQueries $example_queries
+     *           Optional. A message containing example queries.
      *     @type int $group_id
      *           Identifies the group that the event belongs to. Similar events are deemed
      *           to be logically relevant to each other and should be shown together in
@@ -238,6 +240,37 @@ class SystemMessage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ErrorMessage::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A message containing example queries.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ExampleQueries example_queries = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQueries|null
+     */
+    public function getExampleQueries()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasExampleQueries()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Optional. A message containing example queries.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ExampleQueries example_queries = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQueries $var
+     * @return $this
+     */
+    public function setExampleQueries($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQueries::class);
+        $this->writeOneof(13, $var);
 
         return $this;
     }

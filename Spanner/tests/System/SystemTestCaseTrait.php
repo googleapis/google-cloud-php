@@ -48,6 +48,27 @@ trait SystemTestCaseTrait
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
 
+        $databaseAdminClientConfig = [
+            'retrySettings' => [
+                'interfaces' => [
+                    'google.spanner.admin.database.v1.DatabaseAdmin' => [
+                        'retryableCodes' => [
+                            'DEADLINE_EXCEEDED',
+                            'UNAVAILABLE',
+                        ],
+                        'methods' => [
+                            'CreateBackup' => [
+                                'timeoutMillis' => 300000,
+                            ],
+                            'RestoreDatabase' => [
+                                'timeoutMillis' => 300000,
+                            ],
+                        ],
+                    ],
+                ],
+            ]
+        ];
+
         $clientConfig = [
             'keyFilePath' => $keyFilePath,
             'cacheItemPool' => self::getCacheItemPool(),
@@ -61,11 +82,13 @@ trait SystemTestCaseTrait
 
             $clientConfig['gapicSpannerClient'] = new SpannerGapicClient($gapicConfig);
             $clientConfig['gapicSpannerDatabaseAdminClient'] =
-                new DatabaseAdminClient($gapicConfig);
+                new DatabaseAdminClient($gapicConfig + $databaseAdminClientConfig);
             $clientConfig['gapicSpannerInstanceAdminClient'] =
                 new InstanceAdminClient($gapicConfig);
 
             echo 'Using Service Address: ' . $serviceAddress . PHP_EOL;
+        } else {
+            $clientConfig['databaseAdminClientConfig'] = $databaseAdminClientConfig;
         }
 
         return self::$client = new SpannerClient($clientConfig);
