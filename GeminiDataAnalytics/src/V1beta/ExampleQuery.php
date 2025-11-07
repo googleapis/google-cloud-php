@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Example of relevant and commonly used SQL query and its corresponding natural
- * language queries optionally present.
+ * language queries optionally present. Currently only used for BigQuery data
+ * sources.
  *
  * Generated from protobuf message <code>google.cloud.geminidataanalytics.v1beta.ExampleQuery</code>
  */

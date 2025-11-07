@@ -39,7 +39,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Returned conversations will match criteria specified within the
      * filter. ListConversations allows filtering by:
-     *  * agent_id
+     *  * agents
      *  * labels
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -79,7 +79,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           Optional. Returned conversations will match criteria specified within the
      *           filter. ListConversations allows filtering by:
-     *            * agent_id
+     *            * agents
      *            * labels
      * }
      */
@@ -175,7 +175,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Returned conversations will match criteria specified within the
      * filter. ListConversations allows filtering by:
-     *  * agent_id
+     *  * agents
      *  * labels
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -189,7 +189,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Returned conversations will match criteria specified within the
      * filter. ListConversations allows filtering by:
-     *  * agent_id
+     *  * agents
      *  * labels
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
