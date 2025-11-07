@@ -199,7 +199,7 @@ trait SnapshotTrait
         $res = [];
         /** @var BatchGetDocumentsResponse $response*/
         foreach ($stream->readAll() as $response) {
-            $document = json_decode($response->serializeToJsonString(), true);
+            $document = $this->serializer->encodeMessage($response);
             $exists = $response->hasFound();
 
             $data = $exists

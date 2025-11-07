@@ -43,6 +43,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class SnapshotTraitTest extends TestCase
 {
     use GenerateProtoTrait;
+    use ServerStreamMockTrait;
     use ProphecyTrait;
 
     const PROJECT = 'example_project';
@@ -217,14 +218,6 @@ class SnapshotTraitTest extends TestCase
     private function getDbName(): string
     {
         return sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
-    }
-
-    private function getServerStreamMock(array $response): ServerStream
-    {
-        $serverStream = $this->prophesize(ServerStream::class);
-        $serverStream->readAll()->willReturn(new ArrayIterator($response));
-
-        return $serverStream->reveal();
     }
 }
 
