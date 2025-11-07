@@ -60,11 +60,11 @@ class WriteStream extends \Google\Protobuf\Internal\Message
      */
     protected $write_mode = 0;
     /**
-     * Immutable. The geographic location where the stream's dataset resides. See
-     * https://cloud.google.com/bigquery/docs/locations for supported
+     * Output only. The geographic location where the stream's dataset resides.
+     * See https://cloud.google.com/bigquery/docs/locations for supported
      * locations.
      *
-     * Generated from protobuf field <code>string location = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string location = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $location = '';
 
@@ -95,8 +95,8 @@ class WriteStream extends \Google\Protobuf\Internal\Message
      *     @type int $write_mode
      *           Immutable. Mode of the stream.
      *     @type string $location
-     *           Immutable. The geographic location where the stream's dataset resides. See
-     *           https://cloud.google.com/bigquery/docs/locations for supported
+     *           Output only. The geographic location where the stream's dataset resides.
+     *           See https://cloud.google.com/bigquery/docs/locations for supported
      *           locations.
      * }
      */
@@ -308,11 +308,11 @@ class WriteStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The geographic location where the stream's dataset resides. See
-     * https://cloud.google.com/bigquery/docs/locations for supported
+     * Output only. The geographic location where the stream's dataset resides.
+     * See https://cloud.google.com/bigquery/docs/locations for supported
      * locations.
      *
-     * Generated from protobuf field <code>string location = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string location = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getLocation()
@@ -321,11 +321,11 @@ class WriteStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The geographic location where the stream's dataset resides. See
-     * https://cloud.google.com/bigquery/docs/locations for supported
+     * Output only. The geographic location where the stream's dataset resides.
+     * See https://cloud.google.com/bigquery/docs/locations for supported
      * locations.
      *
-     * Generated from protobuf field <code>string location = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string location = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
