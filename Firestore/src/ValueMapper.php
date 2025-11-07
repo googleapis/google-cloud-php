@@ -44,16 +44,8 @@ class ValueMapper
     const VALID_FIELD_PATH = '/^[^*~\/[\]]+$/';
     const UNESCAPED_FIELD_NAME = '/^[_a-zA-Z][_a-zA-Z0-9]*$/';
 
-    /**
-     * @var FirestoreClient
-     * @internal
-     */
-    private $gapicClient;
-
-    /**
-     * @var bool
-     */
-    private $returnInt64AsObject;
+    private FirestoreClient $gapicClient;
+    private bool $returnInt64AsObject;
 
     /**
      * @param FirestoreClient $gapicClient A FirestoreClient instance
