@@ -52,6 +52,9 @@ class Serializer extends ApiCoreSerializer
             'update_time' => function ($v) {
                 return $this->formatTimestampFromApi($v);
             },
+            'read_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
         ];
         $messageTypeTransformers = [
             // 'google.protobuf.Duration' => function ($v) {

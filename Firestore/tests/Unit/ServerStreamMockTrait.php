@@ -17,18 +17,16 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
-use Google\ApiCore\Serializer;
-use Google\Protobuf\Internal\Message;
-use InvalidArgumentException;
+use ArrayIterator;
+use Google\ApiCore\ServerStream;
 
-trait GenerateProtoTrait
+trait ServerStreamMockTrait
 {
-    private static function generateProto(string $message, array $data): Message
+    private function getServerStreamMock(array $response): ServerStream
     {
-        /** @var Message */
-        $message = new $message();
+        $serverStream = $this->prophesize(ServerStream::class);
+        $serverStream->readAll()->willReturn(new ArrayIterator($response));
 
-        $serializer = new Serializer();
-        return $serializer->decodeMessage($message, $data);
+        return $serverStream->reveal();
     }
 }
