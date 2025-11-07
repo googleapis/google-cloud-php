@@ -10,8 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Arrow schema and data.
- * Arrow format is an experimental feature only selected for allowlisted
- * customers.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.storage.v1.AppendRowsRequest.ArrowData</code>
  */
