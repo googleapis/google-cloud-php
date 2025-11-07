@@ -346,8 +346,10 @@ final class BigQueryWriteClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCommitWriteStreams(BatchCommitWriteStreamsRequest $request, array $callOptions = []): BatchCommitWriteStreamsResponse
-    {
+    public function batchCommitWriteStreams(
+        BatchCommitWriteStreamsRequest $request,
+        array $callOptions = []
+    ): BatchCommitWriteStreamsResponse {
         return $this->startApiCall('BatchCommitWriteStreams', $request, $callOptions)->wait();
     }
 
@@ -404,8 +406,10 @@ final class BigQueryWriteClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function finalizeWriteStream(FinalizeWriteStreamRequest $request, array $callOptions = []): FinalizeWriteStreamResponse
-    {
+    public function finalizeWriteStream(
+        FinalizeWriteStreamRequest $request,
+        array $callOptions = []
+    ): FinalizeWriteStreamResponse {
         return $this->startApiCall('FinalizeWriteStream', $request, $callOptions)->wait();
     }
 

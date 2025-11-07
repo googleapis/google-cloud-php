@@ -72,6 +72,4 @@ class PicosTimestampPrecision
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PicosTimestampPrecision::class, \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions_PicosTimestampPrecision::class);
 

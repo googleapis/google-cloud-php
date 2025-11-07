@@ -22,6 +22,13 @@ class ArrowSerializationOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowSerializationOptions.CompressionCodec buffer_compression = 2;</code>
      */
     protected $buffer_compression = 0;
+    /**
+     * Optional. Set timestamp precision option. If not set, the default precision
+     * is microseconds.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowSerializationOptions.PicosTimestampPrecision picos_timestamp_precision = 3;</code>
+     */
+    protected $picos_timestamp_precision = 0;
 
     /**
      * Constructor.
@@ -32,6 +39,9 @@ class ArrowSerializationOptions extends \Google\Protobuf\Internal\Message
      *     @type int $buffer_compression
      *           The compression codec to use for Arrow buffers in serialized record
      *           batches.
+     *     @type int $picos_timestamp_precision
+     *           Optional. Set timestamp precision option. If not set, the default precision
+     *           is microseconds.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +73,34 @@ class ArrowSerializationOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions\CompressionCodec::class);
         $this->buffer_compression = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Set timestamp precision option. If not set, the default precision
+     * is microseconds.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowSerializationOptions.PicosTimestampPrecision picos_timestamp_precision = 3;</code>
+     * @return int
+     */
+    public function getPicosTimestampPrecision()
+    {
+        return $this->picos_timestamp_precision;
+    }
+
+    /**
+     * Optional. Set timestamp precision option. If not set, the default precision
+     * is microseconds.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowSerializationOptions.PicosTimestampPrecision picos_timestamp_precision = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPicosTimestampPrecision($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions\PicosTimestampPrecision::class);
+        $this->picos_timestamp_precision = $var;
 
         return $this;
     }
