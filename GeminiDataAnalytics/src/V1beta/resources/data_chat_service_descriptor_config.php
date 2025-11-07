@@ -50,6 +50,18 @@ return [
                     ],
                 ],
             ],
+            'DeleteConversation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\GeminiDataAnalytics\V1beta\Conversation',
