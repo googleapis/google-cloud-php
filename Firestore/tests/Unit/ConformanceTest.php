@@ -30,12 +30,20 @@ use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\PathTrait;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\CommitResponse;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
+use Google\Cloud\Firestore\V1\RunQueryResponse;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator as CompositFilterOperator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\V1\StructuredQuery\UnaryFilter\Operator as UnaryFilterOperator;
 use Google\Cloud\Firestore\ValueMapper;
+use GPBMetadata\Google\Firestore\V1\Query;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Exception\Call\UnexpectedCallException;
@@ -47,19 +55,22 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class ConformanceTest extends TestCase
 {
+    use GenerateProtoTrait;
+    use ServerStreamMockTrait;
     use GrpcTestTrait;
     use PathTrait;
     use ProphecyTrait;
     use TimeTrait;
 
     const SUITE_FILENAME = 'firestore-test-suite.binproto';
+    const PROJECT_ID = 'projectID';
 
     private static $cases = [];
     private static $skipped = [];
 
     private $testTypes = ['get', 'create', 'set', 'update', 'updatePaths', 'delete', 'query'];
     private $client;
-    private $connection;
+    private $gapicClient;
 
     private $excludes = [
         // need mergeFields support
@@ -81,13 +92,12 @@ class ConformanceTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->client = TestHelpers::stub(FirestoreClient::class, [
-            [
-                'projectId' => 'projectID'
-            ]
-        ]);
+        $this->gapicClient = $this->prophesize(GapicFirestoreClient::class);
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->client = new FirestoreClient([
+            'firestoreClient' => $this->gapicClient->reveal(),
+            'projectId' => self::PROJECT_ID
+        ]);
     }
 
     /**
@@ -96,10 +106,15 @@ class ConformanceTest extends TestCase
      */
     public function testGet($test)
     {
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', [$test['request']['name']]))
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) use ($test) {
+                $this->assertEquals($test['request']['name'], $request->getDocuments()[0]);
+                return true;
+            }),
+            Argument::any()
+        )
             ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([[]]));
-        $this->client->___setProperty('connection', $this->connection->reveal());
+            ->willReturn($this->getServerStreamMock([new BatchGetDocumentsResponse()]));
 
         $this->client->document($this->relativeName($test['docRefPath']))->snapshot();
     }
@@ -116,8 +131,10 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
-                ->shouldBeCalled()->willReturn([]);
+            $protoRequest = self::generateProto(CommitRequest::class, $this->injectPbValues($request));
+
+            $this->gapicClient->commit($protoRequest, Argument::any())
+                ->shouldBeCalled()->willReturn(new CommitResponse());
         });
 
         $this->executeAndHandleError($test, function ($test) {
@@ -138,11 +155,11 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
-                ->shouldBeCalled()->willReturn([]);
-        });
+            $protoRequest = self::generateProto(CommitRequest::class, $this->injectPbValues($request));
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+            $this->gapicClient->commit($protoRequest, Argument::any())
+                ->shouldBeCalled()->willReturn(new CommitResponse());
+        });
 
         $this->executeAndHandleError($test, function ($test) {
             $options = [];
@@ -167,8 +184,10 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
-                ->shouldBeCalled()->willReturn([]);
+            $protoRequest = self::generateProto(CommitRequest::class, $this->injectPbValues($request));
+
+            $this->gapicClient->commit($protoRequest, Argument::any())
+                ->shouldBeCalled()->willReturn(new CommitResponse());
         });
 
         $this->executeAndHandleError($test, function ($test) {
@@ -201,8 +220,10 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
-                ->shouldBeCalled()->willReturn([]);
+            $protoRequest = self::generateProto(CommitRequest::class, $this->injectPbValues($request));
+
+            $this->gapicClient->commit($protoRequest, Argument::any())
+                ->shouldBeCalled()->willReturn(new CommitResponse());
         });
 
         $options = $this->formatOptions($test);
@@ -227,13 +248,13 @@ class ConformanceTest extends TestCase
         }
 
         $times = (isset($test['isError']) && $test['isError']) ? 0 : 1;
-        $this->connection->runQuery(new ArrayHasSameValuesToken([
-            'parent' => $this->parentPath($test['collPath']),
-            'structuredQuery' => $query,
-            'retries' => 0
-        ]))->shouldBeCalledTimes($times)->willReturn(new \ArrayIterator([]));
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->runQuery(
+            Argument::that(function (RunQueryRequest $request) use ($test, $query) {
+                $this->assertEquals($this->parentPath($test['collPath']), $request->getParent()) ;
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes($times)->willReturn($this->getServerStreamMock([new RunQueryResponse()]));
 
         $query = $this->client->collection($this->relativeName($test['collPath']));
 
@@ -308,7 +329,7 @@ class ConformanceTest extends TestCase
                             $ref->name()->willReturn($clause[$name]['docSnapshot']['path']);
 
                             $mapper = new ValueMapper(
-                                $this->prophesize(ConnectionInterface::class)->reveal(),
+                                $this->prophesize(GapicFirestoreClient::class)->reveal(),
                                 false
                             );
 
@@ -342,11 +363,9 @@ class ConformanceTest extends TestCase
         if (!$test['isError']) {
             $call($test);
         } else {
-            $this->connection->commit(Argument::any())
+            $this->gapicClient->commit(Argument::any())
                 ->shouldNotBeCalled()->willReturn([]);
         }
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
     private function executeAndHandleError(array $test, callable $executeTest)
