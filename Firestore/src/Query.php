@@ -120,30 +120,11 @@ class Query
         'DESCENDING' => self::DIR_DESCENDING
     ];
 
-    /**
-     * @var GapicFirestoreClient
-     */
     private GapicFirestoreClient $gapicClient;
-
-    /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-
-    /**
-     * @var string
-     */
-    private $parentName;
-
-    /**
-     * @var array
-     */
-    private $query;
-
-    /**
-     * @var bool
-     */
-    private $limitToLast;
+    private ValueMapper $valueMapper;
+    private string $parentName;
+    private array $query;
+    private bool $limitToLast;
     private Serializer $serializer;
     private OptionsValidator $optionsValidator;
 

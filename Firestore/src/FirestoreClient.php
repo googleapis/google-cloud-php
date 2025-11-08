@@ -26,6 +26,7 @@ use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
@@ -91,20 +92,11 @@ class FirestoreClient
 
     const MAX_RETRIES = 5;
 
-    /**
-     * @var string
-     */
-    private $database = '(default)';
-
-    /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-
-    /**
-     * @var GapicFirestoreClient
-     */
+    private string $database = '(default)';
+    private ValueMapper $valueMapper;
     private GapicFirestoreClient $gapicClient;
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
      * Create a Firestore client. Please note that this client requires
@@ -207,6 +199,9 @@ class FirestoreClient
             $this->gapicClient,
             $config['returnInt64AsObject']
         );
+
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
     }
 
     /**

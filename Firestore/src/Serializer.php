@@ -54,6 +54,9 @@ class Serializer extends ApiCoreSerializer
             },
             'read_time' => function ($v) {
                 return $this->formatTimestampFromApi($v);
+            },
+            'create_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
             }
         ];
         $messageTypeTransformers = [

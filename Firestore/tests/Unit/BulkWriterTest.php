@@ -1024,9 +1024,8 @@ class BulkWriterTest extends TestCase
 
         $this->gapicClient->batchWrite(
             Argument::that(function (BatchWriteRequest $request) use ($required) {
-                $serializer = new Serializer();
-                $serialized = $serializer->encodeMessage($request);
-                $this->assertEquals($required, $serialized);
+                $expectedRequest= self::generateProto(BatchWriteRequest::class, $required);
+                $this->assertEquals($expectedRequest, $request);
                 return true;
             }),
             Argument::any()
