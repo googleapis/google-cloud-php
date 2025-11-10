@@ -97,7 +97,7 @@ class SessionCache
             extension_loaded('sysvshm')
                 ? new SysVCacheItemPool()
                 // : new FileSystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/')
-                : new FilesystemAdapter($this->databaseName, 0, sys_get_temp_dir() . '/spanner_cache/')
+                : new FilesystemAdapter($identity['database'], 0, sys_get_temp_dir() . '/spanner_cache/')
         );
         $this->lock = $options['lock'] ?? $this->getDefaultLock($this->cacheKey);
     }
