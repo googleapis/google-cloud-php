@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit\Session;
 
-use Google\Auth\Cache\FileSystemCacheItemPool;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\Session;
@@ -175,14 +174,12 @@ class SessionCacheTest extends TestCase
         // Use mt_rand to ensure the cache key is unique for each test run
         $databaseId = mt_rand();
         $databaseName = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, $databaseId);
-        $cachePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'spannercache';
         $sessionCache = new SessionCache(
             $this->spannerClient->reveal(),
-            $databaseName,
-            ['cacheItemPool' => new FileSystemCacheItemPool($cachePath)],
+            $databaseName
         );
 
-        $process = new Process(['php', __DIR__ . '/lock_test_process.php', $databaseName, $cachePath]);
+        $process = new Process(['php', __DIR__ . '/lock_test_process.php', $databaseName]);
         $process->setTimeout(5);
 
         // Mock fetching the session from the API

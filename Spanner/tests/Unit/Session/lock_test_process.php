@@ -9,13 +9,12 @@ use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 /**
  * Runs a process which is designed to wait while a session is acquired.
  */
-if (count($argv) !== 3) {
-    die('Usage: lock_test_process.php DATABASE_NAME CACHE_PATH' . PHP_EOL);
+if (count($argv) !== 2) {
+    die('Usage: lock_test_process.php DATABASE_NAME' . PHP_EOL);
 }
 
 $spannerAutoload = __DIR__ . '/../../../vendor/autoload.php';
@@ -37,14 +36,13 @@ if (file_exists($spannerAutoload)) {
 
 BypassFinals::enable();
 
-[$_cmd, $databaseName, $cachePath] = $argv;
+[$_cmd, $databaseName] = $argv;
 
-$acquireSession = new class($databaseName, $cachePath) {
+$acquireSession = new class($databaseName) {
     use ProphecyTrait;
 
     public function __construct(
         private string $databaseName,
-        private string $cachePath
     ) {
     }
 
@@ -58,8 +56,7 @@ $acquireSession = new class($databaseName, $cachePath) {
 
         $sessionCache = new SessionCache(
             $spannerClient->reveal(),
-            $this->databaseName,
-            ['cacheItemPool' => new FileSystemCacheItemPool($this->cachePath)]
+            $this->databaseName
         );
 
         return $sessionCache->name();
