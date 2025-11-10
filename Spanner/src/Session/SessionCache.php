@@ -79,7 +79,7 @@ class SessionCache
             throw new RuntimeException('Invalid database name');
         }
 
-        $this->cacheKey = preg_replace(
+        $this->cacheKey = rtrim(preg_replace(
             self::CACHE_KEY_VALIDATION_REGEX,
             '',
             sprintf(
@@ -89,7 +89,7 @@ class SessionCache
                 $identity['database'],
                 $this->databaseRole,
             )
-        );
+        ), '.');
 
         $this->routeToLeader = $options['routeToLeader'] ?? false;
         $this->cacheItemPool = $options['cacheItemPool'] ?? (
