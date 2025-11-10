@@ -126,39 +126,6 @@
 
 </details>
 
-<details><summary>google/shopping-merchant-datasources 2.0.0</summary>
-
-
-
-### ⚠ BREAKING CHANGES
-
-* [ShoppingMerchantDataSources] An existing field `contains_custom_rules` is removed from message `.google.shopping.merchant.datasources.v1.PrimaryProductDataSource` ([#8710](https://github.com/googleapis/google-cloud-php/issues/8710))
-
-### Bug Fixes
-
-* [ShoppingMerchantDataSources] An existing field `contains_custom_rules` is removed from message `.google.shopping.merchant.datasources.v1.PrimaryProductDataSource` ([#8710](https://github.com/googleapis/google-cloud-php/issues/8710)) ([85a5ef2](https://github.com/googleapis/google-cloud-php/commit/85a5ef23a5369648e96a25af7d5d15d83356df75))
-
-</details>
-
-<details><summary>google/cloud-spanner 2.1.0-RC1
-
-</summary>
-
-
-](https://github.com/googleapis/google-cloud-php/compare/v0.308.1...v0.309.0) (2025-11-07)
-
-
-### Features
-
-* [Spanner] Exposing AutoscalingConfig in InstancePartition ([#8699](https://github.com/googleapis/google-cloud-php/issues/8699)) ([d93c6c4](https://github.com/googleapis/google-cloud-php/commit/d93c6c41234a5672a1d4d6fad50659b2266a8521))
-
-
-### Bug Fixes
-
-* **Spanner:** Add back handling of operation metadata/responses ([#8701](https://github.com/googleapis/google-cloud-php/issues/8701)) ([aeed701](https://github.com/googleapis/google-cloud-php/commit/aeed701700d8911079b7aa5a0f00933f5e986ed6))
-
-</details>
-
 <details><summary>google/cloud-sql-admin 1.4.0</summary>
 
 
