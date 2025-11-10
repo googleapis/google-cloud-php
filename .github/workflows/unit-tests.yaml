@@ -49,17 +49,7 @@ jobs:
         timeout_minutes: 10
         max_attempts: 3
         command: composer --no-interaction --no-ansi --no-progress update
-    - if: ${{ matrix.platform == 'windows-latest' }}
-      name: Run Unit Test Suite (Windows)
-      run: |
-        vendor/bin/phpunit -c phpunit.xml.dist
-        if ( "$?" -ne "0" )
-        {
-          echo "*** RETRYING FLAKEY PHPUNIT ON WINDOWS ***"
-          vendor/bin/phpunit -c phpunit.xml.dist
-        }
-    - if: ${{ matrix.platform != 'windows-latest' }}
-      name: Run Unit Test Suite
+    - name: Run Unit Test Suite ${{ matrix.platform != 'windows-latest' || '(Windows)' }}
       run: |
         vendor/bin/phpunit -c phpunit.xml.dist
     - if: ${{ matrix.platform != 'windows-latest' }}
