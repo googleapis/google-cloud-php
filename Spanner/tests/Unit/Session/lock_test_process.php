@@ -12,8 +12,8 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 /**
  * Runs a process which is designed to wait while a session is acquired.
  */
-if (count($argv) !== 2) {
-    die('Usage: lock_test_process.php DATABASE_NAME' . PHP_EOL);
+if (count($argv) !== 3) {
+    die('Usage: lock_test_process.php DATABASE_NAME CACHE_PATH' . PHP_EOL);
 }
 
 if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
@@ -26,10 +26,10 @@ if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
 
 BypassFinals::enable();
 
-$acquireSession = new class($argv[1]) {
+$acquireSession = new class($argv[1], $argv[2]) {
     use ProphecyTrait;
 
-    public function __construct(private string $databaseName)
+    public function __construct(private string $databaseName, private string $cachePath)
     {
     }
 
@@ -45,7 +45,7 @@ $acquireSession = new class($argv[1]) {
         $sessionCache = new SessionCache(
             $spannerClient->reveal(),
             $this->databaseName,
-            ['cacheItemPool' => new FilesystemAdapter(array_pop($parts))]
+            ['cacheItemPool' => new FilesystemAdapter(array_pop($parts), 0, $this->cachePath)]
         );
 
         return $sessionCache->name();

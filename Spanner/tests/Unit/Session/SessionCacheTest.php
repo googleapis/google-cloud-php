@@ -177,13 +177,14 @@ class SessionCacheTest extends TestCase
         // Use mt_rand to ensure the cache key is unique for each test run
         $databaseId = mt_rand();
         $databaseName = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, $databaseId);
+        $cachePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'spannercache';
         $sessionCache = new SessionCache(
             $this->spannerClient->reveal(),
             $databaseName,
-            ['cacheItemPool' => new FilesystemAdapter($databaseId)]
+            ['cacheItemPool' => new FilesystemAdapter($databaseId, 0, $cachePath)]
         );
 
-        $process = new Process(['php', __DIR__ . '/lock_test_process.php', $databaseName]);
+        $process = new Process(['php', __DIR__ . '/lock_test_process.php', $databaseName, $cachePath]);
         $process->setTimeout(5);
 
         // Mock fetching the session from the API
@@ -237,7 +238,7 @@ class SessionCacheTest extends TestCase
 
         // Assert calling the cache a second time will request a new session because it's expired
         $this->assertStringStartsWith($databaseName, $sess1 = $sessionCache->name());
-        $this->assertStringStartsWith($databaseName, $sess2 = $sessionCache->name());
+        $this->assertStringStartsWith($databaseName, $sess2 =   $sessionCache->name());
         $this->assertNotEquals($sess1, $sess2);
     }
 }
