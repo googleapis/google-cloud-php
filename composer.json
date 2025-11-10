@@ -65,7 +65,7 @@
         "ramsey/uuid": "^4.0",
         "google/common-protos": "^4.4",
         "google/gax": "^1.38.0",
-        "google/auth": "^1.42"
+        "google/auth": "dev-dirsep as 1.50.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.6",
