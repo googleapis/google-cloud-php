@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit\Session;
 
+use Google\Auth\Cache\FileSystemCacheItemPool;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\Session;
@@ -26,7 +27,6 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Process\Process;
 
 /**
@@ -73,9 +73,7 @@ class SessionCacheTest extends TestCase
         $session = new SessionCache(
             $this->spannerClient->reveal(),
             $this->databaseName,
-            [
-                'cacheItemPool' => $cacheItemPool->reveal(),
-            ]
+            ['cacheItemPool' => $cacheItemPool->reveal()]
         );
         $name = $session->name();
         $this->assertEquals($this->sessionName, $name);
@@ -177,13 +175,14 @@ class SessionCacheTest extends TestCase
         // Use mt_rand to ensure the cache key is unique for each test run
         $databaseId = mt_rand();
         $databaseName = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, $databaseId);
+        $cachePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'spannercache';
         $sessionCache = new SessionCache(
             $this->spannerClient->reveal(),
             $databaseName,
-            ['cacheItemPool' => new FilesystemAdapter($databaseId)]
+            ['cacheItemPool' => new FileSystemCacheItemPool($cachePath)],
         );
 
-        $process = new Process(['php', __DIR__ . '/lock_test_process.php', $databaseName]);
+        $process = new Process(['php', __DIR__ . '/lock_test_process.php', $databaseName, $cachePath]);
         $process->setTimeout(5);
 
         // Mock fetching the session from the API

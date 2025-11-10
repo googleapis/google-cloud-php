@@ -3,6 +3,8 @@
 namespace Google\Cloud\Spanner\Tests\Unit\Session;
 
 use DG\BypassFinals;
+use Exception;
+use Google\Auth\Cache\FileSystemCacheItemPool;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
@@ -12,25 +14,38 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 /**
  * Runs a process which is designed to wait while a session is acquired.
  */
-if (count($argv) !== 2) {
-    die('Usage: lock_test_process.php DATABASE_NAME' . PHP_EOL);
+if (count($argv) !== 3) {
+    die('Usage: lock_test_process.php DATABASE_NAME CACHE_PATH' . PHP_EOL);
 }
 
-if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
+$spannerAutoload = __DIR__ . '/../../../vendor/autoload.php';
+$googleCloudAutoload = __DIR__ . '/../../../../vendor/autoload.php';
+
+if (file_exists($spannerAutoload) && file_exists($googleCloudAutoload)) {
+    throw new Exception('Both autoloaders exist, please remove one');
+}
+
+if (file_exists($spannerAutoload)) {
     // google/cloud-spanner autoload
-    require __DIR__ . '/../../../vendor/autoload.php';
-} elseif (file_exists(__DIR__ . '/../../../../vendor/autoload.php')) {
+    require $spannerAutoload;
+} elseif (file_exists($googleCloudAutoload)) {
     // google/cloud autoload
-    require __DIR__ . '/../../../../vendor/autoload.php';
+    require $googleCloudAutoload;
+} else {
+    throw new Exception('no autoloader found');
 }
 
 BypassFinals::enable();
 
-$acquireSession = new class($argv[1]) {
+[$_cmd, $databaseName, $cachePath] = $argv;
+
+$acquireSession = new class($databaseName, $cachePath) {
     use ProphecyTrait;
 
-    public function __construct(private string $databaseName)
-    {
+    public function __construct(
+        private string $databaseName,
+        private string $cachePath
+    ) {
     }
 
     public function run(): string
@@ -41,11 +56,10 @@ $acquireSession = new class($argv[1]) {
                 throw new \Exception('createSession called in child process - this shouldn\'t happen');
             });
 
-        $parts = explode('/', $this->databaseName);
         $sessionCache = new SessionCache(
             $spannerClient->reveal(),
             $this->databaseName,
-            ['cacheItemPool' => new FilesystemAdapter(array_pop($parts))]
+            ['cacheItemPool' => new FileSystemCacheItemPool($this->cachePath)]
         );
 
         return $sessionCache->name();

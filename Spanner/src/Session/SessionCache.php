@@ -93,7 +93,7 @@ class SessionCache
 
         $this->routeToLeader = $options['routeToLeader'] ?? false;
         $this->cacheItemPool = $options['cacheItemPool'] ?? (
-            extension_loaded('sysvshm')
+            extension_loaded('sysvshm') && extension_loaded('sysvsem')
                 ? new SysVCacheItemPool()
                 : new FileSystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/')
         );
@@ -207,6 +207,7 @@ class SessionCache
     {
         return [
             'session' => $this->session,
+            'cacheKey' => $this->cacheKey,
             'cacheItemPool' => $this->cacheItemPool,
         ];
     }
