@@ -16,20 +16,6 @@
 
 </details>
 
-<details><summary>google/cloud-spanner 2.0.0-RC1</summary>
-
-
-
-### ⚠ BREAKING CHANGES
-
-* [ShoppingMerchantDataSources] An existing field contains_custom_rules is removed from message .google.shopping.merchant.datasources.v1.PrimaryProductDataSource (https://github.com/googleapis/google-cloud-php/issues/8710)
-
-### Bug Fixes
-
-* [ShoppingMerchantDataSources] An existing field contains_custom_rules is removed from message .google.shopping.merchant.datasources.v1.PrimaryProductDataSource (https://github.com/googleapis/google-cloud-php/issues/8710) ([2bdacdd](https://github.com/googleapis/google-cloud-php/commit/2bdacddf982a36d5fe1099fcf1ef5b3d66a04db3))
-
-</details>
-
 ## 0.309.0
 
 <details><summary>google/cloud-ai-platform 1.44.0</summary>
