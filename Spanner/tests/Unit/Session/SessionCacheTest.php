@@ -64,7 +64,7 @@ class SessionCacheTest extends TestCase
             'create_time' => new Timestamp(['seconds' => time()]),
         ]))->serializeToString());
 
-        $cacheKey = 'session_cache.myawesomeproject.myinstance.mydatabase.';
+        $cacheKey = 'session_cache.myawesomeproject.myinstance.mydatabase';
         $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
         $cacheItemPool->getItem($cacheKey)
             ->shouldBeCalledOnce()
