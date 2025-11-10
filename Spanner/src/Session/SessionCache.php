@@ -31,6 +31,7 @@ use Google\Cloud\Spanner\V1\Session;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use RuntimeException;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 /**
  * Represents and manages a Cloud Spanner Multiplexed Session.
@@ -95,7 +96,8 @@ class SessionCache
         $this->cacheItemPool = $options['cacheItemPool'] ?? (
             extension_loaded('sysvshm')
                 ? new SysVCacheItemPool()
-                : new FileSystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/')
+                // : new FileSystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/')
+                : new FilesystemAdapter($this->databaseName, 0, sys_get_temp_dir() . '/spanner_cache/')
         );
         $this->lock = $options['lock'] ?? $this->getDefaultLock($this->cacheKey);
     }
