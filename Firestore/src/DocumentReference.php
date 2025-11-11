@@ -398,16 +398,7 @@ class DocumentReference
 
             $response = $this->gapicClient->listCollectionIds($request, $callOptions);
 
-            $collectionIds = [];
-
-            /**
-             * @var string $collectionId
-             */
-            foreach ($response->getIterator() as $collectionId) {
-                $collectionIds[] = $collectionId;
-            }
-
-            return ['collectionIds' => $collectionIds];
+            return $this->serializer->encodeMessage($response->getPage()->getResponseObject());
         };
 
         $resultLimit = $this->pluck('resultLimit', $options, false);

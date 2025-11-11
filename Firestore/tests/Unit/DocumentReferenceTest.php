@@ -19,6 +19,7 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 
 use ArrayIterator;
 use DateTime;
+use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -35,6 +36,7 @@ use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Cloud\Firestore\V1\CommitResponse;
 use Google\Cloud\Firestore\V1\Document;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
+use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
 use Google\Cloud\Firestore\V1\Value;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
@@ -281,22 +283,33 @@ class DocumentReferenceTest extends TestCase
     {
         $currentPage = 0;
 
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(ListCollectionIdsResponse::class, [
+                'collectionIds' => ['c', 'd'],
+                'nextPageToken' => 'token'
+            ]));
+
+        $page2 = $this->prophesize(Page::class);
+        $page2->getResponseObject()
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(ListCollectionIdsResponse::class, [
+                'collectionIds' => ['e'],
+            ]));
+
+
         $pagedListResponse = $this->prophesize(PagedListResponse::class);
-        $pagedListResponse->getIterator()
+        $pagedListResponse->getPage()
             ->shouldBeCalled()
-            ->will(function () use (&$currentPage) {
+            ->will(function () use (&$currentPage, $page, $page2) {
                 $currentPage++;
 
                 if ($currentPage == 1) {
-                    return new ArrayIterator([
-                        'collectionIds' => ['c', 'd'],
-                        'nextPageToken' => 'token'
-                    ]);
+                    return $page->reveal();
                 }
 
-                return new ArrayIterator([
-                    'collectionIds' => ['e']
-                ]);
+                return $page2->reveal();
             });
 
         $this->gapicClient->listCollectionIds(
