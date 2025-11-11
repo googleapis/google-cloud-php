@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.310.0
+
+<details><summary>google/shopping-merchant-datasources 1.2.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [ShoppingMerchantDataSources] An existing field contains_custom_rules is removed from message .google.shopping.merchant.datasources.v1.PrimaryProductDataSource (https://github.com/googleapis/google-cloud-php/issues/8710)
+
+### Bug Fixes
+
+* [ShoppingMerchantDataSources] An existing field contains_custom_rules is removed from message .google.shopping.merchant.datasources.v1.PrimaryProductDataSource (https://github.com/googleapis/google-cloud-php/issues/8710) ([2bdacdd](https://github.com/googleapis/google-cloud-php/commit/2bdacddf982a36d5fe1099fcf1ef5b3d66a04db3))
+
+</details>
+
 ## 0.309.0
 
 <details><summary>google/cloud-ai-platform 1.44.0</summary>
@@ -123,39 +139,6 @@
 
 * [SecurityCompliance] add Audit API surface ([#8697](https://github.com/googleapis/google-cloud-php/issues/8697)) ([11e4068](https://github.com/googleapis/google-cloud-php/commit/11e406805efd88dfaf6915239b76bb14c60d758d))
 * [SecurityCompliance] Updated docs for the APIs ([#8706](https://github.com/googleapis/google-cloud-php/issues/8706)) ([29ce3a2](https://github.com/googleapis/google-cloud-php/commit/29ce3a26e3a228df7ba1a0b47c3083abd565be6d))
-
-</details>
-
-<details><summary>google/shopping-merchant-datasources 2.0.0</summary>
-
-
-
-### ⚠ BREAKING CHANGES
-
-* [ShoppingMerchantDataSources] An existing field `contains_custom_rules` is removed from message `.google.shopping.merchant.datasources.v1.PrimaryProductDataSource` ([#8710](https://github.com/googleapis/google-cloud-php/issues/8710))
-
-### Bug Fixes
-
-* [ShoppingMerchantDataSources] An existing field `contains_custom_rules` is removed from message `.google.shopping.merchant.datasources.v1.PrimaryProductDataSource` ([#8710](https://github.com/googleapis/google-cloud-php/issues/8710)) ([85a5ef2](https://github.com/googleapis/google-cloud-php/commit/85a5ef23a5369648e96a25af7d5d15d83356df75))
-
-</details>
-
-<details><summary>google/cloud-spanner 2.1.0-RC1
-
-</summary>
-
-
-](https://github.com/googleapis/google-cloud-php/compare/v0.308.1...v0.309.0) (2025-11-07)
-
-
-### Features
-
-* [Spanner] Exposing AutoscalingConfig in InstancePartition ([#8699](https://github.com/googleapis/google-cloud-php/issues/8699)) ([d93c6c4](https://github.com/googleapis/google-cloud-php/commit/d93c6c41234a5672a1d4d6fad50659b2266a8521))
-
-
-### Bug Fixes
-
-* **Spanner:** Add back handling of operation metadata/responses ([#8701](https://github.com/googleapis/google-cloud-php/issues/8701)) ([aeed701](https://github.com/googleapis/google-cloud-php/commit/aeed701700d8911079b7aa5a0f00933f5e986ed6))
 
 </details>
 
