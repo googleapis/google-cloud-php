@@ -24,6 +24,7 @@ use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
+use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
 
 /**
  * Represents a reference to a Firestore document.
@@ -396,7 +397,17 @@ class DocumentReference
             );
 
             $response = $this->gapicClient->listCollectionIds($request, $callOptions);
-            return iterator_to_array($response->getIterator());
+
+            $collectionIds = [];
+
+            /**
+             * @var string $collectionId
+             */
+            foreach ($response->getIterator() as $collectionId) {
+                $collectionIds[] = $collectionId;
+            }
+
+            return ['collectionIds' => $collectionIds];
         };
 
         $resultLimit = $this->pluck('resultLimit', $options, false);
