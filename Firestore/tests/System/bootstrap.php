@@ -1,5 +1,6 @@
 <?php
 
+use DG\BypassFinals;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Tests\System\FirestoreTestCase;
 
@@ -8,3 +9,9 @@ TestHelpers::generatedSystemTestBootstrap();
 TestHelpers::systemTestShutdown(function () {
     FirestoreTestCase::tearDownFixtures();
 });
+
+BypassFinals::allowPaths([
+    '*/src/V1/Client/*',
+]);
+
+BypassFinals::enable(true);
