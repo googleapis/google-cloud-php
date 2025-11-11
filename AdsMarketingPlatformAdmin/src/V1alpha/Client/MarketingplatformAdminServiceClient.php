@@ -29,9 +29,14 @@ namespace Google\Ads\MarketingPlatform\Admin\V1alpha\Client;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\AnalyticsAccountLink;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\CreateAnalyticsAccountLinkRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\DeleteAnalyticsAccountLinkRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsResponse;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\GetOrganizationRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\ListAnalyticsAccountLinksRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\ListOrganizationsRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\Organization;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\SetPropertyServiceLevelRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\SetPropertyServiceLevelResponse;
 use Google\ApiCore\ApiException;
@@ -62,8 +67,11 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<AnalyticsAccountLink> createAnalyticsAccountLinkAsync(CreateAnalyticsAccountLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteAnalyticsAccountLinkAsync(DeleteAnalyticsAccountLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FindSalesPartnerManagedClientsResponse> findSalesPartnerManagedClientsAsync(FindSalesPartnerManagedClientsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Organization> getOrganizationAsync(GetOrganizationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAnalyticsAccountLinksAsync(ListAnalyticsAccountLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOrganizationsAsync(ListOrganizationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportPropertyUsageResponse> reportPropertyUsageAsync(ReportPropertyUsageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SetPropertyServiceLevelResponse> setPropertyServiceLevelAsync(SetPropertyServiceLevelRequest $request, array $optionalArgs = [])
  */
 final class MarketingplatformAdminServiceClient
@@ -109,7 +117,8 @@ final class MarketingplatformAdminServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/marketingplatform_admin_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/marketingplatform_admin_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -331,8 +340,10 @@ final class MarketingplatformAdminServiceClient
      *
      * @experimental
      */
-    public function createAnalyticsAccountLink(CreateAnalyticsAccountLinkRequest $request, array $callOptions = []): AnalyticsAccountLink
-    {
+    public function createAnalyticsAccountLink(
+        CreateAnalyticsAccountLinkRequest $request,
+        array $callOptions = []
+    ): AnalyticsAccountLink {
         return $this->startApiCall('CreateAnalyticsAccountLink', $request, $callOptions)->wait();
     }
 
@@ -362,9 +373,46 @@ final class MarketingplatformAdminServiceClient
      *
      * @experimental
      */
-    public function deleteAnalyticsAccountLink(DeleteAnalyticsAccountLinkRequest $request, array $callOptions = []): void
-    {
+    public function deleteAnalyticsAccountLink(
+        DeleteAnalyticsAccountLinkRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteAnalyticsAccountLink', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns a list of clients managed by the sales partner organization.
+     *
+     * User needs to be an OrgAdmin/BillingAdmin on the sales partner organization
+     * in order to view the end clients.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::findSalesPartnerManagedClientsAsync()}
+     * .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/find_sales_partner_managed_clients.php
+     *
+     * @param FindSalesPartnerManagedClientsRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FindSalesPartnerManagedClientsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function findSalesPartnerManagedClients(
+        FindSalesPartnerManagedClientsRequest $request,
+        array $callOptions = []
+    ): FindSalesPartnerManagedClientsResponse {
+        return $this->startApiCall('FindSalesPartnerManagedClients', $request, $callOptions)->wait();
     }
 
     /**
@@ -421,9 +469,80 @@ final class MarketingplatformAdminServiceClient
      *
      * @experimental
      */
-    public function listAnalyticsAccountLinks(ListAnalyticsAccountLinksRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAnalyticsAccountLinks(
+        ListAnalyticsAccountLinksRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAnalyticsAccountLinks', $request, $callOptions);
+    }
+
+    /**
+     * Returns a list of organizations that the user has access to.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::listOrganizationsAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/list_organizations.php
+     *
+     * @param ListOrganizationsRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listOrganizations(ListOrganizationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListOrganizations', $request, $callOptions);
+    }
+
+    /**
+     * Get the usage and billing data for properties within the organization for
+     * the specified month.
+     *
+     * Per direct client org, user needs to be OrgAdmin/BillingAdmin on the
+     * organization in order to view the billing and usage data.
+     *
+     * Per sales partner client org, user needs to be OrgAdmin/BillingAdmin on
+     * the sales partner org in order to view the billing and usage data, or
+     * OrgAdmin/BillingAdmin on the sales partner client org in order to view the
+     * usage data only.
+     *
+     * The async variant is
+     * {@see MarketingplatformAdminServiceClient::reportPropertyUsageAsync()} .
+     *
+     * @example samples/V1alpha/MarketingplatformAdminServiceClient/report_property_usage.php
+     *
+     * @param ReportPropertyUsageRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReportPropertyUsageResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function reportPropertyUsage(
+        ReportPropertyUsageRequest $request,
+        array $callOptions = []
+    ): ReportPropertyUsageResponse {
+        return $this->startApiCall('ReportPropertyUsage', $request, $callOptions)->wait();
     }
 
     /**
@@ -450,8 +569,10 @@ final class MarketingplatformAdminServiceClient
      *
      * @experimental
      */
-    public function setPropertyServiceLevel(SetPropertyServiceLevelRequest $request, array $callOptions = []): SetPropertyServiceLevelResponse
-    {
+    public function setPropertyServiceLevel(
+        SetPropertyServiceLevelRequest $request,
+        array $callOptions = []
+    ): SetPropertyServiceLevelResponse {
         return $this->startApiCall('SetPropertyServiceLevel', $request, $callOptions)->wait();
     }
 }
