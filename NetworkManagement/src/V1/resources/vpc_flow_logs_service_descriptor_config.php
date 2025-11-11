@@ -113,6 +113,46 @@ return [
                     ],
                 ],
             ],
+            'QueryOrgVpcFlowLogsConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getVpcFlowLogsConfigs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkManagement\V1\QueryOrgVpcFlowLogsConfigsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ShowEffectiveFlowLogsConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEffectiveFlowLogsConfigs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkManagement\V1\ShowEffectiveFlowLogsConfigsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
@@ -188,6 +228,9 @@ return [
             ],
             'templateMap' => [
                 'location' => 'projects/{project}/locations/{location}',
+                'organizationLocation' => 'organizations/{organization}/locations/{location}',
+                'organizationLocationVpcFlowLogsConfig' => 'organizations/{organization}/locations/{location}/vpcFlowLogsConfigs/{vpc_flow_logs_config}',
+                'projectLocationVpcFlowLogsConfig' => 'projects/{project}/locations/{location}/vpcFlowLogsConfigs/{vpc_flow_logs_config}',
                 'vpcFlowLogsConfig' => 'projects/{project}/locations/{location}/vpcFlowLogsConfigs/{vpc_flow_logs_config}',
             ],
         ],

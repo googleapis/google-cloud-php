@@ -21,6 +21,12 @@ class TextMessage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string parts = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $parts;
+    /**
+     * Optional. The type of the text message.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.TextMessage.TextType text_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $text_type = 0;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class TextMessage extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $parts
      *           Optional. The parts of the message.
+     *     @type int $text_type
+     *           Optional. The type of the text message.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,32 @@ class TextMessage extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->parts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The type of the text message.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.TextMessage.TextType text_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getTextType()
+    {
+        return $this->text_type;
+    }
+
+    /**
+     * Optional. The type of the text message.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.TextMessage.TextType text_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTextType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GeminiDataAnalytics\V1beta\TextMessage\TextType::class);
+        $this->text_type = $var;
 
         return $this;
     }

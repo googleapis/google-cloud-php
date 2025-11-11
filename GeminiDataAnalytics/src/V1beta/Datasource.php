@@ -21,6 +21,16 @@ class Datasource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Schema schema = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $schema = null;
+    /**
+     * Optional. A struct representation of the schema.
+     * This is populated for datasources with schemas that cannot be
+     * fully represented by the strongly-typed `schema` field.
+     * For Looker datasources, this maps to the LookmlModelExplore type:
+     * https://cloud.google.com/looker/docs/reference/looker-api/latest/types/LookmlModelExplore
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct struct_schema = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $struct_schema = null;
     protected $reference;
 
     /**
@@ -37,6 +47,12 @@ class Datasource extends \Google\Protobuf\Internal\Message
      *           A reference to a Looker explore.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Schema $schema
      *           Optional. The schema of the datasource.
+     *     @type \Google\Protobuf\Struct $struct_schema
+     *           Optional. A struct representation of the schema.
+     *           This is populated for datasources with schemas that cannot be
+     *           fully represented by the strongly-typed `schema` field.
+     *           For Looker datasources, this maps to the LookmlModelExplore type:
+     *           https://cloud.google.com/looker/docs/reference/looker-api/latest/types/LookmlModelExplore
      * }
      */
     public function __construct($data = NULL) {
@@ -169,6 +185,50 @@ class Datasource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\Schema::class);
         $this->schema = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A struct representation of the schema.
+     * This is populated for datasources with schemas that cannot be
+     * fully represented by the strongly-typed `schema` field.
+     * For Looker datasources, this maps to the LookmlModelExplore type:
+     * https://cloud.google.com/looker/docs/reference/looker-api/latest/types/LookmlModelExplore
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct struct_schema = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getStructSchema()
+    {
+        return $this->struct_schema;
+    }
+
+    public function hasStructSchema()
+    {
+        return isset($this->struct_schema);
+    }
+
+    public function clearStructSchema()
+    {
+        unset($this->struct_schema);
+    }
+
+    /**
+     * Optional. A struct representation of the schema.
+     * This is populated for datasources with schemas that cannot be
+     * fully represented by the strongly-typed `schema` field.
+     * For Looker datasources, this maps to the LookmlModelExplore type:
+     * https://cloud.google.com/looker/docs/reference/looker-api/latest/types/LookmlModelExplore
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct struct_schema = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setStructSchema($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->struct_schema = $var;
 
         return $this;
     }

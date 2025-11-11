@@ -36,6 +36,16 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "QueryOrgVpcFlowLogsConfigs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ShowEffectiveFlowLogsConfigs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "UpdateVpcFlowLogsConfig": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",

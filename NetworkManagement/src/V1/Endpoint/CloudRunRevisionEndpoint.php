@@ -19,7 +19,7 @@ class CloudRunRevisionEndpoint extends \Google\Protobuf\Internal\Message
      * A [Cloud Run](https://cloud.google.com/run)
      * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
      * URI. The format is:
-     * `projects/{project}/locations/{location}/revisions/{revision}`
+     * projects/{project}/locations/{location}/revisions/{revision}
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
@@ -27,7 +27,7 @@ class CloudRunRevisionEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The URI of the Cloud Run service that the revision belongs
      * to. The format is:
-     * `projects/{project}/locations/{location}/services/{service}`
+     * projects/{project}/locations/{location}/services/{service}
      *
      * Generated from protobuf field <code>string service_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -43,11 +43,11 @@ class CloudRunRevisionEndpoint extends \Google\Protobuf\Internal\Message
      *           A [Cloud Run](https://cloud.google.com/run)
      *           [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
      *           URI. The format is:
-     *           `projects/{project}/locations/{location}/revisions/{revision}`
+     *           projects/{project}/locations/{location}/revisions/{revision}
      *     @type string $service_uri
      *           Output only. The URI of the Cloud Run service that the revision belongs
      *           to. The format is:
-     *           `projects/{project}/locations/{location}/services/{service}`
+     *           projects/{project}/locations/{location}/services/{service}
      * }
      */
     public function __construct($data = NULL) {
@@ -59,7 +59,7 @@ class CloudRunRevisionEndpoint extends \Google\Protobuf\Internal\Message
      * A [Cloud Run](https://cloud.google.com/run)
      * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
      * URI. The format is:
-     * `projects/{project}/locations/{location}/revisions/{revision}`
+     * projects/{project}/locations/{location}/revisions/{revision}
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @return string
@@ -73,7 +73,7 @@ class CloudRunRevisionEndpoint extends \Google\Protobuf\Internal\Message
      * A [Cloud Run](https://cloud.google.com/run)
      * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
      * URI. The format is:
-     * `projects/{project}/locations/{location}/revisions/{revision}`
+     * projects/{project}/locations/{location}/revisions/{revision}
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @param string $var
@@ -90,7 +90,7 @@ class CloudRunRevisionEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The URI of the Cloud Run service that the revision belongs
      * to. The format is:
-     * `projects/{project}/locations/{location}/services/{service}`
+     * projects/{project}/locations/{location}/services/{service}
      *
      * Generated from protobuf field <code>string service_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -103,7 +103,7 @@ class CloudRunRevisionEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The URI of the Cloud Run service that the revision belongs
      * to. The format is:
-     * `projects/{project}/locations/{location}/services/{service}`
+     * projects/{project}/locations/{location}/services/{service}
      *
      * Generated from protobuf field <code>string service_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

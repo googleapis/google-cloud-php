@@ -208,12 +208,19 @@ class Cause
      */
     const ROUTE_CONFIG_NOT_FOUND = 27;
     /**
-     * Aborted because a PSC endpoint selection for the Google-managed service
+     * Aborted because PSC endpoint selection for the Google-managed service
      * is ambiguous (several PSC endpoints satisfy test input).
      *
      * Generated from protobuf enum <code>GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT = 19;</code>
      */
     const GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT = 19;
+    /**
+     * Aborted because endpoint selection for the Google-managed service is
+     * ambiguous (several endpoints satisfy test input).
+     *
+     * Generated from protobuf enum <code>GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT = 39;</code>
+     */
+    const GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT = 39;
     /**
      * Aborted because tests with a PSC-based Cloud SQL instance as a source are
      * not supported.
@@ -268,6 +275,13 @@ class Cause
      * Generated from protobuf enum <code>NO_SERVERLESS_IP_RANGES = 37;</code>
      */
     const NO_SERVERLESS_IP_RANGES = 37;
+    /**
+     * Aborted because the used protocol is not supported for the used IP
+     * version.
+     *
+     * Generated from protobuf enum <code>IP_VERSION_PROTOCOL_MISMATCH = 40;</code>
+     */
+    const IP_VERSION_PROTOCOL_MISMATCH = 40;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -299,6 +313,7 @@ class Cause
         self::FIREWALL_CONFIG_NOT_FOUND => 'FIREWALL_CONFIG_NOT_FOUND',
         self::ROUTE_CONFIG_NOT_FOUND => 'ROUTE_CONFIG_NOT_FOUND',
         self::GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT => 'GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT',
+        self::GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT => 'GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT',
         self::SOURCE_PSC_CLOUD_SQL_UNSUPPORTED => 'SOURCE_PSC_CLOUD_SQL_UNSUPPORTED',
         self::SOURCE_REDIS_CLUSTER_UNSUPPORTED => 'SOURCE_REDIS_CLUSTER_UNSUPPORTED',
         self::SOURCE_REDIS_INSTANCE_UNSUPPORTED => 'SOURCE_REDIS_INSTANCE_UNSUPPORTED',
@@ -307,6 +322,7 @@ class Cause
         self::UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT => 'UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT',
         self::UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG => 'UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG',
         self::NO_SERVERLESS_IP_RANGES => 'NO_SERVERLESS_IP_RANGES',
+        self::IP_VERSION_PROTOCOL_MISMATCH => 'IP_VERSION_PROTOCOL_MISMATCH',
     ];
 
     public static function name($value)

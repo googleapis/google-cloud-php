@@ -32,8 +32,14 @@ use Google\Rpc\Status;
 /**
  * Deletes a specific `VpcFlowLogsConfig`.
  *
- * @param string $formattedName `VpcFlowLogsConfig` resource name using the form:
- *                              `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`
+ * @param string $formattedName The resource name of the VpcFlowLogsConfig,
+ *                              in one of the following formats:
+ *
+ *                              - For a project-level resource:
+ *                              `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+ *
+ *                              - For an organization-level resource:
+ *                              `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
  *                              Please see {@see VpcFlowLogsServiceClient::vpcFlowLogsConfigName()} for help formatting this field.
  */
 function delete_vpc_flow_logs_config_sample(string $formattedName): void

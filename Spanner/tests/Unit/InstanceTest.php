@@ -112,7 +112,7 @@ class InstanceTest extends TestCase
             'create_time' => new Timestamp(['seconds' => time()]),
         ]))->serializeToString());
 
-        $cacheKey = 'session_cache.testproject.instancename.databasename.';
+        $cacheKey = 'session_cache.testproject.instancename.databasename';
         $this->cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
         $this->cacheItemPool->getItem($cacheKey)
             ->willReturn($cacheItem->reveal());

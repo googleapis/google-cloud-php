@@ -77,7 +77,8 @@ final class SqlInstanceNamesServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/sql_instance_names_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/sql_instance_names_service_rest_client_config.php',
                 ],
             ],
         ];

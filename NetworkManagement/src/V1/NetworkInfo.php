@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * For display only. Metadata associated with a Compute Engine network.
- * Next ID: 7
  *
  * Generated from protobuf message <code>google.cloud.networkmanagement.v1.NetworkInfo</code>
  */

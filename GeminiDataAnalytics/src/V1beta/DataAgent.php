@@ -22,7 +22,7 @@ class DataAgent extends \Google\Protobuf\Internal\Message
      * `{data_agent}` is the resource id and should be 63 characters or less and
      * must match the format described in
      * https://google.aip.dev/122#resource-id-segments
-     * Example: `projects/1234567890/locations/us-central1/dataAgents/my-agent`.
+     * Example: `projects/1234567890/locations/global/dataAgents/my-agent`.
      * It is recommended to skip setting this field during agent creation as it
      * will be inferred automatically and overwritten with the
      * {parent}/dataAgents/{data_agent_id}.
@@ -98,7 +98,7 @@ class DataAgent extends \Google\Protobuf\Internal\Message
      *           `{data_agent}` is the resource id and should be 63 characters or less and
      *           must match the format described in
      *           https://google.aip.dev/122#resource-id-segments
-     *           Example: `projects/1234567890/locations/us-central1/dataAgents/my-agent`.
+     *           Example: `projects/1234567890/locations/global/dataAgents/my-agent`.
      *           It is recommended to skip setting this field during agent creation as it
      *           will be inferred automatically and overwritten with the
      *           {parent}/dataAgents/{data_agent_id}.
@@ -170,7 +170,7 @@ class DataAgent extends \Google\Protobuf\Internal\Message
      * `{data_agent}` is the resource id and should be 63 characters or less and
      * must match the format described in
      * https://google.aip.dev/122#resource-id-segments
-     * Example: `projects/1234567890/locations/us-central1/dataAgents/my-agent`.
+     * Example: `projects/1234567890/locations/global/dataAgents/my-agent`.
      * It is recommended to skip setting this field during agent creation as it
      * will be inferred automatically and overwritten with the
      * {parent}/dataAgents/{data_agent_id}.
@@ -190,7 +190,7 @@ class DataAgent extends \Google\Protobuf\Internal\Message
      * `{data_agent}` is the resource id and should be 63 characters or less and
      * must match the format described in
      * https://google.aip.dev/122#resource-id-segments
-     * Example: `projects/1234567890/locations/us-central1/dataAgents/my-agent`.
+     * Example: `projects/1234567890/locations/global/dataAgents/my-agent`.
      * It is recommended to skip setting this field during agent creation as it
      * will be inferred automatically and overwritten with the
      * {parent}/dataAgents/{data_agent_id}.

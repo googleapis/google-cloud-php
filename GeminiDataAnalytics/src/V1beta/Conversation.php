@@ -22,7 +22,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * and must match the format described in
      * https://google.aip.dev/122#resource-id-segments
      * Example:
-     * `projects/1234567890/locations/us-central1/conversations/my-conversation`.
+     * `projects/1234567890/locations/global/conversations/my-conversation`.
      * It is recommended to skip setting this field during conversation creation
      * as it will be inferred automatically and overwritten with the
      * {parent}/conversations/{conversation_id}.
@@ -73,7 +73,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           and must match the format described in
      *           https://google.aip.dev/122#resource-id-segments
      *           Example:
-     *           `projects/1234567890/locations/us-central1/conversations/my-conversation`.
+     *           `projects/1234567890/locations/global/conversations/my-conversation`.
      *           It is recommended to skip setting this field during conversation creation
      *           as it will be inferred automatically and overwritten with the
      *           {parent}/conversations/{conversation_id}.
@@ -104,7 +104,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * and must match the format described in
      * https://google.aip.dev/122#resource-id-segments
      * Example:
-     * `projects/1234567890/locations/us-central1/conversations/my-conversation`.
+     * `projects/1234567890/locations/global/conversations/my-conversation`.
      * It is recommended to skip setting this field during conversation creation
      * as it will be inferred automatically and overwritten with the
      * {parent}/conversations/{conversation_id}.
@@ -124,7 +124,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * and must match the format described in
      * https://google.aip.dev/122#resource-id-segments
      * Example:
-     * `projects/1234567890/locations/us-central1/conversations/my-conversation`.
+     * `projects/1234567890/locations/global/conversations/my-conversation`.
      * It is recommended to skip setting this field during conversation creation
      * as it will be inferred automatically and overwritten with the
      * {parent}/conversations/{conversation_id}.

@@ -53,6 +53,11 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DataAgentContext $data_agent_context
      *           Optional. Context for the chat request. Use this to chat with an Agent
      *           statelessly, without managed conversation persistence.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ClientManagedResourceContext $client_managed_resource_context
+     *           Optional. Context with client managed resources.
+     *           Some clients may not use GDA managed resources including
+     *           conversations and agents, instead they create and manage their own
+     *           conversations and agents resources.
      *     @type string $project
      *           Optional. The Google Cloud project to be used for quota and billing.
      *     @type string $parent
@@ -164,6 +169,43 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\DataAgentContext::class);
         $this->writeOneof(104, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Context with client managed resources.
+     * Some clients may not use GDA managed resources including
+     * conversations and agents, instead they create and manage their own
+     * conversations and agents resources.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClientManagedResourceContext client_managed_resource_context = 105 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\ClientManagedResourceContext|null
+     */
+    public function getClientManagedResourceContext()
+    {
+        return $this->readOneof(105);
+    }
+
+    public function hasClientManagedResourceContext()
+    {
+        return $this->hasOneof(105);
+    }
+
+    /**
+     * Optional. Context with client managed resources.
+     * Some clients may not use GDA managed resources including
+     * conversations and agents, instead they create and manage their own
+     * conversations and agents resources.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClientManagedResourceContext client_managed_resource_context = 105 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ClientManagedResourceContext $var
+     * @return $this
+     */
+    public function setClientManagedResourceContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ClientManagedResourceContext::class);
+        $this->writeOneof(105, $var);
 
         return $this;
     }

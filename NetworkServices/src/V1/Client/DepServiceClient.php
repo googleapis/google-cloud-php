@@ -45,20 +45,26 @@ use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\NetworkServices\V1\AuthzExtension;
 use Google\Cloud\NetworkServices\V1\CreateAuthzExtensionRequest;
+use Google\Cloud\NetworkServices\V1\CreateLbEdgeExtensionRequest;
 use Google\Cloud\NetworkServices\V1\CreateLbRouteExtensionRequest;
 use Google\Cloud\NetworkServices\V1\CreateLbTrafficExtensionRequest;
 use Google\Cloud\NetworkServices\V1\DeleteAuthzExtensionRequest;
+use Google\Cloud\NetworkServices\V1\DeleteLbEdgeExtensionRequest;
 use Google\Cloud\NetworkServices\V1\DeleteLbRouteExtensionRequest;
 use Google\Cloud\NetworkServices\V1\DeleteLbTrafficExtensionRequest;
 use Google\Cloud\NetworkServices\V1\GetAuthzExtensionRequest;
+use Google\Cloud\NetworkServices\V1\GetLbEdgeExtensionRequest;
 use Google\Cloud\NetworkServices\V1\GetLbRouteExtensionRequest;
 use Google\Cloud\NetworkServices\V1\GetLbTrafficExtensionRequest;
+use Google\Cloud\NetworkServices\V1\LbEdgeExtension;
 use Google\Cloud\NetworkServices\V1\LbRouteExtension;
 use Google\Cloud\NetworkServices\V1\LbTrafficExtension;
 use Google\Cloud\NetworkServices\V1\ListAuthzExtensionsRequest;
+use Google\Cloud\NetworkServices\V1\ListLbEdgeExtensionsRequest;
 use Google\Cloud\NetworkServices\V1\ListLbRouteExtensionsRequest;
 use Google\Cloud\NetworkServices\V1\ListLbTrafficExtensionsRequest;
 use Google\Cloud\NetworkServices\V1\UpdateAuthzExtensionRequest;
+use Google\Cloud\NetworkServices\V1\UpdateLbEdgeExtensionRequest;
 use Google\Cloud\NetworkServices\V1\UpdateLbRouteExtensionRequest;
 use Google\Cloud\NetworkServices\V1\UpdateLbTrafficExtensionRequest;
 use Google\LongRunning\Client\OperationsClient;
@@ -78,18 +84,23 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> createAuthzExtensionAsync(CreateAuthzExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createLbEdgeExtensionAsync(CreateLbEdgeExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createLbRouteExtensionAsync(CreateLbRouteExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createLbTrafficExtensionAsync(CreateLbTrafficExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAuthzExtensionAsync(DeleteAuthzExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteLbEdgeExtensionAsync(DeleteLbEdgeExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteLbRouteExtensionAsync(DeleteLbRouteExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteLbTrafficExtensionAsync(DeleteLbTrafficExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AuthzExtension> getAuthzExtensionAsync(GetAuthzExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LbEdgeExtension> getLbEdgeExtensionAsync(GetLbEdgeExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<LbRouteExtension> getLbRouteExtensionAsync(GetLbRouteExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<LbTrafficExtension> getLbTrafficExtensionAsync(GetLbTrafficExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAuthzExtensionsAsync(ListAuthzExtensionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLbEdgeExtensionsAsync(ListLbEdgeExtensionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLbRouteExtensionsAsync(ListLbRouteExtensionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLbTrafficExtensionsAsync(ListLbTrafficExtensionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAuthzExtensionAsync(UpdateAuthzExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateLbEdgeExtensionAsync(UpdateLbEdgeExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateLbRouteExtensionAsync(UpdateLbRouteExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateLbTrafficExtensionAsync(UpdateLbTrafficExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -123,9 +134,7 @@ final class DepServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -217,6 +226,25 @@ final class DepServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * lb_edge_extension resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $lbEdgeExtension
+     *
+     * @return string The formatted lb_edge_extension resource.
+     */
+    public static function lbEdgeExtensionName(string $project, string $location, string $lbEdgeExtension): string
+    {
+        return self::getPathTemplate('lbEdgeExtension')->render([
+            'project' => $project,
+            'location' => $location,
+            'lb_edge_extension' => $lbEdgeExtension,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * lb_route_extension resource.
      *
      * @param string $project
@@ -275,6 +303,7 @@ final class DepServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - authzExtension: projects/{project}/locations/{location}/authzExtensions/{authz_extension}
+     * - lbEdgeExtension: projects/{project}/locations/{location}/lbEdgeExtensions/{lb_edge_extension}
      * - lbRouteExtension: projects/{project}/locations/{location}/lbRouteExtensions/{lb_route_extension}
      * - lbTrafficExtension: projects/{project}/locations/{location}/lbTrafficExtensions/{lb_traffic_extension}
      * - location: projects/{project}/locations/{location}
@@ -405,9 +434,39 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAuthzExtension(CreateAuthzExtensionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createAuthzExtension(
+        CreateAuthzExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateAuthzExtension', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new `LbEdgeExtension` resource in a given project and location.
+     *
+     * The async variant is {@see DepServiceClient::createLbEdgeExtensionAsync()} .
+     *
+     * @example samples/V1/DepServiceClient/create_lb_edge_extension.php
+     *
+     * @param CreateLbEdgeExtensionRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<LbEdgeExtension>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createLbEdgeExtension(
+        CreateLbEdgeExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateLbEdgeExtension', $request, $callOptions)->wait();
     }
 
     /**
@@ -431,8 +490,10 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createLbRouteExtension(CreateLbRouteExtensionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createLbRouteExtension(
+        CreateLbRouteExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateLbRouteExtension', $request, $callOptions)->wait();
     }
 
@@ -458,8 +519,10 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createLbTrafficExtension(CreateLbTrafficExtensionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createLbTrafficExtension(
+        CreateLbTrafficExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateLbTrafficExtension', $request, $callOptions)->wait();
     }
 
@@ -484,9 +547,39 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAuthzExtension(DeleteAuthzExtensionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteAuthzExtension(
+        DeleteAuthzExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteAuthzExtension', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes the specified `LbEdgeExtension` resource.
+     *
+     * The async variant is {@see DepServiceClient::deleteLbEdgeExtensionAsync()} .
+     *
+     * @example samples/V1/DepServiceClient/delete_lb_edge_extension.php
+     *
+     * @param DeleteLbEdgeExtensionRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteLbEdgeExtension(
+        DeleteLbEdgeExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteLbEdgeExtension', $request, $callOptions)->wait();
     }
 
     /**
@@ -510,8 +603,10 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteLbRouteExtension(DeleteLbRouteExtensionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteLbRouteExtension(
+        DeleteLbRouteExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteLbRouteExtension', $request, $callOptions)->wait();
     }
 
@@ -536,8 +631,10 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteLbTrafficExtension(DeleteLbTrafficExtensionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteLbTrafficExtension(
+        DeleteLbTrafficExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteLbTrafficExtension', $request, $callOptions)->wait();
     }
 
@@ -565,6 +662,32 @@ final class DepServiceClient
     public function getAuthzExtension(GetAuthzExtensionRequest $request, array $callOptions = []): AuthzExtension
     {
         return $this->startApiCall('GetAuthzExtension', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of the specified `LbEdgeExtension` resource.
+     *
+     * The async variant is {@see DepServiceClient::getLbEdgeExtensionAsync()} .
+     *
+     * @example samples/V1/DepServiceClient/get_lb_edge_extension.php
+     *
+     * @param GetLbEdgeExtensionRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return LbEdgeExtension
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getLbEdgeExtension(GetLbEdgeExtensionRequest $request, array $callOptions = []): LbEdgeExtension
+    {
+        return $this->startApiCall('GetLbEdgeExtension', $request, $callOptions)->wait();
     }
 
     /**
@@ -614,8 +737,10 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getLbTrafficExtension(GetLbTrafficExtensionRequest $request, array $callOptions = []): LbTrafficExtension
-    {
+    public function getLbTrafficExtension(
+        GetLbTrafficExtensionRequest $request,
+        array $callOptions = []
+    ): LbTrafficExtension {
         return $this->startApiCall('GetLbTrafficExtension', $request, $callOptions)->wait();
     }
 
@@ -646,6 +771,34 @@ final class DepServiceClient
     }
 
     /**
+     * Lists `LbEdgeExtension` resources in a given project and location.
+     *
+     * The async variant is {@see DepServiceClient::listLbEdgeExtensionsAsync()} .
+     *
+     * @example samples/V1/DepServiceClient/list_lb_edge_extensions.php
+     *
+     * @param ListLbEdgeExtensionsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listLbEdgeExtensions(
+        ListLbEdgeExtensionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListLbEdgeExtensions', $request, $callOptions);
+    }
+
+    /**
      * Lists `LbRouteExtension` resources in a given project and location.
      *
      * The async variant is {@see DepServiceClient::listLbRouteExtensionsAsync()} .
@@ -666,8 +819,10 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listLbRouteExtensions(ListLbRouteExtensionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listLbRouteExtensions(
+        ListLbRouteExtensionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListLbRouteExtensions', $request, $callOptions);
     }
 
@@ -692,8 +847,10 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listLbTrafficExtensions(ListLbTrafficExtensionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listLbTrafficExtensions(
+        ListLbTrafficExtensionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListLbTrafficExtensions', $request, $callOptions);
     }
 
@@ -719,9 +876,39 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAuthzExtension(UpdateAuthzExtensionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateAuthzExtension(
+        UpdateAuthzExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateAuthzExtension', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of the specified `LbEdgeExtension` resource.
+     *
+     * The async variant is {@see DepServiceClient::updateLbEdgeExtensionAsync()} .
+     *
+     * @example samples/V1/DepServiceClient/update_lb_edge_extension.php
+     *
+     * @param UpdateLbEdgeExtensionRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<LbEdgeExtension>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateLbEdgeExtension(
+        UpdateLbEdgeExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateLbEdgeExtension', $request, $callOptions)->wait();
     }
 
     /**
@@ -745,8 +932,10 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateLbRouteExtension(UpdateLbRouteExtensionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateLbRouteExtension(
+        UpdateLbRouteExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateLbRouteExtension', $request, $callOptions)->wait();
     }
 
@@ -771,8 +960,10 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateLbTrafficExtension(UpdateLbTrafficExtensionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateLbTrafficExtension(
+        UpdateLbTrafficExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateLbTrafficExtension', $request, $callOptions)->wait();
     }
 
@@ -912,8 +1103,10 @@ final class DepServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

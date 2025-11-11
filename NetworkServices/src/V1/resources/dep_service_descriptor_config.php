@@ -42,6 +42,25 @@ return [
                     ],
                 ],
             ],
+            'CreateLbEdgeExtension' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkServices\V1\LbEdgeExtension',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateLbRouteExtension' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetworkServices\V1\LbRouteExtension',
@@ -81,6 +100,25 @@ return [
                 ],
             ],
             'DeleteAuthzExtension' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteLbEdgeExtension' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
@@ -157,6 +195,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateLbEdgeExtension' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkServices\V1\LbEdgeExtension',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'lb_edge_extension.name',
+                        'fieldAccessors' => [
+                            'getLbEdgeExtension',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateLbRouteExtension' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetworkServices\V1\LbRouteExtension',
@@ -209,6 +267,18 @@ return [
                     ],
                 ],
             ],
+            'GetLbEdgeExtension' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkServices\V1\LbEdgeExtension',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetLbRouteExtension' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\NetworkServices\V1\LbRouteExtension',
@@ -244,6 +314,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\NetworkServices\V1\ListAuthzExtensionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLbEdgeExtensions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getLbEdgeExtensions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkServices\V1\ListLbEdgeExtensionsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -368,6 +458,7 @@ return [
             ],
             'templateMap' => [
                 'authzExtension' => 'projects/{project}/locations/{location}/authzExtensions/{authz_extension}',
+                'lbEdgeExtension' => 'projects/{project}/locations/{location}/lbEdgeExtensions/{lb_edge_extension}',
                 'lbRouteExtension' => 'projects/{project}/locations/{location}/lbRouteExtensions/{lb_route_extension}',
                 'lbTrafficExtension' => 'projects/{project}/locations/{location}/lbTrafficExtensions/{lb_traffic_extension}',
                 'location' => 'projects/{project}/locations/{location}',

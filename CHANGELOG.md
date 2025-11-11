@@ -1,5 +1,165 @@
 # Changelog
 
+## 0.310.1
+
+<details><summary>google/cloud-spanner 2.0.0</summary>
+
+
+
+</details>
+
+## 0.310.0
+
+<details><summary>google/shopping-merchant-datasources 1.2.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [ShoppingMerchantDataSources] An existing field contains_custom_rules is removed from message .google.shopping.merchant.datasources.v1.PrimaryProductDataSource (https://github.com/googleapis/google-cloud-php/issues/8710)
+
+### Bug Fixes
+
+* [ShoppingMerchantDataSources] An existing field contains_custom_rules is removed from message .google.shopping.merchant.datasources.v1.PrimaryProductDataSource (https://github.com/googleapis/google-cloud-php/issues/8710) ([2bdacdd](https://github.com/googleapis/google-cloud-php/commit/2bdacddf982a36d5fe1099fcf1ef5b3d66a04db3))
+
+</details>
+
+## 0.309.0
+
+<details><summary>google/cloud-ai-platform 1.44.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add new fields `SUCCESSFULLY_DEPLOYED` and `FAILED_TO_DEPLOY` to `DeploymentStage` ([#8712](https://github.com/googleapis/google-cloud-php/issues/8712)) ([16dad27](https://github.com/googleapis/google-cloud-php/commit/16dad27c1496761e187c25b770a2241cf9623c07))
+
+
+### Bug Fixes
+
+* [AiPlatform] updating `bigtable_metadata` field name in `FeatureOnlineStore` ([#8691](https://github.com/googleapis/google-cloud-php/issues/8691)) ([49efb9a](https://github.com/googleapis/google-cloud-php/commit/49efb9a5f31c0e082db4e042d963bb3e9ae10830))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.9.0</summary>
+
+
+
+### Features
+
+* [BackupDr] Adding `FetchBackupsForResourceType` API ([#8714](https://github.com/googleapis/google-cloud-php/issues/8714)) ([d439b4e](https://github.com/googleapis/google-cloud-php/commit/d439b4ee331c5d4a52884fb4b0bf7ec0c8c7463d))
+* [BackupDr] Adding `unreachable` field to `ListDataSourceReferences` API ([#8717](https://github.com/googleapis/google-cloud-php/issues/8717)) ([4176187](https://github.com/googleapis/google-cloud-php/commit/4176187ab18614f878d81d68caa12168ad229ff0))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.34.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 1.5.0</summary>
+
+
+
+### Features
+
+* [BigQueryAnalyticsHub] add Stored Procedure Sharing support for analyticshub listings ([#8715](https://github.com/googleapis/google-cloud-php/issues/8715)) ([a4ef06b](https://github.com/googleapis/google-cloud-php/commit/a4ef06b67800d8952c3907c7856d02b8d5d2570f))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 2.3.0</summary>
+
+
+
+### Features
+
+* [BigQueryStorage] Support picosecond timestamp precision in BigQuery Storage API ([#8719](https://github.com/googleapis/google-cloud-php/issues/8719)) ([871a54e](https://github.com/googleapis/google-cloud-php/commit/871a54e38fc98e77265a3a54018f2eacc539d4d2))
+
+
+### Documentation
+
+* A comment for method `ReadRows` in service `BigQueryRead` is changed ([871a54e](https://github.com/googleapis/google-cloud-php/commit/871a54e38fc98e77265a3a54018f2eacc539d4d2))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.11.0</summary>
+
+
+
+### Features
+
+* **dataplex:** [Dataplex] Allow publishing Data Profile scan results to the Dataplex Catalog ([#8716](https://github.com/googleapis/google-cloud-php/issues/8716)) ([96baf47](https://github.com/googleapis/google-cloud-php/commit/96baf4714a9cfc723e1441d1feb74eb28ce46e8f))
+* **dataplex:** Add GetIamPolicy method for DataProduct resources ([96baf47](https://github.com/googleapis/google-cloud-php/commit/96baf4714a9cfc723e1441d1feb74eb28ce46e8f))
+
+
+### Documentation
+
+* **dataplex:** Update documentation for Catalog SearchEntries filter options, including `parent_entry` and wildcard usage ([96baf47](https://github.com/googleapis/google-cloud-php/commit/96baf4714a9cfc723e1441d1feb74eb28ce46e8f))
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 1.4.0</summary>
+
+
+
+### Features
+
+* [EdgeNetwork] A new field `remote_peering_network_type` is added to message `google.cloud.edgenetwork.v1.Interconnect` ([#8696](https://github.com/googleapis/google-cloud-php/issues/8696)) ([b56fe9b](https://github.com/googleapis/google-cloud-php/commit/b56fe9b5b93bbbac2d132397818205b2dfda0683))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.4.0</summary>
+
+
+
+### Features
+
+* [GeminiDataAnalytics] Adding a new SchemaRelationship message to define relationships between table schema ([#8718](https://github.com/googleapis/google-cloud-php/issues/8718)) ([89253d6](https://github.com/googleapis/google-cloud-php/commit/89253d63f02c0077ccd4e1b5168fe9f566f573f0))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.7.0</summary>
+
+
+
+### Features
+
+* [NetworkManagement] Various documentation and comment improvements, Enable organization-level support for VPC Flow Logs ([#8704](https://github.com/googleapis/google-cloud-php/issues/8704)) ([cfeac0b](https://github.com/googleapis/google-cloud-php/commit/cfeac0b35af99a38a84606b9a9d2c0a1e1b3ba77))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.8.0</summary>
+
+
+
+### Features
+
+* [NetworkServices] Add support for LbEdgeExtension resource in NetworkServices API ([#8711](https://github.com/googleapis/google-cloud-php/issues/8711)) ([6db92cb](https://github.com/googleapis/google-cloud-php/commit/6db92cb1e6f0403833077d00429300eb81337841))
+
+</details>
+
+<details><summary>google/cloud-securitycompliance 0.2.0</summary>
+
+
+
+### Features
+
+* [SecurityCompliance] add Audit API surface ([#8697](https://github.com/googleapis/google-cloud-php/issues/8697)) ([11e4068](https://github.com/googleapis/google-cloud-php/commit/11e406805efd88dfaf6915239b76bb14c60d758d))
+* [SecurityCompliance] Updated docs for the APIs ([#8706](https://github.com/googleapis/google-cloud-php/issues/8706)) ([29ce3a2](https://github.com/googleapis/google-cloud-php/commit/29ce3a26e3a228df7ba1a0b47c3083abd565be6d))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.4.0</summary>
+
+
+
+### Features
+
+* [SqlAdmin] introduces POSTGRES_17 and POSTGRES_18 database versions in the SqlDatabaseVersion enum type ([#8702](https://github.com/googleapis/google-cloud-php/issues/8702)) ([e5c6eed](https://github.com/googleapis/google-cloud-php/commit/e5c6eed527ba84f80bbda4174febeca99edc8191))
+
+</details>
+
 ## 0.308.1
 
 <details><summary>google/cloud-storage 1.48.6</summary>

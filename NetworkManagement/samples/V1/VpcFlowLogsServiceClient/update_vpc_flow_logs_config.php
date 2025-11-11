@@ -37,8 +37,8 @@ use Google\Rpc\Status;
  * ID is different), the creation fails.
  * Notes:
  *
- * 1. Updating a configuration with state=DISABLED will fail.
- * 2. The following fields are not considered as `settings` for the purpose
+ * 1. Updating a configuration with `state=DISABLED` will fail.
+ * 2. The following fields are not considered as settings for the purpose
  * of the check mentioned above, therefore - updating another configuration
  * with the same fields but different values for the following fields will
  * fail as well:

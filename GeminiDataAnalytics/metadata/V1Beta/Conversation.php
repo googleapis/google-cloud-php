@@ -20,7 +20,7 @@ class Conversation
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Â
+¦
 :google/cloud/geminidataanalytics/v1beta/conversation.proto\'google.cloud.geminidataanalytics.v1betagoogle/api/field_info.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"Ê
 Conversation
 name (	BàAàA
@@ -49,7 +49,10 @@ page_token (	BàA
 filter (	BàA"‚
 ListConversationsResponseL
 conversations (25.google.cloud.geminidataanalytics.v1beta.Conversation
-next_page_token (	B¢
+next_page_token (	"b
+DeleteConversationRequestE
+name (	B7àAúA1
+/geminidataanalytics.googleapis.com/ConversationB¢
 +com.google.cloud.geminidataanalytics.v1betaBConversationProtoPZ]cloud.google.com/go/geminidataanalytics/apiv1beta/geminidataanalyticspb;geminidataanalyticspbª\'Google.Cloud.GeminiDataAnalytics.V1BetaÊ\'Google\\Cloud\\GeminiDataAnalytics\\V1betaê*Google::Cloud::GeminiDataAnalytics::V1betabproto3'
         , true);
 

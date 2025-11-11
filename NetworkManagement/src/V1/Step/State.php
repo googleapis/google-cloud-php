@@ -167,20 +167,23 @@ class State
     const ARRIVE_AT_INSTANCE = 9;
     /**
      * Forwarding state: arriving at a Compute Engine internal load balancer.
-     * Deprecated in favor of the `ANALYZE_LOAD_BALANCER_BACKEND` state, not
-     * used in new tests.
      *
      * Generated from protobuf enum <code>ARRIVE_AT_INTERNAL_LOAD_BALANCER = 10 [deprecated = true];</code>
      */
     const ARRIVE_AT_INTERNAL_LOAD_BALANCER = 10;
     /**
      * Forwarding state: arriving at a Compute Engine external load balancer.
-     * Deprecated in favor of the `ANALYZE_LOAD_BALANCER_BACKEND` state, not
-     * used in new tests.
      *
      * Generated from protobuf enum <code>ARRIVE_AT_EXTERNAL_LOAD_BALANCER = 11 [deprecated = true];</code>
      */
     const ARRIVE_AT_EXTERNAL_LOAD_BALANCER = 11;
+    /**
+     * Forwarding state: arriving at a hybrid subnet. Appropriate routing
+     * configuration will be determined here.
+     *
+     * Generated from protobuf enum <code>ARRIVE_AT_HYBRID_SUBNET = 38;</code>
+     */
+    const ARRIVE_AT_HYBRID_SUBNET = 38;
     /**
      * Forwarding state: arriving at a Cloud VPN gateway.
      *
@@ -193,6 +196,12 @@ class State
      * Generated from protobuf enum <code>ARRIVE_AT_VPN_TUNNEL = 13;</code>
      */
     const ARRIVE_AT_VPN_TUNNEL = 13;
+    /**
+     * Forwarding state: arriving at an interconnect attachment.
+     *
+     * Generated from protobuf enum <code>ARRIVE_AT_INTERCONNECT_ATTACHMENT = 37;</code>
+     */
+    const ARRIVE_AT_INTERCONNECT_ATTACHMENT = 37;
     /**
      * Forwarding state: arriving at a VPC connector.
      *
@@ -214,7 +223,8 @@ class State
      */
     const SERVERLESS_EXTERNAL_CONNECTION = 36;
     /**
-     * Transition state: packet header translated.
+     * Transition state: packet header translated. The `nat` field is populated
+     * with the translation information.
      *
      * Generated from protobuf enum <code>NAT = 14;</code>
      */
@@ -284,8 +294,10 @@ class State
         self::ARRIVE_AT_INSTANCE => 'ARRIVE_AT_INSTANCE',
         self::ARRIVE_AT_INTERNAL_LOAD_BALANCER => 'ARRIVE_AT_INTERNAL_LOAD_BALANCER',
         self::ARRIVE_AT_EXTERNAL_LOAD_BALANCER => 'ARRIVE_AT_EXTERNAL_LOAD_BALANCER',
+        self::ARRIVE_AT_HYBRID_SUBNET => 'ARRIVE_AT_HYBRID_SUBNET',
         self::ARRIVE_AT_VPN_GATEWAY => 'ARRIVE_AT_VPN_GATEWAY',
         self::ARRIVE_AT_VPN_TUNNEL => 'ARRIVE_AT_VPN_TUNNEL',
+        self::ARRIVE_AT_INTERCONNECT_ATTACHMENT => 'ARRIVE_AT_INTERCONNECT_ATTACHMENT',
         self::ARRIVE_AT_VPC_CONNECTOR => 'ARRIVE_AT_VPC_CONNECTOR',
         self::DIRECT_VPC_EGRESS_CONNECTION => 'DIRECT_VPC_EGRESS_CONNECTION',
         self::SERVERLESS_EXTERNAL_CONNECTION => 'SERVERLESS_EXTERNAL_CONNECTION',

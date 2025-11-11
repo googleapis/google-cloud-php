@@ -90,6 +90,20 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.FirewallInfo.FirewallRuleType firewall_rule_type = 10;</code>
      */
     protected $firewall_rule_type = 0;
+    /**
+     * The priority of the firewall policy that this rule is associated with.
+     * This field is not applicable to VPC firewall rules and implied VPC firewall
+     * rules.
+     *
+     * Generated from protobuf field <code>int32 policy_priority = 12;</code>
+     */
+    protected $policy_priority = 0;
+    /**
+     * Target type of the firewall rule.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.FirewallInfo.TargetType target_type = 13;</code>
+     */
+    protected $target_type = 0;
 
     /**
      * Constructor.
@@ -127,6 +141,12 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      *           rules.
      *     @type int $firewall_rule_type
      *           The firewall rule's type.
+     *     @type int $policy_priority
+     *           The priority of the firewall policy that this rule is associated with.
+     *           This field is not applicable to VPC firewall rules and implied VPC firewall
+     *           rules.
+     *     @type int $target_type
+     *           Target type of the firewall rule.
      * }
      */
     public function __construct($data = NULL) {
@@ -432,6 +452,62 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\NetworkManagement\V1\FirewallInfo\FirewallRuleType::class);
         $this->firewall_rule_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The priority of the firewall policy that this rule is associated with.
+     * This field is not applicable to VPC firewall rules and implied VPC firewall
+     * rules.
+     *
+     * Generated from protobuf field <code>int32 policy_priority = 12;</code>
+     * @return int
+     */
+    public function getPolicyPriority()
+    {
+        return $this->policy_priority;
+    }
+
+    /**
+     * The priority of the firewall policy that this rule is associated with.
+     * This field is not applicable to VPC firewall rules and implied VPC firewall
+     * rules.
+     *
+     * Generated from protobuf field <code>int32 policy_priority = 12;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPolicyPriority($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->policy_priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * Target type of the firewall rule.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.FirewallInfo.TargetType target_type = 13;</code>
+     * @return int
+     */
+    public function getTargetType()
+    {
+        return $this->target_type;
+    }
+
+    /**
+     * Target type of the firewall rule.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.FirewallInfo.TargetType target_type = 13;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTargetType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkManagement\V1\FirewallInfo\TargetType::class);
+        $this->target_type = $var;
 
         return $this;
     }

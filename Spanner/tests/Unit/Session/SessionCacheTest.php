@@ -26,7 +26,6 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Process\Process;
 
 /**
@@ -64,7 +63,7 @@ class SessionCacheTest extends TestCase
             'create_time' => new Timestamp(['seconds' => time()]),
         ]))->serializeToString());
 
-        $cacheKey = 'session_cache.myawesomeproject.myinstance.mydatabase.';
+        $cacheKey = 'session_cache.myawesomeproject.myinstance.mydatabase';
         $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
         $cacheItemPool->getItem($cacheKey)
             ->shouldBeCalledOnce()
@@ -73,9 +72,7 @@ class SessionCacheTest extends TestCase
         $session = new SessionCache(
             $this->spannerClient->reveal(),
             $this->databaseName,
-            [
-                'cacheItemPool' => $cacheItemPool->reveal(),
-            ]
+            ['cacheItemPool' => $cacheItemPool->reveal()]
         );
         $name = $session->name();
         $this->assertEquals($this->sessionName, $name);
@@ -179,8 +176,7 @@ class SessionCacheTest extends TestCase
         $databaseName = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, $databaseId);
         $sessionCache = new SessionCache(
             $this->spannerClient->reveal(),
-            $databaseName,
-            ['cacheItemPool' => new FilesystemAdapter($databaseId)]
+            $databaseName
         );
 
         $process = new Process(['php', __DIR__ . '/lock_test_process.php', $databaseName]);

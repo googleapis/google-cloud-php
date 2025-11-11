@@ -32,9 +32,14 @@ use Google\Cloud\NetworkManagement\V1\VpcFlowLogsConfig;
 /**
  * Lists all `VpcFlowLogsConfigs` in a given project.
  *
- * @param string $formattedParent The parent resource of the VpcFlowLogsConfig:
- *                                `projects/{project_id}/locations/global`
- *                                Please see {@see VpcFlowLogsServiceClient::locationName()} for help formatting this field.
+ * @param string $formattedParent The parent resource of the VpcFlowLogsConfig,
+ *                                in one of the following formats:
+ *
+ *                                - For project-level resourcs: `projects/{project_id}/locations/global`
+ *
+ *                                - For organization-level resources:
+ *                                `organizations/{organization_id}/locations/global`
+ *                                Please see {@see VpcFlowLogsServiceClient::organizationLocationName()} for help formatting this field.
  */
 function list_vpc_flow_logs_configs_sample(string $formattedParent): void
 {
@@ -70,7 +75,10 @@ function list_vpc_flow_logs_configs_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = VpcFlowLogsServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedParent = VpcFlowLogsServiceClient::organizationLocationName(
+        '[ORGANIZATION]',
+        '[LOCATION]'
+    );
 
     list_vpc_flow_logs_configs_sample($formattedParent);
 }

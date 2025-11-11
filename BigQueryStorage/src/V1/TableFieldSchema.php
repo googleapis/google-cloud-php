@@ -103,6 +103,16 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      */
     protected $default_value_expression = '';
     /**
+     * Optional. Precision (maximum number of total digits in base 10) for seconds
+     * of TIMESTAMP type.
+     * Possible values include:
+     * * 6 (Default, for TIMESTAMP type with microsecond precision)
+     * * 12 (For TIMESTAMP type with picosecond precision)
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value timestamp_precision = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $timestamp_precision = null;
+    /**
      * Optional. The subtype of the RANGE, if the type of this field is RANGE. If
      * the type is RANGE, this field is required. Possible values for the field
      * element type of a RANGE include:
@@ -171,6 +181,12 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      *     @type string $default_value_expression
      *           Optional. A SQL expression to specify the [default value]
      *           (https://cloud.google.com/bigquery/docs/default-values) for this field.
+     *     @type \Google\Protobuf\Int64Value $timestamp_precision
+     *           Optional. Precision (maximum number of total digits in base 10) for seconds
+     *           of TIMESTAMP type.
+     *           Possible values include:
+     *           * 6 (Default, for TIMESTAMP type with microsecond precision)
+     *           * 12 (For TIMESTAMP type with picosecond precision)
      *     @type \Google\Cloud\BigQuery\Storage\V1\TableFieldSchema\FieldElementType $range_element_type
      *           Optional. The subtype of the RANGE, if the type of this field is RANGE. If
      *           the type is RANGE, this field is required. Possible values for the field
@@ -484,6 +500,85 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * Optional. Precision (maximum number of total digits in base 10) for seconds
+     * of TIMESTAMP type.
+     * Possible values include:
+     * * 6 (Default, for TIMESTAMP type with microsecond precision)
+     * * 12 (For TIMESTAMP type with picosecond precision)
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value timestamp_precision = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Int64Value|null
+     */
+    public function getTimestampPrecision()
+    {
+        return $this->timestamp_precision;
+    }
+
+    public function hasTimestampPrecision()
+    {
+        return isset($this->timestamp_precision);
+    }
+
+    public function clearTimestampPrecision()
+    {
+        unset($this->timestamp_precision);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getTimestampPrecision()</code>
+
+     * Optional. Precision (maximum number of total digits in base 10) for seconds
+     * of TIMESTAMP type.
+     * Possible values include:
+     * * 6 (Default, for TIMESTAMP type with microsecond precision)
+     * * 12 (For TIMESTAMP type with picosecond precision)
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value timestamp_precision = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string|null
+     */
+    public function getTimestampPrecisionUnwrapped()
+    {
+        return $this->readWrapperValue("timestamp_precision");
+    }
+
+    /**
+     * Optional. Precision (maximum number of total digits in base 10) for seconds
+     * of TIMESTAMP type.
+     * Possible values include:
+     * * 6 (Default, for TIMESTAMP type with microsecond precision)
+     * * 12 (For TIMESTAMP type with picosecond precision)
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value timestamp_precision = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Int64Value $var
+     * @return $this
+     */
+    public function setTimestampPrecision($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Int64Value::class);
+        $this->timestamp_precision = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
+
+     * Optional. Precision (maximum number of total digits in base 10) for seconds
+     * of TIMESTAMP type.
+     * Possible values include:
+     * * 6 (Default, for TIMESTAMP type with microsecond precision)
+     * * 12 (For TIMESTAMP type with picosecond precision)
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value timestamp_precision = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string|null $var
+     * @return $this
+     */
+    public function setTimestampPrecisionUnwrapped($var)
+    {
+        $this->writeWrapperValue("timestamp_precision", $var);
+        return $this;}
 
     /**
      * Optional. The subtype of the RANGE, if the type of this field is RANGE. If
