@@ -50,6 +50,21 @@ class UpdateProductInputRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string data_source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $data_source = '';
+    /**
+     * Optional. If true, the `{productInput}` in the `name` field of the request
+     * will be interpreted as unpadded base64url-encoded and decoded during
+     * request processing to match the decoded value. Default value is `false`.
+     * Use this if your `{productInput}` contains special characters, such as
+     * forward slash
+     * `/` or other characters that are unpadded base64url-encoded (as per RFC
+     * 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2).
+     * Note that future versions of the API will only accept unpadded
+     * base64url-encoded product ids, so we strongly recommend proactively setting
+     * this to `true` and encoding the product ids.
+     *
+     * Generated from protobuf field <code>bool product_id_base64_url_encoded = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $product_id_base64_url_encoded = false;
 
     /**
      * @param \Google\Shopping\Merchant\Products\V1\ProductInput $productInput Required. The product input resource to update. Information you submit will
@@ -107,6 +122,17 @@ class UpdateProductInputRequest extends \Google\Protobuf\Internal\Message
      *           Only API data sources are supported.
      *           Format: `accounts/{account}/dataSources/{datasource}`. For example,
      *           `accounts/123456/dataSources/104628`.
+     *     @type bool $product_id_base64_url_encoded
+     *           Optional. If true, the `{productInput}` in the `name` field of the request
+     *           will be interpreted as unpadded base64url-encoded and decoded during
+     *           request processing to match the decoded value. Default value is `false`.
+     *           Use this if your `{productInput}` contains special characters, such as
+     *           forward slash
+     *           `/` or other characters that are unpadded base64url-encoded (as per RFC
+     *           7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2).
+     *           Note that future versions of the API will only accept unpadded
+     *           base64url-encoded product ids, so we strongly recommend proactively setting
+     *           this to `true` and encoding the product ids.
      * }
      */
     public function __construct($data = NULL) {
@@ -236,6 +262,50 @@ class UpdateProductInputRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->data_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the `{productInput}` in the `name` field of the request
+     * will be interpreted as unpadded base64url-encoded and decoded during
+     * request processing to match the decoded value. Default value is `false`.
+     * Use this if your `{productInput}` contains special characters, such as
+     * forward slash
+     * `/` or other characters that are unpadded base64url-encoded (as per RFC
+     * 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2).
+     * Note that future versions of the API will only accept unpadded
+     * base64url-encoded product ids, so we strongly recommend proactively setting
+     * this to `true` and encoding the product ids.
+     *
+     * Generated from protobuf field <code>bool product_id_base64_url_encoded = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getProductIdBase64UrlEncoded()
+    {
+        return $this->product_id_base64_url_encoded;
+    }
+
+    /**
+     * Optional. If true, the `{productInput}` in the `name` field of the request
+     * will be interpreted as unpadded base64url-encoded and decoded during
+     * request processing to match the decoded value. Default value is `false`.
+     * Use this if your `{productInput}` contains special characters, such as
+     * forward slash
+     * `/` or other characters that are unpadded base64url-encoded (as per RFC
+     * 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2).
+     * Note that future versions of the API will only accept unpadded
+     * base64url-encoded product ids, so we strongly recommend proactively setting
+     * this to `true` and encoding the product ids.
+     *
+     * Generated from protobuf field <code>bool product_id_base64_url_encoded = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setProductIdBase64UrlEncoded($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->product_id_base64_url_encoded = $var;
 
         return $this;
     }

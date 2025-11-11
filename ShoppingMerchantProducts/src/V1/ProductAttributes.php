@@ -346,6 +346,26 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      */
     protected $min_handling_time = null;
     /**
+     * The business days during which orders can be handled. If not provided,
+     * Monday to Friday business days will be assumed.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ShippingBusinessDaysConfig shipping_handling_business_days = 143;</code>
+     */
+    private $shipping_handling_business_days;
+    /**
+     * The business days during which orders are in transit.
+     * If not provided, Monday to Friday business days will be assumed.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ShippingBusinessDaysConfig shipping_transit_business_days = 144;</code>
+     */
+    private $shipping_transit_business_days;
+    /**
+     * The handling cutoff times for shipping.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.HandlingCutoffTime handling_cutoff_times = 141;</code>
+     */
+    private $handling_cutoff_times;
+    /**
      * The shipping label of the product, used to group product in account-level
      * shipping rules.
      *
@@ -828,6 +848,14 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           Maximal product handling time (in business days).
      *     @type int|string $min_handling_time
      *           Minimal product handling time (in business days).
+     *     @type array<\Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig>|\Google\Protobuf\Internal\RepeatedField $shipping_handling_business_days
+     *           The business days during which orders can be handled. If not provided,
+     *           Monday to Friday business days will be assumed.
+     *     @type array<\Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig>|\Google\Protobuf\Internal\RepeatedField $shipping_transit_business_days
+     *           The business days during which orders are in transit.
+     *           If not provided, Monday to Friday business days will be assumed.
+     *     @type array<\Google\Shopping\Merchant\Products\V1\HandlingCutoffTime>|\Google\Protobuf\Internal\RepeatedField $handling_cutoff_times
+     *           The handling cutoff times for shipping.
      *     @type string $shipping_label
      *           The shipping label of the product, used to group product in account-level
      *           shipping rules.
@@ -2731,6 +2759,88 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->min_handling_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The business days during which orders can be handled. If not provided,
+     * Monday to Friday business days will be assumed.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ShippingBusinessDaysConfig shipping_handling_business_days = 143;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getShippingHandlingBusinessDays()
+    {
+        return $this->shipping_handling_business_days;
+    }
+
+    /**
+     * The business days during which orders can be handled. If not provided,
+     * Monday to Friday business days will be assumed.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ShippingBusinessDaysConfig shipping_handling_business_days = 143;</code>
+     * @param array<\Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setShippingHandlingBusinessDays($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig::class);
+        $this->shipping_handling_business_days = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The business days during which orders are in transit.
+     * If not provided, Monday to Friday business days will be assumed.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ShippingBusinessDaysConfig shipping_transit_business_days = 144;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getShippingTransitBusinessDays()
+    {
+        return $this->shipping_transit_business_days;
+    }
+
+    /**
+     * The business days during which orders are in transit.
+     * If not provided, Monday to Friday business days will be assumed.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ShippingBusinessDaysConfig shipping_transit_business_days = 144;</code>
+     * @param array<\Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setShippingTransitBusinessDays($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig::class);
+        $this->shipping_transit_business_days = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The handling cutoff times for shipping.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.HandlingCutoffTime handling_cutoff_times = 141;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getHandlingCutoffTimes()
+    {
+        return $this->handling_cutoff_times;
+    }
+
+    /**
+     * The handling cutoff times for shipping.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.HandlingCutoffTime handling_cutoff_times = 141;</code>
+     * @param array<\Google\Shopping\Merchant\Products\V1\HandlingCutoffTime>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setHandlingCutoffTimes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\HandlingCutoffTime::class);
+        $this->handling_cutoff_times = $arr;
 
         return $this;
     }
