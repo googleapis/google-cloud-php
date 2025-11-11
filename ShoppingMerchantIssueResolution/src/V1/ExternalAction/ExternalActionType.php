@@ -48,6 +48,13 @@ class ExternalActionType
      * Generated from protobuf enum <code>VERIFY_IDENTITY_IN_MERCHANT_CENTER = 4;</code>
      */
     const VERIFY_IDENTITY_IN_MERCHANT_CENTER = 4;
+    /**
+     * Redirect to Merchant Center where the business can perform business
+     * video verification.
+     *
+     * Generated from protobuf enum <code>VERIFY_BUSINESS_VIDEO_IN_MERCHANT_CENTER = 5;</code>
+     */
+    const VERIFY_BUSINESS_VIDEO_IN_MERCHANT_CENTER = 5;
 
     private static $valueToName = [
         self::EXTERNAL_ACTION_TYPE_UNSPECIFIED => 'EXTERNAL_ACTION_TYPE_UNSPECIFIED',
@@ -55,6 +62,7 @@ class ExternalActionType
         self::REVIEW_ACCOUNT_ISSUE_IN_MERCHANT_CENTER => 'REVIEW_ACCOUNT_ISSUE_IN_MERCHANT_CENTER',
         self::LEGAL_APPEAL_IN_HELP_CENTER => 'LEGAL_APPEAL_IN_HELP_CENTER',
         self::VERIFY_IDENTITY_IN_MERCHANT_CENTER => 'VERIFY_IDENTITY_IN_MERCHANT_CENTER',
+        self::VERIFY_BUSINESS_VIDEO_IN_MERCHANT_CENTER => 'VERIFY_BUSINESS_VIDEO_IN_MERCHANT_CENTER',
     ];
 
     public static function name($value)

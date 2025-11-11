@@ -83,9 +83,7 @@ final class IssueResolutionServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -272,8 +270,10 @@ final class IssueResolutionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function renderAccountIssues(RenderAccountIssuesRequest $request, array $callOptions = []): RenderAccountIssuesResponse
-    {
+    public function renderAccountIssues(
+        RenderAccountIssuesRequest $request,
+        array $callOptions = []
+    ): RenderAccountIssuesResponse {
         return $this->startApiCall('RenderAccountIssues', $request, $callOptions)->wait();
     }
 
@@ -301,8 +301,10 @@ final class IssueResolutionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function renderProductIssues(RenderProductIssuesRequest $request, array $callOptions = []): RenderProductIssuesResponse
-    {
+    public function renderProductIssues(
+        RenderProductIssuesRequest $request,
+        array $callOptions = []
+    ): RenderProductIssuesResponse {
         return $this->startApiCall('RenderProductIssues', $request, $callOptions)->wait();
     }
 
