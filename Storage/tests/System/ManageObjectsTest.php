@@ -357,7 +357,10 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertStorageObjectExists($softDeleteHNSBucket, $restoredObject);
     }
 
-    public function testMoveObject()
+    /**
+      * @dataProvider provideMoveObject
+      */
+    public function testMoveObject(bool $hnEnabled)
     {
         $name = "move-object-bucket-" . uniqid();
         $sourceObjectName = uniqid(self::TESTING_PREFIX);
@@ -366,6 +369,7 @@ class ManageObjectsTest extends StorageTestCase
             self::$client,
             $name,
             [
+                'hierarchicalNamespace' => ['enabled' => $hnEnabled],
                 'iamConfiguration' => ['uniformBucketLevelAccess' => ['enabled' => true]]
             ]
         );
@@ -384,7 +388,12 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertStorageObjectExists($sourceBucket, $movedObject);
     }
 
-    public function testRotatesCustomerSuppliedEncrpytion()
+    public function provideMoveObject()
+    {
+        return [[true], [false]];
+    }
+
+    public function testRotatesCustomerSuppliedEncryption()
     {
         $key = base64_encode(openssl_random_pseudo_bytes(32));
         $options = [
