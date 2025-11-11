@@ -46,23 +46,26 @@ class Serializer extends ApiCoreSerializer
     public function __construct()
     {
         $fieldTransformers = [
-            'commit_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-            'update_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-            'read_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-            'create_time' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
+            // 'commit_time' => function ($v) {
+            //     return $this->formatTimestampFromApi($v);
+            // },
+            // 'update_time' => function ($v) {
+            //     return $this->formatTimestampFromApi($v);
+            // },
+            // 'read_time' => function ($v) {
+            //     return $this->formatTimestampFromApi($v);
+            // },
+            // 'create_time' => function ($v) {
+            //     return $this->formatTimestampFromApi($v);
+            // }
         ];
         $messageTypeTransformers = [
-            // 'google.protobuf.Duration' => function ($v) {
-            //     return $this->formatDurationFromApi($v);
-            // }
+            'google.protobuf.Duration' => function ($v) {
+                return $this->formatDurationFromApi($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            },
         ];
         $decodeFieldTransformers = [
             'limit' => function ($v) {

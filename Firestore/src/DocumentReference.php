@@ -21,6 +21,7 @@ use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 
@@ -40,25 +41,12 @@ class DocumentReference
     use SnapshotTrait;
     use DebugInfoTrait;
 
-    /** @var FirestoreClient */
     private FirestoreClient $gapicClient;
-
-    /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-
-    /**
-     * @var CollectionReference
-     */
-    private $parent;
-
-    /**
-     * @var string
-     */
-    private $name;
-
+    private ValueMapper $valueMapper;
+    private CollectionReference $parent;
+    private string $name;
     private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
      * @param FirestoreClient $gapicClient An instance of the Firestore client.
@@ -78,7 +66,10 @@ class DocumentReference
         $this->valueMapper = $valueMapper;
         $this->parent = $parent;
         $this->name = $name;
+
+        // Used in SnapshotTrait
         $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
     }
 
     /**
