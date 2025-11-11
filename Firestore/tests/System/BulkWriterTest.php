@@ -19,7 +19,12 @@ namespace Google\Cloud\Firestore\Tests\System;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\BulkWriter;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\Tests\Unit\GenerateProtoTrait;
+use Google\Cloud\Firestore\Tests\Unit\ServerStreamMockTrait;
+use Google\Cloud\Firestore\V1\BatchWriteRequest;
+use Google\Cloud\Firestore\V1\BatchWriteResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\Write;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Rpc\Code;
 use Prophecy\Argument;
@@ -31,6 +36,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class BulkWriterTest extends FirestoreTestCase
 {
+    use GenerateProtoTrait;
     use ProphecyTrait;
 
     private $document;
@@ -94,10 +100,10 @@ class BulkWriterTest extends FirestoreTestCase
     public function testLongFailuresAreRetriedWithDelay()
     {
         $docs = $this->bulkDocuments();
-        $connection = $this->prophesize(ConnectionInterface::class);
+        $gapicClient = $this->prophesize(FirestoreClient::class);
         $this->batch = TestHelpers::stub(BulkWriter::class, [
-            $connection->reveal(),
-            new ValueMapper($connection->reveal(), false),
+            $gapicClient->reveal(),
+            new ValueMapper($gapicClient->reveal(), false),
             self::$collection->name(),
             [
                 'initialOpsPerSecond' => 5,
@@ -108,40 +114,43 @@ class BulkWriterTest extends FirestoreTestCase
         $batchSize = 20;
         $successPerBatch = $batchSize * 3 / 4;
         $successfulDocs = [];
-        $connection->batchWrite(Argument::that(
-            function ($arg) use ($docs, $successPerBatch, &$successfulDocs) {
-                if (count($arg['writes']) <= 0) {
-                    return false;
-                }
-                foreach ($arg['writes'] as $i => $write) {
-                    if (!$write['currentDocument']) {
-                        return false;
-                    }
-                    if ($docs[$write['update']['fields']['key']['integerValue']]->name()
-                        !== $write['update']['fields']['path']['referenceValue']) {
-                        return false;
-                    }
+
+        $protoResponse = self::generateProto(BatchWriteResponse::class, [
+            'writeResults' => array_fill(0, $batchSize, []),
+            'status' => array_merge(
+                array_fill(0, $successPerBatch, [
+                    'code' => Code::OK,
+                ]),
+                array_fill(0, $batchSize - $successPerBatch, [
+                    'code' => Code::DATA_LOSS,
+                ]),
+            ),
+        ]);
+
+        $gapicClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) use ($docs, $successPerBatch, &$successfulDocs){
+                $this->assertGreaterThan(0, count($request->getWrites()));
+
+                /**
+                 * @var Write $write
+                 */
+                foreach($request->getWrites() as $i => $write) {
+                    $this->assertNotEmpty($write->getCurrentDocument());
+                    $this->assertEquals(
+                        $docs[$write->getUpdate()->getFields()['key']->getIntegerValue()]->name(),
+                        $write->getUpdate()->getFields()['path']->getReferenceValue()
+                    );
                     if ($i < $successPerBatch) {
-                        $successfulDocs[] = $write['update']['fields']['path']['referenceValue'];
+                        $successfulDocs[] = $write->getUpdate()->getFields()['path']->getReferenceValue();
                     }
                 }
+
                 return true;
-            }
-        ))
-            ->shouldBeCalledTimes(10)
-            ->willReturn(
-                [
-                    'writeResults' => array_fill(0, $batchSize, []),
-                    'status' => array_merge(
-                        array_fill(0, $successPerBatch, [
-                            'code' => Code::OK,
-                        ]),
-                        array_fill(0, $batchSize - $successPerBatch, [
-                            'code' => Code::DATA_LOSS,
-                        ]),
-                    ),
-                ]
-            );
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(10)
+            ->willReturn($protoResponse);
+
         foreach ($docs as $k => $v) {
             $this->batch->create($v, [
                 'key' => $k,
