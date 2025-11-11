@@ -73,6 +73,12 @@ class Format
      * Generated from protobuf enum <code>GENERIC = 11;</code>
      */
     const GENERIC = 11;
+    /**
+     * Ruby package format.
+     *
+     * Generated from protobuf enum <code>RUBY = 12;</code>
+     */
+    const RUBY = 12;
 
     private static $valueToName = [
         self::FORMAT_UNSPECIFIED => 'FORMAT_UNSPECIFIED',
@@ -85,6 +91,7 @@ class Format
         self::KFP => 'KFP',
         self::GO => 'GO',
         self::GENERIC => 'GENERIC',
+        self::RUBY => 'RUBY',
     ];
 
     public static function name($value)

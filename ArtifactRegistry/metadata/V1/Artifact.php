@@ -19,8 +19,8 @@ class Artifact
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-·
-2google/devtools/artifactregistry/v1/artifact.proto#google.devtools.artifactregistry.v1google/api/resource.protogoogle/protobuf/timestamp.proto"ò
+ˇ
+2google/devtools/artifactregistry/v1/artifact.proto#google.devtools.artifactregistry.v1google/api/resource.protogoogle/protobuf/timestamp.proto"Å
 DockerImage
 name (	B‡A
 uri (	B‡A
@@ -31,8 +31,20 @@ class Artifact
 media_type (	.
 
 build_time (2.google.protobuf.Timestamp4
-update_time (2.google.protobuf.TimestampB‡A:êÍAå
-+artifactregistry.googleapis.com/DockerImage]projects/{project}/locations/{location}/repositories/{repository}/dockerImages/{docker_image}"g
+update_time (2.google.protobuf.TimestampB‡A
+artifact_type	 (	P
+image_manifests (22.google.devtools.artifactregistry.v1.ImageManifestB‡A:êÍAå
++artifactregistry.googleapis.com/DockerImage]projects/{project}/locations/{location}/repositories/{repository}/dockerImages/{docker_image}"≤
+ImageManifest
+architecture (	B‡A
+os (	B‡A
+digest (	B‡A
+
+media_type (	B‡A
+
+os_version (	B‡A
+os_features (	B‡A
+variant (	B‡A"g
 ListDockerImagesRequest
 parent (	B‡A
 	page_size (

@@ -90,7 +90,7 @@ class Repository extends \Google\Protobuf\Internal\Message
      */
     protected $size_bytes = 0;
     /**
-     * Output only. If set, the repository satisfies physical zone separation.
+     * Output only. Whether or not this repository satisfies PZS.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -117,7 +117,7 @@ class Repository extends \Google\Protobuf\Internal\Message
      */
     protected $disallow_unspecified_mode = false;
     /**
-     * Output only. If set, the repository satisfies physical zone isolation.
+     * Output only. Whether or not this repository satisfies PZI.
      *
      * Generated from protobuf field <code>bool satisfies_pzi = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -183,7 +183,7 @@ class Repository extends \Google\Protobuf\Internal\Message
      *           repository. Repositories that are generally available or in public preview
      *            use this to calculate storage costs.
      *     @type bool $satisfies_pzs
-     *           Output only. If set, the repository satisfies physical zone separation.
+     *           Output only. Whether or not this repository satisfies PZS.
      *     @type bool $cleanup_policy_dry_run
      *           Optional. If true, the cleanup pipeline is prevented from deleting versions
      *           in this repository.
@@ -194,7 +194,7 @@ class Repository extends \Google\Protobuf\Internal\Message
      *           Optional. If this is true, an unspecified repo type will be treated as
      *           error rather than defaulting to standard.
      *     @type bool $satisfies_pzi
-     *           Output only. If set, the repository satisfies physical zone isolation.
+     *           Output only. Whether or not this repository satisfies PZI.
      *     @type string $registry_uri
      *           Output only. The repository endpoint, for example:
      *           `us-docker.pkg.dev/my-proj/my-repo`.
@@ -642,7 +642,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, the repository satisfies physical zone separation.
+     * Output only. Whether or not this repository satisfies PZS.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -653,7 +653,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, the repository satisfies physical zone separation.
+     * Output only. Whether or not this repository satisfies PZS.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -762,7 +762,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, the repository satisfies physical zone isolation.
+     * Output only. Whether or not this repository satisfies PZI.
      *
      * Generated from protobuf field <code>bool satisfies_pzi = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -773,7 +773,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, the repository satisfies physical zone isolation.
+     * Output only. Whether or not this repository satisfies PZI.
      *
      * Generated from protobuf field <code>bool satisfies_pzi = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var

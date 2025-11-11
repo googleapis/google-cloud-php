@@ -1506,11 +1506,13 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $uri = 'uri116076';
         $imageSizeBytes = 837030929;
         $mediaType = 'mediaType1939875509';
+        $artifactType = 'artifactType646190471';
         $expectedResponse = new DockerImage();
         $expectedResponse->setName($name2);
         $expectedResponse->setUri($uri);
         $expectedResponse->setImageSizeBytes($imageSizeBytes);
         $expectedResponse->setMediaType($mediaType);
+        $expectedResponse->setArtifactType($artifactType);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dockerImageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[DOCKER_IMAGE]');

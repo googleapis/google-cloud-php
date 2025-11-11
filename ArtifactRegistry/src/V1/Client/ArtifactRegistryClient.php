@@ -294,8 +294,12 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted attachment resource.
      */
-    public static function attachmentName(string $project, string $location, string $repository, string $attachment): string
-    {
+    public static function attachmentName(
+        string $project,
+        string $location,
+        string $repository,
+        string $attachment
+    ): string {
         return self::getPathTemplate('attachment')->render([
             'project' => $project,
             'location' => $location,
@@ -315,8 +319,12 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted docker_image resource.
      */
-    public static function dockerImageName(string $project, string $location, string $repository, string $dockerImage): string
-    {
+    public static function dockerImageName(
+        string $project,
+        string $location,
+        string $repository,
+        string $dockerImage
+    ): string {
         return self::getPathTemplate('dockerImage')->render([
             'project' => $project,
             'location' => $location,
@@ -374,8 +382,12 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted maven_artifact resource.
      */
-    public static function mavenArtifactName(string $project, string $location, string $repository, string $mavenArtifact): string
-    {
+    public static function mavenArtifactName(
+        string $project,
+        string $location,
+        string $repository,
+        string $mavenArtifact
+    ): string {
         return self::getPathTemplate('mavenArtifact')->render([
             'project' => $project,
             'location' => $location,
@@ -395,8 +407,12 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted npm_package resource.
      */
-    public static function npmPackageName(string $project, string $location, string $repository, string $npmPackage): string
-    {
+    public static function npmPackageName(
+        string $project,
+        string $location,
+        string $repository,
+        string $npmPackage
+    ): string {
         return self::getPathTemplate('npmPackage')->render([
             'project' => $project,
             'location' => $location,
@@ -452,8 +468,12 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted python_package resource.
      */
-    public static function pythonPackageName(string $project, string $location, string $repository, string $pythonPackage): string
-    {
+    public static function pythonPackageName(
+        string $project,
+        string $location,
+        string $repository,
+        string $pythonPackage
+    ): string {
         return self::getPathTemplate('pythonPackage')->render([
             'project' => $project,
             'location' => $location,
@@ -533,8 +553,13 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted tag resource.
      */
-    public static function tagName(string $project, string $location, string $repository, string $package, string $tag): string
-    {
+    public static function tagName(
+        string $project,
+        string $location,
+        string $repository,
+        string $package,
+        string $tag
+    ): string {
         return self::getPathTemplate('tag')->render([
             'project' => $project,
             'location' => $location,
@@ -556,8 +581,13 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted version resource.
      */
-    public static function versionName(string $project, string $location, string $repository, string $package, string $version): string
-    {
+    public static function versionName(
+        string $project,
+        string $location,
+        string $repository,
+        string $package,
+        string $version
+    ): string {
         return self::getPathTemplate('version')->render([
             'project' => $project,
             'location' => $location,
@@ -1782,8 +1812,10 @@ final class ArtifactRegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -1861,8 +1893,10 @@ final class ArtifactRegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateProjectSettings(UpdateProjectSettingsRequest $request, array $callOptions = []): ProjectSettings
-    {
+    public function updateProjectSettings(
+        UpdateProjectSettingsRequest $request,
+        array $callOptions = []
+    ): ProjectSettings {
         return $this->startApiCall('UpdateProjectSettings', $request, $callOptions)->wait();
     }
 
