@@ -39,10 +39,14 @@ class ProductInput extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The name of the product input.
      * Format: `accounts/{account}/productInputs/{productinput}`
-     * where the last section `productinput` consists of 4 parts:
-     * `channel~content_language~feed_label~offer_id`
+     * where the last section `productinput` consists of:
+     * `content_language~feed_label~offer_id`
      * example for product input name is
-     * `accounts/123/productInputs/online~en~US~sku123`
+     * `accounts/123/productInputs/en~US~sku123`. A legacy local product input
+     * name would be `accounts/123/productInputs/local~en~US~sku123`.
+     * Note: For calls to the v1beta version, the `productInput` section consists
+     * of: `channel~content_language~feed_label~offer_id`, for example:
+     * `accounts/123/productInputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -82,8 +86,8 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      */
     protected $content_language = '';
     /**
-     * Required. Immutable. The label that lets you categorize and identify your
-     * products. The maximum allowed characters are 20, and the supported
+     * Required. Immutable. The feed label that lets you categorize and identify
+     * your products. The maximum allowed characters are 20, and the supported
      * characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must
      * not include any spaces. For more information, see [Using feed
      * labels](//support.google.com/merchants/answer/14994087).
@@ -140,10 +144,14 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The name of the product input.
      *           Format: `accounts/{account}/productInputs/{productinput}`
-     *           where the last section `productinput` consists of 4 parts:
-     *           `channel~content_language~feed_label~offer_id`
+     *           where the last section `productinput` consists of:
+     *           `content_language~feed_label~offer_id`
      *           example for product input name is
-     *           `accounts/123/productInputs/online~en~US~sku123`
+     *           `accounts/123/productInputs/en~US~sku123`. A legacy local product input
+     *           name would be `accounts/123/productInputs/local~en~US~sku123`.
+     *           Note: For calls to the v1beta version, the `productInput` section consists
+     *           of: `channel~content_language~feed_label~offer_id`, for example:
+     *           `accounts/123/productInputs/online~en~US~sku123`.
      *     @type string $product
      *           Output only. The name of the processed product.
      *           Format: `accounts/{account}/products/{product}`
@@ -163,8 +171,8 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      *           639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the
      *           product.
      *     @type string $feed_label
-     *           Required. Immutable. The label that lets you categorize and identify your
-     *           products. The maximum allowed characters are 20, and the supported
+     *           Required. Immutable. The feed label that lets you categorize and identify
+     *           your products. The maximum allowed characters are 20, and the supported
      *           characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must
      *           not include any spaces. For more information, see [Using feed
      *           labels](//support.google.com/merchants/answer/14994087).
@@ -205,10 +213,14 @@ class ProductInput extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The name of the product input.
      * Format: `accounts/{account}/productInputs/{productinput}`
-     * where the last section `productinput` consists of 4 parts:
-     * `channel~content_language~feed_label~offer_id`
+     * where the last section `productinput` consists of:
+     * `content_language~feed_label~offer_id`
      * example for product input name is
-     * `accounts/123/productInputs/online~en~US~sku123`
+     * `accounts/123/productInputs/en~US~sku123`. A legacy local product input
+     * name would be `accounts/123/productInputs/local~en~US~sku123`.
+     * Note: For calls to the v1beta version, the `productInput` section consists
+     * of: `channel~content_language~feed_label~offer_id`, for example:
+     * `accounts/123/productInputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -221,10 +233,14 @@ class ProductInput extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The name of the product input.
      * Format: `accounts/{account}/productInputs/{productinput}`
-     * where the last section `productinput` consists of 4 parts:
-     * `channel~content_language~feed_label~offer_id`
+     * where the last section `productinput` consists of:
+     * `content_language~feed_label~offer_id`
      * example for product input name is
-     * `accounts/123/productInputs/online~en~US~sku123`
+     * `accounts/123/productInputs/en~US~sku123`. A legacy local product input
+     * name would be `accounts/123/productInputs/local~en~US~sku123`.
+     * Note: For calls to the v1beta version, the `productInput` section consists
+     * of: `channel~content_language~feed_label~offer_id`, for example:
+     * `accounts/123/productInputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -363,8 +379,8 @@ class ProductInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The label that lets you categorize and identify your
-     * products. The maximum allowed characters are 20, and the supported
+     * Required. Immutable. The feed label that lets you categorize and identify
+     * your products. The maximum allowed characters are 20, and the supported
      * characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must
      * not include any spaces. For more information, see [Using feed
      * labels](//support.google.com/merchants/answer/14994087).
@@ -378,8 +394,8 @@ class ProductInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The label that lets you categorize and identify your
-     * products. The maximum allowed characters are 20, and the supported
+     * Required. Immutable. The feed label that lets you categorize and identify
+     * your products. The maximum allowed characters are 20, and the supported
      * characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must
      * not include any spaces. For more information, see [Using feed
      * labels](//support.google.com/merchants/answer/14994087).

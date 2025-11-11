@@ -44,7 +44,6 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service to use ProductInput resource.
- * This service works for products with online channel only.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -288,13 +287,15 @@ final class ProductInputsServiceClient
 
     /**
      * [Uploads a product input to your Merchant Center
-     * account](/merchant/api/guides/products/overview#upload-product-input). You
-     * must have a products data source to be able to insert a product. The unique
-     * identifier of the data source is passed as a query parameter in the request
-     * URL.
+     * account](/merchant/api/guides/products/add-manage#add_a_product). You
+     * must have a products [data
+     * source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source)
+     * to be able to insert a product. The unique identifier of the data source is
+     * passed as a query parameter in the request URL.
      *
-     * If an input with the same contentLanguage, offerId, and dataSource already
-     * exists, this method replaces that entry.
+     * If a product input with the same contentLanguage, offerId, and dataSource
+     * already exists, then the product input inserted by this method replaces
+     * that entry.
      *
      * After inserting, updating, or deleting a product input, it may take several
      * minutes before the processed product can be retrieved.
