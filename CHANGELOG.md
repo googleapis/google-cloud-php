@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.310.1
+
+<details><summary>google/cloud-spanner 2.0.0</summary>
+
+
+
+</details>
+
 ## 0.310.0
 
 <details><summary>google/shopping-merchant-datasources 1.2.0</summary>
