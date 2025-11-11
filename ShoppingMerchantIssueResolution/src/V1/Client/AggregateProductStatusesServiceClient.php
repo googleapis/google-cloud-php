@@ -76,9 +76,7 @@ final class AggregateProductStatusesServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -86,14 +84,16 @@ final class AggregateProductStatusesServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/aggregate_product_statuses_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/aggregate_product_statuses_service_descriptor_config.php',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/aggregate_product_statuses_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/aggregate_product_statuses_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/aggregate_product_statuses_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/aggregate_product_statuses_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -250,8 +250,10 @@ final class AggregateProductStatusesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAggregateProductStatuses(ListAggregateProductStatusesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAggregateProductStatuses(
+        ListAggregateProductStatusesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAggregateProductStatuses', $request, $callOptions);
     }
 }
