@@ -17,24 +17,46 @@ class GetProductRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the product to retrieve.
-     * Format: `accounts/{account}/products/{product}`
-     * where the last section `product` consists of 4 parts:
-     * `channel~content_language~feed_label~offer_id`
-     * example for product name is
-     * `accounts/123/products/online~en~US~sku123`
+     * Format:
+     * `accounts/{account}/products/{product}` where the last
+     * section `product` consists of:
+     * `content_language~feed_label~offer_id`
+     * example for product name is `accounts/123/products/en~US~sku123`. A legacy
+     * local product name would be `accounts/123/products/local~en~US~sku123`.
+     * Note: For calls to the v1beta version, the `product` section consists
+     * of: `channel~content_language~feed_label~offer_id`, for example:
+     * `accounts/123/products/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Optional. If true, the `{product}` in the `name` field of the request will
+     * be interpreted as unpadded base64url-encoded and decoded during request
+     * processing to match the decoded value. Default value is `false`. Use this
+     * if your `{product}` contains special characters, such as forward slash `/`
+     * or other characters that are unpadded base64url-encoded (as per RFC 7515:
+     * https://datatracker.ietf.org/doc/html/rfc7515#section-2).
+     * Note that future versions of the API will only accept unpadded
+     * base64url-encoded product ids, so we strongly recommend proactively setting
+     * this to `true` and encoding the product ids.
+     *
+     * Generated from protobuf field <code>bool product_id_base64_url_encoded = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $product_id_base64_url_encoded = false;
 
     /**
      * @param string $name Required. The name of the product to retrieve.
-     *                     Format: `accounts/{account}/products/{product}`
-     *                     where the last section `product` consists of 4 parts:
-     *                     `channel~content_language~feed_label~offer_id`
-     *                     example for product name is
-     *                     `accounts/123/products/online~en~US~sku123`
-     *                     Please see {@see ProductsServiceClient::productName()} for help formatting this field.
+     *                     Format:
+     *                     `accounts/{account}/products/{product}` where the last
+     *                     section `product` consists of:
+     *                     `content_language~feed_label~offer_id`
+     *                     example for product name is `accounts/123/products/en~US~sku123`. A legacy
+     *                     local product name would be `accounts/123/products/local~en~US~sku123`.
+     *                     Note: For calls to the v1beta version, the `product` section consists
+     *                     of: `channel~content_language~feed_label~offer_id`, for example:
+     *                     `accounts/123/products/online~en~US~sku123`. Please see
+     *                     {@see ProductsServiceClient::productName()} for help formatting this field.
      *
      * @return \Google\Shopping\Merchant\Products\V1beta\GetProductRequest
      *
@@ -54,11 +76,25 @@ class GetProductRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the product to retrieve.
-     *           Format: `accounts/{account}/products/{product}`
-     *           where the last section `product` consists of 4 parts:
-     *           `channel~content_language~feed_label~offer_id`
-     *           example for product name is
-     *           `accounts/123/products/online~en~US~sku123`
+     *           Format:
+     *           `accounts/{account}/products/{product}` where the last
+     *           section `product` consists of:
+     *           `content_language~feed_label~offer_id`
+     *           example for product name is `accounts/123/products/en~US~sku123`. A legacy
+     *           local product name would be `accounts/123/products/local~en~US~sku123`.
+     *           Note: For calls to the v1beta version, the `product` section consists
+     *           of: `channel~content_language~feed_label~offer_id`, for example:
+     *           `accounts/123/products/online~en~US~sku123`.
+     *     @type bool $product_id_base64_url_encoded
+     *           Optional. If true, the `{product}` in the `name` field of the request will
+     *           be interpreted as unpadded base64url-encoded and decoded during request
+     *           processing to match the decoded value. Default value is `false`. Use this
+     *           if your `{product}` contains special characters, such as forward slash `/`
+     *           or other characters that are unpadded base64url-encoded (as per RFC 7515:
+     *           https://datatracker.ietf.org/doc/html/rfc7515#section-2).
+     *           Note that future versions of the API will only accept unpadded
+     *           base64url-encoded product ids, so we strongly recommend proactively setting
+     *           this to `true` and encoding the product ids.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,11 +104,15 @@ class GetProductRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the product to retrieve.
-     * Format: `accounts/{account}/products/{product}`
-     * where the last section `product` consists of 4 parts:
-     * `channel~content_language~feed_label~offer_id`
-     * example for product name is
-     * `accounts/123/products/online~en~US~sku123`
+     * Format:
+     * `accounts/{account}/products/{product}` where the last
+     * section `product` consists of:
+     * `content_language~feed_label~offer_id`
+     * example for product name is `accounts/123/products/en~US~sku123`. A legacy
+     * local product name would be `accounts/123/products/local~en~US~sku123`.
+     * Note: For calls to the v1beta version, the `product` section consists
+     * of: `channel~content_language~feed_label~offer_id`, for example:
+     * `accounts/123/products/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -84,11 +124,15 @@ class GetProductRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the product to retrieve.
-     * Format: `accounts/{account}/products/{product}`
-     * where the last section `product` consists of 4 parts:
-     * `channel~content_language~feed_label~offer_id`
-     * example for product name is
-     * `accounts/123/products/online~en~US~sku123`
+     * Format:
+     * `accounts/{account}/products/{product}` where the last
+     * section `product` consists of:
+     * `content_language~feed_label~offer_id`
+     * example for product name is `accounts/123/products/en~US~sku123`. A legacy
+     * local product name would be `accounts/123/products/local~en~US~sku123`.
+     * Note: For calls to the v1beta version, the `product` section consists
+     * of: `channel~content_language~feed_label~offer_id`, for example:
+     * `accounts/123/products/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -98,6 +142,48 @@ class GetProductRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the `{product}` in the `name` field of the request will
+     * be interpreted as unpadded base64url-encoded and decoded during request
+     * processing to match the decoded value. Default value is `false`. Use this
+     * if your `{product}` contains special characters, such as forward slash `/`
+     * or other characters that are unpadded base64url-encoded (as per RFC 7515:
+     * https://datatracker.ietf.org/doc/html/rfc7515#section-2).
+     * Note that future versions of the API will only accept unpadded
+     * base64url-encoded product ids, so we strongly recommend proactively setting
+     * this to `true` and encoding the product ids.
+     *
+     * Generated from protobuf field <code>bool product_id_base64_url_encoded = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getProductIdBase64UrlEncoded()
+    {
+        return $this->product_id_base64_url_encoded;
+    }
+
+    /**
+     * Optional. If true, the `{product}` in the `name` field of the request will
+     * be interpreted as unpadded base64url-encoded and decoded during request
+     * processing to match the decoded value. Default value is `false`. Use this
+     * if your `{product}` contains special characters, such as forward slash `/`
+     * or other characters that are unpadded base64url-encoded (as per RFC 7515:
+     * https://datatracker.ietf.org/doc/html/rfc7515#section-2).
+     * Note that future versions of the API will only accept unpadded
+     * base64url-encoded product ids, so we strongly recommend proactively setting
+     * this to `true` and encoding the product ids.
+     *
+     * Generated from protobuf field <code>bool product_id_base64_url_encoded = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setProductIdBase64UrlEncoded($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->product_id_base64_url_encoded = $var;
 
         return $this;
     }

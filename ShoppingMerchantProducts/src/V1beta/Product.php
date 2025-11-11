@@ -30,9 +30,13 @@ class Product extends \Google\Protobuf\Internal\Message
      * The name of the product.
      * Format:
      * `accounts/{account}/products/{product}` where the last
-     * section `product` consists of 4 parts:
-     * `channel~content_language~feed_label~offer_id`
-     * example for product name is `accounts/123/products/online~en~US~sku123`
+     * section `product` consists of:
+     * `content_language~feed_label~offer_id`
+     * example for product name is `accounts/123/products/en~US~sku123`. A legacy
+     * local product name would be `accounts/123/products/local~en~US~sku123`.
+     * Note: For calls to the v1beta version, the `product` section consists
+     * of: `channel~content_language~feed_label~offer_id`, for example:
+     * `accounts/123/products/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -136,9 +140,13 @@ class Product extends \Google\Protobuf\Internal\Message
      *           The name of the product.
      *           Format:
      *           `accounts/{account}/products/{product}` where the last
-     *           section `product` consists of 4 parts:
-     *           `channel~content_language~feed_label~offer_id`
-     *           example for product name is `accounts/123/products/online~en~US~sku123`
+     *           section `product` consists of:
+     *           `content_language~feed_label~offer_id`
+     *           example for product name is `accounts/123/products/en~US~sku123`. A legacy
+     *           local product name would be `accounts/123/products/local~en~US~sku123`.
+     *           Note: For calls to the v1beta version, the `product` section consists
+     *           of: `channel~content_language~feed_label~offer_id`, for example:
+     *           `accounts/123/products/online~en~US~sku123`.
      *     @type int $channel
      *           Output only. The
      *           [channel](https://support.google.com/merchants/answer/7361332) of the
@@ -198,9 +206,13 @@ class Product extends \Google\Protobuf\Internal\Message
      * The name of the product.
      * Format:
      * `accounts/{account}/products/{product}` where the last
-     * section `product` consists of 4 parts:
-     * `channel~content_language~feed_label~offer_id`
-     * example for product name is `accounts/123/products/online~en~US~sku123`
+     * section `product` consists of:
+     * `content_language~feed_label~offer_id`
+     * example for product name is `accounts/123/products/en~US~sku123`. A legacy
+     * local product name would be `accounts/123/products/local~en~US~sku123`.
+     * Note: For calls to the v1beta version, the `product` section consists
+     * of: `channel~content_language~feed_label~offer_id`, for example:
+     * `accounts/123/products/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -214,9 +226,13 @@ class Product extends \Google\Protobuf\Internal\Message
      * The name of the product.
      * Format:
      * `accounts/{account}/products/{product}` where the last
-     * section `product` consists of 4 parts:
-     * `channel~content_language~feed_label~offer_id`
-     * example for product name is `accounts/123/products/online~en~US~sku123`
+     * section `product` consists of:
+     * `content_language~feed_label~offer_id`
+     * example for product name is `accounts/123/products/en~US~sku123`. A legacy
+     * local product name would be `accounts/123/products/local~en~US~sku123`.
+     * Note: For calls to the v1beta version, the `product` section consists
+     * of: `channel~content_language~feed_label~offer_id`, for example:
+     * `accounts/123/products/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
