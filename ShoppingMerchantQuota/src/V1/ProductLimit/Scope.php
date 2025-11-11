@@ -59,6 +59,4 @@ class Scope
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Scope::class, \Google\Shopping\Merchant\Quota\V1\ProductLimit_Scope::class);
 
