@@ -111,15 +111,13 @@ class AggregateQuery
             $parsedAggregates[] = $aggregate->getProps();
         }
 
-        $request = new RunAggregationQueryRequest();
-        $request->setParent($this->parentName);
-
         $jsonStructuredAggregationQuery = $this->aggregateQueryPrepare([
             'aggregates' => $this->aggregates
         ] + $this->query);
 
         $options += [
-            'structuredAggregationQuery' => $jsonStructuredAggregationQuery
+            'structuredAggregationQuery' => $jsonStructuredAggregationQuery,
+            'parent' => $this->parentName
         ];
 
         /**

@@ -196,7 +196,6 @@ class BulkWriter
      */
     public function __construct(FirestoreClient $gapicClient, $valueMapper, $database, $options = null)
     {
-        $this->optionsValidator = new OptionsValidator();
         $this->gapicClient = $gapicClient;
         $this->valueMapper = $valueMapper;
         $this->database = $database;
