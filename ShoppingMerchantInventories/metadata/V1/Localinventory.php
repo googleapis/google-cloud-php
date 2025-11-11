@@ -22,7 +22,7 @@ class Localinventory
         \GPBMetadata\Google\Shopping\Merchant\Inventories\V1\InventoriesCommon::initOnce();
         $pool->internalAddGeneratedFile(
             '
-•
+š
 <google/shopping/merchant/inventories/v1/localinventory.proto\'google.shopping.merchant.inventories.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto@google/shopping/merchant/inventories/v1/inventories_common.proto"¶
 LocalInventory
 name (	BàA
@@ -30,21 +30,24 @@ class Localinventory
 
 store_code (	BàAàAj
 local_inventory_attributes (2A.google.shopping.merchant.inventories.v1.LocalInventoryAttributesBàA:sêAp
-)merchantapi.googleapis.com/LocalInventoryCaccounts/{account}/products/{product}/localInventories/{store_code}"‡
+)merchantapi.googleapis.com/LocalInventoryCaccounts/{account}/products/{product}/localInventories/{store_code}"³
 ListLocalInventoriesRequestA
 parent (	B1àAúA+)merchantapi.googleapis.com/LocalInventory
 	page_size (
 
-page_token (	"‹
+page_token (	*
+product_id_base64_url_encoded (BàA"‹
 ListLocalInventoriesResponseR
 local_inventories (27.google.shopping.merchant.inventories.v1.LocalInventory
-next_page_token (	"·
+next_page_token (	"ã
 InsertLocalInventoryRequestA
 parent (	B1àAúA+)merchantapi.googleapis.com/LocalInventoryU
-local_inventory (27.google.shopping.merchant.inventories.v1.LocalInventoryBàA"^
+local_inventory (27.google.shopping.merchant.inventories.v1.LocalInventoryBàA*
+product_id_base64_url_encoded (BàA"Š
 DeleteLocalInventoryRequest?
 name (	B1àAúA+
-)merchantapi.googleapis.com/LocalInventory2˜
+)merchantapi.googleapis.com/LocalInventory*
+product_id_base64_url_encoded (BàA2˜
 LocalInventoryServiceõ
 ListLocalInventoriesD.google.shopping.merchant.inventories.v1.ListLocalInventoriesRequestE.google.shopping.merchant.inventories.v1.ListLocalInventoriesResponse"PÚAparent‚Óä“A?/inventories/v1/{parent=accounts/*/products/*}/localInventoriesö
 InsertLocalInventoryD.google.shopping.merchant.inventories.v1.InsertLocalInventoryRequest7.google.shopping.merchant.inventories.v1.LocalInventory"_‚Óä“Y"F/inventories/v1/{parent=accounts/*/products/*}/localInventories:insert:local_inventoryÄ
