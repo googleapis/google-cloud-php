@@ -89,9 +89,7 @@ final class EntitySignalsMappingServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/admanager',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {
@@ -106,7 +104,8 @@ final class EntitySignalsMappingServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/entity_signals_mapping_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/entity_signals_mapping_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -121,9 +120,7 @@ final class EntitySignalsMappingServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -288,8 +285,10 @@ final class EntitySignalsMappingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateEntitySignalsMappings(BatchCreateEntitySignalsMappingsRequest $request, array $callOptions = []): BatchCreateEntitySignalsMappingsResponse
-    {
+    public function batchCreateEntitySignalsMappings(
+        BatchCreateEntitySignalsMappingsRequest $request,
+        array $callOptions = []
+    ): BatchCreateEntitySignalsMappingsResponse {
         return $this->startApiCall('BatchCreateEntitySignalsMappings', $request, $callOptions)->wait();
     }
 
@@ -316,8 +315,10 @@ final class EntitySignalsMappingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchUpdateEntitySignalsMappings(BatchUpdateEntitySignalsMappingsRequest $request, array $callOptions = []): BatchUpdateEntitySignalsMappingsResponse
-    {
+    public function batchUpdateEntitySignalsMappings(
+        BatchUpdateEntitySignalsMappingsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateEntitySignalsMappingsResponse {
         return $this->startApiCall('BatchUpdateEntitySignalsMappings', $request, $callOptions)->wait();
     }
 
@@ -343,8 +344,10 @@ final class EntitySignalsMappingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createEntitySignalsMapping(CreateEntitySignalsMappingRequest $request, array $callOptions = []): EntitySignalsMapping
-    {
+    public function createEntitySignalsMapping(
+        CreateEntitySignalsMappingRequest $request,
+        array $callOptions = []
+    ): EntitySignalsMapping {
         return $this->startApiCall('CreateEntitySignalsMapping', $request, $callOptions)->wait();
     }
 
@@ -370,8 +373,10 @@ final class EntitySignalsMappingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getEntitySignalsMapping(GetEntitySignalsMappingRequest $request, array $callOptions = []): EntitySignalsMapping
-    {
+    public function getEntitySignalsMapping(
+        GetEntitySignalsMappingRequest $request,
+        array $callOptions = []
+    ): EntitySignalsMapping {
         return $this->startApiCall('GetEntitySignalsMapping', $request, $callOptions)->wait();
     }
 
@@ -397,8 +402,10 @@ final class EntitySignalsMappingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listEntitySignalsMappings(ListEntitySignalsMappingsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listEntitySignalsMappings(
+        ListEntitySignalsMappingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListEntitySignalsMappings', $request, $callOptions);
     }
 
@@ -424,8 +431,10 @@ final class EntitySignalsMappingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateEntitySignalsMapping(UpdateEntitySignalsMappingRequest $request, array $callOptions = []): EntitySignalsMapping
-    {
+    public function updateEntitySignalsMapping(
+        UpdateEntitySignalsMappingRequest $request,
+        array $callOptions = []
+    ): EntitySignalsMapping {
         return $this->startApiCall('UpdateEntitySignalsMapping', $request, $callOptions)->wait();
     }
 }

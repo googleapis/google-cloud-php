@@ -19,10 +19,11 @@ class CustomFieldService
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ç	
-2google/ads/admanager/v1/custom_field_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"S
+ç
+2google/ads/admanager/v1/custom_field_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/protobuf/field_mask.proto"S
 GetCustomFieldRequest:
 name (	B,àAúA&
 $admanager.googleapis.com/CustomField"Ã
@@ -39,10 +40,47 @@ page_token (	BàA
 custom_fields (2$.google.ads.admanager.v1.CustomField
 next_page_token (	
 
-total_size (2¬
+total_size ("•
+CreateCustomFieldRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/Network?
+custom_field (2$.google.ads.admanager.v1.CustomFieldBàA"¤
+BatchCreateCustomFieldsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/NetworkH
+requests (21.google.ads.admanager.v1.CreateCustomFieldRequestBàA"^
+BatchCreateCustomFieldsResponse;
+custom_fields (2$.google.ads.admanager.v1.CustomField"‘
+UpdateCustomFieldRequest?
+custom_field (2$.google.ads.admanager.v1.CustomFieldBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"¤
+BatchUpdateCustomFieldsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/NetworkH
+requests (21.google.ads.admanager.v1.UpdateCustomFieldRequestBàA"^
+BatchUpdateCustomFieldsResponse;
+custom_fields (2$.google.ads.admanager.v1.CustomField"™
+ BatchActivateCustomFieldsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/Network;
+names (	B,àAúA&
+$admanager.googleapis.com/CustomField"#
+!BatchActivateCustomFieldsResponse"›
+"BatchDeactivateCustomFieldsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/Network;
+names (	B,àAúA&
+$admanager.googleapis.com/CustomField"%
+#BatchDeactivateCustomFieldsResponse2Ê
 CustomFieldService›
 GetCustomField..google.ads.admanager.v1.GetCustomFieldRequest$.google.ads.admanager.v1.CustomField"3ÚAname‚Óä“&$/v1/{name=networks/*/customFields/*}®
-ListCustomFields0.google.ads.admanager.v1.ListCustomFieldsRequest1.google.ads.admanager.v1.ListCustomFieldsResponse"5ÚAparent‚Óä“&$/v1/{parent=networks/*}/customFieldsGÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBË
+ListCustomFields0.google.ads.admanager.v1.ListCustomFieldsRequest1.google.ads.admanager.v1.ListCustomFieldsResponse"5ÚAparent‚Óä“&$/v1/{parent=networks/*}/customFields¾
+CreateCustomField1.google.ads.admanager.v1.CreateCustomFieldRequest$.google.ads.admanager.v1.CustomField"PÚAparent,custom_field‚Óä“4"$/v1/{parent=networks/*}/customFields:custom_fieldÛ
+BatchCreateCustomFields7.google.ads.admanager.v1.BatchCreateCustomFieldsRequest8.google.ads.admanager.v1.BatchCreateCustomFieldsResponse"MÚAparent,requests‚Óä“5"0/v1/{parent=networks/*}/customFields:batchCreate:*Ð
+UpdateCustomField1.google.ads.admanager.v1.UpdateCustomFieldRequest$.google.ads.admanager.v1.CustomField"bÚAcustom_field,update_mask‚Óä“A21/v1/{custom_field.name=networks/*/customFields/*}:custom_fieldÛ
+BatchUpdateCustomFields7.google.ads.admanager.v1.BatchUpdateCustomFieldsRequest8.google.ads.admanager.v1.BatchUpdateCustomFieldsResponse"MÚAparent,requests‚Óä“5"0/v1/{parent=networks/*}/customFields:batchUpdate:*à
+BatchActivateCustomFields9.google.ads.admanager.v1.BatchActivateCustomFieldsRequest:.google.ads.admanager.v1.BatchActivateCustomFieldsResponse"LÚAparent,names‚Óä“7"2/v1/{parent=networks/*}/customFields:batchActivate:*è
+BatchDeactivateCustomFields;.google.ads.admanager.v1.BatchDeactivateCustomFieldsRequest<.google.ads.admanager.v1.BatchDeactivateCustomFieldsResponse"NÚAparent,names‚Óä“9"4/v1/{parent=networks/*}/customFields:batchDeactivate:*GÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBË
 com.google.ads.admanager.v1BCustomFieldServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

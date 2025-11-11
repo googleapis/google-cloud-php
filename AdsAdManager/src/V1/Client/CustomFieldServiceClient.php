@@ -24,9 +24,19 @@
 
 namespace Google\Ads\AdManager\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateCustomFieldsRequest;
+use Google\Ads\AdManager\V1\BatchActivateCustomFieldsResponse;
+use Google\Ads\AdManager\V1\BatchCreateCustomFieldsRequest;
+use Google\Ads\AdManager\V1\BatchCreateCustomFieldsResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateCustomFieldsRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateCustomFieldsResponse;
+use Google\Ads\AdManager\V1\BatchUpdateCustomFieldsRequest;
+use Google\Ads\AdManager\V1\BatchUpdateCustomFieldsResponse;
+use Google\Ads\AdManager\V1\CreateCustomFieldRequest;
 use Google\Ads\AdManager\V1\CustomField;
 use Google\Ads\AdManager\V1\GetCustomFieldRequest;
 use Google\Ads\AdManager\V1\ListCustomFieldsRequest;
+use Google\Ads\AdManager\V1\UpdateCustomFieldRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -51,8 +61,14 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivateCustomFieldsResponse> batchActivateCustomFieldsAsync(BatchActivateCustomFieldsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateCustomFieldsResponse> batchCreateCustomFieldsAsync(BatchCreateCustomFieldsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchDeactivateCustomFieldsResponse> batchDeactivateCustomFieldsAsync(BatchDeactivateCustomFieldsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateCustomFieldsResponse> batchUpdateCustomFieldsAsync(BatchUpdateCustomFieldsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomField> createCustomFieldAsync(CreateCustomFieldRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CustomField> getCustomFieldAsync(GetCustomFieldRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCustomFieldsAsync(ListCustomFieldsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomField> updateCustomFieldAsync(UpdateCustomFieldRequest $request, array $optionalArgs = [])
  */
 final class CustomFieldServiceClient
 {
@@ -79,9 +95,7 @@ final class CustomFieldServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/admanager',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {
@@ -111,9 +125,7 @@ final class CustomFieldServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -256,6 +268,148 @@ final class CustomFieldServiceClient
     }
 
     /**
+     * Activates a list of `CustomField` objects.
+     *
+     * The async variant is
+     * {@see CustomFieldServiceClient::batchActivateCustomFieldsAsync()} .
+     *
+     * @example samples/V1/CustomFieldServiceClient/batch_activate_custom_fields.php
+     *
+     * @param BatchActivateCustomFieldsRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivateCustomFieldsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivateCustomFields(
+        BatchActivateCustomFieldsRequest $request,
+        array $callOptions = []
+    ): BatchActivateCustomFieldsResponse {
+        return $this->startApiCall('BatchActivateCustomFields', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to batch create `CustomField` objects.
+     *
+     * The async variant is
+     * {@see CustomFieldServiceClient::batchCreateCustomFieldsAsync()} .
+     *
+     * @example samples/V1/CustomFieldServiceClient/batch_create_custom_fields.php
+     *
+     * @param BatchCreateCustomFieldsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateCustomFieldsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateCustomFields(
+        BatchCreateCustomFieldsRequest $request,
+        array $callOptions = []
+    ): BatchCreateCustomFieldsResponse {
+        return $this->startApiCall('BatchCreateCustomFields', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deactivates a list of `CustomField` objects.
+     *
+     * The async variant is
+     * {@see CustomFieldServiceClient::batchDeactivateCustomFieldsAsync()} .
+     *
+     * @example samples/V1/CustomFieldServiceClient/batch_deactivate_custom_fields.php
+     *
+     * @param BatchDeactivateCustomFieldsRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchDeactivateCustomFieldsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeactivateCustomFields(
+        BatchDeactivateCustomFieldsRequest $request,
+        array $callOptions = []
+    ): BatchDeactivateCustomFieldsResponse {
+        return $this->startApiCall('BatchDeactivateCustomFields', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to batch update `CustomField` objects.
+     *
+     * The async variant is
+     * {@see CustomFieldServiceClient::batchUpdateCustomFieldsAsync()} .
+     *
+     * @example samples/V1/CustomFieldServiceClient/batch_update_custom_fields.php
+     *
+     * @param BatchUpdateCustomFieldsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateCustomFieldsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateCustomFields(
+        BatchUpdateCustomFieldsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateCustomFieldsResponse {
+        return $this->startApiCall('BatchUpdateCustomFields', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to create a `CustomField` object.
+     *
+     * The async variant is {@see CustomFieldServiceClient::createCustomFieldAsync()} .
+     *
+     * @example samples/V1/CustomFieldServiceClient/create_custom_field.php
+     *
+     * @param CreateCustomFieldRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CustomField
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createCustomField(CreateCustomFieldRequest $request, array $callOptions = []): CustomField
+    {
+        return $this->startApiCall('CreateCustomField', $request, $callOptions)->wait();
+    }
+
+    /**
      * API to retrieve a `CustomField` object.
      *
      * The async variant is {@see CustomFieldServiceClient::getCustomFieldAsync()} .
@@ -305,5 +459,31 @@ final class CustomFieldServiceClient
     public function listCustomFields(ListCustomFieldsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListCustomFields', $request, $callOptions);
+    }
+
+    /**
+     * API to update a `CustomField` object.
+     *
+     * The async variant is {@see CustomFieldServiceClient::updateCustomFieldAsync()} .
+     *
+     * @example samples/V1/CustomFieldServiceClient/update_custom_field.php
+     *
+     * @param UpdateCustomFieldRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CustomField
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateCustomField(UpdateCustomFieldRequest $request, array $callOptions = []): CustomField
+    {
+        return $this->startApiCall('UpdateCustomField', $request, $callOptions)->wait();
     }
 }

@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class Visibility
 {
     /**
-     * Default value. Reports with hidden visibility will not appear in the Ad
+     * Default value. Reports with hidden visibility won't appear in the Ad
      * Manager UI.
      *
      * Generated from protobuf enum <code>HIDDEN = 0;</code>

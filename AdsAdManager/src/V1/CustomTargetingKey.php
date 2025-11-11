@@ -26,43 +26,43 @@ class CustomTargetingKey extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `CustomTargetingKey` ID.
      *
-     * Generated from protobuf field <code>int64 custom_targeting_key_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 custom_targeting_key_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $custom_targeting_key_id = 0;
+    protected $custom_targeting_key_id = null;
     /**
      * Immutable. Name of the key. Keys can contain up to 10 characters each. You
      * can use alphanumeric characters and symbols other than the following:
      * ", ', =, !, +, #, *, ~, ;, ^, (, ), <, >, [, ], the white space character.
      *
-     * Generated from protobuf field <code>string ad_tag_name = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>optional string ad_tag_name = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    protected $ad_tag_name = '';
+    protected $ad_tag_name = null;
     /**
      * Optional. Descriptive name for the `CustomTargetingKey`.
      *
-     * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $display_name = '';
+    protected $display_name = null;
     /**
      * Required. Indicates whether users will select from predefined values or
      * create new targeting values, while specifying targeting criteria for a line
      * item.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingKeyTypeEnum.CustomTargetingKeyType type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingKeyTypeEnum.CustomTargetingKeyType type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $type = 0;
+    protected $type = null;
     /**
      * Output only. Status of the `CustomTargetingKey`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingKeyStatusEnum.CustomTargetingKeyStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingKeyStatusEnum.CustomTargetingKeyStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $status = 0;
+    protected $status = null;
     /**
      * Required. Reportable state of the `CustomTargetingKey`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingKeyReportableTypeEnum.CustomTargetingKeyReportableType reportable_type = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingKeyReportableTypeEnum.CustomTargetingKeyReportableType reportable_type = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $reportable_type = 0;
+    protected $reportable_type = null;
 
     /**
      * Constructor.
@@ -130,18 +130,28 @@ class CustomTargetingKey extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `CustomTargetingKey` ID.
      *
-     * Generated from protobuf field <code>int64 custom_targeting_key_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 custom_targeting_key_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getCustomTargetingKeyId()
     {
-        return $this->custom_targeting_key_id;
+        return isset($this->custom_targeting_key_id) ? $this->custom_targeting_key_id : 0;
+    }
+
+    public function hasCustomTargetingKeyId()
+    {
+        return isset($this->custom_targeting_key_id);
+    }
+
+    public function clearCustomTargetingKeyId()
+    {
+        unset($this->custom_targeting_key_id);
     }
 
     /**
      * Output only. `CustomTargetingKey` ID.
      *
-     * Generated from protobuf field <code>int64 custom_targeting_key_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 custom_targeting_key_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -158,12 +168,22 @@ class CustomTargetingKey extends \Google\Protobuf\Internal\Message
      * can use alphanumeric characters and symbols other than the following:
      * ", ', =, !, +, #, *, ~, ;, ^, (, ), <, >, [, ], the white space character.
      *
-     * Generated from protobuf field <code>string ad_tag_name = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>optional string ad_tag_name = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getAdTagName()
     {
-        return $this->ad_tag_name;
+        return isset($this->ad_tag_name) ? $this->ad_tag_name : '';
+    }
+
+    public function hasAdTagName()
+    {
+        return isset($this->ad_tag_name);
+    }
+
+    public function clearAdTagName()
+    {
+        unset($this->ad_tag_name);
     }
 
     /**
@@ -171,7 +191,7 @@ class CustomTargetingKey extends \Google\Protobuf\Internal\Message
      * can use alphanumeric characters and symbols other than the following:
      * ", ', =, !, +, #, *, ~, ;, ^, (, ), <, >, [, ], the white space character.
      *
-     * Generated from protobuf field <code>string ad_tag_name = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>optional string ad_tag_name = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -186,18 +206,28 @@ class CustomTargetingKey extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Descriptive name for the `CustomTargetingKey`.
      *
-     * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
      * Optional. Descriptive name for the `CustomTargetingKey`.
      *
-     * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -214,12 +244,22 @@ class CustomTargetingKey extends \Google\Protobuf\Internal\Message
      * create new targeting values, while specifying targeting criteria for a line
      * item.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingKeyTypeEnum.CustomTargetingKeyType type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingKeyTypeEnum.CustomTargetingKeyType type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : 0;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**
@@ -227,7 +267,7 @@ class CustomTargetingKey extends \Google\Protobuf\Internal\Message
      * create new targeting values, while specifying targeting criteria for a line
      * item.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingKeyTypeEnum.CustomTargetingKeyType type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingKeyTypeEnum.CustomTargetingKeyType type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -242,18 +282,28 @@ class CustomTargetingKey extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Status of the `CustomTargetingKey`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingKeyStatusEnum.CustomTargetingKeyStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingKeyStatusEnum.CustomTargetingKeyStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
      * Output only. Status of the `CustomTargetingKey`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingKeyStatusEnum.CustomTargetingKeyStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingKeyStatusEnum.CustomTargetingKeyStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -268,18 +318,28 @@ class CustomTargetingKey extends \Google\Protobuf\Internal\Message
     /**
      * Required. Reportable state of the `CustomTargetingKey`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingKeyReportableTypeEnum.CustomTargetingKeyReportableType reportable_type = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingKeyReportableTypeEnum.CustomTargetingKeyReportableType reportable_type = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getReportableType()
     {
-        return $this->reportable_type;
+        return isset($this->reportable_type) ? $this->reportable_type : 0;
+    }
+
+    public function hasReportableType()
+    {
+        return isset($this->reportable_type);
+    }
+
+    public function clearReportableType()
+    {
+        unset($this->reportable_type);
     }
 
     /**
      * Required. Reportable state of the `CustomTargetingKey`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomTargetingKeyReportableTypeEnum.CustomTargetingKeyReportableType reportable_type = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomTargetingKeyReportableTypeEnum.CustomTargetingKeyReportableType reportable_type = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

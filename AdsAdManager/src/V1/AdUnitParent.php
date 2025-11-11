@@ -19,22 +19,22 @@ class AdUnitParent extends \Google\Protobuf\Internal\Message
      * Output only. The parent of the current AdUnit
      * Format: `networks/{network_code}/adUnits/{ad_unit_id}`
      *
-     * Generated from protobuf field <code>string parent_ad_unit = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string parent_ad_unit = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    protected $parent_ad_unit = '';
+    protected $parent_ad_unit = null;
     /**
      * Output only. The display name of the parent AdUnit.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $display_name = '';
+    protected $display_name = null;
     /**
      * Output only. A string used to uniquely identify the ad unit for the
      * purposes of serving the ad.
      *
-     * Generated from protobuf field <code>string ad_unit_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string ad_unit_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $ad_unit_code = '';
+    protected $ad_unit_code = null;
 
     /**
      * Constructor.
@@ -61,19 +61,29 @@ class AdUnitParent extends \Google\Protobuf\Internal\Message
      * Output only. The parent of the current AdUnit
      * Format: `networks/{network_code}/adUnits/{ad_unit_id}`
      *
-     * Generated from protobuf field <code>string parent_ad_unit = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string parent_ad_unit = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParentAdUnit()
     {
-        return $this->parent_ad_unit;
+        return isset($this->parent_ad_unit) ? $this->parent_ad_unit : '';
+    }
+
+    public function hasParentAdUnit()
+    {
+        return isset($this->parent_ad_unit);
+    }
+
+    public function clearParentAdUnit()
+    {
+        unset($this->parent_ad_unit);
     }
 
     /**
      * Output only. The parent of the current AdUnit
      * Format: `networks/{network_code}/adUnits/{ad_unit_id}`
      *
-     * Generated from protobuf field <code>string parent_ad_unit = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string parent_ad_unit = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -88,18 +98,28 @@ class AdUnitParent extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The display name of the parent AdUnit.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
      * Output only. The display name of the parent AdUnit.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -115,19 +135,29 @@ class AdUnitParent extends \Google\Protobuf\Internal\Message
      * Output only. A string used to uniquely identify the ad unit for the
      * purposes of serving the ad.
      *
-     * Generated from protobuf field <code>string ad_unit_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string ad_unit_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getAdUnitCode()
     {
-        return $this->ad_unit_code;
+        return isset($this->ad_unit_code) ? $this->ad_unit_code : '';
+    }
+
+    public function hasAdUnitCode()
+    {
+        return isset($this->ad_unit_code);
+    }
+
+    public function clearAdUnitCode()
+    {
+        unset($this->ad_unit_code);
     }
 
     /**
      * Output only. A string used to uniquely identify the ad unit for the
      * purposes of serving the ad.
      *
-     * Generated from protobuf field <code>string ad_unit_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string ad_unit_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

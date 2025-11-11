@@ -92,9 +92,7 @@ final class ReportServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/admanager',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private $operationsClient;
 
@@ -126,9 +124,7 @@ final class ReportServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -369,8 +365,10 @@ final class ReportServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function fetchReportResultRows(FetchReportResultRowsRequest $request, array $callOptions = []): FetchReportResultRowsResponse
-    {
+    public function fetchReportResultRows(
+        FetchReportResultRowsRequest $request,
+        array $callOptions = []
+    ): FetchReportResultRowsResponse {
         return $this->startApiCall('FetchReportResultRows', $request, $callOptions)->wait();
     }
 
@@ -428,7 +426,7 @@ final class ReportServiceClient
 
     /**
      * Initiates the execution of an existing report asynchronously. Users can
-     * get the report by polling this operation via
+     * get the report by polling this operation using
      * `OperationsService.GetOperation`.
      * Poll every 5 seconds initially, with an exponential
      * backoff. Once a report is complete, the operation will contain a
