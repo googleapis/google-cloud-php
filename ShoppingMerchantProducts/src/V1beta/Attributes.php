@@ -171,7 +171,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     private $gtin;
     /**
-     * A list of Global Trade Item Numbers
+     * Global Trade Item Numbers
      * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      * item.
      * You can provide up to 10 GTINs.
@@ -443,7 +443,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $multipack = null;
     /**
-     * Used to group items in an arbitrary way. Only for CPA, discouraged
+     * Used to group items in an arbitrary way. Only for CPA%, discouraged
      * otherwise. For more information, see
      * [Display ads
      * attribute](https://support.google.com/merchants/answer/6069387).
@@ -589,8 +589,6 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $custom_label_4 = null;
     /**
-     * Destinations also known as [Marketing
-     * methods](https://support.google.com/merchants/answer/15130232) selections.
      * The list of destinations to include for this target (corresponds to
      * checked check boxes in Merchant Center). Default destinations are always
      * included unless provided in `excludedDestinations`.
@@ -604,8 +602,6 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     private $included_destinations;
     /**
-     * Destinations also known as [Marketing
-     * methods](https://support.google.com/merchants/answer/15130232) selections.
      * The list of destinations to exclude for this target (corresponds to
      * unchecked check boxes in Merchant Center).
      * For more information, see
@@ -689,10 +685,10 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * A safeguard in the [automated discounts]
      * (https://support.google.com/merchants/answer/10295759) and
-     * ["dynamic
-     * promotions"](https://support.google.com/merchants/answer/13949249)
-     * projects, ensuring that discounts on business offers do not fall below this
-     * value, thereby preserving the offer's value and profitability.
+     * "Dynamic Promotions"
+     * (https://support.google.com/merchants/answer/13949249) projects,
+     * ensuring that discounts on business offers do not fall below this value,
+     * thereby preserving the offer's value and profitability.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price auto_pricing_min_price = 124;</code>
      */
@@ -781,7 +777,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           You can provide up to 10 GTINs.
      *           Deprecated: Use `gtins` instead.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gtins
-     *           A list of Global Trade Item Numbers
+     *           Global Trade Item Numbers
      *           ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      *           item.
      *           You can provide up to 10 GTINs.
@@ -891,7 +887,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *     @type int|string $multipack
      *           The number of identical products in a business-defined multipack.
      *     @type string $ads_grouping
-     *           Used to group items in an arbitrary way. Only for CPA, discouraged
+     *           Used to group items in an arbitrary way. Only for CPA%, discouraged
      *           otherwise. For more information, see
      *           [Display ads
      *           attribute](https://support.google.com/merchants/answer/6069387).
@@ -953,8 +949,6 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           [Custom label 4](https://support.google.com/merchants/answer/6324473) for
      *           custom grouping of items in a Shopping campaign.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $included_destinations
-     *           Destinations also known as [Marketing
-     *           methods](https://support.google.com/merchants/answer/15130232) selections.
      *           The list of destinations to include for this target (corresponds to
      *           checked check boxes in Merchant Center). Default destinations are always
      *           included unless provided in `excludedDestinations`.
@@ -964,8 +958,6 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           Note: We recommend setting destinations on datasources level for most use
      *           cases. Use this field within products to only setup exceptions.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_destinations
-     *           Destinations also known as [Marketing
-     *           methods](https://support.google.com/merchants/answer/15130232) selections.
      *           The list of destinations to exclude for this target (corresponds to
      *           unchecked check boxes in Merchant Center).
      *           For more information, see
@@ -1009,10 +1001,10 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Type\Price $auto_pricing_min_price
      *           A safeguard in the [automated discounts]
      *           (https://support.google.com/merchants/answer/10295759) and
-     *           ["dynamic
-     *           promotions"](https://support.google.com/merchants/answer/13949249)
-     *           projects, ensuring that discounts on business offers do not fall below this
-     *           value, thereby preserving the offer's value and profitability.
+     *           "Dynamic Promotions"
+     *           (https://support.google.com/merchants/answer/13949249) projects,
+     *           ensuring that discounts on business offers do not fall below this value,
+     *           thereby preserving the offer's value and profitability.
      *     @type array<\Google\Shopping\Merchant\Products\V1beta\ProductSustainabilityIncentive>|\Google\Protobuf\Internal\RepeatedField $sustainability_incentives
      *           The list of sustainability incentive programs.
      * }
@@ -1823,7 +1815,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Global Trade Item Numbers
+     * Global Trade Item Numbers
      * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      * item.
      * You can provide up to 10 GTINs.
@@ -1837,7 +1829,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Global Trade Item Numbers
+     * Global Trade Item Numbers
      * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      * item.
      * You can provide up to 10 GTINs.
@@ -3271,7 +3263,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Used to group items in an arbitrary way. Only for CPA, discouraged
+     * Used to group items in an arbitrary way. Only for CPA%, discouraged
      * otherwise. For more information, see
      * [Display ads
      * attribute](https://support.google.com/merchants/answer/6069387).
@@ -3295,7 +3287,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Used to group items in an arbitrary way. Only for CPA, discouraged
+     * Used to group items in an arbitrary way. Only for CPA%, discouraged
      * otherwise. For more information, see
      * [Display ads
      * attribute](https://support.google.com/merchants/answer/6069387).
@@ -4017,8 +4009,6 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destinations also known as [Marketing
-     * methods](https://support.google.com/merchants/answer/15130232) selections.
      * The list of destinations to include for this target (corresponds to
      * checked check boxes in Merchant Center). Default destinations are always
      * included unless provided in `excludedDestinations`.
@@ -4037,8 +4027,6 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destinations also known as [Marketing
-     * methods](https://support.google.com/merchants/answer/15130232) selections.
      * The list of destinations to include for this target (corresponds to
      * checked check boxes in Merchant Center). Default destinations are always
      * included unless provided in `excludedDestinations`.
@@ -4061,8 +4049,6 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destinations also known as [Marketing
-     * methods](https://support.google.com/merchants/answer/15130232) selections.
      * The list of destinations to exclude for this target (corresponds to
      * unchecked check boxes in Merchant Center).
      * For more information, see
@@ -4080,8 +4066,6 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destinations also known as [Marketing
-     * methods](https://support.google.com/merchants/answer/15130232) selections.
      * The list of destinations to exclude for this target (corresponds to
      * unchecked check boxes in Merchant Center).
      * For more information, see
@@ -4419,10 +4403,10 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * A safeguard in the [automated discounts]
      * (https://support.google.com/merchants/answer/10295759) and
-     * ["dynamic
-     * promotions"](https://support.google.com/merchants/answer/13949249)
-     * projects, ensuring that discounts on business offers do not fall below this
-     * value, thereby preserving the offer's value and profitability.
+     * "Dynamic Promotions"
+     * (https://support.google.com/merchants/answer/13949249) projects,
+     * ensuring that discounts on business offers do not fall below this value,
+     * thereby preserving the offer's value and profitability.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price auto_pricing_min_price = 124;</code>
      * @return \Google\Shopping\Type\Price|null
@@ -4445,10 +4429,10 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * A safeguard in the [automated discounts]
      * (https://support.google.com/merchants/answer/10295759) and
-     * ["dynamic
-     * promotions"](https://support.google.com/merchants/answer/13949249)
-     * projects, ensuring that discounts on business offers do not fall below this
-     * value, thereby preserving the offer's value and profitability.
+     * "Dynamic Promotions"
+     * (https://support.google.com/merchants/answer/13949249) projects,
+     * ensuring that discounts on business offers do not fall below this value,
+     * thereby preserving the offer's value and profitability.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price auto_pricing_min_price = 124;</code>
      * @param \Google\Shopping\Type\Price $var

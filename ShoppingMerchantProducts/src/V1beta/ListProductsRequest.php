@@ -26,7 +26,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of products to return. The service may return fewer than
      * this value.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
-     * If unspecified, the default page size of 25 products will be returned.
+     * If unspecified, the maximum number of products will be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -69,7 +69,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *           The maximum number of products to return. The service may return fewer than
      *           this value.
      *           The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *           If unspecified, the default page size of 25 products will be returned.
+     *           If unspecified, the maximum number of products will be returned.
      *     @type string $page_token
      *           A page token, received from a previous `ListProducts` call.
      *           Provide this to retrieve the subsequent page.
@@ -114,7 +114,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of products to return. The service may return fewer than
      * this value.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
-     * If unspecified, the default page size of 25 products will be returned.
+     * If unspecified, the maximum number of products will be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -128,7 +128,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of products to return. The service may return fewer than
      * this value.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
-     * If unspecified, the default page size of 25 products will be returned.
+     * If unspecified, the maximum number of products will be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

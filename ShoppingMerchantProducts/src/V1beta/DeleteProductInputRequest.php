@@ -18,10 +18,10 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the product input resource to delete.
      * Format: `accounts/{account}/productInputs/{product}`
-     * where the last section `product` consists of:
-     * `content_language~feed_label~offer_id`
+     * where the last section `product` consists of 4 parts:
+     * `channel~content_language~feed_label~offer_id`
      * example for product name is
-     * `accounts/123/productInputs/en~US~sku123`.
+     * `accounts/123/productInputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,29 +35,14 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string data_source = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $data_source = '';
-    /**
-     * Optional. If true, the `{productInput}` in the `name` field of the request
-     * will be interpreted as unpadded base64url-encoded and decoded during
-     * request processing to match the decoded value. Default value is `false`.
-     * Use this if your `{productInput}` contains special characters, such as
-     * forward slash
-     * `/` or other characters that are unpadded base64url-encoded (as per RFC
-     * 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2).
-     * Note that future versions of the API will only accept unpadded
-     * base64url-encoded product ids, so we strongly recommend proactively setting
-     * this to `true` and encoding the product ids.
-     *
-     * Generated from protobuf field <code>bool product_id_base64_url_encoded = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $product_id_base64_url_encoded = false;
 
     /**
      * @param string $name Required. The name of the product input resource to delete.
      *                     Format: `accounts/{account}/productInputs/{product}`
-     *                     where the last section `product` consists of:
-     *                     `content_language~feed_label~offer_id`
+     *                     where the last section `product` consists of 4 parts:
+     *                     `channel~content_language~feed_label~offer_id`
      *                     example for product name is
-     *                     `accounts/123/productInputs/en~US~sku123`. Please see
+     *                     `accounts/123/productInputs/online~en~US~sku123`. Please see
      *                     {@see ProductInputsServiceClient::productInputName()} for help formatting this field.
      *
      * @return \Google\Shopping\Merchant\Products\V1beta\DeleteProductInputRequest
@@ -79,26 +64,15 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the product input resource to delete.
      *           Format: `accounts/{account}/productInputs/{product}`
-     *           where the last section `product` consists of:
-     *           `content_language~feed_label~offer_id`
+     *           where the last section `product` consists of 4 parts:
+     *           `channel~content_language~feed_label~offer_id`
      *           example for product name is
-     *           `accounts/123/productInputs/en~US~sku123`.
+     *           `accounts/123/productInputs/online~en~US~sku123`.
      *     @type string $data_source
      *           Required. The primary or supplemental data source from which the product
      *           input should be deleted. Format:
      *           `accounts/{account}/dataSources/{datasource}`. For example,
      *           `accounts/123456/dataSources/104628`.
-     *     @type bool $product_id_base64_url_encoded
-     *           Optional. If true, the `{productInput}` in the `name` field of the request
-     *           will be interpreted as unpadded base64url-encoded and decoded during
-     *           request processing to match the decoded value. Default value is `false`.
-     *           Use this if your `{productInput}` contains special characters, such as
-     *           forward slash
-     *           `/` or other characters that are unpadded base64url-encoded (as per RFC
-     *           7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2).
-     *           Note that future versions of the API will only accept unpadded
-     *           base64url-encoded product ids, so we strongly recommend proactively setting
-     *           this to `true` and encoding the product ids.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,10 +83,10 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the product input resource to delete.
      * Format: `accounts/{account}/productInputs/{product}`
-     * where the last section `product` consists of:
-     * `content_language~feed_label~offer_id`
+     * where the last section `product` consists of 4 parts:
+     * `channel~content_language~feed_label~offer_id`
      * example for product name is
-     * `accounts/123/productInputs/en~US~sku123`.
+     * `accounts/123/productInputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -125,10 +99,10 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the product input resource to delete.
      * Format: `accounts/{account}/productInputs/{product}`
-     * where the last section `product` consists of:
-     * `content_language~feed_label~offer_id`
+     * where the last section `product` consists of 4 parts:
+     * `channel~content_language~feed_label~offer_id`
      * example for product name is
-     * `accounts/123/productInputs/en~US~sku123`.
+     * `accounts/123/productInputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -170,50 +144,6 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->data_source = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. If true, the `{productInput}` in the `name` field of the request
-     * will be interpreted as unpadded base64url-encoded and decoded during
-     * request processing to match the decoded value. Default value is `false`.
-     * Use this if your `{productInput}` contains special characters, such as
-     * forward slash
-     * `/` or other characters that are unpadded base64url-encoded (as per RFC
-     * 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2).
-     * Note that future versions of the API will only accept unpadded
-     * base64url-encoded product ids, so we strongly recommend proactively setting
-     * this to `true` and encoding the product ids.
-     *
-     * Generated from protobuf field <code>bool product_id_base64_url_encoded = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return bool
-     */
-    public function getProductIdBase64UrlEncoded()
-    {
-        return $this->product_id_base64_url_encoded;
-    }
-
-    /**
-     * Optional. If true, the `{productInput}` in the `name` field of the request
-     * will be interpreted as unpadded base64url-encoded and decoded during
-     * request processing to match the decoded value. Default value is `false`.
-     * Use this if your `{productInput}` contains special characters, such as
-     * forward slash
-     * `/` or other characters that are unpadded base64url-encoded (as per RFC
-     * 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2).
-     * Note that future versions of the API will only accept unpadded
-     * base64url-encoded product ids, so we strongly recommend proactively setting
-     * this to `true` and encoding the product ids.
-     *
-     * Generated from protobuf field <code>bool product_id_base64_url_encoded = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setProductIdBase64UrlEncoded($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->product_id_base64_url_encoded = $var;
 
         return $this;
     }

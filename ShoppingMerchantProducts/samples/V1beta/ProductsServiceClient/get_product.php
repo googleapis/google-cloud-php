@@ -35,16 +35,12 @@ use Google\Shopping\Merchant\Products\V1beta\Product;
  * minutes before the updated final product can be retrieved.
  *
  * @param string $formattedName The name of the product to retrieve.
- *                              Format:
- *                              `accounts/{account}/products/{product}` where the last
- *                              section `product` consists of:
- *                              `content_language~feed_label~offer_id`
- *                              example for product name is `accounts/123/products/en~US~sku123`. A legacy
- *                              local product name would be `accounts/123/products/local~en~US~sku123`.
- *                              Note: For calls to the v1beta version, the `product` section consists
- *                              of: `channel~content_language~feed_label~offer_id`, for example:
- *                              `accounts/123/products/online~en~US~sku123`. Please see
- *                              {@see ProductsServiceClient::productName()} for help formatting this field.
+ *                              Format: `accounts/{account}/products/{product}`
+ *                              where the last section `product` consists of 4 parts:
+ *                              `channel~content_language~feed_label~offer_id`
+ *                              example for product name is
+ *                              `accounts/123/products/online~en~US~sku123`
+ *                              Please see {@see ProductsServiceClient::productName()} for help formatting this field.
  */
 function get_product_sample(string $formattedName): void
 {
