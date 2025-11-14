@@ -17,12 +17,17 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\TimestampTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\ListDocumentsRequest;
 
 /**
  * Represents a Cloud Firestore Collection.
@@ -41,50 +46,38 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class CollectionReference extends Query
 {
-    use ArrayTrait;
+    use ApiHelperTrait;
     use DebugInfoTrait;
     use PathTrait;
     use TimestampTrait;
 
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
+    private FirestoreClient $gapicClient;
+    private ValueMapper $valueMapper;
+    private String $name;
+    private DocumentReference|null $parent = null;
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var DocumentReference|null
-     */
-    private $parent;
-
-    /**
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     * @param FirestoreClient $gapicClient A Connection to Cloud Firestore.
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $name The absolute name of the collection.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        FirestoreClient $gapicClient,
         ValueMapper $valueMapper,
         $name
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = $gapicClient;
         $this->valueMapper = $valueMapper;
         $this->name = $name;
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
 
         parent::__construct(
-            $connection,
+            $gapicClient,
             $valueMapper,
             $this->parentPath($this->name),
             [
@@ -275,12 +268,30 @@ class CollectionReference extends Query
 
         $options = $this->formatReadTimeOption($options);
 
+        $listDocumentsCall = function (array $options) {
+            /**
+             * @var ListDocumentsRequest $request
+             * @var CallOptions $callOptions
+             */
+            [$request, $callOptions] = $this->validateOptions(
+                $options,
+                new ListDocumentsRequest(),
+                CallOptions::class
+            );
+
+            $response = $this->gapicClient->listDocuments($request, $callOptions);
+
+            $page = $response->getPage();
+
+            return $this->serializer->encodeMessage($page->getResponseObject());
+        };
+
         return new ItemIterator(
             new PageIterator(
                 function ($document) {
                     return $this->documentFactory($document['name']);
                 },
-                [$this->connection, 'listDocuments'],
+                $listDocumentsCall,
                 $options,
                 [
                     'itemsKey' => 'documents',
@@ -319,6 +330,6 @@ class CollectionReference extends Query
      */
     private function documentFactory($name)
     {
-        return new DocumentReference($this->connection, $this->valueMapper, $this, $name);
+        return new DocumentReference($this->gapicClient, $this->valueMapper, $this, $name);
     }
 }

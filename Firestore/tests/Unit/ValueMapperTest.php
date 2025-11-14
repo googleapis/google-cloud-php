@@ -24,8 +24,8 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Protobuf\NullValue;
 use PHPUnit\Framework\TestCase;
@@ -40,16 +40,16 @@ class ValueMapperTest extends TestCase
     use ProphecyTrait;
     use TimeTrait;
 
-    private $connection;
+    private $gapicClient;
     private $mapper;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->mapper = TestHelpers::stub(ValueMapper::class, [
-            $this->connection->reveal(),
+        $this->gapicClient = $this->prophesize(FirestoreClient::class);
+        $this->mapper = new ValueMapper(
+            $this->gapicClient->reveal(),
             false
-        ], ['connection', 'returnInt64AsObject']);
+        );
     }
 
     /**
@@ -173,9 +173,12 @@ class ValueMapperTest extends TestCase
     {
         $val = ['integerValue' => 15];
 
-        $this->mapper->___setProperty('returnInt64AsObject', true);
+        $mapper = new ValueMapper(
+            $this->gapicClient->reveal(),
+            true
+        );
 
-        $res = $this->mapper->decodeValues(['val' => $val]);
+        $res = $mapper->decodeValues(['val' => $val]);
         $this->assertInstanceOf(Int64::class, $res['val']);
         $this->assertEquals(15, $res['val']->get());
     }

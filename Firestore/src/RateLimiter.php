@@ -41,34 +41,22 @@ class RateLimiter
     private $availableTokens;
 
     /**
-     * @var int When the token bucket was first filled.
+     * When the token bucket was first filled.
      */
-    private $startTimeMillis;
+    private int $startTimeMillis;
 
     /**
-     * @var int When the token bucket was last refilled.
+     * When the token bucket was last refilled.
      */
-    private $lastRefillTimeMillis;
+    private int $lastRefillTimeMillis;
 
     /**
-     * @var int Initial maximum number of operations per second.
+     * Initial maximum number of operations per second.
      */
-    private $initialCapacity;
-
-    /**
-     * @var float
-     */
-    private $multiplier;
-
-    /**
-     * @var int
-     */
-    private $multiplierMillis;
-
-    /**
-     * @var int
-     */
-    private $maximumRate;
+    private int $initialCapacity;
+    private float $multiplier;
+    private int $multiplierMillis;
+    private int $maximumRate;
 
     /**
      * Constructor.

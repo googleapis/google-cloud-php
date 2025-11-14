@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use DateTimeImmutable;
 use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
@@ -37,7 +37,13 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Firestore\Filter;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\ExplainOptions;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Firestore\V1\RunAggregationQueryResponse;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
+use Google\Cloud\Firestore\V1\RunQueryResponse;
+use Google\Protobuf\Int32Value;
 
 /**
  * @group firestore
@@ -45,6 +51,8 @@ use Google\Cloud\Firestore\V1\ExplainOptions;
  */
 class QueryTest extends TestCase
 {
+    use GenerateProtoTrait;
+    use ServerStreamMockTrait;
     use ProphecyTrait;
 
     const PROJECT = 'example_project';
@@ -57,28 +65,29 @@ class QueryTest extends TestCase
             ['collectionId' => self::COLLECTION]
         ]
     ];
-    private $connection;
+    private $gapicClient;
     private $query;
     private $collectionGroupQuery;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->query = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+        $this->gapicClient = $this->prophesize(FirestoreClient::class);
+
+        $this->query = new Query(
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             self::QUERY_PARENT,
             $this->queryObj
-        ], ['connection', 'query', 'transaction']);
+        );
 
         $allDescendants = $this->queryObj;
         $allDescendants['from'][0]['allDescendants'] = true;
-        $this->collectionGroupQuery = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+        $this->collectionGroupQuery = new Query(
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             self::QUERY_PARENT,
             $allDescendants
-        ], ['connection', 'query', 'transaction']);
+        );
     }
 
     public function testConstructMissingFrom()
@@ -86,8 +95,8 @@ class QueryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         new Query(
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             self::QUERY_PARENT,
             []
         );
@@ -97,24 +106,21 @@ class QueryTest extends TestCase
     {
         $name = self::QUERY_PARENT .'/foo';
 
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'document' => [
-                        'name' => $name,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
-                            ]
-                        ]
-                    ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
-                ],
-                []
-            ]));
+        $protoResponse = self::generateProto(RunQueryResponse::class, [
+            'document' => [
+                'name' => $name,
+                'fields' => [
+                    'hello' => [
+                        'stringValue' => 'world'
+                    ]
+                ]
+            ],
+            'readTime' => ['seconds' => 123, 'nanos' => 321]
+        ]);
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->runQuery(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $res = $this->query->documents(['maxRetries' => 0]);
         $this->assertContainsOnlyInstancesOf(DocumentSnapshot::class, $res);
@@ -131,26 +137,30 @@ class QueryTest extends TestCase
         $explainOptions = new ExplainOptions();
         $explainOptions->setAnalyze(true);
 
-        $this->connection->runQuery(Argument::that(function ($options) {
-            return isset($options['explainOptions']);
-        }))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'document' => [
-                        'name' => $name,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
-                            ]
-                        ]
-                    ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT),
-                ],
-                []
-            ]));
+        $protoResponse = self::generateProto(RunQueryResponse::class, [
+            'document' => [
+                'name' => $name,
+                'fields' => [
+                    'hello' => [
+                        'stringValue' => 'world'
+                    ]
+                ]
+            ],
+            'readTime' => [
+                'seconds' => 123,
+                'nanos' => 321
+            ],
+        ]);
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->runQuery(
+            Argument::that(function (RunQueryRequest $request) {
+                $this->assertNotEmpty($request->getExplainOptions());
+                return true;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $res = $this->query->documents(['maxRetries' => 0, 'explainOptions' => $explainOptions]);
         $this->assertContainsOnlyInstancesOf(DocumentSnapshot::class, $res);
@@ -165,27 +175,28 @@ class QueryTest extends TestCase
     {
         $name = self::QUERY_PARENT .'/foo';
 
-        $ts = (new \DateTime)->format(Timestamp::FORMAT);
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'document' => [
-                        'name' => $name,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
-                            ]
-                        ],
-                        'createTime' => $ts,
-                        'updateTime' => $ts
-                    ],
-                    'readTime' => $ts
-                ],
-                []
-            ]));
+        $ts = [
+            'nanos' => 321,
+            'seconds' => 123
+        ];
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
+        $protoResponse = self::generateProto(RunQueryResponse::class, [
+            'document' => [
+                'name' => $name,
+                'fields' => [
+                    'hello' => [
+                        'stringValue' => 'world'
+                    ]
+                ],
+                'createTime' => $ts,
+                'updateTime' => $ts
+            ],
+            'readTime' => $ts
+        ]);
+
+        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $res = $this->query->documents()->rows()[0];
         $this->assertInstanceOf(Timestamp::class, $res->createTime());
@@ -198,19 +209,17 @@ class QueryTest extends TestCase
      */
     public function testAggregation($type, $arg)
     {
-        $this->connection->runAggregationQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'result' => [
-                        'aggregateFields' => [
-                            $type => ['integerValue' => 1]
-                        ]
-                    ]
+        $protoResponse = self::generateProto(RunAggregationQueryResponse::class, [
+           'result' => [
+                'aggregateFields' => [
+                    $type => ['integerValue' => 1]
                 ]
-            ]));
+            ]
+        ]);
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->runAggregationQuery(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $res = $arg ? $this->query->$type($arg) : $this->query->$type();
         $this->assertEquals(1, $res);
@@ -221,20 +230,29 @@ class QueryTest extends TestCase
      */
     public function testAggregationWithReadTime($type, $arg)
     {
-        $readTime = new Timestamp(new \DateTimeImmutable('now'));
-        $this->connection->runAggregationQuery(Argument::withEntry('readTime', $readTime))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'result' => [
-                        'aggregateFields' => [
-                            $type => ['testValue' => 1]
-                        ]
-                    ]
+        $protoResponse = self::generateProto(RunAggregationQueryResponse::class, [
+            'result' => [
+                'aggregateFields' => [
+                    $type => ['integerValue' => 1]
                 ]
-            ]));
+            ]
+        ]);
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
+        $readTime = new Timestamp(new DateTimeImmutable('now'));
+        $this->gapicClient->runAggregationQuery(
+            Argument::that(function (RunAggregationQueryRequest $request) use ($readTime) {
+                $expectedSeconds = $readTime->get()->format('U');
+                $expectedNanos = $readTime->nanoSeconds();
+
+                $this->assertEquals($expectedSeconds, $request->getReadTime()->getSeconds());
+                $this->assertEquals($expectedNanos, $request->getReadTime()->getNanos());
+
+                return true;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $res = $arg ?
             $this->query->$type($arg, ['readTime' => $readTime]) :
@@ -249,9 +267,7 @@ class QueryTest extends TestCase
             'users.dave'
         ];
 
-        $this->runAndAssert(function (Query $q) use ($paths) {
-            return $q->select($paths);
-        }, [
+        $requestToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -263,6 +279,10 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) use ($paths) {
+            return $q->select($paths);
+        }, $requestToAssert);
     }
 
     public function testSelectOverride()
@@ -272,11 +292,7 @@ class QueryTest extends TestCase
             'users.dave'
         ];
 
-        $this->runAndAssert(function (Query $q) use ($paths) {
-            $res = $q->select($paths);
-            $res = $res->select(['users.dan']);
-            return $res;
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -286,14 +302,18 @@ class QueryTest extends TestCase
                     ]
                 ]
             ]
-        ]);
+                    ]);
+
+        $this->runAndAssert(function (Query $q) use ($paths) {
+            $res = $q->select($paths);
+            $res = $res->select(['users.dan']);
+            return $res;
+        }, $protoToAssert);
     }
 
     public function testSelectName()
     {
-        $this->runAndAssert(function (Query $q) {
-            return $q->select([]);
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -303,11 +323,116 @@ class QueryTest extends TestCase
                     ]
                 ]
             ]
-        ]);
+                    ]);
+
+        $this->runAndAssert(function (Query $q) {
+            return $q->select([]);
+        }, $protoToAssert);
     }
 
     public function testWhere()
     {
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'where' => [
+                    'compositeFilter' => [
+                        'op' => Operator::PBAND,
+                        'filters' => [
+                            [
+                                'fieldFilter' => [
+                                    'field' => [
+                                        'fieldPath' => 'user.name'
+                                    ],
+                                    'op' => FieldFilterOperator::EQUAL,
+                                    'value' => [
+                                        'stringValue' => 'John'
+                                    ]
+                                ]
+                            ], [
+                                'fieldFilter' => [
+                                    'field' => [
+                                        'fieldPath' => 'user.age'
+                                    ],
+                                    'op' => FieldFilterOperator::EQUAL,
+                                    'value' => [
+                                        'integerValue' => '30'
+                                    ]
+                                ]
+                            ],
+                            [
+                                'unaryFilter' => [
+                                    'field' => [
+                                        'fieldPath' => 'user.coolness'
+                                    ],
+                                    'op' => Query::OP_NULL
+                                ]
+                            ], [
+                                'unaryFilter' => [
+                                    'field' => [
+                                        'fieldPath' => 'user.numberOfFriends'
+                                    ],
+                                    'op' => Query::OP_NAN
+                                ]
+                            ], [
+                                'compositeFilter' => [
+                                    'op' => Operator::PBOR,
+                                    'filters' => [
+                                        [
+                                            'fieldFilter' => [
+                                                'field' => [
+                                                    'fieldPath' => 'user.name'
+                                                ],
+                                                'op' => FieldFilterOperator::EQUAL,
+                                                'value' => [
+                                                    'stringValue' => 'John'
+                                                ]
+                                            ]
+                                        ],
+                                        [
+                                            'fieldFilter' => [
+                                                'field' => [
+                                                    'fieldPath' => 'user.age'
+                                                ],
+                                                'op' => FieldFilterOperator::EQUAL,
+                                                'value' => [
+                                                    'integerValue' => '30'
+                                                ]
+                                            ]
+                                        ],
+                                        [
+                                            'compositeFilter' => [
+                                                'op' => Operator::PBAND,
+                                                'filters' => [
+                                                    [
+                                                        'unaryFilter' => [
+                                                            'field' => [
+                                                                'fieldPath' => 'user.coolness'
+                                                            ],
+                                                            'op' => Query::OP_NULL
+                                                        ]
+                                                    ],
+                                                    [
+                                                        'unaryFilter' => [
+                                                            'field' => [
+                                                                'fieldPath' => 'user.numberOfFriends'
+                                                            ],
+                                                            'op' => Query::OP_NAN
+                                                        ]
+                                                    ]
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
         $this->runAndAssert(function (Query $q) {
             $res = $q->where('user.name', '=', 'John');
             $res = $res->where('user.age', '=', 30);
@@ -325,107 +450,7 @@ class QueryTest extends TestCase
             );
 
             return $res;
-        },
-            [
-                'parent' => self::QUERY_PARENT,
-                'structuredQuery' => [
-                    'from' => $this->queryFrom(),
-                    'where' => [
-                        'compositeFilter' => [
-                            'op' => Operator::PBAND,
-                            'filters' => [
-                                [
-                                    'fieldFilter' => [
-                                        'field' => [
-                                            'fieldPath' => 'user.name'
-                                        ],
-                                        'op' => FieldFilterOperator::EQUAL,
-                                        'value' => [
-                                            'stringValue' => 'John'
-                                        ]
-                                    ]
-                                ], [
-                                    'fieldFilter' => [
-                                        'field' => [
-                                            'fieldPath' => 'user.age'
-                                        ],
-                                        'op' => FieldFilterOperator::EQUAL,
-                                        'value' => [
-                                            'integerValue' => '30'
-                                        ]
-                                    ]
-                                ],
-                                [
-                                    'unaryFilter' => [
-                                        'field' => [
-                                            'fieldPath' => 'user.coolness'
-                                        ],
-                                        'op' => Query::OP_NULL
-                                    ]
-                                ], [
-                                    'unaryFilter' => [
-                                        'field' => [
-                                            'fieldPath' => 'user.numberOfFriends'
-                                        ],
-                                        'op' => Query::OP_NAN
-                                    ]
-                                ], [
-                                    'compositeFilter' => [
-                                        'op' => Operator::PBOR,
-                                        'filters' => [
-                                            [
-                                                'fieldFilter' => [
-                                                    'field' => [
-                                                        'fieldPath' => 'user.name'
-                                                    ],
-                                                    'op' => FieldFilterOperator::EQUAL,
-                                                    'value' => [
-                                                        'stringValue' => 'John'
-                                                    ]
-                                                ]
-                                            ],
-                                            [
-                                                'fieldFilter' => [
-                                                    'field' => [
-                                                        'fieldPath' => 'user.age'
-                                                    ],
-                                                    'op' => FieldFilterOperator::EQUAL,
-                                                    'value' => [
-                                                        'integerValue' => '30'
-                                                    ]
-                                                ]
-                                            ],
-                                            [
-                                                'compositeFilter' => [
-                                                    'op' => Operator::PBAND,
-                                                    'filters' => [
-                                                        [
-                                                            'unaryFilter' => [
-                                                                'field' => [
-                                                                    'fieldPath' => 'user.coolness'
-                                                                ],
-                                                                'op' => Query::OP_NULL
-                                                            ]
-                                                        ],
-                                                        [
-                                                            'unaryFilter' => [
-                                                                'field' => [
-                                                                    'fieldPath' => 'user.numberOfFriends'
-                                                                ],
-                                                                'op' => Query::OP_NAN
-                                                            ]
-                                                        ]
-                                                    ]
-                                                ]
-                                            ]
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]);
+        },$protoToAssert);
     }
 
     /**
@@ -538,11 +563,7 @@ class QueryTest extends TestCase
      */
     public function testWhereDocumentId($document, $expected)
     {
-        $this->runAndAssert(function (Query $q) use ($document) {
-            $res = $q->where(FieldPath::documentId(), '=', $document);
-
-            return $res;
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -560,7 +581,13 @@ class QueryTest extends TestCase
                     ]
                 ]
             ]
-        ]);
+                        ]);
+
+        $this->runAndAssert(function (Query $q) use ($document) {
+            $res = $q->where(FieldPath::documentId(), '=', $document);
+
+            return $res;
+        }, $protoToAssert);
     }
 
     /**
@@ -568,11 +595,7 @@ class QueryTest extends TestCase
      */
     public function testWhereDocumentIdWithFilter($document, $expected)
     {
-        $this->runAndAssert(function (Query $q) use ($document) {
-            $res = $q->where(Filter::field(FieldPath::documentId(), '=', $document));
-
-            return $res;
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -590,7 +613,13 @@ class QueryTest extends TestCase
                     ]
                 ]
             ]
-        ]);
+                        ]);
+
+        $this->runAndAssert(function (Query $q) use ($document) {
+            $res = $q->where(Filter::field(FieldPath::documentId(), '=', $document));
+
+            return $res;
+        }, $protoToAssert);
     }
 
     /**
@@ -598,11 +627,7 @@ class QueryTest extends TestCase
      */
     public function testWhereDocumentIdIn($document, $expected)
     {
-        $this->runAndAssert(function (Query $q) use ($document) {
-            $res = $q->where(FieldPath::documentId(), 'in', [$document]);
-
-            return $res;
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class,  [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -627,6 +652,12 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) use ($document) {
+            $res = $q->where(FieldPath::documentId(), 'in', [$document]);
+
+            return $res;
+        }, $protoToAssert);
     }
 
     /**
@@ -634,11 +665,7 @@ class QueryTest extends TestCase
      */
     public function testWhereDocumentIdInWithFilter($document, $expected)
     {
-        $this->runAndAssert(function (Query $q) use ($document) {
-            $res = $q->where(Filter::field(FieldPath::documentId(), 'in', [$document]));
-
-            return $res;
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -663,6 +690,12 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) use ($document) {
+            $res = $q->where(Filter::field(FieldPath::documentId(), 'in', [$document]));
+
+            return $res;
+        }, $protoToAssert);
     }
 
     public function whereDocument()
@@ -712,12 +745,7 @@ class QueryTest extends TestCase
 
     public function testOrderBy()
     {
-        $this->runAndAssert(function (Query $q) {
-            $res = $q->orderBy('user.name', 'DESC');
-            $res = $res->orderBy('user.age', 'ASC');
-
-            return $res;
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -731,7 +759,14 @@ class QueryTest extends TestCase
                     ]
                 ]
             ]
-        ]);
+                    ]);
+
+        $this->runAndAssert(function (Query $q) {
+            $res = $q->orderBy('user.name', 'DESC');
+            $res = $res->orderBy('user.age', 'ASC');
+
+            return $res;
+        }, $protoToAssert);
     }
 
     /**
@@ -787,15 +822,17 @@ class QueryTest extends TestCase
     {
         $limit = 50;
 
-        $this->runAndAssert(function (Query $q) use ($limit) {
-            return $q->limit($limit);
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
-                'limit' => $limit
+                'limit' => new Int32Value(['value' => $limit])
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) use ($limit) {
+            return $q->limit($limit);
+        }, $protoToAssert);
     }
 
     /**
@@ -803,18 +840,20 @@ class QueryTest extends TestCase
      */
     public function testLimitToLast(callable $filter, array $query)
     {
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'limit' => new Int32Value(['value' => 1])
+            ] + $query
+            ]);
+
         $this->runAndAssert(function (Query $q) use ($filter) {
             $q = $filter($q);
             $q = $q->limitToLast(1);
 
             return $q;
-        }, [
-            'parent' => self::QUERY_PARENT,
-            'structuredQuery' => [
-                'from' => $this->queryFrom(),
-                'limit' => 1
-            ] + $query
-        ]);
+        }, $protoToAssert);
     }
 
     /**
@@ -940,34 +979,40 @@ class QueryTest extends TestCase
         $name1 = self::QUERY_PARENT .'/foo';
         $name2 = self::QUERY_PARENT .'/bar';
 
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'document' => [
-                        'name' => $name1,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
-                            ]
+        $protoResponses = [
+            self::generateProto(RunQueryResponse::class, [
+                'document' => [
+                    'name' => $name1,
+                    'fields' => [
+                        'hello' => [
+                            'stringValue' => 'world'
                         ]
-                    ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                    ]
                 ],
-                [
-                    'document' => [
-                        'name' => $name2,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
-                            ]
+                'readTime' => [
+                    'seconds' => 123,
+                    'nanos' => 321
+                ]
+            ]),
+            self::generateProto(RunQueryResponse::class, [
+                'document' => [
+                    'name' => $name2,
+                    'fields' => [
+                        'hello' => [
+                            'stringValue' => 'world'
                         ]
-                    ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                    ]
                 ],
-            ]));
+                'readTime' => [
+                    'seconds' => 123,
+                    'nanos' => 321
+                ]
+            ])
+        ];
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->runQuery(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock($protoResponses));
 
         $res = $this->query->orderBy('foo', 'DESC')
             ->limitToLast(2)
@@ -989,22 +1034,22 @@ class QueryTest extends TestCase
     {
         $offset = 50;
 
-        $this->runAndAssert(function (Query $q) use ($offset) {
-            return $q->offset($offset);
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'offset' => $offset
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) use ($offset) {
+            return $q->offset($offset);
+        }, $protoToAssert);
     }
 
     public function testStartAt()
     {
-        $this->runAndAssert(function (Query $q) {
-            return $q->orderBy('name', Query::DIR_DESCENDING)->startAt(['john']);
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1026,13 +1071,15 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) {
+            return $q->orderBy('name', Query::DIR_DESCENDING)->startAt(['john']);
+        }, $protoToAssert);
     }
 
     public function testStartAfter()
     {
-        $this->runAndAssert(function (Query $q) {
-            return $q->orderBy('name', Query::DIR_DESCENDING)->startAfter(['john']);
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1053,13 +1100,15 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) {
+            return $q->orderBy('name', Query::DIR_DESCENDING)->startAfter(['john']);
+        }, $protoToAssert);
     }
 
     public function testEndBefore()
     {
-        $this->runAndAssert(function (Query $q) {
-            return $q->orderBy('name', Query::DIR_DESCENDING)->endBefore(['john']);
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1081,13 +1130,15 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) {
+            return $q->orderBy('name', Query::DIR_DESCENDING)->endBefore(['john']);
+        }, $protoToAssert);
     }
 
     public function testEndAt()
     {
-        $this->runAndAssert(function (Query $q) {
-            return $q->orderBy('name', Query::DIR_DESCENDING)->endAt(['john']);
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1108,15 +1159,17 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) {
+            return $q->orderBy('name', Query::DIR_DESCENDING)->endAt(['john']);
+        }, $protoToAssert);
     }
 
     public function testBuildPositionWithDocumentId()
     {
         $documentPath = $this->queryFrom()[0]['collectionId'] . '/john';
 
-        $this->runAndAssert(function (Query $q) use ($documentPath) {
-            return $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt(['john']);
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1137,6 +1190,10 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) use ($documentPath) {
+            return $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt(['john']);
+        }, $protoToAssert);
     }
 
     public function testBuildPositionWithDocumentReference()
@@ -1148,9 +1205,7 @@ class QueryTest extends TestCase
         $ref->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $ref->parent()->willReturn($c->reveal());
 
-        $this->runAndAssert(function (Query $q) use ($ref) {
-            return $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt([$ref->reveal()]);
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1171,6 +1226,10 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) use ($ref) {
+            return $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt([$ref->reveal()]);
+        }, $protoToAssert);
     }
 
     public function testPositionWithDocumentSnapshot()
@@ -1186,9 +1245,7 @@ class QueryTest extends TestCase
         $snapshot->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $snapshot->reference()->willReturn($ref->reveal());
 
-        $this->runAndAssert(function (Query $q) use ($snapshot) {
-            return $this->query->startAt($snapshot->reveal());
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1210,6 +1267,10 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            return $this->query->startAt($snapshot->reveal());
+        }, $protoToAssert);
     }
 
     public function testSnapshotInFieldValue()
@@ -1242,10 +1303,7 @@ class QueryTest extends TestCase
         $snapshot->get('a')->willReturn('b');
         $snapshot->get('c')->willReturn('d');
 
-        $this->runAndAssert(function (Query $q) use ($snapshot) {
-            $query = $this->query->orderBy('a')->orderBy('c')->orderBy(FieldPath::documentId());
-            return $query->startAt($snapshot->reveal());
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1279,6 +1337,11 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            $query = $this->query->orderBy('a')->orderBy('c')->orderBy(FieldPath::documentId());
+            return $query->startAt($snapshot->reveal());
+        }, $protoToAssert);
     }
 
     public function testPositionInequalityFilter()
@@ -1295,10 +1358,7 @@ class QueryTest extends TestCase
         $snapshot->reference()->willReturn($ref->reveal());
         $snapshot->get('foo')->willReturn('bar');
 
-        $this->runAndAssert(function (Query $q) use ($snapshot) {
-            $query = $this->query->where('foo', '>', 'bar');
-            return $query->startAt($snapshot->reveal());
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1340,9 +1400,11 @@ class QueryTest extends TestCase
         ]);
 
         $this->runAndAssert(function (Query $q) use ($snapshot) {
-            $query = $this->query->where(Filter::or([Filter::field('foo', '>', 'bar')]));
+            $query = $this->query->where('foo', '>', 'bar');
             return $query->startAt($snapshot->reveal());
-        }, [
+        }, $protoToAssert);
+
+        $secondProtoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1389,6 +1451,11 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            $query = $this->query->where(Filter::or([Filter::field('foo', '>', 'bar')]));
+            return $query->startAt($snapshot->reveal());
+        }, $secondProtoToAssert);
     }
 
     public function testPositionInequalityWithCompositeFilter()
@@ -1405,10 +1472,7 @@ class QueryTest extends TestCase
         $snapshot->reference()->willReturn($ref->reveal());
         $snapshot->get('foo')->willReturn('bar');
 
-        $this->runAndAssert(function (Query $q) use ($snapshot) {
-            $query = $this->query->where(Filter::or([Filter::field('foo', '>', 'bar')]));
-            return $query->startAt($snapshot->reveal());
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1455,6 +1519,11 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            $query = $this->query->where(Filter::or([Filter::field('foo', '>', 'bar')]));
+            return $query->startAt($snapshot->reveal());
+        }, $protoToAssert);
     }
 
     public function testPositionInequalityWithFieldFilter()
@@ -1471,10 +1540,7 @@ class QueryTest extends TestCase
         $snapshot->reference()->willReturn($ref->reveal());
         $snapshot->get('foo')->willReturn('bar');
 
-        $this->runAndAssert(function (Query $q) use ($snapshot) {
-            $query = $this->query->where(Filter::field('foo', '>', 'bar'));
-            return $query->startAt($snapshot->reveal());
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1514,6 +1580,11 @@ class QueryTest extends TestCase
                 ]
             ]
         ]);
+
+        $this->runAndAssert(function (Query $q) use ($snapshot) {
+            $query = $this->query->where(Filter::field('foo', '>', 'bar'));
+            return $query->startAt($snapshot->reveal());
+        }, $protoToAssert);
     }
 
     public function testBuildPositionTooManyCursorValues()
@@ -1577,10 +1648,7 @@ class QueryTest extends TestCase
 
     public function testBuildPositionAllDescendantsDocument()
     {
-        $this->runAndAssert(function (Query $q) {
-            $query = $q->orderBy(FieldPath::documentId());
-            return $query->startAt([$this->queryFrom()[0]['collectionId'] .'/john']);
-        }, [
+        $protoToAssert = self::generateProto(RunQueryRequest::class,  [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(true),
@@ -1601,25 +1669,22 @@ class QueryTest extends TestCase
                     ]
                 ]
             ]
-        ], $this->collectionGroupQuery);
+        ]);
+
+        $this->runAndAssert(function (Query $q) {
+            $query = $q->orderBy(FieldPath::documentId());
+            return $query->startAt([$this->queryFrom()[0]['collectionId'] .'/john']);
+        }, $protoToAssert, $this->collectionGroupQuery);
     }
 
     private function runAndAssert(callable $filters, $assertion, ?Query $query = null)
     {
-        if (is_array($assertion)) {
-            $this->connection->runQuery(
-                new ArrayHasSameValuesToken($assertion + ['retries' => 0])
-            )->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([
-                []
-            ]));
-        } elseif (is_callable($assertion)) {
-            $this->connection->runQuery(Argument::that($assertion))
-                ->shouldBeCalledTimes(1);
-        }
+        $this->gapicClient->runQuery($assertion, Argument::any())
+                ->shouldBeCalledTimes(1)
+                ->willReturn($this->getServerStreamMock([new RunQueryResponse()]));
 
         $query = $query ?: $this->query;
         $immutable = clone $query;
-        $immutable->___setProperty('connection', $this->connection->reveal());
         $query = $filters($immutable);
 
         $this->assertInstanceOf(Query::class, $query);

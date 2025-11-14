@@ -303,4 +303,3 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
 }
-
