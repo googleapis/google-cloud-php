@@ -23,6 +23,13 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode plan_nodes = 1;</code>
      */
     private $plan_nodes;
+    /**
+     * Optional. The advise/recommendations for a query. Currently this field will
+     * be serving index recommendations for a query.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.QueryAdvisorResult query_advice = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $query_advice = null;
 
     /**
      * Constructor.
@@ -34,6 +41,9 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
      *           The nodes in the query plan. Plan nodes are returned in pre-order starting
      *           with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id`
      *           corresponds to its index in `plan_nodes`.
+     *     @type \Google\Cloud\Spanner\V1\QueryAdvisorResult $query_advice
+     *           Optional. The advise/recommendations for a query. Currently this field will
+     *           be serving index recommendations for a query.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,6 +77,44 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\V1\PlanNode::class);
         $this->plan_nodes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The advise/recommendations for a query. Currently this field will
+     * be serving index recommendations for a query.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.QueryAdvisorResult query_advice = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\V1\QueryAdvisorResult|null
+     */
+    public function getQueryAdvice()
+    {
+        return $this->query_advice;
+    }
+
+    public function hasQueryAdvice()
+    {
+        return isset($this->query_advice);
+    }
+
+    public function clearQueryAdvice()
+    {
+        unset($this->query_advice);
+    }
+
+    /**
+     * Optional. The advise/recommendations for a query. Currently this field will
+     * be serving index recommendations for a query.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.QueryAdvisorResult query_advice = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\V1\QueryAdvisorResult $var
+     * @return $this
+     */
+    public function setQueryAdvice($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\QueryAdvisorResult::class);
+        $this->query_advice = $var;
 
         return $this;
     }

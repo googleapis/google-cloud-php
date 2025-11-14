@@ -54,8 +54,8 @@ class Session extends \Google\Protobuf\Internal\Message
     protected $creator_role = '';
     /**
      * Optional. If `true`, specifies a multiplexed session. Use a multiplexed
-     * session for multiple, concurrent read-only operations. Don't use them for
-     * read-write transactions, partitioned reads, or partitioned queries. Use
+     * session for multiple, concurrent operations including any combination of
+     * read-only and read-write transactions. Use
      * [`sessions.create`][google.spanner.v1.Spanner.CreateSession] to create
      * multiplexed sessions. Don't use
      * [BatchCreateSessions][google.spanner.v1.Spanner.BatchCreateSessions] to
@@ -91,8 +91,8 @@ class Session extends \Google\Protobuf\Internal\Message
      *           The database role which created this session.
      *     @type bool $multiplexed
      *           Optional. If `true`, specifies a multiplexed session. Use a multiplexed
-     *           session for multiple, concurrent read-only operations. Don't use them for
-     *           read-write transactions, partitioned reads, or partitioned queries. Use
+     *           session for multiple, concurrent operations including any combination of
+     *           read-only and read-write transactions. Use
      *           [`sessions.create`][google.spanner.v1.Spanner.CreateSession] to create
      *           multiplexed sessions. Don't use
      *           [BatchCreateSessions][google.spanner.v1.Spanner.BatchCreateSessions] to
@@ -271,8 +271,8 @@ class Session extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If `true`, specifies a multiplexed session. Use a multiplexed
-     * session for multiple, concurrent read-only operations. Don't use them for
-     * read-write transactions, partitioned reads, or partitioned queries. Use
+     * session for multiple, concurrent operations including any combination of
+     * read-only and read-write transactions. Use
      * [`sessions.create`][google.spanner.v1.Spanner.CreateSession] to create
      * multiplexed sessions. Don't use
      * [BatchCreateSessions][google.spanner.v1.Spanner.BatchCreateSessions] to
@@ -289,8 +289,8 @@ class Session extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If `true`, specifies a multiplexed session. Use a multiplexed
-     * session for multiple, concurrent read-only operations. Don't use them for
-     * read-write transactions, partitioned reads, or partitioned queries. Use
+     * session for multiple, concurrent operations including any combination of
+     * read-only and read-write transactions. Use
      * [`sessions.create`][google.spanner.v1.Spanner.CreateSession] to create
      * multiplexed sessions. Don't use
      * [BatchCreateSessions][google.spanner.v1.Spanner.BatchCreateSessions] to
