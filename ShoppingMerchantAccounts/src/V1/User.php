@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The `User` message represents a user associated with a Merchant Center
+ * The `User` resource represents a user associated with a Merchant Center
  * account. It is used to manage user permissions and access rights within the
  * account. For more information, see [Frequently asked questions about people
  * and access levels](//support.google.com/merchants/answer/12160472).

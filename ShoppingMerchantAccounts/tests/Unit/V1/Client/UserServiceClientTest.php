@@ -36,6 +36,7 @@ use Google\Shopping\Merchant\Accounts\V1\ListUsersRequest;
 use Google\Shopping\Merchant\Accounts\V1\ListUsersResponse;
 use Google\Shopping\Merchant\Accounts\V1\UpdateUserRequest;
 use Google\Shopping\Merchant\Accounts\V1\User;
+use Google\Shopping\Merchant\Accounts\V1\VerifySelfRequest;
 use stdClass;
 
 /**
@@ -393,6 +394,71 @@ class UserServiceClientTest extends GeneratedTest
         $request = (new UpdateUserRequest())->setUser($user);
         try {
             $gapicClient->updateUser($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifySelfTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $expectedResponse = new User();
+        $expectedResponse->setName($name);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAccount = $gapicClient->accountName('[ACCOUNT]');
+        $request = (new VerifySelfRequest())->setAccount($formattedAccount);
+        $response = $gapicClient->verifySelf($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.shopping.merchant.accounts.v1.UserService/VerifySelf', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAccount();
+        $this->assertProtobufEquals($formattedAccount, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifySelfExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAccount = $gapicClient->accountName('[ACCOUNT]');
+        $request = (new VerifySelfRequest())->setAccount($formattedAccount);
+        try {
+            $gapicClient->verifySelf($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

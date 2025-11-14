@@ -97,9 +97,7 @@ final class RegionsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -284,8 +282,10 @@ final class RegionsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateRegions(BatchCreateRegionsRequest $request, array $callOptions = []): BatchCreateRegionsResponse
-    {
+    public function batchCreateRegions(
+        BatchCreateRegionsRequest $request,
+        array $callOptions = []
+    ): BatchCreateRegionsResponse {
         return $this->startApiCall('BatchCreateRegions', $request, $callOptions)->wait();
     }
 
@@ -336,8 +336,10 @@ final class RegionsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchUpdateRegions(BatchUpdateRegionsRequest $request, array $callOptions = []): BatchUpdateRegionsResponse
-    {
+    public function batchUpdateRegions(
+        BatchUpdateRegionsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateRegionsResponse {
         return $this->startApiCall('BatchUpdateRegions', $request, $callOptions)->wait();
     }
 

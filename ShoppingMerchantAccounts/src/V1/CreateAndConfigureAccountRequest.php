@@ -39,6 +39,14 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $service;
+    /**
+     * Optional. If a relationship is created with a provider, you can set an
+     * alias for it with this field. The calling user must be an admin on the
+     * provider to be able to set an alias.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.SetAliasForRelationship set_alias = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $set_alias;
 
     /**
      * Constructor.
@@ -58,6 +66,10 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      *           used to create a sub-account under an existing advanced account through
      *           this method. Additional `account_management` or
      *           `product_management` services may be provided.
+     *     @type array<\Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\SetAliasForRelationship>|\Google\Protobuf\Internal\RepeatedField $set_alias
+     *           Optional. If a relationship is created with a provider, you can set an
+     *           alias for it with this field. The calling user must be an admin on the
+     *           provider to be able to set an alias.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +173,36 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddAccountService::class);
         $this->service = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If a relationship is created with a provider, you can set an
+     * alias for it with this field. The calling user must be an admin on the
+     * provider to be able to set an alias.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.SetAliasForRelationship set_alias = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSetAlias()
+    {
+        return $this->set_alias;
+    }
+
+    /**
+     * Optional. If a relationship is created with a provider, you can set an
+     * alias for it with this field. The calling user must be an admin on the
+     * provider to be able to set an alias.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.SetAliasForRelationship set_alias = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\SetAliasForRelationship>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSetAlias($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\SetAliasForRelationship::class);
+        $this->set_alias = $arr;
 
         return $this;
     }

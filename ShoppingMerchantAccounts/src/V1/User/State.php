@@ -7,7 +7,9 @@ namespace Google\Shopping\Merchant\Accounts\V1\User;
 use UnexpectedValueException;
 
 /**
- * The possible states of a user.
+ * The state represents the possible statuses of a user. It is an output-only
+ * field that is set to `PENDING` when a user is invited to an account and
+ * changes to `VERIFIED` once the user accepts the invitation.
  *
  * Protobuf type <code>google.shopping.merchant.accounts.v1.User.State</code>
  */

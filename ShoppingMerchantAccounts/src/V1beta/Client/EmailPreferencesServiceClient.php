@@ -85,9 +85,7 @@ final class EmailPreferencesServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -102,7 +100,8 @@ final class EmailPreferencesServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/email_preferences_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/email_preferences_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -306,8 +305,10 @@ final class EmailPreferencesServiceClient
      *
      * @experimental
      */
-    public function updateEmailPreferences(UpdateEmailPreferencesRequest $request, array $callOptions = []): EmailPreferences
-    {
+    public function updateEmailPreferences(
+        UpdateEmailPreferencesRequest $request,
+        array $callOptions = []
+    ): EmailPreferences {
         return $this->startApiCall('UpdateEmailPreferences', $request, $callOptions)->wait();
     }
 }

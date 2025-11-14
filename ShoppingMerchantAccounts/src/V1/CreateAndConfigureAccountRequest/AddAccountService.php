@@ -24,6 +24,25 @@ class AddAccountService extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string provider = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $provider = null;
+    /**
+     * Immutable. An optional, immutable identifier that Google uses to refer to
+     * this account when communicating with the provider. This should be the
+     * unique account ID within the provider's system (for example, your shop ID
+     * in Shopify).
+     * If you have multiple accounts with the same provider - for instance,
+     * different accounts for various regions — the `external_account_id`
+     * differentiates between them, ensuring accurate linking and integration
+     * between Google and the provider.
+     * The external account ID must be specified for the campaigns management
+     * service type.
+     * The external account ID must not be specified for the account aggregation
+     * service type.
+     * The external account ID is optional / may be specified for all other
+     * service types.
+     *
+     * Generated from protobuf field <code>string external_account_id = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $external_account_id = '';
     protected $service_type;
 
     /**
@@ -36,10 +55,37 @@ class AddAccountService extends \Google\Protobuf\Internal\Message
      *           The provider is an
      *           [aggregator](https://support.google.com/merchants/answer/188487) for
      *           the account. Payload for service type Account Aggregation.
+     *     @type \Google\Shopping\Merchant\Accounts\V1\AccountManagement $account_management
+     *           The provider manages this account. Payload for service type Account
+     *           Management.
+     *     @type \Google\Shopping\Merchant\Accounts\V1\ComparisonShopping $comparison_shopping
+     *           The provider is a CSS (Comparison Shopping Service) of this account.
+     *           Payload for service type Comparison Shopping.
+     *     @type \Google\Shopping\Merchant\Accounts\V1\ProductsManagement $products_management
+     *           The provider manages products for this account. Payload for service
+     *           type products management.
+     *     @type \Google\Shopping\Merchant\Accounts\V1\CampaignsManagement $campaigns_management
+     *           The provider manages campaigns for this account. Payload for service
+     *           type campaigns management.
      *     @type string $provider
      *           Required. The provider of the service. Either the reference to an account
      *           such as `providers/123` or a well-known service provider (one of
      *           `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).
+     *     @type string $external_account_id
+     *           Immutable. An optional, immutable identifier that Google uses to refer to
+     *           this account when communicating with the provider. This should be the
+     *           unique account ID within the provider's system (for example, your shop ID
+     *           in Shopify).
+     *           If you have multiple accounts with the same provider - for instance,
+     *           different accounts for various regions — the `external_account_id`
+     *           differentiates between them, ensuring accurate linking and integration
+     *           between Google and the provider.
+     *           The external account ID must be specified for the campaigns management
+     *           service type.
+     *           The external account ID must not be specified for the account aggregation
+     *           service type.
+     *           The external account ID is optional / may be specified for all other
+     *           service types.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,6 +129,138 @@ class AddAccountService extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The provider manages this account. Payload for service type Account
+     * Management.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.AccountManagement account_management = 104;</code>
+     * @return \Google\Shopping\Merchant\Accounts\V1\AccountManagement|null
+     */
+    public function getAccountManagement()
+    {
+        return $this->readOneof(104);
+    }
+
+    public function hasAccountManagement()
+    {
+        return $this->hasOneof(104);
+    }
+
+    /**
+     * The provider manages this account. Payload for service type Account
+     * Management.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.AccountManagement account_management = 104;</code>
+     * @param \Google\Shopping\Merchant\Accounts\V1\AccountManagement $var
+     * @return $this
+     */
+    public function setAccountManagement($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Accounts\V1\AccountManagement::class);
+        $this->writeOneof(104, $var);
+
+        return $this;
+    }
+
+    /**
+     * The provider is a CSS (Comparison Shopping Service) of this account.
+     * Payload for service type Comparison Shopping.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.ComparisonShopping comparison_shopping = 105;</code>
+     * @return \Google\Shopping\Merchant\Accounts\V1\ComparisonShopping|null
+     */
+    public function getComparisonShopping()
+    {
+        return $this->readOneof(105);
+    }
+
+    public function hasComparisonShopping()
+    {
+        return $this->hasOneof(105);
+    }
+
+    /**
+     * The provider is a CSS (Comparison Shopping Service) of this account.
+     * Payload for service type Comparison Shopping.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.ComparisonShopping comparison_shopping = 105;</code>
+     * @param \Google\Shopping\Merchant\Accounts\V1\ComparisonShopping $var
+     * @return $this
+     */
+    public function setComparisonShopping($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Accounts\V1\ComparisonShopping::class);
+        $this->writeOneof(105, $var);
+
+        return $this;
+    }
+
+    /**
+     * The provider manages products for this account. Payload for service
+     * type products management.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.ProductsManagement products_management = 106;</code>
+     * @return \Google\Shopping\Merchant\Accounts\V1\ProductsManagement|null
+     */
+    public function getProductsManagement()
+    {
+        return $this->readOneof(106);
+    }
+
+    public function hasProductsManagement()
+    {
+        return $this->hasOneof(106);
+    }
+
+    /**
+     * The provider manages products for this account. Payload for service
+     * type products management.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.ProductsManagement products_management = 106;</code>
+     * @param \Google\Shopping\Merchant\Accounts\V1\ProductsManagement $var
+     * @return $this
+     */
+    public function setProductsManagement($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Accounts\V1\ProductsManagement::class);
+        $this->writeOneof(106, $var);
+
+        return $this;
+    }
+
+    /**
+     * The provider manages campaigns for this account. Payload for service
+     * type campaigns management.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.CampaignsManagement campaigns_management = 107;</code>
+     * @return \Google\Shopping\Merchant\Accounts\V1\CampaignsManagement|null
+     */
+    public function getCampaignsManagement()
+    {
+        return $this->readOneof(107);
+    }
+
+    public function hasCampaignsManagement()
+    {
+        return $this->hasOneof(107);
+    }
+
+    /**
+     * The provider manages campaigns for this account. Payload for service
+     * type campaigns management.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.CampaignsManagement campaigns_management = 107;</code>
+     * @param \Google\Shopping\Merchant\Accounts\V1\CampaignsManagement $var
+     * @return $this
+     */
+    public function setCampaignsManagement($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Accounts\V1\CampaignsManagement::class);
+        $this->writeOneof(107, $var);
+
+        return $this;
+    }
+
+    /**
      * Required. The provider of the service. Either the reference to an account
      * such as `providers/123` or a well-known service provider (one of
      * `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).
@@ -118,6 +296,58 @@ class AddAccountService extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->provider = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. An optional, immutable identifier that Google uses to refer to
+     * this account when communicating with the provider. This should be the
+     * unique account ID within the provider's system (for example, your shop ID
+     * in Shopify).
+     * If you have multiple accounts with the same provider - for instance,
+     * different accounts for various regions — the `external_account_id`
+     * differentiates between them, ensuring accurate linking and integration
+     * between Google and the provider.
+     * The external account ID must be specified for the campaigns management
+     * service type.
+     * The external account ID must not be specified for the account aggregation
+     * service type.
+     * The external account ID is optional / may be specified for all other
+     * service types.
+     *
+     * Generated from protobuf field <code>string external_account_id = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getExternalAccountId()
+    {
+        return $this->external_account_id;
+    }
+
+    /**
+     * Immutable. An optional, immutable identifier that Google uses to refer to
+     * this account when communicating with the provider. This should be the
+     * unique account ID within the provider's system (for example, your shop ID
+     * in Shopify).
+     * If you have multiple accounts with the same provider - for instance,
+     * different accounts for various regions — the `external_account_id`
+     * differentiates between them, ensuring accurate linking and integration
+     * between Google and the provider.
+     * The external account ID must be specified for the campaigns management
+     * service type.
+     * The external account ID must not be specified for the account aggregation
+     * service type.
+     * The external account ID is optional / may be specified for all other
+     * service types.
+     *
+     * Generated from protobuf field <code>string external_account_id = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExternalAccountId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->external_account_id = $var;
 
         return $this;
     }
