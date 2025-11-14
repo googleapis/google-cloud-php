@@ -333,13 +333,4 @@ class ApiException extends Exception
     {
         return $this->metadata;
     }
-
-    /**
-     * String representation of ApiException
-     * @return string
-     */
-    public function __toString()
-    {
-        return __CLASS__ . ": $this->message\n";
-    }
 }
