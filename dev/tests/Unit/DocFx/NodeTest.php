@@ -184,7 +184,9 @@ EOF;
             private $protoPackages = [
                 'google.cloud.aiplatform.v1' => 'Google\\Cloud\\AIPlatform\\V1',
                 'google.bigtable.admin.v2' => 'Google\\Cloud\\Bigtable\\Admin\\V2',
+                'google.bigtable.v2' => 'Google\\Cloud\\Bigtable\\V2',
                 'google.logging.v2' => 'Google\\Cloud\\Logging\\V2',
+                'google.cloud.servicedirectory.v1' => 'Google\\Cloud\\ServiceDirectory\\V1',
             ];
             public function replace(string $description) {
                 return $this->replaceProtoRef($description);
@@ -273,6 +275,17 @@ EOF;
                 . ' <xref uid="\Google\Cloud\AIPlatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
             ],
             [
+                // Reserved word used in class name
+                '[Namespace][google.cloud.servicedirectory.v1.Namespace]',
+                '<xref uid="\Google\Cloud\ServiceDirectory\V1\PBNamespace">Namespace</xref>',
+            ],
+            [
+                // Reserved word used in path name
+                '[Encoding][google.bigtable.v2.Type.String.Encoding]',
+                '<xref uid="\Google\Cloud\Bigtable\V2\Type\PBString\Encoding">Encoding</xref>',
+            ],
+            [
+                // Parenthesis in code samples should not be modified
                 'Testing that a code sample like $foo["bar"]["baz"] does not get replaced',
                 'Testing that a code sample like $foo["bar"]["baz"] does not get replaced'
             ],
