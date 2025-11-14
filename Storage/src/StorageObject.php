@@ -478,7 +478,7 @@ class StorageObject
     }
 
     /**
-     * Move an object within a bucket with HNS enabled.
+     * Move an object within a bucket.
      *
      * This method copies data using multiple requests so large objects can be
      * copied with a normal length timeout per request rather than one very long
