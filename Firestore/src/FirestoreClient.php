@@ -17,10 +17,13 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\Options\CallOptions;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
+use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\GeoPoint;
@@ -80,16 +83,16 @@ use Psr\Http\Message\StreamInterface;
  */
 class FirestoreClient
 {
-    use ClientTrait;
+    use DetectProjectIdTrait;
+    use EmulatorTrait;
     use SnapshotTrait;
     use ValidateTrait;
+    use ClientOptionsTrait;
 
     const VERSION = '1.54.3';
 
     const DEFAULT_DATABASE = '(default)';
-
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
-
     const MAX_RETRIES = 5;
 
     private string $database = '(default)';
@@ -105,74 +108,73 @@ class FirestoreClient
      * @param array $config [optional] {
      *     Configuration Options.
      *
-     *     @type string $apiEndpoint A hostname with optional port to use in
-     *           place of the service's default endpoint.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
      *     @type string $database The database name to use, if different from
      *           the default.
-     *     @type CacheItemPoolInterface $authCache A cache for storing access
-     *           tokens. **Defaults to** a simple in memory implementation.
-     *     @type array $authCacheOptions Cache configuration options.
-     *     @type callable $authHttpHandler A handler used to deliver Psr7
-     *           requests specifically for authentication.
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *           Only valid for requests sent over REST.
-     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
-     *           fetcher instance.
-     *     @type array $keyFile [DEPRECATED]
-     *           This option is being deprecated because of a potential security risk.
-     *           This option does not validate the credential configuration. The security
-     *           risk occurs when a credential configuration is accepted from a source
-     *           that is not under your control and used without validation on your side.
-     *           If you know that you will be loading credential configurations of a
-     *           specific type, it is recommended to create the credentials directly and
-     *           configure them using the `credentialsFetcher` option instead.
-     *           ```
-     *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
-     *           $creds = new FirestoreClient(['credentialsFetcher' => $creds]);
-     *           ```
-     *           This will ensure that an unexpected credential type with potential for
-     *           malicious intent is not loaded unintentionally. You might still have to do
-     *           validation for certain credential types.
-     *           If you are loading your credential configuration from an untrusted source and have
-     *           not mitigated the risks (e.g. by validating the configuration yourself), make
-     *           these changes as soon as possible to prevent security risks to your environment.
-     *           Regardless of the method used, it is always your responsibility to validate
-     *           configurations received from external sources.
-     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
-    *     @type string $keyFilePath [DEPRECATED]
-     *           This option is being deprecated because of a potential security risk.
-     *           This option does not validate the credential configuration. The security
-     *           risk occurs when a credential configuration is accepted from a source
-     *           that is not under your control and used without validation on your side.
-     *           If you know that you will be loading credential configurations of a
-     *           specific type, it is recommended to create the credentials directly and
-     *           configure them using the `credentialsFetcher` option instead.
-     *           ```
-     *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
-     *           $creds = new FirestoreClient(['credentialsFetcher' => $creds]);
-     *           ```
-     *           This will ensure that an unexpected credential type with potential for
-     *           malicious intent is not loaded unintentionally. You might still have to do
-     *           validation for certain credential types.
-     *           If you are loading your credential configuration from an untrusted source and have
-     *           not mitigated the risks (e.g. by validating the configuration yourself), make
-     *           these changes as soon as possible to prevent security risks to your environment.
-     *           Regardless of the method used, it is always your responsibility to validate
-     *           configurations received from external sources.
-     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
-     *     @type int $retries Number of retries for a failed request. **Defaults
-     *           to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
-     *     @type string $quotaProject Specifies a user project to bill for
-     *           access charges associated with the request.
-     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+    *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
-     *     @type GapicFirestoreClient $firestoreClient A pre-instantiated client for the Firestore service.
+     *     @type GapicFirestoreClient $firestoreClient
+     *           A pre-instantiated client for the Firestore service.
+     *     @type string $apiEndpoint
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'firestore.googleapis.com:443'.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Firestore\V1\FirestoreClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new FirestoreClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the
+     *           client. For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()} .
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either
+     *           a path to a JSON file, or a PHP array containing the decoded JSON data. By
+     *           default this settings points to the default client config file, which is
+     *           provided in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string
+     *           `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already
+     *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
+     *           that when this object is provided, any settings in $transportConfig, and any
+     *           $apiEndpoint setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...],
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      * @throws \InvalidArgumentException
      * @throws GoogleException If the gRPC extension is not enabled.
@@ -190,10 +192,34 @@ class FirestoreClient
             'emulatorHost' => $emulatorHost,
         ];
 
-        $this->projectId = $this->detectProjectId($config);
-        $this->database = $config['database'];
+        $gapicOptions = $this->buildClientOptions($config);
 
-        $this->gapicClient = $this->getGapicClient($config);
+        if (isset($gapicOptions['credentialsConfig']['scopes'])) {
+            $options['credentialsConfig']['scopes'] = array_merge(
+                $gapicOptions['credentialsConfig']['scopes'],
+                $config['scopes']
+            );
+        } else {
+            $options['credentialsConfig']['scopes'] = $config['scopes'];
+        }
+
+        if ($emulatorHost) {
+            $emulatorConfig = $this->emulatorGapicConfig($emulatorHost);
+            $gapicOptions = array_merge(
+                $gapicOptions,
+                $emulatorConfig
+            );
+        } else {
+            $gapicOptions['credentials'] = $this->createCredentialsWrapper(
+                $gapicOptions['credentials'],
+                $gapicOptions['credentialsConfig'],
+                $gapicOptions['universeDomain']
+            );
+        }
+
+        $this->projectId = $this->detectProjectId($gapicOptions);
+        $this->database = $config['database'];
+        $this->gapicClient = $this->getGapicClient($gapicOptions);
 
         $this->valueMapper = new ValueMapper(
             $this->gapicClient,
@@ -724,6 +750,11 @@ class FirestoreClient
         );
     }
 
+    /**
+     * Gets a Firestore Gapic Client instance from the provided configuration or a newly instantiated one.
+     *
+     * @return GapicFirestoreClient
+     */
     private function getGapicClient(array $config): GapicFirestoreClient
     {
         if (!isset($config['firestoreClient'])) {
@@ -736,5 +767,20 @@ class FirestoreClient
 
         /* @var GapicFirestoreClient */
         return $config['firestoreClient'];
+    }
+
+    /**
+     * Throw an exception if the gRPC extension is not loaded.
+     *
+     * @throws GoogleException
+     */
+    private function requireGrpc()
+    {
+        if (!extension_loaded('grpc')) {
+            throw new GoogleException(
+                'The requested client requires the gRPC extension. ' .
+                $this->getGrpcInstallationMessage()
+            );
+        }
     }
 }
