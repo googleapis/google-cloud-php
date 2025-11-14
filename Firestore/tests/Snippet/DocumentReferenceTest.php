@@ -17,17 +17,26 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\ApiCore\Page;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\BulkWriter;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue;
+use Google\Cloud\Firestore\Tests\Unit\GenerateProtoTrait;
+use Google\Cloud\Firestore\Tests\Unit\ServerStreamMockTrait;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\CommitResponse;
+use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
+use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
 use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -37,25 +46,27 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class DocumentReferenceTest extends SnippetTestCase
 {
+    use ServerStreamMockTrait;
+    use GenerateProtoTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
 
-    private $connection;
+    private $gapicClient;
     private $document;
     private $batch;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->document = TestHelpers::stub(DocumentReferenceStub::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+        $this->gapicClient = $this->prophesize(FirestoreClient::class);
+        $this->document = new DocumentReference(
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             $this->prophesize(CollectionReference::class)->reveal(),
             self::DOCUMENT
-        ], ['connection', 'batch']);
-        $this->batch = $this->prophesize(WriteBatch::class);
+        );
+        $this->batch = $this->prophesize(BulkWriter::class);
     }
 
     public function testClass()
@@ -102,14 +113,9 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testCreate()
     {
-        $this->batch->commit(Argument::any())
+        $this->gapicClient->commit(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([[]]);
-
-        $this->batch->create(self::DOCUMENT, Argument::any(), Argument::any())
-            ->shouldBeCalled()->willReturn($this->batch->reveal());
-
-        $this->document->___setProperty('batch', $this->batch->reveal());
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'create');
         $snippet->addLocal('document', $this->document);
@@ -118,14 +124,9 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testSet()
     {
-        $this->batch->commit(Argument::any())
+        $this->gapicClient->commit(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([[]]);
-
-        $this->batch->set(self::DOCUMENT, Argument::any(), Argument::any())
-            ->shouldBeCalled()->willReturn($this->batch->reveal());
-
-        $this->document->___setProperty('batch', $this->batch->reveal());
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'set');
         $snippet->addLocal('document', $this->document);
@@ -134,14 +135,9 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testUpdate()
     {
-        $this->batch->commit(Argument::any())
+        $this->gapicClient->commit(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([[]]);
-
-        $this->batch->update(self::DOCUMENT, Argument::any(), Argument::any())
-            ->shouldBeCalled()->willReturn($this->batch->reveal());
-
-        $this->document->___setProperty('batch', $this->batch->reveal());
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'update');
         $snippet->addLocal('document', $this->document);
@@ -150,16 +146,30 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testUpdateSentinels()
     {
-        $this->batch->commit(Argument::any())
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $writes = $request->getWrites();
+                $this->assertCount(2, $writes);
+
+                $this->assertEquals('country', $writes[0]->getUpdateMask()->getFieldPaths()[0]);
+
+                $transform = $writes[1]->getTransform();
+                $this->assertNotNull($transform);
+                $fieldTransforms = $transform->getFieldTransforms();
+                $this->assertCount(1, $fieldTransforms);
+                $fieldTransform = $fieldTransforms[0];
+                $this->assertEquals('lastLogin', $fieldTransform->getFieldPath());
+                $this->assertEquals(
+                    ServerValue::REQUEST_TIME,
+                    $fieldTransform->getSetToServerValue()
+                );
+
+                return true;
+            }),
+            Argument::any()
+        )
             ->shouldBeCalled()
-            ->willReturn([[]]);
-
-        $this->batch->update(self::DOCUMENT, [
-            ['path' => 'country', 'value' => FieldValue::deleteField()],
-            ['path' => 'lastLogin', 'value' => FieldValue::serverTimestamp()]
-        ], Argument::any())->shouldBeCalled()->willReturn($this->batch->reveal());
-
-        $this->document->___setProperty('batch', $this->batch->reveal());
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'update', 1);
         $snippet->addLocal('document', $this->document);
@@ -168,14 +178,12 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testUpdateSpecialChars()
     {
-        $this->batch->commit(Argument::any())
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $this->assertNotEmpty($request->getWrites()[0]->getUpdate());
+            return true;
+        }), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([[]]);
-
-        $this->batch->update(self::DOCUMENT, Argument::any(), Argument::any())
-            ->shouldBeCalled()->willReturn($this->batch->reveal());
-
-        $this->document->___setProperty('batch', $this->batch->reveal());
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'update', 2);
         $snippet->addLocal('document', $this->document);
@@ -184,14 +192,12 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testDelete()
     {
-        $this->batch->commit(Argument::any())
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $this->assertNotEmpty($request->getWrites()[0]->getDelete());
+            return true;
+        }), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([[]]);
-
-        $this->batch->delete(self::DOCUMENT, Argument::any())
-            ->shouldBeCalled()->willReturn($this->batch->reveal());
-
-        $this->document->___setProperty('batch', $this->batch->reveal());
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'delete');
         $snippet->addLocal('document', $this->document);
@@ -200,19 +206,20 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testSnapshot()
     {
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'found' => [
-                        'name' => self::DOCUMENT,
-                        'fields' => [],
-                        'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
-                    ]
-                ]
-            ]));
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, [
+            'found' => [
+                'name' => self::DOCUMENT,
+                'fields' => [],
+            ],
+            'readTime' => [
+                'seconds' => 123,
+                'nanos' => 321
+            ]
+        ]);
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->batchGetDocuments(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'snapshot');
         $snippet->addLocal('document', $this->document);
@@ -230,11 +237,21 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testCollections()
     {
-        $this->connection->listCollectionIds(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['collectionIds' => ['foo','bar']]);
+        $protoResponse = self::generateProto(ListCollectionIdsResponse::class, ['collectionIds' => ['foo','bar']]);
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn($protoResponse);
+
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->shouldBeCalled()
+            ->willReturn($page->reveal());
+
+        $this->gapicClient->listCollectionIds(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($pagedListResponse->reveal());
+
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'collections');
         $snippet->addLocal('document', $this->document);
         $res = $snippet->invoke('collections');

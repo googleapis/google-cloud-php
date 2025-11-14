@@ -144,9 +144,10 @@ class CollectionReferenceTest extends TestCase
         // 2. Prophesize Google\ApiCore\Page
         $page = $this->prophesize(Page::class);
         // Configure the Page to yield our Document proto when iterated
-        $page->getIterator()->willReturn(new \ArrayIterator([$documentProto]));
-        // Configure getNextPageToken if needed (empty string for no more pages)
-        $page->getNextPageToken()->willReturn('');
+        $page->getResponseObject()->willReturn(new ListDocumentsResponse([
+            'documents' => [$documentProto],
+            'next_page_token' => ''
+        ]));
 
 
         // 3. Prophesize Google\ApiCore\PagedListResponse

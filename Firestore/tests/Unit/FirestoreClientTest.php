@@ -19,6 +19,7 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 
 use ArrayIterator;
 use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\Exception\AbortedException;
@@ -42,6 +43,7 @@ use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
 use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\BeginTransactionResponse;
 use Google\Cloud\Firestore\V1\Document as GapicDocument;
+use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
 use Google\Cloud\Firestore\V1\RollbackRequest;
 use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\V1\RunQueryResponse;
@@ -97,12 +99,19 @@ class FirestoreClientTest extends TestCase
             'collection-c',
         ];
 
-        $pagedListResponse = $this->prophesize(PagedListResponse::class);
-        $pagedListResponse->getIterator()
+        $protoResponse = self::generateProto(ListCollectionIdsResponse::class, [
+            'collectionIds' => $collectionIds
+        ]);
+
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
             ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                'collectionIds' => $collectionIds
-            ]));
+            ->willReturn($protoResponse);
+
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->shouldBeCalled()
+            ->willReturn($page->reveal());
 
         $this->gapicClient->listCollectionIds(Argument::type(ListCollectionIdsRequest::class), Argument::any())
             ->shouldBeCalledTimes(1)
@@ -129,13 +138,19 @@ class FirestoreClientTest extends TestCase
             'collection-c',
         ];
 
+        $protoResponse = self::generateProto(ListCollectionIdsResponse::class, [
+            'collectionIds' => $collectionIds,
+            'nextPageToken' => 'nextPageTokenValue'
+        ]);
+
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn($protoResponse);
+
         $pagedListResponse = $this->prophesize(PagedListResponse::class);
-        $pagedListResponse->getIterator()
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                'collectionIds' => $collectionIds,
-                'nextPageToken' => 'nextPageTokenValue'
-            ]));
+        $pagedListResponse->getPage()
+            ->shouldBeCalled(1)
+            ->willReturn($page->reveal());
 
         $this->gapicClient->listCollectionIds(
             Argument::that(function (ListCollectionIdsRequest $request) {

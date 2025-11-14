@@ -327,7 +327,8 @@ class FirestoreClient
             );
 
             $response = $this->gapicClient->listCollectionIds($request, $callOptions);
-            return iterator_to_array($response->getIterator());
+            $page = $response->getPage();
+            return $this->serializer->encodeMessage($page->getResponseObject());
         };
 
         return new ItemIterator(

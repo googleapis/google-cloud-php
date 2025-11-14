@@ -282,15 +282,8 @@ class CollectionReference extends Query
             $response = $this->gapicClient->listDocuments($request, $callOptions);
 
             $page = $response->getPage();
-            $documents = [];
-            foreach ($page as $document) {
-                $documents[] = $this->serializer->encodeMessage($document);
-            }
 
-            return [
-                'documents' => $documents,
-                'nextPageToken' => $page->getNextPageToken()
-            ];
+            return $this->serializer->encodeMessage($page->getResponseObject());
         };
 
         return new ItemIterator(
