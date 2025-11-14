@@ -21,11 +21,16 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\Tests\Unit\GenerateProtoTrait;
+use Google\Cloud\Firestore\Tests\Unit\ServerStreamMockTrait;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
+use GPBMetadata\Google\Firestore\Admin\V1\Snapshot;
+use GPBMetadata\Google\Firestore\V1\Firestore;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -35,6 +40,8 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class DocumentSnapshotTest extends SnippetTestCase
 {
+    use GenerateProtoTrait;
+    use ServerStreamMockTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
@@ -44,34 +51,21 @@ class DocumentSnapshotTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $ref = $this->prophesize(DocumentReference::class);
-        $ref->name()->willReturn(self::DOCUMENT);
-        $parts = explode('/', self::DOCUMENT);
-        $ref->id()->willReturn(array_pop($parts));
-        $ref->path()->willReturn(explode('/documents/', self::DOCUMENT)[1]);
-
-        $this->snapshot = TestHelpers::stub(DocumentSnapshot::class, [
-            $ref->reveal(),
-            new ValueMapper($this->prophesize(ConnectionInterface::class)->reveal(), false),
-            [],
-            [],
-            true
-        ], ['info', 'data', 'exists']);
+        $this->snapshot = $this->getSnapshot();
     }
 
     public function testClass()
     {
         $this->checkAndSkipGrpcTests();
 
-        $connection = $this->prophesize(ConnectionInterface::class);
-        $connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                ['missing' => self::DOCUMENT]
-            ]));
+        $gapicClient = $this->prophesize(GapicFirestoreClient::class);
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, ['missing' => self::DOCUMENT]);
 
-        $client = TestHelpers::stub(FirestoreClient::class);
-        $client->___setProperty('connection', $connection->reveal());
+        $gapicClient->batchGetDocuments(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([$protoResponse]));
+
+        $client = new FirestoreClient(['firestoreClient' => $gapicClient->reveal()]);
         $snippet = $this->snippetFromClass(DocumentSnapshot::class);
         $snippet->setLine(2, '');
         $snippet->addLocal('firestore', $client);
@@ -82,10 +76,10 @@ class DocumentSnapshotTest extends SnippetTestCase
     public function testClassArrayAccess()
     {
         $fields = ['wallet' => ['cryptoCurrency' => ['bitcoin' => 1]]];
-        $this->snapshot->___setProperty('data', $fields);
+        $snapshot = $this->getSnapshot($fields);
 
         $snippet = $this->snippetFromClass(DocumentSnapshot::class, 1);
-        $snippet->addLocal('snapshot', $this->snapshot);
+        $snippet->addLocal('snapshot', $snapshot);
         $res = $snippet->invoke('bitcoinWalletValue');
         $this->assertEquals(1, $res->returnVal());
     }
@@ -132,15 +126,15 @@ class DocumentSnapshotTest extends SnippetTestCase
     {
         $ts = new Timestamp(new \DateTime);
         $info = [$method => $ts];
-        $this->snapshot->___setProperty('info', $info);
+        $snapshot = $this->getSnapshot(info: $info);
 
         $snippet = $this->snippetFromMethod(DocumentSnapshot::class, $method);
-        $snippet->addLocal('snapshot', $this->snapshot);
+        $snippet->addLocal('snapshot', $snapshot);
         $res = $snippet->invoke($method);
 
         $this->assertEquals($ts, $res->returnVal());
 
-        $this->snapshot->___setProperty('info', []);
+        $snapshot = $this->getSnapshot();
         $snippet = $this->snippetFromMethod(DocumentSnapshot::class, $method);
         $snippet->addLocal('snapshot', $this->snapshot);
         $res = $snippet->invoke($method);
@@ -160,9 +154,10 @@ class DocumentSnapshotTest extends SnippetTestCase
     public function testData()
     {
         $data = ['foo' => 'bar'];
-        $this->snapshot->___setProperty('data', $data);
+        $snapshot = $this->getSnapshot($data);
+
         $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'data');
-        $snippet->addLocal('snapshot', $this->snapshot);
+        $snippet->addLocal('snapshot', $snapshot);
         $res = $snippet->invoke('data');
         $this->assertEquals($data, $res->returnVal());
     }
@@ -185,9 +180,9 @@ class DocumentSnapshotTest extends SnippetTestCase
             ]
         ];
 
-        $this->snapshot->___setProperty('data', $fields);
+        $snapshot = $this->getSnapshot($fields);
         $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'get');
-        $snippet->addLocal('snapshot', $this->snapshot);
+        $snippet->addLocal('snapshot', $snapshot);
         $res = $snippet->invoke('value');
         $this->assertEquals(1, $res->returnVal());
     }
@@ -202,10 +197,28 @@ class DocumentSnapshotTest extends SnippetTestCase
             ]
         ];
 
-        $this->snapshot->___setProperty('data', $fields);
+        $snapshot = $this->getSnapshot($fields);
+
         $snippet = $this->snippetFromMethod(DocumentSnapshot::class, 'get', 1);
-        $snippet->addLocal('snapshot', $this->snapshot);
+        $snippet->addLocal('snapshot', $snapshot);
         $res = $snippet->invoke('value');
         $this->assertEquals(1, $res->returnVal());
+    }
+
+    public function getSnapshot(array $data = [], array $info = []): DocumentSnapshot
+    {
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::DOCUMENT);
+        $parts = explode('/', self::DOCUMENT);
+        $ref->id()->willReturn(array_pop($parts));
+        $ref->path()->willReturn(explode('/documents/', self::DOCUMENT)[1]);
+
+        return new DocumentSnapshot(
+            $ref->reveal(),
+            new ValueMapper($this->prophesize(GapicFirestoreClient::class)->reveal(), false),
+            $info,
+            $data,
+            true
+        );
     }
 }

@@ -24,18 +24,26 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\AggregateQuery;
 use Google\Cloud\Firestore\AggregateQuerySnapshot;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\BulkWriter;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
+use Google\Cloud\Firestore\Tests\Unit\GenerateProtoTrait;
+use Google\Cloud\Firestore\Tests\Unit\ServerStreamMockTrait;
 use Google\Cloud\Firestore\Transaction;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
+use Google\Cloud\Firestore\V1\BeginTransactionResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
+use Google\Cloud\Firestore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use ReflectionClass;
 
 /**
  * @group firestore
@@ -43,6 +51,8 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class TransactionTest extends SnippetTestCase
 {
+    use GenerateProtoTrait;
+    use ServerStreamMockTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
@@ -53,40 +63,42 @@ class TransactionTest extends SnippetTestCase
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
     const DOCUMENT_TEMPLATE = 'projects/%s/databases/%s/documents/users/%s';
 
-    private $connection;
+    private $gapicClient;
     private $transaction;
     private $document;
     private $batch;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->transaction = TestHelpers::stub(TransactionStub::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+        $this->gapicClient = $this->prophesize(GapicFirestoreClient::class);
+        $this->transaction = new TransactionStub(
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             self::DATABASE,
             self::TRANSACTION
-        ], ['connection', 'writer']);
+        );
 
         $this->document = $this->prophesize(DocumentReference::class);
         $this->document->name()->willReturn(self::DOCUMENT);
 
-        $this->batch = $this->prophesize(WriteBatch::class);
+        $this->batch = $this->prophesize(BulkWriter::class);
     }
 
     public function testClass()
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection->beginTransaction(Argument::any())
+        $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn(['transaction' => self::TRANSACTION]);
+            ->willReturn(new BeginTransactionResponse(['transaction' => self::TRANSACTION]));
 
-        $this->connection->rollback(Argument::any())
+        $this->gapicClient->rollback(Argument::any(), Argument::any())
             ->shouldBeCalled();
 
-        $client = TestHelpers::stub(FirestoreClient::class);
-        $client->___setProperty('connection', $this->connection->reveal());
+        $client = new FirestoreClient([
+            'projectId' => 'test',
+            'firestoreClient' => $this->gapicClient->reveal()
+        ]);
 
         $snippet = $this->snippetFromClass(Transaction::class);
         $snippet->setLine(3, '');
@@ -96,19 +108,20 @@ class TransactionTest extends SnippetTestCase
 
     public function testSnapshot()
     {
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'found' => [
-                        'name' => self::DOCUMENT,
-                        'fields' => [],
-                        'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
-                    ]
-                ]
-            ]));
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, [
+            'found' => [
+                'name' => self::DOCUMENT,
+                'fields' => []
+            ],
+            'readTime' => [
+                'seconds' => 123,
+                'nanos' => 321
+            ]
+        ]);
 
-        $this->transaction->setConnection($this->connection->reveal());
+        $this->gapicClient->batchGetDocuments(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'snapshot');
         $snippet->addLocal('transaction', $this->transaction);
@@ -119,11 +132,12 @@ class TransactionTest extends SnippetTestCase
 
     public function testRunAggregateQuery()
     {
-        $this->connection->runAggregationQuery(Argument::any())
+        $this->gapicClient->runAggregationQuery(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([]));
-        $aggregateQuery = new AggregateQuery(
-            $this->connection->reveal(),
+            ->willReturn($this->getServerStreamMock([new RunAggregationQueryResponse()]));
+
+            $aggregateQuery = new AggregateQuery(
+            $this->gapicClient->reveal(),
             self::DOCUMENT,
             ['query' => []],
             Aggregate::count()
@@ -238,25 +252,32 @@ class TransactionTest extends SnippetTestCase
 
     public function testDocuments()
     {
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                [
-                    'found' => [
-                        'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'john'),
-                        'fields' => []
-                    ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
-                ], [
-                    'found' => [
-                        'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'dave'),
-                        'fields' => []
-                    ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+        $protoResponse = [
+            self::generateProto(BatchGetDocumentsResponse::class, [
+                'found' => [
+                    'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'john'),
+                    'fields' => []
+                ],
+                'readTime' => [
+                    'seconds' => 123,
+                    'nanos' => 321
                 ]
-            ]);
+            ]),
+            self::generateProto(BatchGetDocumentsResponse::class, [
+                'found' => [
+                    'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'dave'),
+                    'fields' => []
+                ],
+                'readTime' => [
+                    'seconds' => 123,
+                    'nanos' => 321
+                ]
+            ])
+        ];
 
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->batchGetDocuments(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock($protoResponse));
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'documents');
         $snippet->addLocal('transaction', $this->transaction);
@@ -268,16 +289,17 @@ class TransactionTest extends SnippetTestCase
 
     public function testDocumentsDoesntExist()
     {
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                [
-                    'missing' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'deleted-user'),
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
-                ]
-            ]);
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, [
+            'missing' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'deleted-user'),
+            'readTime' => [
+                'seconds' => 123,
+                'nanos' => 321
+            ]
+        ]);
 
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->batchGetDocuments(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'documents', 1);
         $snippet->addLocal('transaction', $this->transaction);
@@ -292,27 +314,19 @@ class TransactionStub extends Transaction
 {
     private $database;
 
-    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $database, $transaction)
+    public function __construct(GapicFirestoreClient $connection, ValueMapper $valueMapper, $database, $transaction)
     {
         $this->database = $database;
 
         parent::__construct($connection, $valueMapper, $database, $transaction);
     }
 
-    public function setConnection(ConnectionInterface $connection)
+    public function setWriter(BulkWriter $writer)
     {
-        $this->connection = $connection;
-        $this->writer = new WriteBatch(
-            $connection,
-            new ValueMapper($connection, false),
-            $this->database,
-            $this->___getProperty('transaction')
-        );
-    }
-
-    public function setWriter(WriteBatch $writer)
-    {
-        $this->___setProperty('writer', $writer);
+        $reflection = new ReflectionClass(Transaction::class);
+        $reflectionProperty = $reflection->getProperty('writer');
+        $reflectionProperty->setAccessible(true);
+        $reflectionProperty->setValue($this, $writer);
     }
 }
 //@codingStandardsIgnoreEnd

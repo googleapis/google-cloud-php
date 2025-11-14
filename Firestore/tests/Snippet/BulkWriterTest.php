@@ -22,8 +22,12 @@ use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\BulkWriter;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\Tests\Unit\GenerateProtoTrait;
+use Google\Cloud\Firestore\V1\BatchWriteRequest;
+use Google\Cloud\Firestore\V1\BatchWriteResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
+use Google\Cloud\Firestore\V1\Write;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Rpc\Code;
 use Prophecy\Argument;
@@ -35,24 +39,25 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class BulkWriterTest extends SnippetTestCase
 {
+    use GenerateProtoTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
     const DATABASE = 'projects/example_project/databases/(default)';
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
 
-    private $connection;
+    private $gapicClient;
     private $batch;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->batch = TestHelpers::stub(BulkWriter::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+        $this->gapicClient = $this->prophesize(FirestoreClient::class);
+        $this->batch = new BulkWriter(
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             self::DATABASE,
-            [],
-        ]);
+            []
+        );
     }
 
     public function testClass()
@@ -205,9 +210,8 @@ class BulkWriterTest extends SnippetTestCase
 
     public function testFlush()
     {
-        $this->connection->batchWrite(Argument::any())
+        $this->gapicClient->batchWrite(Argument::any(), Argument::any())
             ->shouldNotBeCalled();
-        $this->batch->___setProperty('connection', $this->connection->reveal());
         $snippet = $this->snippetFromMethod(BulkWriter::class, 'flush');
         $snippet->addLocal('batch', $this->batch);
         $snippet->invoke();
@@ -225,12 +229,26 @@ class BulkWriterTest extends SnippetTestCase
                 'code' => Code::OK,
             ];
         }
-        $this->connection->batchWrite([
-            'database' => self::DATABASE,
-            'writes' => $assertion,
-            'labels' => [],
-        ])->shouldBeCalled()
-            ->willReturn($connectionResponse);
+
+        $protoResponse = self::generateProto(BatchWriteResponse::class, $connectionResponse);
+
+        $this->gapicClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) use ($assertion) {
+                $this->assertEquals(self::DATABASE, $request->getDatabase());
+
+                $protoAsserts = [];
+                foreach ($assertion as $writeAssertion) {
+                    $protoAsserts[] = self::generateProto(Write::class, $writeAssertion);
+                }
+
+                $this->assertEquals($protoAsserts, iterator_to_array($request->getWrites()));
+                $this->assertEquals([], iterator_to_array($request->getLabels()));
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()
+            ->willReturn($protoResponse);
 
         $snippet->addLocal('batch', $this->batch);
         $snippet->addLocal('documentName', self::DOCUMENT);

@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\ApiCore\Page;
+use Google\ApiCore\PagedListResponse;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Firestore\ValueMapper;
@@ -26,7 +28,10 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\Tests\Unit\GenerateProtoTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitResponse;
+use Google\Cloud\Firestore\V1\ListDocumentsResponse;
 
 /**
  * @group firestore
@@ -34,6 +39,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class CollectionReferenceTest extends SnippetTestCase
 {
+    use GenerateProtoTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
@@ -41,17 +47,17 @@ class CollectionReferenceTest extends SnippetTestCase
     const DATABASE = '(default)';
     const NAME = 'projects/example_project/databases/(default)/documents/users';
 
-    private $connection;
+    private $gapicClient;
     private $collection;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->collection = TestHelpers::stub(CollectionReference::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+        $this->gapicClient = $this->prophesize(FirestoreClient::class);
+        $this->collection = new CollectionReference(
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             self::NAME
-        ]);
+        );
     }
 
     public function testClass()
@@ -74,8 +80,8 @@ class CollectionReferenceTest extends SnippetTestCase
     public function testSubCollectionParent()
     {
         $subCollection = TestHelpers::stub(CollectionReference::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             self::NAME . '/doc/sub-collection',
         ]);
 
@@ -131,10 +137,9 @@ class CollectionReferenceTest extends SnippetTestCase
 
     public function testAdd()
     {
-        $this->connection->commit(Argument::any())
+        $this->gapicClient->commit(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([[]]);
-        $this->collection->___setProperty('connection', $this->connection->reveal());
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(CollectionReference::class, 'add');
         $snippet->addLocal('collection', $this->collection);
@@ -150,7 +155,7 @@ class CollectionReferenceTest extends SnippetTestCase
 
         $docName = self::NAME . '/foo';
 
-        $this->connection->listDocuments(Argument::any())->shouldBeCalled()->willReturn([
+        $protoResponse = self::generateProto(ListDocumentsResponse::class, [
             'documents' => [
                 [
                     'name' => $docName
@@ -158,7 +163,16 @@ class CollectionReferenceTest extends SnippetTestCase
             ]
         ]);
 
-        $this->collection->___setProperty('connection', $this->connection->reveal());
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn($protoResponse);
+
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()->willReturn($page->reveal());
+
+        $this->gapicClient->listDocuments(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($pagedListResponse->reveal());
 
         $snippet = $this->snippetFromMethod(CollectionReference::class, 'listDocuments');
         $snippet->addLocal('collection', $this->collection);
