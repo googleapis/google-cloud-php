@@ -30,6 +30,7 @@ use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use Google\Shopping\Merchant\Accounts\V1\Client\DeveloperRegistrationServiceClient;
 use Google\Shopping\Merchant\Accounts\V1\DeveloperRegistration;
+use Google\Shopping\Merchant\Accounts\V1\GetAccountForGcpRegistrationResponse;
 use Google\Shopping\Merchant\Accounts\V1\GetDeveloperRegistrationRequest;
 use Google\Shopping\Merchant\Accounts\V1\RegisterGcpRequest;
 use Google\Shopping\Merchant\Accounts\V1\UnregisterGcpRequest;
@@ -63,6 +64,68 @@ class DeveloperRegistrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new DeveloperRegistrationServiceClient($options);
+    }
+
+    /** @test */
+    public function getAccountForGcpRegistrationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $expectedResponse = new GetAccountForGcpRegistrationResponse();
+        $expectedResponse->setName($name);
+        $transport->addResponse($expectedResponse);
+        $request = new GPBEmpty();
+        $response = $gapicClient->getAccountForGcpRegistration($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.shopping.merchant.accounts.v1.DeveloperRegistrationService/GetAccountForGcpRegistration',
+            $actualFuncCall
+        );
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAccountForGcpRegistrationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        $request = new GPBEmpty();
+        try {
+            $gapicClient->getAccountForGcpRegistration($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -267,7 +330,7 @@ class DeveloperRegistrationServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getDeveloperRegistrationAsyncTest()
+    public function getAccountForGcpRegistrationAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -275,25 +338,21 @@ class DeveloperRegistrationServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
-        $expectedResponse = new DeveloperRegistration();
-        $expectedResponse->setName($name2);
+        $name = 'name3373707';
+        $expectedResponse = new GetAccountForGcpRegistrationResponse();
+        $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->developerRegistrationName('[ACCOUNT]');
-        $request = (new GetDeveloperRegistrationRequest())->setName($formattedName);
-        $response = $gapicClient->getDeveloperRegistrationAsync($request)->wait();
+        $request = new GPBEmpty();
+        $response = $gapicClient->getAccountForGcpRegistrationAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.shopping.merchant.accounts.v1.DeveloperRegistrationService/GetDeveloperRegistration',
+            '/google.shopping.merchant.accounts.v1.DeveloperRegistrationService/GetAccountForGcpRegistration',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

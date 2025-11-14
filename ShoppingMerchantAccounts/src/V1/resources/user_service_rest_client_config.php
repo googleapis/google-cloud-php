@@ -84,6 +84,18 @@ return [
                     ],
                 ],
             ],
+            'VerifySelf' => [
+                'method' => 'patch',
+                'uriTemplate' => '/accounts/v1/{account=accounts/*}/users/me:verifySelf',
+                'body' => '*',
+                'placeholders' => [
+                    'account' => [
+                        'getters' => [
+                            'getAccount',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
     'numericEnums' => true,

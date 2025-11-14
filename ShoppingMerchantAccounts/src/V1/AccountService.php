@@ -113,6 +113,10 @@ class AccountService extends \Google\Protobuf\Internal\Message
      *           Service type for local listings management. The business group associated
      *           with the external account id will be used to provide local inventory to
      *           this Merchant Center account.
+     *     @type \Google\Shopping\Merchant\Accounts\V1\ComparisonShopping $comparison_shopping
+     *           Service type for comparison shopping. The provider is a CSS (Comparison
+     *           Shopping Service) managing the account. See
+     *           https://support.google.com/merchants/answer/12653197
      *     @type string $name
      *           Identifier. The resource name of the account service.
      *           Format: `accounts/{account}/services/{service}`
@@ -330,6 +334,41 @@ class AccountService extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Accounts\V1\LocalListingManagement::class);
         $this->writeOneof(104, $var);
+
+        return $this;
+    }
+
+    /**
+     * Service type for comparison shopping. The provider is a CSS (Comparison
+     * Shopping Service) managing the account. See
+     * https://support.google.com/merchants/answer/12653197
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.ComparisonShopping comparison_shopping = 105;</code>
+     * @return \Google\Shopping\Merchant\Accounts\V1\ComparisonShopping|null
+     */
+    public function getComparisonShopping()
+    {
+        return $this->readOneof(105);
+    }
+
+    public function hasComparisonShopping()
+    {
+        return $this->hasOneof(105);
+    }
+
+    /**
+     * Service type for comparison shopping. The provider is a CSS (Comparison
+     * Shopping Service) managing the account. See
+     * https://support.google.com/merchants/answer/12653197
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.ComparisonShopping comparison_shopping = 105;</code>
+     * @param \Google\Shopping\Merchant\Accounts\V1\ComparisonShopping $var
+     * @return $this
+     */
+    public function setComparisonShopping($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Accounts\V1\ComparisonShopping::class);
+        $this->writeOneof(105, $var);
 
         return $this;
     }

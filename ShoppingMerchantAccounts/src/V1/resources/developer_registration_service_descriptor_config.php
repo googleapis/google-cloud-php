@@ -23,6 +23,10 @@
 return [
     'interfaces' => [
         'google.shopping.merchant.accounts.v1.DeveloperRegistrationService' => [
+            'GetAccountForGcpRegistration' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Shopping\Merchant\Accounts\V1\GetAccountForGcpRegistrationResponse',
+            ],
             'GetDeveloperRegistration' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Shopping\Merchant\Accounts\V1\DeveloperRegistration',

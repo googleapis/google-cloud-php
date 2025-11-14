@@ -84,9 +84,7 @@ final class TermsOfServiceServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -336,8 +334,10 @@ final class TermsOfServiceServiceClient
      *
      * @experimental
      */
-    public function retrieveLatestTermsOfService(RetrieveLatestTermsOfServiceRequest $request, array $callOptions = []): TermsOfService
-    {
+    public function retrieveLatestTermsOfService(
+        RetrieveLatestTermsOfServiceRequest $request,
+        array $callOptions = []
+    ): TermsOfService {
         return $this->startApiCall('RetrieveLatestTermsOfService', $request, $callOptions)->wait();
     }
 }

@@ -21,7 +21,7 @@ class Developerregistration
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ê
+›
 @google/shopping/merchant/accounts/v1/developerregistration.proto$google.shopping.merchant.accounts.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto"—
 DeveloperRegistration
 name (	B‡A
@@ -36,11 +36,14 @@ class Developerregistration
 0merchantapi.googleapis.com/DeveloperRegistration"i
 GetDeveloperRegistrationRequestF
 name (	B8‡A˙A2
-0merchantapi.googleapis.com/DeveloperRegistration2÷
+0merchantapi.googleapis.com/DeveloperRegistration"4
+$GetAccountForGcpRegistrationResponse
+name (	2ó
 DeveloperRegistrationService—
 RegisterGcp8.google.shopping.merchant.accounts.v1.RegisterGcpRequest;.google.shopping.merchant.accounts.v1.DeveloperRegistration"KÇ”‰ìE"@/accounts/v1/{name=accounts/*/developerRegistration}:registerGcp:*„
 GetDeveloperRegistrationE.google.shopping.merchant.accounts.v1.GetDeveloperRegistrationRequest;.google.shopping.merchant.accounts.v1.DeveloperRegistration"C⁄AnameÇ”‰ì64/accounts/v1/{name=accounts/*/developerRegistration}≤
-UnregisterGcp:.google.shopping.merchant.accounts.v1.UnregisterGcpRequest.google.protobuf.Empty"MÇ”‰ìG"B/accounts/v1/{name=accounts/*/developerRegistration}:unregisterGcp:*G Amerchantapi.googleapis.com“A\'https://www.googleapis.com/auth/contentBç
+UnregisterGcp:.google.shopping.merchant.accounts.v1.UnregisterGcpRequest.google.protobuf.Empty"MÇ”‰ìG"B/accounts/v1/{name=accounts/*/developerRegistration}:unregisterGcp:*æ
+GetAccountForGcpRegistration.google.protobuf.EmptyJ.google.shopping.merchant.accounts.v1.GetAccountForGcpRegistrationResponse":Ç”‰ì42/accounts/v1/accounts:getAccountForGcpRegistrationG Amerchantapi.googleapis.com“A\'https://www.googleapis.com/auth/contentBç
 (com.google.shopping.merchant.accounts.v1BDeveloperRegistrationProtoPZJcloud.google.com/go/shopping/merchant/accounts/apiv1/accountspb;accountspb™$Google.Shopping.Merchant.Accounts.V1 $Google\\Shopping\\Merchant\\Accounts\\V1Í(Google::Shopping::Merchant::Accounts::V1bproto3'
         , true);
 

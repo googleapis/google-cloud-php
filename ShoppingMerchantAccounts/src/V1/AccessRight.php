@@ -7,7 +7,8 @@ namespace Google\Shopping\Merchant\Accounts\V1;
 use UnexpectedValueException;
 
 /**
- * The access right.
+ * The access right defines the level of permission a
+ * user has within a Merchant Center account.
  *
  * Protobuf type <code>google.shopping.merchant.accounts.v1.AccessRight</code>
  */
@@ -46,7 +47,8 @@ class AccessRight
     const PERFORMANCE_REPORTING = 3;
     /**
      * Users with this right have access to Merchant API and its notifications.
-     * This role is only accessible to accounts that has a developer registration.
+     * This role is only accessible to accounts that have a developer
+     * registration.
      *
      * Generated from protobuf enum <code>API_DEVELOPER = 5;</code>
      */
