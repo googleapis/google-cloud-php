@@ -36,10 +36,10 @@ use Google\Cloud\Spanner\V1\Client\SpannerClient;
  *
  * @param string $formattedDatabase The database in which the new sessions are created. Please see
  *                                  {@see SpannerClient::databaseName()} for help formatting this field.
- * @param int    $sessionCount      The number of sessions to be created in this batch call.
- *                                  The API can return fewer than the requested number of sessions. If a
- *                                  specific number of sessions are desired, the client can make additional
- *                                  calls to `BatchCreateSessions` (adjusting
+ * @param int    $sessionCount      The number of sessions to be created in this batch call. At least
+ *                                  one session is created. The API can return fewer than the requested number
+ *                                  of sessions. If a specific number of sessions are desired, the client can
+ *                                  make additional calls to `BatchCreateSessions` (adjusting
  *                                  [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
  *                                  as necessary).
  */
