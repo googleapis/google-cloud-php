@@ -1,5 +1,148 @@
 # Changelog
 
+## 0.311.0
+
+<details><summary>googleads/ad-manager 0.5.0</summary>
+
+
+
+### Features
+
+* Added Application resource ([23558aa](https://github.com/googleapis/google-cloud-php/commit/23558aa9edea94f61bfa6c01b3bc804f24aafb11))
+
+</details>
+
+<details><summary>googleads/marketingplatform-admin 0.4.0</summary>
+
+
+
+### Features
+
+* [AdsMarketingPlatformAdmin] add the `ListOrganizations`, `FindSalesPartnerManagedClients`, and `ReportPropertyUsage` methods ([#8708](https://github.com/googleapis/google-cloud-php/issues/8708)) ([92316e2](https://github.com/googleapis/google-cloud-php/commit/92316e2833607a07af7a4fc89b424c58352b531d))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 1.4.0</summary>
+
+
+
+### Features
+
+* [ArtifactRegistry] add image_manifest field in DockerImage ([#8731](https://github.com/googleapis/google-cloud-php/issues/8731)) ([4a9423c](https://github.com/googleapis/google-cloud-php/commit/4a9423c47570b69c673cc22d8e2b98086533b705))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.34.5</summary>
+
+
+
+### Documentation
+
+* Remove `[@deprecated](https://github.com/deprecated)` annotation from config array fields ([#8689](https://github.com/googleapis/google-cloud-php/issues/8689)) ([77185ff](https://github.com/googleapis/google-cloud-php/commit/77185ffff58b65b23e82e1e122965687b29af5e2))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.20.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add PeerInfo proto in Bigtable API ([#8720](https://github.com/googleapis/google-cloud-php/issues/8720)) ([70db3a1](https://github.com/googleapis/google-cloud-php/commit/70db3a185db71cc1b9e33094326166764299ff69))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.54.3</summary>
+
+
+
+### Documentation
+
+* Remove `[@deprecated](https://github.com/deprecated)` annotation from config array fields ([#8689](https://github.com/googleapis/google-cloud-php/issues/8689)) ([77185ff](https://github.com/googleapis/google-cloud-php/commit/77185ffff58b65b23e82e1e122965687b29af5e2))
+
+</details>
+
+<details><summary>google/cloud-logging 1.34.2</summary>
+
+
+
+### Documentation
+
+* Remove `[@deprecated](https://github.com/deprecated)` annotation from config array fields ([#8689](https://github.com/googleapis/google-cloud-php/issues/8689)) ([77185ff](https://github.com/googleapis/google-cloud-php/commit/77185ffff58b65b23e82e1e122965687b29af5e2))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 1.2.2</summary>
+
+
+
+### Documentation
+
+* [ShoppingMerchantAccounts] A comment for enum `AccessRight` is changed ([#8736](https://github.com/googleapis/google-cloud-php/issues/8736)) ([ab63d7f](https://github.com/googleapis/google-cloud-php/commit/ab63d7fc897ba2a432cf378cd556e674c3125972))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.2.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantInventories] Added the `product_id_base64_url_encoded` field to `ListLocalInventoriesRequest`, `InsertLocalInventoryRequest`, `DeleteLocalInventoryRequest`, `ListRegionalInventoriesRequest`, `InsertRegionalInventoryRequest`, and `DeleteRegionalInventoryReques... ([#8726](https://github.com/googleapis/google-cloud-php/issues/8726)) ([7618182](https://github.com/googleapis/google-cloud-php/commit/7618182f658a04495b657911384b46505a60a05a))
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution 1.2.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantIssueResolution] Added the `product_id_base64_url_encoded` field to `RenderProductIssuesRequest`. This allows for product IDs containing special characters to be correctly handled when unpadded base64url-encoded ([#8727](https://github.com/googleapis/google-cloud-php/issues/8727)) ([b6b426a](https://github.com/googleapis/google-cloud-php/commit/b6b426a8865dcafbf00685d237d4edb3357e611f))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.3.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantProducts] Added the `product_id_base64_url_encoded` field to `InsertProductInputRequest`, `DeleteProductInputRequest`, and `GetProductRequest`. This allows for product IDs containing special characters to be correctly handled when unpadded base64url-encoded ([#8729](https://github.com/googleapis/google-cloud-php/issues/8729)) ([931e728](https://github.com/googleapis/google-cloud-php/commit/931e72895c30baa0a05622c7b87d2afa5eec481d))
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 1.2.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantQuota] Add the AccountLimit resource and its service to the quota bundle ([#8728](https://github.com/googleapis/google-cloud-php/issues/8728)) ([f0ac4e4](https://github.com/googleapis/google-cloud-php/commit/f0ac4e40cee540a7eb44f926de73784e33b33ec2))
+
+</details>
+
+<details><summary>google/cloud-storage 1.48.7</summary>
+
+
+
+### Documentation
+
+* Remove `[@deprecated](https://github.com/deprecated)` annotation from config array fields ([#8689](https://github.com/googleapis/google-cloud-php/issues/8689)) ([77185ff](https://github.com/googleapis/google-cloud-php/commit/77185ffff58b65b23e82e1e122965687b29af5e2))
+* Update move logic now to support non-HNS buckets ([#8705](https://github.com/googleapis/google-cloud-php/issues/8705)) ([63699a9](https://github.com/googleapis/google-cloud-php/commit/63699a945a5de3ea1aa61ad0a1bf43132457a9da))
+
+</details>
+
+<details><summary>google/cloud-trace 1.9.3</summary>
+
+
+
+### Documentation
+
+* Remove `[@deprecated](https://github.com/deprecated)` annotation from config array fields ([#8689](https://github.com/googleapis/google-cloud-php/issues/8689)) ([77185ff](https://github.com/googleapis/google-cloud-php/commit/77185ffff58b65b23e82e1e122965687b29af5e2))
+
+</details>
+
 ## 0.310.1
 
 <details><summary>google/cloud-spanner 2.0.0</summary>
