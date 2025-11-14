@@ -45,24 +45,24 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      */
     protected $store_code = '';
     /**
-     * Optional. Price of the product at this store.
+     * Price of the product at this store.
      *
-     * Generated from protobuf field <code>.google.shopping.type.Price price = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.shopping.type.Price price = 4;</code>
      */
     protected $price = null;
     /**
-     * Optional. Sale price of the product at this store. Mandatory if
+     * Sale price of the product at this store. Mandatory if
      * [`salePriceEffectiveDate`][google.shopping.merchant.inventories.v1beta.LocalInventory.sale_price_effective_date]
      * is defined.
      *
-     * Generated from protobuf field <code>.google.shopping.type.Price sale_price = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.shopping.type.Price sale_price = 5;</code>
      */
     protected $sale_price = null;
     /**
-     * Optional. The `TimePeriod` of the
+     * The `TimePeriod` of the
      * sale at this store.
      *
-     * Generated from protobuf field <code>.google.type.Interval sale_price_effective_date = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.type.Interval sale_price_effective_date = 6;</code>
      */
     protected $sale_price_effective_date = null;
     /**
@@ -111,8 +111,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * `CustomAttribute` to submit any attribute of the data specification in its
      * generic form.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 12 [deprecated = true];</code>
-     * @deprecated
+     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 12;</code>
      */
     private $custom_attributes;
 
@@ -136,13 +135,13 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      *           specification](https://support.google.com/merchants/answer/3061342) for
      *           more information.
      *     @type \Google\Shopping\Type\Price $price
-     *           Optional. Price of the product at this store.
+     *           Price of the product at this store.
      *     @type \Google\Shopping\Type\Price $sale_price
-     *           Optional. Sale price of the product at this store. Mandatory if
+     *           Sale price of the product at this store. Mandatory if
      *           [`salePriceEffectiveDate`][google.shopping.merchant.inventories.v1beta.LocalInventory.sale_price_effective_date]
      *           is defined.
      *     @type \Google\Type\Interval $sale_price_effective_date
-     *           Optional. The `TimePeriod` of the
+     *           The `TimePeriod` of the
      *           sale at this store.
      *     @type string $availability
      *           Availability of the product at this store.
@@ -269,9 +268,9 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Price of the product at this store.
+     * Price of the product at this store.
      *
-     * Generated from protobuf field <code>.google.shopping.type.Price price = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.shopping.type.Price price = 4;</code>
      * @return \Google\Shopping\Type\Price|null
      */
     public function getPrice()
@@ -290,9 +289,9 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Price of the product at this store.
+     * Price of the product at this store.
      *
-     * Generated from protobuf field <code>.google.shopping.type.Price price = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.shopping.type.Price price = 4;</code>
      * @param \Google\Shopping\Type\Price $var
      * @return $this
      */
@@ -305,11 +304,11 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Sale price of the product at this store. Mandatory if
+     * Sale price of the product at this store. Mandatory if
      * [`salePriceEffectiveDate`][google.shopping.merchant.inventories.v1beta.LocalInventory.sale_price_effective_date]
      * is defined.
      *
-     * Generated from protobuf field <code>.google.shopping.type.Price sale_price = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.shopping.type.Price sale_price = 5;</code>
      * @return \Google\Shopping\Type\Price|null
      */
     public function getSalePrice()
@@ -328,11 +327,11 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Sale price of the product at this store. Mandatory if
+     * Sale price of the product at this store. Mandatory if
      * [`salePriceEffectiveDate`][google.shopping.merchant.inventories.v1beta.LocalInventory.sale_price_effective_date]
      * is defined.
      *
-     * Generated from protobuf field <code>.google.shopping.type.Price sale_price = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.shopping.type.Price sale_price = 5;</code>
      * @param \Google\Shopping\Type\Price $var
      * @return $this
      */
@@ -345,10 +344,10 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The `TimePeriod` of the
+     * The `TimePeriod` of the
      * sale at this store.
      *
-     * Generated from protobuf field <code>.google.type.Interval sale_price_effective_date = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.type.Interval sale_price_effective_date = 6;</code>
      * @return \Google\Type\Interval|null
      */
     public function getSalePriceEffectiveDate()
@@ -367,10 +366,10 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The `TimePeriod` of the
+     * The `TimePeriod` of the
      * sale at this store.
      *
-     * Generated from protobuf field <code>.google.type.Interval sale_price_effective_date = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.type.Interval sale_price_effective_date = 6;</code>
      * @param \Google\Type\Interval $var
      * @return $this
      */
@@ -589,15 +588,11 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * `CustomAttribute` to submit any attribute of the data specification in its
      * generic form.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 12 [deprecated = true];</code>
+     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 12;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
-     * @deprecated
      */
     public function getCustomAttributes()
     {
-        if ($this->custom_attributes->count() !== 0) {
-            @trigger_error('custom_attributes is deprecated.', E_USER_DEPRECATED);
-        }
         return $this->custom_attributes;
     }
 
@@ -606,17 +601,13 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * `CustomAttribute` to submit any attribute of the data specification in its
      * generic form.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 12 [deprecated = true];</code>
+     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 12;</code>
      * @param array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
-     * @deprecated
      */
     public function setCustomAttributes($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Type\CustomAttribute::class);
-        if ($arr->count() !== 0) {
-            @trigger_error('custom_attributes is deprecated.', E_USER_DEPRECATED);
-        }
         $this->custom_attributes = $arr;
 
         return $this;

@@ -43,20 +43,6 @@ class ListRegionalInventoriesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     protected $page_token = '';
-    /**
-     * Optional. If true, the `{product}` in the `parent` field of the request
-     * will be interpreted as unpadded base64url-encoded and decoded during
-     * request processing to match the decoded value. Default value is `false`.
-     * Use this if your `{product}` contains special characters, such as forward
-     * slash `/` or other characters that are unpadded base64url-encoded (as per
-     * RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2).
-     * Note that future versions of the API will only accept unpadded
-     * base64url-encoded product ids, so we strongly recommend proactively setting
-     * this to `true` and encoding the product ids.
-     *
-     * Generated from protobuf field <code>bool product_id_base64_url_encoded = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $product_id_base64_url_encoded = false;
 
     /**
      * @param string $parent Required. The `name` of the parent product to list `RegionalInventory`
@@ -95,16 +81,6 @@ class ListRegionalInventoriesRequest extends \Google\Protobuf\Internal\Message
      *           must match the call that provided the page token. The token returned as
      *           [nextPageToken][google.shopping.merchant.inventories.v1beta.ListRegionalInventoriesResponse.next_page_token]
      *           in the response to the previous request.
-     *     @type bool $product_id_base64_url_encoded
-     *           Optional. If true, the `{product}` in the `parent` field of the request
-     *           will be interpreted as unpadded base64url-encoded and decoded during
-     *           request processing to match the decoded value. Default value is `false`.
-     *           Use this if your `{product}` contains special characters, such as forward
-     *           slash `/` or other characters that are unpadded base64url-encoded (as per
-     *           RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2).
-     *           Note that future versions of the API will only accept unpadded
-     *           base64url-encoded product ids, so we strongly recommend proactively setting
-     *           this to `true` and encoding the product ids.
      * }
      */
     public function __construct($data = NULL) {
@@ -206,48 +182,6 @@ class ListRegionalInventoriesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. If true, the `{product}` in the `parent` field of the request
-     * will be interpreted as unpadded base64url-encoded and decoded during
-     * request processing to match the decoded value. Default value is `false`.
-     * Use this if your `{product}` contains special characters, such as forward
-     * slash `/` or other characters that are unpadded base64url-encoded (as per
-     * RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2).
-     * Note that future versions of the API will only accept unpadded
-     * base64url-encoded product ids, so we strongly recommend proactively setting
-     * this to `true` and encoding the product ids.
-     *
-     * Generated from protobuf field <code>bool product_id_base64_url_encoded = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return bool
-     */
-    public function getProductIdBase64UrlEncoded()
-    {
-        return $this->product_id_base64_url_encoded;
-    }
-
-    /**
-     * Optional. If true, the `{product}` in the `parent` field of the request
-     * will be interpreted as unpadded base64url-encoded and decoded during
-     * request processing to match the decoded value. Default value is `false`.
-     * Use this if your `{product}` contains special characters, such as forward
-     * slash `/` or other characters that are unpadded base64url-encoded (as per
-     * RFC 7515: https://datatracker.ietf.org/doc/html/rfc7515#section-2).
-     * Note that future versions of the API will only accept unpadded
-     * base64url-encoded product ids, so we strongly recommend proactively setting
-     * this to `true` and encoding the product ids.
-     *
-     * Generated from protobuf field <code>bool product_id_base64_url_encoded = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setProductIdBase64UrlEncoded($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->product_id_base64_url_encoded = $var;
 
         return $this;
     }

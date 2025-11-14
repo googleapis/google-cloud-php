@@ -22,31 +22,28 @@ class Regionalinventory
         \GPBMetadata\Google\Shopping\Merchant\Inventories\V1\InventoriesCommon::initOnce();
         $pool->internalAddGeneratedFile(
             '
-°
+ú
 ?google/shopping/merchant/inventories/v1/regionalinventory.proto\'google.shopping.merchant.inventories.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto@google/shopping/merchant/inventories/v1/inventories_common.proto"Ω
 RegionalInventory
 name (	B‡A
 account (B‡A
 region (	B‡A‡Ap
 regional_inventory_attributes	 (2D.google.shopping.merchant.inventories.v1.RegionalInventoryAttributesB‡A:uÍAr
-,merchantapi.googleapis.com/RegionalInventoryBaccounts/{account}/products/{product}/regionalInventories/{region}"π
+,merchantapi.googleapis.com/RegionalInventoryBaccounts/{account}/products/{product}/regionalInventories/{region}"ç
 ListRegionalInventoriesRequestD
 parent (	B4‡A˙A.,merchantapi.googleapis.com/RegionalInventory
 	page_size (
 
-page_token (	*
-product_id_base64_url_encoded (B‡A"î
+page_token (	"î
 ListRegionalInventoriesResponseX
 regional_inventories (2:.google.shopping.merchant.inventories.v1.RegionalInventory
-next_page_token (	"Ô
+next_page_token (	"√
 InsertRegionalInventoryRequestD
 parent (	B4‡A˙A.,merchantapi.googleapis.com/RegionalInventory[
-regional_inventory (2:.google.shopping.merchant.inventories.v1.RegionalInventoryB‡A*
-product_id_base64_url_encoded (B‡A"ê
+regional_inventory (2:.google.shopping.merchant.inventories.v1.RegionalInventoryB‡A"d
 DeleteRegionalInventoryRequestB
 name (	B4‡A˙A.
-,merchantapi.googleapis.com/RegionalInventory*
-product_id_base64_url_encoded (B‡A2ø
+,merchantapi.googleapis.com/RegionalInventory2ø
 RegionalInventoryServiceÅ
 ListRegionalInventoriesG.google.shopping.merchant.inventories.v1.ListRegionalInventoriesRequestH.google.shopping.merchant.inventories.v1.ListRegionalInventoriesResponse"S⁄AparentÇ”‰ìDB/inventories/v1/{parent=accounts/*/products/*}/regionalInventoriesÖ
 InsertRegionalInventoryG.google.shopping.merchant.inventories.v1.InsertRegionalInventoryRequest:.google.shopping.merchant.inventories.v1.RegionalInventory"eÇ”‰ì_"I/inventories/v1/{parent=accounts/*/products/*}/regionalInventories:insert:regional_inventoryÕ
