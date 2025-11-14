@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
@@ -92,7 +93,8 @@ class ConformanceTest extends TestCase
 
         $this->client = new FirestoreClient([
             'firestoreClient' => $this->gapicClient->reveal(),
-            'projectId' => self::PROJECT_ID
+            'projectId' => self::PROJECT_ID,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
         ]);
     }
 
