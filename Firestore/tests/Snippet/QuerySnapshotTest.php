@@ -77,7 +77,7 @@ class QuerySnapshotTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(QuerySnapshot::class, 1);
         $snapshot = new QuerySnapshot(
             $this->prophesize(Query::class)->reveal(),
-            ['name' => 'John']
+            [['name' => 'John']]
         );
 
         $snippet->addLocal('snapshot', $snapshot);
