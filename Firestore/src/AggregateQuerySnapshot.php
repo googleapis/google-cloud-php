@@ -39,7 +39,6 @@ class AggregateQuerySnapshot
 {
     use TimeTrait;
 
-
     private Timestamp $readTime;
     private array $aggregateFields = [];
     private string $transaction;

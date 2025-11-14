@@ -45,20 +45,7 @@ class Serializer extends ApiCoreSerializer
 
     public function __construct()
     {
-        $fieldTransformers = [
-            // 'commit_time' => function ($v) {
-            //     return $this->formatTimestampFromApi($v);
-            // },
-            // 'update_time' => function ($v) {
-            //     return $this->formatTimestampFromApi($v);
-            // },
-            // 'read_time' => function ($v) {
-            //     return $this->formatTimestampFromApi($v);
-            // },
-            // 'create_time' => function ($v) {
-            //     return $this->formatTimestampFromApi($v);
-            // }
-        ];
+        $fieldTransformers = [];
         $messageTypeTransformers = [
             'google.protobuf.Duration' => function ($v) {
                 return $this->formatDurationFromApi($v);
@@ -71,27 +58,6 @@ class Serializer extends ApiCoreSerializer
             'limit' => function ($v) {
                 return new Int32Value(['value' => $v]);
             },
-            // 'transaction' => function ($v) {
-            //     return $v;
-            // },
-            // 'previous_transaction' => function ($v) {
-            //     return base64_decode($v);
-            // },
-            // 'end_cursor' => function ($v) {
-            //     return base64_decode($v);
-            // },
-            // 'start_cursor' => function ($v) {
-            //     return base64_decode($v);
-            // },
-            // 'cursor' => function ($v) {
-            //     return base64_decode($v);
-            // },
-            // 'timestamp_value' => function ($v) {
-            //     return $this->formatTimestampForApi($v);
-            // },
-            // 'commit_time' => function ($v) {
-            //     return 'AAA';
-            // }
         ];
         $decodeMessageTypeTransformers = [
             'google.protobuf.Timestamp' => function ($v) {
@@ -101,19 +67,6 @@ class Serializer extends ApiCoreSerializer
 
                 return $v;
             },
-            // 'google.datastore.v1.QueryResultBatch' => function ($v) {
-            //     if (array_key_exists('entityResults', $v) && $v['entityResults'] === null) {
-            //         $v['entityResults'] = [];
-            //     }
-            //     return $v;
-            // },
-            // 'google.datastore.v1.PropertyFilter' => function ($v) {
-            //     if (array_key_exists('op', $v) && !filter_var($v['op'], FILTER_VALIDATE_INT)) {
-            //         // convert from string to enum
-            //         $v['op'] = Operator::value($v['op']);
-            //     }
-            //     return $v;
-            // }
         ];
 
         parent::__construct(

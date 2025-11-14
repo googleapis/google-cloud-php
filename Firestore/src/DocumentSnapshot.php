@@ -18,7 +18,6 @@
 namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\Timestamp;
-use PhpParser\Node\Expr\Cast\Array_;
 
 /**
  * Represents the data of a document at the time of retrieval.
