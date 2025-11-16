@@ -156,6 +156,13 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      */
     protected $boot_conversion = 0;
     /**
+     * Optional. AdaptationModifiers are the set of modifiers used during OS
+     * adaptation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AdaptationModifier adaptation_modifiers = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $adaptation_modifiers;
+    /**
      * Optional. Additional replica zones of the target regional disks.
      * If this list is not empty a regional disk will be created. The first
      * supported zone would be the one stated in the
@@ -169,6 +176,16 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string disk_replica_zones = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $disk_replica_zones;
+    /**
+     * Optional. If specified this will be the storage pool in which the disk is
+     * created. This is the full path of the storage pool resource, for example:
+     * "projects/my-project/zones/us-central1-a/storagePools/my-storage-pool".
+     * The storage pool must be in the same project and zone as the target disks.
+     * The storage pool's type must match the disk type.
+     *
+     * Generated from protobuf field <code>string storage_pool = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $storage_pool = '';
 
     /**
      * Constructor.
@@ -227,6 +244,9 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      *           Optional. By default the virtual machine will keep its existing boot
      *           option. Setting this property will trigger an internal process which will
      *           convert the virtual machine from using the existing boot option to another.
+     *     @type array<\Google\Cloud\VMMigration\V1\AdaptationModifier>|\Google\Protobuf\Internal\RepeatedField $adaptation_modifiers
+     *           Optional. AdaptationModifiers are the set of modifiers used during OS
+     *           adaptation.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $disk_replica_zones
      *           Optional. Additional replica zones of the target regional disks.
      *           If this list is not empty a regional disk will be created. The first
@@ -237,6 +257,12 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      *           API](https://cloud.google.com/compute/docs/regions-zones/global-regional-zonal-resources)
      *           for further details about regional vs zonal disks. If not specified, a
      *           zonal disk will be created in the same zone the VM is created.
+     *     @type string $storage_pool
+     *           Optional. If specified this will be the storage pool in which the disk is
+     *           created. This is the full path of the storage pool resource, for example:
+     *           "projects/my-project/zones/us-central1-a/storagePools/my-storage-pool".
+     *           The storage pool must be in the same project and zone as the target disks.
+     *           The storage pool's type must match the disk type.
      * }
      */
     public function __construct($data = NULL) {
@@ -861,6 +887,34 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. AdaptationModifiers are the set of modifiers used during OS
+     * adaptation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AdaptationModifier adaptation_modifiers = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAdaptationModifiers()
+    {
+        return $this->adaptation_modifiers;
+    }
+
+    /**
+     * Optional. AdaptationModifiers are the set of modifiers used during OS
+     * adaptation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AdaptationModifier adaptation_modifiers = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\VMMigration\V1\AdaptationModifier>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAdaptationModifiers($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VMMigration\V1\AdaptationModifier::class);
+        $this->adaptation_modifiers = $arr;
+
+        return $this;
+    }
+
+    /**
      * Optional. Additional replica zones of the target regional disks.
      * If this list is not empty a regional disk will be created. The first
      * supported zone would be the one stated in the
@@ -898,6 +952,40 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->disk_replica_zones = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If specified this will be the storage pool in which the disk is
+     * created. This is the full path of the storage pool resource, for example:
+     * "projects/my-project/zones/us-central1-a/storagePools/my-storage-pool".
+     * The storage pool must be in the same project and zone as the target disks.
+     * The storage pool's type must match the disk type.
+     *
+     * Generated from protobuf field <code>string storage_pool = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getStoragePool()
+    {
+        return $this->storage_pool;
+    }
+
+    /**
+     * Optional. If specified this will be the storage pool in which the disk is
+     * created. This is the full path of the storage pool resource, for example:
+     * "projects/my-project/zones/us-central1-a/storagePools/my-storage-pool".
+     * The storage pool must be in the same project and zone as the target disks.
+     * The storage pool's type must match the disk type.
+     *
+     * Generated from protobuf field <code>string storage_pool = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStoragePool($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->storage_pool = $var;
 
         return $this;
     }

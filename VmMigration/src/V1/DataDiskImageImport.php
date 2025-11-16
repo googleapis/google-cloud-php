@@ -9,12 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Mentions that the image import is not using OS adaptation process.
+ * Used when the image import is not using OS adaptation process.
  *
  * Generated from protobuf message <code>google.cloud.vmmigration.v1.DataDiskImageImport</code>
  */
 class DataDiskImageImport extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. A list of guest OS features to apply to the imported image. These
+     * features are flags that are used by Compute Engine to enable certain
+     * capabilities for virtual machine instances that are created from the image.
+     * This field does not change the OS of the image; it only marks the image
+     * with the specified features. The user must ensure that the OS is
+     * compatible with the features.
+     * For a list of available features, see
+     * https://cloud.google.com/compute/docs/images/create-custom#guest-os-features.
+     *
+     * Generated from protobuf field <code>repeated string guest_os_features = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $guest_os_features;
 
     /**
      * Constructor.
@@ -22,11 +35,60 @@ class DataDiskImageImport extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *           Optional. A list of guest OS features to apply to the imported image. These
+     *           features are flags that are used by Compute Engine to enable certain
+     *           capabilities for virtual machine instances that are created from the image.
+     *           This field does not change the OS of the image; it only marks the image
+     *           with the specified features. The user must ensure that the OS is
+     *           compatible with the features.
+     *           For a list of available features, see
+     *           https://cloud.google.com/compute/docs/images/create-custom#guest-os-features.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vmmigration\V1\Vmmigration::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. A list of guest OS features to apply to the imported image. These
+     * features are flags that are used by Compute Engine to enable certain
+     * capabilities for virtual machine instances that are created from the image.
+     * This field does not change the OS of the image; it only marks the image
+     * with the specified features. The user must ensure that the OS is
+     * compatible with the features.
+     * For a list of available features, see
+     * https://cloud.google.com/compute/docs/images/create-custom#guest-os-features.
+     *
+     * Generated from protobuf field <code>repeated string guest_os_features = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGuestOsFeatures()
+    {
+        return $this->guest_os_features;
+    }
+
+    /**
+     * Optional. A list of guest OS features to apply to the imported image. These
+     * features are flags that are used by Compute Engine to enable certain
+     * capabilities for virtual machine instances that are created from the image.
+     * This field does not change the OS of the image; it only marks the image
+     * with the specified features. The user must ensure that the OS is
+     * compatible with the features.
+     * For a list of available features, see
+     * https://cloud.google.com/compute/docs/images/create-custom#guest-os-features.
+     *
+     * Generated from protobuf field <code>repeated string guest_os_features = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGuestOsFeatures($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->guest_os_features = $arr;
+
+        return $this;
     }
 
 }
