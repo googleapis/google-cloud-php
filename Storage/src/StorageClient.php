@@ -273,38 +273,82 @@ class StorageClient
      *           If false, `$options.userProject` will be used ONLY for the
      *           listBuckets operation. If `$options.userProject` is not set,
      *           this option has no effect. **Defaults to** `true`.
+     *     @type bool $returnPartialSuccess If true, each returned unreachable buckets
+     *           If false, it doesn't return unreachable buckets.
+     * 
      * }
      * @return ItemIterator<Bucket>
      * @throws GoogleException When a project ID has not been detected.
      */
     public function buckets(array $options = [])
+{
+    $this->requireProjectId();
+
+    $resultLimit = $this->pluck('resultLimit', $options, false);
+    $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
+    $bucketUserProject = !is_null($bucketUserProject)
+        ? $bucketUserProject
+        : true;
+    $userProject = (isset($options['userProject']) && $bucketUserProject)
+        ? $options['userProject']
+        : null;
+
+    $callOptions = $options + ['project' => $this->projectId]; 
+
+    $connection = $this->connection; 
+    //Iterator for bucket details
+    $iteratorWrapper = new class implements \IteratorAggregate
     {
-        $this->requireProjectId();
+        public $unreachable = [];
+        private $iterator;
 
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
-        $bucketUserProject = !is_null($bucketUserProject)
-            ? $bucketUserProject
-            : true;
-        $userProject = (isset($options['userProject']) && $bucketUserProject)
-            ? $options['userProject']
-            : null;
+        public function setIterator(\Iterator $iterator)
+        {
+            $this->iterator = $iterator;
+        }
 
-        return new ItemIterator(
-            new PageIterator(
-                function (array $bucket) use ($userProject) {
-                    return new Bucket(
-                        $this->connection,
-                        $bucket['name'],
-                        $bucket + ['requesterProjectId' => $userProject]
-                    );
-                },
-                [$this->connection, 'listBuckets'],
-                $options + ['project' => $this->projectId],
-                ['resultLimit' => $resultLimit]
-            )
-        );
-    }
+        public function getIterator(): \Traversable
+        {
+            return $this->iterator;
+        }
+    };
+    //Iterator for pagination
+    $pageIterator = new PageIterator(
+        function (array $bucket) use ($userProject, $connection) {
+            return new Bucket(
+                $connection,
+                $bucket['name'],
+                $bucket + ['requesterProjectId' => $userProject]
+            );
+        },
+        function (array $requestOptions) use ($iteratorWrapper) {
+            $response = $this->connection->listBuckets($requestOptions);
+
+            // Checking if the unreachable buckets flag is true and unreachable buckets are non empty
+            if (
+                isset($requestOptions['returnPartialSuccess']) && 
+                $requestOptions['returnPartialSuccess'] === true &&
+                isset($response['unreachable']) && 
+                is_array($response['unreachable'])
+            ) {
+                //adding unreachable list to return
+                $iteratorWrapper->unreachable = array_unique(array_merge(
+                    $iteratorWrapper->unreachable,
+                    $response['unreachable']
+                ));
+            }
+            return $response;
+        },
+        $callOptions,
+        ['resultLimit' => $resultLimit]
+    );
+
+    $itemIterator = new ItemIterator($pageIterator);
+
+    $iteratorWrapper->setIterator($itemIterator);
+
+    return $iteratorWrapper;
+}
 
     /**
      * Restores a soft-deleted bucket.

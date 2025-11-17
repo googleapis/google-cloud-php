@@ -656,6 +656,46 @@ class StorageClientTest extends TestCase
         $this->assertFalse($requestHistory[0]['request']->hasHeader('X-Retry-Attempt'));
         $this->assertEquals('1', $requestHistory[1]['request']->getHeaderLine('X-Retry-Attempt'));
     }
+
+     public function testListBucketsReturnPartialSuccess()
+    {
+        $expectedUnreachable = [
+            'projects/_/buckets/unreachable-1',
+            'projects/_/buckets/unreachable-2',
+        ];
+
+        $this->connection->listBuckets(
+            Argument::allOf(
+                Argument::withEntry('project', self::PROJECT),
+                //Adding flag to get unreachable buckets
+                Argument::withEntry('returnPartialSuccess', true)
+            )
+        )->willReturn([
+            'nextPageToken' => 'token',
+            //mock the data with unreachable buckets
+            'unreachable' => $expectedUnreachable, 
+            'items' => [
+                ['name' => 'bucket1']
+            ]
+        ], [
+            'items' => [
+                ['name' => 'bucket2']
+            ]
+        ]);
+
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        
+        $responseWrapper = $this->client->buckets(['returnPartialSuccess' => true]);
+
+        $bucket = iterator_to_array($responseWrapper);
+
+        $this->assertEquals('bucket2', $bucket[1]->name());
+        
+        $this->assertEquals($expectedUnreachable, $responseWrapper->unreachable);
+    }
 }
 
 //@codingStandardsIgnoreStart
