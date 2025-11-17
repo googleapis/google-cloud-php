@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2015 Google Inc.
  *
@@ -45,7 +46,7 @@ class StorageClientTest extends TestCase
 {
     use ProphecyTrait;
 
-    const PROJECT = 'my-project';
+    public const PROJECT = 'my-project';
     public $connection;
 
     public function setUp(): void
@@ -252,7 +253,7 @@ class StorageClientTest extends TestCase
 
     public function testTimestamp()
     {
-        $dt = new \DateTime;
+        $dt = new \DateTime();
         $ts = $this->client->timestamp($dt);
         $this->assertInstanceOf(Timestamp::class, $ts);
         $this->assertEquals($ts->get(), $dt);
@@ -416,7 +417,7 @@ class StorageClientTest extends TestCase
         }
 
         $objects = iterator_to_array($client->bucket('myBucket')->objects());
-        
+
         $this->assertEquals('file.txt', $objects[0]->name());
         $this->assertEquals($expectedRemainingResponses, $mockHandler->count());
     }
@@ -574,7 +575,7 @@ class StorageClientTest extends TestCase
         ]);
 
         $objects = iterator_to_array($client->bucket('myBucket')->objects());
-        
+
         $this->assertEquals('file.txt', $objects[0]->name());
         $this->assertEquals([100, 200], $capturedDelays);
     }
@@ -622,7 +623,7 @@ class StorageClientTest extends TestCase
         ];
         $mockHandler = new MockHandler($mockResponses);
         $handlerStack = HandlerStack::create($mockHandler);
-        
+
         $requestHistory = [];
         $handlerStack->push(\GuzzleHttp\Middleware::history($requestHistory));
         $guzzleClient = new \GuzzleHttp\Client(['handler' => $handlerStack]);
@@ -657,7 +658,7 @@ class StorageClientTest extends TestCase
         $this->assertEquals('1', $requestHistory[1]['request']->getHeaderLine('X-Retry-Attempt'));
     }
 
-     public function testListBucketsReturnPartialSuccess()
+    public function testListBucketsReturnPartialSuccess()
     {
         $expectedUnreachable = [
             'projects/_/buckets/unreachable-1',
@@ -673,7 +674,7 @@ class StorageClientTest extends TestCase
         )->willReturn([
             'nextPageToken' => 'token',
             //mock the data with unreachable buckets
-            'unreachable' => $expectedUnreachable, 
+            'unreachable' => $expectedUnreachable,
             'items' => [
                 ['name' => 'bucket1']
             ]
@@ -687,13 +688,13 @@ class StorageClientTest extends TestCase
             ->willReturn(self::PROJECT);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
-        
+
         $responseWrapper = $this->client->buckets(['returnPartialSuccess' => true]);
 
         $bucket = iterator_to_array($responseWrapper);
 
         $this->assertEquals('bucket2', $bucket[1]->name());
-        
+
         $this->assertEquals($expectedUnreachable, $responseWrapper->unreachable);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *
@@ -47,11 +48,11 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.48.6';
+    public const VERSION = '1.48.6';
 
-    const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
-    const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
-    const READ_WRITE_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
+    public const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
+    public const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
+    public const READ_WRITE_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
 
     /**
      * Retry strategy to signify that we never want to retry an operation
@@ -60,16 +61,16 @@ class StorageClient
      * We can set $options['retryStrategy'] to one of "always", "never" and
      * "idempotent".
      */
-    const RETRY_NEVER = 'never';
+    public const RETRY_NEVER = 'never';
     /**
      * Retry strategy to signify that we always want to retry an operation.
      */
-    const RETRY_ALWAYS = 'always';
+    public const RETRY_ALWAYS = 'always';
     /**
      * This is the default. This signifies that we want to retry an operation
      * only if it is retryable and the error is retryable.
      */
-    const RETRY_IDEMPOTENT = 'idempotent';
+    public const RETRY_IDEMPOTENT = 'idempotent';
 
     /**
      * @var ConnectionInterface Represents a connection to Storage.
@@ -275,80 +276,79 @@ class StorageClient
      *           this option has no effect. **Defaults to** `true`.
      *     @type bool $returnPartialSuccess If true, each returned unreachable buckets
      *           If false, it doesn't return unreachable buckets.
-     * 
+     *
      * }
      * @return ItemIterator<Bucket>
      * @throws GoogleException When a project ID has not been detected.
      */
     public function buckets(array $options = [])
-{
-    $this->requireProjectId();
-
-    $resultLimit = $this->pluck('resultLimit', $options, false);
-    $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
-    $bucketUserProject = !is_null($bucketUserProject)
-        ? $bucketUserProject
-        : true;
-    $userProject = (isset($options['userProject']) && $bucketUserProject)
-        ? $options['userProject']
-        : null;
-
-    $callOptions = $options + ['project' => $this->projectId]; 
-
-    $connection = $this->connection; 
-    //Iterator for bucket details
-    $iteratorWrapper = new class implements \IteratorAggregate
     {
-        public $unreachable = [];
-        private $iterator;
+        $this->requireProjectId();
 
-        public function setIterator(\Iterator $iterator)
-        {
-            $this->iterator = $iterator;
-        }
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+        $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
+        $bucketUserProject = !is_null($bucketUserProject)
+            ? $bucketUserProject
+            : true;
+        $userProject = (isset($options['userProject']) && $bucketUserProject)
+            ? $options['userProject']
+            : null;
 
-        public function getIterator(): \Traversable
-        {
-            return $this->iterator;
-        }
-    };
-    //Iterator for pagination
-    $pageIterator = new PageIterator(
-        function (array $bucket) use ($userProject, $connection) {
-            return new Bucket(
-                $connection,
-                $bucket['name'],
-                $bucket + ['requesterProjectId' => $userProject]
-            );
-        },
-        function (array $requestOptions) use ($iteratorWrapper) {
-            $response = $this->connection->listBuckets($requestOptions);
+        $callOptions = $options + ['project' => $this->projectId];
 
-            // Checking if the unreachable buckets flag is true and unreachable buckets are non empty
-            if (
-                isset($requestOptions['returnPartialSuccess']) && 
-                $requestOptions['returnPartialSuccess'] === true &&
-                isset($response['unreachable']) && 
-                is_array($response['unreachable'])
-            ) {
-                //adding unreachable list to return
-                $iteratorWrapper->unreachable = array_unique(array_merge(
-                    $iteratorWrapper->unreachable,
-                    $response['unreachable']
-                ));
+        $connection = $this->connection;
+        //Iterator for bucket details
+        $iteratorWrapper = new class () implements \IteratorAggregate {
+            public $unreachable = [];
+            private $iterator;
+
+            public function setIterator(\Iterator $iterator)
+            {
+                $this->iterator = $iterator;
             }
-            return $response;
-        },
-        $callOptions,
-        ['resultLimit' => $resultLimit]
-    );
 
-    $itemIterator = new ItemIterator($pageIterator);
+            public function getIterator(): \Traversable
+            {
+                return $this->iterator;
+            }
+        };
+        //Iterator for pagination
+        $pageIterator = new PageIterator(
+            function (array $bucket) use ($userProject, $connection) {
+                return new Bucket(
+                    $connection,
+                    $bucket['name'],
+                    $bucket + ['requesterProjectId' => $userProject]
+                );
+            },
+            function (array $requestOptions) use ($iteratorWrapper) {
+                $response = $this->connection->listBuckets($requestOptions);
 
-    $iteratorWrapper->setIterator($itemIterator);
+                // Checking if the unreachable buckets flag is true and unreachable buckets are non empty
+                if (
+                    isset($requestOptions['returnPartialSuccess']) &&
+                    $requestOptions['returnPartialSuccess'] === true &&
+                    isset($response['unreachable']) &&
+                    is_array($response['unreachable'])
+                ) {
+                    //adding unreachable list to return
+                    $iteratorWrapper->unreachable = array_unique(array_merge(
+                        $iteratorWrapper->unreachable,
+                        $response['unreachable']
+                    ));
+                }
+                return $response;
+            },
+            $callOptions,
+            ['resultLimit' => $resultLimit]
+        );
 
-    return $iteratorWrapper;
-}
+        $itemIterator = new ItemIterator($pageIterator);
+
+        $iteratorWrapper->setIterator($itemIterator);
+
+        return $iteratorWrapper;
+    }
 
     /**
      * Restores a soft-deleted bucket.
