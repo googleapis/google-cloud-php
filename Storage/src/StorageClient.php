@@ -334,8 +334,8 @@ class StorageClient
                 return $response;
             },
             $options + ['project' => $this->projectId],
-             ['resultLimit' => $resultLimit]
-         );
+            ['resultLimit' => $resultLimit]
+        );
 
         $itemIterator = new ItemIterator($pageIterator);
         $iteratorWrapper->setIterator($itemIterator);
