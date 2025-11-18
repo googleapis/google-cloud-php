@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *
@@ -50,9 +49,9 @@ class StorageClient
 
     public const VERSION = '1.48.7';
 
-    public const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
-    public const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
-    public const READ_WRITE_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
+    const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
+    const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
+    const READ_WRITE_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
 
     /**
      * Retry strategy to signify that we never want to retry an operation
@@ -298,7 +297,7 @@ class StorageClient
 
         $connection = $this->connection;
         //Iterator for bucket details
-        $iteratorWrapper = new class () implements \IteratorAggregate {
+        $iteratorWrapper = new class() implements \IteratorAggregate {
             public $unreachable = [];
             private $iterator;
 
@@ -326,10 +325,7 @@ class StorageClient
 
                 // Checking if the unreachable buckets flag is true and unreachable buckets are non empty
                 if (
-                    isset($requestOptions['returnPartialSuccess']) &&
-                    $requestOptions['returnPartialSuccess'] === true &&
-                    isset($response['unreachable']) &&
-                    is_array($response['unreachable'])
+                    isset($requestOptions['returnPartialSuccess'], $response['unreachable']) && $requestOptions['returnPartialSuccess'] === true && is_array($response['unreachable'])
                 ) {
                     //adding unreachable list to return
                     $iteratorWrapper->unreachable = array_unique(array_merge(

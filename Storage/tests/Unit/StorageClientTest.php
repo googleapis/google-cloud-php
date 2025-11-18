@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2015 Google Inc.
  *
@@ -664,7 +663,6 @@ class StorageClientTest extends TestCase
             'projects/_/buckets/unreachable-1',
             'projects/_/buckets/unreachable-2',
         ];
-
         $this->connection->listBuckets(
                 Argument::withEntry('returnPartialSuccess', true)
         )->willReturn([
@@ -681,16 +679,14 @@ class StorageClientTest extends TestCase
 
         $this->connection->projectId()
             ->willReturn(self::PROJECT);
-
         $this->client->___setProperty('connection', $this->connection->reveal());
-
         $responseWrapper = $this->client->buckets(['returnPartialSuccess' => true]);
-
         $bucket = iterator_to_array($responseWrapper);
-        $this->assertCount(2, $bucket, 'The iteration should yield 2 buckets.');
+
+        $this->assertCount(2, $bucket);
         $this->assertEquals('bucket1', $bucket[0]->name());
         $this->assertEquals('bucket2', $bucket[1]->name());
-        $this->assertNotEmpty($responseWrapper->unreachable, 'The captured unreachable list must not be empty.');
+        $this->assertNotEmpty($responseWrapper->unreachable);
         $this->assertEquals($expectedUnreachable, $responseWrapper->unreachable);
     }
 }

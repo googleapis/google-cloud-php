@@ -87,7 +87,7 @@ class StorageClientTest extends SnippetTestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('buckets');
-        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertInstanceOf(\IteratorAggregate::class, $res->returnVal());
 
         $buckets = iterator_to_array($res->returnVal());
         $this->assertEquals('album 1', $buckets[0]->name());
@@ -111,7 +111,7 @@ class StorageClientTest extends SnippetTestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('buckets');
-        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertInstanceOf(\IteratorAggregate::class, $res->returnVal());
         $this->assertEquals('album 1', explode("\n", $res->output())[0]);
         $this->assertEquals('album 2', explode("\n", $res->output())[1]);
     }
