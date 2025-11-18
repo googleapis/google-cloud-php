@@ -664,7 +664,7 @@ class StorageClientTest extends TestCase
             'projects/_/buckets/unreachable-2',
         ];
         $this->connection->listBuckets(
-                Argument::withEntry('returnPartialSuccess', true)
+            Argument::withEntry('returnPartialSuccess', true)
         )->willReturn([
             'nextPageToken' => 'token',
             'unreachable' => $expectedUnreachable,
@@ -688,6 +688,62 @@ class StorageClientTest extends TestCase
         $this->assertEquals('bucket2', $bucket[1]->name());
         $this->assertNotEmpty($responseWrapper->unreachable);
         $this->assertEquals($expectedUnreachable, $responseWrapper->unreachable);
+    }
+
+    public function testBucketsIgnoresUnreachableWhenPartialSuccessIsFalse()
+    {
+        $this->connection->listBuckets(
+            Argument::withEntry('returnPartialSuccess', false)
+        )->willReturn([
+            'nextPageToken' => 'token',
+            'items' => [
+                ['name' => 'bucket1']
+            ]
+        ], [
+            'items' => [
+                ['name' => 'bucket2']
+            ]
+        ]);
+
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $responseWrapper = $this->client->buckets(['returnPartialSuccess' => false]);
+        $bucket = iterator_to_array($responseWrapper);
+
+        $this->assertCount(2, $bucket);
+        $this->assertEquals('bucket1', $bucket[0]->name());
+        $this->assertEquals('bucket2', $bucket[1]->name());
+        $this->assertEmpty($responseWrapper->unreachable);
+    }
+
+    public function testBucketsIgnoresUnreachableWhenOptionIsAbsent()
+    {
+        $this->connection->listBuckets(
+            Argument::that(fn ($args) => !isset($args['returnPartialSuccess']))
+        )->willReturn([
+              'nextPageToken' => 'token',
+              'items' => [
+                  ['name' => 'bucket1']
+              ]
+          ], [
+              'items' => [
+                  ['name' => 'bucket2']
+              ]
+          ]);
+
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $responseWrapper = $this->client->buckets();
+        $bucket = iterator_to_array($responseWrapper);
+
+        $this->assertCount(2, $bucket);
+        $this->assertEquals('bucket1', $bucket[0]->name());
+        $this->assertEquals('bucket2', $bucket[1]->name());
+        $this->assertEmpty($responseWrapper->unreachable);
     }
 }
 
