@@ -334,7 +334,7 @@ class RequesterPaysTest extends TestCase
         $bucket = $this->client->buckets([
              'userProject' => self::USER_PROJECT,
              'bucketUserProject' => false
-         ])->getIterator()->current();
+         ])->getIterator()->current(); 
         $bucket->objects()->current();
     }
 
