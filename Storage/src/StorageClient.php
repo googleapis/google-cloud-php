@@ -61,16 +61,16 @@ class StorageClient
      * We can set $options['retryStrategy'] to one of "always", "never" and
      * "idempotent".
      */
-    public const RETRY_NEVER = 'never';
+    const RETRY_NEVER = 'never';
     /**
      * Retry strategy to signify that we always want to retry an operation.
      */
-    public const RETRY_ALWAYS = 'always';
+    const RETRY_ALWAYS = 'always';
     /**
      * This is the default. This signifies that we want to retry an operation
      * only if it is retryable and the error is retryable.
      */
-    public const RETRY_IDEMPOTENT = 'idempotent';
+    const RETRY_IDEMPOTENT = 'idempotent';
 
     /**
      * @var ConnectionInterface Represents a connection to Storage.

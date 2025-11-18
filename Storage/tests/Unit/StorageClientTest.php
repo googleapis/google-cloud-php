@@ -46,7 +46,7 @@ class StorageClientTest extends TestCase
 {
     use ProphecyTrait;
 
-    public const PROJECT = 'my-project';
+    const PROJECT = 'my-project';
     public $connection;
 
     public function setUp(): void
@@ -253,7 +253,7 @@ class StorageClientTest extends TestCase
 
     public function testTimestamp()
     {
-        $dt = new \DateTime();
+        $dt = new \DateTime;
         $ts = $this->client->timestamp($dt);
         $this->assertInstanceOf(Timestamp::class, $ts);
         $this->assertEquals($ts->get(), $dt);
@@ -666,14 +666,9 @@ class StorageClientTest extends TestCase
         ];
 
         $this->connection->listBuckets(
-            Argument::allOf(
-                Argument::withEntry('project', self::PROJECT),
-                //Adding flag to get unreachable buckets
                 Argument::withEntry('returnPartialSuccess', true)
-            )
         )->willReturn([
             'nextPageToken' => 'token',
-            //mock the data with unreachable buckets
             'unreachable' => $expectedUnreachable,
             'items' => [
                 ['name' => 'bucket1']
@@ -692,9 +687,10 @@ class StorageClientTest extends TestCase
         $responseWrapper = $this->client->buckets(['returnPartialSuccess' => true]);
 
         $bucket = iterator_to_array($responseWrapper);
-
+        $this->assertCount(2, $bucket, 'The iteration should yield 2 buckets.');
+        $this->assertEquals('bucket1', $bucket[0]->name());
         $this->assertEquals('bucket2', $bucket[1]->name());
-
+        $this->assertNotEmpty($responseWrapper->unreachable, 'The captured unreachable list must not be empty.');
         $this->assertEquals($expectedUnreachable, $responseWrapper->unreachable);
     }
 }
