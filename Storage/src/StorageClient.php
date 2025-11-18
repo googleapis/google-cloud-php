@@ -293,8 +293,6 @@ class StorageClient
             ? $options['userProject']
             : null;
 
-        $callOptions = $options + ['project' => $this->projectId];
-
         $connection = $this->connection;
         //Iterator for bucket details
         $iteratorWrapper = new class() implements \IteratorAggregate {
@@ -335,12 +333,11 @@ class StorageClient
                 }
                 return $response;
             },
-            $callOptions,
+           $options + ['project' => $this->projectId],
             ['resultLimit' => $resultLimit]
         );
 
         $itemIterator = new ItemIterator($pageIterator);
-
         $iteratorWrapper->setIterator($itemIterator);
 
         return $iteratorWrapper;
