@@ -370,15 +370,13 @@ class FirestoreClientTest extends TestCase
                 'document' => new GapicDocument([
                     'name' => 'a/b/c/d',
                     'fields' => []
-                ]),
-                'read_time' => null,
+                ])
             ]),
             new RunQueryResponse([
                 'document' => new GapicDocument([
                     'name' => 'c/d',
                     'fields' => []
-                ]),
-                'read_time' => null,
+                ])
             ])
         ];
 

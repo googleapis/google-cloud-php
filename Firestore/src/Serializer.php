@@ -58,6 +58,13 @@ class Serializer extends ApiCoreSerializer
             'limit' => function ($v) {
                 return new Int32Value(['value' => $v]);
             },
+            'transaction' => function ($v) {
+                if (is_null($v)) {
+                    $v = '';
+                }
+
+                return $v;
+            },
         ];
         $decodeMessageTypeTransformers = [
             'google.protobuf.Timestamp' => function ($v) {

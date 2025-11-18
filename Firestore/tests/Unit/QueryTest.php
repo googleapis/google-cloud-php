@@ -1455,7 +1455,7 @@ class QueryTest extends TestCase
         $this->runAndAssert(function (Query $q) use ($snapshot) {
             $query = $this->query->where(Filter::or([Filter::field('foo', '>', 'bar')]));
             return $query->startAt($snapshot->reveal());
-        }, $secondProtoToAssert);
+        }, $secondProtoToAssert, times:2);
     }
 
     public function testPositionInequalityWithCompositeFilter()
@@ -1677,10 +1677,10 @@ class QueryTest extends TestCase
         }, $protoToAssert, $this->collectionGroupQuery);
     }
 
-    private function runAndAssert(callable $filters, $assertion, ?Query $query = null)
+    private function runAndAssert(callable $filters, $assertion, ?Query $query = null, int $times = 1)
     {
         $this->gapicClient->runQuery($assertion, Argument::any())
-                ->shouldBeCalledTimes(1)
+                ->shouldBeCalledTimes($times)
                 ->willReturn($this->getServerStreamMock([new RunQueryResponse()]));
 
         $query = $query ?: $this->query;

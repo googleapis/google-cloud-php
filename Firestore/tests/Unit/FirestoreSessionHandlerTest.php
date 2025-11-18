@@ -76,7 +76,7 @@ class FirestoreSessionHandlerTest extends TestCase
             }),
             Argument::any()
         )->shouldBeCalledTimes(1)
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => null]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
 
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->gapicClient->reveal(),
@@ -124,7 +124,7 @@ class FirestoreSessionHandlerTest extends TestCase
             }),
             Argument::any()
         )->shouldBeCalledTimes(1)
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => null]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
 
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->gapicClient->reveal(),
@@ -178,7 +178,7 @@ class FirestoreSessionHandlerTest extends TestCase
             }),
             Argument::any()
         )->shouldBeCalledTimes(1)
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => null]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
 
         $this->gapicClient->batchGetDocuments(
             Argument::that(function (BatchGetDocumentsRequest $request) {
@@ -216,7 +216,7 @@ class FirestoreSessionHandlerTest extends TestCase
             Argument::any()
         )
             ->shouldBeCalledTimes(1)
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => null]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
 
         $this->gapicClient->batchGetDocuments(
             Argument::that(function (BatchGetDocumentsRequest $request) {
@@ -282,7 +282,7 @@ class FirestoreSessionHandlerTest extends TestCase
             Argument::any()
         )
             ->shouldBeCalledTimes(1)
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => null]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
 
         $this->gapicClient->batchGetDocuments(
             Argument::that(function (BatchGetDocumentsRequest $request) {
@@ -328,7 +328,7 @@ class FirestoreSessionHandlerTest extends TestCase
             }),
             Argument::any()
         )->shouldBeCalledTimes(1)
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => null]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
 
         $this->gapicClient->commit(
             Argument::that(function (CommitRequest $request) {
