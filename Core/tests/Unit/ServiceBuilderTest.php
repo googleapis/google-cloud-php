@@ -20,7 +20,6 @@ use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Core\ServiceBuilder;
 use Google\Cloud\Core\Testing\CheckForClassTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Storage\StorageClient;
@@ -145,11 +144,6 @@ class ServiceBuilderTest extends TestCase
             [
                 'bigQuery',
                 BigQueryClient::class
-            ],[
-                'firestore',
-                FirestoreClient::class,
-                [],
-                [$this, 'checkAndSkipGrpcTests']
             ], [
                 'logging',
                 LoggingClient::class
