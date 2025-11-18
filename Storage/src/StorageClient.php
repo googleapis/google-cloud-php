@@ -48,7 +48,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    public const VERSION = '1.48.6';
+    public const VERSION = '1.48.7';
 
     public const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     public const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -274,8 +274,8 @@ class StorageClient
      *           If false, `$options.userProject` will be used ONLY for the
      *           listBuckets operation. If `$options.userProject` is not set,
      *           this option has no effect. **Defaults to** `true`.
-     *     @type bool $returnPartialSuccess If true, each returned unreachable buckets
-     *           If false, it doesn't return unreachable buckets.
+     *      @type bool $returnPartialSuccess If true, the returned iterator will contain an
+     *           `unreachable` property with a list of buckets that were not retrieved.
      *
      * }
      * @return ItemIterator<Bucket>

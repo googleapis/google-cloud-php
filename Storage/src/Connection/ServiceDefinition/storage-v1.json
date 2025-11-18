@@ -2535,7 +2535,7 @@
                         },
                          "returnPartialSuccess": {
                             "type": "boolean",
-                            "description": "If set to true, gets the list of unreachable buckets",
+                            "description": "If true, returns a partial list of buckets. The `unreachable` field will contain buckets that were not retrieved.",
                             "location": "query"
                         }
                     },
