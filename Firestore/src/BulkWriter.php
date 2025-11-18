@@ -987,7 +987,7 @@ class BulkWriter
 
             $args = $transform->args();
             if (!$transform->sendRaw()) {
-                if (is_array($args) && !$this->isAssoc($args)) {
+                if (is_array($args) && (empty($args) || !$this->isAssoc($args))) {
                     $args = $this->valueMapper->encodeArrayValue($args);
                 } else {
                     $args = $this->valueMapper->encodeValue($args);
