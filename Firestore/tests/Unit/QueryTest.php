@@ -18,8 +18,6 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use DateTimeImmutable;
-use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\DocumentReference;
@@ -1403,6 +1401,21 @@ class QueryTest extends TestCase
             $query = $this->query->where('foo', '>', 'bar');
             return $query->startAt($snapshot->reveal());
         }, $protoToAssert);
+    }
+
+    public function testPositionInequalityFilterWithOrFilter()
+    {
+        $c = $this->prophesize(CollectionReference::class);
+        $c->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->parent()->willReturn($c->reveal());
+
+        $snapshot = $this->prophesize(DocumentSnapshot::class);
+        $snapshot->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $snapshot->reference()->willReturn($ref->reveal());
+        $snapshot->get('foo')->willReturn('bar');
 
         $secondProtoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
@@ -1455,7 +1468,7 @@ class QueryTest extends TestCase
         $this->runAndAssert(function (Query $q) use ($snapshot) {
             $query = $this->query->where(Filter::or([Filter::field('foo', '>', 'bar')]));
             return $query->startAt($snapshot->reveal());
-        }, $secondProtoToAssert, times:2);
+        }, $secondProtoToAssert);
     }
 
     public function testPositionInequalityWithCompositeFilter()
@@ -1677,10 +1690,10 @@ class QueryTest extends TestCase
         }, $protoToAssert, $this->collectionGroupQuery);
     }
 
-    private function runAndAssert(callable $filters, $assertion, ?Query $query = null, int $times = 1)
+    private function runAndAssert(callable $filters, $assertion, ?Query $query = null)
     {
         $this->gapicClient->runQuery($assertion, Argument::any())
-                ->shouldBeCalledTimes($times)
+                ->shouldBeCalledTimes(1)
                 ->willReturn($this->getServerStreamMock([new RunQueryResponse()]));
 
         $query = $query ?: $this->query;
