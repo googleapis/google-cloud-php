@@ -26,6 +26,8 @@ class SourceCodeSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\InlineSource $inline_source
      *           Source code is provided directly in the request.
+     *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\DeveloperConnectSource $developer_connect_source
+     *           Source code is in a Git repository managed by Developer Connect.
      *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\PythonSpec $python_spec
      *           Configuration for a Python application.
      * }
@@ -62,6 +64,37 @@ class SourceCodeSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\InlineSource::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Source code is in a Git repository managed by Developer Connect.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.SourceCodeSpec.DeveloperConnectSource developer_connect_source = 3;</code>
+     * @return \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\DeveloperConnectSource|null
+     */
+    public function getDeveloperConnectSource()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasDeveloperConnectSource()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Source code is in a Git repository managed by Developer Connect.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.SourceCodeSpec.DeveloperConnectSource developer_connect_source = 3;</code>
+     * @param \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\DeveloperConnectSource $var
+     * @return $this
+     */
+    public function setDeveloperConnectSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\DeveloperConnectSource::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

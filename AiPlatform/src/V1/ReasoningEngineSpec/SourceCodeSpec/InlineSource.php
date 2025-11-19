@@ -17,8 +17,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Input only. The application source code archive, provided as
-     * a compressed tarball
-     * (.tar.gz) file.
+     * a compressed tarball (.tar.gz) file.
      *
      * Generated from protobuf field <code>bytes source_archive = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -32,8 +31,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      *
      *     @type string $source_archive
      *           Required. Input only. The application source code archive, provided as
-     *           a compressed tarball
-     *           (.tar.gz) file.
+     *           a compressed tarball (.tar.gz) file.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,8 +41,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Input only. The application source code archive, provided as
-     * a compressed tarball
-     * (.tar.gz) file.
+     * a compressed tarball (.tar.gz) file.
      *
      * Generated from protobuf field <code>bytes source_archive = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
@@ -56,8 +53,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Input only. The application source code archive, provided as
-     * a compressed tarball
-     * (.tar.gz) file.
+     * a compressed tarball (.tar.gz) file.
      *
      * Generated from protobuf field <code>bytes source_archive = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var

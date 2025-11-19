@@ -19,12 +19,13 @@ class MachineResources
         \GPBMetadata\Google\Cloud\Aiplatform\V1\ReservationAffinity::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ω
-2google/cloud/aiplatform/v1/machine_resources.protogoogle.cloud.aiplatform.v11google/cloud/aiplatform/v1/accelerator_type.proto5google/cloud/aiplatform/v1/reservation_affinity.proto"Å
+·
+2google/cloud/aiplatform/v1/machine_resources.protogoogle.cloud.aiplatform.v11google/cloud/aiplatform/v1/accelerator_type.proto5google/cloud/aiplatform/v1/reservation_affinity.proto"•
 MachineSpec
 machine_type (	B‡AJ
 accelerator_type (2+.google.cloud.aiplatform.v1.AcceleratorTypeB‡A
-accelerator_count (
+accelerator_count ("
+gpu_partition_size (	B‡A‡A
 tpu_topology (	B‡AU
 reservation_affinity (2/.google.cloud.aiplatform.v1.ReservationAffinityB‡A‡A"∞
 DedicatedResourcesE

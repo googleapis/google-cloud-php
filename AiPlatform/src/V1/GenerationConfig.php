@@ -148,6 +148,12 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      */
     protected $routing_config = null;
     /**
+     * Optional. The speech generation config.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SpeechConfig speech_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $speech_config = null;
+    /**
      * Optional. Config for thinking features.
      * An error will be returned if this field is set for models that don't
      * support thinking.
@@ -240,6 +246,8 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           for than those starting as a `$`, may be set.
      *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig $routing_config
      *           Optional. Routing configuration.
+     *     @type \Google\Cloud\AIPlatform\V1\SpeechConfig $speech_config
+     *           Optional. The speech generation config.
      *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig $thinking_config
      *           Optional. Config for thinking features.
      *           An error will be returned if this field is set for models that don't
@@ -853,6 +861,42 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig::class);
         $this->routing_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The speech generation config.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SpeechConfig speech_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\SpeechConfig|null
+     */
+    public function getSpeechConfig()
+    {
+        return $this->speech_config;
+    }
+
+    public function hasSpeechConfig()
+    {
+        return isset($this->speech_config);
+    }
+
+    public function clearSpeechConfig()
+    {
+        unset($this->speech_config);
+    }
+
+    /**
+     * Optional. The speech generation config.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SpeechConfig speech_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\SpeechConfig $var
+     * @return $this
+     */
+    public function setSpeechConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\SpeechConfig::class);
+        $this->speech_config = $var;
 
         return $this;
     }
