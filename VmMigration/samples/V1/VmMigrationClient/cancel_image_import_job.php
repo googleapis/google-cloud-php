@@ -31,7 +31,7 @@ use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Rpc\Status;
 
 /**
- * Initiates the cancellation of a running clone job.
+ * Initiates the cancellation of a running ImageImportJob.
  *
  * @param string $formattedName The image import job id. Please see
  *                              {@see VmMigrationClient::imageImportJobName()} for help formatting this field.
