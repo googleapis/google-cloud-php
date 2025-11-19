@@ -59,6 +59,13 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      */
     protected $backup_minimum_enforced_retention_duration = null;
     /**
+     * Optional. Setting for how a backup's enforced retention end time is
+     * inherited.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.BackupVault.BackupRetentionInheritance backup_retention_inheritance = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $backup_retention_inheritance = null;
+    /**
      * Output only. Set to true when there are no backups nested under this
      * resource.
      *
@@ -126,6 +133,12 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.backupdr.v1.BackupVault.AccessRestriction access_restriction = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $access_restriction = 0;
+    /**
+     * Optional. The encryption config of the backup vault.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.BackupVault.EncryptionConfig encryption_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $encryption_config = null;
 
     /**
      * Constructor.
@@ -152,6 +165,9 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $backup_minimum_enforced_retention_duration
      *           Required. The default and minimum enforced retention for each backup within
      *           the backup vault.  The enforced retention for each backup can be extended.
+     *     @type int $backup_retention_inheritance
+     *           Optional. Setting for how a backup's enforced retention end time is
+     *           inherited.
      *     @type bool $deletable
      *           Output only. Set to true when there are no backups nested under this
      *           resource.
@@ -180,6 +196,8 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      *           supported in the current release.
      *           Access restriction for the backup vault.
      *           Default value is WITHIN_ORGANIZATION if not provided during creation.
+     *     @type \Google\Cloud\BackupDR\V1\BackupVault\EncryptionConfig $encryption_config
+     *           Optional. The encryption config of the backup vault.
      * }
      */
     public function __construct($data = NULL) {
@@ -393,6 +411,44 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->backup_minimum_enforced_retention_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Setting for how a backup's enforced retention end time is
+     * inherited.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.BackupVault.BackupRetentionInheritance backup_retention_inheritance = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getBackupRetentionInheritance()
+    {
+        return isset($this->backup_retention_inheritance) ? $this->backup_retention_inheritance : 0;
+    }
+
+    public function hasBackupRetentionInheritance()
+    {
+        return isset($this->backup_retention_inheritance);
+    }
+
+    public function clearBackupRetentionInheritance()
+    {
+        unset($this->backup_retention_inheritance);
+    }
+
+    /**
+     * Optional. Setting for how a backup's enforced retention end time is
+     * inherited.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.BackupVault.BackupRetentionInheritance backup_retention_inheritance = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBackupRetentionInheritance($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BackupDR\V1\BackupVault\BackupRetentionInheritance::class);
+        $this->backup_retention_inheritance = $var;
 
         return $this;
     }
@@ -699,6 +755,42 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\BackupDR\V1\BackupVault\AccessRestriction::class);
         $this->access_restriction = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The encryption config of the backup vault.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.BackupVault.EncryptionConfig encryption_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BackupDR\V1\BackupVault\EncryptionConfig|null
+     */
+    public function getEncryptionConfig()
+    {
+        return $this->encryption_config;
+    }
+
+    public function hasEncryptionConfig()
+    {
+        return isset($this->encryption_config);
+    }
+
+    public function clearEncryptionConfig()
+    {
+        unset($this->encryption_config);
+    }
+
+    /**
+     * Optional. The encryption config of the backup vault.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.BackupVault.EncryptionConfig encryption_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BackupDR\V1\BackupVault\EncryptionConfig $var
+     * @return $this
+     */
+    public function setEncryptionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\BackupVault\EncryptionConfig::class);
+        $this->encryption_config = $var;
 
         return $this;
     }

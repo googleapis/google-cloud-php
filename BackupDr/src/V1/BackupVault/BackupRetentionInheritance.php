@@ -67,6 +67,4 @@ class BackupRetentionInheritance
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BackupRetentionInheritance::class, \Google\Cloud\BackupDR\V1\BackupVault_BackupRetentionInheritance::class);
 

@@ -57,6 +57,13 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     protected $enforced_retention_end_time = null;
     /**
+     * Output only. Setting for how the enforced retention end time is inherited.
+     * This value is copied from this backup's BackupVault.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.BackupVault.BackupRetentionInheritance backup_retention_inheritance = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $backup_retention_inheritance = null;
+    /**
      * Optional. When this backup is automatically expired.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp expire_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -119,6 +126,13 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool satisfies_pzi = 25 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $satisfies_pzi = null;
+    /**
+     * Optional. Output only. The list of KMS key versions used to encrypt the
+     * backup.
+     *
+     * Generated from protobuf field <code>repeated string kms_key_versions = 33 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $kms_key_versions;
     protected $backup_properties;
     protected $plan_info;
     protected $source_resource;
@@ -146,6 +160,9 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           No labels currently defined.
      *     @type \Google\Protobuf\Timestamp $enforced_retention_end_time
      *           Optional. The backup can not be deleted before this time.
+     *     @type int $backup_retention_inheritance
+     *           Output only. Setting for how the enforced retention end time is inherited.
+     *           This value is copied from this backup's BackupVault.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Optional. When this backup is automatically expired.
      *     @type \Google\Protobuf\Timestamp $consistency_time
@@ -182,6 +199,9 @@ class Backup extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BackupDR\V1\BackupGcpResource $gcp_resource
      *           Output only. Unique identifier of the GCP resource that is being backed
      *           up.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $kms_key_versions
+     *           Optional. Output only. The list of KMS key versions used to encrypt the
+     *           backup.
      * }
      */
     public function __construct($data = NULL) {
@@ -391,6 +411,44 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->enforced_retention_end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Setting for how the enforced retention end time is inherited.
+     * This value is copied from this backup's BackupVault.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.BackupVault.BackupRetentionInheritance backup_retention_inheritance = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getBackupRetentionInheritance()
+    {
+        return isset($this->backup_retention_inheritance) ? $this->backup_retention_inheritance : 0;
+    }
+
+    public function hasBackupRetentionInheritance()
+    {
+        return isset($this->backup_retention_inheritance);
+    }
+
+    public function clearBackupRetentionInheritance()
+    {
+        unset($this->backup_retention_inheritance);
+    }
+
+    /**
+     * Output only. Setting for how the enforced retention end time is inherited.
+     * This value is copied from this backup's BackupVault.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.BackupVault.BackupRetentionInheritance backup_retention_inheritance = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBackupRetentionInheritance($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BackupDR\V1\BackupVault\BackupRetentionInheritance::class);
+        $this->backup_retention_inheritance = $var;
 
         return $this;
     }
@@ -895,6 +953,34 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\BackupGcpResource::class);
         $this->writeOneof(31, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. The list of KMS key versions used to encrypt the
+     * backup.
+     *
+     * Generated from protobuf field <code>repeated string kms_key_versions = 33 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getKmsKeyVersions()
+    {
+        return $this->kms_key_versions;
+    }
+
+    /**
+     * Optional. Output only. The list of KMS key versions used to encrypt the
+     * backup.
+     *
+     * Generated from protobuf field <code>repeated string kms_key_versions = 33 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setKmsKeyVersions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->kms_key_versions = $arr;
 
         return $this;
     }
