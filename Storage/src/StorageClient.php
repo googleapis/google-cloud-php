@@ -29,7 +29,6 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
-use Google\Cloud\Storage\BucketIterator;
 
 /**
  * Google Cloud Storage allows you to store and retrieve data on Google's
@@ -48,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    public const VERSION = '1.48.7';
+    const VERSION = '1.48.7';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
