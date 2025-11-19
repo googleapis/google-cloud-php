@@ -53,6 +53,10 @@ class Mutation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\V1\Mutation\Delete $delete
      *           Delete rows from a table. Succeeds whether or not the named
      *           rows were present.
+     *     @type \Google\Cloud\Spanner\V1\Mutation\Send $send
+     *           Send a message to a queue.
+     *     @type \Google\Cloud\Spanner\V1\Mutation\Ack $ack
+     *           Ack a message from a queue.
      * }
      */
     public function __construct($data = NULL) {
@@ -247,6 +251,68 @@ class Mutation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation\Delete::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Send a message to a queue.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Send send = 6;</code>
+     * @return \Google\Cloud\Spanner\V1\Mutation\Send|null
+     */
+    public function getSend()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasSend()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Send a message to a queue.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Send send = 6;</code>
+     * @param \Google\Cloud\Spanner\V1\Mutation\Send $var
+     * @return $this
+     */
+    public function setSend($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation\Send::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Ack a message from a queue.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Ack ack = 7;</code>
+     * @return \Google\Cloud\Spanner\V1\Mutation\Ack|null
+     */
+    public function getAck()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasAck()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Ack a message from a queue.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Ack ack = 7;</code>
+     * @param \Google\Cloud\Spanner\V1\Mutation\Ack $var
+     * @return $this
+     */
+    public function setAck($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\Mutation\Ack::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }
