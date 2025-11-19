@@ -38,6 +38,20 @@ class RestoreBackupRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
+    /**
+     * Optional. A field mask used to clear server-side default values
+     * for fields within the `instance_properties` oneof.
+     * When a field in this mask is cleared, the server will not apply its
+     * default logic (like inheriting a value from the source) for that field.
+     * The most common current use case is clearing default encryption keys.
+     * Examples of field mask paths:
+     * - Compute Instance Disks:
+     * `compute_instance_restore_properties.disks.*.disk_encryption_key`
+     * - Single Disk: `disk_restore_properties.disk_encryption_key`
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.FieldMask clear_overrides_field_mask = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $clear_overrides_field_mask = null;
     protected $target_environment;
     protected $instance_properties;
 
@@ -87,6 +101,16 @@ class RestoreBackupRequest extends \Google\Protobuf\Internal\Message
      *           Compute Engine instance properties to be overridden during restore.
      *     @type \Google\Cloud\BackupDR\V1\DiskRestoreProperties $disk_restore_properties
      *           Disk properties to be overridden during restore.
+     *     @type \Google\Protobuf\FieldMask $clear_overrides_field_mask
+     *           Optional. A field mask used to clear server-side default values
+     *           for fields within the `instance_properties` oneof.
+     *           When a field in this mask is cleared, the server will not apply its
+     *           default logic (like inheriting a value from the source) for that field.
+     *           The most common current use case is clearing default encryption keys.
+     *           Examples of field mask paths:
+     *           - Compute Instance Disks:
+     *           `compute_instance_restore_properties.disks.*.disk_encryption_key`
+     *           - Single Disk: `disk_restore_properties.disk_encryption_key`
      * }
      */
     public function __construct($data = NULL) {
@@ -319,6 +343,58 @@ class RestoreBackupRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\DiskRestoreProperties::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A field mask used to clear server-side default values
+     * for fields within the `instance_properties` oneof.
+     * When a field in this mask is cleared, the server will not apply its
+     * default logic (like inheriting a value from the source) for that field.
+     * The most common current use case is clearing default encryption keys.
+     * Examples of field mask paths:
+     * - Compute Instance Disks:
+     * `compute_instance_restore_properties.disks.*.disk_encryption_key`
+     * - Single Disk: `disk_restore_properties.disk_encryption_key`
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.FieldMask clear_overrides_field_mask = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\FieldMask|null
+     */
+    public function getClearOverridesFieldMask()
+    {
+        return $this->clear_overrides_field_mask;
+    }
+
+    public function hasClearOverridesFieldMask()
+    {
+        return isset($this->clear_overrides_field_mask);
+    }
+
+    public function clearClearOverridesFieldMask()
+    {
+        unset($this->clear_overrides_field_mask);
+    }
+
+    /**
+     * Optional. A field mask used to clear server-side default values
+     * for fields within the `instance_properties` oneof.
+     * When a field in this mask is cleared, the server will not apply its
+     * default logic (like inheriting a value from the source) for that field.
+     * The most common current use case is clearing default encryption keys.
+     * Examples of field mask paths:
+     * - Compute Instance Disks:
+     * `compute_instance_restore_properties.disks.*.disk_encryption_key`
+     * - Single Disk: `disk_restore_properties.disk_encryption_key`
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.FieldMask clear_overrides_field_mask = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setClearOverridesFieldMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->clear_overrides_field_mask = $var;
 
         return $this;
     }
