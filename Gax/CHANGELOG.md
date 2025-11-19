@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.38.2](https://github.com/googleapis/gax-php/compare/v1.38.1...v1.38.2) (2025-11-14)
+
+
+### Bug Fixes
+
+* Don't override ApiException::__toString ([#388](https://github.com/googleapis/gax-php/issues/388)) ([db7cd2e](https://github.com/googleapis/gax-php/commit/db7cd2e55219463aa0f7d0bcc989f35d008d174b))
+
 ## [1.38.1](https://github.com/googleapis/gax-php/compare/v1.38.0...v1.38.1) (2025-11-06)
 
 
