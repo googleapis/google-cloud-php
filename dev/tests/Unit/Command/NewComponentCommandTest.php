@@ -65,7 +65,8 @@ class NewComponentCommandTest extends TestCase
     public function testNewComponent()
     {
         self::$commandTester->setInputs([
-            'Y'    // Does this information look correct? [Y/n]
+            'Y',    // Does this information look correct? [Y/n]
+            'https://cloud.google.com/secret-manager', // What is the product homepage?
         ]);
 
         self::$commandTester->execute([
@@ -185,7 +186,9 @@ class NewComponentCommandTest extends TestCase
         $commandTester = new CommandTester($application->get('new-component'));
 
         $commandTester->setInputs([
-            'Y'    // Does this information look correct? [Y/n]
+            'Y',   // Component already exists. Overwrite it? ? [Y/n]
+            'Y',   // Does this information look correct? [Y/n]
+            'https://cloud.google.com/secret-manager', // What is the product homepage?
         ]);
 
         $commandTester->execute([
