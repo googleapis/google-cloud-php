@@ -277,14 +277,14 @@ class StorageClient
      *           `unreachable` property with a list of buckets that were not retrieved.
      *
      * }
-     * @return ItemIterator<Bucket>
+     * @return BucketIterator<Bucket>
      * @throws GoogleException When a project ID has not been detected.
      */
     public function buckets(array $options = [])
     {
         $this->requireProjectId();
         $resultLimit = $this->pluck('resultLimit', $options, false);
-        $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
+         $bucketUserProject = $this->pluck('bucketUserProject', $options, null) ?? true;
         $bucketUserProject = !is_null($bucketUserProject) ? $bucketUserProject : true;
         $userProject = (isset($options['userProject']) && $bucketUserProject) ? $options['userProject'] : null;
 

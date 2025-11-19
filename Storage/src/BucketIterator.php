@@ -21,7 +21,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 
 /**
-* Iterates over a set of buckets and provides access to unreachable object.
+* Iterates over a set of buckets and provides access to unreachable buckets.
 */
 class BucketIterator extends ItemIterator
 {
@@ -41,7 +41,7 @@ class BucketIterator extends ItemIterator
     }
 
     /**
-     * Get the list of unreachable regions.
+     *Get the list of unreachable buckets.
      *
      * @return array<string>
      */

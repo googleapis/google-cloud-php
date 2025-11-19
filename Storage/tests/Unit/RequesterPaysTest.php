@@ -332,9 +332,9 @@ class RequesterPaysTest extends TestCase
 
         $this->client->___setProperty('connection', $connection->reveal());
         $bucket = $this->client->buckets([
-             'userProject' => self::USER_PROJECT,
-             'bucketUserProject' => false
-         ])->current(); 
+            'userProject' => self::USER_PROJECT,
+            'bucketUserProject' => false
+        ])->current();
         $bucket->objects()->current();
     }
 

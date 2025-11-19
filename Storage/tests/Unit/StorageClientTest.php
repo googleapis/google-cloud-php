@@ -685,7 +685,7 @@ class StorageClientTest extends TestCase
         $responseWrapper = $this->client->buckets(['returnPartialSuccess' => true]);
 
         $this->assertInstanceOf(
-            \Google\Cloud\Core\Iterator\ItemIterator::class,
+            \Google\Cloud\Storage\BucketIterator::class,
             $responseWrapper
         );
         $bucket = iterator_to_array($responseWrapper);
