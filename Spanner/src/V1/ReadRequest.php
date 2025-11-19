@@ -140,6 +140,16 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.v1.ReadRequest.LockHint lock_hint = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $lock_hint = 0;
+    /**
+     * Optional. If present, it makes the Spanner requests location-aware.
+     * It gives the server hints that can be used to route the request
+     * to an appropriate server, potentially significantly decreasing latency and
+     * improving throughput. To achieve improved performance, most fields must be
+     * filled in with accurate values.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RoutingHint routing_hint = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $routing_hint = null;
 
     /**
      * Constructor.
@@ -215,6 +225,12 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *     @type int $lock_hint
      *           Optional. Lock Hint for the request, it can only be used with read-write
      *           transactions.
+     *     @type \Google\Cloud\Spanner\V1\RoutingHint $routing_hint
+     *           Optional. If present, it makes the Spanner requests location-aware.
+     *           It gives the server hints that can be used to route the request
+     *           to an appropriate server, potentially significantly decreasing latency and
+     *           improving throughput. To achieve improved performance, most fields must be
+     *           filled in with accurate values.
      * }
      */
     public function __construct($data = NULL) {
@@ -702,6 +718,50 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\ReadRequest\LockHint::class);
         $this->lock_hint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If present, it makes the Spanner requests location-aware.
+     * It gives the server hints that can be used to route the request
+     * to an appropriate server, potentially significantly decreasing latency and
+     * improving throughput. To achieve improved performance, most fields must be
+     * filled in with accurate values.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RoutingHint routing_hint = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\V1\RoutingHint|null
+     */
+    public function getRoutingHint()
+    {
+        return $this->routing_hint;
+    }
+
+    public function hasRoutingHint()
+    {
+        return isset($this->routing_hint);
+    }
+
+    public function clearRoutingHint()
+    {
+        unset($this->routing_hint);
+    }
+
+    /**
+     * Optional. If present, it makes the Spanner requests location-aware.
+     * It gives the server hints that can be used to route the request
+     * to an appropriate server, potentially significantly decreasing latency and
+     * improving throughput. To achieve improved performance, most fields must be
+     * filled in with accurate values.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RoutingHint routing_hint = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\V1\RoutingHint $var
+     * @return $this
+     */
+    public function setRoutingHint($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RoutingHint::class);
+        $this->routing_hint = $var;
 
         return $this;
     }
