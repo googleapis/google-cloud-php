@@ -38,15 +38,30 @@ class ProvisioningModel
      * and has been migrated to use the SPOT model as the underlying technology.
      * This old model will still be supported.
      *
-     * Generated from protobuf enum <code>PREEMPTIBLE = 3;</code>
+     * Generated from protobuf enum <code>PREEMPTIBLE = 3 [deprecated = true];</code>
      */
     const PREEMPTIBLE = 3;
+    /**
+     * Bound to the lifecycle of the reservation in which it is provisioned.
+     *
+     * Generated from protobuf enum <code>RESERVATION_BOUND = 4;</code>
+     */
+    const RESERVATION_BOUND = 4;
+    /**
+     * Instance is provisioned with DWS Flex Start and has limited max run
+     * duration.
+     *
+     * Generated from protobuf enum <code>FLEX_START = 5;</code>
+     */
+    const FLEX_START = 5;
 
     private static $valueToName = [
         self::PROVISIONING_MODEL_UNSPECIFIED => 'PROVISIONING_MODEL_UNSPECIFIED',
         self::STANDARD => 'STANDARD',
         self::SPOT => 'SPOT',
         self::PREEMPTIBLE => 'PREEMPTIBLE',
+        self::RESERVATION_BOUND => 'RESERVATION_BOUND',
+        self::FLEX_START => 'FLEX_START',
     ];
 
     public static function name($value)
