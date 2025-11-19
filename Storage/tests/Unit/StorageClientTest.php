@@ -719,6 +719,7 @@ class StorageClientTest extends TestCase
         $bucket = iterator_to_array($responseWrapper);
 
         $this->assertCount(2, $bucket);
+        $this->assertEquals('bucket1', $bucket[0]->name());
         $this->assertEquals('bucket2', $bucket[1]->name());
         $this->assertEmpty($responseWrapper->unreachable(), 'The unreachable list must be empty when the flag is FALSE.');
     }

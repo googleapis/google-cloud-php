@@ -284,7 +284,7 @@ class StorageClient
     {
         $this->requireProjectId();
         $resultLimit = $this->pluck('resultLimit', $options, false);
-        $bucketUserProject = $this->pluck('bucketUserProject', $options, null) ?? true;
+        $bucketUserProject = $this->pluck('bucketUserProject', $options, null);
         $bucketUserProject = !is_null($bucketUserProject) ? $bucketUserProject : true;
         $userProject = (isset($options['userProject']) && $bucketUserProject) ? $options['userProject'] : null;
 
