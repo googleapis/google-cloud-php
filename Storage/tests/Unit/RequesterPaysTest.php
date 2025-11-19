@@ -103,7 +103,7 @@ class RequesterPaysTest extends TestCase
                 }
             ], [
                 function ($client) {
-                    return $client->buckets(['userProject' => self::USER_PROJECT])->getIterator()->current();
+                    return $client->buckets(['userProject' => self::USER_PROJECT])->current();
                 }
             ], [
                 function ($client) {
@@ -306,7 +306,7 @@ class RequesterPaysTest extends TestCase
             ]);
 
         $this->client->___setProperty('connection', $connection->reveal());
-        $bucket = $this->client->buckets(['userProject' => self::USER_PROJECT])->getIterator()->current();
+        $bucket = $this->client->buckets(['userProject' => self::USER_PROJECT])->current();
         $bucket->objects()->current();
     }
 
@@ -334,7 +334,7 @@ class RequesterPaysTest extends TestCase
         $bucket = $this->client->buckets([
              'userProject' => self::USER_PROJECT,
              'bucketUserProject' => false
-         ])->getIterator()->current(); 
+         ])->current(); 
         $bucket->objects()->current();
     }
 

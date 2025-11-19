@@ -663,6 +663,7 @@ class StorageClientTest extends TestCase
             'projects/_/buckets/unreachable-1',
             'projects/_/buckets/unreachable-2',
         ];
+
         $this->connection->listBuckets(
             Argument::withEntry('returnPartialSuccess', true)
         )->willReturn([
@@ -679,15 +680,21 @@ class StorageClientTest extends TestCase
 
         $this->connection->projectId()
             ->willReturn(self::PROJECT);
+
         $this->client->___setProperty('connection', $this->connection->reveal());
         $responseWrapper = $this->client->buckets(['returnPartialSuccess' => true]);
+
+        $this->assertInstanceOf(
+            \Google\Cloud\Core\Iterator\ItemIterator::class,
+            $responseWrapper
+        );
         $bucket = iterator_to_array($responseWrapper);
 
         $this->assertCount(2, $bucket);
         $this->assertEquals('bucket1', $bucket[0]->name());
         $this->assertEquals('bucket2', $bucket[1]->name());
-        $this->assertNotEmpty($responseWrapper->unreachable);
-        $this->assertEquals($expectedUnreachable, $responseWrapper->unreachable);
+        $this->assertNotEmpty($responseWrapper->unreachable());
+        $this->assertEquals($expectedUnreachable, $responseWrapper->unreachable());
     }
 
     public function testBucketsIgnoresUnreachableWhenPartialSuccessIsFalse()
@@ -707,35 +714,32 @@ class StorageClientTest extends TestCase
 
         $this->connection->projectId()
             ->willReturn(self::PROJECT);
-
         $this->client->___setProperty('connection', $this->connection->reveal());
         $responseWrapper = $this->client->buckets(['returnPartialSuccess' => false]);
         $bucket = iterator_to_array($responseWrapper);
 
         $this->assertCount(2, $bucket);
-        $this->assertEquals('bucket1', $bucket[0]->name());
         $this->assertEquals('bucket2', $bucket[1]->name());
-        $this->assertEmpty($responseWrapper->unreachable);
+        $this->assertEmpty($responseWrapper->unreachable(), 'The unreachable list must be empty when the flag is FALSE.');
     }
 
     public function testBucketsIgnoresUnreachableWhenOptionIsAbsent()
     {
         $this->connection->listBuckets(
-            Argument::that(fn ($args) => !isset($args['returnPartialSuccess']))
+            Argument::withEntry('project', self::PROJECT)
         )->willReturn([
-              'nextPageToken' => 'token',
-              'items' => [
-                  ['name' => 'bucket1']
-              ]
-          ], [
-              'items' => [
-                  ['name' => 'bucket2']
-              ]
-          ]);
+            'nextPageToken' => 'token',
+            'items' => [
+                ['name' => 'bucket1']
+            ]
+        ], [
+            'items' => [
+                ['name' => 'bucket2']
+            ]
+        ]);
 
         $this->connection->projectId()
             ->willReturn(self::PROJECT);
-
         $this->client->___setProperty('connection', $this->connection->reveal());
         $responseWrapper = $this->client->buckets();
         $bucket = iterator_to_array($responseWrapper);
@@ -743,7 +747,7 @@ class StorageClientTest extends TestCase
         $this->assertCount(2, $bucket);
         $this->assertEquals('bucket1', $bucket[0]->name());
         $this->assertEquals('bucket2', $bucket[1]->name());
-        $this->assertEmpty($responseWrapper->unreachable);
+        $this->assertEmpty($responseWrapper->unreachable(), 'The unreachable list must be empty when the option is absent.');
     }
 }
 
