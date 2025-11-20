@@ -181,7 +181,6 @@ class FirestoreClient
     {
         $emulatorHost = getenv('FIRESTORE_EMULATOR_HOST');
 
-        $this->requireGrpc();
         $config += [
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],
@@ -765,20 +764,5 @@ class FirestoreClient
 
         /* @var GapicFirestoreClient */
         return $config['firestoreClient'];
-    }
-
-    /**
-     * Throw an exception if the gRPC extension is not loaded.
-     *
-     * @throws GoogleException
-     */
-    private function requireGrpc()
-    {
-        if (!extension_loaded('grpc')) {
-            throw new GoogleException(
-                'The requested client requires the gRPC extension. ' .
-                $this->getGrpcInstallationMessage()
-            );
-        }
     }
 }
