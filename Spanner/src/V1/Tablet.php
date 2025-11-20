@@ -32,9 +32,8 @@ class Tablet extends \Google\Protobuf\Internal\Message
      */
     protected $server_address = '';
     /**
-     * Where this tablet is located. In the Spanner managed service, this is the
-     * name of a region, such as "us-central1". In Spanner Omni, this is a
-     * previously created location.
+     * Where this tablet is located. This is the name of a Google Cloud region,
+     * such as "us-central1".
      *
      * Generated from protobuf field <code>string location = 3;</code>
      */
@@ -113,9 +112,8 @@ class Tablet extends \Google\Protobuf\Internal\Message
      *           The address of the server that is serving this tablet -- either an IP
      *           address or DNS hostname and a port number.
      *     @type string $location
-     *           Where this tablet is located. In the Spanner managed service, this is the
-     *           name of a region, such as "us-central1". In Spanner Omni, this is a
-     *           previously created location.
+     *           Where this tablet is located. This is the name of a Google Cloud region,
+     *           such as "us-central1".
      *     @type int $role
      *           The role of the tablet.
      *     @type string $incarnation
@@ -224,9 +222,8 @@ class Tablet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Where this tablet is located. In the Spanner managed service, this is the
-     * name of a region, such as "us-central1". In Spanner Omni, this is a
-     * previously created location.
+     * Where this tablet is located. This is the name of a Google Cloud region,
+     * such as "us-central1".
      *
      * Generated from protobuf field <code>string location = 3;</code>
      * @return string
@@ -237,9 +234,8 @@ class Tablet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Where this tablet is located. In the Spanner managed service, this is the
-     * name of a region, such as "us-central1". In Spanner Omni, this is a
-     * previously created location.
+     * Where this tablet is located. This is the name of a Google Cloud region,
+     * such as "us-central1".
      *
      * Generated from protobuf field <code>string location = 3;</code>
      * @param string $var
