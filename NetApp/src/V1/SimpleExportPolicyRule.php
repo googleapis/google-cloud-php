@@ -96,6 +96,21 @@ class SimpleExportPolicyRule extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool kerberos_5p_read_write = 11;</code>
      */
     protected $kerberos_5p_read_write = null;
+    /**
+     * Optional. Defines how user identity squashing is applied for this export
+     * rule. This field is the preferred way to configure squashing behavior and
+     * takes precedence over `has_root_access` if both are provided.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.SimpleExportPolicyRule.SquashMode squash_mode = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $squash_mode = null;
+    /**
+     * Optional. An integer representing the anonymous user ID. Range is 0 to
+     * 4294967295. Required when squash_mode is ROOT_SQUASH or ALL_SQUASH.
+     *
+     * Generated from protobuf field <code>optional int64 anon_uid = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $anon_uid = null;
 
     /**
      * Constructor.
@@ -140,6 +155,13 @@ class SimpleExportPolicyRule extends \Google\Protobuf\Internal\Message
      *           matching the 'allowedClients' specification. It enables nfs clients to
      *           mount using 'privacy' kerberos security mode. The 'kerberos5pReadOnly'
      *           value be ignored if this is enabled.
+     *     @type int $squash_mode
+     *           Optional. Defines how user identity squashing is applied for this export
+     *           rule. This field is the preferred way to configure squashing behavior and
+     *           takes precedence over `has_root_access` if both are provided.
+     *     @type int|string $anon_uid
+     *           Optional. An integer representing the anonymous user ID. Range is 0 to
+     *           4294967295. Required when squash_mode is ROOT_SQUASH or ALL_SQUASH.
      * }
      */
     public function __construct($data = NULL) {
@@ -569,6 +591,84 @@ class SimpleExportPolicyRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->kerberos_5p_read_write = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines how user identity squashing is applied for this export
+     * rule. This field is the preferred way to configure squashing behavior and
+     * takes precedence over `has_root_access` if both are provided.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.SimpleExportPolicyRule.SquashMode squash_mode = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSquashMode()
+    {
+        return isset($this->squash_mode) ? $this->squash_mode : 0;
+    }
+
+    public function hasSquashMode()
+    {
+        return isset($this->squash_mode);
+    }
+
+    public function clearSquashMode()
+    {
+        unset($this->squash_mode);
+    }
+
+    /**
+     * Optional. Defines how user identity squashing is applied for this export
+     * rule. This field is the preferred way to configure squashing behavior and
+     * takes precedence over `has_root_access` if both are provided.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.SimpleExportPolicyRule.SquashMode squash_mode = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSquashMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\SimpleExportPolicyRule\SquashMode::class);
+        $this->squash_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An integer representing the anonymous user ID. Range is 0 to
+     * 4294967295. Required when squash_mode is ROOT_SQUASH or ALL_SQUASH.
+     *
+     * Generated from protobuf field <code>optional int64 anon_uid = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getAnonUid()
+    {
+        return isset($this->anon_uid) ? $this->anon_uid : 0;
+    }
+
+    public function hasAnonUid()
+    {
+        return isset($this->anon_uid);
+    }
+
+    public function clearAnonUid()
+    {
+        unset($this->anon_uid);
+    }
+
+    /**
+     * Optional. An integer representing the anonymous user ID. Range is 0 to
+     * 4294967295. Required when squash_mode is ROOT_SQUASH or ALL_SQUASH.
+     *
+     * Generated from protobuf field <code>optional int64 anon_uid = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setAnonUid($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->anon_uid = $var;
 
         return $this;
     }
