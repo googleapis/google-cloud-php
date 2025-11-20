@@ -70,6 +70,4 @@ class SquashMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SquashMode::class, \Google\Cloud\NetApp\V1\SimpleExportPolicyRule_SquashMode::class);
 
