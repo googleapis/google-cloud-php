@@ -78,7 +78,8 @@ Each Google Cloud PHP client may be authenticated in code when creating a client
 Most clients use the `credentials` option for providing explicit credentials:
 
 ```php
-use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
+use Google\Cloud\VideoIntelligence\V1\Client\VideoIntelligenceServiceClient;
+use Google\Auth\Credentials\ServiceAccountCredentials;
 
 $scope = ['https://www.googleapis.com/auth/cloud-platform'];
 $keyFile = json_decode(file_get_contents('/path/to/service-account.json'), true);
@@ -90,8 +91,7 @@ $video = new VideoIntelligenceServiceClient([
 ]);
 ```
 
-#### Note:
-Some clients use the `credentialsFetcher` client option instead:
+**Note**: Some clients use the `credentialsFetcher` client option instead:
 
 ```php
 require 'vendor/autoload.php';
@@ -100,7 +100,7 @@ use Google\Cloud\Storage\StorageClient;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 
 // Create the service account credentials and pass them in using the "credentialsFile" option
-$scope = ['https://www.googleapis.com/auth/devstorage.read_only'];
+$scopes = ['https://www.googleapis.com/auth/devstorage.read_only'];
 $keyFile = json_decode(file_get_contents('/path/to/keyfile.json'), true);
 $storage = new StorageClient([
     'credentialsFetcher' => new ServiceAccountCredentials($scopes, $keyFile),
