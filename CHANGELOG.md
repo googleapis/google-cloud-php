@@ -1,5 +1,86 @@
 # Changelog
 
+## 0.312.0
+
+<details><summary>google/cloud-ai-platform 1.45.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Add support for developer connect based deployment ([#8742](https://github.com/googleapis/google-cloud-php/issues/8742)) ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+* Add `gpu_partition_size` in `machine_spec` v1 api ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+* Add `ReplicatedVoiceConfig` to `VoiceConfig` to enable Gemini TTS voice replication ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+
+
+### Documentation
+
+* A comment for field `package_spec` in message `.google.cloud.aiplatform.v1.ReasoningEngineSpec` is changed ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+* A comment for message `ReasoningEngineSpec` is changed ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.10.0</summary>
+
+
+
+### Features
+
+* [BackupDr] Adding new fields for CMEK and Retention Inheritance features ([#8743](https://github.com/googleapis/google-cloud-php/issues/8743)) ([3bd0a9b](https://github.com/googleapis/google-cloud-php/commit/3bd0a9b75bbc675a7c1a85246b0aa6da52f70e2a))
+
+</details>
+
+<details><summary>google/cloud-batch 1.4.0</summary>
+
+
+
+### Features
+
+* [Batch] added new provisioning models ([#8744](https://github.com/googleapis/google-cloud-php/issues/8744)) ([a19b5e1](https://github.com/googleapis/google-cloud-php/commit/a19b5e1e08074eeba28a22090b429973324f052a))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.9.0</summary>
+
+
+
+### Features
+
+* [NetApp] Add Squash Mode to Export Policy ([#8752](https://github.com/googleapis/google-cloud-php/issues/8752)) ([a4e1a9e](https://github.com/googleapis/google-cloud-php/commit/a4e1a9e33c598fbfd330d8d42f50b74f45dad06a))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.1.0</summary>
+
+
+
+### Features
+
+* [Spanner] Add Spanner location API ([#8737](https://github.com/googleapis/google-cloud-php/issues/8737)) ([c6b8e26](https://github.com/googleapis/google-cloud-php/commit/c6b8e268fac5c585957f1db84ad77ac9f8cb82fb))
+* Add Send and Ack mutations for Queues ([c6b8e26](https://github.com/googleapis/google-cloud-php/commit/c6b8e268fac5c585957f1db84ad77ac9f8cb82fb))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.5.0</summary>
+
+
+
+### Features
+
+* [SqlAdmin] introduces auto_upgrade_enabled option for MySQL in DatabaseInstance.Settings ([#8751](https://github.com/googleapis/google-cloud-php/issues/8751)) ([8a7fc50](https://github.com/googleapis/google-cloud-php/commit/8a7fc50c281d4ee1f327a0a9d609e7369dd9c1ab))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 1.3.0</summary>
+
+
+
+### Features
+
+* [VmMigration] add adaptation modifiers and storage pools to MigratingVM target defaults ([#8740](https://github.com/googleapis/google-cloud-php/issues/8740)) ([31228c6](https://github.com/googleapis/google-cloud-php/commit/31228c6b0b215ab8a59dd93a37c09d8c59955425))
+
+</details>
+
 ## 0.311.0
 
 <details><summary>googleads/ad-manager 0.5.0</summary>
