@@ -221,6 +221,7 @@ class SnapshotTraitTest extends TestCase
     }
 }
 
+// phpcs:disable
 class TraitClass
 {
     use SnapshotTrait {
@@ -237,3 +238,4 @@ class TraitClass
         $this->optionsValidator = new OptionsValidator($this->serializer);
     }
 }
+// phpcs:enable

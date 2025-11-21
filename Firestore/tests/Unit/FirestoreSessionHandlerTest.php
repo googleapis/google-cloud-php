@@ -335,7 +335,7 @@ class FirestoreSessionHandlerTest extends TestCase
                 $this->assertEquals($this->dbName(), $request->getDatabase());
 
                 $expectedWrites = [
-                    self::generateProto(Write::class,  [
+                    self::generateProto(Write::class, [
                         'update' => [
                             'name' => $this->documentName(),
                             'fields' => [
@@ -380,17 +380,15 @@ class FirestoreSessionHandlerTest extends TestCase
 
                 return true;
             })
-        )
-            ->willReturn(['data' => ['stringValue' => 'sessiondata']]);
+        )->willReturn(['data' => ['stringValue' => 'sessiondata']]);
 
-            $this->gapicClient->beginTransaction(
+        $this->gapicClient->beginTransaction(
             Argument::that(function (BeginTransactionRequest $request) {
                 $this->assertEquals($this->dbName(), $request->getDatabase());
                 return true;
             }),
             Argument::any()
-        )
-            ->shouldBeCalledTimes(1)
+        )->shouldBeCalledTimes(1)
             ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => 123]));
 
         $this->gapicClient->rollback(
@@ -400,8 +398,7 @@ class FirestoreSessionHandlerTest extends TestCase
                 return true;
             }),
             Argument::any()
-        )
-            ->shouldBeCalledTimes(1);
+        )->shouldBeCalledTimes(1);
 
         $this->gapicClient->commit(Argument::any(), Argument::any())
             ->shouldBeCalledTimes(1)
@@ -547,7 +544,7 @@ class FirestoreSessionHandlerTest extends TestCase
         ]));
 
         $this->gapicClient->runQuery(
-            Argument::that(function(RunQueryRequest $request) {
+            Argument::that(function (RunQueryRequest $request) {
                 $this->assertEquals($this->dbName() . '/documents', $request->getParent());
                 $this->assertEquals(499, $request->getStructuredQuery()->getLimit()->getValue());
                 $this->assertEquals(
@@ -573,7 +570,7 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->gapicClient->commit(
             Argument::that(function (CommitRequest $request) {
                 $this->assertEquals($this->dbName(), $request->getDatabase());
-                $expectedWrites = self::generateProto(Write::class,  [
+                $expectedWrites = self::generateProto(Write::class, [
                     'delete' => $this->documentName()
                 ]);
                 $this->assertEquals([$expectedWrites], iterator_to_array($request->getWrites()));

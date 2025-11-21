@@ -94,7 +94,7 @@ class FieldValueTest extends SnippetTestCase
     public function testServerTimestamp()
     {
         $this->gapicClient->commit(
-            Argument::that(function (CommitRequest $request){
+            Argument::that(function (CommitRequest $request) {
                 $expectedRequest = self::generateProto(CommitRequest::class, [
                     "database" => "projects/my-awesome-project/databases/(default)",
                     "writes" => [

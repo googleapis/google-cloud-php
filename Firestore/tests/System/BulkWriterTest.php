@@ -128,13 +128,13 @@ class BulkWriterTest extends FirestoreTestCase
         ]);
 
         $gapicClient->batchWrite(
-            Argument::that(function (BatchWriteRequest $request) use ($docs, $successPerBatch, &$successfulDocs){
+            Argument::that(function (BatchWriteRequest $request) use ($docs, $successPerBatch, &$successfulDocs) {
                 $this->assertGreaterThan(0, count($request->getWrites()));
 
                 /**
                  * @var Write $write
                  */
-                foreach($request->getWrites() as $i => $write) {
+                foreach ($request->getWrites() as $i => $write) {
                     $this->assertNotEmpty($write->getCurrentDocument());
                     $this->assertEquals(
                         $docs[$write->getUpdate()->getFields()['key']->getIntegerValue()]->name(),

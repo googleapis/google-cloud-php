@@ -387,7 +387,10 @@ class FirestoreClientTest extends TestCase
         $this->gapicClient->runQuery(
             Argument::that(function (RunQueryRequest $request) {
                 $this->assertNotEmpty($request->getStructuredQuery());
-                $this->assertEquals($request->getParent(), 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents');
+                $this->assertEquals(
+                    $request->getParent(),
+                    'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents'
+                );
                 return true;
             }),
             Argument::any()
@@ -413,7 +416,7 @@ class FirestoreClientTest extends TestCase
         $expectedDatabase = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE;
 
         $this->gapicClient->beginTransaction(
-            Argument::that(function (BeginTransactionRequest $request) use ($expectedDatabase){
+            Argument::that(function (BeginTransactionRequest $request) use ($expectedDatabase) {
                 $this->assertEquals($expectedDatabase, $request->getDatabase());
                 return true;
             }),
@@ -488,21 +491,20 @@ class FirestoreClientTest extends TestCase
                 $expectedDatabase,
                 $transactionId,
                 $transactionId2
-                ) {
-                    $callCount++;
-                    if ($callCount === 1) {
-                        // Assertions for the first call
-                        $this->assertEquals($expectedDatabase, $request->getDatabase());
-                        $this->assertEquals($transactionId, $request->getTransaction());
-                    } elseif ($callCount === 2) {
-                        // Assertions for the second call
-                        $this->assertEquals($expectedDatabase, $request->getDatabase());
-                        $this->assertEquals($transactionId2, $request->getTransaction());
-                    }
-
-                    return true; // The arguments are valid for the current call number
+            ) {
+                $callCount++;
+                if ($callCount === 1) {
+                    // Assertions for the first call
+                    $this->assertEquals($expectedDatabase, $request->getDatabase());
+                    $this->assertEquals($transactionId, $request->getTransaction());
+                } elseif ($callCount === 2) {
+                    // Assertions for the second call
+                    $this->assertEquals($expectedDatabase, $request->getDatabase());
+                    $this->assertEquals($transactionId2, $request->getTransaction());
                 }
-            ),
+
+                return true; // The arguments are valid for the current call number
+            }),
             Argument::any()
         )->shouldBeCalledTimes(2)
         ->will(function () use (&$callCount) {

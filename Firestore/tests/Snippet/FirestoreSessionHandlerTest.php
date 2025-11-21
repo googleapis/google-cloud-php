@@ -102,7 +102,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
 
         $value = 'name|' . serialize('Bob');
         $this->gapicClient->commit(
-            Argument::that(function (CommitRequest $request) use ($value){
+            Argument::that(function (CommitRequest $request) use ($value) {
                 $this->assertNotFalse(strpos($request->getWrites()[0]->getUpdate()->getName(), ':PHPSESSID'));
                 $this->assertEquals(
                     $request->getWrites()[0]->getUpdate()->getFields()['data']->getStringValue(),
@@ -152,7 +152,10 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         $this->gapicClient->commit(
             Argument::that(function (CommitRequest $request) use ($value) {
                 $this->assertNotFalse(strpos($request->getWrites()[0]->getUpdate()->getName(), ':PHPSESSID'));
-                $this->assertEquals($request->getWrites()[0]->getUpdate()->getFields()['data']->getStringValue(), $value);
+                $this->assertEquals(
+                    $request->getWrites()[0]->getUpdate()->getFields()['data']->getStringValue(),
+                    $value
+                );
                 $this->assertNotEmpty($request->getWrites()[0]->getUpdate()->getFields()['t']->getIntegerValue());
                 return true;
             }),

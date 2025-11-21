@@ -19,7 +19,6 @@ namespace Google\Cloud\Firestore;
 
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;

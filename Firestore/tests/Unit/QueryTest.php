@@ -448,7 +448,7 @@ class QueryTest extends TestCase
             );
 
             return $res;
-        },$protoToAssert);
+        }, $protoToAssert);
     }
 
     /**
@@ -625,7 +625,7 @@ class QueryTest extends TestCase
      */
     public function testWhereDocumentIdIn($document, $expected)
     {
-        $protoToAssert = self::generateProto(RunQueryRequest::class,  [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
@@ -1661,7 +1661,7 @@ class QueryTest extends TestCase
 
     public function testBuildPositionAllDescendantsDocument()
     {
-        $protoToAssert = self::generateProto(RunQueryRequest::class,  [
+        $protoToAssert = self::generateProto(RunQueryRequest::class, [
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(true),

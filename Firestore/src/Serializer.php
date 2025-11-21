@@ -35,7 +35,6 @@ namespace Google\Cloud\Firestore;
 use Google\ApiCore\Serializer as ApiCoreSerializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Datastore\V1\PropertyFilter\Operator;
 use Google\Protobuf\Int32Value;
 
 class Serializer extends ApiCoreSerializer

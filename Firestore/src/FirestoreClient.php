@@ -37,7 +37,6 @@ use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
 use InvalidArgumentException;
-use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -759,7 +758,9 @@ class FirestoreClient
         }
 
         if (!$config['firestoreClient'] instanceof GapicFirestoreClient) {
-            throw new InvalidArgumentException('The firestoreClient option must be an instance of ' . GapicFirestoreClient::class . '.');
+            throw new InvalidArgumentException(
+                'The firestoreClient option must be an instance of ' . GapicFirestoreClient::class . '.'
+            );
         }
 
         /* @var GapicFirestoreClient */

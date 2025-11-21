@@ -349,7 +349,6 @@ class Query
             while ($generator->valid()) {
                 $result = $this->serializer->encodeMessage($generator->current());
 
-
                 if (isset($result['document']) && $result['document']) {
                     $collectionName = $this->parentPath($result['document']['name']);
                     if (!isset($collections[$collectionName])) {

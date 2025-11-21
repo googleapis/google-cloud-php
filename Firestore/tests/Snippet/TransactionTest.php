@@ -136,7 +136,7 @@ class TransactionTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($this->getServerStreamMock([new RunAggregationQueryResponse()]));
 
-            $aggregateQuery = new AggregateQuery(
+        $aggregateQuery = new AggregateQuery(
             $this->gapicClient->reveal(),
             self::DOCUMENT,
             ['query' => []],

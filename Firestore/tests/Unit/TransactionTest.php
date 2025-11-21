@@ -173,7 +173,7 @@ class TransactionTest extends TestCase
         ]);
 
         $this->gapicClient->runAggregationQuery(
-            Argument::that(function (RunAggregationQueryRequest $request) use ($timestamp){
+            Argument::that(function (RunAggregationQueryRequest $request) use ($timestamp) {
                 $this->assertEquals($timestamp['seconds'], $request->getReadTime()->getSeconds());
                 $this->assertEquals($timestamp['nanos'], $request->getReadTime()->getNanos());
                 return true;
@@ -443,7 +443,7 @@ class TransactionTest extends TestCase
         ];
 
         $this->gapicClient->batchGetDocuments(
-            Argument::that(function (BatchGetDocumentsRequest $request) use ($names){
+            Argument::that(function (BatchGetDocumentsRequest $request) use ($names) {
                 foreach ($request->getDocuments() as $i => $documentName) {
                     $this->assertEquals($names[$i], $documentName);
                 }
@@ -463,7 +463,7 @@ class TransactionTest extends TestCase
     private function expectAndInvoke(array $writes)
     {
         $this->gapicClient->commit(
-            Argument::that(function (CommitRequest $request) use ($writes){
+            Argument::that(function (CommitRequest $request) use ($writes) {
                 $this->assertEquals($this->getDbName(), $request->getDatabase());
                 $this->assertEquals(self::TRANSACTION, $request->getTransaction());
 

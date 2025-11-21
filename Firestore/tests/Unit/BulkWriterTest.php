@@ -145,8 +145,8 @@ class BulkWriterTest extends TestCase
      */
     public function testCreateMultipleDocs($docs)
     {
-        $this->gapicClient->batchWrite(Argument::that(
-            function (BatchWriteRequest $request) use ($docs) {
+        $this->gapicClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) use ($docs) {
                 $this->assertGreaterThan(0, count($request->getWrites()));
 
                 /**
@@ -260,7 +260,7 @@ class BulkWriterTest extends TestCase
      */
     public function testCloseReturnsAllResponses($docs)
     {
-       $this->gapicClient->batchWrite(
+        $this->gapicClient->batchWrite(
             Argument::that(function (BatchWriteRequest $request) use ($docs) {
                 $this->assertGreaterThan(0, count($request->getWrites()));
 

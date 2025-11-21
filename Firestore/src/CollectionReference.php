@@ -18,9 +18,7 @@
 namespace Google\Cloud\Firestore;
 
 use Google\ApiCore\Options\CallOptions;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;

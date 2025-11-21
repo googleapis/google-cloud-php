@@ -141,7 +141,7 @@ class AggregateQueryTest extends TestCase
         $aggregate3->alias('type_with_another_alias');
 
         $aggregateQuery = new AggregateQuery(
-             $this->gapicClient->reveal(),
+            $this->gapicClient->reveal(),
             self::QUERY_PARENT,
             ['query' => $this->queryObj],
             $aggregate
