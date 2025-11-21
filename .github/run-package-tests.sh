@@ -29,7 +29,7 @@ set -e
 #.               ensure the dependencies for the upcoming release will be
 #                configured correctly.
 
-DIRS=$(find * -maxdepth 0 -type d -name '[A-Z]*')
+DIRS=$(find * -maxdepth 0 -type d -name '[A-Za-z]*')
 PREFER_LOWEST=""
 if [ "$#" -eq 1 ]; then
     # first argument can be a directory or "--prefer-lowest"
