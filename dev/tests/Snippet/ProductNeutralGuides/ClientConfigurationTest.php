@@ -41,10 +41,10 @@ class ProductNeutralGuideTest extends SnippetTestCase
             'Connecting to a Regional Endpoint'
         );
 
-        $res = $snippet->invoke('client');
-        $client = $res->returnVal();
-        $this->assertInstanceOf(PubSubClient::class, $client);
-        $requestHandler = (new \ReflectionClass($client))->getProperty('requestHandler')->getValue($client);
+        $res = $snippet->invoke('pubsub');
+        $pubsubClient = $res->returnVal();
+        $this->assertInstanceOf(PubSubClient::class, $pubsubClient);
+        $requestHandler = (new \ReflectionClass($pubsubClient))->getProperty('requestHandler')->getValue($pubsubClient);
         $clients = (new \ReflectionClass($requestHandler))->getProperty('clients')->getValue($requestHandler);
         $publisherClient = $clients[PublisherClient::class];
         $this->assertInstanceOf(PublisherClient::class, $publisherClient);
@@ -64,10 +64,10 @@ class ProductNeutralGuideTest extends SnippetTestCase
             'Connecting to a Regional Endpoint'
         );
 
-        $res = $snippet->invoke('client');
-        $client = $res->returnVal();
-        $this->assertInstanceOf(PubSubClient::class, $client);
-        $requestHandler = (new \ReflectionClass($client))->getProperty('requestHandler')->getValue($client);
+        $res = $snippet->invoke('pubsub');
+        $pubsubClient = $res->returnVal();
+        $this->assertInstanceOf(PubSubClient::class, $pubsubClient);
+        $requestHandler = (new \ReflectionClass($pubsubClient))->getProperty('requestHandler')->getValue($pubsubClient);
         $clients = (new \ReflectionClass($requestHandler))->getProperty('clients')->getValue($requestHandler);
         $publisherClient = $clients[PublisherClient::class];
         $this->assertInstanceOf(PublisherClient::class, $publisherClient);
@@ -75,5 +75,25 @@ class ProductNeutralGuideTest extends SnippetTestCase
         $requestBuilder = (new \ReflectionClass($transport))->getProperty('requestBuilder')->getValue($transport);
         $baseUri = (new \ReflectionClass($requestBuilder))->getProperty('baseUri')->getValue($requestBuilder);
         $this->assertEquals('us-east1-pubsub.googleapis.com:443', $baseUri);
+    }
+
+    public function testDisablingRetries()
+    {
+        $snippet = $this->snippetFromMarkdown(
+            self::PROJECT_ROOT . '/CLIENT_CONFIGURATION.md',
+            'Disabling Retries'
+        );
+
+        $res = $snippet->invoke('pubsub');
+        $pubsubClient = $res->returnVal();
+        $this->assertInstanceOf(PubSubClient::class, $pubsubClient);
+        $requestHandler = (new \ReflectionClass($pubsubClient))->getProperty('requestHandler')->getValue($pubsubClient);
+        $clients = (new \ReflectionClass($requestHandler))->getProperty('clients')->getValue($requestHandler);
+        $publisherClient = $clients[PublisherClient::class];
+        $this->assertInstanceOf(PublisherClient::class, $publisherClient);
+        $retrySettings = (new \ReflectionClass($publisherClient))->getProperty('retrySettings')->getValue($publisherClient);
+        foreach ($retrySettings as $_method => $methodRetrySettings) {
+            $this->assertFalse($methodRetrySettings->retriesEnabled());
+        }
     }
 }

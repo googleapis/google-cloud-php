@@ -35,7 +35,7 @@ Some services, like Pub/Sub and Spanner, offer regional endpoints.
 ```php
 use Google\Cloud\PubSub\PubSubClient;
 
-$client = new PubSubClient([
+$pubsub = new PubSubClient([
     // Connect explicitly to the us-east1 region
     'apiEndpoint' => 'us-east1-pubsub.googleapis.com:443',
 ]);
@@ -68,9 +68,9 @@ export GRPC_DEFAULT_SSL_ROOTS_FILE_PATH="/path/to/roots.pem"
 If you are forcing the `rest` transport (or using a library that only supports REST), you must configure the proxy via the `transportConfig` option. This passes the settings down to the underlying Guzzle client.
 
 ```php
-use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
 
-$client = new StorageClient([
+$secretManagerClient = new SecretManagerServiceClient([
     'transport' => 'rest',
     'transportConfig' => [
         'rest' => [
@@ -121,15 +121,17 @@ $callOptions = [
     ]
 ];
 
-$client->accessSecretVersion($request, $callOptions);
+$secretManagerClient->accessSecretVersion($request, $callOptions);
 ```
 
-### Global Client Configuration
+### Disabling Retries
 
 You can also configure retries globally by passing a `clientConfig` array to the constructor. This is useful if you want to change the default retry strategy for *all* calls made by that client instance.
 
 ```php
-$client = new PubSubClient([
+use Google\Cloud\PubSub\PubSubClient;
+
+$pubsub = new PubSubClient([
     // Quickly disable retries for the entire client
     'disableRetries' => true
 ]);
@@ -140,6 +142,7 @@ $client = new PubSubClient([
 You can attach any PSR-3 compliant logger (like Monolog) to debug request headers, status codes, and payloads. See [Debug Logging](https://docs.cloud.google.com/php/docs/reference/help/debug) for more examples.
 
 ```php
+use Google\Cloud\PubSub\PubSubClient;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
