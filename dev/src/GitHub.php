@@ -412,13 +412,19 @@ class GitHub
 
     /**
      * Update webhook
+     *
+     * @param string $target the target org/repo
+     * @param string $webhookUrl the webhook URL to update
+     * @param string $secret the new secret
+     *
+     * @return bool
      */
     public function updateWebhookSecret(
         string $target,
         string $webhookUrl,
         string $secret
-    ) {
-        // 1. Get all webhooks for the repo
+    ): bool {
+        // Get all webhooks for the repo
         try {
             $res = $this->client->get(sprintf(
                 self::GITHUB_WEBHOOKS_LIST_ENDPOINT,
@@ -433,7 +439,7 @@ class GitHub
 
         $webhooks = json_decode((string) $res->getBody(), true);
 
-        // 2. Find the webhook with the matching URL
+        // Find the webhook with the matching URL
         $webhookId = null;
         foreach ($webhooks as $webhook) {
             if (isset($webhook['config']['url']) && $webhook['config']['url'] === $webhookUrl) {
@@ -449,7 +455,7 @@ class GitHub
             return false;
         }
 
-        // 3. Update the webhook secret
+        // Update the webhook secret
         try {
             $res = $this->client->patch(sprintf(
                 self::GITHUB_WEBHOOK_UPDATE_ENDPOINT,
@@ -466,12 +472,12 @@ class GitHub
                     ],
                 ],
             ]);
-
-            return $res->getStatusCode() === 200;
         } catch (\Exception $e) {
             $this->logException($e);
             return false;
         }
+
+        return $res->getStatusCode() === 200;
     }
 
     /**
