@@ -24,7 +24,8 @@
         "phpspec/prophecy-phpunit": "^2.0",
         "swaggest/json-schema": "^0.12.0",
         "phpdocumentor/reflection": "^6.3",
-        "erusev/parsedown": "^1.7"
+        "erusev/parsedown": "^1.7",
+        "dg/bypass-finals": "^1.7"
     },
     "repositories": {
         "google-cloud": {

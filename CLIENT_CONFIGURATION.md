@@ -63,25 +63,24 @@ export https_proxy="http://proxy.example.com:3128"
 export GRPC_DEFAULT_SSL_ROOTS_FILE_PATH="/path/to/roots.pem"
 ```
 
-**Proxy with REST**
+### Proxy with REST
 
 If you are forcing the `rest` transport (or using a library that only supports REST), you must configure the proxy via the `transportConfig` option. This passes the settings down to the underlying Guzzle client.
 
 ```php
+use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
 
+$httpClient = new GuzzleHttp\Client([
+    // Standard Guzzle proxy configuration
+    'proxy' => 'http://user:password@proxy.example.com',
+    // (Optional) Disable SSL Verification (Development Only)
+    // 'verify' => false
+]);
+$httpHandler = HttpHandlerFactory::build($httpClient);
 $secretManagerClient = new SecretManagerServiceClient([
     'transport' => 'rest',
-    'transportConfig' => [
-        'rest' => [
-            'httpOptions' => [
-                // Standard Guzzle proxy configuration
-                'proxy' => 'http://user:password@proxy.example.com',
-                // (Optional) Disable SSL Verification (Development Only)
-                // 'verify' => false
-            ]
-        ]
-    ]
+    'transportConfig' => ['rest' => ['httpHandler' => [$httpHandler, 'async']]],
 ]);
 ```
 

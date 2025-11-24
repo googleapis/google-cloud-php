@@ -22,20 +22,21 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\VideoIntelligence\V1\Client\VideoIntelligenceServiceClient;
 use Prophecy\PhpUnit\ProphecyTrait;
+use ReflectionClass;
 
 /**
  * @group docs
  */
 class AuthenticationTest extends SnippetTestCase
 {
-    private const AUTHENTICATION_MD = __DIR__ . '/../../../../AUTHENTICATION.md';
+    private const AUTHENTICATION_FILE = __DIR__ . '/../../../../AUTHENTICATION.md';
 
     use ProphecyTrait;
 
     public function testAuthenticationCredentialsOption()
     {
         $snippet = $this->snippetFromMarkdown(
-            self::AUTHENTICATION_MD,
+            self::AUTHENTICATION_FILE,
             'Client Authentication',
         );
 
@@ -52,8 +53,8 @@ class AuthenticationTest extends SnippetTestCase
         $res = $snippet->invoke('video');
         $client = $res->returnVal();
         $this->assertInstanceOf(VideoIntelligenceServiceClient::class, $client);
-        $credsWrapper = (new \ReflectionClass($client))->getProperty('credentialsWrapper')->getValue($client);
-        $creds = (new \ReflectionClass($credsWrapper))->getProperty('credentialsFetcher')->getValue($credsWrapper);
+        $credsWrapper = (new ReflectionClass($client))->getProperty('credentialsWrapper')->getValue($client);
+        $creds = (new ReflectionClass($credsWrapper))->getProperty('credentialsFetcher')->getValue($credsWrapper);
         $this->assertInstanceOf(ServiceAccountCredentials::class, $creds);
         $this->assertEquals($clientEmail, $creds->getClientName());
     }
@@ -61,7 +62,7 @@ class AuthenticationTest extends SnippetTestCase
     public function testAuthenticationCredentialsFetcherOption()
     {
         $snippet = $this->snippetFromMarkdown(
-            self::AUTHENTICATION_MD,
+            self::AUTHENTICATION_FILE,
             'Client Authentication',
             1 // second example in this section
         );
@@ -79,9 +80,9 @@ class AuthenticationTest extends SnippetTestCase
         $res = $snippet->invoke('storage');
         $client = $res->returnVal();
         $this->assertInstanceOf(StorageClient::class, $client);
-        $connection = (new \ReflectionClass($client))->getProperty('connection')->getValue($client);
-        $requestWrapper = (new \ReflectionClass($connection))->getProperty('requestWrapper')->getValue($connection);
-        $creds = (new \ReflectionClass($requestWrapper))->getProperty('credentialsFetcher')->getValue($requestWrapper);
+        $connection = (new ReflectionClass($client))->getProperty('connection')->getValue($client);
+        $requestWrapper = (new ReflectionClass($connection))->getProperty('requestWrapper')->getValue($connection);
+        $creds = (new ReflectionClass($requestWrapper))->getProperty('credentialsFetcher')->getValue($requestWrapper);
         $this->assertInstanceOf(ServiceAccountCredentials::class, $creds);
         $this->assertEquals($clientEmail, $creds->getClientName());
     }
