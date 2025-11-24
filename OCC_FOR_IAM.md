@@ -85,24 +85,32 @@ function update_iam_policy_with_occ(
             echo "Attempt $retries: Reading current IAM policy for $projectName...\n";
             $getIamPolicyRequest = new GetIamPolicyRequest(['resource' => $projectName]);
             $policy = $projectsClient->getIamPolicy($getIamPolicyRequest);
+
+            // 2. MODIFY: Apply the desired changes to the local Policy object ($policy).
             $bindings = $policy->getBindings();
-            foreach ($bindings as $binding) {
-                if ($binding->getMember() === $member && $binding->getRole() === $role) {
-                    // The policy already exists
-                    return $policy;
+            $binding = new Binding(['role' => $role, 'members' => [$member]]);
+            foreach ($bindings as $existingBinding) {
+                if ($existingBinding->getRole() === $role) {
+                    $binding = $existingBinding;
+                    foreach ($binding->getMembers() as $roleMember) {
+                        if ($roleMember === $member) {
+                            echo "Policy for role $role and member $member exists already!\n";
+                            return $policy;
+                        }
+                    }
+                    $members = $binding->getMembers();
+                    $members[] = $member;
+                    $binding->setMembers($members);
                 }
             }
 
-            // 2. MODIFY: Apply the desired changes to the local Policy object ($policy).
-            $binding = new Binding(['role' => $role, 'members' => [$member]]);
-            $bindings[] = $binding;
             // The policy object now contains the modified bindings AND the original etag.
+            $bindings[] = $binding;
             $policy->setBindings($bindings);
 
             // 3. WRITE/CHECK: Attempt to write the modified policy.
             echo "Attempt $retries: Setting modified IAM policy...\n";
-            $setIamPolicyRequest = new SetIamPolicyRequest(['resource' => $projectName]);
-            $setIamPolicyRequest->setPolicy($policy);
+            $setIamPolicyRequest = new SetIamPolicyRequest(['resource' => $projectName, 'policy' => $policy]);
             $newPolicy = $projectsClient->setIamPolicy($setIamPolicyRequest);
 
             // 4. SUCCESS: If the call succeeds, return the new policy and exit the loop.
