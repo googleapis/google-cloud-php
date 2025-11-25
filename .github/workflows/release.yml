@@ -41,7 +41,7 @@ jobs:
             go build -o splitsh-lite github.com/splitsh/lite
             mv splitsh-lite /usr/local/bin/splitsh-lite
         - name: Checkout google/cloud
-          uses: actions/checkout@v5
+          uses: actions/checkout@v6
           with:
             persist-credentials: false
             fetch-depth: 0

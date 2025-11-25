@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -40,7 +40,7 @@ jobs:
           extensions: grpc
 
       - name: Checkout Bigtable conformance tests
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: googleapis/cloud-bigtable-clients-test
           ref: v0.0.3

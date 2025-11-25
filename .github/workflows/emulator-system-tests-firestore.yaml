@@ -19,7 +19,7 @@ jobs:
     name: Firestore
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - run: ./.github/emulator/start-emulator.sh firestore 522.0.0-emulators
 
