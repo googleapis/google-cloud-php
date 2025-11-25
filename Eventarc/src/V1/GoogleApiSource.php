@@ -92,6 +92,7 @@ class GoogleApiSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.LoggingConfig logging_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $logging_config = null;
+    protected $wide_scope_subscription;
 
     /**
      * Constructor.
@@ -132,6 +133,13 @@ class GoogleApiSource extends \Google\Protobuf\Internal\Message
      *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *     @type \Google\Cloud\Eventarc\V1\LoggingConfig $logging_config
      *           Optional. Config to control Platform logging for the GoogleApiSource.
+     *     @type \Google\Cloud\Eventarc\V1\GoogleApiSource\OrganizationSubscription $organization_subscription
+     *           Optional. Config to enable subscribing to events from all projects in the
+     *           GoogleApiSource's org.
+     *     @type \Google\Cloud\Eventarc\V1\GoogleApiSource\ProjectSubscriptions $project_subscriptions
+     *           Optional. Config to enable subscribing to all events from a list of
+     *           projects.
+     *           All the projects must be in the same org as the GoogleApiSource.
      * }
      */
     public function __construct($data = NULL) {
@@ -475,6 +483,82 @@ class GoogleApiSource extends \Google\Protobuf\Internal\Message
         $this->logging_config = $var;
 
         return $this;
+    }
+
+    /**
+     * Optional. Config to enable subscribing to events from all projects in the
+     * GoogleApiSource's org.
+     *
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.GoogleApiSource.OrganizationSubscription organization_subscription = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Eventarc\V1\GoogleApiSource\OrganizationSubscription|null
+     */
+    public function getOrganizationSubscription()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasOrganizationSubscription()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Optional. Config to enable subscribing to events from all projects in the
+     * GoogleApiSource's org.
+     *
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.GoogleApiSource.OrganizationSubscription organization_subscription = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Eventarc\V1\GoogleApiSource\OrganizationSubscription $var
+     * @return $this
+     */
+    public function setOrganizationSubscription($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Eventarc\V1\GoogleApiSource\OrganizationSubscription::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Config to enable subscribing to all events from a list of
+     * projects.
+     * All the projects must be in the same org as the GoogleApiSource.
+     *
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.GoogleApiSource.ProjectSubscriptions project_subscriptions = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Eventarc\V1\GoogleApiSource\ProjectSubscriptions|null
+     */
+    public function getProjectSubscriptions()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasProjectSubscriptions()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Optional. Config to enable subscribing to all events from a list of
+     * projects.
+     * All the projects must be in the same org as the GoogleApiSource.
+     *
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.GoogleApiSource.ProjectSubscriptions project_subscriptions = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Eventarc\V1\GoogleApiSource\ProjectSubscriptions $var
+     * @return $this
+     */
+    public function setProjectSubscriptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Eventarc\V1\GoogleApiSource\ProjectSubscriptions::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWideScopeSubscription()
+    {
+        return $this->whichOneof("wide_scope_subscription");
     }
 
 }

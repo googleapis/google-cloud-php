@@ -65,6 +65,4 @@ class OrganizationSubscription extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OrganizationSubscription::class, \Google\Cloud\Eventarc\V1\GoogleApiSource_OrganizationSubscription::class);
 
