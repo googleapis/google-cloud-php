@@ -115,6 +115,14 @@ class Trigger extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzs = false;
     /**
+     * Optional. The retry policy to use in the Trigger.
+     * If unset, event delivery will be retried for up to 24 hours by default:
+     * https://cloud.google.com/eventarc/docs/retry-events
+     *
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Trigger.RetryPolicy retry_policy = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $retry_policy = null;
+    /**
      * Output only. This checksum is computed by the server based on the value of
      * other fields, and might be sent only on create requests to ensure that the
      * client has an up-to-date value before proceeding.
@@ -176,6 +184,10 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *     @type bool $satisfies_pzs
      *           Output only. Whether or not this Trigger satisfies the requirements of
      *           physical zone separation
+     *     @type \Google\Cloud\Eventarc\V1\Trigger\RetryPolicy $retry_policy
+     *           Optional. The retry policy to use in the Trigger.
+     *           If unset, event delivery will be retried for up to 24 hours by default:
+     *           https://cloud.google.com/eventarc/docs/retry-events
      *     @type string $etag
      *           Output only. This checksum is computed by the server based on the value of
      *           other fields, and might be sent only on create requests to ensure that the
@@ -603,6 +615,46 @@ class Trigger extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The retry policy to use in the Trigger.
+     * If unset, event delivery will be retried for up to 24 hours by default:
+     * https://cloud.google.com/eventarc/docs/retry-events
+     *
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Trigger.RetryPolicy retry_policy = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Eventarc\V1\Trigger\RetryPolicy|null
+     */
+    public function getRetryPolicy()
+    {
+        return $this->retry_policy;
+    }
+
+    public function hasRetryPolicy()
+    {
+        return isset($this->retry_policy);
+    }
+
+    public function clearRetryPolicy()
+    {
+        unset($this->retry_policy);
+    }
+
+    /**
+     * Optional. The retry policy to use in the Trigger.
+     * If unset, event delivery will be retried for up to 24 hours by default:
+     * https://cloud.google.com/eventarc/docs/retry-events
+     *
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Trigger.RetryPolicy retry_policy = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Eventarc\V1\Trigger\RetryPolicy $var
+     * @return $this
+     */
+    public function setRetryPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Eventarc\V1\Trigger\RetryPolicy::class);
+        $this->retry_policy = $var;
 
         return $this;
     }
