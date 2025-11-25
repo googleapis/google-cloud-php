@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'gcf-owl-bot[bot]'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: "Install PHP"
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'gcf-owl-bot[bot]' && github.event.pull_request.draft == false
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Ensure
         run: |
           directory_to_check="owl-bot-staging"
