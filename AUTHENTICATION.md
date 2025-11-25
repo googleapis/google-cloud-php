@@ -94,8 +94,6 @@ $video = new VideoIntelligenceServiceClient([
 **Note**: Some clients use the `credentialsFetcher` client option instead:
 
 ```php
-require 'vendor/autoload.php';
-
 use Google\Cloud\Storage\StorageClient;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 
