@@ -105,10 +105,8 @@ class RoutingHint extends \Google\Protobuf\Internal\Message
      */
     private $skipped_tablet_uid;
     /**
-     * If present, the client's current location. In the Spanner managed service,
-     * this should be the name of a Google Cloud zone or region, such as
-     * "us-central1". In Spanner Omni, this should correspond to a previously
-     * created location.
+     * If present, the client's current location. This should be the name of a
+     * Google Cloud zone or region, such as "us-central1".
      * If absent, the client's location will be assumed to be the same as the
      * location of the server the client ends up connected to.
      * Locations are primarily valuable for clients that connect from regions
@@ -167,10 +165,8 @@ class RoutingHint extends \Google\Protobuf\Internal\Message
      *           tablets, with their incarnations. The server may include a `CacheUpdate`
      *           with new locations for those tablets.
      *     @type string $client_location
-     *           If present, the client's current location. In the Spanner managed service,
-     *           this should be the name of a Google Cloud zone or region, such as
-     *           "us-central1". In Spanner Omni, this should correspond to a previously
-     *           created location.
+     *           If present, the client's current location. This should be the name of a
+     *           Google Cloud zone or region, such as "us-central1".
      *           If absent, the client's location will be assumed to be the same as the
      *           location of the server the client ends up connected to.
      *           Locations are primarily valuable for clients that connect from regions
@@ -465,10 +461,8 @@ class RoutingHint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If present, the client's current location. In the Spanner managed service,
-     * this should be the name of a Google Cloud zone or region, such as
-     * "us-central1". In Spanner Omni, this should correspond to a previously
-     * created location.
+     * If present, the client's current location. This should be the name of a
+     * Google Cloud zone or region, such as "us-central1".
      * If absent, the client's location will be assumed to be the same as the
      * location of the server the client ends up connected to.
      * Locations are primarily valuable for clients that connect from regions
@@ -483,10 +477,8 @@ class RoutingHint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If present, the client's current location. In the Spanner managed service,
-     * this should be the name of a Google Cloud zone or region, such as
-     * "us-central1". In Spanner Omni, this should correspond to a previously
-     * created location.
+     * If present, the client's current location. This should be the name of a
+     * Google Cloud zone or region, such as "us-central1".
      * If absent, the client's location will be assumed to be the same as the
      * location of the server the client ends up connected to.
      * Locations are primarily valuable for clients that connect from regions
