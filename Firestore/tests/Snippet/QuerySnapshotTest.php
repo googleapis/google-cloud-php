@@ -20,10 +20,12 @@ namespace Google\Cloud\Firestore\Tests\Snippet;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
+use Google\Cloud\Firestore\Tests\Unit\ServerStreamMockTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
+use Google\Cloud\Firestore\V1\RunQueryResponse;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -33,31 +35,35 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class QuerySnapshotTest extends SnippetTestCase
 {
+    use ServerStreamMockTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
-    private $connection;
+    private $gapicClient;
     private $snapshot;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->snapshot = TestHelpers::stub(QuerySnapshot::class, [
+        $this->gapicClient = $this->prophesize(GapicFirestoreClient::class);
+        $this->snapshot = new QuerySnapshot(
             $this->prophesize(Query::class)->reveal(),
             []
-        ], ['rows']);
+        );
     }
 
     public function testClass()
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([]));
 
-        $client = TestHelpers::stub(FirestoreClient::class);
-        $client->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->runQuery(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([new RunQueryResponse()]));
+
+        $client = new FirestoreClient([
+            'projectId' => 'test',
+            'firestoreClient' => $this->gapicClient->reveal()
+        ]);
 
         $snippet = $this->snippetFromClass(QuerySnapshot::class);
         $snippet->setLine(2, '');
@@ -69,11 +75,12 @@ class QuerySnapshotTest extends SnippetTestCase
     public function testClassIteratorExample()
     {
         $snippet = $this->snippetFromClass(QuerySnapshot::class, 1);
-        $snippet->addLocal('snapshot', $this->snapshot);
+        $snapshot = new QuerySnapshot(
+            $this->prophesize(Query::class)->reveal(),
+            [['name' => 'John']]
+        );
 
-        $this->snapshot->___setProperty('rows', [
-            ['name' => 'John']
-        ]);
+        $snippet->addLocal('snapshot', $snapshot);
 
         $res = $snippet->invoke();
         $this->assertEquals('John', trim($res->output()));

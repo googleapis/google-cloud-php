@@ -18,9 +18,9 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -32,39 +32,25 @@ class QuerySnapshotTest extends TestCase
 {
     use ProphecyTrait;
 
-    private $connection;
-    private $snapshot;
-
-    public function setUp(): void
-    {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->snapshot = TestHelpers::stub(QuerySnapshot::class, [
-            $this->prophesize(Query::class)->reveal(),
-            []
-        ], ['rows']);
-    }
-
     public function testIsEmptyReturnsFalse()
     {
-        $this->snapshot->___setProperty('rows', [[]]);
-
-        $this->assertFalse($this->snapshot->isEmpty());
+        $snapshot = $this->getQuerySnapshot([[]]);
+        $this->assertFalse($snapshot->isEmpty());
     }
 
     public function testIsEmptyReturnsTrue()
     {
-        $this->snapshot->___setProperty('rows', []);
-
-        $this->assertTrue($this->snapshot->isEmpty());
+        $snapshot = $this->getQuerySnapshot();
+        $this->assertTrue($snapshot->isEmpty());
     }
 
     public function testSize()
     {
-        $this->snapshot->___setProperty('rows', []);
-        $this->assertEquals(0, $this->snapshot->size());
+        $snapshot = $this->getQuerySnapshot();
+        $this->assertEquals(0, $snapshot->size());
 
-        $this->snapshot->___setProperty('rows', [[], []]);
-        $this->assertEquals(2, $this->snapshot->size());
+        $twoArraySnapshot = $this->getQuerySnapshot([[], []]);
+        $this->assertEquals(2, $twoArraySnapshot->size());
     }
 
     public function testRows()
@@ -72,9 +58,9 @@ class QuerySnapshotTest extends TestCase
         $rows = [
             'foo', 'bar'
         ];
-        $this->snapshot->___setProperty('rows', $rows);
+        $snapshot = $this->getQuerySnapshot($rows);
 
-        $this->assertEquals($rows, $this->snapshot->rows());
+        $this->assertEquals($rows, $snapshot->rows());
     }
 
     public function testIterator()
@@ -82,8 +68,14 @@ class QuerySnapshotTest extends TestCase
         $rows = [
             'foo', 'bar'
         ];
-        $this->snapshot->___setProperty('rows', $rows);
+        $snapshot = $this->getQuerySnapshot($rows);
 
-        $this->assertEquals($rows, iterator_to_array($this->snapshot));
+        $this->assertEquals($rows, iterator_to_array($snapshot));
+    }
+
+    private function getQuerySnapshot(array $rows = []): QuerySnapshot
+    {
+        $query = $this->prophesize(Query::class);
+        return new QuerySnapshot($query->reveal(), $rows);
     }
 }

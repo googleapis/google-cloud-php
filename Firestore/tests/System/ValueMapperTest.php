@@ -20,6 +20,7 @@ namespace Google\Cloud\Firestore\Tests\System;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\DocumentReference;
 
 /**
  * @group firestore
@@ -59,6 +60,10 @@ class ValueMapperTest extends FirestoreTestCase
             $this->assertTrue($expectation($snapshot[self::FIELD]));
         } elseif ($input instanceof Timestamp) {
             $this->assertEquals($input->formatAsString(), $snapshot[self::FIELD]->formatAsString());
+        } elseif ($input instanceof DocumentReference) {
+            $this->assertEquals($input->path(), $snapshot[self::FIELD]->path());
+            $this->assertEquals($input->parent(), $snapshot[self::FIELD]->parent());
+            $this->assertEquals($input->name(), $snapshot[self::FIELD]->name());
         } else {
             $this->assertEquals($input, $snapshot[self::FIELD]);
         }

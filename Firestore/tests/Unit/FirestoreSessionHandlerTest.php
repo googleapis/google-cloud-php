@@ -17,11 +17,25 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use ArrayIterator;
 use Exception;
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
+use Google\Cloud\Firestore\V1\BeginTransactionResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\CommitResponse;
+use Google\Cloud\Firestore\V1\Document;
+use Google\Cloud\Firestore\V1\RollbackRequest;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
+use Google\Cloud\Firestore\V1\RunQueryResponse;
+use Google\Cloud\Firestore\V1\Value;
+use Google\Cloud\Firestore\V1\Write;
 use InvalidArgumentException;
 use Iterator;
 use PHPUnit\Framework\TestCase;
@@ -34,6 +48,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class FirestoreSessionHandlerTest extends TestCase
 {
+    use GenerateProtoTrait;
     use ProphecyTrait;
 
     const SESSION_SAVE_PATH = 'sessions';
@@ -41,28 +56,35 @@ class FirestoreSessionHandlerTest extends TestCase
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
 
-    private $connection;
+    private $gapicClient;
     private $valueMapper;
     private $documents;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->gapicClient = $this->prophesize(FirestoreClient::class);
         $this->valueMapper = $this->prophesize(ValueMapper::class);
         $this->documents = $this->prophesize(Iterator::class);
     }
 
     public function testOpen()
     {
-        $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => null]);
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
         );
+
         $ret = $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $this->assertTrue($ret);
     }
@@ -71,15 +93,22 @@ class FirestoreSessionHandlerTest extends TestCase
     {
         $this->expectWarningUsingErrorhandler();
 
-        $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
             ->willThrow(new ServiceException(''));
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
         );
+
         $ret = $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $this->assertFalse($ret);
     }
@@ -88,32 +117,47 @@ class FirestoreSessionHandlerTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => null]);
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
         );
+
         $firestoreSessionHandler->open('invalid/savepath', self::SESSION_NAME);
         $firestoreSessionHandler->read('sessionid');
     }
 
     public function testClose()
     {
-        $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => 123]);
-        $this->connection->rollback(Argument::any())
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => 123]));
+
+        $this->gapicClient->rollback(Argument::type(RollbackRequest::class), Argument::any())
             ->shouldBeCalledTimes(1);
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
         );
+
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $ret = $firestoreSessionHandler->close();
         $this->assertTrue($ret);
@@ -121,25 +165,39 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testReadNothing()
     {
-        $this->documents->current()
-            ->shouldBeCalledTimes(1)
-            ->willReturn(null);
-        $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => null]);
-        $this->connection->batchGetDocuments([
-            'database' => $this->dbName(),
-            'documents' => [$this->documentName()],
-            'transaction' => null,
-        ])
-            ->shouldBeCalledTimes(1)
-            ->willReturn($this->documents->reveal());
+        $serverStream = $this->prophesize(ServerStream::class);
+        $serverStream->readAll()
+            ->willReturn(new ArrayIterator([
+                new BatchGetDocumentsResponse()
+            ]));
+
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
+
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                $this->assertEmpty($request->getTransaction());
+                $this->assertEquals([$this->documentName()], iterator_to_array($request->getDocuments()));
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn($serverStream->reveal());
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
         );
+
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $ret = $firestoreSessionHandler->read('sessionid');
 
@@ -150,22 +208,35 @@ class FirestoreSessionHandlerTest extends TestCase
     {
         $this->expectWarningUsingErrorhandler();
 
-        $this->connection->beginTransaction(['database' => $this->dbName()])
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )
             ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => null]);
-        $this->connection->batchGetDocuments([
-            'database' => $this->dbName(),
-            'documents' => [$this->documentName()],
-            'transaction' => null,
-        ])
-            ->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
+
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                $this->assertEquals([$this->documentName()], iterator_to_array($request->getDocuments()));
+                $this->assertEmpty($request->getTransaction());
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
             ->willThrow((new ServiceException('')));
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
         );
+
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $ret = $firestoreSessionHandler->read('sessionid');
 
@@ -174,31 +245,60 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testReadEntity()
     {
-        $this->documents->current()
-            ->shouldBeCalledTimes(1)
-            ->willReturn([
-                'found' => [
-                    'createTime' => date('Y-m-d'),
-                    'updateTime' => date('Y-m-d'),
-                    'readTime' => date('Y-m-d'),
-                    'fields' => ['data' => 'sessiondata']
-                ]
-            ]);
-        $this->valueMapper->decodeValues(['data' => 'sessiondata'])
+        $serverStream = $this->prophesize(ServerStream::class);
+        $serverStream->readAll()
+            ->willReturn(new ArrayIterator([
+                self::generateProto(BatchGetDocumentsResponse::class, [
+                    'found' => [
+                        'fields' => [
+                            'data' => [
+                                'stringValue' => 'sessiondata'
+                            ]
+                        ]
+                    ]
+                ])
+            ]));
+
+        // $this->documents->current()
+        //     ->shouldBeCalledTimes(1)
+        //     ->willReturn([
+        //         'found' => [
+        //             'createTime' => date('Y-m-d'),
+        //             'updateTime' => date('Y-m-d'),
+        //             'readTime' => date('Y-m-d'),
+        //             'fields' => ['data' => 'sessiondata']
+        //         ]
+        //     ]);
+
+        $this->valueMapper->decodeValues(['data' => ['stringValue' => 'sessiondata']])
             ->shouldBeCalledTimes(1)
             ->willReturn(['data' => 'sessiondata']);
-        $this->connection->beginTransaction(['database' => $this->dbName()])
+
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )
             ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => null]);
-        $this->connection->batchGetDocuments([
-            'database' => $this->dbName(),
-            'documents' => [$this->documentName()],
-            'transaction' => null,
-        ])
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
+
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                $this->assertEquals([$this->documentName()], iterator_to_array($request->getDocuments()));
+                $this->assertEmpty($request->getTransaction());
+
+                return true;
+            }),
+            Argument::any()
+        )
             ->shouldBeCalledTimes(1)
-            ->willReturn($this->documents->reveal());
+            ->willReturn($serverStream->reveal());
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -212,36 +312,55 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testWrite()
     {
-        $phpunit = $this;
-        $this->valueMapper->encodeValues(Argument::type('array'))
-            ->will(function ($args) use ($phpunit) {
-                $phpunit->assertEquals('sessiondata', $args[0]['data']);
-                $phpunit->assertTrue(is_int($args[0]['t']));
-                return ['data' => ['stringValue' => 'sessiondata']];
-            });
-        $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => null]);
-        $this->connection->commit([
-            'database' => $this->dbName(),
-            'writes' => [
-                [
-                    'update' => [
-                        'name' => $this->documentName(),
-                        'fields' => [
-                            'data' => ['stringValue' => 'sessiondata']
+        $this->valueMapper->encodeValues(
+            Argument::that(function (array $array) {
+                $this->assertEquals('sessiondata', $array['data']);
+                $this->assertTrue(is_int($array['t']));
+                return true;
+            })
+        )
+            ->willReturn(['data' => ['stringValue' => 'sessiondata']]);
+
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '']));
+
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+
+                $expectedWrites = [
+                    self::generateProto(Write::class, [
+                        'update' => [
+                            'name' => $this->documentName(),
+                            'fields' => [
+                                'data' => ['stringValue' => 'sessiondata']
+                            ]
                         ]
-                    ]
-                ]
-            ]
-        ])
-            ->shouldBeCalledTimes(1);
+                    ])
+                ];
+
+                $writes = iterator_to_array($request->getWrites());
+
+                $this->assertEquals($expectedWrites, $writes);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(CommitResponse::class, []));
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
         );
+
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $ret = $firestoreSessionHandler->write('sessionid', 'sessiondata');
         $firestoreSessionHandler->close();
@@ -254,25 +373,39 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->expectWarningUsingErrorhandler();
 
         $phpunit = $this;
-        $this->valueMapper->encodeValues(Argument::type('array'))
-            ->will(function ($args) use ($phpunit) {
-                $phpunit->assertEquals('sessiondata', $args[0]['data']);
-                $phpunit->assertTrue(is_int($args[0]['t']));
-                return ['data' => ['stringValue' => 'sessiondata']];
-            });
-        $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => 123]);
-        $this->connection->rollback([
-            'database' => $this->dbName(),
-            'transaction' => 123
-        ])
-            ->shouldBeCalledTimes(1);
-        $this->connection->commit(Argument::any())
+        $this->valueMapper->encodeValues(
+            Argument::that(function (array $array) {
+                $this->assertEquals('sessiondata', $array['data']);
+                $this->assertTrue(is_int($array['t']));
+
+                return true;
+            })
+        )->willReturn(['data' => ['stringValue' => 'sessiondata']]);
+
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => 123]));
+
+        $this->gapicClient->rollback(
+            Argument::that(function (RollbackRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                $this->assertEquals('123', $request->getTransaction());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1);
+
+        $this->gapicClient->commit(Argument::any(), Argument::any())
             ->shouldBeCalledTimes(1)
             ->willThrow((new ServiceException('')));
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -287,21 +420,34 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testDestroy()
     {
-        $this->connection->beginTransaction(['database' => $this->dbName()])
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )
             ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => 123]);
-        $this->connection->commit([
-            'database' => $this->dbName(),
-            'writes' => [
-                [
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => 123]));
+
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                $this->assertEquals('123', $request->getTransaction());
+
+                $expectedWrites = self::generateProto(Write::class, [
                     'delete' => $this->documentName()
-                ]
-            ],
-            'transaction' => 123
-        ])
-            ->shouldBeCalledTimes(1);
+                ]);
+
+                $this->assertEquals([$expectedWrites], iterator_to_array($request->getWrites()));
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn(new CommitResponse());
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -317,19 +463,30 @@ class FirestoreSessionHandlerTest extends TestCase
     {
         $this->expectWarningUsingErrorhandler();
 
-        $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => 123]);
-        $this->connection->commit(Argument::any())
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => 123]));
+
+        $this->gapicClient->commit(Argument::any(), Argument::any())
             ->shouldBeCalledTimes(1)
             ->willThrow(new ServiceException(''));
-        $this->connection->rollback([
-            'database' => $this->dbName(),
-            'transaction' => 123
-        ])
-            ->shouldBeCalledTimes(1);
+
+        $this->gapicClient->rollback(
+            Argument::that(function (RollbackRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                $this->assertEquals('123', $request->getTransaction());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1);
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -343,16 +500,24 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testDefaultGcDoesNothing()
     {
-        $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => 123]);
-        $this->connection->commit()->shouldNotBeCalled();
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => 123]));
+
+        $this->gapicClient->commit()->shouldNotBeCalled();
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
         );
+
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $ret = $firestoreSessionHandler->gc(100);
 
@@ -361,59 +526,63 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testGc()
     {
-        $phpunit = $this;
-        $this->documents->valid()
-            ->shouldBeCalledTimes(2)
-            ->willReturn(true, false);
-        $this->documents->current()
-            ->shouldBeCalledTimes(1)
-            ->willReturn([
-                'document' => [
-                    'name' => $this->documentName(),
-                    'fields' => [],
-                    'createTime' => date('Y-m-d'),
-                    'updateTime' => date('Y-m-d'),
-                ],
-                'readTime' => date('Y-m-d'),
-            ]);
-        $this->documents->next()
-            ->shouldBeCalledTimes(1);
-        $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(2)
-            ->willReturn(['transaction' => 123]);
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->will(function ($args) use ($phpunit) {
-                $options = $args[0];
-                $phpunit->assertEquals(
-                    $phpunit->dbName() . '/documents',
-                    $options['parent']
-                );
-                $phpunit->assertEquals(499, $options['structuredQuery']['limit']);
-                $phpunit->assertEquals(
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(2)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => '123']));
+
+
+        $serverStream = $this->prophesize(ServerStream::class);
+        $serverStream->readAll()->willReturn(new ArrayIterator([
+            new RunQueryResponse([
+                'document' => new Document(['name' => $this->documentName()])
+            ])
+        ]));
+
+        $this->gapicClient->runQuery(
+            Argument::that(function (RunQueryRequest $request) {
+                $this->assertEquals($this->dbName() . '/documents', $request->getParent());
+                $this->assertEquals(499, $request->getStructuredQuery()->getLimit()->getValue());
+                $this->assertEquals(
                     self::SESSION_SAVE_PATH . ':' . self::SESSION_NAME,
-                    $options['structuredQuery']['from'][0]['collectionId']
+                    $request->getStructuredQuery()->getFrom()[0]->getCollectionId()
                 );
-                $phpunit->assertEquals(123, $options['transaction']);
-                return $phpunit->documents->reveal();
-            });
+                $this->assertEquals('123', $request->getTransaction());
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn($serverStream->reveal());
+
         $this->valueMapper->decodeValues([])
             ->shouldBeCalledTimes(1)
             ->willReturn(['data' => 'sessiondata']);
+
         $this->valueMapper->encodeValue(Argument::type('integer'))
-            ->shouldBeCalledTimes(1);
-        $this->connection->commit([
-            'database' => $this->dbName(),
-            'writes' => [
-                [
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['integerValue' => 10]);
+
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                $expectedWrites = self::generateProto(Write::class, [
                     'delete' => $this->documentName()
-                ]
-            ],
-            'transaction' => 123
-        ])
-            ->shouldBeCalledTimes(1);
+                ]);
+                $this->assertEquals([$expectedWrites], iterator_to_array($request->getWrites()));
+                $this->assertEquals('123', $request->getTransaction());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willReturn(self::generateProto(CommitResponse::class, []));
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE,
@@ -430,14 +599,25 @@ class FirestoreSessionHandlerTest extends TestCase
     {
         $this->expectWarningUsingErrorhandler();
 
-        $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(2)
-            ->willReturn(['transaction' => 123]);
-        $this->connection->runQuery(Argument::any())
+        $this->valueMapper->encodeValue(Argument::type('integer'))
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['integerValue' => 10]);
+
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals($this->dbName(), $request->getDatabase());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(2)
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => 123]));
+
+        $this->gapicClient->runQuery(Argument::any(), Argument::any())
             ->shouldBeCalledTimes(1)
             ->willThrow(new ServiceException(''));
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE,

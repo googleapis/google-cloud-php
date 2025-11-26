@@ -23,7 +23,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group firestore
- * @group firestore-writebatch
  */
 class RateLimiterTest extends TestCase
 {
