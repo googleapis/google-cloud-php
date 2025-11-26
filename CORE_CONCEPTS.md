@@ -36,7 +36,7 @@ extension=protobuf.so
 The client library automatically detects if the `grpc` extension is enabled and uses it by default. You can force a specific transport using the `transport` option when creating a client.
 
 ```php
-use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
 
 $publisher = new PublisherClient([
     'transport' => 'grpc' // or 'rest'
@@ -47,19 +47,25 @@ $publisher = new PublisherClient([
 
 Most list methods in the Google Cloud PHP library return an instance of `Google\ApiCore\PageIterator`. This allows you to iterate over results without manually managing page tokens.
 
-### Automatic Iteration
-
 The easiest way to handle pagination is to simply `foreach` over the response. The library automatically fetches new pages in the background as you iterate.
 
 ```php
-use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\ListSecretsRequest;
 
-$storage = new StorageClient();
-$bucket = $storage->bucket('my-bucket');
+$secretManager = new SecretManagerServiceClient();
 
-// Automatically fetches subsequent pages of objects
-foreach ($bucket->objects() as $object) {
-    printf("Object: %s\n", $object->name());
+// Prepare the request
+$request = (new ListSecretsRequest())
+    ->setParent('projects/my-project');
+
+// Call the API
+// This returns a PagedListResponse, which implements IteratorAggregate
+$response = $secretManager->listSecrets($request);
+
+// Automatically fetches subsequent pages of secrets
+foreach ($response as $secret) {
+    printf("Secret: %s\n", $secret->getName());
 }
 ```
 
@@ -68,21 +74,24 @@ foreach ($bucket->objects() as $object) {
 If you need to control pagination manually (e.g., for a web API that sends tokens to a frontend), you can access the `nextPageToken`.
 
 ```php
-$options = ['maxResults' => 10];
+// Prepare request with page size and optional token
+$request = (new ListSecretsRequest())
+    ->setParent('projects/my-project')
+    ->setPageSize(10);
 
 // Check if we have a token from a previous request
 if (isset($_GET['page_token'])) {
-    $options['pageToken'] = $_GET['page_token'];
+    $request->setPageToken($_GET['page_token']);
 }
 
-$objects = $bucket->objects($options);
+$response = $secretManager->listSecrets($request);
 
-foreach ($objects as $object) {
+foreach ($response as $secret) {
     // Process current page items
 }
 
 // Get the token for the next page (null if no more pages)
-$nextToken = $objects->nextResultToken();
+$nextToken = $response->getPage()->getNextPageToken();
 ```
 
 ## 3. Long Running Operations (LROs)
@@ -117,10 +126,10 @@ $operation = $instancesClient->insert($request);
 $operation->pollUntilComplete();
 
 if ($operation->operationSucceeded()) {
+    // The return value of OperationResponse::getResult is documented in the Long Running Operation method
+    // which returned the OperationResponse. It will be in the format `@return OperationResponse<Instance>`.
     /** @var Instance $result */
     $result = $operation->getResult();
-    // The return value of OperationResponse::getResult is documented in the Long Running Operation method
-    // which returned the OperationResponse. It will be in the format `@return OperationResponse<Instance>`
 } else {
     /** @var Status $error */
     $error = $operation->getError();
