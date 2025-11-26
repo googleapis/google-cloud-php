@@ -39,6 +39,7 @@ class DocFxCommand extends Command
 {
     use XrefValidationTrait;
 
+    private string $componentName;
     private array $composerJson;
     private array $repoMetadataJson;
 
@@ -133,9 +134,10 @@ class DocFxCommand extends Command
         }
 
         $componentPath = $input->getOption('path');
-        $componentName = rtrim($input->getOption('component'), '/') ?: basename($componentPath ?: getcwd());
-        $component = new Component($componentName, $componentPath);
-        $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $componentName));
+        $this->componentName = rtrim($input->getOption('component'), '/') ?: basename(getcwd());
+        $component = new Component($this->componentName, $componentPath);
+        $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $this->componentName));
+
         $xml = $input->getOption('xml');
         if (empty($xml)) {
             $output->write('Running phpdoc to generate structure.xml... ');
@@ -150,7 +152,13 @@ class DocFxCommand extends Command
                 : sprintf('Default structure.xml file "%s" not found.', $xml));
         }
 
-        $output->write(sprintf('Writing output to <fg=white>%s</>... ', $outDir));
+        if (!is_dir($outDir)) {
+            if (!mkdir($outDir)) {
+                throw new RuntimeException('out directory doesn\'t exist and cannot be created');
+            }
+        }
+
+        $output->writeln(sprintf('Writing output to <fg=white>%s</>... ', $outDir));
 
         $valid = true;
         $tocItems = [];
@@ -185,6 +193,7 @@ class DocFxCommand extends Command
 
         // exit early if the docs aren't valid
         if (!$valid) {
+            $output->writeln('<error>Docs validation failed - invalid reference</>');
             return 1;
         }
 
@@ -219,7 +228,6 @@ class DocFxCommand extends Command
         $tocYaml = Yaml::dump([$componentToc], $inline, $indent, $flags);
         $outFile = sprintf('%s/toc.yml', $outDir);
         file_put_contents($outFile, $tocYaml);
-
         $output->writeln('Done.');
 
         if ($metadataVersion = $input->getOption('metadata-version')) {
@@ -278,6 +286,7 @@ class DocFxCommand extends Command
         $valid = true;
         $emptyRef = '<options=bold>empty</>';
         $isGenerated = $class->isProtobufMessageClass() || $class->isProtobufEnumClass() || $class->isServiceClass();
+        $warnings = [];
         foreach (array_merge([$class], $class->getMethods(), $class->getConstants()) as $node) {
             foreach ($this->getInvalidXrefs($node->getContent()) as $invalidRef) {
                 if (isset(self::$allowedReferenceFailures[$node->getFullname()])
@@ -288,10 +297,16 @@ class DocFxCommand extends Command
                 $output->write(sprintf("\n<error>Invalid xref in %s: %s</>", $node->getFullname(), $invalidRef));
                 $valid = false;
             }
-            foreach ($this->getBrokenXrefs($node->getContent()) as $brokenRef) {
-                $output->writeln(
-                    sprintf('<comment>Broken xref in %s: %s</>', $node->getFullname(), $brokenRef ?: $emptyRef),
-                    $isGenerated ? OutputInterface::VERBOSITY_VERBOSE : OutputInterface::VERBOSITY_NORMAL
+            foreach ($this->getBrokenXrefs($node->getContent()) as [$brokenRef, $brokenRefText]) {
+                $brokenRef = $isGenerated ? $this->classnameToProtobufPath((string) $brokenRef, $brokenRefText) : $brokenRef;
+                $nodePath = $isGenerated
+                    ? $class->getProtoFileName($brokenRef) . ' (' . $node->getProtoPath($class->getName()) . ')'
+                    : $node->getFullname();
+                $warnings[] = sprintf(
+                    '[%s] Broken xref in <comment>%s</>: <options=bold>%s</>',
+                    $this->componentName,
+                    $nodePath,
+                    str_replace("\n", '', $brokenRef) ?: $emptyRef
                 );
                 // generated classes are allowed to have broken xrefs
                 if ($isGenerated) {
@@ -300,8 +315,8 @@ class DocFxCommand extends Command
                 $valid = false;
             }
         }
-        if (!$valid) {
-            $output->writeln('');
+        foreach (array_unique($warnings) as $warning) {
+            $output->writeln($warning, $isGenerated ? OutputInterface::VERBOSITY_VERBOSE : OutputInterface::VERBOSITY_NORMAL);
         }
         return $valid;
     }
