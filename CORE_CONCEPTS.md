@@ -226,7 +226,8 @@ foreach ($queryResults as $row) {
 
 ### Server-Side Streaming Example (Low-Level)
 
-gRPC Streaming is  supported in the generated clients as well. An example of this is in the **BigQuery Storage API**. This `readRows` method returns a `ServerStream`.
+The generated clients also supoprt gRPC Streaming. An example of this is in the
+**BigQuery Storage API**. This `readRows` method returns a `ServerStream`.
 
 Documentation for ServerStream: https://docs.cloud.google.com/php/docs/reference/gax/latest/ServerStream
 
@@ -247,10 +248,9 @@ $stream = $readClient->readRows($request);
 // Read from the stream
 foreach ($stream->readAll() as $response) {
     // $response is a ReadRowsResponse object
-    foreach ($response->getRows()->getSerializedRows() as $row) {
-        // Process binary row data
-        printf("Row size: %d bytes\n", strlen($row));
-    }
+    $rowData = $response->getAvroRows()->getSerializedBinaryRows();
+    // Process binary row data
+    printf("Row size: %d bytes\n", strlen($rowData));
 }
 ```
 
@@ -274,10 +274,12 @@ If you are using **Cloud Speech-to-Text** (or other Bidirectional APIs), you wil
 The protocol requires you to send a configuration request first, followed by audio data requests.
 
 ```php
-use Google\Cloud\Speech\V1\Client\SpeechClient;
-use Google\Cloud\Speech\V1\RecognitionConfig;
-use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
-use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
+use Google\Cloud\Speech\V2\ExplicitDecodingConfig;
+use Google\Cloud\Speech\V2\ExplicitDecodingConfig\AudioEncoding;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
+use Google\Cloud\Speech\V2\RecognitionConfig;
+use Google\Cloud\Speech\V2\StreamingRecognitionConfig;
+use Google\Cloud\Speech\V2\StreamingRecognizeRequest;
 
 $client = new SpeechClient();
 
@@ -286,22 +288,26 @@ $stream = $client->streamingRecognize();
 
 // 1. Send the Initial Configuration Request
 $recognitionConfig = (new RecognitionConfig())
-    ->setEncoding(RecognitionConfig\AudioEncoding::LINEAR16)
-    ->setSampleRateHertz(16000)
-    ->setLanguageCode('en-US');
+    ->setExplicitDecodingConfig(new ExplicitDecodingConfig([
+        'encoding' => AudioEncoding::LINEAR16,
+        'sample_rate_hertz' => 16000,
+        'audio_channel_count' => 1,
+    ]));
 
 $streamingConfig = (new StreamingRecognitionConfig())
     ->setConfig($recognitionConfig);
 
 $configRequest = (new StreamingRecognizeRequest())
+    ->setRecognizer($recognizerName)
     ->setStreamingConfig($streamingConfig);
 
+// set the streaming request
 $stream->write($configRequest);
 
 // 2. Send Audio Data Request(s)
 // In a real app, you might loop through audio chunks here
 $audioRequest = (new StreamingRecognizeRequest())
-    ->setAudioContent(file_get_contents('audio.raw'));
+    ->setAudio(file_get_contents('audio.raw'));
 
 $stream->write($audioRequest);
 

@@ -17,9 +17,19 @@
 
 namespace Google\Cloud\Dev\Tests\Snippet;
 
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\ServerStream;
+use Google\Cloud\BigQuery\BigQueryClient;
+use Google\Cloud\BigQuery\QueryJobConfiguration;
+use Google\Cloud\BigQuery\QueryResults;
+use Google\Cloud\BigQuery\Storage\V1\AvroRows;
+use Google\Cloud\BigQuery\Storage\V1\Client\BigQueryReadClient;
+use Google\Cloud\BigQuery\Storage\V1\ReadRowsRequest;
+use Google\Cloud\BigQuery\Storage\V1\ReadRowsResponse;
+use Google\Cloud\BigQuery\Storage\V1\RowBlock;
 use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\InsertInstanceRequest;
 use Google\Cloud\Compute\V1\Instance;
@@ -28,6 +38,15 @@ use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
 use Google\Cloud\SecretManager\V1\ListSecretsRequest;
 use Google\Cloud\SecretManager\V1\Secret;
+use Google\Cloud\SecretManager\V1\UpdateSecretRequest;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
+use Google\Cloud\Speech\V2\RecognitionConfig;
+use Google\Cloud\Speech\V2\SpeechRecognitionAlternative;
+use Google\Cloud\Speech\V2\StreamingRecognitionConfig;
+use Google\Cloud\Speech\V2\StreamingRecognitionResult;
+use Google\Cloud\Speech\V2\StreamingRecognizeRequest;
+use Google\Cloud\Speech\V2\StreamingRecognizeResponse;
+use Google\Protobuf\FieldMask;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -139,7 +158,7 @@ EOF
         $this->assertEquals('next-page-token', $nextToken);
     }
 
-    public function testPollingForCompletion()
+    public function testLROPollingForCompletion()
     {
         $snippet = $this->snippetFromMarkdown(
             self::CORE_CONCEPTS_FILE,
@@ -178,5 +197,180 @@ EOF
 
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(Instance::class, $res->returnVal());
+    }
+
+    public function testLROAsyncNonBreakingCheck()
+    {
+        $snippet = $this->snippetFromMarkdown(
+            self::CORE_CONCEPTS_FILE,
+            'Async / Non-Blocking Check'
+        );
+        $snippet->replace(
+            '$operation = $client->longRunningMethod(...);',
+            '$operation = $client->insert(new InsertInstanceRequest());'
+        );
+
+        $client = $this->prophesize(InstancesClient::class);
+        $operation = $this->prophesize(OperationResponse::class);
+        $operation->getName()->willReturn('my-operation');
+        $operation->isDone()->willReturn(true);
+
+        $client->insert(Argument::type(InsertInstanceRequest::class))
+            ->shouldBeCalled()
+            ->willReturn($operation->reveal());
+        $client->resumeOperation('my-operation', 'insert')->shouldBeCalled()->willReturn($operation->reveal());
+
+        $snippet->addLocal('client', $client->reveal());
+        $snippet->addLocal('methodName', 'insert');
+        $snippet->addUse(InsertInstanceRequest::class);
+
+        $snippet->invoke();
+    }
+
+    public function testConstructingFieldMasks()
+    {
+        $snippet = $this->snippetFromMarkdown(
+            self::CORE_CONCEPTS_FILE,
+            'Constructing a FieldMask'
+        );
+
+        $client = $this->prophesize(SecretManagerServiceClient::class);
+
+        $client->updateSecret(Argument::that(function (UpdateSecretRequest $request) {
+            $secret = $request->getSecret();
+            $this->assertEquals('projects/my-project/secrets/my-secret', $secret->getName());
+            $this->assertEquals(['env' => 'production'], iterator_to_array($secret->getLabels()));
+            $updateMask = $request->getUpdateMask();
+            $this->assertEquals(['labels'], iterator_to_array($updateMask->getPaths()));
+            return true;
+        }))->shouldBeCalledOnce();
+
+        $snippet->replace(
+            '$client = new SecretManagerServiceClient();',
+            ''
+        );
+        $snippet->addLocal('client', $client->reveal());
+
+        $snippet->invoke();
+    }
+
+    public function testServerStreamingHighLevel()
+    {
+        $snippet = $this->snippetFromMarkdown(
+            self::CORE_CONCEPTS_FILE,
+            'Server-Side Streaming Example (High-Level)'
+        );
+
+        $config = $this->prophesize(QueryJobConfiguration::class);
+        $results = $this->prophesize(QueryResults::class);
+        $words = [['word' => 'hello'], ['word' => 'world']];
+        $results->getIterator()->willReturn(new \ArrayIterator($words));
+
+        $client = $this->prophesize(BigQueryClient::class);
+        $client->query('SELECT * FROM `bigquery-public-data.samples.shakespeare`')
+            ->shouldBeCalledOnce()
+            ->willReturn($config->reveal());
+        $client->runQuery($config->reveal())
+            ->shouldBeCalledOnce()
+            ->willReturn($results->reveal());
+
+        $snippet->replace(
+            '$bigQuery = new BigQueryClient();',
+            ''
+        );
+        $snippet->addLocal('bigQuery', $client->reveal());
+
+        $res = $snippet->invoke();
+
+        $this->assertEquals(
+            implode('', array_map(fn ($w) => print_r($w, true), $words)),
+            $res->output()
+        );
+    }
+
+    public function testServerStreamingLowLevel()
+    {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('requires grpc extension to be enabled');
+        }
+
+        $snippet = $this->snippetFromMarkdown(
+            self::CORE_CONCEPTS_FILE,
+            'Server-Side Streaming Example (Low-Level)'
+        );
+
+        $stream = $this->prophesize(ServerStream::class);
+        $response = new ReadRowsResponse([
+            'avro_rows' => new AvroRows([
+                'serialized_binary_rows' => 'serializedbinaryrowstring'
+            ])
+        ]);
+        $stream->readAll()->willReturn(new \ArrayIterator([$response]));
+
+        $client = $this->prophesize(BigQueryReadClient::class);
+        $client->readRows(Argument::type(ReadRowsRequest::class))
+            ->shouldBeCalledOnce()
+            ->willReturn($stream->reveal());
+
+        $snippet->replace(
+            '$readClient = new BigQueryReadClient();',
+            ''
+        );
+        $snippet->addLocal('readClient', $client->reveal());
+        $snippet->addUse(ReadRowsResponse::class);
+        $snippet->addUse(RowBlock::class);
+
+        $res = $snippet->invoke();
+
+        $this->assertEquals('Row size: 25 bytes' . PHP_EOL, $res->output());
+    }
+
+    public function testBidiStreaming()
+    {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('requires grpc extension to be enabled');
+        }
+
+        $snippet = $this->snippetFromMarkdown(
+            self::CORE_CONCEPTS_FILE,
+            'gRPC Bidirectional Streaming',
+            1
+        );
+
+        $result = new StreamingRecognitionResult([
+            'alternatives' => [
+                new SpeechRecognitionAlternative(['transcript' => 'hello world'])
+            ]
+        ]);
+        $response = new StreamingRecognizeResponse(['results' => [$result]]);
+
+        $stream = $this->prophesize(BidiStream::class);
+        $stream->write(Argument::that(function (StreamingRecognizeRequest $request) {
+            return $request->getStreamingConfig() || $request->getAudio();
+        }))->shouldBeCalledTimes(2);
+
+        $stream->closeWriteAndReadAll()
+            ->shouldBeCalledOnce()
+            ->willReturn(new \ArrayIterator([$response]));
+
+        $client = $this->prophesize(SpeechClient::class);
+        $client->streamingRecognize(Argument::any())
+            ->shouldBeCalledOnce()
+            ->willReturn($stream->reveal());
+
+        $snippet->replace(
+            '$client = new SpeechClient();',
+            ''
+        );
+        $snippet->replace(
+            "file_get_contents('audio.raw')",
+            "'fake audio content'"
+        );
+
+        $snippet->addLocal('client', $client->reveal());
+        $snippet->addLocal('recognizerName', 'my-recognizer');
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Transcript: hello world' . PHP_EOL, $res->output());
     }
 }
