@@ -48,6 +48,7 @@ class RepoInfoCommand extends Command
             ->addOption('page', 'p', InputOption::VALUE_REQUIRED, 'page to start from', '1')
             ->addOption('results-per-page', 'r', InputOption::VALUE_REQUIRED, 'results to display per page (0 for all)', '10')
             ->addOption('fix', 'f', InputOption::VALUE_NONE, 'whether to prompt to fix non-compliant repos')
+            ->addOption('update-packagist-token', '', InputOption::VALUE_REQUIRED, 'update the packagist token')
         ;
     }
 
@@ -100,6 +101,18 @@ class RepoInfoCommand extends Command
                 }
                 if ($refreshDetails) {
                     $details = $this->getRepoDetails($component);
+                }
+            }
+            if ($packagistToken = $input->getOption('update-packagist-token')) {
+                $repoName = 'googleapis/' . $details['name'];
+                $packagistUrl1 = 'https://packagist.org/api/github';
+                $packagistUrl2 = 'https://packagist.org/api/update-package?username=google-cloud';
+                if ($this->github->updateWebhookSecret($repoName, $packagistUrl1, $packagistToken)
+                    || $this->github->updateWebhookSecret($repoName, $packagistUrl2, $packagistToken)
+                ) {
+                    $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook updated.', $repoName));
+                } else {
+                    $output->writeln(sprintf('<error>%s</error>: Unable to update packagist token.', $repoName));
                 }
             }
             $table->addRow($details);

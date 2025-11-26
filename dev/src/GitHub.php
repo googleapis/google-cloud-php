@@ -36,6 +36,8 @@ class GitHub
     const GITHUB_RELEASE_UPDATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/%s';
     const GITHUB_RELEASE_GET_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
     const GITHUB_WEBHOOK_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
+    const GITHUB_WEBHOOKS_LIST_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks';
+    const GITHUB_WEBHOOK_UPDATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/hooks/%s';
     private const GITHUB_TEAMS_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/teams';
     private const GITHUB_TEAMS_ADD_ENDPOINT = 'https://api.github.com/orgs/%s/teams/%s/repos/%s';
 
@@ -406,6 +408,76 @@ class GitHub
             $this->logException($e);
             return false;
         }
+    }
+
+    /**
+     * Update webhook
+     *
+     * @param string $target the target org/repo
+     * @param string $webhookUrl the webhook URL to update
+     * @param string $secret the new secret
+     *
+     * @return bool
+     */
+    public function updateWebhookSecret(
+        string $target,
+        string $webhookUrl,
+        string $secret
+    ): bool {
+        // Get all webhooks for the repo
+        try {
+            $res = $this->client->get(sprintf(
+                self::GITHUB_WEBHOOKS_LIST_ENDPOINT,
+                $this->cleanTarget($target)
+            ), [
+                'auth' => [null, $this->token],
+            ]);
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return false;
+        }
+
+        $webhooks = json_decode((string) $res->getBody(), true);
+
+        // Find the webhook with the matching URL
+        $webhookId = null;
+        foreach ($webhooks as $webhook) {
+            if (isset($webhook['config']['url']) && $webhook['config']['url'] === $webhookUrl) {
+                $webhookId = $webhook['id'];
+                break;
+            }
+        }
+
+        if (!$webhookId) {
+            if ($this->output) {
+                $this->output->writeln('<error>Webhook not found for URL: ' . $webhookUrl . '</error>');
+            }
+            return false;
+        }
+
+        // Update the webhook secret
+        try {
+            $res = $this->client->patch(sprintf(
+                self::GITHUB_WEBHOOK_UPDATE_ENDPOINT,
+                $this->cleanTarget($target),
+                $webhookId
+            ), [
+                'auth' => [null, $this->token],
+                'json' => [
+                    'config' =>  [
+                        'url' => $webhookUrl,
+                        'content_type' => 'json',
+                        'secret' => $secret,
+                        'insecure_ssl' => false,
+                    ],
+                ],
+            ]);
+        } catch (\Exception $e) {
+            $this->logException($e);
+            return false;
+        }
+
+        return $res->getStatusCode() === 200;
     }
 
     /**
