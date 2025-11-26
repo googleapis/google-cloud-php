@@ -190,6 +190,19 @@ class Snippet implements \JsonSerializable
     }
 
     /**
+     * Add a local variables to make available in the snippet execution scope.
+     *
+     * @param array<string, mixed> $locals
+     * @return void
+     */
+    public function addLocals(array $locals)
+    {
+        foreach ($locals as $name => $value) {
+            $this->addLocal($name, $value);
+        }
+    }
+
+    /**
      * Add a `use` statement for a class.
      *
      * @param string $name The class name to import.

@@ -26,12 +26,10 @@ use phpDocumentor\Reflection\Php\Factory\Argument;
 class ReflectionHandlerFactory
 {
     /**
-     * @return ReflectionHandlerV5
+     * @return ReflectionHandlerV6
      */
     public static function create()
     {
-        return class_exists(Argument::class)
-            ? new ReflectionHandlerV5()
-            : new ReflectionHandlerV6();
+        return new ReflectionHandlerV6();
     }
 }
