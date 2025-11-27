@@ -32,6 +32,14 @@ class Bigtable extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.BigtableMetadata bigtable_metadata = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $bigtable_metadata = null;
+    /**
+     * Optional. The zone where the underlying Bigtable cluster for the primary
+     * Bigtable instance will be provisioned. Only the zone must be provided.
+     * For example, only "us-central1-a" should be provided.
+     *
+     * Generated from protobuf field <code>string zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $zone = '';
 
     /**
      * Constructor.
@@ -46,6 +54,10 @@ class Bigtable extends \Google\Protobuf\Internal\Message
      *           not.
      *     @type \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable\BigtableMetadata $bigtable_metadata
      *           Output only. Metadata of the Bigtable instance. Output only.
+     *     @type string $zone
+     *           Optional. The zone where the underlying Bigtable cluster for the primary
+     *           Bigtable instance will be provisioned. Only the zone must be provided.
+     *           For example, only "us-central1-a" should be provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -149,6 +161,36 @@ class Bigtable extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable\BigtableMetadata::class);
         $this->bigtable_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The zone where the underlying Bigtable cluster for the primary
+     * Bigtable instance will be provisioned. Only the zone must be provided.
+     * For example, only "us-central1-a" should be provided.
+     *
+     * Generated from protobuf field <code>string zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getZone()
+    {
+        return $this->zone;
+    }
+
+    /**
+     * Optional. The zone where the underlying Bigtable cluster for the primary
+     * Bigtable instance will be provisioned. Only the zone must be provided.
+     * For example, only "us-central1-a" should be provided.
+     *
+     * Generated from protobuf field <code>string zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->zone = $var;
 
         return $this;
     }
