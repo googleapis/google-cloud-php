@@ -51,6 +51,8 @@ class CallTraitStub
 {
     use CallTrait;
 
+    public $info;
+
     public function __construct(array $data)
     {
         $this->info = $data;

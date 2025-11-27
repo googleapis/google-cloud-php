@@ -37,6 +37,9 @@ class StreamWrapperTest extends TestCase
 {
     use ProphecyTrait;
 
+    public $bucket;
+    public $client;
+
     public function setUp(): void
     {
         $this->client = $this->prophesize(StorageClient::class);
