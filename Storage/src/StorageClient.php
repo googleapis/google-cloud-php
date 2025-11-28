@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *
@@ -48,11 +47,11 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    public const VERSION = '1.48.7';
+    const VERSION = '1.48.7';
 
-    public const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
-    public const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
-    public const READ_WRITE_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
+    const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
+    const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
+    const READ_WRITE_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
 
     /**
      * Retry strategy to signify that we never want to retry an operation
@@ -61,16 +60,16 @@ class StorageClient
      * We can set $options['retryStrategy'] to one of "always", "never" and
      * "idempotent".
      */
-    public const RETRY_NEVER = 'never';
+    const RETRY_NEVER = 'never';
     /**
      * Retry strategy to signify that we always want to retry an operation.
      */
-    public const RETRY_ALWAYS = 'always';
+    const RETRY_ALWAYS = 'always';
     /**
      * This is the default. This signifies that we want to retry an operation
      * only if it is retryable and the error is retryable.
      */
-    public const RETRY_IDEMPOTENT = 'idempotent';
+    const RETRY_IDEMPOTENT = 'idempotent';
 
     /**
      * @var ConnectionInterface Represents a connection to Storage.
@@ -276,6 +275,8 @@ class StorageClient
      *           this option has no effect. **Defaults to** `true`.
      *      @type bool $returnPartialSuccess If true, the returned iterator will contain an
      *           `unreachable` property with a list of buckets that were not retrieved.
+     *      **Note:** If set to false (default) and unreachable buckets are found,
+     *                the operation will throw an exception.
      *
      * }
      * @return BucketIterator<Bucket>
@@ -302,7 +303,7 @@ class StorageClient
             return $response;
         };
 
-        // Return the new BucketIterator with the wrapped unreachable object
+        // Return the new BucketIterator with the wrapped unreachable bucket
         return new BucketIterator(
             new PageIterator(
                 function (array $bucket) use ($userProject) {
