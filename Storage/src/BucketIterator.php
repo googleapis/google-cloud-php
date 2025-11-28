@@ -21,8 +21,11 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 
 /**
-* Iterates over a set of buckets and provides access to unreachable buckets.
-*/
+ * Iterates over a set of buckets.
+ *
+ * Use the `unreachable()` method to get a list of bucket names that could not
+ * be retrieved. This is only populated when the `returnPartialSuccess` is set to true
+ */
 class BucketIterator extends ItemIterator
 {
     /**
