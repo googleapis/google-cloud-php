@@ -747,7 +747,10 @@
                 },
                 "unreachable": {
                     "type": "array",
-                    "description": "A list of bucket names (as strings) from locations that could not be reached."
+                    "description": "The list of bucket resource names that could not be reached during the listing operation.",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "kind": {
                     "type": "string",
