@@ -53,6 +53,7 @@ use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Protobuf\Duration;
 use Google\Protobuf\Timestamp as TimestampProto;
+use Grpc\Channel;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -99,6 +100,7 @@ class SpannerClientTest extends TestCase
         $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
         $this->gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
         $this->gapicSpannerClient->addMiddleware(Argument::cetera());
+        $this->gapicSpannerClient->prependMiddleware(Argument::cetera());
         $this->gapicSpannerClient->createSession(Argument::cetera())->willReturn(new Session([
             'name' => self::SESSION,
             'multiplexed' => true,
@@ -618,5 +620,154 @@ class SpannerClientTest extends TestCase
             IsolationLevel::REPEATABLE_READ,
             $property->getValue($database)
         );
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testOptionsWithoutChannelIncreasesChannelId()
+    {
+        $this->assertEquals(1, $this->getTotalChannel($this->spannerClient));
+
+        /** @var SpannerClient $client */
+        $client2 = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
+            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
+            'cacheItemPool' => new MemoryCacheItemPool()
+        ]);
+
+        $this->assertEquals(2, $this->getTotalChannel($client2));
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testOptionsWithChannelDoesNotIncreasesChannelId()
+    {
+        $channel = $this->prophesize(Channel::class);
+        $revealedChannel = $channel->reveal();
+
+        $client = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
+            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
+            'cacheItemPool' => new MemoryCacheItemPool(),
+            'transportOptions' => [
+                'grpc' => [
+                    'channel' => $revealedChannel
+                ]
+            ]
+        ]);
+
+        // This is 2 as the setUp method generates one client and the id 1 gets clawed before this test runs.
+        $this->assertEquals(2, $this->getTotalChannel($client));
+
+        $client2 = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
+            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
+            'cacheItemPool' => new MemoryCacheItemPool(),
+            'transportOptions' => [
+                'grpc' => [
+                    'channel' => $revealedChannel
+                ]
+            ]
+        ]);
+
+        // This number should not increase
+        $this->assertEquals(2, $this->getTotalChannel($client));
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testCreateMultipleInstancesWithAndWithoutChannels()
+    {
+        // The setup method should have the first channel created
+        $this->assertEquals(1, $this->getTotalChannel($this->spannerClient));
+
+        $channel = $this->prophesize(Channel::class);
+        $revealedChannel = $channel->reveal();
+
+        // This client is using a shared channel. This has not been previously used, so this should increase the count.
+        $client = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
+            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
+            'cacheItemPool' => new MemoryCacheItemPool(),
+            'transportOptions' => [
+                'grpc' => [
+                    'channel' => $revealedChannel
+                ]
+            ]
+        ]);
+        $this->assertEquals(2, $this->getTotalChannel($client));
+
+        // This client is not using a shared channel, increasing the total once more to 3 channels.
+        $client2 = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
+            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
+            'cacheItemPool' => new MemoryCacheItemPool(),
+        ]);
+
+        $this->assertEquals(3, $this->getTotalChannel($client2));
+
+        $channel2 = $this->prophesize(Channel::class);
+        $revealedChannel2 = $channel2->reveal();
+
+        // This is using an entirely new Channel. This should increase the total channels to 4.
+        $client3 = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
+            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
+            'cacheItemPool' => new MemoryCacheItemPool(),
+            'transportOptions' => [
+                'grpc' => [
+                    'channel' => $revealedChannel2
+                ]
+            ]
+        ]);
+        $this->assertEquals(4, $this->getTotalChannel($client3));
+
+        // This is using the channel created at the beginning of the test and should be shared.
+        // As this has been seen before, the total should not increase.
+        $client4 = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'gapicSpannerClient' => $this->gapicSpannerClient->reveal(),
+            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
+            'cacheItemPool' => new MemoryCacheItemPool(),
+            'transportOptions' => [
+                'grpc' => [
+                    'channel' => $revealedChannel
+                ]
+            ]
+        ]);
+
+        $this->assertEquals(4, $this->getTotalChannel($client4));
+    }
+
+    private function getTotalChannel(SpannerClient $client): int
+    {
+        $reflection = new ReflectionClass($client);
+        $property = $reflection->getProperty('totalActiveChannels');
+        $property->setAccessible('true');
+
+        return $property->getValue($client);
     }
 }
