@@ -144,4 +144,29 @@ class RequestIdHeaderMiddlewareTest extends TestCase
         $this->assertEquals(2, $capturedRequests[1], 'Second request ID should be 2.');
         $this->assertEquals(3, $capturedRequests[2], 'Third request ID should be 3.');
     }
+
+    public function testAttemptPartReflectsRetryAttempt()
+    {
+        $channelId = 789;
+        $headerName = 'x-goog-spanner-request-id';
+        $retryAttempt = 5; // Simulate the 5th retry, so the attempt counter should be 6
+
+        // This handler will capture the attempt ID from the call.
+        $nextHandler = function (Call $call, array $options) use ($headerName, $retryAttempt) {
+            $this->assertArrayHasKey($headerName, $options['headers']);
+            $headerValue = $options['headers'][$headerName];
+            $parts = explode('.', $headerValue);
+
+            $this->assertCount(6, $parts, 'Header should have 6 parts.');
+            $this->assertEquals($retryAttempt + 1, (int)$parts[5], 'The attempt ID should be retryAttempt + 1.');
+
+            return 'ok';
+        };
+
+        $middleware = new RequestIdHeaderMiddleware($nextHandler, $channelId);
+        $call = $this->prophesize(Call::class)->reveal();
+
+        // Invoke the middleware with retryAttempt in options
+        $middleware($call, ['retryAttempt' => $retryAttempt]);
+    }
 }
