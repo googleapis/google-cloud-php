@@ -80,7 +80,7 @@
         "dg/bypass-finals": "^1.7",
         "squizlabs/php_codesniffer": "3.*",
         "dms/phpunit-arraysubset-asserts": "^0.5.0",
-        "symfony/process": "^6.4"
+        "symfony/process": "^8.0"
     },
     "replace": {
         "google/access-context-manager": "1.1.1",
