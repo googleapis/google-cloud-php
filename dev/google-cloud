@@ -32,6 +32,7 @@ use Google\Cloud\Dev\Command\SplitCommand;
 use Google\Cloud\Dev\Command\UpdateComponentCommand;
 use Google\Cloud\Dev\Command\UpdateDepsCommand;
 use Google\Cloud\Dev\Command\UpdateReadmeSampleCommand;
+use Google\Cloud\Dev\Command\VerifyReleaseCommand;
 use Symfony\Component\Console\Application;
 
 if (!class_exists(Application::class)) {
@@ -55,4 +56,5 @@ $app->add(new SplitCommand($rootDirectory));
 $app->add(new UpdateComponentCommand($rootDirectory));
 $app->add(new UpdateDepsCommand());
 $app->add(new UpdateReadmeSampleCommand($rootDirectory));
+$app->add(new VerifyReleaseCommand());
 $app->run();
