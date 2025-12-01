@@ -1,4 +1,19 @@
 <?php
+/*
+ * Copyright 2025 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 namespace Google\Cloud\Dev\Command;
 
@@ -12,8 +27,6 @@ use GuzzleHttp\Client;
 
 class VerifyReleaseCommand extends Command
 {
-    private Packagist $packagist;
-
     protected function configure()
     {
         $this->setName('verify-release')
@@ -34,7 +47,7 @@ class VerifyReleaseCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->packagist = new Packagist(new Client(), '', '', null, $output);
+        $packagist = new Packagist(new Client(), '', '', null, $output);
         $components = Component::getComponents($input->getOption('component') ? [$input->getOption('component')] : []);
         $overrideVersion = $input->getOption('package-version');
 
@@ -46,7 +59,7 @@ class VerifyReleaseCommand extends Command
             }
 
             $output->write(sprintf('Verifying package <info>%s</info> version <info>%s</info>... ', $packageName, $version));
-            if ($this->packagist->versionExists($packageName, $version)) {
+            if ($packagist->versionExists($packageName, $version)) {
                 $output->writeln('<info>OK</info>');
             } else {
                 $output->writeln('<error>NOT FOUND</error>');
