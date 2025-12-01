@@ -16,9 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the account.
+     * Optional. Resource name of the account. Required if integrator is not
+     * provided. Otherwise, leave this field empty/unset.
      *
-     * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $account = '';
     /**
@@ -39,6 +40,13 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
+    /**
+     * Optional. Resource name of the integrator. Required if account is not
+     * provided. Otherwise, leave this field empty/unset.
+     *
+     * Generated from protobuf field <code>optional string integrator = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $integrator = null;
 
     /**
      * Constructor.
@@ -47,7 +55,8 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $account
-     *           Required. Resource name of the account.
+     *           Optional. Resource name of the account. Required if integrator is not
+     *           provided. Otherwise, leave this field empty/unset.
      *     @type int $page_size
      *           Optional. The maximum number of service accounts to return. The service may
      *           return fewer than this value. If unspecified, returns at most 100 service
@@ -58,6 +67,9 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
      *           Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to `ListSubscribers` must
      *           match the call that provided the page token.
+     *     @type string $integrator
+     *           Optional. Resource name of the integrator. Required if account is not
+     *           provided. Otherwise, leave this field empty/unset.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,9 +78,10 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the account.
+     * Optional. Resource name of the account. Required if integrator is not
+     * provided. Otherwise, leave this field empty/unset.
      *
-     * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getAccount()
@@ -77,9 +90,10 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the account.
+     * Optional. Resource name of the account. Required if integrator is not
+     * provided. Otherwise, leave this field empty/unset.
      *
-     * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -151,6 +165,44 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resource name of the integrator. Required if account is not
+     * provided. Otherwise, leave this field empty/unset.
+     *
+     * Generated from protobuf field <code>optional string integrator = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getIntegrator()
+    {
+        return isset($this->integrator) ? $this->integrator : '';
+    }
+
+    public function hasIntegrator()
+    {
+        return isset($this->integrator);
+    }
+
+    public function clearIntegrator()
+    {
+        unset($this->integrator);
+    }
+
+    /**
+     * Optional. Resource name of the integrator. Required if account is not
+     * provided. Otherwise, leave this field empty/unset.
+     *
+     * Generated from protobuf field <code>optional string integrator = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIntegrator($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->integrator = $var;
 
         return $this;
     }

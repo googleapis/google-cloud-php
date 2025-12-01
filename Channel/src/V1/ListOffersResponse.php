@@ -17,6 +17,8 @@ class ListOffersResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The list of Offers requested.
+     * The pricing information for each Offer only includes the base price.
+     * Effective prices and discounts aren't populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Offer offers = 1;</code>
      */
@@ -36,6 +38,8 @@ class ListOffersResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Channel\V1\Offer>|\Google\Protobuf\Internal\RepeatedField $offers
      *           The list of Offers requested.
+     *           The pricing information for each Offer only includes the base price.
+     *           Effective prices and discounts aren't populated.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
      * }
@@ -47,6 +51,8 @@ class ListOffersResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Offers requested.
+     * The pricing information for each Offer only includes the base price.
+     * Effective prices and discounts aren't populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Offer offers = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -58,6 +64,8 @@ class ListOffersResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Offers requested.
+     * The pricing information for each Offer only includes the base price.
+     * Effective prices and discounts aren't populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Offer offers = 1;</code>
      * @param array<\Google\Cloud\Channel\V1\Offer>|\Google\Protobuf\Internal\RepeatedField $var

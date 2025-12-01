@@ -22,6 +22,14 @@ class PurchasableOffer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.channel.v1.Offer offer = 1;</code>
      */
     protected $offer = null;
+    /**
+     * Optional. Price reference ID for the offer. Only for offers that require
+     * additional price information. Used to guarantee that the pricing is
+     * consistent between quoting the offer and placing the order.
+     *
+     * Generated from protobuf field <code>string price_reference_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $price_reference_id = '';
 
     /**
      * Constructor.
@@ -31,6 +39,10 @@ class PurchasableOffer extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Channel\V1\Offer $offer
      *           Offer.
+     *     @type string $price_reference_id
+     *           Optional. Price reference ID for the offer. Only for offers that require
+     *           additional price information. Used to guarantee that the pricing is
+     *           consistent between quoting the offer and placing the order.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,6 +82,36 @@ class PurchasableOffer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Channel\V1\Offer::class);
         $this->offer = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Price reference ID for the offer. Only for offers that require
+     * additional price information. Used to guarantee that the pricing is
+     * consistent between quoting the offer and placing the order.
+     *
+     * Generated from protobuf field <code>string price_reference_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPriceReferenceId()
+    {
+        return $this->price_reference_id;
+    }
+
+    /**
+     * Optional. Price reference ID for the offer. Only for offers that require
+     * additional price information. Used to guarantee that the pricing is
+     * consistent between quoting the offer and placing the order.
+     *
+     * Generated from protobuf field <code>string price_reference_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPriceReferenceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->price_reference_id = $var;
 
         return $this;
     }

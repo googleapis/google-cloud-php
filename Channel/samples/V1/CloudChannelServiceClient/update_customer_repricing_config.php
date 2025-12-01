@@ -29,6 +29,7 @@ use Google\Cloud\Channel\V1\CustomerRepricingConfig;
 use Google\Cloud\Channel\V1\RebillingBasis;
 use Google\Cloud\Channel\V1\RepricingAdjustment;
 use Google\Cloud\Channel\V1\RepricingConfig;
+use Google\Cloud\Channel\V1\RepricingConfig\EntitlementGranularity;
 use Google\Cloud\Channel\V1\UpdateCustomerRepricingConfigRequest;
 use Google\Type\Date;
 
@@ -77,9 +78,11 @@ function update_customer_repricing_config_sample(
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
+    $customerRepricingConfigRepricingConfigEntitlementGranularity = new EntitlementGranularity();
     $customerRepricingConfigRepricingConfigEffectiveInvoiceMonth = new Date();
     $customerRepricingConfigRepricingConfigAdjustment = new RepricingAdjustment();
     $customerRepricingConfigRepricingConfig = (new RepricingConfig())
+        ->setEntitlementGranularity($customerRepricingConfigRepricingConfigEntitlementGranularity)
         ->setEffectiveInvoiceMonth($customerRepricingConfigRepricingConfigEffectiveInvoiceMonth)
         ->setAdjustment($customerRepricingConfigRepricingConfigAdjustment)
         ->setRebillingBasis($customerRepricingConfigRepricingConfigRebillingBasis);

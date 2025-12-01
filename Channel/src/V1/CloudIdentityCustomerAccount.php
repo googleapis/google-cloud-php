@@ -24,7 +24,8 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
     protected $existing = false;
     /**
      * Returns true if the Cloud Identity account is associated with a customer
-     * of the Channel Services partner.
+     * of the Channel Services partner (with active subscriptions or purchase
+     * consents).
      *
      * Generated from protobuf field <code>bool owned = 2;</code>
      */
@@ -68,7 +69,8 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
      *           Returns true if a Cloud Identity account exists for a specific domain.
      *     @type bool $owned
      *           Returns true if the Cloud Identity account is associated with a customer
-     *           of the Channel Services partner.
+     *           of the Channel Services partner (with active subscriptions or purchase
+     *           consents).
      *     @type string $customer_name
      *           If owned = true, the name of the customer that owns the Cloud Identity
      *           account.
@@ -116,7 +118,8 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
 
     /**
      * Returns true if the Cloud Identity account is associated with a customer
-     * of the Channel Services partner.
+     * of the Channel Services partner (with active subscriptions or purchase
+     * consents).
      *
      * Generated from protobuf field <code>bool owned = 2;</code>
      * @return bool
@@ -128,7 +131,8 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
 
     /**
      * Returns true if the Cloud Identity account is associated with a customer
-     * of the Channel Services partner.
+     * of the Channel Services partner (with active subscriptions or purchase
+     * consents).
      *
      * Generated from protobuf field <code>bool owned = 2;</code>
      * @param bool $var

@@ -665,6 +665,12 @@ return [
                 'responseType' => 'Google\Cloud\Channel\V1\ListSubscribersResponse',
                 'headerParams' => [
                     [
+                        'keyName' => 'integrator',
+                        'fieldAccessors' => [
+                            'getIntegrator',
+                        ],
+                    ],
+                    [
                         'keyName' => 'account',
                         'fieldAccessors' => [
                             'getAccount',
@@ -741,6 +747,12 @@ return [
                 'responseType' => 'Google\Cloud\Channel\V1\RegisterSubscriberResponse',
                 'headerParams' => [
                     [
+                        'keyName' => 'integrator',
+                        'fieldAccessors' => [
+                            'getIntegrator',
+                        ],
+                    ],
+                    [
                         'keyName' => 'account',
                         'fieldAccessors' => [
                             'getAccount',
@@ -752,6 +764,12 @@ return [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Channel\V1\UnregisterSubscriberResponse',
                 'headerParams' => [
+                    [
+                        'keyName' => 'integrator',
+                        'fieldAccessors' => [
+                            'getIntegrator',
+                        ],
+                    ],
                     [
                         'keyName' => 'account',
                         'fieldAccessors' => [
@@ -812,6 +830,7 @@ return [
                 ],
             ],
             'templateMap' => [
+                'account' => 'accounts/{account}',
                 'channelPartnerLink' => 'accounts/{account}/channelPartnerLinks/{channel_partner_link}',
                 'channelPartnerRepricingConfig' => 'accounts/{account}/channelPartnerLinks/{channel_partner}/channelPartnerRepricingConfigs/{channel_partner_repricing_config}',
                 'customer' => 'accounts/{account}/customers/{customer}',

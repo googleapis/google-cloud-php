@@ -23,8 +23,9 @@ class ListSkuGroupsResponse extends \Google\Protobuf\Internal\Message
     private $sku_groups;
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListSkuGroups.page_token][] to obtain that
-     * page.
+     * Pass to
+     * [ListSkuGroupsRequest.page_token][google.cloud.channel.v1.ListSkuGroupsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -40,8 +41,9 @@ class ListSkuGroupsResponse extends \Google\Protobuf\Internal\Message
      *           The list of SKU groups requested.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
-     *           Pass to [ListSkuGroups.page_token][] to obtain that
-     *           page.
+     *           Pass to
+     *           [ListSkuGroupsRequest.page_token][google.cloud.channel.v1.ListSkuGroupsRequest.page_token]
+     *           to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,8 +79,9 @@ class ListSkuGroupsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListSkuGroups.page_token][] to obtain that
-     * page.
+     * Pass to
+     * [ListSkuGroupsRequest.page_token][google.cloud.channel.v1.ListSkuGroupsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -90,8 +93,9 @@ class ListSkuGroupsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListSkuGroups.page_token][] to obtain that
-     * page.
+     * Pass to
+     * [ListSkuGroupsRequest.page_token][google.cloud.channel.v1.ListSkuGroupsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
