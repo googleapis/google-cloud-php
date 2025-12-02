@@ -59,7 +59,7 @@ class RequestIdHeaderMiddleware implements MiddlewareInterface
 
     public function __invoke(Call $call, array $options)
     {
-        $options['headers'][self::REQUEST_ID_HEADER_NAME] = $this->getNewHeaderValue($options);
+        $options['headers'][self::REQUEST_ID_HEADER_NAME] = [$this->getNewHeaderValue($options)];
         $next = $this->nextHandler;
         return $next(
             $call,

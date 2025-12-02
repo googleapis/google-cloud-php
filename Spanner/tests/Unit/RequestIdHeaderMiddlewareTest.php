@@ -37,7 +37,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
             // Assert the header exists
             $this->assertArrayHasKey($headerName, $options['headers']);
 
-            $headerValue = $options['headers'][$headerName];
+            $headerValue = $options['headers'][$headerName][0];
             [$version, $process, $client, $channel, $request, $attempt] = $parts = explode(
                 '.',
                 $headerValue
@@ -89,7 +89,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
 
         // This handler will capture the process ID from each call.
         $nextHandler = function (Call $call, array $options) use ($headerName, &$capturedProcesses) {
-            $headerValue = $options['headers'][$headerName];
+            $headerValue = $options['headers'][$headerName][0];
             $parts = explode('.', $headerValue);
             $capturedProcesses[] = $parts[1]; // Capture the process ID part
 
@@ -125,7 +125,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
 
         // This handler will capture the request ID from each call.
         $nextHandler = function (Call $call, array $options) use ($headerName, &$capturedRequests) {
-            $headerValue = $options['headers'][$headerName];
+            $headerValue = $options['headers'][$headerName][0];
             $parts = explode('.', $headerValue);
             $capturedRequests[] = (int) $parts[4]; // Capture the request ID part
 
@@ -158,7 +158,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
         // This handler will capture the attempt ID from the call.
         $nextHandler = function (Call $call, array $options) use ($headerName, $retryAttempt) {
             $this->assertArrayHasKey($headerName, $options['headers']);
-            $headerValue = $options['headers'][$headerName];
+            $headerValue = $options['headers'][$headerName][0];
             $parts = explode('.', $headerValue);
 
             $this->assertCount(6, $parts, 'Header should have 6 parts.');
