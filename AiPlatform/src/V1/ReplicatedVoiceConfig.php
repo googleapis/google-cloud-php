@@ -16,9 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReplicatedVoiceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The mimetype of the voice sample. Currently only
-     * mime_type=audio/pcm is supported, which is raw mono 16-bit signed
-     * little-endian pcm data, with 24k sampling rate.
+     * Optional. The mimetype of the voice sample. The only currently supported
+     * value is `audio/wav`. This represents 16-bit signed little-endian wav data,
+     * with a 24kHz sampling rate. `mime_type` will default to `audio/wav` if not
+     * set.
      *
      * Generated from protobuf field <code>string mime_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -37,9 +38,10 @@ class ReplicatedVoiceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $mime_type
-     *           Optional. The mimetype of the voice sample. Currently only
-     *           mime_type=audio/pcm is supported, which is raw mono 16-bit signed
-     *           little-endian pcm data, with 24k sampling rate.
+     *           Optional. The mimetype of the voice sample. The only currently supported
+     *           value is `audio/wav`. This represents 16-bit signed little-endian wav data,
+     *           with a 24kHz sampling rate. `mime_type` will default to `audio/wav` if not
+     *           set.
      *     @type string $voice_sample_audio
      *           Optional. The sample of the custom voice.
      * }
@@ -50,9 +52,10 @@ class ReplicatedVoiceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The mimetype of the voice sample. Currently only
-     * mime_type=audio/pcm is supported, which is raw mono 16-bit signed
-     * little-endian pcm data, with 24k sampling rate.
+     * Optional. The mimetype of the voice sample. The only currently supported
+     * value is `audio/wav`. This represents 16-bit signed little-endian wav data,
+     * with a 24kHz sampling rate. `mime_type` will default to `audio/wav` if not
+     * set.
      *
      * Generated from protobuf field <code>string mime_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -63,9 +66,10 @@ class ReplicatedVoiceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The mimetype of the voice sample. Currently only
-     * mime_type=audio/pcm is supported, which is raw mono 16-bit signed
-     * little-endian pcm data, with 24k sampling rate.
+     * Optional. The mimetype of the voice sample. The only currently supported
+     * value is `audio/wav`. This represents 16-bit signed little-endian wav data,
+     * with a 24kHz sampling rate. `mime_type` will default to `audio/wav` if not
+     * set.
      *
      * Generated from protobuf field <code>string mime_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
