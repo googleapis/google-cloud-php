@@ -17,14 +17,27 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\ApiException;
 use Google\Cloud\Spanner\Middleware\RequestIdHeaderMiddleware;
 use Google\ApiCore\Call;
+use Google\ApiCore\Transport\TransportInterface;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse;
+use Google\Cloud\Spanner\SpannerClient;
+use Google\Rpc\Code;
+use Grpc\UnaryCall;
+use GuzzleHttp\Promise\FulfilledPromise;
+use GuzzleHttp\Promise\Promise;
+use GuzzleHttp\Promise\RejectedPromise;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 class RequestIdHeaderMiddlewareTest extends TestCase
 {
     use ProphecyTrait;
+
+    const PROJECT = 'my-awesome-project';
 
     public function testAddsRequestIdHeader()
     {
@@ -147,7 +160,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
         $this->assertEquals(1, $capturedRequests[0], 'First request ID should be 1.');
         $this->assertEquals(2, $capturedRequests[1], 'Second request ID should be 2.');
         $this->assertEquals(3, $capturedRequests[2], 'Third request ID should be 3.');
-    }
+}
 
     public function testAttemptPartReflectsRetryAttempt()
     {
@@ -172,5 +185,51 @@ class RequestIdHeaderMiddlewareTest extends TestCase
 
         // Invoke the middleware with retryAttempt in options
         $middleware($call, ['retryAttempt' => $retryAttempt]);
+    }
+
+    public function testMiddlewareGetsTheRetryField()
+    {
+        $headerName = 'x-goog-spanner-request-id';
+        $callCount = 0;
+        // the will method from prophecy overrides $this on the scope.
+        $test = $this;
+
+        $transport = $this->prophesize(TransportInterface::class);
+        $client =  new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'transport' => $transport->reveal()
+        ]);
+
+         $transport->startUnaryCall(Argument::cetera())
+            ->shouldBeCalledTimes(2)
+            ->will(function ($args) use (&$callCount, $headerName, $test) {
+                $callCount++;
+                $options = $args[1];
+
+                $test->assertArrayHasKey('headers', $options);
+                $test->assertArrayHasKey($headerName, $options['headers']);
+                $headerValue = $options['headers'][$headerName][0];
+                $parts = explode('.', $headerValue);
+                $attempt = (int) $parts[5];
+
+                if ($callCount === 1) {
+                    $test->assertEquals(1, $attempt);
+                    return new RejectedPromise(
+                        new ApiException('Transient error', Code::UNAVAILABLE, 'UNAVAILABLE')
+                    );
+                }
+
+                $test->assertEquals(2, $attempt);
+
+                $response = new ListInstancesResponse();
+                return new FulfilledPromise($response);
+            });
+
+        iterator_to_array($client->instances([
+            'retrySettings' => [
+                'maxRetries' => 2
+            ]
+        ]));
     }
 }
