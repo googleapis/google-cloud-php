@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.39.0](https://github.com/googleapis/gax-php/compare/v1.38.2...v1.39.0) (2025-12-02)
+
+
+### Features
+
+* Add GapicClientTrait::prependMiddleware ([#638](https://github.com/googleapis/gax-php/issues/638)) ([d46c06d](https://github.com/googleapis/gax-php/commit/d46c06d3bb551d9f7848bceebcfd78f80ec7890f))
+
 ## [1.38.2](https://github.com/googleapis/gax-php/compare/v1.38.1...v1.38.2) (2025-11-14)
 
 
