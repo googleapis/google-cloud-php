@@ -50,7 +50,10 @@ class RequestIdHeaderMiddlewareTest extends TestCase
             $this->assertEquals(1, (int)$version, 'The version part of the header is incorrect.');
 
             // Assert the process ID is a 16-character hex string
-            $this->assertMatchesRegularExpression('/^[0-9a-fA-F]{16}$/', $process, 'The process ID part should be a 16-character hex string.');
+            $this->assertMatchesRegularExpression('/^[0-9a-fA-F]{16}$/',
+                $process,
+                'The process ID part should be a 16-character hex string.'
+            );
 
             // Assert the client ID is correct (first client instance in this process, so 1)
             $this->assertEquals(1, (int)$client, 'The client ID part of the header is incorrect.');

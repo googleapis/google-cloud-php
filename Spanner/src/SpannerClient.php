@@ -255,7 +255,7 @@ class SpannerClient
 
         $channelId = $this->getChannelId($options);
         // Add the RequestIdHeaderMiddleware to add an identifier to each rpc call made for debugging
-        $requestIdMiddleware = function (MiddlewareInterface $handler) use ($channelId){
+        $requestIdMiddleware = function (MiddlewareInterface $handler) use ($channelId) {
             return new RequestIdHeaderMiddleware($handler, $channelId);
         };
         $this->spannerClient->prependMiddleware($requestIdMiddleware);

@@ -89,7 +89,7 @@ class RequestIdHeaderMiddleware implements MiddlewareInterface
     /**
      * Gets the process id for the RequestId header.
      *
-     * @return int
+     * @return string
      */
     private function getProcess(): string
     {
