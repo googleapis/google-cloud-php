@@ -7,35 +7,35 @@ namespace Google\Cloud\Parallelstore\V1\TransferMetadataOptions;
 use UnexpectedValueException;
 
 /**
- * The GID preservation behavior.
+ * The UID preservation behavior.
  *
- * Protobuf type <code>google.cloud.parallelstore.v1.TransferMetadataOptions.Gid</code>
+ * Protobuf type <code>google.cloud.parallelstore.v1.TransferMetadataOptions.Uid</code>
  */
-class Gid
+class Uid
 {
     /**
-     * default is GID_NUMBER_PRESERVE.
+     * default is UID_NUMBER_PRESERVE.
      *
-     * Generated from protobuf enum <code>GID_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>UID_UNSPECIFIED = 0;</code>
      */
-    const GID_UNSPECIFIED = 0;
+    const UID_UNSPECIFIED = 0;
     /**
-     * Do not preserve GID during a transfer job.
+     * Do not preserve UID during a transfer job.
      *
-     * Generated from protobuf enum <code>GID_SKIP = 1;</code>
+     * Generated from protobuf enum <code>UID_SKIP = 1;</code>
      */
-    const GID_SKIP = 1;
+    const UID_SKIP = 1;
     /**
-     * Preserve GID that is in number format during a transfer job.
+     * Preserve UID that is in number format during a transfer job.
      *
-     * Generated from protobuf enum <code>GID_NUMBER_PRESERVE = 2;</code>
+     * Generated from protobuf enum <code>UID_NUMBER_PRESERVE = 2;</code>
      */
-    const GID_NUMBER_PRESERVE = 2;
+    const UID_NUMBER_PRESERVE = 2;
 
     private static $valueToName = [
-        self::GID_UNSPECIFIED => 'GID_UNSPECIFIED',
-        self::GID_SKIP => 'GID_SKIP',
-        self::GID_NUMBER_PRESERVE => 'GID_NUMBER_PRESERVE',
+        self::UID_UNSPECIFIED => 'UID_UNSPECIFIED',
+        self::UID_SKIP => 'UID_SKIP',
+        self::UID_NUMBER_PRESERVE => 'UID_NUMBER_PRESERVE',
     ];
 
     public static function name($value)
@@ -59,6 +59,4 @@ class Gid
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Gid::class, \Google\Cloud\Parallelstore\V1\TransferMetadataOptions_Gid::class);
 
