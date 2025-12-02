@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `AwsClusters.DeleteAwsCluster` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.DeleteAwsClusterRequest</code>
  */
 class DeleteAwsClusterRequest extends \Google\Protobuf\Internal\Message

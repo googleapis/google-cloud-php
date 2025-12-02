@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * An Anthos node pool running on AWS.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsNodePool</code>
  */
 class AwsNodePool extends \Google\Protobuf\Internal\Message

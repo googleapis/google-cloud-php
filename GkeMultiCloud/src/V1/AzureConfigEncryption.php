@@ -13,6 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Azure VM bootstrap secret is envelope encrypted with the provided key vault
  * key.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureConfigEncryption</code>
  */
 class AzureConfigEncryption extends \Google\Protobuf\Internal\Message

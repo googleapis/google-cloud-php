@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Response message for `AzureClusters.ListAzureClients` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.ListAzureClientsResponse</code>
  */
 class ListAzureClientsResponse extends \Google\Protobuf\Internal\Message

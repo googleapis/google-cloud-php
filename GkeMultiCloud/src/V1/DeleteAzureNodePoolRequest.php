@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `AzureClusters.DeleteAzureNodePool` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.DeleteAzureNodePoolRequest</code>
  */
 class DeleteAzureNodePoolRequest extends \Google\Protobuf\Internal\Message

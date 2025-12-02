@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `AwsClusters.UpdateAwsNodePool` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.UpdateAwsNodePoolRequest</code>
  */
 class UpdateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message

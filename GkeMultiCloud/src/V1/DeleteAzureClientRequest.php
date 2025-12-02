@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `AzureClusters.DeleteAzureClient` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.DeleteAzureClientRequest</code>
  */
 class DeleteAzureClientRequest extends \Google\Protobuf\Internal\Message

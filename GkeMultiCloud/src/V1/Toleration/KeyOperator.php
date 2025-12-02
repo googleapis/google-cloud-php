@@ -59,6 +59,4 @@ class KeyOperator
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KeyOperator::class, \Google\Cloud\GkeMultiCloud\V1\Toleration_KeyOperator::class);
 

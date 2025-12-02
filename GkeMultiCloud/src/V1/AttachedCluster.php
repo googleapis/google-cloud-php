@@ -175,14 +175,15 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      */
     protected $security_posture_config = null;
     /**
-     * Optional. Input only. Tag keys/values directly bound to this resource.
-     * Tag key must be specified in the format <tag namespace>/<tag key name>
+     * Optional. Input only. Tag keys and values directly bound to this resource.
+     * The tag key must be specified in the format
+     * `<tag namespace>/<tag key name>,`
      * where the tag namespace is the ID of the organization or name of the
-     * project that the tag key is defined in.
-     * The short name of a tag key or value can have a maximum length of 256
-     * characters. The permitted character set for the short name includes UTF-8
-     * encoded Unicode characters except single quotes ('), double quotes ("),
-     * backslashes (\), and forward slashes (/).
+     * project that the tag key is defined in. The short name of a tag key or
+     * value can have a maximum length of 256 characters. The permitted character
+     * set for the short name includes UTF-8 encoded Unicode characters except
+     * single quotation marks (`'`), double quotation marks (`"`), backslashes
+     * (`\`), and forward slashes (`/`).
      * See
      * [Tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview)
      * for more details on Google Cloud Platform tags.
@@ -190,6 +191,13 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> tags = 27 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $tags;
+    /**
+     * Optional. Kubernetes configurations for auto-installed components on the
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.SystemComponentsConfig system_components_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $system_components_config = null;
 
     /**
      * Constructor.
@@ -265,17 +273,21 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeMultiCloud\V1\SecurityPostureConfig $security_posture_config
      *           Optional. Security Posture configuration for this cluster.
      *     @type array|\Google\Protobuf\Internal\MapField $tags
-     *           Optional. Input only. Tag keys/values directly bound to this resource.
-     *           Tag key must be specified in the format <tag namespace>/<tag key name>
+     *           Optional. Input only. Tag keys and values directly bound to this resource.
+     *           The tag key must be specified in the format
+     *           `<tag namespace>/<tag key name>,`
      *           where the tag namespace is the ID of the organization or name of the
-     *           project that the tag key is defined in.
-     *           The short name of a tag key or value can have a maximum length of 256
-     *           characters. The permitted character set for the short name includes UTF-8
-     *           encoded Unicode characters except single quotes ('), double quotes ("),
-     *           backslashes (\), and forward slashes (/).
+     *           project that the tag key is defined in. The short name of a tag key or
+     *           value can have a maximum length of 256 characters. The permitted character
+     *           set for the short name includes UTF-8 encoded Unicode characters except
+     *           single quotation marks (`'`), double quotation marks (`"`), backslashes
+     *           (`\`), and forward slashes (`/`).
      *           See
      *           [Tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview)
      *           for more details on Google Cloud Platform tags.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\SystemComponentsConfig $system_components_config
+     *           Optional. Kubernetes configurations for auto-installed components on the
+     *           cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -1034,14 +1046,15 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Input only. Tag keys/values directly bound to this resource.
-     * Tag key must be specified in the format <tag namespace>/<tag key name>
+     * Optional. Input only. Tag keys and values directly bound to this resource.
+     * The tag key must be specified in the format
+     * `<tag namespace>/<tag key name>,`
      * where the tag namespace is the ID of the organization or name of the
-     * project that the tag key is defined in.
-     * The short name of a tag key or value can have a maximum length of 256
-     * characters. The permitted character set for the short name includes UTF-8
-     * encoded Unicode characters except single quotes ('), double quotes ("),
-     * backslashes (\), and forward slashes (/).
+     * project that the tag key is defined in. The short name of a tag key or
+     * value can have a maximum length of 256 characters. The permitted character
+     * set for the short name includes UTF-8 encoded Unicode characters except
+     * single quotation marks (`'`), double quotation marks (`"`), backslashes
+     * (`\`), and forward slashes (`/`).
      * See
      * [Tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview)
      * for more details on Google Cloud Platform tags.
@@ -1055,14 +1068,15 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Input only. Tag keys/values directly bound to this resource.
-     * Tag key must be specified in the format <tag namespace>/<tag key name>
+     * Optional. Input only. Tag keys and values directly bound to this resource.
+     * The tag key must be specified in the format
+     * `<tag namespace>/<tag key name>,`
      * where the tag namespace is the ID of the organization or name of the
-     * project that the tag key is defined in.
-     * The short name of a tag key or value can have a maximum length of 256
-     * characters. The permitted character set for the short name includes UTF-8
-     * encoded Unicode characters except single quotes ('), double quotes ("),
-     * backslashes (\), and forward slashes (/).
+     * project that the tag key is defined in. The short name of a tag key or
+     * value can have a maximum length of 256 characters. The permitted character
+     * set for the short name includes UTF-8 encoded Unicode characters except
+     * single quotation marks (`'`), double quotation marks (`"`), backslashes
+     * (`\`), and forward slashes (`/`).
      * See
      * [Tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview)
      * for more details on Google Cloud Platform tags.
@@ -1075,6 +1089,44 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Kubernetes configurations for auto-installed components on the
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.SystemComponentsConfig system_components_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\SystemComponentsConfig|null
+     */
+    public function getSystemComponentsConfig()
+    {
+        return $this->system_components_config;
+    }
+
+    public function hasSystemComponentsConfig()
+    {
+        return isset($this->system_components_config);
+    }
+
+    public function clearSystemComponentsConfig()
+    {
+        unset($this->system_components_config);
+    }
+
+    /**
+     * Optional. Kubernetes configurations for auto-installed components on the
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.SystemComponentsConfig system_components_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\SystemComponentsConfig $var
+     * @return $this
+     */
+    public function setSystemComponentsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\SystemComponentsConfig::class);
+        $this->system_components_config = $var;
 
         return $this;
     }

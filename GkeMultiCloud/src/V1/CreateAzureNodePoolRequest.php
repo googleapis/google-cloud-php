@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Response message for `AzureClusters.CreateAzureNodePool` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.CreateAzureNodePoolRequest</code>
  */
 class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message

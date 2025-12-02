@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * GetAwsServerConfigRequest gets the server config of GKE cluster on AWS.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.GetAwsServerConfigRequest</code>
  */
 class GetAwsServerConfigRequest extends \Google\Protobuf\Internal\Message

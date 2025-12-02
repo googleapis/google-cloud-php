@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * SSH configuration for AWS resources.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsSshConfig</code>
  */
 class AwsSshConfig extends \Google\Protobuf\Internal\Message

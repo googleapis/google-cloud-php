@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `AwsClusters.GetAwsCluster` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.GetAwsClusterRequest</code>
  */
 class GetAwsClusterRequest extends \Google\Protobuf\Internal\Message

@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Authentication configuration for the management of AWS resources.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsServicesAuthentication</code>
  */
 class AwsServicesAuthentication extends \Google\Protobuf\Internal\Message

@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * AzureNodePoolError describes errors found on Azure node pools.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureNodePoolError</code>
  */
 class AzureNodePoolError extends \Google\Protobuf\Internal\Message

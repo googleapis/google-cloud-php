@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * AzureServerConfig contains information about a Google Cloud location, such as
  * supported Azure regions and Kubernetes versions.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureServerConfig</code>
  */
 class AzureServerConfig extends \Google\Protobuf\Internal\Message

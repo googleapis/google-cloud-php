@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * SpotConfig has configuration info for Spot node.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.SpotConfig</code>
  */
 class SpotConfig extends \Google\Protobuf\Internal\Message
