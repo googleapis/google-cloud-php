@@ -29,7 +29,10 @@ use Google\Cloud\Compute\V1\AggregatedListVpnTunnelsRequest;
 use Google\Cloud\Compute\V1\Client\VpnTunnelsClient;
 
 /**
- * Retrieves an aggregated list of VPN tunnels. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+ * Retrieves an aggregated list of VPN tunnels.
+ *
+ * To prevent failure, Google recommends that you set the
+ * `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

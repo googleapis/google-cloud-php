@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\ProjectsEnableXpnResourceRequest;
 use Google\Rpc\Status;
 
 /**
- * Enable service resource (a.k.a service project) for a host project, so that subnets in the host project can be used by instances in the service project.
+ * Enable service resource (a.k.a service project) for a host project, so that
+ * subnets in the host project can be used by instances in the service
+ * project.
  *
  * @param string $project Project ID for this request.
  */

@@ -30,9 +30,14 @@ use Google\Cloud\Compute\V1\DeleteNetworkInterfaceInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes one dynamic network interface from an active instance. InstancesDeleteNetworkInterfaceRequest indicates: - instance from which to delete, using project+zone+resource_id fields; - dynamic network interface to be deleted, using network_interface_name field;
+ * Deletes one dynamic network interface from an active instance.
+ * InstancesDeleteNetworkInterfaceRequest indicates:
+ * - instance from which to delete, using project+zone+resource_id fields;
+ * - dynamic network interface to be deleted, using network_interface_name
+ * field;
  *
- * @param string $instance             The instance name for this request stored as resource_id. Name should conform to RFC1035 or be an unsigned long integer.
+ * @param string $instance             The instance name for this request stored as resource_id.
+ *                                     Name should conform to RFC1035 or be an unsigned long integer.
  * @param string $networkInterfaceName The name of the dynamic network interface to be deleted from the instance.
  * @param string $project              Project ID for this request.
  * @param string $zone                 The name of the zone for this request.

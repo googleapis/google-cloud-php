@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\ListInstancesRequest;
 
 /**
- * Retrieves the list of instances contained within the specified zone.
+ * Retrieves the list of instances contained within
+ * the specified zone.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    The name of the zone for this request.

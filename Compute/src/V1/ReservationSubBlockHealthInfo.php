@@ -22,7 +22,8 @@ class ReservationSubBlockHealthInfo extends \Google\Protobuf\Internal\Message
      */
     protected $degraded_host_count = null;
     /**
-     * The number of degraded infrastructure (e.g NV link domain) in the reservation subblock.
+     * The number of degraded infrastructure (e.g NV link domain) in the
+     * reservation subblock.
      *
      * Generated from protobuf field <code>optional int32 degraded_infra_count = 138638927;</code>
      */
@@ -41,7 +42,8 @@ class ReservationSubBlockHealthInfo extends \Google\Protobuf\Internal\Message
      */
     protected $healthy_host_count = null;
     /**
-     * The number of healthy infrastructure (e.g NV link domain) in the reservation subblock.
+     * The number of healthy infrastructure (e.g NV link domain) in the
+     * reservation subblock.
      *
      * Generated from protobuf field <code>optional int32 healthy_infra_count = 385052222;</code>
      */
@@ -56,14 +58,16 @@ class ReservationSubBlockHealthInfo extends \Google\Protobuf\Internal\Message
      *     @type int $degraded_host_count
      *           The number of degraded hosts in the reservation subBlock.
      *     @type int $degraded_infra_count
-     *           The number of degraded infrastructure (e.g NV link domain) in the reservation subblock.
+     *           The number of degraded infrastructure (e.g NV link domain) in the
+     *           reservation subblock.
      *     @type string $health_status
      *           The health status of the reservation subBlock.
      *           Check the HealthStatus enum for the list of possible values.
      *     @type int $healthy_host_count
      *           The number of healthy hosts in the reservation subBlock.
      *     @type int $healthy_infra_count
-     *           The number of healthy infrastructure (e.g NV link domain) in the reservation subblock.
+     *           The number of healthy infrastructure (e.g NV link domain) in the
+     *           reservation subblock.
      * }
      */
     public function __construct($data = NULL) {
@@ -108,7 +112,8 @@ class ReservationSubBlockHealthInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of degraded infrastructure (e.g NV link domain) in the reservation subblock.
+     * The number of degraded infrastructure (e.g NV link domain) in the
+     * reservation subblock.
      *
      * Generated from protobuf field <code>optional int32 degraded_infra_count = 138638927;</code>
      * @return int
@@ -129,7 +134,8 @@ class ReservationSubBlockHealthInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of degraded infrastructure (e.g NV link domain) in the reservation subblock.
+     * The number of degraded infrastructure (e.g NV link domain) in the
+     * reservation subblock.
      *
      * Generated from protobuf field <code>optional int32 degraded_infra_count = 138638927;</code>
      * @param int $var
@@ -218,7 +224,8 @@ class ReservationSubBlockHealthInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of healthy infrastructure (e.g NV link domain) in the reservation subblock.
+     * The number of healthy infrastructure (e.g NV link domain) in the
+     * reservation subblock.
      *
      * Generated from protobuf field <code>optional int32 healthy_infra_count = 385052222;</code>
      * @return int
@@ -239,7 +246,8 @@ class ReservationSubBlockHealthInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of healthy infrastructure (e.g NV link domain) in the reservation subblock.
+     * The number of healthy infrastructure (e.g NV link domain) in the
+     * reservation subblock.
      *
      * Generated from protobuf field <code>optional int32 healthy_infra_count = 385052222;</code>
      * @param int $var

@@ -31,7 +31,11 @@ use Google\Cloud\Compute\V1\SetSchedulingInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets an instance's scheduling options. You can only call this method on a stopped instance, that is, a VM instance that is in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states. For more information about setting scheduling options for a VM, see Set VM host maintenance policy.
+ * Sets an instance's scheduling options. You can only call this method on astopped instance,
+ * that is, a VM instance that is in a `TERMINATED` state. SeeInstance Life
+ * Cycle for more information on the possible instance states.
+ * For more information about setting scheduling options for a VM, seeSet
+ * VM host maintenance policy.
  *
  * @param string $instance Instance name for this request.
  * @param string $project  Project ID for this request.

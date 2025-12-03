@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\SetInstanceTemplateRegionInstanceGroupManagerRequest
 use Google\Rpc\Status;
 
 /**
- * Sets the instance template to use when creating new instances or recreating instances in this group. Existing instances are not affected.
+ * Sets the instance template to use when creating new instances or recreating
+ * instances in this group. Existing instances are not affected.
  *
  * @param string $instanceGroupManager The name of the managed instance group.
  * @param string $project              Project ID for this request.

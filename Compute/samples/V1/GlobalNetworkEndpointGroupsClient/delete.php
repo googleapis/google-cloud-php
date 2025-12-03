@@ -30,9 +30,11 @@ use Google\Cloud\Compute\V1\DeleteGlobalNetworkEndpointGroupRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified network endpoint group.Note that the NEG cannot be deleted if there are backend services referencing it.
+ * Deletes the specified network endpoint group.Note that the NEG cannot be
+ * deleted if there are backend services referencing it.
  *
- * @param string $networkEndpointGroup The name of the network endpoint group to delete. It should comply with RFC1035.
+ * @param string $networkEndpointGroup The name of the network endpoint group to delete. It should comply with
+ *                                     RFC1035.
  * @param string $project              Project ID for this request.
  */
 function delete_sample(string $networkEndpointGroup, string $project): void

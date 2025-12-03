@@ -29,10 +29,12 @@ use Google\Cloud\Compute\V1\Client\RegionNetworkEndpointGroupsClient;
 use Google\Cloud\Compute\V1\ListRegionNetworkEndpointGroupsRequest;
 
 /**
- * Retrieves the list of regional network endpoint groups available to the specified project in the given region.
+ * Retrieves the list of regional network endpoint groups available to the
+ * specified project in the given region.
  *
  * @param string $project Project ID for this request.
- * @param string $region  The name of the region where the network endpoint group is located. It should comply with RFC1035.
+ * @param string $region  The name of theregion
+ *                        where the network endpoint group is located. It should comply with RFC1035.
  */
 function list_sample(string $project, string $region): void
 {

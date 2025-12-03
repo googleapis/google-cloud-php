@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\InstancesAddResourcePoliciesRequest;
 use Google\Rpc\Status;
 
 /**
- * Adds existing resource policies to an instance. You can only add one policy right now which will be applied to this instance for scheduling live migrations.
+ * Adds existing resource policies to an instance. You can only add one
+ * policy right now which will be applied to this instance for scheduling live
+ * migrations.
  *
  * @param string $instance The instance name for this request.
  * @param string $project  Project ID for this request.

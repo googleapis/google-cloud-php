@@ -276,7 +276,14 @@ final class RegionInstantSnapshotsClient
     }
 
     /**
-     * Deletes the specified InstantSnapshot resource. Keep in mind that deleting a single instantSnapshot might not necessarily delete all the data on that instantSnapshot. If any data on the instantSnapshot that is marked for deletion is needed for subsequent instantSnapshots, the data will be moved to the next corresponding instantSnapshot. For more information, see Deleting instantSnapshots.
+     * Deletes the specified InstantSnapshot resource. Keep in mind that deleting
+     * a single instantSnapshot might not necessarily delete all the data on that
+     * instantSnapshot. If any data on the instantSnapshot that is marked for
+     * deletion is needed for subsequent instantSnapshots, the data will be moved
+     * to the next corresponding instantSnapshot.
+     *
+     * For more information, seeDeleting
+     * instantSnapshots.
      *
      * The async variant is {@see RegionInstantSnapshotsClient::deleteAsync()} .
      *
@@ -328,7 +335,8 @@ final class RegionInstantSnapshotsClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see RegionInstantSnapshotsClient::getIamPolicyAsync()} .
      *
@@ -380,7 +388,8 @@ final class RegionInstantSnapshotsClient
     }
 
     /**
-     * Retrieves the list of InstantSnapshot resources contained within the specified region.
+     * Retrieves the list of InstantSnapshot resources contained within
+     * the specified region.
      *
      * The async variant is {@see RegionInstantSnapshotsClient::listAsync()} .
      *
@@ -406,7 +415,8 @@ final class RegionInstantSnapshotsClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see RegionInstantSnapshotsClient::setIamPolicyAsync()} .
      *
@@ -432,7 +442,9 @@ final class RegionInstantSnapshotsClient
     }
 
     /**
-     * Sets the labels on a instantSnapshot in the given region. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on a instantSnapshot in the given region. To learn more
+     * about labels, read the Labeling
+     * Resources documentation.
      *
      * The async variant is {@see RegionInstantSnapshotsClient::setLabelsAsync()} .
      *

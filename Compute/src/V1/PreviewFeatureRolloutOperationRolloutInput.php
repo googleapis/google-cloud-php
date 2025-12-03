@@ -16,7 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class PreviewFeatureRolloutOperationRolloutInput extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the rollout plan Ex. organizations//locations/global/rolloutPlans/ Ex. folders//locations/global/rolloutPlans/ Ex. projects//locations/global/rolloutPlans/.
+     * The name of the rollout plan
+     * Ex.
+     * organizations//locations/global/rolloutPlans/
+     * Ex.
+     * folders//locations/global/rolloutPlans/
+     * Ex.
+     * projects//locations/global/rolloutPlans/.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -36,7 +42,13 @@ class PreviewFeatureRolloutOperationRolloutInput extends \Google\Protobuf\Intern
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the rollout plan Ex. organizations//locations/global/rolloutPlans/ Ex. folders//locations/global/rolloutPlans/ Ex. projects//locations/global/rolloutPlans/.
+     *           The name of the rollout plan
+     *           Ex.
+     *           organizations//locations/global/rolloutPlans/
+     *           Ex.
+     *           folders//locations/global/rolloutPlans/
+     *           Ex.
+     *           projects//locations/global/rolloutPlans/.
      *     @type string $predefined_rollout_plan
      *           Predefined rollout plan.
      *           Check the PredefinedRolloutPlan enum for the list of possible values.
@@ -48,7 +60,13 @@ class PreviewFeatureRolloutOperationRolloutInput extends \Google\Protobuf\Intern
     }
 
     /**
-     * The name of the rollout plan Ex. organizations//locations/global/rolloutPlans/ Ex. folders//locations/global/rolloutPlans/ Ex. projects//locations/global/rolloutPlans/.
+     * The name of the rollout plan
+     * Ex.
+     * organizations//locations/global/rolloutPlans/
+     * Ex.
+     * folders//locations/global/rolloutPlans/
+     * Ex.
+     * projects//locations/global/rolloutPlans/.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -69,7 +87,13 @@ class PreviewFeatureRolloutOperationRolloutInput extends \Google\Protobuf\Intern
     }
 
     /**
-     * The name of the rollout plan Ex. organizations//locations/global/rolloutPlans/ Ex. folders//locations/global/rolloutPlans/ Ex. projects//locations/global/rolloutPlans/.
+     * The name of the rollout plan
+     * Ex.
+     * organizations//locations/global/rolloutPlans/
+     * Ex.
+     * folders//locations/global/rolloutPlans/
+     * Ex.
+     * projects//locations/global/rolloutPlans/.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var

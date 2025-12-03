@@ -29,11 +29,20 @@ use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\ListManagedInstancesInstanceGroupManagersRequest;
 
 /**
- * Lists all of the instances in the managed instance group. Each instance in the list has a currentAction, which indicates the action that the managed instance group is performing on the instance. For example, if the group is still creating an instance, the currentAction is CREATING. If a previous action failed, the list displays the errors for that failed action. The orderBy query parameter is not supported. The `pageToken` query parameter is supported only if the group's `listManagedInstancesResults` field is set to `PAGINATED`.
+ * Lists all of the instances in the managed instance group. Each instance
+ * in the list has a currentAction, which indicates the action
+ * that the managed instance group is performing on the instance. For example,
+ * if the group is still creating an instance, the currentAction
+ * is CREATING. If a previous action failed, the
+ * list displays the errors for that failed action. The orderBy
+ * query parameter is not supported. The `pageToken` query parameter is
+ * supported only if the group's `listManagedInstancesResults` field is set
+ * to `PAGINATED`.
  *
  * @param string $instanceGroupManager The name of the managed instance group.
  * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the managed instance group is located.
+ * @param string $zone                 The name of thezone where the managed
+ *                                     instance group is located.
  */
 function list_managed_instances_sample(
     string $instanceGroupManager,

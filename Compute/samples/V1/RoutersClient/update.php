@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\UpdateRouterRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified Router resource with the data included in the request. This method conforms to PUT semantics, which requests that the state of the target resource be created or replaced with the state defined by the representation enclosed in the request message payload.
+ * Updates the specified Router resource with the data included in the
+ * request.  This method conforms toPUT semantics, which requests that the state of the
+ * target resource be created or replaced with the state defined by the
+ * representation enclosed in the request message payload.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.

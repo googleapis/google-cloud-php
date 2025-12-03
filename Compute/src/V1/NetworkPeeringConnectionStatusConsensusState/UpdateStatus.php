@@ -20,19 +20,21 @@ class UpdateStatus
      */
     const UNDEFINED_UPDATE_STATUS = 0;
     /**
-     * No pending configuration update proposals to the peering connection.
+     * No pending configuration update proposals to the  peering connection.
      *
      * Generated from protobuf enum <code>IN_SYNC = 2273653;</code>
      */
     const IN_SYNC = 2273653;
     /**
-     * The peer network admin has made an updatePeering call. The change is awaiting acknowledgment from this peering's network admin.
+     * The peer network admin has made an updatePeering call. The change is
+     * awaiting acknowledgment from this peering's network admin.
      *
      * Generated from protobuf enum <code>PENDING_LOCAL_ACKNOWLEDMENT = 229926592;</code>
      */
     const PENDING_LOCAL_ACKNOWLEDMENT = 229926592;
     /**
-     * The local network admin has made an updatePeering call. The change is awaiting acknowledgment from the peer network admin.
+     * The local network admin has made an updatePeering call. The change
+     * is awaiting acknowledgment from the peer network admin.
      *
      * Generated from protobuf enum <code>PENDING_PEER_ACKNOWLEDGEMENT = 420185797;</code>
      */

@@ -21,7 +21,8 @@ class SetCommonInstanceMetadataOperationMetadata extends \Google\Protobuf\Intern
      */
     protected $client_operation_id = null;
     /**
-     * [Output Only] Status information per location (location name is key). Example key: zones/us-central1-a
+     * [Output Only] Status information per location (location name is key).
+     * Example key: zones/us-central1-a
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo> per_location_operations = 408987796;</code>
      */
@@ -36,7 +37,8 @@ class SetCommonInstanceMetadataOperationMetadata extends \Google\Protobuf\Intern
      *     @type string $client_operation_id
      *           [Output Only] The client operation id.
      *     @type array|\Google\Protobuf\Internal\MapField $per_location_operations
-     *           [Output Only] Status information per location (location name is key). Example key: zones/us-central1-a
+     *           [Output Only] Status information per location (location name is key).
+     *           Example key: zones/us-central1-a
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +83,8 @@ class SetCommonInstanceMetadataOperationMetadata extends \Google\Protobuf\Intern
     }
 
     /**
-     * [Output Only] Status information per location (location name is key). Example key: zones/us-central1-a
+     * [Output Only] Status information per location (location name is key).
+     * Example key: zones/us-central1-a
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo> per_location_operations = 408987796;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -92,7 +95,8 @@ class SetCommonInstanceMetadataOperationMetadata extends \Google\Protobuf\Intern
     }
 
     /**
-     * [Output Only] Status information per location (location name is key). Example key: zones/us-central1-a
+     * [Output Only] Status information per location (location name is key).
+     * Example key: zones/us-central1-a
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo> per_location_operations = 408987796;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

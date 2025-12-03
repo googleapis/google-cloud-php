@@ -29,7 +29,11 @@ use Google\Cloud\Compute\V1\AggregatedListNetworkAttachmentsRequest;
 use Google\Cloud\Compute\V1\Client\NetworkAttachmentsClient;
 
 /**
- * Retrieves the list of all NetworkAttachment resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+ * Retrieves the list of all NetworkAttachment resources,
+ * regional and global, available to the specified project.
+ *
+ * To prevent failure, Google recommends that you set the
+ * `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

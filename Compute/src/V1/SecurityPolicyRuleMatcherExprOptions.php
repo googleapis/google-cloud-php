@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyRuleMatcherExprOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * reCAPTCHA configuration options to be applied for the rule. If the rule does not evaluate reCAPTCHA tokens, this field has no effect.
+     * reCAPTCHA configuration options to be applied for the rule. If the
+     * rule does not evaluate reCAPTCHA tokens, this field has no effect.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions recaptcha_options = 389151558;</code>
      */
@@ -28,7 +29,8 @@ class SecurityPolicyRuleMatcherExprOptions extends \Google\Protobuf\Internal\Mes
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions $recaptcha_options
-     *           reCAPTCHA configuration options to be applied for the rule. If the rule does not evaluate reCAPTCHA tokens, this field has no effect.
+     *           reCAPTCHA configuration options to be applied for the rule. If the
+     *           rule does not evaluate reCAPTCHA tokens, this field has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class SecurityPolicyRuleMatcherExprOptions extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * reCAPTCHA configuration options to be applied for the rule. If the rule does not evaluate reCAPTCHA tokens, this field has no effect.
+     * reCAPTCHA configuration options to be applied for the rule. If the
+     * rule does not evaluate reCAPTCHA tokens, this field has no effect.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions recaptcha_options = 389151558;</code>
      * @return \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions|null
@@ -58,7 +61,8 @@ class SecurityPolicyRuleMatcherExprOptions extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * reCAPTCHA configuration options to be applied for the rule. If the rule does not evaluate reCAPTCHA tokens, this field has no effect.
+     * reCAPTCHA configuration options to be applied for the rule. If the
+     * rule does not evaluate reCAPTCHA tokens, this field has no effect.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions recaptcha_options = 389151558;</code>
      * @param \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions $var

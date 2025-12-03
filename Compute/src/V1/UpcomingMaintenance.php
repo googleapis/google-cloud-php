@@ -22,7 +22,8 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
      */
     protected $can_reschedule = null;
     /**
-     * The latest time for the planned maintenance window to start. This timestamp value is in RFC3339 text format.
+     * The latest time for the planned maintenance window to start.
+     * This timestamp value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string latest_window_start_time = 128032129;</code>
      */
@@ -55,13 +56,15 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
      */
     protected $type = null;
     /**
-     * The time by which the maintenance disruption will be completed. This timestamp value is in RFC3339 text format.
+     * The time by which the maintenance disruption will be completed.
+     * This timestamp value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string window_end_time = 271816480;</code>
      */
     protected $window_end_time = null;
     /**
-     * The current start time of the maintenance window. This timestamp value is in RFC3339 text format.
+     * The current start time of the maintenance window.
+     * This timestamp value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string window_start_time = 473061433;</code>
      */
@@ -76,7 +79,8 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
      *     @type bool $can_reschedule
      *           Indicates if the maintenance can be customer triggered.
      *     @type string $latest_window_start_time
-     *           The latest time for the planned maintenance window to start. This timestamp value is in RFC3339 text format.
+     *           The latest time for the planned maintenance window to start.
+     *           This timestamp value is in RFC3339 text format.
      *     @type bool $maintenance_on_shutdown
      *           Indicates whether the UpcomingMaintenance will be triggered on VM shutdown.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $maintenance_reasons
@@ -89,9 +93,11 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
      *           Defines the type of maintenance.
      *           Check the Type enum for the list of possible values.
      *     @type string $window_end_time
-     *           The time by which the maintenance disruption will be completed. This timestamp value is in RFC3339 text format.
+     *           The time by which the maintenance disruption will be completed.
+     *           This timestamp value is in RFC3339 text format.
      *     @type string $window_start_time
-     *           The current start time of the maintenance window. This timestamp value is in RFC3339 text format.
+     *           The current start time of the maintenance window.
+     *           This timestamp value is in RFC3339 text format.
      * }
      */
     public function __construct($data = NULL) {
@@ -136,7 +142,8 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The latest time for the planned maintenance window to start. This timestamp value is in RFC3339 text format.
+     * The latest time for the planned maintenance window to start.
+     * This timestamp value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string latest_window_start_time = 128032129;</code>
      * @return string
@@ -157,7 +164,8 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The latest time for the planned maintenance window to start. This timestamp value is in RFC3339 text format.
+     * The latest time for the planned maintenance window to start.
+     * This timestamp value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string latest_window_start_time = 128032129;</code>
      * @param string $var
@@ -312,7 +320,8 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time by which the maintenance disruption will be completed. This timestamp value is in RFC3339 text format.
+     * The time by which the maintenance disruption will be completed.
+     * This timestamp value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string window_end_time = 271816480;</code>
      * @return string
@@ -333,7 +342,8 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time by which the maintenance disruption will be completed. This timestamp value is in RFC3339 text format.
+     * The time by which the maintenance disruption will be completed.
+     * This timestamp value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string window_end_time = 271816480;</code>
      * @param string $var
@@ -348,7 +358,8 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current start time of the maintenance window. This timestamp value is in RFC3339 text format.
+     * The current start time of the maintenance window.
+     * This timestamp value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string window_start_time = 473061433;</code>
      * @return string
@@ -369,7 +380,8 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current start time of the maintenance window. This timestamp value is in RFC3339 text format.
+     * The current start time of the maintenance window.
+     * This timestamp value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string window_start_time = 473061433;</code>
      * @param string $var

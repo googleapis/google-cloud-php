@@ -29,7 +29,10 @@ use Google\Cloud\Compute\V1\AggregatedListNetworkEndpointGroupsRequest;
 use Google\Cloud\Compute\V1\Client\NetworkEndpointGroupsClient;
 
 /**
- * Retrieves the list of network endpoint groups and sorts them by zone. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+ * Retrieves the list of network endpoint groups and sorts them by zone.
+ *
+ * To prevent failure, Google recommends that you set the
+ * `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

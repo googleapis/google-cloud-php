@@ -15,13 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagersScopedList extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The list of managed instance groups that are contained in the specified project and zone.
+     * [Output Only] The list of managed instance groups that are contained in
+     * the specified project and zone.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManager instance_group_managers = 214072592;</code>
      */
     private $instance_group_managers;
     /**
-     * [Output Only] The warning that replaces the list of managed instance groups when the list is empty.
+     * [Output Only] The warning that replaces the list of managed instance
+     * groups when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
@@ -34,9 +36,11 @@ class InstanceGroupManagersScopedList extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManager>|\Google\Protobuf\Internal\RepeatedField $instance_group_managers
-     *           [Output Only] The list of managed instance groups that are contained in the specified project and zone.
+     *           [Output Only] The list of managed instance groups that are contained in
+     *           the specified project and zone.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
-     *           [Output Only] The warning that replaces the list of managed instance groups when the list is empty.
+     *           [Output Only] The warning that replaces the list of managed instance
+     *           groups when the list is empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +49,8 @@ class InstanceGroupManagersScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of managed instance groups that are contained in the specified project and zone.
+     * [Output Only] The list of managed instance groups that are contained in
+     * the specified project and zone.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManager instance_group_managers = 214072592;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -56,7 +61,8 @@ class InstanceGroupManagersScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of managed instance groups that are contained in the specified project and zone.
+     * [Output Only] The list of managed instance groups that are contained in
+     * the specified project and zone.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManager instance_group_managers = 214072592;</code>
      * @param array<\Google\Cloud\Compute\V1\InstanceGroupManager>|\Google\Protobuf\Internal\RepeatedField $var
@@ -71,7 +77,8 @@ class InstanceGroupManagersScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The warning that replaces the list of managed instance groups when the list is empty.
+     * [Output Only] The warning that replaces the list of managed instance
+     * groups when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
@@ -92,7 +99,8 @@ class InstanceGroupManagersScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The warning that replaces the list of managed instance groups when the list is empty.
+     * [Output Only] The warning that replaces the list of managed instance
+     * groups when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var

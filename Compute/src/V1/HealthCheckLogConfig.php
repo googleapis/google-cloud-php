@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration of logging on a health check. If logging is enabled, logs will be exported to Stackdriver.
+ * Configuration of logging on a health check. If logging is enabled, logs
+ * will be exported to Stackdriver.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.HealthCheckLogConfig</code>
  */
 class HealthCheckLogConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Indicates whether or not to export logs. This is false by default, which means no health check logging will be done.
+     * Indicates whether or not to export logs. This is false by default, which
+     * means no health check logging will be done.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      */
@@ -29,7 +31,8 @@ class HealthCheckLogConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable
-     *           Indicates whether or not to export logs. This is false by default, which means no health check logging will be done.
+     *           Indicates whether or not to export logs. This is false by default, which
+     *           means no health check logging will be done.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +41,8 @@ class HealthCheckLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether or not to export logs. This is false by default, which means no health check logging will be done.
+     * Indicates whether or not to export logs. This is false by default, which
+     * means no health check logging will be done.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @return bool
@@ -59,7 +63,8 @@ class HealthCheckLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether or not to export logs. This is false by default, which means no health check logging will be done.
+     * Indicates whether or not to export logs. This is false by default, which
+     * means no health check logging will be done.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @param bool $var

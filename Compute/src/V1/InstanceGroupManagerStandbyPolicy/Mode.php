@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\InstanceGroupManagerStandbyPolicy;
 use UnexpectedValueException;
 
 /**
- * Defines how a MIG resumes or starts VMs from a standby pool when the group scales out. The default mode is `MANUAL`.
+ * Defines how a MIG resumes or starts VMs from a standby pool when the
+ * group scales out. The default mode is `MANUAL`.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceGroupManagerStandbyPolicy.Mode</code>
  */
@@ -20,13 +21,15 @@ class Mode
      */
     const UNDEFINED_MODE = 0;
     /**
-     * MIG does not automatically resume or start VMs in the standby pool when the group scales out.
+     * MIG does not automatically resume or start VMs in the standby pool when
+     * the group scales out.
      *
      * Generated from protobuf enum <code>MANUAL = 119397318;</code>
      */
     const MANUAL = 119397318;
     /**
-     * MIG automatically resumes or starts VMs in the standby pool when the group scales out, and replenishes the standby pool afterwards.
+     * MIG automatically resumes or starts VMs in the standby pool when the
+     * group scales out, and replenishes the standby pool afterwards.
      *
      * Generated from protobuf enum <code>SCALE_OUT_POOL = 635394;</code>
      */

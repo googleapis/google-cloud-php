@@ -192,7 +192,8 @@ final class InterconnectLocationsClient
     }
 
     /**
-     * Returns the details for the specified interconnect location. Gets a list of available interconnect locations by making a list() request.
+     * Returns the details for the specified interconnect location. Gets a list of
+     * available interconnect locations by making a list() request.
      *
      * The async variant is {@see InterconnectLocationsClient::getAsync()} .
      *
@@ -218,7 +219,8 @@ final class InterconnectLocationsClient
     }
 
     /**
-     * Retrieves the list of interconnect locations available to the specified project.
+     * Retrieves the list of interconnect locations available to the specified
+     * project.
      *
      * The async variant is {@see InterconnectLocationsClient::listAsync()} .
      *

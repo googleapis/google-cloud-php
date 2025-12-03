@@ -258,7 +258,8 @@ final class RegionInstancesClient
     }
 
     /**
-     * Creates multiple instances in a given region. Count specifies the number of instances to create.
+     * Creates multiple instances in a given region. Count specifies the number of
+     * instances to create.
      *
      * The async variant is {@see RegionInstancesClient::bulkInsertAsync()} .
      *

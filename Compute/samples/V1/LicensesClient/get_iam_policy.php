@@ -29,7 +29,11 @@ use Google\Cloud\Compute\V1\GetIamPolicyLicenseRequest;
 use Google\Cloud\Compute\V1\Policy;
 
 /**
- * Gets the access control policy for a resource. May be empty if no such policy or resource exists. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
+ * Gets the access control policy for a resource. May be empty if no such
+ * policy or resource exists.
+ * *Caution* This resource is intended
+ * for use only by third-party partners who are creatingCloud Marketplace
+ * images.
  *
  * @param string $project  Project ID for this request.
  * @param string $resource Name or id of the resource for this request.

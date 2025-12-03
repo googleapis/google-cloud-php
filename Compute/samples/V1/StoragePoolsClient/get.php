@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\GetStoragePoolRequest;
 use Google\Cloud\Compute\V1\StoragePool;
 
 /**
- * Returns a specified storage pool. Gets a list of available storage pools by making a list() request.
+ * Returns a specified storage pool. Gets a list of available
+ * storage pools by making a list() request.
  *
  * @param string $project     Project ID for this request.
  * @param string $storagePool Name of the storage pool to return.

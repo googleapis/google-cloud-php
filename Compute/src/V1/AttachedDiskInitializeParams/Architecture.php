@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\AttachedDiskInitializeParams;
 use UnexpectedValueException;
 
 /**
- * The architecture of the attached disk. Valid values are arm64 or x86_64.
+ * The architecture of the attached disk. Valid values are
+ * arm64 or x86_64.
  *
  * Protobuf type <code>google.cloud.compute.v1.AttachedDiskInitializeParams.Architecture</code>
  */

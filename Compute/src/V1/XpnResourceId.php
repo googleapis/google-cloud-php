@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class XpnResourceId extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The ID of the service resource. In the case of projects, this field supports project id (e.g., my-project-123) and project number (e.g. 12345678).
+     * The ID of the service resource. In the case of projects, this field
+     * supports project id (e.g., my-project-123) and project number
+     * (e.g. 12345678).
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      */
@@ -36,7 +38,9 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           The ID of the service resource. In the case of projects, this field supports project id (e.g., my-project-123) and project number (e.g. 12345678).
+     *           The ID of the service resource. In the case of projects, this field
+     *           supports project id (e.g., my-project-123) and project number
+     *           (e.g. 12345678).
      *     @type string $type
      *           The type of the service resource.
      *           Check the Type enum for the list of possible values.
@@ -48,7 +52,9 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the service resource. In the case of projects, this field supports project id (e.g., my-project-123) and project number (e.g. 12345678).
+     * The ID of the service resource. In the case of projects, this field
+     * supports project id (e.g., my-project-123) and project number
+     * (e.g. 12345678).
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      * @return string
@@ -69,7 +75,9 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the service resource. In the case of projects, this field supports project id (e.g., my-project-123) and project number (e.g. 12345678).
+     * The ID of the service resource. In the case of projects, this field
+     * supports project id (e.g., my-project-123) and project number
+     * (e.g. 12345678).
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      * @param string $var

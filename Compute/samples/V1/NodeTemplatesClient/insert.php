@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\NodeTemplate;
 use Google\Rpc\Status;
 
 /**
- * Creates a NodeTemplate resource in the specified project using the data included in the request.
+ * Creates a NodeTemplate resource in the specified project using the data
+ * included in the request.
  *
  * @param string $project Project ID for this request.
  * @param string $region  The name of the region for this request.

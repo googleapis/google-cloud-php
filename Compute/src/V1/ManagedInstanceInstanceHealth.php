@@ -22,7 +22,8 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
      */
     protected $detailed_health_state = null;
     /**
-     * [Output Only] The URL for the health check that verifies whether the instance is healthy.
+     * [Output Only] The URL for the health check that verifies whether the
+     * instance is healthy.
      *
      * Generated from protobuf field <code>optional string health_check = 308876645;</code>
      */
@@ -38,7 +39,8 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
      *           [Output Only] The current detailed instance health state.
      *           Check the DetailedHealthState enum for the list of possible values.
      *     @type string $health_check
-     *           [Output Only] The URL for the health check that verifies whether the instance is healthy.
+     *           [Output Only] The URL for the health check that verifies whether the
+     *           instance is healthy.
      * }
      */
     public function __construct($data = NULL) {
@@ -85,7 +87,8 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for the health check that verifies whether the instance is healthy.
+     * [Output Only] The URL for the health check that verifies whether the
+     * instance is healthy.
      *
      * Generated from protobuf field <code>optional string health_check = 308876645;</code>
      * @return string
@@ -106,7 +109,8 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for the health check that verifies whether the instance is healthy.
+     * [Output Only] The URL for the health check that verifies whether the
+     * instance is healthy.
      *
      * Generated from protobuf field <code>optional string health_check = 308876645;</code>
      * @param string $var

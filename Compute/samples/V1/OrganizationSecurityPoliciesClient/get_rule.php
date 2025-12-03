@@ -29,7 +29,11 @@ use Google\Cloud\Compute\V1\GetRuleOrganizationSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\SecurityPolicyRule;
 
 /**
- * Gets a rule at the specified priority. Use of this API to read firewall policies is deprecated. Use firewallPolicies.getRule instead.
+ * Gets a rule at the specified priority.
+ *
+ * Use this API to read Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to read firewall policies. This usage is now
+ * disabled for most organizations. Use firewallPolicies.getRule instead.
  *
  * @param string $securityPolicy Name of the security policy to which the queried rule belongs.
  */

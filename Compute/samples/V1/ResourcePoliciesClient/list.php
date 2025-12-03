@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\ResourcePoliciesClient;
 use Google\Cloud\Compute\V1\ListResourcePoliciesRequest;
 
 /**
- * A list all the resource policies that have been configured for the specified project in specified region.
+ * A list all the resource policies that have been configured for the
+ * specified project in specified region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.

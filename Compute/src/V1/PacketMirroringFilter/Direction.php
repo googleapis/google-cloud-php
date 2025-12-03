@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\PacketMirroringFilter;
 use UnexpectedValueException;
 
 /**
- * Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH. The default is BOTH.
+ * Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH.
+ * The default is BOTH.
  *
  * Protobuf type <code>google.cloud.compute.v1.PacketMirroringFilter.Direction</code>
  */

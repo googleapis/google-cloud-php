@@ -15,11 +15,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output only] ASNs in the path segment. When type is SEQUENCE, these are ordered.
+     * [Output only] ASNs in the path segment. When type is SEQUENCE, these are
+     * ordered.
      *
      * Generated from protobuf field <code>repeated int32 asns = 3003767;</code>
      */
     private $asns;
+    /**
+     * [Output only] ASNs in the path segment. This field is for better
+     * support of 32 bit ASNs as the other asns field suffers from overflow when
+     * the ASN is larger. When type is SEQUENCE, these are ordered.
+     *
+     * Generated from protobuf field <code>repeated uint32 asns32 = 202267158;</code>
+     */
+    private $asns32;
     /**
      * [Output only] Type of AS-PATH segment (SEQUENCE or SET)
      * Check the Type enum for the list of possible values.
@@ -35,7 +44,12 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $asns
-     *           [Output only] ASNs in the path segment. When type is SEQUENCE, these are ordered.
+     *           [Output only] ASNs in the path segment. When type is SEQUENCE, these are
+     *           ordered.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $asns32
+     *           [Output only] ASNs in the path segment. This field is for better
+     *           support of 32 bit ASNs as the other asns field suffers from overflow when
+     *           the ASN is larger. When type is SEQUENCE, these are ordered.
      *     @type string $type
      *           [Output only] Type of AS-PATH segment (SEQUENCE or SET)
      *           Check the Type enum for the list of possible values.
@@ -47,7 +61,8 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] ASNs in the path segment. When type is SEQUENCE, these are ordered.
+     * [Output only] ASNs in the path segment. When type is SEQUENCE, these are
+     * ordered.
      *
      * Generated from protobuf field <code>repeated int32 asns = 3003767;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -58,7 +73,8 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] ASNs in the path segment. When type is SEQUENCE, these are ordered.
+     * [Output only] ASNs in the path segment. When type is SEQUENCE, these are
+     * ordered.
      *
      * Generated from protobuf field <code>repeated int32 asns = 3003767;</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -68,6 +84,36 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
         $this->asns = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] ASNs in the path segment. This field is for better
+     * support of 32 bit ASNs as the other asns field suffers from overflow when
+     * the ASN is larger. When type is SEQUENCE, these are ordered.
+     *
+     * Generated from protobuf field <code>repeated uint32 asns32 = 202267158;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAsns32()
+    {
+        return $this->asns32;
+    }
+
+    /**
+     * [Output only] ASNs in the path segment. This field is for better
+     * support of 32 bit ASNs as the other asns field suffers from overflow when
+     * the ASN is larger. When type is SEQUENCE, these are ordered.
+     *
+     * Generated from protobuf field <code>repeated uint32 asns32 = 202267158;</code>
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAsns32($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::UINT32);
+        $this->asns32 = $arr;
 
         return $this;
     }

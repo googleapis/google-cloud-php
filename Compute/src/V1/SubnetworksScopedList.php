@@ -21,7 +21,8 @@ class SubnetworksScopedList extends \Google\Protobuf\Internal\Message
      */
     private $subnetworks;
     /**
-     * An informational warning that appears when the list of addresses is empty.
+     * An informational warning that appears when the list of addresses
+     * is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
@@ -36,7 +37,8 @@ class SubnetworksScopedList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\Subnetwork>|\Google\Protobuf\Internal\RepeatedField $subnetworks
      *           A list of subnetworks contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
-     *           An informational warning that appears when the list of addresses is empty.
+     *           An informational warning that appears when the list of addresses
+     *           is empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,7 +73,8 @@ class SubnetworksScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An informational warning that appears when the list of addresses is empty.
+     * An informational warning that appears when the list of addresses
+     * is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
@@ -92,7 +95,8 @@ class SubnetworksScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An informational warning that appears when the list of addresses is empty.
+     * An informational warning that appears when the list of addresses
+     * is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var

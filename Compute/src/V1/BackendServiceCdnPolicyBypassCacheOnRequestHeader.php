@@ -9,14 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Bypass the cache when the specified request headers are present, e.g. Pragma or Authorization headers. Values are case insensitive. The presence of such a header overrides the cache_mode setting.
+ * Bypass the cache when the specified request headers are present,
+ * e.g. Pragma or Authorization headers. Values are case insensitive.
+ * The presence of such a header overrides the cache_mode setting.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.BackendServiceCdnPolicyBypassCacheOnRequestHeader</code>
  */
 class BackendServiceCdnPolicyBypassCacheOnRequestHeader extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The header field name to match on when bypassing cache. Values are case-insensitive.
+     * The header field name to match on when bypassing cache.
+     * Values are case-insensitive.
      *
      * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      */
@@ -29,7 +32,8 @@ class BackendServiceCdnPolicyBypassCacheOnRequestHeader extends \Google\Protobuf
      *     Optional. Data for populating the Message object.
      *
      *     @type string $header_name
-     *           The header field name to match on when bypassing cache. Values are case-insensitive.
+     *           The header field name to match on when bypassing cache.
+     *           Values are case-insensitive.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +42,8 @@ class BackendServiceCdnPolicyBypassCacheOnRequestHeader extends \Google\Protobuf
     }
 
     /**
-     * The header field name to match on when bypassing cache. Values are case-insensitive.
+     * The header field name to match on when bypassing cache.
+     * Values are case-insensitive.
      *
      * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      * @return string
@@ -59,7 +64,8 @@ class BackendServiceCdnPolicyBypassCacheOnRequestHeader extends \Google\Protobuf
     }
 
     /**
-     * The header field name to match on when bypassing cache. Values are case-insensitive.
+     * The header field name to match on when bypassing cache.
+     * Values are case-insensitive.
      *
      * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      * @param string $var

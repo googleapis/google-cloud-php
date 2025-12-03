@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImageFamilyView extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The latest image that is part of the specified image family in the requested location, and that is not deprecated.
+     * The latest image that is part of the specified image family in the
+     * requested location, and that is not deprecated.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Image image = 100313435;</code>
      */
@@ -28,7 +29,8 @@ class ImageFamilyView extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\Image $image
-     *           The latest image that is part of the specified image family in the requested location, and that is not deprecated.
+     *           The latest image that is part of the specified image family in the
+     *           requested location, and that is not deprecated.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class ImageFamilyView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The latest image that is part of the specified image family in the requested location, and that is not deprecated.
+     * The latest image that is part of the specified image family in the
+     * requested location, and that is not deprecated.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Image image = 100313435;</code>
      * @return \Google\Cloud\Compute\V1\Image|null
@@ -58,7 +61,8 @@ class ImageFamilyView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The latest image that is part of the specified image family in the requested location, and that is not deprecated.
+     * The latest image that is part of the specified image family in the
+     * requested location, and that is not deprecated.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Image image = 100313435;</code>
      * @param \Google\Cloud\Compute\V1\Image $var

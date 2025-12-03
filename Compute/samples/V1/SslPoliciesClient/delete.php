@@ -30,10 +30,13 @@ use Google\Cloud\Compute\V1\DeleteSslPolicyRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified SSL policy. The SSL policy resource can be deleted only if it is not in use by any TargetHttpsProxy or TargetSslProxy resources.
+ * Deletes the specified SSL policy. The SSL policy resource can be deleted
+ * only if it is not in use by any TargetHttpsProxy or TargetSslProxy
+ * resources.
  *
  * @param string $project   Project ID for this request.
- * @param string $sslPolicy Name of the SSL policy to delete. The name must be 1-63 characters long, and comply with RFC1035.
+ * @param string $sslPolicy Name of the SSL policy to delete. The name must be 1-63 characters long,
+ *                          and comply with RFC1035.
  */
 function delete_sample(string $project, string $sslPolicy): void
 {

@@ -31,10 +31,14 @@ use Google\Cloud\Compute\V1\SslPolicyReference;
 use Google\Rpc\Status;
 
 /**
- * Sets the SSL policy for TargetHttpsProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the HTTPS proxy load balancer. They do not affect the connection between the load balancer and the backends.
+ * Sets the SSL policy for TargetHttpsProxy. The SSL policy specifies the
+ * server-side support for SSL features. This affects connections between
+ * clients and the HTTPS proxy load balancer. They do not affect the
+ * connection between the load balancer and the backends.
  *
  * @param string $project          Project ID for this request.
- * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource whose SSL policy is to be set. The name must be 1-63 characters long, and comply with RFC1035.
+ * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource whose SSL policy is
+ *                                 to be set. The name must be 1-63 characters long, and comply with RFC1035.
  */
 function set_ssl_policy_sample(string $project, string $targetHttpsProxy): void
 {

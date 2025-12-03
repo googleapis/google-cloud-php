@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\NetworkEndpointGroup;
 use Google\Rpc\Status;
 
 /**
- * Creates a network endpoint group in the specified project using the parameters that are included in the request.
+ * Creates a network endpoint group in the specified project using the
+ * parameters that are included in the request.
  *
  * @param string $project Project ID for this request.
  */

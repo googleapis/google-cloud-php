@@ -284,7 +284,8 @@ final class BackendBucketsClient
     }
 
     /**
-     * Adds a key for validating requests with signed URLs for this backend bucket.
+     * Adds a key for validating requests with signed URLs for this backend
+     * bucket.
      *
      * The async variant is {@see BackendBucketsClient::addSignedUrlKeyAsync()} .
      *
@@ -338,7 +339,8 @@ final class BackendBucketsClient
     }
 
     /**
-     * Deletes a key for validating requests with signed URLs for this backend bucket.
+     * Deletes a key for validating requests with signed URLs for this backend
+     * bucket.
      *
      * The async variant is {@see BackendBucketsClient::deleteSignedUrlKeyAsync()} .
      *
@@ -392,7 +394,8 @@ final class BackendBucketsClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see BackendBucketsClient::getIamPolicyAsync()} .
      *
@@ -418,7 +421,8 @@ final class BackendBucketsClient
     }
 
     /**
-     * Creates a BackendBucket resource in the specified project using the data included in the request.
+     * Creates a BackendBucket resource in the specified project using
+     * the data included in the request.
      *
      * The async variant is {@see BackendBucketsClient::insertAsync()} .
      *
@@ -444,7 +448,8 @@ final class BackendBucketsClient
     }
 
     /**
-     * Retrieves the list of BackendBucket resources available to the specified project.
+     * Retrieves the list of BackendBucket resources available to the specified
+     * project.
      *
      * The async variant is {@see BackendBucketsClient::listAsync()} .
      *
@@ -470,7 +475,10 @@ final class BackendBucketsClient
     }
 
     /**
-     * Updates the specified BackendBucket resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates the specified BackendBucket resource with the data included in the
+     * request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see BackendBucketsClient::patchAsync()} .
      *
@@ -524,7 +532,8 @@ final class BackendBucketsClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see BackendBucketsClient::setIamPolicyAsync()} .
      *
@@ -578,7 +587,8 @@ final class BackendBucketsClient
     }
 
     /**
-     * Updates the specified BackendBucket resource with the data included in the request.
+     * Updates the specified BackendBucket resource with the data included in the
+     * request.
      *
      * The async variant is {@see BackendBucketsClient::updateAsync()} .
      *

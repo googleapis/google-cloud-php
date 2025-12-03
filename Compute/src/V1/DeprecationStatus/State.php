@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\DeprecationStatus;
 use UnexpectedValueException;
 
 /**
- * The deprecation state of this resource. This can be ACTIVE, DEPRECATED, OBSOLETE, or DELETED. Operations which communicate the end of life date for an image, can use ACTIVE. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
+ * The deprecation state of this resource. This can be ACTIVE,DEPRECATED, OBSOLETE, or DELETED.
+ * Operations which communicate the end of life date for an image, can useACTIVE. Operations which create a new resource using aDEPRECATED resource will return successfully, but with a
+ * warning indicating the deprecated resource and recommending its
+ * replacement. Operations which use OBSOLETE orDELETED resources will be rejected and result in an error.
  *
  * Protobuf type <code>google.cloud.compute.v1.DeprecationStatus.State</code>
  */

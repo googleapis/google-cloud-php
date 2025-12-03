@@ -296,7 +296,16 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * Inserts an association for the specified security policy. This has billing implications. Projects in the hierarchy with effective hierarchical security policies will be automatically enrolled into Cloud Armor Enterprise if not already enrolled. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.addAssociation instead if possible.
+     * Inserts an association for the specified security policy.
+     *
+     * This has billing implications.  Projects in the hierarchy with effective
+     * hierarchical security policies will be automatically enrolled into Cloud
+     * Armor Enterprise if not already enrolled.
+     *
+     * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to modify firewall policies. This usage is
+     * now disabled for most organizations. Use firewallPolicies.addAssociation
+     * instead.
      *
      * The async variant is
      * {@see OrganizationSecurityPoliciesClient::addAssociationAsync()} .
@@ -327,6 +336,10 @@ final class OrganizationSecurityPoliciesClient
     /**
      * Inserts a rule into a security policy.
      *
+     * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to modify firewall policies. This usage is
+     * now disabled for most organizations. Use firewallPolicies.addRule instead.
+     *
      * The async variant is {@see OrganizationSecurityPoliciesClient::addRuleAsync()} .
      *
      * @example samples/V1/OrganizationSecurityPoliciesClient/add_rule.php
@@ -353,7 +366,12 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * Copies rules to the specified security policy. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.copyRules instead.
+     * Copies rules to the specified security policy.
+     *
+     * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to modify firewall policies. This usage is
+     * now disabled for most organizations. Use firewallPolicies.cloneRules
+     * instead.
      *
      * The async variant is {@see OrganizationSecurityPoliciesClient::copyRulesAsync()}
      * .
@@ -382,7 +400,11 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * Deletes the specified policy. Use of this API to remove firewall policies is deprecated. Use firewallPolicies.delete instead.
+     * Deletes the specified policy.
+     *
+     * Use this API to remove Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to remove firewall policies. This usage is
+     * now disabled for most organizations. Use firewallPolicies.delete instead.
      *
      * The async variant is {@see OrganizationSecurityPoliciesClient::deleteAsync()} .
      *
@@ -408,7 +430,11 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * List all of the ordered rules present in a single specified policy. Use of this API to read firewall policies is deprecated. Use firewallPolicies.get instead.
+     * List all of the ordered rules present in a single specified policy.
+     *
+     * Use this API to read Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to read firewall policies. This usage is now
+     * disabled for most organizations. Use firewallPolicies.get instead.
      *
      * The async variant is {@see OrganizationSecurityPoliciesClient::getAsync()} .
      *
@@ -434,7 +460,12 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * Gets an association with the specified name. Use of this API to read firewall policies is deprecated. Use firewallPolicies.getAssociation instead if possible.
+     * Gets an association with the specified name.
+     *
+     * Use this API to read Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to read firewall policies. This usage is
+     * now disabled for most organizations. Use firewallPolicies.getAssociation
+     * instead.
      *
      * The async variant is
      * {@see OrganizationSecurityPoliciesClient::getAssociationAsync()} .
@@ -463,7 +494,11 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * Gets a rule at the specified priority. Use of this API to read firewall policies is deprecated. Use firewallPolicies.getRule instead.
+     * Gets a rule at the specified priority.
+     *
+     * Use this API to read Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to read firewall policies. This usage is now
+     * disabled for most organizations. Use firewallPolicies.getRule instead.
      *
      * The async variant is {@see OrganizationSecurityPoliciesClient::getRuleAsync()} .
      *
@@ -491,7 +526,12 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * Creates a new policy in the specified project using the data included in the request. Use of this API to insert firewall policies is deprecated. Use firewallPolicies.insert instead.
+     * Creates a new policy in the specified organization using the data included
+     * in the request.
+     *
+     * Use this API to add Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to add firewall policies. This usage is now
+     * disabled for most organizations. Use firewallPolicies.insert instead.
      *
      * The async variant is {@see OrganizationSecurityPoliciesClient::insertAsync()} .
      *
@@ -517,7 +557,12 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * List all the policies that have been configured for the specified project. Use of this API to read firewall policies is deprecated. Use firewallPolicies.list instead.
+     * List all the policies that have been configured for the specified
+     * organization.
+     *
+     * Use this API to read Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to read firewall policies. This usage is now
+     * disabled for most organizations. Use firewallPolicies.list instead.
      *
      * The async variant is {@see OrganizationSecurityPoliciesClient::listAsync()} .
      *
@@ -543,7 +588,12 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * Lists associations of a specified target, i.e., organization or folder. Use of this API to read firewall policies is deprecated. Use firewallPolicies.listAssociations instead if possible.
+     * Lists associations of a specified target, i.e., organization or folder.
+     *
+     * Use this API to read Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to read firewall policies. This usage is
+     * now disabled for most organizations. Use firewallPolicies.listAssociations
+     * instead.
      *
      * The async variant is
      * {@see OrganizationSecurityPoliciesClient::listAssociationsAsync()} .
@@ -572,7 +622,8 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * Gets the current list of preconfigured Web Application Firewall (WAF) expressions.
+     * Gets the current list of preconfigured Web Application Firewall (WAF)
+     * expressions.
      *
      * The async variant is
      * {@see OrganizationSecurityPoliciesClient::listPreconfiguredExpressionSetsAsync()}
@@ -602,7 +653,11 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * Moves the specified security policy. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.move instead.
+     * Moves the specified security policy.
+     *
+     * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to modify firewall policies. This usage is
+     * now disabled for most organizations. Use firewallPolicies.move instead.
      *
      * The async variant is {@see OrganizationSecurityPoliciesClient::moveAsync()} .
      *
@@ -628,7 +683,11 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * Patches the specified policy with the data included in the request. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.patch instead.
+     * Patches the specified policy with the data included in the request.
+     *
+     * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to modify firewall policies. This usage is
+     * now disabled for most organizations. Use firewallPolicies.patch instead.
      *
      * The async variant is {@see OrganizationSecurityPoliciesClient::patchAsync()} .
      *
@@ -654,7 +713,12 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * Patches a rule at the specified priority. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.patchRule instead.
+     * Patches a rule at the specified priority.
+     *
+     * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to modify firewall policies. This usage is
+     * now disabled for most organizations. Use firewallPolicies.patchRule
+     * instead.
      *
      * The async variant is {@see OrganizationSecurityPoliciesClient::patchRuleAsync()}
      * .
@@ -683,7 +747,12 @@ final class OrganizationSecurityPoliciesClient
     }
 
     /**
-     * Removes an association for the specified security policy. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.removeAssociation instead if possible.
+     * Removes an association for the specified security policy.
+     *
+     * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to modify firewall policies. This usage is
+     * now disabled for most organizations. Use firewallPolicies.removeAssociation
+     * instead.
      *
      * The async variant is
      * {@see OrganizationSecurityPoliciesClient::removeAssociationAsync()} .
@@ -713,6 +782,11 @@ final class OrganizationSecurityPoliciesClient
 
     /**
      * Deletes a rule at the specified priority.
+     *
+     * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+     * versions of this API were used to modify firewall policies. This usage is
+     * now disabled for most organizations. Use firewallPolicies.removeRule
+     * instead.
      *
      * The async variant is
      * {@see OrganizationSecurityPoliciesClient::removeRuleAsync()} .

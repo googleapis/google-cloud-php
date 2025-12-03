@@ -19,7 +19,8 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
      */
     private $health_status;
     /**
-     * [Output Only] Type of resource. Always compute#targetPoolInstanceHealth when checking the health of an instance.
+     * [Output Only] Type of resource. Alwayscompute#targetPoolInstanceHealth when checking the health of
+     * an instance.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -33,7 +34,8 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Compute\V1\HealthStatus>|\Google\Protobuf\Internal\RepeatedField $health_status
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#targetPoolInstanceHealth when checking the health of an instance.
+     *           [Output Only] Type of resource. Alwayscompute#targetPoolInstanceHealth when checking the health of
+     *           an instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,7 +66,8 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#targetPoolInstanceHealth when checking the health of an instance.
+     * [Output Only] Type of resource. Alwayscompute#targetPoolInstanceHealth when checking the health of
+     * an instance.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -85,7 +88,8 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#targetPoolInstanceHealth when checking the health of an instance.
+     * [Output Only] Type of resource. Alwayscompute#targetPoolInstanceHealth when checking the health of
+     * an instance.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var

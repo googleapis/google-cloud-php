@@ -33,7 +33,8 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      */
     private $packet_mirroring_rules;
     /**
-     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     * [Output only] Priority of firewall policy association. Not applicable for
+     * type=HIERARCHY.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
@@ -45,7 +46,8 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      */
     private $rules;
     /**
-     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
+     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
+     * NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -65,11 +67,13 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $packet_mirroring_rules
      *           [Output only] The packet mirroring rules that apply to the network.
      *     @type int $priority
-     *           [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     *           [Output only] Priority of firewall policy association. Not applicable for
+     *           type=HIERARCHY.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           [Output only] The rules that apply to the network.
      *     @type string $type
-     *           [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
+     *           [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
+     *           NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      *           Check the Type enum for the list of possible values.
      * }
      */
@@ -177,7 +181,8 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     * [Output only] Priority of firewall policy association. Not applicable for
+     * type=HIERARCHY.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @return int
@@ -198,7 +203,8 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     * [Output only] Priority of firewall policy association. Not applicable for
+     * type=HIERARCHY.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @param int $var
@@ -239,7 +245,8 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
+     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
+     * NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -261,7 +268,8 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
+     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
+     * NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>

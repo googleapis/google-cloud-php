@@ -20,13 +20,15 @@ class RolloutStatus
      */
     const UNDEFINED_ROLLOUT_STATUS = 0;
     /**
-     * IN_PROGRESS - A rollout is in process which will change the limit value to future limit.
+     * IN_PROGRESS - A rollout is in process which will change the limit value
+     * to future limit.
      *
      * Generated from protobuf enum <code>IN_PROGRESS = 469193735;</code>
      */
     const IN_PROGRESS = 469193735;
     /**
-     * ROLLOUT_STATUS_UNSPECIFIED - Rollout status is not specified. The default value.
+     * ROLLOUT_STATUS_UNSPECIFIED - Rollout status is not specified. The default
+     * value.
      *
      * Generated from protobuf enum <code>ROLLOUT_STATUS_UNSPECIFIED = 26864568;</code>
      */

@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\SetCloudArmorTierProjectRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets the Cloud Armor tier of the project. To set ENTERPRISE or above the billing account of the project must be subscribed to Cloud Armor Enterprise. See Subscribing to Cloud Armor Enterprise for more information.
+ * Sets the Cloud Armor tier of the project. To set ENTERPRISE or above the
+ * billing account of the project must be subscribed to Cloud Armor
+ * Enterprise. See Subscribing
+ * to Cloud Armor Enterprise for more information.
  *
  * @param string $project Project ID for this request.
  */

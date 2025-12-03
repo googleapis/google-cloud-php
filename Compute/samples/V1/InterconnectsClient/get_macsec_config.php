@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\GetMacsecConfigInterconnectRequest;
 use Google\Cloud\Compute\V1\InterconnectsGetMacsecConfigResponse;
 
 /**
- * Returns the interconnectMacsecConfig for the specified Interconnect.
+ * Returns the interconnectMacsecConfig for the specified
+ * Interconnect.
  *
  * @param string $interconnect Name of the interconnect resource to query.
  * @param string $project      Project ID for this request.

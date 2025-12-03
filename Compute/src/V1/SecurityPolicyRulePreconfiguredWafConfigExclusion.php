@@ -15,31 +15,39 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of request cookie names whose value will be excluded from inspection during preconfigured WAF evaluation.
+     * A list of request cookie names whose value will be excluded from
+     * inspection during preconfigured WAF evaluation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_cookies_to_exclude = 156757878;</code>
      */
     private $request_cookies_to_exclude;
     /**
-     * A list of request header names whose value will be excluded from inspection during preconfigured WAF evaluation.
+     * A list of request header names whose value will be excluded from
+     * inspection during preconfigured WAF evaluation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_headers_to_exclude = 63230495;</code>
      */
     private $request_headers_to_exclude;
     /**
-     * A list of request query parameter names whose value will be excluded from inspection during preconfigured WAF evaluation. Note that the parameter can be in the query string or in the POST body.
+     * A list of request query parameter names whose value will be excluded
+     * from inspection during preconfigured WAF evaluation. Note that the
+     * parameter can be in the query string or in the POST body.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_query_params_to_exclude = 340692744;</code>
      */
     private $request_query_params_to_exclude;
     /**
-     * A list of request URIs from the request line to be excluded from inspection during preconfigured WAF evaluation. When specifying this field, the query or fragment part should be excluded.
+     * A list of request URIs from the request line to be excluded from
+     * inspection during preconfigured WAF evaluation. When specifying this
+     * field, the query or fragment part should be excluded.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_uris_to_exclude = 90690846;</code>
      */
     private $request_uris_to_exclude;
     /**
-     * A list of target rule IDs under the WAF rule set to apply the preconfigured WAF exclusion. If omitted, it refers to all the rule IDs under the WAF rule set.
+     * A list of target rule IDs under the WAF rule set to apply the
+     * preconfigured WAF exclusion. If omitted, it refers to all the rule
+     * IDs under the WAF rule set.
      *
      * Generated from protobuf field <code>repeated string target_rule_ids = 498430435;</code>
      */
@@ -58,15 +66,23 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams>|\Google\Protobuf\Internal\RepeatedField $request_cookies_to_exclude
-     *           A list of request cookie names whose value will be excluded from inspection during preconfigured WAF evaluation.
+     *           A list of request cookie names whose value will be excluded from
+     *           inspection during preconfigured WAF evaluation.
      *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams>|\Google\Protobuf\Internal\RepeatedField $request_headers_to_exclude
-     *           A list of request header names whose value will be excluded from inspection during preconfigured WAF evaluation.
+     *           A list of request header names whose value will be excluded from
+     *           inspection during preconfigured WAF evaluation.
      *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams>|\Google\Protobuf\Internal\RepeatedField $request_query_params_to_exclude
-     *           A list of request query parameter names whose value will be excluded from inspection during preconfigured WAF evaluation. Note that the parameter can be in the query string or in the POST body.
+     *           A list of request query parameter names whose value will be excluded
+     *           from inspection during preconfigured WAF evaluation. Note that the
+     *           parameter can be in the query string or in the POST body.
      *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams>|\Google\Protobuf\Internal\RepeatedField $request_uris_to_exclude
-     *           A list of request URIs from the request line to be excluded from inspection during preconfigured WAF evaluation. When specifying this field, the query or fragment part should be excluded.
+     *           A list of request URIs from the request line to be excluded from
+     *           inspection during preconfigured WAF evaluation. When specifying this
+     *           field, the query or fragment part should be excluded.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_rule_ids
-     *           A list of target rule IDs under the WAF rule set to apply the preconfigured WAF exclusion. If omitted, it refers to all the rule IDs under the WAF rule set.
+     *           A list of target rule IDs under the WAF rule set to apply the
+     *           preconfigured WAF exclusion. If omitted, it refers to all the rule
+     *           IDs under the WAF rule set.
      *     @type string $target_rule_set
      *           Target WAF rule set to apply the preconfigured WAF exclusion.
      * }
@@ -77,7 +93,8 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
     }
 
     /**
-     * A list of request cookie names whose value will be excluded from inspection during preconfigured WAF evaluation.
+     * A list of request cookie names whose value will be excluded from
+     * inspection during preconfigured WAF evaluation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_cookies_to_exclude = 156757878;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -88,7 +105,8 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
     }
 
     /**
-     * A list of request cookie names whose value will be excluded from inspection during preconfigured WAF evaluation.
+     * A list of request cookie names whose value will be excluded from
+     * inspection during preconfigured WAF evaluation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_cookies_to_exclude = 156757878;</code>
      * @param array<\Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams>|\Google\Protobuf\Internal\RepeatedField $var
@@ -103,7 +121,8 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
     }
 
     /**
-     * A list of request header names whose value will be excluded from inspection during preconfigured WAF evaluation.
+     * A list of request header names whose value will be excluded from
+     * inspection during preconfigured WAF evaluation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_headers_to_exclude = 63230495;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -114,7 +133,8 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
     }
 
     /**
-     * A list of request header names whose value will be excluded from inspection during preconfigured WAF evaluation.
+     * A list of request header names whose value will be excluded from
+     * inspection during preconfigured WAF evaluation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_headers_to_exclude = 63230495;</code>
      * @param array<\Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams>|\Google\Protobuf\Internal\RepeatedField $var
@@ -129,7 +149,9 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
     }
 
     /**
-     * A list of request query parameter names whose value will be excluded from inspection during preconfigured WAF evaluation. Note that the parameter can be in the query string or in the POST body.
+     * A list of request query parameter names whose value will be excluded
+     * from inspection during preconfigured WAF evaluation. Note that the
+     * parameter can be in the query string or in the POST body.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_query_params_to_exclude = 340692744;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -140,7 +162,9 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
     }
 
     /**
-     * A list of request query parameter names whose value will be excluded from inspection during preconfigured WAF evaluation. Note that the parameter can be in the query string or in the POST body.
+     * A list of request query parameter names whose value will be excluded
+     * from inspection during preconfigured WAF evaluation. Note that the
+     * parameter can be in the query string or in the POST body.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_query_params_to_exclude = 340692744;</code>
      * @param array<\Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams>|\Google\Protobuf\Internal\RepeatedField $var
@@ -155,7 +179,9 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
     }
 
     /**
-     * A list of request URIs from the request line to be excluded from inspection during preconfigured WAF evaluation. When specifying this field, the query or fragment part should be excluded.
+     * A list of request URIs from the request line to be excluded from
+     * inspection during preconfigured WAF evaluation. When specifying this
+     * field, the query or fragment part should be excluded.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_uris_to_exclude = 90690846;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -166,7 +192,9 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
     }
 
     /**
-     * A list of request URIs from the request line to be excluded from inspection during preconfigured WAF evaluation. When specifying this field, the query or fragment part should be excluded.
+     * A list of request URIs from the request line to be excluded from
+     * inspection during preconfigured WAF evaluation. When specifying this
+     * field, the query or fragment part should be excluded.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams request_uris_to_exclude = 90690846;</code>
      * @param array<\Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams>|\Google\Protobuf\Internal\RepeatedField $var
@@ -181,7 +209,9 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
     }
 
     /**
-     * A list of target rule IDs under the WAF rule set to apply the preconfigured WAF exclusion. If omitted, it refers to all the rule IDs under the WAF rule set.
+     * A list of target rule IDs under the WAF rule set to apply the
+     * preconfigured WAF exclusion. If omitted, it refers to all the rule
+     * IDs under the WAF rule set.
      *
      * Generated from protobuf field <code>repeated string target_rule_ids = 498430435;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -192,7 +222,9 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
     }
 
     /**
-     * A list of target rule IDs under the WAF rule set to apply the preconfigured WAF exclusion. If omitted, it refers to all the rule IDs under the WAF rule set.
+     * A list of target rule IDs under the WAF rule set to apply the
+     * preconfigured WAF exclusion. If omitted, it refers to all the rule
+     * IDs under the WAF rule set.
      *
      * Generated from protobuf field <code>repeated string target_rule_ids = 498430435;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -40,6 +40,8 @@ use Google\Cloud\Compute\V1\GetFirewallRequest;
 use Google\Cloud\Compute\V1\InsertFirewallRequest;
 use Google\Cloud\Compute\V1\ListFirewallsRequest;
 use Google\Cloud\Compute\V1\PatchFirewallRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsFirewallRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateFirewallRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -55,6 +57,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> insertAsync(InsertFirewallRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListFirewallsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchFirewallRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsFirewallRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAsync(UpdateFirewallRequest $request, array $optionalArgs = [])
  */
 final class FirewallsClient
@@ -322,7 +325,8 @@ final class FirewallsClient
     }
 
     /**
-     * Creates a firewall rule in the specified project using the data included in the request.
+     * Creates a firewall rule in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see FirewallsClient::insertAsync()} .
      *
@@ -348,7 +352,8 @@ final class FirewallsClient
     }
 
     /**
-     * Retrieves the list of firewall rules available to the specified project.
+     * Retrieves the list of firewall rules available to the specified
+     * project.
      *
      * The async variant is {@see FirewallsClient::listAsync()} .
      *
@@ -374,7 +379,10 @@ final class FirewallsClient
     }
 
     /**
-     * Updates the specified firewall rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates the specified firewall rule with the data included in the
+     * request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see FirewallsClient::patchAsync()} .
      *
@@ -400,7 +408,38 @@ final class FirewallsClient
     }
 
     /**
-     * Updates the specified firewall rule with the data included in the request. Note that all fields will be updated if using PUT, even fields that are not specified. To update individual fields, please use PATCH instead.
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see FirewallsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/FirewallsClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsFirewallRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsFirewallRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the specified firewall rule with the data included in the
+     * request.
+     * Note that all fields will be updated if using PUT, even fields that are not
+     * specified. To update individual fields, please use PATCH instead.
      *
      * The async variant is {@see FirewallsClient::updateAsync()} .
      *

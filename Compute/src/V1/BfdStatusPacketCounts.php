@@ -15,25 +15,29 @@ use Google\Protobuf\Internal\GPBUtil;
 class BfdStatusPacketCounts extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Number of packets received since the beginning of the current BFD session.
+     * Number of packets received since the beginning of the current BFD
+     * session.
      *
      * Generated from protobuf field <code>optional uint32 num_rx = 39375263;</code>
      */
     protected $num_rx = null;
     /**
-     * Number of packets received that were rejected because of errors since the beginning of the current BFD session.
+     * Number of packets received that were rejected because of errors since the
+     * beginning of the current BFD session.
      *
      * Generated from protobuf field <code>optional uint32 num_rx_rejected = 281007902;</code>
      */
     protected $num_rx_rejected = null;
     /**
-     * Number of packets received that were successfully processed since the beginning of the current BFD session.
+     * Number of packets received that were successfully processed since the
+     * beginning of the current BFD session.
      *
      * Generated from protobuf field <code>optional uint32 num_rx_successful = 455361850;</code>
      */
     protected $num_rx_successful = null;
     /**
-     * Number of packets transmitted since the beginning of the current BFD session.
+     * Number of packets transmitted since the beginning of the current BFD
+     * session.
      *
      * Generated from protobuf field <code>optional uint32 num_tx = 39375325;</code>
      */
@@ -46,13 +50,17 @@ class BfdStatusPacketCounts extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $num_rx
-     *           Number of packets received since the beginning of the current BFD session.
+     *           Number of packets received since the beginning of the current BFD
+     *           session.
      *     @type int $num_rx_rejected
-     *           Number of packets received that were rejected because of errors since the beginning of the current BFD session.
+     *           Number of packets received that were rejected because of errors since the
+     *           beginning of the current BFD session.
      *     @type int $num_rx_successful
-     *           Number of packets received that were successfully processed since the beginning of the current BFD session.
+     *           Number of packets received that were successfully processed since the
+     *           beginning of the current BFD session.
      *     @type int $num_tx
-     *           Number of packets transmitted since the beginning of the current BFD session.
+     *           Number of packets transmitted since the beginning of the current BFD
+     *           session.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,7 +69,8 @@ class BfdStatusPacketCounts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of packets received since the beginning of the current BFD session.
+     * Number of packets received since the beginning of the current BFD
+     * session.
      *
      * Generated from protobuf field <code>optional uint32 num_rx = 39375263;</code>
      * @return int
@@ -82,7 +91,8 @@ class BfdStatusPacketCounts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of packets received since the beginning of the current BFD session.
+     * Number of packets received since the beginning of the current BFD
+     * session.
      *
      * Generated from protobuf field <code>optional uint32 num_rx = 39375263;</code>
      * @param int $var
@@ -97,7 +107,8 @@ class BfdStatusPacketCounts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of packets received that were rejected because of errors since the beginning of the current BFD session.
+     * Number of packets received that were rejected because of errors since the
+     * beginning of the current BFD session.
      *
      * Generated from protobuf field <code>optional uint32 num_rx_rejected = 281007902;</code>
      * @return int
@@ -118,7 +129,8 @@ class BfdStatusPacketCounts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of packets received that were rejected because of errors since the beginning of the current BFD session.
+     * Number of packets received that were rejected because of errors since the
+     * beginning of the current BFD session.
      *
      * Generated from protobuf field <code>optional uint32 num_rx_rejected = 281007902;</code>
      * @param int $var
@@ -133,7 +145,8 @@ class BfdStatusPacketCounts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of packets received that were successfully processed since the beginning of the current BFD session.
+     * Number of packets received that were successfully processed since the
+     * beginning of the current BFD session.
      *
      * Generated from protobuf field <code>optional uint32 num_rx_successful = 455361850;</code>
      * @return int
@@ -154,7 +167,8 @@ class BfdStatusPacketCounts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of packets received that were successfully processed since the beginning of the current BFD session.
+     * Number of packets received that were successfully processed since the
+     * beginning of the current BFD session.
      *
      * Generated from protobuf field <code>optional uint32 num_rx_successful = 455361850;</code>
      * @param int $var
@@ -169,7 +183,8 @@ class BfdStatusPacketCounts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of packets transmitted since the beginning of the current BFD session.
+     * Number of packets transmitted since the beginning of the current BFD
+     * session.
      *
      * Generated from protobuf field <code>optional uint32 num_tx = 39375325;</code>
      * @return int
@@ -190,7 +205,8 @@ class BfdStatusPacketCounts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of packets transmitted since the beginning of the current BFD session.
+     * Number of packets transmitted since the beginning of the current BFD
+     * session.
      *
      * Generated from protobuf field <code>optional uint32 num_tx = 39375325;</code>
      * @param int $var

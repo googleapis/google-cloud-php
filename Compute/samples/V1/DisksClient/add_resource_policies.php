@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\DisksAddResourcePoliciesRequest;
 use Google\Rpc\Status;
 
 /**
- * Adds existing resource policies to a disk. You can only add one policy which will be applied to this disk for scheduling snapshot creation.
+ * Adds existing resource policies to a disk. You can only add one
+ * policy which will be applied to this disk for scheduling snapshot
+ * creation.
  *
  * @param string $disk    The disk name for this request.
  * @param string $project Project ID for this request.

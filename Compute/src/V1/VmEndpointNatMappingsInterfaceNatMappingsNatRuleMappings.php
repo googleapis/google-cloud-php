@@ -16,25 +16,38 @@ use Google\Protobuf\Internal\GPBUtil;
 class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of all drain IP:port-range mappings assigned to this interface by this rule. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     * List of all drain IP:port-range mappings assigned to this interface
+     * by this rule.
+     * These ranges are inclusive, that is, both the first and the last
+     * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ip_port_ranges = 395440577;</code>
      */
     private $drain_nat_ip_port_ranges;
     /**
-     * A list of all IP:port-range mappings assigned to this interface by this rule. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     * A list of all IP:port-range mappings assigned to this interface by this
+     * rule.
+     * These ranges are inclusive, that is, both the first and the last
+     * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string nat_ip_port_ranges = 531830810;</code>
      */
     private $nat_ip_port_ranges;
     /**
-     * Total number of drain ports across all NAT IPs allocated to this interface by this rule. It equals the aggregated port number in the field drain_nat_ip_port_ranges.
+     * Total number of drain ports across all NAT IPs allocated to this
+     * interface by this rule.
+     * It equals the aggregated port number in the field
+     * drain_nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_drain_nat_ports = 335532793;</code>
      */
     protected $num_total_drain_nat_ports = null;
     /**
-     * Total number of ports across all NAT IPs allocated to this interface by this rule. It equals the aggregated port number in the field nat_ip_port_ranges.
+     * Total number of ports across all NAT IPs allocated to this interface
+     * by this rule.
+     * It equals the aggregated port number in the field nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_nat_ports = 299904384;</code>
      */
@@ -53,13 +66,26 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_nat_ip_port_ranges
-     *           List of all drain IP:port-range mappings assigned to this interface by this rule. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     *           List of all drain IP:port-range mappings assigned to this interface
+     *           by this rule.
+     *           These ranges are inclusive, that is, both the first and the last
+     *           ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     *           "1.1.1.1:2234-2234"].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_ip_port_ranges
-     *           A list of all IP:port-range mappings assigned to this interface by this rule. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     *           A list of all IP:port-range mappings assigned to this interface by this
+     *           rule.
+     *           These ranges are inclusive, that is, both the first and the last
+     *           ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     *           "1.1.1.1:2234-2234"].
      *     @type int $num_total_drain_nat_ports
-     *           Total number of drain ports across all NAT IPs allocated to this interface by this rule. It equals the aggregated port number in the field drain_nat_ip_port_ranges.
+     *           Total number of drain ports across all NAT IPs allocated to this
+     *           interface by this rule.
+     *           It equals the aggregated port number in the field
+     *           drain_nat_ip_port_ranges.
      *     @type int $num_total_nat_ports
-     *           Total number of ports across all NAT IPs allocated to this interface by this rule. It equals the aggregated port number in the field nat_ip_port_ranges.
+     *           Total number of ports across all NAT IPs allocated to this interface
+     *           by this rule.
+     *           It equals the aggregated port number in the field nat_ip_port_ranges.
      *     @type int $rule_number
      *           Rule number of the NAT Rule.
      * }
@@ -70,7 +96,11 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * List of all drain IP:port-range mappings assigned to this interface by this rule. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     * List of all drain IP:port-range mappings assigned to this interface
+     * by this rule.
+     * These ranges are inclusive, that is, both the first and the last
+     * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ip_port_ranges = 395440577;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -81,7 +111,11 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * List of all drain IP:port-range mappings assigned to this interface by this rule. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     * List of all drain IP:port-range mappings assigned to this interface
+     * by this rule.
+     * These ranges are inclusive, that is, both the first and the last
+     * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ip_port_ranges = 395440577;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -96,7 +130,11 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * A list of all IP:port-range mappings assigned to this interface by this rule. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     * A list of all IP:port-range mappings assigned to this interface by this
+     * rule.
+     * These ranges are inclusive, that is, both the first and the last
+     * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string nat_ip_port_ranges = 531830810;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -107,7 +145,11 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * A list of all IP:port-range mappings assigned to this interface by this rule. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     * A list of all IP:port-range mappings assigned to this interface by this
+     * rule.
+     * These ranges are inclusive, that is, both the first and the last
+     * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string nat_ip_port_ranges = 531830810;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -122,7 +164,10 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * Total number of drain ports across all NAT IPs allocated to this interface by this rule. It equals the aggregated port number in the field drain_nat_ip_port_ranges.
+     * Total number of drain ports across all NAT IPs allocated to this
+     * interface by this rule.
+     * It equals the aggregated port number in the field
+     * drain_nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_drain_nat_ports = 335532793;</code>
      * @return int
@@ -143,7 +188,10 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * Total number of drain ports across all NAT IPs allocated to this interface by this rule. It equals the aggregated port number in the field drain_nat_ip_port_ranges.
+     * Total number of drain ports across all NAT IPs allocated to this
+     * interface by this rule.
+     * It equals the aggregated port number in the field
+     * drain_nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_drain_nat_ports = 335532793;</code>
      * @param int $var
@@ -158,7 +206,9 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * Total number of ports across all NAT IPs allocated to this interface by this rule. It equals the aggregated port number in the field nat_ip_port_ranges.
+     * Total number of ports across all NAT IPs allocated to this interface
+     * by this rule.
+     * It equals the aggregated port number in the field nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_nat_ports = 299904384;</code>
      * @return int
@@ -179,7 +229,9 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * Total number of ports across all NAT IPs allocated to this interface by this rule. It equals the aggregated port number in the field nat_ip_port_ranges.
+     * Total number of ports across all NAT IPs allocated to this interface
+     * by this rule.
+     * It equals the aggregated port number in the field nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_nat_ports = 299904384;</code>
      * @param int $var

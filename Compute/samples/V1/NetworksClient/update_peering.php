@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\UpdatePeeringNetworkRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified network peering with the data included in the request. You can only modify the NetworkPeering.export_custom_routes field and the NetworkPeering.import_custom_routes field.
+ * Updates the specified network peering with the data included in the
+ * request. You can only modify the NetworkPeering.export_custom_routes field
+ * and the NetworkPeering.import_custom_routes field.
  *
  * @param string $network Name of the network resource which the updated peering is belonging to.
  * @param string $project Project ID for this request.

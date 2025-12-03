@@ -267,7 +267,8 @@ final class RegionInstanceTemplatesClient
     }
 
     /**
-     * Deletes the specified instance template. Deleting an instance template is permanent and cannot be undone.
+     * Deletes the specified instance template. Deleting an instance template is
+     * permanent and cannot be undone.
      *
      * The async variant is {@see RegionInstanceTemplatesClient::deleteAsync()} .
      *
@@ -319,7 +320,8 @@ final class RegionInstanceTemplatesClient
     }
 
     /**
-     * Creates an instance template in the specified project and region using the global instance template whose URL is included in the request.
+     * Creates an instance template in the specified project and region using the
+     * global instance template whose URL is included in the request.
      *
      * The async variant is {@see RegionInstanceTemplatesClient::insertAsync()} .
      *
@@ -345,7 +347,8 @@ final class RegionInstanceTemplatesClient
     }
 
     /**
-     * Retrieves a list of instance templates that are contained within the specified project and region.
+     * Retrieves a list of instance templates that are contained within the
+     * specified project and region.
      *
      * The async variant is {@see RegionInstanceTemplatesClient::listAsync()} .
      *

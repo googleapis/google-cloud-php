@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\NetworkRoutingConfig;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Effective value of the bgp_inter_region_cost field.
+ * [Output Only] Effective value of the bgp_inter_region_cost
+ * field.
  * Additional supported values which may be not listed in the enum directly due to technical reasons:
  * ADD_COST_TO_MED
  * DEFAULT

@@ -30,7 +30,11 @@ use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetIamPolicyLicenseRequest;
 
 /**
- * Sets the access control policy on the specified resource. Replaces any existing policy. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
+ * Sets the access control policy on the specified resource.
+ * Replaces any existing policy.
+ * *Caution* This resource is intended
+ * for use only by third-party partners who are creatingCloud Marketplace
+ * images.
  *
  * @param string $project  Project ID for this request.
  * @param string $resource Name or id of the resource for this request.

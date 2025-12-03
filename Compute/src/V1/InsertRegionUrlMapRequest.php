@@ -28,7 +28,8 @@ class InsertRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
      */
     protected $region = '';
     /**
-     * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * begin_interface: MixerMutationRequestBuilder
+     * Request ID to support idempotency.
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
@@ -68,7 +69,8 @@ class InsertRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           Name of the region scoping this request.
      *     @type string $request_id
-     *           begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     *           begin_interface: MixerMutationRequestBuilder
+     *           Request ID to support idempotency.
      *     @type \Google\Cloud\Compute\V1\UrlMap $url_map_resource
      *           The body resource for this request
      * }
@@ -131,7 +133,8 @@ class InsertRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * begin_interface: MixerMutationRequestBuilder
+     * Request ID to support idempotency.
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -152,7 +155,8 @@ class InsertRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * begin_interface: MixerMutationRequestBuilder
+     * Request ID to support idempotency.
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var

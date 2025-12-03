@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\PatchInterconnectAttachmentRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified interconnect attachment with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+ * Updates the specified interconnect attachment with the data included in the
+ * request. This method supportsPATCH
+ * semantics and uses theJSON merge
+ * patch format and processing rules.
  *
  * @param string $interconnectAttachment Name of the interconnect attachment to patch.
  * @param string $project                Project ID for this request.

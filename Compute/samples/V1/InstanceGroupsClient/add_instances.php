@@ -31,11 +31,15 @@ use Google\Cloud\Compute\V1\InstanceGroupsAddInstancesRequest;
 use Google\Rpc\Status;
 
 /**
- * Adds a list of instances to the specified instance group. All of the instances in the instance group must be in the same network/subnetwork. Read Adding instances for more information.
+ * Adds a list of instances to the specified instance group.  All of the
+ * instances in the instance group must be in the same network/subnetwork.
+ * Read
+ * Adding instances for more information.
  *
  * @param string $instanceGroup The name of the instance group where you are adding instances.
  * @param string $project       Project ID for this request.
- * @param string $zone          The name of the zone where the instance group is located.
+ * @param string $zone          The name of the zone
+ *                              where the instance group is located.
  */
 function add_instances_sample(string $instanceGroup, string $project, string $zone): void
 {

@@ -30,7 +30,8 @@ use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetIamPolicyNetworkFirewallPolicyRequest;
 
 /**
- * Sets the access control policy on the specified resource. Replaces any existing policy.
+ * Sets the access control policy on the specified resource.
+ * Replaces any existing policy.
  *
  * @param string $project  Project ID for this request.
  * @param string $resource Name or id of the resource for this request.

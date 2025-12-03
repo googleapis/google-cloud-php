@@ -9,14 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A transient resource used in compute.disks.bulkInsert and compute.regionDisks.bulkInsert. It is only used to process requests and is not persisted.
+ * A transient resource used in compute.disks.bulkInsert and
+ * compute.regionDisks.bulkInsert. It is only used to process
+ * requests and is not persisted.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.BulkInsertDiskResource</code>
  */
 class BulkInsertDiskResource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The URL of the DiskConsistencyGroupPolicy for the group of disks to clone. This may be a full or partial URL, such as: - https://www.googleapis.com/compute/v1/projects/project/regions/region /resourcePolicies/resourcePolicy - projects/project/regions/region/resourcePolicies/resourcePolicy - regions/region/resourcePolicies/resourcePolicy 
+     * The URL of the DiskConsistencyGroupPolicy for the group of disks to clone.
+     * This may be a full or partial URL, such as:
+     *      -
+     *        https://www.googleapis.com/compute/v1/projects/project/regions/region/resourcePolicies/resourcePolicy
+     *      -
+     *        projects/project/regions/region/resourcePolicies/resourcePolicy
+     *      -
+     *        regions/region/resourcePolicies/resourcePolicy
      *
      * Generated from protobuf field <code>optional string source_consistency_group_policy = 19616093;</code>
      */
@@ -29,7 +38,14 @@ class BulkInsertDiskResource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $source_consistency_group_policy
-     *           The URL of the DiskConsistencyGroupPolicy for the group of disks to clone. This may be a full or partial URL, such as: - https://www.googleapis.com/compute/v1/projects/project/regions/region /resourcePolicies/resourcePolicy - projects/project/regions/region/resourcePolicies/resourcePolicy - regions/region/resourcePolicies/resourcePolicy 
+     *           The URL of the DiskConsistencyGroupPolicy for the group of disks to clone.
+     *           This may be a full or partial URL, such as:
+     *                -
+     *                  https://www.googleapis.com/compute/v1/projects/project/regions/region/resourcePolicies/resourcePolicy
+     *                -
+     *                  projects/project/regions/region/resourcePolicies/resourcePolicy
+     *                -
+     *                  regions/region/resourcePolicies/resourcePolicy
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +54,14 @@ class BulkInsertDiskResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the DiskConsistencyGroupPolicy for the group of disks to clone. This may be a full or partial URL, such as: - https://www.googleapis.com/compute/v1/projects/project/regions/region /resourcePolicies/resourcePolicy - projects/project/regions/region/resourcePolicies/resourcePolicy - regions/region/resourcePolicies/resourcePolicy 
+     * The URL of the DiskConsistencyGroupPolicy for the group of disks to clone.
+     * This may be a full or partial URL, such as:
+     *      -
+     *        https://www.googleapis.com/compute/v1/projects/project/regions/region/resourcePolicies/resourcePolicy
+     *      -
+     *        projects/project/regions/region/resourcePolicies/resourcePolicy
+     *      -
+     *        regions/region/resourcePolicies/resourcePolicy
      *
      * Generated from protobuf field <code>optional string source_consistency_group_policy = 19616093;</code>
      * @return string
@@ -59,7 +82,14 @@ class BulkInsertDiskResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the DiskConsistencyGroupPolicy for the group of disks to clone. This may be a full or partial URL, such as: - https://www.googleapis.com/compute/v1/projects/project/regions/region /resourcePolicies/resourcePolicy - projects/project/regions/region/resourcePolicies/resourcePolicy - regions/region/resourcePolicies/resourcePolicy 
+     * The URL of the DiskConsistencyGroupPolicy for the group of disks to clone.
+     * This may be a full or partial URL, such as:
+     *      -
+     *        https://www.googleapis.com/compute/v1/projects/project/regions/region/resourcePolicies/resourcePolicy
+     *      -
+     *        projects/project/regions/region/resourcePolicies/resourcePolicy
+     *      -
+     *        regions/region/resourcePolicies/resourcePolicy
      *
      * Generated from protobuf field <code>optional string source_consistency_group_policy = 19616093;</code>
      * @param string $var

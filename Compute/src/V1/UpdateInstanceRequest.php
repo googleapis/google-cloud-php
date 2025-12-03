@@ -28,14 +28,21 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $instance_resource = null;
     /**
-     * Specifies the action to take when updating an instance even if the updated properties do not require it. If not specified, then Compute Engine acts based on the minimum action that the updated properties require.
+     * Specifies the action to take when updating an instance even if the
+     * updated properties do not require it. If not specified, then
+     * Compute Engine acts based on the minimum action that the updated
+     * properties require.
      * Check the MinimalAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string minimal_action = 270567060;</code>
      */
     protected $minimal_action = null;
     /**
-     * Specifies the most disruptive action that can be taken on the instance as part of the update. Compute Engine returns an error if the instance properties require a more disruptive action as part of the instance update. Valid options from lowest to highest are NO_EFFECT, REFRESH, and RESTART.
+     * Specifies the most disruptive action that can be taken on the instance
+     * as part of the update. Compute Engine returns an error if the
+     * instance properties require a more disruptive action as part of the
+     * instance update. Valid options from lowest to highest are
+     * NO_EFFECT, REFRESH, and RESTART.
      * Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
@@ -48,7 +55,17 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $project = '';
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
@@ -90,15 +107,32 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\Instance $instance_resource
      *           The body resource for this request
      *     @type string $minimal_action
-     *           Specifies the action to take when updating an instance even if the updated properties do not require it. If not specified, then Compute Engine acts based on the minimum action that the updated properties require.
+     *           Specifies the action to take when updating an instance even if the
+     *           updated properties do not require it. If not specified, then
+     *           Compute Engine acts based on the minimum action that the updated
+     *           properties require.
      *           Check the MinimalAction enum for the list of possible values.
      *     @type string $most_disruptive_allowed_action
-     *           Specifies the most disruptive action that can be taken on the instance as part of the update. Compute Engine returns an error if the instance properties require a more disruptive action as part of the instance update. Valid options from lowest to highest are NO_EFFECT, REFRESH, and RESTART.
+     *           Specifies the most disruptive action that can be taken on the instance
+     *           as part of the update. Compute Engine returns an error if the
+     *           instance properties require a more disruptive action as part of the
+     *           instance update. Valid options from lowest to highest are
+     *           NO_EFFECT, REFRESH, and RESTART.
      *           Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server will know to ignore the
+     *           request if it has already been completed.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same
+     *           request ID, the server can check if original operation with the same
+     *           request ID was received, and if so, will ignore the second request. This
+     *           prevents clients from accidentally creating duplicate commitments.
+     *           The request ID must be
+     *           a valid UUID with the exception that zero UUID is not supported
+     *           (00000000-0000-0000-0000-000000000000).
      *     @type string $zone
      *           The name of the zone for this request.
      * }
@@ -171,7 +205,10 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the action to take when updating an instance even if the updated properties do not require it. If not specified, then Compute Engine acts based on the minimum action that the updated properties require.
+     * Specifies the action to take when updating an instance even if the
+     * updated properties do not require it. If not specified, then
+     * Compute Engine acts based on the minimum action that the updated
+     * properties require.
      * Check the MinimalAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string minimal_action = 270567060;</code>
@@ -193,7 +230,10 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the action to take when updating an instance even if the updated properties do not require it. If not specified, then Compute Engine acts based on the minimum action that the updated properties require.
+     * Specifies the action to take when updating an instance even if the
+     * updated properties do not require it. If not specified, then
+     * Compute Engine acts based on the minimum action that the updated
+     * properties require.
      * Check the MinimalAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string minimal_action = 270567060;</code>
@@ -209,7 +249,11 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the most disruptive action that can be taken on the instance as part of the update. Compute Engine returns an error if the instance properties require a more disruptive action as part of the instance update. Valid options from lowest to highest are NO_EFFECT, REFRESH, and RESTART.
+     * Specifies the most disruptive action that can be taken on the instance
+     * as part of the update. Compute Engine returns an error if the
+     * instance properties require a more disruptive action as part of the
+     * instance update. Valid options from lowest to highest are
+     * NO_EFFECT, REFRESH, and RESTART.
      * Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
@@ -231,7 +275,11 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the most disruptive action that can be taken on the instance as part of the update. Compute Engine returns an error if the instance properties require a more disruptive action as part of the instance update. Valid options from lowest to highest are NO_EFFECT, REFRESH, and RESTART.
+     * Specifies the most disruptive action that can be taken on the instance
+     * as part of the update. Compute Engine returns an error if the
+     * instance properties require a more disruptive action as part of the
+     * instance update. Valid options from lowest to highest are
+     * NO_EFFECT, REFRESH, and RESTART.
      * Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
@@ -273,7 +321,17 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -294,7 +352,17 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var

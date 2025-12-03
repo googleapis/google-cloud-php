@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionNetworkFirewallPoliciesClient;
 use Google\Cloud\Compute\V1\ListRegionNetworkFirewallPoliciesRequest;
 
 /**
- * Lists all the network firewall policies that have been configured for the specified project in the given region.
+ * Lists all the network firewall policies that have been configured
+ * for the specified project in the given region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

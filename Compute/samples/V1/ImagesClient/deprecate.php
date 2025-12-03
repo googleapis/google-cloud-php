@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\DeprecationStatus;
 use Google\Rpc\Status;
 
 /**
- * Sets the deprecation status of an image. If an empty request body is given, clears the deprecation status instead.
+ * Sets the deprecation status of an image.
+ *
+ * If an empty request body is given, clears the deprecation status instead.
  *
  * @param string $image   Image name.
  * @param string $project Project ID for this request.

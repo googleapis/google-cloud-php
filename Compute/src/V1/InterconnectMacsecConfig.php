@@ -9,14 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * MACsec configuration information for the Interconnect connection. Contains the generated Connectivity Association Key Name (CKN) and the key (CAK) for this Interconnect connection.
+ * MACsec configuration information for the Interconnect connection. Contains
+ * the generated Connectivity Association Key Name (CKN) and the key (CAK) for
+ * this Interconnect connection.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectMacsecConfig</code>
  */
 class InterconnectMacsecConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A keychain placeholder describing a set of named key objects along with their start times. A MACsec CKN/CAK is generated for each key in the key chain. Google router automatically picks the key with the most recent startTime when establishing or re-establishing a MACsec secure link.
+     * A keychain placeholder describing a set of named key objects
+     * along with their start times. A MACsec CKN/CAK is generated for each key in
+     * the key chain. Google router automatically picks the key with the most
+     * recent startTime when establishing or re-establishing a MACsec secure link.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectMacsecConfigPreSharedKey pre_shared_keys = 420308466;</code>
      */
@@ -29,7 +34,10 @@ class InterconnectMacsecConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\InterconnectMacsecConfigPreSharedKey>|\Google\Protobuf\Internal\RepeatedField $pre_shared_keys
-     *           A keychain placeholder describing a set of named key objects along with their start times. A MACsec CKN/CAK is generated for each key in the key chain. Google router automatically picks the key with the most recent startTime when establishing or re-establishing a MACsec secure link.
+     *           A keychain placeholder describing a set of named key objects
+     *           along with their start times. A MACsec CKN/CAK is generated for each key in
+     *           the key chain. Google router automatically picks the key with the most
+     *           recent startTime when establishing or re-establishing a MACsec secure link.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +46,10 @@ class InterconnectMacsecConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A keychain placeholder describing a set of named key objects along with their start times. A MACsec CKN/CAK is generated for each key in the key chain. Google router automatically picks the key with the most recent startTime when establishing or re-establishing a MACsec secure link.
+     * A keychain placeholder describing a set of named key objects
+     * along with their start times. A MACsec CKN/CAK is generated for each key in
+     * the key chain. Google router automatically picks the key with the most
+     * recent startTime when establishing or re-establishing a MACsec secure link.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectMacsecConfigPreSharedKey pre_shared_keys = 420308466;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,7 +60,10 @@ class InterconnectMacsecConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A keychain placeholder describing a set of named key objects along with their start times. A MACsec CKN/CAK is generated for each key in the key chain. Google router automatically picks the key with the most recent startTime when establishing or re-establishing a MACsec secure link.
+     * A keychain placeholder describing a set of named key objects
+     * along with their start times. A MACsec CKN/CAK is generated for each key in
+     * the key chain. Google router automatically picks the key with the most
+     * recent startTime when establishing or re-establishing a MACsec secure link.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectMacsecConfigPreSharedKey pre_shared_keys = 420308466;</code>
      * @param array<\Google\Cloud\Compute\V1\InterconnectMacsecConfigPreSharedKey>|\Google\Protobuf\Internal\RepeatedField $var

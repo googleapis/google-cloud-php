@@ -31,7 +31,11 @@ use Google\Cloud\Compute\V1\MachineImage;
 use Google\Rpc\Status;
 
 /**
- * Creates a machine image in the specified project using the data that is included in the request. If you are creating a new machine image to update an existing instance, your new machine image should use the same network or, if applicable, the same subnetwork as the original instance.
+ * Creates a machine image in the specified project using the
+ * data that is included in the request. If you are creating a new machine
+ * image to update an existing instance, your new machine image should use the
+ * same network or, if applicable, the same subnetwork as the original
+ * instance.
  *
  * @param string $project Project ID for this request.
  */

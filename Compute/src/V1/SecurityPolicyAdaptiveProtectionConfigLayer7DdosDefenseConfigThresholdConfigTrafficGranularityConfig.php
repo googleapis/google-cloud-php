@@ -9,14 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configurations to specifc granular traffic units processed by Adaptive Protection.
+ * Configurations to specifc granular traffic units processed by
+ * Adaptive Protection.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig</code>
  */
 class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If enabled, traffic matching each unique value for the specified type constitutes a separate traffic unit. It can only be set to true if `value` is empty.
+     * If enabled, traffic matching each unique value for the specified
+     * type constitutes a separate traffic unit.
+     * It can only be set to true if `value` is empty.
      *
      * Generated from protobuf field <code>optional bool enable_each_unique_value = 469206341;</code>
      */
@@ -42,7 +45,9 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable_each_unique_value
-     *           If enabled, traffic matching each unique value for the specified type constitutes a separate traffic unit. It can only be set to true if `value` is empty.
+     *           If enabled, traffic matching each unique value for the specified
+     *           type constitutes a separate traffic unit.
+     *           It can only be set to true if `value` is empty.
      *     @type string $type
      *           Type of this configuration.
      *           Check the Type enum for the list of possible values.
@@ -56,7 +61,9 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
     }
 
     /**
-     * If enabled, traffic matching each unique value for the specified type constitutes a separate traffic unit. It can only be set to true if `value` is empty.
+     * If enabled, traffic matching each unique value for the specified
+     * type constitutes a separate traffic unit.
+     * It can only be set to true if `value` is empty.
      *
      * Generated from protobuf field <code>optional bool enable_each_unique_value = 469206341;</code>
      * @return bool
@@ -77,7 +84,9 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
     }
 
     /**
-     * If enabled, traffic matching each unique value for the specified type constitutes a separate traffic unit. It can only be set to true if `value` is empty.
+     * If enabled, traffic matching each unique value for the specified
+     * type constitutes a separate traffic unit.
+     * It can only be set to true if `value` is empty.
      *
      * Generated from protobuf field <code>optional bool enable_each_unique_value = 469206341;</code>
      * @param bool $var

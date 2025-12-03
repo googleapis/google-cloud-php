@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\PatchImageRequest;
 use Google\Rpc\Status;
 
 /**
- * Patches the specified image with the data included in the request. Only the following fields can be modified: family, description, deprecation status.
+ * Patches the specified image with the data included in the request.
+ * Only the following fields can be modified: family, description,
+ * deprecation status.
  *
  * @param string $image   Name of the image resource to patch.
  * @param string $project Project ID for this request.

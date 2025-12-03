@@ -422,7 +422,9 @@ final class InstancesClient
     }
 
     /**
-     * Adds existing resource policies to an instance. You can only add one policy right now which will be applied to this instance for scheduling live migrations.
+     * Adds existing resource policies to an instance. You can only add one
+     * policy right now which will be applied to this instance for scheduling live
+     * migrations.
      *
      * The async variant is {@see InstancesClient::addResourcePoliciesAsync()} .
      *
@@ -450,7 +452,14 @@ final class InstancesClient
     }
 
     /**
-     * Retrieves an aggregated list of all of the instances in your project across all regions and zones. The performance of this method degrades when a filter is specified on a project that has a very large number of instances. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of all of the instances in your project
+     * across all regions and zones.
+     *
+     * The performance of this method degrades when a filter is specified on a
+     * project that has a very large number of instances.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see InstancesClient::aggregatedListAsync()} .
      *
@@ -476,7 +485,10 @@ final class InstancesClient
     }
 
     /**
-     * Attaches an existing Disk resource to an instance. You must first create the disk before you can attach it. It is not possible to create and attach a disk at the same time. For more information, read Adding a persistent disk to your instance.
+     * Attaches an existing Disk resource to an instance. You must first
+     * create the disk before you can attach it. It is not possible to create
+     * and attach a disk at the same time. For more information, readAdding a
+     * persistent disk to your instance.
      *
      * The async variant is {@see InstancesClient::attachDiskAsync()} .
      *
@@ -502,7 +514,9 @@ final class InstancesClient
     }
 
     /**
-     * Creates multiple instances. Count specifies the number of instances to create. For more information, see About bulk creation of VMs.
+     * Creates multiple instances. Count specifies the number of instances to
+     * create. For more information, seeAbout bulk
+     * creation of VMs.
      *
      * The async variant is {@see InstancesClient::bulkInsertAsync()} .
      *
@@ -528,7 +542,8 @@ final class InstancesClient
     }
 
     /**
-     * Deletes the specified Instance resource. For more information, see Deleting an instance.
+     * Deletes the specified Instance resource. For more information, seeDeleting
+     * an instance.
      *
      * The async variant is {@see InstancesClient::deleteAsync()} .
      *
@@ -582,7 +597,11 @@ final class InstancesClient
     }
 
     /**
-     * Deletes one dynamic network interface from an active instance. InstancesDeleteNetworkInterfaceRequest indicates: - instance from which to delete, using project+zone+resource_id fields; - dynamic network interface to be deleted, using network_interface_name field;
+     * Deletes one dynamic network interface from an active instance.
+     * InstancesDeleteNetworkInterfaceRequest indicates:
+     * - instance from which to delete, using project+zone+resource_id fields;
+     * - dynamic network interface to be deleted, using network_interface_name
+     * field;
      *
      * The async variant is {@see InstancesClient::deleteNetworkInterfaceAsync()} .
      *
@@ -718,7 +737,8 @@ final class InstancesClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see InstancesClient::getIamPolicyAsync()} .
      *
@@ -827,7 +847,8 @@ final class InstancesClient
     }
 
     /**
-     * Creates an instance resource in the specified project using the data included in the request.
+     * Creates an instance resource in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see InstancesClient::insertAsync()} .
      *
@@ -853,7 +874,8 @@ final class InstancesClient
     }
 
     /**
-     * Retrieves the list of instances contained within the specified zone.
+     * Retrieves the list of instances contained within
+     * the specified zone.
      *
      * The async variant is {@see InstancesClient::listAsync()} .
      *
@@ -879,7 +901,11 @@ final class InstancesClient
     }
 
     /**
-     * Retrieves a list of resources that refer to the VM instance specified in the request. For example, if the VM instance is part of a managed or unmanaged instance group, the referrers list includes the instance group. For more information, read Viewing referrers to VM instances.
+     * Retrieves a list of resources that refer to the VM instance specified in
+     * the request. For example, if the VM instance is part of a managed or
+     * unmanaged instance group, the referrers list includes the instance group.
+     * For more information, readViewing
+     * referrers to VM instances.
      *
      * The async variant is {@see InstancesClient::listReferrersAsync()} .
      *
@@ -989,7 +1015,9 @@ final class InstancesClient
     }
 
     /**
-     * Performs a reset on the instance. This is a hard reset. The VM does not do a graceful shutdown. For more information, see Resetting an instance.
+     * Performs a reset on the instance. This is a hard reset. The VM
+     * does not do a graceful shutdown. For more information, seeResetting
+     * an instance.
      *
      * The async variant is {@see InstancesClient::resetAsync()} .
      *
@@ -1015,7 +1043,8 @@ final class InstancesClient
     }
 
     /**
-     * Resumes an instance that was suspended using the instances().suspend method.
+     * Resumes an instance that was suspended using theinstances().suspend
+     * method.
      *
      * The async variant is {@see InstancesClient::resumeAsync()} .
      *
@@ -1125,7 +1154,8 @@ final class InstancesClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see InstancesClient::setIamPolicyAsync()} .
      *
@@ -1151,7 +1181,8 @@ final class InstancesClient
     }
 
     /**
-     * Sets labels on an instance. To learn more about labels, read the Labeling Resources documentation.
+     * Sets labels on an instance.  To learn more about labels, read theLabeling
+     * Resources documentation.
      *
      * The async variant is {@see InstancesClient::setLabelsAsync()} .
      *
@@ -1177,7 +1208,8 @@ final class InstancesClient
     }
 
     /**
-     * Changes the number and/or type of accelerator for a stopped instance to the values specified in the request.
+     * Changes the number and/or type of accelerator for a stopped instance to the
+     * values specified in the request.
      *
      * The async variant is {@see InstancesClient::setMachineResourcesAsync()} .
      *
@@ -1205,7 +1237,8 @@ final class InstancesClient
     }
 
     /**
-     * Changes the machine type for a stopped instance to the machine type specified in the request.
+     * Changes the machine type for a stopped instance to the machine
+     * type specified in the request.
      *
      * The async variant is {@see InstancesClient::setMachineTypeAsync()} .
      *
@@ -1231,7 +1264,8 @@ final class InstancesClient
     }
 
     /**
-     * Sets metadata for the specified instance to the data included in the request.
+     * Sets metadata for the specified instance to the data included
+     * in the request.
      *
      * The async variant is {@see InstancesClient::setMetadataAsync()} .
      *
@@ -1257,7 +1291,10 @@ final class InstancesClient
     }
 
     /**
-     * Changes the minimum CPU platform that this instance should use. This method can only be called on a stopped instance. For more information, read Specifying a Minimum CPU Platform.
+     * Changes the minimum CPU platform that this instance should use.
+     * This method can only
+     * be called on a stopped instance. For more information, readSpecifying a
+     * Minimum CPU Platform.
      *
      * The async variant is {@see InstancesClient::setMinCpuPlatformAsync()} .
      *
@@ -1311,7 +1348,11 @@ final class InstancesClient
     }
 
     /**
-     * Sets an instance's scheduling options. You can only call this method on a stopped instance, that is, a VM instance that is in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states. For more information about setting scheduling options for a VM, see Set VM host maintenance policy.
+     * Sets an instance's scheduling options. You can only call this method on astopped instance,
+     * that is, a VM instance that is in a `TERMINATED` state. SeeInstance Life
+     * Cycle for more information on the possible instance states.
+     * For more information about setting scheduling options for a VM, seeSet
+     * VM host maintenance policy.
      *
      * The async variant is {@see InstancesClient::setSchedulingAsync()} .
      *
@@ -1337,7 +1378,9 @@ final class InstancesClient
     }
 
     /**
-     * Sets the Google Cloud Armor security policy for the specified instance. For more information, see Google Cloud Armor Overview
+     * Sets the Google Cloud Armor security policy for the specified instance.
+     * For more information, seeGoogle
+     * Cloud Armor Overview
      *
      * The async variant is {@see InstancesClient::setSecurityPolicyAsync()} .
      *
@@ -1365,7 +1408,9 @@ final class InstancesClient
     }
 
     /**
-     * Sets the service account on the instance. For more information, read Changing the service account and access scopes for an instance.
+     * Sets the service account on the instance. For more information,
+     * readChanging
+     * the service account and access scopes for an instance.
      *
      * The async variant is {@see InstancesClient::setServiceAccountAsync()} .
      *
@@ -1393,7 +1438,10 @@ final class InstancesClient
     }
 
     /**
-     * Sets the Shielded Instance integrity policy for an instance. You can only use this method on a running instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Sets the Shielded Instance integrity policy for an instance. You can
+     * only use this method on a running instance. This method
+     * supports PATCH semantics and uses the JSON merge
+     * patch format and processing rules.
      *
      * The async variant is
      * {@see InstancesClient::setShieldedInstanceIntegrityPolicyAsync()} .
@@ -1422,7 +1470,8 @@ final class InstancesClient
     }
 
     /**
-     * Sets network tags for the specified instance to the data included in the request.
+     * Sets network tags
+     * for the specified instance to the data included in the request.
      *
      * The async variant is {@see InstancesClient::setTagsAsync()} .
      *
@@ -1448,7 +1497,8 @@ final class InstancesClient
     }
 
     /**
-     * Simulates a host maintenance event on a VM. For more information, see Simulate a host maintenance event.
+     * Simulates a host maintenance event on a VM. For more information, see
+     * Simulate a host maintenance event.
      *
      * The async variant is {@see InstancesClient::simulateMaintenanceEventAsync()} .
      *
@@ -1476,7 +1526,9 @@ final class InstancesClient
     }
 
     /**
-     * Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance.
+     * Starts an instance that was stopped using theinstances().stop
+     * method. For more information, seeRestart an
+     * instance.
      *
      * The async variant is {@see InstancesClient::startAsync()} .
      *
@@ -1502,7 +1554,9 @@ final class InstancesClient
     }
 
     /**
-     * Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance.
+     * Starts an instance that was stopped using theinstances().stop
+     * method. For more information, seeRestart an
+     * instance.
      *
      * The async variant is {@see InstancesClient::startWithEncryptionKeyAsync()} .
      *
@@ -1530,7 +1584,12 @@ final class InstancesClient
     }
 
     /**
-     * Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur VM usage charges while they are stopped. However, resources that the VM is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance.
+     * Stops a running instance, shutting it down cleanly, and allows
+     * you to restart the instance at a later time. Stopped instances do not incur
+     * VM usage charges while they are stopped. However, resources that the VM is
+     * using, such as persistent disks and static IP addresses, will continue to
+     * be charged until they are deleted. For more information, seeStopping
+     * an instance.
      *
      * The async variant is {@see InstancesClient::stopAsync()} .
      *
@@ -1556,7 +1615,14 @@ final class InstancesClient
     }
 
     /**
-     * This method suspends a running instance, saving its state to persistent storage, and allows you to resume the instance at a later time. Suspended instances have no compute costs (cores or RAM), and incur only storage charges for the saved VM memory and localSSD data. Any charged resources the virtual machine was using, such as persistent disks and static IP addresses, will continue to be charged while the instance is suspended. For more information, see Suspending and resuming an instance.
+     * This method suspends a running instance, saving its state to persistent
+     * storage, and allows you to resume the instance at a later time. Suspended
+     * instances have no compute costs (cores or RAM), and incur only storage
+     * charges for the saved VM memory and localSSD data. Any charged resources
+     * the virtual machine was using, such as persistent disks and static IP
+     * addresses, will continue to be charged while the instance is suspended.
+     * For more information, see
+     * Suspending and resuming an instance.
      *
      * The async variant is {@see InstancesClient::suspendAsync()} .
      *
@@ -1610,7 +1676,10 @@ final class InstancesClient
     }
 
     /**
-     * Updates an instance only if the necessary resources are available. This method can update only a specific set of instance properties. See Updating a running instance for a list of updatable instance properties.
+     * Updates an instance only if the necessary resources are available. This
+     * method can update only a specific set of instance properties. See
+     * Updating a running instance for a list of updatable instance
+     * properties.
      *
      * The async variant is {@see InstancesClient::updateAsync()} .
      *
@@ -1636,7 +1705,10 @@ final class InstancesClient
     }
 
     /**
-     * Updates the specified access config from an instance's network interface with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates the specified access config from an instance's network interface
+     * with the data included in the request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see InstancesClient::updateAccessConfigAsync()} .
      *
@@ -1664,7 +1736,10 @@ final class InstancesClient
     }
 
     /**
-     * Updates the Display config for a VM instance. You can only use this method on a stopped VM instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates the Display config for a VM instance. You can
+     * only use this method on a stopped VM instance. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see InstancesClient::updateDisplayDeviceAsync()} .
      *
@@ -1692,7 +1767,12 @@ final class InstancesClient
     }
 
     /**
-     * Updates an instance's network interface. This method can only update an interface's alias IP range and attached network. See Modifying alias IP ranges for an existing instance for instructions on changing alias IP ranges. See Migrating a VM between networks for instructions on migrating an interface. This method follows PATCH semantics.
+     * Updates an instance's network interface. This method can only update an
+     * interface's alias IP range and attached network. See Modifying
+     * alias IP ranges for an existing instance for instructions on
+     * changing alias IP ranges. See Migrating
+     * a VM between networks for instructions on migrating an interface.
+     * This method follows PATCH semantics.
      *
      * The async variant is {@see InstancesClient::updateNetworkInterfaceAsync()} .
      *
@@ -1720,7 +1800,10 @@ final class InstancesClient
     }
 
     /**
-     * Updates the Shielded Instance config for an instance. You can only use this method on a stopped instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates the Shielded Instance config for an instance. You can
+     * only use this method on a stopped instance. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see InstancesClient::updateShieldedInstanceConfigAsync()}
      * .

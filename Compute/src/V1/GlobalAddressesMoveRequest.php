@@ -15,13 +15,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class GlobalAddressesMoveRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * An optional destination address description if intended to be different from the source.
+     * An optional destination address description if intended to be different
+     * from the source.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * The URL of the destination address to move to. This can be a full or partial URL. For example, the following are all valid URLs to a address: - https://www.googleapis.com/compute/v1/projects/project /global/addresses/address - projects/project/global/addresses/address Note that destination project must be different from the source project. So /global/addresses/address is not valid partial url.
+     * The URL of the destination address to move to. This can be a full or
+     * partial URL. For example, the following are all valid URLs to a address:
+     *    - https://www.googleapis.com/compute/v1/projects/project/global/addresses/address
+     *    - projects/project/global/addresses/address
+     * Note that destination project must be different from the source project. So/global/addresses/address is not valid partial url.
      *
      * Generated from protobuf field <code>optional string destination_address = 371693763;</code>
      */
@@ -34,9 +39,14 @@ class GlobalAddressesMoveRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $description
-     *           An optional destination address description if intended to be different from the source.
+     *           An optional destination address description if intended to be different
+     *           from the source.
      *     @type string $destination_address
-     *           The URL of the destination address to move to. This can be a full or partial URL. For example, the following are all valid URLs to a address: - https://www.googleapis.com/compute/v1/projects/project /global/addresses/address - projects/project/global/addresses/address Note that destination project must be different from the source project. So /global/addresses/address is not valid partial url.
+     *           The URL of the destination address to move to. This can be a full or
+     *           partial URL. For example, the following are all valid URLs to a address:
+     *              - https://www.googleapis.com/compute/v1/projects/project/global/addresses/address
+     *              - projects/project/global/addresses/address
+     *           Note that destination project must be different from the source project. So/global/addresses/address is not valid partial url.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +55,8 @@ class GlobalAddressesMoveRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional destination address description if intended to be different from the source.
+     * An optional destination address description if intended to be different
+     * from the source.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -66,7 +77,8 @@ class GlobalAddressesMoveRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional destination address description if intended to be different from the source.
+     * An optional destination address description if intended to be different
+     * from the source.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -81,7 +93,11 @@ class GlobalAddressesMoveRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the destination address to move to. This can be a full or partial URL. For example, the following are all valid URLs to a address: - https://www.googleapis.com/compute/v1/projects/project /global/addresses/address - projects/project/global/addresses/address Note that destination project must be different from the source project. So /global/addresses/address is not valid partial url.
+     * The URL of the destination address to move to. This can be a full or
+     * partial URL. For example, the following are all valid URLs to a address:
+     *    - https://www.googleapis.com/compute/v1/projects/project/global/addresses/address
+     *    - projects/project/global/addresses/address
+     * Note that destination project must be different from the source project. So/global/addresses/address is not valid partial url.
      *
      * Generated from protobuf field <code>optional string destination_address = 371693763;</code>
      * @return string
@@ -102,7 +118,11 @@ class GlobalAddressesMoveRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the destination address to move to. This can be a full or partial URL. For example, the following are all valid URLs to a address: - https://www.googleapis.com/compute/v1/projects/project /global/addresses/address - projects/project/global/addresses/address Note that destination project must be different from the source project. So /global/addresses/address is not valid partial url.
+     * The URL of the destination address to move to. This can be a full or
+     * partial URL. For example, the following are all valid URLs to a address:
+     *    - https://www.googleapis.com/compute/v1/projects/project/global/addresses/address
+     *    - projects/project/global/addresses/address
+     * Note that destination project must be different from the source project. So/global/addresses/address is not valid partial url.
      *
      * Generated from protobuf field <code>optional string destination_address = 371693763;</code>
      * @param string $var

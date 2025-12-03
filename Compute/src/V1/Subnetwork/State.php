@@ -7,7 +7,11 @@ namespace Google\Cloud\Compute\V1\Subnetwork;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY
+ * [Output Only] The state of the subnetwork, which can be one of the
+ * following values:READY: Subnetwork is created and ready to useDRAINING: only applicable to subnetworks that have the
+ * purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that
+ * connections to the load balancer are being drained. A subnetwork that is
+ * draining cannot be used or modified until it reaches a status ofREADY
  *
  * Protobuf type <code>google.cloud.compute.v1.Subnetwork.State</code>
  */

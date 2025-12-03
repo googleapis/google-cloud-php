@@ -15,14 +15,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyUserDefinedField extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The base relative to which 'offset' is measured. Possible values are: - IPV4: Points to the beginning of the IPv4 header. - IPV6: Points to the beginning of the IPv6 header. - TCP: Points to the beginning of the TCP header, skipping over any IPv4 options or IPv6 extension headers. Not present for non-first fragments. - UDP: Points to the beginning of the UDP header, skipping over any IPv4 options or IPv6 extension headers. Not present for non-first fragments. required
+     * The base relative to which 'offset' is measured. Possible values are:
+     *    - IPV4: Points to the beginning of the IPv4 header.
+     *    - IPV6: Points to the beginning of the IPv6 header.
+     *    - TCP: Points to the beginning of the TCP header, skipping
+     *    over any IPv4 options or IPv6 extension headers. Not present for
+     *    non-first fragments.
+     *    - UDP: Points to the beginning of the UDP header, skipping
+     *    over any IPv4 options or IPv6 extension headers. Not present for
+     *    non-first fragments.
+     * required
      * Check the Base enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string base = 3016401;</code>
      */
     protected $base = null;
     /**
-     * If specified, apply this mask (bitwise AND) to the field to ignore bits before matching. Encoded as a hexadecimal number (starting with "0x"). The last byte of the field (in network byte order) corresponds to the least significant byte of the mask.
+     * If specified, apply this mask (bitwise AND) to the field to ignore bits
+     * before matching. Encoded as a hexadecimal number (starting with "0x").
+     * The last byte of the field (in network byte order) corresponds to the
+     * least significant byte of the mask.
      *
      * Generated from protobuf field <code>optional string mask = 3344108;</code>
      */
@@ -34,7 +46,8 @@ class SecurityPolicyUserDefinedField extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * Offset of the first byte of the field (in network byte order) relative to 'base'.
+     * Offset of the first byte of the field (in network byte order) relative to
+     * 'base'.
      *
      * Generated from protobuf field <code>optional int32 offset = 53961875;</code>
      */
@@ -53,14 +66,27 @@ class SecurityPolicyUserDefinedField extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $base
-     *           The base relative to which 'offset' is measured. Possible values are: - IPV4: Points to the beginning of the IPv4 header. - IPV6: Points to the beginning of the IPv6 header. - TCP: Points to the beginning of the TCP header, skipping over any IPv4 options or IPv6 extension headers. Not present for non-first fragments. - UDP: Points to the beginning of the UDP header, skipping over any IPv4 options or IPv6 extension headers. Not present for non-first fragments. required
+     *           The base relative to which 'offset' is measured. Possible values are:
+     *              - IPV4: Points to the beginning of the IPv4 header.
+     *              - IPV6: Points to the beginning of the IPv6 header.
+     *              - TCP: Points to the beginning of the TCP header, skipping
+     *              over any IPv4 options or IPv6 extension headers. Not present for
+     *              non-first fragments.
+     *              - UDP: Points to the beginning of the UDP header, skipping
+     *              over any IPv4 options or IPv6 extension headers. Not present for
+     *              non-first fragments.
+     *           required
      *           Check the Base enum for the list of possible values.
      *     @type string $mask
-     *           If specified, apply this mask (bitwise AND) to the field to ignore bits before matching. Encoded as a hexadecimal number (starting with "0x"). The last byte of the field (in network byte order) corresponds to the least significant byte of the mask.
+     *           If specified, apply this mask (bitwise AND) to the field to ignore bits
+     *           before matching. Encoded as a hexadecimal number (starting with "0x").
+     *           The last byte of the field (in network byte order) corresponds to the
+     *           least significant byte of the mask.
      *     @type string $name
      *           The name of this field. Must be unique within the policy.
      *     @type int $offset
-     *           Offset of the first byte of the field (in network byte order) relative to 'base'.
+     *           Offset of the first byte of the field (in network byte order) relative to
+     *           'base'.
      *     @type int $size
      *           Size of the field in bytes. Valid values: 1-4.
      * }
@@ -71,7 +97,16 @@ class SecurityPolicyUserDefinedField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The base relative to which 'offset' is measured. Possible values are: - IPV4: Points to the beginning of the IPv4 header. - IPV6: Points to the beginning of the IPv6 header. - TCP: Points to the beginning of the TCP header, skipping over any IPv4 options or IPv6 extension headers. Not present for non-first fragments. - UDP: Points to the beginning of the UDP header, skipping over any IPv4 options or IPv6 extension headers. Not present for non-first fragments. required
+     * The base relative to which 'offset' is measured. Possible values are:
+     *    - IPV4: Points to the beginning of the IPv4 header.
+     *    - IPV6: Points to the beginning of the IPv6 header.
+     *    - TCP: Points to the beginning of the TCP header, skipping
+     *    over any IPv4 options or IPv6 extension headers. Not present for
+     *    non-first fragments.
+     *    - UDP: Points to the beginning of the UDP header, skipping
+     *    over any IPv4 options or IPv6 extension headers. Not present for
+     *    non-first fragments.
+     * required
      * Check the Base enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string base = 3016401;</code>
@@ -93,7 +128,16 @@ class SecurityPolicyUserDefinedField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The base relative to which 'offset' is measured. Possible values are: - IPV4: Points to the beginning of the IPv4 header. - IPV6: Points to the beginning of the IPv6 header. - TCP: Points to the beginning of the TCP header, skipping over any IPv4 options or IPv6 extension headers. Not present for non-first fragments. - UDP: Points to the beginning of the UDP header, skipping over any IPv4 options or IPv6 extension headers. Not present for non-first fragments. required
+     * The base relative to which 'offset' is measured. Possible values are:
+     *    - IPV4: Points to the beginning of the IPv4 header.
+     *    - IPV6: Points to the beginning of the IPv6 header.
+     *    - TCP: Points to the beginning of the TCP header, skipping
+     *    over any IPv4 options or IPv6 extension headers. Not present for
+     *    non-first fragments.
+     *    - UDP: Points to the beginning of the UDP header, skipping
+     *    over any IPv4 options or IPv6 extension headers. Not present for
+     *    non-first fragments.
+     * required
      * Check the Base enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string base = 3016401;</code>
@@ -109,7 +153,10 @@ class SecurityPolicyUserDefinedField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If specified, apply this mask (bitwise AND) to the field to ignore bits before matching. Encoded as a hexadecimal number (starting with "0x"). The last byte of the field (in network byte order) corresponds to the least significant byte of the mask.
+     * If specified, apply this mask (bitwise AND) to the field to ignore bits
+     * before matching. Encoded as a hexadecimal number (starting with "0x").
+     * The last byte of the field (in network byte order) corresponds to the
+     * least significant byte of the mask.
      *
      * Generated from protobuf field <code>optional string mask = 3344108;</code>
      * @return string
@@ -130,7 +177,10 @@ class SecurityPolicyUserDefinedField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If specified, apply this mask (bitwise AND) to the field to ignore bits before matching. Encoded as a hexadecimal number (starting with "0x"). The last byte of the field (in network byte order) corresponds to the least significant byte of the mask.
+     * If specified, apply this mask (bitwise AND) to the field to ignore bits
+     * before matching. Encoded as a hexadecimal number (starting with "0x").
+     * The last byte of the field (in network byte order) corresponds to the
+     * least significant byte of the mask.
      *
      * Generated from protobuf field <code>optional string mask = 3344108;</code>
      * @param string $var
@@ -181,7 +231,8 @@ class SecurityPolicyUserDefinedField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Offset of the first byte of the field (in network byte order) relative to 'base'.
+     * Offset of the first byte of the field (in network byte order) relative to
+     * 'base'.
      *
      * Generated from protobuf field <code>optional int32 offset = 53961875;</code>
      * @return int
@@ -202,7 +253,8 @@ class SecurityPolicyUserDefinedField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Offset of the first byte of the field (in network byte order) relative to 'base'.
+     * Offset of the first byte of the field (in network byte order) relative to
+     * 'base'.
      *
      * Generated from protobuf field <code>optional int32 offset = 53961875;</code>
      * @param int $var

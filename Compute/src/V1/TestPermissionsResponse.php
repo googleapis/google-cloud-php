@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class TestPermissionsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is
+     * allowed.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
      */
@@ -28,7 +29,8 @@ class TestPermissionsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permissions
-     *           A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
+     *           A subset of `TestPermissionsRequest.permissions` that the caller is
+     *           allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class TestPermissionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is
+     * allowed.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -48,7 +51,8 @@ class TestPermissionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
+     * A subset of `TestPermissionsRequest.permissions` that the caller is
+     * allowed.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

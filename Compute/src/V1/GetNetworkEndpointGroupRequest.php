@@ -28,7 +28,8 @@ class GetNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Message
      */
     protected $project = '';
     /**
-     * The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     * The name of the zone where
+     * the network endpoint group is located. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,7 +37,8 @@ class GetNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $project              Project ID for this request.
-     * @param string $zone                 The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     * @param string $zone                 The name of the zone where
+     *                                     the network endpoint group is located. It should comply with RFC1035.
      * @param string $networkEndpointGroup The name of the network endpoint group. It should comply with RFC1035.
      *
      * @return \Google\Cloud\Compute\V1\GetNetworkEndpointGroupRequest
@@ -62,7 +64,8 @@ class GetNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Message
      *     @type string $project
      *           Project ID for this request.
      *     @type string $zone
-     *           The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     *           The name of the zone where
+     *           the network endpoint group is located. It should comply with RFC1035.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,7 +126,8 @@ class GetNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     * The name of the zone where
+     * the network endpoint group is located. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -134,7 +138,8 @@ class GetNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+     * The name of the zone where
+     * the network endpoint group is located. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

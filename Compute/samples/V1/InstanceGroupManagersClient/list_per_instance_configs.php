@@ -29,11 +29,14 @@ use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\ListPerInstanceConfigsInstanceGroupManagersRequest;
 
 /**
- * Lists all of the per-instance configurations defined for the managed instance group. The orderBy query parameter is not supported.
+ * Lists all of the per-instance configurations defined for the managed
+ * instance group. The orderBy query parameter is not supported.
  *
  * @param string $instanceGroupManager The name of the managed instance group. It should conform to RFC1035.
  * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the managed instance group is located. It should conform to RFC1035.
+ * @param string $zone                 The name of thezone
+ *                                     where the managed instance group is located.
+ *                                     It should conform to RFC1035.
  */
 function list_per_instance_configs_sample(
     string $instanceGroupManager,

@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\FirewallPoliciesClient;
 use Google\Cloud\Compute\V1\ListFirewallPoliciesRequest;
 
 /**
- * Lists all the policies that have been configured for the specified folder or organization.
+ * Lists all the policies that have been configured for the specified
+ * folder or organization.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

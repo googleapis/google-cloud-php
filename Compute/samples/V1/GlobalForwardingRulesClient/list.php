@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\GlobalForwardingRulesClient;
 use Google\Cloud\Compute\V1\ListGlobalForwardingRulesRequest;
 
 /**
- * Retrieves a list of GlobalForwardingRule resources available to the specified project.
+ * Retrieves a list of GlobalForwardingRule resources available to the
+ * specified project.
  *
  * @param string $project Project ID for this request.
  */

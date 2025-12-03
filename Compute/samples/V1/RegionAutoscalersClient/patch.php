@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\PatchRegionAutoscalerRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+ * Updates an autoscaler in the specified project using
+ * the data included in the request. This method supportsPATCH
+ * semantics and uses theJSON merge
+ * patch format and processing rules.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

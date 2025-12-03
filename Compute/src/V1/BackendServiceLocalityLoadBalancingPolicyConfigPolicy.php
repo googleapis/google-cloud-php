@@ -16,7 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackendServiceLocalityLoadBalancingPolicyConfigPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of a locality load-balancing policy. Valid values include ROUND_ROBIN and, for Java clients, LEAST_REQUEST. For information about these values, see the description of localityLbPolicy. Do not specify the same policy more than once for a backend. If you do, the configuration is rejected.
+     * The name of a locality load-balancing policy. Valid values include
+     * ROUND_ROBIN and, for Java clients, LEAST_REQUEST. For information
+     * about these values, see the description of localityLbPolicy.
+     * Do not specify the same policy more than once for a
+     * backend. If you do, the configuration is rejected.
      * Check the Name enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -30,7 +34,11 @@ class BackendServiceLocalityLoadBalancingPolicyConfigPolicy extends \Google\Prot
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of a locality load-balancing policy. Valid values include ROUND_ROBIN and, for Java clients, LEAST_REQUEST. For information about these values, see the description of localityLbPolicy. Do not specify the same policy more than once for a backend. If you do, the configuration is rejected.
+     *           The name of a locality load-balancing policy. Valid values include
+     *           ROUND_ROBIN and, for Java clients, LEAST_REQUEST. For information
+     *           about these values, see the description of localityLbPolicy.
+     *           Do not specify the same policy more than once for a
+     *           backend. If you do, the configuration is rejected.
      *           Check the Name enum for the list of possible values.
      * }
      */
@@ -40,7 +48,11 @@ class BackendServiceLocalityLoadBalancingPolicyConfigPolicy extends \Google\Prot
     }
 
     /**
-     * The name of a locality load-balancing policy. Valid values include ROUND_ROBIN and, for Java clients, LEAST_REQUEST. For information about these values, see the description of localityLbPolicy. Do not specify the same policy more than once for a backend. If you do, the configuration is rejected.
+     * The name of a locality load-balancing policy. Valid values include
+     * ROUND_ROBIN and, for Java clients, LEAST_REQUEST. For information
+     * about these values, see the description of localityLbPolicy.
+     * Do not specify the same policy more than once for a
+     * backend. If you do, the configuration is rejected.
      * Check the Name enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -62,7 +74,11 @@ class BackendServiceLocalityLoadBalancingPolicyConfigPolicy extends \Google\Prot
     }
 
     /**
-     * The name of a locality load-balancing policy. Valid values include ROUND_ROBIN and, for Java clients, LEAST_REQUEST. For information about these values, see the description of localityLbPolicy. Do not specify the same policy more than once for a backend. If you do, the configuration is rejected.
+     * The name of a locality load-balancing policy. Valid values include
+     * ROUND_ROBIN and, for Java clients, LEAST_REQUEST. For information
+     * about these values, see the description of localityLbPolicy.
+     * Do not specify the same policy more than once for a
+     * backend. If you do, the configuration is rejected.
      * Check the Name enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>

@@ -33,7 +33,8 @@ use Google\Rpc\Status;
 /**
  * Attach a network endpoint to the specified network endpoint group.
  *
- * @param string $networkEndpointGroup The name of the network endpoint group where you are attaching network endpoints to. It should comply with RFC1035.
+ * @param string $networkEndpointGroup The name of the network endpoint group where you are attaching network
+ *                                     endpoints to. It should comply with RFC1035.
  * @param string $project              Project ID for this request.
  */
 function attach_network_endpoints_sample(string $networkEndpointGroup, string $project): void

@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\SetMetadataInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets metadata for the specified instance to the data included in the request.
+ * Sets metadata for the specified instance to the data included
+ * in the request.
  *
  * @param string $instance Name of the instance scoping this request.
  * @param string $project  Project ID for this request.

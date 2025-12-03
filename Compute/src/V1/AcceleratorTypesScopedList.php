@@ -21,7 +21,8 @@ class AcceleratorTypesScopedList extends \Google\Protobuf\Internal\Message
      */
     private $accelerator_types;
     /**
-     * [Output Only] An informational warning that appears when the accelerator types list is empty.
+     * [Output Only] An informational warning that appears when the accelerator
+     * types list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
@@ -36,7 +37,8 @@ class AcceleratorTypesScopedList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\AcceleratorType>|\Google\Protobuf\Internal\RepeatedField $accelerator_types
      *           [Output Only] A list of accelerator types contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
-     *           [Output Only] An informational warning that appears when the accelerator types list is empty.
+     *           [Output Only] An informational warning that appears when the accelerator
+     *           types list is empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,7 +73,8 @@ class AcceleratorTypesScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An informational warning that appears when the accelerator types list is empty.
+     * [Output Only] An informational warning that appears when the accelerator
+     * types list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
@@ -92,7 +95,8 @@ class AcceleratorTypesScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An informational warning that appears when the accelerator types list is empty.
+     * [Output Only] An informational warning that appears when the accelerator
+     * types list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var

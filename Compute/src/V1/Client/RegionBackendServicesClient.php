@@ -337,7 +337,8 @@ final class RegionBackendServicesClient
     }
 
     /**
-     * Gets the most recent health check results for this regional BackendService.
+     * Gets the most recent health check results for this
+     * regional BackendService.
      *
      * The async variant is {@see RegionBackendServicesClient::getHealthAsync()} .
      *
@@ -365,7 +366,8 @@ final class RegionBackendServicesClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see RegionBackendServicesClient::getIamPolicyAsync()} .
      *
@@ -391,7 +393,9 @@ final class RegionBackendServicesClient
     }
 
     /**
-     * Creates a regional BackendService resource in the specified project using the data included in the request. For more information, see Backend services overview.
+     * Creates a regional BackendService resource in the specified project using
+     * the data included in the request. For more information, see
+     * Backend services overview.
      *
      * The async variant is {@see RegionBackendServicesClient::insertAsync()} .
      *
@@ -417,7 +421,8 @@ final class RegionBackendServicesClient
     }
 
     /**
-     * Retrieves the list of regional BackendService resources available to the specified project in the given region.
+     * Retrieves the list of regional BackendService resources available to the
+     * specified project in the given region.
      *
      * The async variant is {@see RegionBackendServicesClient::listAsync()} .
      *
@@ -443,7 +448,8 @@ final class RegionBackendServicesClient
     }
 
     /**
-     * Retrieves a list of all usable backend services in the specified project in the given region.
+     * Retrieves a list of all usable backend services in the specified project in
+     * the given region.
      *
      * The async variant is {@see RegionBackendServicesClient::listUsableAsync()} .
      *
@@ -471,7 +477,11 @@ final class RegionBackendServicesClient
     }
 
     /**
-     * Updates the specified regional BackendService resource with the data included in the request. For more information, see Understanding backend services This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates the specified regional BackendService resource with the data
+     * included in the request. For more information, see
+     * Understanding backend services This method
+     * supports PATCH semantics and uses the JSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see RegionBackendServicesClient::patchAsync()} .
      *
@@ -497,7 +507,8 @@ final class RegionBackendServicesClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see RegionBackendServicesClient::setIamPolicyAsync()} .
      *
@@ -523,7 +534,9 @@ final class RegionBackendServicesClient
     }
 
     /**
-     * Sets the Google Cloud Armor security policy for the specified backend service. For more information, see Google Cloud Armor Overview
+     * Sets the Google Cloud Armor security policy for the specified backend
+     * service. For more information, seeGoogle
+     * Cloud Armor Overview
      *
      * The async variant is
      * {@see RegionBackendServicesClient::setSecurityPolicyAsync()} .
@@ -581,7 +594,10 @@ final class RegionBackendServicesClient
     }
 
     /**
-     * Updates the specified regional BackendService resource with the data included in the request. For more information, see Backend services overview .
+     * Updates the specified regional BackendService resource with the data
+     * included in the request. For more information,
+     * see
+     * Backend services overview.
      *
      * The async variant is {@see RegionBackendServicesClient::updateAsync()} .
      *

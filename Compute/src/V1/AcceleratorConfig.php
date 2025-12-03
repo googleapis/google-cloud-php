@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A specification of the type and number of accelerator cards attached to the instance.
+ * A specification of the type and number of accelerator cards attached to the
+ * instance.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AcceleratorConfig</code>
  */
@@ -22,7 +23,12 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      */
     protected $accelerator_count = null;
     /**
-     * Full or partial URL of the accelerator type resource to attach to this instance. For example: projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100 If you are creating an instance template, specify only the accelerator name. See GPUs on Compute Engine for a full list of accelerator types.
+     * Full or partial URL of the accelerator type resource to attach to this
+     * instance. For example:projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100
+     * If you are creating an instance template, specify only the
+     * accelerator name.
+     * See GPUs on Compute Engine
+     * for a full list of accelerator types.
      *
      * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      */
@@ -37,7 +43,12 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      *     @type int $accelerator_count
      *           The number of the guest accelerator cards exposed to this instance.
      *     @type string $accelerator_type
-     *           Full or partial URL of the accelerator type resource to attach to this instance. For example: projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100 If you are creating an instance template, specify only the accelerator name. See GPUs on Compute Engine for a full list of accelerator types.
+     *           Full or partial URL of the accelerator type resource to attach to this
+     *           instance. For example:projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100
+     *           If you are creating an instance template, specify only the
+     *           accelerator name.
+     *           See GPUs on Compute Engine
+     *           for a full list of accelerator types.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +93,12 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Full or partial URL of the accelerator type resource to attach to this instance. For example: projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100 If you are creating an instance template, specify only the accelerator name. See GPUs on Compute Engine for a full list of accelerator types.
+     * Full or partial URL of the accelerator type resource to attach to this
+     * instance. For example:projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100
+     * If you are creating an instance template, specify only the
+     * accelerator name.
+     * See GPUs on Compute Engine
+     * for a full list of accelerator types.
      *
      * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      * @return string
@@ -103,7 +119,12 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Full or partial URL of the accelerator type resource to attach to this instance. For example: projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100 If you are creating an instance template, specify only the accelerator name. See GPUs on Compute Engine for a full list of accelerator types.
+     * Full or partial URL of the accelerator type resource to attach to this
+     * instance. For example:projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100
+     * If you are creating an instance template, specify only the
+     * accelerator name.
+     * See GPUs on Compute Engine
+     * for a full list of accelerator types.
      *
      * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      * @param string $var

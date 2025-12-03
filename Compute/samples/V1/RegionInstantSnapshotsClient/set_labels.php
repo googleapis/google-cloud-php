@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\SetLabelsRegionInstantSnapshotRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets the labels on a instantSnapshot in the given region. To learn more about labels, read the Labeling Resources documentation.
+ * Sets the labels on a instantSnapshot in the given region. To learn more
+ * about labels, read the Labeling
+ * Resources documentation.
  *
  * @param string $project  Project ID for this request.
  * @param string $region   The region for this request.

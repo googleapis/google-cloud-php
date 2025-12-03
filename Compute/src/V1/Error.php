@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Error extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The array of errors encountered while processing this operation.
+     * [Output Only] The array of errors encountered while processing this
+     * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
      */
@@ -29,7 +30,8 @@ class Error extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\Errors>|\Google\Protobuf\Internal\RepeatedField $errors
-     *           [Output Only] The array of errors encountered while processing this operation.
+     *           [Output Only] The array of errors encountered while processing this
+     *           operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class Error extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The array of errors encountered while processing this operation.
+     * [Output Only] The array of errors encountered while processing this
+     * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,7 +52,8 @@ class Error extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The array of errors encountered while processing this operation.
+     * [Output Only] The array of errors encountered while processing this
+     * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
      * @param array<\Google\Cloud\Compute\V1\Errors>|\Google\Protobuf\Internal\RepeatedField $var

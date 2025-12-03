@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkProfile extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
@@ -34,13 +35,14 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
      */
     protected $features = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#networkProfile for network profiles.
+     * [Output Only] Type of the resource. Alwayscompute#networkProfile for network profiles.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -87,15 +89,17 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
      *           [Output Only] An optional description of this resource.
      *     @type \Google\Cloud\Compute\V1\NetworkProfileNetworkFeatures $features
      *           [Output Only] Features supported by the network.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#networkProfile for network profiles.
+     *           [Output Only] Type of the resource. Alwayscompute#networkProfile for network profiles.
      *     @type \Google\Cloud\Compute\V1\NetworkProfileLocation $location
      *           [Output Only] Location to which the network is restricted.
      *     @type string $name
@@ -115,7 +119,8 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -136,7 +141,8 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -223,7 +229,8 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -244,7 +251,8 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -259,7 +267,7 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#networkProfile for network profiles.
+     * [Output Only] Type of the resource. Alwayscompute#networkProfile for network profiles.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -280,7 +288,7 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#networkProfile for network profiles.
+     * [Output Only] Type of the resource. Alwayscompute#networkProfile for network profiles.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var

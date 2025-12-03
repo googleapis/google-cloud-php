@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\DisksClient;
 use Google\Cloud\Compute\V1\ListDisksRequest;
 
 /**
- * Retrieves a list of persistent disks contained within the specified zone.
+ * Retrieves a list of persistent disks contained within
+ * the specified zone.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    The name of the zone for this request.

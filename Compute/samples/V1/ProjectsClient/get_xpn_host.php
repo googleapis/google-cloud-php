@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\GetXpnHostProjectRequest;
 use Google\Cloud\Compute\V1\Project;
 
 /**
- * Gets the shared VPC host project that this project links to. May be empty if no link exists.
+ * Gets the shared VPC host project that this project links to. May be empty
+ * if no link exists.
  *
  * @param string $project Project ID for this request.
  */

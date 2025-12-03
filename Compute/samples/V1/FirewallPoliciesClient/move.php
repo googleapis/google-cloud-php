@@ -33,7 +33,9 @@ use Google\Rpc\Status;
  * Moves the specified firewall policy.
  *
  * @param string $firewallPolicy Name of the firewall policy to update.
- * @param string $parentId       The new parent of the firewall policy. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
+ * @param string $parentId       The new parent of the firewall policy. The ID can be either be
+ *                               "folders/[FOLDER_ID]" if the parent is a folder or
+ *                               "organizations/[ORGANIZATION_ID]" if the parent is an organization.
  */
 function move_sample(string $firewallPolicy, string $parentId): void
 {

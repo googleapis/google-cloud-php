@@ -9,14 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] The zones that Attachments in this group are present in, in the given facilities. This is inherited from their Interconnects.
+ * [Output Only] The zones that Attachments in this group are present
+ * in, in the given facilities.  This is inherited from their
+ * Interconnects.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone</code>
  */
 class InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] URLs of Attachments in the given zone, to the given region, on Interconnects in the given facility and metro. Every Attachment in the AG has such an entry.
+     * [Output Only] URLs of Attachments in the given zone, to the given
+     * region, on Interconnects in the given facility and metro. Every
+     * Attachment in the AG has such an entry.
      *
      * Generated from protobuf field <code>repeated string attachments = 334744496;</code>
      */
@@ -35,7 +39,9 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone extends
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $attachments
-     *           [Output Only] URLs of Attachments in the given zone, to the given region, on Interconnects in the given facility and metro. Every Attachment in the AG has such an entry.
+     *           [Output Only] URLs of Attachments in the given zone, to the given
+     *           region, on Interconnects in the given facility and metro. Every
+     *           Attachment in the AG has such an entry.
      *     @type string $zone
      *           [Output Only] The name of a zone, either "zone1" or "zone2".
      * }
@@ -46,7 +52,9 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone extends
     }
 
     /**
-     * [Output Only] URLs of Attachments in the given zone, to the given region, on Interconnects in the given facility and metro. Every Attachment in the AG has such an entry.
+     * [Output Only] URLs of Attachments in the given zone, to the given
+     * region, on Interconnects in the given facility and metro. Every
+     * Attachment in the AG has such an entry.
      *
      * Generated from protobuf field <code>repeated string attachments = 334744496;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -57,7 +65,9 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone extends
     }
 
     /**
-     * [Output Only] URLs of Attachments in the given zone, to the given region, on Interconnects in the given facility and metro. Every Attachment in the AG has such an entry.
+     * [Output Only] URLs of Attachments in the given zone, to the given
+     * region, on Interconnects in the given facility and metro. Every
+     * Attachment in the AG has such an entry.
      *
      * Generated from protobuf field <code>repeated string attachments = 334744496;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

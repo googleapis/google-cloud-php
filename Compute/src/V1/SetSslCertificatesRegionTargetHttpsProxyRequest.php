@@ -34,13 +34,24 @@ class SetSslCertificatesRegionTargetHttpsProxyRequest extends \Google\Protobuf\I
      */
     protected $region_target_https_proxies_set_ssl_certificates_request_resource = null;
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
     protected $request_id = null;
     /**
-     * Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+     * Name of the TargetHttpsProxy resource to set an
+     * SslCertificates resource for.
      *
      * Generated from protobuf field <code>string target_https_proxy = 52336748 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -49,7 +60,8 @@ class SetSslCertificatesRegionTargetHttpsProxyRequest extends \Google\Protobuf\I
     /**
      * @param string                                                                     $project                                                   Project ID for this request.
      * @param string                                                                     $region                                                    Name of the region scoping this request.
-     * @param string                                                                     $targetHttpsProxy                                          Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+     * @param string                                                                     $targetHttpsProxy                                          Name of the TargetHttpsProxy resource to set an
+     *                                                                                                                                              SslCertificates resource for.
      * @param \Google\Cloud\Compute\V1\RegionTargetHttpsProxiesSetSslCertificatesRequest $regionTargetHttpsProxiesSetSslCertificatesRequestResource The body resource for this request
      *
      * @return \Google\Cloud\Compute\V1\SetSslCertificatesRegionTargetHttpsProxyRequest
@@ -78,9 +90,20 @@ class SetSslCertificatesRegionTargetHttpsProxyRequest extends \Google\Protobuf\I
      *     @type \Google\Cloud\Compute\V1\RegionTargetHttpsProxiesSetSslCertificatesRequest $region_target_https_proxies_set_ssl_certificates_request_resource
      *           The body resource for this request
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server will know to ignore the
+     *           request if it has already been completed.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same
+     *           request ID, the server can check if original operation with the same
+     *           request ID was received, and if so, will ignore the second request. This
+     *           prevents clients from accidentally creating duplicate commitments.
+     *           The request ID must be
+     *           a valid UUID with the exception that zero UUID is not supported
+     *           (00000000-0000-0000-0000-000000000000).
      *     @type string $target_https_proxy
-     *           Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+     *           Name of the TargetHttpsProxy resource to set an
+     *           SslCertificates resource for.
      * }
      */
     public function __construct($data = NULL) {
@@ -177,7 +200,17 @@ class SetSslCertificatesRegionTargetHttpsProxyRequest extends \Google\Protobuf\I
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -198,7 +231,17 @@ class SetSslCertificatesRegionTargetHttpsProxyRequest extends \Google\Protobuf\I
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var
@@ -213,7 +256,8 @@ class SetSslCertificatesRegionTargetHttpsProxyRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+     * Name of the TargetHttpsProxy resource to set an
+     * SslCertificates resource for.
      *
      * Generated from protobuf field <code>string target_https_proxy = 52336748 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -224,7 +268,8 @@ class SetSslCertificatesRegionTargetHttpsProxyRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+     * Name of the TargetHttpsProxy resource to set an
+     * SslCertificates resource for.
      *
      * Generated from protobuf field <code>string target_https_proxy = 52336748 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

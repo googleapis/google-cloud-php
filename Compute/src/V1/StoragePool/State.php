@@ -7,7 +7,12 @@ namespace Google\Cloud\Compute\V1\StoragePool;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of storage pool creation. - CREATING: Storage pool is provisioning. storagePool. - FAILED: Storage pool creation failed. - READY: Storage pool is ready for use. - DELETING: Storage pool is deleting. 
+ * [Output Only] The status of storage pool creation.
+ *      - CREATING: Storage pool is provisioning.
+ *      storagePool.
+ *      - FAILED: Storage pool creation failed.
+ *      - READY: Storage pool is ready for use.
+ *      - DELETING: Storage pool is deleting.
  *
  * Protobuf type <code>google.cloud.compute.v1.StoragePool.State</code>
  */

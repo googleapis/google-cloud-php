@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The information about the HTTP Cookie on which the hash function is based for load balancing policies that use a consistent hash.
+ * The information about the HTTP Cookie on which the hash function is based
+ * for load balancing policies that use a consistent hash.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ConsistentHashLoadBalancerSettingsHttpCookie</code>
  */

@@ -389,7 +389,8 @@ final class NetworksClient
     }
 
     /**
-     * Creates a network in the specified project using the data included in the request.
+     * Creates a network in the specified project using the data included
+     * in the request.
      *
      * The async variant is {@see NetworksClient::insertAsync()} .
      *
@@ -469,7 +470,8 @@ final class NetworksClient
     }
 
     /**
-     * Patches the specified network with the data included in the request. Only routingConfig can be modified.
+     * Patches the specified network with the data included in the request.
+     * Only routingConfig can be modified.
      *
      * The async variant is {@see NetworksClient::patchAsync()} .
      *
@@ -521,7 +523,8 @@ final class NetworksClient
     }
 
     /**
-     * Requests to remove a peering from the specified network. Applicable only for PeeringConnection with update_strategy=CONSENSUS.
+     * Requests to remove a peering from the specified network. Applicable only
+     * for PeeringConnection with update_strategy=CONSENSUS.
      *
      * The async variant is {@see NetworksClient::requestRemovePeeringAsync()} .
      *
@@ -577,7 +580,9 @@ final class NetworksClient
     }
 
     /**
-     * Updates the specified network peering with the data included in the request. You can only modify the NetworkPeering.export_custom_routes field and the NetworkPeering.import_custom_routes field.
+     * Updates the specified network peering with the data included in the
+     * request. You can only modify the NetworkPeering.export_custom_routes field
+     * and the NetworkPeering.import_custom_routes field.
      *
      * The async variant is {@see NetworksClient::updatePeeringAsync()} .
      *

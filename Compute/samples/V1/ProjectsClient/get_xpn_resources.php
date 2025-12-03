@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\ProjectsClient;
 use Google\Cloud\Compute\V1\GetXpnResourcesProjectsRequest;
 
 /**
- * Gets service resources (a.k.a service project) associated with this host project.
+ * Gets service resources (a.k.a service project) associated with this host
+ * project.
  *
  * @param string $project Project ID for this request.
  */

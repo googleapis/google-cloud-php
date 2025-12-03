@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Advance control for cluster management, applicable only to DENSE deployment type reservations.
+ * Advance control for cluster management, applicable only to DENSE deployment
+ * type reservations.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ReservationAdvancedDeploymentControl</code>
  */

@@ -30,11 +30,16 @@ use Google\Cloud\Compute\V1\InstanceGroupsListInstancesRequest;
 use Google\Cloud\Compute\V1\ListInstancesInstanceGroupsRequest;
 
 /**
- * Lists the instances in the specified instance group. The orderBy query parameter is not supported. The filter query parameter is supported, but only for expressions that use `eq` (equal) or `ne` (not equal) operators.
+ * Lists the instances in the specified instance group.
+ * The orderBy query parameter is not supported.
+ * The filter query parameter is supported, but only for
+ * expressions that use `eq` (equal) or `ne` (not equal) operators.
  *
- * @param string $instanceGroup The name of the instance group from which you want to generate a list of included instances.
+ * @param string $instanceGroup The name of the instance group from which you want to generate a list
+ *                              of included instances.
  * @param string $project       Project ID for this request.
- * @param string $zone          The name of the zone where the instance group is located.
+ * @param string $zone          The name of the zone
+ *                              where the instance group is located.
  */
 function list_instances_sample(string $instanceGroup, string $project, string $zone): void
 {

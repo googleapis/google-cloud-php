@@ -30,7 +30,14 @@ use Google\Cloud\Compute\V1\GetHealthBackendServiceRequest;
 use Google\Cloud\Compute\V1\ResourceGroupReference;
 
 /**
- * Gets the most recent health check results for this BackendService. Example request body: { "group": "/zones/us-east1-b/instanceGroups/lb-backend-example" }
+ * Gets the most recent health check results for this
+ * BackendService.
+ *
+ * Example request body:
+ *
+ * {
+ * "group": "/zones/us-east1-b/instanceGroups/lb-backend-example"
+ * }
  *
  * @param string $backendService Name of the BackendService resource to which the queried instance belongs.
  * @param string $project

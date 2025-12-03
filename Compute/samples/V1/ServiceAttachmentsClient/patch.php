@@ -31,11 +31,15 @@ use Google\Cloud\Compute\V1\ServiceAttachment;
 use Google\Rpc\Status;
 
 /**
- * Patches the specified ServiceAttachment resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+ * Patches the specified ServiceAttachment resource with the data included in
+ * the request. This method supports PATCH
+ * semantics and usesJSON merge
+ * patch format and processing rules.
  *
  * @param string $project           Project ID for this request.
  * @param string $region            The region scoping this request and should conform to RFC1035.
- * @param string $serviceAttachment The resource id of the ServiceAttachment to patch. It should conform to RFC1035 resource name or be a string form on an unsigned long number.
+ * @param string $serviceAttachment The resource id of the ServiceAttachment to patch. It should conform to
+ *                                  RFC1035 resource name or be a string form on an unsigned long number.
  */
 function patch_sample(string $project, string $region, string $serviceAttachment): void
 {

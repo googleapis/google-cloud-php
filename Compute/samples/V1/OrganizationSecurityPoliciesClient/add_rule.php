@@ -33,6 +33,10 @@ use Google\Rpc\Status;
 /**
  * Inserts a rule into a security policy.
  *
+ * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to modify firewall policies. This usage is
+ * now disabled for most organizations. Use firewallPolicies.addRule instead.
+ *
  * @param string $securityPolicy Name of the security policy to update.
  */
 function add_rule_sample(string $securityPolicy): void

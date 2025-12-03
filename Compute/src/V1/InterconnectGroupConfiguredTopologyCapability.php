@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] How reliable this topology is configured to be, and why this group does or does not meet the requirements for the intended capability.
+ * [Output Only] How reliable this topology is configured to be, and why
+ * this group does or does not meet the requirements for the intended
+ * capability.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectGroupConfiguredTopologyCapability</code>
  */

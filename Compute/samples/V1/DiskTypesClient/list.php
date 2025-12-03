@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\DiskTypesClient;
 use Google\Cloud\Compute\V1\ListDiskTypesRequest;
 
 /**
- * Retrieves a list of disk types available to the specified project.
+ * Retrieves a list of disk types available to the specified
+ * project.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    The name of the zone for this request.

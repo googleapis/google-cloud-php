@@ -31,7 +31,7 @@ class SubnetworkStackTypes
      */
     const IPV4_ONLY = 22373798;
     /**
-     * New VMs in this subnet will only be assigned IPv6 addresses.
+     * New VMs in this subnet will only  be assigned IPv6 addresses.
      *
      * Generated from protobuf enum <code>IPV6_ONLY = 79632100;</code>
      */

@@ -28,13 +28,15 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      */
     protected $endpoint = null;
     /**
-     * NAT IPs of the connected PSC endpoint and those of other endpoints propagated from it.
+     * NAT IPs of the connected PSC endpoint and those of other endpoints
+     * propagated from it.
      *
      * Generated from protobuf field <code>repeated string nat_ips = 117635086;</code>
      */
     private $nat_ips;
     /**
-     * The number of consumer Network Connectivity Center spokes that the connected Private Service Connect endpoint has propagated to.
+     * The number of consumer Network Connectivity Center spokes that the
+     * connected Private Service Connect endpoint has propagated to.
      *
      * Generated from protobuf field <code>optional uint32 propagated_connection_count = 324594130;</code>
      */
@@ -64,9 +66,11 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *     @type string $endpoint
      *           The url of a connected endpoint.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_ips
-     *           NAT IPs of the connected PSC endpoint and those of other endpoints propagated from it.
+     *           NAT IPs of the connected PSC endpoint and those of other endpoints
+     *           propagated from it.
      *     @type int $propagated_connection_count
-     *           The number of consumer Network Connectivity Center spokes that the connected Private Service Connect endpoint has propagated to.
+     *           The number of consumer Network Connectivity Center spokes that the
+     *           connected Private Service Connect endpoint has propagated to.
      *     @type int|string $psc_connection_id
      *           The PSC connection id of the connected endpoint.
      *     @type string $status
@@ -152,7 +156,8 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * NAT IPs of the connected PSC endpoint and those of other endpoints propagated from it.
+     * NAT IPs of the connected PSC endpoint and those of other endpoints
+     * propagated from it.
      *
      * Generated from protobuf field <code>repeated string nat_ips = 117635086;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -163,7 +168,8 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * NAT IPs of the connected PSC endpoint and those of other endpoints propagated from it.
+     * NAT IPs of the connected PSC endpoint and those of other endpoints
+     * propagated from it.
      *
      * Generated from protobuf field <code>repeated string nat_ips = 117635086;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -178,7 +184,8 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The number of consumer Network Connectivity Center spokes that the connected Private Service Connect endpoint has propagated to.
+     * The number of consumer Network Connectivity Center spokes that the
+     * connected Private Service Connect endpoint has propagated to.
      *
      * Generated from protobuf field <code>optional uint32 propagated_connection_count = 324594130;</code>
      * @return int
@@ -199,7 +206,8 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The number of consumer Network Connectivity Center spokes that the connected Private Service Connect endpoint has propagated to.
+     * The number of consumer Network Connectivity Center spokes that the
+     * connected Private Service Connect endpoint has propagated to.
      *
      * Generated from protobuf field <code>optional uint32 propagated_connection_count = 324594130;</code>
      * @param int $var

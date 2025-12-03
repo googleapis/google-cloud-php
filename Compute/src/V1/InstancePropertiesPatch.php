@@ -22,7 +22,9 @@ class InstancePropertiesPatch extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * The metadata key-value pairs that you want to patch onto the instance. For more information, see Project and instance metadata.
+     * The metadata key-value pairs that you want to patch onto the instance. For
+     * more information, see Project and
+     * instance metadata.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 86866735;</code>
      */
@@ -37,7 +39,9 @@ class InstancePropertiesPatch extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The label key-value pairs that you want to patch onto the instance.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
-     *           The metadata key-value pairs that you want to patch onto the instance. For more information, see Project and instance metadata.
+     *           The metadata key-value pairs that you want to patch onto the instance. For
+     *           more information, see Project and
+     *           instance metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +76,9 @@ class InstancePropertiesPatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The metadata key-value pairs that you want to patch onto the instance. For more information, see Project and instance metadata.
+     * The metadata key-value pairs that you want to patch onto the instance. For
+     * more information, see Project and
+     * instance metadata.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 86866735;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -83,7 +89,9 @@ class InstancePropertiesPatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The metadata key-value pairs that you want to patch onto the instance. For more information, see Project and instance metadata.
+     * The metadata key-value pairs that you want to patch onto the instance. For
+     * more information, see Project and
+     * instance metadata.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 86866735;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

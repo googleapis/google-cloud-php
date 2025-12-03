@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\VpnGatewayStatusHighAvailabilityRequirementSta
 use UnexpectedValueException;
 
 /**
- * Indicates the reason why the VPN connection does not meet the high availability redundancy criteria/requirement. Valid values is INCOMPLETE_TUNNELS_COVERAGE.
+ * Indicates the reason why the VPN connection does not meet the high
+ * availability redundancy criteria/requirement.
+ * Valid values is INCOMPLETE_TUNNELS_COVERAGE.
  *
  * Protobuf type <code>google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.UnsatisfiedReason</code>
  */

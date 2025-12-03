@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\Interconnect;
 use Google\Rpc\Status;
 
 /**
- * Creates an Interconnect in the specified project using the data included in the request.
+ * Creates an Interconnect in the specified project using
+ * the data included in the request.
  *
  * @param string $project Project ID for this request.
  */

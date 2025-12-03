@@ -31,10 +31,21 @@ use Google\Cloud\Compute\V1\InstanceGroupManager;
 use Google\Rpc\Status;
 
 /**
- * Creates a managed instance group using the information that you specify in the request. After the group is created, instances in the group are created using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method. A managed instance group can have up to 1000 VM instances per group. Please contact Cloud Support if you need an increase in this limit.
+ * Creates a managed instance group using the information that you specify
+ * in the request. After the group is created, instances in the group are
+ * created using the specified instance template.
+ * This operation is marked as DONE when the group is created
+ * even if the instances in the group have not yet been created. You
+ * must separately verify the status of the individual instances with thelistmanagedinstances
+ * method.
+ *
+ * A managed instance group can have up to 1000 VM instances per group. Please
+ * contact Cloud Support if you need an increase in
+ * this limit.
  *
  * @param string $project Project ID for this request.
- * @param string $zone    The name of the zone where you want to create the managed instance group.
+ * @param string $zone    The name of the zone
+ *                        where you want to create the managed instance group.
  */
 function insert_sample(string $project, string $zone): void
 {

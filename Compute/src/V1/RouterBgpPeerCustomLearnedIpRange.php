@@ -15,7 +15,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class RouterBgpPeerCustomLearnedIpRange extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The custom learned route IP address range. Must be a valid CIDR-formatted prefix. If an IP address is provided without a subnet mask, it is interpreted as, for IPv4, a `/32` singular IP address range, and, for IPv6, `/128`.
+     * The custom learned route IP address range. Must be a valid
+     * CIDR-formatted prefix. If an IP address is provided without a subnet
+     * mask, it is interpreted as, for IPv4, a `/32` singular IP address
+     * range, and, for IPv6, `/128`.
      *
      * Generated from protobuf field <code>optional string range = 108280125;</code>
      */
@@ -28,7 +31,10 @@ class RouterBgpPeerCustomLearnedIpRange extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $range
-     *           The custom learned route IP address range. Must be a valid CIDR-formatted prefix. If an IP address is provided without a subnet mask, it is interpreted as, for IPv4, a `/32` singular IP address range, and, for IPv6, `/128`.
+     *           The custom learned route IP address range. Must be a valid
+     *           CIDR-formatted prefix. If an IP address is provided without a subnet
+     *           mask, it is interpreted as, for IPv4, a `/32` singular IP address
+     *           range, and, for IPv6, `/128`.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +43,10 @@ class RouterBgpPeerCustomLearnedIpRange extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The custom learned route IP address range. Must be a valid CIDR-formatted prefix. If an IP address is provided without a subnet mask, it is interpreted as, for IPv4, a `/32` singular IP address range, and, for IPv6, `/128`.
+     * The custom learned route IP address range. Must be a valid
+     * CIDR-formatted prefix. If an IP address is provided without a subnet
+     * mask, it is interpreted as, for IPv4, a `/32` singular IP address
+     * range, and, for IPv6, `/128`.
      *
      * Generated from protobuf field <code>optional string range = 108280125;</code>
      * @return string
@@ -58,7 +67,10 @@ class RouterBgpPeerCustomLearnedIpRange extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The custom learned route IP address range. Must be a valid CIDR-formatted prefix. If an IP address is provided without a subnet mask, it is interpreted as, for IPv4, a `/32` singular IP address range, and, for IPv6, `/128`.
+     * The custom learned route IP address range. Must be a valid
+     * CIDR-formatted prefix. If an IP address is provided without a subnet
+     * mask, it is interpreted as, for IPv4, a `/32` singular IP address
+     * range, and, for IPv6, `/128`.
      *
      * Generated from protobuf field <code>optional string range = 108280125;</code>
      * @param string $var

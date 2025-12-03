@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\InstanceGroupManagerUpdatePolicy;
 use UnexpectedValueException;
 
 /**
- * The type of update process. You can specify either PROACTIVE so that the MIG automatically updates VMs to the latest configurations or OPPORTUNISTIC so that you can select the VMs that you want to update.
+ * The type
+ * of update process. You can specify either PROACTIVE so
+ * that the MIG automatically updates VMs to the latest configurations orOPPORTUNISTIC so that you can select the VMs that you want
+ * to update.
  * Additional supported values which may be not listed in the enum directly due to technical reasons:
  * PROACTIVE
  *
@@ -22,7 +25,9 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
-     * MIG will apply new configurations to existing VMs only when you selectively target specific or all VMs to be updated.
+     * MIG will apply new configurations
+     * to existing VMs only when you selectively target specific or all VMs to
+     * be updated.
      *
      * Generated from protobuf enum <code>OPPORTUNISTIC = 429530089;</code>
      */

@@ -28,17 +28,24 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Client\ReservationSubBlocksClient;
 use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
+use Google\Cloud\Compute\V1\GetIamPolicyReservationSubBlockRequest;
 use Google\Cloud\Compute\V1\GetReservationSubBlockRequest;
 use Google\Cloud\Compute\V1\GetZoneOperationRequest;
 use Google\Cloud\Compute\V1\ListReservationSubBlocksRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PerformMaintenanceReservationSubBlockRequest;
+use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\ReportFaultyReservationSubBlockRequest;
 use Google\Cloud\Compute\V1\ReservationSubBlock;
 use Google\Cloud\Compute\V1\ReservationSubBlocksGetResponse;
 use Google\Cloud\Compute\V1\ReservationSubBlocksListResponse;
 use Google\Cloud\Compute\V1\ReservationSubBlocksReportFaultyRequest;
+use Google\Cloud\Compute\V1\SetIamPolicyReservationSubBlockRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsReservationSubBlockRequest;
+use Google\Cloud\Compute\V1\TestPermissionsRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
+use Google\Cloud\Compute\V1\ZoneSetNestedPolicyRequest;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -144,6 +151,95 @@ class ReservationSubBlocksClientTest extends GeneratedTest
             ->setZone($zone);
         try {
             $gapicClient->get($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $etag = 'etag3123477';
+        $iamOwned = false;
+        $version = 351608024;
+        $expectedResponse = new Policy();
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setIamOwned($iamOwned);
+        $expectedResponse->setVersion($version);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parentResource = 'parentResource-1055650813';
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $zone = 'zone3744684';
+        $request = (new GetIamPolicyReservationSubBlockRequest())
+            ->setParentResource($parentResource)
+            ->setProject($project)
+            ->setResource($resource)
+            ->setZone($zone);
+        $response = $gapicClient->getIamPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.ReservationSubBlocks/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParentResource();
+        $this->assertProtobufEquals($parentResource, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parentResource = 'parentResource-1055650813';
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $zone = 'zone3744684';
+        $request = (new GetIamPolicyReservationSubBlockRequest())
+            ->setParentResource($parentResource)
+            ->setProject($project)
+            ->setResource($resource)
+            ->setZone($zone);
+        try {
+            $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -522,6 +618,190 @@ class ReservationSubBlocksClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $etag = 'etag3123477';
+        $iamOwned = false;
+        $version = 351608024;
+        $expectedResponse = new Policy();
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setIamOwned($iamOwned);
+        $expectedResponse->setVersion($version);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parentResource = 'parentResource-1055650813';
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $zone = 'zone3744684';
+        $zoneSetNestedPolicyRequestResource = new ZoneSetNestedPolicyRequest();
+        $request = (new SetIamPolicyReservationSubBlockRequest())
+            ->setParentResource($parentResource)
+            ->setProject($project)
+            ->setResource($resource)
+            ->setZone($zone)
+            ->setZoneSetNestedPolicyRequestResource($zoneSetNestedPolicyRequestResource);
+        $response = $gapicClient->setIamPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.ReservationSubBlocks/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParentResource();
+        $this->assertProtobufEquals($parentResource, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getZoneSetNestedPolicyRequestResource();
+        $this->assertProtobufEquals($zoneSetNestedPolicyRequestResource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parentResource = 'parentResource-1055650813';
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $zone = 'zone3744684';
+        $zoneSetNestedPolicyRequestResource = new ZoneSetNestedPolicyRequest();
+        $request = (new SetIamPolicyReservationSubBlockRequest())
+            ->setParentResource($parentResource)
+            ->setProject($project)
+            ->setResource($resource)
+            ->setZone($zone)
+            ->setZoneSetNestedPolicyRequestResource($zoneSetNestedPolicyRequestResource);
+        try {
+            $gapicClient->setIamPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function testIamPermissionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new TestPermissionsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parentResource = 'parentResource-1055650813';
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $zone = 'zone3744684';
+        $request = (new TestIamPermissionsReservationSubBlockRequest())
+            ->setParentResource($parentResource)
+            ->setProject($project)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource)
+            ->setZone($zone);
+        $response = $gapicClient->testIamPermissions($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.ReservationSubBlocks/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParentResource();
+        $this->assertProtobufEquals($parentResource, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
+        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function testIamPermissionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parentResource = 'parentResource-1055650813';
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $zone = 'zone3744684';
+        $request = (new TestIamPermissionsReservationSubBlockRequest())
+            ->setParentResource($parentResource)
+            ->setProject($project)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource)
+            ->setZone($zone);
+        try {
+            $gapicClient->testIamPermissions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */

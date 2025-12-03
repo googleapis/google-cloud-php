@@ -9,33 +9,46 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The available logging options for the load balancer traffic served by this backend service.
+ * The available logging options for the load balancer traffic served by this
+ * backend service.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.BackendServiceLogConfig</code>
  */
 class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Denotes whether to enable logging for the load balancer traffic served by this backend service. The default value is false.
+     * Denotes whether to enable logging for the load balancer
+     * traffic served by this backend service. The default value is false.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      */
     protected $enable = null;
     /**
-     * This field can only be specified if logging is enabled for this backend service and "logConfig.optionalMode" was set to CUSTOM. Contains a list of optional fields you want to include in the logs. For example: serverInstance, serverGkeDetails.cluster, serverGkeDetails.pod.podNamespace
+     * This field can only be specified if logging is enabled for this backend
+     * service and "logConfig.optionalMode" was set to CUSTOM. Contains a list
+     * of optional fields you want to include in the logs. For example:
+     * serverInstance, serverGkeDetails.cluster,
+     * serverGkeDetails.pod.podNamespace
      *
      * Generated from protobuf field <code>repeated string optional_fields = 528589944;</code>
      */
     private $optional_fields;
     /**
-     * This field can only be specified if logging is enabled for this backend service. Configures whether all, none or a subset of optional fields should be added to the reported logs. One of [INCLUDE_ALL_OPTIONAL, EXCLUDE_ALL_OPTIONAL, CUSTOM]. Default is EXCLUDE_ALL_OPTIONAL.
+     * This field can only be specified if logging is enabled for this backend
+     * service. Configures whether all, none or a subset of optional fields
+     * should be added to the reported logs. One of [INCLUDE_ALL_OPTIONAL,
+     * EXCLUDE_ALL_OPTIONAL, CUSTOM]. Default is EXCLUDE_ALL_OPTIONAL.
      * Check the OptionalMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string optional_mode = 128697122;</code>
      */
     protected $optional_mode = null;
     /**
-     * This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0.
+     * This field can only be specified if logging is enabled for this backend
+     * service. The value of the field must be in [0, 1]. This configures the
+     * sampling rate of requests to the load balancer where 1.0 means all logged
+     * requests are reported and 0.0 means no logged requests are reported. The
+     * default value is 1.0.
      *
      * Generated from protobuf field <code>optional float sample_rate = 153193045;</code>
      */
@@ -48,14 +61,26 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable
-     *           Denotes whether to enable logging for the load balancer traffic served by this backend service. The default value is false.
+     *           Denotes whether to enable logging for the load balancer
+     *           traffic served by this backend service. The default value is false.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $optional_fields
-     *           This field can only be specified if logging is enabled for this backend service and "logConfig.optionalMode" was set to CUSTOM. Contains a list of optional fields you want to include in the logs. For example: serverInstance, serverGkeDetails.cluster, serverGkeDetails.pod.podNamespace
+     *           This field can only be specified if logging is enabled for this backend
+     *           service and "logConfig.optionalMode" was set to CUSTOM. Contains a list
+     *           of optional fields you want to include in the logs. For example:
+     *           serverInstance, serverGkeDetails.cluster,
+     *           serverGkeDetails.pod.podNamespace
      *     @type string $optional_mode
-     *           This field can only be specified if logging is enabled for this backend service. Configures whether all, none or a subset of optional fields should be added to the reported logs. One of [INCLUDE_ALL_OPTIONAL, EXCLUDE_ALL_OPTIONAL, CUSTOM]. Default is EXCLUDE_ALL_OPTIONAL.
+     *           This field can only be specified if logging is enabled for this backend
+     *           service. Configures whether all, none or a subset of optional fields
+     *           should be added to the reported logs. One of [INCLUDE_ALL_OPTIONAL,
+     *           EXCLUDE_ALL_OPTIONAL, CUSTOM]. Default is EXCLUDE_ALL_OPTIONAL.
      *           Check the OptionalMode enum for the list of possible values.
      *     @type float $sample_rate
-     *           This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0.
+     *           This field can only be specified if logging is enabled for this backend
+     *           service. The value of the field must be in [0, 1]. This configures the
+     *           sampling rate of requests to the load balancer where 1.0 means all logged
+     *           requests are reported and 0.0 means no logged requests are reported. The
+     *           default value is 1.0.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,7 +89,8 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Denotes whether to enable logging for the load balancer traffic served by this backend service. The default value is false.
+     * Denotes whether to enable logging for the load balancer
+     * traffic served by this backend service. The default value is false.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @return bool
@@ -85,7 +111,8 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Denotes whether to enable logging for the load balancer traffic served by this backend service. The default value is false.
+     * Denotes whether to enable logging for the load balancer
+     * traffic served by this backend service. The default value is false.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @param bool $var
@@ -100,7 +127,11 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field can only be specified if logging is enabled for this backend service and "logConfig.optionalMode" was set to CUSTOM. Contains a list of optional fields you want to include in the logs. For example: serverInstance, serverGkeDetails.cluster, serverGkeDetails.pod.podNamespace
+     * This field can only be specified if logging is enabled for this backend
+     * service and "logConfig.optionalMode" was set to CUSTOM. Contains a list
+     * of optional fields you want to include in the logs. For example:
+     * serverInstance, serverGkeDetails.cluster,
+     * serverGkeDetails.pod.podNamespace
      *
      * Generated from protobuf field <code>repeated string optional_fields = 528589944;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -111,7 +142,11 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field can only be specified if logging is enabled for this backend service and "logConfig.optionalMode" was set to CUSTOM. Contains a list of optional fields you want to include in the logs. For example: serverInstance, serverGkeDetails.cluster, serverGkeDetails.pod.podNamespace
+     * This field can only be specified if logging is enabled for this backend
+     * service and "logConfig.optionalMode" was set to CUSTOM. Contains a list
+     * of optional fields you want to include in the logs. For example:
+     * serverInstance, serverGkeDetails.cluster,
+     * serverGkeDetails.pod.podNamespace
      *
      * Generated from protobuf field <code>repeated string optional_fields = 528589944;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -126,7 +161,10 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field can only be specified if logging is enabled for this backend service. Configures whether all, none or a subset of optional fields should be added to the reported logs. One of [INCLUDE_ALL_OPTIONAL, EXCLUDE_ALL_OPTIONAL, CUSTOM]. Default is EXCLUDE_ALL_OPTIONAL.
+     * This field can only be specified if logging is enabled for this backend
+     * service. Configures whether all, none or a subset of optional fields
+     * should be added to the reported logs. One of [INCLUDE_ALL_OPTIONAL,
+     * EXCLUDE_ALL_OPTIONAL, CUSTOM]. Default is EXCLUDE_ALL_OPTIONAL.
      * Check the OptionalMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string optional_mode = 128697122;</code>
@@ -148,7 +186,10 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field can only be specified if logging is enabled for this backend service. Configures whether all, none or a subset of optional fields should be added to the reported logs. One of [INCLUDE_ALL_OPTIONAL, EXCLUDE_ALL_OPTIONAL, CUSTOM]. Default is EXCLUDE_ALL_OPTIONAL.
+     * This field can only be specified if logging is enabled for this backend
+     * service. Configures whether all, none or a subset of optional fields
+     * should be added to the reported logs. One of [INCLUDE_ALL_OPTIONAL,
+     * EXCLUDE_ALL_OPTIONAL, CUSTOM]. Default is EXCLUDE_ALL_OPTIONAL.
      * Check the OptionalMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string optional_mode = 128697122;</code>
@@ -164,7 +205,11 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0.
+     * This field can only be specified if logging is enabled for this backend
+     * service. The value of the field must be in [0, 1]. This configures the
+     * sampling rate of requests to the load balancer where 1.0 means all logged
+     * requests are reported and 0.0 means no logged requests are reported. The
+     * default value is 1.0.
      *
      * Generated from protobuf field <code>optional float sample_rate = 153193045;</code>
      * @return float
@@ -185,7 +230,11 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0.
+     * This field can only be specified if logging is enabled for this backend
+     * service. The value of the field must be in [0, 1]. This configures the
+     * sampling rate of requests to the load balancer where 1.0 means all logged
+     * requests are reported and 0.0 means no logged requests are reported. The
+     * default value is 1.0.
      *
      * Generated from protobuf field <code>optional float sample_rate = 153193045;</code>
      * @param float $var

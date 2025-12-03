@@ -33,7 +33,8 @@ use Google\Rpc\Status;
 /**
  * Simulates maintenance event on specified nodes from the node group.
  *
- * @param string $nodeGroup Name of the NodeGroup resource whose nodes will go under maintenance simulation.
+ * @param string $nodeGroup Name of the NodeGroup resource whose nodes will go under maintenance
+ *                          simulation.
  * @param string $project   Project ID for this request.
  * @param string $zone      The name of the zone for this request.
  */

@@ -30,7 +30,8 @@ use Google\Cloud\Compute\V1\ResumeInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Resumes an instance that was suspended using the instances().suspend method.
+ * Resumes an instance that was suspended using theinstances().suspend
+ * method.
  *
  * @param string $instance Name of the instance resource to resume.
  * @param string $project  Project ID for this request.

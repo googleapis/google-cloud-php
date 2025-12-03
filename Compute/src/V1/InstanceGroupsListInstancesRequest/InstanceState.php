@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\InstanceGroupsListInstancesRequest;
 use UnexpectedValueException;
 
 /**
- * A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
+ * A filter for the state of the instances in the instance group. Valid
+ * options are ALL or RUNNING. If you do not specify
+ * this parameter the list includes all instances regardless of their state.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceGroupsListInstancesRequest.InstanceState</code>
  */
@@ -26,7 +28,8 @@ class InstanceState
      */
     const ALL = 64897;
     /**
-     * Includes instances in the generated list only if they have a RUNNING state.
+     * Includes instances in the generated list only if they have a RUNNING
+     * state.
      *
      * Generated from protobuf enum <code>RUNNING = 121282975;</code>
      */

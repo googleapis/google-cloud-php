@@ -30,7 +30,14 @@ use Google\Cloud\Compute\V1\SuspendInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * This method suspends a running instance, saving its state to persistent storage, and allows you to resume the instance at a later time. Suspended instances have no compute costs (cores or RAM), and incur only storage charges for the saved VM memory and localSSD data. Any charged resources the virtual machine was using, such as persistent disks and static IP addresses, will continue to be charged while the instance is suspended. For more information, see Suspending and resuming an instance.
+ * This method suspends a running instance, saving its state to persistent
+ * storage, and allows you to resume the instance at a later time. Suspended
+ * instances have no compute costs (cores or RAM), and incur only storage
+ * charges for the saved VM memory and localSSD data. Any charged resources
+ * the virtual machine was using, such as persistent disks and static IP
+ * addresses, will continue to be charged while the instance is suspended.
+ * For more information, see
+ * Suspending and resuming an instance.
  *
  * @param string $instance Name of the instance resource to suspend.
  * @param string $project  Project ID for this request.

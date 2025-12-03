@@ -32,7 +32,9 @@ class Status
      */
     const CLOSED = 380163436;
     /**
-     * The connection has been accepted by the producer, but the producer needs to take further action before the forwarding rule can serve traffic.
+     * The connection has been accepted by the producer, but the producer
+     * needs to take further action before the forwarding rule can serve
+     * traffic.
      *
      * Generated from protobuf enum <code>NEEDS_ATTENTION = 344491452;</code>
      */

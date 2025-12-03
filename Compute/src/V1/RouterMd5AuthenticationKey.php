@@ -15,13 +15,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class RouterMd5AuthenticationKey extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Input only] Value of the key. For patch and update calls, it can be skipped to copy the value from the previous configuration. This is allowed if the key with the same name existed before the operation. Maximum length is 80 characters. Can only contain printable ASCII characters.
+     * [Input only] Value of the key.
+     * For patch and update calls, it can be skipped to
+     * copy the value from the previous configuration. This is allowed if the
+     * key with the same name existed before the operation. Maximum length is 80
+     * characters. Can only contain printable ASCII characters.
      *
      * Generated from protobuf field <code>optional string key = 106079;</code>
      */
     protected $key = null;
     /**
-     * Name used to identify the key. Must be unique within a router. Must be referenced by exactly one bgpPeer. Must comply with RFC1035.
+     * Name used to identify the key.
+     * Must be unique within a router. Must be referenced by exactly
+     * one bgpPeer. Must comply withRFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -34,9 +40,15 @@ class RouterMd5AuthenticationKey extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key
-     *           [Input only] Value of the key. For patch and update calls, it can be skipped to copy the value from the previous configuration. This is allowed if the key with the same name existed before the operation. Maximum length is 80 characters. Can only contain printable ASCII characters.
+     *           [Input only] Value of the key.
+     *           For patch and update calls, it can be skipped to
+     *           copy the value from the previous configuration. This is allowed if the
+     *           key with the same name existed before the operation. Maximum length is 80
+     *           characters. Can only contain printable ASCII characters.
      *     @type string $name
-     *           Name used to identify the key. Must be unique within a router. Must be referenced by exactly one bgpPeer. Must comply with RFC1035.
+     *           Name used to identify the key.
+     *           Must be unique within a router. Must be referenced by exactly
+     *           one bgpPeer. Must comply withRFC1035.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +57,11 @@ class RouterMd5AuthenticationKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Input only] Value of the key. For patch and update calls, it can be skipped to copy the value from the previous configuration. This is allowed if the key with the same name existed before the operation. Maximum length is 80 characters. Can only contain printable ASCII characters.
+     * [Input only] Value of the key.
+     * For patch and update calls, it can be skipped to
+     * copy the value from the previous configuration. This is allowed if the
+     * key with the same name existed before the operation. Maximum length is 80
+     * characters. Can only contain printable ASCII characters.
      *
      * Generated from protobuf field <code>optional string key = 106079;</code>
      * @return string
@@ -66,7 +82,11 @@ class RouterMd5AuthenticationKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Input only] Value of the key. For patch and update calls, it can be skipped to copy the value from the previous configuration. This is allowed if the key with the same name existed before the operation. Maximum length is 80 characters. Can only contain printable ASCII characters.
+     * [Input only] Value of the key.
+     * For patch and update calls, it can be skipped to
+     * copy the value from the previous configuration. This is allowed if the
+     * key with the same name existed before the operation. Maximum length is 80
+     * characters. Can only contain printable ASCII characters.
      *
      * Generated from protobuf field <code>optional string key = 106079;</code>
      * @param string $var
@@ -81,7 +101,9 @@ class RouterMd5AuthenticationKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name used to identify the key. Must be unique within a router. Must be referenced by exactly one bgpPeer. Must comply with RFC1035.
+     * Name used to identify the key.
+     * Must be unique within a router. Must be referenced by exactly
+     * one bgpPeer. Must comply withRFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -102,7 +124,9 @@ class RouterMd5AuthenticationKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name used to identify the key. Must be unique within a router. Must be referenced by exactly one bgpPeer. Must comply with RFC1035.
+     * Name used to identify the key.
+     * Must be unique within a router. Must be referenced by exactly
+     * one bgpPeer. Must comply withRFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var

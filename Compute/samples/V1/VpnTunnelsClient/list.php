@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\VpnTunnelsClient;
 use Google\Cloud\Compute\V1\ListVpnTunnelsRequest;
 
 /**
- * Retrieves a list of VpnTunnel resources contained in the specified project and region.
+ * Retrieves a list of VpnTunnel resources contained in the specified
+ * project and region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.

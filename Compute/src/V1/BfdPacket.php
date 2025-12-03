@@ -15,99 +15,112 @@ use Google\Protobuf\Internal\GPBUtil;
 class BfdPacket extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Authentication Present bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Authentication Present bit of the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool authentication_present = 105974260;</code>
      */
     protected $authentication_present = null;
     /**
-     * The Control Plane Independent bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Control Plane Independent bit of the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool control_plane_independent = 62363573;</code>
      */
     protected $control_plane_independent = null;
     /**
-     * The demand bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The demand bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool demand = 275180107;</code>
      */
     protected $demand = null;
     /**
-     * The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
+     * The diagnostic code specifies the local system's reason for the last change
+     * in session state. This allows remote systems to determine the reason that
+     * the previous session failed, for example. These diagnostic codes are
+     * specified in section 4.1 ofRFC5880
      * Check the Diagnostic enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string diagnostic = 62708647;</code>
      */
     protected $diagnostic = null;
     /**
-     * The Final bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Final bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool final = 97436022;</code>
      */
     protected $final = null;
     /**
-     * The length of the BFD Control packet in bytes. This is specified in section 4.1 of RFC5880
+     * The length of the BFD Control packet in bytes. This is specified in section
+     * 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 length = 504249062;</code>
      */
     protected $length = null;
     /**
-     * The Required Min Echo RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Required Min Echo RX Interval value in the BFD packet. This is
+     * specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 min_echo_rx_interval_ms = 97286868;</code>
      */
     protected $min_echo_rx_interval_ms = null;
     /**
-     * The Required Min RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Required Min RX Interval value in the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 min_rx_interval_ms = 463399028;</code>
      */
     protected $min_rx_interval_ms = null;
     /**
-     * The Desired Min TX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Desired Min TX Interval value in the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 min_tx_interval_ms = 526023602;</code>
      */
     protected $min_tx_interval_ms = null;
     /**
-     * The detection time multiplier of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The detection time multiplier of the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 multiplier = 191331777;</code>
      */
     protected $multiplier = null;
     /**
-     * The multipoint bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The multipoint bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool multipoint = 191421431;</code>
      */
     protected $multipoint = null;
     /**
-     * The My Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The My Discriminator value in the BFD packet. This is specified in section
+     * 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 my_discriminator = 76663113;</code>
      */
     protected $my_discriminator = null;
     /**
-     * The Poll bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Poll bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool poll = 3446719;</code>
      */
     protected $poll = null;
     /**
-     * The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
+     * The current BFD session state as seen by the transmitting system. These
+     * states are specified in section 4.1 ofRFC5880
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
     protected $state = null;
     /**
-     * The version number of the BFD protocol, as specified in section 4.1 of RFC5880.
+     * The version number of the BFD protocol, as specified in section 4.1 ofRFC5880.
      *
      * Generated from protobuf field <code>optional uint32 version = 351608024;</code>
      */
     protected $version = null;
     /**
-     * The Your Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Your Discriminator value in the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 your_discriminator = 515634064;</code>
      */
@@ -120,39 +133,52 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $authentication_present
-     *           The Authentication Present bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     *           The Authentication Present bit of the BFD packet. This is specified in
+     *           section 4.1 ofRFC5880
      *     @type bool $control_plane_independent
-     *           The Control Plane Independent bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     *           The Control Plane Independent bit of the BFD packet. This is specified in
+     *           section 4.1 ofRFC5880
      *     @type bool $demand
-     *           The demand bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     *           The demand bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *     @type string $diagnostic
-     *           The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
+     *           The diagnostic code specifies the local system's reason for the last change
+     *           in session state. This allows remote systems to determine the reason that
+     *           the previous session failed, for example. These diagnostic codes are
+     *           specified in section 4.1 ofRFC5880
      *           Check the Diagnostic enum for the list of possible values.
      *     @type bool $final
-     *           The Final bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     *           The Final bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *     @type int $length
-     *           The length of the BFD Control packet in bytes. This is specified in section 4.1 of RFC5880
+     *           The length of the BFD Control packet in bytes. This is specified in section
+     *           4.1 ofRFC5880
      *     @type int $min_echo_rx_interval_ms
-     *           The Required Min Echo RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     *           The Required Min Echo RX Interval value in the BFD packet. This is
+     *           specified in section 4.1 ofRFC5880
      *     @type int $min_rx_interval_ms
-     *           The Required Min RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     *           The Required Min RX Interval value in the BFD packet. This is specified in
+     *           section 4.1 ofRFC5880
      *     @type int $min_tx_interval_ms
-     *           The Desired Min TX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     *           The Desired Min TX Interval value in the BFD packet. This is specified in
+     *           section 4.1 ofRFC5880
      *     @type int $multiplier
-     *           The detection time multiplier of the BFD packet. This is specified in section 4.1 of RFC5880
+     *           The detection time multiplier of the BFD packet. This is specified in
+     *           section 4.1 ofRFC5880
      *     @type bool $multipoint
-     *           The multipoint bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     *           The multipoint bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *     @type int $my_discriminator
-     *           The My Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880
+     *           The My Discriminator value in the BFD packet. This is specified in section
+     *           4.1 ofRFC5880
      *     @type bool $poll
-     *           The Poll bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     *           The Poll bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *     @type string $state
-     *           The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
+     *           The current BFD session state as seen by the transmitting system. These
+     *           states are specified in section 4.1 ofRFC5880
      *           Check the State enum for the list of possible values.
      *     @type int $version
-     *           The version number of the BFD protocol, as specified in section 4.1 of RFC5880.
+     *           The version number of the BFD protocol, as specified in section 4.1 ofRFC5880.
      *     @type int $your_discriminator
-     *           The Your Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880
+     *           The Your Discriminator value in the BFD packet. This is specified in
+     *           section 4.1 ofRFC5880
      * }
      */
     public function __construct($data = NULL) {
@@ -161,7 +187,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Authentication Present bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Authentication Present bit of the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool authentication_present = 105974260;</code>
      * @return bool
@@ -182,7 +209,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Authentication Present bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Authentication Present bit of the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool authentication_present = 105974260;</code>
      * @param bool $var
@@ -197,7 +225,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Control Plane Independent bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Control Plane Independent bit of the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool control_plane_independent = 62363573;</code>
      * @return bool
@@ -218,7 +247,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Control Plane Independent bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Control Plane Independent bit of the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool control_plane_independent = 62363573;</code>
      * @param bool $var
@@ -233,7 +263,7 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The demand bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The demand bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool demand = 275180107;</code>
      * @return bool
@@ -254,7 +284,7 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The demand bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The demand bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool demand = 275180107;</code>
      * @param bool $var
@@ -269,7 +299,10 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
+     * The diagnostic code specifies the local system's reason for the last change
+     * in session state. This allows remote systems to determine the reason that
+     * the previous session failed, for example. These diagnostic codes are
+     * specified in section 4.1 ofRFC5880
      * Check the Diagnostic enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string diagnostic = 62708647;</code>
@@ -291,7 +324,10 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
+     * The diagnostic code specifies the local system's reason for the last change
+     * in session state. This allows remote systems to determine the reason that
+     * the previous session failed, for example. These diagnostic codes are
+     * specified in section 4.1 ofRFC5880
      * Check the Diagnostic enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string diagnostic = 62708647;</code>
@@ -307,7 +343,7 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Final bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Final bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool final = 97436022;</code>
      * @return bool
@@ -328,7 +364,7 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Final bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Final bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool final = 97436022;</code>
      * @param bool $var
@@ -343,7 +379,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The length of the BFD Control packet in bytes. This is specified in section 4.1 of RFC5880
+     * The length of the BFD Control packet in bytes. This is specified in section
+     * 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 length = 504249062;</code>
      * @return int
@@ -364,7 +401,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The length of the BFD Control packet in bytes. This is specified in section 4.1 of RFC5880
+     * The length of the BFD Control packet in bytes. This is specified in section
+     * 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 length = 504249062;</code>
      * @param int $var
@@ -379,7 +417,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Required Min Echo RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Required Min Echo RX Interval value in the BFD packet. This is
+     * specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 min_echo_rx_interval_ms = 97286868;</code>
      * @return int
@@ -400,7 +439,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Required Min Echo RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Required Min Echo RX Interval value in the BFD packet. This is
+     * specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 min_echo_rx_interval_ms = 97286868;</code>
      * @param int $var
@@ -415,7 +455,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Required Min RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Required Min RX Interval value in the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 min_rx_interval_ms = 463399028;</code>
      * @return int
@@ -436,7 +477,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Required Min RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Required Min RX Interval value in the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 min_rx_interval_ms = 463399028;</code>
      * @param int $var
@@ -451,7 +493,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Desired Min TX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Desired Min TX Interval value in the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 min_tx_interval_ms = 526023602;</code>
      * @return int
@@ -472,7 +515,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Desired Min TX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Desired Min TX Interval value in the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 min_tx_interval_ms = 526023602;</code>
      * @param int $var
@@ -487,7 +531,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The detection time multiplier of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The detection time multiplier of the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 multiplier = 191331777;</code>
      * @return int
@@ -508,7 +553,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The detection time multiplier of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The detection time multiplier of the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 multiplier = 191331777;</code>
      * @param int $var
@@ -523,7 +569,7 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The multipoint bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The multipoint bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool multipoint = 191421431;</code>
      * @return bool
@@ -544,7 +590,7 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The multipoint bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The multipoint bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool multipoint = 191421431;</code>
      * @param bool $var
@@ -559,7 +605,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The My Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The My Discriminator value in the BFD packet. This is specified in section
+     * 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 my_discriminator = 76663113;</code>
      * @return int
@@ -580,7 +627,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The My Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The My Discriminator value in the BFD packet. This is specified in section
+     * 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 my_discriminator = 76663113;</code>
      * @param int $var
@@ -595,7 +643,7 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Poll bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Poll bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool poll = 3446719;</code>
      * @return bool
@@ -616,7 +664,7 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Poll bit of the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Poll bit of the BFD packet. This is specified in section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional bool poll = 3446719;</code>
      * @param bool $var
@@ -631,7 +679,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
+     * The current BFD session state as seen by the transmitting system. These
+     * states are specified in section 4.1 ofRFC5880
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
@@ -653,7 +702,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
+     * The current BFD session state as seen by the transmitting system. These
+     * states are specified in section 4.1 ofRFC5880
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
@@ -669,7 +719,7 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The version number of the BFD protocol, as specified in section 4.1 of RFC5880.
+     * The version number of the BFD protocol, as specified in section 4.1 ofRFC5880.
      *
      * Generated from protobuf field <code>optional uint32 version = 351608024;</code>
      * @return int
@@ -690,7 +740,7 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The version number of the BFD protocol, as specified in section 4.1 of RFC5880.
+     * The version number of the BFD protocol, as specified in section 4.1 ofRFC5880.
      *
      * Generated from protobuf field <code>optional uint32 version = 351608024;</code>
      * @param int $var
@@ -705,7 +755,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Your Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Your Discriminator value in the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 your_discriminator = 515634064;</code>
      * @return int
@@ -726,7 +777,8 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Your Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880
+     * The Your Discriminator value in the BFD packet. This is specified in
+     * section 4.1 ofRFC5880
      *
      * Generated from protobuf field <code>optional uint32 your_discriminator = 515634064;</code>
      * @param int $var

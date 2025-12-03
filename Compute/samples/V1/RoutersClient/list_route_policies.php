@@ -29,11 +29,13 @@ use Google\Cloud\Compute\V1\Client\RoutersClient;
 use Google\Cloud\Compute\V1\ListRoutePoliciesRoutersRequest;
 
 /**
- * Retrieves a list of router route policy subresources available to the specified project.
+ * Retrieves a list of router route policy subresources available to the
+ * specified project.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.
- * @param string $router  Name or id of the resource for this request. Name should conform to RFC1035.
+ * @param string $router  Name or id of the resource for this request.
+ *                        Name should conform to RFC1035.
  */
 function list_route_policies_sample(string $project, string $region, string $router): void
 {

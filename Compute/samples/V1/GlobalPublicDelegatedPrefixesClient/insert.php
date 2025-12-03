@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\PublicDelegatedPrefix;
 use Google\Rpc\Status;
 
 /**
- * Creates a global PublicDelegatedPrefix in the specified project using the parameters that are included in the request.
+ * Creates a global PublicDelegatedPrefix in the specified project using the
+ * parameters that are included in the request.
  *
  * @param string $project Project ID for this request.
  */

@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\InstantSnapshot;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The architecture of the instant snapshot. Valid values are ARM64 or X86_64.
+ * [Output Only] The architecture of the instant snapshot. Valid values are
+ * ARM64 or X86_64.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstantSnapshot.Architecture</code>
  */

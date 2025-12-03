@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\UpdateRegionDiskRequest;
 use Google\Rpc\Status;
 
 /**
- * Update the specified disk with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: user_license.
+ * Update the specified disk with the data included in the request. Update is
+ * performed only on selected fields included as part of update-mask. Only the
+ * following fields can be modified: user_license.
  *
  * @param string $disk    The disk name for this request.
  * @param string $project Project ID for this request.

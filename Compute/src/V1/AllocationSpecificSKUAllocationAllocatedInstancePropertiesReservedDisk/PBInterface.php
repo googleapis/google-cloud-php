@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstan
 use UnexpectedValueException;
 
 /**
- * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
+ * Specifies the disk interface to use for attaching this disk, which is
+ * either SCSI or NVME. The default isSCSI.
+ * For performance characteristics of SCSI over NVMe, seeLocal SSD performance.
  *
  * Protobuf type <code>google.cloud.compute.v1.AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk.Interface</code>
  */

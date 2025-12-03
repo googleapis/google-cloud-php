@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\BackendServiceLogConfig;
 use UnexpectedValueException;
 
 /**
- * This field can only be specified if logging is enabled for this backend service. Configures whether all, none or a subset of optional fields should be added to the reported logs. One of [INCLUDE_ALL_OPTIONAL, EXCLUDE_ALL_OPTIONAL, CUSTOM]. Default is EXCLUDE_ALL_OPTIONAL.
+ * This field can only be specified if logging is enabled for this backend
+ * service. Configures whether all, none or a subset of optional fields
+ * should be added to the reported logs. One of [INCLUDE_ALL_OPTIONAL,
+ * EXCLUDE_ALL_OPTIONAL, CUSTOM]. Default is EXCLUDE_ALL_OPTIONAL.
  *
  * Protobuf type <code>google.cloud.compute.v1.BackendServiceLogConfig.OptionalMode</code>
  */

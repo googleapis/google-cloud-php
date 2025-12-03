@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\NodeGroup;
 use Google\Rpc\Status;
 
 /**
- * Creates a NodeGroup resource in the specified project using the data included in the request.
+ * Creates a NodeGroup resource in the specified project using the data
+ * included in the request.
  *
  * @param int    $initialNodeCount Initial count of nodes in the node group.
  * @param string $project          Project ID for this request.

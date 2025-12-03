@@ -31,13 +31,15 @@ class MaintenanceReasons
      */
     const FAILURE_GPU = 467876919;
     /**
-     * Maintenance due to customer reported multiple faulty hosts via R&R Subblock API.
+     * Maintenance due to customer reported multiple faulty hosts via R&R
+     * Subblock API.
      *
      * Generated from protobuf enum <code>FAILURE_GPU_MULTIPLE_FAULTY_HOSTS_CUSTOMER_REPORTED = 223284959;</code>
      */
     const FAILURE_GPU_MULTIPLE_FAULTY_HOSTS_CUSTOMER_REPORTED = 223284959;
     /**
-     * Maintenance due to customer reported NVLink switch failure via R&R Subblock API.
+     * Maintenance due to customer reported NVLink switch failure via R&R
+     * Subblock API.
      *
      * Generated from protobuf enum <code>FAILURE_GPU_NVLINK_SWITCH_CUSTOMER_REPORTED = 88487838;</code>
      */
@@ -91,6 +93,12 @@ class MaintenanceReasons
      */
     const FAILURE_REDUNDANT_HARDWARE_FAULT = 31000530;
     /**
+     * Maintenance due to TPU errors.
+     *
+     * Generated from protobuf enum <code>FAILURE_TPU = 467889412;</code>
+     */
+    const FAILURE_TPU = 467889412;
+    /**
      * Maintenance due to infrastructure relocation.
      *
      * Generated from protobuf enum <code>INFRASTRUCTURE_RELOCATION = 359845636;</code>
@@ -129,6 +137,7 @@ class MaintenanceReasons
         self::FAILURE_NETWORK => 'FAILURE_NETWORK',
         self::FAILURE_NVLINK => 'FAILURE_NVLINK',
         self::FAILURE_REDUNDANT_HARDWARE_FAULT => 'FAILURE_REDUNDANT_HARDWARE_FAULT',
+        self::FAILURE_TPU => 'FAILURE_TPU',
         self::INFRASTRUCTURE_RELOCATION => 'INFRASTRUCTURE_RELOCATION',
         self::MAINTENANCE_REASON_UNKNOWN => 'MAINTENANCE_REASON_UNKNOWN',
         self::PLANNED_NETWORK_UPDATE => 'PLANNED_NETWORK_UPDATE',

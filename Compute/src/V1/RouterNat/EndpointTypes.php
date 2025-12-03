@@ -19,7 +19,9 @@ class EndpointTypes
      */
     const UNDEFINED_ENDPOINT_TYPES = 0;
     /**
-     * This is used for regional Application Load Balancers (internal and external) and regional proxy Network Load Balancers (internal and external) endpoints.
+     * This is used for regional Application Load Balancers (internal and
+     * external) and regional proxy Network Load Balancers (internal and
+     * external) endpoints.
      *
      * Generated from protobuf enum <code>ENDPOINT_TYPE_MANAGED_PROXY_LB = 439196930;</code>
      */

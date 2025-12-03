@@ -29,7 +29,13 @@ use Google\Cloud\Compute\V1\Client\ImagesClient;
 use Google\Cloud\Compute\V1\ListImagesRequest;
 
 /**
- * Retrieves the list of custom images available to the specified project. Custom images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
+ * Retrieves the list of custom images
+ * available to the specified project. Custom images are images you
+ * create that belong to your project. This method does not
+ * get any images that belong to other projects, including publicly-available
+ * images, like Debian 8. If you want to get a list of publicly-available
+ * images, use this method to make a request to the respective image project,
+ * such as debian-cloud or windows-cloud.
  *
  * @param string $project Project ID for this request.
  */

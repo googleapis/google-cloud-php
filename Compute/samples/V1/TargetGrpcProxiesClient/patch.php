@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\TargetGrpcProxy;
 use Google\Rpc\Status;
 
 /**
- * Patches the specified TargetGrpcProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+ * Patches the specified TargetGrpcProxy resource with the data included in
+ * the request. This method supports PATCH
+ * semantics and usesJSON merge
+ * patch format and processing rules.
  *
  * @param string $project         Project ID for this request.
  * @param string $targetGrpcProxy Name of the TargetGrpcProxy resource to patch.

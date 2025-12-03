@@ -29,11 +29,18 @@ use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\ListErrorsInstanceGroupManagersRequest;
 
 /**
- * Lists all errors thrown by actions on instances for a given managed instance group. The filter and orderBy query parameters are not supported.
+ * Lists all errors thrown by actions on instances for a given managed
+ * instance group. The filter and orderBy query
+ * parameters are not supported.
  *
- * @param string $instanceGroupManager The name of the managed instance group. It must be a string that meets the requirements in RFC1035, or an unsigned long integer: must match regexp pattern: (?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)|1-9{0,19}.
+ * @param string $instanceGroupManager The name of the managed instance group.
+ *                                     It must be a string that meets the requirements in RFC1035, or an
+ *                                     unsigned long integer: must match regexp pattern:
+ *                                     (?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)|1-9{0,19}.
  * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the managed instance group is located. It should conform to RFC1035.
+ * @param string $zone                 The name of thezone where the managed
+ *                                     instance group is located.
+ *                                     It should conform to RFC1035.
  */
 function list_errors_sample(string $instanceGroupManager, string $project, string $zone): void
 {

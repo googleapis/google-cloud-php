@@ -32,7 +32,8 @@ use Google\Cloud\Compute\V1\ListReservationBlocksRequest;
  * Retrieves a list of reservation blocks under a single reservation.
  *
  * @param string $project     Project ID for this request.
- * @param string $reservation The name of the reservation. Name should conform to RFC1035 or be a resource ID.
+ * @param string $reservation The name of the reservation.
+ *                            Name should conform to RFC1035 or be a resource ID.
  * @param string $zone        Name of the zone for this request. Zone name should conform to RFC1035.
  */
 function list_sample(string $project, string $reservation, string $zone): void

@@ -9,14 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an Accelerator Type resource. Google Cloud Platform provides graphics processing units (accelerators) that you can add to VM instances to improve or accelerate performance when working with intensive workloads. For more information, read GPUs on Compute Engine.
+ * Represents an Accelerator Type resource.
+ * Google Cloud Platform provides graphics processing units (accelerators) that
+ * you can add to VM instances to improve or accelerate performance when working
+ * with intensive workloads. For more information, readGPUs on Compute Engine.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AcceleratorType</code>
  */
 class AcceleratorType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
@@ -34,13 +37,14 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] The type of the resource. Always compute#acceleratorType for accelerator types.
+     * [Output Only] The type of the resource. Alwayscompute#acceleratorType for accelerator types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -64,7 +68,10 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] The name of the zone where the accelerator type resides,
+     * such as us-central1-a.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
@@ -77,15 +84,16 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339 text format.
      *     @type \Google\Cloud\Compute\V1\DeprecationStatus $deprecated
      *           [Output Only] The deprecation status associated with this accelerator type.
      *     @type string $description
      *           [Output Only] An optional textual description of the resource.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
-     *           [Output Only] The type of the resource. Always compute#acceleratorType for accelerator types.
+     *           [Output Only] The type of the resource. Alwayscompute#acceleratorType for accelerator types.
      *     @type int $maximum_cards_per_instance
      *           [Output Only] Maximum number of accelerator cards allowed per instance.
      *     @type string $name
@@ -93,7 +101,10 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined, fully qualified URL for this resource.
      *     @type string $zone
-     *           [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     *           [Output Only] The name of the zone where the accelerator type resides,
+     *           such as us-central1-a.
+     *           You must specify this field as part of the HTTP request URL. It is
+     *           not settable as a field in the request body.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,7 +113,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -123,7 +134,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -210,7 +221,8 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -231,7 +243,8 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -246,7 +259,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Always compute#acceleratorType for accelerator types.
+     * [Output Only] The type of the resource. Alwayscompute#acceleratorType for accelerator types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -267,7 +280,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Always compute#acceleratorType for accelerator types.
+     * [Output Only] The type of the resource. Alwayscompute#acceleratorType for accelerator types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -390,7 +403,10 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] The name of the zone where the accelerator type resides,
+     * such as us-central1-a.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
@@ -411,7 +427,10 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] The name of the zone where the accelerator type resides,
+     * such as us-central1-a.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var

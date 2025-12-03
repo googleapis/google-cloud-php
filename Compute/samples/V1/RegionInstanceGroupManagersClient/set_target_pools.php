@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\SetTargetPoolsRegionInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
- * Modifies the target pools to which all new instances in this group are assigned. Existing instances in the group are not affected.
+ * Modifies the target pools to which all new instances in this group are
+ * assigned. Existing instances in the group are not affected.
  *
  * @param string $instanceGroupManager Name of the managed instance group.
  * @param string $project              Project ID for this request.

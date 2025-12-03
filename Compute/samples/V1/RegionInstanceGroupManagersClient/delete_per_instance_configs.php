@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\RegionInstanceGroupManagerDeleteInstanceConfigReq;
 use Google\Rpc\Status;
 
 /**
- * Deletes selected per-instance configurations for the managed instance group.
+ * Deletes selected per-instance configurations for the managed instance
+ * group.
  *
  * @param string $instanceGroupManager The name of the managed instance group. It should conform to RFC1035.
  * @param string $project              Project ID for this request.

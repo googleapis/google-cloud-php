@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\UpdateRegionBackendServiceRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified regional BackendService resource with the data included in the request. For more information, see Backend services overview .
+ * Updates the specified regional BackendService resource with the data
+ * included in the request. For more information,
+ * see
+ * Backend services overview.
  *
  * @param string $backendService Name of the BackendService resource to update.
  * @param string $project        Project ID for this request.

@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionHealthCheckServicesClient;
 use Google\Cloud\Compute\V1\ListRegionHealthCheckServicesRequest;
 
 /**
- * Lists all the HealthCheckService resources that have been configured for the specified project in the given region.
+ * Lists all the HealthCheckService resources that have been
+ * configured for the specified project in the given region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

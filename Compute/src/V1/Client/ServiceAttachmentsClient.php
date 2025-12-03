@@ -278,7 +278,11 @@ final class ServiceAttachmentsClient
     }
 
     /**
-     * Retrieves the list of all ServiceAttachment resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves the list of all ServiceAttachment resources,
+     * regional and global, available to the specified project.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see ServiceAttachmentsClient::aggregatedListAsync()} .
      *
@@ -358,7 +362,8 @@ final class ServiceAttachmentsClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see ServiceAttachmentsClient::getIamPolicyAsync()} .
      *
@@ -384,7 +389,8 @@ final class ServiceAttachmentsClient
     }
 
     /**
-     * Creates a ServiceAttachment in the specified project in the given scope using the parameters that are included in the request.
+     * Creates a ServiceAttachment in the specified project in the given scope
+     * using the parameters that are included in the request.
      *
      * The async variant is {@see ServiceAttachmentsClient::insertAsync()} .
      *
@@ -436,7 +442,10 @@ final class ServiceAttachmentsClient
     }
 
     /**
-     * Patches the specified ServiceAttachment resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * Patches the specified ServiceAttachment resource with the data included in
+     * the request. This method supports PATCH
+     * semantics and usesJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see ServiceAttachmentsClient::patchAsync()} .
      *
@@ -462,7 +471,8 @@ final class ServiceAttachmentsClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see ServiceAttachmentsClient::setIamPolicyAsync()} .
      *

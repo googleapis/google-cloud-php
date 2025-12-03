@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\NetworkInterface;
 use UnexpectedValueException;
 
 /**
- * [Output Only] One of EXTERNAL, INTERNAL to indicate whether the IP can be accessed from the Internet. This field is always inherited from its subnetwork. Valid only if stackType is IPV4_IPV6.
+ * [Output Only] One of EXTERNAL, INTERNAL to indicate whether the IP can be
+ * accessed from the Internet. This field is always inherited from its
+ * subnetwork.
+ * Valid only if stackType is IPV4_IPV6.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkInterface.Ipv6AccessType</code>
  */

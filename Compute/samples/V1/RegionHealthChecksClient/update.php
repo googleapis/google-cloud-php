@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\UpdateRegionHealthCheckRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates a HealthCheck resource in the specified project using the data included in the request.
+ * Updates a HealthCheck resource in the specified project using the data
+ * included in the request.
  *
  * @param string $healthCheck Name of the HealthCheck resource to update.
  * @param string $project     Project ID for this request.

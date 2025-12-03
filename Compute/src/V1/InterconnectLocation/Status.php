@@ -7,7 +7,12 @@ namespace Google\Cloud\Compute\V1\InterconnectLocation;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects. 
+ * [Output Only] The status of this InterconnectLocation, which can take one
+ * of the following values:
+ *    - CLOSED: The InterconnectLocation is closed and is unavailable for
+ *    provisioning new Interconnects.
+ *    - AVAILABLE: The InterconnectLocation is available for provisioning new
+ *    Interconnects.
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectLocation.Status</code>
  */

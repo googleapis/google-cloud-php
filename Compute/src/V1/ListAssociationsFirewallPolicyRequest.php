@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAssociationsFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The target resource to list associations. It is an organization, or a folder.
+     * The target resource to list associations. It is an organization, or a
+     * folder.
      *
      * Generated from protobuf field <code>optional string target_resource = 467318524;</code>
      */
@@ -29,7 +30,8 @@ class ListAssociationsFirewallPolicyRequest extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type string $target_resource
-     *           The target resource to list associations. It is an organization, or a folder.
+     *           The target resource to list associations. It is an organization, or a
+     *           folder.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class ListAssociationsFirewallPolicyRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The target resource to list associations. It is an organization, or a folder.
+     * The target resource to list associations. It is an organization, or a
+     * folder.
      *
      * Generated from protobuf field <code>optional string target_resource = 467318524;</code>
      * @return string
@@ -59,7 +62,8 @@ class ListAssociationsFirewallPolicyRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The target resource to list associations. It is an organization, or a folder.
+     * The target resource to list associations. It is an organization, or a
+     * folder.
      *
      * Generated from protobuf field <code>optional string target_resource = 467318524;</code>
      * @param string $var

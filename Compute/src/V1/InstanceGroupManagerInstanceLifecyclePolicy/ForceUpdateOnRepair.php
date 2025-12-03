@@ -7,7 +7,13 @@ namespace Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicy;
 use UnexpectedValueException;
 
 /**
- * A bit indicating whether to forcefully apply the group's latest configuration when repairing a VM. Valid options are: - NO (default): If configuration updates are available, they are not forcefully applied during repair. Instead, configuration updates are applied according to the group's update policy. - YES: If configuration updates are available, they are applied during repair. 
+ * A bit indicating whether to forcefully apply the group's latest
+ * configuration when repairing a VM. Valid options are:
+ *      -  NO (default): If configuration updates are available, they are not
+ *      forcefully applied during repair. Instead, configuration updates are
+ *      applied according to the group's update policy.
+ *      -  YES: If configuration updates are available, they are applied
+ *      during repair.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy.ForceUpdateOnRepair</code>
  */

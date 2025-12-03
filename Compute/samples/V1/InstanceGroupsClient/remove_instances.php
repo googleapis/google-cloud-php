@@ -31,11 +31,19 @@ use Google\Cloud\Compute\V1\RemoveInstancesInstanceGroupRequest;
 use Google\Rpc\Status;
 
 /**
- * Removes one or more instances from the specified instance group, but does not delete those instances. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration before the VM instance is removed or deleted.
+ * Removes one or more instances from the specified instance group, but does
+ * not delete those instances.
  *
- * @param string $instanceGroup The name of the instance group where the specified instances will be removed.
+ * If the group is part of a backend
+ * service that has enabled
+ * connection draining, it can take up to 60 seconds after the connection
+ * draining duration before the VM instance is removed or deleted.
+ *
+ * @param string $instanceGroup The name of the instance group where the specified instances will be
+ *                              removed.
  * @param string $project       Project ID for this request.
- * @param string $zone          The name of the zone where the instance group is located.
+ * @param string $zone          The name of the zone
+ *                              where the instance group is located.
  */
 function remove_instances_sample(string $instanceGroup, string $project, string $zone): void
 {

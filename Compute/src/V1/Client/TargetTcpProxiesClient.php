@@ -272,7 +272,11 @@ final class TargetTcpProxiesClient
     }
 
     /**
-     * Retrieves the list of all TargetTcpProxy resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves the list of all TargetTcpProxy resources, regional and global,
+     * available to the specified project.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see TargetTcpProxiesClient::aggregatedListAsync()} .
      *
@@ -352,7 +356,8 @@ final class TargetTcpProxiesClient
     }
 
     /**
-     * Creates a TargetTcpProxy resource in the specified project using the data included in the request.
+     * Creates a TargetTcpProxy resource in the specified project using
+     * the data included in the request.
      *
      * The async variant is {@see TargetTcpProxiesClient::insertAsync()} .
      *
@@ -378,7 +383,8 @@ final class TargetTcpProxiesClient
     }
 
     /**
-     * Retrieves the list of TargetTcpProxy resources available to the specified project.
+     * Retrieves the list of TargetTcpProxy resources
+     * available to the specified project.
      *
      * The async variant is {@see TargetTcpProxiesClient::listAsync()} .
      *

@@ -278,7 +278,10 @@ final class ResourcePoliciesClient
     }
 
     /**
-     * Retrieves an aggregated list of resource policies. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of resource policies.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see ResourcePoliciesClient::aggregatedListAsync()} .
      *
@@ -358,7 +361,8 @@ final class ResourcePoliciesClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see ResourcePoliciesClient::getIamPolicyAsync()} .
      *
@@ -410,7 +414,8 @@ final class ResourcePoliciesClient
     }
 
     /**
-     * A list all the resource policies that have been configured for the specified project in specified region.
+     * A list all the resource policies that have been configured for the
+     * specified project in specified region.
      *
      * The async variant is {@see ResourcePoliciesClient::listAsync()} .
      *
@@ -462,7 +467,8 @@ final class ResourcePoliciesClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see ResourcePoliciesClient::setIamPolicyAsync()} .
      *

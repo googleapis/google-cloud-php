@@ -15,37 +15,43 @@ use Google\Protobuf\Internal\GPBUtil;
 class TestFailure extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The actual output URL evaluated by a load balancer containing the scheme, host, path and query parameters.
+     * The actual output URL evaluated by a load balancer containing the scheme,
+     * host, path and query parameters.
      *
      * Generated from protobuf field <code>optional string actual_output_url = 287075458;</code>
      */
     protected $actual_output_url = null;
     /**
-     * Actual HTTP status code for rule with `urlRedirect` calculated by load balancer
+     * Actual HTTP status code for rule with `urlRedirect`
+     * calculated by load balancer
      *
      * Generated from protobuf field <code>optional int32 actual_redirect_response_code = 42926553;</code>
      */
     protected $actual_redirect_response_code = null;
     /**
-     * BackendService or BackendBucket returned by load balancer.
+     * BackendService or BackendBucket returned by load
+     * balancer.
      *
      * Generated from protobuf field <code>optional string actual_service = 440379652;</code>
      */
     protected $actual_service = null;
     /**
-     * The expected output URL evaluated by a load balancer containing the scheme, host, path and query parameters.
+     * The expected output URL evaluated by a load balancer containing the scheme,
+     * host, path and query parameters.
      *
      * Generated from protobuf field <code>optional string expected_output_url = 433967384;</code>
      */
     protected $expected_output_url = null;
     /**
-     * Expected HTTP status code for rule with `urlRedirect` calculated by load balancer
+     * Expected HTTP status code for rule with `urlRedirect`
+     * calculated by load balancer
      *
      * Generated from protobuf field <code>optional int32 expected_redirect_response_code = 18888047;</code>
      */
     protected $expected_redirect_response_code = null;
     /**
-     * Expected BackendService or BackendBucket resource the given URL should be mapped to.
+     * Expected BackendService or BackendBucket resource
+     * the given URL should be mapped to.
      *
      * Generated from protobuf field <code>optional string expected_service = 133987374;</code>
      */
@@ -76,17 +82,23 @@ class TestFailure extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $actual_output_url
-     *           The actual output URL evaluated by a load balancer containing the scheme, host, path and query parameters.
+     *           The actual output URL evaluated by a load balancer containing the scheme,
+     *           host, path and query parameters.
      *     @type int $actual_redirect_response_code
-     *           Actual HTTP status code for rule with `urlRedirect` calculated by load balancer
+     *           Actual HTTP status code for rule with `urlRedirect`
+     *           calculated by load balancer
      *     @type string $actual_service
-     *           BackendService or BackendBucket returned by load balancer.
+     *           BackendService or BackendBucket returned by load
+     *           balancer.
      *     @type string $expected_output_url
-     *           The expected output URL evaluated by a load balancer containing the scheme, host, path and query parameters.
+     *           The expected output URL evaluated by a load balancer containing the scheme,
+     *           host, path and query parameters.
      *     @type int $expected_redirect_response_code
-     *           Expected HTTP status code for rule with `urlRedirect` calculated by load balancer
+     *           Expected HTTP status code for rule with `urlRedirect`
+     *           calculated by load balancer
      *     @type string $expected_service
-     *           Expected BackendService or BackendBucket resource the given URL should be mapped to.
+     *           Expected BackendService or BackendBucket resource
+     *           the given URL should be mapped to.
      *     @type array<\Google\Cloud\Compute\V1\UrlMapTestHeader>|\Google\Protobuf\Internal\RepeatedField $headers
      *           HTTP headers of the request.
      *     @type string $host
@@ -101,7 +113,8 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The actual output URL evaluated by a load balancer containing the scheme, host, path and query parameters.
+     * The actual output URL evaluated by a load balancer containing the scheme,
+     * host, path and query parameters.
      *
      * Generated from protobuf field <code>optional string actual_output_url = 287075458;</code>
      * @return string
@@ -122,7 +135,8 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The actual output URL evaluated by a load balancer containing the scheme, host, path and query parameters.
+     * The actual output URL evaluated by a load balancer containing the scheme,
+     * host, path and query parameters.
      *
      * Generated from protobuf field <code>optional string actual_output_url = 287075458;</code>
      * @param string $var
@@ -137,7 +151,8 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Actual HTTP status code for rule with `urlRedirect` calculated by load balancer
+     * Actual HTTP status code for rule with `urlRedirect`
+     * calculated by load balancer
      *
      * Generated from protobuf field <code>optional int32 actual_redirect_response_code = 42926553;</code>
      * @return int
@@ -158,7 +173,8 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Actual HTTP status code for rule with `urlRedirect` calculated by load balancer
+     * Actual HTTP status code for rule with `urlRedirect`
+     * calculated by load balancer
      *
      * Generated from protobuf field <code>optional int32 actual_redirect_response_code = 42926553;</code>
      * @param int $var
@@ -173,7 +189,8 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * BackendService or BackendBucket returned by load balancer.
+     * BackendService or BackendBucket returned by load
+     * balancer.
      *
      * Generated from protobuf field <code>optional string actual_service = 440379652;</code>
      * @return string
@@ -194,7 +211,8 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * BackendService or BackendBucket returned by load balancer.
+     * BackendService or BackendBucket returned by load
+     * balancer.
      *
      * Generated from protobuf field <code>optional string actual_service = 440379652;</code>
      * @param string $var
@@ -209,7 +227,8 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The expected output URL evaluated by a load balancer containing the scheme, host, path and query parameters.
+     * The expected output URL evaluated by a load balancer containing the scheme,
+     * host, path and query parameters.
      *
      * Generated from protobuf field <code>optional string expected_output_url = 433967384;</code>
      * @return string
@@ -230,7 +249,8 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The expected output URL evaluated by a load balancer containing the scheme, host, path and query parameters.
+     * The expected output URL evaluated by a load balancer containing the scheme,
+     * host, path and query parameters.
      *
      * Generated from protobuf field <code>optional string expected_output_url = 433967384;</code>
      * @param string $var
@@ -245,7 +265,8 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expected HTTP status code for rule with `urlRedirect` calculated by load balancer
+     * Expected HTTP status code for rule with `urlRedirect`
+     * calculated by load balancer
      *
      * Generated from protobuf field <code>optional int32 expected_redirect_response_code = 18888047;</code>
      * @return int
@@ -266,7 +287,8 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expected HTTP status code for rule with `urlRedirect` calculated by load balancer
+     * Expected HTTP status code for rule with `urlRedirect`
+     * calculated by load balancer
      *
      * Generated from protobuf field <code>optional int32 expected_redirect_response_code = 18888047;</code>
      * @param int $var
@@ -281,7 +303,8 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expected BackendService or BackendBucket resource the given URL should be mapped to.
+     * Expected BackendService or BackendBucket resource
+     * the given URL should be mapped to.
      *
      * Generated from protobuf field <code>optional string expected_service = 133987374;</code>
      * @return string
@@ -302,7 +325,8 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expected BackendService or BackendBucket resource the given URL should be mapped to.
+     * Expected BackendService or BackendBucket resource
+     * the given URL should be mapped to.
      *
      * Generated from protobuf field <code>optional string expected_service = 133987374;</code>
      * @param string $var

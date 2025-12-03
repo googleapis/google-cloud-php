@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\GetOperationalStatusInterconnectGroupRequest;
 use Google\Cloud\Compute\V1\InterconnectGroupsGetOperationalStatusResponse;
 
 /**
- * Returns the interconnectStatuses for the specified InterconnectGroup.
+ * Returns the interconnectStatuses for the specified
+ * InterconnectGroup.
  *
  * @param string $interconnectGroup Name of the interconnectGroup resource to query.
  * @param string $project           Project ID for this request.

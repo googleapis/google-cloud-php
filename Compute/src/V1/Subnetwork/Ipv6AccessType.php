@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\Subnetwork;
 use UnexpectedValueException;
 
 /**
- * The access type of IPv6 address this subnet holds. It's immutable and can only be specified during creation or the first time the subnet is updated into IPV4_IPV6 dual stack.
+ * The access type of IPv6 address this subnet holds. It's immutable and can
+ * only be specified during creation or the first time the subnet is updated
+ * into IPV4_IPV6 dual stack.
  *
  * Protobuf type <code>google.cloud.compute.v1.Subnetwork.Ipv6AccessType</code>
  */
@@ -20,13 +22,15 @@ class Ipv6AccessType
      */
     const UNDEFINED_IPV6_ACCESS_TYPE = 0;
     /**
-     * VMs on this subnet will be assigned IPv6 addresses that are accessible via the Internet, as well as the VPC network.
+     * VMs on this subnet will be assigned IPv6 addresses that are accessible
+     * via the Internet, as well as the VPC network.
      *
      * Generated from protobuf enum <code>EXTERNAL = 35607499;</code>
      */
     const EXTERNAL = 35607499;
     /**
-     * VMs on this subnet will be assigned IPv6 addresses that are only accessible over the VPC network.
+     * VMs on this subnet will be assigned IPv6 addresses that are only
+     * accessible over the VPC network.
      *
      * Generated from protobuf enum <code>INTERNAL = 279295677;</code>
      */
