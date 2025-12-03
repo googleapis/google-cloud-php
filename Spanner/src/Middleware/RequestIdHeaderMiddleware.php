@@ -43,7 +43,8 @@ class RequestIdHeaderMiddleware implements MiddlewareInterface
     private const REQUEST_ID_HEADER_NAME = 'x-goog-spanner-request-id';
     private const VERSION = 1;
     private static string $process;
-    private static int $client = 0;
+    private static int $currentClient = 1;
+    private int $client;
     private int $channel;
     private int $request = 1;
 
@@ -54,7 +55,7 @@ class RequestIdHeaderMiddleware implements MiddlewareInterface
     {
         $this->nextHandler = $nextHandler;
         $this->channel = $channelId;
-        self::$client++;
+        $this->client = self::$currentClient++;
     }
 
     public function __invoke(Call $call, array $options)
@@ -78,7 +79,7 @@ class RequestIdHeaderMiddleware implements MiddlewareInterface
         $template = '%s.%s.%s.%s.%s.%s';
 
         $process = $this->getProcess();
-        $client = self::$client;
+        $client = $this->client;
         $channel = $this->channel;
         $request = $this->getNextRequestValue();
         $attempt = $this->getAttempt($options);
