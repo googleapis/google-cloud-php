@@ -31,11 +31,17 @@ use Google\Cloud\Compute\V1\SetTargetPoolsInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
- * Modifies the target pools to which all instances in this managed instance group are assigned. The target pools automatically apply to all of the instances in the managed instance group. This operation is marked DONE when you make the request even if the instances have not yet been added to their target pools. The change might take some time to apply to all of the instances in the group depending on the size of the group.
+ * Modifies the target pools to which all instances in this managed instance
+ * group are assigned. The target pools automatically apply to all of the
+ * instances in the managed instance group. This operation is markedDONE when you make the request even if the instances have not
+ * yet been added to their target pools. The change might take some time to
+ * apply to all of the instances in the group depending on the size of the
+ * group.
  *
  * @param string $instanceGroupManager The name of the managed instance group.
  * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the managed instance group is located.
+ * @param string $zone                 The name of thezone where the managed
+ *                                     instance group is located.
  */
 function set_target_pools_sample(
     string $instanceGroupManager,

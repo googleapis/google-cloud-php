@@ -16,19 +16,28 @@ use Google\Protobuf\Internal\GPBUtil;
 class Scheduling extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted. By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
+     * Specifies whether the instance should be automatically restarted if it is
+     * terminated by Compute Engine (not terminated by a user). You can only set
+     * the automatic restart option for standard instances.Preemptible instances
+     * cannot be automatically restarted.
+     * By default, this is set to true so an instance is
+     * automatically restarted if it is terminated by Compute Engine.
      *
      * Generated from protobuf field <code>optional bool automatic_restart = 350821371;</code>
      */
     protected $automatic_restart = null;
     /**
-     * Specifies the availability domain to place the instance in. The value must be a number between 1 and the number of availability domains specified in the spread placement policy attached to the instance.
+     * Specifies the availability domain to place the instance in. The value
+     * must be a number between 1 and the number of availability domains
+     * specified in the spread placement policy attached to the instance.
      *
      * Generated from protobuf field <code>optional int32 availability_domain = 252514344;</code>
      */
     protected $availability_domain = null;
     /**
-     * Specify the time in seconds for host error detection, the value must be within the range of [90, 330] with the increment of 30, if unset, the default behavior of host error recovery will be used.
+     * Specify the time in seconds for host error detection, the value must be
+     * within the range of [90, 330] with the increment of 30, if unset, the
+     * default behavior of host error recovery will be used.
      *
      * Generated from protobuf field <code>optional int32 host_error_timeout_seconds = 408317459;</code>
      */
@@ -41,37 +50,52 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     protected $instance_termination_action = null;
     /**
-     * Specifies the maximum amount of time a Local Ssd Vm should wait while recovery of the Local Ssd state is attempted. Its value should be in between 0 and 168 hours with hour granularity and the default value being 1 hour.
+     * Specifies the maximum amount of time a Local Ssd Vm should wait while
+     * recovery of the Local Ssd state is attempted. Its value should be in
+     * between 0 and 168 hours with hour granularity and the default value being 1
+     * hour.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration local_ssd_recovery_timeout = 268015590;</code>
      */
     protected $local_ssd_recovery_timeout = null;
     /**
-     * An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
+     * An opaque location hint used to place the instance close to other
+     * resources.
+     * This field is for use by internal tools that use the public API.
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      */
     protected $location_hint = null;
     /**
-     * Specifies the max run duration for the given instance. If specified, the instance termination action will be performed at the end of the run duration.
+     * Specifies the max run duration for the given instance. If specified,
+     * the instance termination action will be performed at the end of the run
+     * duration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration max_run_duration = 430839747;</code>
      */
     protected $max_run_duration = null;
     /**
-     * The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node.
+     * The minimum number of virtual CPUs this instance will consume when running
+     * on a sole-tenant node.
      *
      * Generated from protobuf field <code>optional int32 min_node_cpus = 317231675;</code>
      */
     protected $min_node_cpus = null;
     /**
-     * A set of node affinity and anti-affinity configurations. Refer to Configuring node affinity for more information. Overrides reservationAffinity.
+     * A set of node affinity and anti-affinity configurations. Refer toConfiguring node
+     * affinity for more information.
+     * Overrides reservationAffinity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SchedulingNodeAffinity node_affinities = 461799971;</code>
      */
     private $node_affinities;
     /**
-     * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM host maintenance policy.
+     * Defines the maintenance behavior for this instance. For standard instances,
+     * the default behavior is MIGRATE. Forpreemptible instances,
+     * the default and only possible behavior is TERMINATE. For more
+     * information, see
+     *  Set
+     *  VM host maintenance policy.
      * Check the OnHostMaintenance enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string on_host_maintenance = 64616796;</code>
@@ -82,7 +106,10 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     protected $on_instance_stop_action = null;
     /**
-     * Defines whether the instance is preemptible. This can only be set during instance creation or while the instance is stopped and therefore, in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states.
+     * Defines whether the instance is preemptible. This can only be set during
+     * instance creation or while the instance isstopped and
+     * therefore, in a `TERMINATED` state. SeeInstance Life
+     * Cycle for more information on the possible instance states.
      *
      * Generated from protobuf field <code>optional bool preemptible = 324203169;</code>
      */
@@ -95,13 +122,16 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     protected $provisioning_model = null;
     /**
-     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft Off and ACPI G3 Mechanical Off for Standard VMs and 30 seconds for Spot VMs.
+     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft
+     * Off and ACPI G3 Mechanical
+     * Off for Standard VMs and 30 seconds for Spot VMs.
      *
      * Generated from protobuf field <code>optional bool skip_guest_os_shutdown = 201662378;</code>
      */
     protected $skip_guest_os_shutdown = null;
     /**
-     * Specifies the timestamp, when the instance will be terminated, in RFC3339 text format. If specified, the instance termination action will be performed at the termination time.
+     * Specifies the timestamp, when the instance will be terminated, inRFC3339 text format. If specified, the instance
+     * termination action will be performed at the termination time.
      *
      * Generated from protobuf field <code>optional string termination_time = 428082984;</code>
      */
@@ -114,37 +144,67 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $automatic_restart
-     *           Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted. By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
+     *           Specifies whether the instance should be automatically restarted if it is
+     *           terminated by Compute Engine (not terminated by a user). You can only set
+     *           the automatic restart option for standard instances.Preemptible instances
+     *           cannot be automatically restarted.
+     *           By default, this is set to true so an instance is
+     *           automatically restarted if it is terminated by Compute Engine.
      *     @type int $availability_domain
-     *           Specifies the availability domain to place the instance in. The value must be a number between 1 and the number of availability domains specified in the spread placement policy attached to the instance.
+     *           Specifies the availability domain to place the instance in. The value
+     *           must be a number between 1 and the number of availability domains
+     *           specified in the spread placement policy attached to the instance.
      *     @type int $host_error_timeout_seconds
-     *           Specify the time in seconds for host error detection, the value must be within the range of [90, 330] with the increment of 30, if unset, the default behavior of host error recovery will be used.
+     *           Specify the time in seconds for host error detection, the value must be
+     *           within the range of [90, 330] with the increment of 30, if unset, the
+     *           default behavior of host error recovery will be used.
      *     @type string $instance_termination_action
      *           Specifies the termination action for the instance.
      *           Check the InstanceTerminationAction enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\Duration $local_ssd_recovery_timeout
-     *           Specifies the maximum amount of time a Local Ssd Vm should wait while recovery of the Local Ssd state is attempted. Its value should be in between 0 and 168 hours with hour granularity and the default value being 1 hour.
+     *           Specifies the maximum amount of time a Local Ssd Vm should wait while
+     *           recovery of the Local Ssd state is attempted. Its value should be in
+     *           between 0 and 168 hours with hour granularity and the default value being 1
+     *           hour.
      *     @type string $location_hint
-     *           An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
+     *           An opaque location hint used to place the instance close to other
+     *           resources.
+     *           This field is for use by internal tools that use the public API.
      *     @type \Google\Cloud\Compute\V1\Duration $max_run_duration
-     *           Specifies the max run duration for the given instance. If specified, the instance termination action will be performed at the end of the run duration.
+     *           Specifies the max run duration for the given instance. If specified,
+     *           the instance termination action will be performed at the end of the run
+     *           duration.
      *     @type int $min_node_cpus
-     *           The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node.
+     *           The minimum number of virtual CPUs this instance will consume when running
+     *           on a sole-tenant node.
      *     @type array<\Google\Cloud\Compute\V1\SchedulingNodeAffinity>|\Google\Protobuf\Internal\RepeatedField $node_affinities
-     *           A set of node affinity and anti-affinity configurations. Refer to Configuring node affinity for more information. Overrides reservationAffinity.
+     *           A set of node affinity and anti-affinity configurations. Refer toConfiguring node
+     *           affinity for more information.
+     *           Overrides reservationAffinity.
      *     @type string $on_host_maintenance
-     *           Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM host maintenance policy.
+     *           Defines the maintenance behavior for this instance. For standard instances,
+     *           the default behavior is MIGRATE. Forpreemptible instances,
+     *           the default and only possible behavior is TERMINATE. For more
+     *           information, see
+     *            Set
+     *            VM host maintenance policy.
      *           Check the OnHostMaintenance enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\SchedulingOnInstanceStopAction $on_instance_stop_action
      *     @type bool $preemptible
-     *           Defines whether the instance is preemptible. This can only be set during instance creation or while the instance is stopped and therefore, in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states.
+     *           Defines whether the instance is preemptible. This can only be set during
+     *           instance creation or while the instance isstopped and
+     *           therefore, in a `TERMINATED` state. SeeInstance Life
+     *           Cycle for more information on the possible instance states.
      *     @type string $provisioning_model
      *           Specifies the provisioning model of the instance.
      *           Check the ProvisioningModel enum for the list of possible values.
      *     @type bool $skip_guest_os_shutdown
-     *           Default is false and there will be 120 seconds between GCE ACPI G2 Soft Off and ACPI G3 Mechanical Off for Standard VMs and 30 seconds for Spot VMs.
+     *           Default is false and there will be 120 seconds between GCE ACPI G2 Soft
+     *           Off and ACPI G3 Mechanical
+     *           Off for Standard VMs and 30 seconds for Spot VMs.
      *     @type string $termination_time
-     *           Specifies the timestamp, when the instance will be terminated, in RFC3339 text format. If specified, the instance termination action will be performed at the termination time.
+     *           Specifies the timestamp, when the instance will be terminated, inRFC3339 text format. If specified, the instance
+     *           termination action will be performed at the termination time.
      * }
      */
     public function __construct($data = NULL) {
@@ -153,7 +213,12 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted. By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
+     * Specifies whether the instance should be automatically restarted if it is
+     * terminated by Compute Engine (not terminated by a user). You can only set
+     * the automatic restart option for standard instances.Preemptible instances
+     * cannot be automatically restarted.
+     * By default, this is set to true so an instance is
+     * automatically restarted if it is terminated by Compute Engine.
      *
      * Generated from protobuf field <code>optional bool automatic_restart = 350821371;</code>
      * @return bool
@@ -174,7 +239,12 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted. By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
+     * Specifies whether the instance should be automatically restarted if it is
+     * terminated by Compute Engine (not terminated by a user). You can only set
+     * the automatic restart option for standard instances.Preemptible instances
+     * cannot be automatically restarted.
+     * By default, this is set to true so an instance is
+     * automatically restarted if it is terminated by Compute Engine.
      *
      * Generated from protobuf field <code>optional bool automatic_restart = 350821371;</code>
      * @param bool $var
@@ -189,7 +259,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the availability domain to place the instance in. The value must be a number between 1 and the number of availability domains specified in the spread placement policy attached to the instance.
+     * Specifies the availability domain to place the instance in. The value
+     * must be a number between 1 and the number of availability domains
+     * specified in the spread placement policy attached to the instance.
      *
      * Generated from protobuf field <code>optional int32 availability_domain = 252514344;</code>
      * @return int
@@ -210,7 +282,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the availability domain to place the instance in. The value must be a number between 1 and the number of availability domains specified in the spread placement policy attached to the instance.
+     * Specifies the availability domain to place the instance in. The value
+     * must be a number between 1 and the number of availability domains
+     * specified in the spread placement policy attached to the instance.
      *
      * Generated from protobuf field <code>optional int32 availability_domain = 252514344;</code>
      * @param int $var
@@ -225,7 +299,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the time in seconds for host error detection, the value must be within the range of [90, 330] with the increment of 30, if unset, the default behavior of host error recovery will be used.
+     * Specify the time in seconds for host error detection, the value must be
+     * within the range of [90, 330] with the increment of 30, if unset, the
+     * default behavior of host error recovery will be used.
      *
      * Generated from protobuf field <code>optional int32 host_error_timeout_seconds = 408317459;</code>
      * @return int
@@ -246,7 +322,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the time in seconds for host error detection, the value must be within the range of [90, 330] with the increment of 30, if unset, the default behavior of host error recovery will be used.
+     * Specify the time in seconds for host error detection, the value must be
+     * within the range of [90, 330] with the increment of 30, if unset, the
+     * default behavior of host error recovery will be used.
      *
      * Generated from protobuf field <code>optional int32 host_error_timeout_seconds = 408317459;</code>
      * @param int $var
@@ -299,7 +377,10 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the maximum amount of time a Local Ssd Vm should wait while recovery of the Local Ssd state is attempted. Its value should be in between 0 and 168 hours with hour granularity and the default value being 1 hour.
+     * Specifies the maximum amount of time a Local Ssd Vm should wait while
+     * recovery of the Local Ssd state is attempted. Its value should be in
+     * between 0 and 168 hours with hour granularity and the default value being 1
+     * hour.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration local_ssd_recovery_timeout = 268015590;</code>
      * @return \Google\Cloud\Compute\V1\Duration|null
@@ -320,7 +401,10 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the maximum amount of time a Local Ssd Vm should wait while recovery of the Local Ssd state is attempted. Its value should be in between 0 and 168 hours with hour granularity and the default value being 1 hour.
+     * Specifies the maximum amount of time a Local Ssd Vm should wait while
+     * recovery of the Local Ssd state is attempted. Its value should be in
+     * between 0 and 168 hours with hour granularity and the default value being 1
+     * hour.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration local_ssd_recovery_timeout = 268015590;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var
@@ -335,7 +419,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
+     * An opaque location hint used to place the instance close to other
+     * resources.
+     * This field is for use by internal tools that use the public API.
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      * @return string
@@ -356,7 +442,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
+     * An opaque location hint used to place the instance close to other
+     * resources.
+     * This field is for use by internal tools that use the public API.
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      * @param string $var
@@ -371,7 +459,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the max run duration for the given instance. If specified, the instance termination action will be performed at the end of the run duration.
+     * Specifies the max run duration for the given instance. If specified,
+     * the instance termination action will be performed at the end of the run
+     * duration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration max_run_duration = 430839747;</code>
      * @return \Google\Cloud\Compute\V1\Duration|null
@@ -392,7 +482,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the max run duration for the given instance. If specified, the instance termination action will be performed at the end of the run duration.
+     * Specifies the max run duration for the given instance. If specified,
+     * the instance termination action will be performed at the end of the run
+     * duration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration max_run_duration = 430839747;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var
@@ -407,7 +499,8 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node.
+     * The minimum number of virtual CPUs this instance will consume when running
+     * on a sole-tenant node.
      *
      * Generated from protobuf field <code>optional int32 min_node_cpus = 317231675;</code>
      * @return int
@@ -428,7 +521,8 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node.
+     * The minimum number of virtual CPUs this instance will consume when running
+     * on a sole-tenant node.
      *
      * Generated from protobuf field <code>optional int32 min_node_cpus = 317231675;</code>
      * @param int $var
@@ -443,7 +537,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A set of node affinity and anti-affinity configurations. Refer to Configuring node affinity for more information. Overrides reservationAffinity.
+     * A set of node affinity and anti-affinity configurations. Refer toConfiguring node
+     * affinity for more information.
+     * Overrides reservationAffinity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SchedulingNodeAffinity node_affinities = 461799971;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -454,7 +550,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A set of node affinity and anti-affinity configurations. Refer to Configuring node affinity for more information. Overrides reservationAffinity.
+     * A set of node affinity and anti-affinity configurations. Refer toConfiguring node
+     * affinity for more information.
+     * Overrides reservationAffinity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SchedulingNodeAffinity node_affinities = 461799971;</code>
      * @param array<\Google\Cloud\Compute\V1\SchedulingNodeAffinity>|\Google\Protobuf\Internal\RepeatedField $var
@@ -469,7 +567,12 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM host maintenance policy.
+     * Defines the maintenance behavior for this instance. For standard instances,
+     * the default behavior is MIGRATE. Forpreemptible instances,
+     * the default and only possible behavior is TERMINATE. For more
+     * information, see
+     *  Set
+     *  VM host maintenance policy.
      * Check the OnHostMaintenance enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string on_host_maintenance = 64616796;</code>
@@ -491,7 +594,12 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM host maintenance policy.
+     * Defines the maintenance behavior for this instance. For standard instances,
+     * the default behavior is MIGRATE. Forpreemptible instances,
+     * the default and only possible behavior is TERMINATE. For more
+     * information, see
+     *  Set
+     *  VM host maintenance policy.
      * Check the OnHostMaintenance enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string on_host_maintenance = 64616796;</code>
@@ -539,7 +647,10 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines whether the instance is preemptible. This can only be set during instance creation or while the instance is stopped and therefore, in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states.
+     * Defines whether the instance is preemptible. This can only be set during
+     * instance creation or while the instance isstopped and
+     * therefore, in a `TERMINATED` state. SeeInstance Life
+     * Cycle for more information on the possible instance states.
      *
      * Generated from protobuf field <code>optional bool preemptible = 324203169;</code>
      * @return bool
@@ -560,7 +671,10 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines whether the instance is preemptible. This can only be set during instance creation or while the instance is stopped and therefore, in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states.
+     * Defines whether the instance is preemptible. This can only be set during
+     * instance creation or while the instance isstopped and
+     * therefore, in a `TERMINATED` state. SeeInstance Life
+     * Cycle for more information on the possible instance states.
      *
      * Generated from protobuf field <code>optional bool preemptible = 324203169;</code>
      * @param bool $var
@@ -613,7 +727,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft Off and ACPI G3 Mechanical Off for Standard VMs and 30 seconds for Spot VMs.
+     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft
+     * Off and ACPI G3 Mechanical
+     * Off for Standard VMs and 30 seconds for Spot VMs.
      *
      * Generated from protobuf field <code>optional bool skip_guest_os_shutdown = 201662378;</code>
      * @return bool
@@ -634,7 +750,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft Off and ACPI G3 Mechanical Off for Standard VMs and 30 seconds for Spot VMs.
+     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft
+     * Off and ACPI G3 Mechanical
+     * Off for Standard VMs and 30 seconds for Spot VMs.
      *
      * Generated from protobuf field <code>optional bool skip_guest_os_shutdown = 201662378;</code>
      * @param bool $var
@@ -649,7 +767,8 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the timestamp, when the instance will be terminated, in RFC3339 text format. If specified, the instance termination action will be performed at the termination time.
+     * Specifies the timestamp, when the instance will be terminated, inRFC3339 text format. If specified, the instance
+     * termination action will be performed at the termination time.
      *
      * Generated from protobuf field <code>optional string termination_time = 428082984;</code>
      * @return string
@@ -670,7 +789,8 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the timestamp, when the instance will be terminated, in RFC3339 text format. If specified, the instance termination action will be performed at the termination time.
+     * Specifies the timestamp, when the instance will be terminated, inRFC3339 text format. If specified, the instance
+     * termination action will be performed at the termination time.
      *
      * Generated from protobuf field <code>optional string termination_time = 428082984;</code>
      * @param string $var

@@ -15,7 +15,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkEndpointGroupsListEndpointsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional query parameter for showing the health status of each network endpoint. Valid options are SKIP or SHOW. If you don't specify this parameter, the health status of network endpoints will not be provided.
+     * Optional query parameter for showing the health status of each network
+     * endpoint. Valid options are SKIP or SHOW. If you
+     * don't specify this parameter, the health status of network endpoints will
+     * not be provided.
      * Check the HealthStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_status = 380545845;</code>
@@ -29,7 +32,10 @@ class NetworkEndpointGroupsListEndpointsRequest extends \Google\Protobuf\Interna
      *     Optional. Data for populating the Message object.
      *
      *     @type string $health_status
-     *           Optional query parameter for showing the health status of each network endpoint. Valid options are SKIP or SHOW. If you don't specify this parameter, the health status of network endpoints will not be provided.
+     *           Optional query parameter for showing the health status of each network
+     *           endpoint. Valid options are SKIP or SHOW. If you
+     *           don't specify this parameter, the health status of network endpoints will
+     *           not be provided.
      *           Check the HealthStatus enum for the list of possible values.
      * }
      */
@@ -39,7 +45,10 @@ class NetworkEndpointGroupsListEndpointsRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * Optional query parameter for showing the health status of each network endpoint. Valid options are SKIP or SHOW. If you don't specify this parameter, the health status of network endpoints will not be provided.
+     * Optional query parameter for showing the health status of each network
+     * endpoint. Valid options are SKIP or SHOW. If you
+     * don't specify this parameter, the health status of network endpoints will
+     * not be provided.
      * Check the HealthStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_status = 380545845;</code>
@@ -61,7 +70,10 @@ class NetworkEndpointGroupsListEndpointsRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * Optional query parameter for showing the health status of each network endpoint. Valid options are SKIP or SHOW. If you don't specify this parameter, the health status of network endpoints will not be provided.
+     * Optional query parameter for showing the health status of each network
+     * endpoint. Valid options are SKIP or SHOW. If you
+     * don't specify this parameter, the health status of network endpoints will
+     * not be provided.
      * Check the HealthStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_status = 380545845;</code>

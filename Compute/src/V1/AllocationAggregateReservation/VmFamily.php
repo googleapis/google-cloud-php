@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\AllocationAggregateReservation;
 use UnexpectedValueException;
 
 /**
- * The VM family that all instances scheduled against this reservation must belong to.
+ * The VM family that all instances scheduled against this reservation must
+ * belong to.
  *
  * Protobuf type <code>google.cloud.compute.v1.AllocationAggregateReservation.VmFamily</code>
  */
@@ -47,6 +48,10 @@ class VmFamily
      * Generated from protobuf enum <code>VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P = 517384438;</code>
      */
     const VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P = 517384438;
+    /**
+     * Generated from protobuf enum <code>VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X = 485271888;</code>
+     */
+    const VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X = 485271888;
 
     private static $valueToName = [
         self::UNDEFINED_VM_FAMILY => 'UNDEFINED_VM_FAMILY',
@@ -57,6 +62,7 @@ class VmFamily
         self::VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P => 'VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P',
         self::VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P => 'VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P',
         self::VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P => 'VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P',
+        self::VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X => 'VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X',
     ];
 
     public static function name($value)

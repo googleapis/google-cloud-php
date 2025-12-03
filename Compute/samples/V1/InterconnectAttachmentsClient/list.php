@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\InterconnectAttachmentsClient;
 use Google\Cloud\Compute\V1\ListInterconnectAttachmentsRequest;
 
 /**
- * Retrieves the list of interconnect attachments contained within the specified region.
+ * Retrieves the list of interconnect attachments contained within
+ * the specified region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.

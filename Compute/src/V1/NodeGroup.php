@@ -9,7 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a sole-tenant Node Group resource. A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes.
+ * Represents a sole-tenant Node Group resource.
+ * A sole-tenant node is a physical server that is dedicated to
+ * hosting VM instances only for your specific project. Use sole-tenant nodes to
+ * keep your instances physically separated from instances in other projects, or
+ * to group your instances together on the same host hardware. For more
+ * information, readSole-tenant nodes.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NodeGroup</code>
  */
@@ -22,13 +27,15 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      */
     protected $autoscaling_policy = null;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
@@ -38,32 +45,41 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] The type of the resource. Always compute#nodeGroup for node group.
+     * [Output Only] The type of the resource. Alwayscompute#nodeGroup for node group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
+     * An opaque location hint used to place the Node close to other
+     * resources.
+     * This field is for use by internal tools that use the public API.
+     * The location hint here on the NodeGroup overrides any location_hint
+     * present in the NodeTemplate.
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      */
     protected $location_hint = null;
     /**
-     * Specifies the frequency of planned maintenance events. The accepted values are: `AS_NEEDED` and `RECURRENT`.
+     * Specifies the frequency of planned maintenance events. The accepted values
+     * are: `AS_NEEDED` and `RECURRENT`.
      * Check the MaintenanceInterval enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string maintenance_interval = 403368049;</code>
      */
     protected $maintenance_interval = null;
     /**
-     * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see Maintenance policies.
+     * Specifies how to handle instances when a node in the group undergoes
+     * maintenance. Set to one of: DEFAULT,RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP.
+     * The default value is DEFAULT. For more information, see
+     * Maintenance policies.
      * Check the MaintenancePolicy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string maintenance_policy = 528327646;</code>
@@ -74,7 +90,14 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      */
     protected $maintenance_window = null;
     /**
-     * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * The name of the resource, provided by the client when initially creating
+     * the resource. The resource name must be 1-63 characters long, and comply
+     * withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must be
+     * a dash, lowercase letter, or digit, except the last character, which cannot
+     * be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -111,7 +134,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      */
     protected $status = null;
     /**
-     * [Output Only] The name of the zone where the node group resides, such as us-central1-a.
+     * [Output Only] The name of the zone where the node group resides,
+     * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
@@ -126,25 +150,43 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\NodeGroupAutoscalingPolicy $autoscaling_policy
      *           Specifies how autoscaling should behave.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of this resource. Provide this property when you
+     *           create the resource.
      *     @type string $fingerprint
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
-     *           [Output Only] The type of the resource. Always compute#nodeGroup for node group.
+     *           [Output Only] The type of the resource. Alwayscompute#nodeGroup for node group.
      *     @type string $location_hint
-     *           An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
+     *           An opaque location hint used to place the Node close to other
+     *           resources.
+     *           This field is for use by internal tools that use the public API.
+     *           The location hint here on the NodeGroup overrides any location_hint
+     *           present in the NodeTemplate.
      *     @type string $maintenance_interval
-     *           Specifies the frequency of planned maintenance events. The accepted values are: `AS_NEEDED` and `RECURRENT`.
+     *           Specifies the frequency of planned maintenance events. The accepted values
+     *           are: `AS_NEEDED` and `RECURRENT`.
      *           Check the MaintenanceInterval enum for the list of possible values.
      *     @type string $maintenance_policy
-     *           Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see Maintenance policies.
+     *           Specifies how to handle instances when a node in the group undergoes
+     *           maintenance. Set to one of: DEFAULT,RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP.
+     *           The default value is DEFAULT. For more information, see
+     *           Maintenance policies.
      *           Check the MaintenancePolicy enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\NodeGroupMaintenanceWindow $maintenance_window
      *     @type string $name
-     *           The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           The name of the resource, provided by the client when initially creating
+     *           the resource. The resource name must be 1-63 characters long, and comply
+     *           withRFC1035.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must be
+     *           a dash, lowercase letter, or digit, except the last character, which cannot
+     *           be a dash.
      *     @type string $node_template
      *           URL of the node template to create the node group from.
      *     @type string $self_link
@@ -157,7 +199,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *           
      *           Check the Status enum for the list of possible values.
      *     @type string $zone
-     *           [Output Only] The name of the zone where the node group resides, such as us-central1-a.
+     *           [Output Only] The name of the zone where the node group resides,
+     *           such as us-central1-a.
      * }
      */
     public function __construct($data = NULL) {
@@ -202,7 +245,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -223,7 +267,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -238,7 +283,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -259,7 +305,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -306,7 +353,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -327,7 +375,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -342,7 +391,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Always compute#nodeGroup for node group.
+     * [Output Only] The type of the resource. Alwayscompute#nodeGroup for node group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -363,7 +412,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Always compute#nodeGroup for node group.
+     * [Output Only] The type of the resource. Alwayscompute#nodeGroup for node group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -378,7 +427,11 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
+     * An opaque location hint used to place the Node close to other
+     * resources.
+     * This field is for use by internal tools that use the public API.
+     * The location hint here on the NodeGroup overrides any location_hint
+     * present in the NodeTemplate.
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      * @return string
@@ -399,7 +452,11 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
+     * An opaque location hint used to place the Node close to other
+     * resources.
+     * This field is for use by internal tools that use the public API.
+     * The location hint here on the NodeGroup overrides any location_hint
+     * present in the NodeTemplate.
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      * @param string $var
@@ -414,7 +471,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the frequency of planned maintenance events. The accepted values are: `AS_NEEDED` and `RECURRENT`.
+     * Specifies the frequency of planned maintenance events. The accepted values
+     * are: `AS_NEEDED` and `RECURRENT`.
      * Check the MaintenanceInterval enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string maintenance_interval = 403368049;</code>
@@ -436,7 +494,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the frequency of planned maintenance events. The accepted values are: `AS_NEEDED` and `RECURRENT`.
+     * Specifies the frequency of planned maintenance events. The accepted values
+     * are: `AS_NEEDED` and `RECURRENT`.
      * Check the MaintenanceInterval enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string maintenance_interval = 403368049;</code>
@@ -452,7 +511,10 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see Maintenance policies.
+     * Specifies how to handle instances when a node in the group undergoes
+     * maintenance. Set to one of: DEFAULT,RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP.
+     * The default value is DEFAULT. For more information, see
+     * Maintenance policies.
      * Check the MaintenancePolicy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string maintenance_policy = 528327646;</code>
@@ -474,7 +536,10 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see Maintenance policies.
+     * Specifies how to handle instances when a node in the group undergoes
+     * maintenance. Set to one of: DEFAULT,RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP.
+     * The default value is DEFAULT. For more information, see
+     * Maintenance policies.
      * Check the MaintenancePolicy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string maintenance_policy = 528327646;</code>
@@ -522,7 +587,14 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * The name of the resource, provided by the client when initially creating
+     * the resource. The resource name must be 1-63 characters long, and comply
+     * withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must be
+     * a dash, lowercase letter, or digit, except the last character, which cannot
+     * be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -543,7 +615,14 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * The name of the resource, provided by the client when initially creating
+     * the resource. The resource name must be 1-63 characters long, and comply
+     * withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must be
+     * a dash, lowercase letter, or digit, except the last character, which cannot
+     * be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -740,7 +819,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the zone where the node group resides, such as us-central1-a.
+     * [Output Only] The name of the zone where the node group resides,
+     * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
@@ -761,7 +841,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the zone where the node group resides, such as us-central1-a.
+     * [Output Only] The name of the zone where the node group resides,
+     * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var

@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionInstanceGroupManagersSetTemplateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URL of the InstanceTemplate resource from which all new instances will be created.
+     * URL of the InstanceTemplate resource from which all new instances will be
+     * created.
      *
      * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
      */
@@ -28,7 +29,8 @@ class RegionInstanceGroupManagersSetTemplateRequest extends \Google\Protobuf\Int
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance_template
-     *           URL of the InstanceTemplate resource from which all new instances will be created.
+     *           URL of the InstanceTemplate resource from which all new instances will be
+     *           created.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class RegionInstanceGroupManagersSetTemplateRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * URL of the InstanceTemplate resource from which all new instances will be created.
+     * URL of the InstanceTemplate resource from which all new instances will be
+     * created.
      *
      * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
      * @return string
@@ -58,7 +61,8 @@ class RegionInstanceGroupManagersSetTemplateRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * URL of the InstanceTemplate resource from which all new instances will be created.
+     * URL of the InstanceTemplate resource from which all new instances will be
+     * created.
      *
      * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
      * @param string $var

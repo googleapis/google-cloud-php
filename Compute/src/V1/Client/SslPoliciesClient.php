@@ -273,7 +273,11 @@ final class SslPoliciesClient
     }
 
     /**
-     * Retrieves the list of all SslPolicy resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves the list of all SslPolicy resources, regional and global,
+     * available to the specified project.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see SslPoliciesClient::aggregatedListAsync()} .
      *
@@ -301,7 +305,9 @@ final class SslPoliciesClient
     }
 
     /**
-     * Deletes the specified SSL policy. The SSL policy resource can be deleted only if it is not in use by any TargetHttpsProxy or TargetSslProxy resources.
+     * Deletes the specified SSL policy. The SSL policy resource can be deleted
+     * only if it is not in use by any TargetHttpsProxy or TargetSslProxy
+     * resources.
      *
      * The async variant is {@see SslPoliciesClient::deleteAsync()} .
      *
@@ -379,7 +385,8 @@ final class SslPoliciesClient
     }
 
     /**
-     * Lists all the SSL policies that have been configured for the specified project.
+     * Lists all the SSL policies that have been configured for the specified
+     * project.
      *
      * The async variant is {@see SslPoliciesClient::listAsync()} .
      *
@@ -405,7 +412,8 @@ final class SslPoliciesClient
     }
 
     /**
-     * Lists all features that can be specified in the SSL policy when using custom profile.
+     * Lists all features that can be specified in the SSL policy when using
+     * custom profile.
      *
      * The async variant is {@see SslPoliciesClient::listAvailableFeaturesAsync()} .
      *

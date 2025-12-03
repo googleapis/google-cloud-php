@@ -280,7 +280,10 @@ final class StoragePoolsClient
     }
 
     /**
-     * Retrieves an aggregated list of storage pools. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of storage pools.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see StoragePoolsClient::aggregatedListAsync()} .
      *
@@ -308,7 +311,11 @@ final class StoragePoolsClient
     }
 
     /**
-     * Deletes the specified storage pool. Deleting a storagePool removes its data permanently and is irreversible. However, deleting a storagePool does not delete any snapshots previously made from the storagePool. You must separately delete snapshots.
+     * Deletes the specified storage pool. Deleting a storagePool
+     * removes its data permanently and is irreversible. However, deleting a
+     * storagePool does not delete any snapshots previously
+     * made from the storagePool. You must separately delete
+     * snapshots.
      *
      * The async variant is {@see StoragePoolsClient::deleteAsync()} .
      *
@@ -334,7 +341,8 @@ final class StoragePoolsClient
     }
 
     /**
-     * Returns a specified storage pool. Gets a list of available storage pools by making a list() request.
+     * Returns a specified storage pool. Gets a list of available
+     * storage pools by making a list() request.
      *
      * The async variant is {@see StoragePoolsClient::getAsync()} .
      *
@@ -360,7 +368,8 @@ final class StoragePoolsClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see StoragePoolsClient::getIamPolicyAsync()} .
      *
@@ -386,7 +395,8 @@ final class StoragePoolsClient
     }
 
     /**
-     * Creates a storage pool in the specified project using the data in the request.
+     * Creates a storage pool in the specified project using the data
+     * in the request.
      *
      * The async variant is {@see StoragePoolsClient::insertAsync()} .
      *
@@ -412,7 +422,8 @@ final class StoragePoolsClient
     }
 
     /**
-     * Retrieves a list of storage pools contained within the specified zone.
+     * Retrieves a list of storage pools contained within
+     * the specified zone.
      *
      * The async variant is {@see StoragePoolsClient::listAsync()} .
      *
@@ -464,7 +475,8 @@ final class StoragePoolsClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see StoragePoolsClient::setIamPolicyAsync()} .
      *
@@ -518,7 +530,11 @@ final class StoragePoolsClient
     }
 
     /**
-     * Updates the specified storagePool with the data included in the request. The update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: pool_provisioned_capacity_gb, pool_provisioned_iops and pool_provisioned_throughput.
+     * Updates the specified storagePool with the data included in the request.
+     * The update is performed only on selected fields included as part
+     * of update-mask. Only the following fields can be modified:
+     * pool_provisioned_capacity_gb, pool_provisioned_iops and
+     * pool_provisioned_throughput.
      *
      * The async variant is {@see StoragePoolsClient::updateAsync()} .
      *

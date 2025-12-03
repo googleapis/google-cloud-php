@@ -33,7 +33,8 @@ use Google\Rpc\Status;
  * Sets the auto-delete flag for a disk attached to an instance.
  *
  * @param bool   $autoDelete Whether to auto-delete the disk when the instance is deleted.
- * @param string $deviceName The device name of the disk to modify. Make a get() request on the instance to view currently attached disks and device names.
+ * @param string $deviceName The device name of the disk to modify. Make a get() request
+ *                           on the instance to view currently attached disks and device names.
  * @param string $instance   The instance name for this request.
  * @param string $project    Project ID for this request.
  * @param string $zone       The name of the zone for this request.

@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\AccessConfig;
 use UnexpectedValueException;
 
 /**
- * The type of configuration. In accessConfigs (IPv4), the default and only option is ONE_TO_ONE_NAT. In ipv6AccessConfigs, the default and only option is DIRECT_IPV6.
+ * The type of configuration. In accessConfigs (IPv4), the
+ * default and only option is ONE_TO_ONE_NAT. Inipv6AccessConfigs, the default and only option isDIRECT_IPV6.
  *
  * Protobuf type <code>google.cloud.compute.v1.AccessConfig.Type</code>
  */

@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\TargetReference;
 use Google\Rpc\Status;
 
 /**
- * Changes target URL for forwarding rule. The new target should be of the same type as the old target.
+ * Changes target URL for forwarding rule. The new target should be of the
+ * same type as the old target.
  *
  * @param string $forwardingRule Name of the ForwardingRule resource in which target is to be set.
  * @param string $project        Project ID for this request.

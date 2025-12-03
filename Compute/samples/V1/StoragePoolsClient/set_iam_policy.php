@@ -30,7 +30,8 @@ use Google\Cloud\Compute\V1\SetIamPolicyStoragePoolRequest;
 use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
 
 /**
- * Sets the access control policy on the specified resource. Replaces any existing policy.
+ * Sets the access control policy on the specified resource.
+ * Replaces any existing policy.
  *
  * @param string $project  Project ID for this request.
  * @param string $resource Name or id of the resource for this request.

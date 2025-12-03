@@ -19,6 +19,18 @@ class AvailableFeatures
      */
     const UNDEFINED_AVAILABLE_FEATURES = 0;
     /**
+     * Cross-Site Networking
+     *
+     * Generated from protobuf enum <code>IF_CROSS_SITE_NETWORK = 469111095;</code>
+     */
+    const IF_CROSS_SITE_NETWORK = 469111095;
+    /**
+     * L2 Interconnect Attachment Forwarding
+     *
+     * Generated from protobuf enum <code>IF_L2_FORWARDING = 125563860;</code>
+     */
+    const IF_L2_FORWARDING = 125563860;
+    /**
      * Media Access Control security (MACsec)
      *
      * Generated from protobuf enum <code>IF_MACSEC = 396279300;</code>
@@ -27,6 +39,8 @@ class AvailableFeatures
 
     private static $valueToName = [
         self::UNDEFINED_AVAILABLE_FEATURES => 'UNDEFINED_AVAILABLE_FEATURES',
+        self::IF_CROSS_SITE_NETWORK => 'IF_CROSS_SITE_NETWORK',
+        self::IF_L2_FORWARDING => 'IF_L2_FORWARDING',
         self::IF_MACSEC => 'IF_MACSEC',
     ];
 

@@ -325,7 +325,8 @@ final class RegionUrlMapsClient
     }
 
     /**
-     * Creates a UrlMap resource in the specified project using the data included in the request.
+     * Creates a UrlMap resource in the specified project using
+     * the data included in the request.
      *
      * The async variant is {@see RegionUrlMapsClient::insertAsync()} .
      *
@@ -351,7 +352,8 @@ final class RegionUrlMapsClient
     }
 
     /**
-     * Retrieves the list of UrlMap resources available to the specified project in the specified region.
+     * Retrieves the list of UrlMap resources available to the specified
+     * project in the specified region.
      *
      * The async variant is {@see RegionUrlMapsClient::listAsync()} .
      *
@@ -377,7 +379,10 @@ final class RegionUrlMapsClient
     }
 
     /**
-     * Patches the specified UrlMap resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * Patches the specified UrlMap resource with the data included in the
+     * request. This method supportsPATCH
+     * semantics and usesJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see RegionUrlMapsClient::patchAsync()} .
      *
@@ -403,7 +408,8 @@ final class RegionUrlMapsClient
     }
 
     /**
-     * Updates the specified UrlMap resource with the data included in the request.
+     * Updates the specified UrlMap resource with the data included in the
+     * request.
      *
      * The async variant is {@see RegionUrlMapsClient::updateAsync()} .
      *
@@ -429,7 +435,9 @@ final class RegionUrlMapsClient
     }
 
     /**
-     * Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
+     * Runs static validation for the UrlMap. In particular, the tests of the
+     * provided UrlMap will be run. Calling this method does NOT create the
+     * UrlMap.
      *
      * The async variant is {@see RegionUrlMapsClient::validateAsync()} .
      *

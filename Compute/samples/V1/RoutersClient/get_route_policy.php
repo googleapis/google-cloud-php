@@ -33,7 +33,8 @@ use Google\Cloud\Compute\V1\RoutersGetRoutePolicyResponse;
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.
- * @param string $router  Name of the Router resource to query for the route policy. The name should conform to RFC1035.
+ * @param string $router  Name of the Router resource to query for the route policy. The name should
+ *                        conform to RFC1035.
  */
 function get_route_policy_sample(string $project, string $region, string $router): void
 {

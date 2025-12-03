@@ -20,29 +20,44 @@ class Mode
      */
     const UNDEFINED_MODE = 0;
     /**
-     * The public delegated prefix is used for further sub-delegation only. Such prefixes cannot set allocatablePrefixLength.
+     * The public delegated prefix is used for further sub-delegation only. Such
+     * prefixes cannot set allocatablePrefixLength.
      *
      * Generated from protobuf enum <code>DELEGATION = 264149288;</code>
      */
     const DELEGATION = 264149288;
     /**
-     * The public delegated prefix is used for creating forwarding rules only. Such prefixes cannot set publicDelegatedSubPrefixes.
+     * The public delegated prefix is used for creating forwarding rules only.
+     * Such prefixes cannot set publicDelegatedSubPrefixes. Parent public
+     * delegated prefix must have IPv6 access type as EXTERNAL.
      *
      * Generated from protobuf enum <code>EXTERNAL_IPV6_FORWARDING_RULE_CREATION = 398684356;</code>
      */
     const EXTERNAL_IPV6_FORWARDING_RULE_CREATION = 398684356;
     /**
-     * The public delegated prefix is used for creating dual-mode subnetworks only. Such prefixes cannot set publicDelegatedSubPrefixes.
+     * The public delegated prefix is used for creating dual-mode subnetworks
+     * only. Such prefixes cannot set publicDelegatedSubPrefixes. Parent public
+     * delegated prefix must have IPv6 access type as EXTERNAL.
      *
      * Generated from protobuf enum <code>EXTERNAL_IPV6_SUBNETWORK_CREATION = 61198284;</code>
      */
     const EXTERNAL_IPV6_SUBNETWORK_CREATION = 61198284;
+    /**
+     * The public delegated prefix is used for creating dual stack or IPv6-only
+     * subnetwork with internal access only. Such prefixes cannot set
+     * publicDelegatedSubPrefixes and allocatablePrefixLength. Parent public
+     * delegated prefix must have IPv6 access type as INTERNAL.
+     *
+     * Generated from protobuf enum <code>INTERNAL_IPV6_SUBNETWORK_CREATION = 153239834;</code>
+     */
+    const INTERNAL_IPV6_SUBNETWORK_CREATION = 153239834;
 
     private static $valueToName = [
         self::UNDEFINED_MODE => 'UNDEFINED_MODE',
         self::DELEGATION => 'DELEGATION',
         self::EXTERNAL_IPV6_FORWARDING_RULE_CREATION => 'EXTERNAL_IPV6_FORWARDING_RULE_CREATION',
         self::EXTERNAL_IPV6_SUBNETWORK_CREATION => 'EXTERNAL_IPV6_SUBNETWORK_CREATION',
+        self::INTERNAL_IPV6_SUBNETWORK_CREATION => 'INTERNAL_IPV6_SUBNETWORK_CREATION',
     ];
 
     public static function name($value)

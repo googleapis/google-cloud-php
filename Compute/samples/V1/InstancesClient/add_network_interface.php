@@ -33,7 +33,8 @@ use Google\Rpc\Status;
 /**
  * Adds one dynamic network interface to an active instance.
  *
- * @param string $instance The instance name for this request stored as resource_id. Name should conform to RFC1035 or be an unsigned long integer.
+ * @param string $instance The instance name for this request stored as resource_id.
+ *                         Name should conform to RFC1035 or be an unsigned long integer.
  * @param string $project  Project ID for this request.
  * @param string $zone     The name of the zone for this request.
  */

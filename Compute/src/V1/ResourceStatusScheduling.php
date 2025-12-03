@@ -15,7 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceStatusScheduling extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies the availability domain to place the instance in. The value must be a number between 1 and the number of availability domains specified in the spread placement policy attached to the instance.
+     * Specifies the availability domain to place the instance in. The value
+     * must be a number between 1 and the number of availability domains
+     * specified in the spread placement policy attached to the instance.
      *
      * Generated from protobuf field <code>optional int32 availability_domain = 252514344;</code>
      */
@@ -28,7 +30,9 @@ class ResourceStatusScheduling extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $availability_domain
-     *           Specifies the availability domain to place the instance in. The value must be a number between 1 and the number of availability domains specified in the spread placement policy attached to the instance.
+     *           Specifies the availability domain to place the instance in. The value
+     *           must be a number between 1 and the number of availability domains
+     *           specified in the spread placement policy attached to the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +41,9 @@ class ResourceStatusScheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the availability domain to place the instance in. The value must be a number between 1 and the number of availability domains specified in the spread placement policy attached to the instance.
+     * Specifies the availability domain to place the instance in. The value
+     * must be a number between 1 and the number of availability domains
+     * specified in the spread placement policy attached to the instance.
      *
      * Generated from protobuf field <code>optional int32 availability_domain = 252514344;</code>
      * @return int
@@ -58,7 +64,9 @@ class ResourceStatusScheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the availability domain to place the instance in. The value must be a number between 1 and the number of availability domains specified in the spread placement policy attached to the instance.
+     * Specifies the availability domain to place the instance in. The value
+     * must be a number between 1 and the number of availability domains
+     * specified in the spread placement policy attached to the instance.
      *
      * Generated from protobuf field <code>optional int32 availability_domain = 252514344;</code>
      * @param int $var

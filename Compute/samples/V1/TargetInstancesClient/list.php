@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\TargetInstancesClient;
 use Google\Cloud\Compute\V1\ListTargetInstancesRequest;
 
 /**
- * Retrieves a list of TargetInstance resources available to the specified project and zone.
+ * Retrieves a list of TargetInstance resources available to the specified
+ * project and zone.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    Name of the zone scoping this request.

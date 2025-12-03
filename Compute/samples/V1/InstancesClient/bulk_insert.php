@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Rpc\Status;
 
 /**
- * Creates multiple instances. Count specifies the number of instances to create. For more information, see About bulk creation of VMs.
+ * Creates multiple instances. Count specifies the number of instances to
+ * create. For more information, seeAbout bulk
+ * creation of VMs.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    The name of the zone for this request.

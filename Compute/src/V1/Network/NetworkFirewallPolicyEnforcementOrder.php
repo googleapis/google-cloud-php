@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\Network;
 use UnexpectedValueException;
 
 /**
- * The network firewall policy enforcement order. Can be either AFTER_CLASSIC_FIREWALL or BEFORE_CLASSIC_FIREWALL. Defaults to AFTER_CLASSIC_FIREWALL if the field is not specified.
+ * The network firewall policy enforcement order. Can be either
+ * AFTER_CLASSIC_FIREWALL or BEFORE_CLASSIC_FIREWALL. Defaults to
+ * AFTER_CLASSIC_FIREWALL if the field is not specified.
  *
  * Protobuf type <code>google.cloud.compute.v1.Network.NetworkFirewallPolicyEnforcementOrder</code>
  */

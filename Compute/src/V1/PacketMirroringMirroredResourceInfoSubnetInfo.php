@@ -15,13 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class PacketMirroringMirroredResourceInfoSubnetInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Unique identifier for the subnetwork; defined by the server.
+     * [Output Only] Unique identifier for the subnetwork; defined by the
+     * server.
      *
      * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      */
     protected $canonical_url = null;
     /**
-     * Resource URL to the subnetwork for which traffic from/to all VM instances will be mirrored.
+     * Resource URL to the subnetwork for which
+     * traffic from/to all VM instances will be mirrored.
      *
      * Generated from protobuf field <code>optional string url = 116079;</code>
      */
@@ -34,9 +36,11 @@ class PacketMirroringMirroredResourceInfoSubnetInfo extends \Google\Protobuf\Int
      *     Optional. Data for populating the Message object.
      *
      *     @type string $canonical_url
-     *           [Output Only] Unique identifier for the subnetwork; defined by the server.
+     *           [Output Only] Unique identifier for the subnetwork; defined by the
+     *           server.
      *     @type string $url
-     *           Resource URL to the subnetwork for which traffic from/to all VM instances will be mirrored.
+     *           Resource URL to the subnetwork for which
+     *           traffic from/to all VM instances will be mirrored.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +49,8 @@ class PacketMirroringMirroredResourceInfoSubnetInfo extends \Google\Protobuf\Int
     }
 
     /**
-     * [Output Only] Unique identifier for the subnetwork; defined by the server.
+     * [Output Only] Unique identifier for the subnetwork; defined by the
+     * server.
      *
      * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      * @return string
@@ -66,7 +71,8 @@ class PacketMirroringMirroredResourceInfoSubnetInfo extends \Google\Protobuf\Int
     }
 
     /**
-     * [Output Only] Unique identifier for the subnetwork; defined by the server.
+     * [Output Only] Unique identifier for the subnetwork; defined by the
+     * server.
      *
      * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      * @param string $var
@@ -81,7 +87,8 @@ class PacketMirroringMirroredResourceInfoSubnetInfo extends \Google\Protobuf\Int
     }
 
     /**
-     * Resource URL to the subnetwork for which traffic from/to all VM instances will be mirrored.
+     * Resource URL to the subnetwork for which
+     * traffic from/to all VM instances will be mirrored.
      *
      * Generated from protobuf field <code>optional string url = 116079;</code>
      * @return string
@@ -102,7 +109,8 @@ class PacketMirroringMirroredResourceInfoSubnetInfo extends \Google\Protobuf\Int
     }
 
     /**
-     * Resource URL to the subnetwork for which traffic from/to all VM instances will be mirrored.
+     * Resource URL to the subnetwork for which
+     * traffic from/to all VM instances will be mirrored.
      *
      * Generated from protobuf field <code>optional string url = 116079;</code>
      * @param string $var

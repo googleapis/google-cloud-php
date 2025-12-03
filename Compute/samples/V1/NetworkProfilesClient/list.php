@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\NetworkProfilesClient;
 use Google\Cloud\Compute\V1\ListNetworkProfilesRequest;
 
 /**
- * Retrieves a list of network profiles available to the specified project.
+ * Retrieves a list of network profiles available to the specified
+ * project.
  *
  * @param string $project Project ID for this request.
  */

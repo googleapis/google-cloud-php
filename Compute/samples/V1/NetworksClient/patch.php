@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\PatchNetworkRequest;
 use Google\Rpc\Status;
 
 /**
- * Patches the specified network with the data included in the request. Only routingConfig can be modified.
+ * Patches the specified network with the data included in the request.
+ * Only routingConfig can be modified.
  *
  * @param string $network Name of the network to update.
  * @param string $project Project ID for this request.

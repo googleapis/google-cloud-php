@@ -30,7 +30,14 @@ use Google\Cloud\Compute\V1\DeleteSnapshotRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified Snapshot resource. Keep in mind that deleting a single snapshot might not necessarily delete all the data on that snapshot. If any data on the snapshot that is marked for deletion is needed for subsequent snapshots, the data will be moved to the next corresponding snapshot. For more information, see Deleting snapshots.
+ * Deletes the specified Snapshot resource. Keep in mind that deleting
+ * a single snapshot might not necessarily delete all the data on that
+ * snapshot. If any data on the snapshot that is marked for deletion is
+ * needed for subsequent snapshots, the data will be moved to the next
+ * corresponding snapshot.
+ *
+ * For more information, seeDeleting
+ * snapshots.
  *
  * @param string $project  Project ID for this request.
  * @param string $snapshot Name of the Snapshot resource to delete.

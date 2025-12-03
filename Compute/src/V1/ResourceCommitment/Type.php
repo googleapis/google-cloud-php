@@ -7,7 +7,14 @@ namespace Google\Cloud\Compute\V1\ResourceCommitment;
 use UnexpectedValueException;
 
 /**
- * The type of hardware resource that you want to specify. You can specify any of the following values: - VCPU - MEMORY - LOCAL_SSD - ACCELERATOR Specify as a separate entry in the list for each individual resource type.
+ * The type of hardware resource that you want to specify.
+ * You can specify any of the following values:
+ *    - VCPU
+ *    - MEMORY
+ *    - LOCAL_SSD
+ *    - ACCELERATOR
+ * Specify as a separate entry in the list for each
+ * individual resource type.
  *
  * Protobuf type <code>google.cloud.compute.v1.ResourceCommitment.Type</code>
  */

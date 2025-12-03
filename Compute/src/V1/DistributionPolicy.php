@@ -15,14 +15,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class DistributionPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The distribution shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
+     * The distribution shape to which the group converges either proactively or
+     * on resize events (depending on the value set inupdatePolicy.instanceRedistributionType).
      * Check the TargetShape enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string target_shape = 338621299;</code>
      */
     protected $target_shape = null;
     /**
-     * Zones where the regional managed instance group will create and manage its instances.
+     * Zones where the regional managed instance group will create and manage
+     * its instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DistributionPolicyZoneConfiguration zones = 116085319;</code>
      */
@@ -35,10 +37,12 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $target_shape
-     *           The distribution shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
+     *           The distribution shape to which the group converges either proactively or
+     *           on resize events (depending on the value set inupdatePolicy.instanceRedistributionType).
      *           Check the TargetShape enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\DistributionPolicyZoneConfiguration>|\Google\Protobuf\Internal\RepeatedField $zones
-     *           Zones where the regional managed instance group will create and manage its instances.
+     *           Zones where the regional managed instance group will create and manage
+     *           its instances.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +51,8 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The distribution shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
+     * The distribution shape to which the group converges either proactively or
+     * on resize events (depending on the value set inupdatePolicy.instanceRedistributionType).
      * Check the TargetShape enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string target_shape = 338621299;</code>
@@ -69,7 +74,8 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The distribution shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
+     * The distribution shape to which the group converges either proactively or
+     * on resize events (depending on the value set inupdatePolicy.instanceRedistributionType).
      * Check the TargetShape enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string target_shape = 338621299;</code>
@@ -85,7 +91,8 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Zones where the regional managed instance group will create and manage its instances.
+     * Zones where the regional managed instance group will create and manage
+     * its instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DistributionPolicyZoneConfiguration zones = 116085319;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -96,7 +103,8 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Zones where the regional managed instance group will create and manage its instances.
+     * Zones where the regional managed instance group will create and manage
+     * its instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DistributionPolicyZoneConfiguration zones = 116085319;</code>
      * @param array<\Google\Cloud\Compute\V1\DistributionPolicyZoneConfiguration>|\Google\Protobuf\Internal\RepeatedField $var

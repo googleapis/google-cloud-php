@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\Reservation;
 use Google\Rpc\Status;
 
 /**
- * Creates a new reservation. For more information, read Reserving zonal resources.
+ * Creates a new reservation. For more information, readReserving zonal
+ * resources.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    Name of the zone for this request.

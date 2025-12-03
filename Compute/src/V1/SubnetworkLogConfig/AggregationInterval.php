@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\SubnetworkLogConfig;
 use UnexpectedValueException;
 
 /**
- * Can only be specified if VPC flow logging for this subnetwork is enabled. Toggles the aggregation interval for collecting flow logs. Increasing the interval time will reduce the amount of generated flow logs for long lasting connections. Default is an interval of 5 seconds per connection.
+ * Can only be specified if VPC flow logging for this subnetwork is enabled.
+ * Toggles the aggregation interval for collecting flow logs. Increasing the
+ * interval time will reduce the amount of generated flow logs for long
+ * lasting connections. Default is an interval of 5 seconds per connection.
  *
  * Protobuf type <code>google.cloud.compute.v1.SubnetworkLogConfig.AggregationInterval</code>
  */

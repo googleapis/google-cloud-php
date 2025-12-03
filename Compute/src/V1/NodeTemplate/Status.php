@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\NodeTemplate;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the node template. One of the following values: CREATING, READY, and DELETING.
+ * [Output Only] The status of the node template. One of the following values:CREATING, READY, and DELETING.
  *
  * Protobuf type <code>google.cloud.compute.v1.NodeTemplate.Status</code>
  */

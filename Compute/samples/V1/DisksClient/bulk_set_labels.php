@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\Client\DisksClient;
 use Google\Rpc\Status;
 
 /**
- * Sets the labels on many disks at once. To learn more about labels, read the Labeling Resources documentation.
+ * Sets the labels on many disks at once. To learn more about labels, read theLabeling
+ * Resources documentation.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    The name of the zone for this request.

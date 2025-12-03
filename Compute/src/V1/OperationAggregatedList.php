@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class OperationAggregatedList extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      */
@@ -27,13 +28,19 @@ class OperationAggregatedList extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of resource. Always `compute#operationAggregatedList` for aggregated lists of operations.
+     * [Output Only] Type of resource. Always `compute#operationAggregatedList`
+     * for aggregated lists of operations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than `maxResults`, use the `nextPageToken` as a value for the query parameter `pageToken` in the next list request. Subsequent list requests will have their own `nextPageToken` to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than
+     * `maxResults`, use the `nextPageToken` as a value for
+     * the query parameter `pageToken` in the next list request.
+     * Subsequent list requests will have their own `nextPageToken` to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
@@ -64,13 +71,20 @@ class OperationAggregatedList extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type array|\Google\Protobuf\Internal\MapField $items
      *           [Output Only] A map of scoped operation lists.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always `compute#operationAggregatedList` for aggregated lists of operations.
+     *           [Output Only] Type of resource. Always `compute#operationAggregatedList`
+     *           for aggregated lists of operations.
      *     @type string $next_page_token
-     *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than `maxResults`, use the `nextPageToken` as a value for the query parameter `pageToken` in the next list request. Subsequent list requests will have their own `nextPageToken` to continue paging through the results.
+     *           [Output Only] This token allows you to get the next page of results for
+     *           list requests. If the number of results is larger than
+     *           `maxResults`, use the `nextPageToken` as a value for
+     *           the query parameter `pageToken` in the next list request.
+     *           Subsequent list requests will have their own `nextPageToken` to
+     *           continue paging through the results.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for this resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
@@ -85,7 +99,8 @@ class OperationAggregatedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      * @return string
@@ -106,7 +121,8 @@ class OperationAggregatedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      * @param string $var
@@ -147,7 +163,8 @@ class OperationAggregatedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always `compute#operationAggregatedList` for aggregated lists of operations.
+     * [Output Only] Type of resource. Always `compute#operationAggregatedList`
+     * for aggregated lists of operations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -168,7 +185,8 @@ class OperationAggregatedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always `compute#operationAggregatedList` for aggregated lists of operations.
+     * [Output Only] Type of resource. Always `compute#operationAggregatedList`
+     * for aggregated lists of operations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -183,7 +201,12 @@ class OperationAggregatedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than `maxResults`, use the `nextPageToken` as a value for the query parameter `pageToken` in the next list request. Subsequent list requests will have their own `nextPageToken` to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than
+     * `maxResults`, use the `nextPageToken` as a value for
+     * the query parameter `pageToken` in the next list request.
+     * Subsequent list requests will have their own `nextPageToken` to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @return string
@@ -204,7 +227,12 @@ class OperationAggregatedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than `maxResults`, use the `nextPageToken` as a value for the query parameter `pageToken` in the next list request. Subsequent list requests will have their own `nextPageToken` to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than
+     * `maxResults`, use the `nextPageToken` as a value for
+     * the query parameter `pageToken` in the next list request.
+     * Subsequent list requests will have their own `nextPageToken` to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @param string $var

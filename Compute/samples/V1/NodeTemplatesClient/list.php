@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\NodeTemplatesClient;
 use Google\Cloud\Compute\V1\ListNodeTemplatesRequest;
 
 /**
- * Retrieves a list of node templates available to the specified project.
+ * Retrieves a list of node templates available to the specified
+ * project.
  *
  * @param string $project Project ID for this request.
  * @param string $region  The name of the region for this request.

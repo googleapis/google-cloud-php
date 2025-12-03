@@ -31,11 +31,14 @@ use Google\Cloud\Compute\V1\NetworkEndpointGroupsDetachEndpointsRequest;
 use Google\Rpc\Status;
 
 /**
- * Detach a list of network endpoints from the specified network endpoint group.
+ * Detach a list of network endpoints from the specified network endpoint
+ * group.
  *
- * @param string $networkEndpointGroup The name of the network endpoint group where you are removing network endpoints. It should comply with RFC1035.
+ * @param string $networkEndpointGroup The name of the network endpoint group where you are removing network
+ *                                     endpoints. It should comply with RFC1035.
  * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+ * @param string $zone                 The name of the zone where
+ *                                     the network endpoint group is located. It should comply with RFC1035.
  */
 function detach_network_endpoints_sample(
     string $networkEndpointGroup,

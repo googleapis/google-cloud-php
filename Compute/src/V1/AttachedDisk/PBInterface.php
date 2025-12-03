@@ -7,7 +7,12 @@ namespace Google\Cloud\Compute\V1\AttachedDisk;
 use UnexpectedValueException;
 
 /**
- * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. For most machine types, the default is SCSI. Local SSDs can use either NVME or SCSI. In certain configurations, persistent disks can use NVMe. For more information, see About persistent disks.
+ * Specifies the disk interface to use for attaching this disk, which is
+ * either SCSI or NVME. For most machine types, the
+ * default is SCSI. Local SSDs can use either NVME or SCSI.
+ * In certain configurations, persistent disks can use NVMe. For more
+ * information, seeAbout
+ * persistent disks.
  *
  * Protobuf type <code>google.cloud.compute.v1.AttachedDisk.Interface</code>
  */

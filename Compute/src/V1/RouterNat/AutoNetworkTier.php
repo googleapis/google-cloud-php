@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\RouterNat;
 use UnexpectedValueException;
 
 /**
- * The network tier to use when automatically reserving NAT IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, then the current project-level default tier is used.
+ * The network tier to use when automatically reserving NAT IP addresses.
+ * Must be one of: PREMIUM, STANDARD.
+ * If not specified, then the current
+ * project-level default tier is used.
  *
  * Protobuf type <code>google.cloud.compute.v1.RouterNat.AutoNetworkTier</code>
  */
@@ -26,19 +29,22 @@ class AutoNetworkTier
      */
     const FIXED_STANDARD = 310464328;
     /**
-     * High quality, Google-grade network tier, support for all networking products.
+     * High quality, Google-grade network tier, support for all networking
+     * products.
      *
      * Generated from protobuf enum <code>PREMIUM = 399530551;</code>
      */
     const PREMIUM = 399530551;
     /**
-     * Public internet quality, only limited support for other networking products.
+     * Public internet quality, only limited support for other networking
+     * products.
      *
      * Generated from protobuf enum <code>STANDARD = 484642493;</code>
      */
     const STANDARD = 484642493;
     /**
-     * (Output only) Temporary tier for FIXED_STANDARD when fixed standard tier is expired or not configured.
+     * (Output only) Temporary tier for FIXED_STANDARD when fixed standard tier
+     * is expired or not configured.
      *
      * Generated from protobuf enum <code>STANDARD_OVERRIDES_FIXED_STANDARD = 465847234;</code>
      */

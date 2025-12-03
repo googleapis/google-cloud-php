@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\NetworkPeeringConnectionStatus;
 use UnexpectedValueException;
 
 /**
- * The update strategy determines the update/delete semantics for this peering connection.
+ * The update strategy determines the update/delete semantics for this
+ * peering connection.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkPeeringConnectionStatus.UpdateStrategy</code>
  */
@@ -20,19 +21,27 @@ class UpdateStrategy
      */
     const UNDEFINED_UPDATE_STRATEGY = 0;
     /**
-     * Updates are reflected in the local peering but aren't applied to the peering connection until a complementary change is made to the matching peering. To delete a peering with the consensus update strategy, both the peerings must request the deletion of the peering before the peering can be deleted.
+     * Updates are reflected in the local peering but aren't applied to the
+     * peering connection until a complementary change is made to the
+     * matching peering.
+     * To delete a peering with the consensus update strategy, both the peerings
+     * must request the deletion of the peering before the peering can be
+     * deleted.
      *
      * Generated from protobuf enum <code>CONSENSUS = 203373655;</code>
      */
     const CONSENSUS = 203373655;
     /**
-     * In this mode, changes to the peering configuration can be unilaterally altered by changing either side of the peering. This is the default value if the field is unspecified.
+     * In this mode, changes to the peering configuration can
+     * be unilaterally altered by changing either side of the peering.
+     * This is the default value if the field is unspecified.
      *
      * Generated from protobuf enum <code>INDEPENDENT = 127011674;</code>
      */
     const INDEPENDENT = 127011674;
     /**
-     * Peerings with update strategy UNSPECIFIED are created with update strategy INDEPENDENT.
+     * Peerings with update strategy UNSPECIFIED are created with
+     * update strategy INDEPENDENT.
      *
      * Generated from protobuf enum <code>UNSPECIFIED = 526786327;</code>
      */

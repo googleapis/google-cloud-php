@@ -20,7 +20,8 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
      */
     private $load_errors;
     /**
-     * Whether the given UrlMap can be successfully loaded. If false, 'loadErrors' indicates the reasons.
+     * Whether the given UrlMap can be successfully loaded.
+     * If false, 'loadErrors' indicates the reasons.
      *
      * Generated from protobuf field <code>optional bool load_succeeded = 128326216;</code>
      */
@@ -30,7 +31,8 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
      */
     private $test_failures;
     /**
-     * If successfully loaded, this field indicates whether the test passed. If false, 'testFailures's indicate the reason of failure.
+     * If successfully loaded, this field indicates whether the test passed.
+     * If false, 'testFailures's indicate the reason of failure.
      *
      * Generated from protobuf field <code>optional bool test_passed = 192708797;</code>
      */
@@ -44,10 +46,12 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $load_errors
      *     @type bool $load_succeeded
-     *           Whether the given UrlMap can be successfully loaded. If false, 'loadErrors' indicates the reasons.
+     *           Whether the given UrlMap can be successfully loaded.
+     *           If false, 'loadErrors' indicates the reasons.
      *     @type array<\Google\Cloud\Compute\V1\TestFailure>|\Google\Protobuf\Internal\RepeatedField $test_failures
      *     @type bool $test_passed
-     *           If successfully loaded, this field indicates whether the test passed. If false, 'testFailures's indicate the reason of failure.
+     *           If successfully loaded, this field indicates whether the test passed.
+     *           If false, 'testFailures's indicate the reason of failure.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,7 +82,8 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the given UrlMap can be successfully loaded. If false, 'loadErrors' indicates the reasons.
+     * Whether the given UrlMap can be successfully loaded.
+     * If false, 'loadErrors' indicates the reasons.
      *
      * Generated from protobuf field <code>optional bool load_succeeded = 128326216;</code>
      * @return bool
@@ -99,7 +104,8 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the given UrlMap can be successfully loaded. If false, 'loadErrors' indicates the reasons.
+     * Whether the given UrlMap can be successfully loaded.
+     * If false, 'loadErrors' indicates the reasons.
      *
      * Generated from protobuf field <code>optional bool load_succeeded = 128326216;</code>
      * @param bool $var
@@ -136,7 +142,8 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If successfully loaded, this field indicates whether the test passed. If false, 'testFailures's indicate the reason of failure.
+     * If successfully loaded, this field indicates whether the test passed.
+     * If false, 'testFailures's indicate the reason of failure.
      *
      * Generated from protobuf field <code>optional bool test_passed = 192708797;</code>
      * @return bool
@@ -157,7 +164,8 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If successfully loaded, this field indicates whether the test passed. If false, 'testFailures's indicate the reason of failure.
+     * If successfully loaded, this field indicates whether the test passed.
+     * If false, 'testFailures's indicate the reason of failure.
      *
      * Generated from protobuf field <code>optional bool test_passed = 192708797;</code>
      * @param bool $var

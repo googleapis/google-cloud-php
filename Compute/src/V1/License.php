@@ -9,68 +9,83 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a License resource. A License represents billing and aggregate usage data for public and marketplace images. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images. 
+ * Represents a License resource.
+ * A License represents billing and aggregate usage data forpublic andmarketplace images.
+ *  *Caution* This resource is intended for
+ * use only by third-party partners who are creatingCloud Marketplace
+ * images.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.License</code>
  */
 class License extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies licenseCodes of licenses that can replace this license. Note: such replacements are allowed even if removable_from_disk is false.
+     * Specifies licenseCodes of licenses that can replace this license. Note:
+     * such replacements are allowed even if removable_from_disk is false.
      *
      * Generated from protobuf field <code>repeated string allowed_replacement_licenses = 195677718;</code>
      */
     private $allowed_replacement_licenses;
     /**
-     * If true, this license can be appended to an existing disk's set of licenses.
+     * If true, this license can be appended to an existing disk's set of
+     * licenses.
      *
      * Generated from protobuf field <code>optional bool appendable_to_disk = 16959254;</code>
      */
     protected $appendable_to_disk = null;
     /**
-     * [Output Only] Deprecated. This field no longer reflects whether a license charges a usage fee.
+     * [Output Only] Deprecated. This field no longer reflects whether a license
+     * charges a usage fee.
      *
      * Generated from protobuf field <code>optional bool charges_use_fee = 372412622;</code>
      */
     protected $charges_use_fee = null;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * An optional textual description of the resource; provided by the client when the resource is created.
+     * An optional textual description of the resource; provided by the client
+     * when the resource is created.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * Specifies licenseCodes of licenses that are incompatible with this license. If a license is incompatible with this license, it cannot be attached to the same disk or image.
+     * Specifies licenseCodes of licenses that are incompatible with this license.
+     * If a license is incompatible with this license, it cannot be attached to
+     * the same disk or image.
      *
      * Generated from protobuf field <code>repeated string incompatible_licenses = 334239768;</code>
      */
     private $incompatible_licenses;
     /**
-     * [Output Only] Type of resource. Always compute#license for licenses.
+     * [Output Only] Type of resource. Always compute#license for
+     * licenses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] The unique code used to attach this license to images, snapshots, and disks.
+     * [Output Only] The unique code used to attach this license to images,
+     * snapshots, and disks.
      *
      * Generated from protobuf field <code>optional uint64 license_code = 1467179;</code>
      */
     protected $license_code = null;
     /**
-     * If set, this license will be unable to be removed or replaced once attached to a disk until the minimum_retention period has passed.
+     * If set, this license will be unable to be removed or replaced once attached
+     * to a disk until the minimum_retention period has passed.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration minimum_retention = 155398189;</code>
      */
@@ -82,25 +97,30 @@ class License extends \Google\Protobuf\Internal\Message
      */
     protected $multi_tenant_only = null;
     /**
-     * Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
+     * Name of the resource. The name must be 1-63 characters long and
+     * comply withRFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * If true, indicates this is an OS license. Only one OS license can be attached to a disk or image at a time.
+     * If true, indicates this is an OS license. Only one OS license can be
+     * attached to a disk or image at a time.
      *
      * Generated from protobuf field <code>optional bool os_license = 487986406;</code>
      */
     protected $os_license = null;
     /**
-     * If true, this license can be removed from a disk's set of licenses, with no replacement license needed.
+     * If true, this license can be removed from a disk's set of licenses, with no
+     * replacement license needed.
      *
      * Generated from protobuf field <code>optional bool removable_from_disk = 25854638;</code>
      */
     protected $removable_from_disk = null;
     /**
-     * Specifies the set of permissible coattached licenseCodes of licenses that satisfy the coattachment requirement of this license. At least one license from the set must be attached to the same disk or image as this license.
+     * Specifies the set of permissible coattached licenseCodes of licenses that
+     * satisfy the coattachment requirement of this license. At least one license
+     * from the set must be attached to the same disk or image as this license.
      *
      * Generated from protobuf field <code>repeated string required_coattached_licenses = 129195265;</code>
      */
@@ -130,13 +150,15 @@ class License extends \Google\Protobuf\Internal\Message
      */
     protected $sole_tenant_only = null;
     /**
-     * If false, licenses will not be copied from the source resource when creating an image from a disk, disk from snapshot, or snapshot from disk.
+     * If false, licenses will not be copied from the source resource when
+     * creating an image from a disk, disk from snapshot, or snapshot from disk.
      *
      * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      */
     protected $transferable = null;
     /**
-     * [Output Only] Last update timestamp in RFC3339 text format.
+     * [Output Only] Last update timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string update_timestamp = 120894752;</code>
      */
@@ -149,35 +171,51 @@ class License extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_replacement_licenses
-     *           Specifies licenseCodes of licenses that can replace this license. Note: such replacements are allowed even if removable_from_disk is false.
+     *           Specifies licenseCodes of licenses that can replace this license. Note:
+     *           such replacements are allowed even if removable_from_disk is false.
      *     @type bool $appendable_to_disk
-     *           If true, this license can be appended to an existing disk's set of licenses.
+     *           If true, this license can be appended to an existing disk's set of
+     *           licenses.
      *     @type bool $charges_use_fee
-     *           [Output Only] Deprecated. This field no longer reflects whether a license charges a usage fee.
+     *           [Output Only] Deprecated. This field no longer reflects whether a license
+     *           charges a usage fee.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
-     *           An optional textual description of the resource; provided by the client when the resource is created.
+     *           An optional textual description of the resource; provided by the client
+     *           when the resource is created.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $incompatible_licenses
-     *           Specifies licenseCodes of licenses that are incompatible with this license. If a license is incompatible with this license, it cannot be attached to the same disk or image.
+     *           Specifies licenseCodes of licenses that are incompatible with this license.
+     *           If a license is incompatible with this license, it cannot be attached to
+     *           the same disk or image.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#license for licenses.
+     *           [Output Only] Type of resource. Always compute#license for
+     *           licenses.
      *     @type int|string $license_code
-     *           [Output Only] The unique code used to attach this license to images, snapshots, and disks.
+     *           [Output Only] The unique code used to attach this license to images,
+     *           snapshots, and disks.
      *     @type \Google\Cloud\Compute\V1\Duration $minimum_retention
-     *           If set, this license will be unable to be removed or replaced once attached to a disk until the minimum_retention period has passed.
+     *           If set, this license will be unable to be removed or replaced once attached
+     *           to a disk until the minimum_retention period has passed.
      *     @type bool $multi_tenant_only
      *           If true, this license can only be used on VMs on multi tenant nodes.
      *     @type string $name
-     *           Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
+     *           Name of the resource. The name must be 1-63 characters long and
+     *           comply withRFC1035.
      *     @type bool $os_license
-     *           If true, indicates this is an OS license. Only one OS license can be attached to a disk or image at a time.
+     *           If true, indicates this is an OS license. Only one OS license can be
+     *           attached to a disk or image at a time.
      *     @type bool $removable_from_disk
-     *           If true, this license can be removed from a disk's set of licenses, with no replacement license needed.
+     *           If true, this license can be removed from a disk's set of licenses, with no
+     *           replacement license needed.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required_coattached_licenses
-     *           Specifies the set of permissible coattached licenseCodes of licenses that satisfy the coattachment requirement of this license. At least one license from the set must be attached to the same disk or image as this license.
+     *           Specifies the set of permissible coattached licenseCodes of licenses that
+     *           satisfy the coattachment requirement of this license. At least one license
+     *           from the set must be attached to the same disk or image as this license.
      *     @type \Google\Cloud\Compute\V1\LicenseResourceRequirements $resource_requirements
      *           [Input Only] Deprecated.
      *     @type string $self_link
@@ -187,9 +225,11 @@ class License extends \Google\Protobuf\Internal\Message
      *     @type bool $sole_tenant_only
      *           If true, this license can only be used on VMs on sole tenant nodes.
      *     @type bool $transferable
-     *           If false, licenses will not be copied from the source resource when creating an image from a disk, disk from snapshot, or snapshot from disk.
+     *           If false, licenses will not be copied from the source resource when
+     *           creating an image from a disk, disk from snapshot, or snapshot from disk.
      *     @type string $update_timestamp
-     *           [Output Only] Last update timestamp in RFC3339 text format.
+     *           [Output Only] Last update timestamp inRFC3339
+     *           text format.
      * }
      */
     public function __construct($data = NULL) {
@@ -198,7 +238,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies licenseCodes of licenses that can replace this license. Note: such replacements are allowed even if removable_from_disk is false.
+     * Specifies licenseCodes of licenses that can replace this license. Note:
+     * such replacements are allowed even if removable_from_disk is false.
      *
      * Generated from protobuf field <code>repeated string allowed_replacement_licenses = 195677718;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -209,7 +250,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies licenseCodes of licenses that can replace this license. Note: such replacements are allowed even if removable_from_disk is false.
+     * Specifies licenseCodes of licenses that can replace this license. Note:
+     * such replacements are allowed even if removable_from_disk is false.
      *
      * Generated from protobuf field <code>repeated string allowed_replacement_licenses = 195677718;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -224,7 +266,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, this license can be appended to an existing disk's set of licenses.
+     * If true, this license can be appended to an existing disk's set of
+     * licenses.
      *
      * Generated from protobuf field <code>optional bool appendable_to_disk = 16959254;</code>
      * @return bool
@@ -245,7 +288,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, this license can be appended to an existing disk's set of licenses.
+     * If true, this license can be appended to an existing disk's set of
+     * licenses.
      *
      * Generated from protobuf field <code>optional bool appendable_to_disk = 16959254;</code>
      * @param bool $var
@@ -260,7 +304,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Deprecated. This field no longer reflects whether a license charges a usage fee.
+     * [Output Only] Deprecated. This field no longer reflects whether a license
+     * charges a usage fee.
      *
      * Generated from protobuf field <code>optional bool charges_use_fee = 372412622;</code>
      * @return bool
@@ -281,7 +326,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Deprecated. This field no longer reflects whether a license charges a usage fee.
+     * [Output Only] Deprecated. This field no longer reflects whether a license
+     * charges a usage fee.
      *
      * Generated from protobuf field <code>optional bool charges_use_fee = 372412622;</code>
      * @param bool $var
@@ -296,7 +342,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -317,7 +364,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -332,7 +380,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional textual description of the resource; provided by the client when the resource is created.
+     * An optional textual description of the resource; provided by the client
+     * when the resource is created.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -353,7 +402,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional textual description of the resource; provided by the client when the resource is created.
+     * An optional textual description of the resource; provided by the client
+     * when the resource is created.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -368,7 +418,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -389,7 +440,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -404,7 +456,9 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies licenseCodes of licenses that are incompatible with this license. If a license is incompatible with this license, it cannot be attached to the same disk or image.
+     * Specifies licenseCodes of licenses that are incompatible with this license.
+     * If a license is incompatible with this license, it cannot be attached to
+     * the same disk or image.
      *
      * Generated from protobuf field <code>repeated string incompatible_licenses = 334239768;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -415,7 +469,9 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies licenseCodes of licenses that are incompatible with this license. If a license is incompatible with this license, it cannot be attached to the same disk or image.
+     * Specifies licenseCodes of licenses that are incompatible with this license.
+     * If a license is incompatible with this license, it cannot be attached to
+     * the same disk or image.
      *
      * Generated from protobuf field <code>repeated string incompatible_licenses = 334239768;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -430,7 +486,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#license for licenses.
+     * [Output Only] Type of resource. Always compute#license for
+     * licenses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -451,7 +508,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#license for licenses.
+     * [Output Only] Type of resource. Always compute#license for
+     * licenses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -466,7 +524,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique code used to attach this license to images, snapshots, and disks.
+     * [Output Only] The unique code used to attach this license to images,
+     * snapshots, and disks.
      *
      * Generated from protobuf field <code>optional uint64 license_code = 1467179;</code>
      * @return int|string
@@ -487,7 +546,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique code used to attach this license to images, snapshots, and disks.
+     * [Output Only] The unique code used to attach this license to images,
+     * snapshots, and disks.
      *
      * Generated from protobuf field <code>optional uint64 license_code = 1467179;</code>
      * @param int|string $var
@@ -502,7 +562,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, this license will be unable to be removed or replaced once attached to a disk until the minimum_retention period has passed.
+     * If set, this license will be unable to be removed or replaced once attached
+     * to a disk until the minimum_retention period has passed.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration minimum_retention = 155398189;</code>
      * @return \Google\Cloud\Compute\V1\Duration|null
@@ -523,7 +584,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, this license will be unable to be removed or replaced once attached to a disk until the minimum_retention period has passed.
+     * If set, this license will be unable to be removed or replaced once attached
+     * to a disk until the minimum_retention period has passed.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration minimum_retention = 155398189;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var
@@ -574,7 +636,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
+     * Name of the resource. The name must be 1-63 characters long and
+     * comply withRFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -595,7 +658,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
+     * Name of the resource. The name must be 1-63 characters long and
+     * comply withRFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -610,7 +674,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, indicates this is an OS license. Only one OS license can be attached to a disk or image at a time.
+     * If true, indicates this is an OS license. Only one OS license can be
+     * attached to a disk or image at a time.
      *
      * Generated from protobuf field <code>optional bool os_license = 487986406;</code>
      * @return bool
@@ -631,7 +696,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, indicates this is an OS license. Only one OS license can be attached to a disk or image at a time.
+     * If true, indicates this is an OS license. Only one OS license can be
+     * attached to a disk or image at a time.
      *
      * Generated from protobuf field <code>optional bool os_license = 487986406;</code>
      * @param bool $var
@@ -646,7 +712,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, this license can be removed from a disk's set of licenses, with no replacement license needed.
+     * If true, this license can be removed from a disk's set of licenses, with no
+     * replacement license needed.
      *
      * Generated from protobuf field <code>optional bool removable_from_disk = 25854638;</code>
      * @return bool
@@ -667,7 +734,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, this license can be removed from a disk's set of licenses, with no replacement license needed.
+     * If true, this license can be removed from a disk's set of licenses, with no
+     * replacement license needed.
      *
      * Generated from protobuf field <code>optional bool removable_from_disk = 25854638;</code>
      * @param bool $var
@@ -682,7 +750,9 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the set of permissible coattached licenseCodes of licenses that satisfy the coattachment requirement of this license. At least one license from the set must be attached to the same disk or image as this license.
+     * Specifies the set of permissible coattached licenseCodes of licenses that
+     * satisfy the coattachment requirement of this license. At least one license
+     * from the set must be attached to the same disk or image as this license.
      *
      * Generated from protobuf field <code>repeated string required_coattached_licenses = 129195265;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -693,7 +763,9 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the set of permissible coattached licenseCodes of licenses that satisfy the coattachment requirement of this license. At least one license from the set must be attached to the same disk or image as this license.
+     * Specifies the set of permissible coattached licenseCodes of licenses that
+     * satisfy the coattachment requirement of this license. At least one license
+     * from the set must be attached to the same disk or image as this license.
      *
      * Generated from protobuf field <code>repeated string required_coattached_licenses = 129195265;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -852,7 +924,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If false, licenses will not be copied from the source resource when creating an image from a disk, disk from snapshot, or snapshot from disk.
+     * If false, licenses will not be copied from the source resource when
+     * creating an image from a disk, disk from snapshot, or snapshot from disk.
      *
      * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      * @return bool
@@ -873,7 +946,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If false, licenses will not be copied from the source resource when creating an image from a disk, disk from snapshot, or snapshot from disk.
+     * If false, licenses will not be copied from the source resource when
+     * creating an image from a disk, disk from snapshot, or snapshot from disk.
      *
      * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      * @param bool $var
@@ -888,7 +962,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last update timestamp in RFC3339 text format.
+     * [Output Only] Last update timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string update_timestamp = 120894752;</code>
      * @return string
@@ -909,7 +984,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last update timestamp in RFC3339 text format.
+     * [Output Only] Last update timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string update_timestamp = 120894752;</code>
      * @param string $var

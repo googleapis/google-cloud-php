@@ -325,7 +325,8 @@ final class GlobalAddressesClient
     }
 
     /**
-     * Creates an address resource in the specified project by using the data included in the request.
+     * Creates an address resource in the specified project by using the data
+     * included in the request.
      *
      * The async variant is {@see GlobalAddressesClient::insertAsync()} .
      *
@@ -403,7 +404,8 @@ final class GlobalAddressesClient
     }
 
     /**
-     * Sets the labels on a GlobalAddress. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on a GlobalAddress. To learn more about labels, read theLabeling
+     * Resources documentation.
      *
      * The async variant is {@see GlobalAddressesClient::setLabelsAsync()} .
      *

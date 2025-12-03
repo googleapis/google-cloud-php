@@ -21,7 +21,8 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
      */
     private $target_instances;
     /**
-     * Informational warning which replaces the list of addresses when the list is empty.
+     * Informational warning which replaces the list of addresses when
+     * the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
@@ -36,7 +37,8 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\TargetInstance>|\Google\Protobuf\Internal\RepeatedField $target_instances
      *           A list of target instances contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
-     *           Informational warning which replaces the list of addresses when the list is empty.
+     *           Informational warning which replaces the list of addresses when
+     *           the list is empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,7 +73,8 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Informational warning which replaces the list of addresses when the list is empty.
+     * Informational warning which replaces the list of addresses when
+     * the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
@@ -92,7 +95,8 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Informational warning which replaces the list of addresses when the list is empty.
+     * Informational warning which replaces the list of addresses when
+     * the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var

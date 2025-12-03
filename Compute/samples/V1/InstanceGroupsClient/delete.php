@@ -30,11 +30,15 @@ use Google\Cloud\Compute\V1\DeleteInstanceGroupRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified instance group. The instances in the group are not deleted. Note that instance group must not belong to a backend service. Read Deleting an instance group for more information.
+ * Deletes the specified instance group. The instances in the group are not
+ * deleted. Note that instance group must not belong to a backend service.
+ * Read
+ * Deleting an instance group for more information.
  *
  * @param string $instanceGroup The name of the instance group to delete.
  * @param string $project       Project ID for this request.
- * @param string $zone          The name of the zone where the instance group is located.
+ * @param string $zone          The name of the zone
+ *                              where the instance group is located.
  */
 function delete_sample(string $instanceGroup, string $project, string $zone): void
 {

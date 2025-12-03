@@ -268,7 +268,10 @@ final class RegionCommitmentsClient
     }
 
     /**
-     * Retrieves an aggregated list of commitments by region. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of commitments by region.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see RegionCommitmentsClient::aggregatedListAsync()} .
      *
@@ -322,7 +325,8 @@ final class RegionCommitmentsClient
     }
 
     /**
-     * Creates a commitment in the specified project using the data included in the request.
+     * Creates a commitment in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see RegionCommitmentsClient::insertAsync()} .
      *
@@ -348,7 +352,8 @@ final class RegionCommitmentsClient
     }
 
     /**
-     * Retrieves a list of commitments contained within the specified region.
+     * Retrieves a list of commitments contained within
+     * the specified region.
      *
      * The async variant is {@see RegionCommitmentsClient::listAsync()} .
      *
@@ -374,7 +379,9 @@ final class RegionCommitmentsClient
     }
 
     /**
-     * Updates the specified commitment with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be updated: auto_renew and plan.
+     * Updates the specified commitment with the data included in the request.
+     * Update is performed only on selected fields included as part of
+     * update-mask. Only the following fields can be updated: auto_renew and plan.
      *
      * The async variant is {@see RegionCommitmentsClient::updateAsync()} .
      *

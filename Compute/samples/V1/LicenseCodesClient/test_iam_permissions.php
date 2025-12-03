@@ -30,7 +30,10 @@ use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 
 /**
- * Returns permissions that a caller has on the specified resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
+ * Returns permissions that a caller has on the specified resource.
+ * *Caution* This resource is intended
+ * for use only by third-party partners who are creatingCloud Marketplace
+ * images.
  *
  * @param string $project  Project ID for this request.
  * @param string $resource Name or id of the resource for this request.

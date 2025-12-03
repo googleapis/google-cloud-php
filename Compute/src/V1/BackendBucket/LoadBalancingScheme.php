@@ -7,7 +7,11 @@ namespace Google\Cloud\Compute\V1\BackendBucket;
 use UnexpectedValueException;
 
 /**
- * The value can only be INTERNAL_MANAGED for cross-region internal layer 7 load balancer. If loadBalancingScheme is not specified, the backend bucket can be used by classic global external load balancers, or global application external load balancers, or both.
+ * The value can only be INTERNAL_MANAGED for cross-region internal layer 7
+ * load balancer.
+ * If loadBalancingScheme is not specified, the backend bucket can be used by
+ * classic global external load balancers, or global application external load
+ * balancers, or both.
  *
  * Protobuf type <code>google.cloud.compute.v1.BackendBucket.LoadBalancingScheme</code>
  */

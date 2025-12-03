@@ -31,7 +31,11 @@ use Google\Cloud\Compute\V1\Subnetwork;
 use Google\Rpc\Status;
 
 /**
- * Patches the specified subnetwork with the data included in the request. Only certain fields can be updated with a patch request as indicated in the field descriptions. You must specify the current fingerprint of the subnetwork resource being patched.
+ * Patches the specified subnetwork with the data included in the request.
+ * Only certain fields can be updated with a patch request
+ * as indicated in the field descriptions.
+ * You must specify the current fingerprint of the
+ * subnetwork resource being patched.
  *
  * @param string $project    Project ID for this request.
  * @param string $region     Name of the region scoping this request.

@@ -21,7 +21,11 @@ class ExchangedPeeringRoute extends \Google\Protobuf\Internal\Message
      */
     protected $dest_range = null;
     /**
-     * True if the peering route has been imported from a peer. The actual import happens if the field networkPeering.importCustomRoutes is true for this network, and networkPeering.exportCustomRoutes is true for the peer network, and the import does not result in a route conflict.
+     * True if the peering route has been imported from a peer. The actual import
+     * happens if the field networkPeering.importCustomRoutes is true
+     * for this network, and networkPeering.exportCustomRoutes is
+     * true for the peer network, and the import does not result in a route
+     * conflict.
      *
      * Generated from protobuf field <code>optional bool imported = 114502404;</code>
      */
@@ -55,7 +59,11 @@ class ExchangedPeeringRoute extends \Google\Protobuf\Internal\Message
      *     @type string $dest_range
      *           The destination range of the route.
      *     @type bool $imported
-     *           True if the peering route has been imported from a peer. The actual import happens if the field networkPeering.importCustomRoutes is true for this network, and networkPeering.exportCustomRoutes is true for the peer network, and the import does not result in a route conflict.
+     *           True if the peering route has been imported from a peer. The actual import
+     *           happens if the field networkPeering.importCustomRoutes is true
+     *           for this network, and networkPeering.exportCustomRoutes is
+     *           true for the peer network, and the import does not result in a route
+     *           conflict.
      *     @type string $next_hop_region
      *           The region of peering route next hop, only applies to dynamic routes.
      *     @type int $priority
@@ -107,7 +115,11 @@ class ExchangedPeeringRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True if the peering route has been imported from a peer. The actual import happens if the field networkPeering.importCustomRoutes is true for this network, and networkPeering.exportCustomRoutes is true for the peer network, and the import does not result in a route conflict.
+     * True if the peering route has been imported from a peer. The actual import
+     * happens if the field networkPeering.importCustomRoutes is true
+     * for this network, and networkPeering.exportCustomRoutes is
+     * true for the peer network, and the import does not result in a route
+     * conflict.
      *
      * Generated from protobuf field <code>optional bool imported = 114502404;</code>
      * @return bool
@@ -128,7 +140,11 @@ class ExchangedPeeringRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True if the peering route has been imported from a peer. The actual import happens if the field networkPeering.importCustomRoutes is true for this network, and networkPeering.exportCustomRoutes is true for the peer network, and the import does not result in a route conflict.
+     * True if the peering route has been imported from a peer. The actual import
+     * happens if the field networkPeering.importCustomRoutes is true
+     * for this network, and networkPeering.exportCustomRoutes is
+     * true for the peer network, and the import does not result in a route
+     * conflict.
      *
      * Generated from protobuf field <code>optional bool imported = 114502404;</code>
      * @param bool $var

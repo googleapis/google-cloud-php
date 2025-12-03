@@ -16,7 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackendServiceParams extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Tag keys/values directly bound to this resource. Tag keys and values have the same definition as resource manager tags. The field is allowed for INSERT only. The keys/values to set on the resource should be specified in either ID { : } or Namespaced format { : }. For example the following are valid inputs: * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"} * {"123/environment" : "production", "345/abc" : "xyz"} Note: * Invalid combinations of ID & namespaced format is not supported. For instance: {"123/environment" : "tagValues/444"} is invalid.
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : } or Namespaced format
+     * { : }.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"}
+     * * {"123/environment" : "production", "345/abc" : "xyz"}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"} is invalid.
      *
      * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
      */
@@ -29,7 +40,18 @@ class BackendServiceParams extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
-     *           Tag keys/values directly bound to this resource. Tag keys and values have the same definition as resource manager tags. The field is allowed for INSERT only. The keys/values to set on the resource should be specified in either ID { : } or Namespaced format { : }. For example the following are valid inputs: * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"} * {"123/environment" : "production", "345/abc" : "xyz"} Note: * Invalid combinations of ID & namespaced format is not supported. For instance: {"123/environment" : "tagValues/444"} is invalid.
+     *           Tag keys/values directly bound to this resource.
+     *           Tag keys and values have the same definition as resource
+     *           manager tags. The field is allowed for INSERT
+     *           only. The keys/values to set on the resource should be specified in
+     *           either ID { : } or Namespaced format
+     *           { : }.
+     *           For example the following are valid inputs:
+     *           * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"}
+     *           * {"123/environment" : "production", "345/abc" : "xyz"}
+     *           Note:
+     *           * Invalid combinations of ID & namespaced format is not supported. For
+     *             instance: {"123/environment" : "tagValues/444"} is invalid.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +60,18 @@ class BackendServiceParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Tag keys/values directly bound to this resource. Tag keys and values have the same definition as resource manager tags. The field is allowed for INSERT only. The keys/values to set on the resource should be specified in either ID { : } or Namespaced format { : }. For example the following are valid inputs: * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"} * {"123/environment" : "production", "345/abc" : "xyz"} Note: * Invalid combinations of ID & namespaced format is not supported. For instance: {"123/environment" : "tagValues/444"} is invalid.
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : } or Namespaced format
+     * { : }.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"}
+     * * {"123/environment" : "production", "345/abc" : "xyz"}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"} is invalid.
      *
      * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -49,7 +82,18 @@ class BackendServiceParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Tag keys/values directly bound to this resource. Tag keys and values have the same definition as resource manager tags. The field is allowed for INSERT only. The keys/values to set on the resource should be specified in either ID { : } or Namespaced format { : }. For example the following are valid inputs: * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"} * {"123/environment" : "production", "345/abc" : "xyz"} Note: * Invalid combinations of ID & namespaced format is not supported. For instance: {"123/environment" : "tagValues/444"} is invalid.
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : } or Namespaced format
+     * { : }.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"}
+     * * {"123/environment" : "production", "345/abc" : "xyz"}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"} is invalid.
      *
      * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

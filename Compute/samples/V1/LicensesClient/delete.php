@@ -30,7 +30,10 @@ use Google\Cloud\Compute\V1\DeleteLicenseRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified license. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
+ * Deletes the specified license.
+ * *Caution* This resource is intended
+ * for use only by third-party partners who are creatingCloud Marketplace
+ * images.
  *
  * @param string $license Name of the license resource to delete.
  * @param string $project Project ID for this request.

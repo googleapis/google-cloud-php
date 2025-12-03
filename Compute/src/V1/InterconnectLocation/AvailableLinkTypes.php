@@ -25,7 +25,8 @@ class AvailableLinkTypes
      */
     const LINK_TYPE_ETHERNET_100G_LR = 337672551;
     /**
-     * 10G Ethernet, LR Optics. [(rate_bps) = 10000000000];
+     * 10G Ethernet, LR Optics.
+     * [(rate_bps) =  10000000000];
      *
      * Generated from protobuf enum <code>LINK_TYPE_ETHERNET_10G_LR = 236739749;</code>
      */

@@ -34,7 +34,8 @@ class GetRoutePolicyRouterRequest extends \Google\Protobuf\Internal\Message
      */
     protected $region = '';
     /**
-     * Name of the Router resource to query for the route policy. The name should conform to RFC1035.
+     * Name of the Router resource to query for the route policy. The name should
+     * conform to RFC1035.
      *
      * Generated from protobuf field <code>string router = 148608841 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,7 +44,8 @@ class GetRoutePolicyRouterRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $project Project ID for this request.
      * @param string $region  Name of the region for this request.
-     * @param string $router  Name of the Router resource to query for the route policy. The name should conform to RFC1035.
+     * @param string $router  Name of the Router resource to query for the route policy. The name should
+     *                        conform to RFC1035.
      *
      * @return \Google\Cloud\Compute\V1\GetRoutePolicyRouterRequest
      *
@@ -70,7 +72,8 @@ class GetRoutePolicyRouterRequest extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           Name of the region for this request.
      *     @type string $router
-     *           Name of the Router resource to query for the route policy. The name should conform to RFC1035.
+     *           Name of the Router resource to query for the route policy. The name should
+     *           conform to RFC1035.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,7 +170,8 @@ class GetRoutePolicyRouterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the Router resource to query for the route policy. The name should conform to RFC1035.
+     * Name of the Router resource to query for the route policy. The name should
+     * conform to RFC1035.
      *
      * Generated from protobuf field <code>string router = 148608841 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -178,7 +182,8 @@ class GetRoutePolicyRouterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the Router resource to query for the route policy. The name should conform to RFC1035.
+     * Name of the Router resource to query for the route policy. The name should
+     * conform to RFC1035.
      *
      * Generated from protobuf field <code>string router = 148608841 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

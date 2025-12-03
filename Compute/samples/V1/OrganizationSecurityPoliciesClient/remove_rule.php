@@ -32,6 +32,11 @@ use Google\Rpc\Status;
 /**
  * Deletes a rule at the specified priority.
  *
+ * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to modify firewall policies. This usage is
+ * now disabled for most organizations. Use firewallPolicies.removeRule
+ * instead.
+ *
  * @param string $securityPolicy Name of the security policy to update.
  */
 function remove_rule_sample(string $securityPolicy): void

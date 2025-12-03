@@ -302,7 +302,8 @@ final class RegionNetworkEndpointGroupsClient
     }
 
     /**
-     * Deletes the specified network endpoint group. Note that the NEG cannot be deleted if it is configured as a backend of a backend service.
+     * Deletes the specified network endpoint group. Note that the NEG cannot be
+     * deleted if it is configured as a backend of a backend service.
      *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::deleteAsync()} .
      *
@@ -383,7 +384,8 @@ final class RegionNetworkEndpointGroupsClient
     }
 
     /**
-     * Creates a network endpoint group in the specified project using the parameters that are included in the request.
+     * Creates a network endpoint group in the specified project using the
+     * parameters that are included in the request.
      *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::insertAsync()} .
      *
@@ -409,7 +411,8 @@ final class RegionNetworkEndpointGroupsClient
     }
 
     /**
-     * Retrieves the list of regional network endpoint groups available to the specified project in the given region.
+     * Retrieves the list of regional network endpoint groups available to the
+     * specified project in the given region.
      *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::listAsync()} .
      *

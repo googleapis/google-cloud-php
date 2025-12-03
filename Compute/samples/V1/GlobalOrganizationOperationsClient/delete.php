@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\DeleteGlobalOrganizationOperationResponse;
 /**
  * Deletes the specified Operations resource.
  *
- * @param string $operation Name of the Operations resource to delete, or its unique numeric identifier.
+ * @param string $operation Name of the Operations resource to delete, or its unique numeric
+ *                          identifier.
  */
 function delete_sample(string $operation): void
 {

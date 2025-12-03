@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SSLHealthCheck extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The TCP port number to which the health check prober sends packets. The default value is 443. Valid values are 1 through 65535.
+     * The TCP port number to which the health check prober sends packets. The
+     * default value is 443. Valid values are 1 through65535.
      *
      * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      */
@@ -27,27 +28,55 @@ class SSLHealthCheck extends \Google\Protobuf\Internal\Message
      */
     protected $port_name = null;
     /**
-     * Specifies how a port is selected for health checking. Can be one of the following values: USE_FIXED_PORT: Specifies a port number explicitly using the port field in the health check. Supported by backend services for passthrough load balancers and backend services for proxy load balancers. Not supported by target pools. The health check supports all backends supported by the backend service provided the backend can be health checked. For example, GCE_VM_IP network endpoint groups, GCE_VM_IP_PORT network endpoint groups, and instance group backends. USE_NAMED_PORT: Not supported. USE_SERVING_PORT: Provides an indirect method of specifying the health check port by referring to the backend service. Only supported by backend services for proxy load balancers. Not supported by target pools. Not supported by backend services for passthrough load balancers. Supports all backends that can be health checked; for example, GCE_VM_IP_PORT network endpoint groups and instance group backends. For GCE_VM_IP_PORT network endpoint group backends, the health check uses the port number specified for each endpoint in the network endpoint group. For instance group backends, the health check uses the port number determined by looking up the backend service's named port in the instance group's list of named ports.
+     * Specifies how a port is selected for health checking. Can be one of the
+     * following values:
+     * USE_FIXED_PORT: Specifies a port number explicitly using theport field  in the health check. Supported by backend services
+     * for passthrough load balancers and backend services for proxy load
+     * balancers. Not supported by target pools. The health check supports all
+     * backends supported by the backend service provided the backend can be
+     * health checked. For example, GCE_VM_IP network endpoint
+     * groups, GCE_VM_IP_PORT network endpoint groups, and instance
+     * group backends.
+     *  USE_NAMED_PORT: Not supported.
+     * USE_SERVING_PORT: Provides an indirect method of specifying
+     * the health check port by referring to the backend service. Only supported
+     * by backend services for proxy load balancers. Not supported by target
+     * pools.  Not supported by backend services for passthrough load balancers.
+     * Supports all backends that can be health checked; for example,GCE_VM_IP_PORT network endpoint groups and instance group
+     * backends.
+     * For GCE_VM_IP_PORT network endpoint group backends, the health
+     * check uses the port number specified for each endpoint in the network
+     * endpoint group.  For instance group backends, the health check uses the
+     * port number determined by looking up the backend service's named port in
+     * the instance group's list of named ports.
      * Check the PortSpecification enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string port_specification = 51590597;</code>
      */
     protected $port_specification = null;
     /**
-     * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default
+     * is NONE.
      * Check the ProxyHeader enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
      */
     protected $proxy_header = null;
     /**
-     * Instructs the health check prober to send this exact ASCII string, up to 1024 bytes in length, after establishing the TCP connection and SSL handshake.
+     * Instructs the health check prober to send this exact ASCII string, up to
+     * 1024 bytes in length, after establishing the TCP connection and SSL
+     * handshake.
      *
      * Generated from protobuf field <code>optional string request = 21951119;</code>
      */
     protected $request = null;
     /**
-     * Creates a content-based SSL health check. In addition to establishing a TCP connection and the TLS handshake, you can configure the health check to pass only when the backend sends this exact response ASCII string, up to 1024 bytes in length. For details, see: https://cloud.google.com/load-balancing/docs/health-check-concepts#criteria-protocol-ssl-tcp
+     * Creates a content-based SSL health check. In addition to establishing a
+     * TCP connection and the TLS handshake, you can configure the health check to
+     * pass only when the backend sends this exact response ASCII string, up to
+     * 1024 bytes in length. For details, see:
+     * https://cloud.google.com/load-balancing/docs/health-check-concepts#criteria-protocol-ssl-tcp
      *
      * Generated from protobuf field <code>optional string response = 196547649;</code>
      */
@@ -60,19 +89,48 @@ class SSLHealthCheck extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $port
-     *           The TCP port number to which the health check prober sends packets. The default value is 443. Valid values are 1 through 65535.
+     *           The TCP port number to which the health check prober sends packets. The
+     *           default value is 443. Valid values are 1 through65535.
      *     @type string $port_name
      *           Not supported.
      *     @type string $port_specification
-     *           Specifies how a port is selected for health checking. Can be one of the following values: USE_FIXED_PORT: Specifies a port number explicitly using the port field in the health check. Supported by backend services for passthrough load balancers and backend services for proxy load balancers. Not supported by target pools. The health check supports all backends supported by the backend service provided the backend can be health checked. For example, GCE_VM_IP network endpoint groups, GCE_VM_IP_PORT network endpoint groups, and instance group backends. USE_NAMED_PORT: Not supported. USE_SERVING_PORT: Provides an indirect method of specifying the health check port by referring to the backend service. Only supported by backend services for proxy load balancers. Not supported by target pools. Not supported by backend services for passthrough load balancers. Supports all backends that can be health checked; for example, GCE_VM_IP_PORT network endpoint groups and instance group backends. For GCE_VM_IP_PORT network endpoint group backends, the health check uses the port number specified for each endpoint in the network endpoint group. For instance group backends, the health check uses the port number determined by looking up the backend service's named port in the instance group's list of named ports.
+     *           Specifies how a port is selected for health checking. Can be one of the
+     *           following values:
+     *           USE_FIXED_PORT: Specifies a port number explicitly using theport field  in the health check. Supported by backend services
+     *           for passthrough load balancers and backend services for proxy load
+     *           balancers. Not supported by target pools. The health check supports all
+     *           backends supported by the backend service provided the backend can be
+     *           health checked. For example, GCE_VM_IP network endpoint
+     *           groups, GCE_VM_IP_PORT network endpoint groups, and instance
+     *           group backends.
+     *            USE_NAMED_PORT: Not supported.
+     *           USE_SERVING_PORT: Provides an indirect method of specifying
+     *           the health check port by referring to the backend service. Only supported
+     *           by backend services for proxy load balancers. Not supported by target
+     *           pools.  Not supported by backend services for passthrough load balancers.
+     *           Supports all backends that can be health checked; for example,GCE_VM_IP_PORT network endpoint groups and instance group
+     *           backends.
+     *           For GCE_VM_IP_PORT network endpoint group backends, the health
+     *           check uses the port number specified for each endpoint in the network
+     *           endpoint group.  For instance group backends, the health check uses the
+     *           port number determined by looking up the backend service's named port in
+     *           the instance group's list of named ports.
      *           Check the PortSpecification enum for the list of possible values.
      *     @type string $proxy_header
-     *           Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     *           Specifies the type of proxy header to append before sending data to the
+     *           backend, either NONE or PROXY_V1. The default
+     *           is NONE.
      *           Check the ProxyHeader enum for the list of possible values.
      *     @type string $request
-     *           Instructs the health check prober to send this exact ASCII string, up to 1024 bytes in length, after establishing the TCP connection and SSL handshake.
+     *           Instructs the health check prober to send this exact ASCII string, up to
+     *           1024 bytes in length, after establishing the TCP connection and SSL
+     *           handshake.
      *     @type string $response
-     *           Creates a content-based SSL health check. In addition to establishing a TCP connection and the TLS handshake, you can configure the health check to pass only when the backend sends this exact response ASCII string, up to 1024 bytes in length. For details, see: https://cloud.google.com/load-balancing/docs/health-check-concepts#criteria-protocol-ssl-tcp
+     *           Creates a content-based SSL health check. In addition to establishing a
+     *           TCP connection and the TLS handshake, you can configure the health check to
+     *           pass only when the backend sends this exact response ASCII string, up to
+     *           1024 bytes in length. For details, see:
+     *           https://cloud.google.com/load-balancing/docs/health-check-concepts#criteria-protocol-ssl-tcp
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +139,8 @@ class SSLHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The TCP port number to which the health check prober sends packets. The default value is 443. Valid values are 1 through 65535.
+     * The TCP port number to which the health check prober sends packets. The
+     * default value is 443. Valid values are 1 through65535.
      *
      * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @return int
@@ -102,7 +161,8 @@ class SSLHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The TCP port number to which the health check prober sends packets. The default value is 443. Valid values are 1 through 65535.
+     * The TCP port number to which the health check prober sends packets. The
+     * default value is 443. Valid values are 1 through65535.
      *
      * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @param int $var
@@ -153,7 +213,27 @@ class SSLHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how a port is selected for health checking. Can be one of the following values: USE_FIXED_PORT: Specifies a port number explicitly using the port field in the health check. Supported by backend services for passthrough load balancers and backend services for proxy load balancers. Not supported by target pools. The health check supports all backends supported by the backend service provided the backend can be health checked. For example, GCE_VM_IP network endpoint groups, GCE_VM_IP_PORT network endpoint groups, and instance group backends. USE_NAMED_PORT: Not supported. USE_SERVING_PORT: Provides an indirect method of specifying the health check port by referring to the backend service. Only supported by backend services for proxy load balancers. Not supported by target pools. Not supported by backend services for passthrough load balancers. Supports all backends that can be health checked; for example, GCE_VM_IP_PORT network endpoint groups and instance group backends. For GCE_VM_IP_PORT network endpoint group backends, the health check uses the port number specified for each endpoint in the network endpoint group. For instance group backends, the health check uses the port number determined by looking up the backend service's named port in the instance group's list of named ports.
+     * Specifies how a port is selected for health checking. Can be one of the
+     * following values:
+     * USE_FIXED_PORT: Specifies a port number explicitly using theport field  in the health check. Supported by backend services
+     * for passthrough load balancers and backend services for proxy load
+     * balancers. Not supported by target pools. The health check supports all
+     * backends supported by the backend service provided the backend can be
+     * health checked. For example, GCE_VM_IP network endpoint
+     * groups, GCE_VM_IP_PORT network endpoint groups, and instance
+     * group backends.
+     *  USE_NAMED_PORT: Not supported.
+     * USE_SERVING_PORT: Provides an indirect method of specifying
+     * the health check port by referring to the backend service. Only supported
+     * by backend services for proxy load balancers. Not supported by target
+     * pools.  Not supported by backend services for passthrough load balancers.
+     * Supports all backends that can be health checked; for example,GCE_VM_IP_PORT network endpoint groups and instance group
+     * backends.
+     * For GCE_VM_IP_PORT network endpoint group backends, the health
+     * check uses the port number specified for each endpoint in the network
+     * endpoint group.  For instance group backends, the health check uses the
+     * port number determined by looking up the backend service's named port in
+     * the instance group's list of named ports.
      * Check the PortSpecification enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string port_specification = 51590597;</code>
@@ -175,7 +255,27 @@ class SSLHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how a port is selected for health checking. Can be one of the following values: USE_FIXED_PORT: Specifies a port number explicitly using the port field in the health check. Supported by backend services for passthrough load balancers and backend services for proxy load balancers. Not supported by target pools. The health check supports all backends supported by the backend service provided the backend can be health checked. For example, GCE_VM_IP network endpoint groups, GCE_VM_IP_PORT network endpoint groups, and instance group backends. USE_NAMED_PORT: Not supported. USE_SERVING_PORT: Provides an indirect method of specifying the health check port by referring to the backend service. Only supported by backend services for proxy load balancers. Not supported by target pools. Not supported by backend services for passthrough load balancers. Supports all backends that can be health checked; for example, GCE_VM_IP_PORT network endpoint groups and instance group backends. For GCE_VM_IP_PORT network endpoint group backends, the health check uses the port number specified for each endpoint in the network endpoint group. For instance group backends, the health check uses the port number determined by looking up the backend service's named port in the instance group's list of named ports.
+     * Specifies how a port is selected for health checking. Can be one of the
+     * following values:
+     * USE_FIXED_PORT: Specifies a port number explicitly using theport field  in the health check. Supported by backend services
+     * for passthrough load balancers and backend services for proxy load
+     * balancers. Not supported by target pools. The health check supports all
+     * backends supported by the backend service provided the backend can be
+     * health checked. For example, GCE_VM_IP network endpoint
+     * groups, GCE_VM_IP_PORT network endpoint groups, and instance
+     * group backends.
+     *  USE_NAMED_PORT: Not supported.
+     * USE_SERVING_PORT: Provides an indirect method of specifying
+     * the health check port by referring to the backend service. Only supported
+     * by backend services for proxy load balancers. Not supported by target
+     * pools.  Not supported by backend services for passthrough load balancers.
+     * Supports all backends that can be health checked; for example,GCE_VM_IP_PORT network endpoint groups and instance group
+     * backends.
+     * For GCE_VM_IP_PORT network endpoint group backends, the health
+     * check uses the port number specified for each endpoint in the network
+     * endpoint group.  For instance group backends, the health check uses the
+     * port number determined by looking up the backend service's named port in
+     * the instance group's list of named ports.
      * Check the PortSpecification enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string port_specification = 51590597;</code>
@@ -191,7 +291,9 @@ class SSLHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default
+     * is NONE.
      * Check the ProxyHeader enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
@@ -213,7 +315,9 @@ class SSLHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default
+     * is NONE.
      * Check the ProxyHeader enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
@@ -229,7 +333,9 @@ class SSLHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Instructs the health check prober to send this exact ASCII string, up to 1024 bytes in length, after establishing the TCP connection and SSL handshake.
+     * Instructs the health check prober to send this exact ASCII string, up to
+     * 1024 bytes in length, after establishing the TCP connection and SSL
+     * handshake.
      *
      * Generated from protobuf field <code>optional string request = 21951119;</code>
      * @return string
@@ -250,7 +356,9 @@ class SSLHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Instructs the health check prober to send this exact ASCII string, up to 1024 bytes in length, after establishing the TCP connection and SSL handshake.
+     * Instructs the health check prober to send this exact ASCII string, up to
+     * 1024 bytes in length, after establishing the TCP connection and SSL
+     * handshake.
      *
      * Generated from protobuf field <code>optional string request = 21951119;</code>
      * @param string $var
@@ -265,7 +373,11 @@ class SSLHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Creates a content-based SSL health check. In addition to establishing a TCP connection and the TLS handshake, you can configure the health check to pass only when the backend sends this exact response ASCII string, up to 1024 bytes in length. For details, see: https://cloud.google.com/load-balancing/docs/health-check-concepts#criteria-protocol-ssl-tcp
+     * Creates a content-based SSL health check. In addition to establishing a
+     * TCP connection and the TLS handshake, you can configure the health check to
+     * pass only when the backend sends this exact response ASCII string, up to
+     * 1024 bytes in length. For details, see:
+     * https://cloud.google.com/load-balancing/docs/health-check-concepts#criteria-protocol-ssl-tcp
      *
      * Generated from protobuf field <code>optional string response = 196547649;</code>
      * @return string
@@ -286,7 +398,11 @@ class SSLHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Creates a content-based SSL health check. In addition to establishing a TCP connection and the TLS handshake, you can configure the health check to pass only when the backend sends this exact response ASCII string, up to 1024 bytes in length. For details, see: https://cloud.google.com/load-balancing/docs/health-check-concepts#criteria-protocol-ssl-tcp
+     * Creates a content-based SSL health check. In addition to establishing a
+     * TCP connection and the TLS handshake, you can configure the health check to
+     * pass only when the backend sends this exact response ASCII string, up to
+     * 1024 bytes in length. For details, see:
+     * https://cloud.google.com/load-balancing/docs/health-check-concepts#criteria-protocol-ssl-tcp
      *
      * Generated from protobuf field <code>optional string response = 196547649;</code>
      * @param string $var

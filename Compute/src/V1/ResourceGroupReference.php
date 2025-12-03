@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceGroupReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A URI referencing one of the instance groups or network endpoint groups listed in the backend service.
+     * A URI referencing one of the instance groups or network endpoint groups
+     * listed in the backend service.
      *
      * Generated from protobuf field <code>optional string group = 98629247;</code>
      */
@@ -28,7 +29,8 @@ class ResourceGroupReference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $group
-     *           A URI referencing one of the instance groups or network endpoint groups listed in the backend service.
+     *           A URI referencing one of the instance groups or network endpoint groups
+     *           listed in the backend service.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class ResourceGroupReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A URI referencing one of the instance groups or network endpoint groups listed in the backend service.
+     * A URI referencing one of the instance groups or network endpoint groups
+     * listed in the backend service.
      *
      * Generated from protobuf field <code>optional string group = 98629247;</code>
      * @return string
@@ -58,7 +61,8 @@ class ResourceGroupReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A URI referencing one of the instance groups or network endpoint groups listed in the backend service.
+     * A URI referencing one of the instance groups or network endpoint groups
+     * listed in the backend service.
      *
      * Generated from protobuf field <code>optional string group = 98629247;</code>
      * @param string $var

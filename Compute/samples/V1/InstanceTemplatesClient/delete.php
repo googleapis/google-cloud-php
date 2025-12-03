@@ -30,7 +30,9 @@ use Google\Cloud\Compute\V1\DeleteInstanceTemplateRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified instance template. Deleting an instance template is permanent and cannot be undone. It is not possible to delete templates that are already in use by a managed instance group.
+ * Deletes the specified instance template. Deleting an instance template is
+ * permanent and cannot be undone. It is not possible to delete templates
+ * that are already in use by a managed instance group.
  *
  * @param string $instanceTemplate The name of the instance template to delete.
  * @param string $project          Project ID for this request.

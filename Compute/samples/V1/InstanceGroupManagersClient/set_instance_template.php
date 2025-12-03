@@ -31,11 +31,14 @@ use Google\Cloud\Compute\V1\SetInstanceTemplateInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
- * Specifies the instance template to use when creating new instances in this group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
+ * Specifies the instance template to use when creating new instances in this
+ * group. The templates for existing instances in the group do not change
+ * unless you run recreateInstances, runapplyUpdatesToInstances, or set the group'supdatePolicy.type to PROACTIVE.
  *
  * @param string $instanceGroupManager The name of the managed instance group.
  * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the managed instance group is located.
+ * @param string $zone                 The name of thezone where the managed
+ *                                     instance group is located.
  */
 function set_instance_template_sample(
     string $instanceGroupManager,

@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\InstantSnapshotsClient;
 use Google\Cloud\Compute\V1\ListInstantSnapshotsRequest;
 
 /**
- * Retrieves the list of InstantSnapshot resources contained within the specified zone.
+ * Retrieves the list of InstantSnapshot resources contained within
+ * the specified zone.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    The name of the zone for this request.

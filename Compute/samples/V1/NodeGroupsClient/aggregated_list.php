@@ -29,7 +29,11 @@ use Google\Cloud\Compute\V1\AggregatedListNodeGroupsRequest;
 use Google\Cloud\Compute\V1\Client\NodeGroupsClient;
 
 /**
- * Retrieves an aggregated list of node groups. Note: use nodeGroups.listNodes for more details about each group. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+ * Retrieves an aggregated list of node groups.
+ * Note: use nodeGroups.listNodes for more details about each group.
+ *
+ * To prevent failure, Google recommends that you set the
+ * `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

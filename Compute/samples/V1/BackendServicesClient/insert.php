@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\InsertBackendServiceRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates a BackendService resource in the specified project using the data included in the request. For more information, see Backend services overview .
+ * Creates a BackendService resource in the specified project using
+ * the data included in the request. For more information, see
+ * Backend services overview.
  *
  * @param string $project Project ID for this request.
  */

@@ -15,7 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstancesStartWithEncryptionKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Array of disks associated with this instance that are protected with a customer-supplied encryption key. In order to start the instance, the disk url and its corresponding key must be provided. If the disk is not protected with a customer-supplied encryption key it should not be specified.
+     * Array of disks associated with this instance that are protected with acustomer-supplied
+     * encryption key.
+     * In order to start the instance, the disk url and its corresponding key must
+     * be provided.
+     * If the disk is not protected with a customer-supplied encryption key it
+     * should not be specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.CustomerEncryptionKeyProtectedDisk disks = 95594102;</code>
      */
@@ -28,7 +33,12 @@ class InstancesStartWithEncryptionKeyRequest extends \Google\Protobuf\Internal\M
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\CustomerEncryptionKeyProtectedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
-     *           Array of disks associated with this instance that are protected with a customer-supplied encryption key. In order to start the instance, the disk url and its corresponding key must be provided. If the disk is not protected with a customer-supplied encryption key it should not be specified.
+     *           Array of disks associated with this instance that are protected with acustomer-supplied
+     *           encryption key.
+     *           In order to start the instance, the disk url and its corresponding key must
+     *           be provided.
+     *           If the disk is not protected with a customer-supplied encryption key it
+     *           should not be specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +47,12 @@ class InstancesStartWithEncryptionKeyRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Array of disks associated with this instance that are protected with a customer-supplied encryption key. In order to start the instance, the disk url and its corresponding key must be provided. If the disk is not protected with a customer-supplied encryption key it should not be specified.
+     * Array of disks associated with this instance that are protected with acustomer-supplied
+     * encryption key.
+     * In order to start the instance, the disk url and its corresponding key must
+     * be provided.
+     * If the disk is not protected with a customer-supplied encryption key it
+     * should not be specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.CustomerEncryptionKeyProtectedDisk disks = 95594102;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -48,7 +63,12 @@ class InstancesStartWithEncryptionKeyRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Array of disks associated with this instance that are protected with a customer-supplied encryption key. In order to start the instance, the disk url and its corresponding key must be provided. If the disk is not protected with a customer-supplied encryption key it should not be specified.
+     * Array of disks associated with this instance that are protected with acustomer-supplied
+     * encryption key.
+     * In order to start the instance, the disk url and its corresponding key must
+     * be provided.
+     * If the disk is not protected with a customer-supplied encryption key it
+     * should not be specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.CustomerEncryptionKeyProtectedDisk disks = 95594102;</code>
      * @param array<\Google\Cloud\Compute\V1\CustomerEncryptionKeyProtectedDisk>|\Google\Protobuf\Internal\RepeatedField $var

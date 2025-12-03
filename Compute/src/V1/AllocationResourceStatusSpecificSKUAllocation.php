@@ -22,7 +22,8 @@ class AllocationResourceStatusSpecificSKUAllocation extends \Google\Protobuf\Int
      */
     protected $source_instance_template_id = null;
     /**
-     * Per service utilization breakdown. The Key is the Google Cloud managed service name.
+     * Per service utilization breakdown. The Key is the Google Cloud managed
+     * service name.
      *
      * Generated from protobuf field <code>map<string, int64> utilizations = 402495121;</code>
      */
@@ -37,7 +38,8 @@ class AllocationResourceStatusSpecificSKUAllocation extends \Google\Protobuf\Int
      *     @type string $source_instance_template_id
      *           ID of the instance template used to populate reservation properties.
      *     @type array|\Google\Protobuf\Internal\MapField $utilizations
-     *           Per service utilization breakdown. The Key is the Google Cloud managed service name.
+     *           Per service utilization breakdown. The Key is the Google Cloud managed
+     *           service name.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +84,8 @@ class AllocationResourceStatusSpecificSKUAllocation extends \Google\Protobuf\Int
     }
 
     /**
-     * Per service utilization breakdown. The Key is the Google Cloud managed service name.
+     * Per service utilization breakdown. The Key is the Google Cloud managed
+     * service name.
      *
      * Generated from protobuf field <code>map<string, int64> utilizations = 402495121;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -93,7 +96,8 @@ class AllocationResourceStatusSpecificSKUAllocation extends \Google\Protobuf\Int
     }
 
     /**
-     * Per service utilization breakdown. The Key is the Google Cloud managed service name.
+     * Per service utilization breakdown. The Key is the Google Cloud managed
+     * service name.
      *
      * Generated from protobuf field <code>map<string, int64> utilizations = 402495121;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

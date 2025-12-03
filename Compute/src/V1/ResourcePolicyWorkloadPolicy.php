@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourcePolicyWorkloadPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies the topology required to create a partition for VMs that have interconnected GPUs.
+     * Specifies the topology required to create a partition for VMs that have
+     * interconnected GPUs.
      *
      * Generated from protobuf field <code>optional string accelerator_topology = 389323203;</code>
      */
@@ -43,7 +44,8 @@ class ResourcePolicyWorkloadPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $accelerator_topology
-     *           Specifies the topology required to create a partition for VMs that have interconnected GPUs.
+     *           Specifies the topology required to create a partition for VMs that have
+     *           interconnected GPUs.
      *     @type string $max_topology_distance
      *           Specifies the maximum distance between instances.
      *           Check the MaxTopologyDistance enum for the list of possible values.
@@ -58,7 +60,8 @@ class ResourcePolicyWorkloadPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the topology required to create a partition for VMs that have interconnected GPUs.
+     * Specifies the topology required to create a partition for VMs that have
+     * interconnected GPUs.
      *
      * Generated from protobuf field <code>optional string accelerator_topology = 389323203;</code>
      * @return string
@@ -79,7 +82,8 @@ class ResourcePolicyWorkloadPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the topology required to create a partition for VMs that have interconnected GPUs.
+     * Specifies the topology required to create a partition for VMs that have
+     * interconnected GPUs.
      *
      * Generated from protobuf field <code>optional string accelerator_topology = 389323203;</code>
      * @param string $var

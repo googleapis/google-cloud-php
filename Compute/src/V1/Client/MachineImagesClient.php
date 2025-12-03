@@ -276,7 +276,8 @@ final class MachineImagesClient
     }
 
     /**
-     * Deletes the specified machine image. Deleting a machine image is permanent and cannot be undone.
+     * Deletes the specified machine image. Deleting a machine image is permanent
+     * and cannot be undone.
      *
      * The async variant is {@see MachineImagesClient::deleteAsync()} .
      *
@@ -328,7 +329,8 @@ final class MachineImagesClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see MachineImagesClient::getIamPolicyAsync()} .
      *
@@ -354,7 +356,11 @@ final class MachineImagesClient
     }
 
     /**
-     * Creates a machine image in the specified project using the data that is included in the request. If you are creating a new machine image to update an existing instance, your new machine image should use the same network or, if applicable, the same subnetwork as the original instance.
+     * Creates a machine image in the specified project using the
+     * data that is included in the request. If you are creating a new machine
+     * image to update an existing instance, your new machine image should use the
+     * same network or, if applicable, the same subnetwork as the original
+     * instance.
      *
      * The async variant is {@see MachineImagesClient::insertAsync()} .
      *
@@ -380,7 +386,8 @@ final class MachineImagesClient
     }
 
     /**
-     * Retrieves a list of machine images that are contained within the specified project.
+     * Retrieves a list of machine images that are contained within
+     * the specified project.
      *
      * The async variant is {@see MachineImagesClient::listAsync()} .
      *
@@ -406,7 +413,8 @@ final class MachineImagesClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see MachineImagesClient::setIamPolicyAsync()} .
      *
@@ -432,7 +440,8 @@ final class MachineImagesClient
     }
 
     /**
-     * Sets the labels on a machine image. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on a machine image. To learn more about labels, read theLabeling
+     * Resources documentation.
      *
      * The async variant is {@see MachineImagesClient::setLabelsAsync()} .
      *

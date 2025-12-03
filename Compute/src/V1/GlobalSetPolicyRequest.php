@@ -15,19 +15,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class GlobalSetPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify bindings.
+     * Flatten Policy to create a backward compatible wire-format.
+     * Deprecated. Use 'policy' to specify bindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
      */
     private $bindings;
     /**
-     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify the etag.
+     * Flatten Policy to create a backward compatible wire-format.
+     * Deprecated. Use 'policy' to specify the etag.
      *
      * Generated from protobuf field <code>optional string etag = 3123477;</code>
      */
     protected $etag = null;
     /**
-     * REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the 'resource'. The size of
+     * the policy is limited to a few 10s of KB. An empty policy is in general a
+     * valid policy but certain services (like Projects) might reject them.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Policy policy = 91071794;</code>
      */
@@ -40,11 +44,15 @@ class GlobalSetPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\Binding>|\Google\Protobuf\Internal\RepeatedField $bindings
-     *           Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify bindings.
+     *           Flatten Policy to create a backward compatible wire-format.
+     *           Deprecated. Use 'policy' to specify bindings.
      *     @type string $etag
-     *           Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify the etag.
+     *           Flatten Policy to create a backward compatible wire-format.
+     *           Deprecated. Use 'policy' to specify the etag.
      *     @type \Google\Cloud\Compute\V1\Policy $policy
-     *           REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
+     *           REQUIRED: The complete policy to be applied to the 'resource'. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is in general a
+     *           valid policy but certain services (like Projects) might reject them.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +61,8 @@ class GlobalSetPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify bindings.
+     * Flatten Policy to create a backward compatible wire-format.
+     * Deprecated. Use 'policy' to specify bindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -64,7 +73,8 @@ class GlobalSetPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify bindings.
+     * Flatten Policy to create a backward compatible wire-format.
+     * Deprecated. Use 'policy' to specify bindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
      * @param array<\Google\Cloud\Compute\V1\Binding>|\Google\Protobuf\Internal\RepeatedField $var
@@ -79,7 +89,8 @@ class GlobalSetPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify the etag.
+     * Flatten Policy to create a backward compatible wire-format.
+     * Deprecated. Use 'policy' to specify the etag.
      *
      * Generated from protobuf field <code>optional string etag = 3123477;</code>
      * @return string
@@ -100,7 +111,8 @@ class GlobalSetPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify the etag.
+     * Flatten Policy to create a backward compatible wire-format.
+     * Deprecated. Use 'policy' to specify the etag.
      *
      * Generated from protobuf field <code>optional string etag = 3123477;</code>
      * @param string $var
@@ -115,7 +127,9 @@ class GlobalSetPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the 'resource'. The size of
+     * the policy is limited to a few 10s of KB. An empty policy is in general a
+     * valid policy but certain services (like Projects) might reject them.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Policy policy = 91071794;</code>
      * @return \Google\Cloud\Compute\V1\Policy|null
@@ -136,7 +150,9 @@ class GlobalSetPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the 'resource'. The size of
+     * the policy is limited to a few 10s of KB. An empty policy is in general a
+     * valid policy but certain services (like Projects) might reject them.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Policy policy = 91071794;</code>
      * @param \Google\Cloud\Compute\V1\Policy $var

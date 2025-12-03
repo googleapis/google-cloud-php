@@ -15,13 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupsScopedList extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The list of instance groups that are contained in this scope.
+     * [Output Only] The list ofinstance
+     * groups that are contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroup instance_groups = 366469310;</code>
      */
     private $instance_groups;
     /**
-     * [Output Only] An informational warning that replaces the list of instance groups when the list is empty.
+     * [Output Only] An informational warning that replaces the list of
+     * instance groups when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
@@ -34,9 +36,11 @@ class InstanceGroupsScopedList extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\InstanceGroup>|\Google\Protobuf\Internal\RepeatedField $instance_groups
-     *           [Output Only] The list of instance groups that are contained in this scope.
+     *           [Output Only] The list ofinstance
+     *           groups that are contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
-     *           [Output Only] An informational warning that replaces the list of instance groups when the list is empty.
+     *           [Output Only] An informational warning that replaces the list of
+     *           instance groups when the list is empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +49,8 @@ class InstanceGroupsScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of instance groups that are contained in this scope.
+     * [Output Only] The list ofinstance
+     * groups that are contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroup instance_groups = 366469310;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -56,7 +61,8 @@ class InstanceGroupsScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of instance groups that are contained in this scope.
+     * [Output Only] The list ofinstance
+     * groups that are contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroup instance_groups = 366469310;</code>
      * @param array<\Google\Cloud\Compute\V1\InstanceGroup>|\Google\Protobuf\Internal\RepeatedField $var
@@ -71,7 +77,8 @@ class InstanceGroupsScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An informational warning that replaces the list of instance groups when the list is empty.
+     * [Output Only] An informational warning that replaces the list of
+     * instance groups when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
@@ -92,7 +99,8 @@ class InstanceGroupsScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An informational warning that replaces the list of instance groups when the list is empty.
+     * [Output Only] An informational warning that replaces the list of
+     * instance groups when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var

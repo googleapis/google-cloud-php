@@ -7,7 +7,16 @@ namespace Google\Cloud\Compute\V1\SecurityPolicyUserDefinedField;
 use UnexpectedValueException;
 
 /**
- * The base relative to which 'offset' is measured. Possible values are: - IPV4: Points to the beginning of the IPv4 header. - IPV6: Points to the beginning of the IPv6 header. - TCP: Points to the beginning of the TCP header, skipping over any IPv4 options or IPv6 extension headers. Not present for non-first fragments. - UDP: Points to the beginning of the UDP header, skipping over any IPv4 options or IPv6 extension headers. Not present for non-first fragments. required
+ * The base relative to which 'offset' is measured. Possible values are:
+ *    - IPV4: Points to the beginning of the IPv4 header.
+ *    - IPV6: Points to the beginning of the IPv6 header.
+ *    - TCP: Points to the beginning of the TCP header, skipping
+ *    over any IPv4 options or IPv6 extension headers. Not present for
+ *    non-first fragments.
+ *    - UDP: Points to the beginning of the UDP header, skipping
+ *    over any IPv4 options or IPv6 extension headers. Not present for
+ *    non-first fragments.
+ * required
  *
  * Protobuf type <code>google.cloud.compute.v1.SecurityPolicyUserDefinedField.Base</code>
  */

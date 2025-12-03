@@ -22,7 +22,8 @@ class SetDiskAutoDeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $auto_delete = false;
     /**
-     * The device name of the disk to modify. Make a get() request on the instance to view currently attached disks and device names.
+     * The device name of the disk to modify. Make a get() request
+     * on the instance to view currently attached disks and device names.
      *
      * Generated from protobuf field <code>string device_name = 67541716 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -40,7 +41,17 @@ class SetDiskAutoDeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $project = '';
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
@@ -57,7 +68,8 @@ class SetDiskAutoDeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      * @param string $zone       The name of the zone for this request.
      * @param string $instance   The instance name for this request.
      * @param bool   $autoDelete Whether to auto-delete the disk when the instance is deleted.
-     * @param string $deviceName The device name of the disk to modify. Make a get() request on the instance to view currently attached disks and device names.
+     * @param string $deviceName The device name of the disk to modify. Make a get() request
+     *                           on the instance to view currently attached disks and device names.
      *
      * @return \Google\Cloud\Compute\V1\SetDiskAutoDeleteInstanceRequest
      *
@@ -82,13 +94,24 @@ class SetDiskAutoDeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $auto_delete
      *           Whether to auto-delete the disk when the instance is deleted.
      *     @type string $device_name
-     *           The device name of the disk to modify. Make a get() request on the instance to view currently attached disks and device names.
+     *           The device name of the disk to modify. Make a get() request
+     *           on the instance to view currently attached disks and device names.
      *     @type string $instance
      *           The instance name for this request.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server will know to ignore the
+     *           request if it has already been completed.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same
+     *           request ID, the server can check if original operation with the same
+     *           request ID was received, and if so, will ignore the second request. This
+     *           prevents clients from accidentally creating duplicate commitments.
+     *           The request ID must be
+     *           a valid UUID with the exception that zero UUID is not supported
+     *           (00000000-0000-0000-0000-000000000000).
      *     @type string $zone
      *           The name of the zone for this request.
      * }
@@ -125,7 +148,8 @@ class SetDiskAutoDeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The device name of the disk to modify. Make a get() request on the instance to view currently attached disks and device names.
+     * The device name of the disk to modify. Make a get() request
+     * on the instance to view currently attached disks and device names.
      *
      * Generated from protobuf field <code>string device_name = 67541716 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -136,7 +160,8 @@ class SetDiskAutoDeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The device name of the disk to modify. Make a get() request on the instance to view currently attached disks and device names.
+     * The device name of the disk to modify. Make a get() request
+     * on the instance to view currently attached disks and device names.
      *
      * Generated from protobuf field <code>string device_name = 67541716 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -203,7 +228,17 @@ class SetDiskAutoDeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -224,7 +259,17 @@ class SetDiskAutoDeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var

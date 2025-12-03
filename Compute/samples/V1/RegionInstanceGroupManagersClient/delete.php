@@ -30,7 +30,8 @@ use Google\Cloud\Compute\V1\DeleteRegionInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified managed instance group and all of the instances in that group.
+ * Deletes the specified managed instance group and all of the instances
+ * in that group.
  *
  * @param string $instanceGroupManager Name of the managed instance group to delete.
  * @param string $project              Project ID for this request.

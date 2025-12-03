@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionInstanceGroupManagerDeleteInstanceConfigReq extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of instance names for which we want to delete per-instance configs on this managed instance group.
+     * The list of instance names for which we want to delete per-instance configs
+     * on this managed instance group.
      *
      * Generated from protobuf field <code>repeated string names = 104585032;</code>
      */
@@ -29,7 +30,8 @@ class RegionInstanceGroupManagerDeleteInstanceConfigReq extends \Google\Protobuf
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
-     *           The list of instance names for which we want to delete per-instance configs on this managed instance group.
+     *           The list of instance names for which we want to delete per-instance configs
+     *           on this managed instance group.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class RegionInstanceGroupManagerDeleteInstanceConfigReq extends \Google\Protobuf
     }
 
     /**
-     * The list of instance names for which we want to delete per-instance configs on this managed instance group.
+     * The list of instance names for which we want to delete per-instance configs
+     * on this managed instance group.
      *
      * Generated from protobuf field <code>repeated string names = 104585032;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,7 +52,8 @@ class RegionInstanceGroupManagerDeleteInstanceConfigReq extends \Google\Protobuf
     }
 
     /**
-     * The list of instance names for which we want to delete per-instance configs on this managed instance group.
+     * The list of instance names for which we want to delete per-instance configs
+     * on this managed instance group.
      *
      * Generated from protobuf field <code>repeated string names = 104585032;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

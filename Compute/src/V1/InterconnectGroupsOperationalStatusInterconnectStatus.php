@@ -22,7 +22,8 @@ class InterconnectGroupsOperationalStatusInterconnectStatus extends \Google\Prot
      */
     protected $admin_enabled = null;
     /**
-     * The diagnostics of the Interconnect, as returned by the existing get-diagnostics method.
+     * The diagnostics of the Interconnect, as returned by the existing
+     * get-diagnostics method.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnostics diagnostics = 333355436;</code>
      */
@@ -34,7 +35,8 @@ class InterconnectGroupsOperationalStatusInterconnectStatus extends \Google\Prot
      */
     protected $interconnect = null;
     /**
-     * Whether this interconnect is participating in the redundant configuration.
+     * Whether this interconnect is participating in the redundant
+     * configuration.
      * Check the IsActive enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string is_active = 114830267;</code>
@@ -50,11 +52,13 @@ class InterconnectGroupsOperationalStatusInterconnectStatus extends \Google\Prot
      *     @type bool $admin_enabled
      *           Whether the Interconnect is enabled.
      *     @type \Google\Cloud\Compute\V1\InterconnectDiagnostics $diagnostics
-     *           The diagnostics of the Interconnect, as returned by the existing get-diagnostics method.
+     *           The diagnostics of the Interconnect, as returned by the existing
+     *           get-diagnostics method.
      *     @type string $interconnect
      *           The URL of the Interconnect being described.
      *     @type string $is_active
-     *           Whether this interconnect is participating in the redundant configuration.
+     *           Whether this interconnect is participating in the redundant
+     *           configuration.
      *           Check the IsActive enum for the list of possible values.
      * }
      */
@@ -100,7 +104,8 @@ class InterconnectGroupsOperationalStatusInterconnectStatus extends \Google\Prot
     }
 
     /**
-     * The diagnostics of the Interconnect, as returned by the existing get-diagnostics method.
+     * The diagnostics of the Interconnect, as returned by the existing
+     * get-diagnostics method.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnostics diagnostics = 333355436;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectDiagnostics|null
@@ -121,7 +126,8 @@ class InterconnectGroupsOperationalStatusInterconnectStatus extends \Google\Prot
     }
 
     /**
-     * The diagnostics of the Interconnect, as returned by the existing get-diagnostics method.
+     * The diagnostics of the Interconnect, as returned by the existing
+     * get-diagnostics method.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnostics diagnostics = 333355436;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectDiagnostics $var
@@ -172,7 +178,8 @@ class InterconnectGroupsOperationalStatusInterconnectStatus extends \Google\Prot
     }
 
     /**
-     * Whether this interconnect is participating in the redundant configuration.
+     * Whether this interconnect is participating in the redundant
+     * configuration.
      * Check the IsActive enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string is_active = 114830267;</code>
@@ -194,7 +201,8 @@ class InterconnectGroupsOperationalStatusInterconnectStatus extends \Google\Prot
     }
 
     /**
-     * Whether this interconnect is participating in the redundant configuration.
+     * Whether this interconnect is participating in the redundant
+     * configuration.
      * Check the IsActive enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string is_active = 114830267;</code>

@@ -9,33 +9,43 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Project resource. A project is used to organize resources in a Google Cloud Platform environment. For more information, read about the Resource Hierarchy.
+ * Represents a Project resource.
+ * A project is used to organize resources in a Google Cloud Platform
+ * environment. For more information, read about the
+ * Resource Hierarchy.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Project</code>
  */
 class Project extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The Cloud Armor tier for this project. It can be one of the following values: CA_STANDARD, CA_ENTERPRISE_PAYGO. If this field is not specified, it is assumed to be CA_STANDARD.
+     * [Output Only] The Cloud Armor tier for this project. It can be one of the
+     * following values: CA_STANDARD,CA_ENTERPRISE_PAYGO.
+     * If this field is not specified, it is assumed to beCA_STANDARD.
      * Check the CloudArmorTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string cloud_armor_tier = 4427052;</code>
      */
     protected $cloud_armor_tier = null;
     /**
-     * Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
+     * Metadata key/value pairs available to all instances contained in this
+     * project. See Custom
+     * metadata for more information.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
      */
     protected $common_instance_metadata = null;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
+     * This signifies the default network tier used for configuring resources of
+     * the project and can only take the following values:PREMIUM, STANDARD. Initially the default network
+     * tier is PREMIUM.
      * Check the DefaultNetworkTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string default_network_tier = 471753361;</code>
@@ -60,19 +70,23 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     private $enabled_features;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server. This is *not* the project ID, and is
+     * just a unique ID used by Compute Engine to identify resources.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#project for projects.
+     * [Output Only] Type of the resource. Always compute#project for
+     * projects.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * The project ID. For example: my-example-project. Use the project ID to make requests to Compute Engine.
+     * The project ID. For example: my-example-project. Use the
+     * project ID to make requests to Compute Engine.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -90,20 +104,24 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * An optional naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     * An optional naming prefix for daily usage reports and the Google Cloud
+     * Storage bucket where they are stored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      */
     protected $usage_export_location = null;
     /**
-     * [Output Only] Default internal DNS setting used by VMs running in this project.
+     * [Output Only] Default internal DNS setting used by VMs running in
+     * this project.
      * Check the VmDnsSetting enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string vm_dns_setting = 58856370;</code>
      */
     protected $vm_dns_setting = null;
     /**
-     * [Output Only] The role this project has in a shared VPC configuration. Currently, only projects with the host role, which is specified by the value HOST, are differentiated.
+     * [Output Only] The role this project has in a shared VPC configuration.
+     * Currently, only projects with the host role, which is specified by the
+     * value HOST, are differentiated.
      * Check the XpnProjectStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string xpn_project_status = 228419265;</code>
@@ -117,14 +135,21 @@ class Project extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cloud_armor_tier
-     *           [Output Only] The Cloud Armor tier for this project. It can be one of the following values: CA_STANDARD, CA_ENTERPRISE_PAYGO. If this field is not specified, it is assumed to be CA_STANDARD.
+     *           [Output Only] The Cloud Armor tier for this project. It can be one of the
+     *           following values: CA_STANDARD,CA_ENTERPRISE_PAYGO.
+     *           If this field is not specified, it is assumed to beCA_STANDARD.
      *           Check the CloudArmorTier enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\Metadata $common_instance_metadata
-     *           Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
+     *           Metadata key/value pairs available to all instances contained in this
+     *           project. See Custom
+     *           metadata for more information.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $default_network_tier
-     *           This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
+     *           This signifies the default network tier used for configuring resources of
+     *           the project and can only take the following values:PREMIUM, STANDARD. Initially the default network
+     *           tier is PREMIUM.
      *           Check the DefaultNetworkTier enum for the list of possible values.
      *     @type string $default_service_account
      *           [Output Only] Default service account used by VMs running in this project.
@@ -133,22 +158,30 @@ class Project extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enabled_features
      *           An optional list of restricted features enabled for use on this project.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server. This is *not* the project ID, and is
+     *           just a unique ID used by Compute Engine to identify resources.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#project for projects.
+     *           [Output Only] Type of the resource. Always compute#project for
+     *           projects.
      *     @type string $name
-     *           The project ID. For example: my-example-project. Use the project ID to make requests to Compute Engine.
+     *           The project ID. For example: my-example-project. Use the
+     *           project ID to make requests to Compute Engine.
      *     @type array<\Google\Cloud\Compute\V1\Quota>|\Google\Protobuf\Internal\RepeatedField $quotas
      *           [Output Only] Quotas assigned to this project.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\UsageExportLocation $usage_export_location
-     *           An optional naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     *           An optional naming prefix for daily usage reports and the Google Cloud
+     *           Storage bucket where they are stored.
      *     @type string $vm_dns_setting
-     *           [Output Only] Default internal DNS setting used by VMs running in this project.
+     *           [Output Only] Default internal DNS setting used by VMs running in
+     *           this project.
      *           Check the VmDnsSetting enum for the list of possible values.
      *     @type string $xpn_project_status
-     *           [Output Only] The role this project has in a shared VPC configuration. Currently, only projects with the host role, which is specified by the value HOST, are differentiated.
+     *           [Output Only] The role this project has in a shared VPC configuration.
+     *           Currently, only projects with the host role, which is specified by the
+     *           value HOST, are differentiated.
      *           Check the XpnProjectStatus enum for the list of possible values.
      * }
      */
@@ -158,7 +191,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The Cloud Armor tier for this project. It can be one of the following values: CA_STANDARD, CA_ENTERPRISE_PAYGO. If this field is not specified, it is assumed to be CA_STANDARD.
+     * [Output Only] The Cloud Armor tier for this project. It can be one of the
+     * following values: CA_STANDARD,CA_ENTERPRISE_PAYGO.
+     * If this field is not specified, it is assumed to beCA_STANDARD.
      * Check the CloudArmorTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string cloud_armor_tier = 4427052;</code>
@@ -180,7 +215,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The Cloud Armor tier for this project. It can be one of the following values: CA_STANDARD, CA_ENTERPRISE_PAYGO. If this field is not specified, it is assumed to be CA_STANDARD.
+     * [Output Only] The Cloud Armor tier for this project. It can be one of the
+     * following values: CA_STANDARD,CA_ENTERPRISE_PAYGO.
+     * If this field is not specified, it is assumed to beCA_STANDARD.
      * Check the CloudArmorTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string cloud_armor_tier = 4427052;</code>
@@ -196,7 +233,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
+     * Metadata key/value pairs available to all instances contained in this
+     * project. See Custom
+     * metadata for more information.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
      * @return \Google\Cloud\Compute\V1\Metadata|null
@@ -217,7 +256,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
+     * Metadata key/value pairs available to all instances contained in this
+     * project. See Custom
+     * metadata for more information.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
      * @param \Google\Cloud\Compute\V1\Metadata $var
@@ -232,7 +273,8 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -253,7 +295,8 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -268,7 +311,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
+     * This signifies the default network tier used for configuring resources of
+     * the project and can only take the following values:PREMIUM, STANDARD. Initially the default network
+     * tier is PREMIUM.
      * Check the DefaultNetworkTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string default_network_tier = 471753361;</code>
@@ -290,7 +335,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
+     * This signifies the default network tier used for configuring resources of
+     * the project and can only take the following values:PREMIUM, STANDARD. Initially the default network
+     * tier is PREMIUM.
      * Check the DefaultNetworkTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string default_network_tier = 471753361;</code>
@@ -404,7 +451,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server. This is *not* the project ID, and is
+     * just a unique ID used by Compute Engine to identify resources.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -425,7 +474,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server. This is *not* the project ID, and is
+     * just a unique ID used by Compute Engine to identify resources.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -440,7 +491,8 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#project for projects.
+     * [Output Only] Type of the resource. Always compute#project for
+     * projects.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -461,7 +513,8 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#project for projects.
+     * [Output Only] Type of the resource. Always compute#project for
+     * projects.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -476,7 +529,8 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID. For example: my-example-project. Use the project ID to make requests to Compute Engine.
+     * The project ID. For example: my-example-project. Use the
+     * project ID to make requests to Compute Engine.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -497,7 +551,8 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID. For example: my-example-project. Use the project ID to make requests to Compute Engine.
+     * The project ID. For example: my-example-project. Use the
+     * project ID to make requests to Compute Engine.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -574,7 +629,8 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     * An optional naming prefix for daily usage reports and the Google Cloud
+     * Storage bucket where they are stored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      * @return \Google\Cloud\Compute\V1\UsageExportLocation|null
@@ -595,7 +651,8 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     * An optional naming prefix for daily usage reports and the Google Cloud
+     * Storage bucket where they are stored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      * @param \Google\Cloud\Compute\V1\UsageExportLocation $var
@@ -610,7 +667,8 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Default internal DNS setting used by VMs running in this project.
+     * [Output Only] Default internal DNS setting used by VMs running in
+     * this project.
      * Check the VmDnsSetting enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string vm_dns_setting = 58856370;</code>
@@ -632,7 +690,8 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Default internal DNS setting used by VMs running in this project.
+     * [Output Only] Default internal DNS setting used by VMs running in
+     * this project.
      * Check the VmDnsSetting enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string vm_dns_setting = 58856370;</code>
@@ -648,7 +707,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The role this project has in a shared VPC configuration. Currently, only projects with the host role, which is specified by the value HOST, are differentiated.
+     * [Output Only] The role this project has in a shared VPC configuration.
+     * Currently, only projects with the host role, which is specified by the
+     * value HOST, are differentiated.
      * Check the XpnProjectStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string xpn_project_status = 228419265;</code>
@@ -670,7 +731,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The role this project has in a shared VPC configuration. Currently, only projects with the host role, which is specified by the value HOST, are differentiated.
+     * [Output Only] The role this project has in a shared VPC configuration.
+     * Currently, only projects with the host role, which is specified by the
+     * value HOST, are differentiated.
      * Check the XpnProjectStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string xpn_project_status = 228419265;</code>

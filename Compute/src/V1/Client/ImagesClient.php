@@ -308,7 +308,9 @@ final class ImagesClient
     }
 
     /**
-     * Sets the deprecation status of an image. If an empty request body is given, clears the deprecation status instead.
+     * Sets the deprecation status of an image.
+     *
+     * If an empty request body is given, clears the deprecation status instead.
      *
      * The async variant is {@see ImagesClient::deprecateAsync()} .
      *
@@ -360,7 +362,9 @@ final class ImagesClient
     }
 
     /**
-     * Returns the latest image that is part of an image family and is not deprecated. For more information on image families, see Public image families documentation.
+     * Returns the latest image that is part of an image family and is not
+     * deprecated. For more information on image families, seePublic
+     * image families documentation.
      *
      * The async variant is {@see ImagesClient::getFromFamilyAsync()} .
      *
@@ -386,7 +390,8 @@ final class ImagesClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see ImagesClient::getIamPolicyAsync()} .
      *
@@ -412,7 +417,8 @@ final class ImagesClient
     }
 
     /**
-     * Creates an image in the specified project using the data included in the request.
+     * Creates an image in the specified project using the data included
+     * in the request.
      *
      * The async variant is {@see ImagesClient::insertAsync()} .
      *
@@ -438,7 +444,13 @@ final class ImagesClient
     }
 
     /**
-     * Retrieves the list of custom images available to the specified project. Custom images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
+     * Retrieves the list of custom images
+     * available to the specified project. Custom images are images you
+     * create that belong to your project. This method does not
+     * get any images that belong to other projects, including publicly-available
+     * images, like Debian 8. If you want to get a list of publicly-available
+     * images, use this method to make a request to the respective image project,
+     * such as debian-cloud or windows-cloud.
      *
      * The async variant is {@see ImagesClient::listAsync()} .
      *
@@ -464,7 +476,9 @@ final class ImagesClient
     }
 
     /**
-     * Patches the specified image with the data included in the request. Only the following fields can be modified: family, description, deprecation status.
+     * Patches the specified image with the data included in the request.
+     * Only the following fields can be modified: family, description,
+     * deprecation status.
      *
      * The async variant is {@see ImagesClient::patchAsync()} .
      *
@@ -490,7 +504,8 @@ final class ImagesClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see ImagesClient::setIamPolicyAsync()} .
      *
@@ -516,7 +531,8 @@ final class ImagesClient
     }
 
     /**
-     * Sets the labels on an image. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on an image. To learn more about labels, read theLabeling
+     * Resources documentation.
      *
      * The async variant is {@see ImagesClient::setLabelsAsync()} .
      *

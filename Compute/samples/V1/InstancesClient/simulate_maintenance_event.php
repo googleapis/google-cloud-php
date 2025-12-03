@@ -30,7 +30,8 @@ use Google\Cloud\Compute\V1\SimulateMaintenanceEventInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Simulates a host maintenance event on a VM. For more information, see Simulate a host maintenance event.
+ * Simulates a host maintenance event on a VM. For more information, see
+ * Simulate a host maintenance event.
  *
  * @param string $instance Name of the instance scoping this request.
  * @param string $project  Project ID for this request.

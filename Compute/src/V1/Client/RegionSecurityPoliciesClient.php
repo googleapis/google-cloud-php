@@ -383,7 +383,8 @@ final class RegionSecurityPoliciesClient
     }
 
     /**
-     * Creates a new policy in the specified project using the data included in the request.
+     * Creates a new policy in the specified project using the data included in
+     * the request.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::insertAsync()} .
      *
@@ -409,7 +410,8 @@ final class RegionSecurityPoliciesClient
     }
 
     /**
-     * List all the policies that have been configured for the specified project and region.
+     * List all the policies that have been configured for the specified project
+     * and region.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::listAsync()} .
      *
@@ -435,7 +437,11 @@ final class RegionSecurityPoliciesClient
     }
 
     /**
-     * Patches the specified policy with the data included in the request. To clear fields in the policy, leave the fields empty and specify them in the updateMask. This cannot be used to be update the rules in the policy. Please use the per rule methods like addRule, patchRule, and removeRule instead.
+     * Patches the specified policy with the data included in the request. To
+     * clear fields in the policy, leave the fields empty and specify them in the
+     * updateMask. This cannot be used to be update the rules in the policy.
+     * Please use the per rule methods like addRule, patchRule, and removeRule
+     * instead.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::patchAsync()} .
      *
@@ -461,7 +467,8 @@ final class RegionSecurityPoliciesClient
     }
 
     /**
-     * Patches a rule at the specified priority. To clear fields in the rule, leave the fields empty and specify them in the updateMask.
+     * Patches a rule at the specified priority. To clear fields in the rule,
+     * leave the fields empty and specify them in the updateMask.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::patchRuleAsync()} .
      *
@@ -515,7 +522,9 @@ final class RegionSecurityPoliciesClient
     }
 
     /**
-     * Sets the labels on a security policy. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on a security policy. To learn more about labels,
+     * read the Labeling Resources
+     * documentation.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::setLabelsAsync()} .
      *

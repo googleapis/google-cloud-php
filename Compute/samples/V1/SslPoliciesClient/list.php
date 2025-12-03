@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\SslPoliciesClient;
 use Google\Cloud\Compute\V1\ListSslPoliciesRequest;
 
 /**
- * Lists all the SSL policies that have been configured for the specified project.
+ * Lists all the SSL policies that have been configured for the specified
+ * project.
  *
  * @param string $project Project ID for this request.
  */

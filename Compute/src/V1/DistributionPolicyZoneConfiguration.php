@@ -15,7 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class DistributionPolicyZoneConfiguration extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The URL of the zone. The zone must exist in the region where the managed instance group is located.
+     * The URL of thezone.
+     * The zone must exist in the region where the managed instance group is
+     * located.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
@@ -28,7 +30,9 @@ class DistributionPolicyZoneConfiguration extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type string $zone
-     *           The URL of the zone. The zone must exist in the region where the managed instance group is located.
+     *           The URL of thezone.
+     *           The zone must exist in the region where the managed instance group is
+     *           located.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +41,9 @@ class DistributionPolicyZoneConfiguration extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The URL of the zone. The zone must exist in the region where the managed instance group is located.
+     * The URL of thezone.
+     * The zone must exist in the region where the managed instance group is
+     * located.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
@@ -58,7 +64,9 @@ class DistributionPolicyZoneConfiguration extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The URL of the zone. The zone must exist in the region where the managed instance group is located.
+     * The URL of thezone.
+     * The zone must exist in the region where the managed instance group is
+     * located.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var

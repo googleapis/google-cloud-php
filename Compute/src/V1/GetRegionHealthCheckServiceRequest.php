@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * Name of the HealthCheckService to update. The name
+     * must be 1-63 characters long, and comply with RFC1035.
      *
      * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,7 +38,8 @@ class GetRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Messa
     /**
      * @param string $project            Project ID for this request.
      * @param string $region             Name of the region scoping this request.
-     * @param string $healthCheckService Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param string $healthCheckService Name of the HealthCheckService to update. The name
+     *                                   must be 1-63 characters long, and comply with RFC1035.
      *
      * @return \Google\Cloud\Compute\V1\GetRegionHealthCheckServiceRequest
      *
@@ -58,7 +60,8 @@ class GetRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $health_check_service
-     *           Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
+     *           Name of the HealthCheckService to update. The name
+     *           must be 1-63 characters long, and comply with RFC1035.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $region
@@ -71,7 +74,8 @@ class GetRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * Name of the HealthCheckService to update. The name
+     * must be 1-63 characters long, and comply with RFC1035.
      *
      * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -82,7 +86,8 @@ class GetRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * Name of the HealthCheckService to update. The name
+     * must be 1-63 characters long, and comply with RFC1035.
      *
      * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

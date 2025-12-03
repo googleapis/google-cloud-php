@@ -15,7 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworksAddPeeringRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This field will be deprecated soon. Use exchange_subnet_routes in network_peering instead. Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     * This field will be deprecated soon. Useexchange_subnet_routes in network_peering
+     * instead.
+     * Indicates whether full mesh connectivity is created and managed
+     * automatically between peered networks. Currently this field should always
+     * be true since Google Compute Engine will automatically create and manage
+     * subnetwork routes between two networks when peering state isACTIVE.
      *
      * Generated from protobuf field <code>optional bool auto_create_routes = 57454941;</code>
      */
@@ -27,13 +32,22 @@ class NetworksAddPeeringRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * Network peering parameters. In order to specify route policies for peering using import and export custom routes, you must specify all peering related parameters (name, peer network, exchange_subnet_routes) in the network_peering field. The corresponding fields in NetworksAddPeeringRequest will be deprecated soon.
+     * Network peering parameters.
+     * In order to specify route policies for peering using import and export
+     * custom routes, you must specify all peering related parameters
+     * (name, peer network,exchange_subnet_routes) in the network_peering
+     * field.
+     * The corresponding fields in NetworksAddPeeringRequest will be
+     * deprecated soon.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeering network_peering = 328926767;</code>
      */
     protected $network_peering = null;
     /**
-     * URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
+     * URL of the peer network.  It can be either full URL or partial URL. The
+     * peer network may belong to a different project. If the partial URL does not
+     * contain project, it is assumed that the peer network is in the same project
+     * as the current network.
      *
      * Generated from protobuf field <code>optional string peer_network = 500625489;</code>
      */
@@ -46,13 +60,27 @@ class NetworksAddPeeringRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $auto_create_routes
-     *           This field will be deprecated soon. Use exchange_subnet_routes in network_peering instead. Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     *           This field will be deprecated soon. Useexchange_subnet_routes in network_peering
+     *           instead.
+     *           Indicates whether full mesh connectivity is created and managed
+     *           automatically between peered networks. Currently this field should always
+     *           be true since Google Compute Engine will automatically create and manage
+     *           subnetwork routes between two networks when peering state isACTIVE.
      *     @type string $name
      *           Name of the peering, which should conform to RFC1035.
      *     @type \Google\Cloud\Compute\V1\NetworkPeering $network_peering
-     *           Network peering parameters. In order to specify route policies for peering using import and export custom routes, you must specify all peering related parameters (name, peer network, exchange_subnet_routes) in the network_peering field. The corresponding fields in NetworksAddPeeringRequest will be deprecated soon.
+     *           Network peering parameters.
+     *           In order to specify route policies for peering using import and export
+     *           custom routes, you must specify all peering related parameters
+     *           (name, peer network,exchange_subnet_routes) in the network_peering
+     *           field.
+     *           The corresponding fields in NetworksAddPeeringRequest will be
+     *           deprecated soon.
      *     @type string $peer_network
-     *           URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
+     *           URL of the peer network.  It can be either full URL or partial URL. The
+     *           peer network may belong to a different project. If the partial URL does not
+     *           contain project, it is assumed that the peer network is in the same project
+     *           as the current network.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,7 +89,12 @@ class NetworksAddPeeringRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will be deprecated soon. Use exchange_subnet_routes in network_peering instead. Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     * This field will be deprecated soon. Useexchange_subnet_routes in network_peering
+     * instead.
+     * Indicates whether full mesh connectivity is created and managed
+     * automatically between peered networks. Currently this field should always
+     * be true since Google Compute Engine will automatically create and manage
+     * subnetwork routes between two networks when peering state isACTIVE.
      *
      * Generated from protobuf field <code>optional bool auto_create_routes = 57454941;</code>
      * @return bool
@@ -82,7 +115,12 @@ class NetworksAddPeeringRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will be deprecated soon. Use exchange_subnet_routes in network_peering instead. Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     * This field will be deprecated soon. Useexchange_subnet_routes in network_peering
+     * instead.
+     * Indicates whether full mesh connectivity is created and managed
+     * automatically between peered networks. Currently this field should always
+     * be true since Google Compute Engine will automatically create and manage
+     * subnetwork routes between two networks when peering state isACTIVE.
      *
      * Generated from protobuf field <code>optional bool auto_create_routes = 57454941;</code>
      * @param bool $var
@@ -133,7 +171,13 @@ class NetworksAddPeeringRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network peering parameters. In order to specify route policies for peering using import and export custom routes, you must specify all peering related parameters (name, peer network, exchange_subnet_routes) in the network_peering field. The corresponding fields in NetworksAddPeeringRequest will be deprecated soon.
+     * Network peering parameters.
+     * In order to specify route policies for peering using import and export
+     * custom routes, you must specify all peering related parameters
+     * (name, peer network,exchange_subnet_routes) in the network_peering
+     * field.
+     * The corresponding fields in NetworksAddPeeringRequest will be
+     * deprecated soon.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeering network_peering = 328926767;</code>
      * @return \Google\Cloud\Compute\V1\NetworkPeering|null
@@ -154,7 +198,13 @@ class NetworksAddPeeringRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network peering parameters. In order to specify route policies for peering using import and export custom routes, you must specify all peering related parameters (name, peer network, exchange_subnet_routes) in the network_peering field. The corresponding fields in NetworksAddPeeringRequest will be deprecated soon.
+     * Network peering parameters.
+     * In order to specify route policies for peering using import and export
+     * custom routes, you must specify all peering related parameters
+     * (name, peer network,exchange_subnet_routes) in the network_peering
+     * field.
+     * The corresponding fields in NetworksAddPeeringRequest will be
+     * deprecated soon.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeering network_peering = 328926767;</code>
      * @param \Google\Cloud\Compute\V1\NetworkPeering $var
@@ -169,7 +219,10 @@ class NetworksAddPeeringRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
+     * URL of the peer network.  It can be either full URL or partial URL. The
+     * peer network may belong to a different project. If the partial URL does not
+     * contain project, it is assumed that the peer network is in the same project
+     * as the current network.
      *
      * Generated from protobuf field <code>optional string peer_network = 500625489;</code>
      * @return string
@@ -190,7 +243,10 @@ class NetworksAddPeeringRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
+     * URL of the peer network.  It can be either full URL or partial URL. The
+     * peer network may belong to a different project. If the partial URL does not
+     * contain project, it is assumed that the peer network is in the same project
+     * as the current network.
      *
      * Generated from protobuf field <code>optional string peer_network = 500625489;</code>
      * @param string $var

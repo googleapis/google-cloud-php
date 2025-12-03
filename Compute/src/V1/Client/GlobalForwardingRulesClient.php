@@ -298,7 +298,8 @@ final class GlobalForwardingRulesClient
     }
 
     /**
-     * Returns the specified GlobalForwardingRule resource. Gets a list of available forwarding rules by making a list() request.
+     * Returns the specified GlobalForwardingRule resource. Gets a list of
+     * available forwarding rules by making a list() request.
      *
      * The async variant is {@see GlobalForwardingRulesClient::getAsync()} .
      *
@@ -324,7 +325,8 @@ final class GlobalForwardingRulesClient
     }
 
     /**
-     * Creates a GlobalForwardingRule resource in the specified project using the data included in the request.
+     * Creates a GlobalForwardingRule resource in the specified project using
+     * the data included in the request.
      *
      * The async variant is {@see GlobalForwardingRulesClient::insertAsync()} .
      *
@@ -350,7 +352,8 @@ final class GlobalForwardingRulesClient
     }
 
     /**
-     * Retrieves a list of GlobalForwardingRule resources available to the specified project.
+     * Retrieves a list of GlobalForwardingRule resources available to the
+     * specified project.
      *
      * The async variant is {@see GlobalForwardingRulesClient::listAsync()} .
      *
@@ -376,7 +379,11 @@ final class GlobalForwardingRulesClient
     }
 
     /**
-     * Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field.
+     * Updates the specified forwarding rule with the data included in the
+     * request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules. Currently, you can only
+     * patch the network_tier field.
      *
      * The async variant is {@see GlobalForwardingRulesClient::patchAsync()} .
      *
@@ -402,7 +409,9 @@ final class GlobalForwardingRulesClient
     }
 
     /**
-     * Sets the labels on the specified resource. To learn more about labels, read the Labeling resources documentation.
+     * Sets the labels on the specified resource. To learn more about labels,
+     * read the
+     * Labeling resources documentation.
      *
      * The async variant is {@see GlobalForwardingRulesClient::setLabelsAsync()} .
      *
@@ -428,7 +437,8 @@ final class GlobalForwardingRulesClient
     }
 
     /**
-     * Changes target URL for the GlobalForwardingRule resource. The new target should be of the same type as the old target.
+     * Changes target URL for the GlobalForwardingRule resource. The new target
+     * should be of the same type as the old target.
      *
      * The async variant is {@see GlobalForwardingRulesClient::setTargetAsync()} .
      *

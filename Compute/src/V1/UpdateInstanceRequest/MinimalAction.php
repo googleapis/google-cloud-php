@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\UpdateInstanceRequest;
 use UnexpectedValueException;
 
 /**
- * Specifies the action to take when updating an instance even if the updated properties do not require it. If not specified, then Compute Engine acts based on the minimum action that the updated properties require.
+ * Specifies the action to take when updating an instance even if the
+ * updated properties do not require it. If not specified, then
+ * Compute Engine acts based on the minimum action that the updated
+ * properties require.
  * Additional supported values which may be not listed in the enum directly due to technical reasons:
  * INVALID
  * NO_EFFECT

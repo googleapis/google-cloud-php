@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the Operations resource to return. Parent is derived from this field.
+     * Name of the Operations resource to return. Parent is derived from this
+     * field.
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_response_field) = "name"];</code>
      */
@@ -29,7 +30,8 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
     protected $parent_id = null;
 
     /**
-     * @param string $operation Name of the Operations resource to return. Parent is derived from this field.
+     * @param string $operation Name of the Operations resource to return. Parent is derived from this
+     *                          field.
      *
      * @return \Google\Cloud\Compute\V1\GetGlobalOrganizationOperationRequest
      *
@@ -48,7 +50,8 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type string $operation
-     *           Name of the Operations resource to return. Parent is derived from this field.
+     *           Name of the Operations resource to return. Parent is derived from this
+     *           field.
      *     @type string $parent_id
      *           Parent ID for this request. Not used. Parent is derived from resource_id.
      * }
@@ -59,7 +62,8 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Name of the Operations resource to return. Parent is derived from this field.
+     * Name of the Operations resource to return. Parent is derived from this
+     * field.
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_response_field) = "name"];</code>
      * @return string
@@ -70,7 +74,8 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Name of the Operations resource to return. Parent is derived from this field.
+     * Name of the Operations resource to return. Parent is derived from this
+     * field.
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_response_field) = "name"];</code>
      * @param string $var

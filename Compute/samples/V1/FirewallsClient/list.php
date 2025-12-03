@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\FirewallsClient;
 use Google\Cloud\Compute\V1\ListFirewallsRequest;
 
 /**
- * Retrieves the list of firewall rules available to the specified project.
+ * Retrieves the list of firewall rules available to the specified
+ * project.
  *
  * @param string $project Project ID for this request.
  */

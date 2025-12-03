@@ -30,12 +30,17 @@ use Google\Cloud\Compute\V1\DeleteInstanceGroupManagerResizeRequestRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified, inactive resize request. Requests that are still active cannot be deleted. Deleting request does not delete instances that were provisioned previously.
+ * Deletes the specified, inactive resize request. Requests that are still
+ * active cannot be deleted. Deleting request does not delete instances that
+ * were provisioned previously.
  *
- * @param string $instanceGroupManager The name of the managed instance group. The name should conform to RFC1035 or be a resource ID.
+ * @param string $instanceGroupManager The name of the managed instance group.
+ *                                     The name should conform to RFC1035 or be a resource ID.
  * @param string $project              Project ID for this request.
- * @param string $resizeRequest        The name of the resize request to delete. The name should conform to RFC1035 or be a resource ID.
- * @param string $zone                 The name of the zone where the managed instance group is located. The name should conform to RFC1035.
+ * @param string $resizeRequest        The name of the resize request to delete.
+ *                                     The name should conform to RFC1035 or be a resource ID.
+ * @param string $zone                 The name of thezone where the managed
+ *                                     instance group is located. The name should conform to RFC1035.
  */
 function delete_sample(
     string $instanceGroupManager,

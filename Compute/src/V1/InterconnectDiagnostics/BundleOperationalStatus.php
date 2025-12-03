@@ -20,13 +20,19 @@ class BundleOperationalStatus
      */
     const UNDEFINED_BUNDLE_OPERATIONAL_STATUS = 0;
     /**
-     * If bundleAggregationType is LACP: LACP is not established and/or all links in the bundle have DOWN operational status. If bundleAggregationType is STATIC: one or more links in the bundle has DOWN operational status.
+     * If bundleAggregationType is LACP: LACP is not established and/or all
+     * links in the bundle have DOWN operational status. If
+     * bundleAggregationType is STATIC: one or more links in the bundle has
+     * DOWN operational status.
      *
      * Generated from protobuf enum <code>BUNDLE_OPERATIONAL_STATUS_DOWN = 453842693;</code>
      */
     const BUNDLE_OPERATIONAL_STATUS_DOWN = 453842693;
     /**
-     * If bundleAggregationType is LACP: LACP is established and at least one link in the bundle has UP operational status. If bundleAggregationType is STATIC: all links in the bundle (typically just one) have UP operational status.
+     * If bundleAggregationType is LACP: LACP is established and at least one
+     * link in the bundle has UP operational status. If bundleAggregationType
+     * is STATIC: all links in the bundle (typically just one) have UP
+     * operational status.
      *
      * Generated from protobuf enum <code>BUNDLE_OPERATIONAL_STATUS_UP = 161366462;</code>
      */

@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\StoragePoolsClient;
 use Google\Cloud\Compute\V1\ListStoragePoolsRequest;
 
 /**
- * Retrieves a list of storage pools contained within the specified zone.
+ * Retrieves a list of storage pools contained within
+ * the specified zone.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    The name of the zone for this request.

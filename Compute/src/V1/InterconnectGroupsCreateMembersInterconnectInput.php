@@ -16,70 +16,111 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
+     * Administrative status of the interconnect. When this is set to true, the
+     * Interconnect is functional and can carry traffic.
+     * When set to false, no packets can be carried over the interconnect and
+     * no BGP routes are exchanged over it. By default, the status is set to
+     * true.
      *
      * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
      */
     protected $admin_enabled = null;
     /**
-     * Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.
+     * Customer name, to put in the Letter of Authorization as the party
+     * authorized to request a crossconnect.
      *
      * Generated from protobuf field <code>optional string customer_name = 3665484;</code>
      */
     protected $customer_name = null;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * A zone-free location to use for all Interconnects created in this call, like "iad-1234".
+     * A zone-free location to use for all Interconnects created in this call,
+     * like "iad-1234".
      *
      * Generated from protobuf field <code>optional string facility = 501116579;</code>
      */
     protected $facility = null;
     /**
-     * Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
+     * Type of interconnect, which can take one of the following values:
+     *    - PARTNER: A partner-managed interconnection shared between
+     *    customers though a partner.
+     *    - DEDICATED: A dedicated physical
+     *    interconnection with the customer.
+     *  Note that a value IT_PRIVATE
+     * has been deprecated in favor of DEDICATED.
      * Check the InterconnectType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interconnect_type = 515165259;</code>
      */
     protected $interconnect_type = null;
     /**
-     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     * Type of link requested, which can take one of the following values:
+     *    - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics
+     *    - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics.
+     *    - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4
+     *    optics.
+     *  Note that this field indicates the speed of each of the
+     * links in the bundle, not the speed of the entire bundle.
      * Check the LinkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string link_type = 523207775;</code>
      */
     protected $link_type = null;
     /**
-     * Name of the Interconnects to be created. This must be specified on the template and/or on each individual interconnect. The name, if not empty, must be 1-63 characters long, and comply with RFC1035. Specifically, any nonempty name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the Interconnects to be created. This must be specified on the
+     * template and/or on each individual interconnect. The name, if not empty,
+     * must be 1-63 characters long, and comply with RFC1035.
+     * Specifically, any nonempty name must be 1-63 characters long and match
+     * the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Cloud Monitoring logs alerting and Cloud Notifications. This field is required for users who sign up for Cloud Interconnect using workforce identity federation.
+     * Email address to contact the customer NOC for operations and maintenance
+     * notifications regarding this Interconnect. If specified, this will be
+     * used for notifications in addition to all other forms described, such as
+     * Cloud Monitoring logs alerting and Cloud Notifications. This field is
+     * required for users who sign up for Cloud Interconnect using
+     * workforce identity federation.
      *
      * Generated from protobuf field <code>optional string noc_contact_email = 14072832;</code>
      */
     protected $noc_contact_email = null;
     /**
-     * Indicates that this is a Cross-Cloud Interconnect. This field specifies the location outside of Google's network that the interconnect is connected to.
+     * Indicates that this is a Cross-Cloud Interconnect. This field specifies
+     * the location outside of Google's network that the interconnect is
+     * connected to.
      *
      * Generated from protobuf field <code>optional string remote_location = 324388750;</code>
      */
     protected $remote_location = null;
     /**
-     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - IF_MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     * Optional. List of features requested for this Interconnect connection,
+     * which can take one of the following values:
+     *    - IF_MACSEC: If specified, then the connection is created on MACsec
+     *    capable hardware ports. If not specified, non-MACsec capable ports will
+     *    also be considered.
+     *    - IF_CROSS_SITE_NETWORK: If specified, then the connection is created
+     *    exclusively for Cross-Site Networking. The connection can not be used for
+     *    Cross-Site Networking unless this feature is specified.
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
      */
     private $requested_features;
     /**
-     * Target number of physical links in the link bundle, as requested by the customer.
+     * Target number of physical links in the link bundle, as requested by the
+     * customer.
      *
      * Generated from protobuf field <code>optional int32 requested_link_count = 45051387;</code>
      */
@@ -92,30 +133,71 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $admin_enabled
-     *           Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
+     *           Administrative status of the interconnect. When this is set to true, the
+     *           Interconnect is functional and can carry traffic.
+     *           When set to false, no packets can be carried over the interconnect and
+     *           no BGP routes are exchanged over it. By default, the status is set to
+     *           true.
      *     @type string $customer_name
-     *           Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.
+     *           Customer name, to put in the Letter of Authorization as the party
+     *           authorized to request a crossconnect.
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of this resource. Provide this property when you
+     *           create the resource.
      *     @type string $facility
-     *           A zone-free location to use for all Interconnects created in this call, like "iad-1234".
+     *           A zone-free location to use for all Interconnects created in this call,
+     *           like "iad-1234".
      *     @type string $interconnect_type
-     *           Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
+     *           Type of interconnect, which can take one of the following values:
+     *              - PARTNER: A partner-managed interconnection shared between
+     *              customers though a partner.
+     *              - DEDICATED: A dedicated physical
+     *              interconnection with the customer.
+     *            Note that a value IT_PRIVATE
+     *           has been deprecated in favor of DEDICATED.
      *           Check the InterconnectType enum for the list of possible values.
      *     @type string $link_type
-     *           Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     *           Type of link requested, which can take one of the following values:
+     *              - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics
+     *              - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics.
+     *              - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4
+     *              optics.
+     *            Note that this field indicates the speed of each of the
+     *           links in the bundle, not the speed of the entire bundle.
      *           Check the LinkType enum for the list of possible values.
      *     @type string $name
-     *           Name of the Interconnects to be created. This must be specified on the template and/or on each individual interconnect. The name, if not empty, must be 1-63 characters long, and comply with RFC1035. Specifically, any nonempty name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           Name of the Interconnects to be created. This must be specified on the
+     *           template and/or on each individual interconnect. The name, if not empty,
+     *           must be 1-63 characters long, and comply with RFC1035.
+     *           Specifically, any nonempty name must be 1-63 characters long and match
+     *           the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must
+     *           be a dash, lowercase letter, or digit, except the last character, which
+     *           cannot be a dash.
      *     @type string $noc_contact_email
-     *           Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Cloud Monitoring logs alerting and Cloud Notifications. This field is required for users who sign up for Cloud Interconnect using workforce identity federation.
+     *           Email address to contact the customer NOC for operations and maintenance
+     *           notifications regarding this Interconnect. If specified, this will be
+     *           used for notifications in addition to all other forms described, such as
+     *           Cloud Monitoring logs alerting and Cloud Notifications. This field is
+     *           required for users who sign up for Cloud Interconnect using
+     *           workforce identity federation.
      *     @type string $remote_location
-     *           Indicates that this is a Cross-Cloud Interconnect. This field specifies the location outside of Google's network that the interconnect is connected to.
+     *           Indicates that this is a Cross-Cloud Interconnect. This field specifies
+     *           the location outside of Google's network that the interconnect is
+     *           connected to.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $requested_features
-     *           Optional. List of features requested for this Interconnect connection, which can take one of the following values: - IF_MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     *           Optional. List of features requested for this Interconnect connection,
+     *           which can take one of the following values:
+     *              - IF_MACSEC: If specified, then the connection is created on MACsec
+     *              capable hardware ports. If not specified, non-MACsec capable ports will
+     *              also be considered.
+     *              - IF_CROSS_SITE_NETWORK: If specified, then the connection is created
+     *              exclusively for Cross-Site Networking. The connection can not be used for
+     *              Cross-Site Networking unless this feature is specified.
      *           Check the RequestedFeatures enum for the list of possible values.
      *     @type int $requested_link_count
-     *           Target number of physical links in the link bundle, as requested by the customer.
+     *           Target number of physical links in the link bundle, as requested by the
+     *           customer.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,7 +206,11 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
+     * Administrative status of the interconnect. When this is set to true, the
+     * Interconnect is functional and can carry traffic.
+     * When set to false, no packets can be carried over the interconnect and
+     * no BGP routes are exchanged over it. By default, the status is set to
+     * true.
      *
      * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
      * @return bool
@@ -145,7 +231,11 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
+     * Administrative status of the interconnect. When this is set to true, the
+     * Interconnect is functional and can carry traffic.
+     * When set to false, no packets can be carried over the interconnect and
+     * no BGP routes are exchanged over it. By default, the status is set to
+     * true.
      *
      * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
      * @param bool $var
@@ -160,7 +250,8 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.
+     * Customer name, to put in the Letter of Authorization as the party
+     * authorized to request a crossconnect.
      *
      * Generated from protobuf field <code>optional string customer_name = 3665484;</code>
      * @return string
@@ -181,7 +272,8 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.
+     * Customer name, to put in the Letter of Authorization as the party
+     * authorized to request a crossconnect.
      *
      * Generated from protobuf field <code>optional string customer_name = 3665484;</code>
      * @param string $var
@@ -196,7 +288,8 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -217,7 +310,8 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -232,7 +326,8 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * A zone-free location to use for all Interconnects created in this call, like "iad-1234".
+     * A zone-free location to use for all Interconnects created in this call,
+     * like "iad-1234".
      *
      * Generated from protobuf field <code>optional string facility = 501116579;</code>
      * @return string
@@ -253,7 +348,8 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * A zone-free location to use for all Interconnects created in this call, like "iad-1234".
+     * A zone-free location to use for all Interconnects created in this call,
+     * like "iad-1234".
      *
      * Generated from protobuf field <code>optional string facility = 501116579;</code>
      * @param string $var
@@ -268,7 +364,13 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
+     * Type of interconnect, which can take one of the following values:
+     *    - PARTNER: A partner-managed interconnection shared between
+     *    customers though a partner.
+     *    - DEDICATED: A dedicated physical
+     *    interconnection with the customer.
+     *  Note that a value IT_PRIVATE
+     * has been deprecated in favor of DEDICATED.
      * Check the InterconnectType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interconnect_type = 515165259;</code>
@@ -290,7 +392,13 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
+     * Type of interconnect, which can take one of the following values:
+     *    - PARTNER: A partner-managed interconnection shared between
+     *    customers though a partner.
+     *    - DEDICATED: A dedicated physical
+     *    interconnection with the customer.
+     *  Note that a value IT_PRIVATE
+     * has been deprecated in favor of DEDICATED.
      * Check the InterconnectType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interconnect_type = 515165259;</code>
@@ -306,7 +414,13 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     * Type of link requested, which can take one of the following values:
+     *    - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics
+     *    - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics.
+     *    - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4
+     *    optics.
+     *  Note that this field indicates the speed of each of the
+     * links in the bundle, not the speed of the entire bundle.
      * Check the LinkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string link_type = 523207775;</code>
@@ -328,7 +442,13 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     * Type of link requested, which can take one of the following values:
+     *    - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics
+     *    - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics.
+     *    - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4
+     *    optics.
+     *  Note that this field indicates the speed of each of the
+     * links in the bundle, not the speed of the entire bundle.
      * Check the LinkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string link_type = 523207775;</code>
@@ -344,7 +464,14 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Name of the Interconnects to be created. This must be specified on the template and/or on each individual interconnect. The name, if not empty, must be 1-63 characters long, and comply with RFC1035. Specifically, any nonempty name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the Interconnects to be created. This must be specified on the
+     * template and/or on each individual interconnect. The name, if not empty,
+     * must be 1-63 characters long, and comply with RFC1035.
+     * Specifically, any nonempty name must be 1-63 characters long and match
+     * the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -365,7 +492,14 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Name of the Interconnects to be created. This must be specified on the template and/or on each individual interconnect. The name, if not empty, must be 1-63 characters long, and comply with RFC1035. Specifically, any nonempty name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the Interconnects to be created. This must be specified on the
+     * template and/or on each individual interconnect. The name, if not empty,
+     * must be 1-63 characters long, and comply with RFC1035.
+     * Specifically, any nonempty name must be 1-63 characters long and match
+     * the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -380,7 +514,12 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Cloud Monitoring logs alerting and Cloud Notifications. This field is required for users who sign up for Cloud Interconnect using workforce identity federation.
+     * Email address to contact the customer NOC for operations and maintenance
+     * notifications regarding this Interconnect. If specified, this will be
+     * used for notifications in addition to all other forms described, such as
+     * Cloud Monitoring logs alerting and Cloud Notifications. This field is
+     * required for users who sign up for Cloud Interconnect using
+     * workforce identity federation.
      *
      * Generated from protobuf field <code>optional string noc_contact_email = 14072832;</code>
      * @return string
@@ -401,7 +540,12 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Cloud Monitoring logs alerting and Cloud Notifications. This field is required for users who sign up for Cloud Interconnect using workforce identity federation.
+     * Email address to contact the customer NOC for operations and maintenance
+     * notifications regarding this Interconnect. If specified, this will be
+     * used for notifications in addition to all other forms described, such as
+     * Cloud Monitoring logs alerting and Cloud Notifications. This field is
+     * required for users who sign up for Cloud Interconnect using
+     * workforce identity federation.
      *
      * Generated from protobuf field <code>optional string noc_contact_email = 14072832;</code>
      * @param string $var
@@ -416,7 +560,9 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Indicates that this is a Cross-Cloud Interconnect. This field specifies the location outside of Google's network that the interconnect is connected to.
+     * Indicates that this is a Cross-Cloud Interconnect. This field specifies
+     * the location outside of Google's network that the interconnect is
+     * connected to.
      *
      * Generated from protobuf field <code>optional string remote_location = 324388750;</code>
      * @return string
@@ -437,7 +583,9 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Indicates that this is a Cross-Cloud Interconnect. This field specifies the location outside of Google's network that the interconnect is connected to.
+     * Indicates that this is a Cross-Cloud Interconnect. This field specifies
+     * the location outside of Google's network that the interconnect is
+     * connected to.
      *
      * Generated from protobuf field <code>optional string remote_location = 324388750;</code>
      * @param string $var
@@ -452,7 +600,14 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - IF_MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     * Optional. List of features requested for this Interconnect connection,
+     * which can take one of the following values:
+     *    - IF_MACSEC: If specified, then the connection is created on MACsec
+     *    capable hardware ports. If not specified, non-MACsec capable ports will
+     *    also be considered.
+     *    - IF_CROSS_SITE_NETWORK: If specified, then the connection is created
+     *    exclusively for Cross-Site Networking. The connection can not be used for
+     *    Cross-Site Networking unless this feature is specified.
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
@@ -464,7 +619,14 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - IF_MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     * Optional. List of features requested for this Interconnect connection,
+     * which can take one of the following values:
+     *    - IF_MACSEC: If specified, then the connection is created on MACsec
+     *    capable hardware ports. If not specified, non-MACsec capable ports will
+     *    also be considered.
+     *    - IF_CROSS_SITE_NETWORK: If specified, then the connection is created
+     *    exclusively for Cross-Site Networking. The connection can not be used for
+     *    Cross-Site Networking unless this feature is specified.
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
@@ -480,7 +642,8 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Target number of physical links in the link bundle, as requested by the customer.
+     * Target number of physical links in the link bundle, as requested by the
+     * customer.
      *
      * Generated from protobuf field <code>optional int32 requested_link_count = 45051387;</code>
      * @return int
@@ -501,7 +664,8 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
     }
 
     /**
-     * Target number of physical links in the link bundle, as requested by the customer.
+     * Target number of physical links in the link bundle, as requested by the
+     * customer.
      *
      * Generated from protobuf field <code>optional int32 requested_link_count = 45051387;</code>
      * @param int $var

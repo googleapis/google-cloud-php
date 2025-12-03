@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\PatchNetworkAttachmentRequest;
 use Google\Rpc\Status;
 
 /**
- * Patches the specified NetworkAttachment resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+ * Patches the specified NetworkAttachment resource with the data included in
+ * the request. This method supports PATCH
+ * semantics and usesJSON merge
+ * patch format and processing rules.
  *
  * @param string $networkAttachment Name of the NetworkAttachment resource to patch.
  * @param string $project           Project ID for this request.

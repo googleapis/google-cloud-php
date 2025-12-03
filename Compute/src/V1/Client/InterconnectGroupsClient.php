@@ -281,7 +281,8 @@ final class InterconnectGroupsClient
     }
 
     /**
-     * Create Interconnects with redundancy by creating them in a specified interconnect group.
+     * Create Interconnects with redundancy by creating them in a specified
+     * interconnect group.
      *
      * The async variant is {@see InterconnectGroupsClient::createMembersAsync()} .
      *
@@ -361,7 +362,8 @@ final class InterconnectGroupsClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see InterconnectGroupsClient::getIamPolicyAsync()} .
      *
@@ -387,7 +389,8 @@ final class InterconnectGroupsClient
     }
 
     /**
-     * Returns the interconnectStatuses for the specified InterconnectGroup.
+     * Returns the interconnectStatuses for the specified
+     * InterconnectGroup.
      *
      * The async variant is
      * {@see InterconnectGroupsClient::getOperationalStatusAsync()} .
@@ -416,7 +419,8 @@ final class InterconnectGroupsClient
     }
 
     /**
-     * Creates a InterconnectGroup in the specified project in the given scope using the parameters that are included in the request.
+     * Creates a InterconnectGroup in the specified project in the given scope
+     * using the parameters that are included in the request.
      *
      * The async variant is {@see InterconnectGroupsClient::insertAsync()} .
      *
@@ -468,7 +472,10 @@ final class InterconnectGroupsClient
     }
 
     /**
-     * Patches the specified InterconnectGroup resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * Patches the specified InterconnectGroup resource with the data included in
+     * the request. This method supports PATCH
+     * semantics and usesJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see InterconnectGroupsClient::patchAsync()} .
      *
@@ -494,7 +501,8 @@ final class InterconnectGroupsClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see InterconnectGroupsClient::setIamPolicyAsync()} .
      *

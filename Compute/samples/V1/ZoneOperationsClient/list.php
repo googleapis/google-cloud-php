@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\ListZoneOperationsRequest;
 
 /**
- * Retrieves a list of Operation resources contained within the specified zone.
+ * Retrieves a list of Operation resources contained within
+ * the specified zone.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    Name of the zone for request.

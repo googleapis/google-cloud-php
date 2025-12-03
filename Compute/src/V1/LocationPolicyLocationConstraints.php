@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class LocationPolicyLocationConstraints extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Maximum number of items that are allowed to be placed in this zone. The value must be non-negative.
+     * Maximum number of items that are allowed to be placed in this zone.
+     * The value must be non-negative.
      *
      * Generated from protobuf field <code>optional int32 max_count = 287620724;</code>
      */
@@ -29,7 +30,8 @@ class LocationPolicyLocationConstraints extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type int $max_count
-     *           Maximum number of items that are allowed to be placed in this zone. The value must be non-negative.
+     *           Maximum number of items that are allowed to be placed in this zone.
+     *           The value must be non-negative.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class LocationPolicyLocationConstraints extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Maximum number of items that are allowed to be placed in this zone. The value must be non-negative.
+     * Maximum number of items that are allowed to be placed in this zone.
+     * The value must be non-negative.
      *
      * Generated from protobuf field <code>optional int32 max_count = 287620724;</code>
      * @return int
@@ -59,7 +62,8 @@ class LocationPolicyLocationConstraints extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Maximum number of items that are allowed to be placed in this zone. The value must be non-negative.
+     * Maximum number of items that are allowed to be placed in this zone.
+     * The value must be non-negative.
      *
      * Generated from protobuf field <code>optional int32 max_count = 287620724;</code>
      * @param int $var

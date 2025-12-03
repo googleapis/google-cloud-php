@@ -272,7 +272,11 @@ final class TargetHttpProxiesClient
     }
 
     /**
-     * Retrieves the list of all TargetHttpProxy resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves the list of all TargetHttpProxy resources, regional and global,
+     * available to the specified project.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see TargetHttpProxiesClient::aggregatedListAsync()} .
      *
@@ -352,7 +356,8 @@ final class TargetHttpProxiesClient
     }
 
     /**
-     * Creates a TargetHttpProxy resource in the specified project using the data included in the request.
+     * Creates a TargetHttpProxy resource in the specified
+     * project using the data included in the request.
      *
      * The async variant is {@see TargetHttpProxiesClient::insertAsync()} .
      *
@@ -378,7 +383,8 @@ final class TargetHttpProxiesClient
     }
 
     /**
-     * Retrieves the list of TargetHttpProxy resources available to the specified project.
+     * Retrieves the list of TargetHttpProxy resources available
+     * to the specified project.
      *
      * The async variant is {@see TargetHttpProxiesClient::listAsync()} .
      *
@@ -404,7 +410,10 @@ final class TargetHttpProxiesClient
     }
 
     /**
-     * Patches the specified TargetHttpProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * Patches the specified TargetHttpProxy resource with the data included in
+     * the request. This method supports PATCH
+     * semantics and usesJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see TargetHttpProxiesClient::patchAsync()} .
      *

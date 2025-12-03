@@ -580,6 +580,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $name = 'name3373707';
         $parent = 'parent-995424086';
+        $policyType = 'policyType-2129325529';
         $region = 'region-934795532';
         $ruleTupleCount = 388342037;
         $selfLink = 'selfLink-1691268851';
@@ -594,6 +595,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent);
+        $expectedResponse->setPolicyType($policyType);
         $expectedResponse->setRegion($region);
         $expectedResponse->setRuleTupleCount($ruleTupleCount);
         $expectedResponse->setSelfLink($selfLink);

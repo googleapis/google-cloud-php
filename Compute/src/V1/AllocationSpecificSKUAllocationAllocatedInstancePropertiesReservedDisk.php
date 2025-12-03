@@ -21,7 +21,9 @@ class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk ext
      */
     protected $disk_size_gb = null;
     /**
-     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
+     * Specifies the disk interface to use for attaching this disk, which is
+     * either SCSI or NVME. The default isSCSI.
+     * For performance characteristics of SCSI over NVMe, seeLocal SSD performance.
      * Check the Interface enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interface = 502623545;</code>
@@ -37,7 +39,9 @@ class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk ext
      *     @type int|string $disk_size_gb
      *           Specifies the size of the disk in base-2 GB.
      *     @type string $interface
-     *           Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
+     *           Specifies the disk interface to use for attaching this disk, which is
+     *           either SCSI or NVME. The default isSCSI.
+     *           For performance characteristics of SCSI over NVMe, seeLocal SSD performance.
      *           Check the Interface enum for the list of possible values.
      * }
      */
@@ -83,7 +87,9 @@ class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk ext
     }
 
     /**
-     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
+     * Specifies the disk interface to use for attaching this disk, which is
+     * either SCSI or NVME. The default isSCSI.
+     * For performance characteristics of SCSI over NVMe, seeLocal SSD performance.
      * Check the Interface enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interface = 502623545;</code>
@@ -105,7 +111,9 @@ class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk ext
     }
 
     /**
-     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
+     * Specifies the disk interface to use for attaching this disk, which is
+     * either SCSI or NVME. The default isSCSI.
+     * For performance characteristics of SCSI over NVMe, seeLocal SSD performance.
      * Check the Interface enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interface = 502623545;</code>

@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\SslPolicy;
 use UnexpectedValueException;
 
 /**
- * The minimum version of SSL protocol that can be used by the clients to establish a connection with the load balancer. This can be one of TLS_1_0, TLS_1_1, TLS_1_2.
+ * The minimum version of SSL protocol that can be used by the clients to
+ * establish a connection with the load balancer. This can be one ofTLS_1_0, TLS_1_1, TLS_1_2,TLS_1_3. When set to TLS_1_3, the profile field
+ * must be set to RESTRICTED.
  *
  * Protobuf type <code>google.cloud.compute.v1.SslPolicy.MinTlsVersion</code>
  */
@@ -37,12 +39,19 @@ class MinTlsVersion
      * Generated from protobuf enum <code>TLS_1_2 = 33116736;</code>
      */
     const TLS_1_2 = 33116736;
+    /**
+     * TLS 1.3
+     *
+     * Generated from protobuf enum <code>TLS_1_3 = 33116737;</code>
+     */
+    const TLS_1_3 = 33116737;
 
     private static $valueToName = [
         self::UNDEFINED_MIN_TLS_VERSION => 'UNDEFINED_MIN_TLS_VERSION',
         self::TLS_1_0 => 'TLS_1_0',
         self::TLS_1_1 => 'TLS_1_1',
         self::TLS_1_2 => 'TLS_1_2',
+        self::TLS_1_3 => 'TLS_1_3',
     ];
 
     public static function name($value)

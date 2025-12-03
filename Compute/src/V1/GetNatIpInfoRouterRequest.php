@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetNatIpInfoRouterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the nat service to filter the NAT IP information. If it is omitted, all nats for this router will be returned. Name should conform to RFC1035.
+     * Name of the nat service to filter the NAT IP information.
+     * If it is omitted, all nats for this router will be returned.
+     * Name should conform to RFC1035.
      *
      * Generated from protobuf field <code>optional string nat_name = 425596649;</code>
      */
@@ -34,7 +36,8 @@ class GetNatIpInfoRouterRequest extends \Google\Protobuf\Internal\Message
      */
     protected $region = '';
     /**
-     * Name of the Router resource to query for Nat IP information. The name should conform to RFC1035.
+     * Name of the Router resource to query for Nat IP information. The name
+     * should conform to RFC1035.
      *
      * Generated from protobuf field <code>string router = 148608841 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,7 +46,8 @@ class GetNatIpInfoRouterRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $project Project ID for this request.
      * @param string $region  Name of the region for this request.
-     * @param string $router  Name of the Router resource to query for Nat IP information. The name should conform to RFC1035.
+     * @param string $router  Name of the Router resource to query for Nat IP information. The name
+     *                        should conform to RFC1035.
      *
      * @return \Google\Cloud\Compute\V1\GetNatIpInfoRouterRequest
      *
@@ -64,13 +68,16 @@ class GetNatIpInfoRouterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $nat_name
-     *           Name of the nat service to filter the NAT IP information. If it is omitted, all nats for this router will be returned. Name should conform to RFC1035.
+     *           Name of the nat service to filter the NAT IP information.
+     *           If it is omitted, all nats for this router will be returned.
+     *           Name should conform to RFC1035.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $region
      *           Name of the region for this request.
      *     @type string $router
-     *           Name of the Router resource to query for Nat IP information. The name should conform to RFC1035.
+     *           Name of the Router resource to query for Nat IP information. The name
+     *           should conform to RFC1035.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,7 +86,9 @@ class GetNatIpInfoRouterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the nat service to filter the NAT IP information. If it is omitted, all nats for this router will be returned. Name should conform to RFC1035.
+     * Name of the nat service to filter the NAT IP information.
+     * If it is omitted, all nats for this router will be returned.
+     * Name should conform to RFC1035.
      *
      * Generated from protobuf field <code>optional string nat_name = 425596649;</code>
      * @return string
@@ -100,7 +109,9 @@ class GetNatIpInfoRouterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the nat service to filter the NAT IP information. If it is omitted, all nats for this router will be returned. Name should conform to RFC1035.
+     * Name of the nat service to filter the NAT IP information.
+     * If it is omitted, all nats for this router will be returned.
+     * Name should conform to RFC1035.
      *
      * Generated from protobuf field <code>optional string nat_name = 425596649;</code>
      * @param string $var
@@ -167,7 +178,8 @@ class GetNatIpInfoRouterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the Router resource to query for Nat IP information. The name should conform to RFC1035.
+     * Name of the Router resource to query for Nat IP information. The name
+     * should conform to RFC1035.
      *
      * Generated from protobuf field <code>string router = 148608841 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -178,7 +190,8 @@ class GetNatIpInfoRouterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the Router resource to query for Nat IP information. The name should conform to RFC1035.
+     * Name of the Router resource to query for Nat IP information. The name
+     * should conform to RFC1035.
      *
      * Generated from protobuf field <code>string router = 148608841 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

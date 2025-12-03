@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Region;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Status of the region, either UP or DOWN.
+ * [Output Only] Status of the region, either UP orDOWN.
  *
  * Protobuf type <code>google.cloud.compute.v1.Region.Status</code>
  */

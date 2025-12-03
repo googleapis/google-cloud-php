@@ -34,7 +34,8 @@ use Google\Rpc\Status;
  * Perform maintenance on an extended reservation
  *
  * @param string $project     Project ID for this request.
- * @param string $reservation The name of the reservation. Name should conform to RFC1035 or be a resource ID.
+ * @param string $reservation The name of the reservation.
+ *                            Name should conform to RFC1035 or be a resource ID.
  * @param string $zone        Name of the zone for this request. Zone name should conform to RFC1035.
  */
 function perform_maintenance_sample(string $project, string $reservation, string $zone): void

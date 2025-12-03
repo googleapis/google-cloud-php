@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\SetCommonInstanceMetadataProjectRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets metadata common to all instances within the specified project using the data included in the request.
+ * Sets metadata common to all instances within the specified project using
+ * the data included in the request.
  *
  * @param string $project Project ID for this request.
  */

@@ -22,7 +22,14 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
      */
     protected $enable = null;
     /**
-     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful.
+     * Specify the desired filtering of logs on this NAT. If unspecified,
+     * logs are exported for all connections handled by this NAT.
+     * This option can take one of the following values:
+     *    - ERRORS_ONLY: Export logs only for connection failures.
+     *    - TRANSLATIONS_ONLY: Export logs only for successful
+     *    connections.
+     *    - ALL: Export logs for all connections, successful and
+     *    unsuccessful.
      * Check the Filter enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string filter = 336120696;</code>
@@ -38,7 +45,14 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable
      *           Indicates whether or not to export logs. This is false by default.
      *     @type string $filter
-     *           Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful.
+     *           Specify the desired filtering of logs on this NAT. If unspecified,
+     *           logs are exported for all connections handled by this NAT.
+     *           This option can take one of the following values:
+     *              - ERRORS_ONLY: Export logs only for connection failures.
+     *              - TRANSLATIONS_ONLY: Export logs only for successful
+     *              connections.
+     *              - ALL: Export logs for all connections, successful and
+     *              unsuccessful.
      *           Check the Filter enum for the list of possible values.
      * }
      */
@@ -84,7 +98,14 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful.
+     * Specify the desired filtering of logs on this NAT. If unspecified,
+     * logs are exported for all connections handled by this NAT.
+     * This option can take one of the following values:
+     *    - ERRORS_ONLY: Export logs only for connection failures.
+     *    - TRANSLATIONS_ONLY: Export logs only for successful
+     *    connections.
+     *    - ALL: Export logs for all connections, successful and
+     *    unsuccessful.
      * Check the Filter enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string filter = 336120696;</code>
@@ -106,7 +127,14 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful.
+     * Specify the desired filtering of logs on this NAT. If unspecified,
+     * logs are exported for all connections handled by this NAT.
+     * This option can take one of the following values:
+     *    - ERRORS_ONLY: Export logs only for connection failures.
+     *    - TRANSLATIONS_ONLY: Export logs only for successful
+     *    connections.
+     *    - ALL: Export logs for all connections, successful and
+     *    unsuccessful.
      * Check the Filter enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string filter = 336120696;</code>

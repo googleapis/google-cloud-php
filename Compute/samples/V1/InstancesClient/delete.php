@@ -30,7 +30,8 @@ use Google\Cloud\Compute\V1\DeleteInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified Instance resource. For more information, see Deleting an instance.
+ * Deletes the specified Instance resource. For more information, seeDeleting
+ * an instance.
  *
  * @param string $instance Name of the instance resource to delete.
  * @param string $project  Project ID for this request.

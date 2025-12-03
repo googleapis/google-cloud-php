@@ -20,13 +20,15 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
-     * Multiple maintenance types in one window. This is only intended to be used for groups.
+     * Multiple maintenance types in one window.
+     * This is only intended to be used for groups.
      *
      * Generated from protobuf enum <code>MULTIPLE = 362714640;</code>
      */
     const MULTIPLE = 362714640;
     /**
-     * Scheduled maintenance (e.g. maintenance after uptime guarantee is complete).
+     * Scheduled maintenance (e.g. maintenance after uptime guarantee is
+     * complete).
      *
      * Generated from protobuf enum <code>SCHEDULED = 478400653;</code>
      */
@@ -38,7 +40,8 @@ class Type
      */
     const UNKNOWN_TYPE = 490705455;
     /**
-     * Unscheduled maintenance (e.g. emergency maintenance during uptime guarantee).
+     * Unscheduled maintenance (e.g. emergency maintenance during
+     * uptime guarantee).
      *
      * Generated from protobuf enum <code>UNSCHEDULED = 450077204;</code>
      */

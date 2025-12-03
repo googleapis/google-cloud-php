@@ -20,7 +20,8 @@ class DeleteStatus
      */
     const UNDEFINED_DELETE_STATUS = 0;
     /**
-     * Both network admins have agreed this consensus peering connection can be deleted.
+     * Both network admins have agreed this consensus peering connection can
+     * be deleted.
      *
      * Generated from protobuf enum <code>DELETE_ACKNOWLEDGED = 325293916;</code>
      */
@@ -36,7 +37,8 @@ class DeleteStatus
      */
     const LOCAL_DELETE_REQUESTED = 227335214;
     /**
-     * The peer network admin has requested deletion of this peering connection.
+     * The peer network admin has requested deletion of this peering
+     * connection.
      *
      * Generated from protobuf enum <code>PEER_DELETE_REQUESTED = 197847799;</code>
      */

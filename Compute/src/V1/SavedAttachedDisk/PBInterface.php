@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\SavedAttachedDisk;
 use UnexpectedValueException;
 
 /**
- * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME.
+ * Specifies the disk interface to use for attaching this disk, which is
+ * either SCSI or NVME.
  *
  * Protobuf type <code>google.cloud.compute.v1.SavedAttachedDisk.Interface</code>
  */

@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\SslCertificate;
 use UnexpectedValueException;
 
 /**
- * (Optional) Specifies the type of SSL certificate, either "SELF_MANAGED" or "MANAGED". If not specified, the certificate is self-managed and the fields certificate and private_key are used.
+ * (Optional) Specifies the type of SSL certificate, either "SELF_MANAGED" or
+ * "MANAGED". If not specified, the certificate is self-managed and the fieldscertificate and private_key are used.
  *
  * Protobuf type <code>google.cloud.compute.v1.SslCertificate.Type</code>
  */

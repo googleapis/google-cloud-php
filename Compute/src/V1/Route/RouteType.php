@@ -7,7 +7,13 @@ namespace Google\Cloud\Compute\V1\Route;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The type of this route, which can be one of the following values: - 'TRANSIT' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - 'SUBNET' for a route from a subnet of the VPC - 'BGP' for a route learned from a BGP peer of this router - 'STATIC' for a static route
+ * [Output Only] The type of this route, which can be one of the following
+ * values:
+ * - 'TRANSIT' for a transit route that this router learned from
+ * another Cloud Router and will readvertise to one of its BGP peers
+ * - 'SUBNET' for a route from a subnet of the VPC
+ * - 'BGP' for a route learned from a BGP peer of this router
+ * - 'STATIC' for a static route
  *
  * Protobuf type <code>google.cloud.compute.v1.Route.RouteType</code>
  */

@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\NodeGroup;
 use UnexpectedValueException;
 
 /**
- * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see Maintenance policies.
+ * Specifies how to handle instances when a node in the group undergoes
+ * maintenance. Set to one of: DEFAULT,RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP.
+ * The default value is DEFAULT. For more information, see
+ * Maintenance policies.
  *
  * Protobuf type <code>google.cloud.compute.v1.NodeGroup.MaintenancePolicy</code>
  */
@@ -20,7 +23,8 @@ class MaintenancePolicy
      */
     const UNDEFINED_MAINTENANCE_POLICY = 0;
     /**
-     * Allow the node and corresponding instances to retain default maintenance behavior.
+     * Allow the node and corresponding instances to retain default
+     * maintenance behavior.
      *
      * Generated from protobuf enum <code>DEFAULT = 115302945;</code>
      */
@@ -30,13 +34,20 @@ class MaintenancePolicy
      */
     const MAINTENANCE_POLICY_UNSPECIFIED = 72964182;
     /**
-     * When maintenance must be done on a node, the instances on that node will be moved to other nodes in the group. Instances with onHostMaintenance = MIGRATE will live migrate to their destinations while instances with onHostMaintenance = TERMINATE will terminate and then restart on their destination nodes if automaticRestart = true.
+     * When maintenance must be done on a node, the instances on that node will
+     * be moved to other nodes in the group.
+     * Instances with onHostMaintenance = MIGRATE will live migrate to their
+     * destinations while instances with onHostMaintenance = TERMINATE will
+     * terminate and then restart on their destination nodes if
+     * automaticRestart = true.
      *
      * Generated from protobuf enum <code>MIGRATE_WITHIN_NODE_GROUP = 153483394;</code>
      */
     const MIGRATE_WITHIN_NODE_GROUP = 153483394;
     /**
-     * Instances in this group will restart on the same node when maintenance has completed. Instances must have onHostMaintenance = TERMINATE, and they will only restart if automaticRestart = true.
+     * Instances in this group will restart on the same node when maintenance
+     * has completed. Instances must have onHostMaintenance = TERMINATE, and
+     * they will only restart if automaticRestart = true.
      *
      * Generated from protobuf enum <code>RESTART_IN_PLACE = 228647325;</code>
      */

@@ -15,7 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
+     * A filter for the state of the instances in the instance group. Valid
+     * options are ALL or RUNNING. If you do not specify
+     * this parameter the list includes all instances regardless of their state.
      * Check the InstanceState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string instance_state = 92223591;</code>
@@ -29,7 +31,9 @@ class InstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance_state
-     *           A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
+     *           A filter for the state of the instances in the instance group. Valid
+     *           options are ALL or RUNNING. If you do not specify
+     *           this parameter the list includes all instances regardless of their state.
      *           Check the InstanceState enum for the list of possible values.
      * }
      */
@@ -39,7 +43,9 @@ class InstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
+     * A filter for the state of the instances in the instance group. Valid
+     * options are ALL or RUNNING. If you do not specify
+     * this parameter the list includes all instances regardless of their state.
      * Check the InstanceState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string instance_state = 92223591;</code>
@@ -61,7 +67,9 @@ class InstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
+     * A filter for the state of the instances in the instance group. Valid
+     * options are ALL or RUNNING. If you do not specify
+     * this parameter the list includes all instances regardless of their state.
      * Check the InstanceState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string instance_state = 92223591;</code>

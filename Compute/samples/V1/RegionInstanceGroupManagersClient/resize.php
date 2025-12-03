@@ -30,12 +30,25 @@ use Google\Cloud\Compute\V1\ResizeRegionInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
- * Changes the intended size of the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes one or more instances. The resize operation is marked DONE if the resize request is successful. The underlying actions take additional time. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.
+ * Changes the intended size of the managed instance group. If you increase
+ * the size, the group creates new instances using the current instance
+ * template. If you decrease the size, the group deletes one or more
+ * instances.
+ *
+ * The resize operation is marked DONE if theresize request is successful. The underlying actions take
+ * additional time. You must separately verify the status of thecreating or deleting actions with thelistmanagedinstances
+ * method.
+ *
+ * If the group is part of a backend
+ * service that has enabled
+ * connection draining, it can take up to 60 seconds after the connection
+ * draining duration has elapsed before the VM instance is removed or deleted.
  *
  * @param string $instanceGroupManager Name of the managed instance group.
  * @param string $project              Project ID for this request.
  * @param string $region               Name of the region scoping this request.
- * @param int    $size                 Number of instances that should exist in this instance group manager.
+ * @param int    $size                 Number of instances that should exist in this instance group
+ *                                     manager.
  */
 function resize_sample(
     string $instanceGroupManager,

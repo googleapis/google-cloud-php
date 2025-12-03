@@ -15,7 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class WafExpressionSet extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of alternate IDs. The format should be: - E.g. XSS-stable Generic suffix like "stable" is particularly useful if a policy likes to avail newer set of expressions without having to change the policy. A given alias name can't be used for more than one entity set.
+     * A list of alternate IDs. The format should be:
+     * - E.g. XSS-stable
+     * Generic suffix like "stable" is particularly useful if a policy
+     * likes to avail newer set of expressions without having to change
+     * the policy.
+     * A given alias name can't be used for more than one entity set.
      *
      * Generated from protobuf field <code>repeated string aliases = 159207166;</code>
      */
@@ -27,7 +32,9 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
      */
     private $expressions;
     /**
-     * Google specified expression set ID. The format should be: - E.g. XSS-20170329 required
+     * Google specified expression set ID. The format should be:
+     * - E.g. XSS-20170329
+     * required
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      */
@@ -40,11 +47,18 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aliases
-     *           A list of alternate IDs. The format should be: - E.g. XSS-stable Generic suffix like "stable" is particularly useful if a policy likes to avail newer set of expressions without having to change the policy. A given alias name can't be used for more than one entity set.
+     *           A list of alternate IDs. The format should be:
+     *           - E.g. XSS-stable
+     *           Generic suffix like "stable" is particularly useful if a policy
+     *           likes to avail newer set of expressions without having to change
+     *           the policy.
+     *           A given alias name can't be used for more than one entity set.
      *     @type array<\Google\Cloud\Compute\V1\WafExpressionSetExpression>|\Google\Protobuf\Internal\RepeatedField $expressions
      *           List of available expressions.
      *     @type string $id
-     *           Google specified expression set ID. The format should be: - E.g. XSS-20170329 required
+     *           Google specified expression set ID. The format should be:
+     *           - E.g. XSS-20170329
+     *           required
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +67,12 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of alternate IDs. The format should be: - E.g. XSS-stable Generic suffix like "stable" is particularly useful if a policy likes to avail newer set of expressions without having to change the policy. A given alias name can't be used for more than one entity set.
+     * A list of alternate IDs. The format should be:
+     * - E.g. XSS-stable
+     * Generic suffix like "stable" is particularly useful if a policy
+     * likes to avail newer set of expressions without having to change
+     * the policy.
+     * A given alias name can't be used for more than one entity set.
      *
      * Generated from protobuf field <code>repeated string aliases = 159207166;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -64,7 +83,12 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of alternate IDs. The format should be: - E.g. XSS-stable Generic suffix like "stable" is particularly useful if a policy likes to avail newer set of expressions without having to change the policy. A given alias name can't be used for more than one entity set.
+     * A list of alternate IDs. The format should be:
+     * - E.g. XSS-stable
+     * Generic suffix like "stable" is particularly useful if a policy
+     * likes to avail newer set of expressions without having to change
+     * the policy.
+     * A given alias name can't be used for more than one entity set.
      *
      * Generated from protobuf field <code>repeated string aliases = 159207166;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -105,7 +129,9 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google specified expression set ID. The format should be: - E.g. XSS-20170329 required
+     * Google specified expression set ID. The format should be:
+     * - E.g. XSS-20170329
+     * required
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      * @return string
@@ -126,7 +152,9 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google specified expression set ID. The format should be: - E.g. XSS-20170329 required
+     * Google specified expression set ID. The format should be:
+     * - E.g. XSS-20170329
+     * required
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      * @param string $var

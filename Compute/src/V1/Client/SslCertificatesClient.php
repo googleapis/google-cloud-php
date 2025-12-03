@@ -268,7 +268,11 @@ final class SslCertificatesClient
     }
 
     /**
-     * Retrieves the list of all SslCertificate resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves the list of all SslCertificate resources, regional and global,
+     * available to the specified project.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see SslCertificatesClient::aggregatedListAsync()} .
      *
@@ -348,7 +352,8 @@ final class SslCertificatesClient
     }
 
     /**
-     * Creates a SslCertificate resource in the specified project using the data included in the request.
+     * Creates a SslCertificate resource in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see SslCertificatesClient::insertAsync()} .
      *
@@ -374,7 +379,8 @@ final class SslCertificatesClient
     }
 
     /**
-     * Retrieves the list of SslCertificate resources available to the specified project.
+     * Retrieves the list of SslCertificate resources available to the specified
+     * project.
      *
      * The async variant is {@see SslCertificatesClient::listAsync()} .
      *

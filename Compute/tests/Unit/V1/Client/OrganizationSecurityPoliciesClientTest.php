@@ -574,6 +574,7 @@ class OrganizationSecurityPoliciesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $labelFingerprint = 'labelFingerprint714995737';
         $name = 'name3373707';
+        $parent = 'parent-995424086';
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $shortName = 'shortName1565793390';
@@ -586,6 +587,7 @@ class OrganizationSecurityPoliciesClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setName($name);
+        $expectedResponse->setParent($parent);
         $expectedResponse->setRegion($region);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setShortName($shortName);

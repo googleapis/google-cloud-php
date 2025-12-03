@@ -9,38 +9,54 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Settings controlling the volume of requests, connections and retries to this backend service.
+ * Settings controlling the volume of requests, connections and retries to this
+ * backend service.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.CircuitBreakers</code>
  */
 class CircuitBreakers extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The maximum number of connections to the backend service. If not specified, there is no limit. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * The maximum number of connections to the backend service. If not specified,
+     * there is no limit.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_connections = 110652154;</code>
      */
     protected $max_connections = null;
     /**
-     * The maximum number of pending requests allowed to the backend service. If not specified, there is no limit. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * The maximum number of pending requests allowed to the backend service. If
+     * not specified, there is no limit.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_pending_requests = 375558887;</code>
      */
     protected $max_pending_requests = null;
     /**
-     * The maximum number of parallel requests that allowed to the backend service. If not specified, there is no limit.
+     * The maximum number of parallel requests that allowed to the backend
+     * service. If not specified, there is no limit.
      *
      * Generated from protobuf field <code>optional int32 max_requests = 28097599;</code>
      */
     protected $max_requests = null;
     /**
-     * Maximum requests for a single connection to the backend service. This parameter is respected by both the HTTP/1.1 and HTTP/2 implementations. If not specified, there is no limit. Setting this parameter to 1 will effectively disable keep alive. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * Maximum requests for a single connection to the backend service.
+     * This parameter is respected by both the HTTP/1.1 and HTTP/2
+     * implementations. If not specified, there is no limit. Setting this
+     * parameter to 1 will effectively disable keep alive.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_requests_per_connection = 361630528;</code>
      */
     protected $max_requests_per_connection = null;
     /**
-     * The maximum number of parallel retries allowed to the backend cluster. If not specified, the default is 1. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * The maximum number of parallel retries allowed to the backend cluster. If
+     * not specified, the default is 1.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_retries = 55546219;</code>
      */
@@ -53,15 +69,30 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $max_connections
-     *           The maximum number of connections to the backend service. If not specified, there is no limit. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     *           The maximum number of connections to the backend service. If not specified,
+     *           there is no limit.
+     *           Not supported when the backend service is referenced by a URL map that is
+     *           bound to target gRPC proxy that has validateForProxyless field set to true.
      *     @type int $max_pending_requests
-     *           The maximum number of pending requests allowed to the backend service. If not specified, there is no limit. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     *           The maximum number of pending requests allowed to the backend service. If
+     *           not specified, there is no limit.
+     *           Not supported when the backend service is referenced by a URL map that is
+     *           bound to target gRPC proxy that has validateForProxyless field set to true.
      *     @type int $max_requests
-     *           The maximum number of parallel requests that allowed to the backend service. If not specified, there is no limit.
+     *           The maximum number of parallel requests that allowed to the backend
+     *           service. If not specified, there is no limit.
      *     @type int $max_requests_per_connection
-     *           Maximum requests for a single connection to the backend service. This parameter is respected by both the HTTP/1.1 and HTTP/2 implementations. If not specified, there is no limit. Setting this parameter to 1 will effectively disable keep alive. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     *           Maximum requests for a single connection to the backend service.
+     *           This parameter is respected by both the HTTP/1.1 and HTTP/2
+     *           implementations. If not specified, there is no limit. Setting this
+     *           parameter to 1 will effectively disable keep alive.
+     *           Not supported when the backend service is referenced by a URL map that is
+     *           bound to target gRPC proxy that has validateForProxyless field set to true.
      *     @type int $max_retries
-     *           The maximum number of parallel retries allowed to the backend cluster. If not specified, the default is 1. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     *           The maximum number of parallel retries allowed to the backend cluster. If
+     *           not specified, the default is 1.
+     *           Not supported when the backend service is referenced by a URL map that is
+     *           bound to target gRPC proxy that has validateForProxyless field set to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,7 +101,10 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of connections to the backend service. If not specified, there is no limit. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * The maximum number of connections to the backend service. If not specified,
+     * there is no limit.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_connections = 110652154;</code>
      * @return int
@@ -91,7 +125,10 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of connections to the backend service. If not specified, there is no limit. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * The maximum number of connections to the backend service. If not specified,
+     * there is no limit.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_connections = 110652154;</code>
      * @param int $var
@@ -106,7 +143,10 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of pending requests allowed to the backend service. If not specified, there is no limit. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * The maximum number of pending requests allowed to the backend service. If
+     * not specified, there is no limit.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_pending_requests = 375558887;</code>
      * @return int
@@ -127,7 +167,10 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of pending requests allowed to the backend service. If not specified, there is no limit. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * The maximum number of pending requests allowed to the backend service. If
+     * not specified, there is no limit.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_pending_requests = 375558887;</code>
      * @param int $var
@@ -142,7 +185,8 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of parallel requests that allowed to the backend service. If not specified, there is no limit.
+     * The maximum number of parallel requests that allowed to the backend
+     * service. If not specified, there is no limit.
      *
      * Generated from protobuf field <code>optional int32 max_requests = 28097599;</code>
      * @return int
@@ -163,7 +207,8 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of parallel requests that allowed to the backend service. If not specified, there is no limit.
+     * The maximum number of parallel requests that allowed to the backend
+     * service. If not specified, there is no limit.
      *
      * Generated from protobuf field <code>optional int32 max_requests = 28097599;</code>
      * @param int $var
@@ -178,7 +223,12 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum requests for a single connection to the backend service. This parameter is respected by both the HTTP/1.1 and HTTP/2 implementations. If not specified, there is no limit. Setting this parameter to 1 will effectively disable keep alive. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * Maximum requests for a single connection to the backend service.
+     * This parameter is respected by both the HTTP/1.1 and HTTP/2
+     * implementations. If not specified, there is no limit. Setting this
+     * parameter to 1 will effectively disable keep alive.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_requests_per_connection = 361630528;</code>
      * @return int
@@ -199,7 +249,12 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum requests for a single connection to the backend service. This parameter is respected by both the HTTP/1.1 and HTTP/2 implementations. If not specified, there is no limit. Setting this parameter to 1 will effectively disable keep alive. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * Maximum requests for a single connection to the backend service.
+     * This parameter is respected by both the HTTP/1.1 and HTTP/2
+     * implementations. If not specified, there is no limit. Setting this
+     * parameter to 1 will effectively disable keep alive.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_requests_per_connection = 361630528;</code>
      * @param int $var
@@ -214,7 +269,10 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of parallel retries allowed to the backend cluster. If not specified, the default is 1. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * The maximum number of parallel retries allowed to the backend cluster. If
+     * not specified, the default is 1.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_retries = 55546219;</code>
      * @return int
@@ -235,7 +293,10 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of parallel retries allowed to the backend cluster. If not specified, the default is 1. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * The maximum number of parallel retries allowed to the backend cluster. If
+     * not specified, the default is 1.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_retries = 55546219;</code>
      * @param int $var

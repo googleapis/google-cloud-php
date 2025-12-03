@@ -30,7 +30,8 @@ use Google\Cloud\Compute\V1\GetHealthRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\ResourceGroupReference;
 
 /**
- * Gets the most recent health check results for this regional BackendService.
+ * Gets the most recent health check results for this
+ * regional BackendService.
  *
  * @param string $backendService Name of the BackendService resource for which to get health.
  * @param string $project

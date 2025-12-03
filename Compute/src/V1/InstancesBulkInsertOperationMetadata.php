@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstancesBulkInsertOperationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Status information per location (location name is key). Example key: zones/us-central1-a
+     * Status information per location (location name is key).
+     * Example key: zones/us-central1-a
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.BulkInsertOperationStatus> per_location_status = 167851162;</code>
      */
@@ -28,7 +29,8 @@ class InstancesBulkInsertOperationMetadata extends \Google\Protobuf\Internal\Mes
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $per_location_status
-     *           Status information per location (location name is key). Example key: zones/us-central1-a
+     *           Status information per location (location name is key).
+     *           Example key: zones/us-central1-a
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class InstancesBulkInsertOperationMetadata extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Status information per location (location name is key). Example key: zones/us-central1-a
+     * Status information per location (location name is key).
+     * Example key: zones/us-central1-a
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.BulkInsertOperationStatus> per_location_status = 167851162;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -48,7 +51,8 @@ class InstancesBulkInsertOperationMetadata extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Status information per location (location name is key). Example key: zones/us-central1-a
+     * Status information per location (location name is key).
+     * Example key: zones/us-central1-a
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.BulkInsertOperationStatus> per_location_status = 167851162;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An interconnect group resource allows customers to create, analyze, and expand their redundant connections.
+ * An interconnect group resource allows customers to create, analyze, and
+ * expand their redundant connections.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectGroup</code>
  */
@@ -20,25 +21,32 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
      */
     protected $configured = null;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * Opaque system-generated token that uniquely identifies the configuration. If provided when patching a configuration in update mode, the provided token must match the current token or the update is rejected. This provides a reliable means of doing read-modify-write (optimistic locking) as described by API 154.
+     * Opaque system-generated token that uniquely identifies the configuration.
+     * If provided when patching a configuration in update mode, the provided
+     * token must match the current token or the update is rejected. This provides
+     * a reliable means of doing read-modify-write (optimistic locking) as
+     * described by AIP 154.
      *
      * Generated from protobuf field <code>optional string etag = 3123477;</code>
      */
     protected $etag = null;
     /**
-     * [Output Only] The unique identifier for the resource type. The server generates this identifier.
+     * [Output Only] The unique identifier for the resource type. The server
+     * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
@@ -48,7 +56,11 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
      */
     protected $intent = null;
     /**
-     * Interconnects in the InterconnectGroup. Keys are arbitrary user-specified strings. Users are encouraged, but not required, to use their preferred format for resource links as keys. Note that there are add-members and remove-members methods in gcloud. The size of this map is limited by an "Interconnects per group" quota.
+     * Interconnects in the InterconnectGroup. Keys are arbitrary user-specified
+     * strings. Users are encouraged, but not required, to use their preferred
+     * format for resource links as keys.
+     * Note that there are add-members and remove-members methods in gcloud.
+     * The size of this map is limited by an "Interconnects per group" quota.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.InterconnectGroupInterconnect> interconnects = 520187301;</code>
      */
@@ -60,7 +72,13 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
      */
     protected $kind = null;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -84,20 +102,37 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Compute\V1\InterconnectGroupConfigured $configured
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of this resource. Provide this property when you
+     *           create the resource.
      *     @type string $etag
-     *           Opaque system-generated token that uniquely identifies the configuration. If provided when patching a configuration in update mode, the provided token must match the current token or the update is rejected. This provides a reliable means of doing read-modify-write (optimistic locking) as described by API 154.
+     *           Opaque system-generated token that uniquely identifies the configuration.
+     *           If provided when patching a configuration in update mode, the provided
+     *           token must match the current token or the update is rejected. This provides
+     *           a reliable means of doing read-modify-write (optimistic locking) as
+     *           described by AIP 154.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource type. The server generates this identifier.
+     *           [Output Only] The unique identifier for the resource type. The server
+     *           generates this identifier.
      *     @type \Google\Cloud\Compute\V1\InterconnectGroupIntent $intent
      *     @type array|\Google\Protobuf\Internal\MapField $interconnects
-     *           Interconnects in the InterconnectGroup. Keys are arbitrary user-specified strings. Users are encouraged, but not required, to use their preferred format for resource links as keys. Note that there are add-members and remove-members methods in gcloud. The size of this map is limited by an "Interconnects per group" quota.
+     *           Interconnects in the InterconnectGroup. Keys are arbitrary user-specified
+     *           strings. Users are encouraged, but not required, to use their preferred
+     *           format for resource links as keys.
+     *           Note that there are add-members and remove-members methods in gcloud.
+     *           The size of this map is limited by an "Interconnects per group" quota.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#InterconnectGroup
      *     @type string $name
-     *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           Name of the resource. Provided by the client when the resource is created.
+     *           The name must be 1-63 characters long, and comply withRFC1035.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must
+     *           be a dash, lowercase letter, or digit, except the last character, which
+     *           cannot be a dash.
      *     @type \Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructure $physical_structure
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
@@ -141,7 +176,8 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -162,7 +198,8 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -177,7 +214,8 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -198,7 +236,8 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -213,7 +252,11 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opaque system-generated token that uniquely identifies the configuration. If provided when patching a configuration in update mode, the provided token must match the current token or the update is rejected. This provides a reliable means of doing read-modify-write (optimistic locking) as described by API 154.
+     * Opaque system-generated token that uniquely identifies the configuration.
+     * If provided when patching a configuration in update mode, the provided
+     * token must match the current token or the update is rejected. This provides
+     * a reliable means of doing read-modify-write (optimistic locking) as
+     * described by AIP 154.
      *
      * Generated from protobuf field <code>optional string etag = 3123477;</code>
      * @return string
@@ -234,7 +277,11 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opaque system-generated token that uniquely identifies the configuration. If provided when patching a configuration in update mode, the provided token must match the current token or the update is rejected. This provides a reliable means of doing read-modify-write (optimistic locking) as described by API 154.
+     * Opaque system-generated token that uniquely identifies the configuration.
+     * If provided when patching a configuration in update mode, the provided
+     * token must match the current token or the update is rejected. This provides
+     * a reliable means of doing read-modify-write (optimistic locking) as
+     * described by AIP 154.
      *
      * Generated from protobuf field <code>optional string etag = 3123477;</code>
      * @param string $var
@@ -249,7 +296,8 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server generates this identifier.
+     * [Output Only] The unique identifier for the resource type. The server
+     * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -270,7 +318,8 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server generates this identifier.
+     * [Output Only] The unique identifier for the resource type. The server
+     * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -317,7 +366,11 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Interconnects in the InterconnectGroup. Keys are arbitrary user-specified strings. Users are encouraged, but not required, to use their preferred format for resource links as keys. Note that there are add-members and remove-members methods in gcloud. The size of this map is limited by an "Interconnects per group" quota.
+     * Interconnects in the InterconnectGroup. Keys are arbitrary user-specified
+     * strings. Users are encouraged, but not required, to use their preferred
+     * format for resource links as keys.
+     * Note that there are add-members and remove-members methods in gcloud.
+     * The size of this map is limited by an "Interconnects per group" quota.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.InterconnectGroupInterconnect> interconnects = 520187301;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -328,7 +381,11 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Interconnects in the InterconnectGroup. Keys are arbitrary user-specified strings. Users are encouraged, but not required, to use their preferred format for resource links as keys. Note that there are add-members and remove-members methods in gcloud. The size of this map is limited by an "Interconnects per group" quota.
+     * Interconnects in the InterconnectGroup. Keys are arbitrary user-specified
+     * strings. Users are encouraged, but not required, to use their preferred
+     * format for resource links as keys.
+     * Note that there are add-members and remove-members methods in gcloud.
+     * The size of this map is limited by an "Interconnects per group" quota.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.InterconnectGroupInterconnect> interconnects = 520187301;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -379,7 +436,13 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -400,7 +463,13 @@ class InterconnectGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var

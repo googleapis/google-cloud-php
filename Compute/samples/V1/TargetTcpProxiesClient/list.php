@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\TargetTcpProxiesClient;
 use Google\Cloud\Compute\V1\ListTargetTcpProxiesRequest;
 
 /**
- * Retrieves the list of TargetTcpProxy resources available to the specified project.
+ * Retrieves the list of TargetTcpProxy resources
+ * available to the specified project.
  *
  * @param string $project Project ID for this request.
  */

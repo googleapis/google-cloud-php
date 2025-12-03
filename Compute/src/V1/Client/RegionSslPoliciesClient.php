@@ -271,7 +271,9 @@ final class RegionSslPoliciesClient
     }
 
     /**
-     * Deletes the specified SSL policy. The SSL policy resource can be deleted only if it is not in use by any TargetHttpsProxy or TargetSslProxy resources.
+     * Deletes the specified SSL policy. The SSL policy resource can be deleted
+     * only if it is not in use by any TargetHttpsProxy or TargetSslProxy
+     * resources.
      *
      * The async variant is {@see RegionSslPoliciesClient::deleteAsync()} .
      *
@@ -323,7 +325,8 @@ final class RegionSslPoliciesClient
     }
 
     /**
-     * Creates a new policy in the specified project and region using the data included in the request.
+     * Creates a new policy in the specified project and region using the data
+     * included in the request.
      *
      * The async variant is {@see RegionSslPoliciesClient::insertAsync()} .
      *
@@ -349,7 +352,8 @@ final class RegionSslPoliciesClient
     }
 
     /**
-     * Lists all the SSL policies that have been configured for the specified project and region.
+     * Lists all the SSL policies that have been configured for the specified
+     * project and region.
      *
      * The async variant is {@see RegionSslPoliciesClient::listAsync()} .
      *
@@ -375,7 +379,8 @@ final class RegionSslPoliciesClient
     }
 
     /**
-     * Lists all features that can be specified in the SSL policy when using custom profile.
+     * Lists all features that can be specified in the SSL policy when using
+     * custom profile.
      *
      * The async variant is
      * {@see RegionSslPoliciesClient::listAvailableFeaturesAsync()} .

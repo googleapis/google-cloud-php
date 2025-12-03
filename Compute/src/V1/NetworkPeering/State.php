@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\NetworkPeering;
 use UnexpectedValueException;
 
 /**
- * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The peering is `ACTIVE` when there's a matching configuration in the peer network.
+ * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
+ * peering is `ACTIVE` when there's a matching configuration in the peer
+ * network.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkPeering.State</code>
  */
@@ -26,7 +28,8 @@ class State
      */
     const ACTIVE = 314733318;
     /**
-     * There is no matching configuration on the peer, including the case when peer does not exist.
+     * There is no matching configuration on the peer, including the case when
+     * peer does not exist.
      *
      * Generated from protobuf enum <code>INACTIVE = 270421099;</code>
      */

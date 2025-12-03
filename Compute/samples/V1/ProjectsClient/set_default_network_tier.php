@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\SetDefaultNetworkTierProjectRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets the default network tier of the project. The default network tier is used when an address/forwardingRule/instance is created without specifying the network tier field.
+ * Sets the default network tier of the project. The default network tier is
+ * used when an address/forwardingRule/instance is created without specifying
+ * the network tier field.
  *
  * @param string $project Project ID for this request.
  */

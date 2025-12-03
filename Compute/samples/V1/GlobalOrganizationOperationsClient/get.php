@@ -29,9 +29,11 @@ use Google\Cloud\Compute\V1\GetGlobalOrganizationOperationRequest;
 use Google\Cloud\Compute\V1\Operation;
 
 /**
- * Retrieves the specified Operations resource. Gets a list of operations by making a `list()` request.
+ * Retrieves the specified Operations resource. Gets a list of operations
+ * by making a `list()` request.
  *
- * @param string $operation Name of the Operations resource to return. Parent is derived from this field.
+ * @param string $operation Name of the Operations resource to return. Parent is derived from this
+ *                          field.
  */
 function get_sample(string $operation): void
 {

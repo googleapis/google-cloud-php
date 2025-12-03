@@ -22,7 +22,8 @@ class AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest extends \Google\Pr
      */
     protected $global_network_endpoint_groups_attach_endpoints_request_resource = null;
     /**
-     * The name of the network endpoint group where you are attaching network endpoints to. It should comply with RFC1035.
+     * The name of the network endpoint group where you are attaching network
+     * endpoints to. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -34,7 +35,17 @@ class AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest extends \Google\Pr
      */
     protected $project = '';
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
@@ -42,7 +53,8 @@ class AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest extends \Google\Pr
 
     /**
      * @param string                                                                     $project                                                   Project ID for this request.
-     * @param string                                                                     $networkEndpointGroup                                      The name of the network endpoint group where you are attaching network endpoints to. It should comply with RFC1035.
+     * @param string                                                                     $networkEndpointGroup                                      The name of the network endpoint group where you are attaching network
+     *                                                                                                                                              endpoints to. It should comply with RFC1035.
      * @param \Google\Cloud\Compute\V1\GlobalNetworkEndpointGroupsAttachEndpointsRequest $globalNetworkEndpointGroupsAttachEndpointsRequestResource The body resource for this request
      *
      * @return \Google\Cloud\Compute\V1\AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest
@@ -66,11 +78,22 @@ class AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest extends \Google\Pr
      *     @type \Google\Cloud\Compute\V1\GlobalNetworkEndpointGroupsAttachEndpointsRequest $global_network_endpoint_groups_attach_endpoints_request_resource
      *           The body resource for this request
      *     @type string $network_endpoint_group
-     *           The name of the network endpoint group where you are attaching network endpoints to. It should comply with RFC1035.
+     *           The name of the network endpoint group where you are attaching network
+     *           endpoints to. It should comply with RFC1035.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server will know to ignore the
+     *           request if it has already been completed.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same
+     *           request ID, the server can check if original operation with the same
+     *           request ID was received, and if so, will ignore the second request. This
+     *           prevents clients from accidentally creating duplicate commitments.
+     *           The request ID must be
+     *           a valid UUID with the exception that zero UUID is not supported
+     *           (00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -115,7 +138,8 @@ class AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest extends \Google\Pr
     }
 
     /**
-     * The name of the network endpoint group where you are attaching network endpoints to. It should comply with RFC1035.
+     * The name of the network endpoint group where you are attaching network
+     * endpoints to. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -126,7 +150,8 @@ class AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest extends \Google\Pr
     }
 
     /**
-     * The name of the network endpoint group where you are attaching network endpoints to. It should comply with RFC1035.
+     * The name of the network endpoint group where you are attaching network
+     * endpoints to. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -167,7 +192,17 @@ class AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest extends \Google\Pr
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -188,7 +223,17 @@ class AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest extends \Google\Pr
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var

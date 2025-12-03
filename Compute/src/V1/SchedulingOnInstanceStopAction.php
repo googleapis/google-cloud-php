@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Defines the behaviour for instances with the instance_termination_action STOP.
+ * Defines the behaviour for instances with the instance_termination_actionSTOP.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.SchedulingOnInstanceStopAction</code>
  */
 class SchedulingOnInstanceStopAction extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If true, the contents of any attached Local SSD disks will be discarded else, the Local SSD data will be preserved when the instance is stopped at the end of the run duration/termination time.
+     * If true, the contents of any attached Local SSD disks will be discarded
+     * else, the Local SSD data will be preserved when the instance is stopped
+     * at the end of the run duration/termination time.
      *
      * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
      */
@@ -29,7 +31,9 @@ class SchedulingOnInstanceStopAction extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $discard_local_ssd
-     *           If true, the contents of any attached Local SSD disks will be discarded else, the Local SSD data will be preserved when the instance is stopped at the end of the run duration/termination time.
+     *           If true, the contents of any attached Local SSD disks will be discarded
+     *           else, the Local SSD data will be preserved when the instance is stopped
+     *           at the end of the run duration/termination time.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +42,9 @@ class SchedulingOnInstanceStopAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, the contents of any attached Local SSD disks will be discarded else, the Local SSD data will be preserved when the instance is stopped at the end of the run duration/termination time.
+     * If true, the contents of any attached Local SSD disks will be discarded
+     * else, the Local SSD data will be preserved when the instance is stopped
+     * at the end of the run duration/termination time.
      *
      * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
      * @return bool
@@ -59,7 +65,9 @@ class SchedulingOnInstanceStopAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, the contents of any attached Local SSD disks will be discarded else, the Local SSD data will be preserved when the instance is stopped at the end of the run duration/termination time.
+     * If true, the contents of any attached Local SSD disks will be discarded
+     * else, the Local SSD data will be preserved when the instance is stopped
+     * at the end of the run duration/termination time.
      *
      * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
      * @param bool $var

@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Rpc\Status;
 
 /**
- * Attaches an existing Disk resource to an instance. You must first create the disk before you can attach it. It is not possible to create and attach a disk at the same time. For more information, read Adding a persistent disk to your instance.
+ * Attaches an existing Disk resource to an instance. You must first
+ * create the disk before you can attach it. It is not possible to create
+ * and attach a disk at the same time. For more information, readAdding a
+ * persistent disk to your instance.
  *
  * @param string $instance The instance name for this request.
  * @param string $project  Project ID for this request.

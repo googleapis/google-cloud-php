@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\ExternalVpnGateway;
 use Google\Cloud\Compute\V1\GetExternalVpnGatewayRequest;
 
 /**
- * Returns the specified externalVpnGateway. Get a list of available externalVpnGateways by making a list() request.
+ * Returns the specified externalVpnGateway. Get a list of available
+ * externalVpnGateways by making a list() request.
  *
  * @param string $externalVpnGateway Name of the externalVpnGateway to return.
  * @param string $project            Project ID for this request.

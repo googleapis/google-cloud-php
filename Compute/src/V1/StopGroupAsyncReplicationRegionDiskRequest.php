@@ -28,13 +28,24 @@ class StopGroupAsyncReplicationRegionDiskRequest extends \Google\Protobuf\Intern
      */
     protected $project = '';
     /**
-     * The name of the region for this request. This must be the region of the primary or secondary disks in the consistency group.
+     * The name of the region for this request. This must be the region of the
+     * primary or secondary disks in the consistency group.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
     protected $region = '';
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
@@ -42,7 +53,8 @@ class StopGroupAsyncReplicationRegionDiskRequest extends \Google\Protobuf\Intern
 
     /**
      * @param string                                                          $project                                        Project ID for this request.
-     * @param string                                                          $region                                         The name of the region for this request. This must be the region of the primary or secondary disks in the consistency group.
+     * @param string                                                          $region                                         The name of the region for this request. This must be the region of the
+     *                                                                                                                        primary or secondary disks in the consistency group.
      * @param \Google\Cloud\Compute\V1\DisksStopGroupAsyncReplicationResource $disksStopGroupAsyncReplicationResourceResource The body resource for this request
      *
      * @return \Google\Cloud\Compute\V1\StopGroupAsyncReplicationRegionDiskRequest
@@ -68,9 +80,20 @@ class StopGroupAsyncReplicationRegionDiskRequest extends \Google\Protobuf\Intern
      *     @type string $project
      *           Project ID for this request.
      *     @type string $region
-     *           The name of the region for this request. This must be the region of the primary or secondary disks in the consistency group.
+     *           The name of the region for this request. This must be the region of the
+     *           primary or secondary disks in the consistency group.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server will know to ignore the
+     *           request if it has already been completed.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same
+     *           request ID, the server can check if original operation with the same
+     *           request ID was received, and if so, will ignore the second request. This
+     *           prevents clients from accidentally creating duplicate commitments.
+     *           The request ID must be
+     *           a valid UUID with the exception that zero UUID is not supported
+     *           (00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -141,7 +164,8 @@ class StopGroupAsyncReplicationRegionDiskRequest extends \Google\Protobuf\Intern
     }
 
     /**
-     * The name of the region for this request. This must be the region of the primary or secondary disks in the consistency group.
+     * The name of the region for this request. This must be the region of the
+     * primary or secondary disks in the consistency group.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @return string
@@ -152,7 +176,8 @@ class StopGroupAsyncReplicationRegionDiskRequest extends \Google\Protobuf\Intern
     }
 
     /**
-     * The name of the region for this request. This must be the region of the primary or secondary disks in the consistency group.
+     * The name of the region for this request. This must be the region of the
+     * primary or secondary disks in the consistency group.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @param string $var
@@ -167,7 +192,17 @@ class StopGroupAsyncReplicationRegionDiskRequest extends \Google\Protobuf\Intern
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -188,7 +223,17 @@ class StopGroupAsyncReplicationRegionDiskRequest extends \Google\Protobuf\Intern
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var

@@ -32,7 +32,8 @@ use Google\Cloud\Compute\V1\SslPolicy;
  * Lists all of the ordered rules present in a single specified policy.
  *
  * @param string $project   Project ID for this request.
- * @param string $sslPolicy Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+ * @param string $sslPolicy Name of the SSL policy to update. The name must be 1-63 characters long,
+ *                          and comply with RFC1035.
  */
 function get_sample(string $project, string $sslPolicy): void
 {

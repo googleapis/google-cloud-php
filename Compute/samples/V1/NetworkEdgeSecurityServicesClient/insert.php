@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\NetworkEdgeSecurityService;
 use Google\Rpc\Status;
 
 /**
- * Creates a new service in the specified project using the data included in the request.
+ * Creates a new service in the specified project using the data included in
+ * the request.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

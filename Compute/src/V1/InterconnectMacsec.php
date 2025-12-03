@@ -9,20 +9,29 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration information for enabling Media Access Control security (MACsec) on this Cloud Interconnect connection between Google and your on-premises router.
+ * Configuration information for enabling Media Access Control security
+ * (MACsec) on this Cloud Interconnect connection between Google and your
+ * on-premises router.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectMacsec</code>
  */
 class InterconnectMacsec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If set to true, the Interconnect connection is configured with a should-secure MACsec security policy, that allows the Google router to fallback to cleartext traffic if the MKA session cannot be established. By default, the Interconnect connection is configured with a must-secure security policy that drops all traffic if the MKA session cannot be established with your router.
+     * If set to true, the Interconnect connection is configured with ashould-secure MACsec security policy, that allows the Google
+     * router to fallback to cleartext traffic if the MKA session cannot be
+     * established. By default, the Interconnect connection is configured with amust-secure security policy that drops all traffic if the
+     * MKA session cannot be established with your router.
      *
      * Generated from protobuf field <code>optional bool fail_open = 532597451;</code>
      */
     protected $fail_open = null;
     /**
-     * Required. A keychain placeholder describing a set of named key objects along with their start times. A MACsec CKN/CAK is generated for each key in the key chain. Google router automatically picks the key with the most recent startTime when establishing or re-establishing a MACsec secure link.
+     * Required. A keychain placeholder describing a set of named key objects
+     * along with their start times. A MACsec CKN/CAK is generated for each
+     * key in the key chain. Google router automatically picks the key with
+     * the most recent startTime when establishing or re-establishing a MACsec
+     * secure link.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectMacsecPreSharedKey pre_shared_keys = 420308466;</code>
      */
@@ -35,9 +44,16 @@ class InterconnectMacsec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $fail_open
-     *           If set to true, the Interconnect connection is configured with a should-secure MACsec security policy, that allows the Google router to fallback to cleartext traffic if the MKA session cannot be established. By default, the Interconnect connection is configured with a must-secure security policy that drops all traffic if the MKA session cannot be established with your router.
+     *           If set to true, the Interconnect connection is configured with ashould-secure MACsec security policy, that allows the Google
+     *           router to fallback to cleartext traffic if the MKA session cannot be
+     *           established. By default, the Interconnect connection is configured with amust-secure security policy that drops all traffic if the
+     *           MKA session cannot be established with your router.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectMacsecPreSharedKey>|\Google\Protobuf\Internal\RepeatedField $pre_shared_keys
-     *           Required. A keychain placeholder describing a set of named key objects along with their start times. A MACsec CKN/CAK is generated for each key in the key chain. Google router automatically picks the key with the most recent startTime when establishing or re-establishing a MACsec secure link.
+     *           Required. A keychain placeholder describing a set of named key objects
+     *           along with their start times. A MACsec CKN/CAK is generated for each
+     *           key in the key chain. Google router automatically picks the key with
+     *           the most recent startTime when establishing or re-establishing a MACsec
+     *           secure link.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +62,10 @@ class InterconnectMacsec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, the Interconnect connection is configured with a should-secure MACsec security policy, that allows the Google router to fallback to cleartext traffic if the MKA session cannot be established. By default, the Interconnect connection is configured with a must-secure security policy that drops all traffic if the MKA session cannot be established with your router.
+     * If set to true, the Interconnect connection is configured with ashould-secure MACsec security policy, that allows the Google
+     * router to fallback to cleartext traffic if the MKA session cannot be
+     * established. By default, the Interconnect connection is configured with amust-secure security policy that drops all traffic if the
+     * MKA session cannot be established with your router.
      *
      * Generated from protobuf field <code>optional bool fail_open = 532597451;</code>
      * @return bool
@@ -67,7 +86,10 @@ class InterconnectMacsec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, the Interconnect connection is configured with a should-secure MACsec security policy, that allows the Google router to fallback to cleartext traffic if the MKA session cannot be established. By default, the Interconnect connection is configured with a must-secure security policy that drops all traffic if the MKA session cannot be established with your router.
+     * If set to true, the Interconnect connection is configured with ashould-secure MACsec security policy, that allows the Google
+     * router to fallback to cleartext traffic if the MKA session cannot be
+     * established. By default, the Interconnect connection is configured with amust-secure security policy that drops all traffic if the
+     * MKA session cannot be established with your router.
      *
      * Generated from protobuf field <code>optional bool fail_open = 532597451;</code>
      * @param bool $var
@@ -82,7 +104,11 @@ class InterconnectMacsec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A keychain placeholder describing a set of named key objects along with their start times. A MACsec CKN/CAK is generated for each key in the key chain. Google router automatically picks the key with the most recent startTime when establishing or re-establishing a MACsec secure link.
+     * Required. A keychain placeholder describing a set of named key objects
+     * along with their start times. A MACsec CKN/CAK is generated for each
+     * key in the key chain. Google router automatically picks the key with
+     * the most recent startTime when establishing or re-establishing a MACsec
+     * secure link.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectMacsecPreSharedKey pre_shared_keys = 420308466;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -93,7 +119,11 @@ class InterconnectMacsec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A keychain placeholder describing a set of named key objects along with their start times. A MACsec CKN/CAK is generated for each key in the key chain. Google router automatically picks the key with the most recent startTime when establishing or re-establishing a MACsec secure link.
+     * Required. A keychain placeholder describing a set of named key objects
+     * along with their start times. A MACsec CKN/CAK is generated for each
+     * key in the key chain. Google router automatically picks the key with
+     * the most recent startTime when establishing or re-establishing a MACsec
+     * secure link.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectMacsecPreSharedKey pre_shared_keys = 420308466;</code>
      * @param array<\Google\Cloud\Compute\V1\InterconnectMacsecPreSharedKey>|\Google\Protobuf\Internal\RepeatedField $var

@@ -29,7 +29,10 @@ use Google\Cloud\Compute\V1\AggregatedListStoragePoolTypesRequest;
 use Google\Cloud\Compute\V1\Client\StoragePoolTypesClient;
 
 /**
- * Retrieves an aggregated list of storage pool types. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+ * Retrieves an aggregated list of storage pool types.
+ *
+ * To prevent failure, Google recommends that you set the
+ * `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

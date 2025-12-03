@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyRuleMatcherConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * CIDR IP address range. Maximum number of src_ip_ranges allowed is 10.
+     * CIDR IP address range.
+     * Maximum number of src_ip_ranges allowed is 10.
      *
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
      */
@@ -28,7 +29,8 @@ class SecurityPolicyRuleMatcherConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_ip_ranges
-     *           CIDR IP address range. Maximum number of src_ip_ranges allowed is 10.
+     *           CIDR IP address range.
+     *           Maximum number of src_ip_ranges allowed is 10.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class SecurityPolicyRuleMatcherConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CIDR IP address range. Maximum number of src_ip_ranges allowed is 10.
+     * CIDR IP address range.
+     * Maximum number of src_ip_ranges allowed is 10.
      *
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -48,7 +51,8 @@ class SecurityPolicyRuleMatcherConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CIDR IP address range. Maximum number of src_ip_ranges allowed is 10.
+     * CIDR IP address range.
+     * Maximum number of src_ip_ranges allowed is 10.
      *
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
