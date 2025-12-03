@@ -140,7 +140,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
         $this->assertEquals(1, $capturedRequests[0], 'First request ID should be 1.');
         $this->assertEquals(2, $capturedRequests[1], 'Second request ID should be 2.');
         $this->assertEquals(3, $capturedRequests[2], 'Third request ID should be 3.');
-}
+    }
 
     public function testAttemptPartReflectsRetryAttempt()
     {
