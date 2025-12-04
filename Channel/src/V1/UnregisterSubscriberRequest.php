@@ -16,9 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class UnregisterSubscriberRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the account.
+     * Optional. Resource name of the account. Required if integrator is not
+     * provided. Otherwise, leave this field empty/unset.
      *
-     * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $account = '';
     /**
@@ -28,6 +29,13 @@ class UnregisterSubscriberRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string service_account = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $service_account = '';
+    /**
+     * Optional. Resource name of the integrator. Required if account is not
+     * provided. Otherwise, leave this field empty/unset.
+     *
+     * Generated from protobuf field <code>optional string integrator = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $integrator = null;
 
     /**
      * Constructor.
@@ -36,10 +44,14 @@ class UnregisterSubscriberRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $account
-     *           Required. Resource name of the account.
+     *           Optional. Resource name of the account. Required if integrator is not
+     *           provided. Otherwise, leave this field empty/unset.
      *     @type string $service_account
      *           Required. Service account to unregister from subscriber access to the
      *           topic.
+     *     @type string $integrator
+     *           Optional. Resource name of the integrator. Required if account is not
+     *           provided. Otherwise, leave this field empty/unset.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,9 +60,10 @@ class UnregisterSubscriberRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the account.
+     * Optional. Resource name of the account. Required if integrator is not
+     * provided. Otherwise, leave this field empty/unset.
      *
-     * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getAccount()
@@ -59,9 +72,10 @@ class UnregisterSubscriberRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the account.
+     * Optional. Resource name of the account. Required if integrator is not
+     * provided. Otherwise, leave this field empty/unset.
      *
-     * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -97,6 +111,44 @@ class UnregisterSubscriberRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resource name of the integrator. Required if account is not
+     * provided. Otherwise, leave this field empty/unset.
+     *
+     * Generated from protobuf field <code>optional string integrator = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getIntegrator()
+    {
+        return isset($this->integrator) ? $this->integrator : '';
+    }
+
+    public function hasIntegrator()
+    {
+        return isset($this->integrator);
+    }
+
+    public function clearIntegrator()
+    {
+        unset($this->integrator);
+    }
+
+    /**
+     * Optional. Resource name of the integrator. Required if account is not
+     * provided. Otherwise, leave this field empty/unset.
+     *
+     * Generated from protobuf field <code>optional string integrator = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIntegrator($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->integrator = $var;
 
         return $this;
     }

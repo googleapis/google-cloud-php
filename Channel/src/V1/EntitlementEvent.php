@@ -23,7 +23,7 @@ class EntitlementEvent extends \Google\Protobuf\Internal\Message
      */
     protected $entitlement = '';
     /**
-     * Type of event which happened on the entitlement.
+     * Type of event which happened for the entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EntitlementEvent.Type event_type = 2;</code>
      */
@@ -39,7 +39,7 @@ class EntitlementEvent extends \Google\Protobuf\Internal\Message
      *           Resource name of an entitlement of the form:
      *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *     @type int $event_type
-     *           Type of event which happened on the entitlement.
+     *           Type of event which happened for the entitlement.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,7 +76,7 @@ class EntitlementEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of event which happened on the entitlement.
+     * Type of event which happened for the entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EntitlementEvent.Type event_type = 2;</code>
      * @return int
@@ -87,7 +87,7 @@ class EntitlementEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of event which happened on the entitlement.
+     * Type of event which happened for the entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EntitlementEvent.Type event_type = 2;</code>
      * @param int $var

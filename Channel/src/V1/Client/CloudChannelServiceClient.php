@@ -279,6 +279,21 @@ final class CloudChannelServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a account
+     * resource.
+     *
+     * @param string $account
+     *
+     * @return string The formatted account resource.
+     */
+    public static function accountName(string $account): string
+    {
+        return self::getPathTemplate('account')->render([
+            'account' => $account,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * channel_partner_link resource.
      *
@@ -428,6 +443,7 @@ final class CloudChannelServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - account: accounts/{account}
      * - channelPartnerLink: accounts/{account}/channelPartnerLinks/{channel_partner_link}
      * - channelPartnerRepricingConfig: accounts/{account}/channelPartnerLinks/{channel_partner}/channelPartnerRepricingConfigs/{channel_partner_repricing_config}
      * - customer: accounts/{account}/customers/{customer}
@@ -2025,8 +2041,8 @@ final class CloudChannelServiceClient
     }
 
     /**
-     * Lists service accounts with subscriber privileges on the Cloud Pub/Sub
-     * topic created for this Channel Services account.
+     * Lists service accounts with subscriber privileges on the Pub/Sub topic
+     * created for this Channel Services account or integrator.
      *
      * Possible error codes:
      *
@@ -2291,8 +2307,8 @@ final class CloudChannelServiceClient
     }
 
     /**
-     * Registers a service account with subscriber privileges on the Cloud Pub/Sub
-     * topic for this Channel Services account. After you create a
+     * Registers a service account with subscriber privileges on the Pub/Sub
+     * topic for this Channel Services account or integrator. After you create a
      * subscriber, you get the events through
      * [SubscriberEvent][google.cloud.channel.v1.SubscriberEvent]
      *
@@ -2550,10 +2566,10 @@ final class CloudChannelServiceClient
     }
 
     /**
-     * Unregisters a service account with subscriber privileges on the Cloud
-     * Pub/Sub topic created for this Channel Services account. If there are no
-     * service accounts left with subscriber privileges, this deletes the topic.
-     * You can call ListSubscribers to check for these accounts.
+     * Unregisters a service account with subscriber privileges on the Pub/Sub
+     * topic created for this Channel Services account or integrator. If there are
+     * no service accounts left with subscriber privileges, this deletes the
+     * topic. You can call ListSubscribers to check for these accounts.
      *
      * Possible error codes:
      *

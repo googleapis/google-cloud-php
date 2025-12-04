@@ -34,7 +34,8 @@ class ListSkuGroupsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token identifying a page of results beyond the first page.
      * Obtained through
-     * [ListSkuGroups.next_page_token][] of the previous
+     * [ListSkuGroupsResponse.next_page_token][google.cloud.channel.v1.ListSkuGroupsResponse.next_page_token]
+     * of the previous
      * [CloudChannelService.ListSkuGroups][google.cloud.channel.v1.CloudChannelService.ListSkuGroups]
      * call.
      *
@@ -73,7 +74,8 @@ class ListSkuGroupsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. A token identifying a page of results beyond the first page.
      *           Obtained through
-     *           [ListSkuGroups.next_page_token][] of the previous
+     *           [ListSkuGroupsResponse.next_page_token][google.cloud.channel.v1.ListSkuGroupsResponse.next_page_token]
+     *           of the previous
      *           [CloudChannelService.ListSkuGroups][google.cloud.channel.v1.CloudChannelService.ListSkuGroups]
      *           call.
      * }
@@ -146,7 +148,8 @@ class ListSkuGroupsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token identifying a page of results beyond the first page.
      * Obtained through
-     * [ListSkuGroups.next_page_token][] of the previous
+     * [ListSkuGroupsResponse.next_page_token][google.cloud.channel.v1.ListSkuGroupsResponse.next_page_token]
+     * of the previous
      * [CloudChannelService.ListSkuGroups][google.cloud.channel.v1.CloudChannelService.ListSkuGroups]
      * call.
      *
@@ -161,7 +164,8 @@ class ListSkuGroupsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token identifying a page of results beyond the first page.
      * Obtained through
-     * [ListSkuGroups.next_page_token][] of the previous
+     * [ListSkuGroupsResponse.next_page_token][google.cloud.channel.v1.ListSkuGroupsResponse.next_page_token]
+     * of the previous
      * [CloudChannelService.ListSkuGroups][google.cloud.channel.v1.CloudChannelService.ListSkuGroups]
      * call.
      *
