@@ -9,11 +9,20 @@
       name: Authentication
       href: authentication.md
     -
-      name: 'Debug Logging'
-      href: debug.md
+      name: 'Core Concepts'
+      href: core_concepts.md
+    -
+      name: 'Client Configuration'
+      href: client_configuration.md
+    -
+      name: 'OCC for IAM'
+      href: occ_for_iam.md
     -
       name: 'Migrating to V2'
       href: migrating.md
     -
       name: 'Installing gRPC'
       href: grpc.md
+    -
+      name: Troubleshooting
+      href: troubleshooting.md
