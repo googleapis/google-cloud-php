@@ -31,6 +31,11 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
+/**
+ * A middleware in charge of adding Spanner's Request Id header to all the rpc calls.
+ *
+ * @internal
+ */
 class RequestIdHeaderMiddlewareTest extends TestCase
 {
     use ProphecyTrait;
