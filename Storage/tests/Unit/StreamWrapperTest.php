@@ -37,9 +37,8 @@ class StreamWrapperTest extends TestCase
 {
     use ProphecyTrait;
 
-    private $originalDefaultContext;
-
-    private $connection;
+    public $bucket;
+    public $client;
 
     public function setUp(): void
     {

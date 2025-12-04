@@ -46,6 +46,8 @@ class StorageClientTest extends TestCase
     use ProphecyTrait;
 
     const PROJECT = 'my-project';
+
+    public $client;
     public $connection;
 
     public function setUp(): void

@@ -26,6 +26,8 @@ use PHPUnit\Framework\TestCase;
  */
 class SysvTraitTest extends TestCase
 {
+    public $impl;
+
     public function setUp(): void
     {
         $this->impl = TestHelpers::impl(SysvTrait::class);
