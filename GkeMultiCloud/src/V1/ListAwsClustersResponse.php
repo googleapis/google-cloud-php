@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Response message for `AwsClusters.ListAwsClusters` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.ListAwsClustersResponse</code>
  */
 class ListAwsClustersResponse extends \Google\Protobuf\Internal\Message

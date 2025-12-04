@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `AwsClusters.UpdateAwsCluster` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.UpdateAwsClusterRequest</code>
  */
 class UpdateAwsClusterRequest extends \Google\Protobuf\Internal\Message

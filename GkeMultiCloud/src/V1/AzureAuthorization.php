@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Configuration related to the cluster RBAC settings.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureAuthorization</code>
  */
 class AzureAuthorization extends \Google\Protobuf\Internal\Message

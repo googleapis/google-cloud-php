@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * An Anthos cluster running on Azure.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureCluster</code>
  */
 class AzureCluster extends \Google\Protobuf\Internal\Message

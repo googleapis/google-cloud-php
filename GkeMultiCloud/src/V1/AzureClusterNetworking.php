@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * ClusterNetworking contains cluster-wide networking configuration.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureClusterNetworking</code>
  */
 class AzureClusterNetworking extends \Google\Protobuf\Internal\Message

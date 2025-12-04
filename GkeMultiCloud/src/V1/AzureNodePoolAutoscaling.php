@@ -13,6 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The Kubernetes cluster autoscaler will automatically adjust the
  * size of the node pool based on the cluster load.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureNodePoolAutoscaling</code>
  */
 class AzureNodePoolAutoscaling extends \Google\Protobuf\Internal\Message

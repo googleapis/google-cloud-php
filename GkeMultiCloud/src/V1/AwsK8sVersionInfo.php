@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Kubernetes version information of GKE cluster on AWS.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsK8sVersionInfo</code>
  */
 class AwsK8sVersionInfo extends \Google\Protobuf\Internal\Message

@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Identities of a user-type subject for AWS clusters.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsClusterUser</code>
  */
 class AwsClusterUser extends \Google\Protobuf\Internal\Message

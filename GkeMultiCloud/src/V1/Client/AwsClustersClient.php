@@ -75,6 +75,8 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @deprecated This class will be removed in the next major version update.
+ *
  * @method PromiseInterface<OperationResponse> createAwsClusterAsync(CreateAwsClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAwsNodePoolAsync(CreateAwsNodePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAwsClusterAsync(DeleteAwsClusterRequest $request, array $optionalArgs = [])
@@ -117,9 +119,7 @@ final class AwsClustersClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -220,8 +220,12 @@ final class AwsClustersClient
      *
      * @return string The formatted aws_node_pool resource.
      */
-    public static function awsNodePoolName(string $project, string $location, string $awsCluster, string $awsNodePool): string
-    {
+    public static function awsNodePoolName(
+        string $project,
+        string $location,
+        string $awsCluster,
+        string $awsNodePool
+    ): string {
         return self::getPathTemplate('awsNodePool')->render([
             'project' => $project,
             'location' => $location,
@@ -402,6 +406,8 @@ final class AwsClustersClient
      * @return OperationResponse<AwsCluster>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createAwsCluster(CreateAwsClusterRequest $request, array $callOptions = []): OperationResponse
     {
@@ -433,6 +439,8 @@ final class AwsClustersClient
      * @return OperationResponse<AwsNodePool>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createAwsNodePool(CreateAwsNodePoolRequest $request, array $callOptions = []): OperationResponse
     {
@@ -467,6 +475,8 @@ final class AwsClustersClient
      * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteAwsCluster(DeleteAwsClusterRequest $request, array $callOptions = []): OperationResponse
     {
@@ -498,6 +508,8 @@ final class AwsClustersClient
      * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteAwsNodePool(DeleteAwsNodePoolRequest $request, array $callOptions = []): OperationResponse
     {
@@ -525,9 +537,13 @@ final class AwsClustersClient
      * @return GenerateAwsAccessTokenResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
-    public function generateAwsAccessToken(GenerateAwsAccessTokenRequest $request, array $callOptions = []): GenerateAwsAccessTokenResponse
-    {
+    public function generateAwsAccessToken(
+        GenerateAwsAccessTokenRequest $request,
+        array $callOptions = []
+    ): GenerateAwsAccessTokenResponse {
         return $this->startApiCall('GenerateAwsAccessToken', $request, $callOptions)->wait();
     }
 
@@ -552,9 +568,13 @@ final class AwsClustersClient
      * @return GenerateAwsClusterAgentTokenResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
-    public function generateAwsClusterAgentToken(GenerateAwsClusterAgentTokenRequest $request, array $callOptions = []): GenerateAwsClusterAgentTokenResponse
-    {
+    public function generateAwsClusterAgentToken(
+        GenerateAwsClusterAgentTokenRequest $request,
+        array $callOptions = []
+    ): GenerateAwsClusterAgentTokenResponse {
         return $this->startApiCall('GenerateAwsClusterAgentToken', $request, $callOptions)->wait();
     }
 
@@ -579,6 +599,8 @@ final class AwsClustersClient
      * @return AwsCluster
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getAwsCluster(GetAwsClusterRequest $request, array $callOptions = []): AwsCluster
     {
@@ -606,6 +628,8 @@ final class AwsClustersClient
      * @return AwsJsonWebKeys
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getAwsJsonWebKeys(GetAwsJsonWebKeysRequest $request, array $callOptions = []): AwsJsonWebKeys
     {
@@ -633,6 +657,8 @@ final class AwsClustersClient
      * @return AwsNodePool
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getAwsNodePool(GetAwsNodePoolRequest $request, array $callOptions = []): AwsNodePool
     {
@@ -663,6 +689,8 @@ final class AwsClustersClient
      * @return AwsOpenIdConfig
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getAwsOpenIdConfig(GetAwsOpenIdConfigRequest $request, array $callOptions = []): AwsOpenIdConfig
     {
@@ -690,6 +718,8 @@ final class AwsClustersClient
      * @return AwsServerConfig
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getAwsServerConfig(GetAwsServerConfigRequest $request, array $callOptions = []): AwsServerConfig
     {
@@ -717,6 +747,8 @@ final class AwsClustersClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listAwsClusters(ListAwsClustersRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -745,6 +777,8 @@ final class AwsClustersClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listAwsNodePools(ListAwsNodePoolsRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -777,9 +811,13 @@ final class AwsClustersClient
      * @return OperationResponse<AwsNodePool>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
-    public function rollbackAwsNodePoolUpdate(RollbackAwsNodePoolUpdateRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function rollbackAwsNodePoolUpdate(
+        RollbackAwsNodePoolUpdateRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RollbackAwsNodePoolUpdate', $request, $callOptions)->wait();
     }
 
@@ -803,6 +841,8 @@ final class AwsClustersClient
      * @return OperationResponse<AwsCluster>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateAwsCluster(UpdateAwsClusterRequest $request, array $callOptions = []): OperationResponse
     {
@@ -829,6 +869,8 @@ final class AwsClustersClient
      * @return OperationResponse<AwsNodePool>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateAwsNodePool(UpdateAwsNodePoolRequest $request, array $callOptions = []): OperationResponse
     {

@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * GetAwsOpenIdConfigRequest gets the OIDC discovery document for the
  * cluster. See the OpenID Connect Discovery 1.0 specification for details.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.GetAwsOpenIdConfigRequest</code>
  */
 class GetAwsOpenIdConfigRequest extends \Google\Protobuf\Internal\Message
