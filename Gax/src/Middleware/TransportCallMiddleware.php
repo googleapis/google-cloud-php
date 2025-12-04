@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2018 Google LLC
+ * Copyright 2025 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,36 +32,29 @@
 namespace Google\ApiCore\Middleware;
 
 use Google\ApiCore\Call;
-use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\HeaderCredentialsInterface;
+use Google\ApiCore\Transport\TransportInterface;
 
 /**
-* Middleware which adds a CredentialsWrapper object to the call options.
-*
-* @internal
-*/
-class CredentialsWrapperMiddleware implements MiddlewareInterface
+ * A Middleware in charge of handling the end of the callstack to call the transport layer.
+ * This middleware is made so the callstack in the GapicClientTrait is always a middleware.
+ *
+ * @internal
+ */
+class TransportCallMiddleware implements MiddlewareInterface
 {
-    /** @var callable */
-    private $nextHandler;
-
-    /** @var HeaderCredentialsInterface */
-    private HeaderCredentialsInterface  $credentialsWrapper;
-
+    /*
+     * @param TransportInterface $transport
+     * @param array $transportCallMethods
+     */
     public function __construct(
-        callable $nextHandler,
-        HeaderCredentialsInterface $credentialsWrapper
-    ) {
-        $this->nextHandler = $nextHandler;
-        $this->credentialsWrapper = $credentialsWrapper;
-    }
+        private TransportInterface $transport,
+        private array $transportCallMethods
+    )
+    {}
 
     public function __invoke(Call $call, array $options)
     {
-        $next = $this->nextHandler;
-        return $next(
-            $call,
-            $options + ['credentialsWrapper' => $this->credentialsWrapper]
-        );
+        $startCallMethod = $this->transportCallMethods[$call->getCallType()];
+        return $this->transport->$startCallMethod($call, $options);
     }
 }

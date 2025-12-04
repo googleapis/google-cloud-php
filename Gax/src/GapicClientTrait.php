@@ -40,6 +40,7 @@ use Google\ApiCore\Middleware\OptionsFilterMiddleware;
 use Google\ApiCore\Middleware\PagedMiddleware;
 use Google\ApiCore\Middleware\RequestAutoPopulationMiddleware;
 use Google\ApiCore\Middleware\RetryMiddleware;
+use Google\ApiCore\Middleware\TransportCallMiddleware;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\Options\TransportOptions;
@@ -697,10 +698,7 @@ trait GapicClientTrait
             ];
         }
 
-        $callStack = function (Call $call, array $options) {
-            $startCallMethod = $this->transportCallMethods[$call->getCallType()];
-            return $this->transport->$startCallMethod($call, $options);
-        };
+        $callStack = new TransportCallMiddleware($this->transport, $this->transportCallMethods);
 
         foreach ($this->prependMiddlewareCallables as $fn) {
             /** @var MiddlewareInterface $callStack */

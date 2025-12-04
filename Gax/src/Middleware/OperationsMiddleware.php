@@ -37,6 +37,8 @@ use Google\Protobuf\Internal\Message;
 
 /**
  * Middleware which wraps the response in an OperationResponse object.
+ *
+ * @internal
  */
 class OperationsMiddleware implements MiddlewareInterface
 {
